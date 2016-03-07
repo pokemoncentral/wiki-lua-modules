@@ -11,6 +11,7 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
+local c = require('Colore-data')
 
 --[[
 
@@ -64,6 +65,35 @@ q.textLinks = function(games, display)
 	--]]
 	return links[#links]:find('|.* e .*%]%]') and table.concat(links, ', ')
 			or mw.text.listToText(links, ', ', ' e ')
+end
+
+--[[
+
+Crea la sigla del gioco a partire i suoi dati, con
+un eventuale separatore a dividere i giochi e con
+lettere colorate se specificato.
+
+--]]
+
+q.displayAbbr = function(abbrData, sep, colored)
+	local makeAbbr
+	if colored then
+		makeAbbr = function(abbr, color)
+			return string.interp('<span style="color: #${c};">${a}</span>',
+				{
+					c = c[color].normale,
+					a = abbr
+				})
+		end
+	else
+		makeAbbr = function(abbr) return abbr end
+	end
+		
+	return table.concat(table.map(abbrData, function(gamesData)
+			return table.concat(table.map(gamesData.display, function(displayData)
+					return makeAbbr(displayData[1], displayData[2])
+				end), sep)
+		end), sep)
 end
 
 return q
