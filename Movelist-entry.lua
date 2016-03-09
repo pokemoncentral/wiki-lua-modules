@@ -19,12 +19,12 @@ local boolDisplay = {No = '×', Yes = '✔'}
 
 --[[
 
-Traduzione in italiano delle sigle dei giochi in inglese.
+Associa la generazione ad ogni sigla che può
+essere l'indice di un parametro
 
 --]]
-local gamesTrans = {Y = 'g', C = 'c', FRLG = 'rfvf',
-		HGSS = 'hgss', PtHGSS = 'pt', B2W2 = 'n2b2',
-		ORAS = 'ROZA'}
+local gameGens = {Y = 1, C = 2, FRLG = 3, HGSS = 4,
+		PTHGSS = 4, B2W2 = 5, ORAS = 6}
 
 -- Contiene i colori di background delle celle del tutor
 local tutorCellsColors = {c.cristallo.normale, c.rossofuoco.normale,
@@ -52,57 +52,94 @@ local makeCell = function(bg, tc, cs, cnt)
 })
 end
 
-local genGenIndex = function(game, startGen)
+--[[
 
--- Ritorna le due celle concatenate dopo la divisione usando i title
+Dati per la divisione delle celle delle generazioni in
+base al gioco che compare come parametro: di ognuna delle
+due celle risultanti, è specificato il colore di background,
+quello del testo e una sigla, che viene usata per il
+title o il sup
 
-local twoCellsTitle = function(firstCell, secondCell)
-	return table.concat{
-		makeCell(firstCell.content == '×' and 'FFF' or c[firstCell.bg].light,
-			c[firstCell.txt].dark, '1', table.concat{'<span class="explain" title="',
-			firstCell.title, '">', firstCell.content, '</span>'}),
-		'\n',
-		makeCell(secondCell.content == '×' and 'FFF' or c[secondCell.bg].light,
-			c[secondCell.txt].dark, '1', table.concat{'<span class="explain" title="',
-			secondCell.title, '">', secondCell.content, '</span>'})}
+--]]
+local splitCellsData = {}
+splitCellsData.Y = {{bg = 'rosso', txt = 'verde', abbr = 'RVB'},
+	{bg = 'giallo', txt = 'giallo', abbr = 'G'}}
+splitCellsData.C = {{bg = 'oro', txt = 'argento', abbr = 'OA'},
+	{bg = 'cristallo', txt = 'cristallo', abbr = 'C'}}
+splitCellsData.FRLG = {{bg = 'rubino', txt = 'zaffiro', abbr = 'RZS'},
+	{bg = 'rossofuoco', txt = 'verdefoglia', abbr = 'RFVF'}}
+splitCellsData.HGSS = {{bg = 'diamante', txt = 'platino', abbr = 'DPPt'},
+	{bg = 'heartgold', txt = 'soulsilver', abbr = 'HGSS'}}
+splitCellsData.PtHGSS = {{bg = 'diamante', txt = 'perla', abbr = 'DP'},
+	{bg = 'heartgold', txt = 'soulsilver', abbr = 'PtHGSS'}}
+splitCellsData.B2W2 = {{bg = 'bianco', txt = 'nero', abbr = 'NB'},
+	{bg = 'bianco2', txt = 'nero2', abbr = 'N2B2'}}
+splitCellsData.ORAS = {{bg = 'x', txt = 'y', abbr = 'XY'},
+	{bg = 'rubinoomega', txt = 'zaffiroalpha', abbr = 'ROZA'}}
+
+--[[
+
+Ritorna l'indice della cella relativa ad una
+generazione, data la generazione iniziale dell'
+entry e uno tra la generazione corrente o un gioco
+
+--]]
+local getGenIndex = function(startGen, game)
+	return (type(game) == 'number' and game or
+			gameGens[game:upper()]) + 1 - startGen
 end
 
--- Ritorna le due celle concatenate dopo la divisione usando i sup
+--[[
 
-local twoCellsBreed = function(firstCell, secondCell)
-	if firstCell.content == '×' then
-		firstCell = makeCell('FFF', c[firstCell.txt].dark, '1', firstCell.content)
-	else
-		firstCell = makeCell(c[firstCell.bg].light, c[firstCell.txt].dark, '1',
-			firstCell.content .. sup[firstCell.title])
-	end
-	if secondCell.content == '×' then
-		secondCell = makeCell('FFF', c[secondCell.txt].dark, '1', secondCell.content)
-	else
-		secondCell = makeCell(c[secondCell.bg].light, c[secondCell.txt].dark, '1',
-			secondCell.content .. sup[secondCell.title])
-	end
-	return table.concat{firstCell, '\n', secondCell}
+Divide una certa cella di una generazione in due, usando
+una funzione per creare le nuove celle: il risultato è poi
+concatenato e inserito nella cella della stessa generazione,
+in modo da avere un numero di celle fisso. Argomenti:
+	- cells: l'elenco di celle delle generazioni
+	- data: i dati da inserire nelle celle
+	- startGen: la generazione iniziale dell'entry
+	- game: indice del parametro che causa la divisione,
+			normalmente una sigla di un gioco
+	- makeCell: la funzione usata per creare le nuove celle
+--]]
+local splitCell = function(cells, data, startGen, game, makeCell)
+	local genIndex = getGenIndex(game, startGen)
+	cells[genIndex] = table.concat{makeCell(data[genIndex],
+			splitCellsData[game][1]), '\n',	makeCell(data[game],
+			splitCellsData[game][2])}
 end
 
--- Le tables da passare a twoCellsTitle e twoCellsBreed, senza content
--- perché dipende dall'argomento 'data'
+--[[
 
-local twoCellsTables = {}
-twoCellsTables.Y = {{bg = 'rosso', txt = 'verde', title = 'RVB'},
-	{bg = 'giallo', txt = 'giallo', title = 'G'}}
-twoCellsTables.C = {{bg = 'oro', txt = 'argento', title = 'OA'},
-	{bg = 'cristallo', txt = 'cristallo', title = 'C'}}
-twoCellsTables.FRLG = {{bg = 'rubino', txt = 'zaffiro', title = 'RZS'},
-	{bg = 'rossofuoco', txt = 'verdefoglia', title = 'RFVF'}}
-twoCellsTables.HGSS = {{bg = 'diamante', txt = 'platino', title = 'DPPt'},
-	{bg = 'heartgold', txt = 'soulsilver', title = 'HGSS'}}
-twoCellsTables.PtHGSS = {{bg = 'diamante', txt = 'perla', title = 'DP'},
-	{bg = 'heartgold', txt = 'soulsilver', title = 'PtHGSS'}}
-twoCellsTables.B2W2 = {{bg = 'bianco', txt = 'nero', title = 'NB'},
-	{bg = 'bianco2', txt = 'nero2', title = 'N2B2'}}
-twoCellsTables.ORAS = {{bg = 'x', txt = 'y', title = 'XY'},
-	{bg = 'rubinoomega', txt = 'zaffiroalpha', title = 'ROZA'}}
+Crea una cella con il contenuto specificato
+avente un title usando i dati forniti per il
+colore di background, il colore del testo e
+il title
+
+--]]
+local makeTitleCell = function(content, cellData)
+	return makeCell(content == '×' and 'FFF' or c[cellData.bg].light,
+			c[cellData.txt].dark, '1',
+			table.concat{'<span class="explain" title="', cellData.abbr,
+			'">', content, '</span>'})
+end
+
+--[[
+
+Crea una cella con il contenuto specificato avente
+un sup solo se il primo è significativo. Il colore
+di background, quello del testo e il sup vengono
+presi dai dati forniti.
+
+--]]
+local makeSupCell = function(content, cellData)
+	if content == '×' then
+		return makeCell('FFF', c[cellData.txt].dark, '1', content)
+	else
+		return makeCell(c[cellData.bg].light, c[cellData.txt].dark, '1',
+			content .. sup[cellData.abbr])
+	end
+end
 
 --[[
 
@@ -114,96 +151,26 @@ da avere un numero di celle fisso. Argomenti:
 	- data: i dati da inserire nelle celle
 	- startGen: la generazione iniziale dell'entry
 	- game: indice del parametro che causa la divisione,
-			normalmente una sigla di un gioco
+			normalmente una sigla di un gioco			
 --]]
 local splitTitle = function(cells, data, startGen, game)
-	local genIndex = getGenIndex(game, startGen)
-	twoCellsTables[game][1].content = data[1]
-	twoCellsTables[game][2].content = data[game]
-	cells[1] = twoCellsTitle(twoCellsTables[game][1],
-			twoCellsTables[game][2])
+	return splitCell(cells, data, startGen, game, makeTitleCell)
 end
 
-split.Y = function(cells, data, gen)
-	twoCellsTables.Y[1].content = data[1]
-	twoCellsTables.Y[2].content = data.Y
-	cells[1] = twoCellsTitle(twoCellsTables.Y[1], twoCellsTables.Y[2])
-end
+--[[
 
-split.C = function(cells, data, gen)
-	twoCellsTables.C[1].content = data[3 - gen]
-	twoCellsTables.C[2].content = data.C
-	cells[3 - gen] = twoCellsTitle(twoCellsTables.C[1], twoCellsTables.C[2])
-end
-
-split.FRLG = function(cells, data, gen)
-	twoCellsTables.FRLG[1].content = data[4 - gen]
-	twoCellsTables.FRLG[2].content = data.FRLG
-	cells[4 - gen] = twoCellsTitle(twoCellsTables.FRLG[1], twoCellsTables.FRLG[2])
-end
-
-split.HGSS = function(cells, data, gen)
-	twoCellsTables.HGSS[1].content = data[5 - gen]
-	twoCellsTables.HGSS[2].content = data.HGSS
-	cells[5 - gen] = twoCellsTitle(twoCellsTables.HGSS[1], twoCellsTables.HGSS[2])
-end
-
-split.PtHGSS = function(cells, data, gen)
-	twoCellsTables.PtHGSS[1].content = data[5 - gen]
-	twoCellsTables.PtHGSS[2].content = data.PtHGSS
-	cells[5 - gen] = twoCellsTitle(twoCellsTables.PtHGSS[1], twoCellsTables.PtHGSS[2])
-end
-
-split.B2W2 = function(cells, data, gen)
-	twoCellsTables.B2W2[1].content = data[6 - gen]
-	twoCellsTables.B2W2[2].content = data.B2W2
-	cells[6 - gen] = twoCellsTitle(twoCellsTables.B2W2[1], twoCellsTables.B2W2[2])
-end
-
-split.ORAS = function(cells, data, gen)
-	twoCellsTables.ORAS[1].content = data[7 - gen]
-	twoCellsTables.ORAS[2].content = data.ORAS
-	cells[7 - gen] = twoCellsTitle(twoCellsTables.ORAS[1], twoCellsTables.ORAS[2])
-end
-
--- Divide in due le celle della generazione qualora vi siano differenze per il breed
-
-local splitbreed = {}
-
-splitbreed.Y = function(cells, data, gen)
-	twoCellsTables.Y[1].content = data[1]
-	twoCellsTables.Y[2].content = data.Y
-	cells[1] = twoCellsBreed(twoCellsTables.Y[1], twoCellsTables.Y[2])
-end
-
-splitbreed.C = function(cells, data, gen)
-	twoCellsTables.C[1].content = data[3 - gen]
-	twoCellsTables.C[2].content = data.C
-	cells[3 - gen] = twoCellsBreed(twoCellsTables.C[1], twoCellsTables.C[2])
-end
-
-splitbreed.FRLG = function(cells, data, gen)
-	twoCellsTables.FRLG[1].content = data[4 - gen]
-	twoCellsTables.FRLG[2].content = data.FRLG
-	cells[4 - gen] = twoCellsBreed(twoCellsTables.FRLG[1], twoCellsTables.FRLG[2])
-end
-
-splitbreed.HGSS = function(cells, data, gen)
-	twoCellsTables.HGSS[1].content = data[5 - gen]
-	twoCellsTables.HGSS[2].content = data.HGSS
-	cells[5 - gen] = twoCellsBreed(twoCellsTables.HGSS[1], twoCellsTables.HGSS[2])
-end
-
-splitbreed.PtHGSS = function(cells, data, gen)
-	twoCellsTables.PtHGSS[1].content = data[5 - gen]
-	twoCellsTables.PtHGSS[2].content = data.PtHGSS
-	cells[5 - gen] = twoCellsBreed(twoCellsTables.PtHGSS[1], twoCellsTables.PtHGSS[2])
-end
-
-splitbreed.B2W2 = function(cells, data, gen)
-	twoCellsTables.B2W2[1].content = data[6 - gen]
-	twoCellsTables.B2W2[2].content = data.B2W2
-	cells[6 - gen] = twoCellsBreed(twoCellsTables.B2W2[1], twoCellsTables.B2W2[2])
+Divide una certa cella di una generazione in due, usando
+i sup nelle celle nuove: il risultato è poi concatenato
+e inserito nella cella della stessa generazione, in modo
+da avere un numero di celle fisso. Argomenti:
+	- cells: l'elenco di celle delle generazioni
+	- data: i dati da inserire nelle celle
+	- startGen: la generazione iniziale dell'entry
+	- game: indice del parametro che causa la divisione,
+			normalmente una sigla di un gioco
+--]]
+local splitSup = function(cells, data, startGen, game)
+	return splitCell(cells, data, startGen, game, makeSupCell)
 end
 
 --[[
@@ -212,15 +179,15 @@ Genera le celle relative all'appendimento della
 mossa nelle generazioni. Argomenti:
 	- startGen: generazione iniziale dell'entry
 	- data: dati da inserire nelle celle
-	- splitCells: table di funzioni che specificano come
-			dividere la cella delle generazioni in due
+	- splitCells: funzione usata per dividere la
+			cella delle generazioni in due
 --]]
 local tail = function(startGen, data, splitCells)
 	local store, regionColor = {}, c[gendata[k].region].normale
 	
 	-- Si inseriscono dapprima i dati standard delle generazioni
 	for k = startGen, gendata.latest do
-		local cellData = data[k - startGen + 1]
+		local cellData = data[getGenIndex(startGen, k)]
 		local bgColor, txtColor
 		if cellData == '×' then
 			bgColor = 'FFF'
@@ -273,8 +240,8 @@ Pokémon, vi siano una o due celle per generazione. Argomenti:
 	- p: i parametri passati dal wikicode.
 	- makeText: la funzione che, a partire dai parametri, ricava
 			il testo da inserire nella cella della generazione
-	- splitCells: la table di funzioni che specificano come
-			dividere la cella delle generazioni in due
+	- splitCells: la funzione usata per dividere la cella delle
+			generazioni in due
 	- latestGenDefault (opzionale): valore default per la cella
 			dell'ultima generazione. Se non specificato, viene
 			usato, sempre come default, il valore della penultima
@@ -316,8 +283,8 @@ primo argomento la generazione, seguita dagli altri
 
 --]]
 m.level = function(frame)
-	return entry(mw.clone(frame.args),
-			function(v) return v == 'No' and '×' or v end, split)
+	return entry(mw.clone(frame.args), function(v) return v == 'No'
+			and '×' or v end, splitTitle)
 end
 
 m.Level = m.level
@@ -329,8 +296,8 @@ primo argomento la generazione, seguita dagli altri
 
 --]]
 m.tm = function(frame)
-	return entry(mw.clone(frame.args),
-			function(h) return boolDisplay[h] end, split, 'No')
+	return entry(mw.clone(frame.args), function(h)
+			return boolDisplay[h] end, splitTitle, 'No')
 end
 
 m.Tm, m.TM = m.tm, m.tm
@@ -343,7 +310,7 @@ primo argomento la generazione, seguita dagli altri
 --]]
 m.breed = function(frame)
 	return entry(mw.clone(frame.args), function(v) return v == 'No'
-			and '×' or lib.insertnwlns(v, 6) end, splitbreed)
+			and '×' or lib.insertnwlns(v, 6) end, splitSup)
 end
 
 m.Breed = m.breed
