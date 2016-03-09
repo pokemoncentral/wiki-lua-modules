@@ -4,6 +4,7 @@ local m = {}
 
 local mw = require('mw')
 
+local w = require('Wikilib')
 local ms = require('MiniSprite')
 local lib = require('Wikilib-learnlists')
 local txt = require('Wikilib-strings')
@@ -13,10 +14,28 @@ local c = require('Colore-data')
 local gendata = require('Gens-data')
 local sup = require('Sup-data')
 
--- Interpola alla cella base i parametri passati
+-- Rappresentazione stringa dei parametri booleani
+local boolDisplay = {No = '×', Yes = '✔'}
 
+-- Contiene i colori di background delle celle del tutor
+local tutorCellsColors = {c.cristallo.normale, c.rossofuoco.normale,
+		c.smeraldo.normale, c.xd.normale, c.diamante.normale,
+		c.platino.normale, c.heartgold.normale, c.nero.normale,
+		c.nero2.normale, c.x.normale, c.rubinoomega.normale}
+
+
+--[[
+
+Crea una cella dati:
+	- colore di background
+	- colore del testo
+	- colspan
+	- contenuto della cella
+Non sono presenti valori default
+
+--]]
 local makeCell = function(bg, tc, cs, cnt)
-	return string.interp([[| style="background:#${bg}; color:#${tc}" colspan="${cs}" | '''${cnt}''']],
+	return string.interp([[| style="background:#${bg}; color:#${tc};" colspan="${cs}" | '''${cnt}''']],
 {
 	bg = bg,
 	tc = tc,
@@ -162,35 +181,54 @@ splitbreed.B2W2 = function(cells, data, gen)
 	cells[6 - gen] = twoCellsBreed(twoCellsTables.B2W2[1], twoCellsTables.B2W2[2])
 end
 
--- Genera le ultime celle degli entries, dati generazione e contenuto
+--[[
 
-local tail = function(gen, p, dual)
+Genera le celle relative all'appendimento della
+mossa nelle generazioni. Argomenti:
+	- startGen: generazione iniziale
+	- data: dati da inserire nelle celle
+	- splitCells: table di funzioni che specificano come
+			dividere la cella delle generazioni in due
+--]]
+local tail = function(startGen, data, splitCells)
 	local store = {}
-	for k = gen, 6 do
-		table.insert(store, makeCell(p[k - gen + 1] == '×' and 'FFF' or
-			c[gendata[k].region].normale, p[k - gen + 1] == '×' and '000' or 'FFF',
-			'2', p[k - gen + 1]))
+	
+	-- Si inseriscono dapprima i dati standard delle generazioni
+	for k = startGen, gendata.latest do
+		local cellData = data[k - startGen + 1]
+		local bgColor, txtColor
+		if cellData == '×' then
+			bgColor = 'FFF'
+			txtColor = '000'
+		else
+			bgColor = c[gendata[k].region].normale
+			txtColor = 'FFF'
+		end
+		table.insert(store, makeCell(bgColor, txtColor, '2', cellData))
 	end
-	for k in pairs(p) do
-		if type(k) == 'string' then
-			dual[k](store, p, gen)
+	
+	-- Si dividono le celle delle generazioni se necessario
+	for game in pairs(data) do
+		if type(game) == 'string' then
+			splitCells[game](store, data, startGen)
 		end
 	end
+	
 	return table.concat(store, '\n')
 end
 
 -- Le prime celle degli entry
-
 local head = function(ndex, name, type1, type2, stab, notes, form)
+	local ndexFigures = ndex:match('^(%d+)')
 	return string.interp([=[|- style="background:#fff"
-| width="26px" | ${num}
-| width="26px" | ${ani}
-| width="75px" | ${stab}[[${name}]]${stab}${notes}${forml}
+| style="width: 26px;" | ${num}
+| style="width: 26px;" | ${ani}
+| style="width: 75px;" | ${stab}[[${name}]]${stab}${notes}${forml}
 | style="background:#${std}; width: ${wd} | [[${tipo1} (tipo)|<span style="color:#FFF;">${tipo1}</span>]]${tipo2}
 ]=],
 {
-	num = ndex:match('(%d+)'),
-	ani = ms.aniLua(ndex:match('(%d+)') .. forms.getabbr(ndex, form)),
+	num = ndexFigures,
+	ani = ms.aniLua(ndexFigures .. forms.getabbr(ndex, form)),
 	stab = stab,
 	name = name,
 	notes = lib.makeNotes(notes or ''),
@@ -203,78 +241,123 @@ local head = function(ndex, name, type1, type2, stab, notes, form)
 })
 end
 
--- Args: la tabella con i parametri e una funzione per determinare i il contenuto delle ultime celle.
--- Estrae la generazione, poi scorre tutta la tabella cercando i parametri delle ultime celle
--- e memorizzando i valori corrispondenti in un'altra tabella, che poi viene passata alla funzione tail.
+--[[
 
-local doit = function(p, values, dual, default)
-	local gen = tonumber(table.remove(p, 1)) or 7,
+Crea un'entry nel caso in cui, oltre alle celle con i dati del
+Pokémon, vi siano una o due celle per generazione. Argomenti:
+	- p: i parametri passati dal wikicode.
+	- makeText: la funzione che, a partire dai parametri, ricava
+			il testo da inserire nella cella della generazione
+	- splitCells: la table di funzioni che specificano come
+			dividere la cella delle generazioni in due
+	- latestGenDefault (opzionale): valore default per la cella
+			dell'ultima generazione. Se non specificato, viene
+			usato, sempre come default, il valore della penultima
+			generazione
+--]]
+local entry = function(p, makeText, splitCells, latestGenDefault)
+	--[[
+		Dovendo usare table.filter, e quindi ipairs, è
+		necessario che non vi siano nil prima dell'ultimo
+		parametro, ragion per cui il terzo argomento  è
+		esplicitamente settato a false
+	--]]
+	p = w.trimAndMap(p, string.fu, false)
+
+	local gen = tonumber(table.remove(p, 1)) or 7
 	local note, stab = p.note or '', p.STAB or ''
 	local form = string.lower(p.form or '')
+
 	p.note, p.STAB, p.form = nil, nil, nil
-	p[12 - gen] = p[12 - gen] or default or p[11 - gen]	
-	local data = table.filter(function(_, key)
-		return type(key) == 'string' or key > 5 and key < 13 - gen
-	end)
-	return head(p[1] or '000', p[2] or 'missingno.', p[4] or 'Sconosciuto', p[5] or 'Sconosciuto', stab, note, form) ..
-		tail(gen, data, dual)
+	p[12 - gen] = p[12 - gen] or latestGenDefault or p[11 - gen]
+
+	--[[
+		Si applica makeText solo ai dati relativi all'
+		apprendimento della mossa nelle generazioni,
+		scartando quelli del Pokémon.
+	--]]
+	local data = table.map(table.filter(p, function(_, key)
+			return type(key) == 'string' or key > 5 and key < 13 - gen
+		end), makeText)
+
+	return head(p[1] or '000', p[2] or 'Missingno.', p[4] or 'Sconosciuto',
+			p[5] or 'Sconosciuto', stab, note, form) .. tail(gen, data, splitCells)
 end
 
--- Interfaccia per gli entry di livello: si aspetta come
--- primo argomento la generazione, seguita dagli altri
+--[[
 
+Interfaccia per le entry livello: si aspetta come
+primo argomento la generazione, seguita dagli altri
+
+--]]
 m.level = function(frame)
-	local p = w.trimAndMap(mw.clone(frame.args), string.fu, false)
-	return doit(p, function(v) return v == 'No' and '×' or v end, split)
+	return entry(mw.clone(frame.args),
+			function(v) return v == 'No' and '×' or v end, split)
 end
 
 m.Level = m.level
 
--- Interfaccia per gli entry di macchine: si aspetta come
--- primo argomento la generazione, seguita dagli altri
+--[[
 
+Interfaccia per le entry macchina: si aspetta come
+primo argomento la generazione, seguita dagli altri
+
+--]]
 m.tm = function(frame)
-	local p = w.trimAndMap(mw.clone(frame.args), string.fu, false)
-	return doit(p, function(h) local v = {No = '×', Yes = '✔'} return v[h] end, split, 'No')
+	return entry(mw.clone(frame.args),
+			function(h) return boolDisplay[h] end, split, 'No')
 end
 
 m.Tm, m.TM = m.tm, m.tm
 
--- Interfaccia per gli entry di breed: si aspetta come
--- primo argomento la generazione, seguita dagli altri
+--[[
 
+Interfaccia per le entry breed: si aspetta come
+primo argomento la generazione, seguita dagli altri
+
+--]]
 m.breed = function(frame)
-	local p = w.trimAndMap(mw.clone(frame.args), string.fu, false)
-	return doit(p, function(v) return v == 'No' and '×' or lib.insertnwlns(v, 6) end, splitbreed)
+	return entry(mw.clone(frame.args), function(v) return v == 'No'
+			and '×' or lib.insertnwlns(v, 6) end, splitbreed)
 end
 
 m.Breed = m.breed
 
--- Interfaccia per gli entry di event: interpola alla stringa le variabili passate
+--[[
 
+Interfaccia per le entry event: costruisce il wikicode
+per interpolazione.
+
+--]]
 m.event = function(frame)
-	local p = w.trimAndMap(mw.clone(frame.args), string.fu, false)
+	local p = w.trimAndMap(mw.clone(frame.args), string.fu)
 	return string.interp([=[${h}
 | style="background:#FFF;" colspan="2" | ${event}]=],
 {
-	h = head(p[1] or '000', p[2] or 'missingno.', p[4] or 'Sconosciuto', p[5] or 'Sconosciuto', p.STAB or '', p.notes or '',
-		p.form or ''),
+	h = head(p[1] or '000', p[2] or 'Missingno.', p[4] or 'Sconosciuto',
+			p[5] or 'Sconosciuto', p.STAB or '', p.notes or '', p.form or ''),
 	event = p[6] or 'Per la fine del mondo'
 })
 end
 
 m.Event = m.event
 
--- Interfaccia per i tutor. Non usa la funzione doit perché le celle non sono una per generazione
+--[[
 
+Interfaccia per le entry tutor. Non usa la funzione
+doit perché le celle non sono una per generazione
+
+--]]
 m.tutor = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.fu)
-	local store = {head(p[1] or '000', p[2] or 'missingno.', p[4] or 'Sconosciuto', p[5] or 'Sconosciuto', p.STAB or '', p.notes or '', p.form or '')}
-	local games = {'cristallo', 'rossofuoco', 'smeraldo', 'xd', 'diamante', 'platino', 'heartgold', 'nero', 'nero2', 'x', 'rubinoomega'}
-	for b = 6, #p do
-		if p[b] == 'Yes' then
-			table.insert(store, makeCell(c[games[b - 5]].normale, 'FFF', '1', '✔'))
-		elseif p[b] == 'No' then
+	local store = {head(p[1] or '000', p[2] or 'missingno.', p[4] or 'Sconosciuto',
+			p[5] or 'Sconosciuto', p.STAB or '', p.notes or '', p.form or '')}
+
+	-- Si scorrono i parametri relativi ai giochi
+	for k = 6, #p do
+		if p[k] == 'Yes' then
+			table.insert(store, makeCell(tutorCellsColors[k - 5], 'FFF', '1', '✔'))
+		elseif p[k] == 'No' then
 			table.insert(store, makeCell('FFF', 'FFF', '1', '&nbsp;'))
 		end
 	end

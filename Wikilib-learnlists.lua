@@ -17,7 +17,7 @@ local gameLevelCell = '| style="background:#FFF; border:1px solid #D8D8D8;"'
 -- local str = '| style="background:#${bg}; color: #${txt}; border:1px solid #D8D8D8;" | ${lvl}'
 
 -- Wikicode per la cella di un gioco nell'entry tutor
-local gameTutorCell = [=[| style="background:#${bg}; border: 1px solid #${bd};" | [[Pokémon ${gameLink}|<span style="padding: 0.3em 0; color:#${txtColor}">'''${gameAbbr}'''</span>]]]=]
+local gameTutorCell = [=[| style="background:#${bg}; border: 1px solid #${bd};" | [[Pokémon ${gameLink}|<span style="padding: 0.3em 0; color:#${txtColor};">'''${gameAbbr}'''</span>]]]=]
 
 -- Contiene i title per le pre-evoluzioni
 lib.preevott = {T = [[<span class="explain" title="Mossa appresa dall'Esperto Mosse">*</span>]], E = [[<span class="explain" title="Mossa appresa tramite evento">†</span>]], D = [[<span class="explain" title="Mossa appresa nel Dream World">‡</span>]]}

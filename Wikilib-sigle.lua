@@ -7,9 +7,9 @@ i moduli che usano Sigle/data
 
 local q = {}
 
-local txt = require('Modulo:Wikilib/strings')
-local tab = require('Modulo:Wikilib/tables')
-local c = mw.loadData('Modulo:Colore/data')
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
+local c = require('Colore-data')
 
 --[[
 

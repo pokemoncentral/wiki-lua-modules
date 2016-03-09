@@ -92,6 +92,7 @@ z.event = function(frame)
 {
 	p1 = p[1] or 'Evento',
 	p9 = lib.makeLevel(p[9])
+})
 end
 
 z.Event = z.event
