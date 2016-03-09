@@ -17,12 +17,20 @@ local sup = require('Sup-data')
 -- Rappresentazione stringa dei parametri booleani
 local boolDisplay = {No = '×', Yes = '✔'}
 
+--[[
+
+Traduzione in italiano delle sigle dei giochi in inglese.
+
+--]]
+local gamesTrans = {Y = 'g', C = 'c', FRLG = 'rfvf',
+		HGSS = 'hgss', PtHGSS = 'pt', B2W2 = 'n2b2',
+		ORAS = 'ROZA'}
+
 -- Contiene i colori di background delle celle del tutor
 local tutorCellsColors = {c.cristallo.normale, c.rossofuoco.normale,
 		c.smeraldo.normale, c.xd.normale, c.diamante.normale,
 		c.platino.normale, c.heartgold.normale, c.nero.normale,
 		c.nero2.normale, c.x.normale, c.rubinoomega.normale}
-
 
 --[[
 
@@ -43,6 +51,8 @@ local makeCell = function(bg, tc, cs, cnt)
 	cnt = cnt
 })
 end
+
+local genGenIndex = function(game, startGen)
 
 -- Ritorna le due celle concatenate dopo la divisione usando i title
 
@@ -94,10 +104,25 @@ twoCellsTables.B2W2 = {{bg = 'bianco', txt = 'nero', title = 'NB'},
 twoCellsTables.ORAS = {{bg = 'x', txt = 'y', title = 'XY'},
 	{bg = 'rubinoomega', txt = 'zaffiroalpha', title = 'ROZA'}}
 
--- Divide la cella della generazione in due se vi sono differenze nella stessa generazioni
--- Non chiamata per il breed
+--[[
 
-local split = {}
+Divide una certa cella di una generazione in due, usando
+i title nelle celle nuove: il risultato è poi concatenato
+e inserito nella cella della stessa generazione, in modo
+da avere un numero di celle fisso. Argomenti:
+	- cells: l'elenco di celle delle generazioni
+	- data: i dati da inserire nelle celle
+	- startGen: la generazione iniziale dell'entry
+	- game: indice del parametro che causa la divisione,
+			normalmente una sigla di un gioco
+--]]
+local splitTitle = function(cells, data, startGen, game)
+	local genIndex = getGenIndex(game, startGen)
+	twoCellsTables[game][1].content = data[1]
+	twoCellsTables[game][2].content = data[game]
+	cells[1] = twoCellsTitle(twoCellsTables[game][1],
+			twoCellsTables[game][2])
+end
 
 split.Y = function(cells, data, gen)
 	twoCellsTables.Y[1].content = data[1]
@@ -185,13 +210,13 @@ end
 
 Genera le celle relative all'appendimento della
 mossa nelle generazioni. Argomenti:
-	- startGen: generazione iniziale
+	- startGen: generazione iniziale dell'entry
 	- data: dati da inserire nelle celle
 	- splitCells: table di funzioni che specificano come
 			dividere la cella delle generazioni in due
 --]]
 local tail = function(startGen, data, splitCells)
-	local store = {}
+	local store, regionColor = {}, c[gendata[k].region].normale
 	
 	-- Si inseriscono dapprima i dati standard delle generazioni
 	for k = startGen, gendata.latest do
@@ -201,16 +226,16 @@ local tail = function(startGen, data, splitCells)
 			bgColor = 'FFF'
 			txtColor = '000'
 		else
-			bgColor = c[gendata[k].region].normale
+			bgColor = regionColor
 			txtColor = 'FFF'
 		end
 		table.insert(store, makeCell(bgColor, txtColor, '2', cellData))
 	end
 	
 	-- Si dividono le celle delle generazioni se necessario
-	for game in pairs(data) do
+	for game in pairs(p) do
 		if type(game) == 'string' then
-			splitCells[game](store, data, startGen)
+			splitCells(store, data, startGen, game)
 		end
 	end
 	
@@ -276,7 +301,7 @@ local entry = function(p, makeText, splitCells, latestGenDefault)
 		apprendimento della mossa nelle generazioni,
 		scartando quelli del Pokémon.
 	--]]
-	local data = table.map(table.filter(p, function(_, key)
+	local data = table.map(table.filter(function(_, key)
 			return type(key) == 'string' or key > 5 and key < 13 - gen
 		end), makeText)
 
