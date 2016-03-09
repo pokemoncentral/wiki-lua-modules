@@ -353,7 +353,7 @@ t.snorlax = {ability1 = 'Immunità', ability2 = 'Grassospesso', abilityd = 'Vora
 t[143] = t.snorlax
 t.articuno = {ability1 = 'Pressione', abilityd = 'Mantelneve'}
 t[144] = t.articuno
-t.zapdos = {ability1 = 'Pressione', abilityd = 'Parafulmine'}
+t.zapdos = {ability1 = 'Pressione', abilityd = 'Statico'}
 t[145] = t.zapdos
 t.moltres = {ability1 = 'Pressione', abilityd = 'Corpodifuoco'}
 t[146] = t.moltres

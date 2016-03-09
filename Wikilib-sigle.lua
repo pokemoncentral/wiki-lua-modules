@@ -7,11 +7,9 @@ i moduli che usano Sigle/data
 
 local q = {}
 
-local mw = require('mw')
-
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
-local c = require('Colore-data')
+local txt = require('Modulo:Wikilib/strings')
+local tab = require('Modulo:Wikilib/tables')
+local c = mw.loadData('Modulo:Colore/data')
 
 --[[
 
@@ -30,7 +28,7 @@ di Sigle/data, ovvero:
 
 q.abbrLinks = function(games, singleDisplay)
 	return table.concat(table.map(games, function(data)
-		return string.interp('[[${link}|${display}]]',
+		return string.interp('[[Pokémon ${link}|${display}]]',
 			{
 				link = data.link,
 				display = table.concat(table.map(data.display,
