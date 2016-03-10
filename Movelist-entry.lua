@@ -101,9 +101,10 @@ in modo da avere un numero di celle fisso. Argomenti:
 	- game: indice del parametro che causa la divisione,
 			normalmente una sigla di un gioco
 	- makeCell: la funzione usata per creare le nuove celle
+
 --]]
 local splitCell = function(cells, data, startGen, game, makeCell)
-	local genIndex = getGenIndex(game, startGen)
+	local genIndex = getGenIndex(startGen, game)
 	cells[genIndex] = table.concat{makeCell(data[genIndex],
 			splitCellsData[game][1]), '\n',	makeCell(data[game],
 			splitCellsData[game][2])}
@@ -144,14 +145,9 @@ end
 --[[
 
 Divide una certa cella di una generazione in due, usando
-i title nelle celle nuove: il risultato è poi concatenato
-e inserito nella cella della stessa generazione, in modo
-da avere un numero di celle fisso. Argomenti:
-	- cells: l'elenco di celle delle generazioni
-	- data: i dati da inserire nelle celle
-	- startGen: la generazione iniziale dell'entry
-	- game: indice del parametro che causa la divisione,
-			normalmente una sigla di un gioco			
+i title nelle celle nuove; per maggiori informazioni
+leggere il commento a splitCel più su.
+
 --]]
 local splitTitle = function(cells, data, startGen, game)
 	return splitCell(cells, data, startGen, game, makeTitleCell)
@@ -160,14 +156,9 @@ end
 --[[
 
 Divide una certa cella di una generazione in due, usando
-i sup nelle celle nuove: il risultato è poi concatenato
-e inserito nella cella della stessa generazione, in modo
-da avere un numero di celle fisso. Argomenti:
-	- cells: l'elenco di celle delle generazioni
-	- data: i dati da inserire nelle celle
-	- startGen: la generazione iniziale dell'entry
-	- game: indice del parametro che causa la divisione,
-			normalmente una sigla di un gioco
+i sup nelle celle nuove; per maggiori informazioni
+leggere il commento a splitCel più su.
+
 --]]
 local splitSup = function(cells, data, startGen, game)
 	return splitCell(cells, data, startGen, game, makeSupCell)
@@ -181,9 +172,10 @@ mossa nelle generazioni. Argomenti:
 	- data: dati da inserire nelle celle
 	- splitCells: funzione usata per dividere la
 			cella delle generazioni in due
+
 --]]
 local tail = function(startGen, data, splitCells)
-	local store, regionColor = {}, c[gendata[k].region].normale
+	local store = {}
 	
 	-- Si inseriscono dapprima i dati standard delle generazioni
 	for k = startGen, gendata.latest do
@@ -193,14 +185,14 @@ local tail = function(startGen, data, splitCells)
 			bgColor = 'FFF'
 			txtColor = '000'
 		else
-			bgColor = regionColor
+			bgColor = c[gendata[k].region].normale
 			txtColor = 'FFF'
 		end
 		table.insert(store, makeCell(bgColor, txtColor, '2', cellData))
 	end
 	
 	-- Si dividono le celle delle generazioni se necessario
-	for game in pairs(p) do
+	for game in pairs(data) do
 		if type(game) == 'string' then
 			splitCells(store, data, startGen, game)
 		end
@@ -246,6 +238,7 @@ Pokémon, vi siano una o due celle per generazione. Argomenti:
 			dell'ultima generazione. Se non specificato, viene
 			usato, sempre come default, il valore della penultima
 			generazione
+
 --]]
 local entry = function(p, makeText, splitCells, latestGenDefault)
 	--[[
@@ -268,7 +261,7 @@ local entry = function(p, makeText, splitCells, latestGenDefault)
 		apprendimento della mossa nelle generazioni,
 		scartando quelli del Pokémon.
 	--]]
-	local data = table.map(table.filter(function(_, key)
+	local data = table.map(table.filter(p, function(_, key)
 			return type(key) == 'string' or key > 5 and key < 13 - gen
 		end), makeText)
 
