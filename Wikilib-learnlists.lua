@@ -294,13 +294,13 @@ end
 lib.preevodata = function(pars, gen)
 	local ani1, tt1 = '', ''
 	if pars[4] then
-		ani1 = ms.aniLua(pars[4], pars[5] or 'Bulbasaur', gen or '')
+		ani1 = ms.aniLua(pars[4], gen or '', pars[5] or 'Bulbasaur')
 		tt1 = lib.preevott[pars[6]] or ''
 	end
 	return string.interp([=[|-
 | style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${ani}${tt}${ani1}${tt1}]=],
 {
-	ani = ms.aniLua(pars[1] or '000', pars[2] or 'Bulbasaur', gen or ''),
+	ani = ms.aniLua(pars[1] or '000', gen or '', pars[2] or 'Bulbasaur'),
 	tt = lib.preevott[pars[3]] or '',
 	ani1 = ani1,
 	tt1 = tt1
