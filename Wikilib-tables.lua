@@ -8,14 +8,13 @@ Ricerca lineare: si passa una table e un valore e
 restituisce il suo indice o nil
 
 --]]
-
 table.search = function(tab, value)
     for k, v in pairs(tab) do
 	    if v == value then
 	        return k
 	    end
     end
-    return nil
+    -- No explicit return, thus nil
 end
 
 table.linearSearch, table.linear_search =
@@ -33,7 +32,6 @@ Se l'elemento non è presente, ritorna nil
 Esempio: t.deep_search({'a', {'b', 'c'}}, 'b') --> 2, 1
 
 --]]
-
 table.deepSearch = function(tab, value)
 	for k, v in pairs(tab) do
 		if v == value then
@@ -50,7 +48,7 @@ table.deepSearch = function(tab, value)
 			end
 		end
 	end
-	return nil
+	-- No explicit return, thus nil
 end
 
 table.deep_search, table.recursiveSearch, table.recursive_search =
@@ -66,7 +64,6 @@ argomento è true o 'num', altrimenti anche
 quelli con indice diverso.
 
 --]]
-
 table.getn = function(self, count)
 	count = count or 'all'
 	local n = 0
@@ -98,7 +95,6 @@ t.alias, t.alias1 = t.key, t.key
 t.alias2, t.alias3 = t.key1, t.key1
 
 --]]
-
 table.tableKeysAlias = function(tab, source, dest)
 	for destGroup, sourceKey in ipairs(source) do
 		for k, destKey in ipairs(dest[destGroup]) do
@@ -124,7 +120,6 @@ necessaria e sarebbe fastidioso avere un argomento
 placeholder.
 
 --]]
-
 table.map = function(tab, funct)
 	local dest = {}
 	for key, value in pairs(tab) do
@@ -146,7 +141,6 @@ argomenti non sono tables, purché siano
 uguali.
 
 --]]
-
 table.equal = function(tab1, tab2)
 
 	--[[
@@ -209,7 +203,6 @@ quelli della seconda sovrascrivono quelli della
 prima.
 
 --]]
-
 table.merge = function(tab1, tab2, inPlace)
 
 local mw = require('mw')
@@ -248,7 +241,6 @@ eccezione di quelle numeriche, che sono
 rese continue
 
 --]]
-
 table.filter = function(tab, cond)
 	local dest = {}
 	--[[
@@ -271,5 +263,66 @@ table.filter = function(tab, cond)
 end
 
 t.filter = table.filter
+
+--[[
+
+Ritorna una table con soli indici numerici
+i cui elementi sono le chiavi della table
+passata, in ordine non specificato
+
+--]]
+table.keys = function(tab)
+	local keys = {}
+	for key, v in pairs(tab) do
+		table.insert(keys, key)
+	end
+	return keys
+end
+
+t.keys = table.keys
+
+--[[
+
+Ritorna una table con gli stessi elementi di
+quella passata, ma senza duplicati.
+
+Le chiavi degli elementi mantenuti sono le
+prime in ordine lessicografico rispetto alle
+chiavi dei grupppi di elementi uguali, con
+la sola eccezione di quelle intere che sono
+rese contigue.
+
+--]]
+table.noDuplicates = function(tab)
+	local keys = table.keys(tab)
+	
+	-- Lexicographically sort
+	table.sort(keys, function(a, b)
+			local nA , nB = tonumber(a), tonumber(b)
+			if nA and nB then
+				return nA < nB
+			end
+			return tostring(a) < tostring(b)
+		end)
+
+	local unique = {}
+	for k, key in ipairs(keys) do
+		local value = tab[key]
+		if not table.search(unique, value) then
+			if type(key) ~= 'number'
+					and math.floor(key) ~= key then
+				unique[key] = value
+			else
+				table.insert(unique, value)
+			end
+		end
+	end
+	return unique
+end
+
+table.no_duplicates, table.unique =
+		table.noDuplicates, table.noDuplicates
+t.noDuplicates, t.no_duplicates, t.unique = 
+		table.noDuplicates, table.noDuplicates, table.noDuplicates
 
 return t

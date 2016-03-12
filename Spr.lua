@@ -10,12 +10,11 @@ local gens = require('Wikilib-gens')
 
 --[[
 
-Table che mantiene le associazioni tra
-il secondo parametro in lowercase e le
-sigle dei giochi negli sprite
+Table che mantiene le associazioni tra il
+secondo parametro in lowercase e le sigle
+dei giochi negli sprite
 
 --]]
-
 local gamesAbbr = {
 	verde = 'verde',
 	['rosso e blu'] = 'rb',
@@ -40,7 +39,6 @@ local gamesAbbr = {
 }
 
 -- Alias per la table di cui sopra
-
 table.tableKeysAlias(gamesAbbr,
 	{'verde', 'rosso e blu', 'oro', 'cristallo',
 		'rubino e zaffiro', 'rosso fuoco e verde foglia',
@@ -60,8 +58,37 @@ table.tableKeysAlias(gamesAbbr,
 	{'x', 'y', 'xy'}, {'rubino omega', 'zaffiro alpha', 'ro', 'za'},
 	{'stad 2'}})
 
--- Sigle per le varianti sesso/shiny/dietro degli sprite
+--[[
 
+Table per convertire dalle sigle usate
+negli sprite a quelle usate nella funzione
+getGen.games del modulo Wikilib/gens
+
+--]]
+local gamesAbbrGen = {
+	verde = 'rb',
+	gia = 'g',
+	stad = 'st',
+	ar = 'oa',
+	cr = 'c',
+	stad2 = 'st2',
+	sme = 's',
+	nb2 = 'n2b2'
+}
+
+gamesAbbrGen['or'] = gamesAbbrGen.ar
+
+--[[
+
+Table usata per ordinare le parole che
+compongono la variante dello sprite.
+L'ordine relativo di 'male' e 'female'
+è irrilevante, poiché non possono coesistere.
+
+--]]
+local variantPiecesOrder = {'female', 'male', 'back', 'shiny'}
+
+-- Sigle per le varianti sesso/shiny/dietro degli sprite
 local variants = {
 	male = 'm',
 	female = 'f',
@@ -76,33 +103,10 @@ local variants = {
 	['female back shiny'] = 'fdsh'
 }
 
---[[
-
-Table per convertire dalle sigle usate
-negli sprite a quelle usate nella funzione
-getGen.games del modulo Wikilib/gens
-
---]]
-
-local gamesAbbrGen = {
-	verde = 'rb',
-	gia = 'g',
-	stad = 'st',
-	ar = 'oa',
-	cr = 'c',
-	stad2 = 'st2',
-	sme = 's',
-	nb2 = 'n2b2'
-}
-
-gamesAbbrGen['or'] = gamesAbbrGen.ar
-
 -- Table per i giochi che hanno gli sprite in .gif
-
 local gifs = {'cr', 'sme', 'xy', 'roza'}
 
 -- Table per le dimensioni degli sprite
-
 local sizes = {
 	stad = '|120px',
 	stad2 = '|120px',
@@ -114,10 +118,10 @@ local sizes = {
 
 Ritorna gif se il gioco è presente nella table
 gifs, con l'unica eccezione degli sprite shiny
-di smeraldo che sono in png. Negli altri casi png.
+e restrostanti di smeraldo che sono in png.
+Negli altri casi png.
 
 --]]
-
 local getExtension = function(game, variant)
 	if game == 'sme' and variant:find('[dsh]')
 			or not table.search(gifs, game) then
@@ -126,12 +130,24 @@ local getExtension = function(game, variant)
 	return 'gif'
 end
 
--- Link agli sprite, chiamata da lua
+--[[
 
+Link agli sprite, chiamata da lua.
+
+La variante è obbligatoria per i giochi dalla
+quarta generazione in poi, mentre la dimensione
+è sempre opzionale.
+
+La variante può contenere le parole 'female',
+'male', 'back' e 'shiny' in qualsiasi ordine
+e in qualsiasi numero, con la sola restrizione
+che 'male' e 'female' non possono coesistere
+
+--]]
 s.sprLua = function(ndex, game, variant, size)
 	game = string.lower(game or 'current')
 	variant = string.lower(variant or '')
-	
+			
 	game = gamesAbbr[game] or game
 	local gen = gens.getGen.game(gamesAbbrGen[game] or game)
 	--[[
@@ -141,6 +157,14 @@ s.sprLua = function(ndex, game, variant, size)
 	if gen == 2 and variant:find('back') then
 		game = 'oac'
 	end
+	
+	variant = table.unique(mw.text.split(variant, '%s+'))	
+	table.sort(variant, function(a, b)
+			return table.search(variantPiecesOrder, a)
+					< table.search(variantPiecesOrder, b)
+		end)
+	variant = table.concat(variant, ' ')
+	
 	--[[
 		Prima della quarta generazione non c'erano
 		differenze di genere negli sprite.
@@ -183,7 +207,6 @@ Link agli sprite, chiamata da Wikicode (adapter per lua)
 Esempio: {{#invoke: Spr | spr | 479L | Platino | shiny back | 30px}}
 
 --]]
-
 s.spr = function(frame)
 	local p = w.trimAll(mw.clone(frame.args))
 	return s.sprLua(p[1], p[2], p[3], p[4])
