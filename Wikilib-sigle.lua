@@ -69,15 +69,15 @@ end
 
 Crea la sigla del gioco a partire i suoi dati, con
 un eventuale separatore a dividere i giochi e con
-lettere colorate se specificato.
+lettere colorate e in grassetto se specificato.
 
 --]]
 
-q.displayAbbr = function(abbrData, sep, colored)
+q.displayAbbr = function(abbrData, sep, coloredAndBold)
 	local makeAbbr
-	if colored then
+	if coloredAndBold then
 		makeAbbr = function(abbr, color)
-			return string.interp('<span style="color: #${c};">${a}</span>',
+			return string.interp([[<span style="color: #${c};">'''${a}'''</span>]],
 				{
 					c = c[color].normale,
 					a = abbr
