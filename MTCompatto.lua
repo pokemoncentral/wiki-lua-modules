@@ -100,7 +100,7 @@ in cui la mossa è un'MT o MN
 m.MTCompatto = function(frame)
 	local params = w.trimAndMap(frame.args, string.lower)
 	local gens, color = {}, nil
-	local move = params[1]:match('^(%a+) %(mossa%)$') or params[1]
+	local move = params[1]:match('^(.+) %(mossa%)$') or params[1]
 	
 	if moves[move] then
 		color = c[moves[move].type]
