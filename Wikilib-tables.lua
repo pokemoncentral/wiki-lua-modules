@@ -2,6 +2,50 @@
 
 local t = {}
 
+-- Stateless iterator sulle chiavi non intere
+local nextNonInt = function(tab, key)
+	local nextKey, nextValue = key
+	repeat
+		nextKey, nextValue = next(tab, nextKey)
+	until type(nextKey) ~= 'number'
+			or math.floor(nextKey) ~= nextKey
+	return nextKey, nextValue
+end
+
+local next_non_int = nextNonInt
+
+-- Stateless iterator da usare nei generic for loops
+table.nonIntPairs = function(tab)
+	return nextNonInt, tab
+end
+
+table.non_int_pairs = t.nonIntPairs
+t.nonIntPairs t.non_int_pairs =
+		table.nonIntPairs, table.nonIntPairs
+
+--[[
+
+Ritorna true se a è lessicograficamente
+maggiore di b, false altrimenti
+
+--]]
+local minor = function(a, b)
+	if not b then
+		return true
+	end
+	
+	--[[
+		Necessario affinché roba come 1 e
+		'01' siano considerati uguali
+	--]]
+	local nA, nB = tonumber(a), tonumber(b)
+	if nA and nB then
+		return nA < nB
+	end
+
+	return tostring(a) < tostring(b)
+end
+
 --[[
 
 Ricerca lineare: si passa una table e un valore e
@@ -266,20 +310,19 @@ t.filter = table.filter
 
 --[[
 
-Ritorna una table con soli indici numerici
-i cui elementi sono le chiavi della table
-passata, in ordine non specificato
+Ritorna una table con chiavi e valori
+invertiti rispetto a quella passata.
 
 --]]
-table.keys = function(tab)
-	local keys = {}
-	for key, v in pairs(tab) do
-		table.insert(keys, key)
+table.flip = function(tab)
+	local flipped = {}
+	for key, value in pairs(tab) do
+		flipped[value] = key		
 	end
-	return keys
+	return flipped
 end
 
-t.keys = table.keys
+t.flip = table.flip
 
 --[[
 
@@ -294,35 +337,51 @@ rese contigue.
 
 --]]
 table.noDuplicates = function(tab)
-	local keys = table.keys(tab)
-	
-	-- Lexicographically sort
-	table.sort(keys, function(a, b)
-			local nA , nB = tonumber(a), tonumber(b)
-			if nA and nB then
-				return nA < nB
-			end
-			return tostring(a) < tostring(b)
-		end)
+	local check, n = {}, 1
 
-	local unique = {}
-	for k, key in ipairs(keys) do
-		local value = tab[key]
-		if not table.search(unique, value) then
-			if type(key) ~= 'number'
-					and math.floor(key) ~= key then
-				unique[key] = value
-			else
-				table.insert(unique, value)
-			end
+	--[[
+		Il doppio ciclo si rende necessario per
+		mantenere l'ordine delle chiavi numeriche.
+		La variabile n serve per non avere buchi.
+		Non si usa minor poiché le chiavi vengono
+		già tornate in ordine crescente da ipairs.
+	--]]
+	for key, value in ipairs(tab) do
+		if not check[value] then
+			check[value] = n
+			n = n + 1
 		end
 	end
-	return unique
+	
+	for key, value in table.nonIntPairs(tab) do
+		if minor(key, check[value]) then
+			check[value] = key
+		end
+	end
+	
+	return table.flip(check)
 end
 
 table.no_duplicates, table.unique =
 		table.noDuplicates, table.noDuplicates
 t.noDuplicates, t.no_duplicates, t.unique = 
 		table.noDuplicates, table.noDuplicates, table.noDuplicates
+
+--[[
+
+Ritorna una table con soli indici numerici
+i cui elementi sono le chiavi della table
+passata, in ordine non specificato
+
+--]]
+table.keys = function(tab)
+	local keys = {}
+	for key, v in pairs(tab) do
+		table.insert(keys, key)
+	end
+	return keys
+end
+
+t.keys = table.keys
 
 return t
