@@ -146,8 +146,13 @@ che 'male' e 'female' non possono coesistere
 --]]
 s.sprLua = function(ndex, game, variant, size)
 	game = string.lower(game or 'current')
+
+	if game == 'current' then
+		return table.concat{'[[File:', ndex, '.png]]'}
+	end
+	
 	variant = string.lower(variant or '')
-			
+
 	game = gamesAbbr[game] or game
 	local gen = gens.getGen.game(gamesAbbrGen[game] or game)
 	--[[
@@ -157,14 +162,14 @@ s.sprLua = function(ndex, game, variant, size)
 	if gen == 2 and variant:find('back') then
 		game = 'oac'
 	end
-	
+
 	variant = table.unique(mw.text.split(variant, '%s+'))	
 	table.sort(variant, function(a, b)
 			return table.search(variantPiecesOrder, a)
 					< table.search(variantPiecesOrder, b)
 		end)
 	variant = table.concat(variant, ' ')
-	
+
 	--[[
 		Prima della quarta generazione non c'erano
 		differenze di genere negli sprite.
@@ -180,9 +185,7 @@ s.sprLua = function(ndex, game, variant, size)
 	end
 	variant = variants[variant] or ''
 		
-	return game == 'current' and
-			table.concat{'[[File:', ndex, '.png]]'} or
-	w.interp('[[File:Spr${game}${variant}${ndex}.${ext}${size}]]',
+	return w.interp('[[File:Spr${game}${variant}${ndex}.${ext}${size}]]',
 	{
 		game = game,
 		variant = variant,
