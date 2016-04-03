@@ -124,10 +124,15 @@ c.Md_oscurita, c.Mdoscurita, c.mdoscurita, c['md oscurita'], c['Md oscurita'] =
 	c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita
 c['Md_oscurità'], c['Mdoscurità'], c['mdoscurità'], c['md oscurità'], c['Md oscurità'] =
 	c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita
+c.md_portali = function(frame) return _colore(frame.args[1] or 'normale', '7D6A7A', 'AE9EAC', '4D3249') end
+c.Md_portali, c.mdportali, c.Mdportali, c['md portali'], c['Md portali'] = c.md_portali, c.md_portali, c.md_portali, c.md_portali, c.md_portali
 c.md_rosso = function(frame) return _colore(frame.args[1] or 'normale', 'C50C50', 'D85C8A', '840836') end
 c.Md_rosso, c.Mdrosso, c.mdrosso, c['md rosso'], c['Md rosso'] = c.md_rosso, c.md_rosso, c.md_rosso, c.md_rosso, c.md_rosso
 c.md_tempo = function(frame) return _colore(frame.args[1] or 'normale', '2190C7', '6AB5D9', '166185') end
 c.Md_tempo, c.Mdtempo, c.mdtempo, c['md tempo'], c['Md tempo'] = c.md_tempo, c.md_tempo, c.md_tempo, c.md_tempo, c.md_tempo
+c.md_super = function(frame) return _colore(frame.args[1] or 'normale', 'A5A3D2', 'CCC9FF', '7471A6') end
+c.Md_super, c.mdsuper, c.Mdsuper, c['md super'], c['Md super'] = c.md_super, c.md_super, c.md_super, c.md_super, c.md_super
+c.super_md, c.Super_md, c.supermd, c.Supermd, c['super md'], c['Super md'] = c.md_super, c.md_super, c.md_super, c.md_super, c.md_super, c.md_super
 c.nero = function(frame) return _colore(frame.args[1] or 'normale', '444444', '858585', '2C2C2C') end
 c.Nero = c.nero
 c.nero_2 = function(frame) return _colore(frame.args[1] or 'normale', '424B50', '848A8D', '2B3134') end
@@ -157,6 +162,8 @@ c.rubinoomega = function(frame) return _colore(frame.args[1] or 'normale', 'AB28
 c.Rubinoomega, c.RubinoOmega, c['Rubino Omega'] = c.rubinoomega, c.rubinoomega, c.rubinoomega
 c.smeraldo = function(frame) return _colore(frame.args[1] or 'normale', '00A000', '2ED42E', '006800') end
 c.Smeraldo = c.smeraldo
+c.super_md = function(frame) return _colore(frame.args[1] or 'normale', 'A5A3D2', 'CCC9FF', '7471A6') end
+c.Super_md, c.supermd, c.Supermd, c['super md'], c['Super md'] = c.super_md, c.super_md, c.super_md, c.super_md, c.super_md
 c.TL = function(frame) return _colore(frame.args[1] or 'normale', '2CB8E9', '76D1F1', '1D7898') end
 c.Tl, c.tl = c.TL, c.TL
 c.verde = function(frame) return _colore(frame.args[1] or 'normale', '11BB11', 'A7DB8D', '0B7A0B') end

@@ -37,7 +37,7 @@ for abbr, data in pairs(abbr) do
 
 	a[abbr] = function(frame)
 		local p = w.trimAll(mw.clone(frame.args))
-		return a[abbrLua](p[1], p[2], false)
+		return a[abbrLua](p[1], p[2], true)
 	end
 end
 

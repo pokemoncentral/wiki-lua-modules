@@ -20,7 +20,7 @@ table.nonIntPairs = function(tab)
 end
 
 table.non_int_pairs = t.nonIntPairs
-t.nonIntPairs t.non_int_pairs =
+t.nonIntPairs, t.non_int_pairs =
 		table.nonIntPairs, table.nonIntPairs
 
 --[[
