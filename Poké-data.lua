@@ -1447,7 +1447,8 @@ t.hoopa = {name = 'Hoopa', ndex = 720, type1 = 'psico', type2 = 'spettro'}
 t[720] = t.hoopa
 t.volcanion = {name = 'Volcanion', ndex = 721, type1 = 'fuoco', type2 = 'acqua'}
 t[721] = t.volcanion
-
+-- t.magearna = {name = 'Magearna', ndex = 0xDENIELOPUZZA, type1 = 'acciaio', type2 = 'folletto'}
+-- t[0xDENIELOPUZZA] = t.magearna
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
