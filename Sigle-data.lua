@@ -503,11 +503,18 @@ x.PMDTDS = x.PMDTOC
 x.PMDPSI = {{
 	link = "Mystery Dungeon: I Portali sull'Infinito",
 	display = {
-		{'PSI', 'argento'}
+		{'PSI', 'mdportali'}
 	}
 }}
 x.PMDPsI, x.PMDGTI, x.Infnito = x.PMDPSI, x.PMDPSI, x.PMDPSI
 x.infnito, x.INFINITO, x.Infinity = x.PMDPSI, x.PMDPSI, x.PMDPSI
 x.infinity, x.INFINITY = x.PMDPSI, x.PMDPSI
+x.PSMD = {{
+	link = "Super Mystery Dungeon",
+	display = {
+		{'SMD', 'mdsuper'}
+	}
+}}
+x.Super, x.super = x.PSMD, x.PSMD
 
 return x
