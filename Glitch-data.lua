@@ -201,7 +201,7 @@ g.OA = {
 	{hex = 0xFD, spr = 'AniUovoMS2.gif', name = 'Uovo Glitch', type1 = '???'},
 	{hex = 0xFE, spr = 'AniGlitchMS2.gif', name = '????? (FE)', type1 = 'B'},
 	{hex = 0xFF, spr = 'AniGlitchMS2.gif', name = '????? (FF)', type1 = "'l) m) ZM",
-			type1 = 'Normale (glitch)', type1Display = 'Normale'},
+			type2 = 'Normale (glitch)', type2Display = 'Normale'},
 	{hex = '??', spr = 'AniUnownMS2.gif', name = 'Unown Glitch', type1 = '???'}
 }
 
