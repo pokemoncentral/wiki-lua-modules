@@ -154,9 +154,12 @@ t.tableKeysAlias, t.table_keys_alias, t.keysAlias, t.keys_alias =
 
 --[[
 
-Applica una funzione ad ogni elemento di una table,
-ritornandone un'altra con i risultati aventi la stessa
-chiave dell'elemento dato in ingresso alla funzione
+Applica una funzione agli elementi di una table
+restituiti dall'iteratore dato, ritornandone un'
+altra con i risultati aventi la stessa chiave
+dell'elemento dato in ingresso alla funzione. Se
+non è passato nessun iteratore, si scorrono tutti
+gli elementi della table sorgente.
 
 La funzione riceve in ingresso un elemento e la sua
 chiave, in quest'ordine perché la chiave non è sempre
@@ -164,15 +167,48 @@ necessaria e sarebbe fastidioso avere un argomento
 placeholder.
 
 --]]
-table.map = function(tab, funct)
+table.map = function(tab, funct, iter)
+	iter = iter or pairs
+
 	local dest = {}
-	for key, value in pairs(tab) do
+	for key, value in iter(tab) do
 		dest[key] = funct(value, key)
 	end
 	return dest
 end
 
 t.map = table.map
+
+--[[
+
+Applica una funzione agli elementi di una table
+restituiti dall'iteratore dato, ritornandone un'
+altra con i risultati aventi chiavi numeriche
+nell'ordine proprio dell'iteratore. Se non ne è
+passato nessuno, si scorrono tutti gli elementi
+della table sorgente.
+
+La funzione riceve in ingresso un elemento e la sua
+chiave, in quest'ordine perché la chiave non è sempre
+necessaria e sarebbe fastidioso avere un argomento
+placeholder.
+
+--]]
+table.mapToNum = function(tab, funct, iter)
+	iter = iter or pairs
+
+	local dest = {}
+	for key, value in iter(tab) do
+		table.insert(dest, funct(value, key))
+	end
+	return dest
+end
+
+table.map_to_num, table.mapToNumeric, table.map_to_numeric
+		= table.mapToNum, table.mapToNum, table.mapToNum
+t.mapToNum, t.map_to_num, t.mapToNumeric, t.map_to_numeric
+		= table.mapToNum, table.mapToNum, table.mapToNum,
+			table.mapToNum
 
 --[[
 
@@ -247,7 +283,7 @@ quelli della seconda sovrascrivono quelli della
 prima.
 
 --]]
-table.merge = function(tab1, tab2, inPlace)
+table.merge = function(tab1, tab2)
 
 local mw = require('mw')
 
@@ -259,11 +295,8 @@ local mw = require('mw')
 	for key, value in ipairs(tab2) do
 		table.insert(dest, value)
 	end
-	for key, value in pairs(tab2) do
-		if type(key) ~= 'number'
-				or key ~= math.floor(key) then
-			dest[key] = value
-		end
+	for key, value in table.nonIntPairs(tab2) do
+		dest[key] = value
 	end
 	return dest
 end
@@ -296,12 +329,8 @@ table.filter = function(tab, cond)
 			table.insert(dest, value)
 		end
 	end
-	for key, value in pairs(tab) do
-		if (type(key) ~= 'number'
-				or key ~= math.floor(key))
-				and cond(value, key) then
-			dest[key] = value
-		end
+	for key, value in table.nonIntPairs(tab) do
+		dest[key] = value
 	end
 	return dest
 end
@@ -376,7 +405,7 @@ passata, in ordine non specificato
 --]]
 table.keys = function(tab)
 	local keys = {}
-	for key, v in pairs(tab) do
+	for key in pairs(tab) do
 		table.insert(keys, key)
 	end
 	return keys
