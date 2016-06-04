@@ -1,11 +1,19 @@
 --[[
 
 Crea una tabella in cui sono presenti tutte le debolezze e
-resistenze di un Pokémon.
+resistenze di un Pokémon Glitch di prima generazione.
+Per i Pokémon glitch con più forme (Missigno.), crea solo le tabelle
+effettivamente diverse, inserendo nel titolo tutte le
+forme che condividono la stessa.
 
 Può essere chiamato con il nome di un Pokémon, es:
 
-{{#invoke: DebRes | DebRes | Nidoking }}
+{{#invoke: DebRes | DebRes | 'M (00) }}
+
+Oppure con il nome di un Pokémon e un gioco, es:
+
+{{#invoke: DebRes | DebRes | Missigno. | RB }}
+{{#invoke: DebRes | DebRes | Missigno. | game=RB }}
 
 O direttamente con i tipi, sia con parametri
 posizionali che con con nome, es:
@@ -30,10 +38,10 @@ local mw = require('mw')
 local w = require('Wikilib')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local et = require('EffTipi1')
+local et = require('EffTipi1-Glitch')
 local box = require('Boxtipo')
 local link = require('Links')
-local pokes = require('Poké-data')
+local pokes = require('Glitch-data')
 local c = require('Colore-data')
 
 --[[
@@ -71,7 +79,8 @@ EffTable.strings = {
 Tutte i possibili moltiplicatori dell'efficacia
 
 --]]
-EffTable.allEff = {0, 0.25, 0.5, 1, 2, 4, -- Standard
+EffTable.allEff = {
+	0, 0.25, 0.5, 1, 2, 4, -- Standard
 }
 
 --[[
@@ -176,7 +185,7 @@ EffTable.printSingleBox = function(boxData, colors)
 			bd = colors.bg
 		})
 	end
-	
+
 	--[[
 		L'altezza della label del box va calcolata
 		ora perché dopo si manipola boxData
@@ -191,7 +200,7 @@ EffTable.printSingleBox = function(boxData, colors)
 			colors, 'top')
 	local lastLine = EffTable.printEffLine(table.remove(boxData),
 			colors, 'bottom')
-	
+
 	-- Controllo superfluo, ma il caso con due righe è molto comune
 	local allLines
 	if #boxData > 0 then
@@ -203,7 +212,7 @@ EffTable.printSingleBox = function(boxData, colors)
 	else
 		allLines = {}
 	end
-	
+
 	table.insert(allLines, 1, firstLine)
 	table.insert(allLines, lastLine)
 	return string.interp(table.concat{EffTable.strings.BOX_INIT,
@@ -235,20 +244,25 @@ end
 
 Costruttore della classe: ha in ingresso i tipi
 
---]]
-EffTable.new = function(types)
-	local this = setmetatable({}, EffTable)
+I tipi potrebbero essere tipi glitch inesistenti nel
+modulo EffTipi. In questo caso, non hanno nessuna debolezza
+o resistenza e devono quindi comportarsi di conseguenza
 
-	types = table.map(types, string.lower)
+--]]
+EffTable.new = function(types, forms)
+	local this = setmetatable({}, EffTable)
 
 	local monoType = types[1] == types[2]
 
-	-- Dati per la stampa
+	-- Colori per la stampa
 	this.colors = {
 		bg = c[types[1]].normale,
 		cells = c[types[1]].light,
 		bd = c[types[2]][monoType and 'dark' or 'normale']
 	}
+
+	-- Dopo i colori, i tipi vanno passati al lowercase
+	types = tab.map(types, string.lower)
 
 	--[[
 		Per ogni possibile efficacia, se vi sono
@@ -259,7 +273,6 @@ EffTable.new = function(types)
 	for k, eff in ipairs(EffTable.allEff) do
 		local types = et.difesa(eff, types[1], types[2])
 		if #types > 0 then
-
 			--[[
 				I tipi devono essere ordinati per il
 				confronto e la conversione a stringa
@@ -267,6 +280,18 @@ EffTable.new = function(types)
 			table.sort(types)
 			this[eff] = types
 		end
+	end
+
+	--[=[
+	--[[
+		Contiene le righe del footer sotto forma di
+		istanze di EffTable.FooterLine
+	--]]
+	this.footer = {}
+	]=]
+
+	if forms then
+		this.forms = type(forms) == 'table' and forms or {forms}
 	end
 
 	return this
@@ -279,6 +304,10 @@ i footer che i valori di efficacia con i tipi associati
 
 --]]
 EffTable.__eq = function(a, b)
+	--[=[if not table.equal(a.footer, b.footer) then
+		return false
+	end]=]
+	
 	--[[
 		Si scorre EffTable.allEff perché se si
 		scorresse a o b si potrebbe non controllare
@@ -306,12 +335,20 @@ EffTable.__tostring = function(this)
 	local std = {text = 'Danno normale'}
 	local res = {text = 'Resistenze'}
 	local imm = {text = 'Immunit&agrave;'}
-		
+
 	local interpData = {
 		bg = this.colors.bg,
-		bd = this.colors.bd
+		bd = this.colors.bd,
+		foot = ''--[==[foot = #this.footer < 1 and '' or string.interp([=[
+
+|-
+| class="roundy text-left text-small" style="padding: 2px; background: #${bg};" | ${lines}]=],
+				{
+					bg = this.colors.cells,
+					lines = table.concat(table.map(this.footer, tostring))
+				})]==]
 	}
-	
+
 	-- Non si può usare ipairs perché gli indici non sono interi
 	for eff, types in pairs(this) do
 		if type(eff) == 'number' then
@@ -337,12 +374,12 @@ EffTable.__tostring = function(this)
 	
 	interpData.effBoxes = EffTable.printEffBoxes({weak, std, 
 			res, imm}, this.colors)
-	
+
 	-- Si può andare a capo con effBoxes perché ce n'è sempre almeno uno
 	local tab = string.interp([[{| class="roundy pull-center text-center" style="width: 80%; max-width: 80%; background: #${bg}; border: 3px solid #${bd};"
-${effBoxes}
+${effBoxes}${foot}
 |}]], interpData)
-	
+
 	return tab
 end
 
@@ -357,30 +394,42 @@ estesa al caricamento della pagina.
 
 --]]
 dr.debRes = function(frame)
-	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
-	local ndex = string.parseInt(p[1])
-	local pokeData = pokes[p[1]] or pokes[ndex]
-	
+	local p = tab.map(mw.clone(frame.args), w.trim)
+
+	-- Se tra i parametri c'è game, allora cerca il Pokémon in quel gioco
+	local game, index
+	if p.game then
+		game = p.game
+		index = table.deepSearch(pokes[game], p[1])
+	else
+		game, index = table.deepSearch(pokes, p[1])
+		-- Se il Pokémon è stato trovato non vengono passati i tipi
+		-- quindi il secondo parametro se c'è è il gioco
+		-- (avviene comunque un ulteriore controllo)
+		game = pokes[p[2]] and p[2] or game
+	end
+	local pokeData = pokes[game][index]
+
+	local types = {}
+
 	--[[
 		If no data is found, first parameter is
 		the type, that is no Pokémon is given and
 		types are directly provided
 	--]]
 	if not pokeData then
-		local types = {}
 		types[1] = p[1] or p.type1 or p.type
 		types[2] = p[2] or p.type2 or types[1]
-		return tostring(EffTable.new(types))
+	else
+		types[1] = pokeData.type1
+		types[2] = pokeData.type2 or pokeData.type1
 	end
 
-	ndex = ndex or pokeData.ndex
-	local tfNdex = string.tf(ndex)
-	return tostring(EffTable.new({pokeData.type1,
-			pokeData.type2}))
+	return tostring(EffTable.new(types))
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
---local arg = {'Bulbasaur'}
+--local arg = {"Missingno.", 'G'}
 print(dr.DebRes{args=arg})
 -- return dr
