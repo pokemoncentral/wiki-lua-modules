@@ -38,6 +38,8 @@ local mw = require('mw')
 local w = require('Wikilib')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
+local data = require('Wikilib-data')
+local sig = require('Sigle-data')
 local et = require('EffTipi1-Glitch')
 local box = require('Boxtipo')
 local link = require('Links')
@@ -252,13 +254,14 @@ o resistenza e devono quindi comportarsi di conseguenza
 EffTable.new = function(types, forms)
 	local this = setmetatable({}, EffTable)
 
-	local monoType = types[1] == types[2]
+	--local monoType = types[1] == types[2]                                --scommenta se ▶ A ha debolezza 2x a lotta
 
 	-- Colori per la stampa
 	this.colors = {
 		bg = c[types[1]].normale,
 		cells = c[types[1]].light,
-		bd = c[types[2]][monoType and 'dark' or 'normale']
+		bd = c[types[2] or types[1]][(not types[2]) and 'dark' or 'normale']
+		--bd = c[types[2]][types[1] == types[2] and 'dark' or 'normale']   --scommenta se ▶ A ha debolezza 2x a lotta
 	}
 
 	-- Dopo i colori, i tipi vanno passati al lowercase
@@ -282,14 +285,6 @@ EffTable.new = function(types, forms)
 		end
 	end
 
-	--[=[
-	--[[
-		Contiene le righe del footer sotto forma di
-		istanze di EffTable.FooterLine
-	--]]
-	this.footer = {}
-	]=]
-
 	if forms then
 		this.forms = type(forms) == 'table' and forms or {forms}
 	end
@@ -304,10 +299,6 @@ i footer che i valori di efficacia con i tipi associati
 
 --]]
 EffTable.__eq = function(a, b)
-	--[=[if not table.equal(a.footer, b.footer) then
-		return false
-	end]=]
-	
 	--[[
 		Si scorre EffTable.allEff perché se si
 		scorresse a o b si potrebbe non controllare
@@ -320,6 +311,11 @@ EffTable.__eq = function(a, b)
 	end
 
 	return true
+end
+
+-- Aggiunge una forma a quelle presenti
+EffTable.addForm = function(this, form)
+	table.insert(this.forms, form)
 end
 
 --[[
@@ -338,15 +334,7 @@ EffTable.__tostring = function(this)
 
 	local interpData = {
 		bg = this.colors.bg,
-		bd = this.colors.bd,
-		foot = ''--[==[foot = #this.footer < 1 and '' or string.interp([=[
-
-|-
-| class="roundy text-left text-small" style="padding: 2px; background: #${bg};" | ${lines}]=],
-				{
-					bg = this.colors.cells,
-					lines = table.concat(table.map(this.footer, tostring))
-				})]==]
+		bd = this.colors.bd
 	}
 
 	-- Non si può usare ipairs perché gli indici non sono interi
@@ -377,8 +365,18 @@ EffTable.__tostring = function(this)
 
 	-- Si può andare a capo con effBoxes perché ce n'è sempre almeno uno
 	local tab = string.interp([[{| class="roundy pull-center text-center" style="width: 80%; max-width: 80%; background: #${bg}; border: 3px solid #${bd};"
-${effBoxes}${foot}
+${effBoxes}
 |}]], interpData)
+
+	if this.forms then
+		return string.interp([[==== ${title} ====
+${tab}
+]],
+			{
+				title = mw.text.listToText(this.forms, ', ', ' e '),
+				tab = tab
+			})
+	end
 
 	return tab
 end
@@ -395,41 +393,99 @@ estesa al caricamento della pagina.
 --]]
 dr.debRes = function(frame)
 	local p = tab.map(mw.clone(frame.args), w.trim)
+	local forms = {}
 
 	-- Se tra i parametri c'è game, allora cerca il Pokémon in quel gioco
 	local game, index
 	if p.game then
 		game = p.game
 		index = table.deepSearch(pokes[game], p[1])
-	else
-		game, index = table.deepSearch(pokes, p[1])
-		-- Se il Pokémon è stato trovato non vengono passati i tipi
-		-- quindi il secondo parametro se c'è è il gioco
+		table.insert(forms, pokes[game][index])
+	elseif p[2] then
+		-- Se il Pokémon è stato trovato non sono stati passati i
+		-- tipi quindi il secondo parametro se c'è è il gioco
 		-- (avviene comunque un ulteriore controllo)
 		game = pokes[p[2]] and p[2] or game
+		index = table.deepSearch(pokes[game], p[1])
+		table.insert(forms, pokes[game][index])
+	else
+		--[[
+			controlla se il glitch esiste in più giochi,
+			e nel caso prepara una table con l'elenco
+			dei giochi e dei tipi che ha in quel gioco
+		--]]
+		for game, glitches in pairs(pokes) do
+			local index = tab.deepSearch(glitches, p[1])
+			if index then
+				table.insert(forms, { game=game, data=glitches[index] })
+			end
+		end
+		-- ordina forms in modo da avere prima i giochi più vecchi
+		table.sort(forms, function (a, b)
+			return tab.search(data.gamesChron, string.lower(a.game)) < tab.search(data.gamesChron, string.lower(b.game))
+		end)
 	end
-	local pokeData = pokes[game][index]
 
-	local types = {}
 
 	--[[
 		If no data is found, first parameter is
 		the type, that is no Pokémon is given and
 		types are directly provided
 	--]]
-	if not pokeData then
+	if not forms[1] then
+		local types = {}
 		types[1] = p[1] or p.type1 or p.type
-		types[2] = p[2] or p.type2 or types[1]
-	else
-		types[1] = pokeData.type1
-		types[2] = pokeData.type2 or pokeData.type1
+		types[2] = p[2] or p.type2 --or types[1]             --scommenta se ▶ A ha debolezza 2x a lotta
+		return tostring(EffTable.new(types))
 	end
 
-	return tostring(EffTable.new(types))
+	--[[
+		If #forms <= 1 there is only one form, so
+		returns the single table
+	--]]
+	if #forms <= 1 then
+		local types = {}
+		types[1] = forms[1].data.type1
+		types[2] = forms[1].data.type2 --or forms[1].type1        --scommenta se ▶ A ha debolezza 2x a lotta
+		return tostring(EffTable.new(types))
+	end
+
+	local effTables = {}
+	--[[
+		Per ogni forma in forms genera la table con il suo titolo
+	--]]
+	for k, form in ipairs(forms) do
+		local types = { form.data.type1, form.data.type2 }
+		local formName = table.concat(table.map(sig[form.game][1].display, function(disp)
+			return string.fu(disp[2])
+		end), '/')
+		local formEffTable = EffTable.new(types, formName)
+		local formPlaced = false
+		--[[
+			Bisogna controllare la tabella dell'efficacia tipi è
+			uguale ad una già inserita
+		--]]
+		for k, effTable in ipairs(effTables) do
+			if formEffTable == effTable then
+				effTable:addForm(formName)
+				formPlaced = true
+				break
+			end
+		end
+		--[[
+			Non si può inserire nel for qua sopra perché ipairs
+			giustamente includerebbe la nuova EffTable nel loop
+		--]]
+		if not formPlaced then
+			table.insert(effTables, formEffTable)
+		end
+	end
+
+	return table.concat(table.map(effTables, tostring), '\n')
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
---local arg = {"Missingno.", 'G'}
+local arg = {'Missingno.'}
 print(dr.DebRes{args=arg})
 -- return dr
