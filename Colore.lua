@@ -215,8 +215,7 @@ c.orange = function(frame) return _colore(frame.args[1] or 'normale', 'FF7F00', 
 c.Orange = c.orange
 c.cristalline = function(frame) return _colore(frame.args[1] or 'normale', 'FFB200', 'FFD36B', 'AE7E00') end
 c.Cristalline, c.decolora, c.Decolora = c.cristalline, c.cristalline, c.cristalline
-c.alola = function(frame) return _colore(frame.args[1] or 'normale', 'FFD900', 'FFE86A', 'EC9000') end
-c.Alola = c.alola
+c.settimagen = function(frame) return _colore(frame.args[1] or 'normale', '33E8AA', '8AFFD7', '009F69') end
 
 -- Colori statistiche
 
