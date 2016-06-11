@@ -574,13 +574,13 @@ EffTable.FooterLine.init = {}
 -- Parte iniziale per la categoria MAYBE
 EffTable.FooterLine.init.MAYBE = function(abil)
 	return string.interp(EffTable.FooterLine.strings.MAYBE,
-			{abil = string.fu(abil)})
+			{abil = txt.camelCase(abil)})
 end
 
 -- Parte iniziale per la categoria TAKENOFF
 EffTable.FooterLine.init.TAKENOFF = function(abil)
 	return string.interp(EffTable.FooterLine.strings.TAKENOFF,
-			{abil = string.fu(abil)})
+			{abil = txt.camelCase(abil)})
 end
 
 --[[
@@ -613,7 +613,7 @@ EffTable.FooterLine.init.RINGTARGET = function(abils, type)
 		for k, typeImm in pairs(et.typesHaveImm[type:lower()]) do
 			if EffTable.FooterLine.abilityGrantsImm(abil, typeImm) then
 				table.insert(pieces, string.interp(notAbil,
-						{abil = string.fu(abil)}))
+						{abil = txt.camelCase(abil)}))
 			end
 		end
 	end
