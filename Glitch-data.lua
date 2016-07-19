@@ -77,7 +77,7 @@ g.RB = {
 			type1 = "(Classe dell'ultimo allenatore affrontato)",
 			type2 = "(Classe dell'ultimo allenatore affrontato)",
 			type1Display = 'Glitch', type2Display = 'Glitch'},
-	{hex = 0xE4, spr = 'AniBallMS1.gif', name = 'Glitch (E4)', type1 = 'Normale'},
+	{hex = 0xE4, spr = 'AniBallMS1.gif', name = 'Glitch (E4)', type1 = 'Coleottero'},
 	{hex = 0xE5, spr = 'AniMuccaMS1.gif', name = 'C (maiuscolo)', type1 = 'Glitch',
 			nameDisplay = 'C'},
 	{hex = 0xE6, spr = 'AniFioreMS1.gif', name = '- -', type1 = 'Glitch'},
@@ -161,7 +161,7 @@ g.G = {
 	{hex = 0xE5, spr = 'AniMostroMS1.gif', name = 'Z ゥ', type1 = 'Normale'},
 	{hex = 0xE6, spr = 'AniMostroMS1.gif', name = '9 (Pokémon glitch)', type1 = 'Normale',
 			type2 = 'Normale', nameDisplay = '9'},
-	{hex = 0xE7, spr = 'AniFossileMS1.gif', name = 'ゥHIゥ.', type1 = 'Normale', type2 = 'Glitch'},
+	{hex = 0xE7, spr = 'AniFossileMS1.gif', name = 'ゥHIゥ.', type1 = 'Glitch', type2 = 'Normale'},
 	{hex = 0xE8, spr = 'AniSurfMS1.gif', name = '4(h4hi?$', type1 = 'Acqua'},
 	{hex = 0xE9, spr = 'AniMostroMS1.gif', name = '4HI?', type1 = 'Veleno'},
 	{hex = 0xEA, spr = 'AniMostroMS1.gif', name = "'r ゥ", type1 = 'Normale'},
@@ -196,7 +196,7 @@ g.G = {
 g.OA = {
 	{hex = 0x00, spr = 'AniGlitchMS2.gif', name = '????? (00)', type1 = 'Acciaio',
 		type2 = 'Glitch'},
-	{hex = 0xFC, spr = 'File:AniGlitchMS2.gif', name = '????? (FC)', type1 = 'Psico',
+	{hex = 0xFC, spr = 'AniGlitchMS2.gif', name = '????? (FC)', type1 = 'Psico',
 		type2 = 'Glitch'},
 	{hex = 0xFD, spr = 'AniUovoMS2.gif', name = 'Uovo Glitch', type1 = '???'},
 	{hex = 0xFE, spr = 'AniGlitchMS2.gif', name = '????? (FE)', type1 = 'B'},
@@ -230,7 +230,7 @@ g.RZS = {
 			nameDisplay = '- (Pokémon Glitch)'},
 	{hex = {0x00FC}, spr = '000MS5.png', name = '?', type1 = 'Normale',
 			nameDisplay = '? (Pokémon Glitch)'},
-	{hex = '???', name = 'AniUovoMS.gif', name = 'Uovo Peste', type1 = 'Sconosciuto'}
+	{hex = '???', spr = 'AniUovoMS.gif', name = 'Uovo Peste', type1 = 'Sconosciuto'}
 }
 
 for hex = 0x19D, 0xFFFF do
