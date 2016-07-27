@@ -12,6 +12,7 @@ local tab = require('Wikilib-tables')
 -- identici, in questo modulo, ad altri, e dunque sono costituiti
 -- da alias, raggruppati in fondo al modulo
 
+t.pikachu = {}
 t.castform = {}
 t.deoxys = {}
 t.wormadam = {}
@@ -52,6 +53,9 @@ t.archeo = {'kyogre', 'groudon'}
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
 
+t.pikachu.names = {Cs = 'Pikachu Cosplay', R = 'Pikachu Rockstar',
+	D = 'Pikachu Damigella', Cn = 'Pikachu Confetto',
+	S = 'Pikachu Scienziata', W = 'Pikachu Wrestler', base = 'Pikachu'}
 t.castform.names = {S = 'Forma Sole', P = 'Forma Pioggia',
 	N = 'Forma Nuvola di Neve', base = 'Forma Castform'}
 t.deoxys.names = {A = 'Forma Attacco', D = 'Forma Difesa',
@@ -168,6 +172,7 @@ end
 -- Sigle delle forme alternative che cambiano mosse apprese rispetto alla
 -- forma base, che non è dunque presente
 
+t.pikachu.changemoves = {'R', 'D', 'Cn', 'S', 'W'}
 t.deoxys.changemoves = t.deoxys.changestats
 t.wormadam.changemoves = t.wormadam.changetype
 t.rotom.changemoves = t.rotom.changetype
@@ -190,21 +195,23 @@ for name, poke in pairs(t) do
 		else
 			for k, v in pairs(poke.names) do
 				poke.links[k] =
-				table.concat{'<br><small>[[Differenze di forma#',
-					string.fu(name), '|', v, ']]</small>'}
+				table.concat{'<div class="small-text">[[Differenze di forma#',
+					string.fu(name), '|', v, ']]</div>'}
 			end
 			poke.links.base = ''
 		end
 	end
 end
 
-t.wormadam.links = {Sa = '<br><small>[[Differenze di forma#Burmy e Wormadam|Manto Sabbia]]</small>',
-	Sc = '<br><small>[[Differenze di forma#Burmy e Wormadam|Manto Scarti]]</small>', base = ''}
-t.tornadus.links = {T = '<br><small>[[Differenze di forma#Trio dei Kami|Forma Totem]]</small>',
+t.wormadam.links = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Sabbia]]</div>',
+	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Scarti]]</div>',
 	base = ''}
-t.pumpkaboo.links = {S = '<br><small>[[Differenze di forma#Pumpkaboo e Gourgeist|Mini]]</small>',
-	L = '<br><small>[[Differenze di forma#Pumpkaboo e Gourgeist|Grande]]</small>',
-	XL = '<br><small>[[Differenze di forma#Pumpkaboo e Gourgeist|Maxi]]</small>', base = ''}
+t.tornadus.links = {T = '<div class="small-text">[[Differenze di forma#Trio dei Kami|Forma Totem]]</div>',
+	base = ''}
+t.pumpkaboo.links = {S = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Mini]]</div>',
+	L = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Grande]]</div>',
+	XL = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Maxi]]</div>',
+	base = ''}
 
 -- Link neri alle forme alternative.
 
@@ -220,25 +227,29 @@ for name, poke in pairs(t) do
 		else
 			for k, v in pairs(poke.names) do
 				poke.blacklinks[k] =
-					table.concat{'<br><small>[[Differenze di forma#',
+					table.concat{'<div class="small-text">[[Differenze di forma#',
 					string.fu(name), '|<span style="color:#000">',
-					v, '</span>]]</small>'}
+					v, '</span>]]</div>'}
 			end
 			poke.blacklinks.base = ''
 		end
 	end
 end
 
-t.wormadam.blacklinks = {Sa = '<br><small>[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Sabbia</span>]]</small>',
-	Sc = '<br><small>[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Scarti</span>]]</small>', base = ''}
-t.tornadus.blacklinks = {T = '<br><small>[[Differenze di forma#Trio dei Kami|<span style="color:#000">Forma Totem</span>]]</small>',
+t.wormadam.blacklinks = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Sabbia</span>]]</div>',
+	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Scarti</span>]]</div>',
 	base = ''}
-t.pumpkaboo.blacklinks = {S = '<br><small>[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Mini</span>]]</small>',
-	L = '<br><small>[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Grande</span>]]</small>',
-	XL = '<br><small>[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Maxi</span>]]</small>', base = ''}
+t.tornadus.blacklinks = {T = '<div class="small-text">[[Differenze di forma#Trio dei Kami|<span style="color:#000">Forma Totem</span>]]</div>',
+	base = ''}
+t.pumpkaboo.blacklinks = {S = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Mini</span>]]</div>',
+	L = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Grande</span>]]</div>',
+	XL = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Maxi</span>]]</div>',
+	base = ''}
 
 -- Per passare dai nomi estesi delle forme alternative alle sigle
 
+t.pikachu.ext = {cosplay = 'Cs', rockstar = 'R', damigella = 'D',
+	confetto = 'Cn', scienziata = 'S', wrestler = 'W'}
 t.castform.ext = {sole = 'S', pioggia = 'P', neve = 'N'}
 t.deoxys.ext = {attacco = 'A', difesa = 'D', ['velocità'] = 'V'}
 t.wormadam.ext = {sabbia = 'Sa', scarti = 'Sc'}
@@ -268,6 +279,7 @@ end
 -- Arrays in cui è memorizzato l'ordine con cui le varie forme appaiono
 -- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
 
+t.pikachu.gamesorder = {'', 'Cs', 'R', 'D', 'Cn', 'S', 'W'}
 t.castform.gamesOrder = {'', 'S', 'P', 'N'}
 t.deoxys.gamesOrder = {'', 'A', 'D', 'V'}
 t.wormadam.gamesOrder = {'', 'Sa', 'Sc'}
@@ -296,6 +308,8 @@ end
 -- Tabelle contenenti le sigle dei primi giochi in ordine cronologico in cui
 -- la forma è supportata, compresa la forma base
 
+t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
+	Cn = 'roza', S = 'roza', W = 'roza', base = 'rb'}
 t.castform.since = {S = 'rz', P = 'rz', N = 'rz', base = 'rz'}
 t.deoxys.since = {A = 'rfvf', D = 'rfvf', V = 's', base = 'rz'}
 t.wormadam.since = {Sa = 'dp', Sc = 'dp', base = 'dp'}
@@ -364,6 +378,7 @@ t.kyogre.since = {A = 'roza', base = 'rz'}
 
 t.thundurus, t.landorus = t.tornadus, t.tornadus
 t.gourgeist = t.pumpkaboo
+t[25] = t.pikachu
 t[351] = t.castform
 t[386] = t.deoxys
 t[413] = t.wormadam
