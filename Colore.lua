@@ -364,7 +364,7 @@ c.inverno = function(frame) return _colore(frame.args[1] or 'normale', 'F0D8F8',
 c.Inverno = c.inverno
 c.estate = function(frame) return _colore(frame.args[1] or 'normale', '78D0F8', 'A0DEFA', '5492AE') end
 c.Estate = c.estate
-c.primavera = function(frame) return _colore(frame.args[1] or 'normale', '7BAE3D', 'C7FA89', '4E8234') end
+c.primavera = function(frame) return _colore(frame.args[1] or 'normale', 'B0F858', 'C7FA89', '7BAE3D') end
 c.Primavera = c.primavera
 
 -- Colori gare
