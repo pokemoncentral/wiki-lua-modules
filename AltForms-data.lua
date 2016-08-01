@@ -50,6 +50,11 @@ t.megaxy = {'charizard', 'mewtwo'}
 
 t.archeo = {'kyogre', 'groudon'}
 
+-- Tabella contenente i Pokémon che hanno una forma di Alola:
+-- per efficienza, alcuni sono alla fine del modulo
+
+t.alola = {'sandshrew', 'vulpix', 'exeggutor'}
+
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
 
@@ -91,6 +96,10 @@ for k, v in pairs(t.archeo) do
 	t[v] = {}
 	t[v].names = {A = 'Archeo' .. fu, base = fu}
 end
+for k, v in pairs(t.alola) do
+	t[v] = {}
+	t[v].names = {A = 'Forma di Alola', base = 'Forma Normale'}
+end
 
 -- Sigle delle forme alternative che cambiano tipo rispetto alla forma base,
 -- che dunque non è presente
@@ -114,6 +123,9 @@ t.groudon.changetype = {'A'}
 t.lopunny.changetype = {'M'}
 t.audino.changetype = {'M'}
 t.hoopa.changetype = {'L'}
+for k, v in pairs(t.alola) do
+	t[v].changetype = {'A'}
+end
 
 -- Sigle delle forme alternative che cambiano abilità rispetto alla forma base,
 -- che non è dunque presente; visto che la maggior parte delle megaevoluzioni
@@ -134,6 +146,9 @@ for k, v in pairs(t.megaxy) do
 end
 for k, v in pairs(t.archeo) do
 	t[v].changeability = {'A'}
+end
+for k, v in pairs(t.alola) do
+	t[v].changeability = t[v].changetype
 end
 t.scizor.changeability = nil
 t.tyranitar.changeability = nil
@@ -184,7 +199,7 @@ t.hoopa.changemoves = t.hoopa.changetype
 -- Link alle forme alternative.
 
 for name, poke in pairs(t) do
-	if not table.linear_search({'mega', 'megaxy', 'archeo'}, name) then
+	if not table.linear_search({'mega', 'megaxy', 'archeo', 'alola'}, name) then
 		poke.links = {}
 		if table.linear_search(t.mega, name) then
 			poke.links.M = ''
@@ -192,6 +207,9 @@ for name, poke in pairs(t) do
 			poke.links.MX, poke.links.MY = '', ''
 		elseif table.linear_search(t.archeo, name) then
 			poke.links.A = ''
+		elseif table.linear_search(t.alola, name) then
+			poke.links.A = table.concat{'<div class="small-text">[[Forma di Alola#',
+					string.fu(name), '|Forma di Alola]]</div>'}
 		else
 			for k, v in pairs(poke.names) do
 				poke.links[k] =
@@ -203,6 +221,8 @@ for name, poke in pairs(t) do
 	end
 end
 
+t.sandshrew.links = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|Forma di Alola]]</div>'}
+t.vulpix.links = {A = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|Forma di Alola]]</div>'}
 t.wormadam.links = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Sabbia]]</div>',
 	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Scarti]]</div>',
 	base = ''}
@@ -216,7 +236,7 @@ t.pumpkaboo.links = {S = '<div class="small-text">[[Differenze di forma#Pumpkabo
 -- Link neri alle forme alternative.
 
 for name, poke in pairs(t) do
-	if not table.linear_search({'mega', 'megaxy', 'archeo'}, name) then
+	if not table.linear_search({'mega', 'megaxy', 'archeo', 'alola'}, name) then
 		poke.blacklinks = {}
 		if table.linear_search(t.mega, name) then
 			poke.blacklinks.M = ''
@@ -224,6 +244,9 @@ for name, poke in pairs(t) do
 			poke.blacklinks.MX, poke.blacklinks.MY = '', ''
 		elseif table.linear_search(t.archeo, name) then
 			poke.blacklinks.A = ''
+		elseif table.linear_search(t.alola, name) then
+			poke.links.A = table.concat{'<div class="small-text">[[Forma di Alola#',
+					string.fu(name), '|<span style="color:#000">Forma di Alola</span>]]</div>'}
 		else
 			for k, v in pairs(poke.names) do
 				poke.blacklinks[k] =
@@ -236,6 +259,8 @@ for name, poke in pairs(t) do
 	end
 end
 
+t.sandshrew.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000">Forma di Alola</span>]]</div>'}
+t.vulpix.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|<span style="color:#000">Forma di Alola</span>]]</div>'}
 t.wormadam.blacklinks = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Sabbia</span>]]</div>',
 	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Scarti</span>]]</div>',
 	base = ''}
@@ -275,6 +300,9 @@ end
 for k, v in pairs(t.archeo) do
 	t[v].ext = {archeo = 'A'}
 end
+for k, v in pairs(t.alola) do
+	t[v].ext = {alola = 'A'}
+end
 
 -- Arrays in cui è memorizzato l'ordine con cui le varie forme appaiono
 -- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
@@ -304,12 +332,18 @@ end
 for k, v in pairs(t.archeo) do
 	t[v].gamesOrder = {'', 'A'}
 end
+for k, v in pairs(t.alola) do
+	t[v].gamesOrder = {'', 'A'}
+end
 
 -- Tabelle contenenti le sigle dei primi giochi in ordine cronologico in cui
 -- la forma è supportata, compresa la forma base
 
 t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
 	Cn = 'roza', S = 'roza', W = 'roza', base = 'rb'}
+t.sandshrew.since = {A = 'sl', base = 'rb'}
+t.vulpix.since = {A = 'sl', base = 'rb'}
+t.exeggutor.since = {A = 'sl', base = 'rb'}
 t.castform.since = {S = 'rz', P = 'rz', N = 'rz', base = 'rz'}
 t.deoxys.since = {A = 'rfvf', D = 'rfvf', V = 's', base = 'rz'}
 t.wormadam.since = {Sa = 'dp', Sc = 'dp', base = 'dp'}
@@ -374,11 +408,23 @@ t.mewtwo.since = {MX = 'xy', MY = 'xy', base = 'rb'}
 t.groudon.since = {A = 'roza', base = 'rz'}
 t.kyogre.since = {A = 'roza', base = 'rz'}
 
+-- Altre forme di Alola, messe qui per evitare inutili iterazioni dei cicli precedenti
+
+table.insert(t.alola, 'sandslash')
+table.insert(t.alola, 'ninetales')
+
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 
+t.sandslash = t.sandshrew
+t.ninetales = t.vulpix
 t.thundurus, t.landorus = t.tornadus, t.tornadus
 t.gourgeist = t.pumpkaboo
 t[25] = t.pikachu
+t[27] = t.sandshrew
+t[28] = t.sandslash
+t[37] = t.vulpix
+t[37] = t.ninetales
+t[103] = t.exeggutor
 t[351] = t.castform
 t[386] = t.deoxys
 t[413] = t.wormadam

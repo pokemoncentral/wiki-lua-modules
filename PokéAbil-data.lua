@@ -1450,6 +1450,16 @@ t[721] = t.volcanion
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
 -- Il nome è composto dal nome del Pokémon, seguito dalla sigla della forma alternativa
 
+t.sandshrewA = {ability1 = 'Mantelneve'}
+t['027A'] = t.sandshrewA
+t.sandslashA = {ability1 = 'Mantelneve'}
+t['028A'] = t.sandslashA
+t.vulpixA = {ability1 = 'Mantelneve'}
+t['037A'] = t.vulpixA
+t.ninetalesA = {ability1 = 'Mantelneve'}
+t['038A'] = t.ninetalesA
+t.exeggutorA = {ability1 = 'Indagine'}
+t['103A'] = t.exeggutorA
 t.giratinaO = {ability1 = 'Levitazione'}
 t['487O'] = t.giratinaO
 t.shayminC = {ability1 = 'Leggiadro'}
@@ -1473,6 +1483,10 @@ t['678M'] = t.meowsticM
 
 -- Alias per le altre forme alternative rilevanti
 
+t.pikachuCs, t['025Cs'], t.pikachuR, t['025R'], t.pikachuD, t['025D'],
+	t.pikachuCn, t['025Cn'], t.pikachuS, t['025S'], t.pikachuW, t['025W'] =
+	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu,
+	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu
 t.castformS, t.castformP, t.castformN = t.castform, t.castform, t.castform
 t['351S'], t['351P'], t['351N'] = t.castform, t.castform, t.castform
 t.deoxysA, t.deoxysD, t.deoxysV = t.deoxys, t.deoxys, t.deoxys

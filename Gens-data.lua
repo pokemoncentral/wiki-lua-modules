@@ -28,6 +28,7 @@ gendata[3] = {ext = 'terza', roman = 'III', region = 'hoenn'}
 gendata[4] = {ext = 'quarta', roman = 'IV', region = 'sinnoh'}
 gendata[5] = {ext = 'quinta', roman = 'V', region = 'unima'}
 gendata[6] = {ext = 'sesta', roman = 'VI', region = 'kalos'}
+gendata[7] = {ext = 'settima', roman = 'VII', region = 'alola'}
 
 -- Sigle dei giochi in minuscolo delle generazioni
 
@@ -37,5 +38,6 @@ gendata[3].games = {'rz', 'rfvf', 's', 'colo', 'xd'}
 gendata[4].games = {'dp', 'pt', 'hgss', 'pbr'}
 gendata[5].games = {'nb', 'n2b2'}
 gendata[6].games = {'xy', 'roza'}
+gendata[7].games = {'sl'}
 
 return gendata

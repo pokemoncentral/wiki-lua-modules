@@ -1453,6 +1453,16 @@ t[721] = t.volcanion
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
 
+t.sandshrewA = {name = 'Sandshrew', ndex = 27, type1 = 'ghiaccio', type2 = 'acciaio'}
+t['027A'] = t.sandshrewA
+t.sandslashA = {name = 'Sandslash', ndex = 28, type1 = 'ghiaccio', type2 = 'acciaio'}
+t['028A'] = t.sandslashA
+t.vulpixA = {name = 'Vulpix', ndex = 37, type1 = 'ghiaccio', type2 = 'ghiaccio'}
+t['037A'] = t.vulpixA
+t.ninetalesA = {name = 'Ninetales', ndex = 38, type1 = 'ghiaccio', type2 = 'folletto'}
+t['038A'] = t.ninetalesA
+t.exeggutorA = {name = 'Exeggutor', ndex = 103, type1 = 'erba', type2 = 'drago'}
+t['103A'] = t.exeggutorA
 t.castformS = {name = 'Castform', ndex = 351, type1 = 'fuoco', type2 = 'fuoco'}
 t['351S'] = t.castformS
 t.castformP = {name = 'Castform', ndex = 351, type1 = 'acqua', type2 = 'acqua'}
@@ -1484,6 +1494,10 @@ t['720L'] = t.hoopaL
 
 -- Gli alias per le altre forme alternative rilevanti
 
+t.pikachuCs, t['025Cs'], t.pikachuR, t['025R'], t.pikachuD, t['025D'],
+	t.pikachuCn, t['025Cn'], t.pikachuS, t['025S'], t.pikachuW, t['025W'] =
+	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu,
+	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu
 t.deoxysA, t['386A'], t.deoxysD, t['386D'], t.deoxysV, t['386V'] =
 	t.deoxys, t.deoxys, t.deoxys, t.deoxys, t.deoxys, t.deoxys
 t.giratinaO, t['487O'] = t.giratina, t.giratina
