@@ -307,7 +307,7 @@ end
 -- Arrays in cui è memorizzato l'ordine con cui le varie forme appaiono
 -- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
 
-t.pikachu.gamesorder = {'', 'Cs', 'R', 'D', 'Cn', 'S', 'W'}
+t.pikachu.gamesOrder = {'', 'Cs', 'R', 'D', 'Cn', 'S', 'W'}
 t.castform.gamesOrder = {'', 'S', 'P', 'N'}
 t.deoxys.gamesOrder = {'', 'A', 'D', 'V'}
 t.wormadam.gamesOrder = {'', 'Sa', 'Sc'}
