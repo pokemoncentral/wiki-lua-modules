@@ -245,7 +245,7 @@ for name, poke in pairs(t) do
 		elseif table.linear_search(t.archeo, name) then
 			poke.blacklinks.A = ''
 		elseif table.linear_search(t.alola, name) then
-			poke.links.A = table.concat{'<div class="small-text">[[Forma di Alola#',
+			poke.blacklinks.A = table.concat{'<div class="small-text">[[Forma di Alola#',
 					string.fu(name), '|<span style="color:#000">Forma di Alola</span>]]</div>'}
 		else
 			for k, v in pairs(poke.names) do
