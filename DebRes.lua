@@ -41,6 +41,7 @@ local dr = {}
 local mw = require('mw')
 
 local w = require('Wikilib')
+local forms = require('Wikilib-forms')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local et = require('EffTipi')
@@ -831,8 +832,7 @@ estesa al caricamento della pagina.
 --]]
 dr.debRes = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
-	local ndex = string.parseInt(p[1])
-	local pokeData = pokes[p[1]] or pokes[ndex]
+	local pokeData = pokes[string.parseInt(p[1]) or p[1]]
 	
 	--[[
 		If no data is found, first parameter is
@@ -849,9 +849,8 @@ dr.debRes = function(frame)
 		return tostring(EffTable.new(types, abils))
 	end
 
-	ndex = ndex or pokeData.ndex
-	local tfNdex = string.tf(ndex)
-	local altData = alt[ndex]
+	local name = pokeData.name:lower()
+	local altData = alt[name]
 	
 	if altData then
 		local effTables = {}
@@ -865,8 +864,8 @@ dr.debRes = function(frame)
 		--]]
 		for k, abbr in ipairs(altData.gamesOrder) do
 			abbr = abbr == '' and 'base' or abbr
-			local ndex = abbr == 'base' and ndex or tfNdex .. abbr
-			local formPoke, formAbils = pokes[ndex], abils[ndex]
+			local name = abbr == 'base' and name or name .. abbr
+			local formPoke, formAbils = pokes[name], abils[name]
 			local formName = altData.names[abbr]
 			local formEffTable = EffTable.new({formPoke.type1, formPoke.type2},
 					formAbils, formName)
@@ -907,7 +906,7 @@ dr.debRes = function(frame)
 			end), '\n')
 	else
 		return tostring(EffTable.new({pokeData.type1,
-				pokeData.type2}, abils[ndex]))
+				pokeData.type2}, abils[name]))
 	end
 end
 

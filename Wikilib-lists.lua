@@ -42,6 +42,22 @@ l.sortNdex = function(a, b)
 	if a == b then
 		return false
 	end
+
+	-- If at least one ndex is not defined
+	if not (a.ndex and b.ndex) then
+
+		-- The defined ndex gets sorted first
+		if a.ndex then
+			return true
+		elseif b.ndex then
+			return false
+
+		-- No ndex defined, using fallback
+		else
+			return a.fallbackIndex < b.fallbackIndex
+		end
+	end
+		
 	
 	if a.ndex ~= b.ndex then
 		return a.ndex < b.ndex

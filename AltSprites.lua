@@ -631,7 +631,7 @@ u.altSprites = function(frame)
 		Per i Pokémon che, come Meowstic, hanno la
 		differenza di forma principale nel genere,
 		ma non hanno il Maschio come forma base:
-		si toglie quest0ultima, per evitare di avere
+		si toglie quest'ultima, per evitare di avere
 		una riga in più inutile
 	--]]
 	if alt[ndex].names.M == 'Maschio' then

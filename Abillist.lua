@@ -43,6 +43,10 @@ Entry.new = function(pokeAbil, name, abil)
 	local this = setmetatable(table.merge(pokeAbil,
 			pokes[name]), Entry)
 
+	if not this.ndex then
+		this.fallbackIndex = this.name
+	end
+
 	local baseName, abbr = form.getNameAbbr(name)
 
 	this.formsData = forms[baseName]
@@ -71,7 +75,7 @@ Entry.__tostring = function(this)
 | style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${abil2}
 | style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${abild}]=],
 {
-	ani = ms.aniLua(string.tf(this.ndex) .. (this.formAbbr or '')),
+	ani = ms.aniLua(string.tf(this.ndex or 0) .. (this.formAbbr or '')),
 	name = this.name,
 	form = this.formsData and this.formsData.blacklinks[this.formAbbr] or '',
 	cs = monoType and '2' or '1',

@@ -31,9 +31,11 @@ gens.get_gen, gens.getgen = gens.getGen, gens.getGen
 
 gens.getGen.ndex = function(ndex)
 	ndex = tonumber(ndex)
+
 	if not ndex then
-		return 0
+		return data.latestGen + 1
 	end
+
 	if ndex < 152 then
 		return 1
 	elseif ndex < 252 then
@@ -44,7 +46,7 @@ gens.getGen.ndex = function(ndex)
 		return 4
 	elseif ndex < 650 then
 		return 5
-	else
+	elseif ndex < 722 then
 		return 6
 	end
 end
