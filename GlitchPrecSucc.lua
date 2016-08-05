@@ -140,4 +140,6 @@ end
 
 m.glitchprecsucc, m.glitchPrecSucc = m.GlitchPrecSucc, m.GlitchPrecSucc
 
-return m
+print(m.glitchPrecSucc{args={arg[1], game = arg[2]}})
+
+-- return m

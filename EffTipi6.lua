@@ -85,7 +85,6 @@ ability.mangiaerba = {erba = 0}
 ability['mare primordiale'] = ability.fuocardore
 ability['terra estrema'] = ability.acquascolo
 ability['flusso delta'] = {elettro = 0.5, ghiaccio = 0.5, roccia = 0.5}
-ability.morbidone = {fuoco = 2}
 
 --[[
 

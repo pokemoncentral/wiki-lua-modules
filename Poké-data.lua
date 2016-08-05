@@ -1447,12 +1447,91 @@ t.hoopa = {name = 'Hoopa', ndex = 720, type1 = 'psico', type2 = 'spettro'}
 t[720] = t.hoopa
 t.volcanion = {name = 'Volcanion', ndex = 721, type1 = 'fuoco', type2 = 'acqua'}
 t[721] = t.volcanion
--- t.magearna = {name = 'Magearna', ndex = 0xDENIELOPUZZA, type1 = 'acciaio', type2 = 'folletto'}
--- t[0xDENIELOPUZZA] = t.magearna
+
+-- Settima generazione (BEWARE: STILL NO NDEXES)
+
+t.rowlet = {name = 'Rowlet', ndex = nil, type1 = 'erba', type2 = 'volante'}
+-- t[0xDENIELOPUZZA] = t.rowlet
+t.litten = {name = 'Litten', ndex = nil, type1 = 'fuoco', type2 = 'fuoco'}
+-- t[0xDENIELOPUZZA] = t.litten
+t.popplio = {name = 'Popplio', ndex = nil, type1 = 'acqua', type2 = 'acqua'}
+-- t[0xDENIELOPUZZA] = t.popplio
+t.pikipek = {name = 'Pikipek', ndex = nil, type1 = 'normale', type2 = 'volante'}
+-- t[0xDENIELOPUZZA] = t.pikipek
+t.fomantis = {name = 'Fomantis', ndex = nil, type1 = 'erba', type2 = 'erba'}
+-- t[0xDENIELOPUZZA] = t.fomantis
+t.lurantis = {name = 'Lurantis', ndex = nil, type1 = 'erba', type2 = 'erba'}
+-- t[0xDENIELOPUZZA] = t.lurantis
+t.yungoos = {name = 'Yungoos', ndex = nil, type1 = 'normale', type2 = 'normale'}
+-- t[0xDENIELOPUZZA] = t.yungoos
+t.gumshoos = {name = 'Gumshoos', ndex = nil, type1 = 'normale', type2 = 'normale'}
+-- t[0xDENIELOPUZZA] = t.gumshoos
+t.minior = {name = 'Minior', ndex = nil, type1 = 'roccia', type2 = 'volante'}
+-- t[0xDENIELOPUZZA] = t.minior
+t.grubbin = {name = 'Grubbin', ndex = nil, type1 = 'coleottero', type2 = 'coleottero'}
+-- t[0xDENIELOPUZZA] = t.grubbin
+t.charjabug = {name = 'Charjabug', ndex = nil, type1 = 'coleottero', type2 = 'elettro'}
+-- t[0xDENIELOPUZZA] = t.charjabug
+t.vikavolt = {name = 'Vikavolt', ndex = nil, type1 = 'coleottero', type2 = 'elettro'}
+-- t[0xDENIELOPUZZA] = t.vikavolt
+t.rockruff = {name = 'Rockruff', ndex = nil, type1 = 'roccia', type2 = 'roccia'}
+-- t[0xDENIELOPUZZA] = t.rockruff
+t.komala = {name = 'Komala', ndex = nil, type1 = 'normale', type2 = 'normale'}
+-- t[0xDENIELOPUZZA] = t.komala
+t.cutiefly = {name = 'Cutiefly', ndex = nil, type1 = 'coleottero', type2 = 'folletto'}
+-- t[0xDENIELOPUZZA] = t.cutiefly
+t.togedemaru = {name = 'Togedemaru', ndex = nil, type1 = 'elettro', type2 = 'acciaio'}
+-- t[0xDENIELOPUZZA] = t.togedemaru
+t.bruxish = {name = 'Bruxish', ndex = nil, type1 = 'acqua', type2 = 'psico'}
+-- t[0xDENIELOPUZZA] = t.bruxish
+t.drampa = {name = 'Drampa', ndex = nil, type1 = 'normale', type2 = 'drago'}
+-- t[0xDENIELOPUZZA] = t.drampa
+t.salandit = {name = 'Salandit', ndex = nil, type1 = 'veleno', type2 = 'fuoco'}
+-- t[0xDENIELOPUZZA] = t.salandit
+t.bewear = {name = 'Bewear', ndex = nil, type1 = 'normale', type2 = 'lotta'}
+-- t[0xDENIELOPUZZA] = t.bewear
+t.comfey = {name = 'Comfey', ndex = nil, type1 = 'folletto', type2 = 'folletto'}
+-- t[0xDENIELOPUZZA] = t.comfey
+t.bounsweet = {name = 'Bounsweet', ndex = nil, type1 = 'erba', type2 = 'erba'}
+-- t[0xDENIELOPUZZA] = t.bounsweet
+t.mudbray = {name = 'Mudbray', ndex = nil, type1 = 'terra', type2 = 'terra'}
+-- t[0xDENIELOPUZZA] = t.mudbray
+t.mudsdale = {name = 'Mudsdale', ndex = nil, type1 = 'terra', type2 = 'terra'}
+-- t[0xDENIELOPUZZA] = t.mudsdale
+t.oricorio = {name = 'Oricorio', ndex = nil, type1 = 'fuoco', type2 = 'volante'}
+-- t[0xDENIELOPUZZA] = t.oricorio
+t.oricorio = {name = 'oricorio', ndex = nil, type1 = 'elettro', type2 = 'volante'}
+-- t[0xDENIELOPUZZA] = t.oricorio
+t.oricorio = {name = 'oricorio', ndex = nil, type1 = 'psico', type2 = 'volante'}
+-- t[0xDENIELOPUZZA] = t.oricorio
+t.oricorio = {name = 'oricorio', ndex = nil, type1 = 'spettro', type2 = 'volante'}
+-- t[0xDENIELOPUZZA] = t.oricorio
+t.wimpod = {name = 'Wimpod', ndex = nil, type1 = 'coleottero', type2 = 'acqua'}
+-- t[0xDENIELOPUZZA] = t.wimpod
+t.mimikyu = {name = 'Mimikyu', ndex = nil, type1 = 'spettro', type2 = 'folletto'}
+-- t[0xDENIELOPUZZA] = t.mimikyu
+t['tapu koko'] = {name = 'Tapu Koko', ndex = nil, type1 = 'elettro', type2 = 'folletto'}
+-- t[0xDENIELOPUZZA] = t['tapu koko']
+t.solgaleo = {name = 'Solgaleo', ndex = nil, type1 = 'psico', type2 = 'acciaio'}
+-- t[0xDENIELOPUZZA] = t.solgaleo
+t.lunala = {name = 'Lunala', ndex = nil, type1 = 'psico', type2 = 'spettro'}
+-- t[0xDENIELOPUZZA] = t.lunala
+t.magearna = {name = 'Magearna', ndex = nil, type1 = 'acciaio', type2 = 'folletto'}
+-- t[0xDENIELOPUZZA] = t.magearna 
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
 
+t.sandshrewA = {name = 'Sandshrew', ndex = 27, type1 = 'ghiaccio', type2 = 'acciaio'}
+t['027A'] = t.sandshrewA
+t.sandslashA = {name = 'Sandslash', ndex = 28, type1 = 'ghiaccio', type2 = 'acciaio'}
+t['028A'] = t.sandslashA
+t.vulpixA = {name = 'Vulpix', ndex = 37, type1 = 'ghiaccio', type2 = 'ghiaccio'}
+t['037A'] = t.vulpixA
+t.ninetalesA = {name = 'Ninetales', ndex = 38, type1 = 'ghiaccio', type2 = 'folletto'}
+t['038A'] = t.ninetalesA
+t.exeggutorA = {name = 'Exeggutor', ndex = 103, type1 = 'erba', type2 = 'drago'}
+t['103A'] = t.exeggutorA
 t.castformS = {name = 'Castform', ndex = 351, type1 = 'fuoco', type2 = 'fuoco'}
 t['351S'] = t.castformS
 t.castformP = {name = 'Castform', ndex = 351, type1 = 'acqua', type2 = 'acqua'}
@@ -1484,6 +1563,10 @@ t['720L'] = t.hoopaL
 
 -- Gli alias per le altre forme alternative rilevanti
 
+t.pikachuCs, t['025Cs'], t.pikachuR, t['025R'], t.pikachuD, t['025D'],
+	t.pikachuCn, t['025Cn'], t.pikachuS, t['025S'], t.pikachuW, t['025W'] =
+	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu,
+	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu
 t.deoxysA, t['386A'], t.deoxysD, t['386D'], t.deoxysV, t['386V'] =
 	t.deoxys, t.deoxys, t.deoxys, t.deoxys, t.deoxys, t.deoxys
 t.giratinaO, t['487O'] = t.giratina, t.giratina

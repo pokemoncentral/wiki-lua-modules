@@ -317,11 +317,12 @@ per interpolazione.
 m.event = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.fu)
 	return string.interp([=[${h}
-| style="background:#FFF;" colspan="2" | ${event}]=],
+| style="background:#FFF;" colspan="2" | ${event}${level}]=],
 {
 	h = head(p[1] or '000', p[2] or 'Missingno.', p[4] or 'Sconosciuto',
 			p[5] or 'Sconosciuto', p.STAB or '', p.notes or '', p.form or ''),
-	event = p[6] or 'Per la fine del mondo'
+	event = p[6] or 'Per la fine del mondo',
+	level = lib.makeLevel(p.level)
 })
 end
 

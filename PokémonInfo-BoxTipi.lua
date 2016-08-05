@@ -102,14 +102,14 @@ delle forme che li hanno
 --]]
 
 b.boxTipi = function(frame)
-	local ndex = tonumber(frame.args[1])
-			or pokes[string.trim(frame.args[1]:lower())].ndex
-	local altData = forms[ndex]
+	local name = (pokes[string.trim(frame.args[1]:lower())]
+			or pokes[tonumber(frame.args[1])]).name:lower()
+	local altData = forms[name]
 	
 	-- Il Pokémon non ha forme alternative: si ritornano solo i tipi
 
 	if not (altData and altData.changetype) then
-		local pokeData = pokes[ndex]
+		local pokeData = pokes[name]
 		return string.interp('<div class="roundy" style="background: #FFF; padding: 5px 2px;">${type1}${type2}</div>',
 			{
 				type1 = l.typeColor(pokeData.type1),
@@ -121,7 +121,7 @@ b.boxTipi = function(frame)
 	-- Il primo Box è quello della forma base
 
 	local boxes = {
-		makeBox(pokes[ndex].type1, pokes[ndex].type2, altData.names.base)
+		makeBox(pokes[name].type1, pokes[name].type2, altData.names.base)
 	}
 	--[[
 		Si toglie la forma base (che ha sempre indice 1)
@@ -134,7 +134,7 @@ b.boxTipi = function(frame)
 		senza bisogno di sorting successivo
 	--]]
 	for k, abbr in ipairs(altData.gamesOrder) do
-		local formPoke = pokes[string.tf(ndex) .. abbr]
+		local formPoke = pokes[name .. abbr]
 		local formPlaced = false
 		
 		-- Bisogna controllare se i tipi della forma siano già in un altro Box
