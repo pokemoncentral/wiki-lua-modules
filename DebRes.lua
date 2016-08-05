@@ -44,6 +44,7 @@ local w = require('Wikilib')
 local forms = require('Wikilib-forms')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
+local oop = require('Wikilib-oop')
 local et = require('EffTipi')
 local box = require('Boxtipo')
 local link = require('Links')
@@ -63,9 +64,7 @@ ciò, possiede le righe che compongono il footer e
 le forme che hanno tali dati di efficacia tipi.
 
 --]]
-local EffTable = setmetatable({}, {__call = function(self, ...)
-	return self.new(...) end })
-EffTable.__index = EffTable
+local EffTable = oop.makeClass()
 
 -- Stringhe utili
 EffTable.strings = {
@@ -910,7 +909,8 @@ dr.debRes = function(frame)
 	end
 end
 
+dr.EffTable = EffTable
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
-print(dr.DebRes{args=arg})
--- return dr
+--print(dr.DebRes{args=arg})
+return dr
