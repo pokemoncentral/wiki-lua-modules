@@ -50,7 +50,7 @@ end
 
 etg.efficacia = function(a, d1, d2)
 	local e = eff[a][d1]
-	if d2 then -- ~= d1 then            --scommenta se ▶ A ha debolezza 2x a lotta
+	if d2 ~= d1 then
 		 return e * eff[a][d2]
 	end
 	return e

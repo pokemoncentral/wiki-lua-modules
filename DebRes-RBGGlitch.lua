@@ -15,6 +15,14 @@ Oppure con il nome di un Pokémon e un gioco, es:
 {{#invoke: DebRes | DebRes | Missigno. | RB }}
 {{#invoke: DebRes | DebRes | Missigno. | game=RB }}
 
+Se un glitch con lo stesso nome compare in più giochi
+il modulo crea automaticamente una tabella diversa per
+ogni gioco in cui ha debolezze e resistenze diverse
+richiamandolo con solo il nome
+(ATTENZIONE: non crea una tabella per ogni combinazione
+di tipi diversa ma per ogni combinazione di debolezze e
+resistenze diversa)
+
 O direttamente con i tipi, sia con parametri
 posizionali che con con nome, es:
 
@@ -254,14 +262,14 @@ o resistenza e devono quindi comportarsi di conseguenza
 EffTable.new = function(types, forms)
 	local this = setmetatable({}, EffTable)
 
-	--local monoType = types[1] == types[2]                                --scommenta se ▶ A ha debolezza 2x a lotta
+	local monoType = types[1] == types[2]
 
 	-- Colori per la stampa
 	this.colors = {
 		bg = c[types[1]].normale,
 		cells = c[types[1]].light,
-		bd = c[types[2] or types[1]][(not types[2]) and 'dark' or 'normale']
-		--bd = c[types[2]][types[1] == types[2] and 'dark' or 'normale']   --scommenta se ▶ A ha debolezza 2x a lotta
+		bd = c[types[2] or types[1]][(not types[2]) and 'dark' or 'normale'],
+		bd = c[types[2]][types[1] == types[2] and 'dark' or 'normale']
 	}
 
 	-- Dopo i colori, i tipi vanno passati al lowercase
@@ -435,7 +443,7 @@ dr.debRes = function(frame)
 	if not forms[1] then
 		local types = {}
 		types[1] = p[1] or p.type1 or p.type
-		types[2] = p[2] or p.type2 --or types[1]             --scommenta se ▶ A ha debolezza 2x a lotta
+		types[2] = p[2] or p.type2 or types[1]
 		return tostring(EffTable.new(types))
 	end
 
@@ -446,7 +454,7 @@ dr.debRes = function(frame)
 	if #forms <= 1 then
 		local types = {}
 		types[1] = forms[1].data.type1
-		types[2] = forms[1].data.type2 --or forms[1].type1        --scommenta se ▶ A ha debolezza 2x a lotta
+		types[2] = forms[1].data.type2 or forms[1].data.type1
 		return tostring(EffTable.new(types))
 	end
 
@@ -486,6 +494,6 @@ end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
-local arg = {'Missingno.'}
+local arg = {"Aゥ G"}
 print(dr.DebRes{args=arg})
 -- return dr
