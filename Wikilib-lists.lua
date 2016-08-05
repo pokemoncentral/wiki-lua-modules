@@ -1,8 +1,11 @@
+local l = {}
+
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
+local form = require('Wikilib-forms')
+local oop = require('Wikilib-oop')
 local w = require('Wikilib')
-
-local l = {}
+local alts = require('AltForms-data')
 
 --[[
 
@@ -54,7 +57,7 @@ l.sortNdex = function(a, b)
 
 		-- No ndex defined, using fallback
 		else
-			return a.fallbackIndex < b.fallbackIndex
+			return a.fallbackSort < b.fallbackSort
 		end
 	end
 		
@@ -81,12 +84,33 @@ l.makeList = function(args)
 	if args.footer then
 		table.insert(entries, args.footer)
 	else
-		entries[#entries] =
-				entries[#entries]:toFooter()
+		entries[#entries]:toFooter()
 	end
 
 	return w.mapAndConcat(entries, '\n|-\n',
 			tostring)
 end
+
+l.PokeSortableEntry = oop.makeClass()
+
+l.PokeSortableEntry.new = function(name, ndex)
+	local this = setmetatable({ndex = ndex, name = name},
+		l.PokeSortableEntry)
+
+	if not this.ndex then
+		this.fallbackSort = this.name
+	end
+
+	local baseName, abbr = form.getNameAbbr(name)
+
+	this.formsData = alts[baseName]
+	if this.formsData then
+		this.formAbbr = abbr
+	end
+	
+	return this
+end
+
+l.PokeSortableEntry.__lt = l.sortNdex
 
 return l
