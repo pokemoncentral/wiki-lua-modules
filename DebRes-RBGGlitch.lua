@@ -117,6 +117,12 @@ EffTable.new = function(types, forms)
 		end
 	end
 
+	--[[
+		this.footer is istantiated to use parent's
+		__tostring method
+	--]]
+	this.footer = {}
+
 	if forms then
 		this.forms = type(forms) == 'table' and forms or {forms}
 	end
