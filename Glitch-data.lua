@@ -93,7 +93,7 @@ g.RB = {
 	{hex = 0xEE, spr = 'AniBallMS1.gif', name = '.g', type1 = 'Coleottero', type2 = 'Glitch'},
 	{hex = 0xEF, spr = 'AniMostroMS1.gif', name = "ゥ$'M", type1 = 'Glitch', type2 = 'Glitch'},
 	{hex = 0xF0, spr = 'AniClefairyMS1.gif', name = 'ゥ$ (F0)', type1 = 'Lotta'},
-	{hex = 0xF1, spr = 'AniMostroMS1.gif', name = '94', type1 = 'Normale', type2 = 'Volante'},
+	{hex = 0xF1, spr = 'AniMostroMS1.gif', name = '94', type1 = 'Normale', type2 = 'Spettro'},
 	{hex = 0xF2, spr = 'AniUccelloMS1.gif', name = 'ゥ l (F2)', type1 = 'Volante', type2 = 'Glitch'},
 	{hex = 0xF3, spr = 'AniClefairyMS1.gif', name = 'ゥ l (F3)', type1 = 'Elettro'},
 	{hex = 0xF4, spr = 'AniDragoMS1.gif', name = 'ゥ$ (F4)', type1 = 'Poké BB'},

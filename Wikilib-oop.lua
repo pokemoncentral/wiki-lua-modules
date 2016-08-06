@@ -29,6 +29,7 @@ local metamInherit = {
 	__lt = true,
 	__le = true,
 	__call = true,
+	__tostring = true,
 	__index = false,
 	__newindex = false
 }
