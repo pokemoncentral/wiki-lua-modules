@@ -183,8 +183,8 @@ t.magneton = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Ponderaz
 t[82] = t.magneton
 t.magnezone = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Ponderazione'}
 t[462] = t.magnezone
-t['farfetch&#39;d'] = {ability1 = 'Sguardofermo', ability2 = 'Fuocodentro', abilityd = 'Agonismo'}
-t[83] = t['farfetch&#39;d']
+t["farfetch'd"] = {ability1 = 'Sguardofermo', ability2 = 'Fuocodentro', abilityd = 'Agonismo'}
+t[83] = t["farfetch'd"]
 t.doduo = {ability1 = 'Fugafacile', ability2 = 'Sveglialampo', abilityd = 'Intricopiedi'}
 t[84] = t.doduo
 t.dodrio = {ability1 = 'Fugafacile', ability2 = 'Sveglialampo', abilityd = 'Intricopiedi'}
