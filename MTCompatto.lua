@@ -101,9 +101,15 @@ m.MTCompatto = function(frame)
 	local params = w.trimAndMap(frame.args, string.lower)
 	local gens, color = {}, nil
 	local move = params[1]:match('^(.+) %(mossa%)$') or params[1]
+	local moveData = moves[move]
+
+	if not moveData then
+		move = mw.text.decode(move)
+		moveData = moves[move]
+	end
 	
-	if moves[move] then
-		color = c[moves[move].type]
+	if moveData then
+		color = c[moveData.type]
 		for gen, genMc in ipairs(machines) do
 			if table.deepSearch(genMc, move) then
 				table.insert(gens, MTGen(gen, "auto"))

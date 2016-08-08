@@ -617,7 +617,7 @@ e quella dei mini sprite
 --]]
 
 u.altSprites = function(frame)
-	local poke = string.trim(frame.args[1] or ''):lower()
+	local poke = mw.text.decode(string.trim(frame.args[1] or '')):lower()
 	if not alt[poke] then
 		--[[
 			UselessForms/data should stay require,

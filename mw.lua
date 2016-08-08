@@ -17,6 +17,16 @@ local splitByChar = function(str)
 	return t
 end
 
+local htmlencode_map = {
+	['>'] = '&gt;',
+	['<'] = '&lt;',
+	['&'] = '&amp;',
+	['"'] = '&quot;',
+	["'"] = '&#039;',
+	['\194\160'] = '&nbsp;',
+}
+local htmldecode_map = table.flip(htmlencode_map)
+
 return {
     text = {
         split = function(str, pattern, plain)
@@ -52,6 +62,43 @@ return {
 			else
 				return table.concat(tab)
 			end
+		end,
+
+		encode = function(s)
+			charset = table.keys(htmlencode_map)
+			table.insert(charset, 1, '[')
+			table.insert(charset, ']')
+			return (s:gsub(table.concat(charset), function(decoded)
+				if not htmlencode_map[decoded] then
+					local encoded = string.format('&#%d;',
+							encoded:byte())
+					htmlencode_map[decoded] = encoded
+					htmldecode_map[encoded] = decoded
+				end
+				return htmlencode_map[decoded]
+			end))
+		end,
+
+		decode = function(s)
+			return (s:gsub('(&(#?x?)([a-zA-Z0-9]+);)',
+					function(encoded, flg, name)
+				if not htmldecode_map[encoded] then
+					local decoded = nil
+					if flg == '#' then
+						decoded = tonumber( name, 10 )
+					elseif flg == '#x' then
+						decoded = tonumber( name, 16 )
+					end
+					if decoded and decoded <= 0x10ffff then
+						decoded = decoded:char()
+						if decoded then
+							htmldecode_map[encoded] = decoded
+							htmlencode_map[decoded] = encoded
+						end
+					end
+				end
+				return htmldecode_map[encoded]
+			end))
 		end
     },
     

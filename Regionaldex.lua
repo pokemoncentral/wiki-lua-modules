@@ -3,11 +3,11 @@
 
 local rdex = {}
 
-local txt = require('Modulo:Wikilib/strings')
-local tab = require('Modulo:Wikilib/tables')
-local dex = mw.loadData('Modulo:Dex/data')
-local c = mw.loadData('Modulo:Colore/data')
-local sup = mw.loadData('Modulo:Sup/data')
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
+local dex = require('Dex-data')
+local c = require('Colore-data')
+local sup = require('Sup-data')
 
 -- Ritorna il dex regionale di un Pokémon nel vecchio
 -- dex regionale specificato: nel caso in cui non sia
@@ -124,12 +124,13 @@ end
 -- del tipo e la lista dei dex regionali, creata con al funzione dexlist, al box in wikicode
 
 rdex.regionaldex = function(frame)
-	local ndex, tipo = string.trim(frame.args[1]) or '000', string.trim(frame.args[2]) or 'sconosciuto'
+	local ndex = string.trim(frame.args[1]) or '000'
+	local type = string.trim(frame.args[2]) or 'sconosciuto'
 	return string.interp([=[| colspan="2" class="roundy text-center" style="width: 100%; background: #${std}; padding: 1px; " | [[Pokédex Regionale|<span style="color:#000;">'''Pokédex Regionali'''</span>]]
 <div class="roundy" style="margin: 2px; background: #FFF;">${dexlist}</div>
 ]=],
 {
-	std = c[tipo].light,
+	std = c[type].light,
 	dexlist = dexlist(search(ndex)) or 'In nessun Pokédex Regionale'
 })
 end
@@ -138,4 +139,3 @@ rdex.Regionaldex, rdex.RegionalDex = rdex.regionaldex, rdex.regionaldex
 
 -- return rdex
 print(rdex.regionaldex{args={arg[1], arg[2]}})
-

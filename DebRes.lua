@@ -833,6 +833,7 @@ estesa al caricamento della pagina.
 dr.debRes = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
 	local pokeData = pokes[string.parseInt(p[1]) or p[1]]
+			or pokes[mw.text.decode(p[1])]
 	
 	--[[
 		If no data is found, first parameter is
