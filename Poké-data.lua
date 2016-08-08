@@ -169,8 +169,8 @@ t.magnemite = {name = 'Magnemite', ndex = 81, type1 = 'elettro', type2 = 'acciai
 t[81] = t.magnemite
 t.magneton = {name = 'Magneton', ndex = 82, type1 = 'elettro', type2 = 'acciaio'}
 t[82] = t.magneton
-t['farfetch&#39;d'] = {name = "Farfetch'd", ndex = 83, type1 = 'normale', type2 = 'volante'}
-t[83] = t['farfetch&#39;d']
+t["farfetch'd"] = {name = "Farfetch'd", ndex = 83, type1 = 'normale', type2 = 'volante'}
+t[83] = t["farfetch'd"]
 t.doduo = {name = 'Doduo', ndex = 84, type1 = 'normale', type2 = 'volante'}
 t[84] = t.doduo
 t.dodrio = {name = 'Dodrio', ndex = 85, type1 = 'normale', type2 = 'volante'}
