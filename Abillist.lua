@@ -2,15 +2,16 @@
 
 local k = {}
 
-local ms = require('MiniSprite')
 local links = require('Links')
+local ms = require('MiniSprite')
+local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local list = require('Wikilib-lists')
 local form = require('Wikilib-forms')
+local forms = require('AltForms-data')
 local c = require('Colore-data')
 local pokes = require('Poké-data')
-local forms = require('AltForms-data')
 
 --[[
 
@@ -20,9 +21,7 @@ funzoni makeList, sortNdex e sortForms di
 Wikilib/lists
 
 --]]
-local Entry = setmetatable({}, {__call = function(self, ...)
-		return self.new(...) end })
-Entry.__index = Entry
+local Entry = oop.makeClass(list.PokeSortableEntry)
 
 --[[
 
@@ -40,30 +39,11 @@ Entry.new = function(pokeAbil, name, abil)
 		return nil
 	end
 
-	local this = setmetatable(table.merge(pokeAbil,
-			pokes[name]), Entry)
-
-	if not this.ndex then
-		this.fallbackIndex = this.name
-	end
-
-	local baseName, abbr = form.getNameAbbr(name)
-
-	this.formsData = forms[baseName]
-	if this.formsData then
-		this.formAbbr = abbr
-	end
+	local this = Entry.super.new(name, pokes[name].ndex)
+	this = table.merge(this, pokeAbil)
 	
-	return this
+	return setmetatable(table.merge(this, pokes[name]), Entry)
 end
-
---[[
-
-Overloading dell'operatore < per il sorting,
-come richiesto da makeList in Wikilib/lists.
-
---]]
-Entry.__lt = list.sortNdex
 
 -- Wikicode per la riga di tabella associata all'entry
 Entry.__tostring = function(this)
