@@ -1500,12 +1500,6 @@ t.mudsdale = {name = 'Mudsdale', ndex = nil, type1 = 'terra', type2 = 'terra'}
 -- t[0xDENIELOPUZZA] = t.mudsdale
 t.oricorio = {name = 'Oricorio', ndex = nil, type1 = 'fuoco', type2 = 'volante'}
 -- t[0xDENIELOPUZZA] = t.oricorio
-t.oricorio = {name = 'oricorio', ndex = nil, type1 = 'elettro', type2 = 'volante'}
--- t[0xDENIELOPUZZA] = t.oricorio
-t.oricorio = {name = 'oricorio', ndex = nil, type1 = 'psico', type2 = 'volante'}
--- t[0xDENIELOPUZZA] = t.oricorio
-t.oricorio = {name = 'oricorio', ndex = nil, type1 = 'spettro', type2 = 'volante'}
--- t[0xDENIELOPUZZA] = t.oricorio
 t.wimpod = {name = 'Wimpod', ndex = nil, type1 = 'coleottero', type2 = 'acqua'}
 -- t[0xDENIELOPUZZA] = t.wimpod
 t.mimikyu = {name = 'Mimikyu', ndex = nil, type1 = 'spettro', type2 = 'folletto'}
@@ -1560,6 +1554,15 @@ t.meloettaD = {name = 'Meloetta', ndex = 648, type1 = 'normale', type2 = 'lotta'
 t['648D'] = t.meloettaD
 t.hoopaL = {name = 'Hoopa', ndex = 720, type1 = 'psico', type2 = 'buio'}
 t['720L'] = t.hoopaL
+
+-- Settima generazione (BEWARE: STILL NO NDEXES)
+
+t.oricorioC = {name = 'Oricorio', ndex = nil, type1 = 'elettro', type2 = 'volante'}
+-- t[0xDENIELOPUZZAC] = t.oricorioC
+t.oricorioH = {name = 'Oricorio', ndex = nil, type1 = 'psico', type2 = 'volante'}
+-- t[0xDENIELOPUZZAH] = t.oricorioH
+t.oricorioB = {name = 'Oricorio', ndex = nil, type1 = 'spettro', type2 = 'volante'}
+-- t[0xDENIELOPUZZAB] = t.oricorioB
 
 -- Gli alias per le altre forme alternative rilevanti
 

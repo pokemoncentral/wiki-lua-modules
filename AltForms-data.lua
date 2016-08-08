@@ -28,6 +28,7 @@ t.meowstic = {}
 t.aegislash = {}
 t.pumpkaboo = {}
 t.hoopa = {}
+t.oricorio = {}
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
 
@@ -80,6 +81,8 @@ t.meowstic.names = {F = 'Femmina', M = 'Maschio', base = 'Meowstic'}
 t.aegislash.names = {S = 'Forma Spada', base = 'Forma Scudo'}
 t.pumpkaboo.names = {S = 'Mini', L = 'Grande', XL = 'Maxi', base = 'Normale'}
 t.hoopa.names = {L = 'Libero', base = 'Vincolato'}
+t.oricorio.names = {C = 'Stile Cheerdance', H = 'Stile Hula', B = 'Stile Buyō',
+	base = 'Stile Flamenco'}
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}
@@ -123,6 +126,7 @@ t.groudon.changetype = {'A'}
 t.lopunny.changetype = {'M'}
 t.audino.changetype = {'M'}
 t.hoopa.changetype = {'L'}
+t.oricorio.changetype = {'C', 'H', 'B'}
 for k, v in pairs(t.alola) do
 	t[v].changetype = {'A'}
 end
@@ -291,6 +295,8 @@ t.meowstic.ext = {femmina = 'F', maschio = 'M'}
 t.aegislash.ext = {spada = 'S'}
 t.pumpkaboo.ext = {mini = 'S', grande = 'L', maxi = 'XL'}
 t.hoopa.ext = {libero = 'L'}
+t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
+	flamenco = ''}
 for k, v in pairs(t.mega) do
 	t[v].ext = {mega = 'M'}
 end
@@ -323,6 +329,7 @@ t.meowstic.gamesOrder = {'', 'M', 'F'}
 t.aegislash.gamesOrder = {'', 'S'}
 t.pumpkaboo.gamesOrder = {'', 'S', 'L', 'XL'}
 t.hoopa.gamesOrder = {'', 'L'}
+t.oricorio.gamesOrder = {'', 'C', 'H', 'B'}
 for k, v in pairs(t.mega) do
 	t[v].gamesOrder = {'', 'M'}
 end
@@ -359,6 +366,7 @@ t.meowstic.since = {F = 'xy', M = 'xy', base = 'xy'}
 t.aegislash.since = {S = 'xy', base = 'xy'}
 t.pumpkaboo.since = {S = 'xy', L = 'xy', XL = 'xy', base = 'xy'}
 t.hoopa.since = {L = 'roza', base = 'xy'}
+t.oricorio.since = {C = 'sl', H = 'sl', B = 'sl', base = 'xy'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
 t.blastoise.since = {M = 'xy', base = 'rb'}
 t.beedrill.since = {M = 'roza', base = 'rb'}

@@ -242,7 +242,7 @@ g.typelist = function(frame)
 		iterator = list.pokeNames,
 		entryArgs = monoType,
 		makeEntry = MonoTypeEntry.new,
-		header = makeHeader(firstType, 1)
+		header = makeHeader(monoType, 1)
 	}))
 	table.insert(tables, table.concat{'===Pokémon di tipo ', upper,
 			' parziale===\n====Pokémon di tipo ', upper, ' come tipo primario===='})
@@ -251,7 +251,7 @@ g.typelist = function(frame)
 		iterator = list.pokeNames,
 		entryArgs = dualType,
 		makeEntry = FirstTypeEntry.new,
-		header = makeHeader(firstType, 2)
+		header = makeHeader(monoType, 2)
 	}))
 	table.insert(tables, table.concat{'====Pokémon di tipo ', upper,
 			' come tipo secondario===='})
@@ -260,7 +260,7 @@ g.typelist = function(frame)
 		iterator = list.pokeNames,
 		entryArgs = dualType,
 		makeEntry = SecondTypeEntry.new,
-		header = makeHeader(firstType, 2)
+		header = makeHeader(monoType, 2)
 	}))
 
 	return table.concat(tables, '\n')
