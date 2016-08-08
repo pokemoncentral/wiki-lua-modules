@@ -178,6 +178,8 @@ implementare la seguente interfaccia:
 		corrispondente, ed un eventuale terzo
 		argomento specificato come parametro
 		a makeList di nome 'entryArgs'.
+		Deve ritornare nil se l'entry non
+		deve essere inserita nella lista.
 	- __lt(): usato per l'ordinamento con
 		table.sort.
 	- toFooter(): trasforma la entry nel
