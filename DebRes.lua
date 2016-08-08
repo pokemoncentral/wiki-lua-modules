@@ -40,17 +40,18 @@ local dr = {}
 
 local mw = require('mw')
 
+local box = require('Boxtipo')
+local et = require('EffTipi')
+local link = require('Links')
 local w = require('Wikilib')
 local forms = require('Wikilib-forms')
+local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local et = require('EffTipi')
-local box = require('Boxtipo')
-local link = require('Links')
-local pokes = require('Poké-data')
 local alt = require('AltForms-data')
 local abils = require('PokéAbil-data')
 local c = require('Colore-data')
+local pokes = require('Poké-data')
 
 --[[
 
@@ -63,9 +64,7 @@ ciò, possiede le righe che compongono il footer e
 le forme che hanno tali dati di efficacia tipi.
 
 --]]
-local EffTable = setmetatable({}, {__call = function(self, ...)
-	return self.new(...) end })
-EffTable.__index = EffTable
+local EffTable = oop.makeClass()
 
 -- Stringhe utili
 EffTable.strings = {
@@ -517,9 +516,7 @@ Le possibili categorie di riga sono tre:
 		immunità nel caso queste siano perse
 
 --]]
-EffTable.FooterLine = setmetatable({}, {__call = function(self, ...)
-	return self.new(...) end })
-EffTable.FooterLine.__index = EffTable.Footer
+EffTable.FooterLine = oop.makeClass()
 
 -- Stringhe utili
 EffTable.FooterLine.strings = {
