@@ -366,7 +366,7 @@ t.meowstic.since = {F = 'xy', M = 'xy', base = 'xy'}
 t.aegislash.since = {S = 'xy', base = 'xy'}
 t.pumpkaboo.since = {S = 'xy', L = 'xy', XL = 'xy', base = 'xy'}
 t.hoopa.since = {L = 'roza', base = 'xy'}
-t.oricorio.since = {C = 'sl', H = 'sl', B = 'sl', base = 'xy'}
+t.oricorio.since = {C = 'sl', H = 'sl', B = 'sl', base = 'sl'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
 t.blastoise.since = {M = 'xy', base = 'rb'}
 t.beedrill.since = {M = 'roza', base = 'rb'}
