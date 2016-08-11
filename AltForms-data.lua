@@ -27,6 +27,7 @@ t.meloetta = {}
 t.meowstic = {}
 t.aegislash = {}
 t.pumpkaboo = {}
+t.zygarde = {}
 t.hoopa = {}
 t.oricorio = {}
 
@@ -80,6 +81,7 @@ t.meloetta.names = {D = 'Forma Danza', base = 'Forma Canto'}
 t.meowstic.names = {F = 'Femmina', M = 'Maschio', base = 'Meowstic'}
 t.aegislash.names = {S = 'Forma Spada', base = 'Forma Scudo'}
 t.pumpkaboo.names = {S = 'Mini', L = 'Grande', XL = 'Maxi', base = 'Normale'}
+t.zygarde.names = {D = 'Forma 10%', P = 'Forma Perfetta', base = 'Forma 50%'}
 t.hoopa.names = {L = 'Libero', base = 'Vincolato'}
 t.oricorio.names = {C = 'Stile Cheerdance', H = 'Stile Hula', B = 'Stile Buyō',
 	base = 'Stile Flamenco'}
@@ -142,6 +144,7 @@ t.basculin.changeability = {'B'}
 t.tornadus.changeability = {'T'}
 t.kyurem.changeability = {'N', 'B'}
 t.meowstic.changeability = {'F', 'M'}
+t.zygarde.changeability = {'P'}
 for k, v in pairs(t.mega) do
 	t[v].changeability = {'M'}
 end
@@ -177,6 +180,7 @@ t.kyurem.changestats = t.kyurem.changeability
 t.meloetta.changestats = t.meloetta.changetype
 t.aegislash.changestats = {'S'}
 t.pumpkaboo.changestats = {'S', 'L', 'XL'}
+t.zygarde.changestats = {'D', 'P'}
 t.hoopa.changestats = t.hoopa.changetype
 for k, v in pairs(t.mega) do
 	t[v].changestats = {'M'}
@@ -198,6 +202,7 @@ t.rotom.changemoves = t.rotom.changetype
 t.shaymin.changemoves = t.shaymin.changetype
 t.kyurem.changemoves = t.kyurem.changeability
 t.meowstic.changemoves = t.meowstic.changeability
+--t.zygarde.changemoves = {}
 t.hoopa.changemoves = t.hoopa.changetype
 
 -- Link alle forme alternative.
@@ -294,6 +299,7 @@ t.meloetta.ext = {danza = 'D'}
 t.meowstic.ext = {femmina = 'F', maschio = 'M'}
 t.aegislash.ext = {spada = 'S'}
 t.pumpkaboo.ext = {mini = 'S', grande = 'L', maxi = 'XL'}
+t.zygarde.ext = {['forma 10%'] = 'D', perfetto = 'P'}
 t.hoopa.ext = {libero = 'L'}
 t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
 	flamenco = ''}
@@ -328,6 +334,7 @@ t.meloetta.gamesOrder = {'', 'D'}
 t.meowstic.gamesOrder = {'', 'M', 'F'}
 t.aegislash.gamesOrder = {'', 'S'}
 t.pumpkaboo.gamesOrder = {'', 'S', 'L', 'XL'}
+t.zygarde.gamesOrder = {'D', '', 'P'}
 t.hoopa.gamesOrder = {'', 'L'}
 t.oricorio.gamesOrder = {'', 'C', 'H', 'B'}
 for k, v in pairs(t.mega) do
@@ -365,6 +372,7 @@ t.meloetta.since = {D = 'nb', base = 'nb'}
 t.meowstic.since = {F = 'xy', M = 'xy', base = 'xy'}
 t.aegislash.since = {S = 'xy', base = 'xy'}
 t.pumpkaboo.since = {S = 'xy', L = 'xy', XL = 'xy', base = 'xy'}
+t.zygarde.since = {D = 'sl', P = 'sl', base = 'xy'}
 t.hoopa.since = {L = 'roza', base = 'xy'}
 t.oricorio.since = {C = 'sl', H = 'sl', B = 'sl', base = 'sl'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
@@ -450,6 +458,7 @@ t[678] = t.meowstic
 t[681] = t.aegislash
 t[710] = t.pumpkaboo
 t[711] = t.gourgeist
+t[718] = t.zygarde
 t[720] = t.hoopa
 t[3] = t.venusaur
 t[9] = t.blastoise
