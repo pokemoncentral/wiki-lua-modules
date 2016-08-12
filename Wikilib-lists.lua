@@ -151,10 +151,7 @@ una tabella HTML.
 
 Gli argomenti sono named poiché sono molti:
 	- source: la table lua da scorrere per
-		prelevare i dati. Se è passata una
-		stringa, viene interpretata come il
-		nome del modulo da importare per
-		ottenere suddetta table lua.
+		prelevare i dati.
 	- makeEntry: costruttore della classe
 		che rappresenta una entry.
 	- entryArgs: opzionale, argomento
@@ -191,11 +188,7 @@ implementare la seguente interfaccia:
 		riga della tabella HTML relativa
 		alla entry corrente.
 --]]
-l.makeList = function(args)
-	if type(args.source) == 'string' then
-		args.source = require(args.source)
-	end
-	
+l.makeList = function(args)	
 	local makeEntry = function(sourceData, sourceKey)
 		return args.makeEntry(sourceData, sourceKey,
 				args.entryArgs)

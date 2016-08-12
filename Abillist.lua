@@ -11,8 +11,8 @@ local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local list = require('Wikilib-lists')
 local form = require('Wikilib-forms')
-local forms = require('AltForms-data')
-local c = require('Colore-data')
+local forms = require("AltForms-data")
+local c = require("Colore-data")
 local pokes = require('Poké-data')
 
 --[[
@@ -108,7 +108,7 @@ k.abillist = function(frame)
 	abil = abil:match('^(.+) %(abilità%)') or 'Cacofonia'
 	 
 	return list.makeList({
-		source = 'PokéAbil-data',
+		source = require('PokéAbil-data'),
 		iterator = list.pokeNames,
 		entryArgs = abil,
 		makeEntry = Entry.new,
