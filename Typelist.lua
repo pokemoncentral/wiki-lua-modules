@@ -12,7 +12,7 @@ local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local c = require('Colore-data')
+local c = require("Colore-data")
 local pokes = require('Poké-data')
 
 --[[
@@ -49,6 +49,18 @@ end
 
 --[[
 
+Crea il testo di intestazione alla tabella
+
+--]]
+Entry.makeHeader = function(type, level, ending)
+	type = type == 'coleot' and 'Coleottero' or string.fu(type)
+	local headerTags = string.rep('=', level)
+	return table.concat({headerTags, 'Pokémon di tipo',
+			type, ending, headerTags}, ' ')
+end
+
+--[[
+
 Wikicode delle prime celle dell'entry: le altre,
 infatti, variano in base ai tipi del Pokémon, e
 sono gestite dalle sottoclassi
@@ -69,6 +81,11 @@ end
 
 -- Classe per le entry dei Pokémon con un solo tipo
 local MonoTypeEntry = oop.makeClass(Entry)
+
+MonoTypeEntry.makeHeader = function(type)
+	return MonoTypeEntry.super.makeHeader(type, 3,
+			'puro')
+end
 
 --[[
 
@@ -111,6 +128,11 @@ cui primo tipo è quello richiesto
 
 --]]
 local FirstTypeEntry = oop.makeClass(Entry)
+
+FirstTypeEntry.makeHeader = function(type)
+	return FirstTypeEntry.super.makeHeader(type, 4,
+		'come tipo primario')
+end
 
 --[[
 
@@ -157,6 +179,11 @@ cui secondo tipo è quello richiesto
 
 --]]
 local SecondTypeEntry = oop.makeClass(Entry)
+
+SecondTypeEntry.makeHeader = function(type)
+	return SecondTypeEntry.super.makeHeader(type, 4,
+		'come tipo secondario')
+end
 
 --[[
 
@@ -218,81 +245,16 @@ ${types}]=],
 })
 end
 
---[[
-
-Stampa la tabella dei Pokémon del tipo passato puro.
-Si aspetta di ricevere il tipo in lowercase
-Level è il livello del titolo (default 3)
-
---]]
-local monoTypelist = function(monoType, level)
-	level = level or '==='
-	local upper = string.fu(monoType)
-	local tables = {}
-	
-	table.insert(tables, table.concat{level, 'Pokémon di tipo ', upper, ' puro', level})
-	table.insert(tables, list.makeList({
-		source = pokes,
-		iterator = list.pokeNames,
-		entryArgs = monoType,
-		makeEntry = MonoTypeEntry.new,
-		header = makeHeader(monoType, 1)
-	}))
-	
-	return table.concat(tables, '\n')
-end
-
---[[
-
-Stampa la tabella dei Pokémon con il tipo passato
-come tipo primario. Si aspetta di ricevere il
-tipo in lowercase
-Level è il livello del titolo (default 3)
-
---]]
-local firstTypelist = function(monoType, level)
-	level = level or '==='
-	local upper = string.fu(monoType)
-	local dualType = monoType == 'coleottero' and 'coleot' or monoType
-	local tables = {}
-	
-	table.insert(tables, table.concat{level, 'Pokémon di tipo ', upper, ' come tipo primario', level})
-	table.insert(tables, list.makeList{
-		source = pokes,
-		iterator = list.pokeNames,
-		entryArgs = dualType,
-		makeEntry = FirstTypeEntry.new,
-		header = makeHeader(monoType, 2)
-	})
-	
-	return table.concat(tables, '\n')
-end
-
-
---[[
-
-Stampa la tabella dei Pokémon con il tipo passato
-come tipo secondario. Si aspetta di ricevere il
-tipo in lowercase
-Level è il livello del titolo (default 3)
-
---]]
-local secondTypelist = function(monoType, level)
-	level = level or '==='
-	local upper = string.fu(monoType)
-	local dualType = monoType == 'coleottero' and 'coleot' or monoType
-	local tables = {}
-	
-	table.insert(tables, table.concat{level, 'Pokémon di tipo ', upper, ' come tipo secondario', level})
-	table.insert(tables, list.makeList{
-		source = pokes,
-		iterator = list.pokeNames,
-		entryArgs = dualType,
-		makeEntry = SecondTypeEntry.new,
-		header = makeHeader(monoType, 2)
-	})
-	
-	return table.concat(tables, '\n')
+local makeTypeTable = function(Entry, type)
+	return table.concat({Entry.makeHeader(type),
+			list.makeList({
+				source = pokes,
+				iterator = list.pokeNames,
+				entryArgs = type,
+				makeEntry = Entry.new,
+				header = makeHeader(type,
+						Entry == MonoTypeEntry and 1 or 2)
+			})}, '\n')
 end
 
 --[[
@@ -306,16 +268,15 @@ primo e secondo, con le relative intestazioni.
 
 --]]
 g.typelist = function(frame)
-	local monoType = string.trim(frame.args[1]):match('^(%a+) %(tipo%)$'):lower()
-			or 'sconosciuto'
-	local upper = string.fu(monoType)
+	local monoType = string.trim(mw.text.decode(frame.args[1]
+			or 'sconosciuto (tipo)')):match('^(%a+) %(tipo%)$'):lower()
 	local tables = {}
+	local dualType = monoType == 'coleottero' and 'coleot' or monoType
 
-	table.insert(tables, monoTypelist(monoType))
-	table.insert(tables, table.concat{'===Pokémon di tipo ', upper,
-			' parziale==='})
-	table.insert(tables, firstTypelist(monoType, '===='))
-	table.insert(tables, secondTypelist(monoType, '===='))
+	table.insert(tables, makeTypeTable(MonoTypeEntry, monoType))
+	table.insert(tables, Entry.makeHeader(monoType, 3, 'parziale'))
+	table.insert(tables, makeTypeTable(FirstTypeEntry, dualType))
+	table.insert(tables, makeTypeTable(SecondTypeEntry, dualType))
 
 	return table.concat(tables, '\n')
 end
@@ -341,7 +302,6 @@ g.typelista = function(frame)
 	return table.concat(tables, '\n')
 end
 
+print(g.typelist{args={arg[1]}})
 
-return g
-
---print(g.typelist{args={arg[1]}})
+-- return g
