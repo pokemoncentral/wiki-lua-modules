@@ -1437,7 +1437,7 @@ t.xerneas = {ability1 = 'Aurafolletto'}
 t[716] = t.xerneas
 t.yveltal = {ability1 = 'Auratetra'}
 t[717] = t.yveltal
-t.zygarde = {ability1 = 'Frangiaura'}
+t.zygarde = {ability1 = 'Frangiaura', ability2 = 'Sciamefusione'}
 t[718] = t.zygarde
 t.diancie = {ability1 = 'Corpochiaro'}
 t[719] = t.diancie
@@ -1464,6 +1464,12 @@ t.yungoos = {ability1 = 'Sorveglianza', ability2 = 'Ferromascella'}
 -- t[0xDENIELOPUZZA] = t.yungoos
 t.gumshoos = {ability1 = 'Sorveglianza', ability2 = 'Ferromascella'}
 -- t[0xDENIELOPUZZA] = t.gumshoos
+t.pyukumuku = {ability1 = 'Espellinterno'}
+-- t[0xDENIELOPUZZA] = t.pyukumuku
+t.wishiwashi = {ability1 = 'Banco'}
+-- t[0xDENIELOPUZZA] = t.wishiwashi
+t.minior = {ability1 = 'Scudosoglia'}
+-- t[0xDENIELOPUZZA] = t.minior
 t.grubbin = {ability1 = 'Aiutinsetto'}
 -- t[0xDENIELOPUZZA] = t.grubbin
 t.charjabug = {ability1 = 'Batteria'}
@@ -1474,34 +1480,43 @@ t.rockruff = {ability1 = 'Sguardofermo', ability2 = 'Spiritovivo'}
 -- t[0xDENIELOPUZZA] = t.rockruff
 t.komala = {ability1 = 'Sonno Assoluto'}
 -- t[0xDENIELOPUZZA] = t.komala
-t.togedemaru = {ability1 = 'Spineferrate', ability2 = 'Parafulmine'}
--- t[0xDENIELOPUZZA] = t.togedemaru
 t.cutiefly = {ability1 = 'Mielincetta', ability2 = 'Polvoscudo'}
 -- t[0xDENIELOPUZZA] = t.cutiefly
+t.morelull = {ability1 = 'Risplendi', ability2 = 'Spargispora'}
+-- t[0xDENIELOPUZZA] = t.morelull
+t.togedemaru = {ability1 = 'Spineferrate', ability2 = 'Parafulmine'}
+-- t[0xDENIELOPUZZA] = t.togedemaru
 t.bruxish = {ability1 = 'Corposgargiante', ability2 = 'Ferromascella'}
 -- t[0xDENIELOPUZZA] = t.bruxish
 t.drampa = {ability1 = 'Furore', ability2 = 'Mangiaerba'}
 -- t[0xDENIELOPUZZA] = t.drampa
 t.salandit = {ability1 = 'Corrosione'}
 -- t[0xDENIELOPUZZA] = t.salandit
+-- Nome jappo, abilità sconosciuta
+t.nuikoguma = {}
+-- t[0xDENIELOPUZZA] = t.nuikoguma
 t.bewear = {ability1 = 'Morbidone', ability2 = 'Impaccio'}
 -- t[0xDENIELOPUZZA] = t.bewear
-t.mimikyu = {ability1 = 'Fantasmanto'}
--- t[0xDENIELOPUZZA] = t.mimikyu
-t.bounsweet = {ability1 = 'Fogliamanto', ability2 = 'Indifferenza'}
--- t[0xDENIELOPUZZA] = t.bounsweet
 t.comfey = {ability1 = 'Fiorvelo', ability2 = 'Primacura'}
 -- t[0xDENIELOPUZZA] = t.comfey
+t.bounsweet = {ability1 = 'Fogliamanto', ability2 = 'Indifferenza'}
+-- t[0xDENIELOPUZZA] = t.bounsweet
 t.mudbray = {ability1 = 'Mente Locale', ability2 = 'Sopportazione'}
 -- t[0xDENIELOPUZZA] = t.mudbray
 t.mudsdale = {ability1 = 'Mente Locale', ability2 = 'Sopportazione'}
 -- t[0xDENIELOPUZZA] = t.mudsdale
-t.wimpod = {ability1 = 'Fuggifuggi'}
--- t[0xDENIELOPUZZA] = t.wimpod
 t.oricorio = {ability1 = 'Sincrodanza'}
 -- t[0xDENIELOPUZZA] = t.oricorio
-t.minior = {ability1 = 'Scudosoglia'}
--- t[0xDENIELOPUZZA] = t.minior
+t.wimpod = {ability1 = 'Fuggifuggi'}
+-- t[0xDENIELOPUZZA] = t.wimpod
+t.mimikyu = {ability1 = 'Fantasmanto'}
+-- t[0xDENIELOPUZZA] = t.mimikyu
+-- Nome jappo, abilità sconosciuta
+t.sunabaa = {}
+-- t[0xDENIELOPUZZA] = t.sunabaa
+-- Nome jappo, abilità sconosciuta
+t.shirodesuna = {}
+-- t[0xDENIELOPUZZA] = t.shirodesuna
 t['tapu koko'] = {ability1 = 'Elettrogenesi'}
 -- t[0xDENIELOPUZZA] = t['tapu koko']
 t.solgaleo = {ability1 = 'Metalprotezione'}
@@ -1515,6 +1530,8 @@ t.magearna = {ability1 = 'Cuoreanima'}
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
 -- Il nome è composto dal nome del Pokémon, seguito dalla sigla della forma alternativa
 
+t.raichuA = {ability1 = 'Codasurf'}
+t['26A'] = t.raichuA
 t.sandshrewA = {ability1 = 'Mantelneve'}
 t['027A'] = t.sandshrewA
 t.sandslashA = {ability1 = 'Mantelneve'}
@@ -1525,6 +1542,8 @@ t.ninetalesA = {ability1 = 'Mantelneve'}
 t['038A'] = t.ninetalesA
 t.exeggutorA = {ability1 = 'Indagine'}
 t['103A'] = t.exeggutorA
+t.marowakA = {ability1 = 'Corpofunesto', ability2= 'Parafulmine'}
+t['105A'] = t.marowakA
 t.giratinaO = {ability1 = 'Levitazione'}
 t['487O'] = t.giratinaO
 t.shayminC = {ability1 = 'Leggiadro'}
@@ -1545,6 +1564,8 @@ t.meowsticF = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'T
 t['678F'] = t.meowsticF
 t.meowsticM = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'Burla'}
 t['678M'] = t.meowsticM
+t.zygardeP = {ability1 = 'Sciamefusione'}
+t['718P'] = t.zygardeP
 
 -- Alias per le altre forme alternative rilevanti
 
@@ -1552,6 +1573,7 @@ t.pikachuCs, t['025Cs'], t.pikachuR, t['025R'], t.pikachuD, t['025D'],
 	t.pikachuCn, t['025Cn'], t.pikachuS, t['025S'], t.pikachuW, t['025W'] =
 	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu,
 	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu
+t.meowthA, t['52A'] = t.meowth, t.meowth
 t.castformS, t.castformP, t.castformN = t.castform, t.castform, t.castform
 t['351S'], t['351P'], t['351N'] = t.castform, t.castform, t.castform
 t.deoxysA, t.deoxysD, t.deoxysV = t.deoxys, t.deoxys, t.deoxys
@@ -1572,6 +1594,8 @@ t.pumpkabooS, t.pumpkabooL, t.pumpkabooXL = t.pumpkaboo, t.pumpkaboo, t.pumpkabo
 t['710S'], t['710L'], t['710XL'] = t.pumpkaboo, t.pumpkaboo, t.pumpkaboo
 t.gourgeistS, t.gourgeistL, t.gourgeistXL = t.gourgeist, t.gourgeist, t.gourgeist
 t['711S'], t['711L'], t['711XL'] = t.gourgeist, t.gourgeist, t.gourgeist
+t.zygardeD = t.zygarde
+t['718D'] = t.zygarde
 t.hoopaL = t.hoopa
 t['720L'] = t.hoopa
 

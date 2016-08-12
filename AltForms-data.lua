@@ -27,6 +27,7 @@ t.meloetta = {}
 t.meowstic = {}
 t.aegislash = {}
 t.pumpkaboo = {}
+t.zygarde = {}
 t.hoopa = {}
 t.oricorio = {}
 
@@ -54,7 +55,7 @@ t.archeo = {'kyogre', 'groudon'}
 -- Tabella contenente i Pokémon che hanno una forma di Alola:
 -- per efficienza, alcuni sono alla fine del modulo
 
-t.alola = {'sandshrew', 'vulpix', 'exeggutor'}
+t.alola = {'raichu', 'sandshrew', 'vulpix', 'meowth', 'exeggutor', 'marowak'}
 
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
@@ -80,6 +81,7 @@ t.meloetta.names = {D = 'Forma Danza', base = 'Forma Canto'}
 t.meowstic.names = {F = 'Femmina', M = 'Maschio', base = 'Meowstic'}
 t.aegislash.names = {S = 'Forma Spada', base = 'Forma Scudo'}
 t.pumpkaboo.names = {S = 'Mini', L = 'Grande', XL = 'Maxi', base = 'Normale'}
+t.zygarde.names = {D = 'Forma 10%', P = 'Forma Perfetta', base = 'Forma 50%'}
 t.hoopa.names = {L = 'Libero', base = 'Vincolato'}
 t.oricorio.names = {C = 'Stile Cheerdance', H = 'Stile Hula', B = 'Stile Buyō',
 	base = 'Stile Flamenco'}
@@ -142,6 +144,7 @@ t.basculin.changeability = {'B'}
 t.tornadus.changeability = {'T'}
 t.kyurem.changeability = {'N', 'B'}
 t.meowstic.changeability = {'F', 'M'}
+t.zygarde.changeability = {'P'}
 for k, v in pairs(t.mega) do
 	t[v].changeability = {'M'}
 end
@@ -162,6 +165,7 @@ t.latios.changeability = nil
 t.garchomp.changeability = nil
 t.abomasnow.changeability = nil
 t.audino.changeability = nil
+t.meowth.changeability = nil
 
 -- Sigle delle forme alternative che cambiano statistiche rispetto alla forma
 -- base, che non è dunque presente
@@ -177,6 +181,7 @@ t.kyurem.changestats = t.kyurem.changeability
 t.meloetta.changestats = t.meloetta.changetype
 t.aegislash.changestats = {'S'}
 t.pumpkaboo.changestats = {'S', 'L', 'XL'}
+t.zygarde.changestats = {'D', 'P'}
 t.hoopa.changestats = t.hoopa.changetype
 for k, v in pairs(t.mega) do
 	t[v].changestats = {'M'}
@@ -198,6 +203,7 @@ t.rotom.changemoves = t.rotom.changetype
 t.shaymin.changemoves = t.shaymin.changetype
 t.kyurem.changemoves = t.kyurem.changeability
 t.meowstic.changemoves = t.meowstic.changeability
+--t.zygarde.changemoves = {}
 t.hoopa.changemoves = t.hoopa.changetype
 
 -- Link alle forme alternative.
@@ -294,6 +300,7 @@ t.meloetta.ext = {danza = 'D'}
 t.meowstic.ext = {femmina = 'F', maschio = 'M'}
 t.aegislash.ext = {spada = 'S'}
 t.pumpkaboo.ext = {mini = 'S', grande = 'L', maxi = 'XL'}
+t.zygarde.ext = {['forma 10%'] = 'D', perfetto = 'P'}
 t.hoopa.ext = {libero = 'L'}
 t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
 	flamenco = ''}
@@ -328,6 +335,7 @@ t.meloetta.gamesOrder = {'', 'D'}
 t.meowstic.gamesOrder = {'', 'M', 'F'}
 t.aegislash.gamesOrder = {'', 'S'}
 t.pumpkaboo.gamesOrder = {'', 'S', 'L', 'XL'}
+t.zygarde.gamesOrder = {'D', '', 'P'}
 t.hoopa.gamesOrder = {'', 'L'}
 t.oricorio.gamesOrder = {'', 'C', 'H', 'B'}
 for k, v in pairs(t.mega) do
@@ -348,9 +356,12 @@ end
 
 t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
 	Cn = 'roza', S = 'roza', W = 'roza', base = 'rb'}
+t.raichu.since = {A = 'sl', base = 'rb'}
 t.sandshrew.since = {A = 'sl', base = 'rb'}
 t.vulpix.since = {A = 'sl', base = 'rb'}
+t.meowth.since = {A = 'sl', base = 'rb'}
 t.exeggutor.since = {A = 'sl', base = 'rb'}
+t.marowak.since = {A = 'sl', base = 'rb'}
 t.castform.since = {S = 'rz', P = 'rz', N = 'rz', base = 'rz'}
 t.deoxys.since = {A = 'rfvf', D = 'rfvf', V = 's', base = 'rz'}
 t.wormadam.since = {Sa = 'dp', Sc = 'dp', base = 'dp'}
@@ -365,6 +376,7 @@ t.meloetta.since = {D = 'nb', base = 'nb'}
 t.meowstic.since = {F = 'xy', M = 'xy', base = 'xy'}
 t.aegislash.since = {S = 'xy', base = 'xy'}
 t.pumpkaboo.since = {S = 'xy', L = 'xy', XL = 'xy', base = 'xy'}
+t.zygarde.since = {D = 'sl', P = 'sl', base = 'xy'}
 t.hoopa.since = {L = 'roza', base = 'xy'}
 t.oricorio.since = {C = 'sl', H = 'sl', B = 'sl', base = 'sl'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
@@ -428,11 +440,14 @@ t.ninetales = t.vulpix
 t.thundurus, t.landorus = t.tornadus, t.tornadus
 t.gourgeist = t.pumpkaboo
 t[25] = t.pikachu
+t[26] = t.raichu
 t[27] = t.sandshrew
 t[28] = t.sandslash
 t[37] = t.vulpix
 t[38] = t.ninetales
+t[52] = t.meowth
 t[103] = t.exeggutor
+t[105] = t.marowak
 t[351] = t.castform
 t[386] = t.deoxys
 t[413] = t.wormadam
@@ -450,6 +465,7 @@ t[678] = t.meowstic
 t[681] = t.aegislash
 t[710] = t.pumpkaboo
 t[711] = t.gourgeist
+t[718] = t.zygarde
 t[720] = t.hoopa
 t[3] = t.venusaur
 t[9] = t.blastoise
