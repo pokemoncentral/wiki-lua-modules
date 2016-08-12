@@ -1531,6 +1531,8 @@ t.magearna = {name = 'Magearna', ndex = nil, type1 = 'acciaio', type2 = 'follett
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
 
+t.raichuA = {name = 'Raichu', ndex = 26, type1 = 'elettro', type2 = 'psico'}
+t['026A'] = t.raichuA
 t.sandshrewA = {name = 'Sandshrew', ndex = 27, type1 = 'ghiaccio', type2 = 'acciaio'}
 t['027A'] = t.sandshrewA
 t.sandslashA = {name = 'Sandslash', ndex = 28, type1 = 'ghiaccio', type2 = 'acciaio'}
@@ -1539,8 +1541,12 @@ t.vulpixA = {name = 'Vulpix', ndex = 37, type1 = 'ghiaccio', type2 = 'ghiaccio'}
 t['037A'] = t.vulpixA
 t.ninetalesA = {name = 'Ninetales', ndex = 38, type1 = 'ghiaccio', type2 = 'folletto'}
 t['038A'] = t.ninetalesA
+t.meowthA = {name = 'Meowth', ndex = 52, type1 = 'buio', type2 = 'buio'}
+t['052A'] = t.meowthA
 t.exeggutorA = {name = 'Exeggutor', ndex = 103, type1 = 'erba', type2 = 'drago'}
 t['103A'] = t.exeggutorA
+t.marowakA = {name = 'Marowak', ndex = 105, type1 = 'fuoco', type2 = 'spettro'}
+t['105A'] = t.marowakA
 t.castformS = {name = 'Castform', ndex = 351, type1 = 'fuoco', type2 = 'fuoco'}
 t['351S'] = t.castformS
 t.castformP = {name = 'Castform', ndex = 351, type1 = 'acqua', type2 = 'acqua'}

@@ -55,7 +55,7 @@ t.archeo = {'kyogre', 'groudon'}
 -- Tabella contenente i Pokémon che hanno una forma di Alola:
 -- per efficienza, alcuni sono alla fine del modulo
 
-t.alola = {'sandshrew', 'vulpix', 'exeggutor'}
+t.alola = {'raichu', 'sandshrew', 'vulpix', 'meowth', 'exeggutor', 'marowak'}
 
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
@@ -165,6 +165,7 @@ t.latios.changeability = nil
 t.garchomp.changeability = nil
 t.abomasnow.changeability = nil
 t.audino.changeability = nil
+t.meowth.changeability = nil
 
 -- Sigle delle forme alternative che cambiano statistiche rispetto alla forma
 -- base, che non è dunque presente
@@ -355,9 +356,12 @@ end
 
 t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
 	Cn = 'roza', S = 'roza', W = 'roza', base = 'rb'}
+t.raichu.since = {A = 'sl', base = 'rb'}
 t.sandshrew.since = {A = 'sl', base = 'rb'}
 t.vulpix.since = {A = 'sl', base = 'rb'}
+t.meowth.since = {A = 'sl', base = 'rb'}
 t.exeggutor.since = {A = 'sl', base = 'rb'}
+t.marowak.since = {A = 'sl', base = 'rb'}
 t.castform.since = {S = 'rz', P = 'rz', N = 'rz', base = 'rz'}
 t.deoxys.since = {A = 'rfvf', D = 'rfvf', V = 's', base = 'rz'}
 t.wormadam.since = {Sa = 'dp', Sc = 'dp', base = 'dp'}
@@ -436,11 +440,14 @@ t.ninetales = t.vulpix
 t.thundurus, t.landorus = t.tornadus, t.tornadus
 t.gourgeist = t.pumpkaboo
 t[25] = t.pikachu
+t[26] = t.raichu
 t[27] = t.sandshrew
 t[28] = t.sandslash
 t[37] = t.vulpix
 t[38] = t.ninetales
+t[52] = t.meowth
 t[103] = t.exeggutor
+t[105] = t.marowak
 t[351] = t.castform
 t[386] = t.deoxys
 t[413] = t.wormadam
