@@ -1,5 +1,9 @@
--- Modulo che, dato un tipo, restituisce l'elenco dei Pokémon
--- che lo hanno come primo tipo, secondo o unico
+--[[
+
+Modulo che, dato un tipo, restituisce l'elenco dei Pokémon
+che lo hanno come primo tipo, secondo o unico
+
+--]]
 
 local g = {}
 
@@ -49,7 +53,8 @@ end
 
 --[[
 
-Crea il testo di intestazione alla tabella
+Crea il testo di intestazione ad una tabella, dati
+tipo, livello dell'intestazione e parte finale
 
 --]]
 Entry.makeHeader = function(type, level, ending)
@@ -83,8 +88,7 @@ end
 local MonoTypeEntry = oop.makeClass(Entry)
 
 MonoTypeEntry.makeHeader = function(type)
-	return MonoTypeEntry.super.makeHeader(type, 3,
-			'puro')
+	return MonoTypeEntry.super.makeHeader(type, 3, 'puro')
 end
 
 --[[
@@ -104,8 +108,8 @@ MonoTypeEntry.new = function(pokeData, name, type)
 		return nil
 	end
 
-	return setmetatable(MonoTypeEntry.super.new(pokeData, name),
-			MonoTypeEntry)
+	return setmetatable(MonoTypeEntry.super.new(pokeData,
+			name), MonoTypeEntry)
 end
 
 MonoTypeEntry.__tostring = function(this)
@@ -151,8 +155,8 @@ FirstTypeEntry.new = function(pokeData, name, type)
 		return nil
 	end
 
-	return setmetatable(FirstTypeEntry.super.new(pokeData, name),
-			FirstTypeEntry)
+	return setmetatable(FirstTypeEntry.super.new(pokeData,
+			name), FirstTypeEntry)
 end
 
 FirstTypeEntry.__tostring = function(this)
@@ -202,8 +206,8 @@ SecondTypeEntry.new = function(pokeData, name, type)
 		return nil
 	end
 
-	return setmetatable(SecondTypeEntry.super.new(pokeData, name),
-			SecondTypeEntry)
+	return setmetatable(SecondTypeEntry.super.new(pokeData,
+			name), SecondTypeEntry)
 end
 
 SecondTypeEntry.__tostring = function(this)
@@ -245,16 +249,24 @@ ${types}]=],
 })
 end
 
-local makeTypeTable = function(Entry, type)
+--[[
+
+Crea intestazione e tabella HTML per
+i Pokémon di un tipo dato, mono-tipo,
+con tipo primario o secondario in base
+alla classe entry passata.
+
+--]]
+local makeTypeTable = function(type, Entry)
 	return table.concat({Entry.makeHeader(type),
-			list.makeList({
-				source = pokes,
-				iterator = list.pokeNames,
-				entryArgs = type,
-				makeEntry = Entry.new,
-				header = makeHeader(type,
-						Entry == MonoTypeEntry and 1 or 2)
-			})}, '\n')
+		list.makeList({
+			source = pokes,
+			iterator = list.pokeNames,
+			entryArgs = type,
+			makeEntry = Entry.new,
+			header = makeHeader(type,
+					Entry == MonoTypeEntry and 1 or 2)
+		})}, '\n')
 end
 
 --[[
@@ -270,37 +282,19 @@ primo e secondo, con le relative intestazioni.
 g.typelist = function(frame)
 	local monoType = string.trim(mw.text.decode(frame.args[1]
 			or 'sconosciuto (tipo)')):match('^(%a+) %(tipo%)$'):lower()
-	local tables = {}
 	local dualType = monoType == 'coleottero' and 'coleot' or monoType
-
-	table.insert(tables, makeTypeTable(MonoTypeEntry, monoType))
-	table.insert(tables, Entry.makeHeader(monoType, 3, 'parziale'))
-	table.insert(tables, makeTypeTable(FirstTypeEntry, dualType))
-	table.insert(tables, makeTypeTable(SecondTypeEntry, dualType))
-
-	return table.concat(tables, '\n')
-end
-
-g.Typelist = g.typelist
-
---[[
-
-Funzione di interfaccia: si passa un tipo
-e ritorna le due tabelle con i Pokémon mono-tipo
-del tipo passato e con i Pokémon con il 
-tipo passato come tipo primario, con le
-relative intestazioni
-
---]]
-g.typelista = function(frame)
-	local monoType = string.trim(frame.args[1]:lower())
 	local tables = {}
-	
-	table.insert(tables, monoTypelist(monoType))
-	table.insert(tables, firstTypelist(monoType))
-	
+
+	table.insert(tables, makeTypeTable(monoType, MonoTypeEntry))
+	table.insert(tables, Entry.makeHeader(monoType, 3, 'parziale'))
+	table.insert(tables, makeTypeTable(dualType, FirstTypeEntry))
+	table.insert(tables, makeTypeTable(dualType, SecondTypeEntry))
+
 	return table.concat(tables, '\n')
 end
+
+g.Typelist, g.TypeList, g.typeList = g.typelist,
+		g.typelist, g.typelist
 
 print(g.typelist{args={arg[1]}})
 
