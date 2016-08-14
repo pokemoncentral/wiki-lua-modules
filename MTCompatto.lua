@@ -125,7 +125,7 @@ m.MTCompatto = function(frame)
 	end
 	
 	return string.interp([=[
-{| class="roundy pull-center text-center grid mw-collapsible ${collapsed}" style="border: 3px solid #${colorDark}; background: #${colorNormal}; width: ${wd};"
+{| class="roundy pull-center text-center mw-collapsible ${collapsed}" style="border: 3px solid #${colorDark}; background: #${colorNormal}; width: ${wd};"
 |-
 ! class="roundy text-center" style="color: #000; background: #${colorLight};" | [[MT|<span style="color: #000;">MT</span>]] nelle varie generazioni
 |-
