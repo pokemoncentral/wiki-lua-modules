@@ -4,12 +4,11 @@ local b = {}
 
 local mw = require('mw')
 
-local txt = require('Wikilib-strings')
 local l = require('Links')
-local pokes = require('Poké-data')
--- AltForms/data should stay require, mw.loadData messes with table library
-local forms = require('AltForms-data') 
-local c = require('Colore-data')
+local txt = require('Wikilib-strings')
+local forms = require('AltForms-data')
+local c = require("Colore-data")
+local pokes = require("Poké-data")
 
 --[[
 

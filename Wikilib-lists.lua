@@ -209,6 +209,62 @@ l.makeList = function(args)
 			tostring)
 end
 
+--[[
+
+Crea e stampa una lista di box per tutte le
+forme di un dato Pokémon: i box che contengono
+gli stessi dati vengono accorpati, previa
+inserimento del nome di tutte le forme nella
+label del box.
+
+Gli argomenti sono named:
+	- name: nome della forma base del Pokémon
+		di cui si vogliono creare i box.
+	- makeBox: costruttore della classe
+		che rappresenta un box.
+	- printBoxes: stampa i box, ritornando
+		una stringa.
+
+La classe che rappresenta il box deve
+implementare la seguente interfaccia:
+	- costruttore(): prende in ingeresso il
+		nome del Pokémon, nel formato nome +
+		sigla in cui si trovano nei moduli
+		dati, e il nome esteso della forma.
+	- __eq(): usato per stabilire se due box
+		sono uguali o meno.
+	- addLabel(): aggiunge una label a quelle
+		già presenti.
+--]]
+l.makeFormsLabelledBoxes = function(args)
+	local altData = alts[args.name]
+	local boxes = {}
+
+	--[[
+		Scorrendo gamesOrder i boxes saranno già ordinati
+		senza bisogno di sorting successivo.
+		
+		Non si può usare table.map perché ciò porterebbe
+		ad avere buchi negli indici di effTables, cosa
+		difficilmente gestibile
+	--]]
+	for k, abbr in ipairs(altData.gamesOrder) do
+		local formName = altData.names[abbr == ''
+				and 'base' or abbr]
+		local name = args.name .. abbr
+		local formBox = args.makeBox(name, formName)
+
+		local index = table.search(boxes, formBox)
+		if index then
+			boxes[index]:addLabel(formName)
+		else
+			table.insert(boxes, formBox)
+		end
+	end
+
+	return args.printBoxes(boxes)
+end
+
 --[[-----------------------------------------
 
 			Classi di utilità
@@ -244,5 +300,33 @@ l.PokeSortableEntry.new = function(name, ndex)
 end
 
 l.PokeSortableEntry.__lt = l.sortNdex
+
+--[[
+
+Classe base per un oggetto dotato di labels.
+Implementa il metodo addLabel() richiesto
+dall'interfaccia di makeFormsLabelledBoxes.
+
+--]]
+l.Labelled = oop.makeClass()
+
+l.Labelled.new = function(label)
+	local this = setmetatable({}, Labelled)
+
+	-- Table vuota anche in caso label non sia dato
+	this.labels = type(label) == 'table'
+		and label or {label}
+
+	return this
+end
+
+-- Aggiunge una label o una table di labels
+l.Labelled.addLabel = function(this, label)
+	if type(label) == 'table' then
+		this.labels = table.merge(this.labels, label)
+	else
+		table.insert(this.labels, label)
+	end
+end
 
 return l
