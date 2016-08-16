@@ -5,8 +5,11 @@ local b = {}
 local mw = require('mw')
 
 local l = require('Links')
+local w = require('Wikilib')
+local oop = require('Wikilib-oop')
+local list = require('Wikilib-lists')
 local txt = require('Wikilib-strings')
-local forms = require('AltForms-data')
+local alts = require("AltForms-data")
 local c = require("Colore-data")
 local pokes = require("Poké-data")
 
@@ -18,31 +21,49 @@ PokémonInfo: vi sono infatti i due tipi e una
 table con i nomi delle forme che li hanno
 
 --]]
+local TypesBox = oop.makeClass(list.Labelled)
 
-local makeBox = function(type1, type2, form)
-	return {type1 = type1, type2 = type2, forms = {form}}
+TypesBox.new = function(name, formName)
+	local this = setmetatable(TypesBox.super.new(formName),
+			TypesBox)
+
+	local pokeData = pokes[name]
+	this.type1, this.type2 = pokeData.type1, pokeData.type2
+	this.width = 0
+
+	return this
 end
 
--- Controlla se i due tipi passati sono quelli di un box dato
-
-local sameTypes = function(box, type1, type2)
-	return box.type1 == type1 and box.type2 == type2;
+TypesBox.__eq = function(a, b)
+	return a.type1 == b.type1 and a.type2 == b.type2
 end
 
--- Stampa in HTML una riga di Boxes			
+TypesBox.setWidth = function(this, width)
+	this.width = width
+end
 
+TypesBox.__tostring = function(this)
+	return string.interp('<div class="inline-block align-top" style="margin: 0 -1px; width: ${width}%;">${type1}${type2}${forms}</div>',
+	{
+		width = this.width,
+		type1 = l.typeColor(this.type1),
+		type2 = this.type1 == this.type2 and '' or l.typeColor(this.type2),
+		forms = #this.labels < 1 and '' or table.concat{
+			'<div class="small-text">',
+			mw.text.listToText(this.labels, ', ', ' e '),
+			'<div>'
+		}
+	})
+end
+
+-- Stampa in HTML una riga di Boxes
 local printLine = function(line)
 	local width = math.floor(100 / #line)
 
-	return table.concat(table.map(line, function(box)
-			return string.interp('<div class="inline-block align-top" style="margin: 0 -1px; width: ${width}%;">${type1}${type2}<div class="small-text">${forms}</div></div>',
-				{
-					width = width,
-					type1 = l.typeColor(box.type1),
-					type2 = box.type1 == box.type2 and '' or l.typeColor(box.type2),
-					forms = mw.text.listToText(box.forms, ', ', ' e ')
-				})
-		end))
+	return w.mapAndConcat(line, function(box)
+			box:setWidth(width)
+			return tostring(box)
+		end)
 end
 
 --[[
@@ -99,63 +120,27 @@ delle forme alternative, con sotto i nomi
 delle forme che li hanno
 
 --]]
-
 b.boxTipi = function(frame)
-	local name = (pokes[string.trim(frame.args[1]:lower())]
-			or pokes[tonumber(frame.args[1])]).name:lower()
-	local altData = forms[name]
+	local name = string.trim(frame.args[1] or ''):lower()
+	local pokeData = pokes[string.parseInt(name) or name]
+			or pokes[mw.text.decode(name)]
+	name = pokeData.name:lower()
+	local altData = alts[name]
 	
-	-- Il Pokémon non ha forme alternative: si ritornano solo i tipi
-
-	if not (altData and altData.changetype) then
-		local pokeData = pokes[name]
-		return string.interp('<div class="roundy" style="background: #FFF; padding: 5px 2px;">${type1}${type2}</div>',
-			{
-				type1 = l.typeColor(pokeData.type1),
-				type2 = pokeData.type1 == pokeData.type2
-						and '' or l.typeColor(pokeData.type2)
-			})
-	end
-
-	-- Il primo Box è quello della forma base
-
-	local boxes = {
-		makeBox(pokes[name].type1, pokes[name].type2, altData.names.base)
-	}
 	--[[
-		Si toglie la forma base (che ha sempre indice 1)
-		dal gamesOrder, poiché è già stata inserita
-	--]]	
-	table.remove(altData.gamesOrder, 1)
-
-	--[[
-		Scorrendo gamesOrder i Box saranno già ordinati
-		senza bisogno di sorting successivo
+		Il Pokémon non ha forme alternative,
+		o le ha ma non cambiano tipo: si
+		ritorna un solo box senza forme
 	--]]
-	for k, abbr in ipairs(altData.gamesOrder) do
-		local formPoke = pokes[name .. abbr]
-		local formPlaced = false
-		
-		-- Bisogna controllare se i tipi della forma siano già in un altro Box
-
-		for k, box in ipairs(boxes) do
-			if sameTypes(box, formPoke.type1, formPoke.type2) then
-				table.insert(box.forms, altData.names[abbr])
-				formPlaced = true
-				break
-			end
-		end
-		--[[
-			Non si può inserire nel for qua sopra perché ipairs
-			giustamente includerebbe il nuovo Box nel loop
-		--]]
-		if not formPlaced then
-			table.insert(boxes, makeBox(formPoke.type1, formPoke.type2,
-					altData.names[abbr]))
-		end
+	if not (altData and altData.changetype) then
+		return tostring(TypesBox.new(name))
 	end
 
-	return printBoxes(boxes)
+	return list.makeFormsLabelledBoxes({
+		name = name,
+		makeBox = TypesBox.new,
+		printBoxes = printBoxes
+	})
 end
 
 b.BoxTipi, b.box_tipi, b.Box_tipi = b.boxTipi, b.boxTipi, b.boxTipi
