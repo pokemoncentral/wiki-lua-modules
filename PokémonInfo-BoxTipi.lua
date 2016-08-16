@@ -15,14 +15,21 @@ local pokes = require("Poké-data")
 
 --[[
 
-Crea un Box. Un Box è una struttura dati che
-rappresenta una casella del box dei tipi del
-PokémonInfo: vi sono infatti i due tipi e una
-table con i nomi delle forme che li hanno
+Questa classe rappresenta una casella
+del box dei tipi del PokémonInfo,
+mantenendo informazioni sui tipi e
+sulle forme che li hanno.
 
 --]]
 local TypesBox = oop.makeClass(list.Labelled)
 
+--[[
+
+Costruttore della classe: ha in ingresso il
+nome del Pokémon, nella forma nome + sigla,
+e, opzionalmente, il nome esteso della forma
+
+--]]
 TypesBox.new = function(name, formName)
 	local this = setmetatable(TypesBox.super.new(formName),
 			TypesBox)
@@ -34,16 +41,23 @@ TypesBox.new = function(name, formName)
 	return this
 end
 
-TypesBox.__eq = function(a, b)
-	return a.type1 == b.type1 and a.type2 == b.type2
-end
-
 TypesBox.setWidth = function(this, width)
 	this.width = width
 end
 
+TypesBox.__eq = function(a, b)
+	return a.type1 == b.type1 and a.type2 == b.type2
+end
+
+--[[
+
+Wikicode per una cella del box dei tipi:
+i tipi sono su fondo colorato e le forme
+sotto in piccolo.
+
+--]]
 TypesBox.__tostring = function(this)
-	return string.interp('<div class="inline-block align-top" style="margin: 0 -1px; width: ${width}%;">${type1}${type2}${forms}</div>',
+	return string.interp('<div class="text-center" style="min-width: ${width}%;">${type1}${type2}${forms}</div>',
 	{
 		width = this.width,
 		type1 = l.typeColor(this.type1),
@@ -51,19 +65,9 @@ TypesBox.__tostring = function(this)
 		forms = #this.labels < 1 and '' or table.concat{
 			'<div class="small-text">',
 			mw.text.listToText(this.labels, ', ', ' e '),
-			'<div>'
+			'</div>'
 		}
 	})
-end
-
--- Stampa in HTML una riga di Boxes
-local printLine = function(line)
-	local width = math.floor(100 / #line)
-
-	return w.mapAndConcat(line, function(box)
-			box:setWidth(width)
-			return tostring(box)
-		end)
 end
 
 --[[
@@ -77,10 +81,11 @@ si fa una sola riga
 --]]
 
 local printBoxes = function(boxes)
-	local acc = {'<div class="roundy" style="background: #FFF; padding: 5px 2px;">'}
+	local acc = {'<div class="roundy flex flex-row flex-wrap flex-main-stretch flex-items-center" style="background: #FFF; padding: 5px 2px;">'}
 
 	repeat
 		local line, size = nil, #boxes
+
 		--[[
 			Si rimuove sempre in prima posizione perché
 			lua aggiorna gli indici dopo ogni table.remove
@@ -102,11 +107,14 @@ local printBoxes = function(boxes)
 				table.insert(line, table.remove(boxes, 1))
 			end
 		end
-		table.insert(acc, '<div>')
-		table.insert(acc, printLine(line))
-		table.insert(acc, '</div>')
+
+		local width = 100 / #line
+		table.insert(acc, w.mapAndConcat(line, function(box)
+				box:setWidth(width)
+				return tostring(box)
+			end))
 	until #boxes == 0
-	
+
 	table.insert(acc, '</div>')	
 	return table.concat(acc)
 end
@@ -125,17 +133,7 @@ b.boxTipi = function(frame)
 	local pokeData = pokes[string.parseInt(name) or name]
 			or pokes[mw.text.decode(name)]
 	name = pokeData.name:lower()
-	local altData = alts[name]
 	
-	--[[
-		Il Pokémon non ha forme alternative,
-		o le ha ma non cambiano tipo: si
-		ritorna un solo box senza forme
-	--]]
-	if not (altData and altData.changetype) then
-		return tostring(TypesBox.new(name))
-	end
-
 	return list.makeFormsLabelledBoxes({
 		name = name,
 		makeBox = TypesBox.new,

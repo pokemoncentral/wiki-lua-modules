@@ -215,7 +215,9 @@ Crea e stampa una lista di box per tutte le
 forme di un dato Pokémon: i box che contengono
 gli stessi dati vengono accorpati, previa
 inserimento del nome di tutte le forme nella
-label del box.
+label del box. Se il Pokémon non ha forme
+alternative, stampa solo l box per la forma
+base.
 
 Gli argomenti sono named:
 	- name: nome della forma base del Pokémon
@@ -230,7 +232,8 @@ implementare la seguente interfaccia:
 	- costruttore(): prende in ingeresso il
 		nome del Pokémon, nel formato nome +
 		sigla in cui si trovano nei moduli
-		dati, e il nome esteso della forma.
+		dati, e il nome esteso della forma
+		come argomento opzionale.
 	- __eq(): usato per stabilire se due box
 		sono uguali o meno.
 	- addLabel(): aggiunge una label a quelle
@@ -238,6 +241,11 @@ implementare la seguente interfaccia:
 --]]
 l.makeFormsLabelledBoxes = function(args)
 	local altData = alts[args.name]
+
+	if not altData then
+		return args.printBoxes({args.makeBox(args.name)})
+	end
+	
 	local boxes = {}
 
 	--[[
