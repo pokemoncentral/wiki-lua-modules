@@ -286,8 +286,9 @@ end
 
 --[[
 
-Costruttore della classe: ha in ingresso i tipi,
-le abilità, ed eventuali uno o più nomi di forme
+Costruttore della classe: ha in ingresso il
+nome del Pokémon, nella forma nome + sigla,
+e, opzionalmente, il nome esteso della forma
 
 --]]
 EffTable.new = function(name, formName)
