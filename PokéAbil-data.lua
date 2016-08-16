@@ -1493,7 +1493,7 @@ t.drampa = {ability1 = 'Furore', ability2 = 'Mangiaerba'}
 t.salandit = {ability1 = 'Corrosione'}
 -- t[0xDENIELOPUZZA] = t.salandit
 -- Nome jappo, abilità sconosciuta
-t.nuikoguma = {}
+t.nuikoguma = {ability1 = ''}
 -- t[0xDENIELOPUZZA] = t.nuikoguma
 t.bewear = {ability1 = 'Morbidone', ability2 = 'Impaccio'}
 -- t[0xDENIELOPUZZA] = t.bewear
@@ -1512,10 +1512,10 @@ t.wimpod = {ability1 = 'Fuggifuggi'}
 t.mimikyu = {ability1 = 'Fantasmanto'}
 -- t[0xDENIELOPUZZA] = t.mimikyu
 -- Nome jappo, abilità sconosciuta
-t.sunabaa = {}
+t.sunabaa = {ability1 = ''}
 -- t[0xDENIELOPUZZA] = t.sunabaa
 -- Nome jappo, abilità sconosciuta
-t.shirodesuna = {}
+t.shirodesuna = {ability1 = ''}
 -- t[0xDENIELOPUZZA] = t.shirodesuna
 t['tapu koko'] = {ability1 = 'Elettrogenesi'}
 -- t[0xDENIELOPUZZA] = t['tapu koko']
