@@ -70,7 +70,8 @@ t.beccata = {name = 'Beccata', type = 'volante', category = 'fisico', power = 35
 t.perforbecco = {name = 'Perforbecco', type = 'volante', category = 'fisico', power = 80, accuracy = 100, pp = 20}
 t.sottomissione = {name = 'Sottomissione', type = 'lotta', category = 'fisico', power = 80, accuracy = 80, pp = 25}
 t['colpo basso'] = {name = 'Colpo Basso', type = 'lotta', category = 'fisico', power = '&mdash;', accuracy = 100, pp = 20}
-t.contatore = {name = 'Contatore', type = 'lotta', category = 'fisico', power = '&mdash;', accuracy = 100, pp = 20}
+t.contatore = {name = 'Contrattacco', type = 'lotta', category = 'fisico', power = '&mdash;', accuracy = 100, pp = 20}
+t.contrattacco = t.contatore
 t['movimento sismico'] = {name = 'Movimento Sismico', type = 'lotta', category = 'fisico', power = '&mdash;', accuracy = 100, pp = 20}
 t.forza = {name = 'Forza', type = 'normale', category = 'fisico', power = 80, accuracy = 100, pp = 15}
 t.assorbimento = {name = 'Assorbimento', type = 'erba', category = 'speciale', power = 20, accuracy = 100, pp = 25}
@@ -140,6 +141,7 @@ t['cinèsi'] = {name = 'Cinèsi', type = 'psico', category = 'stato', power = '&
 t.covauova = {name = 'Covauova', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10}
 t.calcinvolo = {name = 'Calcinvolo', type = 'lotta', category = 'fisico', power = 130, accuracy = 90, pp = 10}
 t['sguardo feroce'] = {name = 'Sguardo Feroce', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 100, pp = 30}
+t.bagliore = t['sguardo feroce']
 t.mangiasogni = {name = 'Mangiasogni', type = 'psico', category = 'speciale', power = 100, accuracy = 100, pp = 15}
 t.velenogas = {name = 'Velenogas', type = 'veleno', category = 'stato', power = '&mdash;', accuracy = 90, pp = 40}
 t['attacco pioggia'] = {name = 'Attacco Pioggia', type = 'normale', category = 'fisico', power = 15, accuracy = 85, pp = 20}
