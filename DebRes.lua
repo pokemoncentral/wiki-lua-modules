@@ -875,17 +875,11 @@ dr.debRes = function(frame)
 		return tostring(EffTable.new(types, abils))
 	end
 
-	-- The Pokémon ha alternative forms, using list helper
-	if alts[name] then
-		return list.makeFormsLabelledBoxes({
-			name = name,
-			makeBox = EffTable.new,
-			printBoxes = printEffTables
-		})
-	end
-
-	-- No alternative forms, only one EffTable
-	return tostring(EffTable.new(name))
+	return list.makeFormsLabelledBoxes({
+		name = name,
+		makeBox = EffTable.new,
+		printBoxes = printEffTables
+	})
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes

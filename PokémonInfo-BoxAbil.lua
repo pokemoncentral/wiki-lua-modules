@@ -1,4 +1,4 @@
--- Box dei tipi per il PokémonInfo
+-- Box delle abilità per il PokémonInfo
 
 local b = {}
 
@@ -16,9 +16,9 @@ local c = require("Colore-data")
 --[[
 
 Questa classe rappresenta una casella
-del box dei tipi del PokémonInfo,
-mantenendo informazioni sui tipi e
-sulle forme che li hanno.
+del box delle abilità del PokémonInfo,
+mantenendo informazioni sulle combinazioni
+di abilità e sulle forme che le hanno.
 
 --]]
 local AbilsBox = oop.makeClass(list.Labelled)
@@ -31,6 +31,12 @@ e, opzionalmente, il nome esteso della forma
 
 --]]
 AbilsBox.new = function(name, formName)
+
+	-- Meowstic e Pokémon con abilità non rivelata
+	if abils[name].ability1 == '' then
+		return nil
+	end
+
 	local this = AbilsBox.super.new(formName)
 
 	this = table.merge(abils[name], this)
@@ -46,25 +52,26 @@ end
 
 --[[
 
-Wikicode per una cella del box dei tipi:
-i tipi sono su fondo colorato e le forme
-sotto in piccolo.
+Wikicode per una cella del box delle abilità:
+le abilità standard sono a sinistra, quella
+nascosta a destra, e le forme sopra.
 
 --]]
 AbilsBox.__tostring = function(this)
 	local stdAbils = l.aColor(this.ability1)
 	if this.ability2 then
-		stdAbils = table.concat({stdAbils, 'o<br />',
+		stdAbils = table.concat({stdAbils, 'o',
+			this.abilityd and '<br />' or '',
 			l.aColor(this.ability2)}, ' ')
 	end
 
 	local hiddenAbil = ''
 	if this.abilityd then
-		hiddenAbil = table.concat{'<div style="box-sizing: border-box; min-width: 50%; padding: 0 10%;">',
+		hiddenAbil = table.concat{'<div style="box-sizing: border-box; padding: 0 0.3em 0.5em 0; min-width: 50%;">',
 			l.aColor(this.abilityd), '<div class="small-text">Abilit&agrave; nascosta</div></div>'}
 	end
 
-	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center" style="min-width: ${boxWidth}%;">${forms}<div style="min-width: ${stdWidth}%">${stdAbils}</div>${hiddenAbil}</div>',
+	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center" style="min-width: ${boxWidth}%;">${forms}<div style="box-sizing: border-box; padding: 0 0.3em 0.5em 0; min-width: ${stdWidth}%;">${stdAbils}</div>${hiddenAbil}</div>',
 	{
 		boxWidth = this.abilityd and '100' or '50',
 		stdWidth = this.abilityd and '50' or '100',
@@ -80,17 +87,15 @@ end
 
 --[[
 
-Stampa in HTML una table di Boxes: questi sono
-suddivisi in righe da tre finché non ne rimangono
-o quattro, caso in cui sono divisi in due righe
-da due, o meno di quattro, caso in cui invece
-si fa una sola riga
+Stampa in HTML una table di AbilBoxes:
+ogni forma ha una cella, che può
+affiancarsi a quella di un'altra forma
+in assenza di abilità nascosta.
 
 --]]
-
 local printBoxes = function(boxes)
 	local acc = table.map(boxes, tostring)
-	table.insert(acc, 1, '<div class="roundy text-center" style="background: #FFF; padding: 5px 2px;">')
+	table.insert(acc, 1, '<div class="roundy text-center" style="background: #FFF; padding: 0.5em 0;">')
 	table.insert(acc, '</div>')
 	return table.concat(acc)
 end
