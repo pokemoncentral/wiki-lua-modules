@@ -1494,9 +1494,8 @@ t.drampa = {name = 'Drampa', ndex = nil, type1 = 'normale', type2 = 'drago'}
 -- t[0xDENIELOPUZZA] = t.drampa
 t.salandit = {name = 'Salandit', ndex = nil, type1 = 'veleno', type2 = 'fuoco'}
 -- t[0xDENIELOPUZZA] = t.salandit
--- Nome jappo
-t.nuikoguma = {name = 'Nuikoguma', ndex = nil, type1 = 'normale', type2 = 'lotta'}
--- t[0xDENIELOPUZZA] = t.nuikoguma
+t.stufful = {name = 'Stufful', ndex = nil, type1 = 'normale', type2 = 'lotta'}
+-- t[0xDENIELOPUZZA] = t.stufful
 t.bewear = {name = 'Bewear', ndex = nil, type1 = 'normale', type2 = 'lotta'}
 -- t[0xDENIELOPUZZA] = t.bewear
 t.comfey = {name = 'Comfey', ndex = nil, type1 = 'folletto', type2 = 'folletto'}
@@ -1513,12 +1512,14 @@ t.wimpod = {name = 'Wimpod', ndex = nil, type1 = 'coleottero', type2 = 'acqua'}
 -- t[0xDENIELOPUZZA] = t.wimpod
 t.mimikyu = {name = 'Mimikyu', ndex = nil, type1 = 'spettro', type2 = 'folletto'}
 -- t[0xDENIELOPUZZA] = t.mimikyu
--- Nome jappo
-t.sunabaa = {name = 'Sunabaa', ndex = nil, type1 = 'spettro', type2 = 'terra'}
--- t[0xDENIELOPUZZA] = t.sunabaa
--- Nome jappo
-t.shirodesuna = {name = 'Shirodesuna', ndex = nil, type1 = 'spettro', type2 = 'terra'}
--- t[0xDENIELOPUZZA] = t.shirodesuna
+t.sandygast = {name = 'Sandygast', ndex = nil, type1 = 'spettro', type2 = 'terra'}
+-- t[0xDENIELOPUZZA] = t.sandygast
+t.palossand = {name = 'Palossand', ndex = nil, type1 = 'spettro', type2 = 'terra'}
+-- t[0xDENIELOPUZZA] = t.palossand
+t.crabrawler = {name = 'Crabrawler', ndex = nil, type1 = 'lotta', type2 = 'lotta'}
+-- t[0xDENIELOPUZZA] = t.crabrawler
+t.turtonator = {name = 'Turtonator', ndex = nil, type1 = 'fuoco', type2 = 'drago'}
+-- t[0xDENIELOPUZZA] = t.turtonator
 t['tapu koko'] = {name = 'Tapu Koko', ndex = nil, type1 = 'elettro', type2 = 'folletto'}
 -- t[0xDENIELOPUZZA] = t['tapu koko']
 t.solgaleo = {name = 'Solgaleo', ndex = nil, type1 = 'psico', type2 = 'acciaio'}

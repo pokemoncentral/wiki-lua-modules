@@ -67,11 +67,11 @@ AbilsBox.__tostring = function(this)
 
 	local hiddenAbil = ''
 	if this.abilityd then
-		hiddenAbil = table.concat{'<div style="box-sizing: border-box; padding: 0 0.3em 0.5em 0; min-width: 50%;">',
+		hiddenAbil = table.concat{'<div style="box-sizing: border-box; padding: 0 0.3em 0.5em 0.3em; min-width: 50%;">',
 			l.aColor(this.abilityd), '<div class="small-text">Abilit&agrave; nascosta</div></div>'}
 	end
 
-	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center" style="min-width: ${boxWidth}%;">${forms}<div style="box-sizing: border-box; padding: 0 0.3em 0.5em 0; min-width: ${stdWidth}%;">${stdAbils}</div>${hiddenAbil}</div>',
+	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center" style="min-width: ${boxWidth}%;">${forms}<div style="box-sizing: border-box; padding: 0 0.3em 0.5em 0.3em; min-width: ${stdWidth}%;">${stdAbils}</div>${hiddenAbil}</div>',
 	{
 		boxWidth = this.abilityd and '100' or '50',
 		stdWidth = this.abilityd and '50' or '100',

@@ -1492,9 +1492,8 @@ t.drampa = {ability1 = 'Furore', ability2 = 'Mangiaerba'}
 -- t[0xDENIELOPUZZA] = t.drampa
 t.salandit = {ability1 = 'Corrosione'}
 -- t[0xDENIELOPUZZA] = t.salandit
--- Nome jappo, abilità sconosciuta
-t.nuikoguma = {ability1 = ''}
--- t[0xDENIELOPUZZA] = t.nuikoguma
+t.stufful = {ability1 = 'Morbidone', ability2 = 'Impaccio'}
+-- t[0xDENIELOPUZZA] = t.stufful
 t.bewear = {ability1 = 'Morbidone', ability2 = 'Impaccio'}
 -- t[0xDENIELOPUZZA] = t.bewear
 t.comfey = {ability1 = 'Fiorvelo', ability2 = 'Primacura'}
@@ -1511,12 +1510,14 @@ t.wimpod = {ability1 = 'Fuggifuggi'}
 -- t[0xDENIELOPUZZA] = t.wimpod
 t.mimikyu = {ability1 = 'Fantasmanto'}
 -- t[0xDENIELOPUZZA] = t.mimikyu
--- Nome jappo, abilità sconosciuta
-t.sunabaa = {ability1 = ''}
--- t[0xDENIELOPUZZA] = t.sunabaa
--- Nome jappo, abilità sconosciuta
-t.shirodesuna = {ability1 = ''}
--- t[0xDENIELOPUZZA] = t.shirodesuna
+t.sandygast = {ability1 = 'Idrorinforzo'}
+-- t[0xDENIELOPUZZA] = t.sandygast
+t.palossand = {ability1 = 'Idrorinforzo'}
+-- t[0xDENIELOPUZZA] = t.palossand
+t.crabrawler = {ability1 = 'Ipertaglio', ability2 = 'Ferropugno'}
+-- t[0xDENIELOPUZZA] = t.crabrawler
+t.turtonator = {ability1 = 'Guscioscudo'}
+-- t[0xDENIELOPUZZA] = t.turtonator
 t['tapu koko'] = {ability1 = 'Elettrogenesi'}
 -- t[0xDENIELOPUZZA] = t['tapu koko']
 t.solgaleo = {ability1 = 'Metalprotezione'}
