@@ -78,7 +78,8 @@ Entry.__tostring = function(this)
 	{
 		roundy = this.isFooter and r.blLua() or '',
 		ndex = this.ndex and string.tf(this.ndex) or '???',
-		ani = ms.aniLua(string.tf(this.ndex or 0) .. (this.formAbbr or '')),
+		ani = ms.aniLua(string.tf(this.ndex or 0) ..
+				(this.formAbbr == 'base' and '' or this.formAbbr or '')),
 		name = this.name,
 		form = this.formsData and this.formsData.links[this.formAbbr] or ''
 	})

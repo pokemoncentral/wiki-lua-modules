@@ -22,9 +22,9 @@ f.getabbr = function(name, extform)
 	if alt[tonumber(name) or name:lower()] then
 		extform = string.lower(extform or '')
 		name = tonumber(name) or name:lower()
-		return alt[name].ext[extform] or ''
+		return alt[name].ext[extform] or 'base'
 	end
-	return name:match('(%u+%a*)$') or ''
+	return name:match('(%u+%a*)$') or 'base'
 end
 
 f.getAbbr, f.get_abbr = f.getabbr, f.getabbr
@@ -37,10 +37,10 @@ f.getnameabbr = function(name, extform)
 	if alt[tonumber(name) or name:lower()] then
 		extform = string.lower(extform or '')
 		name = tonumber(name) or name:lower()
-		return name, alt[name].ext[extform] or ''
+		return name, alt[name].ext[extform] or 'base'
 	end
 	poke, abbr = name:match("^([%lé%-♂♀%s%.&#;%d]+)(%u*%a*)$")
-	return tonumber(poke) or poke or '', abbr or ''
+	return tonumber(poke) or poke or '', abbr or 'base'
 end
 
 f.getNameAbbr, f.get_name_abbr = f.getnameabbr, f.getnameabbr

@@ -154,7 +154,6 @@ funzione msLine
 
 local msForms = function(msGens, ndex, type1, type2)
 	return table.concat(table.map(alt[ndex].gamesOrder, function(abbr)
-			abbr = abbr == '' and 'base' or abbr
 			return msLine(abbr, alt[ndex].names[abbr],
 					ndex, type1, type2, msGens)
 		end), '\n')
@@ -372,8 +371,6 @@ degne di nota sono:
 --]]
 
 local fixGenders = function(abbr, gen, ndex, variant)
-	abbr = abbr == '' and 'base' or abbr
-
 	if gen > 3 then	
 		if alt[ndex].names[abbr] == 'Femmina' then
 			return 'base', 'Femmina', 'fe' .. variant

@@ -35,7 +35,7 @@ local getArtworkForm = function(abbr, name)
 
 	-- Forma base
 
-	if abbr == '' then
+	if abbr == 'base' then
 		return ''
 	end
 

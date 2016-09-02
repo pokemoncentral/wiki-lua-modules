@@ -61,22 +61,21 @@ AbilsBox.__tostring = function(this)
 	local stdAbils = l.aColor(this.ability1)
 	if this.ability2 then
 		stdAbils = table.concat({stdAbils, 'o',
-			this.abilityd and '<br />' or '',
 			l.aColor(this.ability2)}, ' ')
 	end
 
 	local hiddenAbil = ''
 	if this.abilityd then
-		hiddenAbil = table.concat{'<div style="box-sizing: border-box; padding: 0 0.3em 0.5em 0.3em; min-width: 50%;">',
+		hiddenAbil = table.concat{'<div class="width-xl-50 width-sm-100">',
 			l.aColor(this.abilityd), '<div class="small-text">Abilit&agrave; nascosta</div></div>'}
 	end
 
-	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center" style="min-width: ${boxWidth}%;">${forms}<div style="box-sizing: border-box; padding: 0 0.3em 0.5em 0.3em; min-width: ${stdWidth}%;">${stdAbils}</div>${hiddenAbil}</div>',
+	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center width-xl-${boxWidth} width-md-100" style="box-sizing: border-box; padding: 0.2em;">${forms}<div class="width-xl-${stdWidth} width-md-100">${stdAbils}</div>${hiddenAbil}</div>',
 	{
 		boxWidth = this.abilityd and '100' or '50',
 		stdWidth = this.abilityd and '50' or '100',
 		forms = #this.labels < 1 and '' or table.concat{
-			'<div class="small-text" style="width: 100%;">',
+			'<div class="small-text width-xl-100" style="padding-bottom: 0.2em;">',
 			mw.text.listToText(this.labels, ', ', ' e '),
 			'</div>'
 		},
@@ -95,7 +94,7 @@ in assenza di abilità nascosta.
 --]]
 local printBoxes = function(boxes)
 	local acc = table.map(boxes, tostring)
-	table.insert(acc, 1, '<div class="roundy text-center" style="background: #FFF; padding: 0.5em 0;">')
+	table.insert(acc, 1, '<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center roundy text-center" style="background: #FFF; padding: 0.2em;">')
 	table.insert(acc, '</div>')
 	return table.concat(acc)
 end
