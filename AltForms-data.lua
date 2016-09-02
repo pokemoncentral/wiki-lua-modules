@@ -55,7 +55,7 @@ t.archeo = {'kyogre', 'groudon'}
 -- Tabella contenente i Pokémon che hanno una forma di Alola:
 -- per efficienza, alcuni sono alla fine del modulo
 
-t.alola = {'raichu', 'sandshrew', 'vulpix', 'meowth', 'exeggutor', 'marowak'}
+t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'meowth', 'exeggutor', 'marowak'}
 
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
@@ -354,6 +354,7 @@ end
 -- Tabelle contenenti le sigle dei primi giochi in ordine cronologico in cui
 -- la forma è supportata, compresa la forma base
 
+t.rattata.since = {A = 'sl', base = 'rb'}
 t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
 	Cn = 'roza', S = 'roza', W = 'roza', base = 'rb'}
 t.raichu.since = {A = 'sl', base = 'rb'}
@@ -439,6 +440,7 @@ t.sandslash = t.sandshrew
 t.ninetales = t.vulpix
 t.thundurus, t.landorus = t.tornadus, t.tornadus
 t.gourgeist = t.pumpkaboo
+t[19] = t.rattata
 t[25] = t.pikachu
 t[26] = t.raichu
 t[27] = t.sandshrew

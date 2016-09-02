@@ -1531,8 +1531,10 @@ t.magearna = {ability1 = 'Cuoreanima'}
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
 -- Il nome è composto dal nome del Pokémon, seguito dalla sigla della forma alternativa
 
+t.rattataA = {ability1 = 'Voracità', ability2 = 'Tuttafretta'}
+t['019A'] = t.rattataA
 t.raichuA = {ability1 = 'Codasurf'}
-t['26A'] = t.raichuA
+t['026A'] = t.raichuA
 t.sandshrewA = {ability1 = 'Mantelneve'}
 t['027A'] = t.sandshrewA
 t.sandslashA = {ability1 = 'Mantelneve'}
@@ -1574,7 +1576,7 @@ t.pikachuCs, t['025Cs'], t.pikachuR, t['025R'], t.pikachuD, t['025D'],
 	t.pikachuCn, t['025Cn'], t.pikachuS, t['025S'], t.pikachuW, t['025W'] =
 	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu,
 	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu
-t.meowthA, t['52A'] = t.meowth, t.meowth
+t.meowthA, t['052A'] = t.meowth, t.meowth
 t.castformS, t.castformP, t.castformN = t.castform, t.castform, t.castform
 t['351S'], t['351P'], t['351N'] = t.castform, t.castform, t.castform
 t.deoxysA, t.deoxysD, t.deoxysV = t.deoxys, t.deoxys, t.deoxys

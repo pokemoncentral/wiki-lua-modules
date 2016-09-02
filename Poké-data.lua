@@ -1532,6 +1532,8 @@ t.magearna = {name = 'Magearna', ndex = nil, type1 = 'acciaio', type2 = 'follett
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
 
+t.rattataA = {name = 'Rattata', ndex = 19, type1 = 'buio', type2 = 'normale'}
+t['019A'] = t.rattataA
 t.raichuA = {name = 'Raichu', ndex = 26, type1 = 'elettro', type2 = 'psico'}
 t['026A'] = t.raichuA
 t.sandshrewA = {name = 'Sandshrew', ndex = 27, type1 = 'ghiaccio', type2 = 'acciaio'}
