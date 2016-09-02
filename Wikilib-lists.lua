@@ -257,9 +257,8 @@ l.makeFormsLabelledBoxes = function(args)
 		difficilmente gestibile
 	--]]
 	for k, abbr in ipairs(altData.gamesOrder) do
-		local formName = altData.names[abbr == ''
-				and 'base' or abbr]
-		local name = args.name .. abbr
+		local formName = altData.names[abbr]
+		local name = args.name .. (abbr == 'base' and '' or abbr)
 		local formBox = args.makeBox(name, formName)
 
 		local index = table.search(boxes, formBox)

@@ -55,7 +55,7 @@ t.archeo = {'kyogre', 'groudon'}
 -- Tabella contenente i Pokémon che hanno una forma di Alola:
 -- per efficienza, alcuni sono alla fine del modulo
 
-t.alola = {'raichu', 'sandshrew', 'vulpix', 'meowth', 'exeggutor', 'marowak'}
+t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'meowth', 'exeggutor', 'marowak'}
 
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
@@ -210,76 +210,83 @@ t.hoopa.changemoves = t.hoopa.changetype
 
 for name, poke in pairs(t) do
 	if not table.linear_search({'mega', 'megaxy', 'archeo', 'alola'}, name) then
-		poke.links = {}
-		if table.linear_search(t.mega, name) then
-			poke.links.M = ''
-		elseif table.linear_search(t.megaxy, name) then
-			poke.links.MX, poke.links.MY = '', ''
-		elseif table.linear_search(t.archeo, name) then
-			poke.links.A = ''
+		if table.linear_search(t.mega, name)
+			or table.linear_search(t.megaxy, name)
+			or table.linear_search(t.archeo, name)
+		then
+			poke.links = table.map(poke.names, function()
+					return ''
+				end)
+
 		elseif table.linear_search(t.alola, name) then
-			poke.links.A = table.concat{'<div class="small-text">[[Forma di Alola#',
-					string.fu(name), '|Forma di Alola]]</div>'}
+			poke.links = table.map(poke.names, function(formName)
+					return string.interp('<div class="small-text">[[Forma di Alola#${poke}|${formName}]]',
+					{poke = string.fu(name), formName = formName})
+				end)
+
 		else
-			for k, v in pairs(poke.names) do
-				poke.links[k] =
-				table.concat{'<div class="small-text">[[Differenze di forma#',
-					string.fu(name), '|', v, ']]</div>'}
-			end
-			poke.links.base = ''
+			poke.links = table.map(poke.names, function(formName)
+					return string.interp('<div class="small-text">[[Differenze di forma#${poke}|${formName}]]</div>',
+					{poke = string.fu(name), formName = formName})
+				end)
 		end
 	end
 end
 
-t.sandshrew.links = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|Forma di Alola]]</div>'}
-t.vulpix.links = {A = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|Forma di Alola]]</div>'}
+t.sandshrew.links = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|Forma di Alola]]</div>',
+	base = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|Forma Normale]]</div>'}
+t.vulpix.links = {A = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|Forma di Alola]]</div>',
+	base = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|Forma Normale]]</div>'}
 t.wormadam.links = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Sabbia]]</div>',
 	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Scarti]]</div>',
-	base = ''}
+	base = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Pianta]]</div>'}
 t.tornadus.links = {T = '<div class="small-text">[[Differenze di forma#Trio dei Kami|Forma Totem]]</div>',
-	base = ''}
+	base = '<div class="small-text">[[Differenze di forma#Trio dei Kami|Forma Incarnazione]]</div>'}
 t.pumpkaboo.links = {S = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Mini]]</div>',
 	L = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Grande]]</div>',
 	XL = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Maxi]]</div>',
-	base = ''}
+	base = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Normale]]</div>'}
 
 -- Link neri alle forme alternative.
 
 for name, poke in pairs(t) do
 	if not table.linear_search({'mega', 'megaxy', 'archeo', 'alola'}, name) then
-		poke.blacklinks = {}
-		if table.linear_search(t.mega, name) then
-			poke.blacklinks.M = ''
-		elseif table.linear_search(t.megaxy, name) then
-			poke.blacklinks.MX, poke.blacklinks.MY = '', ''
-		elseif table.linear_search(t.archeo, name) then
-			poke.blacklinks.A = ''
+		if table.linear_search(t.mega, name)
+			or table.linear_search(t.megaxy, name)
+			or table.linear_search(t.archeo, name)
+		then
+			poke.blacklinks = table.map(poke.names, function()
+					return ''
+				end)
+
 		elseif table.linear_search(t.alola, name) then
-			poke.blacklinks.A = table.concat{'<div class="small-text">[[Forma di Alola#',
-					string.fu(name), '|<span style="color:#000">Forma di Alola</span>]]</div>'}
+			poke.blacklinks = table.map(poke.names, function(formName)
+					return string.interp('<div class="small-text">[[Forma di Alola#${poke}|<span style="color:#000">${formName}</span>]]</div>',
+					{poke = string.fu(name), formName = formName})
+				end)
+
 		else
-			for k, v in pairs(poke.names) do
-				poke.blacklinks[k] =
-					table.concat{'<div class="small-text">[[Differenze di forma#',
-					string.fu(name), '|<span style="color:#000">',
-					v, '</span>]]</div>'}
-			end
-			poke.blacklinks.base = ''
+			poke.blacklinks = table.map(poke.names, function(formName)
+					return string.interp('<div class="small-text">[[Differenze di forma#${poke}|<span style="color:#000">${formName}</span>]]</div>',
+					{poke = string.fu(name), formName = formName})
+				end)
 		end
 	end
 end
 
-t.sandshrew.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000">Forma di Alola</span>]]</div>'}
-t.vulpix.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|<span style="color:#000">Forma di Alola</span>]]</div>'}
+t.sandshrew.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000">Forma di Alola</span>]]</div>',
+	base = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000">Forma Normale</span>]]</div>'}
+t.vulpix.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|<span style="color:#000">Forma di Alola</span>]]</div>',
+	base = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|<span style="color:#000">Forma Normale</span>]]</div>'}
 t.wormadam.blacklinks = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Sabbia</span>]]</div>',
 	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Scarti</span>]]</div>',
-	base = ''}
+	base = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Pianta</span>]]</div>'}
 t.tornadus.blacklinks = {T = '<div class="small-text">[[Differenze di forma#Trio dei Kami|<span style="color:#000">Forma Totem</span>]]</div>',
-	base = ''}
+	base = '<div class="small-text">[[Differenze di forma#Trio dei Kami|<span style="color:#000">Forma Incarnazione</span>]]</div>'}
 t.pumpkaboo.blacklinks = {S = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Mini</span>]]</div>',
 	L = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Grande</span>]]</div>',
 	XL = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Maxi</span>]]</div>',
-	base = ''}
+	base = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Normale</span>]]</div>'}
 
 -- Per passare dai nomi estesi delle forme alternative alle sigle
 
@@ -303,7 +310,7 @@ t.pumpkaboo.ext = {mini = 'S', grande = 'L', maxi = 'XL'}
 t.zygarde.ext = {['forma 10%'] = 'D', perfetto = 'P'}
 t.hoopa.ext = {libero = 'L'}
 t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
-	flamenco = ''}
+	flamenco = 'base'}
 for k, v in pairs(t.mega) do
 	t[v].ext = {mega = 'M'}
 end
@@ -320,40 +327,41 @@ end
 -- Arrays in cui è memorizzato l'ordine con cui le varie forme appaiono
 -- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
 
-t.pikachu.gamesOrder = {'', 'Cs', 'R', 'D', 'Cn', 'S', 'W'}
-t.castform.gamesOrder = {'', 'S', 'P', 'N'}
-t.deoxys.gamesOrder = {'', 'A', 'D', 'V'}
-t.wormadam.gamesOrder = {'', 'Sa', 'Sc'}
-t.rotom.gamesOrder = {'', 'C', 'L', 'G', 'V', 'T'}
-t.giratina.gamesOrder = {'', 'O'}
-t.shaymin.gamesOrder = {'', 'C'}
-t.basculin.gamesOrder = {'', 'B'}
-t.darmanitan.gamesOrder = {'', 'Z'}
-t.tornadus.gamesOrder = {'', 'T'}
-t.kyurem.gamesOrder = {'', 'B', 'N'}
-t.meloetta.gamesOrder = {'', 'D'}
-t.meowstic.gamesOrder = {'', 'M', 'F'}
-t.aegislash.gamesOrder = {'', 'S'}
-t.pumpkaboo.gamesOrder = {'', 'S', 'L', 'XL'}
-t.zygarde.gamesOrder = {'D', '', 'P'}
-t.hoopa.gamesOrder = {'', 'L'}
-t.oricorio.gamesOrder = {'', 'C', 'H', 'B'}
+t.pikachu.gamesOrder = {'base', 'Cs', 'R', 'D', 'Cn', 'S', 'W'}
+t.castform.gamesOrder = {'base', 'S', 'P', 'N'}
+t.deoxys.gamesOrder = {'base', 'A', 'D', 'V'}
+t.wormadam.gamesOrder = {'base', 'Sa', 'Sc'}
+t.rotom.gamesOrder = {'base', 'C', 'L', 'G', 'V', 'T'}
+t.giratina.gamesOrder = {'base', 'O'}
+t.shaymin.gamesOrder = {'base', 'C'}
+t.basculin.gamesOrder = {'base', 'B'}
+t.darmanitan.gamesOrder = {'base', 'Z'}
+t.tornadus.gamesOrder = {'base', 'T'}
+t.kyurem.gamesOrder = {'base', 'B', 'N'}
+t.meloetta.gamesOrder = {'base', 'D'}
+t.meowstic.gamesOrder = {'base', 'M', 'F'}
+t.aegislash.gamesOrder = {'base', 'S'}
+t.pumpkaboo.gamesOrder = {'base', 'S', 'L', 'XL'}
+t.zygarde.gamesOrder = {'D', 'base', 'P'}
+t.hoopa.gamesOrder = {'base', 'L'}
+t.oricorio.gamesOrder = {'base', 'C', 'H', 'B'}
 for k, v in pairs(t.mega) do
-	t[v].gamesOrder = {'', 'M'}
+	t[v].gamesOrder = {'base', 'M'}
 end
 for k, v in pairs(t.megaxy) do
-	t[v].gamesOrder = {'', 'MX', 'MY'}
+	t[v].gamesOrder = {'base', 'MX', 'MY'}
 end
 for k, v in pairs(t.archeo) do
-	t[v].gamesOrder = {'', 'A'}
+	t[v].gamesOrder = {'base', 'A'}
 end
 for k, v in pairs(t.alola) do
-	t[v].gamesOrder = {'', 'A'}
+	t[v].gamesOrder = {'base', 'A'}
 end
 
 -- Tabelle contenenti le sigle dei primi giochi in ordine cronologico in cui
 -- la forma è supportata, compresa la forma base
 
+t.rattata.since = {A = 'sl', base = 'rb'}
 t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
 	Cn = 'roza', S = 'roza', W = 'roza', base = 'rb'}
 t.raichu.since = {A = 'sl', base = 'rb'}
@@ -439,6 +447,7 @@ t.sandslash = t.sandshrew
 t.ninetales = t.vulpix
 t.thundurus, t.landorus = t.tornadus, t.tornadus
 t.gourgeist = t.pumpkaboo
+t[19] = t.rattata
 t[25] = t.pikachu
 t[26] = t.raichu
 t[27] = t.sandshrew

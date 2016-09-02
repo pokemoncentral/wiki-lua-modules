@@ -57,9 +57,12 @@ Entry.__tostring = function(this)
 | style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${abil2}
 | style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${abild}]=],
 {
-	ani = ms.aniLua(string.tf(this.ndex or 0) .. (this.formAbbr or '')),
+	ani = ms.aniLua(string.tf(this.ndex or 0) ..
+			(this.formAbbr == 'base' and '' or this.formAbbr or '')),
 	name = this.name,
-	form = this.formsData and this.formsData.blacklinks[this.formAbbr] or '',
+	form = this.formsData
+			and this.formsData.blacklinks[this.formAbbr]
+			or '',
 	cs = monoType and '2' or '1',
 	std1 = c[this.type1].normale,
 	dark1 = c[this.type1].dark,
@@ -87,10 +90,10 @@ end
 -- Ritorna il wikicode per il footer usando il tipo dato per i colori
 local makeFooter = function(type)
 	return string.interp([=[
-| class="roundybottom text-left font-small" colspan="7" style="background: #${bg}; line-height:10px;" | '''Questa tabella è completamente corretta solo per i giochi di [[sesta generazione|<span style="color:#000">sesta generazione</span>]].'''
+| class="roundybottom text-left font-small" colspan="7" style="background: #${bg}; line-height:10px;" | '''Questa tabella è completamente corretta solo per i giochi di [[settima generazione|<span style="color:#000">settima generazione</span>]].'''
 *Per i giochi di [[terza generazione|<span style="color:#000">terza generazione</span>]] si ignorino le abilità introdotte nelle generazioni successive, le seconde e quelle nascoste.
 *Per i giochi di [[quarta generazione|<span style="color:#000">quarta generazione</span>]] si ignorino le abilità introdotte nelle generazioni successive e quelle nascoste.
-*Per i giochi di [[quinta generazione|<span style="color:#000">quinta generazione</span>]] si ignorino le abilità introdotte nelle generazioni successive.
+*Per i giochi di [[quinta generazione|<span style="color:#000">quinta</span>]] e [[sesta generazione|<span style="color:#000">sesta generazione</span>]] si ignorino le abilità introdotte nelle generazioni successive.
 |}]=], {bg = c[type].light})
 end
 
