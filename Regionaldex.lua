@@ -5,9 +5,9 @@ local rdex = {}
 
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local dex = require('Dex-data')
-local c = require('Colore-data')
-local sup = require('Sup-data')
+local dex = require("Dex-data")
+local c = require("Colore-data")
+local sup = require("Sup-data")
 
 -- Ritorna il dex regionale di un Pokémon nel vecchio
 -- dex regionale specificato: nel caso in cui non sia

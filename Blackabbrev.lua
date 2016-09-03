@@ -4,9 +4,9 @@ local x = {}
 
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-sigle')
-local c = require('Colore-data')
-local m = require('Sigle-data')
-local wd = require('Wikilib-data')
+local c = require("Colore-data")
+local m = require("Sigle-data")
+local wd = require("Wikilib-data")
 
 --[=[
 

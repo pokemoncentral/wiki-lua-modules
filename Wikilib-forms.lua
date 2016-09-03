@@ -2,12 +2,12 @@
 
 local f = {}
 local tab = require('Wikilib-tables')
-local alt = require('AltForms-data')
+local alt = require("AltForms-data")
 
 -- Usa come modulo dati per le forme alternative UselessForms/data
 
 f.loadUseless = function()
-	alt = require('UselessForms-data')
+	alt = require("UselessForms-data")
 end
 
 f.loaduseless, f.load_useless = f.loadUseless, f.loadUseless

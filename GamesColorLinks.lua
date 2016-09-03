@@ -5,7 +5,7 @@ local l = {}
 
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-sigle')
-local s = require('Sigle-data')
+local s = require("Sigle-data")
 
 -- Crea la funzione d'interfaccia per ogni sigla
 

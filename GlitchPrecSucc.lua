@@ -35,9 +35,8 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local c = require('Colore-data')
-local data = require('Wikilib-data')
--- Glitch/data should stay require, mw.loadData messes with table library
+local c = require("Colore-data")
+local data = require("Wikilib-data")
 local glitches = require('Glitch-data')
 
 --[[

@@ -51,8 +51,8 @@ local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local alts = require("AltForms-data")
 local c = require("Colore-data")
-local abilData = require('PokéAbil-data')
-local pokes = require('Poké-data')
+local abilData = require("PokéAbil-data")
+local pokes = require("Poké-data")
 
 --[[
 

@@ -10,9 +10,9 @@ local lib = require('Wikilib-learnlists')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local forms = require('Wikilib-forms')
-local c = require('Colore-data')
-local gendata = require('Gens-data')
-local sup = require('Sup-data')
+local c = require("Colore-data")
+local gendata = require("Gens-data")
+local sup = require("Sup-data")
 
 -- Rappresentazione stringa dei parametri booleani
 local boolDisplay = {No = '×', Yes = '✔'}
@@ -204,6 +204,7 @@ end
 -- Le prime celle degli entry
 local head = function(ndex, name, type1, type2, stab, notes, form)
 	local ndexFigures = ndex:match('^(%d+)')
+	local abbr = forms.getabbr(ndex, form)
 	return string.interp([=[|- style="background:#fff"
 | style="width: 26px;" | ${num}
 | style="width: 26px;" | ${ani}
@@ -212,7 +213,7 @@ local head = function(ndex, name, type1, type2, stab, notes, form)
 ]=],
 {
 	num = ndexFigures,
-	ani = ms.aniLua(ndexFigures .. forms.getabbr(ndex, form)),
+	ani = ms.aniLua(ndexFigures .. abbr == 'base' and '' or abbr),
 	stab = stab,
 	name = name,
 	notes = lib.makeNotes(notes or ''),

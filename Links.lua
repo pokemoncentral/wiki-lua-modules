@@ -3,7 +3,7 @@
 local l = {}
 
 local txt = require('Wikilib-strings')
-local c = require('Colore-data')
+local c = require("Colore-data")
 
 --[[
 

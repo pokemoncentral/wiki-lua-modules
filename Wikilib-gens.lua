@@ -3,7 +3,7 @@
 local gens = {}
 
 local tab = require('Wikilib-tables')
-local data = require('Gens-data')
+local data = require("Gens-data")
 
 -- Il primo argomento è un indice delle sottotables delle tables delle
 -- singole generazioni del modulo gensdata, mentre il secondo è un valore

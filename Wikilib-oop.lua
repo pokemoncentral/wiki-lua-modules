@@ -95,4 +95,10 @@ oop.makeClass = function(superClass)
 	return class
 end
 
+oop.instanceof = function(instance, class)
+	return getmetatable(instance) == class
+end
+
+oop.isA, oop.is_a = oop.instanceof, oop.instanceof
+
 return oop

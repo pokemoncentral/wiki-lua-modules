@@ -7,7 +7,7 @@ local w = require('Wikilib')
 local txt = require('Wikilib-strings')
 local t = require('Wikilib-tables')
 local ot = require('Wikilib-others')
-local c = require('Colore-data')
+local c = require("Colore-data")
 
 -- Ritorna "light" se il parametro è 'Light', "dark" se il parametro è
 -- 'Dark', Rocket', 'Rocketex', 'Idro', 'Aqua', 'Magma', 'Galassia',

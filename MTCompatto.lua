@@ -25,10 +25,10 @@ local w = require('Wikilib')
 local tab = require('Wikilib-tables')
 local txt = require('Wikilib-strings')
 local links = require('AbbrLink')
-local c = require('Colore-data')
-local machines = require('Machines-data')
-local gens = require('Gens-data')
-local moves = require('Move-data')
+local c = require("Colore-data")
+local machines = require("Machines-data")
+local gens = require("Gens-data")
+local moves = require("Move-data")
 
 --[[
 

@@ -11,9 +11,9 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local ms = require('MiniSprite')
-local c = require('Colore-data')
-local data = require('Wikilib-data')
-local pokes = require('Poké-data')
+local c = require("Colore-data")
+local data = require("Wikilib-data")
+local pokes = require("Poké-data")
 
 m.PokePrecSucc = function(frame)
     local poke = string.trim(frame.args[1]):lower()
