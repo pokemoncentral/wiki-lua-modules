@@ -359,7 +359,7 @@ EffTable.new = function(name, formName)
 			I tipi vanno scambiati perché il costruttore
 			di EffTable.FooterLine controlla solo il primo
 		--]]
-		if not monoType and et.typesHaveImm[types.type1] then
+		if not monoType and et.typesHaveImm[types.type2] then
 			table.insert(this.footer, EffTable.FooterLine.new('RINGTARGET',
 					{type1 = types.type2, type2 = types.type1}, abils))
 		end
