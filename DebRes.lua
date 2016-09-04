@@ -74,7 +74,7 @@ EffTable.strings = {
 		Wikicode per la parte iniziale di un box
 		(Debolezze, Immunità, Danno Normale, ecc)
 	--]]
-	BOX_INIT = [=[| class="roundy flex flex-row flex-wrap flex-items-stretch" style="padding: 0; background: #${bg};" | <span class="inline-flex flex-items-center flex-main-center width-xl-30 width-xs-100" style="padding: 0.3em; box-sizing: border-box;">'''${text}'''</span><div class="flex flex-row flex-wrap flex-items-stretch roundy width-xl-70 width-xs-100" style="margin: -2px; border-spacing: 0; padding: 0; border: 2px solid #${bd};">]=],
+	BOX_INIT = [=[<div class="roundy flex flex-row flex-wrap flex-items-stretch" style="padding: 0; margin-bottom: -2px; background: #${bg}; border: 2px solid #${bd};"><span class="inline-flex flex-items-center flex-main-center width-xl-30 width-xs-100" style="padding: 0.3em; box-sizing: border-box;">'''${text}'''</span><div class="flex flex-row flex-wrap flex-items-stretch roundy width-xl-70 width-xs-100" style="margin: -2px; border-spacing: 0; padding: 0; border: 2px solid #${bd};">]=],
 	
 	-- Wikicode per una riga di tipi aventi la stessa efficacia
 	BOX_LINE = [=[<div class="flex flex-row flex-wrap flex-items-stretch width-xl-100" style="box-sizing: border-box; padding: 0.1em;${separator}"><div class="inline-flex flex-items-center flex-main-center roundy width-xl-5 width-sm-10 width-xs-100" style="box-sizing: border-box; padding: 0 0.2em; background: #FFF;">${eff}&times;</div><div class="inline-flex flex-row flex-wrap flex-items-center flex-main-start width-xl-95 width-sm-90 width-xs-100" style="box-sizing: border-box; padding-left: 0.2em;">${types}</div></div>]=],
@@ -194,7 +194,7 @@ EffTable.printSingleBox = function(boxData, colors)
 	--]]
 	if #boxData == 1 then
 		return string.interp(table.concat{EffTable.strings.BOX_INIT,
-				EffTable.printEffLine(boxData[1]), '</div>'},
+				EffTable.printEffLine(boxData[1]), '</div></div>'},
 		{
 			bg = colors.cells,
 			text = boxData.text,
@@ -224,7 +224,7 @@ EffTable.printSingleBox = function(boxData, colors)
 	table.insert(allLines, lastLine)
 	allLines = table.concat(allLines)
 	return string.interp(table.concat{EffTable.strings.BOX_INIT,
-			allLines, '</div>'},
+			allLines, '</div></div>'},
 		{
 			bg = colors.cells,
 			text = boxData.text,
@@ -242,9 +242,9 @@ EffTable.printEffBoxes = function(boxes, colors)
 	boxes = table.filter(boxes, function(box)
 			return type(box) ~= 'table' or #box > 0
 	end)
-	return table.concat(table.map(boxes, function(box)
+	return w.mapAndConcat(boxes, function(box)
 			return EffTable.printSingleBox(box, colors)
-		end), '\n|-\n')
+		end)
 end
 
 --[[
@@ -403,13 +403,11 @@ EffTable.__tostring = function(this)
 	local interpData = {
 		bg = this.colors.bg,
 		bd = this.colors.bd,
-		foot = #this.footer < 1 and '' or string.interp([=[
-
-|-
-| class="roundy text-left text-small" style="padding: 2px; background: #${bg};" | ${lines}]=],
+		foot = #this.footer < 1 and '' or string.interp([=[<div class="roundy text-left text-small" style="padding: 2px; background: #${bg}; border: 2px solid #${bd};">${lines}</div>]=],
 				{
 					bg = this.colors.cells,
-					lines = table.concat(table.map(this.footer, tostring))
+					bd = this.colors.bg,
+					lines = w.mapAndConcat(this.footer, tostring)
 				})
 	}
 	
@@ -439,10 +437,7 @@ EffTable.__tostring = function(this)
 	interpData.effBoxes = EffTable.printEffBoxes({weak, std, 
 			res, imm}, this.colors)
 	
-	-- Si può andare a capo con effBoxes perché ce n'è sempre almeno uno
-	local tab = string.interp([[{| class="roundy pull-center text-center min-width-xl-80" style="background: #${bg}; border: 3px solid #${bd};"
-${effBoxes}${foot}
-|}]], interpData)
+	local tab = string.interp([[<div class="roundy pull-center text-center width-xl-80 width-md-100" style="background: #${bg}; border: 3px solid #${bd};">${effBoxes}${foot}</div>]], interpData)
 
 	if #this.labels > 0 then
 		return string.interp([[==== ${title} ====
@@ -800,11 +795,11 @@ local printEffTables = function(effTables)
 		Si rendono tutte le tables collasabili e tutte
 		tranne la prima collassate di default
 	--]]
-	return table.concat(table.map(effTables, function(effTable, key)
+	return w.mapAndConcat(effTables, function(effTable, key)
 			effTable:setCollapse('mw-collapsible' ..
 					(key == 1 and '' or ' mw-collapsed'))
 			return tostring(effTable)
-		end), '\n')
+		end, '\n')
 end
 
 --[[
