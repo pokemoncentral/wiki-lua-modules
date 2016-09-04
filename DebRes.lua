@@ -74,13 +74,13 @@ EffTable.strings = {
 		Wikicode per la parte iniziale di un box
 		(Debolezze, Immunità, Danno Normale, ecc)
 	--]]
-	BOX_INIT = [=[| class="roundy" style="padding: 0; background: #${bg};" | <span style="line-height: ${height}ex;">'''${text}'''</span><div class="roundy pull-right text-left grid" style="margin: -2px; border-spacing: 0; padding: 0; width: 70%; border: 2px solid #${bd};">]=],
+	BOX_INIT = [=[| class="roundy flex flex-row flex-wrap flex-items-stretch" style="padding: 0; background: #${bg};" | <span class="inline-flex flex-items-center flex-main-center width-xl-30 width-xs-100" style="padding: 0.3em; box-sizing: border-box;">'''${text}'''</span><div class="flex flex-row flex-wrap flex-items-stretch roundy width-xl-70 width-xs-100" style="margin: -2px; border-spacing: 0; padding: 0; border: 2px solid #${bd};">]=],
 	
 	-- Wikicode per una riga di tipi aventi la stessa efficacia
-	BOX_LINE = [=[<div class="grid-row"><div class="roundy${rd} grid-cell text-center align-middle" style="width: 5%; background: #FFF;">${eff}×</div><div class="grid-cell" style="padding: 0 0 0 0.2em;">${types}</div></div>]=],
+	BOX_LINE = [=[<div class="flex flex-row flex-wrap flex-items-stretch width-xl-100" style="box-sizing: border-box; padding: 0.1em;${separator}"><div class="inline-flex flex-items-center flex-main-center roundy width-xl-5 width-sm-10 width-xs-100" style="box-sizing: border-box; padding: 0 0.2em; background: #FFF;">${eff}&times;</div><div class="inline-flex flex-row flex-wrap flex-items-center flex-main-start width-xl-95 width-sm-90 width-xs-100" style="box-sizing: border-box; padding-left: 0.2em;">${types}</div></div>]=],
 	
 	-- Wikicode per il separatore di righe con la stessa efficacia
-	LINES_SEPARATOR = [=[<div class="grid-row"><div class="grid-cell" style="height: 2px; padding: 0; background: #${bg};"></div><div class="grid-cell" style="height: 2px; padding: 0; background: #${bg};"></div></div>]=]
+	LINES_SEPARATOR = [=[ border-bottom: 2px solid #${color};]=]
 }
 
 --[[
@@ -95,35 +95,6 @@ EffTable.allEff = {0, 0.25, 0.5, 1, 2, 4, -- Standard
 -- 0.3125, 0.625, 1.25, 2.5, 5, -- Pellearsa (al momento inutile)
 1.5 -- 3 -- Filtro/Solidroccia (al momento 3 è inutile)
 }
-
---[[
-
-Altezza di una riga di Boxtipo in ex (1px -> 0.1ex):
-line-height + 2*padding + 2*border + 2*margin
-
---]]
-EffTable.typesLineHeight = 4.4
-
---[[
-
-Usata per calcolare l'altezza delle label in ex
-dei box in funzione del numero di righe di ogni
-efficacia contenuta: avendo una width del 18%,
-i boxtipo si dispongono in massimo cinque per
-riga, con i restanti a formarne una in più.
-Infine, si tiene conto anche del separatore di
-righe, di altezza 2px (-> 0.3ex).
-
---]]
-EffTable.getHeight = function(box)
-	local totalLinesHeight = 0
-	for k, line in ipairs(box) do
-		totalLinesHeight = totalLinesHeight +
-				math.ceil(#line.types / 5) *
-				EffTable.typesLineHeight
-	end
-	return totalLinesHeight + (#box - 1) * 0.3
-end
 
 --[[
 
@@ -192,8 +163,8 @@ end
 
 -- Stampa i tipi dati come Boxes tipi
 EffTable.printTypes = function(types)
-	return box.listLua(types, ' inline-block',
-		'margin: 0.3ex; padding: 0.3ex 0; width: 18%; line-height: 3ex; font-weight: bold; box-sizing: border-box;', true)
+	return box.listLua(types, ' inline-block width-xl-15 width-md-20 width-sm-35 width-xs-45',
+		'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold; box-sizing: border-box;', true)
 end
 
 --[[
@@ -203,12 +174,14 @@ efficacia, aggiungendo il bordo inferiore
 se indicato
 
 --]]
-EffTable.printEffLine = function(data, colors, roundy)
+EffTable.printEffLine = function(data, roundy, colors)
 	return string.interp(EffTable.strings.BOX_LINE,
 		{
 			rd = roundy or '',
 			eff = EffTable.displayEff(data.eff),
-			types = EffTable.printTypes(data.types)
+			types = EffTable.printTypes(data.types),
+			separator = colors and string.interp(EffTable.strings.LINES_SEPARATOR,
+				{color = colors.bg}) or ''
 		})
 end
 
@@ -221,36 +194,26 @@ EffTable.printSingleBox = function(boxData, colors)
 	--]]
 	if #boxData == 1 then
 		return string.interp(table.concat{EffTable.strings.BOX_INIT,
-				EffTable.printEffLine(boxData[1], colors), '</div>'},
+				EffTable.printEffLine(boxData[1]), '</div>'},
 		{
 			bg = colors.cells,
-			height = EffTable.getHeight(boxData),
 			text = boxData.text,
 			bd = colors.bg
 		})
 	end
 	
-	--[[
-		L'altezza della label del box va calcolata
-		ora perché dopo si manipola boxData
-	--]]
-	local height = EffTable.getHeight(boxData)
-
-	local linesSep = string.interp(EffTable.strings.LINES_SEPARATOR,
-			{bg = colors.bg})
-	
 	-- Prima e ultima riga hanno l'efficacia arrotondata
 	local firstLine = EffTable.printEffLine(table.remove(boxData, 1),
-			colors, 'top')
+			'top', colors)
 	local lastLine = EffTable.printEffLine(table.remove(boxData),
-			colors, 'bottom')
+			'bottom')
 	
 	-- Controllo superfluo, ma il caso con due righe è molto comune
 	local allLines
 	if #boxData > 0 then
 		allLines = table.map(boxData, function(lineData)
 				if type(lineData) == 'table' then
-					return EffTable.printEffLine(lineData, colors)
+					return EffTable.printEffLine(lineData, '', colors)
 				end
 			end)
 	else
@@ -259,11 +222,11 @@ EffTable.printSingleBox = function(boxData, colors)
 	
 	table.insert(allLines, 1, firstLine)
 	table.insert(allLines, lastLine)
+	allLines = table.concat(allLines)
 	return string.interp(table.concat{EffTable.strings.BOX_INIT,
-			table.concat(allLines, linesSep), '</div>'},
+			allLines, '</div>'},
 		{
 			bg = colors.cells,
-			height = height,
 			text = boxData.text,
 			bd = colors.bg
 		})
@@ -477,7 +440,7 @@ EffTable.__tostring = function(this)
 			res, imm}, this.colors)
 	
 	-- Si può andare a capo con effBoxes perché ce n'è sempre almeno uno
-	local tab = string.interp([[{| class="roundy pull-center text-center" style="width: 80%; max-width: 80%; background: #${bg}; border: 3px solid #${bd};"
+	local tab = string.interp([[{| class="roundy pull-center text-center min-width-xl-80" style="background: #${bg}; border: 3px solid #${bd};"
 ${effBoxes}${foot}
 |}]], interpData)
 
