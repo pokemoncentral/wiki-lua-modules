@@ -213,7 +213,7 @@ local head = function(ndex, name, type1, type2, stab, notes, form)
 ]=],
 {
 	num = ndexFigures,
-	ani = ms.aniLua(ndexFigures .. abbr == 'base' and '' or abbr),
+	ani = ms.aniLua(ndexFigures .. (abbr == 'base' and '' or abbr)),
 	stab = stab,
 	name = name,
 	notes = lib.makeNotes(notes or ''),
