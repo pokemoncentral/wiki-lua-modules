@@ -11,10 +11,10 @@ local form = require('Wikilib-forms')
 local tab = require('Wikilib-tables')
 local txt = require('Wikilib-strings')
 local ot = require('Wikilib-others')
-local data = require('Wikilib-data')
-local pokedata = require('Poké-data')
-local alt = require('AltForms-data')
-local useless = require('UselessForms-data')
+local data = require("Wikilib-data")
+local pokedata = require("Poké-data")
+local alt = require("AltForms-data")
+local useless = require("UselessForms-data")
 
 -- Ritorna un ndex randomico
 
@@ -35,7 +35,7 @@ local getArtworkForm = function(abbr, name)
 
 	-- Forma base
 
-	if abbr == '' then
+	if abbr == 'base' then
 		return ''
 	end
 

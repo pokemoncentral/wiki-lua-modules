@@ -1,11 +1,31 @@
+--[[
+
+Modulo di utilità per creare elenchi. Sfrutta
+l'object oriented programming per offrire delle
+funzioni che fanno buona parte dei task più
+comuni della creazione di liste, come creare
+delle entry scorrendo un elenco di un modulo
+dati e concatenare le entry così ottenute.
+
+Aiuta anche nell'ordinamento delle entry,
+definendo implicitamente delle interfacce che
+rendono possibile l'automazione del sorting.
+
+--]]
 local l = {}
 
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local w = require('Wikilib')
 local form = require('Wikilib-forms')
 local oop = require('Wikilib-oop')
-local w = require('Wikilib')
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local alts = require('AltForms-data')
+
+--[[-----------------------------------------
+
+				Iteratori
+
+--]]-----------------------------------------
 
 --[[
 
@@ -31,7 +51,31 @@ end
 
 l.poke_names = l.pokeNames
 
+--[[-----------------------------------------
+
+				Ordinamento
+
+--]]-----------------------------------------
+
+--[[
+
+Funzione da passare a table.sort per ordinare le
+entry in base alla forma alternativa: non viene
+fatto nessun controllo sulla presenza delle stesse.
+
+Sfrutta la seguente interfaccia:
+	- formsData: Dati delle forme alternative del
+		modulo AltForms/data del Pokémon a cui la
+		entry è relativa
+	- formAbbr: sigla della forma alternativa a cui
+		la entry si riferisce
+--]]
 l.sortForm = function(a, b)
+
+	--[[
+		A volte lua confronta un elemento con se stesso,
+		e se non si fa così non funziona più niente
+	--]]
 	if a == b then
 		return false
 	end
@@ -41,7 +85,31 @@ end
 
 l.sort_form = l.sortForm
 
+--[[
+
+Funzione da passare a table.sort per ordinare le
+entry in base al numero di dex nazionale e forma
+alternativa. Gli ndex non definiti vengono posti
+dopo quelli definiti, e si può specificare un
+criterio di ordinamento tra ndex inesistenti.
+
+Sfrutta la seguente interfaccia:
+	- ndex: Numero di dex nazionale del Pokémon
+		cui la entry è relativa
+	- fallbackSort: property da utilizzare per
+		l'ordinamento delle entry senza ndex
+	- formsData: Dati delle forme alternative del
+		modulo AltForms/data del Pokémon a cui la
+		entry è relativa
+	- formAbbr: sigla della forma alternativa a cui
+		la entry si riferisce
+--]]
 l.sortNdex = function(a, b)
+
+	--[[
+		A volte lua confronta un elemento con se stesso,
+		e se non si fa così non funziona più niente
+	--]]
 	if a == b then
 		return false
 	end
@@ -70,7 +138,57 @@ end
 
 l.sort_ndex = l.sortNdex
 
-l.makeList = function(args)
+--[[-----------------------------------------
+
+		Funzioni per creare elenchi
+
+--]]-----------------------------------------
+
+--[[
+
+Crea un elenco in cui ogni entry è la riga di
+una tabella HTML.
+
+Gli argomenti sono named poiché sono molti:
+	- source: la table lua da scorrere per
+		prelevare i dati.
+	- makeEntry: costruttore della classe
+		che rappresenta una entry.
+	- entryArgs: opzionale, argomento
+		supplementare da passare al
+		costruttore della entry.
+	- iterator: iteratore con cui scorrere
+		la table lua sorgente dei dati;
+		facoltativo, ha come default pairs.
+	- header: wikicode per l'intestazione
+		della tabella HTML.
+	- footer: wikicode per il footer della
+		tabella HTML. Opzionale, se non
+		fornito, la entry deve implementare
+		il metodo toFooter().
+
+La classe che rappresenta le entries deve
+implementare la seguente interfaccia:
+	- costruttore(): prende in ingeresso un
+		elemento della table lua da cui
+		vengono prelevati i dati, la chiave
+		corrispondente, ed un eventuale terzo
+		argomento specificato come parametro
+		a makeList di nome 'entryArgs'.
+		Deve ritornare nil se l'entry non
+		deve essere inserita nella lista.
+	- __lt(): usato per l'ordinamento con
+		table.sort.
+	- toFooter(): trasforma la entry nel
+		footer della table. Opzionale,
+		necessario solo in assensa di argomento
+		di nome 'footer' a makeList.
+	- __tostring(): conversione a stringa,
+		deve ritornare il wikicode per una
+		riga della tabella HTML relativa
+		alla entry corrente.
+--]]
+l.makeList = function(args)	
 	local makeEntry = function(sourceData, sourceKey)
 		return args.makeEntry(sourceData, sourceKey,
 				args.entryArgs)
@@ -91,6 +209,83 @@ l.makeList = function(args)
 			tostring)
 end
 
+--[[
+
+Crea e stampa una lista di box per tutte le
+forme di un dato Pokémon: i box che contengono
+gli stessi dati vengono accorpati, previa
+inserimento del nome di tutte le forme nella
+label del box. Se il Pokémon non ha forme
+alternative, stampa solo l box per la forma
+base.
+
+Gli argomenti sono named:
+	- name: nome della forma base del Pokémon
+		di cui si vogliono creare i box.
+	- makeBox: costruttore della classe
+		che rappresenta un box.
+	- printBoxes: stampa i box, ritornando
+		una stringa.
+
+La classe che rappresenta il box deve
+implementare la seguente interfaccia:
+	- costruttore(): prende in ingeresso il
+		nome del Pokémon, nel formato nome +
+		sigla in cui si trovano nei moduli
+		dati, e il nome esteso della forma
+		come argomento opzionale.
+	- __eq(): usato per stabilire se due box
+		sono uguali o meno.
+	- addLabel(): aggiunge una label a quelle
+		già presenti.
+--]]
+l.makeFormsLabelledBoxes = function(args)
+	local altData = alts[args.name]
+
+	if not altData then
+		return args.printBoxes({args.makeBox(args.name)})
+	end
+	
+	local boxes = {}
+
+	--[[
+		Scorrendo gamesOrder i boxes saranno già ordinati
+		senza bisogno di sorting successivo.
+		
+		Non si può usare table.map perché ciò porterebbe
+		ad avere buchi negli indici di effTables, cosa
+		difficilmente gestibile
+	--]]
+	for k, abbr in ipairs(altData.gamesOrder) do
+		local formName = altData.names[abbr]
+		local name = args.name .. (abbr == 'base' and '' or abbr)
+		local formBox = args.makeBox(name, formName)
+
+		local index = table.search(boxes, formBox)
+		if index then
+			boxes[index]:addLabel(formName)
+		else
+			table.insert(boxes, formBox)
+		end
+	end
+
+	return args.printBoxes(boxes)
+end
+
+--[[-----------------------------------------
+
+			Classi di utilità
+
+--]]-----------------------------------------
+
+--[[
+
+Classe base per una entry relativa ad un Pokémon
+che implementa l'interfaccia per l'ordinamento
+tramite numero di dex nazionale, con il nome
+come criterio in caso di ndex mancante.
+
+--]]
 l.PokeSortableEntry = oop.makeClass()
 
 l.PokeSortableEntry.new = function(name, ndex)
@@ -112,5 +307,33 @@ l.PokeSortableEntry.new = function(name, ndex)
 end
 
 l.PokeSortableEntry.__lt = l.sortNdex
+
+--[[
+
+Classe base per un oggetto dotato di labels.
+Implementa il metodo addLabel() richiesto
+dall'interfaccia di makeFormsLabelledBoxes.
+
+--]]
+l.Labelled = oop.makeClass()
+
+l.Labelled.new = function(label)
+	local this = setmetatable({}, Labelled)
+
+	-- Table vuota anche in caso label non sia dato
+	this.labels = type(label) == 'table'
+		and label or {label}
+
+	return this
+end
+
+-- Aggiunge una label o una table di labels
+l.Labelled.addLabel = function(this, label)
+	if type(label) == 'table' then
+		this.labels = table.merge(this.labels, label)
+	else
+		table.insert(this.labels, label)
+	end
+end
 
 return l

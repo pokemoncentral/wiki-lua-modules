@@ -22,7 +22,7 @@ local lib = require('Squadra-lib')
 local txt = require('Wikilib-strings')
 local r = require('Roundy')
 local gbl = require('GamesColorLinks')
-local c = require('Colore-data')
+local c = require("Colore-data")
 
 -- Modulo squadra intero
 

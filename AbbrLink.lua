@@ -21,7 +21,7 @@ local mw = require('mw')
 local w = require('Wikilib')
 local tab = require('Wikilib-tables')
 local lib = require('Wikilib-sigle')
-local abbr = require('Sigle-data')
+local abbr = require("Sigle-data")
 
 for abbr, data in pairs(abbr) do
 	local abbrLua = abbr .. 'Lua'

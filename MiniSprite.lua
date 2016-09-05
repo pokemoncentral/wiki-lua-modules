@@ -8,8 +8,8 @@ interno da altri moduli, che esterno dal wikicode
 local o = {}
 
 local txt = require('Wikilib-strings')
-local gendata = require('Gens-data')
-local pokes = require('Poké-data')
+local gendata = require("Gens-data")
+local pokes = require("Poké-data")
 
 --[[
 

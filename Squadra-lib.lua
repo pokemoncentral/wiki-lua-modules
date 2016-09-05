@@ -1,7 +1,7 @@
 -- Libreria per il modulo Squadra
 
 local lib = {}
-local c = require('Colore-data')
+local c = require("Colore-data")
 
 -- Implementa lo switch sulla classe allenatore
 trainerClass = {

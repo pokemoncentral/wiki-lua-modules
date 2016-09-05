@@ -31,11 +31,12 @@ I valori riconosciuti del parametro game sono i seguenti:
 
 local m = {}
 
+local mw = require('mw')
+
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local c = require('Colore-data')
-local data = require('Wikilib-data')
--- Glitch/data should stay require, mw.loadData messes with table library
+local c = require("Colore-data")
+local data = require("Wikilib-data")
 local glitches = require('Glitch-data')
 
 --[[
@@ -98,7 +99,7 @@ crea la barra mediante interpolazione di stringhe
 --]]
 
 m.GlitchPrecSucc = function(frame)
-    local glitch = string.trim(frame.args[1])
+    local glitch = mw.text.decode(string.trim(frame.args[1]))
     local game = tonumber(frame.args.game) or string.trim(frame.args.game):upper()
 
     local glitchIndex

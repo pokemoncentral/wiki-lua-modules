@@ -25,10 +25,10 @@ local w = require('Wikilib')
 local tab = require('Wikilib-tables')
 local txt = require('Wikilib-strings')
 local links = require('AbbrLink')
-local c = require('Colore-data')
-local machines = require('Machines-data')
-local gens = require('Gens-data')
-local moves = require('Move-data')
+local c = require("Colore-data")
+local machines = require("Machines-data")
+local gens = require("Gens-data")
+local moves = require("Move-data")
 
 --[[
 
@@ -101,9 +101,15 @@ m.MTCompatto = function(frame)
 	local params = w.trimAndMap(frame.args, string.lower)
 	local gens, color = {}, nil
 	local move = params[1]:match('^(.+) %(mossa%)$') or params[1]
+	local moveData = moves[move]
+
+	if not moveData then
+		move = mw.text.decode(move)
+		moveData = moves[move]
+	end
 	
-	if moves[move] then
-		color = c[moves[move].type]
+	if moveData then
+		color = c[moveData.type]
 		for gen, genMc in ipairs(machines) do
 			if table.deepSearch(genMc, move) then
 				table.insert(gens, MTGen(gen, "auto"))
@@ -119,7 +125,7 @@ m.MTCompatto = function(frame)
 	end
 	
 	return string.interp([=[
-{| class="roundy pull-center text-center grid mw-collapsible ${collapsed}" style="border: 3px solid #${colorDark}; background: #${colorNormal}; width: ${wd};"
+{| class="roundy pull-center text-center mw-collapsible ${collapsed}" style="border: 3px solid #${colorDark}; background: #${colorNormal}; width: ${wd};"
 |-
 ! class="roundy text-center" style="color: #000; background: #${colorLight};" | [[MT|<span style="color: #000;">MT</span>]] nelle varie generazioni
 |-

@@ -5,9 +5,9 @@ local d = {}
 local txt = require('Wikilib-strings')
 local ms = require('MiniSprite')
 local roundy = require('Roundy')
-local dex = require('Dex-data')
-local pokes = require('Poké-data')
-local c = require('Colore-data')
+local dex = require("Dex-data")
+local pokes = require("Poké-data")
+local c = require("Colore-data")
 
 local chunks = 50
 local entryText = [=[

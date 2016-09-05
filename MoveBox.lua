@@ -2,6 +2,6 @@
 
 local m = {}
 
-local moves = require('Move-data')
+local moves = require("Move-data")
 
 return m

@@ -5,7 +5,7 @@ local m = {}
 m[1] = {}
 m[1].MT = {'megapugno', 'ventagliente', 'danzaspada', 'turbine', 'megacalcio', 'tossina',
 	'perforcorno', 'corposcontro', 'riduttore', 'sdoppiatore', 'bollaraggio', 'pistolacqua', 
-	'geloraggio', 'bora', 'iper raggio', 'giornopaga', 'sottomissione', 'contatore',
+	'geloraggio', 'bora', 'iper raggio', 'giornopaga', 'sottomissione', 'contrattacco',
 	'movimento sismico', 'ira', 'megassorbimento', 'solarraggio', 'ira di drago', 'fulmine', 
 	'tuono', 'terremoto', 'abisso', 'fossa', 'psichico', 'teletrasporto', 'mimica', 'doppioteam', 
 	'riflesso', 'pazienza', 'metronomo', 'autodistruzione', 'uovobomba', 'fuocobomba', 'comete', 

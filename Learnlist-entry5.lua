@@ -6,7 +6,7 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
-local s = require('Sup-data')
+local s = require("Sup-data")
 
 --Entry per le mosse apprese aumentando di livello
 

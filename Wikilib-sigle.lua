@@ -9,7 +9,7 @@ local q = {}
 
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local c = require('Colore-data')
+local c = require("Colore-data")
 
 --[[
 

@@ -1,5 +1,9 @@
--- Modulo che, dato un tipo, restituisce l'elenco dei Pokémon
--- che lo hanno come primo tipo, secondo o unico
+--[[
+
+Modulo che, dato un tipo, restituisce l'elenco dei Pokémon
+che lo hanno come primo tipo, secondo o unico
+
+--]]
 
 local g = {}
 
@@ -12,7 +16,7 @@ local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local c = require('Colore-data')
+local c = require("Colore-data")
 local pokes = require('Poké-data')
 
 --[[
@@ -49,6 +53,19 @@ end
 
 --[[
 
+Crea il testo di intestazione ad una tabella, dati
+tipo, livello dell'intestazione e parte finale
+
+--]]
+Entry.makeHeader = function(type, level, ending)
+	type = type == 'coleot' and 'Coleottero' or string.fu(type)
+	local headerTags = string.rep('=', level)
+	return table.concat({headerTags, 'Pokémon di tipo',
+			type, ending, headerTags}, ' ')
+end
+
+--[[
+
 Wikicode delle prime celle dell'entry: le altre,
 infatti, variano in base ai tipi del Pokémon, e
 sono gestite dalle sottoclassi
@@ -61,7 +78,8 @@ Entry.__tostring = function(this)
 	{
 		roundy = this.isFooter and r.blLua() or '',
 		ndex = this.ndex and string.tf(this.ndex) or '???',
-		ani = ms.aniLua(string.tf(this.ndex or 0) .. (this.formAbbr or '')),
+		ani = ms.aniLua(string.tf(this.ndex or 0) ..
+				(this.formAbbr == 'base' and '' or this.formAbbr or '')),
 		name = this.name,
 		form = this.formsData and this.formsData.links[this.formAbbr] or ''
 	})
@@ -69,6 +87,10 @@ end
 
 -- Classe per le entry dei Pokémon con un solo tipo
 local MonoTypeEntry = oop.makeClass(Entry)
+
+MonoTypeEntry.makeHeader = function(type)
+	return MonoTypeEntry.super.makeHeader(type, 3, 'puro')
+end
 
 --[[
 
@@ -87,8 +109,8 @@ MonoTypeEntry.new = function(pokeData, name, type)
 		return nil
 	end
 
-	return setmetatable(MonoTypeEntry.super.new(pokeData, name),
-			MonoTypeEntry)
+	return setmetatable(MonoTypeEntry.super.new(pokeData,
+			name), MonoTypeEntry)
 end
 
 MonoTypeEntry.__tostring = function(this)
@@ -112,6 +134,11 @@ cui primo tipo è quello richiesto
 --]]
 local FirstTypeEntry = oop.makeClass(Entry)
 
+FirstTypeEntry.makeHeader = function(type)
+	return FirstTypeEntry.super.makeHeader(type, 4,
+		'come tipo primario')
+end
+
 --[[
 
 Costruttore della classe: il primo argomento
@@ -129,8 +156,8 @@ FirstTypeEntry.new = function(pokeData, name, type)
 		return nil
 	end
 
-	return setmetatable(FirstTypeEntry.super.new(pokeData, name),
-			FirstTypeEntry)
+	return setmetatable(FirstTypeEntry.super.new(pokeData,
+			name), FirstTypeEntry)
 end
 
 FirstTypeEntry.__tostring = function(this)
@@ -158,6 +185,11 @@ cui secondo tipo è quello richiesto
 --]]
 local SecondTypeEntry = oop.makeClass(Entry)
 
+SecondTypeEntry.makeHeader = function(type)
+	return SecondTypeEntry.super.makeHeader(type, 4,
+		'come tipo secondario')
+end
+
 --[[
 
 Costruttore della classe: il primo argomento
@@ -175,8 +207,8 @@ SecondTypeEntry.new = function(pokeData, name, type)
 		return nil
 	end
 
-	return setmetatable(SecondTypeEntry.super.new(pokeData, name),
-			SecondTypeEntry)
+	return setmetatable(SecondTypeEntry.super.new(pokeData,
+			name), SecondTypeEntry)
 end
 
 SecondTypeEntry.__tostring = function(this)
@@ -218,6 +250,25 @@ ${types}]=],
 })
 end
 
+--[[
+
+Crea intestazione e tabella HTML per
+i Pokémon di un tipo dato, mono-tipo,
+con tipo primario o secondario in base
+alla classe entry passata.
+
+--]]
+local makeTypeTable = function(type, Entry)
+	return table.concat({Entry.makeHeader(type),
+		list.makeList({
+			source = pokes,
+			iterator = list.pokeNames,
+			entryArgs = type,
+			makeEntry = Entry.new,
+			header = makeHeader(type,
+					Entry == MonoTypeEntry and 1 or 2)
+		})}, '\n')
+end
 
 --[[
 
@@ -230,44 +281,22 @@ primo e secondo, con le relative intestazioni.
 
 --]]
 g.typelist = function(frame)
-	local monoType = string.trim(frame.args[1]):match('^(%a+) %(tipo%)$'):lower()
-			or 'sconosciuto'
-	local upper = string.fu(monoType)
+	local monoType = string.trim(mw.text.decode(frame.args[1]
+			or 'sconosciuto (tipo)')):match('^(%a+) %(tipo%)$'):lower()
 	local dualType = monoType == 'coleottero' and 'coleot' or monoType
 	local tables = {}
 
-	table.insert(tables, table.concat{'===Pokémon di tipo ', upper, ' puro==='})
-	table.insert(tables, list.makeList({
-		source = pokes,
-		iterator = list.pokeNames,
-		entryArgs = monoType,
-		makeEntry = MonoTypeEntry.new,
-		header = makeHeader(firstType, 1)
-	}))
-	table.insert(tables, table.concat{'===Pokémon di tipo ', upper,
-			' parziale===\n====Pokémon di tipo ', upper, ' come tipo primario===='})
-	table.insert(tables, list.makeList({
-		source = pokes,
-		iterator = list.pokeNames,
-		entryArgs = dualType,
-		makeEntry = FirstTypeEntry.new,
-		header = makeHeader(firstType, 2)
-	}))
-	table.insert(tables, table.concat{'====Pokémon di tipo ', upper,
-			' come tipo secondario===='})
-	table.insert(tables, list.makeList({
-		source = pokes,
-		iterator = list.pokeNames,
-		entryArgs = dualType,
-		makeEntry = SecondTypeEntry.new,
-		header = makeHeader(firstType, 2)
-	}))
+	table.insert(tables, makeTypeTable(monoType, MonoTypeEntry))
+	table.insert(tables, Entry.makeHeader(monoType, 3, 'parziale'))
+	table.insert(tables, makeTypeTable(dualType, FirstTypeEntry))
+	table.insert(tables, makeTypeTable(dualType, SecondTypeEntry))
 
 	return table.concat(tables, '\n')
 end
 
-g.Typelist = g.typelist
-
---return g
+g.Typelist, g.TypeList, g.typeList = g.typelist,
+		g.typelist, g.typelist
 
 print(g.typelist{args={arg[1]}})
+
+-- return g

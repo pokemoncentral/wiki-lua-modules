@@ -13,8 +13,8 @@ local txt = require('Wikilib-strings')
 local spr = require('Sprite')
 local bag = require('Bag')
 local bt = require('Boxtipo')
-local pokes = require('Poké-data')
-local c = require('Colore-data')
+local pokes = require("Poké-data")
+local c = require("Colore-data")
 
 local shinyStars = {[2] = 'GS', [3] = 'RS', [4] = 'DP',
 		[5] = 'BW', [6] = 'XY'}

@@ -17,15 +17,13 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local gens = require('Wikilib-gens')
-local list = require('Wikilib-lists')
 local ms = require('MiniSprite')
 local spr = require('Spr')
-local c = require('Colore-data')
--- AltForms/data should stay require, mw.loadData messes with table library
+local c = require("Colore-data")
 local alt = require('AltForms-data')
-local pokes = require('Poké-data')
-local gendata = require('Gens-data')
-local wlib = require('Wikilib-data')
+local pokes = require("Poké-data")
+local gendata = require("Gens-data")
+local wlib = require("Wikilib-data")
 
 --[[
 
@@ -155,7 +153,6 @@ funzione msLine
 
 local msForms = function(msGens, ndex, type1, type2)
 	return table.concat(table.map(alt[ndex].gamesOrder, function(abbr)
-			abbr = abbr == '' and 'base' or abbr
 			return msLine(abbr, alt[ndex].names[abbr],
 					ndex, type1, type2, msGens)
 		end), '\n')
@@ -373,8 +370,6 @@ degne di nota sono:
 --]]
 
 local fixGenders = function(abbr, gen, ndex, variant)
-	abbr = abbr == '' and 'base' or abbr
-
 	if gen > 3 then	
 		if alt[ndex].names[abbr] == 'Femmina' then
 			return 'base', 'Femmina', 'fe' .. variant
@@ -617,12 +612,8 @@ e quella dei mini sprite
 --]]
 
 u.altSprites = function(frame)
-	local poke = string.trim(frame.args[1] or ''):lower()
+	local poke = mw.text.decode(string.trim(frame.args[1] or '')):lower()
 	if not alt[poke] then
-		--[[
-			UselessForms/data should stay require,
-			mw.loadData messes with table library
-		--]]
 		alt = require('UselessForms-data')
 	end
 	local ndex = pokes[poke].ndex

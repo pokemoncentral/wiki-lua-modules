@@ -2,15 +2,18 @@
 
 local k = {}
 
-local ms = require('MiniSprite')
+local mw = require('mw')
+
 local links = require('Links')
+local ms = require('MiniSprite')
+local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local list = require('Wikilib-lists')
 local form = require('Wikilib-forms')
-local c = require('Colore-data')
+local forms = require("AltForms-data")
+local c = require("Colore-data")
 local pokes = require('Poké-data')
-local forms = require('AltForms-data')
 
 --[[
 
@@ -20,9 +23,7 @@ funzoni makeList, sortNdex e sortForms di
 Wikilib/lists
 
 --]]
-local Entry = setmetatable({}, {__call = function(self, ...)
-		return self.new(...) end })
-Entry.__index = Entry
+local Entry = oop.makeClass(list.PokeSortableEntry)
 
 --[[
 
@@ -40,30 +41,11 @@ Entry.new = function(pokeAbil, name, abil)
 		return nil
 	end
 
-	local this = setmetatable(table.merge(pokeAbil,
-			pokes[name]), Entry)
-
-	if not this.ndex then
-		this.fallbackIndex = this.name
-	end
-
-	local baseName, abbr = form.getNameAbbr(name)
-
-	this.formsData = forms[baseName]
-	if this.formsData then
-		this.formAbbr = abbr
-	end
+	local this = Entry.super.new(name, pokes[name].ndex)
+	this = table.merge(this, pokeAbil)
 	
-	return this
+	return setmetatable(table.merge(this, pokes[name]), Entry)
 end
-
---[[
-
-Overloading dell'operatore < per il sorting,
-come richiesto da makeList in Wikilib/lists.
-
---]]
-Entry.__lt = list.sortNdex
 
 -- Wikicode per la riga di tabella associata all'entry
 Entry.__tostring = function(this)
@@ -75,9 +57,12 @@ Entry.__tostring = function(this)
 | style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${abil2}
 | style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${abild}]=],
 {
-	ani = ms.aniLua(string.tf(this.ndex or 0) .. (this.formAbbr or '')),
+	ani = ms.aniLua(string.tf(this.ndex or 0) ..
+			(this.formAbbr == 'base' and '' or this.formAbbr or '')),
 	name = this.name,
-	form = this.formsData and this.formsData.blacklinks[this.formAbbr] or '',
+	form = this.formsData
+			and this.formsData.blacklinks[this.formAbbr]
+			or '',
 	cs = monoType and '2' or '1',
 	std1 = c[this.type1].normale,
 	dark1 = c[this.type1].dark,
@@ -105,10 +90,10 @@ end
 -- Ritorna il wikicode per il footer usando il tipo dato per i colori
 local makeFooter = function(type)
 	return string.interp([=[
-| class="roundybottom text-left font-small" colspan="7" style="background: #${bg}; line-height:10px;" | '''Questa tabella è completamente corretta solo per i giochi di [[sesta generazione|<span style="color:#000">sesta generazione</span>]].'''
+| class="roundybottom text-left font-small" colspan="7" style="background: #${bg}; line-height:10px;" | '''Questa tabella è completamente corretta solo per i giochi di [[settima generazione|<span style="color:#000">settima generazione</span>]].'''
 *Per i giochi di [[terza generazione|<span style="color:#000">terza generazione</span>]] si ignorino le abilità introdotte nelle generazioni successive, le seconde e quelle nascoste.
 *Per i giochi di [[quarta generazione|<span style="color:#000">quarta generazione</span>]] si ignorino le abilità introdotte nelle generazioni successive e quelle nascoste.
-*Per i giochi di [[quinta generazione|<span style="color:#000">quinta generazione</span>]] si ignorino le abilità introdotte nelle generazioni successive.
+*Per i giochi di [[quinta generazione|<span style="color:#000">quinta</span>]] e [[sesta generazione|<span style="color:#000">sesta generazione</span>]] si ignorino le abilità introdotte nelle generazioni successive.
 |}]=], {bg = c[type].light})
 end
 
@@ -122,7 +107,9 @@ dell'abilità.
 --]]
 k.abillist = function(frame)
 	local type = string.trim(frame.args[1]) or 'pcwiki'
-	local abil = string.trim(frame.args[2]):match('^(.+) %(abilità%)') or 'Cacofonia'	
+	local abil = string.trim(mw.text.decode(frame.args[2]))
+	abil = abil:match('^(.+) %(abilità%)') or 'Cacofonia'
+	 
 	return list.makeList({
 		source = require('PokéAbil-data'),
 		iterator = list.pokeNames,

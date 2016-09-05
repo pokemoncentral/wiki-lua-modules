@@ -2,12 +2,12 @@
 
 local r = {}
 
-local w = require('Modulo:Wikilib')
-local tab = require('Modulo:Wikilib/tables')
+local w = require('Wikilib')
+local tab = require('Wikilib-tables')
 
 r.entry = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
-    local modu = require('Modulo:' .. p[1]:match('^(.+)%.'))
+    local modu = require('' .. p[1]:match('^(.+)%.'))
     local func = p[1]:match('%.(%a+)$')
     table.remove(p, 1)
 

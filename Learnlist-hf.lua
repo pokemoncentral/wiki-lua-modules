@@ -7,8 +7,8 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
-local c = require('Colore-data')
-local gendata = require('Gens-data')
+local c = require("Colore-data")
+local gendata = require("Gens-data")
 
 -- Tabelle dati
 

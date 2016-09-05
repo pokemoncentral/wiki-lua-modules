@@ -3,10 +3,10 @@
 
 local j = {}
 
-local w = require('Modulo:Wikilib')
-local txt = require('Modulo:Wikilib/strings')
-local c = mw.loadData('Modulo:Colore/data')
-local gendata = mw.loadData('Modulo:Gens/data')
+local w = require('Wikilib')
+local txt = require('Wikilib-strings')
+local c = require("Colore-data")
+local gendata = require("Gens-data")
 
 -- Tabelle dati
 

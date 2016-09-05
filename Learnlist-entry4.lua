@@ -2,9 +2,9 @@
 
 local z = {}
 
-local txt = require('Modulo:Wikilib/strings')
-local lib = require('Modulo:Wikilib/learnlists')
-local s = mw.loadData('Modulo:Sup/data')
+local txt = require('Wikilib-strings')
+local lib = require('Wikilib-learnlists')
+local s = require("Sup-data")
 
 -- Funzione chiamata da tutti gli entry per generare le celle dalla seconda in poi
 

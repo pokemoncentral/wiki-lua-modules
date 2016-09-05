@@ -6,9 +6,9 @@ local w = require('Wikilib')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local ms = require('MiniSprite')
-local c = require('Colore-data')
-local abbr = require('Sigle-data')
-local s = require('Sup-data')
+local c = require("Colore-data")
+local abbr = require("Sigle-data")
+local s = require("Sup-data")
 
 -- local trimOnly = {'x v zA'}
 
