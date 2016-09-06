@@ -1518,6 +1518,10 @@ t.crabrawler = {ability1 = 'Ipertaglio', ability2 = 'Ferropugno'}
 -- t[0xDENIELOPUZZA] = t.crabrawler
 t.turtonator = {ability1 = 'Guscioscudo'}
 -- t[0xDENIELOPUZZA] = t.turtonator
+t['tipo zero'] = {ability1 = 'Lottascudo'}
+-- t[0xDENIELOPUZZA] = t['tipo zero']
+t["jangmo-o"] = {ability1 = 'Antiproiettile', ability2 = 'Antisuono'}
+-- t[0xDENIELOPUZZA] = t["jangmo-o"]
 t['tapu koko'] = {ability1 = 'Elettrogenesi'}
 -- t[0xDENIELOPUZZA] = t['tapu koko']
 t.solgaleo = {ability1 = 'Metalprotezione'}
@@ -1533,6 +1537,8 @@ t.magearna = {ability1 = 'Cuoreanima'}
 
 t.rattataA = {ability1 = 'Voracità', ability2 = 'Tuttafretta'}
 t['019A'] = t.rattataA
+t.raticateA = {ability1 = 'Voracità', ability2 = 'Tuttafretta'}
+t['020A'] = t.raticateA
 t.raichuA = {ability1 = 'Codasurf'}
 t['026A'] = t.raichuA
 t.sandshrewA = {ability1 = 'Mantelneve'}

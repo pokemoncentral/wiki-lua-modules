@@ -233,6 +233,8 @@ for name, poke in pairs(t) do
 	end
 end
 
+t.rattata.links = {A = '<div class="small-text">[[Forma di Alola#Rattata e Raticate|Forma di Alola]]</div>',
+	base = '<div class="small-text">[[Forma di Alola#Rattata e Raticate|Forma Normale]]</div>'}
 t.sandshrew.links = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|Forma di Alola]]</div>',
 	base = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|Forma Normale]]</div>'}
 t.vulpix.links = {A = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|Forma di Alola]]</div>',
@@ -274,19 +276,21 @@ for name, poke in pairs(t) do
 	end
 end
 
-t.sandshrew.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000">Forma di Alola</span>]]</div>',
-	base = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000">Forma Normale</span>]]</div>'}
-t.vulpix.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|<span style="color:#000">Forma di Alola</span>]]</div>',
-	base = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|<span style="color:#000">Forma Normale</span>]]</div>'}
-t.wormadam.blacklinks = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Sabbia</span>]]</div>',
-	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Scarti</span>]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Pianta</span>]]</div>'}
-t.tornadus.blacklinks = {T = '<div class="small-text">[[Differenze di forma#Trio dei Kami|<span style="color:#000">Forma Totem</span>]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Trio dei Kami|<span style="color:#000">Forma Incarnazione</span>]]</div>'}
-t.pumpkaboo.blacklinks = {S = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Mini</span>]]</div>',
-	L = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Grande</span>]]</div>',
-	XL = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Maxi</span>]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Normale</span>]]</div>'}
+t.sandshrew.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Rattata e Raticate|<span style="color:#000;">Forma di Alola</span>]]</div>',
+	base = '<div class="small-text">[[Forma di Alola#Rattata e Raticate|<span style="color:#000;">Forma Normale</span>]]</div>'}
+t.sandshrew.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000;">Forma di Alola</span>]]</div>',
+	base = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000;">Forma Normale</span>]]</div>'}
+t.vulpix.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|<span style="color:#000;">Forma di Alola</span>]]</div>',
+	base = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|<span style="color:#000;">Forma Normale</span>]]</div>'}
+t.wormadam.blacklinks = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000;">Manto Sabbia</span>]]</div>',
+	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000;">Manto Scarti</span>]]</div>',
+	base = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000;">Manto Pianta</span>]]</div>'}
+t.tornadus.blacklinks = {T = '<div class="small-text">[[Differenze di forma#Trio dei Kami|<span style="color:#000;">Forma Totem</span>]]</div>',
+	base = '<div class="small-text">[[Differenze di forma#Trio dei Kami|<span style="color:#000;">Forma Incarnazione</span>]]</div>'}
+t.pumpkaboo.blacklinks = {S = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000;">Mini</span>]]</div>',
+	L = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000;">Grande</span>]]</div>',
+	XL = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000;">Maxi</span>]]</div>',
+	base = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000;">Normale</span>]]</div>'}
 
 -- Per passare dai nomi estesi delle forme alternative alle sigle
 
@@ -438,16 +442,19 @@ t.kyogre.since = {A = 'roza', base = 'rz'}
 
 -- Altre forme di Alola, messe qui per evitare inutili iterazioni dei cicli precedenti
 
+table.insert(t.alola, 'raticate')
 table.insert(t.alola, 'sandslash')
 table.insert(t.alola, 'ninetales')
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 
+t.raticate = t.rattata
 t.sandslash = t.sandshrew
 t.ninetales = t.vulpix
 t.thundurus, t.landorus = t.tornadus, t.tornadus
 t.gourgeist = t.pumpkaboo
 t[19] = t.rattata
+t[20] = t.raticate
 t[25] = t.pikachu
 t[26] = t.raichu
 t[27] = t.sandshrew

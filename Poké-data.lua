@@ -1520,6 +1520,10 @@ t.crabrawler = {name = 'Crabrawler', ndex = nil, type1 = 'lotta', type2 = 'lotta
 -- t[0xDENIELOPUZZA] = t.crabrawler
 t.turtonator = {name = 'Turtonator', ndex = nil, type1 = 'fuoco', type2 = 'drago'}
 -- t[0xDENIELOPUZZA] = t.turtonator
+t["jangmo-o"] = {name = 'Jangmo-o', ndex = nil, type1 = 'drago', type2 = 'drago'}
+-- t[0xDENIELOPUZZA] = t["jangmo-o"]
+t['tipo zero'] = {name = 'Tipo Zero', ndex = nil, type1 = 'normale', type2 = 'normale'}
+-- t[0xDENIELOPUZZA] = t['tipo zero']
 t['tapu koko'] = {name = 'Tapu Koko', ndex = nil, type1 = 'elettro', type2 = 'folletto'}
 -- t[0xDENIELOPUZZA] = t['tapu koko']
 t.solgaleo = {name = 'Solgaleo', ndex = nil, type1 = 'psico', type2 = 'acciaio'}
@@ -1534,6 +1538,8 @@ t.magearna = {name = 'Magearna', ndex = nil, type1 = 'acciaio', type2 = 'follett
 
 t.rattataA = {name = 'Rattata', ndex = 19, type1 = 'buio', type2 = 'normale'}
 t['019A'] = t.rattataA
+t.raticateA = {name = 'Raticate', ndex = 20, type1 = 'buio', type2 = 'normale'}
+t['020A'] = t.raticateA
 t.raichuA = {name = 'Raichu', ndex = 26, type1 = 'elettro', type2 = 'psico'}
 t['026A'] = t.raichuA
 t.sandshrewA = {name = 'Sandshrew', ndex = 27, type1 = 'ghiaccio', type2 = 'acciaio'}
