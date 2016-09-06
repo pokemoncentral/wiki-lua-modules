@@ -330,7 +330,9 @@ table.filter = function(tab, cond)
 		end
 	end
 	for key, value in table.nonIntPairs(tab) do
-		dest[key] = value
+		if cond(value, key) then
+			dest[key] = value
+		end
 	end
 	return dest
 end
