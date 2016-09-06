@@ -9,6 +9,7 @@ local q = {}
 
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
+local sig = require("Sigle-data")
 local c = require("Colore-data")
 
 --[[
@@ -92,6 +93,18 @@ q.displayAbbr = function(abbrData, sep, coloredAndBold)
 					return makeAbbr(displayData[1], displayData[2])
 				end), sep)
 		end), sep)
+end
+
+--[[
+
+Ritorna il nome del/i gioco/i a partire dalla sigla,
+eventualmente con un separatore
+
+--]]
+q.gamesName = function(s, sep)
+	return table.concat(table.map(sig[s][1].display, function(disp)
+			return string.fu(disp[2])
+		end), sep or '/')
 end
 
 return q

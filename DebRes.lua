@@ -784,7 +784,7 @@ Ritorna il wikicode per una table di EffTables:
 la prima è espansa e le successive collassate.
 
 --]]
-local printEffTables = function(effTables)
+EffTable.printEffTables = function(effTables)
 
 	-- Se c'è una sola table non bisogna far collassare niente
 	if #effTables == 1 then
@@ -836,7 +836,7 @@ dr.debRes = function(frame)
 	return list.makeFormsLabelledBoxes({
 		name = name,
 		makeBox = EffTable.new,
-		printBoxes = printEffTables
+		printBoxes = EffTable.printEffTables
 	})
 end
 

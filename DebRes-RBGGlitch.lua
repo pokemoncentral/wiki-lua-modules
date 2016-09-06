@@ -12,7 +12,6 @@ Può essere chiamato con il nome di un Pokémon, es:
 
 Oppure con il nome di un Pokémon e un gioco, es:
 
-{{#invoke: DebRes | DebRes | Missigno. | RB }}
 {{#invoke: DebRes | DebRes | Missigno. | game=RB }}
 
 Se un glitch con lo stesso nome compare in più giochi
@@ -23,20 +22,6 @@ richiamandolo con solo il nome
 di tipi diversa ma per ogni combinazione di debolezze e
 resistenze diversa)
 
-O direttamente con i tipi, sia con parametri
-posizionali che con con nome, es:
-
-{{#invoke: DebRes | DebRes | Veleno | Terra }}
-{{#invoke: DebRes | DebRes | type1=Veleno | type2=Terra }}
-
-Può essere chiamato anche con un solo tipo, es
-
-{{#invoke: DebRes | DebRes | Spettro }}
-{{#invoke: DebRes | DebRes | type=Spettro }}
-
-Si potrebbe anche mescolare notazione posizionale e con nome, ma
-consiglio vivamente di NON FARLO
-
 --]]
 
 local dr = {}
@@ -44,17 +29,16 @@ local dr = {}
 local mw = require('mw')
 
 local w = require('Wikilib')
+local data = require("Wikilib-data")
+local list = require('Wikilib-lists')
+local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local data = require('Wikilib-data')
-local oop = require('Wikilib-oop')
+local sig = require("Wikilib-sigle")
 local drp = require('DebRes')
-local sig = require('Sigle-data')
 local et = require('EffTipi1-Glitch')
-local box = require('Boxtipo')
-local link = require('Links')
-local pokes = require('Glitch-data')
-local c = require('Colore-data')
+local glitch = require("Glitch-data")
+local c = require("Colore-data")
 
 --[[
 
@@ -79,25 +63,67 @@ EffTable.allEff = {
 
 --[[
 
-Costruttore della classe: ha in ingresso i tipi
-
-I tipi potrebbero essere tipi glitch inesistenti nel
-modulo EffTipi. In questo caso, non hanno nessuna debolezza
-o resistenza e devono quindi comportarsi di conseguenza
+Override di addLabel per inserire il nome
+del gioco invece della sigla
 
 --]]
-EffTable.new = function(types, forms)
-	local this = setmetatable({}, EffTable)
+EffTable.addLabel = function(this, label)
+	if type(label) == 'table' then
+		this.labels = table.merge(this.labels, label)
+	else
+		table.insert(this.labels, sig.gamesName(label, '/'))
+	end
+end
+
+--[[
+
+Contiene le stringhe utili per il footer
+
+--]]
+EffTable.FooterStrings = {
+	-- Testo se il Pokémon ha tipi diversi da quelli dell'efficacia
+	CHANGETYPE = "\n* Nonostante questo Pokémon sia di tipo ${typeOr}, subisce danni come se fosse di tipo ${typeEff}",
+
+	-- Link ad un tipo
+	TYPE = '[[${type1} (tipo)|${type1}]]',
+
+	-- Link ad un doppio tipo
+	DUALTYPE = '[[${type1} (tipo)|${type1}]]/[[${type2} (tipo)|${type2}]]'
+}
+
+--[[
+
+Costruttore della classe: ha in ingresso il
+nome del Pokémon, nella forma nome + sigla gioco,
+e, opzionalmente, il nome esteso della gioco
+
+--]]
+EffTable.new = function(name, game)
+	local this = setmetatable(EffTable.super.super.new(),
+		EffTable)
+
+	if game then
+		name = name:gsub('(.*)'..game..'$', '%1')
+		-- se viene passato il gioco, il glitch ha più
+		-- forme, quindi bisogna aggiungere la label
+		this:addLabel(game)
+	else
+		game = tab.deepSearch(glitch, name)
+	end
+
+	local data = glitch[game][tab.deepSearch(glitch[game], name)]
+	local types = data.typeEffectiveness and mw.clone(data.typeEffectiveness) or { data.type1, data.type2 }
+	if not types[2] then
+		types[2] = types[1]
+	end
+	types = table.map(types, string.lower)
 
 	-- Colori per la stampa
 	this.colors = {
-		bg = c[types[1]].normale,
-		cells = c[types[1]].light,
-		bd = c[types[2]][types[1] == types[2] and 'dark' or 'normale']
+		bg = c[data.type1].normale,
+		cells = c[data.type1].light,
+		bd = c[data.type2 or data.type1][data.type2 and 'normale' or 'dark']
 	}
-
-	-- Dopo i colori, i tipi vanno passati al lowercase
-	types = tab.map(types, string.lower)
 
 	--[[
 		Per ogni possibile efficacia, se vi sono
@@ -118,13 +144,22 @@ EffTable.new = function(types, forms)
 	end
 
 	--[[
-		this.footer is istantiated to use parent's
-		__tostring method
+		Contiene l'unica possibile riga del footer (se c'è)
 	--]]
 	this.footer = {}
-
-	if forms then
-		this.forms = type(forms) == 'table' and forms or {forms}
+	if data.typeEffectiveness then
+		table.insert(this.footer, string.interp(EffTable.FooterStrings.CHANGETYPE, 
+			{
+				typeOr = string.interp(data.type2 and EffTable.FooterStrings.DUALTYPE or EffTable.FooterStrings.TYPE, {
+					type1 = data.type1,
+					type2 = data.type2
+				}),
+				typeEff = string.interp(data.typeEffectiveness[2] and EffTable.FooterStrings.DUALTYPE or EffTable.FooterStrings.TYPE, {
+					type1 = data.typeEffectiveness[1],
+					type2 = data.typeEffectiveness[2]
+				})
+			}
+		))
 	end
 
 	return this
@@ -132,29 +167,8 @@ end
 
 --[[
 
-Operatore di uguaglianza: ritorna true se sono uguali sia
-i footer che i valori di efficacia con i tipi associati
-
---]]
-EffTable.__eq = function(a, b)
-	--[[
-		Si scorre EffTable.allEff perché se si
-		scorresse a o b si potrebbe non controllare
-		tutti i valori di efficacia dell'altro
-	--]]
-	for k, eff in pairs(EffTable.allEff) do
-		if not table.equal(a[eff], b[eff]) then
-			return false
-		end
-	end
-
-	return true
-end
-
---[[
-
 Funzione d'interfaccia al wikicode: prende in ingresso
-il nome di un Pokémon glitch o una combinazione tipi
+il nome di un Pokémon glitch (ed eventualmente un gioco)
 e genera le table dell'efficacia tipi di prima generazione. Se
 il Pokémon ha più forme, ritorna una table per ogni forma,
 tutte collassabili con solo quella della forma base
@@ -163,99 +177,43 @@ estesa al caricamento della pagina.
 --]]
 dr.debRes = function(frame)
 	local p = tab.map(mw.clone(frame.args), w.trim)
-	local forms = {}
+	local games = {}
 
-	-- Se tra i parametri c'è game, allora cerca il Pokémon in quel gioco
-	local game, index
-	if p.game then
-		game = p.game
-		index = table.deepSearch(pokes[game], p[1])
-		table.insert(forms, pokes[game][index])
-	elseif p[2] then
-		-- Se il Pokémon è stato trovato non sono stati passati i
-		-- tipi quindi il secondo parametro se c'è è il gioco
-		-- (avviene comunque un ulteriore controllo)
-		game = pokes[p[2]] and p[2] or game
-		index = table.deepSearch(pokes[game], p[1])
-		table.insert(forms, pokes[game][index])
-	else
-		--[[
-			controlla se il glitch esiste in più giochi,
-			e nel caso prepara una table con l'elenco
-			dei giochi e dei tipi che ha in quel gioco
-		--]]
-		for game, glitches in pairs(pokes) do
-			local index = tab.deepSearch(glitches, p[1])
-			if index then
-				table.insert(forms, { game=game, data=glitches[index] })
-			end
+	--[[
+		controlla se il glitch esiste in più giochi,
+		e nel caso prepara una table con l'elenco
+		dei giochi
+	--]]
+	for game, glitches in pairs(glitch) do
+		if tab.deepSearch(glitches, p[1]) then
+			table.insert(games, game)
 		end
-		-- ordina forms in modo da avere prima i giochi più vecchi
-		table.sort(forms, function (a, b)
-			return tab.search(data.gamesChron, string.lower(a.game)) < tab.search(data.gamesChron, string.lower(b.game))
+	end
+
+	-- Crea altData a partire da games
+	local altData
+	if #games > 1 then
+		altData = { gamesOrder = {}, names = {} }
+		for k, v in ipairs(games) do
+			table.insert(altData.gamesOrder, v)
+			altData.names[v] = v
+		end
+		-- Ordina altData.gamesOrder in modo da avere prima i giochi più vecchi
+		table.sort(altData.gamesOrder , function (a, b)
+			return tab.search(data.gamesChron, string.lower(a)) < tab.search(data.gamesChron, string.lower(b))
 		end)
 	end
 
-
-	--[[
-		If no data is found, first parameter is
-		the type, that is no Pokémon is given and
-		types are directly provided
-	--]]
-	if not forms[1] then
-		local types = {}
-		types[1] = p[1] or p.type1 or p.type
-		types[2] = p[2] or p.type2 or types[1]
-		return tostring(EffTable.new(types))
-	end
-
-	--[[
-		If #forms <= 1 there is only one form, so
-		returns the single table
-	--]]
-	if #forms <= 1 then
-		local types = {}
-		types[1] = forms[1].data.type1
-		types[2] = forms[1].data.type2 or forms[1].data.type1
-		return tostring(EffTable.new(types))
-	end
-
-	local effTables = {}
-	--[[
-		Per ogni forma in forms genera la table con il suo titolo
-	--]]
-	for k, form in ipairs(forms) do
-		local types = { form.data.type1, form.data.type2 }
-		local formName = table.concat(table.map(sig[form.game][1].display, function(disp)
-			return string.fu(disp[2])
-		end), '/')
-		local formEffTable = EffTable.new(types, formName)
-		local formPlaced = false
-		--[[
-			Bisogna controllare la tabella dell'efficacia tipi è
-			uguale ad una già inserita
-		--]]
-		for k, effTable in ipairs(effTables) do
-			if formEffTable == effTable then
-				effTable:addForm(formName)
-				formPlaced = true
-				break
-			end
-		end
-		--[[
-			Non si può inserire nel for qua sopra perché ipairs
-			giustamente includerebbe la nuova EffTable nel loop
-		--]]
-		if not formPlaced then
-			table.insert(effTables, formEffTable)
-		end
-	end
-
-	return table.concat(table.map(effTables, tostring), '\n')
+	return list.makeFormsLabelledBoxes({
+		name = p[1],
+		makeBox = EffTable.new,
+		printBoxes = EffTable.printEffTables,
+		altData = altData
+	})
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
-local arg = {"PkMn ▼PkMn"}
+local arg = {"9 (Pokémon glitch)"}
 print(dr.DebRes{args=arg})
 -- return dr
