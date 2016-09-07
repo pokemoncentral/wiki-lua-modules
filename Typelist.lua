@@ -297,6 +297,39 @@ end
 g.Typelist, g.TypeList, g.typeList = g.typelist,
 		g.typelist, g.typelist
 
+--[[
+
+Funzione di interfaccia: si passa un tipo.
+Ritorna le due tabelle con i Pokémon del tipo
+passato, una per i mono-tipo e le altre per
+i doppio tipo con il tipo desiderato come
+primo, con le relative intestazioni.
+Utile con il Modulo:Render per la pagina
+"Elenco Pokémon per tipo"
+
+--]]
+g.monotypelist = function(frame)
+	local monoType = string.trim(mw.text.decode(frame.args[1]
+			or 'sconosciuto')):lower()
+	local dualType = monoType == 'coleottero' and 'coleot' or monoType
+	local tables = {}
+
+	table.insert(tables, makeTypeTable(monoType, MonoTypeEntry))
+	table.insert(tables, Entry.makeHeader(monoType, 3, 'come tipo primario'))
+	table.insert(tables, list.makeList({
+			source = pokes,
+			iterator = list.pokeNames,
+			entryArgs = dualType,
+			makeEntry = FirstTypeEntry.new,
+			header = makeHeader(dualType, 2)
+		}))
+
+	return table.concat(tables, '\n')
+end
+
+g.Monotypelist, g.MonoTypeList, g.monoTypeList =
+	g.monotypelist, g.monotypelist, g.monotypelist
+
 print(g.typelist{args={arg[1]}})
 
 -- return g
