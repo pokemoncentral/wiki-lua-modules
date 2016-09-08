@@ -237,9 +237,9 @@ inserire come colonne
 --]]
 local makeHeader = function(type, typesCount)
 	return string.interp([=[{| class="roundy sortable pull-center text-center" style="background: #${bg}; border: 3px solid #${bd};"
-! [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#<span>]]
+! [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
 ! &nbsp;
-! [[Pokémon|<span style="color:#000">Pokémon<span>]]
+! [[Pokémon|<span style="color:#000">Pokémon</span>]]
 ${types}]=],
 {
 	bg = c[type].normale,

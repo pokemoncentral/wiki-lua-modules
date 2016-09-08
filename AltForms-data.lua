@@ -220,7 +220,7 @@ for name, poke in pairs(t) do
 
 		elseif table.linear_search(t.alola, name) then
 			poke.links = table.map(poke.names, function(formName)
-					return string.interp('<div class="small-text">[[Forma di Alola#${poke}|${formName}]]',
+					return string.interp('<div class="small-text">[[Forma di Alola#${poke}|${formName}]]</div>',
 					{poke = string.fu(name), formName = formName})
 				end)
 
@@ -276,7 +276,7 @@ for name, poke in pairs(t) do
 	end
 end
 
-t.sandshrew.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Rattata e Raticate|<span style="color:#000;">Forma di Alola</span>]]</div>',
+t.rattata.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Rattata e Raticate|<span style="color:#000;">Forma di Alola</span>]]</div>',
 	base = '<div class="small-text">[[Forma di Alola#Rattata e Raticate|<span style="color:#000;">Forma Normale</span>]]</div>'}
 t.sandshrew.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000;">Forma di Alola</span>]]</div>',
 	base = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000;">Forma Normale</span>]]</div>'}
