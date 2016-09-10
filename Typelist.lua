@@ -85,8 +85,10 @@ Entry.__tostring = function(this)
 	})
 end
 
+g.Entry = Entry
+
 -- Classe per le entry dei Pokémon con un solo tipo
-local MonoTypeEntry = oop.makeClass(Entry)
+MonoTypeEntry = oop.makeClass(Entry)
 
 MonoTypeEntry.makeHeader = function(type)
 	return MonoTypeEntry.super.makeHeader(type, 3, 'puro')
@@ -125,6 +127,8 @@ MonoTypeEntry.__tostring = function(this)
 		foot = this.isFooter and '\n|}\n' or ''
 	})
 end
+
+g.MonoTypeEntry = MonoTypeEntry
 
 --[[
 
@@ -177,6 +181,8 @@ FirstTypeEntry.__tostring = function(this)
 	})
 end
 
+g.FirstTypeEntry = FirstTypeEntry
+
 --[[
 
 Classe per le entry dei Pokémon doppio tipo il
@@ -228,6 +234,8 @@ SecondTypeEntry.__tostring = function(this)
 	})
 end
 
+g.SecondTypeEntry = SecondTypeEntry
+
 --[[
 
 Stampa lo header. Ha in ingresso il tipo da usare
@@ -235,7 +243,7 @@ per lo schema di colori e il numero di tipi da
 inserire come colonne
 
 --]]
-local makeHeader = function(type, typesCount)
+g.makeHeader = function(type, typesCount)
 	return string.interp([=[{| class="roundy sortable pull-center text-center" style="background: #${bg}; border: 3px solid #${bd};"
 ! [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
 ! &nbsp;
@@ -258,15 +266,15 @@ con tipo primario o secondario in base
 alla classe entry passata.
 
 --]]
-local makeTypeTable = function(type, Entry)
-	return table.concat({Entry.makeHeader(type),
+g.makeTypeTable = function(type, Entry, header)
+	return table.concat({header or Entry.makeHeader(type),
 		list.makeList({
 			source = pokes,
 			iterator = list.pokeNames,
 			entryArgs = type,
 			makeEntry = Entry.new,
-			header = makeHeader(type,
-					Entry == MonoTypeEntry and 1 or 2)
+			header = g.makeHeader(type,
+					Entry == g.MonoTypeEntry and 1 or 2)
 		})}, '\n')
 end
 
@@ -286,10 +294,10 @@ g.typelist = function(frame)
 	local dualType = monoType == 'coleottero' and 'coleot' or monoType
 	local tables = {}
 
-	table.insert(tables, makeTypeTable(monoType, MonoTypeEntry))
-	table.insert(tables, Entry.makeHeader(monoType, 3, 'parziale'))
-	table.insert(tables, makeTypeTable(dualType, FirstTypeEntry))
-	table.insert(tables, makeTypeTable(dualType, SecondTypeEntry))
+	table.insert(tables, g.makeTypeTable(monoType, g.MonoTypeEntry))
+	table.insert(tables, g.Entry.makeHeader(monoType, 3, 'parziale'))
+	table.insert(tables, g.makeTypeTable(dualType, g.FirstTypeEntry))
+	table.insert(tables, g.makeTypeTable(dualType, g.SecondTypeEntry))
 
 	return table.concat(tables, '\n')
 end
@@ -297,39 +305,6 @@ end
 g.Typelist, g.TypeList, g.typeList = g.typelist,
 		g.typelist, g.typelist
 
---[[
+--print(g.typelist{args={arg[1]}})
 
-Funzione di interfaccia: si passa un tipo.
-Ritorna le due tabelle con i Pokémon del tipo
-passato, una per i mono-tipo e le altre per
-i doppio tipo con il tipo desiderato come
-primo, con le relative intestazioni.
-Utile con il Modulo:Render per la pagina
-"Elenco Pokémon per tipo"
-
---]]
-g.monotypelist = function(frame)
-	local monoType = string.trim(mw.text.decode(frame.args[1]
-			or 'sconosciuto')):lower()
-	local dualType = monoType == 'coleottero' and 'coleot' or monoType
-	local tables = {}
-
-	table.insert(tables, makeTypeTable(monoType, MonoTypeEntry))
-	table.insert(tables, Entry.makeHeader(monoType, 3, 'come tipo primario'))
-	table.insert(tables, list.makeList({
-			source = pokes,
-			iterator = list.pokeNames,
-			entryArgs = dualType,
-			makeEntry = FirstTypeEntry.new,
-			header = makeHeader(dualType, 2)
-		}))
-
-	return table.concat(tables, '\n')
-end
-
-g.Monotypelist, g.MonoTypeList, g.monoTypeList =
-	g.monotypelist, g.monotypelist, g.monotypelist
-
-print(g.typelist{args={arg[1]}})
-
--- return g
+return g
