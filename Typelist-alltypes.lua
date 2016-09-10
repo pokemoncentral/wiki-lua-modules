@@ -37,7 +37,7 @@ g.typelist = function(frame)
 	for k, type in ipairs(data.typesOrder) do
 		local typeName = type == 'coleot' and 'coleottero' or type
 		table.insert(tables, tl.makeTypeTable(typeName, tl.MonoTypeEntry))
-		table.insert(tables, tl.makeTypeTable(type, tl.FirstTypeEntry))
+		table.insert(tables, tl.makeTypeTable(type, tl.FirstTypeEntry, tl.Entry.makeHeader(typeName, 3, 'come tipo primario')))
 	end
 
 	return table.concat(tables, '\n')
