@@ -1609,8 +1609,7 @@ t.thundurusT, t['642T'] = t.thundurus, t.thundurus
 t.landorusT, t['645T'] = t.landorus, t.landorus
 t.kyuremN, t['646N'], t.kyuremB, t['646B'] =
 	t.kyurem, t.kyurem, t.kyurem, t.kyurem
-t.meowsticF, t['678F'], t.meowsticM, t['678M'] =
-	t.meowstic, t.meowstic, t.meowstic, t.meowstic
+t.meowsticF, t['678F'] = t.meowstic, t.meowstic
 t.aegislashS, t['681S'] = t.aegislash, t.aegislash
 t.pumpkabooS, t['710S'], t.pumpkabooL, t['710L'], t.pumpkabooXL, t['710XL'] =
 	t.pumpkaboo, t.pumpkaboo, t.pumpkaboo, t.pumpkaboo, t.pumpkaboo, t.pumpkaboo

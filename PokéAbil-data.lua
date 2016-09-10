@@ -1357,7 +1357,7 @@ t.furfrou = {ability1 = 'Foltopelo'}
 t[676] = t.furfrou
 t.espurr = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'Mentelocale'}
 t[677] = t.espurr
-t.meowstic = {ability1 = ''}
+t.meowstic = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'Burla'}
 t[678] = t.meowstic
 t.honedge = {ability1 = 'Nullodifesa'}
 t[679] = t.honedge
@@ -1571,8 +1571,6 @@ t.kyuremB = {ability1 = 'Piroturbina'}
 t['646B'] = t.kyuremB
 t.meowsticF = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'Tenacia'}
 t['678F'] = t.meowsticF
-t.meowsticM = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'Burla'}
-t['678M'] = t.meowsticM
 t.zygardeP = {ability1 = 'Sciamefusione'}
 t['718P'] = t.zygardeP
 

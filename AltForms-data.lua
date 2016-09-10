@@ -146,7 +146,7 @@ t.darmanitan.names = {Z = 'Stato Zen', base = 'Forma Normalità'}
 t.tornadus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
 t.kyurem.names = {N = 'Kyurem Nero', B = 'Kyurem Bianco', base = 'Forma Base'}
 t.meloetta.names = {D = 'Forma Danza', base = 'Forma Canto'}
-t.meowstic.names = {F = 'Femmina', M = 'Maschio', base = 'Meowstic'}
+t.meowstic.names = {F = 'Femmina', base = 'Maschio'}
 t.aegislash.names = {S = 'Forma Spada', base = 'Forma Scudo'}
 t.pumpkaboo.names = {S = 'Mini', L = 'Grande', XL = 'Maxi', base = 'Normale'}
 t.zygarde.names = {D = 'Forma 10%', P = 'Forma Perfetta', base = 'Forma 50%'}
@@ -211,7 +211,7 @@ t.shaymin.changeability = t.shaymin.changetype
 t.basculin.changeability = {'B'}
 t.tornadus.changeability = {'T'}
 t.kyurem.changeability = {'N', 'B'}
-t.meowstic.changeability = {'F', 'M'}
+t.meowstic.changeability = {'F'}
 t.zygarde.changeability = {'P'}
 for k, v in pairs(t.mega) do
 	t[v].changeability = {'M'}
@@ -308,7 +308,7 @@ t.darmanitan.ext = {zen = 'Z'}
 t.tornadus.ext = {totem = 'T'}
 t.kyurem.ext = {nero = 'N', bianco = 'B'}
 t.meloetta.ext = {danza = 'D'}
-t.meowstic.ext = {femmina = 'F', maschio = 'M'}
+t.meowstic.ext = {femmina = 'F'}
 t.aegislash.ext = {spada = 'S'}
 t.pumpkaboo.ext = {mini = 'S', grande = 'L', maxi = 'XL'}
 t.zygarde.ext = {['forma 10%'] = 'D', perfetto = 'P'}
@@ -343,7 +343,7 @@ t.darmanitan.gamesOrder = {'base', 'Z'}
 t.tornadus.gamesOrder = {'base', 'T'}
 t.kyurem.gamesOrder = {'base', 'B', 'N'}
 t.meloetta.gamesOrder = {'base', 'D'}
-t.meowstic.gamesOrder = {'base', 'M', 'F'}
+t.meowstic.gamesOrder = {'base', 'F'}
 t.aegislash.gamesOrder = {'base', 'S'}
 t.pumpkaboo.gamesOrder = {'base', 'S', 'L', 'XL'}
 t.zygarde.gamesOrder = {'D', 'base', 'P'}
@@ -385,7 +385,7 @@ t.darmanitan.since = {Z = 'nb', base = 'nb'}
 t.tornadus.since = {T = 'n2b2', base = 'nb'}
 t.kyurem.since = {N = 'n2b2', B = 'n2b2', base = 'nb'}
 t.meloetta.since = {D = 'nb', base = 'nb'}
-t.meowstic.since = {F = 'xy', M = 'xy', base = 'xy'}
+t.meowstic.since = {F = 'xy', base = 'xy'}
 t.aegislash.since = {S = 'xy', base = 'xy'}
 t.pumpkaboo.since = {S = 'xy', L = 'xy', XL = 'xy', base = 'xy'}
 t.zygarde.since = {D = 'sl', P = 'sl', base = 'xy'}
