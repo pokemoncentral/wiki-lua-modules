@@ -220,8 +220,8 @@ alternative, stampa solo l box per la forma
 base.
 
 Gli argomenti sono named:
-	- name: nome della forma base del Pokémon
-		di cui si vogliono creare i box.
+	- name: nome o ndex della forma base del
+		Pokémon di cui si vogliono creare i box.
 	- makeBox: costruttore della classe
 		che rappresenta un box.
 	- printBoxes: stampa i box, ritornando
@@ -258,7 +258,13 @@ l.makeFormsLabelledBoxes = function(args)
 	--]]
 	for k, abbr in ipairs(altData.gamesOrder) do
 		local formName = altData.names[abbr]
-		local name = args.name .. (abbr == 'base' and '' or abbr)
+		--[[
+			Se viene passato l'ndex, la forma base deve
+			restare un number, quindi non può essere
+			concatenata alla stringa vuota
+		--]]
+		local name = abbr == 'base' and args.name
+				or (args.name .. abbr)
 		local formBox = args.makeBox(name, formName)
 
 		local index = table.search(boxes, formBox)
