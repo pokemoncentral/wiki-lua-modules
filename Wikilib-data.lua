@@ -76,6 +76,19 @@ t.gamesChron = {'rb', 'v', 'g', 'oa', 'c', 'rz', 'rfvf', 's', 'dp', 'pt',
 
 t.gamesOrder = t.gamesChron
 
+--[[
+
+Tabella contenente i tipi nell'ordine in cui vanno mostrati
+negli elenchi.
+Contiene 'coleot' e non 'coleottero' perché la maggior parte
+delle volte il tipo è abbreviato
+
+--]]
+
+t.typesOrder = {'normale', 'lotta', 'volante', 'veleno', 'terra', 'roccia',
+	'coleot', 'spettro', 'acciaio', 'fuoco', 'acqua', 'erba',
+	'elettro', 'psico', 'ghiaccio', 'drago', 'buio', 'folletto'}
+
 -- Tabella sostitutiva dei template {{male}} e {{female}}
 
 t.genders = {male = '<span style="color:#0000FF;">♂</span>',
