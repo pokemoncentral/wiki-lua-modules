@@ -1520,8 +1520,8 @@ t.crabrawler = {name = 'Crabrawler', ndex = nil, type1 = 'lotta', type2 = 'lotta
 -- t[0xDENIELOPUZZA] = t.crabrawler
 t.turtonator = {name = 'Turtonator', ndex = nil, type1 = 'fuoco', type2 = 'drago'}
 -- t[0xDENIELOPUZZA] = t.turtonator
-t["jangmo-o"] = {name = 'Jangmo-o', ndex = nil, type1 = 'drago', type2 = 'drago'}
--- t[0xDENIELOPUZZA] = t["jangmo-o"]
+t['jangmo-o'] = {name = 'Jangmo-o', ndex = nil, type1 = 'drago', type2 = 'drago'}
+-- t[0xDENIELOPUZZA] = t['jangmo-o']
 t['tipo zero'] = {name = 'Tipo Zero', ndex = nil, type1 = 'normale', type2 = 'normale'}
 -- t[0xDENIELOPUZZA] = t['tipo zero']
 t['tapu koko'] = {name = 'Tapu Koko', ndex = nil, type1 = 'elettro', type2 = 'folletto'}

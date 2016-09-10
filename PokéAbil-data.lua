@@ -1520,8 +1520,8 @@ t.turtonator = {ability1 = 'Guscioscudo'}
 -- t[0xDENIELOPUZZA] = t.turtonator
 t['tipo zero'] = {ability1 = 'Lottascudo'}
 -- t[0xDENIELOPUZZA] = t['tipo zero']
-t["jangmo-o"] = {ability1 = 'Antiproiettile', ability2 = 'Antisuono'}
--- t[0xDENIELOPUZZA] = t["jangmo-o"]
+t['jangmo-o'] = {ability1 = 'Antiproiettile', ability2 = 'Antisuono'}
+-- t[0xDENIELOPUZZA] = t['jangmo-o']
 t['tapu koko'] = {ability1 = 'Elettrogenesi'}
 -- t[0xDENIELOPUZZA] = t['tapu koko']
 t.solgaleo = {ability1 = 'Metalprotezione'}
