@@ -297,6 +297,6 @@ end
 g.Typelist, g.TypeList, g.typeList = g.typelist,
 		g.typelist, g.typelist
 
---print(g.typelist{args={arg[1]}})
+print(g.typelist{args={arg[1]}})
 
-return g
+-- return g
