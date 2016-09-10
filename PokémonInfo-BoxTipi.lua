@@ -26,7 +26,7 @@ local TypesBox = oop.makeClass(list.Labelled)
 --[[
 
 Costruttore della classe: ha in ingresso il
-nome del Pokémon, nella forma nome + sigla,
+nome del Pokémon, nella forma nome/ndex + sigla,
 e, opzionalmente, il nome esteso della forma
 
 --]]
@@ -52,7 +52,7 @@ sotto in piccolo.
 
 --]]
 TypesBox.__tostring = function(this)
-	return string.interp('<div class="width-xl-50 width-md-100 text-center" style="box-sizing: border-box; padding: 0.2em;" >${type1}${type2}${forms}</div>',
+	return string.interp('<div class="width-xl-50 text-center" style="box-sizing: border-box; padding: 0.2em;" >${type1}${type2}${forms}</div>',
 	{
 		type1 = l.typeColor(this.type1),
 		type2 = this.type1 == this.type2 and '' or l.typeColor(this.type2),
