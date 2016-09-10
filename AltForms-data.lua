@@ -8,6 +8,74 @@ local t = {}
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 
+-- Crea i link alle forme alternative
+
+local makeLinks = function(black)
+	local link = black
+			and '<div class="small-text">[[Differenze di forma#${anchor}|<span style="color:#000">${formName}</span>]]</div>'
+			or '<div class="small-text">[[Differenze di forma#${anchor}|${formName}]]</div>'
+	local index = black and 'blacklinks' or 'links'
+
+	-- Si eliminano le table di supporto e i
+	-- Pokémon che non hanno i link standard
+
+	local stdLinks = table.filter(t, function(_, key)
+		return
+				not table.search({'mega', 'megaxy',
+						'archeo', 'alola'}, key)
+			and
+				not table.search(t.mega, key)
+			and
+				not table.search(t.megaxy, key)
+			and
+				not table.search(t.archeo, key)
+			and
+				not table.search(t.alola, key)
+	end)
+
+	-- Links standard
+
+	for name, poke in pairs(stdLinks) do
+		poke[index] = table.map(poke.names, function(formName)
+			return string.interp(link, {
+					anchor = poke.anchor or string.fu(name),
+					formName = formName
+			})
+		end)
+	end
+
+	-- Link vuoti: mega, megaxy e archeo
+	
+	for _, poke in pairs(t.mega) do
+		t[poke][index] = table.map(t[poke].names, function()
+				return ''
+		end)
+	end
+	for _, poke in pairs(t.megaxy) do
+		t[poke][index] = table.map(t[poke].names, function()
+				return ''
+		end)
+	end
+	for _, poke in pairs(t.archeo) do
+		t[poke][index] = table.map(t[poke].names, function()
+				return ''
+		end)
+	end
+
+	-- Link alle forme di alola, che puntano ad una
+	-- pagina apposita e non "Differenze di forma
+
+	link = link:gsub('Differenze di forma', 'Forma di Alola')
+	for _, poke in pairs(t.alola) do
+		t[poke][index] = table.map(t[poke].names, function(formName)
+			return string.interp(link, {
+					anchor = t[poke].anchor or string.fu(name),
+					formName = formName
+			})
+		end)
+	end
+end
+
 -- Tabelle associate ai Pokémon: ne mancano alcuni perché sarebbero
 -- identici, in questo modulo, ad altri, e dunque sono costituiti
 -- da alias, raggruppati in fondo al modulo
@@ -206,91 +274,23 @@ t.meowstic.changemoves = t.meowstic.changeability
 --t.zygarde.changemoves = {}
 t.hoopa.changemoves = t.hoopa.changetype
 
+-- Anchor per i link alle forme alternative,
+-- se diversi dal nome del Pokémon
+
+t.rattata.anchor = 'Rattata e Raticate'
+t.sandshrew.anchor = 'Sandshrew e Sandslash'
+t.vulpix.anchor = 'Vulpix e Ninetales'
+t.wormadam.anchor = 'Burmy e Wormadam'
+t.tornadus.anchor = 'Trio dei Kami'
+t.pumpkaboo.anchor = 'Pumpkaboo e Gourgeist'
+
 -- Link alle forme alternative.
 
-for name, poke in pairs(t) do
-	if not table.linear_search({'mega', 'megaxy', 'archeo', 'alola'}, name) then
-		if table.linear_search(t.mega, name)
-			or table.linear_search(t.megaxy, name)
-			or table.linear_search(t.archeo, name)
-		then
-			poke.links = table.map(poke.names, function()
-					return ''
-				end)
-
-		elseif table.linear_search(t.alola, name) then
-			poke.links = table.map(poke.names, function(formName)
-					return string.interp('<div class="small-text">[[Forma di Alola#${poke}|${formName}]]',
-					{poke = string.fu(name), formName = formName})
-				end)
-
-		else
-			poke.links = table.map(poke.names, function(formName)
-					return string.interp('<div class="small-text">[[Differenze di forma#${poke}|${formName}]]</div>',
-					{poke = string.fu(name), formName = formName})
-				end)
-		end
-	end
-end
-
-t.rattata.links = {A = '<div class="small-text">[[Forma di Alola#Rattata e Raticate|Forma di Alola]]</div>',
-	base = '<div class="small-text">[[Forma di Alola#Rattata e Raticate|Forma Normale]]</div>'}
-t.sandshrew.links = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|Forma di Alola]]</div>',
-	base = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|Forma Normale]]</div>'}
-t.vulpix.links = {A = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|Forma di Alola]]</div>',
-	base = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|Forma Normale]]</div>'}
-t.wormadam.links = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Sabbia]]</div>',
-	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Scarti]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Pianta]]</div>'}
-t.tornadus.links = {T = '<div class="small-text">[[Differenze di forma#Trio dei Kami|Forma Totem]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Trio dei Kami|Forma Incarnazione]]</div>'}
-t.pumpkaboo.links = {S = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Mini]]</div>',
-	L = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Grande]]</div>',
-	XL = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Maxi]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Normale]]</div>'}
+makeLinks()
 
 -- Link neri alle forme alternative.
 
-for name, poke in pairs(t) do
-	if not table.linear_search({'mega', 'megaxy', 'archeo', 'alola'}, name) then
-		if table.linear_search(t.mega, name)
-			or table.linear_search(t.megaxy, name)
-			or table.linear_search(t.archeo, name)
-		then
-			poke.blacklinks = table.map(poke.names, function()
-					return ''
-				end)
-
-		elseif table.linear_search(t.alola, name) then
-			poke.blacklinks = table.map(poke.names, function(formName)
-					return string.interp('<div class="small-text">[[Forma di Alola#${poke}|<span style="color:#000">${formName}</span>]]</div>',
-					{poke = string.fu(name), formName = formName})
-				end)
-
-		else
-			poke.blacklinks = table.map(poke.names, function(formName)
-					return string.interp('<div class="small-text">[[Differenze di forma#${poke}|<span style="color:#000">${formName}</span>]]</div>',
-					{poke = string.fu(name), formName = formName})
-				end)
-		end
-	end
-end
-
-t.sandshrew.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Rattata e Raticate|<span style="color:#000;">Forma di Alola</span>]]</div>',
-	base = '<div class="small-text">[[Forma di Alola#Rattata e Raticate|<span style="color:#000;">Forma Normale</span>]]</div>'}
-t.sandshrew.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000;">Forma di Alola</span>]]</div>',
-	base = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000;">Forma Normale</span>]]</div>'}
-t.vulpix.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|<span style="color:#000;">Forma di Alola</span>]]</div>',
-	base = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|<span style="color:#000;">Forma Normale</span>]]</div>'}
-t.wormadam.blacklinks = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000;">Manto Sabbia</span>]]</div>',
-	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000;">Manto Scarti</span>]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000;">Manto Pianta</span>]]</div>'}
-t.tornadus.blacklinks = {T = '<div class="small-text">[[Differenze di forma#Trio dei Kami|<span style="color:#000;">Forma Totem</span>]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Trio dei Kami|<span style="color:#000;">Forma Incarnazione</span>]]</div>'}
-t.pumpkaboo.blacklinks = {S = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000;">Mini</span>]]</div>',
-	L = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000;">Grande</span>]]</div>',
-	XL = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000;">Maxi</span>]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000;">Normale</span>]]</div>'}
+makeLinks(true)
 
 -- Per passare dai nomi estesi delle forme alternative alle sigle
 
