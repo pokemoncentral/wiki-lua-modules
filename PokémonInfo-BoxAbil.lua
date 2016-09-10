@@ -26,7 +26,7 @@ local AbilsBox = oop.makeClass(list.Labelled)
 --[[
 
 Costruttore della classe: ha in ingresso il
-nome del Pokémon, nella forma nome + sigla,
+nome del Pokémon, nella forma nome/ndex + sigla,
 e, opzionalmente, il nome esteso della forma
 
 --]]
@@ -66,11 +66,11 @@ AbilsBox.__tostring = function(this)
 
 	local hiddenAbil = ''
 	if this.abilityd then
-		hiddenAbil = table.concat{'<div class="width-xl-50 width-sm-100">',
+		hiddenAbil = table.concat{'<div class="width-xl-50">',
 			l.aColor(this.abilityd), '<div class="small-text">Abilit&agrave; nascosta</div></div>'}
 	end
 
-	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center width-xl-${boxWidth} width-md-100" style="box-sizing: border-box; padding: 0.2em;">${forms}<div class="width-xl-${stdWidth} width-md-100">${stdAbils}</div>${hiddenAbil}</div>',
+	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center width-xl-${boxWidth}" style="box-sizing: border-box; padding: 0.2em;">${forms}<div class="width-xl-${stdWidth}">${stdAbils}</div>${hiddenAbil}</div>',
 	{
 		boxWidth = this.abilityd and '100' or '50',
 		stdWidth = this.abilityd and '50' or '100',
@@ -109,8 +109,8 @@ sotto i nomi delle forme che la hanno.
 
 --]]
 b.boxAbil = function(frame)
-	local name = string.trim(mw.text.decode(frame.args[1]
-			or '')):lower()
+	local name = string.trim(frame.args[1] or '')
+	name = string.parseInt(name) or mw.text.decode(name):lower()
 	
 	return list.makeFormsLabelledBoxes({
 		name = name,
