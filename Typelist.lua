@@ -47,10 +47,6 @@ g.Entry.new = function(pokeData, name)
 	return setmetatable(table.merge(this, pokeData), g.Entry)
 end
 
-g.Entry.toFooter = function(this)
-	this.isFooter = true
-end
-
 --[[
 
 Crea il testo di intestazione ad una tabella, dati
@@ -72,11 +68,10 @@ sono gestite dalle sottoclassi
 
 --]]
 g.Entry.__tostring = function(this)
-	return string.interp([=[| style="background:#FFF; border:1px solid #D8D8D8;${roundy}" | ${ndex}
+	return string.interp([=[| style="background:#FFF; border:1px solid #D8D8D8;" | ${ndex}
 | style="background:#FFF; border:1px solid #D8D8D8;" | ${ani}
 | style="background:#FFF; border:1px solid #D8D8D8;" | [[${name}]]${form}]=],
 	{
-		roundy = this.isFooter and r.blLua() or '',
 		ndex = this.ndex and string.tf(this.ndex) or '???',
 		ani = ms.aniLua(string.tf(this.ndex or 0) ..
 				(this.formAbbr == 'base' and '' or this.formAbbr or '')),
@@ -115,14 +110,13 @@ end
 
 g.MonoTypeEntry.__tostring = function(this)
 	return string.interp([=[${firstCells}
-| style="color:#FFF; background:#${std}; border: 1px solid #${dark};${roundy}" | '''${type}'''${foot}]=],
+| style="color:#FFF; background:#${std}; border: 1px solid #${dark};" | '''${type}''']=],
 	{
 		firstCells = this.super.__tostring(this),
 		roundy = this.isFooter and r.brLua() or '',
 		std = c[this.type1].normale,
 		dark = c[this.type1].dark,
 		type = string.fu(this.type1),
-		foot = this.isFooter and '\n|}\n' or ''
 	})
 end
 
@@ -163,17 +157,15 @@ end
 g.FirstTypeEntry.__tostring = function(this)
 	return string.interp([=[${firstCells}
 | style="background:#${std1}; border: 1px solid #${dark1}; color:#FFF;" | '''${type1}'''
-| style="background:#${std2}; border: 1px solid #${dark2};${roundy}" | [[${type2} (tipo)|<span style="color: #FFF">${type2}</span>]]${foot}]=],
+| style="background:#${std2}; border: 1px solid #${dark2};" | [[${type2} (tipo)|<span style="color: #FFF">${type2}</span>]]]=],
 	{
 		firstCells = this.super.__tostring(this),
-		roundy = this.isFooter and r.brLua() or '',
 		std1 = c[this.type1].normale,
 		dark1 = c[this.type1].dark,
 		type1 = string.fu(this.type1),
 		std2 = c[this.type2].normale,
 		dark2 = c[this.type2].dark,
 		type2 = string.fu(this.type2),
-		foot = this.isFooter and '\n|}\n' or ''
 	})
 end
 
@@ -214,17 +206,15 @@ end
 g.SecondTypeEntry.__tostring = function(this)
 	return string.interp([=[${firstCells}
 | style="background:#${std1}; border: 1px solid #${dark1};" | [[${type1} (tipo)|<span style="color: #FFF">${type1}</span>]]
-| style="background:#${std2}; border: 1px solid #${dark2}; color:#FFF; ${roundy}" | '''${type2}'''${foot}]=],
+| style="background:#${std2}; border: 1px solid #${dark2}; color:#FFF;" | '''${type2}''']=],
 	{
 		firstCells = this.super.__tostring(this),
-		roundy = this.isFooter and r.brLua() or '',
 		std1 = c[this.type1].normale,
 		dark1 = c[this.type1].dark,
 		type1 = string.fu(this.type1),
 		std2 = c[this.type2].normale,
 		dark2 = c[this.type2].dark,
 		type2 = string.fu(this.type2),
-		foot = this.isFooter and '\n|}\n' or ''
 	})
 end
 
@@ -236,7 +226,7 @@ inserire come colonne
 
 --]]
 local makeHeader = function(type, typesCount)
-	return string.interp([=[{| class="roundy sortable pull-center text-center" style="background: #${bg}; border: 3px solid #${bd};"
+	return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer" style="background: #${bg}; border: 3px solid #${bd};"
 ! [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
 ! &nbsp;
 ! [[Pokémon|<span style="color:#000">Pokémon</span>]]
@@ -266,7 +256,8 @@ g.makeTypeTable = function(type, Entry, header)
 			entryArgs = type,
 			makeEntry = Entry.new,
 			header = makeHeader(type,
-					Entry == g.MonoTypeEntry and 1 or 2)
+					Entry == g.MonoTypeEntry and 1 or 2),
+			footer = '|}'
 		})}, '\n')
 end
 
@@ -291,7 +282,7 @@ g.typelist = function(frame)
 	table.insert(tables, g.makeTypeTable(dualType, g.FirstTypeEntry))
 	table.insert(tables, g.makeTypeTable(dualType, g.SecondTypeEntry))
 
-	return table.concat(tables, '\n')
+	return table.concat(tables, '\n\n')
 end
 
 g.Typelist, g.TypeList, g.typeList = g.typelist,
