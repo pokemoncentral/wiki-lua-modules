@@ -48,6 +48,12 @@ local getArtworkForm = function(abbr, name)
 			formName:match(' [XY]') or ''}
 	end
 
+	-- Forme di Alola
+
+	if form.hasAlola(name) then
+		return '-Alola'
+	end
+
 	--[[
 
 	Altre forme alternative: è necessario rimuovere
