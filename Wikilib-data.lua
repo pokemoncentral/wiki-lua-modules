@@ -78,16 +78,18 @@ t.gamesOrder = t.gamesChron
 
 --[[
 
-Tabella contenente i tipi nell'ordine in cui vanno mostrati
-negli elenchi.
+Tabella contenente i tipi in rodine alfabetico.
 Contiene 'coleot' e non 'coleottero' perché la maggior parte
 delle volte il tipo è abbreviato
 
 --]]
 
-t.typesOrder = {'normale', 'lotta', 'volante', 'veleno', 'terra', 'roccia',
-	'coleot', 'spettro', 'acciaio', 'fuoco', 'acqua', 'erba',
-	'elettro', 'psico', 'ghiaccio', 'drago', 'buio', 'folletto'}
+t.allTypes = {'acciaio', 'acqua', 'buio', 'coleot', 'drago',
+		'elettro', 'erba', 'folletto', 'fuoco', 'ghiaccio',
+		'lotta', 'normale', 'psico', 'roccia', 'spettro',
+		'terra', 'veleno', 'volante'}
+
+t.types, t.all_types = t.allTypes, t.allTypes
 
 -- Tabella sostitutiva dei template {{male}} e {{female}}
 
