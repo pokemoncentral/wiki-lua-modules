@@ -24,6 +24,11 @@ tl.FirstTypeEntry.__lt = function(a, b)
 	return a.type2 < b.type2
 end
 
+tl.FirstTypeEntry.makeHeader = function(type)
+	return tl.FirstTypeEntry.super.makeHeader(type, 3,
+		'come tipo primario')
+end
+
 --[[
 
 Funzione di interfaccia: ritorna l'elenco Pokémon
@@ -36,7 +41,7 @@ g.typelist = function(frame)
 	for k, type in ipairs(data.allTypes) do
 		local typeName = type == 'coleot' and 'coleottero' or type
 		table.insert(tables, tl.makeTypeTable(typeName, tl.MonoTypeEntry))
-		table.insert(tables, tl.makeTypeTable(type, tl.FirstTypeEntry, tl.Entry.makeHeader(typeName, 3, 'come tipo primario')))
+		table.insert(tables, tl.makeTypeTable(type, tl.FirstTypeEntry))
 	end
 
 	return table.concat(tables, '\n')
