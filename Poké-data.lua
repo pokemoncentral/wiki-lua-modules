@@ -1474,9 +1474,9 @@ t.wishiwashi = {name = 'Wishiwashi', ndex = nil, type1 = 'acqua', type2 = 'acqua
 -- t[0xDENIELOPUZZA] = t.wishiwashi
 t.grubbin = {name = 'Grubbin', ndex = nil, type1 = 'coleottero', type2 = 'coleottero'}
 -- t[0xDENIELOPUZZA] = t.grubbin
-t.charjabug = {name = 'Charjabug', ndex = nil, type1 = 'coleottero', type2 = 'elettro'}
+t.charjabug = {name = 'Charjabug', ndex = nil, type1 = 'coleot', type2 = 'elettro'}
 -- t[0xDENIELOPUZZA] = t.charjabug
-t.vikavolt = {name = 'Vikavolt', ndex = nil, type1 = 'coleottero', type2 = 'elettro'}
+t.vikavolt = {name = 'Vikavolt', ndex = nil, type1 = 'coleot', type2 = 'elettro'}
 -- t[0xDENIELOPUZZA] = t.vikavolt
 t.rockruff = {name = 'Rockruff', ndex = nil, type1 = 'roccia', type2 = 'roccia'}
 -- t[0xDENIELOPUZZA] = t.rockruff
