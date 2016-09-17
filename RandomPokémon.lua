@@ -39,7 +39,7 @@ local getArtworkForm = function(abbr, name)
 		return ''
 	end
 
-	formName = (alt[name] or useless[name]).names[abbr]
+	local formName = (alt[name] or useless[name]).names[abbr]
 
 	-- Mega e archeo evoluzioni
 
@@ -74,6 +74,7 @@ p.artwork = function(frame)
 	if forme then
 		num = num .. getArtworkForm(forme[math.random(table.getn(forme))], nome:lower())
 	end
+
 	return string.interp("[[File:Artwork${num}.png|center|${dimensione}x${dimensione}px|link=${nome}]]",
 		{num = num, nome = nome, dimensione = dimensione})
 end
