@@ -42,8 +42,6 @@ nil, in conformità a makeList in Wikilib/lists
 g.Entry.new = function(pokeData, name)
 	local this = g.Entry.super.new(name, pokeData.ndex)
 
-	this.isFooter = false
-
 	return setmetatable(table.merge(this, pokeData), g.Entry)
 end
 

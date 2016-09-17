@@ -21,8 +21,7 @@ tl.FirstTypeEntry.__lt = function(a, b)
 		return tl.FirstTypeEntry.super.__lt(a, b)
 	end
 	
-	return table.search(data.typesOrder, a.type2)
-			< table.search(data.typesOrder, b.type2)
+	return a.type2 < b.type2
 end
 
 --[[
@@ -34,7 +33,7 @@ per tipo
 g.typelist = function(frame)
 	local tables = {}
 
-	for k, type in ipairs(data.typesOrder) do
+	for k, type in ipairs(data.allTypes) do
 		local typeName = type == 'coleot' and 'coleottero' or type
 		table.insert(tables, tl.makeTypeTable(typeName, tl.MonoTypeEntry))
 		table.insert(tables, tl.makeTypeTable(type, tl.FirstTypeEntry, tl.Entry.makeHeader(typeName, 3, 'come tipo primario')))
