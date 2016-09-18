@@ -10,10 +10,6 @@ Può essere chiamato con il nome di un Pokémon, es:
 
 {{#invoke: DebRes | DebRes | 'M (00) }}
 
-Oppure con il nome di un Pokémon e un gioco, es:
-
-{{#invoke: DebRes | DebRes | Missigno. | game=RB }}
-
 Se un glitch con lo stesso nome compare in più giochi
 il modulo crea automaticamente una tabella diversa per
 ogni gioco in cui ha debolezze e resistenze diverse
@@ -32,7 +28,6 @@ local w = require('Wikilib')
 local data = require("Wikilib-data")
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
-local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local sig = require("Wikilib-sigle")
 local drp = require('DebRes')
@@ -178,6 +173,8 @@ estesa al caricamento della pagina.
 dr.debRes = function(frame)
 	local p = tab.map(mw.clone(frame.args), w.trim)
 	local games = {}
+
+	p[1] = mw.text.decode(p[1])
 
 	--[[
 		controlla se il glitch esiste in più giochi,

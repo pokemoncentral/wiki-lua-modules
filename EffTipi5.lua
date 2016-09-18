@@ -45,35 +45,127 @@ for a in pairs(eff) do
     eff[a].coleot = eff[a].coleottero
 end
 
--- Le abilità che alterano l'efficacia dei tipi.
--- il primo indice è il tipo alterato, il secondo
--- il nome dell'abilità e il terzo il valore da
--- moltiplicare. Filtro, Solidroccia e Magidifesa
--- sono trattate a parte.
+--[[
 
+Le abilità che alterano l'efficacia dei tipi:
+il primo indice è il nome dell'abilità, il
+secondo il tipo alterato e il valore associato
+sarà moltiplicato all'efficacia calcolata solo
+con i tipi.
+Per esempio, all'indice grassospess corrispondono
+i due tipi fuoco e ghiaccio, entrambi con valore
+0.5, perché l'abilità dimezza l'efficacia di
+questi due tipi.
+Filtro, Solidroccia e Magidifesa sono trattate a parte.
+
+--]]
+
+local allability = { {}, {}, {}, {}, {} }
+allability[3].levitazione = {terra = 0}
+allability[3].grassospesso = {fuoco = 0.5, ghiaccio = 0.5}
+allability[3].fuocardore = {fuoco = 0}
+allability[3].assorbacqua = {acqua = 0}
+allability[3].parafulmine = {elettro = 0}
+allability[3].assorbivolt = allability[3].parafulmine
+allability[4].antifuoco = {fuoco = 0.5}
+allability[4].pellearsa = {fuoco = 1.25, acqua = 0}
+allability[4].acquascolo = allability[3].assorbacqua
+allability[4].elettrorapid = allability[3].parafulmine
+allability[5].mangiaerba = {erba = 0}
+
+--[[
+
+Creazione dinamica di una table contenente tutte le
+abilità che influenzano l'efficacia tipi, ad oguna
+delle quali è associata una table con i tipi da essa
+influenzati. Le abilità sono gli indici e i tipi
+influenzati gli elementi associati, es: all'indice
+pellearsa corrisponde una table contenente i tipi
+fuoco e acqua.
+Fanno eccezione Magidifesa, Filtro e Solidroccia,
+che non hanno tipi associati fissi
+La table viene creata dentro loadAbils per contenere
+solo le abilità delle generazioni volute
+
+--]]
+
+et.modTypesAbil = {magidifesa = {}, filtro = {}, solidroccia = {}}
+
+--[[
+
+Funzione che carica solo le abilità fino ad una certa
+generazione. Da chiamare prima di utilizzare le altre
+funzioni del modulo
+
+--]]
 local ability = {}
-ability.terra = {levitazione = 0}
-ability.fuoco = {grassospesso = 0.5, antifuoco = 0.5, fuocardore = 0, pellearsa = 1.25}
-ability.acqua = {acquascolo = 0, assorbacqua = 0, pellearsa = 0}
-ability.elettro = {parafulmine = 0, elettrorapid = 0, assorbivolt = 0}
-ability.erba = {mangiaerba = 0}
-ability.ghiaccio = {grassospesso = 0.5}
-
-
--- Calcola l'efficacia di un attacco (0 - 0.25 - 0.5 - 1 - 2 - 4)
--- si aspetta i nomi dei tipi, tutti in minuscolo
-
-et.efficacia = function(a, d1, d2, abil)
-	local e = eff[a][d1]
-	if d2 ~= d1 then
-		e = e * eff[a][d2]
+et.loadAbils = function(gen)
+	for	g=1,gen,1 do
+		for abil, types in pairs(allability[g]) do
+			ability[abil] = types
+		end
 	end
-	if ability[a] and ability[a][abil] then
-		return e * ability[a][abil]
+
+	for abil, types in pairs(ability) do
+		et.modTypesAbil[abil] = {}
+		for Type, eff in pairs(types) do
+			table.insert(et.modTypesAbil[abil], Type)
+		end
+	end
+end
+
+--[[
+
+Creazione dinamica di una table con i tipi che hanno
+immunità, con associati i tipi a cui sono immuni. I
+primi sono gli indici, i secondi gli elementi di una
+table ad essi associata, es: all'indice spettro
+è associata una table contenente i tipi lotta e normale
+
+--]]
+
+et.typesHaveImm = {}
+for atk, defs in pairs(eff) do
+	for def, eff in pairs(defs) do
+		if eff == 0 then
+			if type(et.typesHaveImm[def]) ~= 'table' then
+				et.typesHaveImm[def] = {}
+			end
+			table.insert(et.typesHaveImm[def], atk)
+		end
+	end
+end
+
+--[[
+
+Calcola l'efficacia di un attacco; si aspetta i
+nomi dei tipi e dell'abilità, tutti in minuscolo
+
+--]]
+
+et.efficacia = function(atk, def1, def2, abil)
+
+	-- Efficacia base con due tipi
+
+	local e = eff[atk][def1]
+	if def2 ~= def1 then
+		e = e * eff[atk][def2]
+	end
+
+	-- Abilità standard
+
+	if ability[abil] and ability[abil][atk] then
+		return e * ability[abil][atk]
+
+	-- Filtro e solidroccia
+
 	elseif e >= 2 and (abil == 'filtro' or abil == 'solidroccia') then
 		return e * 0.75
+
+	-- Magidifesa
+
 	elseif e < 2 and abil == 'magidifesa' then
-		return 0 
+		return 0
 	end
 	return e
 end
@@ -104,4 +196,3 @@ et.attacco = function(eff, tipo)
 end
 
 return et
-
