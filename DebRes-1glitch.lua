@@ -8,7 +8,7 @@ forme che condividono la stessa.
 
 Può essere chiamato con il nome di un Pokémon, es:
 
-{{#invoke: DebRes | DebRes | 'M (00) }}
+{{#invoke: DebRes/1glitch | DebRes | 'M (00) }}
 
 Se un glitch con lo stesso nome compare in più giochi
 il modulo crea automaticamente una tabella diversa per
@@ -31,7 +31,7 @@ local oop = require('Wikilib-oop')
 local tab = require('Wikilib-tables')
 local sig = require("Wikilib-sigle")
 local drp = require('DebRes')
-local et = require('EffTipi1-Glitch')
+local et = require('EffTipi1-glitch')
 local glitch = require("Glitch-data")
 local c = require("Colore-data")
 
@@ -90,7 +90,7 @@ EffTable.FooterStrings = {
 
 Costruttore della classe: ha in ingresso il
 nome del Pokémon, nella forma nome + sigla gioco,
-e, opzionalmente, il nome esteso della gioco
+e, opzionalmente, il nome esteso dell gioco
 
 --]]
 EffTable.new = function(name, game)
@@ -163,11 +163,10 @@ end
 --[[
 
 Funzione d'interfaccia al wikicode: prende in ingresso
-il nome di un Pokémon glitch (ed eventualmente un gioco)
-e genera le table dell'efficacia tipi di prima generazione. Se
-il Pokémon ha più forme, ritorna una table per ogni forma,
-tutte collassabili con solo quella della forma base
-estesa al caricamento della pagina.
+il nome di un Pokémon glitch e genera le table dell'efficacia
+tipi di prima generazione. Se il Pokémon ha più forme,
+ritorna una table per ogni forma, tutte collassabili con
+solo quella della forma base estesa al caricamento della pagina.
 
 --]]
 dr.debRes = function(frame)
