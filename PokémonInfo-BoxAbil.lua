@@ -10,7 +10,6 @@ local oop = require('Wikilib-oop')
 local list = require('Wikilib-lists')
 local txt = require('Wikilib-strings')
 local abils = require('PokéAbil-data')
-local alts = require("AltForms-data")
 local c = require("Colore-data")
 
 --[[

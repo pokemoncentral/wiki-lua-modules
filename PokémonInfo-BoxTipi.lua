@@ -9,7 +9,6 @@ local w = require('Wikilib')
 local oop = require('Wikilib-oop')
 local list = require('Wikilib-lists')
 local txt = require('Wikilib-strings')
-local alts = require("AltForms-data")
 local c = require("Colore-data")
 local pokes = require("Poké-data")
 
