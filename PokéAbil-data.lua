@@ -1449,13 +1449,13 @@ t[721] = t.volcanion
 -- Settima generazione (BEWARE: STILL NO NDEXES)
 
 t.rowlet = {ability1 = 'Erbaiuto'}
--- t[0xDENIELOPUZZA] = t.rowlet
+t[722] = t.rowlet
 t.litten = {ability1 = 'Aiutofuoco'}
--- t[0xDENIELOPUZZA] = t.litten
+t[725] = t.litten
 t.popplio = {ability1 = 'Acquaiuto'}
--- t[0xDENIELOPUZZA] = t.popplio
+t[728] = t.popplio
 t.pikipek = {ability1 = 'Sguardofermo', ability2 = 'Abillegame'}
--- t[0xDENIELOPUZZA] = t.pikipek
+t[731] = t.pikipek
 t.fomantis = {ability1 = 'Fogliamanto'}
 -- t[0xDENIELOPUZZA] = t.fomantis
 t.lurantis = {ability1 = 'Fogliamanto'}
@@ -1478,6 +1478,8 @@ t.vikavolt = {ability1 = 'Levitazione'}
 -- t[0xDENIELOPUZZA] = t.vikavolt
 t.rockruff = {ability1 = 'Sguardofermo', ability2 = 'Spiritovivo'}
 -- t[0xDENIELOPUZZA] = t.rockruff
+t.lycanroc = {ability1 = 'Sguardofermo', ability2 = 'Remasabbia'}
+-- t[0xDENIELOPUZZA] = t.lycanroc
 t.komala = {ability1 = 'Sonno Assoluto'}
 -- t[0xDENIELOPUZZA] = t.komala
 t.cutiefly = {ability1 = 'Mielincetta', ability2 = 'Polvoscudo'}
@@ -1516,6 +1518,10 @@ t.palossand = {ability1 = 'Idrorinforzo'}
 -- t[0xDENIELOPUZZA] = t.palossand
 t.crabrawler = {ability1 = 'Ipertaglio', ability2 = 'Ferropugno'}
 -- t[0xDENIELOPUZZA] = t.crabrawler
+t.passimian = {ability1 = 'Ricezione'}
+-- t[0xDENIELOPUZZA] = t.passimian
+t.oranguru = {ability1 = 'Fuocodentro', ability2 = 'Telepatia'}
+-- t[0xDENIELOPUZZA] = t.oranguru
 t.turtonator = {ability1 = 'Guscioscudo'}
 -- t[0xDENIELOPUZZA] = t.turtonator
 t['tipo zero'] = {ability1 = 'Lottascudo'}
@@ -1573,6 +1579,8 @@ t.meowsticF = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'T
 t['678F'] = t.meowsticF
 t.zygardeP = {ability1 = 'Sciamefusione'}
 t['718P'] = t.zygardeP
+t.lycanrocN = {ability1 = 'Sguardofermo', ability2 = 'Spiritovivo'}
+-- t[0xDENIELOPUZZAN] = t.lycanrocN
 
 -- Alias per le altre forme alternative rilevanti
 

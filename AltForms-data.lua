@@ -97,6 +97,7 @@ t.aegislash = {}
 t.pumpkaboo = {}
 t.zygarde = {}
 t.hoopa = {}
+t.lycanroc = {}
 t.oricorio = {}
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
@@ -151,6 +152,7 @@ t.aegislash.names = {S = 'Forma Spada', base = 'Forma Scudo'}
 t.pumpkaboo.names = {S = 'Mini', L = 'Grande', XL = 'Maxi', base = 'Normale'}
 t.zygarde.names = {D = 'Forma 10%', P = 'Forma Perfetta', base = 'Forma 50%'}
 t.hoopa.names = {L = 'Libero', base = 'Vincolato'}
+t.lycanroc.names = {N = 'Forma Notte', base = 'Forma Giorno'}
 t.oricorio.names = {C = 'Stile Cheerdance', H = 'Stile Hula', B = 'Stile Buyō',
 	base = 'Stile Flamenco'}
 for k, v in pairs(t.mega) do
@@ -213,6 +215,7 @@ t.tornadus.changeability = {'T'}
 t.kyurem.changeability = {'N', 'B'}
 t.meowstic.changeability = {'F'}
 t.zygarde.changeability = {'P'}
+t.lycanroc.changeability = {'N'}
 for k, v in pairs(t.mega) do
 	t[v].changeability = {'M'}
 end
@@ -313,6 +316,7 @@ t.aegislash.ext = {spada = 'S'}
 t.pumpkaboo.ext = {mini = 'S', grande = 'L', maxi = 'XL'}
 t.zygarde.ext = {['forma 10%'] = 'D', perfetto = 'P'}
 t.hoopa.ext = {libero = 'L'}
+t.lycanroc.ext = {notte = 'N', giorno = 'base'}
 t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
 	flamenco = 'base'}
 for k, v in pairs(t.mega) do
@@ -348,6 +352,7 @@ t.aegislash.gamesOrder = {'base', 'S'}
 t.pumpkaboo.gamesOrder = {'base', 'S', 'L', 'XL'}
 t.zygarde.gamesOrder = {'D', 'base', 'P'}
 t.hoopa.gamesOrder = {'base', 'L'}
+t.lycanroc.gamesOrder = {'base', 'N'}
 t.oricorio.gamesOrder = {'base', 'C', 'H', 'B'}
 for k, v in pairs(t.mega) do
 	t[v].gamesOrder = {'base', 'M'}
@@ -390,6 +395,7 @@ t.aegislash.since = {S = 'xy', base = 'xy'}
 t.pumpkaboo.since = {S = 'xy', L = 'xy', XL = 'xy', base = 'xy'}
 t.zygarde.since = {D = 'sl', P = 'sl', base = 'xy'}
 t.hoopa.since = {L = 'roza', base = 'xy'}
+t.lycanroc.since = {N = 'sl', base = 'sl'}
 t.oricorio.since = {C = 'sl', H = 'sl', B = 'sl', base = 'sl'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
 t.blastoise.since = {M = 'xy', base = 'rb'}

@@ -1450,14 +1450,14 @@ t[721] = t.volcanion
 
 -- Settima generazione (BEWARE: STILL NO NDEXES)
 
-t.rowlet = {name = 'Rowlet', ndex = nil, type1 = 'erba', type2 = 'volante'}
--- t[0xDENIELOPUZZA] = t.rowlet
-t.litten = {name = 'Litten', ndex = nil, type1 = 'fuoco', type2 = 'fuoco'}
--- t[0xDENIELOPUZZA] = t.litten
-t.popplio = {name = 'Popplio', ndex = nil, type1 = 'acqua', type2 = 'acqua'}
--- t[0xDENIELOPUZZA] = t.popplio
-t.pikipek = {name = 'Pikipek', ndex = nil, type1 = 'normale', type2 = 'volante'}
--- t[0xDENIELOPUZZA] = t.pikipek
+t.rowlet = {name = 'Rowlet', ndex = 722, type1 = 'erba', type2 = 'volante'}
+t[722] = t.rowlet
+t.litten = {name = 'Litten', ndex = 725, type1 = 'fuoco', type2 = 'fuoco'}
+t[725] = t.litten
+t.popplio = {name = 'Popplio', ndex = 728, type1 = 'acqua', type2 = 'acqua'}
+t[728] = t.popplio
+t.pikipek = {name = 'Pikipek', ndex = 731, type1 = 'normale', type2 = 'volante'}
+t[731] = t.pikipek
 t.fomantis = {name = 'Fomantis', ndex = nil, type1 = 'erba', type2 = 'erba'}
 -- t[0xDENIELOPUZZA] = t.fomantis
 t.lurantis = {name = 'Lurantis', ndex = nil, type1 = 'erba', type2 = 'erba'}
@@ -1480,6 +1480,8 @@ t.vikavolt = {name = 'Vikavolt', ndex = nil, type1 = 'coleot', type2 = 'elettro'
 -- t[0xDENIELOPUZZA] = t.vikavolt
 t.rockruff = {name = 'Rockruff', ndex = nil, type1 = 'roccia', type2 = 'roccia'}
 -- t[0xDENIELOPUZZA] = t.rockruff
+t.lycanroc = {name = 'Lycanroc', ndex = nil, type1 = 'roccia', type2 = 'roccia'}
+-- t[0xDENIELOPUZZA] = t.lycanroc
 t.komala = {name = 'Komala', ndex = nil, type1 = 'normale', type2 = 'normale'}
 -- t[0xDENIELOPUZZA] = t.komala
 t.cutiefly = {name = 'Cutiefly', ndex = nil, type1 = 'coleot', type2 = 'folletto'}
@@ -1518,6 +1520,10 @@ t.palossand = {name = 'Palossand', ndex = nil, type1 = 'spettro', type2 = 'terra
 -- t[0xDENIELOPUZZA] = t.palossand
 t.crabrawler = {name = 'Crabrawler', ndex = nil, type1 = 'lotta', type2 = 'lotta'}
 -- t[0xDENIELOPUZZA] = t.crabrawler
+t.passimian = {name = 'Passimian', ndex = nil, type1 = 'lotta', type2 = 'lotta'}
+-- t[0xDENIELOPUZZA] = t.passimian
+t.oranguru = {name = 'Oranguru', ndex = nil, type1 = 'normale', type2 = 'psico'}
+-- t[0xDENIELOPUZZA] = t.oranguru
 t.turtonator = {name = 'Turtonator', ndex = nil, type1 = 'fuoco', type2 = 'drago'}
 -- t[0xDENIELOPUZZA] = t.turtonator
 t['jangmo-o'] = {name = 'Jangmo-o', ndex = nil, type1 = 'drago', type2 = 'drago'}
@@ -1617,6 +1623,8 @@ t.gourgeistS, t['711S'], t.gourgeistL, t['711L'], t.gourgeistXL, t['711XL'] =
 	t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist
 t.zygardeD, t['718D'], t.zygardeP, t['718P'] =
 	t.zygarde, t.zygarde, t.zygarde, t.zygarde
+t.lycanrocN = t.lycanroc
+-- t[0xDENIELOPUZZAN] = t.lycanrocN
 
 -- I dati sulle megaevoluzioni; sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
 -- Il nome è composto dal nome del Pokémon seguito da 'M'
