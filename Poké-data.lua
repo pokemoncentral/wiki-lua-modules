@@ -1482,7 +1482,7 @@ t.rockruff = {name = 'Rockruff', ndex = nil, type1 = 'roccia', type2 = 'roccia'}
 -- t[0xDENIELOPUZZA] = t.rockruff
 t.komala = {name = 'Komala', ndex = nil, type1 = 'normale', type2 = 'normale'}
 -- t[0xDENIELOPUZZA] = t.komala
-t.cutiefly = {name = 'Cutiefly', ndex = nil, type1 = 'coleottero', type2 = 'folletto'}
+t.cutiefly = {name = 'Cutiefly', ndex = nil, type1 = 'coleot', type2 = 'folletto'}
 -- t[0xDENIELOPUZZA] = t.cutiefly
 t.morelull = {name = 'Morelull', ndex = nil, type1 = 'erba', type2 = 'folletto'}
 -- t[0xDENIELOPUZZA] = t.morelull
@@ -1508,7 +1508,7 @@ t.mudsdale = {name = 'Mudsdale', ndex = nil, type1 = 'terra', type2 = 'terra'}
 -- t[0xDENIELOPUZZA] = t.mudsdale
 t.oricorio = {name = 'Oricorio', ndex = nil, type1 = 'fuoco', type2 = 'volante'}
 -- t[0xDENIELOPUZZA] = t.oricorio
-t.wimpod = {name = 'Wimpod', ndex = nil, type1 = 'coleottero', type2 = 'acqua'}
+t.wimpod = {name = 'Wimpod', ndex = nil, type1 = 'coleot', type2 = 'acqua'}
 -- t[0xDENIELOPUZZA] = t.wimpod
 t.mimikyu = {name = 'Mimikyu', ndex = nil, type1 = 'spettro', type2 = 'folletto'}
 -- t[0xDENIELOPUZZA] = t.mimikyu
