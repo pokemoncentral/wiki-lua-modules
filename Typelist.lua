@@ -66,12 +66,12 @@ sono gestite dalle sottoclassi
 
 --]]
 g.Entry.__tostring = function(this)
-	return string.interp([=[| style="background:#FFF; border:1px solid #D8D8D8;" | ${ndex}
-| style="background:#FFF; border:1px solid #D8D8D8;" | ${ani}
-| style="background:#FFF; border:1px solid #D8D8D8;" | [[${name}]]${form}]=],
+	return string.interp([=[| style="border:1px solid #D8D8D8;" | ${ndex}
+| style="border:1px solid #D8D8D8;" | ${static}
+| style="border:1px solid #D8D8D8;" | [[${name}]]${form}]=],
 	{
 		ndex = this.ndex and string.tf(this.ndex) or '???',
-		ani = ms.aniLua(string.tf(this.ndex or 0) ..
+		static = ms.staticLua(string.tf(this.ndex or 0) ..
 				(this.formAbbr == 'base' and '' or this.formAbbr or '')),
 		name = this.name,
 		form = this.formsData and this.formsData.links[this.formAbbr] or ''
@@ -224,7 +224,7 @@ inserire come colonne
 
 --]]
 local makeHeader = function(type, typesCount)
-	return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer" style="background: #${bg}; border: 3px solid #${bd};"
+	return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="background: #${bg}; border: 3px solid #${bd};"
 ! [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
 ! &nbsp;
 ! [[Pokémon|<span style="color:#000">Pokémon</span>]]
