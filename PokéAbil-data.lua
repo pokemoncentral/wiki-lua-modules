@@ -1617,6 +1617,7 @@ t['720L'] = t.hoopa
 -- Settima generazione (BEWARE: STILL NO NDEXES)
 t.oricorioC, t.oricorioH, t.oricorioB = t.oricorio, t.oricorio, t.oricorio
 -- t[0xDENIELOPUZZAC], t[0xDENIELOPUZZAH], t[0xDENIELOPUZZAB] = t.oricorio, t.oricorio, t.oricorio
+t.wishiwashiB = t.wishiwashi
 
 -- I dati sulle megaevoluzioni; sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
 -- Il nome è composto dal nome del Pokémon seguito da 'M'

@@ -99,6 +99,7 @@ t.zygarde = {}
 t.hoopa = {}
 t.lycanroc = {}
 t.oricorio = {}
+t.wishiwashi = {}
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
 
@@ -155,6 +156,7 @@ t.hoopa.names = {L = 'Libero', base = 'Vincolato'}
 t.lycanroc.names = {N = 'Forma Notte', base = 'Forma Giorno'}
 t.oricorio.names = {C = 'Stile Cheerdance', H = 'Stile Hula', B = 'Stile Buyō',
 	base = 'Stile Flamenco'}
+t.wishiwashi.names = {B = 'Forma Banco', base = 'Forma Individuale'}
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}
@@ -254,6 +256,7 @@ t.aegislash.changestats = {'S'}
 t.pumpkaboo.changestats = {'S', 'L', 'XL'}
 t.zygarde.changestats = {'D', 'P'}
 t.hoopa.changestats = t.hoopa.changetype
+t.wishiwashi.changestats = {'B'}
 for k, v in pairs(t.mega) do
 	t[v].changestats = {'M'}
 end
@@ -319,6 +322,7 @@ t.hoopa.ext = {libero = 'L'}
 t.lycanroc.ext = {notte = 'N', giorno = 'base'}
 t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
 	flamenco = 'base'}
+t.wishiwashi.ext = {banco = 'B', individuale = 'base'}
 for k, v in pairs(t.mega) do
 	t[v].ext = {mega = 'M'}
 end
@@ -354,6 +358,7 @@ t.zygarde.gamesOrder = {'D', 'base', 'P'}
 t.hoopa.gamesOrder = {'base', 'L'}
 t.lycanroc.gamesOrder = {'base', 'N'}
 t.oricorio.gamesOrder = {'base', 'C', 'H', 'B'}
+t.wishiwashi.gamesOrder = {'base', 'B'}
 for k, v in pairs(t.mega) do
 	t[v].gamesOrder = {'base', 'M'}
 end
@@ -397,6 +402,7 @@ t.zygarde.since = {D = 'sl', P = 'sl', base = 'xy'}
 t.hoopa.since = {L = 'roza', base = 'xy'}
 t.lycanroc.since = {N = 'sl', base = 'sl'}
 t.oricorio.since = {C = 'sl', H = 'sl', B = 'sl', base = 'sl'}
+t.wishiwashi.since = {B = 'sl', base = 'sl'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
 t.blastoise.since = {M = 'xy', base = 'rb'}
 t.beedrill.since = {M = 'roza', base = 'rb'}
