@@ -816,7 +816,6 @@ dr.debRes = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
 	local pokeData = pokes[string.parseInt(p[1]) or p[1]]
 			or pokes[mw.text.decode(p[1])]
-	local name = pokeData.name:lower()
 	
 	--[[
 		If no data is found, the first parameter is
@@ -834,7 +833,7 @@ dr.debRes = function(frame)
 	end
 
 	return list.makeFormsLabelledBoxes({
-		name = name,
+		name = pokeData.name:lower(),
 		makeBox = EffTable.new,
 		printBoxes = printEffTables
 	})
