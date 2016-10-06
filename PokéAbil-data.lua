@@ -1450,10 +1450,16 @@ t[721] = t.volcanion
 
 t.rowlet = {ability1 = 'Erbaiuto'}
 t[722] = t.rowlet
+t.dartrix = {ability1 = 'Erbaiuto'}
+t[723] = t.dartrix
 t.litten = {ability1 = 'Aiutofuoco'}
 t[725] = t.litten
+t.torracat = {ability1 = 'Aiutofuoco'}
+t[726] = t.torracat
 t.popplio = {ability1 = 'Acquaiuto'}
 t[728] = t.popplio
+t.brionne = {ability1 = 'Acquaiuto'}
+t[729] = t.brionne
 t.pikipek = {ability1 = 'Sguardofermo', ability2 = 'Abillegame'}
 t[731] = t.pikipek
 t.fomantis = {ability1 = 'Fogliamanto'}

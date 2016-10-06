@@ -1452,10 +1452,16 @@ t[721] = t.volcanion
 
 t.rowlet = {name = 'Rowlet', ndex = 722, type1 = 'erba', type2 = 'volante'}
 t[722] = t.rowlet
+t.dartrix = {name = 'Dartrix', ndex = 723, type1 = 'erba', type2 = 'volante'}
+t[723] = t.dartrix
 t.litten = {name = 'Litten', ndex = 725, type1 = 'fuoco', type2 = 'fuoco'}
 t[725] = t.litten
+t.torracat = {name = 'Torracat', ndex = 726, type1 = 'fuoco', type2 = 'fuoco'}
+t[726] = t.torracat
 t.popplio = {name = 'Popplio', ndex = 728, type1 = 'acqua', type2 = 'acqua'}
 t[728] = t.popplio
+t.brionne = {name = 'Brionne', ndex = 729, type1 = 'acqua', type2 = 'acqua'}
+t[729] = t.brionne
 t.pikipek = {name = 'Pikipek', ndex = 731, type1 = 'normale', type2 = 'volante'}
 t[731] = t.pikipek
 t.fomantis = {name = 'Fomantis', ndex = nil, type1 = 'erba', type2 = 'erba'}
