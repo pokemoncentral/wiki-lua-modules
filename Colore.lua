@@ -488,6 +488,12 @@ c.strumentilotta = function(frame) return _colore(frame.args[1] or 'normale', '3
 c.Strumentilotta, c['strumenti lotta'], c['Strumenti lotta'] = c.strumentilotta, c.strumentilotta, c.strumentilotta
 c.messaggi = function(frame) return _colore(frame.args[1] or 'normale', '1890B0', '18A8D0', '208090') end
 c.Messaggi = c.messaggi
+c.cristalliz = function(frame) return _colore(frame.args[1] or 'normale', 'B48A4B', 'CAAD81', '7E6135') end
+c.Cristalliz, c.cristalliZ, c.CristalliZ = c.cristalliz, c.cristalliz, c.cristalliz
+c['cristalli z'], c['Cristalli z'], c['cristalli Z'], c['Cristalli Z'] =
+	c.cristalliz, c.cristalliz, c.cristalliz, c.cristalliz
+c.cristalli_z, c.Cristalli_z, c.cristalli_Z, c.Cristalli_Z =
+	c.cristalliz, c.cristalliz, c.cristalliz, c.cristalliz
 
 -- Varie ed eventuali
 
