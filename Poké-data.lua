@@ -1564,6 +1564,8 @@ t.ninetalesA = {name = 'Ninetales', ndex = 38, type1 = 'ghiaccio', type2 = 'foll
 t['038A'] = t.ninetalesA
 t.meowthA = {name = 'Meowth', ndex = 52, type1 = 'buio', type2 = 'buio'}
 t['052A'] = t.meowthA
+t.grimerA = {name = 'Grimer', ndex = 88, type1 = 'veleno', type2 = 'buio'}
+t['088A'] = t.grimerA
 t.exeggutorA = {name = 'Exeggutor', ndex = 103, type1 = 'erba', type2 = 'drago'}
 t['103A'] = t.exeggutorA
 t.marowakA = {name = 'Marowak', ndex = 105, type1 = 'fuoco', type2 = 'spettro'}

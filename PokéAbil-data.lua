@@ -1561,6 +1561,8 @@ t.vulpixA = {ability1 = 'Mantelneve'}
 t['037A'] = t.vulpixA
 t.ninetalesA = {ability1 = 'Mantelneve'}
 t['038A'] = t.ninetalesA
+t.grimerA = {ability1 = 'Sconosciuta'}
+t['088A'] = t.grimerA
 t.exeggutorA = {ability1 = 'Indagine'}
 t['103A'] = t.exeggutorA
 t.marowakA = {ability1 = 'Corpofunesto', ability2= 'Parafulmine'}
