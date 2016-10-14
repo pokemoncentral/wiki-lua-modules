@@ -1490,6 +1490,8 @@ t.komala = {ability1 = 'Sonno Assoluto'}
 -- t[0xDENIELOPUZZA] = t.komala
 t.cutiefly = {ability1 = 'Mielincetta', ability2 = 'Polvoscudo'}
 -- t[0xDENIELOPUZZA] = t.cutiefly
+t.ribombee = {ability1 = 'Mielincetta', ability2 = 'Polvoscudo'}
+-- t[0xDENIELOPUZZA] = t.ribombee
 t.morelull = {ability1 = 'Risplendi', ability2 = 'Spargispora'}
 -- t[0xDENIELOPUZZA] = t.morelull
 t.togedemaru = {ability1 = 'Spineferrate', ability2 = 'Parafulmine'}
@@ -1508,6 +1510,10 @@ t.comfey = {ability1 = 'Fiorvelo', ability2 = 'Primacura'}
 -- t[0xDENIELOPUZZA] = t.comfey
 t.bounsweet = {ability1 = 'Fogliamanto', ability2 = 'Indifferenza'}
 -- t[0xDENIELOPUZZA] = t.bounsweet
+t.steenee = {ability1 = 'Fogliamanto', ability2 = 'Indifferenza'}
+-- t[0xDENIELOPUZZA] = t.steenee
+t.tsareena = {ability1 = 'Fogliamanto', ability2 = 'Regalità'}
+-- t[0xDENIELOPUZZA] = t.tsareena
 t.mudbray = {ability1 = 'Mente Locale', ability2 = 'Sopportazione'}
 -- t[0xDENIELOPUZZA] = t.mudbray
 t.mudsdale = {ability1 = 'Mente Locale', ability2 = 'Sopportazione'}
@@ -1532,8 +1538,14 @@ t.turtonator = {ability1 = 'Guscioscudo'}
 -- t[0xDENIELOPUZZA] = t.turtonator
 t['tipo zero'] = {ability1 = 'Lottascudo'}
 -- t[0xDENIELOPUZZA] = t['tipo zero']
+t.silvally = {ability1 = 'Sistema Primevo'}
+-- t[0xDENIELOPUZZA] = t.silvally
 t['jangmo-o'] = {ability1 = 'Antiproiettile', ability2 = 'Antisuono'}
 -- t[0xDENIELOPUZZA] = t['jangmo-o']
+t['hakamo-o'] = {ability1 = 'Antiproiettile', ability2 = 'Antisuono'}
+-- t[0xDENIELOPUZZA] = t['hakamo-o']
+t['kommo-o'] = {ability1 = 'Antiproiettile', ability2 = 'Antisuono'}
+-- t[0xDENIELOPUZZA] = t['kommo-o']
 t['tapu koko'] = {ability1 = 'Elettrogenesi'}
 -- t[0xDENIELOPUZZA] = t['tapu koko']
 t.solgaleo = {ability1 = 'Metalprotezione'}
@@ -1561,8 +1573,10 @@ t.vulpixA = {ability1 = 'Mantelneve'}
 t['037A'] = t.vulpixA
 t.ninetalesA = {ability1 = 'Mantelneve'}
 t['038A'] = t.ninetalesA
-t.grimerA = {ability1 = 'Sconosciuta'}
+t.grimerA = {ability1 = 'Velentocco', ability2 = 'Voracità'}
 t['088A'] = t.grimerA
+t.mukA = {ability1 = 'Velentocco', ability2 = 'Voracità'}
+t['089A'] = t.mukA
 t.exeggutorA = {ability1 = 'Indagine'}
 t['103A'] = t.exeggutorA
 t.marowakA = {ability1 = 'Corpofunesto', ability2= 'Parafulmine'}
