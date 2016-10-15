@@ -1621,6 +1621,8 @@ t.oricorioH = {name = 'Oricorio', ndex = nil, type1 = 'psico', type2 = 'volante'
 -- t[0xDENIELOPUZZAH] = t.oricorioH
 t.oricorioB = {name = 'Oricorio', ndex = nil, type1 = 'spettro', type2 = 'volante'}
 -- t[0xDENIELOPUZZAB] = t.oricorioB
+t.lycanrocN = t.lycanroc
+t.wishiwashiB = t.wishiwashi
 
 -- Gli alias per le altre forme alternative rilevanti
 
@@ -1637,6 +1639,7 @@ t.thundurusT, t['642T'] = t.thundurus, t.thundurus
 t.landorusT, t['645T'] = t.landorus, t.landorus
 t.kyuremN, t['646N'], t.kyuremB, t['646B'] =
 	t.kyurem, t.kyurem, t.kyurem, t.kyurem
+t.greninjaA, t['658A'] = t.greninja, t.greninja
 t.meowsticF, t['678F'] = t.meowstic, t.meowstic
 t.aegislashS, t['681S'] = t.aegislash, t.aegislash
 t.pumpkabooS, t['710S'], t.pumpkabooL, t['710L'], t.pumpkabooXL, t['710XL'] =
@@ -1645,10 +1648,6 @@ t.gourgeistS, t['711S'], t.gourgeistL, t['711L'], t.gourgeistXL, t['711XL'] =
 	t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist
 t.zygardeD, t['718D'], t.zygardeP, t['718P'] =
 	t.zygarde, t.zygarde, t.zygarde, t.zygarde
-
--- Settima generazione (BEWARE: STILL NO NDEXES)
-t.lycanrocN = t.lycanroc
-t.wishiwashiB = t.wishiwashi
 
 -- I dati sulle megaevoluzioni; sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
 -- Il nome è composto dal nome del Pokémon seguito da 'M'

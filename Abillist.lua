@@ -15,6 +15,10 @@ local forms = require("AltForms-data")
 local c = require("Colore-data")
 local pokes = require('Poké-data')
 
+-- !!! ATTENZIONE !!!
+--- Questo modulo modifica le copie cachate degli altri moduli dati
+local gre = require('GreninjaDemo-data')
+
 --[[
 
 Classe che rappresenta l'entry della tabella,
@@ -109,7 +113,7 @@ k.abillist = function(frame)
 	local type = string.trim(frame.args[1]) or 'pcwiki'
 	local abil = string.trim(mw.text.decode(frame.args[2]))
 	abil = abil:match('^(.+) %(abilità%)') or 'Cacofonia'
-	 
+
 	return list.makeList({
 		source = require('PokéAbil-data'),
 		iterator = list.pokeNames,

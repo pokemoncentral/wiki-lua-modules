@@ -12,6 +12,10 @@ local txt = require('Wikilib-strings')
 local abils = require('PokéAbil-data')
 local c = require("Colore-data")
 
+-- !!! ATTENZIONE !!!
+--- Questo modulo modifica le copie cachate degli altri moduli dati
+local gre = require('GreninjaDemo-data')
+
 --[[
 
 Questa classe rappresenta una casella
@@ -110,7 +114,7 @@ sotto i nomi delle forme che la hanno.
 b.boxAbil = function(frame)
 	local name = string.trim(frame.args[1] or '')
 	name = string.parseInt(name) or mw.text.decode(name):lower()
-	
+
 	return list.makeFormsLabelledBoxes({
 		name = name,
 		makeBox = AbilsBox.new,
