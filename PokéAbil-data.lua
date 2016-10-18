@@ -1587,6 +1587,8 @@ t.shayminC = {ability1 = 'Leggiadro'}
 t['492C'] = t.shayminC
 t.basculinB = {ability1 = 'Testadura', ability2 = 'Adattabilità', abilityd = 'Rompiforma'}
 t['550B'] = t.basculinB
+t.darmanitanZ = {ability1 = 'Stato Zen'}
+t['555Z'] = t.darmanitanZ
 t.tornadusT = {ability1 = 'Rigenergia'}
 t['641T'] = t.tornadusT
 t.thundurusT = {ability1 = 'Assorbivolt'}
@@ -1625,8 +1627,6 @@ t.rotomC, t.rotomL, t.rotomG = t.rotom, t.rotom,  t.rotom
 t.rotomV, t.rotomT = t.rotom, t.rotom
 t['479C'], t['479L'], t['479G'] = t.rotom, t.rotom,  t.rotom
 t['479V'], t['479T'] = t.rotom, t.rotom
-t.darmanitanZ = t.darmanitan
-t['555Z'] = t.darmanitan
 t.meloettaD = t.meloetta
 t['648D'] = t.meloetta
 t.aegislashS = t.aegislash

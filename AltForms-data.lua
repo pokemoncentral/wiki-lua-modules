@@ -150,7 +150,7 @@ t.darmanitan.names = {Z = 'Stato Zen', base = 'Forma Normalità'}
 t.tornadus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
 t.kyurem.names = {N = 'Kyurem Nero', B = 'Kyurem Bianco', base = 'Forma Base'}
 t.meloetta.names = {D = 'Forma Danza', base = 'Forma Canto'}
-t.greninja.names = {A = 'Forma Ash', base = 'Greninja'}
+t.greninja.names = {A = 'Forma Ash', base = 'Forma Normale'}
 t.meowstic.names = {F = 'Femmina', base = 'Maschio'}
 t.aegislash.names = {S = 'Forma Spada', base = 'Forma Scudo'}
 t.pumpkaboo.names = {S = 'Mini', L = 'Grande', XL = 'Maxi', base = 'Normale'}
@@ -216,6 +216,7 @@ end
 t.giratina.changeability = {'O'}
 t.shaymin.changeability = t.shaymin.changetype
 t.basculin.changeability = {'B'}
+t.darmanitan.changeability = {'Z'}
 t.tornadus.changeability = {'T'}
 t.kyurem.changeability = {'N', 'B'}
 t.greninja.changeability = {'A'}
@@ -256,6 +257,7 @@ t.darmanitan.changestats = t.darmanitan.changetype
 t.tornadus.changestats = t.tornadus.changeability
 t.kyurem.changestats = t.kyurem.changeability
 t.meloetta.changestats = t.meloetta.changetype
+t.greninja.changestats = {'A'}
 t.aegislash.changestats = {'S'}
 t.pumpkaboo.changestats = {'S', 'L', 'XL'}
 t.zygarde.changestats = {'D', 'P'}

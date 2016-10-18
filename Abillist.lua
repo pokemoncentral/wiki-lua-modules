@@ -54,12 +54,12 @@ end
 -- Wikicode per la riga di tabella associata all'entry
 Entry.__tostring = function(this)
 	local monoType = this.type1 == this.type2
-	return string.interp([=[| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${ani}
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | [[${name}|<span style="color:#000">${name}</span>]]${form}
+	return string.interp([=[| style="border:1px solid #D8D8D8;" | ${ani}
+| style="border:1px solid #D8D8D8;" | [[${name}|<span style="color:#000">${name}</span>]]${form}
 | colspan="${cs}" style="background:#${std1}; border:1px solid #${dark1};" | [[${type1} (tipo)|<span style="color:#FFF">${type1}</span>]]${type2}
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${abil1}
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${abil2}
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${abild}]=],
+| style="border:1px solid #D8D8D8;" | ${abil1}
+| style="border:1px solid #D8D8D8;" | ${abil2}
+| style="border:1px solid #D8D8D8;" | ${abild}]=],
 {
 	ani = ms.aniLua(string.tf(this.ndex or 0) ..
 			(this.formAbbr == 'base' and '' or this.formAbbr or '')),
@@ -81,7 +81,7 @@ end
 
 -- Ritorna il wikicode per l'header usando il tipo dato per i colori
 local makeHeader = function(type)
-	return string.interp([=[{| class="roundy text-center pull-center" style="border: 3px solid #${dark}; background: #${normale};"
+	return string.interp([=[{| class="roundy text-center pull-center white-rows" style="border: 3px solid #${dark}; background: #${normale};"
 |-
 ! class="roundytl" style="background: #${light};" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000;">#</span>]]
 ! style="background: #${light};" | Pok&eacute;mon
