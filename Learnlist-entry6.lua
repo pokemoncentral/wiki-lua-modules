@@ -31,7 +31,7 @@ z.Level = z.level
 z.tm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return string.interp(table.concat{[=[|-
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | [[File:${img} ${tipo} Sprite Zaino.png]]
+| style="background:#FFFFFF; border:1px solid #D8D8D8;" | [[File:${img} ${tipo} VI Sprite Zaino.png]]
 | style="background:#FFFFFF; border:1px solid #D8D8D8;" | [[${p1}|<span style="color:#000;">${p1}</span>]]]=],
 		entry(p[9] or '', p[2] or 'Purogelo', lib.makeNotes(p[8] or ''),
 			p[3] or 'Sconosciuto', p[4] or 'Speciale', p[5] or '0', p[6] or '0',
