@@ -1452,14 +1452,20 @@ t.rowlet = {ability1 = 'Erbaiuto'}
 t[722] = t.rowlet
 t.dartrix = {ability1 = 'Erbaiuto'}
 t[723] = t.dartrix
+t.decidueye = {ability1 = 'Erbaiuto'}
+t[724] = t.decidueye
 t.litten = {ability1 = 'Aiutofuoco'}
 t[725] = t.litten
 t.torracat = {ability1 = 'Aiutofuoco'}
 t[726] = t.torracat
+t.incineroar = {ability1 = 'Aiutofuoco'}
+t[727] = t.incineroar
 t.popplio = {ability1 = 'Acquaiuto'}
 t[728] = t.popplio
 t.brionne = {ability1 = 'Acquaiuto'}
 t[729] = t.brionne
+t.primarina = {ability1 = 'Acquaiuto'}
+t[730] = t.primarina
 t.pikipek = {ability1 = 'Sguardofermo', ability2 = 'Abillegame'}
 t[731] = t.pikipek
 t.fomantis = {ability1 = 'Fogliamanto'}
@@ -1536,6 +1542,8 @@ t.oranguru = {ability1 = 'Forza Interiore', ability2 = 'Telepatia'}
 -- t[0xDENIELOPUZZA] = t.oranguru
 t.turtonator = {ability1 = 'Guscioscudo'}
 -- t[0xDENIELOPUZZA] = t.turtonator
+t.cosmog = {ability1 = 'Imprudenza'}
+-- t[0xDENIELOPUZZA] = t.cosmog
 t['tipo zero'] = {ability1 = 'Lottascudo'}
 -- t[0xDENIELOPUZZA] = t['tipo zero']
 t.silvally = {ability1 = 'Sistema Primevo'}
@@ -1548,6 +1556,12 @@ t['kommo-o'] = {ability1 = 'Antiproiettile', ability2 = 'Antisuono'}
 -- t[0xDENIELOPUZZA] = t['kommo-o']
 t['tapu koko'] = {ability1 = 'Elettrogenesi'}
 -- t[0xDENIELOPUZZA] = t['tapu koko']
+t['tapu lele'] = {ability1 = 'Psicogenesi'}
+-- t[0xDENIELOPUZZA] = t['tapu lele']
+t['tapu bulu'] = {ability1 = 'Erbogenesi'}
+-- t[0xDENIELOPUZZA] = t['tapu bulu']
+t['tapu fini'] = {ability1 = 'Nebbiogenesi'}
+-- t[0xDENIELOPUZZA] = t['tapu fini']
 t.solgaleo = {ability1 = 'Metalprotezione'}
 -- t[0xDENIELOPUZZA] = t.solgaleo
 t.lunala = {ability1 = 'Spettroguardia'}
@@ -1573,6 +1587,8 @@ t.vulpixA = {ability1 = 'Mantelneve'}
 t['037A'] = t.vulpixA
 t.ninetalesA = {ability1 = 'Mantelneve'}
 t['038A'] = t.ninetalesA
+t.persianA = {ability1 = 'Foltopelo', ability2 = 'Tecnico'}
+t['053A'] = t.persianA
 t.grimerA = {ability1 = 'Velentocco', ability2 = 'Voracità'}
 t['088A'] = t.grimerA
 t.mukA = {ability1 = 'Velentocco', ability2 = 'Voracità'}

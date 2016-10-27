@@ -1454,14 +1454,20 @@ t.rowlet = {name = 'Rowlet', ndex = 722, type1 = 'erba', type2 = 'volante'}
 t[722] = t.rowlet
 t.dartrix = {name = 'Dartrix', ndex = 723, type1 = 'erba', type2 = 'volante'}
 t[723] = t.dartrix
+t.decidueye = {name = 'Decidueye', ndex = 724, type1 = 'erba', type2 = 'spettro'}
+t[724] = t.decidueye
 t.litten = {name = 'Litten', ndex = 725, type1 = 'fuoco', type2 = 'fuoco'}
 t[725] = t.litten
 t.torracat = {name = 'Torracat', ndex = 726, type1 = 'fuoco', type2 = 'fuoco'}
 t[726] = t.torracat
+t.incineroar = {name = 'Incineroar', ndex = 727, type1 = 'fuoco', type2 = 'buio'}
+t[727] = t.incineroar
 t.popplio = {name = 'Popplio', ndex = 728, type1 = 'acqua', type2 = 'acqua'}
 t[728] = t.popplio
 t.brionne = {name = 'Brionne', ndex = 729, type1 = 'acqua', type2 = 'acqua'}
 t[729] = t.brionne
+t.primarina = {name = 'Primarina', ndex = 730, type1 = 'acqua', type2 = 'folletto'}
+t[730] = t.primarina
 t.pikipek = {name = 'Pikipek', ndex = 731, type1 = 'normale', type2 = 'volante'}
 t[731] = t.pikipek
 t.fomantis = {name = 'Fomantis', ndex = nil, type1 = 'erba', type2 = 'erba'}
@@ -1544,12 +1550,20 @@ t['hakamo-o'] = {name = 'Hakamo-o', ndex = nil, type1 = 'drago', type2 = 'lotta'
 -- t[0xDENIELOPUZZA] = t['hakamo-o']
 t['kommo-o'] = {name = 'Kommo-o', ndex = nil, type1 = 'drago', type2 = 'lotta'}
 -- t[0xDENIELOPUZZA] = t['kommo-o']
+t.cosmog = {name = 'Cosmog', ndex = nil, type1 = 'psico', type2 = 'psico'}
+-- t[0xDENIELOPUZZA] = t.cosmog
 t['tipo zero'] = {name = 'Tipo Zero', ndex = nil, type1 = 'normale', type2 = 'normale'}
 -- t[0xDENIELOPUZZA] = t['tipo zero']
 t.silvally = {name = 'Silvally', ndex = nil, type1 = 'normale', type2 = 'normale'}
 -- t[0xDENIELOPUZZA] = t.silvally
 t['tapu koko'] = {name = 'Tapu Koko', ndex = nil, type1 = 'elettro', type2 = 'folletto'}
 -- t[0xDENIELOPUZZA] = t['tapu koko']
+t['tapu lele'] = {name = 'Tapu Lele', ndex = nil, type1 = 'psico', type2 = 'folletto'}
+-- t[0xDENIELOPUZZA] = t['tapu lele']
+t['tapu bulu'] = {name = 'Tapu Bulu', ndex = nil, type1 = 'erba', type2 = 'folletto'}
+-- t[0xDENIELOPUZZA] = t['tapu bulu']
+t['tapu fini'] = {name = 'Tapu Fini', ndex = nil, type1 = 'acqua', type2 = 'folletto'}
+-- t[0xDENIELOPUZZA] = t['tapu fini']
 t.solgaleo = {name = 'Solgaleo', ndex = nil, type1 = 'psico', type2 = 'acciaio'}
 -- t[0xDENIELOPUZZA] = t.solgaleo
 t.lunala = {name = 'Lunala', ndex = nil, type1 = 'psico', type2 = 'spettro'}
@@ -1576,6 +1590,8 @@ t.ninetalesA = {name = 'Ninetales', ndex = 38, type1 = 'ghiaccio', type2 = 'foll
 t['038A'] = t.ninetalesA
 t.meowthA = {name = 'Meowth', ndex = 52, type1 = 'buio', type2 = 'buio'}
 t['052A'] = t.meowthA
+t.persianA = {name = 'Persian', ndex = 53, type1 = 'buio', type2 = 'buio'}
+t['053A'] = t.persianA
 t.grimerA = {name = 'Grimer', ndex = 88, type1 = 'veleno', type2 = 'buio'}
 t['088A'] = t.grimerA
 t.mukA = {name = 'Muk', ndex = 89, type1 = 'veleno', type2 = 'buio'}

@@ -292,6 +292,7 @@ t.hoopa.changemoves = t.hoopa.changetype
 t.rattata.anchor = 'Rattata e Raticate'
 t.sandshrew.anchor = 'Sandshrew e Sandslash'
 t.vulpix.anchor = 'Vulpix e Ninetales'
+t.meowth.anchor = 'Meowth e Persian'
 t.grimer.anchor = 'Grimer e Muk'
 t.wormadam.anchor = 'Burmy e Wormadam'
 t.tornadus.anchor = 'Trio dei Kami'
@@ -468,6 +469,7 @@ t.kyogre.since = {A = 'roza', base = 'rz'}
 table.insert(t.alola, 'raticate')
 table.insert(t.alola, 'sandslash')
 table.insert(t.alola, 'ninetales')
+table.insert(t.alola, 'persian')
 table.insert(t.alola, 'muk')
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
@@ -475,6 +477,7 @@ table.insert(t.alola, 'muk')
 t.raticate = t.rattata
 t.sandslash = t.sandshrew
 t.ninetales = t.vulpix
+t.persian = t.meowth
 t.muk = t.grimer
 t.thundurus, t.landorus = t.tornadus, t.tornadus
 t.gourgeist = t.pumpkaboo
@@ -487,6 +490,7 @@ t[28] = t.sandslash
 t[37] = t.vulpix
 t[38] = t.ninetales
 t[52] = t.meowth
+t[53] = t.persian
 t[88] = t.grimer
 t[89] = t.muk
 t[103] = t.exeggutor
