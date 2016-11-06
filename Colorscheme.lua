@@ -66,6 +66,8 @@ c.ROZA = function(frame) return _colore(frame.args[1], '729ABF', 'AB2813') end
 c.ORAS, c['Omega Ruby & Alpha Sapphire'], c['Rubino Omega e Zaffiro Alpha'] = c.ROZA, c.ROZA, c.ROZA
 c.XYZ = function(frame) return _colore(frame.args[1], 'A4CC51', '3EAE30') end
 c['XY & Z'], c.Z, c.xyz, c.z = c.XYZ, c.XYZ, c.XYZ, c.XYZ
+c.alola = function(frame) return _colore(frame.args[1], '7FC5F6', 'FFA94D') end
+c.SL, c.SM, c['S&M'], c['Sun & Moon'], c['Sole e Luna'] = c.alola, c.alola, c.alola, c.alola, c.alola
 c.pcwiki = function(frame) return _colore(frame.args[1], 'CEE0F4', '779FD3') end
 c.Pcwiki = c.pcwiki
 
