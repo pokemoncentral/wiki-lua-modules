@@ -126,8 +126,8 @@ t.archeo = {'kyogre', 'groudon'}
 -- Tabella contenente i Pokémon che hanno una forma di Alola:
 -- per efficienza, alcuni sono alla fine del modulo
 
-t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'meowth', 'grimer',
-	'exeggutor', 'marowak'}
+t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'diglett', 'meowth',
+	'grimer', 'exeggutor', 'marowak'}
 
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
@@ -292,6 +292,7 @@ t.hoopa.changemoves = t.hoopa.changetype
 t.rattata.anchor = 'Rattata e Raticate'
 t.sandshrew.anchor = 'Sandshrew e Sandslash'
 t.vulpix.anchor = 'Vulpix e Ninetales'
+t.diglett.anchor = 'Diglett e Dugtrio'
 t.meowth.anchor = 'Meowth e Persian'
 t.grimer.anchor = 'Grimer e Muk'
 t.wormadam.anchor = 'Burmy e Wormadam'
@@ -391,6 +392,7 @@ t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
 t.raichu.since = {A = 'sl', base = 'rb'}
 t.sandshrew.since = {A = 'sl', base = 'rb'}
 t.vulpix.since = {A = 'sl', base = 'rb'}
+t.diglett.since = {A = 'sl', base = 'rb'}
 t.meowth.since = {A = 'sl', base = 'rb'}
 t.grimer.since = {A = 'sl', base = 'rb'}
 t.exeggutor.since = {A = 'sl', base = 'rb'}
@@ -469,6 +471,7 @@ t.kyogre.since = {A = 'roza', base = 'rz'}
 table.insert(t.alola, 'raticate')
 table.insert(t.alola, 'sandslash')
 table.insert(t.alola, 'ninetales')
+table.insert(t.alola, 'dugtrio')
 table.insert(t.alola, 'persian')
 table.insert(t.alola, 'muk')
 
@@ -477,6 +480,7 @@ table.insert(t.alola, 'muk')
 t.raticate = t.rattata
 t.sandslash = t.sandshrew
 t.ninetales = t.vulpix
+t.dugtrio = t.diglett
 t.persian = t.meowth
 t.muk = t.grimer
 t.thundurus, t.landorus = t.tornadus, t.tornadus
@@ -489,6 +493,8 @@ t[27] = t.sandshrew
 t[28] = t.sandslash
 t[37] = t.vulpix
 t[38] = t.ninetales
+t[50] = t.diglett
+t[51] = t.dugtrio
 t[52] = t.meowth
 t[53] = t.persian
 t[88] = t.grimer
