@@ -10,7 +10,7 @@ local gendata = {}
 
 -- Ultima generazione, con alias per i non anglofoni
 
-gendata.latest = 6
+gendata.latest = 7
 gendata.last = gendata.latest
 gendata.lastGen, gendata.last_gen = gendata.latest, gendata.latest
 gendata.latestGen, gendata.latest_gen = gendata.latest, gendata.latest

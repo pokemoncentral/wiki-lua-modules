@@ -44,6 +44,7 @@ local box = require('Boxtipo')
 local et = require('EffTipi')
 local link = require('Links')
 local w = require('Wikilib')
+local abillib = require('Wikilib-abils')
 local forms = require('Wikilib-forms')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
@@ -262,7 +263,7 @@ EffTable.new = function(name, formName)
 		abils = table.map(formName, string.lower)
 	else
 		types = pokes[name]
-		abils = table.map(abilData[name], string.lower)
+		abils = table.map(abillib.lastAbils(abilData[name]), string.lower)
 	end
 
 	local this = setmetatable(EffTable.super.new(formName),

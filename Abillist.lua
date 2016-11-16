@@ -6,6 +6,7 @@ local mw = require('mw')
 
 local links = require('Links')
 local ms = require('MiniSprite')
+local abillib = require('Wikilib-abils')
 local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
@@ -41,14 +42,33 @@ viene ritornato nil
 
 --]]
 Entry.new = function(pokeAbil, name, abil)
-	if not table.search(pokeAbil, abil) then
+	if not table.deepSearch(pokeAbil, abil) then
 		return nil
 	end
 
 	local this = Entry.super.new(name, pokes[name].ndex)
+
 	this = table.merge(this, pokeAbil)
 	
 	return setmetatable(table.merge(this, pokes[name]), Entry)
+end
+
+-- Wikicode di un'abilità, gestendo il cambio tra generazioni
+local printAbil = function(abil)
+	if not(abil) then
+		return 'Nessuna'
+	end
+	if type(abil) == 'string' then
+		return links.aColor(abil, '000')
+	end
+	return table.concat(table.map(abillib.abilspan(abil), function(v)
+		return string.interp(
+			'<div>${abil}<sup>${gen}</sup></div>',
+			{
+				abil = v.abil == 'Nessuna' and v.abil or links.aColor(v.abil, '000'),
+				gen = v.s == v.e and v.s or table.concat{v.s, '-', v.e},
+			})
+	end))
 end
 
 -- Wikicode per la riga di tabella associata all'entry
@@ -73,9 +93,9 @@ Entry.__tostring = function(this)
 	type1 = string.fu(this.type1),
 	type2 = monoType and '' or string.interp('\n|style="background:#${std2}; border:1px solid #${dark2};" | [[${type2} (tipo)|<span style="color:#FFF">${type2}</span>]]',
 		{std2 = c[this.type2].normale, dark2 = c[this.type2].dark, type2 = string.fu(this.type2)}),
-	abil1 = this.ability1 and links.aColor(this.ability1, '000') or 'Nessuna',
-	abil2 = this.ability2 and links.aColor(this.ability2, '000') or 'Nessuna',
-	abild = this.abilityd and links.aColor(this.abilityd, '000') or 'Nessuna',
+	abil1 = printAbil(this.ability1),
+	abil2 = printAbil(this.ability2),
+	abild = printAbil(this.abilityd),
 })
 end
 
