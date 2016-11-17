@@ -74,14 +74,14 @@ end
 -- Wikicode per la riga di tabella associata all'entry
 Entry.__tostring = function(this)
 	local monoType = this.type1 == this.type2
-	return string.interp([=[| style="border:1px solid #D8D8D8;" | ${ani}
+	return string.interp([=[| style="border:1px solid #D8D8D8;" | ${static}
 | style="border:1px solid #D8D8D8;" | [[${name}|<span style="color:#000">${name}</span>]]${form}
 | colspan="${cs}" style="background:#${std1}; border:1px solid #${dark1};" | [[${type1} (tipo)|<span style="color:#FFF">${type1}</span>]]${type2}
 | style="border:1px solid #D8D8D8;" | ${abil1}
 | style="border:1px solid #D8D8D8;" | ${abil2}
 | style="border:1px solid #D8D8D8;" | ${abild}]=],
 {
-	ani = ms.aniLua(string.tf(this.ndex or 0) ..
+	static = ms.staticLua(string.tf(this.ndex or 0) ..
 			(this.formAbbr == 'base' and '' or this.formAbbr or '')),
 	name = this.name,
 	form = this.formsData
