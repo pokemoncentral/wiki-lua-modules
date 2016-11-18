@@ -17,10 +17,10 @@ local gendata = require("Gens-data")
 -- e alla generazione
 
 local cs = {}
-cs.level = {6, 6, 9, 9, 8, 11}
-cs.tm = {7, 7, 10, 10, 8, 11}
-cs.breed = {6, 6, 9, 9, 7, 10}
-cs.tutor = {6, 6, 12, 13, 10, 13}
+cs.level = {6, 6, 9, 9, 8, 11, 8}
+cs.tm = {7, 7, 10, 10, 8, 11, 8}
+cs.breed = {6, 6, 9, 9, 7, 10, 7}
+cs.tutor = {6, 6, 12, 13, 10, 13, 8}
 cs.preevo, cs.event = cs.breed, cs.breed
 
 -- Tabella con i valori del colspan e del rowspan della prima cella,
@@ -29,16 +29,16 @@ cs.preevo, cs.event = cs.breed, cs.breed
 local firstcell = {cs = {}, rs = {}}
 
 -- In futuro dovranno essere tutti > 1
-firstcell.cs.level = {1, 1, 1, 1, 2, 2}
+firstcell.cs.level = {1, 1, 1, 1, 2, 2, 1}
 
-firstcell.cs.tm = {2, 2, 2, 2, 2, 2}
-firstcell.cs.breed = {1, 1, 1, 1, 1, 1}
-firstcell.cs.tutor = {1, 1, 4, 5, 4, 4}
+firstcell.cs.tm = {2, 2, 2, 2, 2, 2, 2}
+firstcell.cs.breed = {1, 1, 1, 1, 1, 1, 1}
+firstcell.cs.tutor = {1, 1, 4, 5, 4, 4, 2}
 firstcell.cs.preevo = firstcell.cs.breed
 firstcell.cs.event = firstcell.cs.breed
 
-firstcell.rs.level = {1, 1, 1, 1, 2, 2}
-firstcell.rs.breed = {1, 1, 1, 1, 1, 1}
+firstcell.rs.level = {1, 1, 1, 1, 2, 2, 1}
+firstcell.rs.breed = {1, 1, 1, 1, 1, 1, 1}
 firstcell.rs.tm = firstcell.rs.breed
 firstcell.rs.tutor = firstcell.rs.breed
 firstcell.rs.preevo = firstcell.rs.breed
@@ -73,7 +73,8 @@ cells.preevo = '! colspan = "${c}" | &nbsp;[[Evoluzione|<span style="color:#000;
 cells.event = '! colspan = "${c}" | &nbsp;[[Evento Pokémon|<span style="color:#000;">Evento</span>]]&nbsp;'
 cells.basic = table.concat{cells.moveandtype, cells.ppp}
 cells.category = table.concat{cells.moveandtype, cells.cat, cells.ppp}
-cells[1], cells[2], cells[5] = cells.basic, cells.basic, cells.category
+cells[1], cells[2] = cells.basic, cells.basic
+cells[5], cells[7] = cells.category, cells.category
 cells[3] = table.concat{cells.basic, cells.gara, cells.inib}
 cells[4] = table.concat{cells.category, cells.gara}
 cells[6] = table.concat{cells.category, cells.gara, cells.inib}
