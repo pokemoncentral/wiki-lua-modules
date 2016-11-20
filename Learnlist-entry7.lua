@@ -59,7 +59,7 @@ z.Breed = z.breed
 
 z.tutor = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{lib.tutorgames{{'S', p[4]}, {'L', p[4]}},
+    return table.concat{lib.tutorgames{{'S', p[4], 'So'}, {'L', p[4]}},
 			' ', entry(p[3] or '',
 			p[1] or 'Tuono', lib.makeNotes(p[2] or ''))}
 end
@@ -70,7 +70,7 @@ z.Tutor = z.tutor
 
 z.preevo = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{lib.preevodata(p, '6'), ' ', entry(p[8] or '',
+    return table.concat{lib.preevodata(p, '7'), ' ', entry(p[8] or '',
 		p[7] or 'Scontro', '')}
 end
 
