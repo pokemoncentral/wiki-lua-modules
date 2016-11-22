@@ -24,13 +24,14 @@ essere l'indice di un parametro
 
 --]]
 local gameGens = {Y = 1, C = 2, FRLG = 3, HGSS = 4,
-		PTHGSS = 4, B2W2 = 5, ORAS = 6}
+		PTHGSS = 4, B2W2 = 5, ORAS = 6, SM = 7}
 
 -- Contiene i colori di background delle celle del tutor
 local tutorCellsColors = {c.cristallo.normale, c.rossofuoco.normale,
 		c.smeraldo.normale, c.xd.normale, c.diamante.normale,
 		c.platino.normale, c.heartgold.normale, c.nero.normale,
-		c.nero2.normale, c.x.normale, c.rubinoomega.normale}
+		c.nero2.normale, c.x.normale, c.rubinoomega.normale,
+		c.sole.normale}
 
 --[[
 
@@ -76,6 +77,7 @@ splitCellsData.B2W2 = {{bg = 'bianco', txt = 'nero', abbr = 'NB'},
 	{bg = 'bianco2', txt = 'nero2', abbr = 'N2B2'}}
 splitCellsData.ORAS = {{bg = 'x', txt = 'y', abbr = 'XY'},
 	{bg = 'rubinoomega', txt = 'zaffiroalpha', abbr = 'ROZA'}}
+splitCellsData.SM = {{bg = 'sole', txt = 'luna', abbr = 'SL'}}
 
 --[[
 
@@ -255,7 +257,7 @@ local entry = function(p, makeText, splitCells, latestGenDefault)
 	local form = string.lower(p.form or '')
 
 	p.note, p.STAB, p.form = nil, nil, nil
-	p[12 - gen] = p[12 - gen] or latestGenDefault or p[11 - gen]
+	p[(6 + gendata.latest) - gen] = p[(6 + gendata.latest) - gen] or latestGenDefault or p[(5 + gendata.latest) - gen]
 
 	--[[
 		Si applica makeText solo ai dati relativi all'
@@ -263,7 +265,7 @@ local entry = function(p, makeText, splitCells, latestGenDefault)
 		scartando quelli del Pokémon.
 	--]]
 	local data = table.map(table.filter(p, function(_, key)
-			return type(key) == 'string' or key > 5 and key < 13 - gen
+			return type(key) == 'string' or key > 5 and key < (7 + gendata.latest) - gen
 		end), makeText)
 
 	return head(p[1] or '000', p[2] or 'Missingno.', p[4] or 'Sconosciuto',
@@ -318,7 +320,7 @@ per interpolazione.
 m.event = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.fu)
 	return string.interp([=[${h}
-| style="background:#FFF;" colspan="2" | ${event}${level}]=],
+| style="background:#FFF;" | ${event}${level}]=],
 {
 	h = head(p[1] or '000', p[2] or 'Missingno.', p[4] or 'Sconosciuto',
 			p[5] or 'Sconosciuto', p.STAB or '', p.notes or '', p.form or ''),

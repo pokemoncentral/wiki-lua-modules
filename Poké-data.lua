@@ -1565,7 +1565,7 @@ t.bruxish = {name = 'Bruxish', ndex = 779, type1 = 'acqua', type2 = 'psico'}
 t[779] = t.bruxish
 t.drampa = {name = 'Drampa', ndex = 780, type1 = 'normale', type2 = 'drago'}
 t[780] = t.drampa
-t.dhelmise = {name = 'Dhelmise', ndex = 781, type1 = 'erba', type2 = 'spettro'}
+t.dhelmise = {name = 'Dhelmise', ndex = 781, type1 = 'spettro', type2 = 'erba'}
 t[781] = t.dhelmise
 t['jangmo-o'] = {name = 'Jangmo-o', ndex = 782, type1 = 'drago', type2 = 'drago'}
 t[782] = t['jangmo-o']
@@ -1706,6 +1706,8 @@ t.gourgeistS, t['711S'], t.gourgeistL, t['711L'], t.gourgeistXL, t['711XL'] =
 	t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist
 t.zygardeD, t['718D'], t.zygardeP, t['718P'] =
 	t.zygarde, t.zygarde, t.zygarde, t.zygarde
+t.lycanrocN = t.lycanroc
+t.wishiwashiB = t.wishiwashi
 
 -- I dati sulle megaevoluzioni; sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
 -- Il nome è composto dal nome del Pokémon seguito da 'M'

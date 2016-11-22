@@ -48,12 +48,12 @@ al.abilspan = function(abil)
 	if type(abil) == 'string' then
 		return abil
 	end
-	local as = { {abil = 'placeholder', s = 2, e = 2} }
+	local as = { {abil = 'placeholder', first = 2, last = 2} }
 	for i=3,gen.lastGen do
 		if (abil[i]) then
-			table.insert(as, {abil = abil[i], s = i, e = i})
+			table.insert(as, {abil = abil[i], first = i, last = i})
 		else
-			as[#as].e = i
+			as[#as].last = i
 		end
 	end
 	table.remove(as, 1)

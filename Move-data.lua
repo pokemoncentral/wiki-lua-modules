@@ -632,7 +632,7 @@ t.fortino = {name = 'Fortino', type = 'veleno', category = 'stato', power = '&md
 t["cucitura d'ombra"] = {name = "Cucitura d'Ombra", type = 'spettro', category = 'fisico', power = 80, accuracy = 100, pp = 10}
 t.braccioteso = {name = 'Braccioteso', type = 'buio', category = 'fisico', power = 85, accuracy = 100, pp = 10}
 t['canto effimero'] = {name = 'Canto Effimero', type = 'acqua', category = 'speciale', power = 90, accuracy = 100, pp = 10}
-t.martelgelo = {name = 'Martelgelo', type = 'ice', category = 'fisico', power = 100, accuracy = 90, pp = 10}
+t.martelgelo = {name = 'Martelgelo', type = 'ghiaccio', category = 'fisico', power = 100, accuracy = 90, pp = 10}
 t['cura floreale'] = {name = 'Cura Floreale', type = 'folletto', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10}
 t['forza equina'] = {name = 'Forza Equina', type = 'terra', category = 'fisico', power = 95, accuracy = 95, pp = 10}
 t.assorbiforza = {name = 'Assorbiforza', type = 'erba', category = 'stato', power = '&mdash;', accuracy = 100, pp = 10}
@@ -661,7 +661,7 @@ t.cannonbecco = {name = 'Cannonbecco', type = 'Volante', category = 'fisico', po
 t.clamorsquame = {name = 'Clamorsquame', type = 'drago', category = 'speciale', power = 110, accuracy = 100, pp = 5}
 t.marteldrago = {name = 'Marteldrago', type = 'drago', category = 'fisico', power = 90, accuracy = 100, pp = 15}
 t.vorticolpo = {name = 'Vorticolpo', type = 'buio', category = 'fisico', power = 60, accuracy = 100, pp = 20}
-t.velaurora = {name = 'Velaurora', type = 'ice', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 20}
+t.velaurora = {name = 'Velaurora', type = 'ghiaccio', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 20}
 t.gusciotrappola = {name = 'Gusciotrappola', type = 'fuoco', category = 'speciale', power = 150, accuracy = 100, pp = 5}
 t.cannonfiore = {name = 'Cannonfiore', type = 'folletto', category = 'speciale', power = 130, accuracy = 90, pp = 5}
 t.psicozanna = {name = 'Psicozanna', type = 'psico', category = 'fisico', power = 85, accuracy = 100, pp = 10}

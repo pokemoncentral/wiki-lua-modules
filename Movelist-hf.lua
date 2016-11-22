@@ -3,6 +3,8 @@
 
 local j = {}
 
+local mw = require('mw')
+
 local w = require('Wikilib')
 local txt = require('Wikilib-strings')
 local c = require("Colore-data")
@@ -13,7 +15,7 @@ local gendata = require("Gens-data")
 -- Contiene i colspan dell'ultima cella degli headers
 
 local cs = {}
-cs.level = function(gen) return 14 - 2 * gen end
+cs.level = function(gen) return 2 * (gendata.latest + 1) - 2 * gen end
 cs.breed, cs.tm = cs.level, cs.level
 cs.event = function(gen) return 1 end
 cs.tutor = function(gen) return gen end
@@ -26,6 +28,7 @@ games[3] = {{'RFVF', 'rossofuoco'}, {'S', 'smeraldo'}, {'XD', 'xd'}}
 games[4] = {{'DP', 'diamante'}, {'PT', 'platino'}, {'HGSS', 'heartgold'}}
 games[5] = {{'NB', 'nero'}, {'N2B2', 'nero2'}}
 games[6] = {{'XY', 'x'}, {'RΩZα', 'rubinoomega'}}
+games[7] = {{'SL', 'sole'}}
 
 -- Contiene le varie funzioni che generano le celle
 
@@ -48,7 +51,7 @@ end
 -- Genera le celle dei tm
 
 cells.tm = function(gen, tms)
-    local str = '! style="background:#${bg}; width: 35px; line-height: 1em;" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]<br><small>${tm}</small>\n'
+    local str = '! style="background:#${bg}; width: 35px; line-height: 1em;" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]<div class="text-small">${tm}</div>\n'
     local row, l = {}, ''
     for a = gen, gendata.latest do
         l = tms[a] == 'NO' and '<span style="color:#FFF;">Ness.</span>' or string.interp('[[${tm}|<span style="color:#FFF;">${tm}</span>]]', {tm = tms[a]})
@@ -131,7 +134,7 @@ j.Eventh = j.eventh
 j.tmh = function(frame)
     local p, tms = w.trimAndMap(mw.clone(frame.args), string.lower), {}
     local tipo, gen = p[1] or 'pcwiki', tonumber(p[2]) or 0
-    for a = 3, 8 do
+    for a = 3, 2 + gendata.latest do
         tms[a - 2] = p[a] and string.upper(p[a]) or 'No'
     end
     return string.interp([=[${str}Macchina
@@ -205,6 +208,14 @@ end
 
 j.Tutor6 = j.tutor6
 
+-- Celle tutor settima generazione
+
+j.tutor7 = function(frame)
+	return cells.tutor(7, w.trimAndMap(mw.clone(frame.args), string.lower))
+end
+
+j.Tutor7 = j.tutor7
+
 -- Mosse ombra
 
 j.shadowh = function(frame)
@@ -229,7 +240,7 @@ j.Shadowh = j.shadowh
 j.footer = function(frame)
     local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     return string.interp([=[|- style="text-align: left;"
-| class="roundybottom" style="background: #${bg}; font-size: 85%;" colspan="17" |
+| class="roundybottom" style="background: #${bg}; font-size: 85%;" colspan="19" |
 * I Pokémon in '''grassetto''' sono quelli che ricevono lo [[Same-type attack bonus|<span style="color:#000;">STAB</span>]] dalla mossa.
 * I Pokémon in ''corsivo'' sono quelli con evoluzioni o [[Differenze di forma|<span style="color:#000">forme alternative</span>]] che ricevono lo STAB.
 |}]=], {bg = c[p[1] or 'pcwiki'].light})

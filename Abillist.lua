@@ -66,7 +66,7 @@ local printAbil = function(abil)
 			'<div>${abil}<sup>${gen}</sup></div>',
 			{
 				abil = v.abil == 'Nessuna' and v.abil or links.aColor(v.abil, '000'),
-				gen = v.s == v.e and v.s or table.concat{v.s, '-', v.e},
+				gen = v.first == v.last and v.first or table.concat{v.first, '-', v.last},
 			})
 	end))
 end
