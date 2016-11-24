@@ -90,7 +90,7 @@ end
 -- Ritorna le prime celle, comuni a tutti gli headers
 
 local headers = function(tipo, gen, kind)
-    return string.interp([=[{| class="roundy text-center" style="background: #${bg};  border: 5px solid #${bd}"
+    return string.interp([=[{| class="roundy text-center white-rows roundy-footer" style="background: #${bg};  border: 5px solid #${bd}"
 ! class="roundytl" style="background:#${bd};" rowspan="${rs}" | #
 ! style="background:#${bd};" rowspan="${rs}" colspan="2" | Pokémon
 ! style="background:#${bd};" colspan="2" rowspan="${rs}" | Tipo
@@ -239,11 +239,13 @@ j.Shadowh = j.shadowh
 
 j.footer = function(frame)
     local p = w.trimAndMap(mw.clone(frame.args), string.lower)
-    return string.interp([=[|- style="text-align: left;"
-| class="roundybottom" style="background: #${bg}; font-size: 85%;" colspan="19" |
+    return string.interp([=[|- class="text-left"
+| style="background: #${bg}; font-size: 85%;" colspan="${cs}" |
 * I Pokémon in '''grassetto''' sono quelli che ricevono lo [[Same-type attack bonus|<span style="color:#000;">STAB</span>]] dalla mossa.
 * I Pokémon in ''corsivo'' sono quelli con evoluzioni o [[Differenze di forma|<span style="color:#000">forme alternative</span>]] che ricevono lo STAB.
-|}]=], {bg = c[p[1] or 'pcwiki'].light})
+|}]=],
+	{bg = c[p[1] or 'pcwiki'].light,
+		cs = 5 + 2 * gendata.latest})
 end
 
 -- Divisore generazioni event
@@ -262,4 +264,3 @@ end
 j.Div = j.div
 
 return j
-
