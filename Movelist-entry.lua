@@ -251,7 +251,7 @@ local removeOldParams = function(p)
 		table.remove(p, 2)
 	end
 	-- rimuove i parametri 4 e 5 (ora 2 e 3) se sono tipi
-	if (table.search(libdata.allTypes, string.lower(p[2]))) then
+	if (table.search(libdata.allTypes, string.lower(p[2])) or string.lower(p[2]) == 'coleottero') then
 		table.remove(p, 3)
 		table.remove(p, 2)
 	end

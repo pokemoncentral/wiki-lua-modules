@@ -112,7 +112,8 @@ baby.Mantine = 'Mantyke'
 -- perché non vi è nessuna riga da aggiungere
 
 local rowsf = {}
-rowsf.level = '*Il livello "Inizio" indica una mossa conosciuta da ${poke} ottenuto a livello 1 nella ${genl} generazione.'
+rowsf.level = [=[*Il livello "Inizio" indica una mossa conosciuta da ${poke} ottenuto a livello 1 nella ${genl} generazione.
+*Le mosse segnate al livello † possono essere apprese al momento dell'evoluzione.]=]
 rowsf.breed1 = [=[*Le mosse segnate con un asterisco (*) si ottengono solo con una [[catena di accoppiamenti|<span style="color:#000;">catena di accoppiamenti</span>]] su ${poke} nella ${genl} generazione.
 *Le mosse segnate con una doppia croce (‡) possono essere ottenute solo da un Pokémon che le abbia apprese in una generazione precedente.
 *Le mosse segnate con un'abbreviazione di un gioco in apice si possono ottenere su ${poke} solo in quel gioco.]=]

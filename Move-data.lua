@@ -260,7 +260,7 @@ t.bruciapelo = {name = 'Bruciapelo', type = 'normale', category = 'fisico', powe
 t.baraonda = {name = 'Baraonda', type = 'normale', category = 'speciale', power = 90, accuracy = 100, pp = 10}
 t.accumulo = {name = 'Accumulo', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 20}
 t.sfoghenergia = {name = 'Sfoghenergia', type = 'normale', category = 'speciale', power = '&mdash;', accuracy = 100, pp = 10}
-t.intoenergia = {name = 'Intoenergia', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10}
+t.introenergia = {name = 'Introenergia', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10}
 t.ondacalda = {name = 'Ondacalda', type = 'fuoco', category = 'speciale', power = 95, accuracy = 90, pp = 10}
 t.grandine = {name = 'Grandine', type = 'ghiaccio', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10}
 t.attaccalite = {name = 'Attaccalite', type = 'buio', category = 'stato', power = '&mdash;', accuracy = 100, pp = 15}
