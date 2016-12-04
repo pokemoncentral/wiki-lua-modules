@@ -208,14 +208,18 @@ pari ai livelli diversi inseriti.
 --]]
 lib.gameslevel = function(first, second, third)
 
-	-- Only two of them
 	if not third then
-		if first == second then
-			return table.concat{gameLevelCell, ' colspan = "2" | ',
+		--Only one of them
+		if not second then
+			return table.concat{gameLevelCell, ' | ',
 					first}
-		end
-		return table.concat{gameLevelCell, ' | ', first, ' |',
+		elseif first == second then -- Only two of them
+			return table.concat{gameLevelCell, ' colspan = "2" | ',
+				first}
+		else
+			return table.concat{gameLevelCell, ' | ', first, ' |',
 				gameLevelCell, ' | ', second}
+		end
 	end
 
 	-- All three are the same
@@ -294,13 +298,13 @@ end
 lib.preevodata = function(pars, gen)
 	local ani1, tt1 = '', ''
 	if pars[4] then
-		ani1 = ms.aniLua(pars[4], gen or '', pars[5] or 'Bulbasaur')
+		ani1 = ms.staticLua(pars[4], gen or '', pars[5] or 'Bulbasaur')
 		tt1 = lib.preevott[pars[6]] or ''
 	end
 	return string.interp([=[|-
 | style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${ani}${tt}${ani1}${tt1}]=],
 {
-	ani = ms.aniLua(pars[1] or '000', gen or '', pars[2] or 'Bulbasaur'),
+	ani = ms.staticLua(pars[1] or '000', gen or '', pars[2] or 'Bulbasaur'),
 	tt = lib.preevott[pars[3]] or '',
 	ani1 = ani1,
 	tt1 = tt1

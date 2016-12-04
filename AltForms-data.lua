@@ -127,7 +127,7 @@ t.archeo = {'kyogre', 'groudon'}
 -- per efficienza, alcuni sono alla fine del modulo
 
 t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'diglett', 'meowth',
-	'grimer', 'exeggutor', 'marowak'}
+	'geodude', 'grimer', 'exeggutor', 'marowak'}
 
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
@@ -243,7 +243,6 @@ t.latios.changeability = nil
 t.garchomp.changeability = nil
 t.abomasnow.changeability = nil
 t.audino.changeability = nil
-t.meowth.changeability = nil
 
 -- Sigle delle forme alternative che cambiano statistiche rispetto alla forma
 -- base, che non è dunque presente
@@ -282,8 +281,8 @@ t.wormadam.changemoves = t.wormadam.changetype
 t.rotom.changemoves = t.rotom.changetype
 t.shaymin.changemoves = t.shaymin.changetype
 t.kyurem.changemoves = t.kyurem.changeability
+t.greninja.changemoves = t.greninja.changeability
 t.meowstic.changemoves = t.meowstic.changeability
---t.zygarde.changemoves = {}
 t.hoopa.changemoves = t.hoopa.changetype
 
 -- Anchor per i link alle forme alternative,
@@ -294,6 +293,7 @@ t.sandshrew.anchor = 'Sandshrew e Sandslash'
 t.vulpix.anchor = 'Vulpix e Ninetales'
 t.diglett.anchor = 'Diglett e Dugtrio'
 t.meowth.anchor = 'Meowth e Persian'
+t.geodude.anchor = 'Geodude, Graveler e Golem'
 t.grimer.anchor = 'Grimer e Muk'
 t.wormadam.anchor = 'Burmy e Wormadam'
 t.tornadus.anchor = 'Trio dei Kami'
@@ -394,6 +394,7 @@ t.sandshrew.since = {A = 'sl', base = 'rb'}
 t.vulpix.since = {A = 'sl', base = 'rb'}
 t.diglett.since = {A = 'sl', base = 'rb'}
 t.meowth.since = {A = 'sl', base = 'rb'}
+t.geodude.since = {A = 'sl', base = 'rb'}
 t.grimer.since = {A = 'sl', base = 'rb'}
 t.exeggutor.since = {A = 'sl', base = 'rb'}
 t.marowak.since = {A = 'sl', base = 'rb'}
@@ -473,6 +474,8 @@ table.insert(t.alola, 'sandslash')
 table.insert(t.alola, 'ninetales')
 table.insert(t.alola, 'dugtrio')
 table.insert(t.alola, 'persian')
+table.insert(t.alola, 'graveler')
+table.insert(t.alola, 'golem')
 table.insert(t.alola, 'muk')
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
@@ -482,6 +485,8 @@ t.sandslash = t.sandshrew
 t.ninetales = t.vulpix
 t.dugtrio = t.diglett
 t.persian = t.meowth
+t.graveler = t.geodude
+t.golem = t.geodude
 t.muk = t.grimer
 t.thundurus, t.landorus = t.tornadus, t.tornadus
 t.gourgeist = t.pumpkaboo
@@ -497,6 +502,9 @@ t[50] = t.diglett
 t[51] = t.dugtrio
 t[52] = t.meowth
 t[53] = t.persian
+t[74] = t.geodude
+t[75] = t.graveler
+t[76] = t.golem
 t[88] = t.grimer
 t[89] = t.muk
 t[103] = t.exeggutor
@@ -521,6 +529,9 @@ t[710] = t.pumpkaboo
 t[711] = t.gourgeist
 t[718] = t.zygarde
 t[720] = t.hoopa
+t[741] = t.oricorio
+t[745] = t.lycanroc
+t[746] = t.wishiwashi
 t[3] = t.venusaur
 t[9] = t.blastoise
 t[15] = t.beedrill

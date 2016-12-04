@@ -6,6 +6,7 @@ local mw = require('mw')
 
 local l = require('Links')
 local w = require('Wikilib')
+local abillib = require('Wikilib-abils')
 local oop = require('Wikilib-oop')
 local list = require('Wikilib-lists')
 local txt = require('Wikilib-strings')
@@ -42,7 +43,7 @@ AbilsBox.new = function(name, formName)
 
 	local this = AbilsBox.super.new(formName)
 
-	this = table.merge(abils[name], this)
+	this = table.merge(abillib.lastAbils(abils[name]), this)
 
 	return setmetatable(this, AbilsBox)
 end

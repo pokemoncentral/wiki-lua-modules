@@ -2,6 +2,8 @@
 
 local r = {}
 
+local mw = require('mw')
+
 local w = require('Wikilib')
 local tab = require('Wikilib-tables')
 
@@ -29,5 +31,5 @@ r.entry = function(frame)
 		end), '\n')
 end
 
-print(r.entry{args=arg})
--- return r
+--print(r.entry{args=arg})
+return r

@@ -23,9 +23,9 @@ m.PokePrecSucc = function(frame)
 	local nxt = pokeData.ndex % data.pokeNum + 1
 	local prevTf, nxtTf = string.tf(prev), string.tf(nxt)
     return string.interp([=[{| class="roundy" style="background: #${bg}; border: 3px solid #${bd}; margin-bottom: 5px; margin-top: 5px; width: 100%;"
-| class="roundyleft text-right" style="padding-right: 3px; width: 45%; background: #${cells};" | [[${nameprev}|<span style="color:#000">&larr;</span>]]${aniprev}<span style="display: inline-block; width: 70%;">[[${nameprev}|<span style="color:#000">#${prev}: ${nameprev}</span>]]</span>
+| class="roundyleft text-right" style="padding-right: 3px; width: 45%; background: #${cells};" | [[${nameprev}|<span style="color:#000">&larr;</span>]]${staticprev}<span style="display: inline-block; width: 70%;">[[${nameprev}|<span style="color:#000">#${prev}: ${nameprev}</span>]]</span>
 | class="text-center" style="padding: 0 3px; background: #${cells};" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">${name}</span>]]
-| class="roundyright text-left" style="padding-left: 3px; width: 45%; background: #${cells};" | <span style="display: inline-block; width: 70%;">[[${namenext}|<span style="color:#000">#${nxt}: ${namenext}</span>]]</span>${aninext}[[${namenext}|<span style="color:#000">&rarr;</span>]]
+| class="roundyright text-left" style="padding-left: 3px; width: 45%; background: #${cells};" | <span style="display: inline-block; width: 70%;">[[${namenext}|<span style="color:#000">#${nxt}: ${namenext}</span>]]</span>${staticnext}[[${namenext}|<span style="color:#000">&rarr;</span>]]
 |}]=],
 {
     bg = c[type1].normale,
@@ -33,11 +33,11 @@ m.PokePrecSucc = function(frame)
     cells = c[type1].light,
     nameprev = pokes[prev].name,
     prev = prevTf,
-    aniprev = ms.aniLua(prevTf),
+    staticprev = ms.staticLua(prevTf),
     name = pokeData.name,
     namenext = pokes[nxt].name,
     nxt = nxtTf,
-    aninext = ms.aniLua(nxtTf)
+    staticnext = ms.staticLua(nxtTf)
 })
 end
 
