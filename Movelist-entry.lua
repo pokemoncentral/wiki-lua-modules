@@ -14,6 +14,7 @@ local c = require("Colore-data")
 local gendata = require("Gens-data")
 local sup = require("Sup-data")
 local pokes = require("Poké-data")
+local groups = require("PokéEggGroup-data")
 local libdata = require("Wikilib-data")
 
 -- Rappresentazione stringa dei parametri booleani
@@ -210,12 +211,13 @@ local head = function(ndex, stab, notes, form)
 	local ndexFigures = ndex:match('^(%d+)')
 	local abbr = forms.getabbr(ndex, form)
 	local pokedata = pokes[abbr == 'base' and tonumber(ndexFigures) or ndexFigures .. abbr]
-		or {name = 'Missingno.', ndex = '000', type1 = 'Sconosciuto', type2 = 'Sconosciuto'}
+		or {name = 'Missingno.', ndex = '000'}
+	pokedata = table.merge(pokedata, groups[pokedata.ndex] or {group1 = 'sconosciuto'})
 	return string.interp([=[|-
 | style="width: 26px;" | ${num}
 | style="width: 26px;" | ${ani}
 | style="width: 75px;" | ${stab}[[${name}]]${stab}${notes}${forml}
-| style="background:#${std}; width: ${wd} | [[${tipo1} (tipo)|<span style="color:#FFF;">${tipo1}</span>]]${tipo2}
+| style="background:#${std}; width: ${wd} | [[${gruppo1} (gruppo uova)|<span style="color:#FFF;">${gruppo1}</span>]]${gruppo2}
 ]=],
 {
 	num = ndexFigures,
@@ -224,11 +226,11 @@ local head = function(ndex, stab, notes, form)
 	name = pokedata.name,
 	notes = lib.makeNotes(notes or ''),
 	forml = forms.getlink(ndex, false, form),
-	std = c[pokedata.type1].normale,
-	tipo1 = string.fu(pokedata.type1),
-	wd = pokedata.type1 == pokedata.type2 and '100px;" colspan="2"' or '50px;"',
-	tipo2 = pokedata.type1 == pokedata.type2 and '' or string.interp('\n| style="width: 50px; background:#${std};" | [[${tipo} (tipo)|<span style="color:#FFF;">${tipo}</span>]]',
-		{std = c[pokedata.type2].normale, tipo = string.fu(pokedata.type2)})
+	std = c[pokedata.group1 .. '_uova'].normale,
+	gruppo1 = pokedata.group1 == 'coleottero' and 'Coleot' or string.fu(pokedata.group1),
+	wd = pokedata.group2 and '50px;"' or '100px;" colspan="2"',
+	gruppo2 = pokedata.group2 and string.interp('\n| style="width: 50px; background:#${std};" | [[${gruppo} (gruppo uova)|<span style="color:#FFF;">${gruppo}</span>]]',
+		{std = c[pokedata.group2 .. '_uova'].normale, gruppo = pokedata.group2 == 'coleottero' and 'Coleot' or string.fu(pokedata.group2)}) or ''
 })
 end
 

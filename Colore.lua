@@ -495,6 +495,42 @@ c['cristalli z'], c['Cristalli z'], c['cristalli Z'], c['Cristalli Z'] =
 c.cristalli_z, c.Cristalli_z, c.cristalli_Z, c.Cristalli_Z =
 	c.cristalliz, c.cristalliz, c.cristalliz, c.cristalliz
 
+-- Colori gruppi uova
+
+c.mostro_uova = function(frame) return _colore(frame.args[1] or 'normale', 'D25064', 'D25064', '933846') end
+c.Mostro_uova = c.mostro_uova
+c['acqua_1_uova'] = function(frame) return _colore(frame.args[1] or 'normale', '97B5FD', '97B5FD', '697FB1') end
+c['Acqua_1_uova'], c['acqua 1_uova'], c['Acqua 1_uova'] = c['acqua_1_uova'], c['acqua_1_uova'], c['acqua_1_uova']
+c.coleottero_uova = function(frame) return _colore(frame.args[1] or 'normale', 'AAC22A', 'AAC22A', '77881D') end
+c.Coleottero_uova = c.coleottero_uova
+c.volante_uova = function(frame) return _colore(frame.args[1] or 'normale', 'B29AFA', 'B29AFA', '7C6CAF') end
+c.Volante_uova = c.volante_uova
+c.campo_uova = function(frame) return _colore(frame.args[1] or 'normale', 'E0C068', 'E0C068', '9D8649') end
+c.Campo_uova = c.campo_uova
+c.magico_uova = function(frame) return _colore(frame.args[1] or 'normale', 'FFC8F0', 'FFC8F0', 'B38CA8') end
+c.Magico_uova = c.magico_uova
+c.erba_uova = function(frame) return _colore(frame.args[1] or 'normale', '82D25A', '82D25A', '5B933F') end
+c.Erba_uova = c.erba_uova
+c.umanoide_uova = function(frame) return _colore(frame.args[1] or 'normale', 'D29682', 'D29682', '93695B') end
+c.Umanoide_uova = c.umanoide_uova
+c['acqua_3_uova'] = function(frame) return _colore(frame.args[1] or 'normale', '5876BE', '5876BE', '3D5285') end
+c['Acqua_3_uova'], c['acqua 3_uova'], c['Acqua 3_uova'] = c['acqua_3_uova'], c['acqua_3_uova'], c['acqua_3_uova']
+c.minerale_uova = function(frame) return _colore(frame.args[1] or 'normale', '7A6252', '7A6252', '554439') end
+c.Minerale_uova = c.minerale_uova
+c.amorfo_uova = function(frame) return _colore(frame.args[1] or 'normale', '8A8A8A', '8A8A8A', '606060') end
+c.Amorfo_uova = c.amorfo_uova
+c['acqua_2_uova'] = function(frame) return _colore(frame.args[1] or 'normale', '729AFA', '729AFA', '506CAF') end
+c['Acqua_2_uova'], c['acqua 2_uova'], c['Acqua 2_uova'] = c['acqua_2_uova'], c['acqua_2_uova'], c['acqua_2_uova']
+c.ditto_uova = function(frame) return _colore(frame.args[1] or 'normale', 'A664BF', 'A664BF', '744686') end
+c.Ditto_uova = c.ditto_uova
+c.drago_uova = function(frame) return _colore(frame.args[1] or 'normale', '7A42FF', '7A42FF', '552EB3') end
+c.Drago_uova = c.drago_uova
+c.non_ancora_scoperto_uova = function(frame) return _colore(frame.args[1] or 'normale', '0080C0', '0080C0', '005986') end
+c.Non_ancora_scoperto_uova, c['non ancora scoperto_uova'], c['Non ancora scoperto_uova'] =
+	c.non_ancora_scoperto_uova, c.non_ancora_scoperto_uova, c.non_ancora_scoperto_uova
+c.asessuato_uova = function(frame) return _colore(frame.args[1] or 'normale', '333333', '333333', '232323') end
+c.Asessuato_uova = c.asessuato_uova
+
 -- Varie ed eventuali
 
 c.arancione, c.Arancione = c.orange, c.orange
@@ -504,6 +540,8 @@ c.background = function(frame) return 'EAEAEA' end
 c.Background = c.background
 c.FFFFFF = function(frame) return 'FFFFFF' end
 c.ffffff = c.FFFFFF
+c['000000'] = function(frame) return '000000' end
+c['000'] = c['000000']
 c.bronzo = function(frame) return _colore(frame.args[1] or 'normale', 'DEAB79', 'EBCDAF', '856749') end
 c.Bronzo = c.bronzo
 c.camilla = function(frame) return _colore(frame.args[1] or 'normale', '525252', '8E8E8E', '353535') end

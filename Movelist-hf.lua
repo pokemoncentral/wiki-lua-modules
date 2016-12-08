@@ -93,7 +93,7 @@ local headers = function(tipo, gen, kind)
     return string.interp([=[{| class="roundy text-center white-rows roundy-footer" style="background: #${bg};  border: 5px solid #${bd}"
 ! class="roundytl" style="background:#${bd};" rowspan="${rs}" | #
 ! style="background:#${bd};" rowspan="${rs}" colspan="2" | Pokémon
-! style="background:#${bd};" colspan="2" rowspan="${rs}" | Tipo
+! style="background:#${bd};" colspan="2" rowspan="${rs}" | Gruppo uova
 ! class="roundytr" style="background:#${bd};" colspan="${cs}" | ]=],
 {
     bg = c[tipo].dark,

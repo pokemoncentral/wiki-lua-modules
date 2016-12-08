@@ -379,6 +379,14 @@ x.SROZA = {x.S[1], x.ROZA[1]}
 x.RSRO = {x.Ru[1], x.S[1], x.RO[1]}
 x.ZSZA = {x.Z[1], x.S[1], x.ZA[1]}
 x.RZSROZA = {x.RZS[1], x.S[1], x.ROZA[1]}
+x.DemoROZA = {{
+    link = 'Rubino Omega e Zaffiro Alpha Versione Demo Speciale',
+    display = {
+		{'Demo', '000000'},
+		{'RΩ', 'rubinoomega'},
+		{'Zα', 'zaffiroalpha'},
+    }
+}}
 x.So = {{
 	link = 'Sole e Luna',
 	text = 'Sole',
@@ -399,6 +407,15 @@ x.SL = {{
     display = {
 		{'S', 'sole'},
 		{'L', 'luna'}
+    }
+}}
+x.DemoSL = {{
+    link = 'Sole e Pokémon Luna: Versione demo speciale',
+    text = 'Sole e Luna: Versione demo speciale',
+    display = {
+		{'Demo', '000000'},
+		{'S', 'sole'},
+		{'L', 'luna'},
     }
 }}
 x.SJ = {{

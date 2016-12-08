@@ -51,7 +51,7 @@ local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local alts = require("AltForms-data")
-local c = require("Colore-data")
+local css = require('Css')
 local abilData = require("PokéAbil-data")
 local pokes = require("Poké-data")
 
@@ -75,13 +75,10 @@ EffTable.strings = {
 		Wikicode per la parte iniziale di un box
 		(Debolezze, Immunità, Danno Normale, ecc)
 	--]]
-	BOX_INIT = [=[<div class="roundy flex flex-row flex-wrap flex-items-stretch" style="padding: 0; margin-bottom: -2px; background: #${bg}; border: 2px solid #${bd};"><span class="inline-flex flex-items-center flex-main-center width-xl-30 width-xs-100" style="padding: 0.3em; box-sizing: border-box;">'''${text}'''</span><div class="flex flex-row flex-wrap flex-items-stretch roundy width-xl-70 width-xs-100" style="margin: -2px; border-spacing: 0; padding: 0; border: 2px solid #${bd};">]=],
+	BOX_INIT = [=[<div class="roundy flex flex-row flex-wrap flex-items-stretch" style="padding: 0; margin-bottom: 0.5ex; ${bg}"><span class="inline-flex flex-items-center flex-main-center width-xl-30 width-xs-100" style="padding: 0.3em; box-sizing: border-box;">'''${text}'''</span><div class="flex flex-row flex-wrap flex-items-stretch roundy width-xl-70 width-xs-100" style="border-spacing: 0; padding: 0;">]=],
 	
 	-- Wikicode per una riga di tipi aventi la stessa efficacia
-	BOX_LINE = [=[<div class="flex flex-row flex-wrap flex-items-stretch width-xl-100" style="box-sizing: border-box; padding: 0.1em;${separator}"><div class="inline-flex flex-items-center flex-main-center roundy width-xl-5 width-sm-10 width-xs-100" style="box-sizing: border-box; padding: 0 0.2em; background: #FFF;">${eff}&times;</div><div class="inline-flex flex-row flex-wrap flex-items-center flex-main-start width-xl-95 width-sm-90 width-xs-100" style="box-sizing: border-box; padding-left: 0.2em;">${types}</div></div>]=],
-	
-	-- Wikicode per il separatore di righe con la stessa efficacia
-	LINES_SEPARATOR = [=[ border-bottom: 2px solid #${color};]=]
+	BOX_LINE = [=[<div class="flex flex-row flex-wrap flex-items-stretch width-xl-100" style="box-sizing: border-box; padding: 0.1em;"><div class="inline-flex flex-items-center flex-main-center roundy width-xl-5 width-sm-10 width-xs-100" style="box-sizing: border-box; padding: 0 0.2em; background: #FFF;">${eff}&times;</div><div class="inline-flex flex-row flex-wrap flex-items-center flex-main-start width-xl-95 width-sm-90 width-xs-100" style="box-sizing: border-box; padding-left: 0.2em;">${types}</div></div>]=],
 }
 
 --[[
@@ -181,8 +178,6 @@ EffTable.printEffLine = function(data, roundy, colors)
 			rd = roundy or '',
 			eff = EffTable.displayEff(data.eff),
 			types = EffTable.printTypes(data.types),
-			separator = colors and string.interp(EffTable.strings.LINES_SEPARATOR,
-				{color = colors.bg}) or ''
 		})
 end
 
@@ -197,9 +192,8 @@ EffTable.printSingleBox = function(boxData, colors)
 		return string.interp(table.concat{EffTable.strings.BOX_INIT,
 				EffTable.printEffLine(boxData[1]), '</div></div>'},
 		{
-			bg = colors.cells,
+			bg = css.horizGradLua(colors.inleft.color, colors.inleft.variant, colors.inright.color, colors.inright.variant),
 			text = boxData.text,
-			bd = colors.bg
 		})
 	end
 	
@@ -227,9 +221,8 @@ EffTable.printSingleBox = function(boxData, colors)
 	return string.interp(table.concat{EffTable.strings.BOX_INIT,
 			allLines, '</div></div>'},
 		{
-			bg = colors.cells,
+			bg = css.horizGradLua(colors.inleft.color, colors.inleft.variant, colors.inright.color, colors.inright.variant),
 			text = boxData.text,
-			bd = colors.bg
 		})
 end
 
@@ -274,9 +267,10 @@ EffTable.new = function(name, formName)
 	
 	-- Dati per la stampa
 	this.colors = {
-		bg = c[types.type1].normale,
-		cells = c[types.type1].light,
-		bd = c[types.type2][monoType and 'dark' or 'normale']
+		outleft = {color = types.type2, variant = 'normale'},
+		outright = {color = types.type1, variant =  monoType and 'light' or 'normale'},
+		inleft = {color = types.type1, variant = 'light'},
+		inright = {color = types.type2, variant = monoType and 'normale' or 'light'},
 	}
 	
 	local onlyAbil = table.getn(abils) == 1
@@ -400,14 +394,12 @@ EffTable.__tostring = function(this)
 	local std = {text = 'Danno normale'}
 	local res = {text = 'Resistenze'}
 	local imm = {text = 'Immunit&agrave;'}
-		
+
 	local interpData = {
-		bg = this.colors.bg,
-		bd = this.colors.bd,
-		foot = #this.footer < 1 and '' or string.interp([=[<div class="roundy text-left text-small" style="padding: 2px; background: #${bg}; border: 2px solid #${bd};">${lines}</div>]=],
+		bg = css.horizGradLua(this.colors.outleft.color, this.colors.outleft.variant, this.colors.outright.color, this.colors.outright.variant),
+		foot = #this.footer < 1 and '' or string.interp([=[<div class="roundy text-left text-small" style="padding: 2px; margin-bottom: 0.5ex; background: ${bg}">${lines}</div>]=],
 				{
-					bg = this.colors.cells,
-					bd = this.colors.bg,
+					bg = css.horizGradLua(this.colors.inleft.color, this.colors.inleft.variant, this.colors.inright.color, this.colors.inright.variant),
 					lines = w.mapAndConcat(this.footer, tostring)
 				})
 	}
@@ -438,7 +430,7 @@ EffTable.__tostring = function(this)
 	interpData.effBoxes = EffTable.printEffBoxes({weak, std, 
 			res, imm}, this.colors)
 	
-	local tab = string.interp([[<div class="roundy pull-center text-center width-xl-80 width-md-100" style="background: #${bg}; border: 3px solid #${bd};">${effBoxes}${foot}</div>]], interpData)
+	local tab = string.interp([[<div class="roundy pull-center text-center width-xl-80 width-md-100" style="padding: 0.5ex; padding-bottom: 0.01ex; ${bg}">${effBoxes}${foot}</div>]], interpData)
 
 	if #this.labels > 0 then
 		return string.interp([[==== ${title} ====
@@ -451,7 +443,7 @@ ${tab}
 				tab = tab
 			})
 	end
-	
+
 	return tab
 end
 
@@ -612,13 +604,13 @@ EffTable.FooterLine.new = function(kind, types, abil)
 	this.newEff = {}
 
 	--[[
-		Filtro, Solidroccia e Magidifesa sono casi
-		particolari da trattare separatamente,
+		Filtro, Solidroccia, Scudoprisma e Magidifesa sono
+		casi particolari da trattare separatamente,
 		ammesso che si stia creando una riga relativa
 		alle abilità
 	--]]
 	if kind ~= 'RINGTARGET' then
-		if abil == 'filtro' or abil == 'solidroccia' then
+		if abil == 'filtro' or abil == 'solidroccia' or abil == 'scudoprisma' then
 		
 			--[[
 				Se l'abilità viene persa, la nuova
@@ -841,6 +833,6 @@ dr.debRes = function(frame)
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
-
+arg={'Aggron'}
 print(dr.DebRes{args=arg})
 -- return dr
