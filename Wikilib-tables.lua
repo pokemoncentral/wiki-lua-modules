@@ -415,4 +415,27 @@ end
 
 t.keys = table.keys
 
+--[[
+
+Ritorna una copia di una table di un modulo
+caricato con mw.loadData. La table ritornata,
+essendo una copia, non è read-only, ed è quindi
+possibile usare su di essa la table library
+
+--]]
+table.cloneLoadData = function(value)
+	return table.map(value, function(v)
+		if (type(v) == 'table') then
+			return s.loadDataClone(v)
+		else
+			-- if v isn't a table, is a bool, num or string
+			return v
+		end
+	end)
+end
+
+table.clone_load_data = table.cloneLoadData
+t.cloneLoadData, t.clone_load_data =
+	table.cloneLoadData , table.cloneLoadData
+
 return t

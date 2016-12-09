@@ -210,9 +210,9 @@ end
 local head = function(ndex, stab, notes, form)
 	local ndexFigures = ndex:match('^(%d+)')
 	local abbr = forms.getabbr(ndex, form)
-	local pokedata = pokes[abbr == 'base' and tonumber(ndexFigures) or ndexFigures .. abbr]
-		or {name = 'Missingno.', ndex = '000'}
-	pokedata = table.merge(pokedata, groups[pokedata.ndex] or {group1 = 'sconosciuto'})
+	local pokedata = table.cloneLoadData(pokes[abbr == 'base' and tonumber(ndexFigures) or ndexFigures .. abbr]
+		or {name = 'Missingno.', ndex = '000'})
+	pokedata = table.merge(pokedata, table.cloneLoadData(groups[pokedata.ndex] or {group1 = 'sconosciuto'}))
 	return string.interp([=[|-
 | style="width: 26px;" | ${num}
 | style="width: 26px;" | ${ani}
