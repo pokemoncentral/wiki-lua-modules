@@ -113,7 +113,7 @@ baby.Mantine = 'Mantyke'
 
 local rowsf = {}
 rowsf.level = [=[*Il livello "Inizio" indica una mossa conosciuta da ${poke} ottenuto a livello 1 nella ${genl} generazione.
-*Le mosse segnate al livello † possono essere apprese al momento dell'evoluzione.]=]
+*Le mosse segnate al livello &#x2670; possono essere apprese al momento dell'evoluzione.]=]
 rowsf.breed1 = [=[*Le mosse segnate con un asterisco (*) si ottengono solo con una [[catena di accoppiamenti|<span style="color:#000;">catena di accoppiamenti</span>]] su ${poke} nella ${genl} generazione.
 *Le mosse segnate con una doppia croce (‡) possono essere ottenute solo da un Pokémon che le abbia apprese in una generazione precedente.
 *Le mosse segnate con un'abbreviazione di un gioco in apice si possono ottenere su ${poke} solo in quel gioco.]=]
@@ -223,18 +223,21 @@ local footer = function(pars, kind)
 	local tipo, form = pars[3] or 'Sconosciuto', string.lower(pars.form or 'none')
 	local genf, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
+	local preevoBold = kind == 'preevo' and "'evoluzione precedente di" or ''
     return txt.interp([=[|-
 | class="roundybottom text-left small-font" style="background:#${background}; line-height:10px;" colspan="${colspan}" |
 ${kindrows}
-*Il '''grassetto''' indica una mossa che ha lo [[Same Type Attack Bonus|<span style="color: #000">STAB</span>]] quando viene usata da un ${poke}.
-*Il ''corsivo'' indica una mossa che ha lo STAB solo quando viene usata da un${form} di ${poke}.${last}
+*Il '''grassetto''' indica una mossa che ha lo [[Same Type Attack Bonus|<span style="color: #000">STAB</span>]] quando viene usata da un${preevoBold} ${poke}.
+*Il ''corsivo'' indica una mossa che ha lo STAB solo quando viene usata da un${form} di${preevoItalic} ${poke}.${last}
 |}]=],
 {
     background = c[tipo].light,
     colspan = cs[kind][genf],
     kindrows = rowf(kind, genf, poke),
+    preevoBold = preevoBold,
     poke = poke,
     form = txt.interp(rowsf.forms[form], {poke = poke}) or '',
+    preevoItalic = kind == 'preevo' and " un'evoluzione precedente di" or '',
     last = genp < gendata.latest and txt.interp(rowsf.last, {way = ways[kind]}) or ''
 })
 end
