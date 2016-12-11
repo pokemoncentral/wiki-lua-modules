@@ -223,21 +223,18 @@ local footer = function(pars, kind)
 	local tipo, form = pars[3] or 'Sconosciuto', string.lower(pars.form or 'none')
 	local genf, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
-	local preevoBold = kind == 'preevo' and "'evoluzione precedente di" or ''
     return txt.interp([=[|-
 | class="roundybottom text-left small-font" style="background:#${background}; line-height:10px;" colspan="${colspan}" |
 ${kindrows}
-*Il '''grassetto''' indica una mossa che ha lo [[Same Type Attack Bonus|<span style="color: #000">STAB</span>]] quando viene usata da un${preevoBold} ${poke}.
-*Il ''corsivo'' indica una mossa che ha lo STAB solo quando viene usata da un${form} di${preevoItalic} ${poke}.${last}
+*Il '''grassetto''' indica una mossa che ha lo [[Same Type Attack Bonus|<span style="color: #000">STAB</span>]] quando viene usata da un ${poke}.
+*Il ''corsivo'' indica una mossa che ha lo STAB solo quando viene usata da un${form} di ${poke}.${last}
 |}]=],
 {
     background = c[tipo].light,
     colspan = cs[kind][genf],
     kindrows = rowf(kind, genf, poke),
-    preevoBold = preevoBold,
     poke = poke,
     form = txt.interp(rowsf.forms[form], {poke = poke}) or '',
-    preevoItalic = kind == 'preevo' and " un'evoluzione precedente di" or '',
     last = genp < gendata.latest and txt.interp(rowsf.last, {way = ways[kind]}) or ''
 })
 end
