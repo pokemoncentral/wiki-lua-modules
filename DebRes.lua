@@ -162,7 +162,7 @@ end
 -- Stampa i tipi dati come Boxes tipi
 EffTable.printTypes = function(types)
 	return box.listLua(types, ' inline-block width-xl-15 width-md-20 width-sm-35 width-xs-45',
-		'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold; box-sizing: border-box;', true)
+		'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold; box-sizing: border-box;')
 end
 
 --[[
@@ -172,7 +172,7 @@ efficacia, aggiungendo il bordo inferiore
 se indicato
 
 --]]
-EffTable.printEffLine = function(data, roundy, colors)
+EffTable.printEffLine = function(data, roundy)
 	return string.interp(EffTable.strings.BOX_LINE,
 		{
 			rd = roundy or '',
@@ -833,6 +833,6 @@ dr.debRes = function(frame)
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
-arg={'Aggron'}
+arg={'Lugia'}
 print(dr.DebRes{args=arg})
 -- return dr
