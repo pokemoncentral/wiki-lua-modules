@@ -645,11 +645,11 @@ EffTable.FooterLine.new = function(kind, types, abil)
 				opta quindi per una gestione custom.
 			--]]
 			this.tostring = string.interp(table.concat{'\n*', EffTable.FooterLine.strings.TAKENOFF,
-					[=[solo mosse di tipo <span style="background:#${bgn}">[[Normale (tipo)|<span style="padding: 0.2ex 0.3em; color:#FFF">Normale</span>]]</span> e <span style="background:#${bgl}">[[Lotta (tipo)|<span style="padding: 0.2ex 0.3em; color:#FFF;">Lotta</span>]]</span> non lo renderanno esausto.]=]},
+					[=[solo mosse di tipo ${normale} e ${lotta} non lo renderanno esausto.]=]},
 					{
 						abil = 'Magidifesa',
-						bgn = c.normale.normale,
-						bgl = c.lotta.normale
+						normale = link.colorType('Normale'),
+						lotta = link.colorType('Lotta')
 					})
 			
 			return this
@@ -833,6 +833,6 @@ dr.debRes = function(frame)
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
-arg={'Lugia'}
+arg={'Shedinja'}
 print(dr.DebRes{args=arg})
 -- return dr
