@@ -51,7 +51,7 @@ z.breed = function(frame)
 			s[p[9]] or ''), p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0',
 			p[6] or '0')},
 {
-	fathers = lib.insertnwlns(p[1] or '')
+	fathers = lib.insertnwlns(p[1] or '', nil, '2')
 })
 end
 

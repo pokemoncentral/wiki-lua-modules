@@ -52,7 +52,7 @@ z.breed = function(frame)
 			lib.makeNotes(p[9] or '', s[p[10]] or ''), p[3] or 'Sconosciuto',
 			p[4] or 'Stato', p[5] or '0', p[6] or '0', p[7] or '0')},
 {
-	fathers = lib.insertnwlns(p[1] or '')
+	fathers = lib.insertnwlns(p[1] or '', nil, '5')
 })
 end
 

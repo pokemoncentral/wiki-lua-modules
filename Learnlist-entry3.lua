@@ -62,7 +62,7 @@ z.breed = function(frame)
 			s[p[12]] or ''), p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0',
 			p[6] or '0', p[7] or 'Classe', p[8] or '0', p[9] or '0')},
 {
-	fathers = lib.insertnwlns(p[1] or '')
+	fathers = lib.insertnwlns(p[1] or '', nil, '3')
 })
 end
 
@@ -85,7 +85,7 @@ z.Tutor = z.tutor
 
 z.preevo = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{lib.preevodata(p, '5'), ' ', entry(p[15] or '',
+    return table.concat{lib.preevodata(p, '3'), ' ', entry(p[15] or '',
 	    p[7] or 'Scontro', lib.makeNotes(p[16] or ''),
 	    p[8] or 'Sconosciuto', p[9] or '0', p[10] or '0', p[11] or '0',
 	    p[12] or 'Grazia', p[13] or '0', p[14] or '0')}

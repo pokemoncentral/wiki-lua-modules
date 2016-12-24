@@ -49,7 +49,7 @@ z.breed = function(frame)
 | style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${p1}]],
 		entry(p[4] or '', p[2] or 'Lanciafiamme', lib.makeNotes(p[3] or ''))},
 {
-	p1 = lib.insertnwlns(p[1] or '')
+	p1 = lib.insertnwlns(p[1] or '', nil, '7')
 })
 end
 

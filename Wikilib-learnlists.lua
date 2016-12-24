@@ -78,9 +78,10 @@ Manda a capo ogni tot mini sprite, utilizzata
 nell'entry per il breed, nella cella dei padri
 
 --]]
-lib.insertnwlns = function(str, linelength)
+lib.insertnwlns = function(str, linelength, gen)
 	str = str:gsub('<br>', '')
 	linelength = tonumber(linelength) or 7
+	gen = gen or ''
 
 	local res, newLinesCount = {}, 0
 	local pattern, op
@@ -89,7 +90,7 @@ lib.insertnwlns = function(str, linelength)
 		op = function(sprite) return sprite end
 	else
 		pattern = '#(.-)#'
-		op = function(ndex) return ms.staticLua(ndex) end
+		op = function(ndex) return ms.staticLua(ndex, gen) end
 	end
 
 	for minisprite in str:gmatch(pattern) do
