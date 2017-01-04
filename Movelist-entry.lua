@@ -341,7 +341,7 @@ primo argomento la generazione, seguita dagli altri
 --]]
 m.breed = function(frame)
 	return entry(mw.clone(frame.args), function(v) return v == 'No'
-			and '×' or lib.insertnwlns(v, 6) end, splitSup)
+			and '×' or (v == 'N/D' and 'N/D' or lib.insertnwlns(v, 6)) end, splitSup)
 end
 
 m.Breed = m.breed

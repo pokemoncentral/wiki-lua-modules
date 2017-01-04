@@ -162,7 +162,7 @@ end
 -- Stampa i tipi dati come Boxes tipi
 EffTable.printTypes = function(types)
 	return box.listLua(types, ' inline-block width-xl-15 width-md-20 width-sm-35 width-xs-45',
-		'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold; box-sizing: border-box;', true)
+		'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold; box-sizing: border-box;')
 end
 
 --[[
@@ -172,7 +172,7 @@ efficacia, aggiungendo il bordo inferiore
 se indicato
 
 --]]
-EffTable.printEffLine = function(data, roundy, colors)
+EffTable.printEffLine = function(data, roundy)
 	return string.interp(EffTable.strings.BOX_LINE,
 		{
 			rd = roundy or '',
@@ -645,11 +645,11 @@ EffTable.FooterLine.new = function(kind, types, abil)
 				opta quindi per una gestione custom.
 			--]]
 			this.tostring = string.interp(table.concat{'\n*', EffTable.FooterLine.strings.TAKENOFF,
-					[=[solo mosse di tipo <span style="background:#${bgn}">[[Normale (tipo)|<span style="padding: 0.2ex 0.3em; color:#FFF">Normale</span>]]</span> e <span style="background:#${bgl}">[[Lotta (tipo)|<span style="padding: 0.2ex 0.3em; color:#FFF;">Lotta</span>]]</span> non lo renderanno esausto.]=]},
+					[=[solo mosse di tipo ${normale} e ${lotta} non lo renderanno esausto.]=]},
 					{
 						abil = 'Magidifesa',
-						bgn = c.normale.normale,
-						bgl = c.lotta.normale
+						normale = link.colorType('Normale'),
+						lotta = link.colorType('Lotta')
 					})
 			
 			return this
@@ -833,6 +833,6 @@ dr.debRes = function(frame)
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
-arg={'Aggron'}
+arg={'Shedinja'}
 print(dr.DebRes{args=arg})
 -- return dr

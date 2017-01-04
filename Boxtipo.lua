@@ -11,7 +11,7 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local c = require("Colore-data")
+local css = require('Css')
 
 --[[
 
@@ -24,12 +24,10 @@ Chiamata da lua; argomenti:
     style. Esempio:
     {margin = '2px 3px', padding = '3px'} -->
     margin: 2px 3px; padding: 3px
-- border: opzionale (default false), booleano che,
-    quando true, visualizza il bordo
 
 --]]
 
-b.boxLua = function(tipo, class, style, border)
+b.boxLua = function(tipo, class, style)
     tipo = string.trim(tipo or 'Sconosciuto')
 
     if type(style) == 'table' then
@@ -42,12 +40,11 @@ b.boxLua = function(tipo, class, style, border)
         style = string.trim(style or '')
     end
 
-    return string.interp([=[<div class="text-center roundy${class}" style="background:#${bg}; ${bd}${style}">[[${type} (tipo)|<span style="color:#FFF">${type}</span>]]</div>]=],
+    return string.interp([=[<div class="text-center roundy${class}" style="${bg};${style}">[[${type} (tipo)|<span style="color:#FFF">${type}</span>]]</div>]=],
 {
     class = class or '',
-    bg = c[tipo].normale,
+    bg = css.horizGradLua(tipo, 'dark', tipo, 'normale'),
     type = string.firstUppercase(tipo),
-    bd = border and table.concat{'border: 1px solid #', c[tipo].dark, '; '} or '',
     style = style
 })
 end
@@ -62,20 +59,16 @@ Chiamata da wikicode (adapter per lua); argomenti
     (vedi b.boxLua)
 - 3: opzionale, (default ''), styles css,
     stringa per ovvi motivi (vedi b.boxLua)
-Esempio:
-- border: opzionale (default 'no'), yes o no,
-    visualizza il bordo
 
+Esempio:
 {{#invoke | Boxtipo | box | Elettro | left inline-block
         | padding: 2px; | border = yes}}
 
 --]]
 
 b.box = function(frame)
-    local border = string.trim(frame.args.border or
-            frame.args.Border or ''):lower()
     return b.boxLua(frame.args[1], frame.args[2],
-        frame.args[3], border == 'yes')
+        frame.args[3])
 end
 
 b.Box = b.box
@@ -88,13 +81,12 @@ Chiamata da lua; argomenti
 - tab: una table di tipi
 - class: stringa di classi css (vedi b.boxLua)
 - style: stringa o table per gli styles (vedi b.boxLua)
-- border: bool per visualizzare il bordo (vedi b.boxLua)
 
 --]]
 
-b.listLua = function(tab, class, style, border)
+b.listLua = function(tab, class, style)
     return table.concat(table.map(tab, function(type)
-        return b.boxLua(type, class, style, border)
+        return b.boxLua(type, class, style)
     end))
 end
 
@@ -117,10 +109,8 @@ Esempio:
 --]]
 
 b.list = function(frame)
-    local border = string.trim(frame.args.border or
-            frame.args.Border or ''):lower()
     return b.listLua(mw.text.split(frame.args[1], ',%s*'),
-            frame.args[2], frame.args[3], border == 'yes')
+            frame.args[2], frame.args[3])
 end
 
 b.List = b.list

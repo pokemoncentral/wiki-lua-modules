@@ -237,15 +237,31 @@ j.Shadowh = j.shadowh
 
 -- Footer
 
-j.footer = function(frame)
-    local p = w.trimAndMap(mw.clone(frame.args), string.lower)
-    return string.interp([=[|- class="text-left"
+local foot = function(interpData)
+	return string.interp([=[|- class="text-left"
 | style="background: #${bg}; font-size: 85%;" colspan="${cs}" |
 * I Pokémon in '''grassetto''' sono quelli che ricevono lo [[Same-type attack bonus|<span style="color:#000;">STAB</span>]] dalla mossa.
-* I Pokémon in ''corsivo'' sono quelli con evoluzioni o [[Differenze di forma|<span style="color:#000">forme alternative</span>]] che ricevono lo STAB.
-|}]=],
-	{bg = c[p[1] or 'pcwiki'].light,
-		cs = 5 + 2 * gendata.latest})
+* I Pokémon in ''corsivo'' sono quelli con evoluzioni o [[Differenze di forma|<span style="color:#000">forme alternative</span>]] che ricevono lo STAB.${last}
+|}]=], interpData)
+end
+
+j.footer = function(frame)
+    local p = w.trimAndMap(mw.clone(frame.args), string.lower)
+    return foot({bg = c[p[1] or 'pcwiki'].light,
+		cs = 5 + cs.level(1),
+		last = ''})
+end
+
+-- Footer per le mosse apprese per livello
+
+j.levelf = function(frame)
+	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
+    return foot({bg = c[p[1] or 'pcwiki'].light,
+		cs = 5 + cs.level(1),
+		last = [=[
+
+* Il livello -- indica una mossa conosciuta dal Pokémon ottenuto a livello 1.
+* Le mosse segnate al livello † possono essere apprese al momento dell'evoluzione.]=]})
 end
 
 -- Divisore generazioni event
