@@ -14,6 +14,11 @@ local str = require('Wikilib-strings')
 local w = require('Wikilib')
 local c = require("Colore-data")
 
+-- Prepends a comma to non-empty strings only
+local prependComma = function(text)
+	return text ~= '' and text .. ', ' or text
+end
+
 --[[
 
 Holds mappings from standard values
@@ -30,10 +35,12 @@ for vendor prefixes
 --]]
 vendorMappings.gradient = {
 	moz = {
+		[''] = '',
 		['to right'] = 'left'
 	},
 
 	webkit = {
+		[''] = '',
 		['to right'] = 'left'
 	}
 }
@@ -77,12 +84,12 @@ local styles = {}
 styles.gradient = {}
 
 -- Generates styles for linear gradients
-styles.gradient.linear = function(conf, from, to)
-	return string.interp('background-size: 100%; background-image: -moz-linear-gradient(${mozConf}, #${from}, #${to}); background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #${from}), color-stop(100%, #${to})); background-image: -webkit-linear-gradient(${webkitConf}, #${from}, #${to}); background-image: linear-gradient(${conf}, #${from}, #${to});',
+styles.gradient.linear = function(conf, from, to)	
+	return string.interp('background-size: 100%; background-image: -moz-linear-gradient(${mozConf}#${from}, #${to}); background-image: -webkit-linear-gradient(${webkitConf}#${from}, #${to}); background-image: linear-gradient(${conf}#${from}, #${to});',
 		{
-			conf = conf,
-			mozConf = vendorMappings.gradient.moz[conf],
-			webkitConf = vendorMappings.gradient.webkit[conf],
+			conf = prependComma(conf),
+			mozConf = prependComma(vendorMappings.gradient.moz[conf]),
+			webkitConf = prependComma(vendorMappings.gradient.webkit[conf]),
 			from = from,
 			to = to
 		}) 
@@ -99,7 +106,7 @@ css.horiz_grad_lua = css.horizGradLua
 --[[
 
 Wikicode interface to generate
-linear gradients styles
+horizontal linear gradients styles
 
 --]]
 css['horiz-grad'] = function(frame)
@@ -107,6 +114,18 @@ css['horiz-grad'] = function(frame)
 			processInput.gradient(mw.clone(frame.args)))
 end
 css.horizGrad, css.horiz_grad = css['horiz-grad'], css['horiz-grad']
+
+--[[
+
+Wikicode interface to generate
+horizontal linear gradients styles
+
+--]]
+css['vert-grad'] = function(frame)
+	return styles.gradient.linear('',
+			processInput.gradient(mw.clone(frame.args)))
+end
+css.vertGrad, css.vert_grad = css['vert-grad'], css['vert-grad']
 
 for name, funct in pairs(css) do
 	css[string.fu(name)] = funct
