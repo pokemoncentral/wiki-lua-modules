@@ -16,7 +16,7 @@ end
 
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{'|-\n', lib.gameslevel(p[1] or
+    return table.concat{'|- style="background: #FFF;"\n', lib.gameslevel(p[1] or
 		[[<span class="explain" title="Disponibile solo in Rubino Omega e Zaffiro Alpha">''Assente''</span>]],
 		p[2] or [[<span class="explain" title="Disponibile solo in X e Y">''Assente''</span>]]),
 		entry(p[10] or '', p[3] or 'Geloraggio', lib.makeNotes(p[9] or ''),
@@ -30,9 +30,9 @@ z.Level = z.level
 
 z.tm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[=[|-
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | [[File:${img} ${tipo} VI Sprite Zaino.png]]
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | [[${p1}|<span style="color:#000;">${p1}</span>]]]=],
+    return string.interp(table.concat{[=[|- style="background: #FFF;"
+| style="padding: 0.1em 0.3em;" | [[File:${img} ${tipo} VI Sprite Zaino.png]]
+| style="padding: 0.1em 0.3em;" | [[${p1}|<span style="color:#000;">${p1}</span>]]]=],
 		entry(p[9] or '', p[2] or 'Purogelo', lib.makeNotes(p[8] or ''),
 			p[3] or 'Sconosciuto', p[4] or 'Speciale', p[5] or '0', p[6] or '0',
 			p[7] or '0', p[10] or 'Sconosciuto', p[11] or '?', p[12] or '?')},
@@ -49,8 +49,8 @@ z.Tm = z.tm
 
 z.breed = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[[|-
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${p1}]],
+    return string.interp(table.concat{[[|- style="background: #FFF;"
+| style="padding: 0.1em 0.3em;" | ${p1}]],
 		entry(p[9] or '', p[2] or 'Lanciafiamme', lib.makeNotes(p[8] or ''),
 			p[3] or 'Sconosciuto', p[4] or 'Stato', p[5] or '0', p[6] or '0',
 			p[7] or '0', p[10] or 'Sconosciuto', p[11] or '?', p[12] or '?')},
@@ -90,8 +90,8 @@ z.Preevo, z.prevo, z.Prevo = z.preevo, z.preevo, z.preevo
 
 z.event = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[[|-
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${p1}${p10}]],
+    return string.interp(table.concat{[[|- style="background: #FFF;"
+| style="padding: 0.1em 0.3em;" | ${p1}${p10}]],
 		entry(p[9] or '', p[2] or 'Bora', lib.makeNotes(p[8] or ''),
 			p[3] or 'Sconosciuto', p[4] or 'Fisico', p[5] or '0',
 			p[6] or '0', p[7] or '0', p[11] or 'Sconosciuto',
@@ -107,8 +107,7 @@ z.Event = z.event
 -- Entry per i Pokémon che non imparano mosse aumentando di livello
 
 z.levelnull = function(frame)
-    return [[|-
-! style="background:#FFFFFF; border:1px solid #D8D8D8;" colspan="11" | Questo Pokémon non impara nessuna mossa aumentando di livello]]
+	return lib.entrynull('level', '11')
 end
 
 z.Levelnull = z.levenull
@@ -116,8 +115,7 @@ z.Levelnull = z.levenull
 -- Entry per i Pokémon che non imparano mosse tramite MT/MN
 
 z.tmnull = function(frame)
-    return [[|-
-! style="background:#FFFFFF; border:1px solid #D8D8D8;" colspan="11" | Questo Pokémon non impara nessuna mossa tramite MT.]]
+	return lib.entrynull('tm', '11')
 end
 
 z.Tmnull = z.tmnull
@@ -125,8 +123,7 @@ z.Tmnull = z.tmnull
 -- Entry per i Pokémon che non imparano mosse tramite accoppiamento
 
 z.breednull = function(frame)
-    return [[|-
-! style="background:#FFFFFF; border:1px solid #D8D8D8;" colspan="10" | Questo Pokémon non impara nessuna mossa tramite accoppiamento.]]
+	return lib.entrynull('breed', '10')
 end
 
 z.Breednull = z.breednull
@@ -134,8 +131,7 @@ z.Breednull = z.breednull
 -- Entry per i Pokémon che non imparano mosse dall'esperto mosse
 
 z.tutornull = function(frame)
-    return [[|-
-! style="background:#FFFFFF; border:1px solid #D8D8D8;" colspan="13" | Questo Pokémon non impara nessuna mossa dall'Esperto Mosse.]]
+	return lib.entrynull('tutor', '13')
 end
 
 z.Tutornull = z.tutornull
@@ -143,8 +139,7 @@ z.Tutornull = z.tutornull
 -- Entry per i Pokémon che non imparano mosse tramite evoluzioni precedenti
 
 z.preevonull = function(frame)
-    return [[|-
-! style="background:#FFFFFF; border:1px solid #D8D8D8;" colspan="10" | Questo Pokémon non impara nessuna mossa appresa tramite evoluzioni precedenti.]]
+	return lib.entrynull('preevo', '10')
 end
 
 z.Preevonull, z.prevonull, z.Prevonull = z.preevonull, z.preevonull, z.preevonull

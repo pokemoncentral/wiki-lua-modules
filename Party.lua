@@ -128,6 +128,10 @@ s.Squadra = s.squadra
 
 -- Squadra/Single
 
+-- Stringa per la trainerclass, non sempre presente
+local classString = [=[<div style="line-height: 10px" class="text-small">'''[[${classlink}|<span style="color:#000">${class}</span>]]'''</div>]=]
+
+
 s.single = function(frame)
 	local p = w.trimAll(mw.clone(frame.args))
 		
@@ -146,14 +150,11 @@ s.single = function(frame)
 		sprcolor2 = p.sprcolor2 or p.back1 or colors.headcolor,
 		}, colors)
 
-	-- Stringa per la trainerclass, non sempre presente
-	local class = [=[<div style="line-height: 10px" class="text-small">'''[[${classlink}|<span style="color:#000">${class}</span>]]'''</div>]=]
-
 	local interpData = table.merge(colors, {
 		r80 = r.roundyLua('80px'),
 		sprite = p.sprite,
 		size = p.size and '|' .. p.size or '',
-		class = p.class and string.interp(class, {class = p.class,
+		class = p.class and string.interp(classString, {class = p.class,
 			classlink = p.classlink or trainerClass[p.name] or p.class .. ' (classe allenatore)'}) or '',
 		name = p.name or 'Oak',
 		location = p.location or 'Brockolandia',
@@ -167,14 +168,14 @@ s.single = function(frame)
 |-
 | <div class="flex flex-row flex-nowrap flex-items-center flex-main-center" style="padding: 0 2.5em;">
 <div>
-<div style="padding: 0.3ex; ${r80} background: linear-gradient(to right, #${sprcolor1}, #${sprcolor2});">[[File:${sprite}]]</div>
+<div style="padding: 0.3ex; ${r80} background: linear-gradient(to right, #${sprcolor1}, #${sprcolor2});">[[File:${sprite}${size}]]</div>
 <div class="text-small" style="margin-top: 0.5ex; line-height: 10px">Ricompensa:</div>
 <div>'''${prize}'''</div>
 </div>
 <div>
 <div class="roundy text-center" style="margin-left: 1ex; width: 18em; padding: 0.2ex; background: linear-gradient(to right, #${head1}, #${head2});">
 ${class}
-<div class="text-big">${name}</div>
+<div class="text-big">'''${name}'''</div>
 <div>'''[[${location}|<span style="color: #000;">${locationname}</span>]]'''</div>
 <div class="text-small">${game}</div>
 </div>
@@ -214,10 +215,10 @@ s.tag = function(frame)
 		r80 = r.roundyLua('80px'),
 		sprite = p.sprite,
 		size = p.size and '|' .. p.size or '',
-		classlink = p.classlink or trainerClass[p.name] or p.class .. ' (classe allenatore)',
-		class = p.class or 'Professor',
-		classlink2 = p.classlink2 or trainerClass[p.name2] or p.class2 .. ' (classe allenatore)',
-		class2 = p.class2 or 'Professor',
+		class = p.class and string.interp(classString, {class = p.class,
+			classlink = p.classlink or trainerClass[p.name] or p.class .. ' (classe allenatore)'}) or '',
+		class2 = p.class2 and string.interp(classString, {class = p.class2,
+			classlink = p.classlink2 or trainerClass[p.name2] or p.class2 .. ' (classe allenatore)'}) or '',
 		name = p.name or 'Oak',
 		name2 = p.name2 or 'Oak',
 		location = p.location or 'Brockolandia',
@@ -233,19 +234,19 @@ s.tag = function(frame)
 |-
 | <div class="flex flex-row flex-nowrap flex-items-center flex-main-center" style="padding: 0 2.5em;">
 <div>
-<div style="padding: 0.3ex; ${r80} background: linear-gradient(to right, #${sprcolor1}, #${sprcolor2});">[[File:${sprite}]]</div>
+<div style="padding: 0.3ex; ${r80} background: linear-gradient(to right, #${sprcolor1}, #${sprcolor2});">[[File:${sprite}${size}]]</div>
 <div class="text-small" style="margin-top: 0.5ex; line-height: 10px">Ricompensa:</div>
 <div>'''${prize}'''</div>
 </div>
 <div>
 <div class="roundy text-center" style="margin-left: 1ex; width: 18em; padding: 0.2ex; background: linear-gradient(to right, #${head1}, #${head2});"><div class="flex flex-row flex-nowrap flex-items-center flex-main-center">
 <div>
-<div class="small-text" style="line-height:10px;">'''[[${class} (classe allenatore)|<span style="color:#000">${class}</span>]]'''</div>
+${class}
 <div class="text-big">'''${name}'''</div>
 </div>
 <div>''e''</div>
 <div>
-<div class="small-text" style="line-height:10px;">'''[[${class2} (classe allenatore)|<span style="color:#000">${class2}</span>]]'''</div><div class="big-text">'''${name2}'''</div>
+${class2}<div class="big-text">'''${name2}'''</div>
 </div>
 </div>
 <div>'''[[${location}|<span style="color: #000;">${locationname}</span>]]'''</div>
@@ -253,10 +254,11 @@ s.tag = function(frame)
 </div>
 <div class="roundy pull-center" style="margin-top: 0.5ex; width: 14ex; padding: 0.2ex; background: linear-gradient(to right, #${head1}, #${head2}); line-height: 10px">${balls}</div>
 </div>
-<div style="padding: 0.3ex; height: 11ex; width: 11ex; ${r80} background: linear-gradient(to right, #${spr2color1}, #${spr2color2});">[[File:${sprite2}]]</div>
+<div class="flex-items-self-start" style="margin-left: 1ex; padding: 0.3ex; ${r80} background: linear-gradient(to right, #${spr2color1}, #${spr2color2});">[[File:${sprite2}]]</div>
 </div>
 |-
-| <div class="flex flex-row flex-nowrap flex-items-center flex-main-space-around">]=],
+| <div class="roundy" style="background: linear-gradient(to bottom, #${sprcolor1}, #${spr2color2}); padding: 0.5ex;">
+<div class="flex flex-row flex-nowrap flex-items-center flex-main-space-around">]=],
 	interpData)
 end
 
@@ -266,8 +268,7 @@ s.Tag = s.tag
 
 s.div = function(frame)
 	return string.interp([=[</div>
-<div class="flex flex-row flex-nowrap flex-items-center flex-main-space-around" style="margin-top: 0.5ex; backround: linear-gradient(to right, #${col1}, ${col2});">]=],
-{col1 = lib.gethex{string.trim(frame.args.color) or c.sconosciuto.normale}[1]})
+<div class="flex flex-row flex-nowrap flex-items-center flex-main-space-around" style="margin-top: 0.5ex;">]=])
 end
 
 s.Div = s.div

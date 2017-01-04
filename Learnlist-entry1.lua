@@ -12,8 +12,8 @@ local s = require("Sup-data")
 
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[=[|-
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${level}${games}]=],
+    return string.interp(table.concat{[=[|- style="background: #FFF;"
+| style="padding: 0.1em 0.3em;" | ${level}${games}]=],
 	lib.basicentry(p[8] or '', p[2] or 'Iper Raggio', lib.makeNotes(p[7] or ''),
 			p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0', p[6] or '0')},
 {
@@ -28,9 +28,9 @@ z.Level = z.level
 
 z.tm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[=[|-
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | [[File:${img} ${tipo} Sprite Zaino.png]]
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | [[${machine}|<span style="color:#000;">${machine}</span>]]${games}]=],
+    return string.interp(table.concat{[=[|- style="background: #FFF;"
+| style="padding: 0.1em 0.3em;" | [[File:${img} ${tipo} Sprite Zaino.png]]
+| style="padding: 0.1em 0.3em;" | [[${machine}|<span style="color:#000;">${machine}</span>]]${games}]=],
 	lib.basicentry(p[8] or '', p[2] or 'Azione', lib.makeNotes(p[7] or ''),
 			p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0', p[6] or '0')},
 {
@@ -58,8 +58,8 @@ z.Preevo, z.prevo, z.Prevo = z.preevo, z.preevo, z.preevo
 
 z.event = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[[|-
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${event}${level}]],
+    return string.interp(table.concat{[[|- style="background: #FFF;"
+| style="padding: 0.1em 0.3em;" | ${event}${level}]],
 	lib.basicentry(p[8] or '', p[2] or 'Abisso', lib.makeNotes(p[7] or ''),
 			p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0', p[6] or '0')},
 {
@@ -73,8 +73,7 @@ z.Event = z.event
 -- Entry per i Pokémon che non imparano mosse aumentando di livello
 
 z.levelnull = function(frame)
-    return [[|-
-! style="background:#FFFFFF; border:1px solid #D8D8D8;" colspan="6" | Questo Pokémon non impara nessuna mossa aumentando di livello]]
+	return lib.entrynull('level', '6')
 end
 
 z.Levelnull = z.levenull
@@ -82,8 +81,7 @@ z.Levelnull = z.levenull
 -- Entry per i Pokémon che non imparano mosse tramite MT/MN
 
 z.tmnull = function(frame)
-    return [[|-
-! style="background:#FFFFFF; border:1px solid #D8D8D8;" colspan="7" | Questo Pokémon non impara nessuna mossa tramite MT.]]
+	return lib.entrynull('tm', '7')
 end
 
 z.Tmnull = z.tmnull
@@ -91,8 +89,7 @@ z.Tmnull = z.tmnull
 -- Entry per i Pokémon che non imparano mosse tramite evoluzioni precedenti
 
 z.preevonull = function(frame)
-    return [[|-
-! style="background:#FFFFFF; border:1px solid #D8D8D8;" colspan="6" | Questo Pokémon non impara nessuna mossa appresa tramite evoluzioni precedenti.]]
+	return lib.entrynull('preevo', '6')
 end
 
 z.Preevonull, z.prevonull, z.Prevonull = z.preevonull, z.preevonull, z.preevonull

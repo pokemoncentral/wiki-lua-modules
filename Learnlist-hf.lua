@@ -7,7 +7,7 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
-local c = require("Colore-data")
+local css = require('Css')
 local gendata = require("Gens-data")
 
 -- Tabelle dati
@@ -85,12 +85,12 @@ cells[6] = table.concat{cells.category, cells.gara, cells.inib}
 local games = {}
 games[5] = [=[
 
-|- style="background:#${bg};"
+|-
 ! &nbsp;&nbsp;[[Pokémon Nero e Bianco|<span style="color:#000;">NB</span>]]&nbsp;&nbsp;
 ! &nbsp;[[Pokémon Nero 2 e Bianco 2|<span style="color:#000;">N2B2</span>]]&nbsp;]=]
 games[6] = [=[
 
-|- style="background:#${bg};"
+|-
 ! &nbsp;&nbsp;[[Pokémon X e Y|<span style="color:#000;">XY</span>]]&nbsp;&nbsp;
 ! &nbsp;[[Pokémon Rubino Omega e Zaffiro Alpha|<span style="color:#000;">ROZA</span>]]&nbsp;]=]
 
@@ -165,10 +165,10 @@ end
 
 -- Crea le celle dell'ultima riga degli headers
 
-local lowrow = function(gen, kind, bg)
+local lowrow = function(gen, kind)
 	local values = {r = firstcell.rs[kind][gen],
 		c = firstcell.cs[kind][gen], parent = gen > 5 and
-		'Genitore' or 'Padre', bg = bg}
+		'Genitore' or 'Padre'}
 	local baseStr = table.concat{cells[kind], cells[gen],
 		(kind == 'level' and gen > 4) and games[gen] or ''}
 	return txt.interp(baseStr, values)
@@ -191,29 +191,28 @@ local header = function(pars, kind)
 	local tipo1, tipo2 = pars[2] or 'Sconosciuto', pars[3] or 'Sconosciuto'
 	local genh, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
-	local color2 = tipo1 == tipo2 and c[tipo1].light or c[tipo2].normale
-    return txt.interp([=[{| class="roundy text-center pull-center" style="background: #${background}; border: 3px solid #${color2};"
+	return txt.interp([=[
+{| class="roundy text-center pull-center" style="${bg}"
 |-
-| class="roundytop" style="background: #${cells_upper};" colspan="${colspan}" |
-{| style="width: 100%; background: transparent;"
-! style="width: 60%;" | <span class="big-font"><span class="big-font">${gentitle}&nbsp;generazione</span></span>
-! style="width: 40%;" |
-{| class="roundy" style="background:transparent; border: 2px solid #${background};"
-! style="line-height:10px;" | <span class="small-font">Altre&nbsp;generazioni:</span>
-|-
-! ${links}
-|}
-|}
-|- class="text-center" style="background:#${color2};"
+| class="roundytop" colspan="${colspan}" |
+<div class="flex-row-center-around" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''${gentitle}&nbsp;generazione'''</span></span></div>
+<div>
+<div class="roundy" style="font-weight: bold; padding: 0.5ex;>
+<div class="small-font" style="line-height:10px;">Altre&nbsp;generazioni:</div>
+<div class="text-center">${links}</div>
+</div>
+</div>
+</div>
+<div style="${dividerbg}; height: 0.5ex;">&nbsp;</div>
+|- class="text-center"
 ${low_row}]=],
 {
-    background = c[tipo1].normale,
-    color2 = color2,
-    cells_upper = c[tipo1].light,
-    colspan = cs[kind][genh],
-    gentitle = string.fu(gendata[genh].ext),
-    links = oldgenslinks(genh, genp, kind, poke),
-    low_row = lowrow(genh, kind, color2)
+	bg = css.horizGradLua(tipo1, tipo1 == tipo2 and 'light' or 'normale', tipo2, 'normale'),
+	dividerbg = css.horizGradLua(tipo1, tipo1 == tipo2 and 'normale' or 'light', tipo2, tipo1 == tipo2 and 'dark' or 'light'),
+	colspan = cs[kind][genh],
+	gentitle = string.fu(gendata[genh].ext),
+	links = oldgenslinks(genh, genp, kind, poke),
+	low_row = lowrow(genh, kind)
 })
 end
 
@@ -224,18 +223,17 @@ local footer = function(pars, kind)
 	local genf, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
     return txt.interp([=[|-
-| class="roundybottom text-left small-font" style="background:#${background}; line-height:10px;" colspan="${colspan}" |
+| class="roundybottom text-left small-font" style="line-height:10px; padding-bottom: 0.5ex;" colspan="${colspan}" |
 ${kindrows}
 *Il '''grassetto''' indica una mossa che ha lo [[Same Type Attack Bonus|<span style="color: #000">STAB</span>]] quando viene usata da un ${poke}.
 *Il ''corsivo'' indica una mossa che ha lo STAB solo quando viene usata da un${form} di ${poke}.${last}
 |}]=],
 {
-    background = c[tipo].light,
-    colspan = cs[kind][genf],
-    kindrows = rowf(kind, genf, poke),
-    poke = poke,
-    form = txt.interp(rowsf.forms[form], {poke = poke}) or '',
-    last = genp < gendata.latest and txt.interp(rowsf.last, {way = ways[kind]}) or ''
+	colspan = cs[kind][genf],
+	kindrows = rowf(kind, genf, poke),
+	poke = poke,
+	form = txt.interp(rowsf.forms[form], {poke = poke}) or '',
+	last = genp < gendata.latest and txt.interp(rowsf.last, {way = ways[kind]}) or ''
 })
 end
 
