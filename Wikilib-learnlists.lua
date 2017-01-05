@@ -14,15 +14,14 @@ local s = require("Sup-data")
 -- local trimOnly = {'x v zA'}
 
 -- Wikicode per la cella di un gioco nell'entry level
-local gameLevelCell = '| style="background:#FFF;"'
--- local str = '| style="background:#${bg}; color: #${txt}; border:1px solid #D8D8D8;" | ${lvl}'
+local gameLevelCell = '| '
 
 -- Wikicode per la cella di un gioco nell'entry tutor
 local gameTutorCell = [=[| style="background:#${bg};" | [[Pokémon ${gameLink}|<span style="padding: 0.3em 0; color:#${txtColor};">'''${gameAbbr}'''</span>]]]=]
 
 -- Wikicode per gli entrynull
 local entryNull = [[|-
-! style="background:#FFFFFF; padding: 0.1em 0.3em;" colspan="${cs}" | Questo Pokémon non impara nessuna mossa ${ending}.]]
+! style="padding: 0.1em 0.3em;" colspan="${cs}" | Questo Pokémon non impara nessuna mossa ${ending}.]]
 
 local entryNullEnd = { level = 'aumentando di livello', tm = 'tramite MT',
 	breed = 'tramite accoppiamento', tutor = "dall'Esperto Mosse", preevo = 'tramite evoluzioni precedenti'}
@@ -101,14 +100,16 @@ lib.insertnwlns = function(str, linelength, gen)
 		op = function(ndex) return ms.staticLua(ndex, gen) end
 	end
 
+	table.insert(res, '<div>')
 	for minisprite in str:gmatch(pattern) do
 		table.insert(res, op(minisprite))
 
 		if (#res - newLinesCount) % linelength == 0 then
-			table.insert(res, '<br>')
+			table.insert(res, '</div><div>')
 			newLinesCount = newLinesCount + 1
 		end
 	end
+	table.insert(res, '</div>')
 
 	return table.concat(res)
 end
@@ -295,7 +296,7 @@ lib.tutorgames = function(games)
 		end)
 
 	-- Inizio dell'entry, bisogna inserire una nuova table row
-	table.insert(cells, 1, '|- style="background: #FFF;"')
+	table.insert(cells, 1, '|-')
 	return table.concat(cells, '\n')
 end
 
@@ -306,7 +307,7 @@ lib.preevodata = function(pars, gen)
 		ani1 = ms.staticLua(pars[4], gen or '', pars[5] or 'Bulbasaur')
 		tt1 = lib.preevott[pars[6]] or ''
 	end
-	return string.interp([=[|- style="background: #FFF;"
+	return string.interp([=[|-
 | style="padding: 0.1em 0.3em;" | ${ani}${tt}${ani1}${tt1}]=],
 {
 	ani = ms.staticLua(pars[1] or '000', gen or '', pars[2] or 'Bulbasaur'),

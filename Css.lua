@@ -2,7 +2,7 @@
 
 This module holds CSS-generating functions.
 Its main usefulness are reducing calls to
-Colore module and adding vendor prefixes 
+Colore module and adding vendor prefixes
 
 --]]
 
@@ -60,9 +60,17 @@ and fourth their respective variants.
 Empty first variants default to 'normal',
 empty second variants default to first ones.
 
+If the first argument isn't a known color
+it is assumed that first and second arguments
+are hexes
+
 --]]
 processInput.gradient = function(args)
 	local p = w.trimAll(args, true)
+
+	if not c[p[1]] then
+		return p[1], p[2]
+	end
 
 	local from = {
 		name = p[1],
@@ -84,7 +92,7 @@ local styles = {}
 styles.gradient = {}
 
 -- Generates styles for linear gradients
-styles.gradient.linear = function(conf, from, to)	
+styles.gradient.linear = function(conf, from, to)
 	return string.interp('background-size: 100%; background-image: -moz-linear-gradient(${mozConf}#${from}, #${to}); background-image: -webkit-linear-gradient(${webkitConf}#${from}, #${to}); background-image: linear-gradient(${conf}#${from}, #${to});',
 		{
 			conf = prependComma(conf),
@@ -92,7 +100,7 @@ styles.gradient.linear = function(conf, from, to)
 			webkitConf = prependComma(vendorMappings.gradient.webkit[conf]),
 			from = from,
 			to = to
-		}) 
+		})
 end
 
 -- Generates linear gradients styles

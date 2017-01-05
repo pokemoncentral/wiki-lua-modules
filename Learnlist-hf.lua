@@ -192,9 +192,9 @@ local header = function(pars, kind)
 	local genh, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
 	return txt.interp([=[
-{| class="roundy text-center pull-center" style="${bg}"
+{| class="roundy text-center pull-center white-rows" style="${bg}"
 |-
-| class="roundytop" colspan="${colspan}" |
+| class="roundytop" colspan="${colspan}" style="background: transparent;" |
 <div class="flex-row-center-around" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''${gentitle}&nbsp;generazione'''</span></span></div>
 <div>
 <div class="roundy" style="font-weight: bold; padding: 0.5ex;>
@@ -204,7 +204,7 @@ local header = function(pars, kind)
 </div>
 </div>
 <div style="${dividerbg}; height: 0.5ex;">&nbsp;</div>
-|- class="text-center"
+|- class="text-center" style="background: transparent;"
 ${low_row}]=],
 {
 	bg = css.horizGradLua(tipo1, tipo1 == tipo2 and 'light' or 'normale', tipo2, 'normale'),
@@ -223,7 +223,7 @@ local footer = function(pars, kind)
 	local genf, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
     return txt.interp([=[|-
-| class="roundybottom text-left small-font" style="line-height:10px; padding-bottom: 0.5ex;" colspan="${colspan}" |
+| class="roundybottom text-left small-font" style="line-height:10px; padding-bottom: 0.5ex; background: transparent;" colspan="${colspan}" |
 ${kindrows}
 *Il '''grassetto''' indica una mossa che ha lo [[Same Type Attack Bonus|<span style="color: #000">STAB</span>]] quando viene usata da un ${poke}.
 *Il ''corsivo'' indica una mossa che ha lo STAB solo quando viene usata da un${form} di ${poke}.${last}
@@ -340,7 +340,7 @@ d.alltm = function(frame)
     tab2['1'], tab2['2'], tab2['3'], tab2['4'], tab2['5'], tab2['6'] = 'prima', 'seconda', 'terza', 'quarta', 'quinta', 'sesta'
     tab2.I, tab2.II, tab2.III, tab2.IV, tab2.V, tab2.VI = tab2['1'], tab2['2'], tab2['3'], tab2['4'], tab2['5'], tab2['6']
     return txt.interp([=[|-
-! style="background:#FFF; border:1px solid #D8D8D8;" colspan ="8" | ${poke} può imparare ''qualsiasi'' ${moveKind} nella ${gen} generazione${except}.]=],
+! style="background:#FFFFFF; padding: 0.1em 0.3em;" colspan ="8" | ${poke} può imparare ''qualsiasi'' ${moveKind} nella ${gen} generazione${except}.]=],
 {
     poke = p[1] or 'Questo Pokémon',
     moveKind = moveKind[p[3] or 'tm'],

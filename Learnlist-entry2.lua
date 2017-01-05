@@ -12,7 +12,7 @@ local s = require("Sup-data")
 
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[=[|- style="background: #FFF;"
+    return string.interp(table.concat{[=[|-
 | style="padding: 0.1em 0.3em;" | ${p1}${games}]=],
 	lib.basicentry(p[8] or '', p[2] or 'Iper Raggio', lib.makeNotes(p[7] or ''),
 			p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0', p[6] or '0')},
@@ -26,7 +26,7 @@ end
 
 z.tm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[=[|- style="background: #FFF;"
+    return string.interp(table.concat{[=[|-
 | style="padding: 0.1em 0.3em;" | [[File:${img} ${tipo} Sprite Zaino.png]]
 | style="padding: 0.1em 0.3em;" | [[${p1}|<span style="color:#000;">${p1}</span>]]${games}]=],
 	lib.basicentry(p[8] or '', p[2] or 'Azione', lib.makeNotes(p[7] or ''),
@@ -45,7 +45,7 @@ z.Tm = z.tm
 
 z.breed = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[=[|- style="background: #FFF;"
+    return string.interp(table.concat{[=[|-
 | style="padding: 0.1em 0.3em;" | ${fathers}]=],
 	lib.basicentry(p[8] or '', p[2] or 'Schianto', lib.makeNotes(p[7] or '',
 			s[p[9]] or ''), p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0',
@@ -85,7 +85,7 @@ z.Preevo, z.prevo, z.Prevo = z.preevo, z.preevo, z.preevo
 
 z.event = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[[|- style="background: #FFF;"
+    return string.interp(table.concat{[[|-
 | style="padding: 0.1em 0.3em;" | ${p1}${p9}]],
 		lib.basicentry(p[8] or '', p[2] or 'Abisso', lib.makeNotes(p[7] or ''),
 			p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0', p[6] or '0')},

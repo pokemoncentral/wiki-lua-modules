@@ -1614,6 +1614,8 @@ t.rattataA = {ability1 = 'Voracità', ability2 = 'Tuttafretta', abilityd = 'Gras
 t['019A'] = t.rattataA
 t.raticateA = {ability1 = 'Voracità', ability2 = 'Tuttafretta', abilityd = 'Grassospesso'}
 t['020A'] = t.raticateA
+t.pikachuCs = {ability1 = 'Parafulmine'}
+t['025Cs'] = t.pikachuCs
 t.raichuA = {ability1 = 'Codasurf'}
 t['026A'] = t.raichuA
 t.sandshrewA = {ability1 = 'Mantelneve', abilityd = 'Spalaneve'}
@@ -1677,10 +1679,10 @@ t['745N'] = t.lycanrocN
 
 -- Alias per le altre forme alternative rilevanti
 
-t.pikachuCs, t['025Cs'], t.pikachuR, t['025R'], t.pikachuD, t['025D'],
-	t.pikachuCn, t['025Cn'], t.pikachuS, t['025S'], t.pikachuW, t['025W'] =
-	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu,
-	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu
+t.pikachuR, t['025R'], t.pikachuD, t['025D'], t.pikachuCn,
+	t['025Cn'], t.pikachuS, t['025S'], t.pikachuW, t['025W'] =
+	t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs,
+	t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs
 t.castformS, t.castformP, t.castformN = t.castform, t.castform, t.castform
 t['351S'], t['351P'], t['351N'] = t.castform, t.castform, t.castform
 t.deoxysA, t.deoxysD, t.deoxysV = t.deoxys, t.deoxys, t.deoxys

@@ -12,7 +12,7 @@ local s = require("Sup-data")
 
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[=[|- style="background: #FFF;"
+    return string.interp(table.concat{[=[|-
 | style="padding: 0.1em 0.3em;" | ${level}${games}]=],
 	lib.basicentry(p[8] or '', p[2] or 'Iper Raggio', lib.makeNotes(p[7] or ''),
 			p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0', p[6] or '0')},
@@ -28,7 +28,7 @@ z.Level = z.level
 
 z.tm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[=[|- style="background: #FFF;"
+    return string.interp(table.concat{[=[|-
 | style="padding: 0.1em 0.3em;" | [[File:${img} ${tipo} Sprite Zaino.png]]
 | style="padding: 0.1em 0.3em;" | [[${machine}|<span style="color:#000;">${machine}</span>]]${games}]=],
 	lib.basicentry(p[8] or '', p[2] or 'Azione', lib.makeNotes(p[7] or ''),
@@ -58,7 +58,7 @@ z.Preevo, z.prevo, z.Prevo = z.preevo, z.preevo, z.preevo
 
 z.event = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[[|- style="background: #FFF;"
+    return string.interp(table.concat{[[|-
 | style="padding: 0.1em 0.3em;" | ${event}${level}]],
 	lib.basicentry(p[8] or '', p[2] or 'Abisso', lib.makeNotes(p[7] or ''),
 			p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0', p[6] or '0')},

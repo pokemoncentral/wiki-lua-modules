@@ -12,7 +12,7 @@ local s = require("Sup-data")
 
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{'|- style="background: #FFF;"\n', lib.gameslevel(p[1] or
+    return table.concat{'|-\n', lib.gameslevel(p[1] or
 		[[<span class="explain" title="Disponibile solo in Nero 2 e Bianco 2">''Assente''</span>]], 
 		p[2] or [[<span class="explain" title="Disponibile solo in Nero 2 e Bianco 2">''Assente''</span>]]),
 		lib.categoryentry(p[10] or '', p[3] or 'Geloraggio',
@@ -26,9 +26,9 @@ z.Level = z.level
 
 z.tm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[=[|- style="background: #FFF;"
-| style="background:#FFFFFF; padding: 0.1em 0.3em;" | [[File:${img} ${tipo} Sprite Zaino.png]]
-| style="background:#FFFFFF; padding: 0.1em 0.3em;" | [[${p1}|<span style="color:#000;">${p1}</span>]]${games}]=],
+    return string.interp(table.concat{[=[|-
+| style="padding: 0.1em 0.3em;" | [[File:${img} ${tipo} Sprite Zaino.png]]
+| style="padding: 0.1em 0.3em;" | [[${p1}|<span style="color:#000;">${p1}</span>]]${games}]=],
 	lib.categoryentry(p[9] or '', p[2] or 'Purogelo', lib.makeNotes(p[8] or ''),
 			p[3] or 'Sconosciuto', p[4] or 'Speciale', p[5] or '0',
 			p[6] or '0', p[7] or '0')},
@@ -46,8 +46,8 @@ z.Tm = z.tm
 
 z.breed = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[=[|- style="background: #FFF;"
-| style="background:#FFFFFF; padding: 0.1em 0.3em;" | ${fathers}]=],
+    return string.interp(table.concat{[=[|-
+| style="padding: 0.1em 0.3em;" | ${fathers}]=],
 		lib.categoryentry(p[8] or '', p[2] or 'Lanciafiamme',
 			lib.makeNotes(p[9] or '', s[p[10]] or ''), p[3] or 'Sconosciuto',
 			p[4] or 'Stato', p[5] or '0', p[6] or '0', p[7] or '0')},
@@ -86,8 +86,8 @@ z.Preevo, z.prevo, z.Prevo = z.preevo, z.preevo, z.preevo
 
 z.event = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[[|- style="background: #FFF;"
-| style="background:#FFFFFF; padding: 0.1em 0.3em;" | ${p1}${p10}]],
+    return string.interp(table.concat{[[|-
+| style="padding: 0.1em 0.3em;" | ${p1}${p10}]],
 		lib.categoryentry(p[9] or '', p[2] or 'Bora',
 			lib.makeNotes(p[8] or ''), p[3] or 'Sconosciuto',
 			p[4] or 'Fisico', p[5] or '0', p[6] or '0', p[7] or '0')},

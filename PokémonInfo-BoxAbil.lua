@@ -10,12 +10,17 @@ local abillib = require('Wikilib-abils')
 local oop = require('Wikilib-oop')
 local list = require('Wikilib-lists')
 local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local abils = require('PokéAbil-data')
 local c = require("Colore-data")
 
 -- !!! ATTENZIONE !!!
 --- Questo modulo modifica le copie cachate degli altri moduli dati
 local gre = require('GreninjaDemo-data')
+
+-- Table contenente le forme di Pikachu da ignorare
+local ignorableForms = {'pikachuR', 'pikachuD',
+	'pikachuCn', 'pikachuS', 'pikachuW'}
 
 --[[
 
@@ -38,6 +43,11 @@ AbilsBox.new = function(name, formName)
 
 	-- Meowstic e Pokémon con abilità non rivelata
 	if abils[name].ability1 == '' then
+		return nil
+	end
+
+	-- Pikachu (@nalkio visto che questo Pokémon fa danni?)
+	if table.search(ignorableForms, name) then
 		return nil
 	end
 
