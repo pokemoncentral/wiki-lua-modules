@@ -58,7 +58,7 @@ end
 -- funzione così da non essere ricreata ogni volta
 
 local regiongens = {Kanto = 1, Johto = 2, Hoenn = 3, Sinnoh = 4,
-	Unima = 5, Kalos = 6}
+	Unima = 5, Kalos = 6, Alola = 7}
 local region_sort = function(c, d)
 	local a, b = c:match('>(%a+)</span>'), d:match('>(%a+)</span>')
 	return regiongens[a] < regiongens[b]
@@ -99,8 +99,8 @@ local dexlist = function(dexes)
 	for k, v in ipairs(store) do
 		store[k] = string.interp(v, {wd = width})
 	end
-	if #store == 6 then
-		table.insert(store, 4, '<br>')
+	if #store > 5 then
+		table.insert(store, 4, '<div></div>')
 	end
 	return table.concat(store)
 end
@@ -120,22 +120,20 @@ local search = function(ndex)
 	return dexes
 end
 
---Interfaccia. Riceve un ndex su tre cifre e un tipo, e interpola il colore stasndard
--- del tipo e la lista dei dex regionali, creata con al funzione dexlist, al box in wikicode
+--Interfaccia. Riceve un ndex su tre cifre e un tipo, e interpola il colore standard
+-- del tipo e la lista dei dex regionali, creata con la funzione dexlist, al box in wikicode
 
 rdex.regionaldex = function(frame)
 	local ndex = string.trim(frame.args[1]) or '000'
-	local type = string.trim(frame.args[2]) or 'sconosciuto'
-	return string.interp([=[| colspan="2" class="roundy text-center" style="width: 100%; background: #${std}; padding: 1px; " | [[Pokédex Regionale|<span style="color:#000;">'''Pokédex Regionali'''</span>]]
-<div class="roundy" style="margin: 2px; background: #FFF;">${dexlist}</div>
+	return string.interp([=[| colspan="2" | <div>[[Pokédex Regionale|<span style="color:#000;">'''Pokédex Regionali'''</span>]]</div>
+<div class="roundy" style="background: #fff; padding-top: 0.5ex; padding-bottom: 0.5ex;">${dexlist}</div>
 ]=],
 {
-	std = c[type].light,
 	dexlist = dexlist(search(ndex)) or 'In nessun Pokédex Regionale'
 })
 end
 
 rdex.Regionaldex, rdex.RegionalDex = rdex.regionaldex, rdex.regionaldex
-
+arg = {'026'}
 -- return rdex
-print(rdex.regionaldex{args={arg[1], arg[2]}})
+print(rdex.regionaldex{args={arg[1]}})

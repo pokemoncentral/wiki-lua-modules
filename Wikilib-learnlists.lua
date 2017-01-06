@@ -21,7 +21,7 @@ local gameTutorCell = [=[| style="background:#${bg};" | [[Pokémon ${gameLink}|<
 
 -- Wikicode per gli entrynull
 local entryNull = [[|-
-! style="padding: 0.1em 0.3em;" colspan="${cs}" | Questo Pokémon non impara nessuna mossa ${ending}.]]
+! style="background: #fff; padding: 0.1em 0.3em;" colspan="${cs}" | Questo Pokémon non impara nessuna mossa ${ending}.]]
 
 local entryNullEnd = { level = 'aumentando di livello', tm = 'tramite MT',
 	breed = 'tramite accoppiamento', tutor = "dall'Esperto Mosse", preevo = 'tramite evoluzioni precedenti'}

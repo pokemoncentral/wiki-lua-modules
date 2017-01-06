@@ -217,6 +217,14 @@ c.cristalline = function(frame) return _colore(frame.args[1] or 'normale', 'FFB2
 c.Cristalline, c.decolora, c.Decolora = c.cristalline, c.cristalline, c.cristalline
 c.alola = function(frame) return _colore(frame.args[1] or 'normale', 'FFD900', 'FFE86A', 'EC9000') end
 c.Alola = c.alola
+c.melemele = c.giallo
+c.Melemele, c['mele mele'], c['Mele mele'], c['Mele Mele'] = c.melemele, c.melemele, c.melemele, c.melemele
+c.akala = c.psico
+c.Akala = c.akala
+c.ulaula = c.rosso
+c.Ulaula, c['ula ula'], c['Ula ula'], c['Ula Ula'] = c.ulaula, c.ulaula, c.ulaula, c.ulaula
+c.poni = c.spettro
+c.Poni = c.poni
 
 -- Colori statistiche
 
