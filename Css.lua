@@ -14,11 +14,6 @@ local str = require('Wikilib-strings')
 local w = require('Wikilib')
 local c = require("Colore-data")
 
--- Prepends a comma to non-empty strings only
-local prependComma = function(text)
-	return text ~= '' and text .. ', ' or text
-end
-
 --[[
 
 Holds mappings from standard values
@@ -35,18 +30,46 @@ for vendor prefixes
 --]]
 vendorMappings.gradient = {
 	moz = {
-		[''] = '',
 		['to right'] = 'left'
 	},
 
 	webkit = {
-		[''] = '',
 		['to right'] = 'left'
 	}
 }
 
+-- All linear gradient function names
+local linearGradientsFunctions = {
+	'-moz-linear-gradient',
+	'-webkit-linear-gradient',
+	'linear-gradient'
+}
+
+
 -- Holds all kinds of wikicode input processing
 local processInput = {}
+
+--[[
+
+Returns a list of color hexes from
+a table of couples: first one is the
+color name, second one the shade
+(defaulting to normal)
+
+--]]
+processInput.parseCouples = function(args)
+	local name = table.remove(args, 1)
+	local shade = table.remove(args, 1)
+	shade = (shade == '' or shade == nil)
+			and 'normale'
+			or shade
+
+	if #args == 0 then
+		return c[name][shade]
+	end
+
+	return c[name][shade], processInput.parseCouples(args)
+end
 
 --[[
 
@@ -54,35 +77,48 @@ Processes wikicode arguments from
 gradient functions, returning the
 requested color hexes.
 
-First and third
-arguments are color names, second
-and fourth their respective variants.
-Empty first variants default to 'normal',
-empty second variants default to first ones.
+Can take an arbitrary number of
+arguments, as long as they are
+organized in couples: first the color
+name, then the shade (if the shade
+is empty it defaults to 'normale').
 
-If the first argument isn't a known color
-it is assumed that first and second arguments
-are hexes
+If the first argument isn't a known
+color, all arguments are assumed to
+be hexes.
+
+For two-color cases, there are special
+rules: empty color name or shade default
+to their counterpart of the first color.
 
 --]]
 processInput.gradient = function(args)
-	local p = w.trimAll(args, true)
+	local p = w.trimAll(args, false)
 
+	-- Colore/data indexing fails, assuming hexes
 	if not c[p[1]] then
-		return p[1], p[2]
+		return unpack(p)
 	end
 
-	local from = {
-		name = p[1],
-		variant = string.lower(p[2] or 'normale')
-	}
+	-- Two-color case special rules
+	if #p < 5 then
+		p = w.emptyStringToNil(p, string.lower)
 
-	local to = {
-		name = p[3] or from.name,
-		variant = string.lower(p[4] or from.variant)
-	}
+		local from = {
+			name = p[1],
+			shade = p[2] or 'normale'
+		}
 
-	return c[from.name][from.variant], c[to.name][to.variant]
+		local to = {
+			name = p[3] or from.name,
+			shade = p[4] or from.shade
+		}
+
+		return c[from.name][from.shade], c[to.name][to.shade]
+	end
+
+	-- Standard behavior
+	return processInput.parseCouples(args)
 end
 
 -- Holds all css generating functions
@@ -92,24 +128,51 @@ local styles = {}
 styles.gradient = {}
 
 -- Generates styles for linear gradients
-styles.gradient.linear = function(conf, from, to)
-	return string.interp('background-size: 100%; background-image: -moz-linear-gradient(${mozConf}#${from}, #${to}); background-image: -webkit-linear-gradient(${webkitConf}#${from}, #${to}); background-image: linear-gradient(${conf}#${from}, #${to});',
-		{
-			conf = prependComma(conf),
-			mozConf = prependComma(vendorMappings.gradient.moz[conf]),
-			webkitConf = prependComma(vendorMappings.gradient.webkit[conf]),
-			from = from,
-			to = to
-		})
+styles.gradient.linear = function(conf, ...)
+
+	-- Grouping variadic and adding # to hexes
+	local colors = table.map({...}, function(hex)
+		return hex:find('#') and hex or '#' .. hex
+	end)
+
+	-- Accumulator table
+	local css = {'background-size: 100%'}
+
+	for _, funct in pairs(linearGradientsFunctions) do
+
+		-- Cloning due to later table.insert
+		local gradientArgs = mw.clone(colors)
+
+		if conf then
+			local prefix = funct:match('^%-(%a+)%-')
+			local conf = prefix
+					and vendorMappings.gradient[prefix][conf]
+					or conf
+			table.insert(gradientArgs, 1, conf)
+		end
+
+		gradientArgs = table.concat(gradientArgs, ', ')
+
+		table.insert(css, table.concat{'background-image: ',
+			funct, '(', gradientArgs , ')'})
+	end
+
+	return table.concat(css, '; ') .. ';'
 end
 
--- Generates linear gradients styles
-css.horizGradLua = function(from, fromVariant, to, toVariant)
-	local args = {from, fromVariant, to, toVariant}
+-- Generates horizontal linear gradients styles
+css.horizGradLua = function(...)
 	return styles.gradient.linear('to right',
-			processInput.gradient(args))
+			processInput.gradient({...}))
 end
 css.horiz_grad_lua = css.horizGradLua
+
+-- Generates vertical linear gradients styles
+css.vertGradLua = function(...)
+	return styles.gradient.linear(nil,
+			processInput.gradient({...}))
+end
+css.vert_grad_lua = css.vertGradLua
 
 --[[
 
@@ -130,7 +193,7 @@ horizontal linear gradients styles
 
 --]]
 css['vert-grad'] = function(frame)
-	return styles.gradient.linear('',
+	return styles.gradient.linear(nil,
 			processInput.gradient(mw.clone(frame.args)))
 end
 css.vertGrad, css.vert_grad = css['vert-grad'], css['vert-grad']
