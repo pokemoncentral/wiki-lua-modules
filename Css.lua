@@ -118,7 +118,7 @@ processInput.gradient = function(args)
 	end
 
 	-- Standard behavior
-	return processInput.parseCouples(args)
+	return processInput.parseCouples(p)
 end
 
 -- Holds all css generating functions
