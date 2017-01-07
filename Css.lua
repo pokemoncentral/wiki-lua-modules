@@ -30,11 +30,33 @@ for vendor prefixes
 --]]
 vendorMappings.gradient = {
 	moz = {
-		['to right'] = 'left'
+		horiz = function()
+			return 'left'
+		end,
+
+		slanted = function(direction)
+			return (direction:gsub('^%d+',
+				function(angle)
+
+					-- 360 - angle + 90
+					return 450 - angle
+				end))
+		end
 	},
 
 	webkit = {
-		['to right'] = 'left'
+		horiz = function()
+			return 'left'
+		end,
+
+		slanted = function(direction)
+			return (direction:gsub('^%d+',
+				function(angle)
+
+					-- 360 - angle + 90
+					return 450 - angle
+				end))
+		end
 	}
 }
 
@@ -128,7 +150,7 @@ local styles = {}
 styles.gradient = {}
 
 -- Generates styles for linear gradients
-styles.gradient.linear = function(conf, ...)
+styles.gradient.linear = function(type, dir, ...)
 
 	-- Grouping variadic and adding # to hexes
 	local colors = table.map({...}, function(hex)
@@ -143,12 +165,13 @@ styles.gradient.linear = function(conf, ...)
 		-- Cloning due to later table.insert
 		local gradientArgs = mw.clone(colors)
 
-		if conf then
+		if type ~= 'vert' then
 			local prefix = funct:match('^%-(%a+)%-')
-			local conf = prefix
-					and vendorMappings.gradient[prefix][conf]
-					or conf
-			table.insert(gradientArgs, 1, conf)
+			local dir = prefix
+					and vendorMappings.gradient[prefix][type](dir)
+					or dir
+
+			table.insert(gradientArgs, 1, dir)
 		end
 
 		gradientArgs = table.concat(gradientArgs, ', ')
@@ -162,17 +185,28 @@ end
 
 -- Generates horizontal linear gradients styles
 css.horizGradLua = function(...)
-	return styles.gradient.linear('to right',
+	return styles.gradient.linear('horiz', 'to right',
 			processInput.gradient({...}))
 end
 css.horiz_grad_lua = css.horizGradLua
 
 -- Generates vertical linear gradients styles
 css.vertGradLua = function(...)
-	return styles.gradient.linear(nil,
+	return styles.gradient.linear('vert', nil,
 			processInput.gradient({...}))
 end
 css.vert_grad_lua = css.vertGradLua
+
+-- Generates slanted linear gradients styles
+css.slantedGradLua = function(...)
+	local args = {...}
+	local angle = table.remove(args, 1)
+
+	return styles.gradient.linear('slanted',
+			angle .. 'deg',
+			processInput.gradient(args))
+end
+css.slanted_grad_lua = css.slantedGradLua
 
 --[[
 
@@ -181,7 +215,7 @@ horizontal linear gradients styles
 
 --]]
 css['horiz-grad'] = function(frame)
-	return styles.gradient.linear('to right',
+	return styles.gradient.linear('horiz', 'to right',
 			processInput.gradient(mw.clone(frame.args)))
 end
 css.horizGrad, css.horiz_grad = css['horiz-grad'], css['horiz-grad']
@@ -189,14 +223,31 @@ css.horizGrad, css.horiz_grad = css['horiz-grad'], css['horiz-grad']
 --[[
 
 Wikicode interface to generate
-horizontal linear gradients styles
+vertical linear gradients styles
 
 --]]
 css['vert-grad'] = function(frame)
-	return styles.gradient.linear(nil,
+	return styles.gradient.linear('vert', nil,
 			processInput.gradient(mw.clone(frame.args)))
 end
 css.vertGrad, css.vert_grad = css['vert-grad'], css['vert-grad']
+
+--[[
+
+Wikicode interface to generate
+slanted linear gradients styles
+
+--]]
+css['slanted-grad'] = function(frame)
+	local p = mw.clone(frame.args)
+	local angle = string.trim(table.remove(p, 1))
+
+	return styles.gradient.linear('slanted',
+			angle .. 'deg',
+			processInput.gradient(p))
+end
+css.slantedGrad, css.slanted_grad =
+		css['slanted-grad'], css['slanted-grad']
 
 for name, funct in pairs(css) do
 	css[string.fu(name)] = funct
