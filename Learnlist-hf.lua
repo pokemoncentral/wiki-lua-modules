@@ -66,7 +66,8 @@ cells.gara = [=[!! rowspan = "${r}" | &nbsp;[[Virtù Gara|<span style="color:#00
 ! rowspan = "${r}" | &nbsp;[[Saggio di recitazione|<span style="color:#000;">Fascino</span>]]&nbsp;]=]
 cells.inib = '!! rowspan = "${r}" | &nbsp;[[Intralcio|<span style="color:#000;">Intralcio</span>]]&nbsp;'
 cells.level = '! colspan = "${c}" | &nbsp;[[Livello|<span style="color:#000;">Lv.</span>]]&nbsp;'
-cells.tm = '! colspan = "${c}" | &nbsp;[[MT|<span style="color:#000;">MT</span>]]/[[MN|<span style="color:#000;">MN</span>]]&nbsp;'
+cells.tm = '! colspan = "${c}" | &nbsp;[[MT|<span style="color:#000;">MT</span>]]&nbsp;'
+cells.tmhm = '! colspan = "${c}" | &nbsp;[[MT|<span style="color:#000;">MT</span>]]/[[MN|<span style="color:#000;">MN</span>]]&nbsp;'
 cells.breed = '! colspan = "${c}" | &nbsp;[[Mossa uovo|<span style="color:#000;">${parent}</span>]]&nbsp;'
 cells.tutor = '! colspan = "${c}" | &nbsp;[[Videogiochi Pokémon|<span style="color:#000;">Gioco</span>]]&nbsp;'
 cells.preevo = '! colspan = "${c}" | &nbsp;[[Evoluzione|<span style="color:#000;">Stadio</span>]]&nbsp;'
@@ -169,6 +170,9 @@ local lowrow = function(gen, kind)
 	local values = {r = firstcell.rs[kind][gen],
 		c = firstcell.cs[kind][gen], parent = gen > 5 and
 		'Genitore' or 'Padre'}
+
+	kind = (kind == 'tm' and gen < 7) and 'tmhm' or kind
+	
 	local baseStr = table.concat{cells[kind], cells[gen],
 		(kind == 'level' and gen > 4) and games[gen] or ''}
 	return txt.interp(baseStr, values)
