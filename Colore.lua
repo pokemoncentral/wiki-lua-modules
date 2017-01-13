@@ -63,18 +63,29 @@ c.Volante = c.volante
 
 -- Alias glitch
 
-c['?'], c["'l) m) ZM"], c['6!2?2 A'] = c.sconosciuto, c.sconosciuto, c.sconosciuto
-c[',K Pk(nome del giocatore)xX'], c.B = c.sconosciuto, c.sconosciuto
-c['8 8 9 5'], c['999'], c['Pokémaniaco'] = c.sconosciuto, c.sconosciuto, c.sconosciuto
-c.Uccello, c['Allen. Jr ♀'], c.Glitch = c.sconosciuto, c.sconosciuto, c.sconosciuto
-c.IIIItoto, c['Qi JT(nome del giocatore)? POké BB(nome del Pokémon) de W N'] =
+c.Glitch, c.glitch = c.sconosciuto, c.sconosciuto
+c.IIIItoto, c.iiiitoto, c.Uccello, c.uccello =
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+c['6!2?2 A'], c['6!2?2 a'], c['x v zA'], c['x v za'] =
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+c.L, c.l, c.B, c.b = c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+c[',K Pk(nome del giocatore)xX'], c[',k pk(nome del giocatore)xx'] =
 	c.sconosciuto, c.sconosciuto
-c['x v zA'], c["(Classe dell'ultimo allenatore affrontato)"] =
-	c.sconosciuto, c.sconosciuto
-c['66848.04'], c.L, c["' ♀ ♀ ' 2222 37572"] =
-	c.sconosciuto, c.sconosciuto, c.sconosciuto
-c['Poké BB'], c['Normale (glitch)'], c['normale (glitch)'] =
-	c.sconosciuto, c.sconosciuto, c.sconosciuto
+c['Allen. Jr ♀'], c['allen. jr ♀'], c['Normale (glitch)'], c['normale (glitch)'] =
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+c["Pokémaniaco"], c['pokémaniaco'] = c.sconosciuto, c.sconosciuto
+c["'l) m) ZM"], c["'l) m) zm"] = c.sconosciuto, c.sconosciuto
+c["(Classe dell'ultimo allenatore affrontato)"] =
+	c.sconosciuto
+c["(classe dell'ultimo allenatore affrontato)"] =
+	c.sconosciuto
+c['Qi JT(nome del giocatore)? POké BB(nome del Pokémon) de W N'] =
+	c.sconosciuto
+c['qi jt(nome del giocatore)? poké bb(nome del pokémon) de w n'] =
+	c.sconosciuto
+c['Poké BB'], c['poké bb'] = c.sconosciuto, c.sconosciuto
+c['8 8 9 5'], c['999'], c['?'] = c.sconosciuto, c.sconosciuto, c.sconosciuto
+c['66848.04'], c["' ♀ ♀ ' 2222 37572"] = c.sconosciuto, c.sconosciuto
 
 -- Colori attacchi
 
