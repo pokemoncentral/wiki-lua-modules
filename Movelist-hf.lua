@@ -260,8 +260,7 @@ j.levelf = function(frame)
 		cs = 5 + cs.level(1),
 		last = [=[
 
-* Il livello -- indica una mossa conosciuta dal Pokémon ottenuto a livello 1.
-* Le mosse segnate al livello † possono essere apprese al momento dell'evoluzione.]=]})
+* Le mosse segnate al livello "Evo" possono essere apprese al momento dell'evoluzione.]=]})
 end
 
 -- Divisore generazioni event
