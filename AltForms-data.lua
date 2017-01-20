@@ -8,6 +8,74 @@ local t = {}
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 
+-- Crea i link alle forme alternative
+
+local makeLinks = function(black)
+	local link = black
+			and '<div class="small-text">[[Differenze di forma#${anchor}|<span style="color:#000">${formName}</span>]]</div>'
+			or '<div class="small-text">[[Differenze di forma#${anchor}|${formName}]]</div>'
+	local index = black and 'blacklinks' or 'links'
+
+	-- Si eliminano le table di supporto e i
+	-- Pokémon che non hanno i link standard
+
+	local stdLinks = table.filter(t, function(_, key)
+		return
+				not table.search({'mega', 'megaxy',
+						'archeo', 'alola'}, key)
+			and
+				not table.search(t.mega, key)
+			and
+				not table.search(t.megaxy, key)
+			and
+				not table.search(t.archeo, key)
+			and
+				not table.search(t.alola, key)
+	end)
+
+	-- Links standard
+
+	for name, poke in pairs(stdLinks) do
+		poke[index] = table.map(poke.names, function(formName)
+			return string.interp(link, {
+					anchor = poke.anchor or string.fu(name),
+					formName = formName
+			})
+		end)
+	end
+
+	-- Link vuoti: mega, megaxy e archeo
+	
+	for _, poke in pairs(t.mega) do
+		t[poke][index] = table.map(t[poke].names, function()
+				return ''
+		end)
+	end
+	for _, poke in pairs(t.megaxy) do
+		t[poke][index] = table.map(t[poke].names, function()
+				return ''
+		end)
+	end
+	for _, poke in pairs(t.archeo) do
+		t[poke][index] = table.map(t[poke].names, function()
+				return ''
+		end)
+	end
+
+	-- Link alle forme di alola, che puntano ad una
+	-- pagina apposita e non "Differenze di forma
+
+	link = link:gsub('Differenze di forma', 'Forma di Alola')
+	for _, poke in pairs(t.alola) do
+		t[poke][index] = table.map(t[poke].names, function(formName)
+			return string.interp(link, {
+					anchor = t[poke].anchor or string.fu(poke),
+					formName = formName
+			})
+		end)
+	end
+end
+
 -- Tabelle associate ai Pokémon: ne mancano alcuni perché sarebbero
 -- identici, in questo modulo, ad altri, e dunque sono costituiti
 -- da alias, raggruppati in fondo al modulo
@@ -24,12 +92,15 @@ t.darmanitan = {}
 t.tornadus = {}
 t.kyurem = {}
 t.meloetta = {}
+t.greninja = {}
 t.meowstic = {}
 t.aegislash = {}
 t.pumpkaboo = {}
 t.zygarde = {}
 t.hoopa = {}
+t.lycanroc = {}
 t.oricorio = {}
+t.wishiwashi = {}
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
 
@@ -55,7 +126,8 @@ t.archeo = {'kyogre', 'groudon'}
 -- Tabella contenente i Pokémon che hanno una forma di Alola:
 -- per efficienza, alcuni sono alla fine del modulo
 
-t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'meowth', 'exeggutor', 'marowak'}
+t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'diglett', 'meowth',
+	'geodude', 'grimer', 'exeggutor', 'marowak'}
 
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
@@ -78,13 +150,16 @@ t.darmanitan.names = {Z = 'Stato Zen', base = 'Forma Normalità'}
 t.tornadus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
 t.kyurem.names = {N = 'Kyurem Nero', B = 'Kyurem Bianco', base = 'Forma Base'}
 t.meloetta.names = {D = 'Forma Danza', base = 'Forma Canto'}
-t.meowstic.names = {F = 'Femmina', M = 'Maschio', base = 'Meowstic'}
+t.greninja.names = {A = 'Forma Ash', base = 'Forma Normale'}
+t.meowstic.names = {F = 'Femmina', base = 'Maschio'}
 t.aegislash.names = {S = 'Forma Spada', base = 'Forma Scudo'}
 t.pumpkaboo.names = {S = 'Mini', L = 'Grande', XL = 'Maxi', base = 'Normale'}
 t.zygarde.names = {D = 'Forma 10%', P = 'Forma Perfetta', base = 'Forma 50%'}
 t.hoopa.names = {L = 'Libero', base = 'Vincolato'}
+t.lycanroc.names = {N = 'Forma Notte', base = 'Forma Giorno'}
 t.oricorio.names = {C = 'Stile Cheerdance', H = 'Stile Hula', B = 'Stile Buyō',
 	base = 'Stile Flamenco'}
+t.wishiwashi.names = {B = 'Forma Banco', base = 'Forma Individuale'}
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}
@@ -141,10 +216,13 @@ end
 t.giratina.changeability = {'O'}
 t.shaymin.changeability = t.shaymin.changetype
 t.basculin.changeability = {'B'}
+t.darmanitan.changeability = {'Z'}
 t.tornadus.changeability = {'T'}
 t.kyurem.changeability = {'N', 'B'}
-t.meowstic.changeability = {'F', 'M'}
+t.greninja.changeability = {'A'}
+t.meowstic.changeability = {'F'}
 t.zygarde.changeability = {'P'}
+t.lycanroc.changeability = {'N'}
 for k, v in pairs(t.mega) do
 	t[v].changeability = {'M'}
 end
@@ -165,7 +243,6 @@ t.latios.changeability = nil
 t.garchomp.changeability = nil
 t.abomasnow.changeability = nil
 t.audino.changeability = nil
-t.meowth.changeability = nil
 
 -- Sigle delle forme alternative che cambiano statistiche rispetto alla forma
 -- base, che non è dunque presente
@@ -179,10 +256,12 @@ t.darmanitan.changestats = t.darmanitan.changetype
 t.tornadus.changestats = t.tornadus.changeability
 t.kyurem.changestats = t.kyurem.changeability
 t.meloetta.changestats = t.meloetta.changetype
+t.greninja.changestats = {'A'}
 t.aegislash.changestats = {'S'}
 t.pumpkaboo.changestats = {'S', 'L', 'XL'}
 t.zygarde.changestats = {'D', 'P'}
 t.hoopa.changestats = t.hoopa.changetype
+t.wishiwashi.changestats = {'B'}
 for k, v in pairs(t.mega) do
 	t[v].changestats = {'M'}
 end
@@ -202,91 +281,31 @@ t.wormadam.changemoves = t.wormadam.changetype
 t.rotom.changemoves = t.rotom.changetype
 t.shaymin.changemoves = t.shaymin.changetype
 t.kyurem.changemoves = t.kyurem.changeability
+t.greninja.changemoves = t.greninja.changeability
 t.meowstic.changemoves = t.meowstic.changeability
---t.zygarde.changemoves = {}
 t.hoopa.changemoves = t.hoopa.changetype
+
+-- Anchor per i link alle forme alternative,
+-- se diversi dal nome del Pokémon
+
+t.rattata.anchor = 'Rattata e Raticate'
+t.sandshrew.anchor = 'Sandshrew e Sandslash'
+t.vulpix.anchor = 'Vulpix e Ninetales'
+t.diglett.anchor = 'Diglett e Dugtrio'
+t.meowth.anchor = 'Meowth e Persian'
+t.geodude.anchor = 'Geodude, Graveler e Golem'
+t.grimer.anchor = 'Grimer e Muk'
+t.wormadam.anchor = 'Burmy e Wormadam'
+t.tornadus.anchor = 'Trio dei Kami'
+t.pumpkaboo.anchor = 'Pumpkaboo e Gourgeist'
 
 -- Link alle forme alternative.
 
-for name, poke in pairs(t) do
-	if not table.linear_search({'mega', 'megaxy', 'archeo', 'alola'}, name) then
-		if table.linear_search(t.mega, name)
-			or table.linear_search(t.megaxy, name)
-			or table.linear_search(t.archeo, name)
-		then
-			poke.links = table.map(poke.names, function()
-					return ''
-				end)
-
-		elseif table.linear_search(t.alola, name) then
-			poke.links = table.map(poke.names, function(formName)
-					return string.interp('<div class="small-text">[[Forma di Alola#${poke}|${formName}]]',
-					{poke = string.fu(name), formName = formName})
-				end)
-
-		else
-			poke.links = table.map(poke.names, function(formName)
-					return string.interp('<div class="small-text">[[Differenze di forma#${poke}|${formName}]]</div>',
-					{poke = string.fu(name), formName = formName})
-				end)
-		end
-	end
-end
-
-t.sandshrew.links = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|Forma di Alola]]</div>',
-	base = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|Forma Normale]]</div>'}
-t.vulpix.links = {A = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|Forma di Alola]]</div>',
-	base = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|Forma Normale]]</div>'}
-t.wormadam.links = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Sabbia]]</div>',
-	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Scarti]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Pianta]]</div>'}
-t.tornadus.links = {T = '<div class="small-text">[[Differenze di forma#Trio dei Kami|Forma Totem]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Trio dei Kami|Forma Incarnazione]]</div>'}
-t.pumpkaboo.links = {S = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Mini]]</div>',
-	L = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Grande]]</div>',
-	XL = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Maxi]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|Normale]]</div>'}
+makeLinks()
 
 -- Link neri alle forme alternative.
 
-for name, poke in pairs(t) do
-	if not table.linear_search({'mega', 'megaxy', 'archeo', 'alola'}, name) then
-		if table.linear_search(t.mega, name)
-			or table.linear_search(t.megaxy, name)
-			or table.linear_search(t.archeo, name)
-		then
-			poke.blacklinks = table.map(poke.names, function()
-					return ''
-				end)
-
-		elseif table.linear_search(t.alola, name) then
-			poke.blacklinks = table.map(poke.names, function(formName)
-					return string.interp('<div class="small-text">[[Forma di Alola#${poke}|<span style="color:#000">${formName}</span>]]</div>',
-					{poke = string.fu(name), formName = formName})
-				end)
-
-		else
-			poke.blacklinks = table.map(poke.names, function(formName)
-					return string.interp('<div class="small-text">[[Differenze di forma#${poke}|<span style="color:#000">${formName}</span>]]</div>',
-					{poke = string.fu(name), formName = formName})
-				end)
-		end
-	end
-end
-
-t.sandshrew.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000">Forma di Alola</span>]]</div>',
-	base = '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|<span style="color:#000">Forma Normale</span>]]</div>'}
-t.vulpix.blacklinks = {A = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|<span style="color:#000">Forma di Alola</span>]]</div>',
-	base = '<div class="small-text">[[Forma di Alola#Vulpix e Ninetales|<span style="color:#000">Forma Normale</span>]]</div>'}
-t.wormadam.blacklinks = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Sabbia</span>]]</div>',
-	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Scarti</span>]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Pianta</span>]]</div>'}
-t.tornadus.blacklinks = {T = '<div class="small-text">[[Differenze di forma#Trio dei Kami|<span style="color:#000">Forma Totem</span>]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Trio dei Kami|<span style="color:#000">Forma Incarnazione</span>]]</div>'}
-t.pumpkaboo.blacklinks = {S = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Mini</span>]]</div>',
-	L = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Grande</span>]]</div>',
-	XL = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Maxi</span>]]</div>',
-	base = '<div class="small-text">[[Differenze di forma#Pumpkaboo e Gourgeist|<span style="color:#000">Normale</span>]]</div>'}
+makeLinks(true)
 
 -- Per passare dai nomi estesi delle forme alternative alle sigle
 
@@ -304,13 +323,16 @@ t.darmanitan.ext = {zen = 'Z'}
 t.tornadus.ext = {totem = 'T'}
 t.kyurem.ext = {nero = 'N', bianco = 'B'}
 t.meloetta.ext = {danza = 'D'}
-t.meowstic.ext = {femmina = 'F', maschio = 'M'}
+t.greninja.ext = {ash = 'A'}
+t.meowstic.ext = {femmina = 'F'}
 t.aegislash.ext = {spada = 'S'}
 t.pumpkaboo.ext = {mini = 'S', grande = 'L', maxi = 'XL'}
 t.zygarde.ext = {['forma 10%'] = 'D', perfetto = 'P'}
 t.hoopa.ext = {libero = 'L'}
+t.lycanroc.ext = {notte = 'N', giorno = 'base'}
 t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
 	flamenco = 'base'}
+t.wishiwashi.ext = {banco = 'B', individuale = 'base'}
 for k, v in pairs(t.mega) do
 	t[v].ext = {mega = 'M'}
 end
@@ -339,12 +361,15 @@ t.darmanitan.gamesOrder = {'base', 'Z'}
 t.tornadus.gamesOrder = {'base', 'T'}
 t.kyurem.gamesOrder = {'base', 'B', 'N'}
 t.meloetta.gamesOrder = {'base', 'D'}
-t.meowstic.gamesOrder = {'base', 'M', 'F'}
+t.greninja.gamesOrder = {'base', 'A'}
+t.meowstic.gamesOrder = {'base', 'F'}
 t.aegislash.gamesOrder = {'base', 'S'}
 t.pumpkaboo.gamesOrder = {'base', 'S', 'L', 'XL'}
 t.zygarde.gamesOrder = {'D', 'base', 'P'}
 t.hoopa.gamesOrder = {'base', 'L'}
+t.lycanroc.gamesOrder = {'base', 'N'}
 t.oricorio.gamesOrder = {'base', 'C', 'H', 'B'}
+t.wishiwashi.gamesOrder = {'base', 'B'}
 for k, v in pairs(t.mega) do
 	t[v].gamesOrder = {'base', 'M'}
 end
@@ -367,7 +392,10 @@ t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
 t.raichu.since = {A = 'sl', base = 'rb'}
 t.sandshrew.since = {A = 'sl', base = 'rb'}
 t.vulpix.since = {A = 'sl', base = 'rb'}
+t.diglett.since = {A = 'sl', base = 'rb'}
 t.meowth.since = {A = 'sl', base = 'rb'}
+t.geodude.since = {A = 'sl', base = 'rb'}
+t.grimer.since = {A = 'sl', base = 'rb'}
 t.exeggutor.since = {A = 'sl', base = 'rb'}
 t.marowak.since = {A = 'sl', base = 'rb'}
 t.castform.since = {S = 'rz', P = 'rz', N = 'rz', base = 'rz'}
@@ -381,12 +409,15 @@ t.darmanitan.since = {Z = 'nb', base = 'nb'}
 t.tornadus.since = {T = 'n2b2', base = 'nb'}
 t.kyurem.since = {N = 'n2b2', B = 'n2b2', base = 'nb'}
 t.meloetta.since = {D = 'nb', base = 'nb'}
-t.meowstic.since = {F = 'xy', M = 'xy', base = 'xy'}
+t.greninja.since = {A = 'sl', base = 'xy'}
+t.meowstic.since = {F = 'xy', base = 'xy'}
 t.aegislash.since = {S = 'xy', base = 'xy'}
 t.pumpkaboo.since = {S = 'xy', L = 'xy', XL = 'xy', base = 'xy'}
 t.zygarde.since = {D = 'sl', P = 'sl', base = 'xy'}
 t.hoopa.since = {L = 'roza', base = 'xy'}
+t.lycanroc.since = {N = 'sl', base = 'sl'}
 t.oricorio.since = {C = 'sl', H = 'sl', B = 'sl', base = 'sl'}
+t.wishiwashi.since = {B = 'sl', base = 'sl'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
 t.blastoise.since = {M = 'xy', base = 'rb'}
 t.beedrill.since = {M = 'roza', base = 'rb'}
@@ -438,23 +469,44 @@ t.kyogre.since = {A = 'roza', base = 'rz'}
 
 -- Altre forme di Alola, messe qui per evitare inutili iterazioni dei cicli precedenti
 
+table.insert(t.alola, 'raticate')
 table.insert(t.alola, 'sandslash')
 table.insert(t.alola, 'ninetales')
+table.insert(t.alola, 'dugtrio')
+table.insert(t.alola, 'persian')
+table.insert(t.alola, 'graveler')
+table.insert(t.alola, 'golem')
+table.insert(t.alola, 'muk')
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 
+t.raticate = t.rattata
 t.sandslash = t.sandshrew
 t.ninetales = t.vulpix
+t.dugtrio = t.diglett
+t.persian = t.meowth
+t.graveler = t.geodude
+t.golem = t.geodude
+t.muk = t.grimer
 t.thundurus, t.landorus = t.tornadus, t.tornadus
 t.gourgeist = t.pumpkaboo
 t[19] = t.rattata
+t[20] = t.raticate
 t[25] = t.pikachu
 t[26] = t.raichu
 t[27] = t.sandshrew
 t[28] = t.sandslash
 t[37] = t.vulpix
 t[38] = t.ninetales
+t[50] = t.diglett
+t[51] = t.dugtrio
 t[52] = t.meowth
+t[53] = t.persian
+t[74] = t.geodude
+t[75] = t.graveler
+t[76] = t.golem
+t[88] = t.grimer
+t[89] = t.muk
 t[103] = t.exeggutor
 t[105] = t.marowak
 t[351] = t.castform
@@ -470,12 +522,16 @@ t[642] = t.thundurus
 t[645] = t.landorus
 t[646] = t.kyurem
 t[648] = t.meloetta
+t[658] = t.greninja
 t[678] = t.meowstic
 t[681] = t.aegislash
 t[710] = t.pumpkaboo
 t[711] = t.gourgeist
 t[718] = t.zygarde
 t[720] = t.hoopa
+t[741] = t.oricorio
+t[745] = t.lycanroc
+t[746] = t.wishiwashi
 t[3] = t.venusaur
 t[9] = t.blastoise
 t[15] = t.beedrill

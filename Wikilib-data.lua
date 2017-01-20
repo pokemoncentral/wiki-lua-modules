@@ -4,7 +4,7 @@ local t = {}
 
 -- Numero totale dei Pokémon
 
-t.pokeNum = 721
+t.pokeNum = 801
 t.poke_num = t.pokeNum
 
 --[[
@@ -75,6 +75,21 @@ t.gamesChron = {'rb', 'v', 'g', 'oa', 'c', 'rz', 'rfvf', 's', 'dp', 'pt',
 	'hgss', 'nb', 'n2b2', 'xy', 'roza', 'sl'}
 
 t.gamesOrder = t.gamesChron
+
+--[[
+
+Tabella contenente i tipi in rodine alfabetico.
+Contiene 'coleot' e non 'coleottero' perché la maggior parte
+delle volte il tipo è abbreviato
+
+--]]
+
+t.allTypes = {'acciaio', 'acqua', 'buio', 'coleot', 'drago',
+		'elettro', 'erba', 'folletto', 'fuoco', 'ghiaccio',
+		'lotta', 'normale', 'psico', 'roccia', 'spettro',
+		'terra', 'veleno', 'volante'}
+
+t.types, t.all_types = t.allTypes, t.allTypes
 
 -- Tabella sostitutiva dei template {{male}} e {{female}}
 

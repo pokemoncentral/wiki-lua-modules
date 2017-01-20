@@ -6,12 +6,21 @@ local mw = require('mw')
 
 local l = require('Links')
 local w = require('Wikilib')
+local abillib = require('Wikilib-abils')
 local oop = require('Wikilib-oop')
 local list = require('Wikilib-lists')
 local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local abils = require('PokéAbil-data')
-local alts = require("AltForms-data")
 local c = require("Colore-data")
+
+-- !!! ATTENZIONE !!!
+--- Questo modulo modifica le copie cachate degli altri moduli dati
+local gre = require('GreninjaDemo-data')
+
+-- Table contenente le forme di Pikachu da ignorare
+local ignorableForms = {'pikachuR', 'pikachuD',
+	'pikachuCn', 'pikachuS', 'pikachuW'}
 
 --[[
 
@@ -26,7 +35,7 @@ local AbilsBox = oop.makeClass(list.Labelled)
 --[[
 
 Costruttore della classe: ha in ingresso il
-nome del Pokémon, nella forma nome + sigla,
+nome del Pokémon, nella forma nome/ndex + sigla,
 e, opzionalmente, il nome esteso della forma
 
 --]]
@@ -37,9 +46,14 @@ AbilsBox.new = function(name, formName)
 		return nil
 	end
 
+	-- Pikachu (@nalkio visto che questo Pokémon fa danni?)
+	if table.search(ignorableForms, name) then
+		return nil
+	end
+
 	local this = AbilsBox.super.new(formName)
 
-	this = table.merge(abils[name], this)
+	this = table.merge(abillib.lastAbils(abils[name]), this)
 
 	return setmetatable(this, AbilsBox)
 end
@@ -66,11 +80,11 @@ AbilsBox.__tostring = function(this)
 
 	local hiddenAbil = ''
 	if this.abilityd then
-		hiddenAbil = table.concat{'<div class="width-xl-50 width-sm-100">',
+		hiddenAbil = table.concat{'<div class="width-xl-50">',
 			l.aColor(this.abilityd), '<div class="small-text">Abilit&agrave; nascosta</div></div>'}
 	end
 
-	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center width-xl-${boxWidth} width-md-100" style="box-sizing: border-box; padding: 0.2em;">${forms}<div class="width-xl-${stdWidth} width-md-100">${stdAbils}</div>${hiddenAbil}</div>',
+	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center width-xl-${boxWidth}" style="box-sizing: border-box; padding: 0.2em;">${forms}<div class="width-xl-${stdWidth}">${stdAbils}</div>${hiddenAbil}</div>',
 	{
 		boxWidth = this.abilityd and '100' or '50',
 		stdWidth = this.abilityd and '50' or '100',
@@ -109,9 +123,9 @@ sotto i nomi delle forme che la hanno.
 
 --]]
 b.boxAbil = function(frame)
-	local name = string.trim(mw.text.decode(frame.args[1]
-			or '')):lower()
-	
+	local name = string.trim(frame.args[1] or '')
+	name = string.parseInt(name) or mw.text.decode(name):lower()
+
 	return list.makeFormsLabelledBoxes({
 		name = name,
 		makeBox = AbilsBox.new,

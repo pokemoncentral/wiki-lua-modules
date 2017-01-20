@@ -1,23 +1,36 @@
--- Funzioni di libreria per la gestione delle forme alternative
+--[[
+
+Funzioni di libreria per la gestione
+delle forme alternative
+
+--]]
 
 local f = {}
 local tab = require('Wikilib-tables')
 local alt = require("AltForms-data")
 
--- Usa come modulo dati per le forme alternative UselessForms/data
+--[[
 
+Usa come modulo dati per le forme
+alternative UselessForms/data
+
+--]]
 f.loadUseless = function()
 	alt = require("UselessForms-data")
 end
 
 f.loaduseless, f.load_useless = f.loadUseless, f.loadUseless
 
--- Estrae la sigla della forma alternativa dal nome del Pokémon
--- così come è negli indici delle tabelle dati o negli ndex dei
--- Mini Sprite, oppure a partire dal nome del Pokémon e quello
--- esteso della forma alternativa. In caso di fallimento, ritorna
--- la stringa vuota.
+--[[
 
+Estrae la sigla della forma alternativa dal
+nome del Pokémon così come è negli indici
+delle tabelle dati o negli ndex dei Mini
+Sprite, oppure a partire dal nome del Pokémon
+e quello esteso della forma alternativa. In
+caso di fallimento, ritorna la stringa vuota.
+
+--]]
 f.getabbr = function(name, extform)
 	if alt[tonumber(name) or name:lower()] then
 		extform = string.lower(extform or '')
@@ -29,10 +42,14 @@ end
 
 f.getAbbr, f.get_abbr = f.getabbr, f.getabbr
 
--- Estrae nome e sigla della forma alternativa dal nome del Pokémon
--- così come è negli indici delle tabelle dati o negli ndex dei
--- Mini Sprite. In caso di fallimento, ritorna la stringa vuota.
+--[[
 
+Estrae nome e sigla della forma alternativa
+dal nome del Pokémon così come è negli indici
+delle tabelle dati o negli ndex dei Mini Sprite.
+In caso di fallimento, ritorna la stringa vuota.
+
+--]]
 f.getnameabbr = function(name, extform)
 	if alt[tonumber(name) or name:lower()] then
 		extform = string.lower(extform or '')
@@ -45,18 +62,24 @@ end
 
 f.getNameAbbr, f.get_name_abbr = f.getnameabbr, f.getnameabbr
 
--- Il parametro black è un booleano, mentre ext deve essere minuscolo
--- Recupera il link per le forme alternative a partire dal nome
--- del Pokémon comprensivo di sigla, oppure dal nome del Pokémon
--- e quello esteso della forma alternativa.
+--[[
 
+Il parametro black è un booleano, mentre ext
+deve essere minuscolo. Recupera il link per
+le forme alternative a partire dal nome del
+Pokémon comprensivo di sigla, oppure dal nome
+del Pokémon e quello esteso della forma alternativa.
+
+--]]
 f.getlink = function(poke, black, extform)
 	black = black and 'black' or ''
 
-	-- È stato fornito il terzo parametro, si cerca nella
-	-- table ext. Il '' a default in abbr serve per assicurare
-	-- l'indicizzazione nell'istruzione successiva
-
+	--[[
+		È stato fornito il terzo parametro,
+		si cerca nella table ext. Il '' a
+		default in abbr serve per assicurare
+		l'indicizzazione nell'istruzione successiva
+	--]]
 	if alt[tonumber(poke) or poke:lower()] then
 		extform = string.lower(extform or '')
 		poke = tonumber(poke) or poke:lower()
@@ -64,10 +87,12 @@ f.getlink = function(poke, black, extform)
 		return alt[poke][black .. 'links'][abbr] or ''
 	end
 
-	-- Senza terzo parametro, bisogna estrarre nome del Pokémon e
-	-- sigla della forma alternativa dal nome, per poi usarli come
-	-- indici del modulo AltForms/data
-
+	--[[
+		Senza terzo parametro, bisogna estrarre
+		nome del Pokémon e sigla della forma
+		alternativa dal nome, per poi usarli come
+		indici del modulo AltForms/data
+	--]]
 	local name, form = poke:match("^([%lé%-♂♀%s%.&#;%d]+)(%u*%a*)$")
 	if form == '' then
 		return ''
@@ -78,10 +103,13 @@ end
 
 f.getLink, f.get_link = f.getlink, f.getlink
 
--- Dato il nome di un Pokémon con forma alternativa, ne determina il numero di
--- dex nazionale senza passare per il modulo Poké/data. Ritorna 0 in caso di
--- errore
+--[[
 
+Dato il nome di un Pokémon con forma alternativa,
+ne determina il numero di dex nazionale senza passare
+per il modulo Poké/data. Ritorna 0 in caso di errore.
+
+--]]
 f.getNdexForm = function(poke)
 	poke = string.lower(poke or '')
 	if not alt[poke] then
@@ -96,9 +124,29 @@ end
 
 f.getndexform, f.get_ndex_form = f.getNdexForm, f.getNdexForm, f.getNdexForm
 
--- Ritorna un valore convertibile a true se il Pokémon passato, solo come nome,
--- ha una megaevoluzione o archeorisveglio, uno equiparabile a false altrimenti
+-- Converte la sigla vuota in 'base'
+f.toBase = function(abbr)
+	return abbr == '' and 'base' or abbr
+end
 
+f.to_base = f.toBase
+
+-- Converte la sigla 'base' nella sigla vuota
+f.toEmptyAbbr = function(abbr)
+	return abbr == 'base' and '' or abbr
+end
+
+f.to_empty_abbr, f.toEmpty, f.to_empty =
+f.toEmptyAbbr, f.toEmptyAbbr, f.toEmptyAbbr
+
+--[[
+
+Ritorna un valore convertibile a true se
+il Pokémon passato, solo come nome, ha una
+megaevoluzione o archeorisveglio, uno equiparabile
+a false altrimenti
+
+--]]
 f.hasMega = function(poke)
 	poke = string.lower(poke or '')
 	if alt.mega then
@@ -109,5 +157,22 @@ f.hasMega = function(poke)
 end
 
 f.has_mega, f.hasmega = f.hasMega, f.hasMega
+
+--[[
+
+Ritorna un valore convertibile a true se il
+Pokémon passato, solo come nome, ha una forma
+di alola, uno equiparabile a false altrimenti.
+
+--]]
+f.hasAlola = function(poke)
+	poke = string.lower(poke or '')
+	if alt.alola then
+		return table.search(alt.alola, poke)
+	end
+	return false
+end
+
+f.has_alola, f.hasalola = f.hasAlola, f.hasAlola
 
 return f

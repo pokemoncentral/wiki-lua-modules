@@ -6,6 +6,7 @@ local mw = require('mw')
 
 local links = require('Links')
 local ms = require('MiniSprite')
+local abillib = require('Wikilib-abils')
 local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
@@ -14,6 +15,10 @@ local form = require('Wikilib-forms')
 local forms = require("AltForms-data")
 local c = require("Colore-data")
 local pokes = require('Poké-data')
+
+-- !!! ATTENZIONE !!!
+--- Questo modulo modifica le copie cachate degli altri moduli dati
+local gre = require('GreninjaDemo-data')
 
 --[[
 
@@ -37,27 +42,46 @@ viene ritornato nil
 
 --]]
 Entry.new = function(pokeAbil, name, abil)
-	if not table.search(pokeAbil, abil) then
+	if not table.deepSearch(pokeAbil, abil) then
 		return nil
 	end
 
 	local this = Entry.super.new(name, pokes[name].ndex)
+
 	this = table.merge(this, pokeAbil)
 	
 	return setmetatable(table.merge(this, pokes[name]), Entry)
 end
 
+-- Wikicode di un'abilità, gestendo il cambio tra generazioni
+local printAbil = function(abil)
+	if not(abil) then
+		return 'Nessuna'
+	end
+	if type(abil) == 'string' then
+		return links.aColor(abil, '000')
+	end
+	return table.concat(table.map(abillib.abilspan(abil), function(v)
+		return string.interp(
+			'<div>${abil}<sup>${gen}</sup></div>',
+			{
+				abil = v.abil == 'Nessuna' and v.abil or links.aColor(v.abil, '000'),
+				gen = v.first == v.last and v.first or table.concat{v.first, '-', v.last},
+			})
+	end))
+end
+
 -- Wikicode per la riga di tabella associata all'entry
 Entry.__tostring = function(this)
 	local monoType = this.type1 == this.type2
-	return string.interp([=[| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${ani}
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | [[${name}|<span style="color:#000">${name}</span>]]${form}
+	return string.interp([=[| style="border:1px solid #D8D8D8;" | ${static}
+| style="border:1px solid #D8D8D8;" | [[${name}|<span style="color:#000">${name}</span>]]${form}
 | colspan="${cs}" style="background:#${std1}; border:1px solid #${dark1};" | [[${type1} (tipo)|<span style="color:#FFF">${type1}</span>]]${type2}
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${abil1}
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${abil2}
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${abild}]=],
+| style="border:1px solid #D8D8D8;" | ${abil1}
+| style="border:1px solid #D8D8D8;" | ${abil2}
+| style="border:1px solid #D8D8D8;" | ${abild}]=],
 {
-	ani = ms.aniLua(string.tf(this.ndex or 0) ..
+	static = ms.staticLua(string.tf(this.ndex or 0) ..
 			(this.formAbbr == 'base' and '' or this.formAbbr or '')),
 	name = this.name,
 	form = this.formsData
@@ -69,15 +93,15 @@ Entry.__tostring = function(this)
 	type1 = string.fu(this.type1),
 	type2 = monoType and '' or string.interp('\n|style="background:#${std2}; border:1px solid #${dark2};" | [[${type2} (tipo)|<span style="color:#FFF">${type2}</span>]]',
 		{std2 = c[this.type2].normale, dark2 = c[this.type2].dark, type2 = string.fu(this.type2)}),
-	abil1 = this.ability1 and links.aColor(this.ability1, '000') or 'Nessuna',
-	abil2 = this.ability2 and links.aColor(this.ability2, '000') or 'Nessuna',
-	abild = this.abilityd and links.aColor(this.abilityd, '000') or 'Nessuna',
+	abil1 = printAbil(this.ability1),
+	abil2 = printAbil(this.ability2),
+	abild = printAbil(this.abilityd),
 })
 end
 
 -- Ritorna il wikicode per l'header usando il tipo dato per i colori
 local makeHeader = function(type)
-	return string.interp([=[{| class="roundy text-center pull-center" style="border: 3px solid #${dark}; background: #${normale};"
+	return string.interp([=[{| class="roundy text-center pull-center white-rows" style="border: 3px solid #${dark}; background: #${normale};"
 |-
 ! class="roundytl" style="background: #${light};" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000;">#</span>]]
 ! style="background: #${light};" | Pok&eacute;mon
@@ -109,7 +133,7 @@ k.abillist = function(frame)
 	local type = string.trim(frame.args[1]) or 'pcwiki'
 	local abil = string.trim(mw.text.decode(frame.args[2]))
 	abil = abil:match('^(.+) %(abilità%)') or 'Cacofonia'
-	 
+
 	return list.makeList({
 		source = require('PokéAbil-data'),
 		iterator = list.pokeNames,

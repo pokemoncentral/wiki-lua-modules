@@ -87,8 +87,27 @@ m[6].MT = {'unghiaguzze', 'dragartigli', 'psicoshock', 'calmamente', 'boato', 't
 	'danzaspada', 'entomoblocco', 'psicamisù', 'battiterra', 'alitogelido', 'frana',
 	'forbice x', 'codadrago', 'assillo', 'velenpuntura', 'mangiasogni', 'laccioerboso',
 	'bullo', 'sonnolalia', 'retromarcia', 'sostituto', 'cannonflash', 'distortozona',
-	'sprizzalampo', 'spaccaroccia', 'urlorabbia', 'naturforza', 'neropulsar', 'crescipugno',
-	'magibrillio', 'confidenza' }
-m[6].MN = {'taglio', 'volo', 'surf', 'forza', 'cascata'}
+	'sprizzalampo', {{'xy', 'spaccaroccia'}, {'roza', 'forzasegreta'}}, 'urlorabbia',
+	'naturforza', 'neropulsar', 'crescipugno',	'magibrillio', 'confidenza' }
+m[6].MN = {'taglio', 'volo', 'surf', 'forza', 'cascata', {{'roza', 'spaccaroccia'}},
+	{{'roza', 'sub'}}}
+
+m[7] = {}
+m[7].MT = {'cuordileone', 'dragartigli', 'psicoshock', 'calmamente', 'boato', 'tossina',
+	'grandine', 'granfisico', 'velenoshock', 'introforza', 'giornodisole', 'provocazione',
+	'geloraggio', 'bora', 'iper raggio', 'schermoluce', 'protezione', 'pioggiadanza',
+	'trespolo', 'salvaguardia', 'frustrazione', 'solarraggio', 'abbattimento', 'fulmine',
+	'tuono', 'terremoto', 'ritorno', 'sanguisuga', 'psichico', 'palla ombra', 'breccia',
+	'doppioteam', 'riflesso', 'fangonda', 'lanciafiamme', 'fangobomba', 'terrempesta',
+	'fuocobomba', 'rocciotomba', 'aeroassalto', 'attaccalite', 'facciata', 'nitrocarica',
+	'riposo', 'attrazione', 'furto', 'calciobasso', 'coro', 'echeggiavoce', 'vampata',
+	'alacciaio', 'focalcolpo', 'energipalla', 'falsofinale', 'idrovampata', 'lancio',
+	'raggioscossa', 'cadutalibera', 'vorticolpo', 'spintone', 'fuocofatuo', 'acrobazia',
+	'divieto', 'esplosione', 'ombrartigli', 'rivincita', 'sottilcorno', 'gigaimpatto',
+	'lucidatura', 'velaurora', 'pietrataglio', 'invertivolt', 'tuononda', 'vortexpalla',
+	'danzaspada', 'volo', 'psicamisù', 'battiterra', 'alitogelido', 'frana', 'forbice x',
+	'codadrago', 'assillo', 'velenpuntura', 'mangiasogni', 'laccioerboso', 'bullo',
+	'sonnolalia', 'retromarcia', 'sostituto', 'cannonflash', 'distortozona', 'sprizzalampo',
+	'surf', 'urlorabbia', 'naturforza', 'neropulsar', 'cascata', 'magibrillio', 'confidenza'}
 
 return m

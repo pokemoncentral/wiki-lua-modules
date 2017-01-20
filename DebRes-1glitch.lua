@@ -107,18 +107,14 @@ EffTable.new = function(name, game)
 	end
 
 	local data = glitch[game][tab.deepSearch(glitch[game], name)]
-	local types = data.typeEffectiveness and mw.clone(data.typeEffectiveness) or { data.type1, data.type2 }
+	local types = data.typeEffectiveness and mw.clone(data.typeEffectiveness) or {data.type1, data.type2}
 	if not types[2] then
 		types[2] = types[1]
 	end
 	types = table.map(types, string.lower)
 
 	-- Colori per la stampa
-	this.colors = {
-		bg = c[data.type1].normale,
-		cells = c[data.type1].light,
-		bd = c[data.type2 or data.type1][data.type2 and 'normale' or 'dark']
-	}
+	this:createColors({type1 = data.type1, type2 = data.type2})
 
 	--[[
 		Per ogni possibile efficacia, se vi sono
@@ -173,7 +169,7 @@ dr.debRes = function(frame)
 	local p = tab.map(mw.clone(frame.args), w.trim)
 	local games = {}
 
-	p[1] = mw.text.decode(p[1])
+	local name = mw.text.decode(p[1])
 
 	--[[
 		controlla se il glitch esiste in più giochi,
@@ -181,7 +177,7 @@ dr.debRes = function(frame)
 		dei giochi
 	--]]
 	for game, glitches in pairs(glitch) do
-		if tab.deepSearch(glitches, p[1]) then
+		if tab.deepSearch(glitches, name) then
 			table.insert(games, game)
 		end
 	end
@@ -201,7 +197,7 @@ dr.debRes = function(frame)
 	end
 
 	return list.makeFormsLabelledBoxes({
-		name = p[1],
+		name = name,
 		makeBox = EffTable.new,
 		printBoxes = EffTable.printEffTables,
 		altData = altData
@@ -210,6 +206,7 @@ end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
-local arg = {"9 (Pokémon glitch)"}
+local arg = {"Missingno."}
+dr.DebRes{args=arg}
 print(dr.DebRes{args=arg})
 -- return dr

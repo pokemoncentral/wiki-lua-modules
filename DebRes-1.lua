@@ -74,11 +74,7 @@ dr.EffTable.new = function(name, formName)
 	local monoType = types.type1 == types.type2
 
 	-- Dati per la stampa
-	this.colors = {
-		bg = c[types.type1].normale,
-		cells = c[types.type1].light,
-		bd = c[types.type2][monoType and 'dark' or 'normale']
-	}
+	this:createColors(types)
 
 	--[[
 		Per ogni possibile efficacia, se vi sono
@@ -118,7 +114,6 @@ dr.debRes = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
 	local pokeData = pokes[string.parseInt(p[1]) or p[1]]
 			or pokes[mw.text.decode(p[1])]
-	local name = pokeData.name:lower()
 
 	--[[
 		If no data is found, the first parameter is
@@ -133,7 +128,7 @@ dr.debRes = function(frame)
 	end
 
 	return list.makeFormsLabelledBoxes({
-		name = name,
+		name = pokeData.name:lower(),
 		makeBox = dr.EffTable.new,
 		printBoxes = dr.EffTable.printEffTables
 	})
@@ -141,6 +136,6 @@ end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
-local arg = {"Parasect"}
-print(dr.DebRes{args=arg})
+--local arg = {"Parasect"}
+--print(dr.DebRes{args=arg})
 return dr

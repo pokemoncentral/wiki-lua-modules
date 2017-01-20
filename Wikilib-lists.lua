@@ -211,17 +211,32 @@ end
 
 --[[
 
+Sostituisce alla label 'Tutte le forme' quando
+tutte le forme condividono lo stesso box.
+Ritorna i boxed per convenienza di composizione.
+
+--]]
+local allForms = function(boxes)
+	if #boxes == 1 and boxes[1]:hasLabel() then
+		boxes[1]:replaceLabel('Tutte le forme')
+	end
+	return boxes
+end
+
+--[[
+
 Crea e stampa una lista di box per tutte le
 forme di un dato Pokémon: i box che contengono
 gli stessi dati vengono accorpati, previa
 inserimento del nome di tutte le forme nella
 label del box. Se il Pokémon non ha forme
-alternative, stampa solo l box per la forma
-base.
+alternative, stampa solo il box per la forma
+base. Se tutte le forme condividono lo stesso
+box, la label è sostituita con 'Tutte le forme'.
 
 Gli argomenti sono named:
-	- name: nome della forma base del Pokémon
-		di cui si vogliono creare i box.
+	- name: nome o ndex della forma base del
+		Pokémon di cui si vogliono creare i box.
 	- makeBox: costruttore della classe
 		che rappresenta un box.
 	- printBoxes: stampa i box, ritornando
@@ -241,6 +256,9 @@ implementare la seguente interfaccia:
 		sono uguali o meno.
 	- addLabel(): aggiunge una label a quelle
 		già presenti.
+	- replaceLabel(): sostituisce la label con
+		quella passata.
+	- hasLabel(): ritorna true se esiste la label.
 --]]
 l.makeFormsLabelledBoxes = function(args)
 	local altData = args.altData or alts[args.name]
@@ -261,7 +279,13 @@ l.makeFormsLabelledBoxes = function(args)
 	--]]
 	for k, abbr in ipairs(altData.gamesOrder) do
 		local formName = altData.names[abbr]
-		local name = args.name .. (abbr == 'base' and '' or abbr)
+		--[[
+			Se viene passato l'ndex, la forma base deve
+			restare un number, quindi non può essere
+			concatenata alla stringa vuota
+		--]]
+		local name = abbr == 'base' and args.name
+				or (args.name .. abbr)
 		local formBox = args.makeBox(name, formName)
 
 		local index = table.search(boxes, formBox)
@@ -272,7 +296,7 @@ l.makeFormsLabelledBoxes = function(args)
 		end
 	end
 
-	return args.printBoxes(boxes)
+	return args.printBoxes(allForms(boxes))
 end
 
 --[[-----------------------------------------
@@ -320,12 +344,23 @@ dall'interfaccia di makeFormsLabelledBoxes.
 --]]
 l.Labelled = oop.makeClass()
 
-l.Labelled.new = function(label)
-	local this = setmetatable({}, Labelled)
+--[[
+
+Sostituisce la label con quella passata, sia
+essa una sola label o una table di labels.
+
+--]]
+l.Labelled.replaceLabel = function(this, label)
 
 	-- Table vuota anche in caso label non sia dato
 	this.labels = type(label) == 'table'
 		and label or {label}
+end
+
+l.Labelled.new = function(label)
+	local this = setmetatable({}, l.Labelled)
+
+	this:replaceLabel(label)
 
 	return this
 end
@@ -337,6 +372,11 @@ l.Labelled.addLabel = function(this, label)
 	else
 		table.insert(this.labels, label)
 	end
+end
+
+-- Ritorna true se la label è settata
+l.Labelled.hasLabel = function(this)
+	return #this.labels > 0
 end
 
 return l

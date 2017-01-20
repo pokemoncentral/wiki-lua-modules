@@ -95,8 +95,22 @@ oop.makeClass = function(superClass)
 	return class
 end
 
+--[[
+
+Checks wether an object is an instance
+of the passed class, taking in account
+plymorphism.
+
+--]]
 oop.instanceof = function(instance, class)
-	return getmetatable(instance) == class
+	local mt = getmetatable(instance)
+	local isInstance = mt == class
+
+	if not isInstance and mt.__index then
+		return oop.instanceof(instance, mt.__index)
+	end
+
+	return isInstance
 end
 
 oop.isA, oop.is_a = oop.instanceof, oop.instanceof

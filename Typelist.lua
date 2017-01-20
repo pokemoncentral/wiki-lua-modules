@@ -28,7 +28,7 @@ filtra i Pokémon in base al tipo e non stampa
 le ultime celle.
 
 --]]
-local Entry = oop.makeClass(list.PokeSortableEntry)
+g.Entry = oop.makeClass(list.PokeSortableEntry)
 
 --[[
 
@@ -39,16 +39,10 @@ nil, in conformità a makeList in Wikilib/lists
 è affidato alle sottoclassi
 
 --]]
-Entry.new = function(pokeData, name)
-	local this = Entry.super.new(name, pokeData.ndex)
+g.Entry.new = function(pokeData, name)
+	local this = g.Entry.super.new(name, pokeData.ndex)
 
-	this.isFooter = false
-
-	return setmetatable(table.merge(this, pokeData), Entry)
-end
-
-Entry.toFooter = function(this)
-	this.isFooter = true
+	return setmetatable(table.merge(this, pokeData), g.Entry)
 end
 
 --[[
@@ -57,7 +51,7 @@ Crea il testo di intestazione ad una tabella, dati
 tipo, livello dell'intestazione e parte finale
 
 --]]
-Entry.makeHeader = function(type, level, ending)
+g.Entry.makeHeader = function(type, level, ending)
 	type = type == 'coleot' and 'Coleottero' or string.fu(type)
 	local headerTags = string.rep('=', level)
 	return table.concat({headerTags, 'Pokémon di tipo',
@@ -71,14 +65,13 @@ infatti, variano in base ai tipi del Pokémon, e
 sono gestite dalle sottoclassi
 
 --]]
-Entry.__tostring = function(this)
-	return string.interp([=[| style="background:#FFF; border:1px solid #D8D8D8;${roundy}" | ${ndex}
-| style="background:#FFF; border:1px solid #D8D8D8;" | ${ani}
-| style="background:#FFF; border:1px solid #D8D8D8;" | [[${name}]]${form}]=],
+g.Entry.__tostring = function(this)
+	return string.interp([=[| style="border:1px solid #D8D8D8;" | ${ndex}
+| style="border:1px solid #D8D8D8;" | ${static}
+| style="border:1px solid #D8D8D8;" | [[${name}]]${form}]=],
 	{
-		roundy = this.isFooter and r.blLua() or '',
 		ndex = this.ndex and string.tf(this.ndex) or '???',
-		ani = ms.aniLua(string.tf(this.ndex or 0) ..
+		static = ms.staticLua(string.tf(this.ndex or 0) ..
 				(this.formAbbr == 'base' and '' or this.formAbbr or '')),
 		name = this.name,
 		form = this.formsData and this.formsData.links[this.formAbbr] or ''
@@ -86,10 +79,10 @@ Entry.__tostring = function(this)
 end
 
 -- Classe per le entry dei Pokémon con un solo tipo
-local MonoTypeEntry = oop.makeClass(Entry)
+g.MonoTypeEntry = oop.makeClass(g.Entry)
 
-MonoTypeEntry.makeHeader = function(type)
-	return MonoTypeEntry.super.makeHeader(type, 3, 'puro')
+g.MonoTypeEntry.makeHeader = function(type)
+	return g.MonoTypeEntry.super.makeHeader(type, 3, 'puro')
 end
 
 --[[
@@ -103,26 +96,25 @@ il Pokémon non è monotipo o se non ha il tipo
 desiderato.
 
 --]]
-MonoTypeEntry.new = function(pokeData, name, type)
+g.MonoTypeEntry.new = function(pokeData, name, type)
 	if pokeData.type1 ~= pokeData.type2
 			or type ~= pokeData.type1 then
 		return nil
 	end
 
-	return setmetatable(MonoTypeEntry.super.new(pokeData,
-			name), MonoTypeEntry)
+	return setmetatable(g.MonoTypeEntry.super.new(pokeData,
+			name), g.MonoTypeEntry)
 end
 
-MonoTypeEntry.__tostring = function(this)
+g.MonoTypeEntry.__tostring = function(this)
 	return string.interp([=[${firstCells}
-| style="color:#FFF; background:#${std}; border: 1px solid #${dark};${roundy}" | '''${type}'''${foot}]=],
+| style="color:#FFF; background:#${std}; border: 1px solid #${dark};" | '''${type}''']=],
 	{
 		firstCells = this.super.__tostring(this),
 		roundy = this.isFooter and r.brLua() or '',
 		std = c[this.type1].normale,
 		dark = c[this.type1].dark,
 		type = string.fu(this.type1),
-		foot = this.isFooter and '\n|}\n' or ''
 	})
 end
 
@@ -132,10 +124,10 @@ Classe per le entry dei Pokémon doppio tipo il
 cui primo tipo è quello richiesto
 
 --]]
-local FirstTypeEntry = oop.makeClass(Entry)
+g.FirstTypeEntry = oop.makeClass(g.Entry)
 
-FirstTypeEntry.makeHeader = function(type)
-	return FirstTypeEntry.super.makeHeader(type, 4,
+g.FirstTypeEntry.makeHeader = function(type)
+	return g.FirstTypeEntry.super.makeHeader(type, 4,
 		'come tipo primario')
 end
 
@@ -150,30 +142,28 @@ nil se il Pokémon è monotipo o se non ha il
 primo tipo uguale a quello desiderato.
 
 --]]
-FirstTypeEntry.new = function(pokeData, name, type)
+g.FirstTypeEntry.new = function(pokeData, name, type)
 	if pokeData.type1 == pokeData.type2
 			or type ~= pokeData.type1 then
 		return nil
 	end
 
-	return setmetatable(FirstTypeEntry.super.new(pokeData,
-			name), FirstTypeEntry)
+	return setmetatable(g.FirstTypeEntry.super.new(pokeData,
+			name), g.FirstTypeEntry)
 end
 
-FirstTypeEntry.__tostring = function(this)
+g.FirstTypeEntry.__tostring = function(this)
 	return string.interp([=[${firstCells}
 | style="background:#${std1}; border: 1px solid #${dark1}; color:#FFF;" | '''${type1}'''
-| style="background:#${std2}; border: 1px solid #${dark2};${roundy}" | [[${type2} (tipo)|<span style="color: #FFF">${type2}</span>]]${foot}]=],
+| style="background:#${std2}; border: 1px solid #${dark2};" | [[${type2} (tipo)|<span style="color: #FFF">${type2}</span>]]]=],
 	{
 		firstCells = this.super.__tostring(this),
-		roundy = this.isFooter and r.brLua() or '',
 		std1 = c[this.type1].normale,
 		dark1 = c[this.type1].dark,
 		type1 = string.fu(this.type1),
 		std2 = c[this.type2].normale,
 		dark2 = c[this.type2].dark,
 		type2 = string.fu(this.type2),
-		foot = this.isFooter and '\n|}\n' or ''
 	})
 end
 
@@ -183,10 +173,10 @@ Classe per le entry dei Pokémon doppio tipo il
 cui secondo tipo è quello richiesto
 
 --]]
-local SecondTypeEntry = oop.makeClass(Entry)
+g.SecondTypeEntry = oop.makeClass(g.Entry)
 
-SecondTypeEntry.makeHeader = function(type)
-	return SecondTypeEntry.super.makeHeader(type, 4,
+g.SecondTypeEntry.makeHeader = function(type)
+	return g.SecondTypeEntry.super.makeHeader(type, 4,
 		'come tipo secondario')
 end
 
@@ -201,30 +191,28 @@ nil se il Pokémon è monotipo o se non ha il
 secondo tipo uguale a quello desiderato.
 
 --]]
-SecondTypeEntry.new = function(pokeData, name, type)
+g.SecondTypeEntry.new = function(pokeData, name, type)
 	if pokeData.type1 == pokeData.type2
 			or type ~= pokeData.type2 then
 		return nil
 	end
 
-	return setmetatable(SecondTypeEntry.super.new(pokeData,
-			name), SecondTypeEntry)
+	return setmetatable(g.SecondTypeEntry.super.new(pokeData,
+			name), g.SecondTypeEntry)
 end
 
-SecondTypeEntry.__tostring = function(this)
+g.SecondTypeEntry.__tostring = function(this)
 	return string.interp([=[${firstCells}
 | style="background:#${std1}; border: 1px solid #${dark1};" | [[${type1} (tipo)|<span style="color: #FFF">${type1}</span>]]
-| style="background:#${std2}; border: 1px solid #${dark2}; color:#FFF; ${roundy}" | '''${type2}'''${foot}]=],
+| style="background:#${std2}; border: 1px solid #${dark2}; color:#FFF;" | '''${type2}''']=],
 	{
 		firstCells = this.super.__tostring(this),
-		roundy = this.isFooter and r.brLua() or '',
 		std1 = c[this.type1].normale,
 		dark1 = c[this.type1].dark,
 		type1 = string.fu(this.type1),
 		std2 = c[this.type2].normale,
 		dark2 = c[this.type2].dark,
 		type2 = string.fu(this.type2),
-		foot = this.isFooter and '\n|}\n' or ''
 	})
 end
 
@@ -236,10 +224,10 @@ inserire come colonne
 
 --]]
 local makeHeader = function(type, typesCount)
-	return string.interp([=[{| class="roundy sortable pull-center text-center" style="background: #${bg}; border: 3px solid #${bd};"
-! [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#<span>]]
+	return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="background: #${bg}; border: 3px solid #${bd};"
+! [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
 ! &nbsp;
-! [[Pokémon|<span style="color:#000">Pokémon<span>]]
+! [[Pokémon|<span style="color:#000">Pokémon</span>]]
 ${types}]=],
 {
 	bg = c[type].normale,
@@ -258,15 +246,16 @@ con tipo primario o secondario in base
 alla classe entry passata.
 
 --]]
-local makeTypeTable = function(type, Entry)
-	return table.concat({Entry.makeHeader(type),
+g.makeTypeTable = function(type, Entry, header)
+	return table.concat({header or Entry.makeHeader(type),
 		list.makeList({
 			source = pokes,
 			iterator = list.pokeNames,
 			entryArgs = type,
 			makeEntry = Entry.new,
 			header = makeHeader(type,
-					Entry == MonoTypeEntry and 1 or 2)
+					Entry == g.MonoTypeEntry and 1 or 2),
+			footer = '|}'
 		})}, '\n')
 end
 
@@ -286,17 +275,17 @@ g.typelist = function(frame)
 	local dualType = monoType == 'coleottero' and 'coleot' or monoType
 	local tables = {}
 
-	table.insert(tables, makeTypeTable(monoType, MonoTypeEntry))
-	table.insert(tables, Entry.makeHeader(monoType, 3, 'parziale'))
-	table.insert(tables, makeTypeTable(dualType, FirstTypeEntry))
-	table.insert(tables, makeTypeTable(dualType, SecondTypeEntry))
+	table.insert(tables, g.makeTypeTable(monoType, g.MonoTypeEntry))
+	table.insert(tables, g.Entry.makeHeader(monoType, 3, 'parziale'))
+	table.insert(tables, g.makeTypeTable(dualType, g.FirstTypeEntry))
+	table.insert(tables, g.makeTypeTable(dualType, g.SecondTypeEntry))
 
-	return table.concat(tables, '\n')
+	return table.concat(tables, '\n\n')
 end
 
 g.Typelist, g.TypeList, g.typeList = g.typelist,
 		g.typelist, g.typelist
 
-print(g.typelist{args={arg[1]}})
+-- print(g.typelist{args={arg[1]}})
 
--- return g
+return g

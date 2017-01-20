@@ -7,9 +7,17 @@ interno da altri moduli, che esterno dal wikicode
 
 local o = {}
 
+local mw = require('mw')
+
 local txt = require('Wikilib-strings')
 local gendata = require("Gens-data")
 local pokes = require("Poké-data")
+
+-- Alias delle generazioni se ce ne sono alcune con i MS uguali
+local genAliases = {}
+genAliases['3'] = '5'
+genAliases['4'] = '5'
+genAliases['6'] = '7'
 
 --[[
 
@@ -26,6 +34,7 @@ local getData = function(n, gen, link)
 	link = string.trim(link)
 	gen = string.trim(gen or '')
 
+	gen = genAliases[gen] or gen
 	if gen == tostring(gendata.latest) then
 	    gen = ''
 	end
@@ -73,7 +82,7 @@ o.ani_lua = o.aniLua
 -- Chiamata esterna dal wikicode
 
 o.ani = function(frame)
-    return o.aniLua(splitMwArgs(frame.args))
+    return o.aniLua(splitMwArgs(mw.clone(frame.args)))
 end
 
 o.Ani, o.AniP, o.aniP = o.ani, o.ani, o.ani
@@ -93,7 +102,7 @@ o.static_lua = o.staticLua
 -- Chiamata esterna dal wikicode
 
 o.static = function(frame)
-    return o.staticLua(splitMwArgs(frame.args))
+    return o.staticLua(splitMwArgs(mw.clone(frame.args)))
 end
 
 o.Static, o.staticP, o.StaticP = o.static, o.static, o.static

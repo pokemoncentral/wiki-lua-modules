@@ -7,7 +7,7 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
-local c = require("Colore-data")
+local css = require('Css')
 local gendata = require("Gens-data")
 
 -- Tabelle dati
@@ -17,10 +17,10 @@ local gendata = require("Gens-data")
 -- e alla generazione
 
 local cs = {}
-cs.level = {6, 6, 9, 9, 8, 11}
-cs.tm = {7, 7, 10, 10, 8, 11}
-cs.breed = {6, 6, 9, 9, 7, 10}
-cs.tutor = {6, 6, 12, 13, 10, 13}
+cs.level = {6, 6, 9, 9, 8, 11, 8}
+cs.tm = {7, 7, 10, 10, 8, 11, 8}
+cs.breed = {6, 6, 9, 9, 7, 10, 7}
+cs.tutor = {6, 6, 12, 13, 10, 13, 8}
 cs.preevo, cs.event = cs.breed, cs.breed
 
 -- Tabella con i valori del colspan e del rowspan della prima cella,
@@ -29,16 +29,16 @@ cs.preevo, cs.event = cs.breed, cs.breed
 local firstcell = {cs = {}, rs = {}}
 
 -- In futuro dovranno essere tutti > 1
-firstcell.cs.level = {1, 1, 1, 1, 2, 2}
+firstcell.cs.level = {1, 1, 1, 1, 2, 2, 1}
 
-firstcell.cs.tm = {2, 2, 2, 2, 2, 2}
-firstcell.cs.breed = {1, 1, 1, 1, 1, 1}
-firstcell.cs.tutor = {1, 1, 4, 5, 4, 4}
+firstcell.cs.tm = {2, 2, 2, 2, 2, 2, 2}
+firstcell.cs.breed = {1, 1, 1, 1, 1, 1, 1}
+firstcell.cs.tutor = {1, 1, 4, 5, 4, 4, 2}
 firstcell.cs.preevo = firstcell.cs.breed
 firstcell.cs.event = firstcell.cs.breed
 
-firstcell.rs.level = {1, 1, 1, 1, 2, 2}
-firstcell.rs.breed = {1, 1, 1, 1, 1, 1}
+firstcell.rs.level = {1, 1, 1, 1, 2, 2, 1}
+firstcell.rs.breed = {1, 1, 1, 1, 1, 1, 1}
 firstcell.rs.tm = firstcell.rs.breed
 firstcell.rs.tutor = firstcell.rs.breed
 firstcell.rs.preevo = firstcell.rs.breed
@@ -66,14 +66,16 @@ cells.gara = [=[!! rowspan = "${r}" | &nbsp;[[Virtù Gara|<span style="color:#00
 ! rowspan = "${r}" | &nbsp;[[Saggio di recitazione|<span style="color:#000;">Fascino</span>]]&nbsp;]=]
 cells.inib = '!! rowspan = "${r}" | &nbsp;[[Intralcio|<span style="color:#000;">Intralcio</span>]]&nbsp;'
 cells.level = '! colspan = "${c}" | &nbsp;[[Livello|<span style="color:#000;">Lv.</span>]]&nbsp;'
-cells.tm = '! colspan = "${c}" | &nbsp;[[MT|<span style="color:#000;">MT</span>]]/[[MN|<span style="color:#000;">MN</span>]]&nbsp;'
+cells.tm = '! colspan = "${c}" | &nbsp;[[MT|<span style="color:#000;">MT</span>]]&nbsp;'
+cells.tmhm = '! colspan = "${c}" | &nbsp;[[MT|<span style="color:#000;">MT</span>]]/[[MN|<span style="color:#000;">MN</span>]]&nbsp;'
 cells.breed = '! colspan = "${c}" | &nbsp;[[Mossa uovo|<span style="color:#000;">${parent}</span>]]&nbsp;'
 cells.tutor = '! colspan = "${c}" | &nbsp;[[Videogiochi Pokémon|<span style="color:#000;">Gioco</span>]]&nbsp;'
 cells.preevo = '! colspan = "${c}" | &nbsp;[[Evoluzione|<span style="color:#000;">Stadio</span>]]&nbsp;'
 cells.event = '! colspan = "${c}" | &nbsp;[[Evento Pokémon|<span style="color:#000;">Evento</span>]]&nbsp;'
 cells.basic = table.concat{cells.moveandtype, cells.ppp}
 cells.category = table.concat{cells.moveandtype, cells.cat, cells.ppp}
-cells[1], cells[2], cells[5] = cells.basic, cells.basic, cells.category
+cells[1], cells[2] = cells.basic, cells.basic
+cells[5], cells[7] = cells.category, cells.category
 cells[3] = table.concat{cells.basic, cells.gara, cells.inib}
 cells[4] = table.concat{cells.category, cells.gara}
 cells[6] = table.concat{cells.category, cells.gara, cells.inib}
@@ -84,12 +86,12 @@ cells[6] = table.concat{cells.category, cells.gara, cells.inib}
 local games = {}
 games[5] = [=[
 
-|- style="background:#${bg};"
+|-
 ! &nbsp;&nbsp;[[Pokémon Nero e Bianco|<span style="color:#000;">NB</span>]]&nbsp;&nbsp;
 ! &nbsp;[[Pokémon Nero 2 e Bianco 2|<span style="color:#000;">N2B2</span>]]&nbsp;]=]
 games[6] = [=[
 
-|- style="background:#${bg};"
+|-
 ! &nbsp;&nbsp;[[Pokémon X e Y|<span style="color:#000;">XY</span>]]&nbsp;&nbsp;
 ! &nbsp;[[Pokémon Rubino Omega e Zaffiro Alpha|<span style="color:#000;">ROZA</span>]]&nbsp;]=]
 
@@ -111,7 +113,8 @@ baby.Mantine = 'Mantyke'
 -- perché non vi è nessuna riga da aggiungere
 
 local rowsf = {}
-rowsf.level = '*Il livello "Inizio" indica una mossa conosciuta da ${poke} ottenuto a livello 1 nella ${genl} generazione.'
+rowsf.level = [=[*Il livello "Inizio" indica una mossa conosciuta da ${poke} ottenuto a livello 1 nella ${genl} generazione.
+*Le mosse segnate al livello "Evo" possono essere apprese al momento dell'evoluzione.]=]
 rowsf.breed1 = [=[*Le mosse segnate con un asterisco (*) si ottengono solo con una [[catena di accoppiamenti|<span style="color:#000;">catena di accoppiamenti</span>]] su ${poke} nella ${genl} generazione.
 *Le mosse segnate con una doppia croce (‡) possono essere ottenute solo da un Pokémon che le abbia apprese in una generazione precedente.
 *Le mosse segnate con un'abbreviazione di un gioco in apice si possono ottenere su ${poke} solo in quel gioco.]=]
@@ -163,10 +166,13 @@ end
 
 -- Crea le celle dell'ultima riga degli headers
 
-local lowrow = function(gen, kind, bg)
+local lowrow = function(gen, kind)
 	local values = {r = firstcell.rs[kind][gen],
 		c = firstcell.cs[kind][gen], parent = gen > 5 and
-		'Genitore' or 'Padre', bg = bg}
+		'Genitore' or 'Padre'}
+
+	kind = (kind == 'tm' and gen < 7) and 'tmhm' or kind
+	
 	local baseStr = table.concat{cells[kind], cells[gen],
 		(kind == 'level' and gen > 4) and games[gen] or ''}
 	return txt.interp(baseStr, values)
@@ -189,29 +195,28 @@ local header = function(pars, kind)
 	local tipo1, tipo2 = pars[2] or 'Sconosciuto', pars[3] or 'Sconosciuto'
 	local genh, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
-	local color2 = tipo1 == tipo2 and c[tipo1].light or c[tipo2].normale
-    return txt.interp([=[{| class="roundy text-center pull-center" style="background: #${background}; border: 3px solid #${color2};"
+	return txt.interp([=[
+{| class="roundy text-center pull-center white-rows" style="${bg}"
 |-
-| class="roundytop" style="background: #${cells_upper};" colspan="${colspan}" |
-{| style="width: 100%; background: transparent;"
-! style="width: 60%;" | <span class="big-font"><span class="big-font">${gentitle}&nbsp;generazione</span></span>
-! style="width: 40%;" |
-{| class="roundy" style="background:transparent; border: 2px solid #${background};"
-! style="line-height:10px;" | <span class="small-font">Altre&nbsp;generazioni:</span>
-|-
-! ${links}
-|}
-|}
-|- class="text-center" style="background:#${color2};"
+| class="roundytop" colspan="${colspan}" style="background: transparent;" |
+<div class="flex-row-center-around" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''${gentitle}&nbsp;generazione'''</span></span></div>
+<div>
+<div class="roundy" style="font-weight: bold; padding: 0.5ex;>
+<div class="small-font" style="line-height:10px;">Altre&nbsp;generazioni:</div>
+<div class="text-center">${links}</div>
+</div>
+</div>
+</div>
+<div style="${dividerbg}; height: 0.5ex;">&nbsp;</div>
+|- class="text-center" style="background: transparent;"
 ${low_row}]=],
 {
-    background = c[tipo1].normale,
-    color2 = color2,
-    cells_upper = c[tipo1].light,
-    colspan = cs[kind][genh],
-    gentitle = string.fu(gendata[genh].ext),
-    links = oldgenslinks(genh, genp, kind, poke),
-    low_row = lowrow(genh, kind, color2)
+	bg = css.horizGradLua(tipo1, tipo1 == tipo2 and 'light' or 'normale', tipo2, 'normale'),
+	dividerbg = css.horizGradLua(tipo1, tipo1 == tipo2 and 'normale' or 'light', tipo2, tipo1 == tipo2 and 'dark' or 'light'),
+	colspan = cs[kind][genh],
+	gentitle = string.fu(gendata[genh].ext),
+	links = oldgenslinks(genh, genp, kind, poke),
+	low_row = lowrow(genh, kind)
 })
 end
 
@@ -222,18 +227,17 @@ local footer = function(pars, kind)
 	local genf, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
     return txt.interp([=[|-
-| class="roundybottom text-left small-font" style="background:#${background}; line-height:10px;" colspan="${colspan}" |
+| class="roundybottom text-left small-font" style="line-height:10px; padding-bottom: 0.5ex; background: transparent;" colspan="${colspan}" |
 ${kindrows}
 *Il '''grassetto''' indica una mossa che ha lo [[Same Type Attack Bonus|<span style="color: #000">STAB</span>]] quando viene usata da un ${poke}.
 *Il ''corsivo'' indica una mossa che ha lo STAB solo quando viene usata da un${form} di ${poke}.${last}
 |}]=],
 {
-    background = c[tipo].light,
-    colspan = cs[kind][genf],
-    kindrows = rowf(kind, genf, poke),
-    poke = poke,
-    form = txt.interp(rowsf.forms[form], {poke = poke}) or '',
-    last = genp < gendata.latest and txt.interp(rowsf.last, {way = ways[kind]}) or ''
+	colspan = cs[kind][genf],
+	kindrows = rowf(kind, genf, poke),
+	poke = poke,
+	form = txt.interp(rowsf.forms[form], {poke = poke}) or '',
+	last = genp < gendata.latest and txt.interp(rowsf.last, {way = ways[kind]}) or ''
 })
 end
 
@@ -340,7 +344,7 @@ d.alltm = function(frame)
     tab2['1'], tab2['2'], tab2['3'], tab2['4'], tab2['5'], tab2['6'] = 'prima', 'seconda', 'terza', 'quarta', 'quinta', 'sesta'
     tab2.I, tab2.II, tab2.III, tab2.IV, tab2.V, tab2.VI = tab2['1'], tab2['2'], tab2['3'], tab2['4'], tab2['5'], tab2['6']
     return txt.interp([=[|-
-! style="background:#FFF; border:1px solid #D8D8D8;" colspan ="8" | ${poke} può imparare ''qualsiasi'' ${moveKind} nella ${gen} generazione${except}.]=],
+! style="background:#FFFFFF; padding: 0.1em 0.3em;" colspan ="8" | ${poke} può imparare ''qualsiasi'' ${moveKind} nella ${gen} generazione${except}.]=],
 {
     poke = p[1] or 'Questo Pokémon',
     moveKind = moveKind[p[3] or 'tm'],

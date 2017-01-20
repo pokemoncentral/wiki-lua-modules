@@ -8,6 +8,23 @@ local t = {}
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 
+-- Crea i link alle forme alternative
+
+local makeLinks = function(black)
+	local link = black
+			and '<div class="small-text">[[Differenze di forma#${anchor}|<span style="color:#000">${formName}</span>]]</div>'
+			or '<div class="small-text">[[Differenze di forma#${anchor}|${formName}]]</div>'
+	local index = black and 'blacklinks' or 'links'
+
+	for name, poke in pairs(t) do
+		poke[index] = table.map(poke.names, function(formName)
+			return string.interp(link, {
+					anchor = poke.anchor or string.fu(name),
+					formName = formName
+			})
+		end)
+	end
+end
 
 -- Tabelle associate ai Pokémon: ne mancano alcuni perché sarebbero
 -- identici, in questo modulo, ad altri, e dunque sono costituiti
@@ -69,62 +86,22 @@ t.furfrou.names = {C = 'Taglio Cuore', St = 'Taglio Stella',
 	F = 'Taglio Faraone', base = 'Nessun Taglio'}
 t.xerneas.names = {A = 'Modo Attivo', base = 'Modo Relax'}
 
+-- Anchor per i link alle forme alternative,
+-- se diversi dal nome del Pokémon
+
+t.shellos.anchor = 'Shellos e Gastrodon'
+t.burmy.anchor = 'Burmy e Wormadam'
+t.deerling.anchor = 'Deerling e Sawsbuck'
+t.frillish.anchor = 'Frillish e Jellicent'
+t.floette.anchor = 'Flabébé, Floette e Florges'
+
 -- Link alle forme alternative.
 
-for name, poke in pairs(t) do
-	poke.links = {}
-	for k, v in pairs(poke.names) do
-		poke.links[k] =
-		table.concat{'<div class="small-text">[[Differenze di forma#',
-			string.fu(name), '|', v, ']]</div>'}
-	end
-	poke.links.base = ''
-end
-
-t.shellos.links = {E = '<div class="small-text">[[Differenza di forma#Shellos e Gastrodon|mare Est]]</div>',
-	base = ''}
-t.burmy.links = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Sabbia]]</div>',
-	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|Manto Scarti]]</div>', base = ''}
-t.deerling.links = {E = '<div class="small-text">[[Differenza di forma#Deerling e Sawsbuck|Forma Estate]]</div>',
-	A = '<div class="small-text">[[Differenza di forma#Deerling e Sawsbuck|Forma Autunno]]</div>',
-	I = '<div class="small-text">[[Differenza di forma#Deerling e Sawsbuck|Forma Inverno]]</div>',
-	base = ''}
-t.frillish.links = {F = '<div class="small-text">[[Differenza di forma#Frillish e Jellicent|Femmina]]</div>',
-	base = ''}
-t.floette.links = {A = '<div class="small-text">[[Differenza di forma#Flabébé, Floette e Florges|Fiore Arancione]]</div>',
-	G = '<div class="small-text">[[Differenza di forma#Flabébé, Floette e Florges|Fiore Giallo]]</div>',
-	Bi = '<div class="small-text">[[Differenza di forma#Flabébé, Floette e Florges|Fiore Bianco]]</div>',
-	Bl = '<div class="small-text">[[Differenza di forma#Flabébé, Floette e Florges|Fiore Blu]]</div>',
-	base = ''}
+makeLinks()
 
 -- Link neri alle forme alternative.
 
-for name, poke in pairs(t) do
-	poke.blacklinks = {}
-	for k, v in pairs(poke.names) do
-		poke.blacklinks[k] =
-			table.concat{'<div class="small-text">[[Differenze di forma#',
-			string.fu(name), '|<span style="color:#000">',
-			v, '</span>]]</div>'}
-	end
-	poke.blacklinks.base = ''
-end
-
-t.shellos.blacklinks = {E = '<div class="small-text">[[Differenza di forma#Shellos e Gastrodon|<span style="color:#000">mare Est</span>]]</div>',
-	base = ''}
-t.burmy.blacklinks = {Sa = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Sabbia</span>]]</div>',
-	Sc = '<div class="small-text">[[Differenze di forma#Burmy e Wormadam|<span style="color:#000">Manto Scarti</span>]]</div>', base = ''}
-t.deerling.blacklinks = {E = '<div class="small-text">[[Differenza di forma#Deerling e Sawsbuck|<span style="color:#000">Forma Estate</span>]]</div>',
-	A = '<div class="small-text">[[Differenza di forma#Deerling e Sawsbuck|<span style="color:#000">Forma Autunno</span>]]</div>',
-	I = '<div class="small-text">[[Differenza di forma#Deerling e Sawsbuck|<span style="color:#000">Forma Inverno</span>]]</div>',
-	base = ''}
-t.frillish.blacklinks = {F = '<div class="small-text">[[Differenza di forma#Frillish e Jellicent|<span style="color:#000">Femmina</span>]]</div>',
-	base = ''}
-t.floette.blacklinks = {A = '<div class="small-text">[[Differenza di forma#Flabébé, Floette e Florges|<span style="color:#000">Fiore Arancione</span>]]</div>',
-	G = '<div class="small-text">[[Differenza di forma#Flabébé, Floette e Florges|<span style="color:#000">Fiore Giallo</span>]]</div>',
-	Bi = '<div class="small-text">[[Differenza di forma#Flabébé, Floette e Florges|<span style="color:#000">Fiore Bianco</span>]]</div>',
-	Bl = '<div class="small-text">[[Differenza di forma#Flabébé, Floette e Florges|<span style="color:#000">Fiore Blu</span>]]</div>',
-	base = ''}
+makeLinks(true)
 
 -- Per passare dai nomi estesi delle forme alternative alle sigle
 
@@ -158,25 +135,25 @@ t.xerneas.ext = {attivo = 'A'}
 -- Arrays in cui è memorizzato l'ordine con cui le varie forme appaiono
 -- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
 
-t.unown.gamesOrder = {'', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+t.unown.gamesOrder = {'base', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
 	'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 	'PE', 'PI'}
-t.burmy.gamesOrder = {'', 'Sa', 'Sc'}
-t.cherrim.gamesOrder = {'', 'S'}
-t.shellos.gamesOrder = {'', 'E'}
-t.arceus.gamesOrder = {'', 'L', 'Vo', 'Ve', 'T', 'R', 'C', 'S', 'Ai', 'Fu',
+t.burmy.gamesOrder = {'base', 'Sa', 'Sc'}
+t.cherrim.gamesOrder = {'base', 'S'}
+t.shellos.gamesOrder = {'base', 'E'}
+t.arceus.gamesOrder = {'base', 'L', 'Vo', 'Ve', 'T', 'R', 'C', 'S', 'Ai', 'Fu',
 	'Aq', 'Er', 'El', 'P', 'G', 'D', 'B', 'Fo'}
-t.unfezant.gamesOrder = {'', 'F'}
-t.deerling.gamesOrder = {'', 'E', 'A', 'I'}
+t.unfezant.gamesOrder = {'base', 'F'}
+t.deerling.gamesOrder = {'base', 'E', 'A', 'I'}
 t.frillish.gamesOrder = t.unfezant.gamesOrder
-t.keldeo.gamesOrder = {'', 'R'}
-t.genesect.gamesOrder = {'', 'I', 'V', 'P', 'G'}
-t.vivillon.gamesOrder = {'', 'No', 'Mn', 'C', 'Pr', 'E', 'Ga', 'T', 'Mr', 'A',
+t.keldeo.gamesOrder = {'base', 'R'}
+t.genesect.gamesOrder = {'base', 'I', 'V', 'P', 'G'}
+t.vivillon.gamesOrder = {'base', 'No', 'Mn', 'C', 'Pr', 'E', 'Ga', 'T', 'Mr', 'A',
 	'D', 'Sb', 'F', 'Pl', 'Sv', 'So', 'O', 'Gu', 'Sr', 'Po'}
 t.pyroar.gamesOrder = t.unfezant.gamesOrder
-t.floette.gamesOrder = {'', 'G', 'A', 'Bl', 'Bi'}
-t.furfrou.gamesOrder = {'', 'C', 'F', 'Gd', 'Gu', 'K', 'R', 'Si', 'St'}
-t.xerneas.gamesOrder = {'', 'A'}
+t.floette.gamesOrder = {'base', 'G', 'A', 'Bl', 'Bi'}
+t.furfrou.gamesOrder = {'base', 'C', 'F', 'Gd', 'Gu', 'K', 'R', 'Si', 'St'}
+t.xerneas.gamesOrder = {'base', 'A'}
 
 -- Tabelle contenenti le sigle dei primi giochi in ordine cronologico in cui
 -- la forma è supportata, compresa la forma base

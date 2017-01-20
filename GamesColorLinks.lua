@@ -29,5 +29,5 @@ for abbr, data in pairs(s) do
 	end
 end
 
-print(l[arg[1]]{args={arg[2]}})
--- return l
+-- print(l[arg[1]]{args={arg[2]}})
+return l

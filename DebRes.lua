@@ -44,13 +44,14 @@ local box = require('Boxtipo')
 local et = require('EffTipi')
 local link = require('Links')
 local w = require('Wikilib')
+local abillib = require('Wikilib-abils')
 local forms = require('Wikilib-forms')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local alts = require("AltForms-data")
-local c = require("Colore-data")
+local css = require('Css')
 local abilData = require("PokéAbil-data")
 local pokes = require("Poké-data")
 
@@ -74,13 +75,10 @@ dr.EffTable.strings = {
 		Wikicode per la parte iniziale di un box
 		(Debolezze, Immunità, Danno Normale, ecc)
 	--]]
-	BOX_INIT = [=[<div class="roundy flex flex-row flex-wrap flex-items-stretch" style="padding: 0; margin-bottom: -2px; background: #${bg}; border: 2px solid #${bd};"><span class="inline-flex flex-items-center flex-main-center width-xl-30 width-xs-100" style="padding: 0.3em; box-sizing: border-box;">'''${text}'''</span><div class="flex flex-row flex-wrap flex-items-stretch roundy width-xl-70 width-xs-100" style="margin: -2px; border-spacing: 0; padding: 0; border: 2px solid #${bd};">]=],
+	BOX_INIT = [=[<div class="roundy flex flex-row flex-wrap flex-items-stretch" style="padding: 0; margin-bottom: 0.5ex; ${bg}"><span class="inline-flex flex-items-center flex-main-center width-xl-30 width-xs-100" style="padding: 0.3em; box-sizing: border-box;">'''${text}'''</span><div class="flex flex-row flex-wrap flex-items-stretch roundy width-xl-70 width-xs-100" style="border-spacing: 0; padding: 0;">]=],
 	
 	-- Wikicode per una riga di tipi aventi la stessa efficacia
-	BOX_LINE = [=[<div class="flex flex-row flex-wrap flex-items-stretch width-xl-100" style="box-sizing: border-box; padding: 0.1em;${separator}"><div class="inline-flex flex-items-center flex-main-center roundy width-xl-5 width-sm-10 width-xs-100" style="box-sizing: border-box; padding: 0 0.2em; background: #FFF;">${eff}&times;</div><div class="inline-flex flex-row flex-wrap flex-items-center flex-main-start width-xl-95 width-sm-90 width-xs-100" style="box-sizing: border-box; padding-left: 0.2em;">${types}</div></div>]=],
-	
-	-- Wikicode per il separatore di righe con la stessa efficacia
-	LINES_SEPARATOR = [=[ border-bottom: 2px solid #${color};]=]
+	BOX_LINE = [=[<div class="flex flex-row flex-wrap flex-items-stretch width-xl-100" style="box-sizing: border-box; padding: 0.1em;"><div class="inline-flex flex-items-center flex-main-center roundy width-xl-5 width-sm-10 width-xs-100" style="box-sizing: border-box; padding: 0 0.2em; background: #FFF;">${eff}&times;</div><div class="inline-flex flex-row flex-wrap flex-items-center flex-main-start width-xl-95 width-sm-90 width-xs-100" style="box-sizing: border-box; padding-left: 0.2em;">${types}</div></div>]=],
 }
 
 --[[
@@ -126,7 +124,7 @@ riga del footer di categoria MAYBE per
 una certa abilità, dati i tipi del Pokémon.
 Ciò accade se l'abilità non modifica
 l'efficacia di tipi a cui i tipi propri
-del Pkoémon danno già immunità
+del Pokémon danno già immunità
 
 --]]
 dr.EffTable.shouldAddMaybe = function(abil, types)
@@ -164,7 +162,18 @@ end
 -- Stampa i tipi dati come Boxes tipi
 dr.EffTable.printTypes = function(types)
 	return box.listLua(types, ' inline-block width-xl-15 width-md-20 width-sm-35 width-xs-45',
-		'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold; box-sizing: border-box;', true)
+		'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold; box-sizing: border-box;')
+end
+
+-- Crea la table dei colori, prendendo i dati da types
+dr.EffTable.createColors = function(this, types)
+	local monoType = types.type1 == types.type2
+	this.colors = {
+		outleft = {color = types.type2, variant = 'normale'},
+		outright = {color = types.type1, variant =  monoType and 'light' or 'normale'},
+		inleft = {color = types.type1, variant = 'light'},
+		inright = {color = types.type2, variant = monoType and 'normale' or 'light'},
+	}
 end
 
 --[[
@@ -174,14 +183,12 @@ efficacia, aggiungendo il bordo inferiore
 se indicato
 
 --]]
-dr.EffTable.printEffLine = function(data, roundy, colors)
+dr.EffTable.printEffLine = function(data, roundy)
 	return string.interp(dr.EffTable.strings.BOX_LINE,
 		{
 			rd = roundy or '',
 			eff = dr.EffTable.displayEff(data.eff),
 			types = dr.EffTable.printTypes(data.types),
-			separator = colors and string.interp(dr.EffTable.strings.LINES_SEPARATOR,
-				{color = colors.bg}) or ''
 		})
 end
 
@@ -196,9 +203,8 @@ dr.EffTable.printSingleBox = function(boxData, colors)
 		return string.interp(table.concat{dr.EffTable.strings.BOX_INIT,
 				dr.EffTable.printEffLine(boxData[1]), '</div></div>'},
 		{
-			bg = colors.cells,
+			bg = css.horizGradLua(colors.inleft.color, colors.inleft.variant, colors.inright.color, colors.inright.variant),
 			text = boxData.text,
-			bd = colors.bg
 		})
 	end
 	
@@ -226,9 +232,8 @@ dr.EffTable.printSingleBox = function(boxData, colors)
 	return string.interp(table.concat{dr.EffTable.strings.BOX_INIT,
 			allLines, '</div></div>'},
 		{
-			bg = colors.cells,
+			bg = css.horizGradLua(colors.inleft.color, colors.inleft.variant, colors.inright.color, colors.inright.variant),
 			text = boxData.text,
-			bd = colors.bg
 		})
 end
 
@@ -262,21 +267,15 @@ dr.EffTable.new = function(name, formName)
 		abils = table.map(formName, string.lower)
 	else
 		types = pokes[name]
-		abils = table.map(abilData[name], string.lower)
+		abils = table.map(abillib.lastAbils(abilData[name]), string.lower)
 	end
 
 	local this = setmetatable(dr.EffTable.super.new(formName),
 			dr.EffTable)
 	this.collapse = ''
 	
-	local monoType = types.type1 == types.type2
-	
 	-- Dati per la stampa
-	this.colors = {
-		bg = c[types.type1].normale,
-		cells = c[types.type1].light,
-		bd = c[types.type2][monoType and 'dark' or 'normale']
-	}
+	this:createColors(types)
 	
 	local onlyAbil = table.getn(abils) == 1
 	
@@ -322,7 +321,7 @@ dr.EffTable.new = function(name, formName)
 			I tipi vanno scambiati perché il costruttore
 			di dr.EffTable.FooterLine controlla solo il primo
 		--]]
-		if not monoType and et.typesHaveImm[types.type2] then
+		if not (types.type1 == types.type2) and et.typesHaveImm[types.type2] then
 			table.insert(this.footer, dr.EffTable.FooterLine.new('RINGTARGET',
 					{type1 = types.type2, type2 = types.type1}, abils))
 		end
@@ -399,14 +398,12 @@ dr.EffTable.__tostring = function(this)
 	local std = {text = 'Danno normale'}
 	local res = {text = 'Resistenze'}
 	local imm = {text = 'Immunit&agrave;'}
-		
+
 	local interpData = {
-		bg = this.colors.bg,
-		bd = this.colors.bd,
-		foot = #this.footer < 1 and '' or string.interp([=[<div class="roundy text-left text-small" style="padding: 2px; background: #${bg}; border: 2px solid #${bd};">${lines}</div>]=],
+		bg = css.horizGradLua(this.colors.outleft.color, this.colors.outleft.variant, this.colors.outright.color, this.colors.outright.variant),
+		foot = #this.footer < 1 and '' or string.interp([=[<div class="roundy text-left text-small" style="padding: 2px; margin-bottom: 0.5ex; background: ${bg}">${lines}</div>]=],
 				{
-					bg = this.colors.cells,
-					bd = this.colors.bg,
+					bg = css.horizGradLua(this.colors.inleft.color, this.colors.inleft.variant, this.colors.inright.color, this.colors.inright.variant),
 					lines = w.mapAndConcat(this.footer, tostring)
 				})
 	}
@@ -437,7 +434,7 @@ dr.EffTable.__tostring = function(this)
 	interpData.effBoxes = dr.EffTable.printEffBoxes({weak, std, 
 			res, imm}, this.colors)
 	
-	local tab = string.interp([[<div class="roundy pull-center text-center width-xl-80 width-md-100" style="background: #${bg}; border: 3px solid #${bd};">${effBoxes}${foot}</div>]], interpData)
+	local tab = string.interp([[<div class="roundy pull-center text-center width-xl-80 width-md-100" style="padding: 0.5ex; padding-bottom: 0.01ex; ${bg}">${effBoxes}${foot}</div>]], interpData)
 
 	if #this.labels > 0 then
 		return string.interp([[==== ${title} ====
@@ -450,7 +447,7 @@ ${tab}
 				tab = tab
 			})
 	end
-	
+
 	return tab
 end
 
@@ -611,13 +608,13 @@ dr.EffTable.FooterLine.new = function(kind, types, abil)
 	this.newEff = {}
 
 	--[[
-		Filtro, Solidroccia e Magidifesa sono casi
-		particolari da trattare separatamente,
+		Filtro, Solidroccia, Scudoprisma e Magidifesa sono
+		casi particolari da trattare separatamente,
 		ammesso che si stia creando una riga relativa
 		alle abilità
 	--]]
 	if kind ~= 'RINGTARGET' then
-		if abil == 'filtro' or abil == 'solidroccia' then
+		if abil == 'filtro' or abil == 'solidroccia' or abil == 'scudoprisma' then
 		
 			--[[
 				Se l'abilità viene persa, la nuova
@@ -652,11 +649,11 @@ dr.EffTable.FooterLine.new = function(kind, types, abil)
 				opta quindi per una gestione custom.
 			--]]
 			this.tostring = string.interp(table.concat{'\n*', dr.EffTable.FooterLine.strings.TAKENOFF,
-					[=[solo mosse di tipo <span style="background:#${bgn}">[[Normale (tipo)|<span style="padding: 0.2ex 0.3em; color:#FFF">Normale</span>]]</span> e <span style="background:#${bgl}">[[Lotta (tipo)|<span style="padding: 0.2ex 0.3em; color:#FFF;">Lotta</span>]]</span> non lo renderanno esausto.]=]},
+					[=[solo mosse di tipo ${normale} e ${lotta} non lo renderanno esausto.]=]},
 					{
 						abil = 'Magidifesa',
-						bgn = c.normale.normale,
-						bgl = c.lotta.normale
+						normale = link.colorType('Normale'),
+						lotta = link.colorType('Lotta')
 					})
 			
 			return this
@@ -816,7 +813,6 @@ dr.debRes = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
 	local pokeData = pokes[string.parseInt(p[1]) or p[1]]
 			or pokes[mw.text.decode(p[1])]
-	local name = pokeData.name:lower()
 	
 	--[[
 		If no data is found, the first parameter is
@@ -834,13 +830,14 @@ dr.debRes = function(frame)
 	end
 
 	return list.makeFormsLabelledBoxes({
-		name = name,
+		name = pokeData.name:lower(),
 		makeBox = dr.EffTable.new,
 		printBoxes = dr.EffTable.printEffTables
 	})
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
-arg={'cradily'}
-print(dr.DebRes{args=arg})
+
+--arg={'Giratina'}
+--print(dr.DebRes{args=arg})
 return dr

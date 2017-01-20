@@ -7,17 +7,24 @@ local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local ms = require('MiniSprite')
 local c = require("Colore-data")
+local css = require('Css')
 local abbr = require("Sigle-data")
 local s = require("Sup-data")
 
 -- local trimOnly = {'x v zA'}
 
 -- Wikicode per la cella di un gioco nell'entry level
-local gameLevelCell = '| style="background:#FFF; border:1px solid #D8D8D8;"'
--- local str = '| style="background:#${bg}; color: #${txt}; border:1px solid #D8D8D8;" | ${lvl}'
+local gameLevelCell = '| '
 
 -- Wikicode per la cella di un gioco nell'entry tutor
-local gameTutorCell = [=[| style="background:#${bg}; border: 1px solid #${bd};" | [[Pokémon ${gameLink}|<span style="padding: 0.3em 0; color:#${txtColor};">'''${gameAbbr}'''</span>]]]=]
+local gameTutorCell = [=[| style="background:#${bg};" | [[Pokémon ${gameLink}|<span style="padding: 0.3em 0; color:#${txtColor};">'''${gameAbbr}'''</span>]]]=]
+
+-- Wikicode per gli entrynull
+local entryNull = [[|-
+! style="background: #fff; padding: 0.1em 0.3em;" colspan="${cs}" | Questo Pokémon non impara nessuna mossa ${ending}.]]
+
+local entryNullEnd = { level = 'aumentando di livello', tm = 'tramite MT',
+	breed = 'tramite accoppiamento', tutor = "dall'Esperto Mosse", preevo = 'tramite evoluzioni precedenti'}
 
 -- Contiene i title per le pre-evoluzioni
 lib.preevott = {T = [[<span class="explain" title="Mossa appresa dall'Esperto Mosse">*</span>]], E = [[<span class="explain" title="Mossa appresa tramite evento">†</span>]], D = [[<span class="explain" title="Mossa appresa nel Dream World">‡</span>]]}
@@ -78,9 +85,10 @@ Manda a capo ogni tot mini sprite, utilizzata
 nell'entry per il breed, nella cella dei padri
 
 --]]
-lib.insertnwlns = function(str, linelength)
+lib.insertnwlns = function(str, linelength, gen)
 	str = str:gsub('<br>', '')
 	linelength = tonumber(linelength) or 7
+	gen = gen or ''
 
 	local res, newLinesCount = {}, 0
 	local pattern, op
@@ -89,17 +97,19 @@ lib.insertnwlns = function(str, linelength)
 		op = function(sprite) return sprite end
 	else
 		pattern = '#(.-)#'
-		op = function(ndex) return ms.staticLua(ndex) end
+		op = function(ndex) return ms.staticLua(ndex, gen) end
 	end
 
+	table.insert(res, '<div>')
 	for minisprite in str:gmatch(pattern) do
 		table.insert(res, op(minisprite))
 
 		if (#res - newLinesCount) % linelength == 0 then
-			table.insert(res, '<br>')
+			table.insert(res, '</div><div>')
 			newLinesCount = newLinesCount + 1
 		end
 	end
+	table.insert(res, '</div>')
 
 	return table.concat(res)
 end
@@ -132,17 +142,16 @@ precedenti l'introduzione delle categorie danno.
 
 --]]
 lib.basicentry = function(stab, mossa, notes, tipo, pw, acc, pp)
-    return string.interp([=[|| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${stab}[[${mossa} (mossa)|<span style="color:#000;">${mossa}</span>]]${stab}${notes}
-| style="background:#${tipo_std}; border:1px solid #${tipo_dark};" | [[${tipo} (tipo)|<span style="color:#FFFFFF">${tipo}</span>]]
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${pw}
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${acc}%
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${pp}]=],
+    return string.interp([=[|| style="padding: 0.3em;" | ${stab}[[${mossa} (mossa)|<span style="color:#000;">${mossa}</span>]]${stab}${notes}
+| style="${bg_tipo}; padding: 0.3em;" | [[${tipo} (tipo)|<span style="color:#FFFFFF">${tipo}</span>]]
+| style="padding: 0.1em 0.3em;" | ${pw}
+| style="padding: 0.1em 0.3em;" | ${acc}%
+| style="padding: 0.1em 0.3em;" | ${pp}]=],
 {
    	mossa = mossa,
     stab = stab,
     notes = notes,
-    tipo_std = c[tipo].normale,
-    tipo_dark = c[tipo].dark,
+    bg_tipo = css.horizGradLua(tipo, 'dark', tipo, 'normale'),
     tipo = tipo,
     pw = pw,
     acc = acc,
@@ -157,21 +166,19 @@ successive l'introduzione delle categorie danno.
 
 --]]
 lib.categoryentry = function(stab, mossa, notes, tipo, cat, pw, acc, pp)
-	return string.interp([=[|| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${stab}[[${mossa} (mossa)|<span style="color:#000;">${mossa}</span>]]${stab}${notes}
-| style="background:#${tipo_std}; border:1px solid #${tipo_dark};" | [[${tipo} (tipo)|<span style="color:#FFFFFF">${tipo}</span>]]
-| style="background:#${cat_std}; border:1px solid #${cat_dark};" | [[${cat} (categoria danno)|<span style="color:#${cat_text}">${cat}</span>]]
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${pw}
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${acc}%
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${pp}]=],
+	return string.interp([=[|| style="padding: 0.1em 0.3em;" | ${stab}[[${mossa} (mossa)|<span style="color:#000;">${mossa}</span>]]${stab}${notes}
+| style="${bg_tipo}; padding: 0.1em 0.3em;" | [[${tipo} (tipo)|<span style="color:#FFFFFF;">${tipo}</span>]]
+| style="${bg_cat}; padding: 0.1em 0.3em;" | [[${cat} (categoria danno)|<span style="color:#${cat_text};">${cat}</span>]]
+| style="padding: 0.1em 0.3em;" | ${pw}
+| style="padding: 0.1em 0.3em;" | ${acc}%
+| style="padding: 0.1em 0.3em;" | ${pp}]=],
 {
 	mossa = mossa,
     stab = stab,
     notes = notes,
-    tipo_std = c[tipo].normale,
-    tipo_dark = c[tipo].dark,
+    bg_tipo = css.horizGradLua(tipo, 'dark', tipo, 'normale'),
     tipo = tipo,
-	cat_std = c[cat].normale,
-    cat_dark = c[cat].dark,
+    bg_cat = css.horizGradLua(cat, 'dark', cat, 'normale'),
     cat_text = c[cat .. '_text'],
     cat = cat,
 	pw = pw,
@@ -189,14 +196,13 @@ a dire virtù, fascino e, se passato, intralcio
 
 --]]
 lib.contestentry = function(gara, fash, intr)
-	return string.interp([=[|| style="background:#${gara_std}; border:1px solid #${gara_dark};" | [[${gara} (gara)|<span style="color:#000">${gara}</span>]]
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${fash}${intr}]=],
+	return string.interp([=[|| style="${bg_gara}; padding: 0.1em 0.3em;" | [[${gara} (gara)|<span style="color:#fff;">${gara}</span>]]
+| style="padding: 0.1em 0.3em;" | ${fash}${intr}]=],
 {
-    gara_std = c[gara].normale,
-    gara_dark = c[gara].dark,
+    bg_gara = css.horizGradLua(gara, 'dark', gara, 'normale'),
     gara = gara,
     fash = lib.concathearts(fash, false),
-    intr = intr and table.concat{' || style="background:#FFF; border:1px solid #D8D8D8;" | ', lib.concathearts(intr, true)} or ''
+    intr = intr and table.concat{' || style="padding: 0.3em;" | ', lib.concathearts(intr, true)} or ''
 })
 end
 
@@ -208,14 +214,18 @@ pari ai livelli diversi inseriti.
 --]]
 lib.gameslevel = function(first, second, third)
 
-	-- Only two of them
 	if not third then
-		if first == second then
-			return table.concat{gameLevelCell, ' colspan = "2" | ',
+		--Only one of them
+		if not second then
+			return table.concat{gameLevelCell, ' | ',
 					first}
-		end
-		return table.concat{gameLevelCell, ' | ', first, ' |',
+		elseif first == second then -- Only two of them
+			return table.concat{gameLevelCell, ' colspan = "2" | ',
+				first}
+		else
+			return table.concat{gameLevelCell, ' | ', first, ' |',
 				gameLevelCell, ' | ', second}
+		end
 	end
 
 	-- All three are the same
@@ -294,17 +304,26 @@ end
 lib.preevodata = function(pars, gen)
 	local ani1, tt1 = '', ''
 	if pars[4] then
-		ani1 = ms.aniLua(pars[4], gen or '', pars[5] or 'Bulbasaur')
+		ani1 = ms.staticLua(pars[4], gen or '', pars[5] or 'Bulbasaur')
 		tt1 = lib.preevott[pars[6]] or ''
 	end
 	return string.interp([=[|-
-| style="background:#FFFFFF; border:1px solid #D8D8D8;" | ${ani}${tt}${ani1}${tt1}]=],
+| style="padding: 0.1em 0.3em;" | ${ani}${tt}${ani1}${tt1}]=],
 {
-	ani = ms.aniLua(pars[1] or '000', gen or '', pars[2] or 'Bulbasaur'),
+	ani = ms.staticLua(pars[1] or '000', gen or '', pars[2] or 'Bulbasaur'),
 	tt = lib.preevott[pars[3]] or '',
 	ani1 = ani1,
 	tt1 = tt1
 })
+end
+
+-- La cella dell'entry null, utilizzata per i Pokémon che non imparano
+-- mosse in un certo modo
+lib.entrynull= function(entry, cs)
+	return string.interp(entryNull, {
+		ending = entryNullEnd[entry],
+		cs = cs
+	})
 end
 
 return lib

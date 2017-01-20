@@ -13,6 +13,9 @@ local forms = require('Wikilib-forms')
 local c = require("Colore-data")
 local gendata = require("Gens-data")
 local sup = require("Sup-data")
+local pokes = require("Poké-data")
+local groups = require("PokéEggGroup-data")
+local libdata = require("Wikilib-data")
 
 -- Rappresentazione stringa dei parametri booleani
 local boolDisplay = {No = '×', Yes = '✔'}
@@ -24,13 +27,14 @@ essere l'indice di un parametro
 
 --]]
 local gameGens = {Y = 1, C = 2, FRLG = 3, HGSS = 4,
-		PTHGSS = 4, B2W2 = 5, ORAS = 6}
+		PTHGSS = 4, B2W2 = 5, ORAS = 6, SM = 7}
 
 -- Contiene i colori di background delle celle del tutor
 local tutorCellsColors = {c.cristallo.normale, c.rossofuoco.normale,
 		c.smeraldo.normale, c.xd.normale, c.diamante.normale,
 		c.platino.normale, c.heartgold.normale, c.nero.normale,
-		c.nero2.normale, c.x.normale, c.rubinoomega.normale}
+		c.nero2.normale, c.x.normale, c.rubinoomega.normale,
+		c.sole.normale}
 
 --[[
 
@@ -76,6 +80,7 @@ splitCellsData.B2W2 = {{bg = 'bianco', txt = 'nero', abbr = 'NB'},
 	{bg = 'bianco2', txt = 'nero2', abbr = 'N2B2'}}
 splitCellsData.ORAS = {{bg = 'x', txt = 'y', abbr = 'XY'},
 	{bg = 'rubinoomega', txt = 'zaffiroalpha', abbr = 'ROZA'}}
+splitCellsData.SM = {{bg = 'sole', txt = 'luna', abbr = 'SL'}}
 
 --[[
 
@@ -176,7 +181,7 @@ mossa nelle generazioni. Argomenti:
 --]]
 local tail = function(startGen, data, splitCells)
 	local store = {}
-	
+
 	-- Si inseriscono dapprima i dati standard delle generazioni
 	for k = startGen, gendata.latest do
 		local cellData = data[getGenIndex(startGen, k)]
@@ -202,28 +207,58 @@ local tail = function(startGen, data, splitCells)
 end
 
 -- Le prime celle degli entry
-local head = function(ndex, name, type1, type2, stab, notes, form)
+local head = function(ndex, stab, notes, form)
 	local ndexFigures = ndex:match('^(%d+)')
 	local abbr = forms.getabbr(ndex, form)
-	return string.interp([=[|- style="background:#fff"
+	local pokedata = table.cloneLoadData(pokes[abbr == 'base' and tonumber(ndexFigures) or ndexFigures .. abbr]
+		or {name = 'Missingno.', ndex = '000'})
+	pokedata = table.merge(pokedata, table.cloneLoadData(groups[pokedata.ndex] or {group1 = 'sconosciuto'}))
+	return string.interp([=[|-
 | style="width: 26px;" | ${num}
 | style="width: 26px;" | ${ani}
 | style="width: 75px;" | ${stab}[[${name}]]${stab}${notes}${forml}
-| style="background:#${std}; width: ${wd} | [[${tipo1} (tipo)|<span style="color:#FFF;">${tipo1}</span>]]${tipo2}
+| style="background:#${std}; width: ${wd} | [[${gruppo1} (gruppo uova)|<span style="color:#FFF;">${gruppo1}</span>]]${gruppo2}
 ]=],
 {
 	num = ndexFigures,
-	ani = ms.aniLua(ndexFigures .. (abbr == 'base' and '' or abbr)),
+	ani = ms.staticLua(ndexFigures .. (abbr == 'base' and '' or abbr)),
 	stab = stab,
-	name = name,
+	name = pokedata.name,
 	notes = lib.makeNotes(notes or ''),
 	forml = forms.getlink(ndex, false, form),
-	std = c[type1].normale,
-	tipo1 = type1,
-	wd = type1 == type2 and '100px;" colspan="2"' or '50px;"',
-	tipo2 = type1 == type2 and '' or string.interp('\n| style="width: 50px; background:#${std};" | [[${tipo} (tipo)|<span style="color:#FFF;">${tipo}</span>]]',
-		{std = c[type2].normale, tipo = type2})
+	std = c[pokedata.group1 .. '_uova'].normale,
+	gruppo1 = pokedata.group1 == 'coleottero' and 'Coleot' or string.fu(pokedata.group1),
+	wd = pokedata.group2 and '50px;"' or '100px;" colspan="2"',
+	gruppo2 = pokedata.group2 and string.interp('\n| style="width: 50px; background:#${std};" | [[${gruppo} (gruppo uova)|<span style="color:#FFF;">${gruppo}</span>]]',
+		{std = c[pokedata.group2 .. '_uova'].normale, gruppo = pokedata.group2 == 'coleottero' and 'Coleot' or string.fu(pokedata.group2)}) or ''
 })
+end
+
+--[[
+
+Elimina da frame.args i parametri inutili, presenti solo
+per compatibilità con il vecchio template e il vecchio
+modulo
+
+--]]
+local removeOldParams = function(p)
+	local pokedata = pokes[tonumber(p[1])] or pokes[p[1]] or {name = 'Missingno.'}
+
+	-- rimuove il parametro 2 se è il nome del Pokémon
+	if (string.fu(p[2]) == pokedata.name) then
+		table.remove(p, 2)
+	end
+	-- rimuove i parametri 3, 4 e 5 (ora 2, 3 e 4)
+	--		se 3 è 1 o 2 (il numero di tipi)
+	--		e se 4 e 5 sono tipi
+	if ((p[2] == '1' or p[2] == '2') and
+		(table.search(libdata.allTypes, string.lower(p[3])) or string.lower(p[3]) == 'coleottero')) then
+		table.remove(p, 4)
+		table.remove(p, 3)
+		table.remove(p, 2)
+	end
+
+	return p
 end
 
 --[[
@@ -250,24 +285,26 @@ local entry = function(p, makeText, splitCells, latestGenDefault)
 	--]]
 	p = w.trimAndMap(p, string.fu, false)
 
-	local gen = tonumber(table.remove(p, 1)) or 7
+	local gen = tonumber(table.remove(p, 1)) or gendata.latest+1
 	local note, stab = p.note or '', p.STAB or ''
 	local form = string.lower(p.form or '')
+	p = removeOldParams(p)
 
 	p.note, p.STAB, p.form = nil, nil, nil
-	p[12 - gen] = p[12 - gen] or latestGenDefault or p[11 - gen]
+	p[(1 + gendata.latest) - gen] = p[(1 + gendata.latest) - gen] or latestGenDefault or p[gendata.latest - gen]
+	p[(2 + gendata.latest) - gen] = p[(2 + gendata.latest) - gen] or 'N/D'
 
 	--[[
 		Si applica makeText solo ai dati relativi all'
 		apprendimento della mossa nelle generazioni,
 		scartando quelli del Pokémon.
 	--]]
+
 	local data = table.map(table.filter(p, function(_, key)
-			return type(key) == 'string' or key > 5 and key < 13 - gen
+			return type(key) == 'string' or key > 1 and key < (3 + gendata.latest) - gen
 		end), makeText)
 
-	return head(p[1] or '000', p[2] or 'Missingno.', p[4] or 'Sconosciuto',
-			p[5] or 'Sconosciuto', stab, note, form) .. tail(gen, data, splitCells)
+	return head(p[1] or '000', stab, note, form) .. tail(gen, data, splitCells)
 end
 
 --[[
@@ -291,7 +328,7 @@ primo argomento la generazione, seguita dagli altri
 --]]
 m.tm = function(frame)
 	return entry(mw.clone(frame.args), function(h)
-			return boolDisplay[h] end, splitTitle, 'No')
+			return boolDisplay[h] or h end, splitTitle, 'No')
 end
 
 m.Tm, m.TM = m.tm, m.tm
@@ -304,7 +341,7 @@ primo argomento la generazione, seguita dagli altri
 --]]
 m.breed = function(frame)
 	return entry(mw.clone(frame.args), function(v) return v == 'No'
-			and '×' or lib.insertnwlns(v, 6) end, splitSup)
+			and '×' or (v == 'N/D' and 'N/D' or lib.insertnwlns(v, 6)) end, splitSup)
 end
 
 m.Breed = m.breed
@@ -317,12 +354,13 @@ per interpolazione.
 --]]
 m.event = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.fu)
+	p = removeOldParams(p)
+
 	return string.interp([=[${h}
-| style="background:#FFF;" colspan="2" | ${event}${level}]=],
+| ${event}${level}]=],
 {
-	h = head(p[1] or '000', p[2] or 'Missingno.', p[4] or 'Sconosciuto',
-			p[5] or 'Sconosciuto', p.STAB or '', p.notes or '', p.form or ''),
-	event = p[6] or 'Per la fine del mondo',
+	h = head(p[1] or '000', p.STAB or '', p.notes or '', p.form or ''),
+	event = p[2] or 'Per la fine del mondo',
 	level = lib.makeLevel(p.level)
 })
 end
@@ -337,13 +375,14 @@ doit perché le celle non sono una per generazione
 --]]
 m.tutor = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.fu)
-	local store = {head(p[1] or '000', p[2] or 'missingno.', p[4] or 'Sconosciuto',
-			p[5] or 'Sconosciuto', p.STAB or '', p.notes or '', p.form or '')}
+	p = removeOldParams(p)
+
+	local store = {head(p[1] or '000', p.STAB or '', p.notes or '', p.form or '')}
 
 	-- Si scorrono i parametri relativi ai giochi
-	for k = 6, #p do
+	for k = 2, #p do
 		if p[k] == 'Yes' then
-			table.insert(store, makeCell(tutorCellsColors[k - 5], 'FFF', '1', '✔'))
+			table.insert(store, makeCell(tutorCellsColors[k - 1], 'FFF', '1', '✔'))
 		elseif p[k] == 'No' then
 			table.insert(store, makeCell('FFF', 'FFF', '1', '&nbsp;'))
 		end
