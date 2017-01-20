@@ -28,7 +28,6 @@ local tab = require('Wikilib-tables')
 local drp = require('DebRes')
 local et = require('EffTipi1')
 local pokes = require("Poké-data")
-local c = require("Colore-data")
 
 --[[
 

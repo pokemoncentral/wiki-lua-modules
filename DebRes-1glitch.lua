@@ -33,7 +33,6 @@ local sig = require("Wikilib-sigle")
 local drp = require('DebRes')
 local et = require('EffTipi1-glitch')
 local glitch = require("Glitch-data")
-local c = require("Colore-data")
 
 --[[
 
