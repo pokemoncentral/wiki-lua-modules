@@ -248,12 +248,12 @@ local removeOldParams = function(p)
 	if (string.fu(p[2]) == pokedata.name) then
 		table.remove(p, 2)
 	end
-	-- rimuove il parametro 3 (ora 2) se è 1 o 2 (il numero di tipi)
-	if (p[2] == '1' or p[2] == '2') then
-		table.remove(p, 2)
-	end
-	-- rimuove i parametri 4 e 5 (ora 2 e 3) se sono tipi
-	if (table.search(libdata.allTypes, string.lower(p[2])) or string.lower(p[2]) == 'coleottero') then
+	-- rimuove i parametri 3, 4 e 5 (ora 2, 3 e 4)
+	--		se 3 è 1 o 2 (il numero di tipi)
+	--		e se 4 e 5 sono tipi
+	if ((p[2] == '1' or p[2] == '2') and
+		(table.search(libdata.allTypes, string.lower(p[3])) or string.lower(p[3]) == 'coleottero')) then
+		table.remove(p, 4)
 		table.remove(p, 3)
 		table.remove(p, 2)
 	end

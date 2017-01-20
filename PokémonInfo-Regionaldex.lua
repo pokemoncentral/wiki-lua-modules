@@ -75,9 +75,9 @@ local dexlist = function(dexes)
 		return nil
 	end
 	local store = {}
-	local str = [=[<span class="same-line" style="width:${wd}%"><div class="small-font">'''[[Elenco Pokémon secondo il Pokédex di ${reg}|<span style="color:#000">${reg}</span>]]'''</div>#${rdex}</span>]=]
-	local kalos = [=[<span class="same-line" style="width:${wd}%"><div class="small-font">'''[[Elenco Pokémon secondo i Pokédex di Kalos#Pokédex di Kalos ${reg}|<span style="color:#${c}">Kalos</span>]]'''</div>#<span class="explain" title="${reg}">${rdex}</span></span>]=]
-	local incl = '<includeonly>[[Category:Pokémon originari della regione di ${reg}|${rdex}]]</includeonly>'
+	local str = [=[<span><div class="small-font">'''[[Elenco Pokémon secondo il Pokédex di ${reg}|<span style="color:#000">${reg}</span>]]'''</div>#${rdex}</span>]=]
+	local kalos = [=[<span><div class="small-font">'''[[Elenco Pokémon secondo i Pokédex di Kalos#Pokédex di Kalos ${reg}|<span style="color:#${c}">Kalos</span>]]'''</div>#<span class="explain" title="${reg}">${rdex}</span></span>]=]
+	local incl = '<includeonly>[[Categoria:Pokémon originari della regione di ${reg}|${rdex}]]</includeonly>'
 	for region, rdex in pairs(dexes) do
 		if region:find('kalos') then
 			local zone = region:match('kalos(%a+)$')
@@ -88,19 +88,22 @@ local dexlist = function(dexes)
 			if oldDexTable then
 				local oldDex = getOldDex(tonumber(rdex), oldDexTable)
 				if oldDex ~= rdex then
-					rdex = insOld[region](rdex, oldDex)
+					if oldDex then
+						rdex = insOld[region](rdex, oldDex)
+					else
+						rdex = insOld[region](rdex, 'Non disponibile')
+					end
 				end
 			end
 			table.insert(store, string.interp(str, {reg = string.fu(region), rdex = rdex}))
 		end
 	end
 	table.sort(store, region_sort)
-	local width = #store == 6 and 33 or math.floor(100 / #store)
 	for k, v in ipairs(store) do
-		store[k] = string.interp(v, {wd = width})
+		store[k] = v
 	end
 	if #store > 5 then
-		table.insert(store, 4, '<div></div>')
+		table.insert(store, 1 + math.floor(#store / 2), '</div><div class="flex-row-center-around">')
 	end
 	return table.concat(store)
 end
@@ -126,7 +129,8 @@ end
 rdex.regionaldex = function(frame)
 	local ndex = string.trim(frame.args[1]) or '000'
 	return string.interp([=[| colspan="2" | <div>[[Pokédex Regionale|<span style="color:#000;">'''Pokédex Regionali'''</span>]]</div>
-<div class="roundy" style="background: #fff; padding-top: 0.5ex; padding-bottom: 0.5ex;">${dexlist}</div>
+<div class="roundy" style="background: #fff; padding-top: 0.5ex; padding-bottom: 0.5ex;">
+<div class="flex-row-center-around">${dexlist}</div>
 ]=],
 {
 	dexlist = dexlist(search(ndex)) or 'In nessun Pokédex Regionale'
@@ -134,6 +138,6 @@ rdex.regionaldex = function(frame)
 end
 
 rdex.Regionaldex, rdex.RegionalDex = rdex.regionaldex, rdex.regionaldex
-arg = {'026'}
+arg = {'054'}
 -- return rdex
 print(rdex.regionaldex{args={arg[1]}})
