@@ -33,11 +33,11 @@ eff.coleottero = {normale = 1, fuoco = 0.5, acqua = 1, elettro = 1, erba = 2, gh
 eff.roccia = {normale = 1, fuoco = 2, acqua = 1, elettro = 1, erba = 1, ghiaccio = 2, lotta = 0.5, veleno = 1, terra = 0.5,
 	volante = 2, psico = 1, coleottero = 2, roccia = 1, spettro = 1, drago = 1, buio = 1, acciaio = 0.5}
 eff.spettro = {normale = 0, fuoco = 1, acqua = 1, elettro = 1, erba = 1, ghiaccio = 1, lotta = 1, veleno = 1, terra = 1,
-	volante = 1, psico = 2, coleottero = 1, roccia = 1, spettro = 2, drago = 1, buio = 0.5, acciaio = 1}
+	volante = 1, psico = 2, coleottero = 1, roccia = 1, spettro = 2, drago = 1, buio = 0.5, acciaio = 0.5}
 eff.drago = {normale = 1, fuoco = 1, acqua = 1, elettro = 1, erba = 1, ghiaccio = 1, lotta = 1, veleno = 1, terra = 1,
 	volante = 1, psico = 1, coleottero = 1, roccia = 1, spettro = 1, drago = 2, buio = 1, acciaio = 0.5}
 eff.buio = {normale = 1, fuoco = 1, acqua = 1, elettro = 1, erba = 1, ghiaccio = 1, lotta = 0.5, veleno = 1, terra = 1,
-	volante = 1, psico = 2, coleottero = 1, roccia = 1, spettro = 2, drago = 1, buio = 0.5, acciaio = 1}
+	volante = 1, psico = 2, coleottero = 1, roccia = 1, spettro = 2, drago = 1, buio = 0.5, acciaio = 0.5}
 eff.acciaio = {normale = 1, fuoco = 0.5, acqua = 0.5, elettro = 0.5, erba = 1, ghiaccio = 2, lotta = 1, veleno = 1, terra = 1,
 	volante = 1, psico = 1, coleottero = 1, roccia = 2, spettro = 1, drago = 1, buio = 1, acciaio = 0.5}
 eff.coleot = eff.coleottero

@@ -31,7 +31,7 @@ local oop = require('Wikilib-oop')
 local tab = require('Wikilib-tables')
 local sig = require("Wikilib-sigle")
 local drp = require('DebRes')
-local et = require('EffTipi1-glitch')
+local et = require('EffTipi-1-glitch')
 local glitch = require("Glitch-data")
 
 --[[
@@ -138,7 +138,7 @@ EffTable.new = function(name, game)
 	--]]
 	this.footer = {}
 	if data.typeEffectiveness then
-		table.insert(this.footer, string.interp(EffTable.FooterStrings.CHANGETYPE, 
+		table.insert(this.footer, string.interp(EffTable.FooterStrings.CHANGETYPE,
 			{
 				typeOr = string.interp(data.type2 and EffTable.FooterStrings.DUALTYPE or EffTable.FooterStrings.TYPE, {
 					type1 = data.type1,
@@ -205,7 +205,5 @@ end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
-local arg = {"Missingno."}
-dr.DebRes{args=arg}
 print(dr.DebRes{args=arg})
 -- return dr

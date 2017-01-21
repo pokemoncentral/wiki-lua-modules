@@ -2,7 +2,7 @@
 -- Non calcola i danni di una mossa di tipo glitch, permette solo di calcolare
 -- i danni di un certo tipo di mossa contro un Pokémon con tipi glitch
 
-local et = require('EffTipi1')
+local et = require('EffTipi-1')
 local tab = require('Wikilib-tables')
 
 local etg = {}

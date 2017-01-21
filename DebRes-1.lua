@@ -26,7 +26,7 @@ local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local tab = require('Wikilib-tables')
 local drp = require('DebRes')
-local et = require('EffTipi1')
+local et = require('EffTipi-1')
 local pokes = require("Poké-data")
 
 --[[
@@ -135,6 +135,6 @@ end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
---local arg = {"Parasect"}
---print(dr.DebRes{args=arg})
-return dr
+local arg = {"Parasect"}
+print(dr.DebRes{args=arg})
+-- return dr
