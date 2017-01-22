@@ -241,6 +241,9 @@ Gli argomenti sono named:
 		che rappresenta un box.
 	- printBoxes: stampa i box, ritornando
 		una stringa.
+	- altData: le informazioni sulle varie
+		forme del Pokémon, se non viene
+		passato vengono prese da AltForms-data
 
 La classe che rappresenta il box deve
 implementare la seguente interfaccia:
@@ -258,7 +261,7 @@ implementare la seguente interfaccia:
 	- hasLabel(): ritorna true se esiste la label.
 --]]
 l.makeFormsLabelledBoxes = function(args)
-	local altData = alts[args.name]
+	local altData = args.altData or alts[args.name]
 
 	if not altData then
 		return args.printBoxes({args.makeBox(args.name)})

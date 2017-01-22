@@ -77,5 +77,11 @@ et.attacco = function(eff, tipo)
 	return cerca_tipi(function (x) return et.efficacia(tipo, x, x) == eff end)
 end
 
+--Restituisce i dati di efficacia in attacco del tipo passato
+
+et.data = function(tipo)
+	return eff[tipo]
+end
+
 return et
 
