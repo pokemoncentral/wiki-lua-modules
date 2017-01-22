@@ -29,7 +29,7 @@ local data = require("Wikilib-data")
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local tab = require('Wikilib-tables')
-local sig = require("Wikilib-sigle")
+local sig = require('Wikilib-sigle')
 local drp = require('DebRes')
 local et = require('EffTipi-1-glitch')
 local glitch = require("Glitch-data")
@@ -175,9 +175,13 @@ dr.debRes = function(frame)
 		e nel caso prepara una table con l'elenco
 		dei giochi
 	--]]
-	for game, glitches in pairs(glitch) do
-		if tab.deepSearch(glitches, name) then
-			table.insert(games, game)
+	if p[2] or p.game then
+		table.insert(games, p[2] or p.game)
+	else
+		for game, glitches in pairs(glitch) do
+			if tab.deepSearch(glitches, name) then
+				table.insert(games, game)
+			end
 		end
 	end
 
