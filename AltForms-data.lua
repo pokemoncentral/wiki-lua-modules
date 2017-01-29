@@ -63,7 +63,7 @@ local makeLinks = function(black)
 	end
 
 	-- Link alle forme di alola, che puntano ad una
-	-- pagina apposita e non "Differenze di forma
+	-- pagina apposita e non "Differenze di forma"
 
 	link = link:gsub('Differenze di forma', 'Forma di Alola')
 	for _, poke in pairs(t.alola) do
@@ -156,9 +156,9 @@ t.aegislash.names = {S = 'Forma Spada', base = 'Forma Scudo'}
 t.pumpkaboo.names = {S = 'Mini', L = 'Grande', XL = 'Maxi', base = 'Normale'}
 t.zygarde.names = {D = 'Forma 10%', P = 'Forma Perfetta', base = 'Forma 50%'}
 t.hoopa.names = {L = 'Libero', base = 'Vincolato'}
-t.lycanroc.names = {N = 'Forma Notte', base = 'Forma Giorno'}
 t.oricorio.names = {C = 'Stile Cheerdance', H = 'Stile Hula', B = 'Stile Buyō',
 	base = 'Stile Flamenco'}
+t.lycanroc.names = {N = 'Forma Notte', base = 'Forma Giorno'}
 t.wishiwashi.names = {B = 'Forma Banco', base = 'Forma Individuale'}
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
