@@ -146,9 +146,9 @@ t.rotom.names = {C = 'Rotom Calore', L = 'Rotom Lavaggio', G = 'Rotom Gelo',
 t.giratina.names = {O = 'Forma Originale', base = 'Forma Alterata'}
 t.shaymin.names = {C = 'Forma Cielo', base = 'Forma Terra'}
 t.basculin.names = {B = 'Forma Lineablu', base = 'Forma Linearossa'}
-t.darmanitan.names = {Z = 'Stato Zen', base = 'Forma Normalità'}
+t.darmanitan.names = {Z = 'Stato Zen', base = 'Stato Normale'}
 t.tornadus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
-t.kyurem.names = {N = 'Kyurem Nero', B = 'Kyurem Bianco', base = 'Forma Base'}
+t.kyurem.names = {N = 'Kyurem Nero', B = 'Kyurem Bianco', base = 'Forma di Kuyrem'}
 t.meloetta.names = {D = 'Forma Danza', base = 'Forma Canto'}
 t.greninja.names = {A = 'Forma Ash', base = 'Forma Normale'}
 t.meowstic.names = {F = 'Femmina', base = 'Maschio'}
