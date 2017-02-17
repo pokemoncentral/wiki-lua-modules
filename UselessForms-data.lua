@@ -45,6 +45,8 @@ t.pyroar = {}
 t.floette = {}
 t.furfrou = {}
 t.xerneas = {}
+t.silvally = {}
+t.minior = {}
 
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
@@ -85,6 +87,15 @@ t.furfrou.names = {C = 'Taglio Cuore', St = 'Taglio Stella',
 	Gu = 'Taglio Gentiluomo', R = 'Taglio Regina', K = 'Taglio Kabuki',
 	F = 'Taglio Faraone', base = 'Nessun Taglio'}
 t.xerneas.names = {A = 'Modo Attivo', base = 'Modo Relax'}
+t.silvally.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante',
+	Ve = 'Tipo Veleno', T = 'Tipo Terra', R = 'Tipo Roccia', Aq = 'Tipo Acqua',
+	C = 'Tipo Coleottero', Er = 'Tipo Erba', P = 'Tipo Psico', B = 'Tipo Buio',
+	S = 'Tipo Spettro', Ai = 'Tipo Acciaio', Fu = 'Tipo Fuoco',
+	D = 'Tipo Drago', Fo = 'Tipo Folletto', El = 'Tipo Elettro',
+	G = 'Tipo Ghiaccio'}
+t.minior.names = {R = 'Nucleo Rosso', A = 'Nucleo Arancione', G = 'Nucleo Giallo',
+	Ve = 'Nucleo Verde', B = 'Nucleo Blu', I = 'Nucleo Indaco',
+	Vi = 'Nucleo Violetto', base = 'Forma Meteora'}
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
@@ -131,6 +142,12 @@ t.furfrou.ext = {cuore = 'C', stella = 'St', diamante = 'D', dignorina = 'Si',
 	gentildonna = 'Gd', gentiluomo = 'Gu', regina = 'R', kabuki = 'K',
 	faraone = 'F'}
 t.xerneas.ext = {attivo = 'A'}
+t.silvally.ext = {lotta = 'L', volante = 'Vo', veleno = 'Ve', terra = 'T',
+	roccia = 'R', acqua = 'A', coleottero = 'C', erba = 'Er', psico = 'P',
+	buio = 'B', spettro = 'S', acciaio = 'A', fuoco = 'Fu', drago = 'D',
+	folletto = 'Fo', elettro = 'El', ghiaccio = 'G', coleot = 'C'}
+t.minior.ext = {rosso = 'R', arancione = 'A', giallo = 'G', verde = 'Ve',
+	blu = 'B', indaco = 'I', violetto = 'Vi'}
 
 -- Arrays in cui è memorizzato l'ordine con cui le varie forme appaiono
 -- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
@@ -154,6 +171,9 @@ t.pyroar.gamesOrder = t.unfezant.gamesOrder
 t.floette.gamesOrder = {'base', 'G', 'A', 'Bl', 'Bi'}
 t.furfrou.gamesOrder = {'base', 'C', 'F', 'Gd', 'Gu', 'K', 'R', 'Si', 'St'}
 t.xerneas.gamesOrder = {'base', 'A'}
+t.silvally.gamesOrder = {'base', 'L', 'Vo', 'Ve', 'T', 'R', 'C', 'S', 'Ai', 'Fu',
+	'Aq', 'Er', 'El', 'P', 'G', 'D', 'B', 'Fo'}
+t.minior.gamesOrder = {'base', 'R', 'A', 'G', 'Ve', 'B', 'I', 'Vi'}
 
 -- Tabelle contenenti le sigle dei primi giochi in ordine cronologico in cui
 -- la forma è supportata, compresa la forma base
@@ -182,7 +202,11 @@ t.floette.since = {G = 'xy', A = 'xy', Bi = 'xy', Bl = 'xy', base = 'xy'}
 t.furfrou.since = {C = 'xy', St = 'xy', D = 'xy', Si = 'xy', Gd = 'xy',
 	Gu = 'xy', R = 'xy', K = 'xy', F = 'xy', base = 'xy'}
 t.xerneas.since = {A = 'xy', base = 'xy'}
-
+t.silvally.since = {base = 'sl', L = 'sl', Vo = 'sl', Ve = 'sl', T = 'sl',
+	R = 'sl', Aq = 'sl', C = 'sl', Er = 'sl', P = 'sl', B = 'sl', S = 'sl',
+	Ai = 'sl', Fu = 'sl', D = 'sl', Fo = 'xy', El = 'sl', G = 'sl'}
+t.minior.since = {base = 'sl', R = 'sl', A = 'sl', G = 'sl', Ve = 'sl',
+	B = 'sl', I = 'sl', Vi = 'sl'}
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 
@@ -210,5 +234,7 @@ t[670] = t.floette
 t[671] = t.florges
 t[676] = t.furfrou
 t[716] = t.xerneas
+t[773] = t.silvally
+t[774] = t.minior
 
 return t

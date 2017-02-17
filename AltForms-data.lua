@@ -63,7 +63,7 @@ local makeLinks = function(black)
 	end
 
 	-- Link alle forme di alola, che puntano ad una
-	-- pagina apposita e non "Differenze di forma
+	-- pagina apposita e non "Differenze di forma"
 
 	link = link:gsub('Differenze di forma', 'Forma di Alola')
 	for _, poke in pairs(t.alola) do
@@ -146,9 +146,9 @@ t.rotom.names = {C = 'Rotom Calore', L = 'Rotom Lavaggio', G = 'Rotom Gelo',
 t.giratina.names = {O = 'Forma Originale', base = 'Forma Alterata'}
 t.shaymin.names = {C = 'Forma Cielo', base = 'Forma Terra'}
 t.basculin.names = {B = 'Forma Lineablu', base = 'Forma Linearossa'}
-t.darmanitan.names = {Z = 'Stato Zen', base = 'Forma Normalità'}
+t.darmanitan.names = {Z = 'Stato Zen', base = 'Stato Normale'}
 t.tornadus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
-t.kyurem.names = {N = 'Kyurem Nero', B = 'Kyurem Bianco', base = 'Forma Base'}
+t.kyurem.names = {N = 'Kyurem Nero', B = 'Kyurem Bianco', base = 'Forma di Kuyrem'}
 t.meloetta.names = {D = 'Forma Danza', base = 'Forma Canto'}
 t.greninja.names = {A = 'Forma Ash', base = 'Forma Normale'}
 t.meowstic.names = {F = 'Femmina', base = 'Maschio'}
@@ -156,9 +156,9 @@ t.aegislash.names = {S = 'Forma Spada', base = 'Forma Scudo'}
 t.pumpkaboo.names = {S = 'Mini', L = 'Grande', XL = 'Maxi', base = 'Normale'}
 t.zygarde.names = {D = 'Forma 10%', P = 'Forma Perfetta', base = 'Forma 50%'}
 t.hoopa.names = {L = 'Libero', base = 'Vincolato'}
-t.lycanroc.names = {N = 'Forma Notte', base = 'Forma Giorno'}
 t.oricorio.names = {C = 'Stile Cheerdance', H = 'Stile Hula', B = 'Stile Buyō',
 	base = 'Stile Flamenco'}
+t.lycanroc.names = {N = 'Forma Notte', base = 'Forma Giorno'}
 t.wishiwashi.names = {B = 'Forma Banco', base = 'Forma Individuale'}
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
