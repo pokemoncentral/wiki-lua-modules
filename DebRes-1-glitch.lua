@@ -113,7 +113,7 @@ EffTable.new = function(name, game)
 	types = table.map(types, string.lower)
 
 	-- Colori per la stampa
-	this:createColors({type1 = data.type1, type2 = data.type2})
+	this:createColors({type1 = data.type1, type2 = data.type2 or data.type1})
 
 	--[[
 		Per ogni possibile efficacia, se vi sono
