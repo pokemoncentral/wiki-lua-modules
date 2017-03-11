@@ -8,6 +8,7 @@ local mw = require('mw')
 local w = require('Wikilib')
 local txt = require('Wikilib-strings')
 local c = require("Colore-data")
+local css = require('Css')
 local gendata = require("Gens-data")
 
 -- Tabelle dati
@@ -39,7 +40,7 @@ local cells = {}
 -- Funzione per generale le celle dei level
 
 cells.level = function(gen)
-    local str = '! style="background:#${bg};" colspan="2" width="35px" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
+	local str = '! class="roundytop" style="background: #${bg}; width: 35px;" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
     local row = {}
     for a = gen, gendata.latest do
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
@@ -51,7 +52,7 @@ end
 -- Genera le celle dei tm
 
 cells.tm = function(gen, tms)
-    local str = '! style="background:#${bg}; width: 35px; line-height: 1em;" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]<div class="text-small">${tm}</div>\n'
+	local str = '! class="roundytop" style="background: #${bg}; width: 35px; line-height: 1em;" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]<div class="text-small">${tm}</div>\n'
     local row, l = {}, ''
     for a = gen, gendata.latest do
         l = tms[a] == 'NO' and '<span style="color:#FFF;">Ness.</span>' or string.interp('[[${tm}|<span style="color:#FFF;">${tm}</span>]]', {tm = tms[a]})
@@ -64,7 +65,7 @@ end
 -- Genera le celle del breed
 
 cells.breed = function(gen)
-    local str = '! style="background:#${bg};" colspan="2" width="200px" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
+	local str = '! class="roundytop" style="background: #${bg};" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
     local row = {}
     for a = gen, gendata.latest do
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
@@ -76,7 +77,7 @@ end
 -- Genera le celle del tutor
 
 cells.tutor = function(gen, gms)
-    local str = '! width="35px" style="background:#${bg}; color: #FFF;" | ${game}\n'
+	local str = '! ! class="roundytop" style="background: #${bg}; color: #fff;" colspan="2" | ${game}\n'
     local row = {}
     for a in ipairs(gms) do
     	if gms[a] == 'yes' then
@@ -90,14 +91,15 @@ end
 -- Ritorna le prime celle, comuni a tutti gli headers
 
 local headers = function(tipo, gen, kind)
-    return string.interp([=[{| class="roundy text-center white-rows roundy-footer" style="background: #${bg};  border: 5px solid #${bd}"
-! class="roundytl" style="background:#${bd};" rowspan="${rs}" | #
-! style="background:#${bd};" rowspan="${rs}" colspan="2" | Pokémon
-! style="background:#${bd};" colspan="2" rowspan="${rs}" | Gruppo uova
-! class="roundytr" style="background:#${bd};" colspan="${cs}" | ]=],
+	return string.interp([=[
+{| class="roundy text-center white-rows roundy-footer" style="${bg}; border-spacing: 0; padding: 0.3ex;"
+! class="roundytl" rowspan="${rs}" | #
+! rowspan="${rs}" colspan="2" | Pokémon
+! class="hidden-sm" rowspan="${rs}" | Tipo
+! class="hidden-sm" rowspan="${rs}" | Gruppo uova
+! class="roundytr" colspan="${cs}" | ]=],
 {
-    bg = c[tipo].dark,
-    bd = c[tipo].normale,
+	bg = css.horizGradLua(tipo, 'normale', tipo, 'dark'),
     rs = kind == 'event' and 1 or 2,
     cs = cs[kind](gen)
 })
@@ -219,12 +221,13 @@ j.Tutor7 = j.tutor7
 -- Mosse ombra
 
 j.shadowh = function(frame)
-    local p = w.trimAndMap(mw.clone(frame.args), string.lower)
-    local game = p[1] or 'xd'
-    local colo = string.interp('\n! width="100px" style="background:#${bg};" | [[Pokémon Colosseum|<span style="color:#555">C</span>]]\n', {bg = c.colo.normale})
-    return string.interp([=[${str}Livello
+	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
+	local game = p[1] or 'xd'
+
+	local colo = string.interp('\n! class="roundytop" style="background: #${bg}; width: 100px;" | [[Pokémon Colosseum|<span style="color:#555">C</span>]]\n', {bg = c.colo.normale})
+	return string.interp([=[${str}Livello
 |-${colo}
-! width="100px" style="background:#${bg};" | [[Pokémon XD: Tempesta Oscura|<span style="color:#FFF">XD</span>]]]=],
+! class="roundytop" style="background: #${bg}; width: 100px;" | [[Pokémon XD: Tempesta Oscura|<span style="color:#FFF">XD</span>]]]=],
 {
     str = headers('xd', game == 'colo' and gendata.latest or gendata.latest - 1,
 		'level'),
@@ -239,9 +242,9 @@ j.Shadowh = j.shadowh
 
 local foot = function(interpData)
 	return string.interp([=[|- class="text-left"
-| style="background: #${bg}; font-size: 85%;" colspan="${cs}" |
-* I Pokémon in '''grassetto''' sono quelli che ricevono lo [[Same-type attack bonus|<span style="color:#000;">STAB</span>]] dalla mossa.
-* I Pokémon in ''corsivo'' sono quelli con evoluzioni o [[Differenze di forma|<span style="color:#000">forme alternative</span>]] che ricevono lo STAB.${last}
+| class="text-small" style="background: transparent;" colspan="${cs}" |
+* I Pokémon in '''grassetto''' sono quelli che ricevono lo [[Same-type attack bonus|<span style="color:#333;">STAB</span>]] dalla mossa.
+* I Pokémon in ''corsivo'' sono quelli con evoluzioni o [[Differenze di forma|<span style="color:#333">forme alternative</span>]] che ricevono lo STAB.${last}
 |}]=], interpData)
 end
 
@@ -268,12 +271,16 @@ end
 j.div = function(frame)
     local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     local gen = tonumber(p[1]) or 0
+    local genColor = gendata[gen].region
     return string.interp([=[
 
 |-
-! colspan="6" style="background: #${bg};" | [[${genl} generazione|<span style="color:#${tc}">${genl} generazione</span>]]]=],
-        {bg = c[gendata[gen].region].light, genl = string.fu(gendata[gen].ext),
-			tc = c[gendata[gen].region].dark})
+! colspan="6" style="${bg}" | [[${genl} generazione|<span style="color:#${tc}">${genl} generazione</span>]]]=],
+	{
+		bg = css.horizGradLua(genColor, 'light', genColor, 'normale'),
+		genl = string.fu(gendata[gen].ext),
+		tc = c[gendata[gen].region].dark
+	})
 end
 
 j.Div = j.div

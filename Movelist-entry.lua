@@ -11,6 +11,8 @@ local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local forms = require('Wikilib-forms')
 local c = require("Colore-data")
+local css = require('Css')
+local box = require('Boxtipo')
 local gendata = require("Gens-data")
 local sup = require("Sup-data")
 local pokes = require("Poké-data")
@@ -47,13 +49,14 @@ Non sono presenti valori default
 
 --]]
 local makeCell = function(bg, tc, cs, cnt)
-	return string.interp([[| style="background:#${bg}; color:#${tc};" colspan="${cs}" | '''${cnt}''']],
-{
-	bg = bg,
-	tc = tc,
-	cs = cs,
-	cnt = cnt
-})
+	return string.interp([[| style="color: #${tc}; height: 100%; padding: 0.8ex 0.3ex;" colspan="${cs}" | ${content}]], {
+		tc = tc,
+		cs = cs,
+		content = string.interp(string.lower(bg) == 'fff' and [['''${cnt}''']] or [[<div class="text-center roundy-5 flex flex-row flex-main-center flex-items-center" style="${bg}; padding: 0 2px; height: 100%;">'''${cnt}'''</div>]], {
+			bg = string.lower(bg) == 'fff' and '' or css.horizGradLua(bg, 'normale', bg, 'light'),
+			cnt = cnt,
+		}),
+	})
 end
 
 --[[
@@ -124,8 +127,8 @@ il title
 
 --]]
 local makeTitleCell = function(content, cellData)
-	return makeCell(content == '×' and 'FFF' or c[cellData.bg].light,
-			c[cellData.txt].dark, '1',
+	return makeCell(content == '×' and 'FFF' or cellData.bg,
+			cellData.txt, '1',
 			table.concat{'<span class="explain" title="', cellData.abbr,
 			'">', content, '</span>'})
 end
@@ -140,9 +143,9 @@ presi dai dati forniti.
 --]]
 local makeSupCell = function(content, cellData)
 	if content == '×' then
-		return makeCell('FFF', c[cellData.txt].dark, '1', content)
+		return makeCell('FFF', cellData.txt, '1', content)
 	else
-		return makeCell(c[cellData.bg].light, c[cellData.txt].dark, '1',
+		return makeCell(cellData.bg, cellData.txt, '1',
 			content .. sup[cellData.abbr])
 	end
 end
@@ -190,7 +193,7 @@ local tail = function(startGen, data, splitCells)
 			bgColor = 'FFF'
 			txtColor = '000'
 		else
-			bgColor = c[gendata[k].region].normale
+			bgColor = gendata[k].region
 			txtColor = 'FFF'
 		end
 		table.insert(store, makeCell(bgColor, txtColor, '2', cellData))
@@ -213,11 +216,19 @@ local head = function(ndex, stab, notes, form)
 	local pokedata = table.cloneLoadData(pokes[abbr == 'base' and tonumber(ndexFigures) or ndexFigures .. abbr]
 		or {name = 'Missingno.', ndex = '000'})
 	pokedata = table.merge(pokedata, table.cloneLoadData(groups[pokedata.ndex] or {group1 = 'sconosciuto'}))
-	return string.interp([=[|-
-| style="width: 26px;" | ${num}
-| style="width: 26px;" | ${ani}
-| style="width: 75px;" | ${stab}[[${name}]]${stab}${notes}${forml}
-| style="background:#${std}; width: ${wd} | [[${gruppo1} (gruppo uova)|<span style="color:#FFF;">${gruppo1}</span>]]${gruppo2}
+	pokedata.group1 = pokedata.group1 == 'coleottero' and 'Coleot' or string.fu(pokedata.group1)
+	pokedata.group2 = pokedata.group2 and (pokedata.group2 == 'coleottero' and 'Coleot' or string.fu(pokedata.group2)) or nil
+	pokedata.type2 = pokedata.type2 ~= pokedata.type1 and string.fu(pokedata.type2) or nil
+	pokedata.type1 = string.fu(pokedata.type1)
+	local boxClasses = '-5 flex flex-row flex-main-center flex-items-center'
+	local boxStyles = 'padding: 0 2px; margin-bottom: 1px;'
+
+	return string.interp([=[|- style="height: 100%;"
+| ${num}
+| ${ani}
+| ${stab}[[${name}]]${stab}${notes}${forml}
+| class="hidden-sm" style="height: 100%;${typesmall} padding: 0.8ex 0.3ex;" | ${types}
+| class="hidden-sm" style="height: 100%;${groupsmall} padding: 0.8ex 0.3ex;" | ${groups}
 ]=],
 {
 	num = ndexFigures,
@@ -227,10 +238,10 @@ local head = function(ndex, stab, notes, form)
 	notes = lib.makeNotes(notes or ''),
 	forml = forms.getlink(ndex, false, form),
 	std = c[pokedata.group1 .. '_uova'].normale,
-	gruppo1 = pokedata.group1 == 'coleottero' and 'Coleot' or string.fu(pokedata.group1),
-	wd = pokedata.group2 and '50px;"' or '100px;" colspan="2"',
-	gruppo2 = pokedata.group2 and string.interp('\n| style="width: 50px; background:#${std};" | [[${gruppo} (gruppo uova)|<span style="color:#FFF;">${gruppo}</span>]]',
-		{std = c[pokedata.group2 .. '_uova'].normale, gruppo = pokedata.group2 == 'coleottero' and 'Coleot' or string.fu(pokedata.group2)}) or ''
+	types = box.boxLua(pokedata.type1, boxClasses, boxStyles .. (pokedata.type2 and '' or ' height: 100%;')) .. (pokedata.type2 and box.boxLua(pokedata.type2, boxClasses, boxStyles) or ''),
+	typesmall = pokedata.type2 and 'font-size: 90%;' or '',
+	groups = box.boxColorLua(pokedata.group1, pokedata.group1 .. ' (gruppo uova)', pokedata.group1 .. '_uova', boxClasses, boxStyles .. (pokedata.group2 and '' or ' height: 100%;')) .. (pokedata.group2 and box.boxColorLua(pokedata.group2, pokedata.group2 .. ' (gruppo uova)', pokedata.group2 .. '_uova', boxClasses, boxStyles) or ''),
+	groupsmall = pokedata.group2 and 'font-size: 90%;' or '',
 })
 end
 
