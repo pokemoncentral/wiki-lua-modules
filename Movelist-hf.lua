@@ -77,7 +77,7 @@ end
 -- Genera le celle del tutor
 
 cells.tutor = function(gen, gms)
-	local str = '! ! class="roundytop" style="background: #${bg}; color: #fff;" colspan="2" | ${game}\n'
+	local str = '! class="roundytop" style="background: #${bg}; color: #fff; min-width: 6ex" | ${game}\n'
     local row = {}
     for a in ipairs(gms) do
     	if gms[a] == 'yes' then
@@ -96,10 +96,10 @@ local headers = function(tipo, gen, kind)
 ! class="roundytl" rowspan="${rs}" | #
 ! rowspan="${rs}" colspan="2" | Pokémon
 ! class="hidden-sm" rowspan="${rs}" | Tipo
-! class="hidden-sm" rowspan="${rs}" | Gruppo uova
+! class="hidden-sm" style="padding: 0 0.7ex;" rowspan="${rs}" | Gruppo uova
 ! class="roundytr" colspan="${cs}" | ]=],
 {
-	bg = css.horizGradLua(tipo, 'normale', tipo, 'dark'),
+	bg = css.horizGradLua(tipo, 'light', tipo, 'normale'),
     rs = kind == 'event' and 1 or 2,
     cs = cs[kind](gen)
 })

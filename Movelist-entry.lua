@@ -32,11 +32,10 @@ local gameGens = {Y = 1, C = 2, FRLG = 3, HGSS = 4,
 		PTHGSS = 4, B2W2 = 5, ORAS = 6, SM = 7}
 
 -- Contiene i colori di background delle celle del tutor
-local tutorCellsColors = {c.cristallo.normale, c.rossofuoco.normale,
-		c.smeraldo.normale, c.xd.normale, c.diamante.normale,
-		c.platino.normale, c.heartgold.normale, c.nero.normale,
-		c.nero2.normale, c.x.normale, c.rubinoomega.normale,
-		c.sole.normale}
+local tutorCellsColors = {'cristallo', 'rossofuoco',
+	'smeraldo', 'xd', 'diamante', 'platino', 'heartgold',
+	'nero', 'nero2', 'x', 'rubinoomega', 'sole'
+}
 
 --[[
 
@@ -216,8 +215,8 @@ local head = function(ndex, stab, notes, form)
 	local pokedata = table.cloneLoadData(pokes[abbr == 'base' and tonumber(ndexFigures) or ndexFigures .. abbr]
 		or {name = 'Missingno.', ndex = '000'})
 	pokedata = table.merge(pokedata, table.cloneLoadData(groups[pokedata.ndex] or {group1 = 'sconosciuto'}))
-	pokedata.group1 = pokedata.group1 == 'coleottero' and 'Coleot' or string.fu(pokedata.group1)
-	pokedata.group2 = pokedata.group2 and (pokedata.group2 == 'coleottero' and 'Coleot' or string.fu(pokedata.group2)) or nil
+	pokedata.group1show = pokedata.group1 == 'coleottero' and 'Coleot' or string.fu(pokedata.group1)
+	pokedata.group2show = pokedata.group2 == 'coleottero' and 'Coleot' or string.fu(pokedata.group2)
 	pokedata.type2 = pokedata.type2 ~= pokedata.type1 and string.fu(pokedata.type2) or nil
 	pokedata.type1 = string.fu(pokedata.type1)
 	local boxClasses = '-5 flex flex-row flex-main-center flex-items-center'
@@ -240,7 +239,7 @@ local head = function(ndex, stab, notes, form)
 	std = c[pokedata.group1 .. '_uova'].normale,
 	types = box.boxLua(pokedata.type1, boxClasses, boxStyles .. (pokedata.type2 and '' or ' height: 100%;')) .. (pokedata.type2 and box.boxLua(pokedata.type2, boxClasses, boxStyles) or ''),
 	typesmall = pokedata.type2 and 'font-size: 90%;' or '',
-	groups = box.boxColorLua(pokedata.group1, pokedata.group1 .. ' (gruppo uova)', pokedata.group1 .. '_uova', boxClasses, boxStyles .. (pokedata.group2 and '' or ' height: 100%;')) .. (pokedata.group2 and box.boxColorLua(pokedata.group2, pokedata.group2 .. ' (gruppo uova)', pokedata.group2 .. '_uova', boxClasses, boxStyles) or ''),
+	groups = box.boxColorLua(pokedata.group1show, pokedata.group1 .. ' (gruppo uova)', pokedata.group1 .. '_uova', boxClasses .. (pokedata.group1show == 'Non ancora scoperto' and ' text-small' or ''), boxStyles .. (pokedata.group2 and '' or ' height: 100%;')) .. (pokedata.group2 and box.boxColorLua(pokedata.group2show, pokedata.group2 .. ' (gruppo uova)', pokedata.group2 .. '_uova', boxClasses, boxStyles) or ''),
 	groupsmall = pokedata.group2 and 'font-size: 90%;' or '',
 })
 end

@@ -296,7 +296,7 @@ t.meowth.anchor = 'Meowth e Persian'
 t.geodude.anchor = 'Geodude, Graveler e Golem'
 t.grimer.anchor = 'Grimer e Muk'
 t.wormadam.anchor = 'Burmy e Wormadam'
-t.tornadus.anchor = 'Trio dei Kami'
+t.tornadus.anchor = 'Forze della Natura'
 t.pumpkaboo.anchor = 'Pumpkaboo e Gourgeist'
 
 -- Link alle forme alternative.
