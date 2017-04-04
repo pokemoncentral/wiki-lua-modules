@@ -394,7 +394,7 @@ m.tutor = function(frame)
 		if p[k] == 'Yes' then
 			table.insert(store, makeCell(tutorCellsColors[k - 1], 'FFF', '1', '✔'))
 		elseif p[k] == 'No' then
-			table.insert(store, makeCell('FFF', 'FFF', '1', '&nbsp;'))
+			table.insert(store, makeCell('FFF', '000', '1', '×'))
 		end
 	end
 	return table.concat(store, '\n')
