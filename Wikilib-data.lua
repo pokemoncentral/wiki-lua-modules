@@ -4,7 +4,7 @@ local t = {}
 
 -- Numero totale dei Pokémon
 
-t.pokeNum = 801
+t.pokeNum = 802
 t.poke_num = t.pokeNum
 
 --[[
