@@ -90,7 +90,7 @@ Chiamata da lua; argomenti:
 --]]
 
 b.boxLua = function(tipo, class, style)
-	tipo = string.trim(tipo or 'Sconosciuto')
+	tipo = string.fu(string.trim(tipo or 'Sconosciuto'))
 	return b.boxColorLua(tipo, tipo .. ' (tipo)', tipo, class, style, 'FFF')
 end
 

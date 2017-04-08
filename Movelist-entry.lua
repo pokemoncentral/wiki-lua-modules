@@ -215,12 +215,12 @@ local head = function(ndex, stab, notes, form)
 	local pokedata = table.cloneLoadData(pokes[abbr == 'base' and tonumber(ndexFigures) or ndexFigures .. abbr]
 		or {name = 'Missingno.', ndex = '000'})
 	pokedata = table.merge(pokedata, table.cloneLoadData(groups[pokedata.ndex] or {group1 = 'sconosciuto'}))
-	pokedata.group1show = pokedata.group1 == 'coleottero' and 'Coleot' or string.fu(pokedata.group1)
+	pokedata.group1show = pokedata.group1 == 'coleottero' and 'Coleot' or (pokedata.group1 == 'non ancora scoperto' and 'Non ancora<div>scoperto</div>' or string.fu(pokedata.group1))
 	pokedata.group2show = pokedata.group2 == 'coleottero' and 'Coleot' or string.fu(pokedata.group2)
 	pokedata.type2 = pokedata.type2 ~= pokedata.type1 and string.fu(pokedata.type2) or nil
 	pokedata.type1 = string.fu(pokedata.type1)
 	local boxClasses = '-5 flex flex-row flex-main-center flex-items-center'
-	local boxStyles = 'padding: 0 2px; margin-bottom: 1px;'
+	local boxStyles = 'padding: 0 2px; margin-bottom: 0.2ex;'
 
 	return string.interp([=[|- style="height: 100%;"
 | ${num}
@@ -237,9 +237,9 @@ local head = function(ndex, stab, notes, form)
 	notes = lib.makeNotes(notes or ''),
 	forml = forms.getlink(ndex, false, form),
 	std = c[pokedata.group1 .. '_uova'].normale,
-	types = box.boxLua(pokedata.type1, boxClasses, boxStyles .. (pokedata.type2 and '' or ' height: 100%;')) .. (pokedata.type2 and box.boxLua(pokedata.type2, boxClasses, boxStyles) or ''),
+	types = box.boxLua(pokedata.type1, boxClasses, boxStyles .. (pokedata.type2 and 'height: 50%;' or ' height: 100%;')) .. (pokedata.type2 and box.boxLua(pokedata.type2, boxClasses, boxStyles .. 'height: 50%;') or ''),
 	typesmall = pokedata.type2 and 'font-size: 90%;' or '',
-	groups = box.boxColorLua(pokedata.group1show, pokedata.group1 .. ' (gruppo uova)', pokedata.group1 .. '_uova', boxClasses .. (pokedata.group1show == 'Non ancora scoperto' and ' text-small' or ''), boxStyles .. (pokedata.group2 and '' or ' height: 100%;')) .. (pokedata.group2 and box.boxColorLua(pokedata.group2show, pokedata.group2 .. ' (gruppo uova)', pokedata.group2 .. '_uova', boxClasses, boxStyles) or ''),
+	groups = box.boxColorLua(pokedata.group1show, pokedata.group1 .. ' (gruppo uova)', pokedata.group1 .. '_uova', boxClasses, boxStyles .. (pokedata.group2 and 'height: 50%;' or ' height: 100%;')) .. (pokedata.group2 and box.boxColorLua(pokedata.group2show, pokedata.group2 .. ' (gruppo uova)', pokedata.group2 .. '_uova', boxClasses, boxStyles .. 'height: 50%;') or ''),
 	groupsmall = pokedata.group2 and 'font-size: 90%;' or '',
 })
 end
@@ -367,7 +367,7 @@ m.event = function(frame)
 	p = removeOldParams(p)
 
 	return string.interp([=[${h}
-| ${event}${level}]=],
+| style="padding: 0.5ex;" | ${event}${level}]=],
 {
 	h = head(p[1] or '000', p.STAB or '', p.notes or '', p.form or ''),
 	event = p[2] or 'Per la fine del mondo',
@@ -394,7 +394,7 @@ m.tutor = function(frame)
 		if p[k] == 'Yes' then
 			table.insert(store, makeCell(tutorCellsColors[k - 1], 'FFF', '1', '✔'))
 		elseif p[k] == 'No' then
-			table.insert(store, makeCell('FFF', 'FFF', '1', '&nbsp;'))
+			table.insert(store, makeCell('FFF', '000', '1', '×'))
 		end
 	end
 	return table.concat(store, '\n')

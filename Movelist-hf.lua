@@ -249,8 +249,7 @@ local foot = function(interpData)
 end
 
 j.footer = function(frame)
-    local p = w.trimAndMap(mw.clone(frame.args), string.lower)
-    return foot({bg = c[p[1] or 'pcwiki'].light,
+    return foot({
 		cs = 5 + cs.level(1),
 		last = ''})
 end
@@ -258,8 +257,7 @@ end
 -- Footer per le mosse apprese per livello
 
 j.levelf = function(frame)
-	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
-    return foot({bg = c[p[1] or 'pcwiki'].light,
+    return foot({
 		cs = 5 + cs.level(1),
 		last = [=[
 
