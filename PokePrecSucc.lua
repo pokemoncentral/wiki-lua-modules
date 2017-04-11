@@ -23,8 +23,22 @@ m.PokePrecSucc = function(frame)
 	local nxt = pokeData.ndex % data.pokeNum + 1
 	local prevTf, nxtTf = string.tf(prev), string.tf(nxt)
     return string.interp([=[
-<div class="roundy-20" style="${bg} margin: 1ex 0;">
-<div class="inline-block width-xl-45 text-right"><span class="inline-block width-xl-10">[[${nameprev}|<span style="color:#000">&larr;</span>]]</span><span class="inline-block width-xl-10">${staticprev}</span><span class="inline-block width-xl-80" style="padding: 0 1em; box-sizing: border-box;">[[${nameprev}|<span style="color:#000">#${prev}: ${nameprev}</span>]]</span></div><div class="inline-block text-center width-xl-10">[[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">${name}</span>]]</div><div class="inline-block width-xl-45"><span class="inline-block width-xl-80" style="padding: 0 1em; box-sizing: border-box;">[[${namenext}|<span style="color:#000">#${nxt}: ${namenext}</span>]]</span>${staticnext}[[${namenext}|<span style="color:#000">&rarr;</span>]]</div>
+<div class="roundy-20 flex flex-row flex-nowrap flex-main-space-between flex-items-center" style="${bg} margin: 1ex 0; padding: 0 3.5%;">
+	<div>
+		<span class="align-middle" style="padding-right: 1.5rem;">[[${nameprev}|<span style="color:#000">&larr;</span>]]</span>
+		${staticprev}
+	</div>
+	<div>
+		[[${nameprev}|<span style="color:#000">#${prev}: ${nameprev}</span>]]
+		<span style="padding: 0 5.5rem;">
+			[[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">${name}</span>]]
+		</span>
+		[[${namenext}|<span style="color:#000">#${nxt}: ${namenext}</span>]]
+	</div>
+	<div>
+		${staticnext}
+		<span class="align-middle" style="padding-left: 1.5rem;">[[${namenext}|<span style="color:#000">&rarr;</span>]]</span>
+	</div>
 </div>]=],
 {
 	bg = css.horizGradLua(type1, 'normale', type2, type1 == type2 and 'light' or 'normale'),

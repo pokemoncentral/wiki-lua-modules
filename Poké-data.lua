@@ -1475,7 +1475,7 @@ t.yungoos = {name = 'Yungoos', ndex = 734, type1 = 'normale', type2 = 'normale'}
 t[734] = t.yungoos
 t.gumshoos = {name = 'Gumshoos', ndex = 735, type1 = 'normale', type2 = 'normale'}
 t[735] = t.gumshoos
-t.grubbin = {name = 'Grubbin', ndex = 736, type1 = 'coleot', type2 = 'coleot'}
+t.grubbin = {name = 'Grubbin', ndex = 736, type1 = 'coleottero', type2 = 'coleottero'}
 t[736] = t.grubbin
 t.charjabug = {name = 'Charjabug', ndex = 737, type1 = 'coleot', type2 = 'elettro'}
 t[737] = t.charjabug
@@ -1591,9 +1591,9 @@ t.lunala = {name = 'Lunala', ndex = 792, type1 = 'psico', type2 = 'spettro'}
 t[792] = t.lunala
 t.nihilego = {name = 'Nihilego', ndex = 793, type1 = 'roccia', type2 = 'veleno'}
 t[793] = t.nihilego
-t.buzzwole = {name = 'Buzzwole', ndex = 794, type1 = 'coleottero', type2 = 'lotta'}
+t.buzzwole = {name = 'Buzzwole', ndex = 794, type1 = 'coleot', type2 = 'lotta'}
 t[794] = t.buzzwole
-t.pheromosa = {name = 'Pheromosa', ndex = 795, type1 = 'coleottero', type2 = 'lotta'}
+t.pheromosa = {name = 'Pheromosa', ndex = 795, type1 = 'coleot', type2 = 'lotta'}
 t[795] = t.pheromosa
 t.xurkitree = {name = 'Xurkitree', ndex = 796, type1 = 'elettro', type2 = 'elettro'}
 t[796] = t.xurkitree
@@ -1607,6 +1607,10 @@ t.necrozma = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'psico'}
 t[800] = t.necrozma
 t.magearna = {name = 'Magearna', ndex = 801, type1 = 'acciaio', type2 = 'folletto'}
 t[801] = t.magearna
+t.marshadow = {name = 'Marshadow', ndex = 802, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+t[802] = t.marshadow
+-- t.marshadow = {name = 'Marshadow', ndex = 802, type1 = 'lotta', type2 = 'spettro'}
+-- t[802] = t.marshadow
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
