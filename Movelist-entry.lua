@@ -28,7 +28,7 @@ Associa la generazione ad ogni sigla che può
 essere l'indice di un parametro
 
 --]]
-local gameGens = {Y = 1, C = 2, FRLG = 3, HGSS = 4,
+local gameGens = {Y = 1, C = 2, FRLG = 3, E = 3, HGSS = 4,
 		PTHGSS = 4, B2W2 = 5, ORAS = 6, SM = 7}
 
 -- Contiene i colori di background delle celle del tutor
@@ -74,6 +74,8 @@ splitCellsData.C = {{bg = 'oro', txt = 'argento', abbr = 'OA'},
 	{bg = 'cristallo', txt = 'cristallo', abbr = 'C'}}
 splitCellsData.FRLG = {{bg = 'rubino', txt = 'zaffiro', abbr = 'RZS'},
 	{bg = 'rossofuoco', txt = 'verdefoglia', abbr = 'RFVF'}}
+splitCellsData.E = {{bg = 'rubino', txt = 'zaffiro', abbr = 'RZRFVF'},
+	{bg = 'smeraldo', text = 'smeraldo', abbr = 'S'}}
 splitCellsData.HGSS = {{bg = 'diamante', txt = 'platino', abbr = 'DPPt'},
 	{bg = 'heartgold', txt = 'soulsilver', abbr = 'HGSS'}}
 splitCellsData.PtHGSS = {{bg = 'diamante', txt = 'perla', abbr = 'DP'},
@@ -351,7 +353,8 @@ primo argomento la generazione, seguita dagli altri
 --]]
 m.breed = function(frame)
 	return entry(mw.clone(frame.args), function(v) return v == 'No'
-			and '×' or (v == 'N/D' and 'N/D' or lib.insertnwlns(v, 6)) end, splitSup)
+			and '×' or (v:match('%#') and lib.insertnwlns(v, 6) or v)
+		end, splitSup)
 end
 
 m.Breed = m.breed
