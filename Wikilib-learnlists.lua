@@ -90,7 +90,7 @@ lib.insertnwlns = function(str, linelength, gen)
 	linelength = tonumber(linelength) or 7
 	gen = gen or ''
 
-	local res, newLinesCount = {}, 0
+	local res, newLinesCount = {}, 1
 	local pattern, op
 	if str:match('File') then
 		pattern = '%[%[File:.-MS%.png|.-|link=.-%]%]'

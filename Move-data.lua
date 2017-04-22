@@ -575,6 +575,7 @@ t.halloween = {name = 'Halloween', type = 'spettro', category = 'stato', power =
 t.urlo = {name = 'Urlo', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 100, pp = 30}
 t.pioggiaplasma = {name = 'Pioggiaplasma', type = 'elettro', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 25}
 t.caricaparabola = {name = 'Caricaparabola', type = 'elettro', category = 'speciale', power = 65, accuracy = 100, pp = 20}
+t.boscomalocchio = {name = 'Boscomalocchio', type = 'erba', category = 'stato', power = '&mdash;', accuracy = 100, pp = 20}
 t.schiacciatuffo = {name = 'Schiacciatuffo', type = 'lotta', category = 'fisico', power = 100, accuracy = 95, pp = 10}
 t.fiortempesta = {name = 'Fiortempesta', type = 'erba', category = 'fisico', power = 90, accuracy = 100, pp = 15}
 t.liofilizzazione = {name = 'Liofilizzazione', type = 'ghiaccio', category = 'speciale', power = 70, accuracy = 100, pp = 20}
