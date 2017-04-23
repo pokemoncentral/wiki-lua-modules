@@ -14,7 +14,7 @@ local c = require("Colore-data")
 local css = require('Css')
 local box = require('Boxtipo')
 local gendata = require("Gens-data")
-local sup = require("Sup-data")
+local abbr = require("Blackabbrev-data")
 local pokes = require("Poké-data")
 local groups = require("PokéEggGroup-data")
 local libdata = require("Wikilib-data")
@@ -111,13 +111,15 @@ in modo da avere un numero di celle fisso. Argomenti:
 	- game: indice del parametro che causa la divisione,
 			normalmente una sigla di un gioco
 	- makeCell: la funzione usata per creare le nuove celle
+	- collapse (opzionale): specifica se le celle devono
+			essere collassate o meno. Default false
 
 --]]
-local splitCell = function(cells, data, startGen, game, makeCell)
+local splitCell = function(cells, data, startGen, game, makeCell, collapse)
 	local genIndex = getGenIndex(startGen, game)
 	cells[genIndex] = table.concat{makeCell(data[genIndex],
-			splitCellsData[game][1]), '\n',	makeCell(data[game],
-			splitCellsData[game][2])}
+			splitCellsData[game][1], collapse), '\n',
+			makeCell(data[game], splitCellsData[game][2], collapse)}
 end
 
 --[[
@@ -143,12 +145,12 @@ di background, quello del testo e il sup vengono
 presi dai dati forniti.
 
 --]]
-local makeSupCell = function(content, cellData)
+local makeSupCell = function(content, cellData, collapse)
 	if content == '×' then
 		return makeCell('FFF', cellData.txt, '1', content)
 	else
 		return makeCell(cellData.bg, cellData.txt, '1',
-			content .. sup[cellData.abbr])
+			content .. abbr[cellData.abbr], collapse)
 	end
 end
 
@@ -159,8 +161,8 @@ i title nelle celle nuove; per maggiori informazioni
 leggere il commento a splitCel più su.
 
 --]]
-local splitTitle = function(cells, data, startGen, game)
-	return splitCell(cells, data, startGen, game, makeTitleCell)
+local splitTitle = function(cells, data, startGen, game, collapse)
+	return splitCell(cells, data, startGen, game, makeTitleCell, collapse)
 end
 
 --[[
@@ -170,8 +172,8 @@ i sup nelle celle nuove; per maggiori informazioni
 leggere il commento a splitCel più su.
 
 --]]
-local splitSup = function(cells, data, startGen, game)
-	return splitCell(cells, data, startGen, game, makeSupCell)
+local splitSup = function(cells, data, startGen, game, collapse)
+	return splitCell(cells, data, startGen, game, makeSupCell, collapse)
 end
 
 --[[
@@ -206,7 +208,7 @@ local tail = function(startGen, data, splitCells, collapse)
 	-- Si dividono le celle delle generazioni se necessario
 	for game in pairs(data) do
 		if type(game) == 'string' then
-			splitCells(store, data, startGen, game)
+			splitCells(store, data, startGen, game, collapse)
 		end
 	end
 	
