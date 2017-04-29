@@ -124,7 +124,7 @@ processInput.gradient = function(args)
 
 	-- Two-color case special rules
 	if #p < 5 then
-		p = w.emptyStringToNil(p, string.lower)
+		p = w.emptyStringToNil(p)
 
 		local from = {
 			name = p[1],
