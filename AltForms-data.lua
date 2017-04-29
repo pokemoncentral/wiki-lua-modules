@@ -87,6 +87,7 @@ t.wormadam = {}
 t.rotom = {}
 t.giratina = {}
 t.shaymin = {}
+t.arceus = {}
 t.basculin = {}
 t.darmanitan = {}
 t.tornadus = {}
@@ -101,6 +102,7 @@ t.hoopa = {}
 t.lycanroc = {}
 t.oricorio = {}
 t.wishiwashi = {}
+t.silvally = {}
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
 
@@ -145,6 +147,12 @@ t.rotom.names = {C = 'Rotom Calore', L = 'Rotom Lavaggio', G = 'Rotom Gelo',
 	V = 'Rotom Vortice', T = 'Rotom Taglio', base = 'Forma Rotom'}
 t.giratina.names = {O = 'Forma Originale', base = 'Forma Alterata'}
 t.shaymin.names = {C = 'Forma Cielo', base = 'Forma Terra'}
+t.arceus.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante',
+	Ve = 'Tipo Veleno', T = 'Tipo Terra', R = 'Tipo Roccia', Aq = 'Tipo Acqua',
+	C = 'Tipo Coleottero', Er = 'Tipo Erba', P = 'Tipo Psico', B = 'Tipo Buio',
+	S = 'Tipo Spettro', Ai = 'Tipo Acciaio', Fu = 'Tipo Fuoco',
+	D = 'Tipo Drago', Fo = 'Tipo Folletto', El = 'Tipo Elettro',
+	G = 'Tipo Ghiaccio'}
 t.basculin.names = {B = 'Forma Lineablu', base = 'Forma Linearossa'}
 t.darmanitan.names = {Z = 'Stato Zen', base = 'Stato Normale'}
 t.tornadus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
@@ -160,6 +168,12 @@ t.oricorio.names = {C = 'Stile Cheerdance', H = 'Stile Hula', B = 'Stile Buyō',
 	base = 'Stile Flamenco'}
 t.lycanroc.names = {N = 'Forma Notte', base = 'Forma Giorno'}
 t.wishiwashi.names = {B = 'Forma Banco', base = 'Forma Individuale'}
+t.silvally.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante',
+	Ve = 'Tipo Veleno', T = 'Tipo Terra', R = 'Tipo Roccia', Aq = 'Tipo Acqua',
+	C = 'Tipo Coleottero', Er = 'Tipo Erba', P = 'Tipo Psico', B = 'Tipo Buio',
+	S = 'Tipo Spettro', Ai = 'Tipo Acciaio', Fu = 'Tipo Fuoco',
+	D = 'Tipo Drago', Fo = 'Tipo Folletto', El = 'Tipo Elettro',
+	G = 'Tipo Ghiaccio'}
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}
@@ -188,6 +202,8 @@ t.castform.changetype = {'S', 'P', 'N'}
 t.wormadam.changetype = {'Sa', 'Sc'}
 t.rotom.changetype = {'C', 'L', 'G', 'V', 'T'}
 t.shaymin.changetype = {'C'}
+t.arceus.changetype = {'L', 'Vo', 'Ve', 'T', 'R', 'Aq', 'C',
+	'Er', 'P', 'B', 'S', 'Ai', 'Fu', 'D', 'Fo', 'El', 'G'}
 t.darmanitan.changetype = {'Z'}
 t.meloetta.changetype = {'D'}
 t.charizard.changetype = {'MX'}
@@ -204,6 +220,8 @@ t.lopunny.changetype = {'M'}
 t.audino.changetype = {'M'}
 t.hoopa.changetype = {'L'}
 t.oricorio.changetype = {'C', 'H', 'B'}
+t.silvally.changetype = {'L', 'Vo', 'Ve', 'T', 'R', 'Aq', 'C',
+	'Er', 'P', 'B', 'S', 'Ai', 'Fu', 'D', 'Fo', 'El', 'G'}
 for k, v in pairs(t.alola) do
 	t[v].changetype = {'A'}
 end
@@ -318,6 +336,10 @@ t.rotom.ext = {calore = 'C', lavaggio = 'L', gelo = 'G', vortice = 'V',
 	taglio = 'T'}
 t.giratina.ext = {originale = 'O', origine = 'O'}
 t.shaymin.ext = {cielo = 'C'}
+t.arceus.ext = {lotta = 'L', volante = 'Vo', veleno = 'Ve', terra = 'T',
+	roccia = 'R', acqua = 'A', coleottero = 'C', erba = 'Er', psico = 'P',
+	buio = 'B', spettro = 'S', acciaio = 'A', fuoco = 'Fu', drago = 'D',
+	folletto = 'Fo', elettro = 'El', ghiaccio = 'G', coleot = 'C'}
 t.basculin.ext = {lineablu = 'B'}
 t.darmanitan.ext = {zen = 'Z'}
 t.tornadus.ext = {totem = 'T'}
@@ -333,6 +355,10 @@ t.lycanroc.ext = {notte = 'N', giorno = 'base'}
 t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
 	flamenco = 'base'}
 t.wishiwashi.ext = {banco = 'B', individuale = 'base'}
+t.silvally.ext = {lotta = 'L', volante = 'Vo', veleno = 'Ve', terra = 'T',
+	roccia = 'R', acqua = 'A', coleottero = 'C', erba = 'Er', psico = 'P',
+	buio = 'B', spettro = 'S', acciaio = 'A', fuoco = 'Fu', drago = 'D',
+	folletto = 'Fo', elettro = 'El', ghiaccio = 'G', coleot = 'C'}
 for k, v in pairs(t.mega) do
 	t[v].ext = {mega = 'M'}
 end
@@ -356,6 +382,8 @@ t.wormadam.gamesOrder = {'base', 'Sa', 'Sc'}
 t.rotom.gamesOrder = {'base', 'C', 'L', 'G', 'V', 'T'}
 t.giratina.gamesOrder = {'base', 'O'}
 t.shaymin.gamesOrder = {'base', 'C'}
+t.arceus.gamesOrder = {'base', 'L', 'Vo', 'Ve', 'T', 'R', 'C', 'S', 'Ai', 'Fu',
+	'Aq', 'Er', 'El', 'P', 'G', 'D', 'B', 'Fo'}
 t.basculin.gamesOrder = {'base', 'B'}
 t.darmanitan.gamesOrder = {'base', 'Z'}
 t.tornadus.gamesOrder = {'base', 'T'}
@@ -370,6 +398,8 @@ t.hoopa.gamesOrder = {'base', 'L'}
 t.lycanroc.gamesOrder = {'base', 'N'}
 t.oricorio.gamesOrder = {'base', 'C', 'H', 'B'}
 t.wishiwashi.gamesOrder = {'base', 'B'}
+t.silvally.gamesOrder = {'base', 'L', 'Vo', 'Ve', 'T', 'R', 'C', 'S', 'Ai', 'Fu',
+	'Aq', 'Er', 'El', 'P', 'G', 'D', 'B', 'Fo'}
 for k, v in pairs(t.mega) do
 	t[v].gamesOrder = {'base', 'M'}
 end
@@ -404,6 +434,9 @@ t.wormadam.since = {Sa = 'dp', Sc = 'dp', base = 'dp'}
 t.rotom.since = {C = 'pt', L = 'pt', G = 'pt', V = 'pt', T = 'pt', base = 'dp'}
 t.giratina.since = {O = 'pt', base = 'dp'}
 t.shaymin.since = {C = 'pt', base = 'dp'}
+t.arceus.since = {base = 'dp', L = 'dp', Vo = 'dp', Ve = 'dp', T = 'dp',
+	R = 'dp', Aq = 'dp', C = 'dp', Er = 'dp', P = 'dp', B = 'dp', S = 'dp',
+	Ai = 'dp', Fu = 'dp', D = 'dp', Fo = 'xy', El = 'dp', G = 'dp'}
 t.basculin.since = {B = 'nb', base = 'nb'}
 t.darmanitan.since = {Z = 'nb', base = 'nb'}
 t.tornadus.since = {T = 'n2b2', base = 'nb'}
@@ -417,6 +450,9 @@ t.zygarde.since = {D = 'sl', P = 'sl', base = 'xy'}
 t.hoopa.since = {L = 'roza', base = 'xy'}
 t.lycanroc.since = {N = 'sl', base = 'sl'}
 t.oricorio.since = {C = 'sl', H = 'sl', B = 'sl', base = 'sl'}
+t.silvally.since = {base = 'sl', L = 'sl', Vo = 'sl', Ve = 'sl', T = 'sl',
+	R = 'sl', Aq = 'sl', C = 'sl', Er = 'sl', P = 'sl', B = 'sl', S = 'sl',
+	Ai = 'sl', Fu = 'sl', D = 'sl', Fo = 'xy', El = 'sl', G = 'sl'}
 t.wishiwashi.since = {B = 'sl', base = 'sl'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
 t.blastoise.since = {M = 'xy', base = 'rb'}
@@ -515,6 +551,7 @@ t[413] = t.wormadam
 t[479] = t.rotom
 t[487] = t.giratina
 t[492] = t.shaymin
+t[493] = t.arceus
 t[550] = t.basculin
 t[555] = t.darmanitan
 t[641] = t.tornadus
@@ -532,6 +569,7 @@ t[720] = t.hoopa
 t[741] = t.oricorio
 t[745] = t.lycanroc
 t[746] = t.wishiwashi
+t[773] = t.silvally
 t[3] = t.venusaur
 t[9] = t.blastoise
 t[15] = t.beedrill
