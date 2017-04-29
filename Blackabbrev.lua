@@ -34,5 +34,4 @@ for abbr, data in pairs(m) do
 	x[abbr] = function(frame) return lib.abbrLinks(data, singleDisplay) end
 end
 
-print(x[arg[1]]())
--- return x
+return x

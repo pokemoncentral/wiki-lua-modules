@@ -14,7 +14,7 @@ local c = require("Colore-data")
 local css = require('Css')
 local box = require('Boxtipo')
 local gendata = require("Gens-data")
-local sup = require("Sup-data")
+local abbr = require("Blackabbrev-data")
 local pokes = require("Poké-data")
 local groups = require("PokéEggGroup-data")
 local libdata = require("Wikilib-data")
@@ -47,13 +47,14 @@ Crea una cella dati:
 Non sono presenti valori default
 
 --]]
-local makeCell = function(bg, tc, cs, cnt)
+local makeCell = function(bg, tc, cs, cnt, collapsed)
 	return string.interp([[| style="color: #${tc}; height: 100%; padding: 0.8ex 0.3ex;" colspan="${cs}" | ${content}]], {
 		tc = tc,
 		cs = cs,
-		content = string.interp(string.lower(bg) == 'fff' and [['''${cnt}''']] or [[<div class="text-center roundy-5 flex flex-row flex-main-center flex-items-center" style="${bg}; padding: 0 2px; height: 100%;">'''${cnt}'''</div>]], {
+		content = string.interp(string.lower(bg) == 'fff' and [['''${cnt}''']] or [[<div class="text-center roundy-5 flex flex-row flex-main-center flex-items-center ${collapsed}" style="${bg}; padding: 0 2px; height: 100%;">'''${cnt}'''</div>]], {
 			bg = string.lower(bg) == 'fff' and '' or css.horizGradLua(bg, 'normale', bg, 'light'),
 			cnt = cnt,
+			collapsed = collapsed and 'mw-collapsible mw-collapsed' or '',
 		}),
 	})
 end
@@ -110,13 +111,15 @@ in modo da avere un numero di celle fisso. Argomenti:
 	- game: indice del parametro che causa la divisione,
 			normalmente una sigla di un gioco
 	- makeCell: la funzione usata per creare le nuove celle
+	- collapse (opzionale): specifica se le celle devono
+			essere collassate o meno. Default false
 
 --]]
-local splitCell = function(cells, data, startGen, game, makeCell)
+local splitCell = function(cells, data, startGen, game, makeCell, collapse)
 	local genIndex = getGenIndex(startGen, game)
 	cells[genIndex] = table.concat{makeCell(data[genIndex],
-			splitCellsData[game][1]), '\n',	makeCell(data[game],
-			splitCellsData[game][2])}
+			splitCellsData[game][1], collapse), '\n',
+			makeCell(data[game], splitCellsData[game][2], collapse)}
 end
 
 --[[
@@ -142,12 +145,12 @@ di background, quello del testo e il sup vengono
 presi dai dati forniti.
 
 --]]
-local makeSupCell = function(content, cellData)
+local makeSupCell = function(content, cellData, collapse)
 	if content == '×' then
 		return makeCell('FFF', cellData.txt, '1', content)
 	else
 		return makeCell(cellData.bg, cellData.txt, '1',
-			content .. sup[cellData.abbr])
+			content .. abbr[cellData.abbr], collapse)
 	end
 end
 
@@ -158,8 +161,8 @@ i title nelle celle nuove; per maggiori informazioni
 leggere il commento a splitCel più su.
 
 --]]
-local splitTitle = function(cells, data, startGen, game)
-	return splitCell(cells, data, startGen, game, makeTitleCell)
+local splitTitle = function(cells, data, startGen, game, collapse)
+	return splitCell(cells, data, startGen, game, makeTitleCell, collapse)
 end
 
 --[[
@@ -169,8 +172,8 @@ i sup nelle celle nuove; per maggiori informazioni
 leggere il commento a splitCel più su.
 
 --]]
-local splitSup = function(cells, data, startGen, game)
-	return splitCell(cells, data, startGen, game, makeSupCell)
+local splitSup = function(cells, data, startGen, game, collapse)
+	return splitCell(cells, data, startGen, game, makeSupCell, collapse)
 end
 
 --[[
@@ -181,9 +184,11 @@ mossa nelle generazioni. Argomenti:
 	- data: dati da inserire nelle celle
 	- splitCells: funzione usata per dividere la
 			cella delle generazioni in due
+	- collapse (opzionale): specifica se il contenuto
+			delle celle deve essere collassato. Default false
 
 --]]
-local tail = function(startGen, data, splitCells)
+local tail = function(startGen, data, splitCells, collapse)
 	local store = {}
 
 	-- Si inseriscono dapprima i dati standard delle generazioni
@@ -197,13 +202,13 @@ local tail = function(startGen, data, splitCells)
 			bgColor = gendata[k].region
 			txtColor = 'FFF'
 		end
-		table.insert(store, makeCell(bgColor, txtColor, '2', cellData))
+		table.insert(store, makeCell(bgColor, txtColor, '2', cellData, collapse))
 	end
 	
 	-- Si dividono le celle delle generazioni se necessario
 	for game in pairs(data) do
 		if type(game) == 'string' then
-			splitCells(store, data, startGen, game)
+			splitCells(store, data, startGen, game, collapse)
 		end
 	end
 	
@@ -286,9 +291,11 @@ Pokémon, vi siano una o due celle per generazione. Argomenti:
 			dell'ultima generazione. Se non specificato, viene
 			usato, sempre come default, il valore della penultima
 			generazione
+	- collapse (opzionale): se il contenuto delle celle deve essere
+			collassato o meno. Se non specificato, false
 
 --]]
-local entry = function(p, makeText, splitCells, latestGenDefault)
+local entry = function(p, makeText, splitCells, latestGenDefault, collapse)
 	--[[
 		Dovendo usare table.filter, e quindi ipairs, è
 		necessario che non vi siano nil prima dell'ultimo
@@ -316,7 +323,7 @@ local entry = function(p, makeText, splitCells, latestGenDefault)
 			return type(key) == 'string' or key > 1 and key < (3 + gendata.latest) - gen
 		end), makeText)
 
-	return head(p[1] or '000', stab, note, form) .. tail(gen, data, splitCells)
+	return head(p[1] or '000', stab, note, form) .. tail(gen, data, splitCells, collapse)
 end
 
 --[[
@@ -354,7 +361,7 @@ primo argomento la generazione, seguita dagli altri
 m.breed = function(frame)
 	return entry(mw.clone(frame.args), function(v) return v == 'No'
 			and '×' or (v:match('%#') and lib.insertnwlns(v, 6) or v)
-		end, splitSup)
+		end, splitSup, nil, true)
 end
 
 m.Breed = m.breed
