@@ -30,7 +30,7 @@ Chiamata da lua; argomenti:
 
 --]]
 
-b.boxColorLua = function(text, link, color, class, style, textcolor)
+b.boxLua = function(text, link, color, class, style, textcolor)
 	if type(style) == 'table' then
 		local acc = {}
 		for property, value in pairs(style) do
@@ -51,7 +51,7 @@ b.boxColorLua = function(text, link, color, class, style, textcolor)
 	})
 end
 
-b.box_color_lua = b.boxColorLua
+b.box_lua = b.boxLua
 
 --[[
 
@@ -67,13 +67,13 @@ Chiamata da wikicode (adapter per lua); argomenti
 
 --]]
 
-b.boxColor = function(frame)
+b.box = function(frame)
 	return b.boxLua(frame.args[1], frame.args[2],
 		frame.args[3], frame.args[4], frame.args[5],
 		frame.args[6])
 end
 
-b.BoxColor = b.boxColor
+b.Box = b.box
 
 --[[
 
@@ -89,12 +89,12 @@ Chiamata da lua; argomenti:
 
 --]]
 
-b.boxLua = function(tipo, class, style)
+b.boxTipoLua = function(tipo, class, style)
 	tipo = string.fu(string.trim(tipo or 'Sconosciuto'))
-	return b.boxColorLua(tipo, tipo .. ' (tipo)', tipo, class, style, 'FFF')
+	return b.boxLua(tipo, tipo .. ' (tipo)', tipo, class, style, 'FFF')
 end
 
-b.box_lua = b.boxLua
+b.box_tipo_lua = b.boxTipoLua
 
 --[[
 
@@ -106,17 +106,17 @@ Chiamata da wikicode (adapter per lua); argomenti
     stringa per ovvi motivi (vedi b.boxLua)
 
 Esempio:
-{{#invoke | Boxtipo | box | Elettro | left inline-block
+{{#invoke | Box | boxTipo | Elettro | left inline-block
         | padding: 2px; | border = yes}}
 
 --]]
 
-b.box = function(frame)
-    return b.boxLua(frame.args[1], frame.args[2],
+b.boxTipo = function(frame)
+    return b.boxTipoLua(frame.args[1], frame.args[2],
         frame.args[3])
 end
 
-b.Box = b.box
+b.BoxTipo = b.boxTipo
 
 -- Crea una lista di boxes
 
@@ -129,13 +129,13 @@ Chiamata da lua; argomenti
 
 --]]
 
-b.listLua = function(tab, class, style)
+b.listTipoLua = function(tab, class, style)
     return table.concat(table.map(tab, function(type)
-        return b.boxLua(type, class, style)
+        return b.boxTipoLua(type, class, style)
     end))
 end
 
-b.list_lua = b.listLua
+b.list_tipo_lua = b.listTipoLua
 
 --[[
 
@@ -148,16 +148,16 @@ Chiamata da wikicode (adapter per lua); argomenti
     visualizza il bordo
 Esempio:
 
-{{#invoke: Boxtipo | list | Normale, Acciaio,Terra | inline-block
+{{#invoke: Box | listTipo | Normale, Acciaio,Terra | inline-block
         | padding: 2px; | border = yes}}
 
 --]]
 
-b.list = function(frame)
-    return b.listLua(mw.text.split(frame.args[1], ',%s*'),
+b.listTipo = function(frame)
+    return b.listTipoLua(mw.text.split(frame.args[1], ',%s*'),
             frame.args[2], frame.args[3])
 end
 
-b.List = b.list
+b.ListTipo = b.listTipo
 
 return b

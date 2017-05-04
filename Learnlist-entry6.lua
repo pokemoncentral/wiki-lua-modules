@@ -31,8 +31,7 @@ z.Level = z.level
 z.tm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return string.interp(table.concat{[=[|-
-| style="padding: 0.1em 0.3em;" | [[File:${img} ${tipo} VI Sprite Zaino.png]]
-| style="padding: 0.1em 0.3em;" | [[${p1}|<span style="color:#000;">${p1}</span>]]]=],
+| style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:${img} ${tipo} VI Sprite Zaino.png]]</span>[[${p1}|<span style="color:#000;">${p1}</span>]]]=],
 		entry(p[9] or '', p[2] or 'Purogelo', lib.makeNotes(p[8] or ''),
 			p[3] or 'Sconosciuto', p[4] or 'Speciale', p[5] or '0', p[6] or '0',
 			p[7] or '0', p[10] or 'Sconosciuto', p[11] or '?', p[12] or '?')},
@@ -65,11 +64,10 @@ z.Breed = z.breed
 
 z.tutor = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{lib.tutorgames{{'X', p[9]}, {'Y', p[9]},
-		{'RO', p[10]}, {'ZA', p[10]}}, ' ', entry(p[8] or '',
-			p[1] or 'Tuono', lib.makeNotes(p[7] or ''), p[2] or 'Sconosciuto',
-			p[3] or 'Stato', p[4] or '0', p[5] or '0', p[6] or '0',
-			p[11] or 'Sconosciuto', p[12] or '?', p[13] or '?')}
+    return table.concat{lib.tutorgames{{'XY', p[9]}, {'ROZA', p[10]}}, ' ',
+			entry(p[8] or '', p[1] or 'Tuono', lib.makeNotes(p[7] or ''),
+			p[2] or 'Sconosciuto', p[3] or 'Stato', p[4] or '0', p[5] or '0',
+			p[6] or '0', p[11] or 'Sconosciuto', p[12] or '?', p[13] or '?')}
 end
 
 z.Tutor = z.tutor

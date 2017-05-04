@@ -93,7 +93,7 @@ end
 local headers = function(tipo, gen, kind)
 	return string.interp([=[
 {| class="roundy text-center white-rows roundy-footer" style="${bg}; border-spacing: 0; padding: 0.3ex;"
-! class="roundytl" rowspan="${rs}" | #
+! class="roundytl hidden-xs" rowspan="${rs}" | #
 ! rowspan="${rs}" colspan="2" | Pokémon
 ! class="hidden-sm" rowspan="${rs}" | Tipo
 ! class="hidden-sm" style="padding: 0 0.7ex;" rowspan="${rs}" | Gruppo uova

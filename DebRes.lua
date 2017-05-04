@@ -40,7 +40,7 @@ local dr = {}
 
 local mw = require('mw')
 
-local box = require('Boxtipo')
+local box = require('Box')
 local et = require('EffTipi')
 local link = require('Links')
 local w = require('Wikilib')
@@ -161,7 +161,7 @@ end
 
 -- Stampa i tipi dati come Boxes tipi
 dr.EffTable.printTypes = function(types)
-	return box.listLua(types, ' inline-block width-xl-15 width-md-20 width-sm-35 width-xs-45',
+	return box.listTipoLua(types, ' inline-block width-xl-15 width-md-20 width-sm-35 width-xs-45',
 		'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold; box-sizing: border-box;')
 end
 

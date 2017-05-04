@@ -1710,8 +1710,8 @@ t.gourgeistS, t['711S'], t.gourgeistL, t['711L'], t.gourgeistXL, t['711XL'] =
 	t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist
 t.zygardeD, t['718D'], t.zygardeP, t['718P'] =
 	t.zygarde, t.zygarde, t.zygarde, t.zygarde
-t.lycanrocN = t.lycanroc
-t.wishiwashiB = t.wishiwashi
+t.lycanrocN, t['745N'] = t.lycanroc, t.lycanroc
+t.wishiwashiB, t['746B'] = t.wishiwashi, t.wishiwashi
 
 -- I dati sulle megaevoluzioni; sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
 -- Il nome è composto dal nome del Pokémon seguito da 'M'

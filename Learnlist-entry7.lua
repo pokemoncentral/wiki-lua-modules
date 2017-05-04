@@ -29,8 +29,7 @@ z.Level = z.level
 z.tm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return string.interp(table.concat{[=[|-
-| style="padding: 0.1em 0.3em;" | [[File:${img} ${tipo} VI Sprite Zaino.png]]
-| style="padding: 0.1em 0.3em;" | [[${p1}|<span style="color:#000;">${p1}</span>]]]=],
+| style="padding: 0.1em 0.3em;" | <span class="hidden-xs">{{{1|}}}[[File:${img} ${tipo} VI Sprite Zaino.png]]</span>[[${p1}|<span style="color:#000;">${p1}</span>]]]=],
 		entry(p[4] or '', p[2] or 'Purogelo', lib.makeNotes(p[3] or ''))},
 {
 	img = string.match(p[1] or 'MT55', '^(M[TN])%d'),
@@ -59,7 +58,7 @@ z.Breed = z.breed
 
 z.tutor = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{lib.tutorgames{{'S', p[4], 'So'}, {'L', p[4]}},
+    return table.concat{lib.tutorgames{{'SL', p[4]}},
 			' ', entry(p[3] or '',
 			p[1] or 'Tuono', lib.makeNotes(p[2] or ''))}
 end

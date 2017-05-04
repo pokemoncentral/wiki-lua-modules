@@ -12,7 +12,7 @@ local tab = require('Wikilib-tables')
 local forms = require('Wikilib-forms')
 local c = require("Colore-data")
 local css = require('Css')
-local box = require('Boxtipo')
+local box = require('Box')
 local gendata = require("Gens-data")
 local abbr = require("Blackabbrev-data")
 local pokes = require("Poké-data")
@@ -230,7 +230,7 @@ local head = function(ndex, stab, notes, form)
 	local boxStyles = 'padding: 0 2px; margin-bottom: 0.2ex;'
 
 	return string.interp([=[|- style="height: 100%;"
-| ${num}
+| class="hidden-xs" | ${num}
 | ${ani}
 | ${stab}[[${name}]]${stab}${notes}${forml}
 | class="hidden-sm" style="height: 100%;${typesmall} padding: 0.8ex 0.3ex;" | ${types}
@@ -244,9 +244,9 @@ local head = function(ndex, stab, notes, form)
 	notes = lib.makeNotes(notes or ''),
 	forml = forms.getlink(ndex, false, form),
 	std = c[pokedata.group1 .. '_uova'].normale,
-	types = box.boxLua(pokedata.type1, boxClasses, boxStyles .. (pokedata.type2 and 'height: 50%;' or ' height: 100%;')) .. (pokedata.type2 and box.boxLua(pokedata.type2, boxClasses, boxStyles .. 'height: 50%;') or ''),
+	types = box.boxTipoLua(pokedata.type1, boxClasses, boxStyles .. (pokedata.type2 and 'height: 50%;' or ' height: 100%;')) .. (pokedata.type2 and box.boxTipoLua(pokedata.type2, boxClasses, boxStyles .. 'height: 50%;') or ''),
 	typesmall = pokedata.type2 and 'font-size: 90%;' or '',
-	groups = box.boxColorLua(pokedata.group1show, pokedata.group1 .. ' (gruppo uova)', pokedata.group1 .. '_uova', boxClasses, boxStyles .. (pokedata.group2 and 'height: 50%;' or ' height: 100%;')) .. (pokedata.group2 and box.boxColorLua(pokedata.group2show, pokedata.group2 .. ' (gruppo uova)', pokedata.group2 .. '_uova', boxClasses, boxStyles .. 'height: 50%;') or ''),
+	groups = box.boxLua(pokedata.group1show, pokedata.group1 .. ' (gruppo uova)', pokedata.group1 .. '_uova', boxClasses, boxStyles .. (pokedata.group2 and 'height: 50%;' or ' height: 100%;')) .. (pokedata.group2 and box.boxLua(pokedata.group2show, pokedata.group2 .. ' (gruppo uova)', pokedata.group2 .. '_uova', boxClasses, boxStyles .. 'height: 50%;') or ''),
 	groupsmall = pokedata.group2 and 'font-size: 90%;' or '',
 })
 end
