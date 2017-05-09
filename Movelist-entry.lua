@@ -360,7 +360,7 @@ primo argomento la generazione, seguita dagli altri
 --]]
 m.breed = function(frame)
 	return entry(mw.clone(frame.args), function(v) return v == 'No'
-			and '×' or (v:match('%#') and lib.insertnwlns(v, 6) or v)
+			and '×' or (v:match('%#') and lib.insertnwlns(v, 6, nil, true) or v)
 		end, splitSup, nil, true)
 end
 

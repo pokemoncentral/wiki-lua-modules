@@ -86,7 +86,7 @@ Manda a capo ogni tot mini sprite, utilizzata
 nell'entry per il breed, nella cella dei padri
 
 --]]
-lib.insertnwlns = function(str, linelength, gen)
+lib.insertnwlns = function(str, linelength, gen, nobox)
 	str = str:gsub('<br>', '')
 	linelength = tonumber(linelength) or 7
 	gen = gen or ''
@@ -110,12 +110,17 @@ lib.insertnwlns = function(str, linelength, gen)
 			newLinesCount = newLinesCount + 1
 		end
 	end
-	table.insert(res, '</div></div>')
-
-	if (#res > linelength + 2) then
-		table.insert(res, 1, string.interp('<div class="roundy-5 mw-collapsible mw-collapsed" style="background: #${bg}; margin: 0.3em 0;">&nbsp;<div class="mw-collapsible-content">', { bg = c.background }))		table.insert(res, '</div>')
+	if nobox then
+		table.insert(res, '</div>')
 	else
-		table.insert(res, 1, string.interp('<div class="roundy-5" style="background: #${bg}; margin: 0.3em 0;">', { bg = c.background }))
+		table.insert(res, '</div></div>')
+
+		if (#res > linelength + 2) then
+			table.insert(res, 1, string.interp('<div class="roundy-5 mw-collapsible mw-collapsed" style="background: #${bg}; margin: 0.3em 0;">&nbsp;<div class="mw-collapsible-content">', { bg = c.background }))
+			table.insert(res, '</div>')
+		else
+			table.insert(res, 1, string.interp('<div class="roundy-5" style="background: #${bg}; margin: 0.3em 0;">', { bg = c.background }))
+		end
 	end
 
 	return table.concat(res)
