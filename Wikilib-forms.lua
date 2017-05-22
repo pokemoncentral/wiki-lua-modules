@@ -11,12 +11,21 @@ local alt = require("AltForms-data")
 
 --[[
 
-Usa come modulo dati per le forme
-alternative UselessForms/data
+Se merge è false usa come modulo dati
+per le forme alternative UselessForms/data,
+se è true li usa entrambi
 
 --]]
-f.loadUseless = function()
-	alt = require("UselessForms-data")
+f.loadUseless = function(merge)
+	if merge then
+		alt = tab.cloneLoadData(alt)
+		local useless = require("UselessForms-data")
+		for k, v in pairs(useless) do
+			alt[k] = v
+		end
+	else
+		alt = require("UselessForms-data")
+	end
 end
 
 f.loaduseless, f.load_useless = f.loadUseless, f.loadUseless

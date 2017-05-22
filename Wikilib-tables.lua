@@ -426,7 +426,7 @@ possibile usare su di essa la table library
 table.cloneLoadData = function(value)
 	return table.map(value, function(v)
 		if (type(v) == 'table') then
-			return s.loadDataClone(v)
+			return table.cloneLoadData(v)
 		else
 			-- if v isn't a table, is a bool, num or string
 			return v
