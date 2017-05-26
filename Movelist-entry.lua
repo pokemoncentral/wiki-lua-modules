@@ -233,7 +233,7 @@ local head = function(ndex, stab, notes, form)
 	return string.interp([=[|- style="height: 100%;"
 | class="hidden-xs" | ${num}
 | ${ani}
-| ${stab}[[${name}]]${stab}${notes}${forml}
+| <span class="hidden-xs">${stab}[[${name}]]${stab}${notes}${forml}</span>
 | class="hidden-sm" style="height: 100%;${typesmall} padding: 0.8ex 0.3ex;" | ${types}
 | class="hidden-sm" style="height: 100%;${groupsmall} padding: 0.8ex 0.3ex;" | ${groups}
 ]=],
