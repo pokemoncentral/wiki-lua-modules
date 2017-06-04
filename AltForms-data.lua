@@ -168,12 +168,7 @@ t.oricorio.names = {C = 'Stile Cheerdance', H = 'Stile Hula', B = 'Stile Buyō',
 	base = 'Stile Flamenco'}
 t.lycanroc.names = {N = 'Forma Notte', base = 'Forma Giorno'}
 t.wishiwashi.names = {B = 'Forma Banco', base = 'Forma Individuale'}
-t.silvally.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante',
-	Ve = 'Tipo Veleno', T = 'Tipo Terra', R = 'Tipo Roccia', Aq = 'Tipo Acqua',
-	C = 'Tipo Coleottero', Er = 'Tipo Erba', P = 'Tipo Psico', B = 'Tipo Buio',
-	S = 'Tipo Spettro', Ai = 'Tipo Acciaio', Fu = 'Tipo Fuoco',
-	D = 'Tipo Drago', Fo = 'Tipo Folletto', El = 'Tipo Elettro',
-	G = 'Tipo Ghiaccio'}
+t.silvally.names = t.arceus.names
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}
@@ -220,8 +215,7 @@ t.lopunny.changetype = {'M'}
 t.audino.changetype = {'M'}
 t.hoopa.changetype = {'L'}
 t.oricorio.changetype = {'C', 'H', 'B'}
-t.silvally.changetype = {'L', 'Vo', 'Ve', 'T', 'R', 'Aq', 'C',
-	'Er', 'P', 'B', 'S', 'Ai', 'Fu', 'D', 'Fo', 'El', 'G'}
+t.silvally.changetype = t.arceus.changetype
 for k, v in pairs(t.alola) do
 	t[v].changetype = {'A'}
 end
@@ -349,16 +343,13 @@ t.greninja.ext = {ash = 'A'}
 t.meowstic.ext = {femmina = 'F'}
 t.aegislash.ext = {spada = 'S'}
 t.pumpkaboo.ext = {mini = 'S', grande = 'L', maxi = 'XL'}
-t.zygarde.ext = {['forma 10%'] = 'D', perfetto = 'P'}
+t.zygarde.ext = {dieci = 'D', perfetto = 'P'}
 t.hoopa.ext = {libero = 'L'}
 t.lycanroc.ext = {notte = 'N', giorno = 'base'}
 t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
 	flamenco = 'base'}
 t.wishiwashi.ext = {banco = 'B', individuale = 'base'}
-t.silvally.ext = {lotta = 'L', volante = 'Vo', veleno = 'Ve', terra = 'T',
-	roccia = 'R', acqua = 'A', coleottero = 'C', erba = 'Er', psico = 'P',
-	buio = 'B', spettro = 'S', acciaio = 'A', fuoco = 'Fu', drago = 'D',
-	folletto = 'Fo', elettro = 'El', ghiaccio = 'G', coleot = 'C'}
+t.silvally.ext = t.arceus.ext
 for k, v in pairs(t.mega) do
 	t[v].ext = {mega = 'M'}
 end
@@ -398,8 +389,7 @@ t.hoopa.gamesOrder = {'base', 'L'}
 t.lycanroc.gamesOrder = {'base', 'N'}
 t.oricorio.gamesOrder = {'base', 'C', 'H', 'B'}
 t.wishiwashi.gamesOrder = {'base', 'B'}
-t.silvally.gamesOrder = {'base', 'L', 'Vo', 'Ve', 'T', 'R', 'C', 'S', 'Ai', 'Fu',
-	'Aq', 'Er', 'El', 'P', 'G', 'D', 'B', 'Fo'}
+t.silvally.gamesOrder = t.arceus.gamesOrder
 for k, v in pairs(t.mega) do
 	t[v].gamesOrder = {'base', 'M'}
 end
