@@ -45,6 +45,7 @@ t.floette = {}
 t.furfrou = {}
 t.xerneas = {}
 t.minior = {}
+t.mimikyu = {}
 
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
@@ -79,6 +80,7 @@ t.furfrou.names = {C = 'Taglio Cuore', St = 'Taglio Stella',
 	Gu = 'Taglio Gentiluomo', R = 'Taglio Regina', K = 'Taglio Kabuki',
 	F = 'Taglio Faraone', base = 'Nessun Taglio'}
 t.xerneas.names = {A = 'Modo Attivo', base = 'Modo Relax'}
+t.mimikyu.names = {S = 'Forma Smascherata', base = 'Forma Mascherata'}
 t.minior.names = {R = 'Nucleo Rosso', A = 'Nucleo Arancione', G = 'Nucleo Giallo',
 	Ve = 'Nucleo Verde', B = 'Nucleo Blu', I = 'Nucleo Indaco',
 	Vi = 'Nucleo Violetto', base = 'Forma Meteora'}
@@ -103,6 +105,7 @@ makeLinks(true)
 -- Per passare dai nomi estesi delle forme alternative alle sigle
 
 t.unown.ext = t.unown.names
+t.unown.ext['!'], t.unown.ext['?'] = 'PE', 'PI'
 t.burmy.ext = {sabbia = 'Sa', scarti = 'Sc'}
 t.cherrim.ext = {splendore = 'S'}
 t.shellos.ext = {est = 'E'}
@@ -113,11 +116,11 @@ t.keldeo.ext = {risoluta = 'R'}
 t.genesect.ext = {idromodulo = 'I', voltmodulo = 'V', piromodulo = 'P',
 	gelomodulo = 'G'}
 t.vivillon.ext = {nordico = 'No', ['manto di neve'] = 'Mn',
-	continentale = 'C', prato = 'Pr', eleganza = 'E', ['nevi perenni'] = 'Ne',
-	trendy = 'T', marino = 'Mr', arcipelago = 'A', deserto = 'D', sabbia = 'Sb',
-	fluviale = 'F', pluviale = 'Pl', savana = 'Sv', solare = 'So',
-	oceanico = 'O', giungla = 'Gu', ['poké ball'] = 'Po', sbarazzino = 'Sb',
-	ball = 'Po'}
+	continentale = 'C', prato = 'Pr', eleganza = 'E', giardinfiore = 'Ga',
+	['nevi perenni'] = 'Ne', trendy = 'T', marino = 'Mr', arcipelago = 'A',
+	deserto = 'D', sabbia = 'Sb', fluviale = 'F', pluviale = 'Pl',
+	savana = 'Sv', solare = 'So', oceanico = 'O', giungla = 'Gu',
+	['poké ball'] = 'Po', sbarazzino = 'Sr', ball = 'Po'}
 t.pyroar.ext = t.unfezant.ext
 t.floette.ext = {giallo = 'G', arancione = 'A', bianco = 'Bi', blu = 'Bl'}
 t.furfrou.ext = {cuore = 'C', stella = 'St', diamante = 'D', dignorina = 'Si',
@@ -126,6 +129,7 @@ t.furfrou.ext = {cuore = 'C', stella = 'St', diamante = 'D', dignorina = 'Si',
 t.xerneas.ext = {attivo = 'A'}
 t.minior.ext = {rosso = 'R', arancione = 'A', giallo = 'G', verde = 'Ve',
 	blu = 'B', indaco = 'I', violetto = 'Vi'}
+t.mimikyu.ext = {smascherata = 'S'}
 
 -- Arrays in cui è memorizzato l'ordine con cui le varie forme appaiono
 -- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
@@ -148,6 +152,7 @@ t.floette.gamesOrder = {'base', 'G', 'A', 'Bl', 'Bi'}
 t.furfrou.gamesOrder = {'base', 'C', 'F', 'Gd', 'Gu', 'K', 'R', 'Si', 'St'}
 t.xerneas.gamesOrder = {'base', 'A'}
 t.minior.gamesOrder = {'base', 'R', 'A', 'G', 'Ve', 'B', 'I', 'Vi'}
+t.mimikyu.gamesOrder = {'base', 'S'}
 
 -- Tabelle contenenti le sigle dei primi giochi in ordine cronologico in cui
 -- la forma è supportata, compresa la forma base
@@ -175,6 +180,7 @@ t.furfrou.since = {C = 'xy', St = 'xy', D = 'xy', Si = 'xy', Gd = 'xy',
 t.xerneas.since = {A = 'xy', base = 'xy'}
 t.minior.since = {base = 'sl', R = 'sl', A = 'sl', G = 'sl', Ve = 'sl',
 	B = 'sl', I = 'sl', Vi = 'sl'}
+t.minior.since = {base = 'sl', S = 'sl'}
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 
@@ -202,5 +208,6 @@ t[671] = t.florges
 t[676] = t.furfrou
 t[716] = t.xerneas
 t[774] = t.minior
+t[778] = t.mimikyu
 
 return t
