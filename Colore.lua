@@ -194,6 +194,10 @@ c.sole = function(frame) return _colore(frame.args[1] or 'normale', 'F2952D', 'F
 c.Sole = c.sole
 c.luna = function(frame) return _colore(frame.args[1] or 'normale', '5599C8', '9ACFF4', '155785') end
 c.Luna = c.luna
+c.ultrasole = function(frame) return _colore(frame.args[1] or 'normale', 'EE7936', 'FFB58C', 'B54000') end
+c.Ultrasole = c.ultrasole
+c.ultraluna = function(frame) return _colore(frame.args[1] or 'normale', '884799', 'AF8DB7', '440E52') end
+c.Ultraluna = c.ultraluna
 
 -- Colori regioni
 
