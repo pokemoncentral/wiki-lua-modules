@@ -41,7 +41,7 @@ m.PokePrecSucc = function(frame)
 	</div>
 </div>]=],
 {
-	bg = css.horizGradLua(type1, 'normale', type2, type1 == type2 and 'light' or 'normale'),
+	bg = css.horizGradLua(type1, type1 == type2 and 'light' or 'normale', type2, 'normale'),
     nameprev = pokes[prev].name,
     prev = prevTf,
     staticprev = ms.staticLua(prevTf),
