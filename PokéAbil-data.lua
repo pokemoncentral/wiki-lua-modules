@@ -1605,10 +1605,8 @@ t.necrozma = {ability1 = 'Scudoprisma'}
 t[800] = t.guzzlord
 t.magearna = {ability1 = 'Cuoreanima'}
 t[801] = t.magearna
-t.marshadow = {ability1 = ''}
+t.marshadow = {ability1 = 'Tecnico'}
 t[802] = t.marshadow
--- t.marshadow = {ability1 = 'Tecnico'}
--- t[802] = t.marshadow
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio

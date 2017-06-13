@@ -1607,10 +1607,8 @@ t.necrozma = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'psico'}
 t[800] = t.necrozma
 t.magearna = {name = 'Magearna', ndex = 801, type1 = 'acciaio', type2 = 'folletto'}
 t[801] = t.magearna
-t.marshadow = {name = 'Marshadow', ndex = 802, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+t.marshadow = {name = 'Marshadow', ndex = 802, type1 = 'lotta', type2 = 'spettro'}
 t[802] = t.marshadow
--- t.marshadow = {name = 'Marshadow', ndex = 802, type1 = 'lotta', type2 = 'spettro'}
--- t[802] = t.marshadow
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
