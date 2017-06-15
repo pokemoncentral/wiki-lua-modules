@@ -210,6 +210,23 @@ css.slanted_grad_lua = css.slantedGradLua
 
 --[[
 
+Generates horizontal gradients from one or two colors
+With one color, create the gradient light-normal
+With two different colors, create the gradient normal-normal
+With two equal colors, create the gradient light-normal
+
+--]]
+css.horizGradTwoColorsLua = function(color1, color2)
+	color2 = color2 or color1
+	return styles.gradient.linear('horiz', 'to right',
+			processInput.gradient({color1, c[color1].normale == c[color2].normale and 'light' or 'normale',
+			color2, 'normale'}))
+end
+css.horiz_grad_lua = css.horizGradLua
+
+
+--[[
+
 Wikicode interface to generate
 horizontal linear gradients styles
 
@@ -248,6 +265,17 @@ css['slanted-grad'] = function(frame)
 end
 css.slantedGrad, css.slanted_grad =
 		css['slanted-grad'], css['slanted-grad']
+
+--[[
+
+Wikicode interface to generate
+horizontal gradients from one or two colors
+
+--]]
+css['horiz-grad-two-colors'] = function(frame)
+	return horizGradTwoColorsLua(frame.args[1], frame.args[2])
+end
+css.horizGradTwoColors, css.horiz_grad_two_colors = css['horiz-grad-two-colors'], css['horiz-grad-two-colors']
 
 for name, funct in pairs(css) do
 	css[string.fu(name)] = funct

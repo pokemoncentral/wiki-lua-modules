@@ -558,12 +558,11 @@ local formsBoxes = function(ndex, gen, var)
 	})
 	end
 
-	local lines = table.map(alt[ndex].gamesOrder, function(abbr)
+	local lines = table.mapToNum(alt[ndex].gamesOrder, function(abbr)
 			local abbr, name, var = fixGenders(abbr, gen, ndex, var)
-						
 			return gens.getGen.game(alt[ndex].since[abbr]) <= gen and
 					boxesLine(abbr, name, gen, var, ndex) or nil
-		end)
+		end, ipairs)
 
 	if shouldAddFemaleLine(ndex, gen) then
 		table.insert(lines, 2, boxesLine('base', 'Femmina', gen,
@@ -640,6 +639,6 @@ end
 
 u.AltSprites, u.altsprites, u.alt_sprites =
 u.altSprites, u.altSprites, u.altSprites
-arg = {'Arceus'}
+arg = {'Charizard'}
 print(u.altSprites{args={arg[1]}})
 --return u
