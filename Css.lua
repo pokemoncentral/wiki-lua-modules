@@ -113,9 +113,24 @@ For two-color cases, there are special
 rules: empty color name or shade default
 to their counterpart of the first color.
 
+There are two named parameters: type and
+type2. If there is type, the gradient uses
+this color and the type2 color (if any),
+with shade light-normal (with one color)
+or normal-normal (with two colors)
+
 --]]
 processInput.gradient = function(args)
-	local p = w.trimAll(args, false)
+	-- Lua named parameters
+	local p = type(args[1]) == 'table' and args[1] or w.trimAll(args, false)
+
+	-- if p.type then custom behavior
+	if p.type then
+		p = w.trimAll(p, true)
+		p.type2 = p.type2 or p.type
+		local monoType = p.type:lower() == p.type2:lower()
+		return c[p.type][monoType and 'light' or 'normale'], c[p.type2]['normale']
+	end
 
 	-- Colore/data indexing fails, assuming hexes
 	if not c[p[1]] then
@@ -210,23 +225,6 @@ css.slanted_grad_lua = css.slantedGradLua
 
 --[[
 
-Generates horizontal gradients from one or two colors
-With one color, create the gradient light-normal
-With two different colors, create the gradient normal-normal
-With two equal colors, create the gradient light-normal
-
---]]
-css.horizGradTwoColorsLua = function(color1, color2)
-	color2 = color2 or color1
-	return styles.gradient.linear('horiz', 'to right',
-			processInput.gradient({color1, c[color1].normale == c[color2].normale and 'light' or 'normale',
-			color2, 'normale'}))
-end
-css.horiz_grad_lua = css.horizGradLua
-
-
---[[
-
 Wikicode interface to generate
 horizontal linear gradients styles
 
@@ -266,19 +264,8 @@ end
 css.slantedGrad, css.slanted_grad =
 		css['slanted-grad'], css['slanted-grad']
 
---[[
-
-Wikicode interface to generate
-horizontal gradients from one or two colors
-
---]]
-css['horiz-grad-two-colors'] = function(frame)
-	return horizGradTwoColorsLua(frame.args[1], frame.args[2])
-end
-css.horizGradTwoColors, css.horiz_grad_two_colors = css['horiz-grad-two-colors'], css['horiz-grad-two-colors']
-
 for name, funct in pairs(css) do
 	css[string.fu(name)] = funct
 end
-
+--print(css.horizGrad{args={'acciaio', 'normale', 'ghiaccio', 'normale', type='Acqua', type2=' '}})
 return css
