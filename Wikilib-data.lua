@@ -22,7 +22,7 @@ t.whitetext = {'blu', 'rubino', 'zaffiro', 'nero', 'nero_2', 'nero2',
 -- Ndex e nomi dei Pokémon esclusivamente femmina
 
 t.onlyFemales = {29, 30, 31, 113, 115, 124, 238, 241, 242, 314, 380,
-	413, 416, 440, 478, 488, 548, 629, 630, 669, 670, 671, 758, 761,
+	413, 416, 440, 478, 488, 548, 549, 629, 630, 669, 670, 671, 758, 761,
 	762, 763, 'blissey', 'bounsweet', 'chansey', 'cresselia', 'flabébé',
 	'floette', 'florges', 'froslass', 'happiny', 'illumise', 'jynx',
 	'kangaskhan', 'latias', 'lilligant', 'mandibuzz', 'miltank',
