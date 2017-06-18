@@ -436,6 +436,8 @@ c.Psiche_gcc, c['psiche gcc'], c['Psiche gcc'] =
 c.supporto_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'DC2222', 'E66363', '9A1717') end
 c.Supporto_gcc, c['supporto gcc'], c['Supporto gcc'] =
 	c.supporto_gcc, c.supporto_gcc, c.supporto_gcc
+c.supporter_gcc, c.Supporter_gcc, c['supporter gcc'], c['Supporter gcc'] =
+	c.supporto_gcc, c.supporto_gcc, c.supporto_gcc, c.supporto_gcc
 c.aiuto_gcc, c.Aiuto_gcc, c['aiuto gcc'], c['Aiuto gcc'] =
 	c.supporto_gcc, c.supporto_gcc, c.supporto_gcc, c.supporto_gcc
 c.combattimento_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'FF501F', 'FF8D6D', 'A63414') end

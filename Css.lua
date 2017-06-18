@@ -132,11 +132,11 @@ processInput.gradient = function(args)
 		--]]
 		local type2, mod2 = (p.type2 or type1)
 				:match('^(%S+)%s*(.*)$')
-
 		type1 = type1:lower()
 		type2 = type2:lower()
-		mod1 = mod1 == '' and nil or mod1
-		mod2 = mod2 == '' and nil or mod2
+		-- Cannot use and/or operator because nil is false
+		if mod1 == '' then mod1 = nil end
+		if mod2 == '' then mod2 = nil end
 
 		table.insert(p, type1)
 		table.insert(p, type1 == type2
@@ -145,9 +145,9 @@ processInput.gradient = function(args)
 		table.insert(p, type2)
 		table.insert(p, 'normale')
 		table.insert(p, mod2)
-		
+
 		p.type1, p.type2, p.type = nil, nil, nil
-		
+
 		return processInput.gradient(p)
 	end
 
@@ -347,5 +347,6 @@ end
 
 print (css.radialGradLua('ellipse closest-side', 'elettro', 'light', 'transparent'))
 print (css.radialGradLua{'ellipse', type = 'acqua 10%'})
+print (css.horizGradLua{type= 'acqua'})
 
 return css
