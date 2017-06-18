@@ -132,8 +132,10 @@ processInput.gradient = function(args)
 		--]]
 		local type2, mod2 = (p.type2 or type1)
 				:match('^(%S+)%s*(.*)$')
+
 		type1 = type1:lower()
 		type2 = type2:lower()
+
 		-- Cannot use and/or operator because nil is false
 		if mod1 == '' then mod1 = nil end
 		if mod2 == '' then mod2 = nil end
@@ -191,6 +193,10 @@ processInput.gradient = function(args)
 		else
 			table.insert(args, param)
 		end
+	end
+
+	if type(currColor) == 'table' then
+		table.insert(args, currColor.normale)
 	end
 
 	return unpack(args)
@@ -344,9 +350,5 @@ css.radialGrad, css.radial_grad =
 for name, funct in pairs(css) do
 	css[string.fu(name)] = funct
 end
-
-print (css.radialGradLua('ellipse closest-side', 'elettro', 'light', 'transparent'))
-print (css.radialGradLua{'ellipse', type = 'acqua 10%'})
-print (css.horizGradLua{type= 'acqua'})
 
 return css
