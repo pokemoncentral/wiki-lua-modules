@@ -51,14 +51,14 @@ t.mimikyu = {}
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
 
-t.pikachu.names = {O = 'Pikachu Berretto Originale', H = 'Pikachu Berretto Hoenn',
-	Si = 'Pikachu Berretto Sinnoh', U = 'Pikachu Berretto Unima',
-	K = 'Pikachu Berretto Kalos', A = 'Pikachu Berretto Alola',
+t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
+	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
+	K = 'Berretto Kalos', A = 'Berretto Alola',
 	base = 'Pikachu'}
---t.pikachu.names = {O = 'Pikachu Berretto Originale', H = 'Pikachu Berretto Hoenn',
---	Si = 'Pikachu Berretto Sinnoh', U = 'Pikachu Berretto Unima',
---	K = 'Pikachu Berretto Kalos', A = 'Pikachu Berretto Alola',
---	St = 'Pikachu Berretto Scelgo Te', base = 'Pikachu'}
+--t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
+--	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
+--	K = 'Berretto Kalos', A = 'Berretto Alola',
+--	St = 'Berretto Scelgo Te', base = 'Pikachu'}
 t.unown.names = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
 	O = 'O', P = 'P', Q = 'Q', R = 'R', S = 'S', T = 'T', U = 'U', V = 'V',
