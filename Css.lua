@@ -109,15 +109,15 @@ and type2-normale are returned; otherwise,
 type1-light and type1-normale are.
 
 --]]
-processInput.gradient = function(args)
+processInput.gradient = function(arguments)
 
 	--[[
 		If a table is passed, then
 		we are facing named parameters
 	--]]
-	local p = type(args[1]) == 'table'
-			and args[1]
-			or w.trimAll(args, false)
+	local p = type(arguments[1]) == 'table'
+			and arguments[1]
+			or w.trimAll(arguments, false)
 
 	-- Named parameters, as described above
 	if p.type1 or p.type then
@@ -185,6 +185,10 @@ processInput.gradient = function(args)
 			table.insert(args, currColor[param])			
 			currColor = nil
 
+		-- Hexadecimal colors
+		elseif not param:find('%X') then
+			table.insert(args, param)
+		
 		-- Color stop: appending to last args
 		elseif string.parseInt(param) then
 			args[#args] = table.concat{args[#args], ' ', param}
