@@ -30,6 +30,7 @@ end
 -- identici, in questo modulo, ad altri, e dunque sono costituiti
 -- da alias, raggruppati in fondo al modulo
 
+t.pikachu = {}
 t.unown = {}
 t.burmy = {}
 t.cherrim = {}
@@ -50,6 +51,14 @@ t.mimikyu = {}
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
 
+t.pikachu.names = {O = 'Pikachu Berretto Originale', H = 'Pikachu Berretto Hoenn',
+	Si = 'Pikachu Berretto Sinnoh', U = 'Pikachu Berretto Unima',
+	K = 'Pikachu Berretto Kalos', A = 'Pikachu Berretto Alola',
+	base = 'Pikachu'}
+--t.pikachu.names = {O = 'Pikachu Berretto Originale', H = 'Pikachu Berretto Hoenn',
+--	Si = 'Pikachu Berretto Sinnoh', U = 'Pikachu Berretto Unima',
+--	K = 'Pikachu Berretto Kalos', A = 'Pikachu Berretto Alola',
+--	St = 'Pikachu Berretto Scelgo Te', base = 'Pikachu'}
 t.unown.names = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
 	O = 'O', P = 'P', Q = 'Q', R = 'R', S = 'S', T = 'T', U = 'U', V = 'V',
@@ -104,6 +113,10 @@ makeLinks(true)
 
 -- Per passare dai nomi estesi delle forme alternative alle sigle
 
+t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
+	unima = 'U', kalos = 'K', alola = 'A'}
+--t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
+--	unima = 'U', kalos = 'K', alola = 'A', ['scelgo te'] = 'St'}
 t.unown.ext = t.unown.names
 t.unown.ext['!'], t.unown.ext['?'] = 'PE', 'PI'
 t.burmy.ext = {sabbia = 'Sa', scarti = 'Sc'}
@@ -134,6 +147,8 @@ t.mimikyu.ext = {smascherata = 'S'}
 -- Arrays in cui è memorizzato l'ordine con cui le varie forme appaiono
 -- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
 
+t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A'}
+--t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'St'}
 t.unown.gamesOrder = {'base', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
 	'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 	'PE', 'PI'}
@@ -157,6 +172,10 @@ t.mimikyu.gamesOrder = {'base', 'S'}
 -- Tabelle contenenti le sigle dei primi giochi in ordine cronologico in cui
 -- la forma è supportata, compresa la forma base
 
+t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
+	K = 'sl', A = 'sl', base = 'rb'}
+--t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
+--	K = 'sl', A = 'sl', St = 'usul', base = 'rb'}
 t.unown.since = {base = 'oa', B = 'oa', C = 'oa', D = 'oa', E = 'oa', F = 'oa',
 	G = 'oa', H = 'oa', I = 'oa', J = 'oa', K = 'oa', L = 'oa', M = 'oa', N = 'oa',
 	O = 'oa', P = 'oa', Q = 'oa', R = 'oa', S = 'oa', T = 'oa', U = 'oa', V = 'oa',
@@ -188,6 +207,7 @@ t.gastrodon = t.shellos
 t.sawsbuck = t.deerling
 t.jellicent = t.frillish
 t['flabébé'], t.florges = t.floette, t.floette
+t[25] = t.pikachu
 t[201] = t.unown
 t[412] = t.burmy
 t[421] = t.cherrim

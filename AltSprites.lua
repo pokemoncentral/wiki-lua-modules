@@ -17,10 +17,11 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local gens = require('Wikilib-gens')
+local forms = require('Wikilib-forms')
 local ms = require('MiniSprite')
 local spr = require('Spr')
 local c = require("Colore-data")
-local alt = require('AltForms-data')
+local alt = require("AltForms-data")
 local pokes = require("Poké-data")
 local gendata = require("Gens-data")
 local wlib = require("Wikilib-data")
@@ -612,9 +613,8 @@ e quella dei mini sprite
 
 u.altSprites = function(frame)
 	local poke = mw.text.decode(string.trim(frame.args[1] or '')):lower()
-	if not alt[poke] then
-		alt = require('UselessForms-data')
-	end
+	-- Uses both AltForms and UselessForms
+	alt = forms.allFormsData()
 	local ndex = pokes[poke].ndex
 	local gen = gens.getGen.ndex(ndex)
 	--[[
