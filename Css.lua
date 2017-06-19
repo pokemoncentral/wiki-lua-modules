@@ -162,7 +162,7 @@ processInput.gradient = function(args)
 		if type(currColor) == 'table'
 				and not currColor[param]
 		then
-			table.insert(gradArgs, currColor.normale)
+			table.insert(gradArgs, '#' .. currColor.normale)
 			currColor = nil
 		end
 
@@ -182,12 +182,18 @@ processInput.gradient = function(args)
 		elseif type(currColor) =='table'
 			and currColor[param]
 		then
-			table.insert(gradArgs, currColor[param])			
+			table.insert(gradArgs, '#' .. currColor[param])			
 			currColor = nil
 
-		-- Hexadecimal colors
+		--[[
+			Hexadecimal colors: hashtag is always
+			prefixed due to the regex matching
+			only unprefixed hexes. Prefixed ones
+			will match the else branch and be
+			inserted correctly anyway.
+		--]]
 		elseif not param:find('%X') then
-			table.insert(gradArgs, param)
+			table.insert(gradArgs, '#' .. param)
 		
 		-- Color stop: appending to last args
 		elseif string.parseInt(param) then
@@ -204,19 +210,10 @@ processInput.gradient = function(args)
 	end
 
 	if type(currColor) == 'table' then
-		table.insert(gradArgs, currColor.normale)
+		table.insert(gradArgs, '#' .. currColor.normale)
 	end
 
 	return gradArgs
-end
-
--- Prefixes color hexes with # when necessary
-processInput.prefixHex = function(colors)
-	return table.map(colors, function(hex)
-		return (hex:find('transparent') or hex:find('#'))
-				and hex
-				or '#' .. hex
-	end)
 end
 
 -- Holds all css generating functions
@@ -227,7 +224,6 @@ styles.gradient = {}
 
 -- Generates styles for linear gradients
 styles.gradient.linear = function(type, dir, colors)
-	colors = processInput.prefixHex(colors)
 
 	-- Accumulator table
 	local css = {'background-size: 100%'}
@@ -257,7 +253,7 @@ end
 
 -- Generates styles for linear gradients
 styles.gradient.radial = function(config, colors)
-	colors = table.concat(processInput.prefixHex(colors), ', ')
+	colors = table.concat(colors, ', ')
 
 	-- Accumulator table
 	local css = {'background-size: 100%'}
