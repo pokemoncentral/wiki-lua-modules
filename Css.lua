@@ -109,15 +109,15 @@ and type2-normale are returned; otherwise,
 type1-light and type1-normale are.
 
 --]]
-processInput.gradient = function(arguments)
+processInput.gradient = function(args)
 
 	--[[
 		If a table is passed, then
 		we are facing named parameters
 	--]]
-	local p = type(arguments[1]) == 'table'
-			and arguments[1]
-			or w.trimAll(arguments, false)
+	local p = type(args[1]) == 'table'
+			and args[1]
+			or w.trimAll(args, false)
 
 	-- Named parameters, as described above
 	if p.type1 or p.type then
@@ -154,7 +154,7 @@ processInput.gradient = function(arguments)
 	end
 
 	-- Standard behavior
-	local args, currColor = {}
+	local gradArgs, currColor = {}
 	for _, param in ipairs(p) do
 		param = param == '' and 'normale' or param
 
@@ -162,7 +162,7 @@ processInput.gradient = function(arguments)
 		if type(currColor) == 'table'
 				and not currColor[param]
 		then
-			table.insert(args, currColor.normale)
+			table.insert(gradArgs, currColor.normale)
 			currColor = nil
 		end
 
@@ -182,33 +182,37 @@ processInput.gradient = function(arguments)
 		elseif type(currColor) =='table'
 			and currColor[param]
 		then
-			table.insert(args, currColor[param])			
+			table.insert(gradArgs, currColor[param])			
 			currColor = nil
 
 		-- Hexadecimal colors
 		elseif not param:find('%X') then
-			table.insert(args, param)
+			table.insert(gradArgs, param)
 		
 		-- Color stop: appending to last args
 		elseif string.parseInt(param) then
-			args[#args] = table.concat{args[#args], ' ', param}
+			gradArgs[#gradArgs] = table.concat{
+					gradArgs[#gradArgs],
+					' ',
+					param
+			}
 
 		-- Trusting the user to enter valid CSS
 		else
-			table.insert(args, param)
+			table.insert(gradArgs, param)
 		end
 	end
 
 	if type(currColor) == 'table' then
-		table.insert(args, currColor.normale)
+		table.insert(gradArgs, currColor.normale)
 	end
 
-	return unpack(args)
+	return gradArgs
 end
 
 -- Prefixes color hexes with # when necessary
-processInput.prefixHex = function(...)
-	return table.map({...}, function(hex)
+processInput.prefixHex = function(colors)
+	return table.map(colors, function(hex)
 		return (hex:find('transparent') or hex:find('#'))
 				and hex
 				or '#' .. hex
@@ -222,10 +226,8 @@ local styles = {}
 styles.gradient = {}
 
 -- Generates styles for linear gradients
-styles.gradient.linear = function(type, dir, ...)
-
-	-- Grouping variadic and adding # to hexes
-	local colors = processInput.prefixHex(...)
+styles.gradient.linear = function(type, dir, colors)
+	colors = processInput.prefixHex(colors)
 
 	-- Accumulator table
 	local css = {'background-size: 100%'}
@@ -254,11 +256,8 @@ styles.gradient.linear = function(type, dir, ...)
 end
 
 -- Generates styles for linear gradients
-styles.gradient.radial = function(config, ...)
-
-	-- Grouping variadic and adding # to hexes
-	local colors = processInput.prefixHex(...)
-	colors = table.concat(colors, ', ')
+styles.gradient.radial = function(config, colors)
+	colors = table.concat(processInput.prefixHex(colors), ', ')
 
 	-- Accumulator table
 	local css = {'background-size: 100%'}
@@ -272,22 +271,22 @@ styles.gradient.radial = function(config, ...)
 end
 
 -- Generates horizontal linear gradients styles
-css.horizGradLua = function(...)
+css.horizGradLua = function(args)
 	return styles.gradient.linear('horiz', 'to right',
-			processInput.gradient{...})
+			processInput.gradient(args))
 end
 css.horiz_grad_lua = css.horizGradLua
 
 -- Generates vertical linear gradients styles
-css.vertGradLua = function(...)
+css.vertGradLua = function(args)
 	return styles.gradient.linear('vert', nil,
-			processInput.gradient{...})
+			processInput.gradient(args))
 end
 css.vert_grad_lua = css.vertGradLua
 
 -- Generates slanted linear gradients styles
-css.slantedGradLua = function(...)
-	local args = {processInput.gradient{...}}
+css.slantedGradLua = function(args)
+	args = processInput.gradient(args)
 	local angle = table.remove(args, 1)
 
 	return styles.gradient.linear('slanted',
@@ -298,9 +297,11 @@ end
 css.slanted_grad_lua = css.slantedGradLua
 
 -- Generates radial gradients styles
-css.radialGradLua = function(...)
-	return styles.gradient.radial(
-		processInput.gradient{...})
+css.radialGradLua = function(args)
+	args = processInput.gradient(args)
+	local first = table.remove(args, 1)
+	
+	return styles.gradient.radial(first, args)
 end
 css.radial_grad_lua = css.radialGradLua
 
@@ -311,7 +312,7 @@ horizontal linear gradients styles
 
 --]]
 css['horiz-grad'] = function(frame)
-	return css.horizGradLua(unpack(mw.clone(frame.args)))
+	return css.horizGradLua(mw.clone(frame.args))
 end
 css.horizGrad, css.horiz_grad = css['horiz-grad'], css['horiz-grad']
 
@@ -322,7 +323,7 @@ vertical linear gradients styles
 
 --]]
 css['vert-grad'] = function(frame)
-	return css.vertGradLua(unpack(mw.clone(frame.args)))
+	return css.vertGradLua(mw.clone(frame.args))
 end
 css.vertGrad, css.vert_grad = css['vert-grad'], css['vert-grad']
 
@@ -333,7 +334,7 @@ slanted linear gradients styles
 
 --]]
 css['slanted-grad'] = function(frame)
-	return css.slantedGradLua(unpack(mw.clone(frame.args)))
+	return css.slantedGradLua(mw.clone(frame.args))
 end
 css.slantedGrad, css.slanted_grad =
 		css['slanted-grad'], css['slanted-grad']
@@ -345,7 +346,7 @@ radial gradients styles
 
 --]]
 css['radial-grad'] = function(frame)
-	return css.radialGradLua(unpack(mw.clone(frame.args)))
+	return css.radialGradLua(mw.clone(frame.args))
 end
 css.radialGrad, css.radial_grad =
 		css['radial-grad'], css['radial-grad']
