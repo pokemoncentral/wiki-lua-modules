@@ -43,7 +43,7 @@ b.boxLua = function(text, link, color, class, style, textcolor)
 
 	return string.interp([=[<div class="text-center roundy${class}" style="${bg}; ${style}">[[${link}|<span style="color:#${tc}">${text}</span>]]</div>]=], {
 		class = class or '',
-		bg = css.horizGradLua(color, 'dark', color, 'normale'),
+		bg = css.horizGradLua{color, 'dark', color, 'normale'},
 		tc = textcolor or 'FFF',
 		link = link or text,
 		text = text,

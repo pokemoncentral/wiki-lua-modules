@@ -53,7 +53,7 @@ local makeCell = function(bg, tc, cs, cnt, collapsed)
 		tc = tc,
 		cs = cs,
 		content = string.interp(string.lower(bg) == 'fff' and [['''${cnt}''']] or [[<div class="text-center roundy-5 flex flex-row flex-main-center flex-items-center ${collapsed}" style="${bg}; padding: 0 2px; height: 100%;">'''${cnt}'''</div>]], {
-			bg = string.lower(bg) == 'fff' and '' or css.horizGradLua(bg, 'normale', bg, 'light'),
+			bg = string.lower(bg) == 'fff' and '' or css.horizGradLua{bg, 'normale', bg, 'light'},
 			cnt = cnt,
 			collapsed = collapsed and 'mw-collapsible mw-collapsed' or '',
 		}),

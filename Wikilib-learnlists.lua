@@ -298,7 +298,7 @@ lib.tutorgames = function(games)
 					table.insert(cell, string.interp([=[
 <div class="text-center roundy-5" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[Pokémon ${gamesLink}|<span style="padding: 0.3em 0; color: #fff;">'''${game1sig}'''</span><span style="padding: 0.3em 0; color: #fff;">'''${game2sig}'''</span>]]</div>]=],
 					{
-						bg = css.horizGradLua(gameData.display[1][2], 'dark', gameData.display[2][2], 'dark'),
+						bg = css.horizGradLua{gameData.display[1][2], 'dark', gameData.display[2][2], 'dark'},
 						gamesLink = gameData.link,
 						game1sig = gameData.display[1][1],
 						game2sig = gameData.display[2][1],
@@ -307,7 +307,7 @@ lib.tutorgames = function(games)
 					table.insert(cell, string.interp([=[
 <div class="text-center roundy-5" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[Pokémon ${gamesLink}|<span style="padding: 0.3em 0; color: #fff;">'''${gamesig}'''</span>]]</div>]=],
 					{
-						bg = css.horizGradLua(gameData.display[1][2], 'dark', gameData.display[1][2], 'normale'),
+						bg = css.horizGradLua{gameData.display[1][2], 'dark', gameData.display[1][2], 'normale'},
 						gamesLink = gameData.link,
 						gamesig = gameData.display[1][1],
 					}))

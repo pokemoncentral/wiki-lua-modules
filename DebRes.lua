@@ -75,10 +75,10 @@ dr.EffTable.strings = {
 		Wikicode per la parte iniziale di un box
 		(Debolezze, Immunità, Danno Normale, ecc)
 	--]]
-	BOX_INIT = [=[<div class="roundy flex flex-row flex-wrap flex-items-stretch" style="padding: 0; margin-bottom: 0.5ex; ${bg}"><span class="inline-flex flex-items-center flex-main-center width-xl-30 width-xs-100" style="padding: 0.3em; box-sizing: border-box;">'''${text}'''</span><div class="flex flex-row flex-wrap flex-items-stretch roundy width-xl-70 width-xs-100" style="border-spacing: 0; padding: 0;">]=],
+	BOX_INIT = [=[<div class="roundy flex flex-row flex-wrap flex-items-stretch" style="padding: 0.5em 0; margin: 0;"><span class="inline-flex flex-items-center flex-main-center width-xl-30 width-xs-100" style="padding: 0.3em;">'''${text}'''</span><div class="flex flex-row flex-wrap flex-items-stretch roundy width-xl-70 width-xs-100" style="border-spacing: 0; padding: 0;">]=],
 	
 	-- Wikicode per una riga di tipi aventi la stessa efficacia
-	BOX_LINE = [=[<div class="flex flex-row flex-wrap flex-items-stretch width-xl-100" style="box-sizing: border-box; padding: 0.1em;"><div class="inline-flex flex-items-center flex-main-center roundy width-xl-5 width-sm-10 width-xs-100" style="box-sizing: border-box; padding: 0 0.2em; background: #FFF;">${eff}&times;</div><div class="inline-flex flex-row flex-wrap flex-items-center flex-main-start width-xl-95 width-sm-90 width-xs-100" style="box-sizing: border-box; padding-left: 0.2em;">${types}</div></div>]=],
+	BOX_LINE = [=[<div class="flex flex-row flex-wrap flex-items-stretch width-xl-100" style="padding: 0.1em;"><div class="inline-flex flex-items-center flex-main-center roundy width-xl-5 width-sm-10 width-xs-100" style="padding: 0 0.2em; background: #FFF;">${eff}&times;</div><div class="inline-flex flex-row flex-wrap flex-items-center flex-main-start width-xl-95 width-sm-90 width-xs-100" style="padding-left: 0.2em;">${types}</div></div>]=],
 }
 
 --[[
@@ -162,7 +162,7 @@ end
 -- Stampa i tipi dati come Boxes tipi
 dr.EffTable.printTypes = function(types)
 	return box.listTipoLua(types, ' inline-block width-xl-15 width-md-20 width-sm-35 width-xs-45',
-		'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold; box-sizing: border-box;')
+		'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold;')
 end
 
 -- Crea la table dei colori, prendendo i dati da types
@@ -203,7 +203,7 @@ dr.EffTable.printSingleBox = function(boxData, colors)
 		return string.interp(table.concat{dr.EffTable.strings.BOX_INIT,
 				dr.EffTable.printEffLine(boxData[1]), '</div></div>'},
 		{
-			bg = css.horizGradLua(colors.inleft.color, colors.inleft.variant, colors.inright.color, colors.inright.variant),
+			bg = css.horizGradLua{colors.inleft.color, colors.inleft.variant, colors.inright.color, colors.inright.variant},
 			text = boxData.text,
 		})
 	end
@@ -232,7 +232,6 @@ dr.EffTable.printSingleBox = function(boxData, colors)
 	return string.interp(table.concat{dr.EffTable.strings.BOX_INIT,
 			allLines, '</div></div>'},
 		{
-			bg = css.horizGradLua(colors.inleft.color, colors.inleft.variant, colors.inright.color, colors.inright.variant),
 			text = boxData.text,
 		})
 end
@@ -400,10 +399,9 @@ dr.EffTable.__tostring = function(this)
 	local imm = {text = 'Immunit&agrave;'}
 
 	local interpData = {
-		bg = css.horizGradLua(this.colors.outleft.color, this.colors.outleft.variant, this.colors.outright.color, this.colors.outright.variant),
-		foot = #this.footer < 1 and '' or string.interp([=[<div class="roundy text-left text-small" style="padding: 2px; margin-bottom: 0.5ex; background: ${bg}">${lines}</div>]=],
+		bg = css.horizGradLua{this.colors.outleft.color, this.colors.outleft.variant, this.colors.outright.color, this.colors.outright.variant},
+		foot = #this.footer < 1 and '' or string.interp([=[<div class="roundy text-left text-small" style="padding: 0.5em 0; margin: 0;">${lines}</div>]=],
 				{
-					bg = css.horizGradLua(this.colors.inleft.color, this.colors.inleft.variant, this.colors.inright.color, this.colors.inright.variant),
 					lines = w.mapAndConcat(this.footer, tostring)
 				})
 	}
@@ -838,6 +836,6 @@ end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
---arg={'Giratina'}
---print(dr.DebRes{args=arg})
+-- arg={'Giratina'}
+-- print(dr.DebRes{args=arg})
 return dr

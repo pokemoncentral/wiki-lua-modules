@@ -99,7 +99,7 @@ local headers = function(tipo, gen, kind)
 ! class="hidden-sm" style="padding: 0 0.7ex;" rowspan="${rs}" | Gruppo uova
 ! class="roundytr" colspan="${cs}" | ]=],
 {
-	bg = css.horizGradLua(tipo, 'light', tipo, 'normale'),
+	bg = css.horizGradLua{tipo, 'light', tipo, 'normale'},
     rs = kind == 'event' and 1 or 2,
     cs = cs[kind](gen)
 })
@@ -275,7 +275,7 @@ j.div = function(frame)
 |-
 ! colspan="6" style="${bg}" | [[${genl} generazione|<span style="color:#${tc}">${genl} generazione</span>]]]=],
 	{
-		bg = css.horizGradLua(genColor, 'light', genColor, 'normale'),
+		bg = css.horizGradLua{genColor, 'light', genColor, 'normale'},
 		genl = string.fu(gendata[gen].ext),
 		tc = c[gendata[gen].region].dark
 	})
