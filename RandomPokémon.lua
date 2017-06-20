@@ -71,10 +71,9 @@ p.artwork = function(frame)
 	local num = tonumber(frame.args[2]) or randomNdex()
 	local nome = pokedata[num].name
 	local forme = nil
+	alt = form.allFormsData()
 	if alt[num] then
 		forme = alt[num].gamesOrder
-	elseif useless[num] then
-		forme = useless[num].gamesOrder
 	end
 	num = string.three_figures(num)
 	if forme then
