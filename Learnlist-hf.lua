@@ -211,7 +211,7 @@ local header = function(pars, kind)
 |- class="text-center"
 ${low_row}]=],
 {
-	bg = css.horizGradLua{tipo1, tipo1 == tipo2 and 'light' or 'normale', tipo2, 'normale'},
+	bg = css.horizGradLua{type1 = tipo1, type2 = tipo2},
 	gentitle = string.fu(gendata[genh].ext),
 	links = oldgenslinks(genh, genp, kind, poke),
 	low_row = lowrow(genh, kind)

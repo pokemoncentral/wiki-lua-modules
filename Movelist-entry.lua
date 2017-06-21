@@ -53,7 +53,7 @@ local makeCell = function(bg, tc, cs, cnt, collapsed)
 		tc = tc,
 		cs = cs,
 		content = string.interp(string.lower(bg) == 'fff' and [['''${cnt}''']] or [[<div class="text-center roundy-5 flex flex-row flex-main-center flex-items-center ${collapsed}" style="${bg}; padding: 0 2px; height: 100%;">'''${cnt}'''</div>]], {
-			bg = string.lower(bg) == 'fff' and '' or css.horizGradLua{bg, 'normale', bg, 'light'},
+			bg = string.lower(bg) == 'fff' and '' or css.horizGradLua{type = bg},
 			cnt = cnt,
 			collapsed = collapsed and 'mw-collapsible mw-collapsed' or '',
 		}),
@@ -133,7 +133,7 @@ il title
 --]]
 local makeTitleCell = function(content, cellData)
 	return makeCell(content == '×' and 'FFF' or cellData.bg,
-			cellData.txt, '1',
+			'000', '1',
 			table.concat{'<span class="explain" title="', cellData.abbr,
 			'">', content, '</span>'})
 end
@@ -195,15 +195,13 @@ local tail = function(startGen, data, splitCells, collapse)
 	-- Si inseriscono dapprima i dati standard delle generazioni
 	for k = startGen, gendata.latest do
 		local cellData = data[getGenIndex(startGen, k)]
-		local bgColor, txtColor
+		local bgColor
 		if cellData == '×' then
 			bgColor = 'FFF'
-			txtColor = '000'
 		else
 			bgColor = gendata[k].region
-			txtColor = 'FFF'
 		end
-		table.insert(store, makeCell(bgColor, txtColor, '2', cellData, collapse))
+		table.insert(store, makeCell(bgColor, '000', '2', cellData, collapse))
 	end
 	
 	-- Si dividono le celle delle generazioni se necessario
