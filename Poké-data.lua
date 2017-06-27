@@ -1671,6 +1671,40 @@ t.rotomT = {name = 'Rotom', ndex = 479, type1 = 'elettro', type2 = 'erba'}
 t['479T'] = t.rotomT
 t.shayminC = {name = 'Shaymin', ndex = 492, type1 = 'erba', type2 = 'volante'}
 t['492C'] = t.shayminC
+t.arceusL = {name = 'Arceus', ndex = 493, type1 = 'lotta', type2 = 'lotta'}
+t['493L'] = t.arceusL
+t.arceusVo = {name = 'Arceus', ndex = 493, type1 = 'volante', type2 = 'volante'}
+t['493Vo'] = t.arceusVo
+t.arceusVe = {name = 'Arceus', ndex = 493, type1 = 'veleno', type2 = 'veleno'}
+t['493Ve'] = t.arceusVe
+t.arceusT = {name = 'Arceus', ndex = 493, type1 = 'terra', type2 = 'terra'}
+t['493T'] = t.arceusT
+t.arceusR = {name = 'Arceus', ndex = 493, type1 = 'roccia', type2 = 'roccia'}
+t['493R'] = t.arceusR
+t.arceusC = {name = 'Arceus', ndex = 493, type1 = 'coleottero', type2 = 'coleottero'}
+t['493C'] = t.arceusC
+t.arceusS = {name = 'Arceus', ndex = 493, type1 = 'spettro', type2 = 'spettro'}
+t['493S'] = t.arceusS
+t.arceusAi = {name = 'Arceus', ndex = 493, type1 = 'acciaio', type2 = 'acciaio'}
+t['493Ai'] = t.arceusAi
+t.arceusFu = {name = 'Arceus', ndex = 493, type1 = 'fuoco', type2 = 'fuoco'}
+t['493Fu'] = t.arceusFu
+t.arceusAq = {name = 'Arceus', ndex = 493, type1 = 'acqua', type2 = 'acqua'}
+t['493Aq'] = t.arceusAq
+t.arceusEr = {name = 'Arceus', ndex = 493, type1 = 'erba', type2 = 'erba'}
+t['493Er'] = t.arceusEr
+t.arceusEl = {name = 'Arceus', ndex = 493, type1 = 'elettro', type2 = 'elettro'}
+t['493El'] = t.arceusEl
+t.arceusP = {name = 'Arceus', ndex = 493, type1 = 'psico', type2 = 'psico'}
+t['493P'] = t.arceusP
+t.arceusG = {name = 'Arceus', ndex = 493, type1 = 'ghiaccio', type2 = 'ghiaccio'}
+t['493G'] = t.arceusG
+t.arceusD = {name = 'Arceus', ndex = 493, type1 = 'drago', type2 = 'drago'}
+t['493D'] = t.arceusD
+t.arceusB = {name = 'Arceus', ndex = 493, type1 = 'buio', type2 = 'buio'}
+t['493B'] = t.arceusB
+t.arceusFo = {name = 'Arceus', ndex = 493, type1 = 'folletto', type2 = 'folletto'}
+t['493Fo'] = t.arceusFo
 t.darmanitanZ = {name = 'Darmanitan', ndex = 555, type1 = 'fuoco', type2 = 'psico'}
 t['555Z'] = t.darmanitanZ
 t.meloettaD = {name = 'Meloetta', ndex = 648, type1 = 'normale', type2 = 'lotta'}
@@ -1683,6 +1717,40 @@ t.oricorioH = {name = 'Oricorio', ndex = 741, type1 = 'psico', type2 = 'volante'
 t['741H'] = t.oricorioH
 t.oricorioB = {name = 'Oricorio', ndex = 741, type1 = 'spettro', type2 = 'volante'}
 t['741B'] = t.oricorioB
+t.silvallyL = {name = 'Silvally', ndex = 773, type1 = 'lotta', type2 = 'lotta'}
+t['773L'] = t.silvallyL
+t.silvallyVo = {name = 'Silvally', ndex = 773, type1 = 'volante', type2 = 'volante'}
+t['773Vo'] = t.silvallyVo
+t.silvallyVe = {name = 'Silvally', ndex = 773, type1 = 'veleno', type2 = 'veleno'}
+t['773Ve'] = t.silvallyVe
+t.silvallyT = {name = 'Silvally', ndex = 773, type1 = 'terra', type2 = 'terra'}
+t['773T'] = t.silvallyT
+t.silvallyR = {name = 'Silvally', ndex = 773, type1 = 'roccia', type2 = 'roccia'}
+t['773R'] = t.silvallyR
+t.silvallyC = {name = 'Silvally', ndex = 773, type1 = 'coleottero', type2 = 'coleottero'}
+t['773C'] = t.silvallyC
+t.silvallyS = {name = 'Silvally', ndex = 773, type1 = 'spettro', type2 = 'spettro'}
+t['773S'] = t.silvallyS
+t.silvallyAi = {name = 'Silvally', ndex = 773, type1 = 'acciaio', type2 = 'acciaio'}
+t['773Ai'] = t.silvallyAi
+t.silvallyFu = {name = 'Silvally', ndex = 773, type1 = 'fuoco', type2 = 'fuoco'}
+t['773Fu'] = t.silvallyFu
+t.silvallyAq = {name = 'Silvally', ndex = 773, type1 = 'acqua', type2 = 'acqua'}
+t['773Aq'] = t.silvallyAq
+t.silvallyEr = {name = 'Silvally', ndex = 773, type1 = 'erba', type2 = 'erba'}
+t['773Er'] = t.silvallyEr
+t.silvallyEl = {name = 'Silvally', ndex = 773, type1 = 'elettro', type2 = 'elettro'}
+t['773El'] = t.silvallyEl
+t.silvallyP = {name = 'Silvally', ndex = 773, type1 = 'psico', type2 = 'psico'}
+t['773P'] = t.silvallyP
+t.silvallyG = {name = 'Silvally', ndex = 773, type1 = 'ghiaccio', type2 = 'ghiaccio'}
+t['773G'] = t.silvallyG
+t.silvallyD = {name = 'Silvally', ndex = 773, type1 = 'drago', type2 = 'drago'}
+t['773D'] = t.silvallyD
+t.silvallyB = {name = 'Silvally', ndex = 773, type1 = 'buio', type2 = 'buio'}
+t['773B'] = t.silvallyB
+t.silvallyFo = {name = 'Silvally', ndex = 773, type1 = 'folletto', type2 = 'folletto'}
+t['773Fo'] = t.silvallyFo
 
 -- Gli alias per le altre forme alternative rilevanti
 
