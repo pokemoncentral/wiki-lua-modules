@@ -167,12 +167,9 @@ end
 
 -- Crea la table dei colori, prendendo i dati da types
 dr.EffTable.createColors = function(this, types)
-	local monoType = types.type1 == types.type2
 	this.colors = {
-		outleft = {color = types.type2, variant = 'normale'},
-		outright = {color = types.type1, variant =  monoType and 'light' or 'normale'},
-		inleft = {color = types.type1, variant = 'light'},
-		inright = {color = types.type2, variant = monoType and 'normale' or 'light'},
+		type1 = types.type1,
+		type2 = types.type2,
 	}
 end
 
@@ -203,7 +200,6 @@ dr.EffTable.printSingleBox = function(boxData, colors)
 		return string.interp(table.concat{dr.EffTable.strings.BOX_INIT,
 				dr.EffTable.printEffLine(boxData[1]), '</div></div>'},
 		{
-			bg = css.horizGradLua{colors.inleft.color, colors.inleft.variant, colors.inright.color, colors.inright.variant},
 			text = boxData.text,
 		})
 	end
@@ -399,7 +395,7 @@ dr.EffTable.__tostring = function(this)
 	local imm = {text = 'Immunit&agrave;'}
 
 	local interpData = {
-		bg = css.horizGradLua{this.colors.outleft.color, this.colors.outleft.variant, this.colors.outright.color, this.colors.outright.variant},
+		bg = css.horizGradLua{type1 = this.colors.type1, type2 = this.colors.type2},
 		foot = #this.footer < 1 and '' or string.interp([=[<div class="roundy text-left text-small" style="padding: 0.5em 0; margin: 0;">${lines}</div>]=],
 				{
 					lines = w.mapAndConcat(this.footer, tostring)
@@ -836,6 +832,6 @@ end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
--- arg={'Giratina'}
--- print(dr.DebRes{args=arg})
+arg={'Aegislash'}
+print(dr.DebRes{args=arg})
 return dr

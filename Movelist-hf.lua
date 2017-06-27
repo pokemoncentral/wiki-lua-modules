@@ -40,7 +40,7 @@ local cells = {}
 -- Funzione per generale le celle dei level
 
 cells.level = function(gen)
-	local str = '! class="roundytop" style="background: #${bg}; width: 35px;" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
+	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex;" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
     local row = {}
     for a = gen, gendata.latest do
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
@@ -52,7 +52,7 @@ end
 -- Genera le celle dei tm
 
 cells.tm = function(gen, tms)
-	local str = '! class="roundytop" style="background: #${bg}; width: 35px; line-height: 1em;" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]<div class="text-small">${tm}</div>\n'
+	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex; line-height: 1em;" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]<div class="text-small">${tm}</div>\n'
     local row, l = {}, ''
     for a = gen, gendata.latest do
         l = tms[a] == 'NO' and '<span style="color:#FFF;">Ness.</span>' or string.interp('[[${tm}|<span style="color:#FFF;">${tm}</span>]]', {tm = tms[a]})
@@ -65,7 +65,7 @@ end
 -- Genera le celle del breed
 
 cells.breed = function(gen)
-	local str = '! class="roundytop" style="background: #${bg};" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
+	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
     local row = {}
     for a = gen, gendata.latest do
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
@@ -77,7 +77,7 @@ end
 -- Genera le celle del tutor
 
 cells.tutor = function(gen, gms)
-	local str = '! class="roundytop" style="background: #${bg}; color: #fff; min-width: 6ex" | ${game}\n'
+	local str = '! class="roundytop" style="background: #${bg}; color: #fff; min-width: 6ex;" | ${game}\n'
     local row = {}
     for a in ipairs(gms) do
     	if gms[a] == 'yes' then
@@ -99,7 +99,7 @@ local headers = function(tipo, gen, kind)
 ! class="hidden-sm" style="padding: 0 0.7ex;" rowspan="${rs}" | Gruppo uova
 ! class="roundytr" colspan="${cs}" | ]=],
 {
-	bg = css.horizGradLua{tipo, 'light', tipo, 'normale'},
+	bg = css.horizGradLua{type = tipo},
     rs = kind == 'event' and 1 or 2,
     cs = cs[kind](gen)
 })
@@ -275,7 +275,7 @@ j.div = function(frame)
 |-
 ! colspan="6" style="${bg}" | [[${genl} generazione|<span style="color:#${tc}">${genl} generazione</span>]]]=],
 	{
-		bg = css.horizGradLua{genColor, 'light', genColor, 'normale'},
+		bg = css.horizGradLua{type = genColor},
 		genl = string.fu(gendata[gen].ext),
 		tc = c[gendata[gen].region].dark
 	})
