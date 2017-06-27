@@ -117,8 +117,10 @@ t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
 	unima = 'U', kalos = 'K', alola = 'A'}
 --t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
 --	unima = 'U', kalos = 'K', alola = 'A', ['scelgo te'] = 'St'}
-t.unown.ext = t.unown.names
-t.unown.ext['!'], t.unown.ext['?'] = 'PE', 'PI'
+t.unown.ext = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
+	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
+	O = 'O', P = 'P', Q = 'Q', R = 'R', S = 'S', T = 'T', U = 'U', V = 'V',
+	W = 'W', X = 'X', Y = 'Y', Z = 'Z', ['!'] = 'PE', ['?'] = 'PI'}
 t.burmy.ext = {sabbia = 'Sa', scarti = 'Sc'}
 t.cherrim.ext = {splendore = 'S'}
 t.shellos.ext = {est = 'E'}
@@ -199,7 +201,7 @@ t.furfrou.since = {C = 'xy', St = 'xy', D = 'xy', Si = 'xy', Gd = 'xy',
 t.xerneas.since = {A = 'xy', base = 'xy'}
 t.minior.since = {base = 'sl', R = 'sl', A = 'sl', G = 'sl', Ve = 'sl',
 	B = 'sl', I = 'sl', Vi = 'sl'}
-t.minior.since = {base = 'sl', S = 'sl'}
+t.mimikyu.since = {base = 'sl', S = 'sl'}
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 
