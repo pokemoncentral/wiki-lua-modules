@@ -330,9 +330,9 @@ t.rotom.ext = {calore = 'C', lavaggio = 'L', gelo = 'G', vortice = 'V',
 	taglio = 'T'}
 t.giratina.ext = {originale = 'O', origine = 'O'}
 t.shaymin.ext = {cielo = 'C'}
-t.arceus.ext = {lotta = 'L', volante = 'Vo', veleno = 'Ve', terra = 'T',
-	roccia = 'R', acqua = 'A', coleottero = 'C', erba = 'Er', psico = 'P',
-	buio = 'B', spettro = 'S', acciaio = 'A', fuoco = 'Fu', drago = 'D',
+    t.arceus.ext = {lotta = 'L', volante = 'Vo', veleno = 'Ve', terra = 'T',
+	roccia = 'R', acqua = 'Aq', coleottero = 'C', erba = 'Er', psico = 'P',
+	buio = 'B', spettro = 'S', acciaio = 'Ai', fuoco = 'Fu', drago = 'D',
 	folletto = 'Fo', elettro = 'El', ghiaccio = 'G', coleot = 'C'}
 t.basculin.ext = {lineablu = 'B'}
 t.darmanitan.ext = {zen = 'Z'}
