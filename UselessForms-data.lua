@@ -166,7 +166,7 @@ t.vivillon.gamesOrder = {'base', 'No', 'Mn', 'C', 'Pr', 'E', 'Ga', 'T', 'Mr', 'A
 	'D', 'Sb', 'F', 'Pl', 'Sv', 'So', 'O', 'Gu', 'Sr', 'Po'}
 t.pyroar.gamesOrder = t.unfezant.gamesOrder
 t.floette.gamesOrder = {'base', 'G', 'A', 'Bl', 'Bi'}
-t.furfrou.gamesOrder = {'base', 'C', 'F', 'Gd', 'Gu', 'K', 'R', 'Si', 'St'}
+t.furfrou.gamesOrder = {'base', 'C', 'St', 'Si', 'Gd', 'D', 'Gu', 'R', 'K', 'F'}
 t.xerneas.gamesOrder = {'base', 'A'}
 t.minior.gamesOrder = {'base', 'R', 'A', 'G', 'Ve', 'B', 'I', 'Vi'}
 t.mimikyu.gamesOrder = {'base', 'S'}
