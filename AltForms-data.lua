@@ -442,7 +442,7 @@ t.lycanroc.since = {N = 'sl', base = 'sl'}
 t.oricorio.since = {C = 'sl', H = 'sl', B = 'sl', base = 'sl'}
 t.silvally.since = {base = 'sl', L = 'sl', Vo = 'sl', Ve = 'sl', T = 'sl',
 	R = 'sl', Aq = 'sl', C = 'sl', Er = 'sl', P = 'sl', B = 'sl', S = 'sl',
-	Ai = 'sl', Fu = 'sl', D = 'sl', Fo = 'xy', El = 'sl', G = 'sl'}
+	Ai = 'sl', Fu = 'sl', D = 'sl', Fo = 'sl', El = 'sl', G = 'sl'}
 t.wishiwashi.since = {B = 'sl', base = 'sl'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
 t.blastoise.since = {M = 'xy', base = 'rb'}
