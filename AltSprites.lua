@@ -613,10 +613,12 @@ e quella dei mini sprite
 
 u.altSprites = function(frame)
 	local poke = mw.text.decode(string.trim(frame.args[1] or '')):lower()
+
 	-- Uses both AltForms and UselessForms
 	alt = forms.allFormsData()
 	local ndex = pokes[poke].ndex
 	local gen = gens.getGen.ndex(ndex)
+
 	--[[
 		Per i Pokémon che, come Meowstic, hanno la
 		differenza di forma principale nel genere,
@@ -634,7 +636,11 @@ u.altSprites = function(frame)
 			string.fu(gendata[a].ext), ' generazione =='})
 		table.insert(forms, genTable(a, ndex))
 	end
-	return table.concat(forms, '\n') .. msTable(gen, ndex)
+	return table.concat{
+            table.concat(forms, '\n'),
+            msTable(gen, ndex),
+            '\n[[Categoria:Sottopagine Sprite e modelli]]'
+        }
 end
 
 u.AltSprites, u.altsprites, u.alt_sprites =
