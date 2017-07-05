@@ -12,7 +12,7 @@ local w = require('Wikilib')
 local txt = require('Wikilib-strings')
 local spr = require('Sprite')
 local bag = require('Bag')
-local bt = require('Boxtipo')
+local bt = require('Box')
 local pokes = require("Poké-data")
 local c = require("Colore-data")
 
@@ -32,7 +32,7 @@ local getGender = function(name, gender)
 end
 
 local makeTypeBox = function(type, roundyVariant)
-	return bt.boxLua(type, roundyVariant .. ' same-line', 'padding: 3px 10px;')
+	return bt.boxTipoLua(type, roundyVariant .. ' same-line', 'padding: 3px 10px;')
 end
 
 local makeAbilitiesBox = function(abil1, abil2)

@@ -6,6 +6,7 @@ local w = require('Wikilib')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local ms = require('MiniSprite')
+local box = require('Box')
 local c = require("Colore-data")
 local css = require('Css')
 local abbr = require("Sigle-data")
@@ -85,12 +86,12 @@ Manda a capo ogni tot mini sprite, utilizzata
 nell'entry per il breed, nella cella dei padri
 
 --]]
-lib.insertnwlns = function(str, linelength, gen)
+lib.insertnwlns = function(str, linelength, gen, nobox)
 	str = str:gsub('<br>', '')
 	linelength = tonumber(linelength) or 7
 	gen = gen or ''
 
-	local res, newLinesCount = {}, 0
+	local res, newLinesCount = {}, 1
 	local pattern, op
 	if str:match('File') then
 		pattern = '%[%[File:.-MS%.png|.-|link=.-%]%]'
@@ -109,7 +110,18 @@ lib.insertnwlns = function(str, linelength, gen)
 			newLinesCount = newLinesCount + 1
 		end
 	end
-	table.insert(res, '</div>')
+	if nobox then
+		table.insert(res, '</div>')
+	else
+		table.insert(res, '</div></div>')
+
+		if (#res > linelength + 2) then
+			table.insert(res, 1, string.interp('<div class="roundy-5 mw-collapsible mw-collapsed" style="background: #${bg}; margin: 0.3em 0;">&nbsp;<div class="mw-collapsible-content">', { bg = c.background }))
+			table.insert(res, '</div>')
+		else
+			table.insert(res, 1, string.interp('<div class="roundy-5" style="background: #${bg}; margin: 0.3em 0;">', { bg = c.background }))
+		end
+	end
 
 	return table.concat(res)
 end
@@ -135,15 +147,21 @@ lib.hearts = function(frame)
 			string.trim(frame.args[2] or ''):lower() == 'black')
 end
 
+
+-- Classi e stili per i box di tipi, categoria e gara
+local boxClasses = '-5'
+local boxStyles = 'padding: 0 2px; margin-bottom: 0.2ex;'
+
 --[[
 
 Le celle comuni a tutti gli entry nelle generazioni
 precedenti l'introduzione delle categorie danno.
 
 --]]
+
 lib.basicentry = function(stab, mossa, notes, tipo, pw, acc, pp)
     return string.interp([=[|| style="padding: 0.3em;" | ${stab}[[${mossa} (mossa)|<span style="color:#000;">${mossa}</span>]]${stab}${notes}
-| style="${bg_tipo}; padding: 0.3em;" | [[${tipo} (tipo)|<span style="color:#FFFFFF">${tipo}</span>]]
+| style="padding: 0.8ex 0.3ex; height: 100%;" | ${tipo}
 | style="padding: 0.1em 0.3em;" | ${pw}
 | style="padding: 0.1em 0.3em;" | ${acc}%
 | style="padding: 0.1em 0.3em;" | ${pp}]=],
@@ -151,8 +169,7 @@ lib.basicentry = function(stab, mossa, notes, tipo, pw, acc, pp)
    	mossa = mossa,
     stab = stab,
     notes = notes,
-    bg_tipo = css.horizGradLua(tipo, 'dark', tipo, 'normale'),
-    tipo = tipo,
+    tipo = box.boxTipoLua(tipo, boxClasses, boxStyles),
     pw = pw,
     acc = acc,
     pp = pp
@@ -167,8 +184,8 @@ successive l'introduzione delle categorie danno.
 --]]
 lib.categoryentry = function(stab, mossa, notes, tipo, cat, pw, acc, pp)
 	return string.interp([=[|| style="padding: 0.1em 0.3em;" | ${stab}[[${mossa} (mossa)|<span style="color:#000;">${mossa}</span>]]${stab}${notes}
-| style="${bg_tipo}; padding: 0.1em 0.3em;" | [[${tipo} (tipo)|<span style="color:#FFFFFF;">${tipo}</span>]]
-| style="${bg_cat}; padding: 0.1em 0.3em;" | [[${cat} (categoria danno)|<span style="color:#${cat_text};">${cat}</span>]]
+| style="padding: 0.8ex 0.3ex; height: 100%;" | ${tipo}
+| style="padding: 0.8ex 0.3ex; height: 100%;" | ${cat}
 | style="padding: 0.1em 0.3em;" | ${pw}
 | style="padding: 0.1em 0.3em;" | ${acc}%
 | style="padding: 0.1em 0.3em;" | ${pp}]=],
@@ -176,11 +193,8 @@ lib.categoryentry = function(stab, mossa, notes, tipo, cat, pw, acc, pp)
 	mossa = mossa,
     stab = stab,
     notes = notes,
-    bg_tipo = css.horizGradLua(tipo, 'dark', tipo, 'normale'),
-    tipo = tipo,
-    bg_cat = css.horizGradLua(cat, 'dark', cat, 'normale'),
-    cat_text = c[cat .. '_text'],
-    cat = cat,
+    tipo = box.boxTipoLua(tipo, boxClasses, boxStyles),
+    cat = box.boxLua(cat, 'Categoria danno#' .. cat, cat, boxClasses, boxStyles, c[cat .. '_text']),
 	pw = pw,
     acc = acc,
     pp = pp
@@ -196,11 +210,10 @@ a dire virtù, fascino e, se passato, intralcio
 
 --]]
 lib.contestentry = function(gara, fash, intr)
-	return string.interp([=[|| style="${bg_gara}; padding: 0.1em 0.3em;" | [[${gara} (gara)|<span style="color:#fff;">${gara}</span>]]
+	return string.interp([=[|| style="padding: 0.8ex 0.3ex; height: 100%;" | ${gara}
 | style="padding: 0.1em 0.3em;" | ${fash}${intr}]=],
 {
-    bg_gara = css.horizGradLua(gara, 'dark', gara, 'normale'),
-    gara = gara,
+    gara = box.boxLua(gara, gara .. ' (gara)', gara, boxClasses, boxStyles, 'fff'),
     fash = lib.concathearts(fash, false),
     intr = intr and table.concat{' || style="padding: 0.3em;" | ', lib.concathearts(intr, true)} or ''
 })
@@ -260,12 +273,11 @@ end
 
 Restituisce l'inizio dell'entry delle mosse tutor, comprensivo
 delle celle dei giochi: si aspetta una table di tables, che
-contengono a loro volta, nell'ordine, sigla da visualizzare,
+contengono a loro volta, nell'ordine, sigla del gioco e
 'Yes' o 'No' a seconda che la mossa possa essere insegnata
-nel gioco o meno, e eventualmente la sigla del gioco quando
-è diversa da quella da visualizzare. Es:
-	tutorgames{{'N', 'No'}, {'B', 'No', 'Bi'},
-			{'N2', 'Yes'}, {'B2', 'Yes'}}
+nel gioco o meno. La sigla visualizzata e i colori vengono presi
+da Sigle/data Es:
+	tutorgames{{'NB', 'No'}, {'N2B2', 'Yes'}}
 
 Non si possono usare indici stringa per le sottotables per
 questioni di ordinamento, mentre all'interno delle stesse
@@ -278,21 +290,51 @@ lib.tutorgames = function(games)
 				Uso del Modulo:Sigle/data per ricavare il
 				colore del gioco dalla sigla
 			--]]
-			local gameData = abbr[game[3] or game[1]][1]
-			local gameColor = c[gameData.display[1][2]]
-
-			local values = {bd = gameColor.dark,
-				gameLink = gameData.link, gameAbbr = game[1]}
+			local gameData = abbr[game[1]][1]
+			local cell = {'| style="padding: 0.8ex 0.5ex;" |'}
 
 			if game[2] == 'Yes' then
-				values.bg = gameColor.normale
-				values.txtColor = '000'
+				if gameData.display[2] then
+					table.insert(cell, string.interp([=[
+<div class="text-center roundy-5" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[Pokémon ${gamesLink}|<span style="padding: 0.3em 0; color: #fff;">'''${game1sig}'''</span><span style="padding: 0.3em 0; color: #fff;">'''${game2sig}'''</span>]]</div>]=],
+					{
+						bg = css.horizGradLua{gameData.display[1][2], 'dark', gameData.display[2][2], 'dark'},
+						gamesLink = gameData.link,
+						game1sig = gameData.display[1][1],
+						game2sig = gameData.display[2][1],
+					}))
+				else
+					table.insert(cell, string.interp([=[
+<div class="text-center roundy-5" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[Pokémon ${gamesLink}|<span style="padding: 0.3em 0; color: #fff;">'''${gamesig}'''</span>]]</div>]=],
+					{
+						bg = css.horizGradLua{gameData.display[1][2], 'dark', gameData.display[1][2], 'normale'},
+						gamesLink = gameData.link,
+						gamesig = gameData.display[1][1],
+					}))
+				end
 			else
-				values.bg = c.background
-				values.txtColor = gameColor.dark
+				if gameData.display[2] then
+					table.insert(cell, string.interp([=[
+[[Pokémon ${gamesLink}|<span style="padding: 0.3em 0; color: #${game1color};">'''${game1sig}'''</span><span style="padding: 0.3em 0; color: #${game2color};">'''${game2sig}'''</span>]]]=],
+					{
+						gamesLink = gameData.link,
+						game1sig = gameData.display[1][1],
+						game2sig = gameData.display[2][1],
+						game1color = c[gameData.display[1][2]].dark,
+						game2color = c[gameData.display[2][2]].dark,
+					}))
+				else
+					table.insert(cell, string.interp([=[
+[[Pokémon ${gamesLink}|<span style="padding: 0.3em 0; color: #${gamecolor};">'''${gamesig}'''</span>]]]=],
+					{
+						gamesLink = gameData.link,
+						gamesig = gameData.display[1][1],
+						gamecolor = c[gameData.display[1][2]].dark,
+					}))
+				end
 			end
 
-			return string.interp(gameTutorCell, values)
+			return table.concat(cell)
 		end)
 
 	-- Inizio dell'entry, bisogna inserire una nuova table row
@@ -319,7 +361,7 @@ end
 
 -- La cella dell'entry null, utilizzata per i Pokémon che non imparano
 -- mosse in un certo modo
-lib.entrynull= function(entry, cs)
+lib.entrynull = function(entry, cs)
 	return string.interp(entryNull, {
 		ending = entryNullEnd[entry],
 		cs = cs

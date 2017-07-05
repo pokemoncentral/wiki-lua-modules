@@ -10,9 +10,12 @@ local lib = require('Wikilib-learnlists')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local forms = require('Wikilib-forms')
+forms.loadUseless(true) -- uses both AltForms and UselessForm
 local c = require("Colore-data")
+local css = require('Css')
+local box = require('Box')
 local gendata = require("Gens-data")
-local sup = require("Sup-data")
+local abbr = require("Blackabbrev-data")
 local pokes = require("Poké-data")
 local groups = require("PokéEggGroup-data")
 local libdata = require("Wikilib-data")
@@ -26,15 +29,14 @@ Associa la generazione ad ogni sigla che può
 essere l'indice di un parametro
 
 --]]
-local gameGens = {Y = 1, C = 2, FRLG = 3, HGSS = 4,
+local gameGens = {Y = 1, C = 2, FRLG = 3, E = 3, HGSS = 4,
 		PTHGSS = 4, B2W2 = 5, ORAS = 6, SM = 7}
 
 -- Contiene i colori di background delle celle del tutor
-local tutorCellsColors = {c.cristallo.normale, c.rossofuoco.normale,
-		c.smeraldo.normale, c.xd.normale, c.diamante.normale,
-		c.platino.normale, c.heartgold.normale, c.nero.normale,
-		c.nero2.normale, c.x.normale, c.rubinoomega.normale,
-		c.sole.normale}
+local tutorCellsColors = {'cristallo', 'rossofuoco',
+	'smeraldo', 'xd', 'diamante', 'platino', 'heartgold',
+	'nero', 'nero2', 'x', 'rubinoomega', 'sole'
+}
 
 --[[
 
@@ -46,14 +48,16 @@ Crea una cella dati:
 Non sono presenti valori default
 
 --]]
-local makeCell = function(bg, tc, cs, cnt)
-	return string.interp([[| style="background:#${bg}; color:#${tc};" colspan="${cs}" | '''${cnt}''']],
-{
-	bg = bg,
-	tc = tc,
-	cs = cs,
-	cnt = cnt
-})
+local makeCell = function(bg, tc, cs, cnt, collapsed)
+	return string.interp([[| style="color: #${tc}; height: 100%; padding: 0.8ex 0.3ex;" colspan="${cs}" | ${content}]], {
+		tc = tc,
+		cs = cs,
+		content = string.interp(string.lower(bg) == 'fff' and [['''${cnt}''']] or [[<div class="text-center roundy-5 flex flex-row flex-main-center flex-items-center ${collapsed}" style="${bg}; padding: 0 2px; height: 100%;">'''${cnt}'''</div>]], {
+			bg = string.lower(bg) == 'fff' and '' or css.horizGradLua{type = bg},
+			cnt = cnt,
+			collapsed = collapsed and 'mw-collapsible mw-collapsed' or '',
+		}),
+	})
 end
 
 --[[
@@ -72,6 +76,8 @@ splitCellsData.C = {{bg = 'oro', txt = 'argento', abbr = 'OA'},
 	{bg = 'cristallo', txt = 'cristallo', abbr = 'C'}}
 splitCellsData.FRLG = {{bg = 'rubino', txt = 'zaffiro', abbr = 'RZS'},
 	{bg = 'rossofuoco', txt = 'verdefoglia', abbr = 'RFVF'}}
+splitCellsData.E = {{bg = 'rubino', txt = 'zaffiro', abbr = 'RZRFVF'},
+	{bg = 'smeraldo', text = 'smeraldo', abbr = 'S'}}
 splitCellsData.HGSS = {{bg = 'diamante', txt = 'platino', abbr = 'DPPt'},
 	{bg = 'heartgold', txt = 'soulsilver', abbr = 'HGSS'}}
 splitCellsData.PtHGSS = {{bg = 'diamante', txt = 'perla', abbr = 'DP'},
@@ -106,13 +112,15 @@ in modo da avere un numero di celle fisso. Argomenti:
 	- game: indice del parametro che causa la divisione,
 			normalmente una sigla di un gioco
 	- makeCell: la funzione usata per creare le nuove celle
+	- collapse (opzionale): specifica se le celle devono
+			essere collassate o meno. Default false
 
 --]]
-local splitCell = function(cells, data, startGen, game, makeCell)
+local splitCell = function(cells, data, startGen, game, makeCell, collapse)
 	local genIndex = getGenIndex(startGen, game)
 	cells[genIndex] = table.concat{makeCell(data[genIndex],
-			splitCellsData[game][1]), '\n',	makeCell(data[game],
-			splitCellsData[game][2])}
+			splitCellsData[game][1], collapse), '\n',
+			makeCell(data[game], splitCellsData[game][2], collapse)}
 end
 
 --[[
@@ -124,8 +132,8 @@ il title
 
 --]]
 local makeTitleCell = function(content, cellData)
-	return makeCell(content == '×' and 'FFF' or c[cellData.bg].light,
-			c[cellData.txt].dark, '1',
+	return makeCell(content == '×' and 'FFF' or cellData.bg,
+			'000', '1',
 			table.concat{'<span class="explain" title="', cellData.abbr,
 			'">', content, '</span>'})
 end
@@ -138,12 +146,12 @@ di background, quello del testo e il sup vengono
 presi dai dati forniti.
 
 --]]
-local makeSupCell = function(content, cellData)
+local makeSupCell = function(content, cellData, collapse)
 	if content == '×' then
-		return makeCell('FFF', c[cellData.txt].dark, '1', content)
+		return makeCell('FFF', cellData.txt, '1', content)
 	else
-		return makeCell(c[cellData.bg].light, c[cellData.txt].dark, '1',
-			content .. sup[cellData.abbr])
+		return makeCell(cellData.bg, cellData.txt, '1',
+			content .. abbr[cellData.abbr], collapse)
 	end
 end
 
@@ -154,8 +162,8 @@ i title nelle celle nuove; per maggiori informazioni
 leggere il commento a splitCel più su.
 
 --]]
-local splitTitle = function(cells, data, startGen, game)
-	return splitCell(cells, data, startGen, game, makeTitleCell)
+local splitTitle = function(cells, data, startGen, game, collapse)
+	return splitCell(cells, data, startGen, game, makeTitleCell, collapse)
 end
 
 --[[
@@ -165,8 +173,8 @@ i sup nelle celle nuove; per maggiori informazioni
 leggere il commento a splitCel più su.
 
 --]]
-local splitSup = function(cells, data, startGen, game)
-	return splitCell(cells, data, startGen, game, makeSupCell)
+local splitSup = function(cells, data, startGen, game, collapse)
+	return splitCell(cells, data, startGen, game, makeSupCell, collapse)
 end
 
 --[[
@@ -177,29 +185,29 @@ mossa nelle generazioni. Argomenti:
 	- data: dati da inserire nelle celle
 	- splitCells: funzione usata per dividere la
 			cella delle generazioni in due
+	- collapse (opzionale): specifica se il contenuto
+			delle celle deve essere collassato. Default false
 
 --]]
-local tail = function(startGen, data, splitCells)
+local tail = function(startGen, data, splitCells, collapse)
 	local store = {}
 
 	-- Si inseriscono dapprima i dati standard delle generazioni
 	for k = startGen, gendata.latest do
 		local cellData = data[getGenIndex(startGen, k)]
-		local bgColor, txtColor
+		local bgColor
 		if cellData == '×' then
 			bgColor = 'FFF'
-			txtColor = '000'
 		else
-			bgColor = c[gendata[k].region].normale
-			txtColor = 'FFF'
+			bgColor = gendata[k].region
 		end
-		table.insert(store, makeCell(bgColor, txtColor, '2', cellData))
+		table.insert(store, makeCell(bgColor, '000', '2', cellData, collapse))
 	end
 	
 	-- Si dividono le celle delle generazioni se necessario
 	for game in pairs(data) do
 		if type(game) == 'string' then
-			splitCells(store, data, startGen, game)
+			splitCells(store, data, startGen, game, collapse)
 		end
 	end
 	
@@ -211,13 +219,21 @@ local head = function(ndex, stab, notes, form)
 	local ndexFigures = ndex:match('^(%d+)')
 	local abbr = forms.getabbr(ndex, form)
 	local pokedata = table.cloneLoadData(pokes[abbr == 'base' and tonumber(ndexFigures) or ndexFigures .. abbr]
-		or {name = 'Missingno.', ndex = '000'})
+		or table.cloneLoadData(pokes[tonumber(ndexFigures)]) or {name = 'Missingno.', ndex = '000'})
 	pokedata = table.merge(pokedata, table.cloneLoadData(groups[pokedata.ndex] or {group1 = 'sconosciuto'}))
-	return string.interp([=[|-
-| style="width: 26px;" | ${num}
-| style="width: 26px;" | ${ani}
-| style="width: 75px;" | ${stab}[[${name}]]${stab}${notes}${forml}
-| style="background:#${std}; width: ${wd} | [[${gruppo1} (gruppo uova)|<span style="color:#FFF;">${gruppo1}</span>]]${gruppo2}
+	pokedata.group1show = pokedata.group1 == 'coleottero' and 'Coleot' or (pokedata.group1 == 'non ancora scoperto' and 'Non ancora<div>scoperto</div>' or string.fu(pokedata.group1))
+	pokedata.group2show = pokedata.group2 == 'coleottero' and 'Coleot' or string.fu(pokedata.group2)
+	pokedata.type2 = pokedata.type2 ~= pokedata.type1 and string.fu(pokedata.type2) or nil
+	pokedata.type1 = string.fu(pokedata.type1)
+	local boxClasses = '-5 flex flex-row flex-main-center flex-items-center'
+	local boxStyles = 'padding: 0 2px; margin-bottom: 0.2ex;'
+
+	return string.interp([=[|- style="height: 100%;"
+| class="hidden-xs" | ${num}
+| ${ani}
+| <span class="hidden-xs">${stab}[[${name}]]${stab}${notes}${forml}</span>
+| class="hidden-sm" style="height: 100%;${typesmall} padding: 0.8ex 0.3ex;" | ${types}
+| class="hidden-sm" style="height: 100%;${groupsmall} padding: 0.8ex 0.3ex;" | ${groups}
 ]=],
 {
 	num = ndexFigures,
@@ -227,10 +243,10 @@ local head = function(ndex, stab, notes, form)
 	notes = lib.makeNotes(notes or ''),
 	forml = forms.getlink(ndex, false, form),
 	std = c[pokedata.group1 .. '_uova'].normale,
-	gruppo1 = pokedata.group1 == 'coleottero' and 'Coleot' or string.fu(pokedata.group1),
-	wd = pokedata.group2 and '50px;"' or '100px;" colspan="2"',
-	gruppo2 = pokedata.group2 and string.interp('\n| style="width: 50px; background:#${std};" | [[${gruppo} (gruppo uova)|<span style="color:#FFF;">${gruppo}</span>]]',
-		{std = c[pokedata.group2 .. '_uova'].normale, gruppo = pokedata.group2 == 'coleottero' and 'Coleot' or string.fu(pokedata.group2)}) or ''
+	types = box.boxTipoLua(pokedata.type1, boxClasses, boxStyles .. (pokedata.type2 and 'height: 50%;' or ' height: 100%;')) .. (pokedata.type2 and box.boxTipoLua(pokedata.type2, boxClasses, boxStyles .. 'height: 50%;') or ''),
+	typesmall = pokedata.type2 and 'font-size: 90%;' or '',
+	groups = box.boxLua(pokedata.group1show, pokedata.group1 .. ' (gruppo uova)', pokedata.group1 .. '_uova', boxClasses, boxStyles .. (pokedata.group2 and 'height: 50%;' or ' height: 100%;')) .. (pokedata.group2 and box.boxLua(pokedata.group2show, pokedata.group2 .. ' (gruppo uova)', pokedata.group2 .. '_uova', boxClasses, boxStyles .. 'height: 50%;') or ''),
+	groupsmall = pokedata.group2 and 'font-size: 90%;' or '',
 })
 end
 
@@ -251,7 +267,7 @@ local removeOldParams = function(p)
 	-- rimuove i parametri 3, 4 e 5 (ora 2, 3 e 4)
 	--		se 3 è 1 o 2 (il numero di tipi)
 	--		e se 4 e 5 sono tipi
-	if ((p[2] == '1' or p[2] == '2') and
+	if ((p[2] == '1' or p[2] == '2') and p[3] and
 		(table.search(libdata.allTypes, string.lower(p[3])) or string.lower(p[3]) == 'coleottero')) then
 		table.remove(p, 4)
 		table.remove(p, 3)
@@ -274,9 +290,11 @@ Pokémon, vi siano una o due celle per generazione. Argomenti:
 			dell'ultima generazione. Se non specificato, viene
 			usato, sempre come default, il valore della penultima
 			generazione
+	- collapse (opzionale): se il contenuto delle celle deve essere
+			collassato o meno. Se non specificato, false
 
 --]]
-local entry = function(p, makeText, splitCells, latestGenDefault)
+local entry = function(p, makeText, splitCells, latestGenDefault, collapse)
 	--[[
 		Dovendo usare table.filter, e quindi ipairs, è
 		necessario che non vi siano nil prima dell'ultimo
@@ -304,7 +322,7 @@ local entry = function(p, makeText, splitCells, latestGenDefault)
 			return type(key) == 'string' or key > 1 and key < (3 + gendata.latest) - gen
 		end), makeText)
 
-	return head(p[1] or '000', stab, note, form) .. tail(gen, data, splitCells)
+	return head(p[1] or '000', stab, note, form) .. tail(gen, data, splitCells, collapse)
 end
 
 --[[
@@ -341,7 +359,8 @@ primo argomento la generazione, seguita dagli altri
 --]]
 m.breed = function(frame)
 	return entry(mw.clone(frame.args), function(v) return v == 'No'
-			and '×' or (v == 'N/D' and 'N/D' or lib.insertnwlns(v, 6)) end, splitSup)
+			and '×' or (v:match('%#') and lib.insertnwlns(v, 6, nil, true) or v)
+		end, splitSup, nil, true)
 end
 
 m.Breed = m.breed
@@ -357,7 +376,7 @@ m.event = function(frame)
 	p = removeOldParams(p)
 
 	return string.interp([=[${h}
-| ${event}${level}]=],
+| style="padding: 0.5ex;" | ${event}${level}]=],
 {
 	h = head(p[1] or '000', p.STAB or '', p.notes or '', p.form or ''),
 	event = p[2] or 'Per la fine del mondo',
@@ -384,7 +403,7 @@ m.tutor = function(frame)
 		if p[k] == 'Yes' then
 			table.insert(store, makeCell(tutorCellsColors[k - 1], 'FFF', '1', '✔'))
 		elseif p[k] == 'No' then
-			table.insert(store, makeCell('FFF', 'FFF', '1', '&nbsp;'))
+			table.insert(store, makeCell('FFF', '000', '1', '×'))
 		end
 	end
 	return table.concat(store, '\n')

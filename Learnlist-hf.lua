@@ -31,9 +31,9 @@ local firstcell = {cs = {}, rs = {}}
 -- In futuro dovranno essere tutti > 1
 firstcell.cs.level = {1, 1, 1, 1, 2, 2, 1}
 
-firstcell.cs.tm = {2, 2, 2, 2, 2, 2, 2}
+firstcell.cs.tm = {1, 1, 1, 1, 1, 1, 1}
 firstcell.cs.breed = {1, 1, 1, 1, 1, 1, 1}
-firstcell.cs.tutor = {1, 1, 4, 5, 4, 4, 2}
+firstcell.cs.tutor = {1, 1, 3, 3, 2, 2, 1}
 firstcell.cs.preevo = firstcell.cs.breed
 firstcell.cs.event = firstcell.cs.breed
 
@@ -49,6 +49,7 @@ firstcell.rs.event = firstcell.rs.breed
 local ways = {}
 ways.level = 'aumentando di livello'
 ways.tm = 'tramite MT/MN'
+ways.tm2 = 'tramite MT'
 ways.breed = 'tramite accoppiamento'
 ways.tutor = "dall'Insegnamosse"
 ways.preevo = 'tramite evoluzioni precedenti'
@@ -121,8 +122,8 @@ rowsf.breed1 = [=[*Le mosse segnate con un asterisco (*) si ottengono solo con u
 rowsf.breed2 = [=[
 
 *Le mosse segnate con una croce (†) si possono ottenere su ${poke} solo se ad uscire dall'uovo è [[${baby}|<span style="color: #000">${baby}</span>]], e non altrimenti.]=]
-rowsf.tutor = [=[*Un'abbreviazione nera in una casella colorata indica che ${poke} può imparare la mossa dall'Insegnamosse in quel gioco.
-*Un'abbreviazione colorata in una casella bianca indica che ${poke} non può imparare la mossa dall'Insegnamosse in quel gioco.]=]
+rowsf.tutor = [=[*Un'abbreviazione bianca in una casella colorata indica che ${poke} può imparare la mossa dall'Insegnamosse in quel gioco.
+*Un'abbreviazione colorata su sfondo bianco indica che ${poke} non può imparare la mossa dall'Insegnamosse in quel gioco.]=]
 rowsf.event = '*Un livello in apice indica che ${poke} può imparare questa mossa normalmente nella ${genl} generazione a quel livello.'
 rowsf.last = [[
 
@@ -140,6 +141,7 @@ rowsf.forms.mega = 'a [[Megaevoluzione|<span style="color: #000;">Megaevoluzione
 -- Generano i link alle altre generazione, in alto a destra degli headers
 
 local genlink = function(gen, method, poke)
+	method = (method == 'tm' and tonumber(gen) > 6) and 'tm2' or method
     if gen == gendata.latest then
         return txt.interp('[[${poke}#${way}|<span style="color:#000;">${genroman}</span>]]',
             {poke = poke, way = string.fu(ways[method]),
@@ -196,24 +198,20 @@ local header = function(pars, kind)
 	local genh, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
 	return txt.interp([=[
-{| class="roundy text-center pull-center white-rows" style="${bg}"
-|-
-| class="roundytop" colspan="${colspan}" style="background: transparent;" |
-<div class="flex-row-center-around" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''${gentitle}&nbsp;generazione'''</span></span></div>
-<div>
-<div class="roundy" style="font-weight: bold; padding: 0.5ex;>
-<div class="small-font" style="line-height:10px;">Altre&nbsp;generazioni:</div>
-<div class="text-center">${links}</div>
+<div class="text-center" style="max-width: 100%;">
+<div class="roundy text-center inline-block " style="max-width: 100%; ${bg}">
+<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''${gentitle}&nbsp;generazione'''</span></span></div>
+<div class="text-center" style="font-weight: bold; padding: 0.5ex;>
+<div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
+<div>${links}</div>
 </div>
 </div>
-</div>
-<div style="${dividerbg}; height: 0.5ex;">&nbsp;</div>
-|- class="text-center" style="background: transparent;"
+<div style="overflow-x: auto; margin: 0 0.3ex;">
+{| class="white-rows" style="max-width: 100%; width: 100% !important; margin-top: 0; border-spacing: 0; background: transparent;"
+|- class="text-center"
 ${low_row}]=],
 {
-	bg = css.horizGradLua(tipo1, tipo1 == tipo2 and 'light' or 'normale', tipo2, 'normale'),
-	dividerbg = css.horizGradLua(tipo1, tipo1 == tipo2 and 'normale' or 'light', tipo2, tipo1 == tipo2 and 'dark' or 'light'),
-	colspan = cs[kind][genh],
+	bg = css.horizGradLua{type1 = tipo1, type2 = tipo2},
 	gentitle = string.fu(gendata[genh].ext),
 	links = oldgenslinks(genh, genp, kind, poke),
 	low_row = lowrow(genh, kind)
@@ -226,14 +224,16 @@ local footer = function(pars, kind)
 	local tipo, form = pars[3] or 'Sconosciuto', string.lower(pars.form or 'none')
 	local genf, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
-    return txt.interp([=[|-
-| class="roundybottom text-left small-font" style="line-height:10px; padding-bottom: 0.5ex; background: transparent;" colspan="${colspan}" |
+    return txt.interp([=[
+|}</div>
+<div class="text-left small-font" style="line-height: 1em; padding: 0 0.5ex 1ex;">
 ${kindrows}
 *Il '''grassetto''' indica una mossa che ha lo [[Same Type Attack Bonus|<span style="color: #000">STAB</span>]] quando viene usata da un ${poke}.
 *Il ''corsivo'' indica una mossa che ha lo STAB solo quando viene usata da un${form} di ${poke}.${last}
-|}]=],
+</div>
+</div>
+</div>]=],
 {
-	colspan = cs[kind][genf],
 	kindrows = rowf(kind, genf, poke),
 	poke = poke,
 	form = txt.interp(rowsf.forms[form], {poke = poke}) or '',

@@ -4,7 +4,7 @@ local t = {}
 
 -- Numero totale dei Pokémon
 
-t.pokeNum = 801
+t.pokeNum = 802
 t.poke_num = t.pokeNum
 
 --[[
@@ -14,18 +14,20 @@ necessitano del testo bianco quando questo è usato come sfondo.
 
 --]]
 
-t.whitetext = {'blu', 'rubino', 'zaffiro', 'nero', 'nero_2', 'nero2', 'nero 2', 'x',
-	'rubino omega', 'rubino_omega', 'rubinoomega', 'zaffiro alpha', 'zaffiro_alpha',
-	'zaffiroalpha', 'osa', 'xd', 'b', 'ru', 'za', 'n', 'n2', 'ro'}
+t.whitetext = {'blu', 'rubino', 'zaffiro', 'nero', 'nero_2', 'nero2',
+	'nero 2', 'x', 'rubino omega', 'rubino_omega', 'rubinoomega',
+	'zaffiro alpha', 'zaffiro_alpha', 'zaffiroalpha', 'osa', 'xd', 'b',
+	'ru', 'za', 'n', 'n2', 'ro'}
 
 -- Ndex e nomi dei Pokémon esclusivamente femmina
 
-t.onlyFemales = {29, 30, 31, 113, 115, 124, 238, 241, 242, 314, 380, 413, 416,
-	440, 478, 488, 548, 629, 630, 669, 670, 671, 'blissey', 'chansey',
-	'cresselia', 'flabébé', 'floette', 'florges', 'froslass', 'happiny',
-	'illumise', 'jynx', 'kangaskhan', 'latias', 'lilligant', 'mandibuzz',
-	'miltank', 'nidoqueen', 'nidoran♀', 'nidorina', 'petilil', 'smoochum',
-	'vespiquen', 'vullaby', 'wormadam'}
+t.onlyFemales = {29, 30, 31, 113, 115, 124, 238, 241, 242, 314, 380,
+	413, 416, 440, 478, 488, 548, 549, 629, 630, 669, 670, 671, 758, 761,
+	762, 763, 'blissey', 'bounsweet', 'chansey', 'cresselia', 'flabébé',
+	'floette', 'florges', 'froslass', 'happiny', 'illumise', 'jynx',
+	'kangaskhan', 'latias', 'lilligant', 'mandibuzz', 'miltank',
+	'nidoqueen', 'nidoran♀', 'nidorina', 'petilil', 'salazzle', 'smoochum',
+	'steenee', 'tsareena', 'vespiquen', 'vullaby', 'wormadam'}
 
 t.only_females, t.onlyfemales = t.onlyFemales, t.onlyFemales
 

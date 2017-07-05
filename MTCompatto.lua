@@ -75,7 +75,7 @@ local MTGen = function(gen, width)
 <div ${roundy}style="background: #eaeaea; font-size: 90%; margin-bottom: 2px; padding: 0px 2px;">${listmt}</div>${listmn}
 </div>]=],
 	{
-		bg = css.horizGradLua(gens[gen].region, 'normale', gens[gen].region, 'light'),
+		bg = css.horizGradLua{type = gens[gen].region},
 		wd = width or "65%",
 		gen = gens[gen].ext,
 		roundy = machines[gen].MN and '' or 'class="roundybottom" ',
@@ -134,7 +134,7 @@ m.MTCompatto = function(frame)
 </div></div>
 [[Categoria:Mosse Macchina]]]=],
 	{
-		bg = css.horizGradLua(color, 'light', color, 'normale'),
+		bg = css.horizGradLua{type = color},
 		collapsed = #gens > 1 and " mw-collapsed" or "",
 		mtGens = table.concat(gens)
 	})

@@ -19,6 +19,12 @@ genAliases['3'] = '5'
 genAliases['4'] = '5'
 genAliases['6'] = '7'
 
+-- Generazioni di soli static
+local staticOnly = {false, false, false, false, false, true, true}
+
+-- Generazioni di soli ani
+local aniOnly = {true, true, false, false, false, false, false}
+
 --[[
 
 Effettua il trim di ndex e generazione e
@@ -72,9 +78,11 @@ end
 -- Chiamata interna da altri moduli
 
 o.aniLua = function(n, gen, link)
+	local ani = staticOnly[tonumber(gen)] and '' or 'Ani'
+	local ext = staticOnly[tonumber(gen)] and 'png' or 'gif'
 	local n, gen, link = getData(n, gen, link)
-	return string.interp("[[File:Ani${num}MS${gen}.gif|${name}|link=${name}]]",
-    	{num = n, gen = gen, name = link})
+	return string.interp("[[File:${ani}${num}MS${gen}.${ext}|${name}|link=${name}]]",
+		{num = n, gen = gen, name = link, ani = ani, ext = ext})
 end
 
 o.ani_lua = o.aniLua
@@ -92,9 +100,11 @@ o.Ani, o.AniP, o.aniP = o.ani, o.ani, o.ani
 -- Chiamata interna da altri moduli
 
 o.staticLua = function(n, gen, link)
+	local ani = aniOnly[tonumber(gen)] and 'Ani' or ''
+	local ext = aniOnly[tonumber(gen)] and 'gif' or 'png'
 	local n, gen, link = getData(n, gen, link)
-    return string.interp("[[File:${num}MS${gen}.png|${name}|link=${name}]]",
-    	{num = n, gen = gen, name = link})
+    return string.interp("[[File:${ani}${num}MS${gen}.${ext}|${name}|link=${name}]]",
+        {num = n, gen = gen, name = link, ani = ani, ext = ext})
 end
 
 o.static_lua = o.staticLua
@@ -108,4 +118,5 @@ end
 o.Static, o.staticP, o.StaticP = o.static, o.static, o.static
 
 return o
--- print(o[arg[1]]{args={ndex = arg[2], link = arg[4], gen = arg[3]}})
+--arg = {'static', '487', 'Giratina', '1'}
+--print(o[arg[1]]{args={ndex = arg[2], link = arg[3], gen = arg[4]}})

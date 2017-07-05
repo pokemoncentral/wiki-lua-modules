@@ -1475,7 +1475,7 @@ t.yungoos = {name = 'Yungoos', ndex = 734, type1 = 'normale', type2 = 'normale'}
 t[734] = t.yungoos
 t.gumshoos = {name = 'Gumshoos', ndex = 735, type1 = 'normale', type2 = 'normale'}
 t[735] = t.gumshoos
-t.grubbin = {name = 'Grubbin', ndex = 736, type1 = 'coleot', type2 = 'coleot'}
+t.grubbin = {name = 'Grubbin', ndex = 736, type1 = 'coleottero', type2 = 'coleottero'}
 t[736] = t.grubbin
 t.charjabug = {name = 'Charjabug', ndex = 737, type1 = 'coleot', type2 = 'elettro'}
 t[737] = t.charjabug
@@ -1591,9 +1591,9 @@ t.lunala = {name = 'Lunala', ndex = 792, type1 = 'psico', type2 = 'spettro'}
 t[792] = t.lunala
 t.nihilego = {name = 'Nihilego', ndex = 793, type1 = 'roccia', type2 = 'veleno'}
 t[793] = t.nihilego
-t.buzzwole = {name = 'Buzzwole', ndex = 794, type1 = 'coleottero', type2 = 'lotta'}
+t.buzzwole = {name = 'Buzzwole', ndex = 794, type1 = 'coleot', type2 = 'lotta'}
 t[794] = t.buzzwole
-t.pheromosa = {name = 'Pheromosa', ndex = 795, type1 = 'coleottero', type2 = 'lotta'}
+t.pheromosa = {name = 'Pheromosa', ndex = 795, type1 = 'coleot', type2 = 'lotta'}
 t[795] = t.pheromosa
 t.xurkitree = {name = 'Xurkitree', ndex = 796, type1 = 'elettro', type2 = 'elettro'}
 t[796] = t.xurkitree
@@ -1607,6 +1607,8 @@ t.necrozma = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'psico'}
 t[800] = t.necrozma
 t.magearna = {name = 'Magearna', ndex = 801, type1 = 'acciaio', type2 = 'folletto'}
 t[801] = t.magearna
+t.marshadow = {name = 'Marshadow', ndex = 802, type1 = 'lotta', type2 = 'spettro'}
+t[802] = t.marshadow
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
@@ -1669,6 +1671,40 @@ t.rotomT = {name = 'Rotom', ndex = 479, type1 = 'elettro', type2 = 'erba'}
 t['479T'] = t.rotomT
 t.shayminC = {name = 'Shaymin', ndex = 492, type1 = 'erba', type2 = 'volante'}
 t['492C'] = t.shayminC
+t.arceusL = {name = 'Arceus', ndex = 493, type1 = 'lotta', type2 = 'lotta'}
+t['493L'] = t.arceusL
+t.arceusVo = {name = 'Arceus', ndex = 493, type1 = 'volante', type2 = 'volante'}
+t['493Vo'] = t.arceusVo
+t.arceusVe = {name = 'Arceus', ndex = 493, type1 = 'veleno', type2 = 'veleno'}
+t['493Ve'] = t.arceusVe
+t.arceusT = {name = 'Arceus', ndex = 493, type1 = 'terra', type2 = 'terra'}
+t['493T'] = t.arceusT
+t.arceusR = {name = 'Arceus', ndex = 493, type1 = 'roccia', type2 = 'roccia'}
+t['493R'] = t.arceusR
+t.arceusC = {name = 'Arceus', ndex = 493, type1 = 'coleottero', type2 = 'coleottero'}
+t['493C'] = t.arceusC
+t.arceusS = {name = 'Arceus', ndex = 493, type1 = 'spettro', type2 = 'spettro'}
+t['493S'] = t.arceusS
+t.arceusAi = {name = 'Arceus', ndex = 493, type1 = 'acciaio', type2 = 'acciaio'}
+t['493Ai'] = t.arceusAi
+t.arceusFu = {name = 'Arceus', ndex = 493, type1 = 'fuoco', type2 = 'fuoco'}
+t['493Fu'] = t.arceusFu
+t.arceusAq = {name = 'Arceus', ndex = 493, type1 = 'acqua', type2 = 'acqua'}
+t['493Aq'] = t.arceusAq
+t.arceusEr = {name = 'Arceus', ndex = 493, type1 = 'erba', type2 = 'erba'}
+t['493Er'] = t.arceusEr
+t.arceusEl = {name = 'Arceus', ndex = 493, type1 = 'elettro', type2 = 'elettro'}
+t['493El'] = t.arceusEl
+t.arceusP = {name = 'Arceus', ndex = 493, type1 = 'psico', type2 = 'psico'}
+t['493P'] = t.arceusP
+t.arceusG = {name = 'Arceus', ndex = 493, type1 = 'ghiaccio', type2 = 'ghiaccio'}
+t['493G'] = t.arceusG
+t.arceusD = {name = 'Arceus', ndex = 493, type1 = 'drago', type2 = 'drago'}
+t['493D'] = t.arceusD
+t.arceusB = {name = 'Arceus', ndex = 493, type1 = 'buio', type2 = 'buio'}
+t['493B'] = t.arceusB
+t.arceusFo = {name = 'Arceus', ndex = 493, type1 = 'folletto', type2 = 'folletto'}
+t['493Fo'] = t.arceusFo
 t.darmanitanZ = {name = 'Darmanitan', ndex = 555, type1 = 'fuoco', type2 = 'psico'}
 t['555Z'] = t.darmanitanZ
 t.meloettaD = {name = 'Meloetta', ndex = 648, type1 = 'normale', type2 = 'lotta'}
@@ -1681,6 +1717,40 @@ t.oricorioH = {name = 'Oricorio', ndex = 741, type1 = 'psico', type2 = 'volante'
 t['741H'] = t.oricorioH
 t.oricorioB = {name = 'Oricorio', ndex = 741, type1 = 'spettro', type2 = 'volante'}
 t['741B'] = t.oricorioB
+t.silvallyL = {name = 'Silvally', ndex = 773, type1 = 'lotta', type2 = 'lotta'}
+t['773L'] = t.silvallyL
+t.silvallyVo = {name = 'Silvally', ndex = 773, type1 = 'volante', type2 = 'volante'}
+t['773Vo'] = t.silvallyVo
+t.silvallyVe = {name = 'Silvally', ndex = 773, type1 = 'veleno', type2 = 'veleno'}
+t['773Ve'] = t.silvallyVe
+t.silvallyT = {name = 'Silvally', ndex = 773, type1 = 'terra', type2 = 'terra'}
+t['773T'] = t.silvallyT
+t.silvallyR = {name = 'Silvally', ndex = 773, type1 = 'roccia', type2 = 'roccia'}
+t['773R'] = t.silvallyR
+t.silvallyC = {name = 'Silvally', ndex = 773, type1 = 'coleottero', type2 = 'coleottero'}
+t['773C'] = t.silvallyC
+t.silvallyS = {name = 'Silvally', ndex = 773, type1 = 'spettro', type2 = 'spettro'}
+t['773S'] = t.silvallyS
+t.silvallyAi = {name = 'Silvally', ndex = 773, type1 = 'acciaio', type2 = 'acciaio'}
+t['773Ai'] = t.silvallyAi
+t.silvallyFu = {name = 'Silvally', ndex = 773, type1 = 'fuoco', type2 = 'fuoco'}
+t['773Fu'] = t.silvallyFu
+t.silvallyAq = {name = 'Silvally', ndex = 773, type1 = 'acqua', type2 = 'acqua'}
+t['773Aq'] = t.silvallyAq
+t.silvallyEr = {name = 'Silvally', ndex = 773, type1 = 'erba', type2 = 'erba'}
+t['773Er'] = t.silvallyEr
+t.silvallyEl = {name = 'Silvally', ndex = 773, type1 = 'elettro', type2 = 'elettro'}
+t['773El'] = t.silvallyEl
+t.silvallyP = {name = 'Silvally', ndex = 773, type1 = 'psico', type2 = 'psico'}
+t['773P'] = t.silvallyP
+t.silvallyG = {name = 'Silvally', ndex = 773, type1 = 'ghiaccio', type2 = 'ghiaccio'}
+t['773G'] = t.silvallyG
+t.silvallyD = {name = 'Silvally', ndex = 773, type1 = 'drago', type2 = 'drago'}
+t['773D'] = t.silvallyD
+t.silvallyB = {name = 'Silvally', ndex = 773, type1 = 'buio', type2 = 'buio'}
+t['773B'] = t.silvallyB
+t.silvallyFo = {name = 'Silvally', ndex = 773, type1 = 'folletto', type2 = 'folletto'}
+t['773Fo'] = t.silvallyFo
 
 -- Gli alias per le altre forme alternative rilevanti
 
@@ -1706,8 +1776,8 @@ t.gourgeistS, t['711S'], t.gourgeistL, t['711L'], t.gourgeistXL, t['711XL'] =
 	t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist
 t.zygardeD, t['718D'], t.zygardeP, t['718P'] =
 	t.zygarde, t.zygarde, t.zygarde, t.zygarde
-t.lycanrocN = t.lycanroc
-t.wishiwashiB = t.wishiwashi
+t.lycanrocN, t['745N'] = t.lycanroc, t.lycanroc
+t.wishiwashiB, t['746B'] = t.wishiwashi, t.wishiwashi
 
 -- I dati sulle megaevoluzioni; sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
 -- Il nome è composto dal nome del Pokémon seguito da 'M'

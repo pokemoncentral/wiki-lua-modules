@@ -85,7 +85,7 @@ t.paralizzante = {name = 'Paralizzante', type = 'erba', category = 'stato', powe
 t.sonnifero = {name = 'Sonnifero', type = 'erba', category = 'stato', power = '&mdash;', accuracy = 75, pp = 15}
 t.petalodanza = {name = 'Petalodanza', type = 'erba', category = 'speciale', power = 120, accuracy = 100, pp = 10}
 t.millebave = {name = 'Millebave', type = 'coleottero', category = 'stato', power = '&mdash;', accuracy = 95, pp = 40}
-t['ira di drago'] = {name = 'Ira di Drago', type = 'drago', category = 'speciale', power = 100, accuracy = '&mdash;', pp = 10}
+t['ira di drago'] = {name = 'Ira di Drago', type = 'drago', category = 'speciale', power = '&mdash;', accuracy = 100, pp = 10}
 t.turbofuoco = {name = 'Turbofuoco', type = 'fuoco', category = 'speciale', power = 35, accuracy = 85, pp = 15}
 t.tuonoshock = {name = 'Tuonoshock', type = 'elettro', category = 'speciale', power = 40, accuracy = 100, pp = 30}
 t.fulmine = {name = 'Fulmine', type = 'elettro', category = 'speciale', power = 90, accuracy = 100, pp = 15}
@@ -575,6 +575,7 @@ t.halloween = {name = 'Halloween', type = 'spettro', category = 'stato', power =
 t.urlo = {name = 'Urlo', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 100, pp = 30}
 t.pioggiaplasma = {name = 'Pioggiaplasma', type = 'elettro', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 25}
 t.caricaparabola = {name = 'Caricaparabola', type = 'elettro', category = 'speciale', power = 65, accuracy = 100, pp = 20}
+t.boscomalocchio = {name = 'Boscomalocchio', type = 'erba', category = 'stato', power = '&mdash;', accuracy = 100, pp = 20}
 t.schiacciatuffo = {name = 'Schiacciatuffo', type = 'lotta', category = 'fisico', power = 100, accuracy = 95, pp = 10}
 t.fiortempesta = {name = 'Fiortempesta', type = 'erba', category = 'fisico', power = 90, accuracy = 100, pp = 15}
 t.liofilizzazione = {name = 'Liofilizzazione', type = 'ghiaccio', category = 'speciale', power = 70, accuracy = 100, pp = 20}

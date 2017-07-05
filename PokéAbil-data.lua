@@ -1605,6 +1605,8 @@ t.necrozma = {ability1 = 'Scudoprisma'}
 t[800] = t.guzzlord
 t.magearna = {ability1 = 'Cuoreanima'}
 t[801] = t.magearna
+t.marshadow = {ability1 = 'Tecnico'}
+t[802] = t.marshadow
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
@@ -1693,6 +1695,18 @@ t.rotomC, t.rotomL, t.rotomG = t.rotom, t.rotom,  t.rotom
 t.rotomV, t.rotomT = t.rotom, t.rotom
 t['479C'], t['479L'], t['479G'] = t.rotom, t.rotom,  t.rotom
 t['479V'], t['479T'] = t.rotom, t.rotom
+t['493L'], t['493Vo'], t['493Ve'] = t.arceus, t.arceus, t.arceus
+t.arceusL, t.arceusVo, t.arceusVe = t.arceus, t.arceus, t.arceus
+t['493T'], t['493R'], t['493C'] = t.arceus, t.arceus, t.arceus
+t.arceusT, t.arceusR, t.arceusC = t.arceus, t.arceus, t.arceus
+t['493S'], t['493Ai'], t['493Fu'] = t.arceus, t.arceus, t.arceus
+t.arceusS, t.arceusAi, t.arceusFu = t.arceus, t.arceus, t.arceus
+t['493Aq'], t['493Er'], t['493El'] = t.arceus, t.arceus, t.arceus
+t.arceusAq, t.arceusEr, t.arceusEl = t.arceus, t.arceus, t.arceus
+t['493P'], t['493G'], t['493D'] = t.arceus, t.arceus, t.arceus
+t.arceusP, t.arceusG, t.arceusD = t.arceus, t.arceus, t.arceus
+t['493B'], t['493Fo'] = t.arceus, t.arceus
+t.arceusB, t.arceusFo = t.arceus, t.arceus
 t.meloettaD = t.meloetta
 t['648D'] = t.meloetta
 t.aegislashS = t.aegislash
@@ -1709,9 +1723,20 @@ t.oricorioC, t.oricorioH, t.oricorioB = t.oricorio, t.oricorio, t.oricorio
 t['741C'], t['741H'], t['741B'] = t.oricorio, t.oricorio, t.oricorio
 t.wishiwashiB = t.wishiwashi
 t['746B'] = t.wishiwashi
+t['773L'], t['773Vo'], t['773Ve'] = t.silvally, t.silvally, t.silvally
+t.silvallyL, t.silvallyVo, t.silvallyVe = t.silvally, t.silvally, t.silvally
+t['773T'], t['773R'], t['773C'] = t.silvally, t.silvally, t.silvally
+t.silvallyT, t.silvallyR, t.silvallyC = t.silvally, t.silvally, t.silvally
+t['773S'], t['773Ai'], t['773Fu'] = t.silvally, t.silvally, t.silvally
+t.silvallyS, t.silvallyAi, t.silvallyFu = t.silvally, t.silvally, t.silvally
+t['773Aq'], t['773Er'], t['773El'] = t.silvally, t.silvally, t.silvally
+t.silvallyAq, t.silvallyEr, t.silvallyEl = t.silvally, t.silvally, t.silvally
+t['773P'], t['773G'], t['773D'] = t.silvally, t.silvally, t.silvally
+t.silvallyP, t.silvallyG, t.silvallyD = t.silvally, t.silvally, t.silvally
+t['773B'], t['773Fo'] = t.silvally, t.silvally
+t.silvallyB, t.silvallyFo = t.silvally, t.silvally
 
--- I dati sulle megaevoluzioni; sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
--- Il nome è composto dal nome del Pokémon seguito da 'M'
+-- Mega evolutions
 
 t.venusaurM = {ability1 = 'Grassospesso'}
 t['003M'] = t.venusaurM

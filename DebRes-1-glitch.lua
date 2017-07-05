@@ -113,7 +113,9 @@ EffTable.new = function(name, game)
 	types = table.map(types, string.lower)
 
 	-- Colori per la stampa
-	this:createColors({type1 = data.type1, type2 = data.type2})
+	local printColors = {type1 = data.type1:gsub(' ', '_')}
+	printColors.type2 = data.type2 and data.type2:gsub(' ', '_') or printColors.type1
+	this:createColors(printColors)
 
 	--[[
 		Per ogni possibile efficacia, se vi sono
@@ -209,5 +211,4 @@ end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
-print(dr.DebRes{args=arg})
--- return dr
+return dr

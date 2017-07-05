@@ -27,8 +27,7 @@ end
 z.tm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return string.interp(table.concat{[=[|-
-| style="padding: 0.1em 0.3em;" | [[File:${img} ${tipo} Sprite Zaino.png]]
-| style="padding: 0.1em 0.3em;" | [[${p1}|<span style="color:#000;">${p1}</span>]]${games}]=],
+| style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:${img} ${tipo} Sprite Zaino.png]]</span>[[${p1}|<span style="color:#000;">${p1}</span>]]${games}]=],
 	lib.basicentry(p[8] or '', p[2] or 'Azione', lib.makeNotes(p[7] or ''),
 			p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0', p[6] or '0')},
 {

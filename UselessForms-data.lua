@@ -30,11 +30,11 @@ end
 -- identici, in questo modulo, ad altri, e dunque sono costituiti
 -- da alias, raggruppati in fondo al modulo
 
+t.pikachu = {}
 t.unown = {}
 t.burmy = {}
 t.cherrim = {}
 t.shellos = {}
-t.arceus = {}
 t.unfezant = {}
 t.deerling = {}
 t.frillish = {}
@@ -45,10 +45,20 @@ t.pyroar = {}
 t.floette = {}
 t.furfrou = {}
 t.xerneas = {}
+t.minior = {}
+t.mimikyu = {}
 
 -- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
 -- mettere solo queste nelle altre sottotabelle
 
+t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
+	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
+	K = 'Berretto Kalos', A = 'Berretto Alola',
+	base = 'Pikachu'}
+--t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
+--	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
+--	K = 'Berretto Kalos', A = 'Berretto Alola',
+--	St = 'Berretto Scelgo Te', base = 'Pikachu'}
 t.unown.names = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
 	O = 'O', P = 'P', Q = 'Q', R = 'R', S = 'S', T = 'T', U = 'U', V = 'V',
@@ -57,12 +67,6 @@ t.burmy.names = {Sa = 'Manto Sabbia', Sc = 'Manto Scarti',
 	base = 'Manto Pianta'}
 t.cherrim.names = {S = 'Forma Splendore', base = 'Forma Nuvola'}
 t.shellos.names = {E = 'Mare Est', base = 'Mare Ovest'}
-t.arceus.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante',
-	Ve = 'Tipo Veleno', T = 'Tipo Terra', R = 'Tipo Roccia', Aq = 'Tipo Acqua',
-	C = 'Tipo Coleottero', Er = 'Tipo Erba', P = 'Tipo Psico', B = 'Tipo Buio',
-	S = 'Tipo Spettro', Ai = 'Tipo Acciaio', Fu = 'Tipo Fuoco',
-	D = 'Tipo Drago', Fo = 'Tipo Folletto', El = 'Tipo Elettro',
-	G = 'Tipo Ghiaccio'}
 t.unfezant.names = {F = 'Femmina', base = 'Maschio'}
 t.deerling.names = {E = 'Forma Estate', A = 'Forma Autunno',
 	I = 'Forma Inverno', base = 'Forma Primavera'}
@@ -85,6 +89,10 @@ t.furfrou.names = {C = 'Taglio Cuore', St = 'Taglio Stella',
 	Gu = 'Taglio Gentiluomo', R = 'Taglio Regina', K = 'Taglio Kabuki',
 	F = 'Taglio Faraone', base = 'Nessun Taglio'}
 t.xerneas.names = {A = 'Modo Attivo', base = 'Modo Relax'}
+t.mimikyu.names = {S = 'Forma Smascherata', base = 'Forma Mascherata'}
+t.minior.names = {R = 'Nucleo Rosso', A = 'Nucleo Arancione', G = 'Nucleo Giallo',
+	Ve = 'Nucleo Verde', B = 'Nucleo Blu', I = 'Nucleo Indaco',
+	Vi = 'Nucleo Violetto', base = 'Forma Meteora'}
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
@@ -105,14 +113,17 @@ makeLinks(true)
 
 -- Per passare dai nomi estesi delle forme alternative alle sigle
 
-t.unown.ext = t.unown.names
+t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
+	unima = 'U', kalos = 'K', alola = 'A'}
+--t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
+--	unima = 'U', kalos = 'K', alola = 'A', ['scelgo te'] = 'St'}
+t.unown.ext = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
+	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
+	O = 'O', P = 'P', Q = 'Q', R = 'R', S = 'S', T = 'T', U = 'U', V = 'V',
+	W = 'W', X = 'X', Y = 'Y', Z = 'Z', ['!'] = 'PE', ['?'] = 'PI'}
 t.burmy.ext = {sabbia = 'Sa', scarti = 'Sc'}
 t.cherrim.ext = {splendore = 'S'}
 t.shellos.ext = {est = 'E'}
-t.arceus.ext = {lotta = 'L', volante = 'Vo', veleno = 'Ve', terra = 'T',
-	roccia = 'R', acqua = 'A', coleottero = 'C', erba = 'Er', psico = 'P',
-	buio = 'B', spettro = 'S', acciaio = 'A', fuoco = 'Fu', drago = 'D',
-	folletto = 'Fo', elettro = 'El', ghiaccio = 'G', coleot = 'C'}
 t.unfezant.ext = {femmina = 'F'}
 t.deerling.ext = {estate = 'E', autunno = 'A', inverno = 'I'}
 t.frillish.ext = t.unfezant.ext
@@ -120,29 +131,32 @@ t.keldeo.ext = {risoluta = 'R'}
 t.genesect.ext = {idromodulo = 'I', voltmodulo = 'V', piromodulo = 'P',
 	gelomodulo = 'G'}
 t.vivillon.ext = {nordico = 'No', ['manto di neve'] = 'Mn',
-	continentale = 'C', prato = 'Pr', eleganza = 'E', ['nevi perenni'] = 'Ne',
-	trendy = 'T', marino = 'Mr', arcipelago = 'A', deserto = 'D', sabbia = 'Sb',
-	fluviale = 'F', pluviale = 'Pl', savana = 'Sv', solare = 'So',
-	oceanico = 'O', giungla = 'Gu', ['poké ball'] = 'Po', sbarazzino = 'Sb',
-	ball = 'Po'}
+	continentale = 'C', prato = 'Pr', eleganza = 'E', giardinfiore = 'Ga',
+	['nevi perenni'] = 'Ne', trendy = 'T', marino = 'Mr', arcipelago = 'A',
+	deserto = 'D', sabbia = 'Sb', fluviale = 'F', pluviale = 'Pl',
+	savana = 'Sv', solare = 'So', oceanico = 'O', giungla = 'Gu',
+	['poké ball'] = 'Po', sbarazzino = 'Sr', ball = 'Po'}
 t.pyroar.ext = t.unfezant.ext
 t.floette.ext = {giallo = 'G', arancione = 'A', bianco = 'Bi', blu = 'Bl'}
 t.furfrou.ext = {cuore = 'C', stella = 'St', diamante = 'D', dignorina = 'Si',
 	gentildonna = 'Gd', gentiluomo = 'Gu', regina = 'R', kabuki = 'K',
 	faraone = 'F'}
 t.xerneas.ext = {attivo = 'A'}
+t.minior.ext = {rosso = 'R', arancione = 'A', giallo = 'G', verde = 'Ve',
+	blu = 'B', indaco = 'I', violetto = 'Vi'}
+t.mimikyu.ext = {smascherata = 'S'}
 
 -- Arrays in cui è memorizzato l'ordine con cui le varie forme appaiono
 -- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
 
+t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A'}
+--t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'St'}
 t.unown.gamesOrder = {'base', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
 	'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 	'PE', 'PI'}
 t.burmy.gamesOrder = {'base', 'Sa', 'Sc'}
 t.cherrim.gamesOrder = {'base', 'S'}
 t.shellos.gamesOrder = {'base', 'E'}
-t.arceus.gamesOrder = {'base', 'L', 'Vo', 'Ve', 'T', 'R', 'C', 'S', 'Ai', 'Fu',
-	'Aq', 'Er', 'El', 'P', 'G', 'D', 'B', 'Fo'}
 t.unfezant.gamesOrder = {'base', 'F'}
 t.deerling.gamesOrder = {'base', 'E', 'A', 'I'}
 t.frillish.gamesOrder = t.unfezant.gamesOrder
@@ -152,12 +166,18 @@ t.vivillon.gamesOrder = {'base', 'No', 'Mn', 'C', 'Pr', 'E', 'Ga', 'T', 'Mr', 'A
 	'D', 'Sb', 'F', 'Pl', 'Sv', 'So', 'O', 'Gu', 'Sr', 'Po'}
 t.pyroar.gamesOrder = t.unfezant.gamesOrder
 t.floette.gamesOrder = {'base', 'G', 'A', 'Bl', 'Bi'}
-t.furfrou.gamesOrder = {'base', 'C', 'F', 'Gd', 'Gu', 'K', 'R', 'Si', 'St'}
+t.furfrou.gamesOrder = {'base', 'C', 'St', 'Si', 'Gd', 'D', 'Gu', 'R', 'K', 'F'}
 t.xerneas.gamesOrder = {'base', 'A'}
+t.minior.gamesOrder = {'base', 'R', 'A', 'G', 'Ve', 'B', 'I', 'Vi'}
+t.mimikyu.gamesOrder = {'base', 'S'}
 
 -- Tabelle contenenti le sigle dei primi giochi in ordine cronologico in cui
 -- la forma è supportata, compresa la forma base
 
+t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
+	K = 'sl', A = 'sl', base = 'rb'}
+--t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
+--	K = 'sl', A = 'sl', St = 'usul', base = 'rb'}
 t.unown.since = {base = 'oa', B = 'oa', C = 'oa', D = 'oa', E = 'oa', F = 'oa',
 	G = 'oa', H = 'oa', I = 'oa', J = 'oa', K = 'oa', L = 'oa', M = 'oa', N = 'oa',
 	O = 'oa', P = 'oa', Q = 'oa', R = 'oa', S = 'oa', T = 'oa', U = 'oa', V = 'oa',
@@ -165,9 +185,6 @@ t.unown.since = {base = 'oa', B = 'oa', C = 'oa', D = 'oa', E = 'oa', F = 'oa',
 t.burmy.since = {Sa = 'dp', Sc = 'dp', base = 'dp'}
 t.cherrim.since = {S = 'dp', base = 'dp'}
 t.shellos.since = {E = 'dp', base = 'dp'}
-t.arceus.since = {base = 'dp', L = 'dp', Vo = 'dp', Ve = 'dp', T = 'dp',
-	R = 'dp', Aq = 'dp', C = 'dp', Er = 'dp', P = 'dp', B = 'dp', S = 'dp',
-	Ai = 'dp', Fu = 'dp', D = 'dp', Fo = 'xy', El = 'dp', G = 'dp'}
 t.unfezant.since = {F = 'nb', base = 'nb'}
 t.deerling.since = {E = 'nb', A = 'nb', I = 'nb', base = 'nb'}
 t.frillish.since = t.unfezant.since
@@ -182,7 +199,9 @@ t.floette.since = {G = 'xy', A = 'xy', Bi = 'xy', Bl = 'xy', base = 'xy'}
 t.furfrou.since = {C = 'xy', St = 'xy', D = 'xy', Si = 'xy', Gd = 'xy',
 	Gu = 'xy', R = 'xy', K = 'xy', F = 'xy', base = 'xy'}
 t.xerneas.since = {A = 'xy', base = 'xy'}
-
+t.minior.since = {base = 'sl', R = 'sl', A = 'sl', G = 'sl', Ve = 'sl',
+	B = 'sl', I = 'sl', Vi = 'sl'}
+t.mimikyu.since = {base = 'sl', S = 'sl'}
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 
@@ -190,12 +209,12 @@ t.gastrodon = t.shellos
 t.sawsbuck = t.deerling
 t.jellicent = t.frillish
 t['flabébé'], t.florges = t.floette, t.floette
+t[25] = t.pikachu
 t[201] = t.unown
 t[412] = t.burmy
 t[421] = t.cherrim
 t[422] = t.shellos
 t[423] = t.gastrodon
-t[493] = t.arceus
 t[521] = t.unfezant
 t[585] = t.deerling
 t[586] = t.sawsbuck
@@ -210,5 +229,7 @@ t[670] = t.floette
 t[671] = t.florges
 t[676] = t.furfrou
 t[716] = t.xerneas
+t[774] = t.minior
+t[778] = t.mimikyu
 
 return t

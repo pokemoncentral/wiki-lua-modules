@@ -29,8 +29,7 @@ z.Level = z.level
 z.tm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return string.interp(table.concat{[=[|-
-| style="padding: 0.1em 0.3em;" | [[File:${img} ${tipo} Sprite Zaino.png]]
-| style="padding: 0.1em 0.3em;" | [[${machine}|<span style="color:#000;">${machine}</span>]]${games}]=],
+| style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:${img} ${tipo} Sprite Zaino.png]]</span>[[${machine}|<span style="color:#000;">${machine}</span>]]${games}]=],
 	lib.basicentry(p[8] or '', p[2] or 'Azione', lib.makeNotes(p[7] or ''),
 			p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0', p[6] or '0')},
 {

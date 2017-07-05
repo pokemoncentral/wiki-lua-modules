@@ -17,10 +17,11 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local gens = require('Wikilib-gens')
+local forms = require('Wikilib-forms')
 local ms = require('MiniSprite')
 local spr = require('Spr')
 local c = require("Colore-data")
-local alt = require('AltForms-data')
+local alt = require("AltForms-data")
 local pokes = require("Poké-data")
 local gendata = require("Gens-data")
 local wlib = require("Wikilib-data")
@@ -36,25 +37,17 @@ e la regione associata.
 
 local genBox = function(gen, pokeGen, region)
 	local link
-	if gen == 5 then
-		--[[
-			Si inseriscono i numeri romani di terza,
-			quarta e quinta generazione, a partire
-			da quella di introduzione del Pokémon se
-			successiva alla terza
-		--]]
-		link = {}
-		for gen = pokeGen < 3 and 3 or pokeGen, 5 do
-			table.insert(link, table.concat{'[[', gendata[gen].ext,
-			' generazione|<span style="color:#000">',
-			gendata[gen].roman, '</span>]]'})
-		end
-		link = table.concat(link, '-')
-	else
-		link = table.concat{'[[', gendata[gen].ext,
-			' generazione|<span style="color:#000">',
-			gendata[gen].roman, '</span>]]'}
+	-- All'indice di una generazione contiene la prima generazione
+	-- che usa lo stesso MS
+	local MSGenRef = { '1', '2', '3', '3', '3', '6', '6' }
+
+	link = {}
+	for gen = math.max(pokeGen, MSGenRef[gen]), gen do
+		table.insert(link, table.concat{'[[', gendata[gen].ext,
+		' generazione|<span style="color:#000">',
+		gendata[gen].roman, '</span>]]'})
 	end
+	link = table.concat(link, '-')
 	return string.interp('! class="roundy" style="padding: 3px; width: 50px; background: #${light}; border: 1px solid #${dark};" | ${link}',
 {
 	light = c[region].light,
@@ -84,7 +77,7 @@ end
 
 local msBox = function(abbr, ndex, gen)
 	return string.interp('| class="roundy" style="background: #FFF; border: 1px solid #000;" | ${ms}',
-		{ms = ms.aniLua(txt.tf(ndex) ..
+		{ms = ms.staticLua(txt.tf(ndex) ..
 				(abbr == 'base' and '' or abbr), gen)})
 end
 
@@ -114,7 +107,7 @@ local msLine = function(abbr, name, ndex, type1, type2, msGens)
 	--]]
 	if ndex == 201 then
 		if abbr == 'base' then
-			table.insert(formLine, '| style="background: #FFF; border: 1px solid #000;" rowspan="26" class="roundy" | ' .. ms.aniLua(201, 2))
+			table.insert(formLine, '| style="background: #FFF; border: 1px solid #000;" rowspan="26" class="roundy" | ' .. ms.staticLua(201, 2))
 			table.remove(msGens, 1)
 		elseif abbr == 'PE' or abbr == 'PI' then
 			table.insert(formLine, '| &nbsp;')
@@ -187,13 +180,13 @@ local msTable = function(gen, ndex)
 	--]]
 	local msGens
 	if gen < 2 then
-		msGens = {1, 2, 5, 6}
+		msGens = {1, 2, 5, 7}
 	elseif gen < 3 then
-		msGens = {2, 5, 6}
+		msGens = {2, 5, 7}
 	elseif gen < 6 then
-		msGens = {5, 6}
+		msGens = {5, 7}
 	else
-		msGens = {6}
+		msGens = {7}
 	end
 	return string.interp([=[
 
@@ -324,7 +317,15 @@ local spriteGames = {
 			chronIndex = table.search(wlib.gamesChron, 'roza'),
 			sprAbbr = 'roza'
 		}
-	}
+	},
+	
+	[7] = {
+		{
+			games = {'Sole', 'Luna'},
+			chronIndex = table.search(wlib.gamesChron, 'sl'),
+			sprAbbr = 'sl'
+		}
+	},
 }
 
 --[[
@@ -509,8 +510,8 @@ ${back}]=],
 	light = c[region].light,
 	dark = c[region].dark,
 	name = name,
-	shinyStar = var:find('shiny') and table.concat{'[[File:Shiny',
-			gendata[gen].roman, 'Star.png]]'} or '',
+	shinyStar = var:find('shiny') and table.concat{'[[File:Cromatico',
+			gendata[gen].roman, '.png]]'} or '',
 	boxes = table.concat(boxes, '\n'),
 	back = sprBox(backGame, addBack(var), ndex, abbr, '1')
 })
@@ -558,12 +559,11 @@ local formsBoxes = function(ndex, gen, var)
 	})
 	end
 
-	local lines = table.map(alt[ndex].gamesOrder, function(abbr)
+	local lines = table.mapToNum(alt[ndex].gamesOrder, function(abbr)
 			local abbr, name, var = fixGenders(abbr, gen, ndex, var)
-						
 			return gens.getGen.game(alt[ndex].since[abbr]) <= gen and
 					boxesLine(abbr, name, gen, var, ndex) or nil
-		end)
+		end, ipairs)
 
 	if shouldAddFemaleLine(ndex, gen) then
 		table.insert(lines, 2, boxesLine('base', 'Femmina', gen,
@@ -613,11 +613,12 @@ e quella dei mini sprite
 
 u.altSprites = function(frame)
 	local poke = mw.text.decode(string.trim(frame.args[1] or '')):lower()
-	if not alt[poke] then
-		alt = require('UselessForms-data')
-	end
+
+	-- Uses both AltForms and UselessForms
+	alt = forms.allFormsData()
 	local ndex = pokes[poke].ndex
 	local gen = gens.getGen.ndex(ndex)
+
 	--[[
 		Per i Pokémon che, come Meowstic, hanno la
 		differenza di forma principale nel genere,
@@ -630,16 +631,20 @@ u.altSprites = function(frame)
 	end
 
 	local forms = {}
-	for a = gen, 6 do
+	for a = gen, 7 do
 		table.insert(forms, table.concat{'== ',
 			string.fu(gendata[a].ext), ' generazione =='})
 		table.insert(forms, genTable(a, ndex))
 	end
-	return table.concat(forms, '\n') .. msTable(gen, ndex)
+	return table.concat{
+            table.concat(forms, '\n'),
+            msTable(gen, ndex),
+            '\n[[Categoria:Sottopagine Sprite e modelli]]'
+        }
 end
 
 u.AltSprites, u.altsprites, u.alt_sprites =
 u.altSprites, u.altSprites, u.altSprites
-
+arg = {'Charizard'}
 print(u.altSprites{args={arg[1]}})
 --return u

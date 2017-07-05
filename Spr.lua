@@ -112,9 +112,9 @@ local gifs = {'cr', 'sme', 'xy', 'roza', 'sl'}
 local sizes = {
 	stad = '|120px',
 	stad2 = '|120px',
-	xy = '|192px',
-	roza = '|192px',
-	sl = '|192px'
+	xy = '|150px',
+	roza = '|150px',
+	sl = '|150px',
 }
 
 --[[

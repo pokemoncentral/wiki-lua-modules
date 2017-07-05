@@ -418,11 +418,35 @@ x.DemoSL = {{
 		{'L', 'luna'},
     }
 }}
+x.Us = {{
+	link = 'Ultrasole e Ultraluna',
+	text = 'Ultrasole',
+	display = {
+		{'Us', 'ultrasole'}
+	}
+}}
+x.US = x.Us
+x.Ul = {{
+	link = 'Ultrasole e Ultraluna',
+	text = 'Ultraluna',
+	display = {
+		{'Ul', 'ultraluna'}
+	}
+}}
+x.UL = x.Ul
+x.UsUl = {{
+    link = 'Ultrasole e Ultraluna',
+    display = {
+		{'Us', 'ultrasole'},
+		{'Ul', 'ultraluna'}
+    }
+}}
+x.USUL, x.USL = x.UsUl, x.UsUl
 x.SJ = {{
     link = 'Stadium (Giappone)',
     text = 'Stadium',
     display = {
-	{'SJ', 'rosso'}
+		{'SJ', 'rosso'}
     }
 }}
 x.St = {{

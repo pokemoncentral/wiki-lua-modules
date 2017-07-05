@@ -5,7 +5,7 @@ local tb = {}
 
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local b = require('Boxtipo')
+local b = require('Box')
 local c = require("Colore-data")
 
 -- Le tabelle seguenti contengono i tipi che cambiano rapporti con gli altri DOPO

@@ -1,4 +1,4 @@
--- Gli lib.categoryentry dei learnlist di quinta generazione
+-- Gli entry dei learnlist di quinta generazione
 
 local z = {}
 
@@ -27,8 +27,7 @@ z.Level = z.level
 z.tm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return string.interp(table.concat{[=[|-
-| style="padding: 0.1em 0.3em;" | [[File:${img} ${tipo} Sprite Zaino.png]]
-| style="padding: 0.1em 0.3em;" | [[${p1}|<span style="color:#000;">${p1}</span>]]${games}]=],
+| style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:${img} ${tipo} Sprite Zaino.png]]</span>[[${p1}|<span style="color:#000;">${p1}</span>]]${games}]=],
 	lib.categoryentry(p[9] or '', p[2] or 'Purogelo', lib.makeNotes(p[8] or ''),
 			p[3] or 'Sconosciuto', p[4] or 'Speciale', p[5] or '0',
 			p[6] or '0', p[7] or '0')},
@@ -62,8 +61,8 @@ z.Breed = z.breed
 
 z.tutor = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{lib.tutorgames{{'N', p[9]}, {'B', p[9], 'Bi'},
-		{'N2', p[10]}, {'B2', p[10]}}, ' ', lib.categoryentry(p[8] or '',
+    return table.concat{lib.tutorgames{{'NB', p[9]},
+		{'N2B2', p[10]}}, ' ', lib.categoryentry(p[8] or '',
 			p[1] or 'Tuono', lib.makeNotes(p[7] or ''), p[2] or 'Sconosciuto',
 			p[3] or 'Stato', p[4] or '0', p[5] or '0', p[6] or '0')}
 end
