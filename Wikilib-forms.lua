@@ -33,7 +33,7 @@ f.allFormsData = function()
 			all[k].since = table.merge(all[k].since, v.since)
 			all[k].links = table.merge(all[k].links, v.links)
 			all[k].blacklinks = table.merge(all[k].blacklinks, v.blacklinks)
-			-- gamesOrder is a pain in the neck
+			-- gamesOrder is a problem
 			-- right now, with Pikachu, it is possible to
 			-- simply concatenate the two tables and remove
 			-- the second 'base'

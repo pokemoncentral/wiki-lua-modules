@@ -832,6 +832,4 @@ end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
-arg={'Aegislash'}
-print(dr.DebRes{args=arg})
 return dr
