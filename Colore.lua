@@ -91,6 +91,8 @@ c["(classe dell'ultimo allenatore affrontato)"] =
 	c.sconosciuto
 c["(classe_dell'ultimo_allenatore_affrontato)"] =
 	c.sconosciuto
+c['Qi JT(nome del giocatore)? POké BB(nome del Pokémon) de W N'] =
+	c.sconosciuto
 c['Qi_JT(nome_del_giocatore)?_POké_BB(nome_del_Pokémon)_de_W_N'] =
 	c.sconosciuto
 c['qi jt(nome del giocatore)? poké bb(nome del pokémon) de w n'] =
