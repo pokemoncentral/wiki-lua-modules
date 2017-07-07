@@ -28,7 +28,6 @@ f.allFormsData = function()
     --]]
 	for k, v in pairs(useless) do
 		if all[k] then
-
             
 			--[[
                 This Pokémon is in both useless and altForms
@@ -44,6 +43,7 @@ f.allFormsData = function()
             --]]
 			all[k].gamesOrder = table.noDuplicates(
                     table.merge(all[k].gamesOrder, v.gamesOrder))
+
 		else
 			all[k] = v
 		end

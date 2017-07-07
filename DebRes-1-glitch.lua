@@ -106,14 +106,16 @@ EffTable.new = function(name, game)
 	end
 
 	local data = glitch[game][tab.deepSearch(glitch[game], name)]
-	local types = data.typeEffectiveness and mw.clone(data.typeEffectiveness) or {data.type1, data.type2}
+	local types = data.typeEffectiveness and table.cloneLoadData(data.typeEffectiveness) or {data.type1, data.type2}
 	if not types[2] then
 		types[2] = types[1]
 	end
 	types = table.map(types, string.lower)
 
 	-- Colori per la stampa
-	this:createColors({type1 = data.type1, type2 = data.type2 or data.type1})
+	local printColors = {type1 = data.type1:gsub(' ', '_')}
+	printColors.type2 = data.type2 and data.type2:gsub(' ', '_') or printColors.type1
+	this:createColors(printColors)
 
 	--[[
 		Per ogni possibile efficacia, se vi sono
@@ -209,5 +211,4 @@ end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
-print(dr.DebRes{args=arg})
--- return dr
+return dr
