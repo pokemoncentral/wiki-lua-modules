@@ -74,7 +74,7 @@ dal Giappone
 --]]
 
 t.gamesChron = {'rb', 'v', 'g', 'oa', 'c', 'rz', 'rfvf', 's', 'dp', 'pt',
-	'hgss', 'nb', 'n2b2', 'xy', 'roza', 'sl'}
+	'hgss', 'nb', 'n2b2', 'xy', 'roza', 'sl', 'usul'}
 
 t.gamesOrder = t.gamesChron
 
