@@ -279,11 +279,43 @@ Ritorna una table risultato della fusione delle
 due passate. Gli indici numerici della seconda
 seguiranno quelli della prima; gli altri sono
 lasciati invariati, ed in caso di uguaglianza
-quelli della seconda sovrascrivono quelli della
+quelli della seconda sovrascrivono i valori della
 prima.
 
 --]]
 table.merge = function(tab1, tab2)
+
+local mw = require('mw')
+
+	local dest = mw.clone(tab1)
+
+	--[[
+		È necessario il doppio ciclo per avere
+		le chiavi intere in ordine
+	--]]
+	for key, value in ipairs(tab2) do
+		table.insert(dest, value)
+	end
+	for key, value in table.nonIntPairs(tab2) do
+        dest[key] = value
+	end
+	return dest
+end
+
+t.merge = table.merge
+
+--[[
+
+Ritorna una table risultato della fusione delle
+due passate. Gli indici numerici della seconda
+seguiranno quelli della prima; gli altri sono
+lasciati invariati, ed in caso di uguaglianza
+quelli della seconda sovrascrivono i valori della
+prima. Fanno però eccezione le tables, che sono
+fuse a loro volta.
+
+--]]
+table.recursiveMerge = function(tab1, tab2)
 
 local mw = require('mw')
 
@@ -296,12 +328,21 @@ local mw = require('mw')
 		table.insert(dest, value)
 	end
 	for key, value in table.nonIntPairs(tab2) do
-		dest[key] = value
+        if dest[key]
+                and type(dest[key]) == 'table'
+                and type(value) == 'table'
+        then
+            dest[key] = table.merge(dest[key], value)
+        else
+            dest[key] = value
+        end
 	end
 	return dest
 end
 
-t.merge = table.merge
+table.recursive_merge = table.recursiveMerge
+t.recursive_merge, t.recursive_merge =
+        table.recursiveMerge, table.recursiveMerge
 
 --[[
 

@@ -22,22 +22,28 @@ f.allFormsData = function()
 	local all = mw.clone(alt)
 	local useless = require("UselessForms-data")
 
-	-- No need for ipairs because integer keys
-	-- are used only to index Pokémon by ndex
+	--[[
+        No need for ipairs because integer keys
+        are used only to index Pokémon by ndex
+    --]]
 	for k, v in pairs(useless) do
 		if all[k] then
-			-- This Pokémon is in both useless and altForms
-			-- Right now only Pikachu
-			all[k].names = table.merge(all[k].names, v.names)
-			all[k].ext = table.merge(all[k].ext, v.ext)
-			all[k].since = table.merge(all[k].since, v.since)
-			all[k].links = table.merge(all[k].links, v.links)
-			all[k].blacklinks = table.merge(all[k].blacklinks, v.blacklinks)
-			-- gamesOrder is a pain in the neck
-			-- right now, with Pikachu, it is possible to
-			-- simply concatenate the two tables and remove
-			-- the second 'base'
-			all[k].gamesOrder = table.noDuplicates(table.merge(all[k].gamesOrder, v.gamesOrder))
+
+            
+			--[[
+                This Pokémon is in both useless and altForms
+                Right now only Pikachu
+            --]]
+            all[k] = table.recursiveMerge(all[k], v)
+
+			--[[
+                gamesOrder is a pain in the neck
+                right now, with Pikachu, it is possible to
+                simply concatenate the two tables and remove
+                the second 'base'
+            --]]
+			all[k].gamesOrder = table.noDuplicates(
+                    table.merge(all[k].gamesOrder, v.gamesOrder))
 		else
 			all[k] = v
 		end
