@@ -154,7 +154,7 @@ s.sprLua = function(ndex, game, variant, size)
 		return table.concat{'[[File:', ndex, '.png]]'}
 	end
 	
-	variant = string.lower(variant or '')
+	variant = string.trim(variant or ''):lower()
 
 	game = gamesAbbr[game] or game
 	local gen = gens.getGen.game(gamesAbbrGen[game] or game)
@@ -166,7 +166,7 @@ s.sprLua = function(ndex, game, variant, size)
 		game = 'oac'
 	end
 
-	variant = table.unique(mw.text.split(variant, '%s+'))	
+	variant = table.unique(mw.text.split(variant, '%s+'))
 	table.sort(variant, function(a, b)
 			return table.search(variantPiecesOrder, a)
 					< table.search(variantPiecesOrder, b)
