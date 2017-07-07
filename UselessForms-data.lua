@@ -55,10 +55,10 @@ t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
 	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
 	K = 'Berretto Kalos', A = 'Berretto Alola',
 	base = 'Pikachu'}
---t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
---	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
---	K = 'Berretto Kalos', A = 'Berretto Alola',
---	St = 'Berretto Scelgo Te', base = 'Pikachu'}
+t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
+	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
+	K = 'Berretto Kalos', A = 'Berretto Alola',
+	St = 'Berretto Scelgo Te', base = 'Pikachu'}
 t.unown.names = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
 	O = 'O', P = 'P', Q = 'Q', R = 'R', S = 'S', T = 'T', U = 'U', V = 'V',
@@ -115,8 +115,8 @@ makeLinks(true)
 
 t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
 	unima = 'U', kalos = 'K', alola = 'A'}
---t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
---	unima = 'U', kalos = 'K', alola = 'A', ['scelgo te'] = 'St'}
+t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
+	unima = 'U', kalos = 'K', alola = 'A', ['scelgo te'] = 'St'}
 t.unown.ext = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
 	O = 'O', P = 'P', Q = 'Q', R = 'R', S = 'S', T = 'T', U = 'U', V = 'V',
@@ -150,7 +150,7 @@ t.mimikyu.ext = {smascherata = 'S'}
 -- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
 
 t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A'}
---t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'St'}
+t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'St'}
 t.unown.gamesOrder = {'base', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
 	'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 	'PE', 'PI'}
@@ -176,8 +176,8 @@ t.mimikyu.gamesOrder = {'base', 'S'}
 
 t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
 	K = 'sl', A = 'sl', base = 'rb'}
---t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
---	K = 'sl', A = 'sl', St = 'usul', base = 'rb'}
+t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
+	K = 'sl', A = 'sl', St = 'usul', base = 'rb'}
 t.unown.since = {base = 'oa', B = 'oa', C = 'oa', D = 'oa', E = 'oa', F = 'oa',
 	G = 'oa', H = 'oa', I = 'oa', J = 'oa', K = 'oa', L = 'oa', M = 'oa', N = 'oa',
 	O = 'oa', P = 'oa', Q = 'oa', R = 'oa', S = 'oa', T = 'oa', U = 'oa', V = 'oa',
