@@ -210,5 +210,5 @@ dr.debRes = function(frame)
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
-
+print(dr.DebRes{args={'Missingno.'}})
 return dr
