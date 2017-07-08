@@ -14,25 +14,36 @@ local etg = {}
 Glitch
 ???
 B
-'l) m) ZM
+'l) m) ZM (come acciaio)
 Normale (glitch)
-Grinta
-Grazia
+Grinta (come Normale)
+Grazia (come Normale)
 Sconosciuto
 
 --]]
 
-local standardEff = { Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1 }
-standardEff['???'] = 1
-standardEff["'l) m) ZM"] = 1
-standardEff["Normale (glitch)"] = 1
-local lottaEff, spettroEff = mw.clone(standardEff), mw.clone(standardEff)
-lottaEff.Grinta, lottaEff.Grazia = 2, 2
-spettroEff.Grinta, spettroEff.Grazia = 0, 0
-for key, value in pairs(standardEff) do
-	standardEff[string.lower(key)] = value
-	lottaEff[string.lower(key)] = lottaEff[key]
-	spettroEff[string.lower(key)] = spettroEff[key]
+local glitchEff = {}
+glitchEff.normale = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 0.5, ["Normale (glitch)"] = 1}
+glitchEff.fuoco = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 2, ["Normale (glitch)"] = 1}
+glitchEff.acqua = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 1, ["Normale (glitch)"] = 1}
+glitchEff.elettro = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 1, ["Normale (glitch)"] = 1}
+glitchEff.erba = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 0.5, ["Normale (glitch)"] = 1}
+glitchEff.ghiaccio = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 0.5, ["Normale (glitch)"] = 1}
+glitchEff.lotta = {Glitch = 1, Uccello = 1, B = 1, Grinta = 2, Grazia = 2, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 2, ["Normale (glitch)"] = 1}
+glitchEff.veleno = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 0, ["Normale (glitch)"] = 1}
+glitchEff.terra = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 2, ["Normale (glitch)"] = 1}
+glitchEff.volante = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 0.5, ["Normale (glitch)"] = 1}
+glitchEff.psico = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 0.5, ["Normale (glitch)"] = 1}
+glitchEff.coleottero = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 0.5, ["Normale (glitch)"] = 1}
+glitchEff.roccia = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 0.5, ["Normale (glitch)"] = 1}
+glitchEff.spettro = {Glitch = 1, Uccello = 1, B = 1, Grinta = 0, Grazia = 0, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 0.5, ["Normale (glitch)"] = 1}
+glitchEff.drago = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 0.5, ["Normale (glitch)"] = 1}
+glitchEff.buio = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 0.5, ["Normale (glitch)"] = 1}
+glitchEff.acciaio = {Glitch = 1, Uccello = 1, B = 1, Grinta = 1, Grazia = 1, Sconosciuto = 1, ['???'] = 1, ["'l) m) ZM"] = 0.5, ["Normale (glitch)"] = 1}
+for t, eff in pairs(glitchEff) do
+	for key, value in pairs(eff) do
+		eff[string.lower(key)] = value
+	end
 end
 
 -- Tabella contenente i valori di efficacia. Il livello esterno è il tipo attaccante, il livello interno il difensore.
@@ -40,26 +51,32 @@ end
 -- Contiene anche i tipi glitch
 
 local eff = {}
-eff.normale = tab.merge(et.data('normale'), standardEff)
-eff.fuoco = tab.merge(et.data('fuoco'), standardEff)
-eff.acqua = tab.merge(et.data('acqua'), standardEff)
-eff.elettro = tab.merge(et.data('elettro'), standardEff)
-eff.erba = tab.merge(et.data('erba'), standardEff)
-eff.ghiaccio = tab.merge(et.data('ghiaccio'), standardEff)
-eff.veleno = tab.merge(et.data('veleno'), standardEff)
-eff.terra = tab.merge(et.data('terra'), standardEff)
-eff.volante = tab.merge(et.data('volante'), standardEff)
-eff.psico = tab.merge(et.data('psico'), standardEff)
-eff.coleottero = tab.merge(et.data('coleottero'), standardEff)
-eff.roccia = tab.merge(et.data('roccia'), standardEff)
-eff.drago = tab.merge(et.data('drago'), standardEff)
+for k, v in pairs(glitchEff) do
+	eff[k] = tab.merge(et.data(k), v)
+end
+--[[
+eff.normale = tab.merge(et.data('normale'), glitchEff.normale)
+eff.fuoco = tab.merge(et.data('fuoco'), glitchEff.fuoco)
+eff.acqua = tab.merge(et.data('acqua'), glitchEff.acqua)
+eff.elettro = tab.merge(et.data('elettro'), glitchEff.elettro)
+eff.erba = tab.merge(et.data('erba'), glitchEff.erba)
+eff.ghiaccio = tab.merge(et.data('ghiaccio'), glitchEff.ghiaccio)
+eff.veleno = tab.merge(et.data('veleno'), glitchEff.veleno)
+eff.terra = tab.merge(et.data('terra'), glitchEff.terra)
+eff.volante = tab.merge(et.data('volante'), glitchEff.volante)
+eff.psico = tab.merge(et.data('psico'), glitchEff.psico)
+eff.coleottero = tab.merge(et.data('coleottero'), glitchEff.coleottero)
+eff.roccia = tab.merge(et.data('roccia'), glitchEff.roccia)
+eff.drago = tab.merge(et.data('drago'), glitchEff.drago)
+eff.buio = tab.merge(et.data('buio'), glitchEff.buio)
+eff.acciaio = tab.merge(et.data('acciaio'), glitchEff.acciaio)
+eff.lotta = tab.merge(et.data('lotta'), glitchEff.lotta)
+eff.spettro = tab.merge(et.data('spettro'), glitchEff.spettro)
+--]]
 eff.coleot = eff.coleottero
 for a in pairs(eff) do
     eff[a].coleot = eff[a].coleottero
 end
--- Lotta e Spettro hanno efficacia diversa da 1 su Grazia e Grinta
-eff.lotta = tab.merge(et.data('lotta'), lottaEff)
-eff.spettro = tab.merge(et.data('spettro'), spettroEff)
 
 --[[
 
