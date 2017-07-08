@@ -41,8 +41,8 @@ f.allFormsData = function()
                 simply concatenate the two tables and remove
                 the second 'base'
             --]]
-			all[k].gamesOrder = table.noDuplicates(
-                    table.merge(all[k].gamesOrder, v.gamesOrder))
+			all[k].gamesOrder = table.noDuplicates(table.merge(
+                    all[k].gamesOrder, v.gamesOrder))
 
 		else
 			all[k] = v
@@ -51,6 +51,9 @@ f.allFormsData = function()
 
 	return all
 end
+
+f.allformsdata, f.all_forms_data =
+        f.allFormsData, f.allFormsData
 
 --[[
 
@@ -172,22 +175,21 @@ f.getNdexForm = function(poke)
 	end
 end
 
-f.getndexform, f.get_ndex_form = f.getNdexForm, f.getNdexForm, f.getNdexForm
+f.getndexform, f.get_ndex_form = f.getNdexForm, f.getNdexForm
 
 -- Converte la sigla vuota in 'base'
 f.toBase = function(abbr)
 	return abbr == '' and 'base' or abbr
 end
 
-f.to_base = f.toBase
+f.tobase, f.to_base = f.toBase, f.toBase
 
 -- Converte la sigla 'base' nella sigla vuota
 f.toEmptyAbbr = function(abbr)
 	return abbr == 'base' and '' or abbr
 end
 
-f.to_empty_abbr, f.toEmpty, f.to_empty =
-f.toEmptyAbbr, f.toEmptyAbbr, f.toEmptyAbbr
+f.toemptyabbr, f.to_empty_abbr = f.toEmptyAbbr, f.toEmptyAbbr
 
 --[[
 

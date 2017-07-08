@@ -154,6 +154,34 @@ t.tableKeysAlias, t.table_keys_alias, t.keysAlias, t.keys_alias =
 
 --[[
 
+Classic fold on lists: applies a binary
+function to an accumulator and a value-key
+pair taken from the list and returns the
+final result. The iterator determines the
+order elements are scanned, and therefore
+the final result.
+
+The function takes the accumulator as the
+first argument, then the value and finally
+the key; usual key-value order is reversed
+because the key is often unnecessary, and
+having it last leads to nicer syntax in callers.
+
+--]]
+table.fold = function(tab, zero, func, iter)
+    iter = iter or pairs
+
+    for key, value in iter(tab) do
+        zero = func(zero, value, key)
+    end
+
+    return zero
+end
+
+t.fold = table.fold
+
+--[[
+
 Applica una funzione agli elementi di una table
 restituiti dall'iteratore dato, ritornandone un'
 altra con i risultati aventi la stessa chiave
@@ -209,6 +237,49 @@ table.map_to_num, table.mapToNumeric, table.map_to_numeric
 t.mapToNum, t.map_to_num, t.mapToNumeric, t.map_to_numeric
 		= table.mapToNum, table.mapToNum, table.mapToNum,
 			table.mapToNum
+
+--[[
+
+Returns true if at least one of the
+elements in the list satisties a
+predicate.
+
+The predicate function takes the value as the
+first argument, then the key; usual key-value
+order is reversed because the key is often
+unnecessary, and having it last leads to nicer
+syntax in callers.
+
+--]]
+table.any = function(tab, funct, iter)
+    return table.fold(tab, false,
+        function(acc, value, key)
+            return funct(value, key) or acc
+        end, iter)
+end
+
+t.any = table.any
+
+--[[
+
+Returns true if all of the elements
+in the list satisties a predicate.
+
+The predicate function takes the value as the
+first argument, then the key; usual key-value
+order is reversed because the key is often
+unnecessary, and having it last leads to nicer
+syntax in callers.
+
+--]]
+table.all = function(tab, funct, iter)
+     return table.fold(tab, true,
+        function(acc, value, key)
+            return funct(valye, key) and acc
+        end, iter)
+end
+
+t.all = table.all
 
 --[[
 
@@ -455,6 +526,24 @@ table.keys = function(tab)
 end
 
 t.keys = table.keys
+
+--[[
+
+Given a table with numeric indexes,
+returns another table containing its
+elements in the specified indexes
+range. End index defaults to largest
+index in the table.
+
+--]]
+table.slice = function(tab, from, to)
+    to = to or #tab
+    return table.filter(tab, function(_, key)
+        return key >= from and key <= to
+    end, ipairs)
+end
+
+t.slice = table.slice
 
 --[[
 
