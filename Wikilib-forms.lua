@@ -19,7 +19,7 @@ Restituisce la tabella così creata
 
 --]]
 f.allFormsData = function()
-	local all = mw.clone(alt)
+	local all = table.cloneLoadData(alt)
 	local useless = require("UselessForms-data")
 
 	--[[
