@@ -403,7 +403,7 @@ local mw = require('mw')
                 and type(dest[key]) == 'table'
                 and type(value) == 'table'
         then
-            dest[key] = table.merge(dest[key], value)
+            dest[key] = table.recursiveMerge(dest[key], value)
         else
             dest[key] = value
         end

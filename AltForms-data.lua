@@ -171,7 +171,7 @@ t.oricorio.names = {C = 'Stile Cheerdance', H = 'Stile Hula', B = 'Stile Buyō',
 t.lycanroc.names = {N = 'Forma Notte', base = 'Forma Giorno'}
 t.wishiwashi.names = {B = 'Forma Banco', base = 'Forma Individuale'}
 t.silvally.names = mw.clone(t.arceus.names) 
-t.silvally.names.Cs = nil
+t.silvally.names.Sc = nil
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}
