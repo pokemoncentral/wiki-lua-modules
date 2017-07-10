@@ -138,6 +138,5 @@ rdex.regionaldex = function(frame)
 end
 
 rdex.Regionaldex, rdex.RegionalDex = rdex.regionaldex, rdex.regionaldex
-arg = {'054'}
 -- return rdex
 print(rdex.regionaldex{args={arg[1]}})
