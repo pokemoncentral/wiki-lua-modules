@@ -26,6 +26,7 @@ local mw = require('mw')
 
 local w = require('Wikilib')
 local data = require("Wikilib-data")
+local gamesUtil = require('Wikilib-games')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local tab = require('Wikilib-tables')
@@ -68,6 +69,20 @@ EffTable.addLabel = function(this, label)
 		table.insert(this.labels, sig.gamesName(label, '/'))
 	end
 end
+
+-- Override di createColors per gestire i tipi glitch
+-- (nomi diversi ma stesso colore)
+EffTable.createColors = function(this, types)
+	this.colors = {
+		type1 = types.type1,
+		type2 = types.type2,
+	}
+	for k, v in pairs(this.colors) do
+		this.colors[k] = string.lower(v)
+		this.colors[k] = table.search(data.allTypes, this.colors[k]) and this.colors[k] or 'sconosciuto'
+	end
+end
+
 
 --[[
 
@@ -113,9 +128,7 @@ EffTable.new = function(name, game)
 	types = table.map(types, string.lower)
 
 	-- Colori per la stampa
-	local printColors = {type1 = data.type1:gsub(' ', '_')}
-	printColors.type2 = data.type2 and data.type2:gsub(' ', '_') or printColors.type1
-	this:createColors(printColors)
+	this:createColors(data)
 
 	--[[
 		Per ogni possibile efficacia, se vi sono
@@ -197,7 +210,7 @@ dr.debRes = function(frame)
 		end
 		-- Ordina altData.gamesOrder in modo da avere prima i giochi più vecchi
 		table.sort(altData.gamesOrder , function (a, b)
-			return tab.search(data.gamesChron, string.lower(a)) < tab.search(data.gamesChron, string.lower(b))
+			return gamesUtil.isBefore(string.lower(a), string.lower(b))
 		end)
 	end
 
@@ -210,5 +223,5 @@ dr.debRes = function(frame)
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
-print(dr.DebRes{args={'Missingno.'}})
+print(dr.DebRes{args={"ゥ$ (F4)"}})
 return dr
