@@ -19,25 +19,31 @@ Restituisce la tabella così creata
 
 --]]
 f.allFormsData = function()
-	local all = mw.clone(alt)
+	local all = table.cloneLoadData(alt)
 	local useless = require("UselessForms-data")
 
-	-- No need for ipairs because integer keys
-	-- are used only to index Pokémon by ndex
+	--[[
+        No need for ipairs because integer keys
+        are used only to index Pokémon by ndex
+    --]]
 	for k, v in pairs(useless) do
 		if all[k] then
-			-- This Pokémon is in both useless and altForms
-			-- Right now only Pikachu
-			all[k].names = table.merge(all[k].names, v.names)
-			all[k].ext = table.merge(all[k].ext, v.ext)
-			all[k].since = table.merge(all[k].since, v.since)
-			all[k].links = table.merge(all[k].links, v.links)
-			all[k].blacklinks = table.merge(all[k].blacklinks, v.blacklinks)
-			-- gamesOrder is a problem
-			-- right now, with Pikachu, it is possible to
-			-- simply concatenate the two tables and remove
-			-- the second 'base'
-			all[k].gamesOrder = table.noDuplicates(table.merge(all[k].gamesOrder, v.gamesOrder))
+            
+			--[[
+                This Pokémon is in both useless and altForms
+                Right now only Pikachu
+            --]]
+            all[k] = table.recursiveMerge(all[k], v)
+
+			--[[
+                gamesOrder is a pain in the neck
+                right now, with Pikachu, it is possible to
+                simply concatenate the two tables and remove
+                the second 'base'
+            --]]
+			all[k].gamesOrder = table.noDuplicates(table.merge(
+                    all[k].gamesOrder, v.gamesOrder))
+
 		else
 			all[k] = v
 		end
@@ -45,6 +51,9 @@ f.allFormsData = function()
 
 	return all
 end
+
+f.allformsdata, f.all_forms_data =
+        f.allFormsData, f.allFormsData
 
 --[[
 
@@ -166,22 +175,21 @@ f.getNdexForm = function(poke)
 	end
 end
 
-f.getndexform, f.get_ndex_form = f.getNdexForm, f.getNdexForm, f.getNdexForm
+f.getndexform, f.get_ndex_form = f.getNdexForm, f.getNdexForm
 
 -- Converte la sigla vuota in 'base'
 f.toBase = function(abbr)
 	return abbr == '' and 'base' or abbr
 end
 
-f.to_base = f.toBase
+f.tobase, f.to_base = f.toBase, f.toBase
 
 -- Converte la sigla 'base' nella sigla vuota
 f.toEmptyAbbr = function(abbr)
 	return abbr == 'base' and '' or abbr
 end
 
-f.to_empty_abbr, f.toEmpty, f.to_empty =
-f.toEmptyAbbr, f.toEmptyAbbr, f.toEmptyAbbr
+f.toemptyabbr, f.to_empty_abbr = f.toEmptyAbbr, f.toEmptyAbbr
 
 --[[
 

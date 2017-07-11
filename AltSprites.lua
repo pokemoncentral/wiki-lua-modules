@@ -1,12 +1,13 @@
 --[[
 
-Questo modulo, dato il nome di un Pokémon con
-forme alternative, crea tutte le tabelle HTML
-atte a contenerne gli sprites, una per ogni
-generazione
+This module creates all HTML tables for
+a single Pokémon, for all generations and
+all forms.
 
-NOTA: Non supporta la sola differenza maschio
--femmina poco evidente
+NOTE: It doesn't support form differences
+not listed in AltForms/data or
+UselessForms/data, noticeably most gender
+differences.
 
 --]]
 
@@ -16,12 +17,13 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
+local gamesUtil = require('Wikilib-games')
 local gens = require('Wikilib-gens')
 local forms = require('Wikilib-forms')
 local ms = require('MiniSprite')
 local spr = require('Spr')
 local c = require("Colore-data")
-local alt = require("AltForms-data")
+local alt = forms.allFormsData()
 local pokes = require("Poké-data")
 local gendata = require("Gens-data")
 local wlib = require("Wikilib-data")
@@ -97,6 +99,7 @@ forma
 
 local msLine = function(abbr, name, ndex, type1, type2, msGens)
 	local formLine = {}
+
 	--[[
 		Caso particolare: unown è il solo Pokémon ad
 		avere il mini sprite di seconda generazione 
@@ -113,13 +116,28 @@ local msLine = function(abbr, name, ndex, type1, type2, msGens)
 			table.insert(formLine, '| &nbsp;')
 		end
 	end
+    
 	for k, gen in ipairs(msGens) do
-		if gens.getGen.game(alt[ndex].since[abbr]) <= gen then
+    
+        --[[
+            Checking if the current form is
+            available in any of the current
+            mini sprite generations.
+        --]]
+        local shouldShow = false
+        for i = msGens[k - 1] or 1, gen do
+            shouldShow = shouldShow or gamesUtil.anyInGen(i,
+                alt[ndex].since[abbr],
+                alt[ndex]['until'] and alt[ndex]['until'][abbr])
+        end
+        
+        if shouldShow then
 			table.insert(formLine, msBox(abbr, ndex, gen))
 		else
 			table.insert(formLine, '| &nbsp;')
 		end
 	end
+
 	return string.interp([=[|-
 | class="roundy" style="color:#${dark}; background: #${light}; padding: 3px; height: 50px;" | ${name}
 ${forms}]=],
@@ -135,12 +153,9 @@ end
 
 Crea una riga di minispirte per ogni forma.
 
-Scorre la tabella names del Pokémon passato
-nel modulo delle forme alternative, e poi
-ordina le righe, ossia le forme, secondo
-l'ordine dei giochi. Tre degli argomenti
-servono soltanto a essere passati alla
-funzione msLine
+Loops through gamesChron, so that the result
+is already ordered. Most arguments are just
+passed down to msLine.
 
 --]]
 
@@ -224,17 +239,17 @@ local spriteGames = {
 	[1] = {
 		{
 			games = {'Rosso', 'Blu'},
-			chronIndex = table.search(wlib.gamesChron, 'rb'),
+			gamesAbbr = 'rb',
 			sprAbbr = 'rb'
 		},
 		{
 			games = {'Rosso (J)', 'Verde'},
-			chronIndex = table.search(wlib.gamesChron, 'v'),
+			gamesAbbr = 'v',
 			sprAbbr = 'verde'
 		},
 		{
 			games = {'Giallo'},
-			chronIndex = table.search(wlib.gamesChron, 'g'),
+			gamesAbbr = 'g',
 			sprAbbr = 'gia'
 		}
 	},
@@ -242,17 +257,17 @@ local spriteGames = {
 	[2] = {
 		{
 			games = {'Oro'},
-			chronIndex = table.search(wlib.gamesChron, 'oa'),
+			gamesAbbr = 'oa',
 			sprAbbr = 'or'
 		},
 		{
 			games = {'Argento'},
-			chronIndex = table.search(wlib.gamesChron, 'oa'),
+			gamesAbbr = 'oa',
 			sprAbbr = 'ar'
 		},
 		{
 			games = {'Cristallo'},
-			chronIndex = table.search(wlib.gamesChron, 'c'),
+			gamesAbbr = 'c',
 			sprAbbr = 'cr'
 		}
 	},
@@ -260,17 +275,17 @@ local spriteGames = {
 	[3] = {
 		{
 			games = {'Rubino', 'Zaffiro'},
-			chronIndex = table.search(wlib.gamesChron, 'rz'),
+			gamesAbbr = 'rz',
 			sprAbbr = 'rz'
 		},
 		{
 			games = {'Rosso Fuoco', 'Verde Foglia'},
-			chronIndex = table.search(wlib.gamesChron, 'rfvf'),
+			gamesAbbr = 'rfvf',
 			sprAbbr = 'rfvf'
 		},
 		{
 			games = {'Smeraldo'},
-			chronIndex = table.search(wlib.gamesChron, 's'),
+			gamesAbbr = 's',
 			sprAbbr = 'sme'
 		}
 	},
@@ -278,17 +293,17 @@ local spriteGames = {
 	[4] = {
 		{
 			games = {'Diamante', 'Perla'},
-			chronIndex = table.search(wlib.gamesChron, 'dp'),
+			gamesAbbr = 'dp',
 			sprAbbr = 'dp'
 		},
 		{
 			games = {'Platino'},
-			chronIndex = table.search(wlib.gamesChron, 'pt'),
+			gamesAbbr = 'pt',
 			sprAbbr = 'pt'
 		},
 		{
 			games = {'HeartGold', 'SoulSilver'},
-			chronIndex = table.search(wlib.gamesChron, 'hgss'),
+			gamesAbbr = 'hgss',
 			sprAbbr = 'hgss'
 		}
 	},
@@ -296,12 +311,12 @@ local spriteGames = {
 	[5] = {
 		{
 			games = {'Nero', 'Bianco'},
-			chronIndex = table.search(wlib.gamesChron, 'nb'),
+			gamesAbbr = 'nb',
 			sprAbbr = 'nb'
 		},
 		{
 			games = {'Nero 2', 'Bianco 2'},
-			chronIndex = table.search(wlib.gamesChron, 'n2b2'),
+			gamesAbbr = 'n2b2',
 			sprAbbr = 'nb2'
 		}
 	},
@@ -309,12 +324,12 @@ local spriteGames = {
 	[6] = {
 		{
 			games = {'X', 'Y'},
-			chronIndex = table.search(wlib.gamesChron, 'xy'),
+			gamesAbbr = 'xy',
 			sprAbbr = 'xy'
 		},
 		{
 			games = {'Rubino Omega', 'Zaffiro Alpha'},
-			chronIndex = table.search(wlib.gamesChron, 'roza'),
+			gamesAbbr = 'roza',
 			sprAbbr = 'roza'
 		}
 	},
@@ -322,7 +337,7 @@ local spriteGames = {
 	[7] = {
 		{
 			games = {'Sole', 'Luna'},
-			chronIndex = table.search(wlib.gamesChron, 'sl'),
+			gamesAbbr = 'sl',
 			sprAbbr = 'sl'
 		}
 	},
@@ -491,14 +506,16 @@ quella per lo sprite retro.
 
 local boxesLine = function(abbr, name, gen, var, ndex)
 	local region = gendata[gen].region
-	local sinceIndex = table.search(wlib.gamesChron, alt[ndex].since[abbr])
-	local backGame = table.search(wlib.gamesChron, gendata[gen].games[1])
-			> sinceIndex and gendata[gen].games[1] or alt[ndex].since[abbr]
+	local backGame = gamesUtil.isBefore(gendata[gen].games[1],
+                alt[ndex].since[abbr])
+            and alt[ndex].since[abbr]
+            or gendata[gen].games[1]
 
 	local boxes = table.map(spriteGames[gen], function(data)
-			return data.chronIndex < sinceIndex and
-				table.concat{'| colspan="', #data.games , '" | &nbsp; '} or
-				sprBox(data.sprAbbr, var, ndex, abbr, #data.games)
+            local poke = ndex .. forms.toEmptyAbbr(abbr)
+			return gamesUtil.isInGame(poke, data.gamesAbbr)
+                    and sprBox(data.sprAbbr, var, ndex, abbr, #data.games)
+                    or table.concat{'| colspan="', #data.games , '" | &nbsp; '}
 		end)
 	return string.interp([=[
 
@@ -559,10 +576,14 @@ local formsBoxes = function(ndex, gen, var)
 	})
 	end
 
-	local lines = table.mapToNum(alt[ndex].gamesOrder, function(abbr)
-			local abbr, name, var = fixGenders(abbr, gen, ndex, var)
-			return gens.getGen.game(alt[ndex].since[abbr]) <= gen and
-					boxesLine(abbr, name, gen, var, ndex) or nil
+	local lines = table.filter(alt[ndex].gamesOrder, function(abbr)
+        return gamesUtil.anyInGen(gen,
+                alt[ndex].since[abbr],
+                alt[ndex]['until'] and alt[ndex]['until'][abbr])
+    end)
+    lines = table.map(lines, function(abbr)
+            local abbr, name, var = fixGenders(abbr, gen, ndex, var)
+			return boxesLine(abbr, name, gen, var, ndex)
 		end, ipairs)
 
 	if shouldAddFemaleLine(ndex, gen) then
@@ -615,7 +636,6 @@ u.altSprites = function(frame)
 	local poke = mw.text.decode(string.trim(frame.args[1] or '')):lower()
 
 	-- Uses both AltForms and UselessForms
-	alt = forms.allFormsData()
 	local ndex = pokes[poke].ndex
 	local gen = gens.getGen.ndex(ndex)
 
@@ -631,7 +651,7 @@ u.altSprites = function(frame)
 	end
 
 	local forms = {}
-	for a = gen, 7 do
+	for a = gen, gendata.latest do
 		table.insert(forms, table.concat{'== ',
 			string.fu(gendata[a].ext), ' generazione =='})
 		table.insert(forms, genTable(a, ndex))
@@ -645,6 +665,6 @@ end
 
 u.AltSprites, u.altsprites, u.alt_sprites =
 u.altSprites, u.altSprites, u.altSprites
-arg = {'Charizard'}
+
 print(u.altSprites{args={arg[1]}})
 --return u

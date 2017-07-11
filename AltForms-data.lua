@@ -8,6 +8,8 @@ local t = {}
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 
+local mw = require('mw')
+
 -- Crea i link alle forme alternative
 
 local makeLinks = function(black)
@@ -152,7 +154,7 @@ t.arceus.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante',
 	C = 'Tipo Coleottero', Er = 'Tipo Erba', P = 'Tipo Psico', B = 'Tipo Buio',
 	S = 'Tipo Spettro', Ai = 'Tipo Acciaio', Fu = 'Tipo Fuoco',
 	D = 'Tipo Drago', Fo = 'Tipo Folletto', El = 'Tipo Elettro',
-	G = 'Tipo Ghiaccio'}
+	G = 'Tipo Ghiaccio', Sc = 'Tipo Sconosciuto'}
 t.basculin.names = {B = 'Forma Lineablu', base = 'Forma Linearossa'}
 t.darmanitan.names = {Z = 'Stato Zen', base = 'Stato Normale'}
 t.tornadus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
@@ -168,7 +170,8 @@ t.oricorio.names = {C = 'Stile Cheerdance', H = 'Stile Hula', B = 'Stile Buyō',
 	base = 'Stile Flamenco'}
 t.lycanroc.names = {N = 'Forma Notte', base = 'Forma Giorno'}
 t.wishiwashi.names = {B = 'Forma Banco', base = 'Forma Individuale'}
-t.silvally.names = t.arceus.names
+t.silvally.names = mw.clone(t.arceus.names) 
+t.silvally.names.Sc = nil
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}
@@ -189,113 +192,6 @@ for k, v in pairs(t.alola) do
 	t[v] = {}
 	t[v].names = {A = 'Forma di Alola', base = 'Forma Normale'}
 end
-
--- Sigle delle forme alternative che cambiano tipo rispetto alla forma base,
--- che dunque non è presente
-
-t.castform.changetype = {'S', 'P', 'N'}
-t.wormadam.changetype = {'Sa', 'Sc'}
-t.rotom.changetype = {'C', 'L', 'G', 'V', 'T'}
-t.shaymin.changetype = {'C'}
-t.arceus.changetype = {'L', 'Vo', 'Ve', 'T', 'R', 'Aq', 'C',
-	'Er', 'P', 'B', 'S', 'Ai', 'Fu', 'D', 'Fo', 'El', 'G'}
-t.darmanitan.changetype = {'Z'}
-t.meloetta.changetype = {'D'}
-t.charizard.changetype = {'MX'}
-t.pinsir.changetype = {'M'}
-t.gyarados.changetype = {'M'}
-t.pinsir.changetype = {'M'}
-t.mewtwo.changetype = {'MX'}
-t.ampharos.changetype = {'M'}
-t.sceptile.changetype = {'M'}
-t.aggron.changetype = {'M'}
-t.altaria.changetype = {'M'}
-t.groudon.changetype = {'A'}
-t.lopunny.changetype = {'M'}
-t.audino.changetype = {'M'}
-t.hoopa.changetype = {'L'}
-t.oricorio.changetype = {'C', 'H', 'B'}
-t.silvally.changetype = t.arceus.changetype
-for k, v in pairs(t.alola) do
-	t[v].changetype = {'A'}
-end
-
--- Sigle delle forme alternative che cambiano abilità rispetto alla forma base,
--- che non è dunque presente; visto che la maggior parte delle megaevoluzioni
--- cambiano abilità, è più conveniente inserirle preliminarmente tutte e
--- togliere quelle che invece non la cambiano
-
-t.giratina.changeability = {'O'}
-t.shaymin.changeability = t.shaymin.changetype
-t.basculin.changeability = {'B'}
-t.darmanitan.changeability = {'Z'}
-t.tornadus.changeability = {'T'}
-t.kyurem.changeability = {'N', 'B'}
-t.greninja.changeability = {'A'}
-t.meowstic.changeability = {'F'}
-t.zygarde.changeability = {'P'}
-t.lycanroc.changeability = {'N'}
-for k, v in pairs(t.mega) do
-	t[v].changeability = {'M'}
-end
-for k, v in pairs(t.megaxy) do
-	t[v].changeability = {'MX', 'MY'}
-end
-for k, v in pairs(t.archeo) do
-	t[v].changeability = {'A'}
-end
-for k, v in pairs(t.alola) do
-	t[v].changeability = t[v].changetype
-end
-t.scizor.changeability = nil
-t.tyranitar.changeability = nil
-t.medicham.changeability = nil
-t.latias.changeability = nil
-t.latios.changeability = nil
-t.garchomp.changeability = nil
-t.abomasnow.changeability = nil
-t.audino.changeability = nil
-
--- Sigle delle forme alternative che cambiano statistiche rispetto alla forma
--- base, che non è dunque presente
-
-t.deoxys.changestats = {'A', 'D', 'V'}
-t.wormadam.changestats = t.wormadam.changetype
-t.rotom.changestats = t.rotom.changetype
-t.giratina.changestats = t.giratina.changeability
-t.shaymin.changestats = t.shaymin.changetype
-t.darmanitan.changestats = t.darmanitan.changetype
-t.tornadus.changestats = t.tornadus.changeability
-t.kyurem.changestats = t.kyurem.changeability
-t.meloetta.changestats = t.meloetta.changetype
-t.greninja.changestats = {'A'}
-t.aegislash.changestats = {'S'}
-t.pumpkaboo.changestats = {'S', 'L', 'XL'}
-t.zygarde.changestats = {'D', 'P'}
-t.hoopa.changestats = t.hoopa.changetype
-t.wishiwashi.changestats = {'B'}
-for k, v in pairs(t.mega) do
-	t[v].changestats = {'M'}
-end
-for k, v in pairs(t.megaxy) do
-	t[v].changestats = {'MX', 'MY'}
-end
-for k, v in pairs(t.archeo) do
-	t[v].changestats = {'A'}
-end
-
--- Sigle delle forme alternative che cambiano mosse apprese rispetto alla
--- forma base, che non è dunque presente
-
-t.pikachu.changemoves = {'R', 'D', 'Cn', 'S', 'W'}
-t.deoxys.changemoves = t.deoxys.changestats
-t.wormadam.changemoves = t.wormadam.changetype
-t.rotom.changemoves = t.rotom.changetype
-t.shaymin.changemoves = t.shaymin.changetype
-t.kyurem.changemoves = t.kyurem.changeability
-t.greninja.changemoves = t.greninja.changeability
-t.meowstic.changemoves = t.meowstic.changeability
-t.hoopa.changemoves = t.hoopa.changetype
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
@@ -333,7 +229,8 @@ t.shaymin.ext = {cielo = 'C'}
     t.arceus.ext = {lotta = 'L', volante = 'Vo', veleno = 'Ve', terra = 'T',
 	roccia = 'R', acqua = 'Aq', coleottero = 'C', erba = 'Er', psico = 'P',
 	buio = 'B', spettro = 'S', acciaio = 'Ai', fuoco = 'Fu', drago = 'D',
-	folletto = 'Fo', elettro = 'El', ghiaccio = 'G', coleot = 'C'}
+	folletto = 'Fo', elettro = 'El', ghiaccio = 'G', coleot = 'C',
+    sconosciuto = 'Sc'}
 t.basculin.ext = {lineablu = 'B'}
 t.darmanitan.ext = {zen = 'Z'}
 t.tornadus.ext = {totem = 'T'}
@@ -349,7 +246,8 @@ t.lycanroc.ext = {notte = 'N', giorno = 'base'}
 t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
 	flamenco = 'base'}
 t.wishiwashi.ext = {banco = 'B', individuale = 'base'}
-t.silvally.ext = t.arceus.ext
+t.silvally.ext = mw.clone(t.arceus.ext)
+t.silvally.ext.sconosciuto = nil
 for k, v in pairs(t.mega) do
 	t[v].ext = {mega = 'M'}
 end
@@ -374,7 +272,7 @@ t.rotom.gamesOrder = {'base', 'C', 'L', 'G', 'V', 'T'}
 t.giratina.gamesOrder = {'base', 'O'}
 t.shaymin.gamesOrder = {'base', 'C'}
 t.arceus.gamesOrder = {'base', 'L', 'Vo', 'Ve', 'T', 'R', 'C', 'S', 'Ai', 'Fu',
-	'Aq', 'Er', 'El', 'P', 'G', 'D', 'B', 'Fo'}
+	'Aq', 'Er', 'El', 'P', 'G', 'D', 'B', 'Fo', 'Sc'}
 t.basculin.gamesOrder = {'base', 'B'}
 t.darmanitan.gamesOrder = {'base', 'Z'}
 t.tornadus.gamesOrder = {'base', 'T'}
@@ -389,7 +287,8 @@ t.hoopa.gamesOrder = {'base', 'L'}
 t.lycanroc.gamesOrder = {'base', 'N'}
 t.oricorio.gamesOrder = {'base', 'C', 'H', 'B'}
 t.wishiwashi.gamesOrder = {'base', 'B'}
-t.silvally.gamesOrder = t.arceus.gamesOrder
+t.silvally.gamesOrder = mw.clone(t.arceus.gamesOrder)
+table.remove(t.silvally.gamesOrder)
 for k, v in pairs(t.mega) do
 	t[v].gamesOrder = {'base', 'M'}
 end
@@ -426,7 +325,7 @@ t.giratina.since = {O = 'pt', base = 'dp'}
 t.shaymin.since = {C = 'pt', base = 'dp'}
 t.arceus.since = {base = 'dp', L = 'dp', Vo = 'dp', Ve = 'dp', T = 'dp',
 	R = 'dp', Aq = 'dp', C = 'dp', Er = 'dp', P = 'dp', B = 'dp', S = 'dp',
-	Ai = 'dp', Fu = 'dp', D = 'dp', Fo = 'xy', El = 'dp', G = 'dp'}
+	Ai = 'dp', Fu = 'dp', D = 'dp', Fo = 'xy', El = 'dp', G = 'dp', Sc = 'dp'}
 t.basculin.since = {B = 'nb', base = 'nb'}
 t.darmanitan.since = {Z = 'nb', base = 'nb'}
 t.tornadus.since = {T = 'n2b2', base = 'nb'}
@@ -492,6 +391,18 @@ t.charizard.since = {MX = 'xy', MY = 'xy', base = 'rb'}
 t.mewtwo.since = {MX = 'xy', MY = 'xy', base = 'rb'}
 t.groudon.since = {A = 'roza', base = 'rz'}
 t.kyogre.since = {A = 'roza', base = 'rz'}
+
+--[[
+
+Tables containing the last game a form is
+available, base form included. Anything
+not present defaults to latest games.
+
+--]]
+
+t.pikachu['until'] = {Cs = 'roza', R = 'roza', D = 'roza',
+	Cn = 'roza', S = 'roza', W = 'roza'}
+t.arceus['until'] = {Sc = 'hgss'}
 
 -- Altre forme di Alola, messe qui per evitare inutili iterazioni dei cicli precedenti
 
