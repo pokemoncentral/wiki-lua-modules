@@ -32,7 +32,7 @@ local mw = require('mw')
 
 local w = require('Wikilib')
 local data = require("Wikilib-data")
-local gamesUtil = require("Wikilib-games")
+local gamesUtil = require('Wikilib-games')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local tab = require('Wikilib-tables')
@@ -79,7 +79,9 @@ end
 -- Override di createColors per gestire i tipi glitch
 -- (nomi diversi ma stesso colore)
 EffTable.createColors = function(this, types)
-	local coloredTypes = table.merge(data.allTypes, {'grinta', 'grazia'})
+	-- The order is important because table.merge use mw.clone on first argument,
+	-- that can't be used on data.allTypes because of mw.loadData
+	local coloredTypes = table.merge({'grinta', 'grazia'}, data.allTypes)
 
 	this.colors = {
 		type1 = types.type1,

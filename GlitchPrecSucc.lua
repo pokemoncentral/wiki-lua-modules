@@ -121,7 +121,7 @@ m.GlitchPrecSucc = function(frame)
 <div class="inline-block width-xl-40 width-xs-50 text-right"><span class="inline-block width-xl-10 width-xs-20">[[${namePrev}|<span style="color:#000">&larr;</span>]]</span><span class="inline-block width-xl-10 hidden-xs">${sprPrev}</span><span class="inline-block width-xl-80" style="padding: 0 1em; box-sizing: border-box;">[[${namePrev}|<span style="color:#000">#${prev}: ${displayPrev}</span>]]</span></div><div class="inline-block text-center width-xl-20 hidden-xs">[[Elenco Pokémon Glitch|<span style="color:#000">${name}</span>]]</div><div class="inline-block width-xl-40 width-xs-50"><span class="inline-block width-xl-80" style="padding: 0 1em; box-sizing: border-box;">[[${nameNext}|<span style="color:#000">#${nxt}: ${displayNext}</span>]]</span><span class="inline-block width-xl-10 hidden-xs">${sprNext}</span><span class="inline-block width-xl-10 width-xs-20">[[${nameNext}|<span style="color:#000">&rarr;</span>]]</span></div>
 </div>]=],
 {
-    bg = css.horizGradLua{type1 = type1, type2 = type2},
+    bg = css.horizGradLua{type1 = tipo1, type2 = tipo2},
     namePrev = game[prev].name,
     sprPrev = not game[prev].spr:find('%.') and game[prev].spr
 			or table.concat{'[[File:', game[prev].spr, ']]'},
@@ -137,7 +137,7 @@ m.GlitchPrecSucc = function(frame)
 end
 
 m.glitchprecsucc, m.glitchPrecSucc = m.GlitchPrecSucc, m.GlitchPrecSucc
-
+arg={'Missingno.', 'RB'}
 print(m.glitchPrecSucc{args={arg[1], game = arg[2]}})
 
 -- return m
