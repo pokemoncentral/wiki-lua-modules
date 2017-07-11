@@ -210,6 +210,8 @@ dr.debRes = function(frame)
 		end
 		-- Ordina altData.gamesOrder in modo da avere prima i giochi più vecchi
 		table.sort(altData.gamesOrder , function (a, b)
+			a = a == 'RZS' and 'RZ' or a
+			b = b == 'RZS' and 'RZ' or b
 			return tab.search(data.gamesChron, string.lower(a)) < tab.search(data.gamesChron, string.lower(b))
 		end)
 	end
@@ -223,5 +225,5 @@ dr.debRes = function(frame)
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
-print(dr.debres{args={'????? (00)'}})
+print(dr.debres{args={'??????????'}})
 return dr
