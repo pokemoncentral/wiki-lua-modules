@@ -110,8 +110,8 @@ m.GlitchPrecSucc = function(frame)
     end
     game = glitches[game]
 
-    local tipo1 = game[glitchIndex].type1
-    local tipo2 = game[glitchIndex].type2 or tipo1
+    local tipo1 = game[glitchIndex].type1:gsub(' ', '_')
+    local tipo2 = (game[glitchIndex].type2 or tipo1):gsub(' ', '_')
     
     local size = table.getn(game)
     local prev = (glitchIndex - 2 + size) % size + 1

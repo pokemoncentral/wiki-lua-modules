@@ -62,30 +62,49 @@ c.volante = function(frame) return _colore(frame.args[1] or 'normale', '6699FF',
 c.Volante = c.volante
 
 -- Alias glitch
+-- Aliases with the underscore are needed because of module css
 
 c.Glitch, c.glitch = c.sconosciuto, c.sconosciuto
 c.IIIItoto, c.iiiitoto, c.Uccello, c.uccello =
 	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c['6!2?2 A'], c['6!2?2 a'], c['x v zA'], c['x v za'] =
 	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+c['6!2?2_A'], c['6!2?2_a'], c['x_v_zA'], c['x_v_za'] =
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c.L, c.l, c.B, c.b = c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c[',K Pk(nome del giocatore)xX'], c[',k pk(nome del giocatore)xx'] =
 	c.sconosciuto, c.sconosciuto
-c['Allen. Jr ♀'], c['allen. jr ♀'], c['Normale (glitch)'], c['normale (glitch)'] =
+c[',K_Pk(nome_del_giocatore)xX'], c[',k_pk(nome_del_giocatore)xx'] =
+	c.sconosciuto, c.sconosciuto
+c['Allen. Jr ♀'], c['allen. jr ♀'], c['Allen._Jr_♀'], c['allen._jr_♀'] =
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+c['Normale (glitch)'], c['normale (glitch)'], c['Normale_(glitch)'], c['normale_(glitch)'] =
 	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c["Pokémaniaco"], c['pokémaniaco'] = c.sconosciuto, c.sconosciuto
-c["'l) m) ZM"], c["'l) m) zm"] = c.sconosciuto, c.sconosciuto
+c["'l) m) ZM"], c["'l) m) zm"], c["'l)_m)_ZM"], c["'l)_m)_zm"] =
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c["(Classe dell'ultimo allenatore affrontato)"] =
+	c.sconosciuto
+c["(Classe_dell'ultimo_allenatore_affrontato)"] =
 	c.sconosciuto
 c["(classe dell'ultimo allenatore affrontato)"] =
 	c.sconosciuto
+c["(classe_dell'ultimo_allenatore_affrontato)"] =
+	c.sconosciuto
 c['Qi JT(nome del giocatore)? POké BB(nome del Pokémon) de W N'] =
+	c.sconosciuto
+c['Qi_JT(nome_del_giocatore)?_POké_BB(nome_del_Pokémon)_de_W_N'] =
 	c.sconosciuto
 c['qi jt(nome del giocatore)? poké bb(nome del pokémon) de w n'] =
 	c.sconosciuto
-c['Poké BB'], c['poké bb'] = c.sconosciuto, c.sconosciuto
-c['8 8 9 5'], c['999'], c['?'] = c.sconosciuto, c.sconosciuto, c.sconosciuto
-c['66848.04'], c["' ♀ ♀ ' 2222 37572"] = c.sconosciuto, c.sconosciuto
+c['qi_jt(nome_del_giocatore)?_poké_bb(nome_del_pokémon)_de_w_n'] =
+	c.sconosciuto
+c['Poké BB'], c['poké bb'], c['Poké_BB'], c['poké_bb'] =
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+c['8 8 9 5'], c['8_8_9_5'], c['999'], c['?'] =
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+c['66848.04'], c["' ♀ ♀ ' 2222 37572"], c["'_♀_♀_'_2222_37572"] =
+	c.sconosciuto, c.sconosciuto, c.sconosciuto
 
 -- Colori attacchi
 
