@@ -205,7 +205,11 @@ l.makeList = function(args)
 		entries[#entries]:toFooter()
 	end
 
-	return w.mapAndConcat(entries, '\n|-\n',
+    --[[
+        "height: 100%" is just CSS making fun
+        of us, can't really hurt anything
+    --]]
+	return w.mapAndConcat(entries, '\n|- style="height: 100%"\n',
 			tostring)
 end
 

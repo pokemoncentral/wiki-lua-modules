@@ -1,7 +1,9 @@
 --[[
 
-Modulo che, dato un tipo, restituisce l'elenco dei Pokémon
-che lo hanno come primo tipo, secondo o unico
+This module prints the list of all Pokémon,
+alternative forms included having a given
+type. It divides them into mono-typed,
+first-typed and second-typed.
 
 --]]
 
@@ -9,8 +11,9 @@ local g = {}
 
 local mw = require('mw')
 
+local box = require('Box')
+local css = require('Css')
 local ms = require('MiniSprite')
-local r = require('Roundy')
 local form = require('Wikilib-forms')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
@@ -21,22 +24,48 @@ local pokes = require('Poké-data')
 
 --[[
 
-Classe base per una entry di tutte le tabelle
-(mono-tipo, tipo primario, tipo secondario):
-non è direttamente utilizzabile perché non
-filtra i Pokémon in base al tipo e non stampa
-le ultime celle.
+Base class for specialized list entry
+(mono-, first- and second-typed): it is
+not utilizable directly because it does
+not filter the type.
 
 --]]
 g.Entry = oop.makeClass(list.PokeSortableEntry)
 
+-- Typebox-related constants
+g.Entry.typeBox = {
+    classes = '-5 flex flex-row flex-main-center flex-items-center',
+    styles = 'height: 100%; padding: 0.5ex 0.3em;'
+}
+
 --[[
 
-Costruttore della classe: il primo argomento
-è un elemento del modulo dati Poké/data, e il
-secondo la chiave associata. L'onere di ritornare
-nil, in conformità a makeList in Wikilib/lists
-è affidato alle sottoclassi
+Returns the heading line for tables, given
+type, heading level and ending.
+
+--]]
+g.Entry.makeHeader = function(type, level, ending)
+	type = type == 'coleot' and 'Coleottero' or string.fu(type)
+	local headerTags = string.rep('=', level)
+	return table.concat({headerTags, 'Pokémon di tipo',
+			type, ending, headerTags}, ' ')
+end
+
+-- Returns wikicode for typeboxes
+g.Entry.makeTypeBox = function(type)
+    return box.boxTipoLua(
+            string.fu(type),
+            g.Entry.typeBox.classes,
+            g.Entry.typeBox.styles
+    )
+end
+
+--[[
+
+Constructor: first argument is an entry
+from Poké/data, second one its key.
+Subclasses are to return nil, as specified
+by makeList in Wikilib/lists.
 
 --]]
 g.Entry.new = function(pokeData, name)
@@ -47,53 +76,45 @@ end
 
 --[[
 
-Crea il testo di intestazione ad una tabella, dati
-tipo, livello dell'intestazione e parte finale
-
---]]
-g.Entry.makeHeader = function(type, level, ending)
-	type = type == 'coleot' and 'Coleottero' or string.fu(type)
-	local headerTags = string.rep('=', level)
-	return table.concat({headerTags, 'Pokémon di tipo',
-			type, ending, headerTags}, ' ')
-end
-
---[[
-
-Wikicode delle prime celle dell'entry: le altre,
-infatti, variano in base ai tipi del Pokémon, e
-sono gestite dalle sottoclassi
+Wikicode for a list entry: Pokémon ndex,
+mini sprite, name and types. Mono-typed
+Pokémon display the type only once.
 
 --]]
 g.Entry.__tostring = function(this)
-	return string.interp([=[| style="border:1px solid #D8D8D8;" | ${ndex}
-| style="border:1px solid #D8D8D8;" | ${static}
-| style="border:1px solid #D8D8D8;" | [[${name}]]${form}]=],
+	return string.interp([=[| class="hidden-xs" | ${ndex}
+| ${static}
+| class="hidden-xs" style="padding: 0.5ex 0.5em;" | [[${name}]]${form}
+| style="height: 100%; padding: 1.2ex 0.3ex;" | ${type1}${type2}]=],
 	{
 		ndex = this.ndex and string.tf(this.ndex) or '???',
 		static = ms.staticLua(string.tf(this.ndex or 0) ..
 				(this.formAbbr == 'base' and '' or this.formAbbr or '')),
 		name = this.name,
-		form = this.formsData and this.formsData.links[this.formAbbr] or ''
+		form = this.formsData and this.formsData.links[this.formAbbr] or '',
+        type1 = g.Entry.makeTypeBox(this.type1),
+        type2 = this.type1 == this.type2 and ''
+                or ' || style="height: 100%; padding: 1.2ex 0.3ex;" | '
+                        .. g.Entry.makeTypeBox(this.type2)
 	})
 end
 
--- Classe per le entry dei Pokémon con un solo tipo
+-- Mono-typed Pokémon entry class
 g.MonoTypeEntry = oop.makeClass(g.Entry)
 
+-- Creates mono-typed headings
 g.MonoTypeEntry.makeHeader = function(type)
 	return g.MonoTypeEntry.super.makeHeader(type, 3, 'puro')
 end
 
 --[[
 
-Costruttore della classe: il primo argomento
-è un elemento del modulo dati Poké/data, il
-secondo la chiave associata, e il terzo il tipo
-che deve avere il Pokémon. In conformità a
-makeList in Wikilib/lists, ritorna nil se
-il Pokémon non è monotipo o se non ha il tipo
-desiderato.
+Constructor: the first argument is an entry
+from Poké/data, the second one its key and
+the third is the type the Pokémon must have.
+As specified by makeList in Wikilib/lists,
+returns nil whenever the Pokémon is either
+dual-typed or not of the passed type.
 
 --]]
 g.MonoTypeEntry.new = function(pokeData, name, type)
@@ -106,26 +127,10 @@ g.MonoTypeEntry.new = function(pokeData, name, type)
 			name), g.MonoTypeEntry)
 end
 
-g.MonoTypeEntry.__tostring = function(this)
-	return string.interp([=[${firstCells}
-| style="color:#FFF; background:#${std}; border: 1px solid #${dark};" | '''${type}''']=],
-	{
-		firstCells = this.super.__tostring(this),
-		roundy = this.isFooter and r.brLua() or '',
-		std = c[this.type1].normale,
-		dark = c[this.type1].dark,
-		type = string.fu(this.type1),
-	})
-end
-
---[[
-
-Classe per le entry dei Pokémon doppio tipo il
-cui primo tipo è quello richiesto
-
---]]
+-- First-typed Pokémon entry class
 g.FirstTypeEntry = oop.makeClass(g.Entry)
 
+-- Creates first-typed headings
 g.FirstTypeEntry.makeHeader = function(type)
 	return g.FirstTypeEntry.super.makeHeader(type, 4,
 		'come tipo primario')
@@ -133,13 +138,12 @@ end
 
 --[[
 
-Costruttore della classe: il primo argomento
-è un elemento del modulo dati Poké/data, il
-secondo la chiave associata, e il terzo il tipo
-che deve avere il Pokémon come primo. In
-conformità a makeList in Wikilib/lists, ritorna
-nil se il Pokémon è monotipo o se non ha il
-primo tipo uguale a quello desiderato.
+Constructor: the first argument is an entry
+from Poké/data, the second one its key and
+the third is the type the Pokémon must have
+as first. As specified by makeList in Wikilib/lists,
+returns nil whenever the Pokémon is either
+mono-typed or its first type is not the passed one.
 
 --]]
 g.FirstTypeEntry.new = function(pokeData, name, type)
@@ -152,29 +156,10 @@ g.FirstTypeEntry.new = function(pokeData, name, type)
 			name), g.FirstTypeEntry)
 end
 
-g.FirstTypeEntry.__tostring = function(this)
-	return string.interp([=[${firstCells}
-| style="background:#${std1}; border: 1px solid #${dark1}; color:#FFF;" | '''${type1}'''
-| style="background:#${std2}; border: 1px solid #${dark2};" | [[${type2} (tipo)|<span style="color: #FFF">${type2}</span>]]]=],
-	{
-		firstCells = this.super.__tostring(this),
-		std1 = c[this.type1].normale,
-		dark1 = c[this.type1].dark,
-		type1 = string.fu(this.type1),
-		std2 = c[this.type2].normale,
-		dark2 = c[this.type2].dark,
-		type2 = string.fu(this.type2),
-	})
-end
-
---[[
-
-Classe per le entry dei Pokémon doppio tipo il
-cui secondo tipo è quello richiesto
-
---]]
+-- Second-typed Pokémon entry class
 g.SecondTypeEntry = oop.makeClass(g.Entry)
 
+-- Creates second-typed headings
 g.SecondTypeEntry.makeHeader = function(type)
 	return g.SecondTypeEntry.super.makeHeader(type, 4,
 		'come tipo secondario')
@@ -182,13 +167,12 @@ end
 
 --[[
 
-Costruttore della classe: il primo argomento
-è un elemento del modulo dati Poké/data, il
-secondo la chiave associata, e il terzo il tipo
-che deve avere il Pokémon come secondo. In
-conformità a makeList in Wikilib/lists, ritorna
-nil se il Pokémon è monotipo o se non ha il
-secondo tipo uguale a quello desiderato.
+Constructor: the first argument is an entry
+from Poké/data, the second one its key and
+the third is the type the Pokémon must have
+as second. As specified by makeList in Wikilib/lists,
+returns nil whenever the Pokémon is either
+mono-typed or its second type is not the passed one.
 
 --]]
 g.SecondTypeEntry.new = function(pokeData, name, type)
@@ -201,37 +185,21 @@ g.SecondTypeEntry.new = function(pokeData, name, type)
 			name), g.SecondTypeEntry)
 end
 
-g.SecondTypeEntry.__tostring = function(this)
-	return string.interp([=[${firstCells}
-| style="background:#${std1}; border: 1px solid #${dark1};" | [[${type1} (tipo)|<span style="color: #FFF">${type1}</span>]]
-| style="background:#${std2}; border: 1px solid #${dark2}; color:#FFF;" | '''${type2}''']=],
-	{
-		firstCells = this.super.__tostring(this),
-		std1 = c[this.type1].normale,
-		dark1 = c[this.type1].dark,
-		type1 = string.fu(this.type1),
-		std2 = c[this.type2].normale,
-		dark2 = c[this.type2].dark,
-		type2 = string.fu(this.type2),
-	})
-end
-
 --[[
 
-Stampa lo header. Ha in ingresso il tipo da usare
-per lo schema di colori e il numero di tipi da
-inserire come colonne
+Wikicode for list header: it takes the type
+name, for colors, and the number of types,
+to print the correct amount of type columns.
 
 --]]
 local makeHeader = function(type, typesCount)
-	return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="background: #${bg}; border: 3px solid #${bd};"
-! [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
+	return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
+! class="hidden-xs" style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
 ! &nbsp;
-! [[Pokémon|<span style="color:#000">Pokémon</span>]]
+! class="hidden-xs" | [[Pokémon|<span style="color:#000">Pokémon</span>]]
 ${types}]=],
 {
-	bg = c[type].normale,
-	bd = c[type].dark,
+	bg = css.horizGradLua{type = type},
 	types = typesCount < 2 and '! [[Tipo|<span style="color:#000">Tipo</span>]]'
 		or [=[! [[Tipo|<span style="color:#000">Tipo 1</span>]]
 ! [[Tipo|<span style="color:#000">Tipo 2</span>]]]=]
@@ -240,10 +208,14 @@ end
 
 --[[
 
-Crea intestazione e tabella HTML per
-i Pokémon di un tipo dato, mono-tipo,
-con tipo primario o secondario in base
-alla classe entry passata.
+Creates heading and HTML table for
+Pokémons of a given type. Its first
+argument is such type, the second one
+an Entry class complying to makeList
+in Wikilib/listm and the third is the
+heading line. The latter argument is
+optional, defaulting to the return
+of the Entry class makeHeader method.
 
 --]]
 g.makeTypeTable = function(type, Entry, header)
@@ -261,26 +233,35 @@ end
 
 --[[
 
-Funzione di interfaccia: si passa il titolo
-della pagina, da cui viene estratto il tipo.
-Ritorna le tre tabelle con i Pokémon del tipo
-passato, una per i mono-tipo e le altre per
-i doppio tipo con il tipo desiderato come
-primo e secondo, con le relative intestazioni.
+Wikicode interface function: takes a type
+as the title of its page ('<type> (tipo)')
+and prints a list fo all the Pokémon having
+such type, dividing them into mono-typed,
+first-typed and second-typed. Heading for
+sublists are also displayed.
+
+Examples:
+{{#invoke: Typelist | Typelist | Ghiaccio (tipo) }}
+
+(in type pages only)
+{{#invoke: Typelist | Typelist | {{BASEPAGENAME}} }}
 
 --]]
 g.typelist = function(frame)
+
+    -- Extracting type from page title
 	local monoType = string.trim(mw.text.decode(frame.args[1]
 			or 'sconosciuto (tipo)')):match('^(%a+) %(tipo%)$'):lower()
+
+    -- Dual-typed Pokémon have 'coleottero' as 'coleot'
 	local dualType = monoType == 'coleottero' and 'coleot' or monoType
-	local tables = {}
 
-	table.insert(tables, g.makeTypeTable(monoType, g.MonoTypeEntry))
-	table.insert(tables, g.Entry.makeHeader(monoType, 3, 'parziale'))
-	table.insert(tables, g.makeTypeTable(dualType, g.FirstTypeEntry))
-	table.insert(tables, g.makeTypeTable(dualType, g.SecondTypeEntry))
-
-	return table.concat(tables, '\n\n')
+    return table.concat({
+            g.makeTypeTable(monoType, g.MonoTypeEntry),
+            g.Entry.makeHeader(monoType, 3, 'parziale'),
+            g.makeTypeTable(dualType, g.FirstTypeEntry),
+            g.makeTypeTable(dualType, g.SecondTypeEntry)
+        }, '\n\n')
 end
 
 g.Typelist, g.TypeList, g.typeList = g.typelist,
