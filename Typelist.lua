@@ -195,7 +195,7 @@ to print the correct amount of type columns.
 local makeHeader = function(type, typesCount)
 	return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
 ! class="hidden-xs" style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
-! &nbsp;
+! <span class="hidden-xs">&nbsp;</span><span class="visible-xs">Pokémon</span>
 ! class="hidden-xs" | [[Pokémon|<span style="color:#000">Pokémon</span>]]
 ${types}]=],
 {
