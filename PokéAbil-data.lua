@@ -1317,7 +1317,7 @@ t.froakie = {ability1 = 'Acquaiuto', abilityd = 'Mutatipo'}
 t[656] = t.froakie
 t.frogadier = {ability1 = 'Acquaiuto', abilityd = 'Mutatipo'}
 t[657] = t.frogadier
-t.greninja = {ability1 = 'Acquaiuto', abilityd = 'Mutatipo'}
+t.greninja = {ability1 = 'Acquaiuto', abilityd = 'Mutatipo', eventability = 'Morfosintonia'}
 t[658] = t.greninja
 t.bunnelby = {ability1 = 'Raccolta', ability2 = 'Guancegonfie', abilityd = 'Macroforza'}
 t[659] = t.bunnelby
@@ -1668,8 +1668,6 @@ t.kyuremN = {ability1 = 'Teravolt'}
 t['646N'] = t.kyuremN
 t.kyuremB = {ability1 = 'Piroturbina'}
 t['646B'] = t.kyuremB
-t.greninjaD = {ability1 = 'Morfosintonia'}
-t['658D'] = t.greninjaD
 t.greninjaA = {ability1 = 'Morfosintonia'}
 t['658A'] = t.greninjaA
 t.meowsticF = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'Tenacia'}

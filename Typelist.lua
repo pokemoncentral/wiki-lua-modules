@@ -1,7 +1,7 @@
 --[[
 
 This module prints the list of all Pokémon,
-alternative forms included having a given
+alternative forms included, having a given
 type. It divides them into mono-typed,
 first-typed and second-typed.
 
