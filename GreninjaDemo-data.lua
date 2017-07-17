@@ -12,6 +12,7 @@ aggiungendo la forma Demo SL di Greninja
 
 local d = {}
 local pokes = require('Poké-data')
+local stats = require('PokéStats-data')
 local forms = require('AltForms-data')
 
 -- Poké/data

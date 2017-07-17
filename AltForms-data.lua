@@ -114,8 +114,8 @@ t.mega = {'venusaur', 'blastoise', 'beedrill', 'pidgeot', 'alakazam',
 	'slowbro', 'gengar', 'kangaskhan', 'pinsir', 'gyarados', 'aerodactyl',
 	'ampharos', 'steelix', 'scizor', 'heracross', 'houndoom', 'tyranitar',
 	'sceptile', 'blaziken', 'swampert', 'gardevoir', 'sableye', 'mawile',
-	'aggron', 'medicham', 'manectric', 'banette', 'sharpedo', 'camerupt',
-	'altaria', 'absol', 'glalie', 'salamence', 'metagross', 'latias',
+	'aggron', 'medicham', 'manectric', 'sharpedo', 'camerupt', 'altaria',
+	'banette', 'absol', 'glalie', 'salamence', 'metagross', 'latias',
 	'latios', 'rayquaza', 'lopunny', 'garchomp', 'lucario', 'abomasnow',
 	'gallade', 'audino', 'diancie'}
 
