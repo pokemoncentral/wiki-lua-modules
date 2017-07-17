@@ -14,10 +14,6 @@ local tab = require('Wikilib-tables')
 local abils = require('PokéAbil-data')
 local c = require("Colore-data")
 
--- !!! ATTENZIONE !!!
---- Questo modulo modifica le copie cachate degli altri moduli dati
-local gre = require('GreninjaDemo-data')
-
 -- Table contenente le forme di Pikachu da ignorare
 local ignorableForms = {'pikachuR', 'pikachuD',
 	'pikachuCn', 'pikachuS', 'pikachuW'}
@@ -62,6 +58,7 @@ AbilsBox.__eq = function(a, b)
 	return a.ability1 == b.ability1
 			and a.ability2 == b.ability2
 			and a.abilityd == b.abilityd
+            and a.eventability == b.eventability
 end
 
 --[[
@@ -84,7 +81,16 @@ AbilsBox.__tostring = function(this)
 			l.aColor(this.abilityd), '<div class="small-text">Abilit&agrave; nascosta</div></div>'}
 	end
 
-	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center width-xl-${boxWidth}" style="box-sizing: border-box; padding: 0.2em;">${forms}<div class="width-xl-${stdWidth}">${stdAbils}</div>${hiddenAbil}</div>',
+    local eventAbil = ''
+	if this.abilityd then
+		eventAbil = string.interp('<div class="width-xl-${width}">${abil}<div class="small-text">Abilit&agrave; evento</div></div>',
+                {
+                    width = this.abilityd and '100' or '50',
+                    abil = l.aColor(this.eventability)
+                })
+	end
+
+	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center width-xl-${boxWidth}" style="box-sizing: border-box; padding: 0.2em;">${forms}<div class="width-xl-${stdWidth}">${stdAbils}</div>${hiddenAbil}${eventAbil}</div>',
 	{
 		boxWidth = this.abilityd and '100' or '50',
 		stdWidth = this.abilityd and '50' or '100',
@@ -94,7 +100,8 @@ AbilsBox.__tostring = function(this)
 			'</div>'
 		},
 		stdAbils = stdAbils,
-		hiddenAbil = hiddenAbil
+		hiddenAbil = hiddenAbil,
+        eventAbil = eventAbil
 	})
 end
 
