@@ -62,14 +62,14 @@ d.sandshrew = {hp = 50, atk = 75, def = 85, spatk = 20, spdef = 30, spe = 40}
 d[27] = d.sandshrew
 d.sandslash = {hp = 75, atk = 100, def = 110, spatk = 45, spdef = 55, spe = 65}
 d[28] = d.sandslash
-d.nidoran♀ = {hp = 55, atk = 47, def = 52, spatk = 40, spdef = 40, spe = 41}
-d[29] = d.nidoran♀
+d['nidoran♀'] = {hp = 55, atk = 47, def = 52, spatk = 40, spdef = 40, spe = 41}
+d[29] = d['nidoran♀']
 d.nidorina = {hp = 70, atk = 62, def = 67, spatk = 55, spdef = 55, spe = 56}
 d[30] = d.nidorina
 d.nidoqueen = {hp = 90, atk = 92, def = 87, spatk = 75, spdef = 85, spe = 76}
 d[31] = d.nidoqueen
-d.nidoran♂ = {hp = 46, atk = 57, def = 40, spatk = 40, spdef = 40, spe = 50}
-d[32] = d.nidoran♂
+d['nidoran♂'] = {hp = 46, atk = 57, def = 40, spatk = 40, spdef = 40, spe = 50}
+d[32] = d['nidoran♂']
 d.nidorino = {hp = 61, atk = 72, def = 57, spatk = 55, spdef = 55, spe = 65}
 d[33] = d.nidorino
 d.nidoking = {hp = 81, atk = 102, def = 77, spatk = 85, spdef = 75, spe = 85}
@@ -248,8 +248,8 @@ d.staryu = {hp = 30, atk = 45, def = 55, spatk = 70, spdef = 55, spe = 85}
 d[120] = d.staryu
 d.starmie = {hp = 60, atk = 75, def = 85, spatk = 100, spdef = 85, spe = 115}
 d[121] = d.starmie
-d.mr. mime = {hp = 40, atk = 45, def = 65, spatk = 100, spdef = 120, spe = 90}
-d[122] = d.mr. mime
+d['mr. mime'] = {hp = 40, atk = 45, def = 65, spatk = 100, spdef = 120, spe = 90}
+d[122] = d['mr. mime']
 d.scyther = {hp = 70, atk = 110, def = 80, spatk = 55, spdef = 80, spe = 105}
 d[123] = d.scyther
 d.jynx = {hp = 65, atk = 50, def = 35, spatk = 115, spdef = 95, spe = 95}
@@ -504,8 +504,8 @@ d.tyranitar = {hp = 100, atk = 134, def = 110, spatk = 95, spdef = 100, spe = 61
 d[248] = d.tyranitar
 d.lugia = {hp = 106, atk = 90, def = 130, spatk = 90, spdef = 154, spe = 110}
 d[249] = d.lugia
-d.ho-oh = {hp = 106, atk = 130, def = 90, spatk = 110, spdef = 154, spe = 90}
-d[250] = d.ho-oh
+d['ho-oh'] = {hp = 106, atk = 130, def = 90, spatk = 110, spdef = 154, spe = 90}
+d[250] = d['ho-oh']
 d.celebi = {hp = 100, atk = 100, def = 100, spatk = 100, spdef = 100, spe = 100}
 d[251] = d.celebi
 d.treecko = {hp = 40, atk = 45, def = 35, spatk = 65, spdef = 55, spe = 70}
@@ -882,8 +882,8 @@ d.bronzong = {hp = 67, atk = 89, def = 116, spatk = 79, spdef = 116, spe = 33}
 d[437] = d.bronzong
 d.bonsly = {hp = 50, atk = 80, def = 95, spatk = 10, spdef = 45, spe = 10}
 d[438] = d.bonsly
-d.mime jr. = {hp = 20, atk = 25, def = 45, spatk = 70, spdef = 90, spe = 60}
-d[439] = d.mime jr.
+d['mime jr.'] = {hp = 20, atk = 25, def = 45, spatk = 70, spdef = 90, spe = 60}
+d[439] = d['mime jr.']
 d.happiny = {hp = 100, atk = 5, def = 5, spatk = 15, spdef = 65, spe = 30}
 d[440] = d.happiny
 d.chatot = {hp = 76, atk = 65, def = 45, spatk = 92, spdef = 42, spe = 91}
@@ -952,8 +952,8 @@ d.gliscor = {hp = 75, atk = 95, def = 125, spatk = 45, spdef = 75, spe = 95}
 d[472] = d.gliscor
 d.mamoswine = {hp = 110, atk = 130, def = 80, spatk = 70, spdef = 60, spe = 80}
 d[473] = d.mamoswine
-d.porygon-z = {hp = 85, atk = 80, def = 70, spatk = 135, spdef = 75, spe = 90}
-d[474] = d.porygon-z
+d['porygon-z'] = {hp = 85, atk = 80, def = 70, spatk = 135, spdef = 75, spe = 90}
+d[474] = d['porygon-z']
 d.gallade = {hp = 68, atk = 125, def = 65, spatk = 65, spdef = 115, spe = 80}
 d[475] = d.gallade
 d.probopass = {hp = 60, atk = 55, def = 145, spatk = 75, spdef = 150, spe = 40}
@@ -1342,8 +1342,8 @@ d.litleo = {hp = 62, atk = 50, def = 58, spatk = 73, spdef = 54, spe = 72}
 d[667] = d.litleo
 d.pyroar = {hp = 86, atk = 68, def = 72, spatk = 109, spdef = 66, spe = 106}
 d[668] = d.pyroar
-d.flabébé = {hp = 44, atk = 38, def = 39, spatk = 61, spdef = 79, spe = 42}
-d[669] = d.flabébé
+d['flabébé'] = {hp = 44, atk = 38, def = 39, spatk = 61, spdef = 79, spe = 42}
+d[669] = d['flabébé']
 d.floette = {hp = 54, atk = 45, def = 47, spatk = 75, spdef = 98, spe = 52}
 d[670] = d.floette
 d.florges = {hp = 78, atk = 65, def = 68, spatk = 112, spdef = 154, spe = 75}
@@ -1548,8 +1548,8 @@ d.palossand = {hp = 85, atk = 75, def = 110, spatk = 100, spdef = 75, spe = 35}
 d[770] = d.palossand
 d.pyukumuku = {hp = 55, atk = 60, def = 130, spatk = 30, spdef = 130, spe = 5}
 d[771] = d.pyukumuku
-d.type: null = {hp = 95, atk = 95, def = 95, spatk = 95, spdef = 95, spe = 59}
-d[772] = d.type: null
+d['tipo zero'] = {hp = 95, atk = 95, def = 95, spatk = 95, spdef = 95, spe = 59}
+d[772] = d['tipo zero']
 d.silvally = {hp = 95, atk = 95, def = 95, spatk = 95, spdef = 95, spe = 95}
 d[773] = d.silvally
 d.minior = {hp = 60, atk = 60, def = 100, spatk = 60, spdef = 100, spe = 60}
@@ -1568,20 +1568,20 @@ d.drampa = {hp = 78, atk = 60, def = 85, spatk = 135, spdef = 91, spe = 36}
 d[780] = d.drampa
 d.dhelmise = {hp = 70, atk = 131, def = 100, spatk = 86, spdef = 90, spe = 40}
 d[781] = d.dhelmise
-d.jangmo-o = {hp = 45, atk = 55, def = 65, spatk = 45, spdef = 45, spe = 45}
-d[782] = d.jangmo-o
-d.hakamo-o = {hp = 55, atk = 75, def = 90, spatk = 65, spdef = 70, spe = 65}
-d[783] = d.hakamo-o
-d.kommo-o = {hp = 75, atk = 110, def = 125, spatk = 100, spdef = 105, spe = 85}
-d[784] = d.kommo-o
-d.tapu koko = {hp = 70, atk = 115, def = 85, spatk = 95, spdef = 75, spe = 130}
-d[785] = d.tapu koko
-d.tapu lele = {hp = 70, atk = 85, def = 75, spatk = 130, spdef = 115, spe = 95}
-d[786] = d.tapu lele
-d.tapu bulu = {hp = 70, atk = 130, def = 115, spatk = 85, spdef = 95, spe = 75}
-d[787] = d.tapu bulu
-d.tapu fini = {hp = 70, atk = 75, def = 115, spatk = 95, spdef = 130, spe = 85}
-d[788] = d.tapu fini
+d['jangmo-o'] = {hp = 45, atk = 55, def = 65, spatk = 45, spdef = 45, spe = 45}
+d[782] = d['jangmo-o']
+d['hakamo-o'] = {hp = 55, atk = 75, def = 90, spatk = 65, spdef = 70, spe = 65}
+d[783] = d['hakamo-o']
+d['kommo-o'] = {hp = 75, atk = 110, def = 125, spatk = 100, spdef = 105, spe = 85}
+d[784] = d['kommo-o']
+d['tapu koko'] = {hp = 70, atk = 115, def = 85, spatk = 95, spdef = 75, spe = 130}
+d[785] = d['tapu koko']
+d['tapu lele'] = {hp = 70, atk = 85, def = 75, spatk = 130, spdef = 115, spe = 95}
+d[786] = d['tapu lele']
+d['tapu bulu'] = {hp = 70, atk = 130, def = 115, spatk = 85, spdef = 95, spe = 75}
+d[787] = d['tapu bulu']
+d['tapu fini'] = {hp = 70, atk = 75, def = 115, spatk = 95, spdef = 130, spe = 85}
+d[788] = d['tapu fini']
 d.cosmog = {hp = 43, atk = 29, def = 31, spatk = 29, spdef = 31, spe = 37}
 d[789] = d.cosmog
 d.cosmoem = {hp = 43, atk = 29, def = 131, spatk = 29, spdef = 131, spe = 37}
@@ -1666,8 +1666,8 @@ d.gourgeistL = {hp = 75, atk = 95, def = 122, spatk = 58, spdef = 75, spe = 69}
 d['711L'] = d.gourgeistL
 d.gourgeistXL = {hp = 85, atk = 100, def = 122, spatk = 58, spdef = 75, spe = 54}
 d['711XL'] = d.gourgeistXL
-d.zygarde10 = {hp = 54, atk = 100, def = 71, spatk = 61, spdef = 85, spe = 115}
-d['71810'] = d.zygarde10
+d.zygardeD = {hp = 54, atk = 100, def = 71, spatk = 61, spdef = 85, spe = 115}
+d['718D'] = d.zygardeD
 d.zygardeP = {hp = 216, atk = 100, def = 121, spatk = 91, spdef = 95, spe = 85}
 d['718P'] = d.zygardeP
 d.hoopaL = {hp = 80, atk = 160, def = 60, spatk = 170, spdef = 130, spe = 80}
@@ -1685,8 +1685,8 @@ d.venusaurM = {hp = 80, atk = 100, def = 123, spatk = 122, spdef = 120, spe = 80
 d['003M'] = d.venusaur
 d.charizardMX = {hp = 78, atk = 130, def = 111, spatk = 130, spdef = 85, spe = 100}
 d['006MX'] = d.charizardMX
-d.charizardY = {hp = 78, atk = 104, def = 78, spatk = 159, spdef = 115, spe = 100}
-d['006MY'] = d.charizardY
+d.charizardMY = {hp = 78, atk = 104, def = 78, spatk = 159, spdef = 115, spe = 100}
+d['006MY'] = d.charizardMY
 d.blastoiseM = {hp = 79, atk = 103, def = 120, spatk = 135, spdef = 115, spe = 78}
 d['009M'] = d.blastoiseM
 d.beedrillM = {hp = 65, atk = 150, def = 40, spatk = 15, spdef = 80, spe = 145}
@@ -1707,10 +1707,10 @@ d.gyaradosM = {hp = 95, atk = 155, def = 109, spatk = 70, spdef = 130, spe = 81}
 d['130M'] = d.gyaradosM
 d.aerodactylM = {hp = 80, atk = 135, def = 85, spatk = 70, spdef = 95, spe = 150}
 d['142M'] = d.aerodactylM
-d.MewtwoMX = {hp = 106, atk = 190, def = 100, spatk = 154, spdef = 100, spe = 130}
-d['150MX'] = d.MewtwoMX
-d.MewtwoMY = {hp = 106, atk = 150, def = 70, spatk = 194, spdef = 120, spe = 140}
-d['150MY'] = d.MewtwoMY
+d.mewtwoMX = {hp = 106, atk = 190, def = 100, spatk = 154, spdef = 100, spe = 130}
+d['150MX'] = d.mewtwoMX
+d.mewtwoMY = {hp = 106, atk = 150, def = 70, spatk = 194, spdef = 120, spe = 140}
+d['150MY'] = d.mewtwoMY
 d.ampharosM = {hp = 90, atk = 95, def = 105, spatk = 165, spdef = 110, spe = 45}
 d['181M'] = d.ampharosM
 d.steelixM = {hp = 75, atk = 125, def = 230, spatk = 55, spdef = 95, spe = 30}

@@ -148,7 +148,7 @@ c.Md, c.MD = c.md, c.md
 c.md_blu = function(frame) return _colore(frame.args[1] or 'normale', '095BAF', '5A91C9', '063D75') end
 c.Md_blu, c.Mdblu, c.mdblu, c['md blu'], c['Md blu'] = c.md_blu, c.md_blu, c.md_blu, c.md_blu, c.md_blu
 c.md_cielo = function(frame) return _colore(frame.args[1] or 'normale', '7BB54F', 'A6CD89', '527935') end
-c.Md_cielo, c.Mdcielo, c.mdcielo, c['md cielo'], c['Md cielo'] = c.md_cielo, c.md_cielo, c.md_cielo, c.md_cielo, c.md_cielo, c.md_cielo
+c.Md_cielo, c.Mdcielo, c.mdcielo, c['md cielo'], c['Md cielo'] = c.md_cielo, c.md_cielo, c.md_cielo, c.md_cielo, c.md_cielo
 c.md_oscurita = function(frame) return _colore(frame.args[1] or 'normale', 'C3141B', 'D76166', '830D12') end
 c.Md_oscurita, c.Mdoscurita, c.mdoscurita, c['md oscurita'], c['Md oscurita'] =
 	c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita
