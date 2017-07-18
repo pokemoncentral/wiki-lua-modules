@@ -108,7 +108,7 @@ argument, returns the list of all Pokémon
 having unique base sta total
 
 Example:
-{{#invoke: StatlistUnique | statlistUnique }}
+{{#invoke: Statlist/unique | statlistUnique }}
 
 --]]
 u.statlistUnique = function(frame)
