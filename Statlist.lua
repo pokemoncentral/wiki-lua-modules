@@ -14,7 +14,7 @@ local oop = require('Wikilib-oop')
 local tab = require('Wikilib-tables')
 local txt = require('Wikilib-strings')
 local c = require("Colore-data")
-local pokes = require("Poké-data")
+local pokes = require('Poké-data')
 
 --[[
 
