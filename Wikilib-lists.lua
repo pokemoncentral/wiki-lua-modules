@@ -166,9 +166,6 @@ Gli argomenti sono named poiché sono molti:
 		tabella HTML. Opzionale, se non
 		fornito, la entry deve implementare
 		il metodo toFooter().
-	- separator (optional): separator to be
-		used when concatenating enties. Defaults
-		to '\n|- style="height: 100%"\n'
 
 La classe che rappresenta le entries deve
 implementare la seguente interfaccia:
@@ -212,8 +209,8 @@ l.makeList = function(args)
         "height: 100%" is just CSS making fun
         of us, can't really hurt anything
     --]]
-	return w.mapAndConcat(entries, args.separator
-			or '\n|- style="height: 100%"\n', tostring)
+	return w.mapAndConcat(entries, '\n|- style="height: 100%"\n',
+			tostring)
 end
 
 --[[

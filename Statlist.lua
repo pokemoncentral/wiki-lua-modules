@@ -37,19 +37,17 @@ Entry.__tostring = function(this)
     local sum = table.fold(this.stats, 0,
             function(a, b) return a + b end)
 
-    return string.interp([=[<div class="grid-row">
-<div style="padding: 0.3ex 0.8ex;">${ndex}</div>
-<div style="padding: 0.3ex 0.8ex;">${ms}</div>
-<div style="padding: 0.3ex 0.8ex;">[[${name}|<span style="color: #000;">${name}</span>]]${form}</div>
-<div style="padding: 0.3ex 0.8ex; background: #${hpColor};">'''${hp}'''</div>
-<div style="padding: 0.3ex 0.8ex; background: #${atkColor};">'''${atk}'''</div>
-<div style="padding: 0.3ex 0.8ex; background: #${defColor};">'''${def}'''</div>
-<div style="padding: 0.3ex 0.8ex; background: #${spatkColor};">'''${spatk}'''</div>
-<div style="padding: 0.3ex 0.8ex; background: #${spdefColor};">'''${spdef}'''</div>
-<div style="padding: 0.3ex 0.8ex; background: #${speColor};">'''${spe}'''</div>
-<div style="padding: 0.3ex 0.8ex; background: #${pcwColor};">'''${sum}'''</div>
-<div style="padding: 0.3ex 0.8ex; background: #${pcwColor};">'''${avg}'''</div>
-</div>]=],
+    return string.interp([=[| style="padding: 0.3ex 0.8ex;" | ${ndex}
+| style="padding: 0.3ex 0.8ex;" | ${ms}
+| style="padding: 0.3ex 0.8ex;" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
+| style="padding: 0.3ex 0.8ex; background: #${hpColor};" | '''${hp}'''
+| style="padding: 0.3ex 0.8ex; background: #${atkColor};" | '''${atk}'''
+| style="padding: 0.3ex 0.8ex; background: #${defColor};" | '''${def}'''
+| style="padding: 0.3ex 0.8ex; background: #${spatkColor};" | '''${spatk}'''
+| style="padding: 0.3ex 0.8ex; background: #${spdefColor};" | '''${spdef}'''
+| style="padding: 0.3ex 0.8ex; background: #${speColor};" | '''${spe}'''
+| style="padding: 0.3ex 0.8ex; background: #${pcwColor};" | '''${sum}'''
+| style="padding: 0.3ex 0.8ex; background: #${pcwColor};" | '''${avg}''']=],
         {
             ndex = string.tf(this.ndex),
             ms = ms.staticLua(string.tf(this.ndex) ..
@@ -77,21 +75,22 @@ Entry.__tostring = function(this)
         })
 end
 
+Entry.toFooter = Entry.__tostring
+
 -- List header
-local header = string.interp([=[<div class="grid roundy-corners text-center pull-center" style="border-spacing: 0; padding: 0.6ex; ${bg};">
-<div class="grid-row" style="font-weight: bolder;">
-<div style="padding: 0.8ex;">{{colore2|000|Elenco Pokémon secondo il Pokédex Nazionale|#}}</div>
-<div style="padding: 0.8ex;">&nbsp;</div>
-<div style="padding: 0.8ex;">Pokémon</div>
-<div class="roundytop text-small" style="padding: 0.8ex; background: #${hp};">[[Statistiche#PS|<span style="color: #FFF;">PS</span>]]</div>
-<div class="roundytop text-small" style="padding: 0.8ex; background:#${atk};">[[Statistiche#Attacco|<span style="color: #FFF;">Attacco</span>]]</div>
-<div class="roundytop text-small" style="padding: 0.8ex; background:#${def};">[[Statistiche#Difesa|<span style="color: #FFF;">Difesa</span>]]</div>
-<div class="roundytop text-small" style="padding: 0.8ex; background:#${spatk};">[[Statistiche#Attacco Speciale|<span style="color: #FFF;">Attacco sp.</span>]]</div>
-<div class="roundytop text-small" style="padding: 0.8ex; background:#${spdef};">[[Statistiche#Difesa Speciale|<span style="color: #FFF;">Difesa sp.</span>]]</div>
-<div class="roundytop text-small" style="padding: 0.8ex; background:#${spe};">[[Statistiche#Velocità|<span style="color: #FFF;">Velocità</span>]]</div>
-<div class="roundytop text-small" style="padding: 0.8ex; color: #FFF; background:#${pcw};">Totale</div>
-<div class="roundytop text-small" style="padding: 0.8ex; color: #FFF; background:#${pcw};">Media</div>
-</div>]=],
+local header = string.interp([=[{| class="sortable roundy-corners text-center pull-center white-rows" style="border-spacing: 0; padding: 0.6ex; ${bg};"
+|-
+! style="padding: 0.8ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]
+! style="padding: 0.8ex;" | &nbsp;
+! style="padding: 0.8ex;" | Pokémon
+! class="roundytop text-small" style="padding: 0.8ex; background: #${hp};" | [[Statistiche#PS|<span style="color: #FFF;">PS</span>]]
+! class="roundytop text-small" style="padding: 0.8ex; background:#${atk};" | [[Statistiche#Attacco|<span style="color: #FFF;">Attacco</span>]]
+! class="roundytop text-small" style="padding: 0.8ex; background:#${def};" | [[Statistiche#Difesa|<span style="color: #FFF;">Difesa</span>]]
+! class="roundytop text-small" style="padding: 0.8ex; background:#${spatk};" | [[Statistiche#Attacco Speciale|<span style="color: #FFF;">Attacco sp.</span>]]
+! class="roundytop text-small" style="padding: 0.8ex; background:#${spdef};" | [[Statistiche#Difesa Speciale|<span style="color: #FFF;">Difesa sp.</span>]]
+! class="roundytop text-small" style="padding: 0.8ex; background:#${spe};">[[Statistiche#Velocità|<span style="color: #FFF;">Velocità</span>]]
+! class="roundytop text-small" style="padding: 0.8ex; color: #FFF; background:#${pcw};">Totale
+! class="roundytop text-small" style="padding: 0.8ex; color: #FFF; background:#${pcw};">Media]=],
     {
         bg = css.horizGradLua{type = 'pcwiki'},
         hp = c.ps.normale,
@@ -119,9 +118,7 @@ s.statlist = function(frame)
         source = require('PokéStats-data'),
         makeEntry = Entry,
         iterator = list.pokeNames,
-        header = header,
-        separator = '',
-        footer = '</div>'
+        header = header
     })
 end
 
