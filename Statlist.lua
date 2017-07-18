@@ -1,7 +1,7 @@
 --[[
 
 This module prints a list of all
-Pokémon statistics
+Pokémon base statistics
 
 --]]
 
@@ -15,24 +15,44 @@ local tab = require('Wikilib-tables')
 local txt = require('Wikilib-strings')
 local c = require("Colore-data")
 local pokes = require("Poké-data")
-local data = require("Wikilib-data")
 
 --[[
 
-Class representing an entry for the
-statistics list
+Class representing an entry for the base statistics
+list. By subclassing PokeSortableEntry it implements
+all the interfaces needed for sortForm, sortNdex
+and makeList in Wikilib/lists
 
 --]]
 local Entry = oop.makeClass(list.PokeSortableEntry)
 
+--[[
+
+Constructor: the first argument is an entry from
+PokéStats/data and the second one its key. Since
+no filtering is needed, it never returns nil.
+
+--]]
 Entry.new = function(stats, poke)
     local this = table.merge(Entry.super.new(poke),
             pokes[poke])
 
-    return setmetatable(table.merge(this, {stats = stats}),
-            Entry)
+    --[[
+        Statistics are not merged at top level
+        to ease later total stat calculation
+    --]]
+    this.stats = stats
+
+    return setmetatable(this, Entry)
 end
 
+--[[
+
+Wikicode for a list entry: shows Pokémon ndex,
+mini sprite, name and base stats, plus total
+and average.
+
+--]]
 Entry.__tostring = function(this)
     local sum = table.fold(this.stats, 0,
             function(a, b) return a + b end)
@@ -80,7 +100,7 @@ end
 -- List header
 local header = string.interp([=[<div class="grid roundy-corners text-center pull-center" style="border-spacing: 0; padding: 0.6ex; ${bg};">
 <div class="grid-row" style="font-weight: bolder;">
-<div style="padding: 0.8ex;">{{colore2|000|Elenco Pokémon secondo il Pokédex Nazionale|#}}</div>
+<div style="padding: 0.8ex;">[[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]</div>
 <div style="padding: 0.8ex;">&nbsp;</div>
 <div style="padding: 0.8ex;">Pokémon</div>
 <div class="roundytop text-small" style="padding: 0.8ex; background: #${hp};">[[Statistiche#PS|<span style="color: #FFF;">PS</span>]]</div>
