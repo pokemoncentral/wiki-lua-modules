@@ -1,7 +1,7 @@
 --[[
 
 This module prints a list of all
-Pokémon statistics
+Pokémon base statistics
 
 --]]
 
@@ -15,24 +15,44 @@ local tab = require('Wikilib-tables')
 local txt = require('Wikilib-strings')
 local c = require("Colore-data")
 local pokes = require("Poké-data")
-local data = require("Wikilib-data")
 
 --[[
 
-Class representing an entry for the
-statistics list
+Class representing an entry for the base statistics
+list. By subclassing PokeSortableEntry it implements
+all the interfaces needed for sortForm, sortNdex
+and makeList in Wikilib/lists
 
 --]]
 local Entry = oop.makeClass(list.PokeSortableEntry)
 
+--[[
+
+Constructor: the first argument is an entry from
+PokéStats/data and the second one its key. Since
+no filtering is needed, it never returns nil.
+
+--]]
 Entry.new = function(stats, poke)
     local this = table.merge(Entry.super.new(poke),
-            pokes[poke])
+        pokes[poke])
 
-    return setmetatable(table.merge(this, {stats = stats}),
-            Entry)
+    --[[
+        Statistics are not merged at top level
+        to ease later total stat calculation
+    --]]
+    this.stats = stats
+
+    return setmetatable(this, Entry)
 end
 
+--[[
+
+Wikicode for a list entry: shows Pokémon ndex,
+mini sprite, name and base stats, plus total
+and average.
+
+--]]
 Entry.__tostring = function(this)
     local sum = table.fold(this.stats, 0,
             function(a, b) return a + b end)
@@ -75,22 +95,20 @@ Entry.__tostring = function(this)
         })
 end
 
-Entry.toFooter = Entry.__tostring
-
 -- List header
 local header = string.interp([=[{| class="sortable roundy-corners text-center pull-center white-rows" style="border-spacing: 0; padding: 0.6ex; ${bg};"
 |-
 ! style="padding: 0.8ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]
 ! style="padding: 0.8ex;" | &nbsp;
 ! style="padding: 0.8ex;" | Pokémon
-! class="roundytop text-small" style="padding: 0.8ex; background: #${hp};" | [[Statistiche#PS|<span style="color: #FFF;">PS</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background:#${atk};" | [[Statistiche#Attacco|<span style="color: #FFF;">Attacco</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background:#${def};" | [[Statistiche#Difesa|<span style="color: #FFF;">Difesa</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background:#${spatk};" | [[Statistiche#Attacco Speciale|<span style="color: #FFF;">Attacco sp.</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background:#${spdef};" | [[Statistiche#Difesa Speciale|<span style="color: #FFF;">Difesa sp.</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background:#${spe};">[[Statistiche#Velocità|<span style="color: #FFF;">Velocità</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; color: #FFF; background:#${pcw};">Totale
-! class="roundytop text-small" style="padding: 0.8ex; color: #FFF; background:#${pcw};">Media]=],
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex; background-color: #${hp};" | [[Statistiche#PS|<span style="color: #FFF;">PS</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex; background-color: #${atk};" | [[Statistiche#Attacco|<span style="color: #FFF;">Attacco</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex; background-color: #${def};" | [[Statistiche#Difesa|<span style="color: #FFF;">Difesa</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex; background-color: #${spatk};" | [[Statistiche#Attacco Speciale|<span style="color: #FFF;">Attacco sp.</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex; background-color: #${spdef};" | [[Statistiche#Difesa Speciale|<span style="color: #FFF;">Difesa sp.</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex; background-color: #${spe};" | [[Statistiche#Velocità|<span style="color: #FFF;">Velocità</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex; color: #FFF; background-color: #${pcw};" | Totale
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex; color: #FFF; background-color: #${pcw};" | Media]=],
     {
         bg = css.horizGradLua{type = 'pcwiki'},
         hp = c.ps.normale,
@@ -118,7 +136,8 @@ s.statlist = function(frame)
         source = require('PokéStats-data'),
         makeEntry = Entry,
         iterator = list.pokeNames,
-        header = header
+        header = header,
+        footer = '|}'
     })
 end
 
