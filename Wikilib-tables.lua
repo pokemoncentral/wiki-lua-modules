@@ -275,7 +275,7 @@ syntax in callers.
 table.all = function(tab, funct, iter)
      return table.fold(tab, true,
         function(acc, value, key)
-            return funct(valye, key) and acc
+            return funct(value, key) and acc
         end, iter)
 end
 
