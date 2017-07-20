@@ -1632,7 +1632,7 @@ d.rotomV = {hp = 50, atk = 65, def = 107, spatk = 105, spdef = 107, spe = 86}
 d['479V'] = d.rotomV
 d.rotomT = {hp = 50, atk = 65, def = 107, spatk = 105, spdef = 107, spe = 86}
 d['479T'] = d.rotomT
-d.giratinaO = {hp = 150, ath = 120, def = 100, spatk = 120, spdef = 100, spe = 90}
+d.giratinaO = {hp = 150, atk = 120, def = 100, spatk = 120, spdef = 100, spe = 90}
 d['487O'] = d.giratinaO
 d.shayminC = {hp = 100, atk = 103, def = 75, spatk = 120, spdef = 75, spe = 127}
 d['492C'] = d.shayminC
