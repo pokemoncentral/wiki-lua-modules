@@ -98,7 +98,7 @@ Entry.__tostring = function(this)
 end
 
 -- List header
-local header = string.interp([=[<div class="grid roundy-corners text-center pull-center" style="border-spacing: 0; padding: 0.6ex; ${bg};">
+local header = string.interp([=[<div class="grid roundy-corners text-center pull-center white-rows" style="border-spacing: 0; padding: 0.6ex; ${bg};">
 <div class="grid-row" style="font-weight: bolder;">
 <div style="padding: 0.8ex;">[[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]</div>
 <div style="padding: 0.8ex;">&nbsp;</div>
