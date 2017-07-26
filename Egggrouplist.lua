@@ -105,10 +105,10 @@ Pokémon display the type only once.
 
 --]]
 g.Entry.__tostring = function(this)
-	return string.interp([=[| class="hidden-xs" | ${ndex}
+	return string.interp([=[| ${ndex}
 | ${static}
 | class="hidden-xs" style="padding: 0.5ex 0.5em;" | [[${name}]]${form}
-| class="hidden-xs" style="height: 100%; padding: 1.2ex 0.3ex;"${colspan} | ${type1}${type2}${otherGroup}]=],
+| class="hidden-sm" style="height: 100%; padding: 1.2ex 0.3ex;"${colspan} | ${type1}${type2}${otherGroup}]=],
 	{
 		ndex = this.ndex and string.tf(this.ndex) or '???',
 		static = ms.staticLua(string.tf(this.ndex or 0) ..
@@ -118,7 +118,7 @@ g.Entry.__tostring = function(this)
         type1 = g.Entry.makeTypeBox(this.type1),
         colspan = this.type1 == this.type2 and ' colspan="2"' or '',
         type2 = this.type1 == this.type2 and ''
-                or '|| style="height: 100%; padding: 1.2ex 0.3ex;" | ' .. g.Entry.makeTypeBox(this.type2),
+                or '|| class="hidden-sm" style="height: 100%; padding: 1.2ex 0.3ex;" | ' .. g.Entry.makeTypeBox(this.type2),
 		otherGroup = this.group2 and '|| style="height: 100%; padding: 1.2ex 0.3ex;" | ' .. g.Entry.makeGroupBox(this.group1 == this.group and this.group2 or this.group1) or ''
 	})
 end
@@ -184,10 +184,10 @@ to print the correct amount of group columns.
 --]]
 local makeHeader = function(group, groupsCount)
 	return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
-! class="hidden-xs" style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
+! style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
 ! class="unsortable" | <span class="hidden-xs">&nbsp;</span><span class="visible-xs">Pokémon</span>
 ! class="hidden-xs" | [[Pokémon|<span style="color:#000">Pokémon</span>]]
-! class="hidden-xs unsortable" colspan="2" | [[Tipo|<span style="color:#000">Tipo</span>]]
+! class="hidden-sm unsortable" colspan="2" | [[Tipo|<span style="color:#000">Tipo</span>]]
 ${groups}]=],
 {
 	bg = css.horizGradLua{type = group:gsub(' ', '_') .. '_uova'},
@@ -226,18 +226,16 @@ end
 Wikicode interface function: takes a egg group
 as the title of its page ('<group> (gruppo uova)')
 and prints a list fo all the Pokémon having
-such group, dividing them into single-grouped 
-and double-grouped. Heading for
-sublists are also displayed.
+only such group. Heading for sublists are also displayed.
 
 Examples:
-{{#invoke: Egggrouplist | Egggrouplist | Ghiaccio (tipo) }}
+{{#invoke: Egggrouplist | singlegrouplist | Mostro (gruppo uova) }}
 
 (in type pages only)
-{{#invoke: Egggrouplist | Egggrouplist | {{BASEPAGENAME}} }}
+{{#invoke: Egggrouplist | singlegrouplist | {{BASEPAGENAME}} }}
 
 --]]
-g.egggrouplist = function(frame)
+g.singlegrouplist = function(frame)
 
     -- Extracting type from page title
 	local group = string.trim(mw.text.decode(frame.args[1]
@@ -245,13 +243,42 @@ g.egggrouplist = function(frame)
 
     return table.concat({
             g.makeGroupTable(group, g.SingleGroupEntry),
+        }, '\n\n')
+end
+
+g.Singlegrouplist, g.singleGroupList, g.SingleGroupList =
+	g.singlegrouplist, g.singlegrouplist, g.singlegrouplist
+
+--[[
+
+Wikicode interface function: takes a egg group
+as the title of its page ('<group> (gruppo uova)')
+and prints a list fo all the Pokémon having
+both that and another group. Heading for
+sublists are also displayed.
+
+Examples:
+{{#invoke: Egggrouplist | doublegrouplist | Mostro (gruppo uova) }}
+
+(in type pages only)
+{{#invoke: Egggrouplist | doublegrouplist | {{BASEPAGENAME}} }}
+
+--]]
+g.doublegrouplist = function(frame)
+
+    -- Extracting type from page title
+	local group = string.trim(mw.text.decode(frame.args[1]
+			or 'sconosciuto (gruppo uova)')):match('^([%a%d%s]+) %(gruppo uova%)$'):lower()
+
+    return table.concat({
             g.makeGroupTable(group, g.DoubleGroupEntry),
         }, '\n\n')
 end
 
 g.Egggrouplist, g.eggGroupList, g.EggGroupList =
 	g.egggrouplist, g.egggrouplist, g.egggrouplist
-local arg={'Sconosciuto (gruppo uova)'}
-print(g.egggrouplist{args={arg[1]}})
+
+-- print(g.singlegrouplist{args={arg[1]}})
+-- print(g.doublegrouplist{args={arg[1]}})
 
 return g
