@@ -69,7 +69,7 @@ t.deerling.names = {E = 'Forma Estate', A = 'Forma Autunno',
 t.frillish.names = t.unfezant.names
 t.keldeo.names = {R = 'Forma Risoluta', base = 'Forma Normale'}
 t.genesect.names = {I = 'Forma Idromodulo', V = 'Forma Voltmodulo', P = 'Forma Piromodulo',
-	G = 'Forma Gelomodulo', base = 'Forma di Genesect'}
+	G = 'Forma Gelomodulo', base = 'Forma Normale'}
 t.vivillon.names = {base = 'Motivo Nevi Perenni', No = 'Motivo Nordico',
 	Mn = 'Motivo Manto di Neve', C = 'Motivo Continentale', Pr = 'Motivo Prato',
 	E = 'Motivo Eleganza', Ga = 'Motivo Giardinfiore', T = 'Motivo Trendy',

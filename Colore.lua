@@ -567,9 +567,11 @@ c.ditto_uova = function(frame) return _colore(frame.args[1] or 'normale', 'A664B
 c.Ditto_uova = c.ditto_uova
 c.drago_uova = function(frame) return _colore(frame.args[1] or 'normale', '7A42FF', '7A42FF', '552EB3') end
 c.Drago_uova = c.drago_uova
-c.non_ancora_scoperto_uova = function(frame) return _colore(frame.args[1] or 'normale', '0080C0', '0080C0', '005986') end
+c.sconosciuto_uova = function(frame) return _colore(frame.args[1] or 'normale', '0080C0', '0080C0', '005986') end
+c.Sconosciuto_uova, c.non_ancora_scoperto_uova =
+	c.sconosciuto_uova, c.sconosciuto_uova
 c.Non_ancora_scoperto_uova, c['non ancora scoperto_uova'], c['Non ancora scoperto_uova'] =
-	c.non_ancora_scoperto_uova, c.non_ancora_scoperto_uova, c.non_ancora_scoperto_uova
+	c.sconosciuto_uova, c.sconosciuto_uova, c.sconosciuto_uova, c.sconosciuto_uova
 c.asessuato_uova = function(frame) return _colore(frame.args[1] or 'normale', '333333', '333333', '232323') end
 c.Asessuato_uova = c.asessuato_uova
 
