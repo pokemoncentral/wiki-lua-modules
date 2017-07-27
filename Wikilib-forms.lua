@@ -109,7 +109,7 @@ f.getnameabbr = function(name, extform)
 		name = tonumber(name) or name:lower()
 		return name, alt[name].ext[extform] or 'base'
 	end
-	poke, abbr = name:match("^([%lé%-♂♀%s%.&#;%d]+)(%u*%a*)$")
+	poke, abbr = name:match("^([%lé%-♂♀'%s%.&#;%d]+)(%u*%a*)$")
 	return tonumber(poke) or poke or '', abbr or 'base'
 end
 
