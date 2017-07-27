@@ -19,12 +19,9 @@ local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local c = require("Colore-data")
-local pokes = require("Poké-data")
-local groups = require("PokéEggGroup-data")
+local pokes = require('Poké-data')
+local groups = require('PokéEggGroup-data')
 
--- ATTENZIONE: questo modifica le copie cachate di AltForms-data e UselessForms-data
-local greninjaAsh = require('GreninjaDemo-data')
 form.loadUseless(true)
 local alt = form.allFormsData()
 
@@ -74,11 +71,16 @@ by makeList in Wikilib/lists.
 --]]
 g.Entry.new = function(eggData, name, group)
 	local baseName, abbr = form.getnameabbr(name)
-	local pokeData = table.merge(pokes[name] or pokes[baseName], eggData)
+	local pokeData = table.merge(eggData, pokes[name] or pokes[baseName])
 	local this = g.Entry.super.new(name, pokeData.ndex)
 
 	this.group = group
 	this.formsData = alt[baseName]
+	if this.formsData and not this.formsData.names[abbr] then
+		-- Se la forma non esiste in alt[baseName] è una versione evento che non esiste
+		-- nei moduli dati. Prende tutti i dati dalla forma normale
+		this.formsData.links[abbr] = this.formsData.links.base:gsub(this.formsData.names.base, 'Evento')
+	end
 	this.formAbbr = abbr
 	-- Se c'è un'altra forma del Pokémon in PokéEggGroup-data
 	-- ha senso scrivere la forma, altrimenti no
@@ -241,9 +243,7 @@ g.singlegrouplist = function(frame)
 	local group = string.trim(mw.text.decode(frame.args[1]
 			or 'sconosciuto (gruppo uova)')):match('^([%a%d%s]+) %(gruppo uova%)$'):lower()
 
-    return table.concat({
-            g.makeGroupTable(group, g.SingleGroupEntry),
-        }, '\n\n')
+    return g.makeGroupTable(group, g.SingleGroupEntry)
 end
 
 g.Singlegrouplist, g.singleGroupList, g.SingleGroupList =
@@ -270,9 +270,7 @@ g.doublegrouplist = function(frame)
 	local group = string.trim(mw.text.decode(frame.args[1]
 			or 'sconosciuto (gruppo uova)')):match('^([%a%d%s]+) %(gruppo uova%)$'):lower()
 
-    return table.concat({
-            g.makeGroupTable(group, g.DoubleGroupEntry),
-        }, '\n\n')
+    return g.makeGroupTable(group, g.DoubleGroupEntry)
 end
 
 g.Egggrouplist, g.eggGroupList, g.EggGroupList =
