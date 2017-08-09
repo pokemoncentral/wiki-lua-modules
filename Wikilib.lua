@@ -125,7 +125,7 @@ w.mapAndConcat = function(tab, sep, funct)
 	if type(sep) == 'function' then
 		sep, funct = funct, sep
 	end
-	return table.concat(table.map(tab, funct), sep)
+	return table.concat(table.map(tab, funct, ipairs), sep)
 end
 
 w.map_and_concat = w.mapAndConcat
