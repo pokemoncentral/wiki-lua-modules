@@ -118,7 +118,7 @@ data, per poi concatenarla usando un eventuale
 separatore.
 Funzione e separatore possono essere scambiati,
 per maggior leggibilità in caso di chiamata con
-funzinoe definita on-the-fly.
+funzione definita on-the-fly.
 
 --]]
 w.mapAndConcat = function(tab, sep, funct)
