@@ -20,7 +20,7 @@ Restituisce la tabella così creata
 --]]
 f.allFormsData = function()
 	local all = table.cloneLoadData(alt)
-	local useless = require("UselessForms-data")
+	local useless = require('UselessForms-data')
 
 	--[[
         No need for ipairs because integer keys
