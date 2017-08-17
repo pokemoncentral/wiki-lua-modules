@@ -54,7 +54,7 @@ local strings = {
 
     headerValues = [=[
 
-! colspan="3" class="hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+! colspan="3" class="width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
 |-
 ! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
 ! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
@@ -99,7 +99,7 @@ local statsAvg = function(pokeNames)
         spatk = 0, spdef = 0, spe = 0}
 
     -- Computing sum for every stat
-    avgStats = table.fold(typedPokes, avgStats, function(avgStats, poke)
+    avgStats = table.fold(pokeNames, avgStats, function(avgStats, poke)
         local pokeStats = stats[poke]
         return table.map(avgStats, function(stat, statName)
             return stat + pokeStats[statName]
@@ -185,7 +185,7 @@ displayed.
 
 --]]
 local boxStats = function(stats, types, computeBounds, totalLink)
-    local tot = printNumber(table.fold(stats, 0, function(a, b)
+    local tot = string.printNumber(table.fold(stats, 0, function(a, b)
         return a + b end))
 
     --[[
@@ -356,42 +356,56 @@ s.StatBar, s.statbar = s.statBar, s.statBar
 
 --[[
 
-Prints statistics box for a single Pokémon,
-alternative forms included. Minimin man maximum
-values for each statistic are displayed, as
-well as a link to other Pokémon with the same
-base stat total.
+Prints statistics box for a single Pokémon.
+Minimin and maximum values for each statistic are
+displayed, as well as a link to other Pokémon with
+the same base stat total. Alternative forms are
+included by default, although it is possible to
+display stats for a single form only by passing
+'no' as a second argument.
 
 Examples:
 
-{{#invoke: Stats | PokeStats | Chandelure }}
+All forms:
+{{#invoke: Stats | PokeStats | Rotom }}
 
 IN POKÉMON PAGES ONLY!
 {{#invoke: Stats | PokeStats | {{BASEPAGENAME}} }}
 
+Single form:
+{{#invoke: Stats | PokeStats | BlastoiseM }}
+
 --]]
 s.pokeStats = function(frame)
-    return list.makeFormsLabelledBoxes{
-        name = string.firstLowercase(string.trim(frame.args[1])),
-        makeBox = PokeStatBox.new,
-        printBoxes = function(boxes)
+    local p = w.trimAll(mw.clone(frame.args))
+    local poke = string.firstLowercase(p[1] or p.poke)
+    local noForms = (p[2] or p.noForms or 'no'):lower() == 'yes'
 
-            -- No collapse and extra markup for single boxes
-            if #boxes == 1 then
-                return tostring(boxes[1])
+    if noForms then
+        return boxStats(stats[poke], pokes[poke], true, true)
+    else
+        return list.makeFormsLabelledBoxes{
+            name = poke,
+            makeBox = PokeStatBox.new,
+            printBoxes = function(boxes)
+
+                -- No collapse and extra markup for single boxes
+                if #boxes == 1 then
+                    return tostring(boxes[1])
+                end
+
+                --[[
+                    All boxes collapsable and all but the
+                    first collapsed by default
+                --]]
+                return w.mapAndConcat(boxes, function(box, key)
+                    box:setCollapse('mw-collapsible' ..
+                            (key == 1 and '' or ' mw-collapsed'))
+                    return tostring(box)
+                end, '\n')
             end
-
-            --[[
-                All boxes collapsable and all but the
-                first collapsed by default
-            --]]
-            return w.mapAndConcat(boxes, function(box, key)
-                box:setCollapse('mw-collapsible' ..
-                        (key == 1 and '' or ' mw-collapsed'))
-                return tostring(box)
-            end, '\n')
-        end
-    }
+        }
+    end
 end
 s.PokeStats, s['pokéStats'], s['PokéStats'] =
     s.pokeStats, s.pokeStats, s.pokeStats
@@ -430,6 +444,82 @@ s.typeAvg = function(frame)
 end
 s.TypeAvg, s.typeavg = s.typeAvg, s.typeavg
 
-print(s.TypeAvg{args = {arg[1]}})
+--[[
+
+Prints out a statistics box given
+everything necessary as a parameter:
+
+- hp: HP base stat value
+- atk: Attack base stat value
+- def: Defense base stat value
+- spatk: Special Attack base stat value
+- spdef: Special Defense base stat value
+- spe: Speed base stat value
+- type: Primary or only type used for
+        background gradient.
+- type1: Primary type used for background
+        gradient. Defaults to 'type' parameter.
+- type2: Secondary type used for background
+        gradient.
+- bounds: yes/no flag telling whether to
+        work out min and max values.
+        Defaults to no.
+- link: yes/no flag telling whether to
+        display the link for other Pokémon
+        with the same base sta total.
+        Defaults to no.
+
+Examples:
+{{#invoke: Stats | statsBox
+|hp = 50
+|atk = 220
+|def = 210
+|spatk = 90
+|spdef = 21
+|spe = 120
+|type = acciaio
+|link = yes
+}}
+
+{{#invoke: Stats | statsBox
+|hp = 200
+|atk = 40
+|def = 80
+|spatk = 93
+|spdef = 135
+|spe = 63
+|type1 = elettro
+|type2 = fuoco
+|bounds = yes
+}}
+
+--]]
+s.statsBox = function(frame)
+
+    -- tonumber() is necessary for stats values
+    local p = w.trimAndMap(mw.clone(frame.args), true,
+        function(val) return tonumber(val) or val end)
+
+    -- Defaults and boolean conversions
+    p.type1 = p.type1 or p.type
+    p.bounds = (p.bounds or 'no'):lower() == 'yes'
+    p.link = (p.link or 'no'):lower() == 'yes'
+
+    --[[
+        Base stat total is computed with a fold,
+        thus no extra keys are allowed for stats
+    --]]
+    local stats = {
+        hp = p.hp,
+        atk = p.atk,
+        def = p.def,
+        spatk = p.spatk,
+        spdef = p.spdef,
+        spe = p.spe
+    }
+
+    return boxStats(stats, p, p.bounds, p.link)
+end
+s.StatsBox, s.statsbox = s.statsBox, s.statsBox
 
 return s
