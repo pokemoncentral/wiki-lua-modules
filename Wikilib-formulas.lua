@@ -1,6 +1,6 @@
 --[[
 
-This module holds all copmlex mathematical
+This module holds all complex mathematical
 formulas used to work out game values
 
 --]]

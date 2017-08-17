@@ -217,7 +217,7 @@ end
 
 Sostituisce alla label 'Tutte le forme' quando
 tutte le forme condividono lo stesso box.
-Ritorna i boxed per convenienza di composizione.
+Ritorna i boxes per convenienza di composizione.
 
 --]]
 local allForms = function(boxes)
@@ -341,9 +341,9 @@ l.PokeSortableEntry.__lt = l.sortNdex
 
 --[[
 
-Classe base per un oggetto dotato di labels.
-Implementa il metodo addLabel() richiesto
-dall'interfaccia di makeFormsLabelledBoxes.
+Base class of an object having a label.
+Implements methods addLabel(), hasLabel()
+and replaceLabel() required by makeFormsLabelledBoxes.
 
 --]]
 l.Labelled = oop.makeClass()
