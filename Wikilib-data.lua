@@ -102,6 +102,6 @@ t.genders['♀'] = t.genders.female
 
 -- Misc data about statistics
 
-t.statsOrder = {'hp', 'atk', 'def', 'spatk', 'spdef', 'spe'}
+t.statsOrder = {'hp', 'atk', 'def', 'spatk', 'spdef', 'spec', 'spe'}
 
 return t

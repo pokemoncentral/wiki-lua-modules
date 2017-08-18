@@ -243,6 +243,8 @@ Gli argomenti sono named:
 		Pokémon di cui si vogliono creare i box.
 	- makeBox: costruttore della classe
 		che rappresenta un box.
+	- boxArgs: extra parameter which will be passed
+	    to the box constructor after the regular ones.
 	- printBoxes: stampa i box, ritornando
 		una stringa.
 	- altData: le informazioni sulle varie
@@ -265,10 +267,15 @@ implementare la seguente interfaccia:
 	- hasLabel(): ritorna true se esiste la label.
 --]]
 l.makeFormsLabelledBoxes = function(args)
+    local makeBox = function(sourceData, sourceKey)
+        return args.makeBox(sourceData, sourceKey,
+            args.boxArgs)
+    end
+
 	local altData = args.altData or alts[args.name]
 
 	if not altData then
-		return args.printBoxes({args.makeBox(args.name)})
+		return args.printBoxes({makeBox(args.name)})
 	end
 	
 	local boxes = {}
@@ -290,7 +297,7 @@ l.makeFormsLabelledBoxes = function(args)
 		--]]
 		local name = abbr == 'base' and args.name
 				or (args.name .. abbr)
-		local formBox = args.makeBox(name, formName)
+		local formBox = makeBox(name, formName)
 
 		local index = table.search(boxes, formBox)
 		if index then

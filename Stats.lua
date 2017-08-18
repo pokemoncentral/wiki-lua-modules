@@ -16,6 +16,7 @@ local css = require('Css')
 local formUtil = require('Wikilib-forms')
 local formulas = require('Wikilib-formulas')
 local list = require('Wikilib-lists')
+local mg = require('Wikilib-multigen')
 local oop = require('Wikilib-oop')
 local w = require('Wikilib')
 local c = require("Colore-data")
@@ -33,6 +34,7 @@ local statNames = {
     def = 'Difesa',
     spatk = 'Att. Sp.',
     spdef = 'Dif. Sp.',
+    spec = 'Speciali',
     spe = 'Velocità'
 }
 
@@ -210,6 +212,13 @@ local boxStats = function(args)
         return a + b end))
 
     --[[
+        Need to get rid of non-existent stats because no
+        holes are allowed when concatenating later on
+    --]]
+    local statRows = table.filter(wdata.statsOrder,
+        function(stat) return stats[stat] end)
+
+    --[[
         Interpolation values for basic case,
         which means no min-max calculation
         and no link to other Pokémon with the
@@ -221,12 +230,12 @@ local boxStats = function(args)
         bg = css.horizGradLua(types),
         rs = '',
         values = '',
-        stats = w.mapAndConcat(wdata.statsOrder, '\n',
+        stats = w.mapAndConcat(statRows, '\n',
             function(stat, index)
                 local roundy = false
                 if index == 1 then
                     roundy = 'top'
-                elseif index == table.getn(wdata.statsOrder) then
+                elseif index == table.getn(statRows) then
                     roundy = 'bottom'
                 end
 
@@ -271,6 +280,22 @@ as a label for the box itself.
 --]]
 local PokeStatBox = oop.makeClass(list.Labelled)
 
+PokeStatBox.getStats = function(poke, gen)
+    local pokeStats = mg.getGen(stats[poke], gen)
+    if gen == 1 then
+        pokeStats.spatk = nil
+        pokeStats.spdef = nil
+    else
+        pokeStats.spec = nil
+    end
+
+    local hasPrevGen = stats[poke].spec
+            or table.any(stats[poke], function(stat)
+                return type(stat) == 'table' end)
+
+    return pokeStats, hasPrevGen
+end
+
 --[[
 
 Class constructor: as per makeFormsLabelledBoxes
@@ -279,7 +304,7 @@ with an appended abbreviations for alternative
 forms, and a form extended name.
 
 --]]
-PokeStatBox.new = function(poke, formExtName)
+PokeStatBox.new = function(poke, formExtName, gen)
     local this = PokeStatBox.super.new(formExtName)
 
     --[[
@@ -289,7 +314,7 @@ PokeStatBox.new = function(poke, formExtName)
     --]]
     this.baseFormName = formUtil.getNameAbbr(poke)
 
-    this.stats = stats[poke]
+    this.stats, this.listLink = PokeStatBox.getStats(poke, gen)
     local pokeData = pokes[poke]
     this.types = {type1 = pokeData.type1, type2 = pokeData.type2}
 
@@ -428,17 +453,20 @@ s.pokeStats = function(frame)
     local gen = tonumber(p[3] or p.gen) or gendata.latest
 
     if noForms then
+        local stats, hasPrevGen = PokeStatBox.getStats(poke, gen)
         return boxStats{
             stats = stats,
             types = pokes[poke],
             align = 'center',
             bounds = true,
-            totalLink = true
+            totalLink = true,
+            listLink = hasPrevGen
         }
     else
         return list.makeFormsLabelledBoxes{
             name = poke,
             makeBox = PokeStatBox.new,
+            boxArgs = gen,
             printBoxes = function(boxes)
 
                 -- No collapse and extra markup for single boxes
@@ -515,6 +543,7 @@ everything necessary as a parameter:
 - spatk: Special Attack base stat value
 - spdef: Special Defense base stat value
 - spe: Speed base stat value
+= spec: Special stat value, gen 1 only
 - type: Primary or only type used for
         background gradient.
 - type1: Primary type used for background
@@ -585,7 +614,8 @@ s.statsBox = function(frame)
         def = p.def,
         spatk = p.spatk,
         spdef = p.spdef,
-        spe = p.spe
+        spe = p.spe,
+        spec = p.spec
     }
 
     return boxStats(p)
