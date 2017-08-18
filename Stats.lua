@@ -70,7 +70,7 @@ local strings = {
 
     totalLink = [=[<div class="flex flex-nowrap flex-row flex-main-start flex-items-center">${tot}<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di ${tot}|<span style="color: initial;">Altri Pokémon con questo totale</span>]]</span></div>]=],
 
-    boxStats = [=[{| class="roundy pull-center text-center${width}" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; ${bg};"
+    boxStats = [=[{| class="roundy text-center${align}${width}" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; ${bg};"
 ! colspan="2" ${rs}style="padding: 0.3ex 0.8ex;" | Statistiche base${values}
 ${stats}
 |-
@@ -184,7 +184,7 @@ other Pokémon with the same base stat total is to be
 displayed.
 
 --]]
-local boxStats = function(stats, types, computeBounds, totalLink)
+local boxStats = function(stats, types, align, computeBounds, totalLink)
     local tot = string.printNumber(table.fold(stats, 0, function(a, b)
         return a + b end))
 
@@ -195,6 +195,7 @@ local boxStats = function(stats, types, computeBounds, totalLink)
         same base stat total displayed.
     --]]
     local interpVal = {
+        align = align == 'left' and '' or ' pull-' .. align,
         width = ' width-xl-30 width-md-50 width-sm-60 width-xs-100',
         bg = css.horizGradLua(types),
         rs = '',
@@ -281,7 +282,8 @@ according to the collapsed status.
 
 --]]
 PokeStatBox.__tostring = function(this)
-    local box = boxStats(this.stats, this.types, true, true)
+    local box = boxStats(this.stats, this.types,
+        'center', true, true)
 
     if #this.labels < 1 then
         return box
@@ -382,7 +384,8 @@ s.pokeStats = function(frame)
     local noForms = (p[2] or p.noForms or 'no'):lower() == 'yes'
 
     if noForms then
-        return boxStats(stats[poke], pokes[poke], true, true)
+        return boxStats(stats[poke], pokes[poke],
+            'center', true, true)
     else
         return list.makeFormsLabelledBoxes{
             name = poke,
@@ -440,7 +443,8 @@ s.typeAvg = function(frame)
         return poke.type1:find(type) or poke.type2:find(type)
     end, list.pokeNames))
 
-    return boxStats(statsAvg(typedPokes), {type = type}, false, false)
+    return boxStats(statsAvg(typedPokes), {type = type},
+            'left', false, false)
 end
 s.TypeAvg, s.typeavg = s.typeAvg, s.typeavg
 
@@ -468,6 +472,9 @@ everything necessary as a parameter:
         display the link for other Pokémon
         with the same base sta total.
         Defaults to no.
+- align: alignment of the box stat. One of
+        'left', 'center', ir 'right'.
+        Defaults to 'center'
 
 Examples:
 {{#invoke: Stats | statsBox
@@ -479,6 +486,7 @@ Examples:
 |spe = 120
 |type = acciaio
 |link = yes
+|align = left
 }}
 
 {{#invoke: Stats | statsBox
@@ -504,6 +512,7 @@ s.statsBox = function(frame)
     p.type1 = p.type1 or p.type
     p.bounds = (p.bounds or 'no'):lower() == 'yes'
     p.link = (p.link or 'no'):lower() == 'yes'
+    p.align = (p.align or 'center')
 
     --[[
         Base stat total is computed with a fold,
@@ -518,8 +527,10 @@ s.statsBox = function(frame)
         spe = p.spe
     }
 
-    return boxStats(stats, p, p.bounds, p.link)
+    return boxStats(stats, p, p.align, p.bounds, p.link)
 end
 s.StatsBox, s.statsbox = s.statsBox, s.statsBox
+
+print(s[table.remove(arg, 1)]{args = arg})
 
 return s
