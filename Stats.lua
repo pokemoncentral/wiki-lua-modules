@@ -19,6 +19,7 @@ local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local w = require('Wikilib')
 local c = require("Colore-data")
+local gendata = require("Gens-data")
 local pokes = require('Poké-data')
 local stats = require("PokéStats-data")
 local wdata = require("Wikilib-data")
@@ -60,13 +61,17 @@ local strings = {
 ! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
 ! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv.100]=],
 
+    boundsFooter = [=[
+
+* Le statistiche minime sono calcolate con 0 [[PA]], VI pari a 0, e una [[natura]] sfavorevole.
+* Le [[statistiche]] massime sono calcolate 252 PA, [[VI]] pari a 31, e una natura favorevole.]=],
+
     footer = [=[
 
 | colspan="3" class="hidden-xs" | &nbsp;
 |-
-| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" |
-* Le statistiche minime sono calcolate con 0 [[PA]], VI pari a 0, e una [[natura]] sfavorevole.
-* Le [[statistiche]] massime sono calcolate 252 PA, [[VI]] pari a 31, e una natura favorevole.]=],
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | ${content}
+]=],
 
     totalLink = [=[<div class="flex flex-nowrap flex-row flex-main-start flex-items-center">${tot}<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di ${tot}|<span style="color: initial;">Altri Pokémon con questo totale</span>]]</span></div>]=],
 
@@ -83,7 +88,11 @@ ${stats}
     boxFormWrapper = [[==== ${title} ====
 <div class="${collapse}">
 ${box}
-</div>]]
+</div>]],
+
+    listFooter = [=[
+
+* Le statistiche di questo Pokémon sono cambiati nel corso delle generazioni. Tutti i valori sono disponibili [[Elenco Pokémon per statistiche base|qui]]. ]=]
 }
 
 --[[
@@ -184,7 +193,11 @@ other Pokémon with the same base stat total is to be
 displayed.
 
 --]]
-local boxStats = function(stats, types, align, computeBounds, totalLink)
+local boxStats = function(args)
+    local stats, types = args.stats, args.types
+    local align, computeBounds = args.align, args.bounds
+    local totalLink, listLink = args.totalLink, args.listLink
+
     local tot = string.printNumber(table.fold(stats, 0, function(a, b)
         return a + b end))
 
@@ -219,13 +232,22 @@ local boxStats = function(stats, types, align, computeBounds, totalLink)
         interpVal.width = ''
         interpVal.rs = 'rowspan="2" '
         interpVal.values = strings.headerValues
-        interpVal.footer = strings.footer
+        interpVal.footer = strings.boundsFooter
     end
 
     if totalLink then
         interpVal.width = ''
         interpVal.total = string.interp(strings.totalLink,
             {tot = tot})
+    end
+
+    if listLink then
+        interpVal.footer = interpVal.footer .. strings.listFooter
+    end
+
+    if interpVal.footer ~= '' then
+        interpVal.footer = string.interp(strings.footer,
+            {content = interpVal.footer})
     end
 
     return string.interp(strings.boxStats, interpVal)
@@ -282,8 +304,14 @@ according to the collapsed status.
 
 --]]
 PokeStatBox.__tostring = function(this)
-    local box = boxStats(this.stats, this.types,
-        'center', true, true)
+    local box = boxStats{
+        stats = this.stats,
+        types = this.types,
+        align = 'center',
+        bounds = true,
+        totalLink = true,
+        listLink = this.listLink
+    }
 
     if #this.labels < 1 then
         return box
@@ -364,7 +392,10 @@ displayed, as well as a link to other Pokémon with
 the same base stat total. Alternative forms are
 included by default, although it is possible to
 display stats for a single form only by passing
-'no' as a second argument.
+'yes' as a second argument, or named 'noForms'.
+Statistic values are that of the latest generation
+by default, unless a third argument, or named 'gen',
+is passed with another number.
 
 Examples:
 
@@ -375,17 +406,29 @@ IN POKÉMON PAGES ONLY!
 {{#invoke: Stats | PokeStats | {{BASEPAGENAME}} }}
 
 Single form:
-{{#invoke: Stats | PokeStats | BlastoiseM }}
+{{#invoke: Stats | PokeStats | BlastoiseM | yes }}
+
+Older generations:
+{{#invoke: Stats | PokeStats | Gengar | | 5 }}
+{{#invoke: Stats | PokeStats | Gengar | gen = 5 }}
 
 --]]
 s.pokeStats = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
     local poke = string.firstLowercase(p[1] or p.poke)
     local noForms = (p[2] or p.noForms or 'no'):lower() == 'yes'
+    local gen = tonumber(p[3] or p.gen) or gendata.latest
+
+    local stats = {}
 
     if noForms then
-        return boxStats(stats[poke], pokes[poke],
-            'center', true, true)
+        return boxStats{
+            stats = stats,
+            types = pokes[poke],
+            align = 'center',
+            bounds = true,
+            totalLink = true
+        }
     else
         return list.makeFormsLabelledBoxes{
             name = poke,
@@ -435,16 +478,23 @@ s.typeAvg = function(frame)
         :match('^(%a+) %(tipo%)$'):lower()
 
     --[[
-        string.find is used instead of plain
-        equality because of coleot/coleottero
-        dualism.
+        string.find is used instead of plain equality
+        because of coleot/coleottero dualism. stats[poke]
+        is checked first because it might be that
+        statistics data and Pokémon data are not updated
+        together consistently.
     --]]
     local typedPokes = table.keys(table.filter(pokes, function(poke)
-        return poke.type1:find(type) or poke.type2:find(type)
+        return stats[poke]
+                and poke.type1:find(type)
+                or poke.type2:find(type)
     end, list.pokeNames))
 
-    return boxStats(statsAvg(typedPokes), {type = type},
-            'left', false, false)
+    return boxStats{
+        stats = statsAvg(typedPokes),
+        types = {type = type},
+        align = 'left'
+    }
 end
 s.TypeAvg, s.typeavg = s.typeAvg, s.typeavg
 
@@ -468,13 +518,16 @@ everything necessary as a parameter:
 - bounds: yes/no flag telling whether to
         work out min and max values.
         Defaults to no.
-- link: yes/no flag telling whether to
+- totalLink: yes/no flag telling whether to
         display the link for other Pokémon
         with the same base sta total.
         Defaults to no.
+- listLink: yes/no flag telling whether to
+        display the link to all Pokémon
+        stats list. Defaults to no.
 - align: alignment of the box stat. One of
         'left', 'center', ir 'right'.
-        Defaults to 'center'
+        Defaults to 'center'.
 
 Examples:
 {{#invoke: Stats | statsBox
@@ -485,7 +538,7 @@ Examples:
 |spdef = 21
 |spe = 120
 |type = acciaio
-|link = yes
+|totalLink = yes
 |align = left
 }}
 
@@ -499,6 +552,7 @@ Examples:
 |type1 = elettro
 |type2 = fuoco
 |bounds = yes
+|listLink = yes
 }}
 
 --]]
@@ -511,14 +565,15 @@ s.statsBox = function(frame)
     -- Defaults and boolean conversions
     p.type1 = p.type1 or p.type
     p.bounds = (p.bounds or 'no'):lower() == 'yes'
-    p.link = (p.link or 'no'):lower() == 'yes'
+    p.totalLink = (p.totalLink or 'no'):lower() == 'yes'
+    p.listLink = (p.listLink or 'no'):lower() == 'yes'
     p.align = (p.align or 'center')
 
     --[[
         Base stat total is computed with a fold,
         thus no extra keys are allowed for stats
     --]]
-    local stats = {
+    p.stats = {
         hp = p.hp,
         atk = p.atk,
         def = p.def,
@@ -527,7 +582,7 @@ s.statsBox = function(frame)
         spe = p.spe
     }
 
-    return boxStats(stats, p, p.align, p.bounds, p.link)
+    return boxStats(p)
 end
 s.StatsBox, s.statsbox = s.statsBox, s.statsBox
 
