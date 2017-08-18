@@ -91,7 +91,7 @@ Entry.__tostring = function(this)
             spe = this.stats.spe,
             pcwColor = c.pcwiki.medium_light,
             sum = sum,
-            avg = string.format("%.2f", sum / 6)
+            avg = string.printNumber(sum / 6)
         })
 end
 

@@ -184,13 +184,21 @@ end
 
 --[[
 
-Prints a statistics box. It needs: a table for the
-stats themselves, in the same format as PokéStats/data;
-a table for types, with type1 and type2 indexes,
-possibly with equal values; whether min-max values
-for statistics are to be computed; if the link to
-other Pokémon with the same base stat total is to be
-displayed.
+Prints a statistics box. Arguments are named:
+    - stats: table with statistics to be printed,
+            in the format as PokéStats/data
+    - types: table of type names, in a format
+            accepted by css module
+    - align: alignemnt of the table. One of
+            'center', 'left' or 'right'
+    - bounds: whether min-max values for statistics
+            are to be computed. Defaults to false.
+    - totalLink: if the link to other Pokémon with
+            the same base stat total is to be displayed.
+            Defaults to false.
+    - listLink: if the link to all Pokémon by stats
+            list page is to be displayed.
+            Defaults to false.
 
 --]]
 local boxStats = function(args)
@@ -418,8 +426,6 @@ s.pokeStats = function(frame)
     local poke = string.firstLowercase(p[1] or p.poke)
     local noForms = (p[2] or p.noForms or 'no'):lower() == 'yes'
     local gen = tonumber(p[3] or p.gen) or gendata.latest
-
-    local stats = {}
 
     if noForms then
         return boxStats{
