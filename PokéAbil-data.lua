@@ -1678,6 +1678,8 @@ t.zygardeP = {ability1 = 'Sciamefusione'}
 t['718P'] = t.zygardeP
 t.lycanrocN = {ability1 = 'Sguardofermo', ability2 = 'Spiritovivo', abilityd = 'Nullodifesa'}
 t['745N'] = t.lycanrocN
+t.lycanrocC = {ability1 = 'Unghiedure'}
+t['745C'] = t.lycanrocC
 
 -- Alias per le altre forme alternative rilevanti
 

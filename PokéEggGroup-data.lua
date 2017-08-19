@@ -1632,6 +1632,7 @@ t.greninjaD = {group1 = 'sconosciuto'}
 t.oricorioC, t.oricorioH, t.oricorioB =
 	t.oricorio, t.oricorio, t.oricorio
 t.lycanrocN = t.lycanroc
+-- t.lycanrocC = t.lycanroc
 t.rattataA = t.rattata
 t.raticateA = t.raticate
 t.raichuA = t.raichu

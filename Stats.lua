@@ -305,6 +305,11 @@ forms, and a form extended name.
 
 --]]
 PokeStatBox.new = function(poke, formExtName, gen)
+    -- If the Pokémon's data isn't in PokéStats-data the entry should be nil
+    if not stats[poke] then
+        return nil
+    end
+
     local this = PokeStatBox.super.new(formExtName)
 
     --[[
@@ -518,10 +523,9 @@ s.typeAvg = function(frame)
         statistics data and Pokémon data are not updated
         together consistently.
     --]]
-    local typedPokes = table.keys(table.filter(pokes, function(poke)
-        return stats[poke]
-                and poke.type1:find(type)
-                or poke.type2:find(type)
+    local typedPokes = table.keys(table.filter(pokes, function(poke, key)
+        return stats[key]
+            and (poke.type1:find(type) or poke.type2:find(type))
     end, list.pokeNames))
 
     return boxStats{

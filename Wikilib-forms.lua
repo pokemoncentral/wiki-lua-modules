@@ -146,7 +146,7 @@ f.getlink = function(poke, black, extform)
 		alternativa dal nome, per poi usarli come
 		indici del modulo AltForms/data
 	--]]
-	local name, form = poke:match("^([%lé%-♂♀%s%.&#;%d]+)(%u*%a*)$")
+	local name, form = poke:match("^([%lé%-♂♀'%s%.&#;%d]+)(%u*%a*)$")
 	if form == '' then
 		return ''
 	end
