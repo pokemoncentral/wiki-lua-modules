@@ -72,8 +72,7 @@ local strings = {
 
 | colspan="3" class="hidden-xs" | &nbsp;
 |-
-| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | ${content}
-]=],
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | ${content}]=],
 
     totalLink = [=[<div class="flex flex-nowrap flex-row flex-main-start flex-items-center">${tot}<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di ${tot}|<span style="color: initial;">Altri Pokémon con questo totale</span>]]</span></div>]=],
 
