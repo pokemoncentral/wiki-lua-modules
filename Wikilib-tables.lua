@@ -425,38 +425,25 @@ chiave, in quest'ordine perché la chiave
 non è sempre necessaria e sarebbe fastidioso
 avere un argomento placeholder.
 
-Se non è passato nessun iteratore, si scorrono
-tutti gli elementi della table sorgente.
 Le chiavi rimangono invariate con la sola
 eccezione di quelle numeriche, che sono
 rese continue
 
-Se viene passato un iteratore viene usato quello,
-senza modifiche alle chiavi.
-
 --]]
-table.filter = function(tab, cond, iter)
+table.filter = function(tab, cond)
 	local dest = {}
 	--[[
 		È necessario il doppio ciclo per avere
 		le chiavi intere in ordine
 	--]]
-	if iter then
-		for key, value in iter(tab) do
-			if cond(value, key) then
-				dest[key] = value
-			end
+	for key, value in ipairs(tab) do
+		if cond(value, key) then
+			table.insert(dest, value)
 		end
-	else
-		for key, value in ipairs(tab) do
-			if cond(value, key) then
-				table.insert(dest, value)
-			end
-		end
-		for key, value in table.nonIntPairs(tab) do
-			if cond(value, key) then
-				dest[key] = value
-			end
+	end
+	for key, value in table.nonIntPairs(tab) do
+		if cond(value, key) then
+			dest[key] = value
 		end
 	end
 	return dest

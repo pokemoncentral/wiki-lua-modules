@@ -525,8 +525,9 @@ s.typeAvg = function(frame)
     --]]
     local typedPokes = table.keys(table.filter(pokes, function(poke, key)
         return stats[key]
+            and not string.parseInt(key)
             and (poke.type1:find(type) or poke.type2:find(type))
-    end, list.pokeNames))
+    end))
 
     return boxStats{
         stats = statsAvg(typedPokes),
