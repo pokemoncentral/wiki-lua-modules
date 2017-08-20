@@ -23,7 +23,33 @@ local alts = require('AltForms-data')
 
 --[[-----------------------------------------
 
-				Iteratori
+					Utility
+
+--]]-----------------------------------------
+
+--[[
+
+Replaces the label with 'Tutte le forme' when
+all forms share the same box. If only one form
+exists, it deletes all the labels instead.
+The boxes are returned for composition convenience.
+
+--]]
+local allForms = function(boxes)
+	if #boxes == 1 then
+		local box = boxes[1]
+		if box:labelFormsCount() == 1 then
+			box:emptyLabel()
+		else
+			box:replaceLabel('Tutte le forme')
+		end
+	end
+	return boxes
+end
+
+--[[-----------------------------------------
+
+				Iterators
 
 --]]-----------------------------------------
 
@@ -215,56 +241,45 @@ end
 
 --[[
 
-Sostituisce alla label 'Tutte le forme' quando
-tutte le forme condividono lo stesso box.
-Ritorna i boxes per convenienza di composizione.
+Creates and prints a list of boxes for all
+forms of a given Pokémon: boxes holding the
+same data are merged, and the name of the
+form is added to the label of the box itself.
+If the Pokémon has no alternative forms, only
+the box for the base one is printed. When all
+forms share the same box, the label is replaced
+with 'Tutte le forme'. If only one box exists,
+and it has only one form name in the label,
+the label itseld its emptied.
 
---]]
-local allForms = function(boxes)
-	if #boxes == 1 and boxes[1]:hasLabel() then
-		boxes[1]:replaceLabel('Tutte le forme')
-	end
-	return boxes
-end
-
---[[
-
-Crea e stampa una lista di box per tutte le
-forme di un dato Pokémon: i box che contengono
-gli stessi dati vengono accorpati, previa
-inserimento del nome di tutte le forme nella
-label del box. Se il Pokémon non ha forme
-alternative, stampa solo il box per la forma
-base. Se tutte le forme condividono lo stesso
-box, la label è sostituita con 'Tutte le forme'.
-
-Gli argomenti sono named:
-	- name: nome o ndex della forma base del
-		Pokémon di cui si vogliono creare i box.
-	- makeBox: costruttore della classe
-		che rappresenta un box.
+Parameters are named:
+	- name: name or ndex of the Pokémon whose
+		noxes are created. Must be the base form.
+	- makeBox: Constructor of the classes
+		representing a box.
 	- boxArgs: extra parameter which will be passed
 	    to the box constructor after the regular ones.
-	- printBoxes: stampa i box, ritornando
-		una stringa.
-	- altData: le informazioni sulle varie
-		forme del Pokémon, se non viene
-		passato vengono prese da AltForms-data
+	- printBoxes: prints the boxes to a string.
+	- altData: Alternative forms data.
+		Defaults to AltForms-data module.
 
-La classe che rappresenta il box deve
-implementare la seguente interfaccia:
-	- costruttore(): prende in ingeresso il
-		nome del Pokémon, nel formato nome +
-		sigla in cui si trovano nei moduli
-		dati, e il nome esteso della forma
-		come argomento opzionale.
-	- __eq(): usato per stabilire se due box
-		sono uguali o meno.
-	- addLabel(): aggiunge una label a quelle
-		già presenti.
-	- replaceLabel(): sostituisce la label con
-		quella passata.
-	- hasLabel(): ritorna true se esiste la label.
+The class representing a box must implement
+the following interface:
+	- constructor(): Takes as parameters the
+		name of the Pokémon, in the format
+		name + abbreviation, as found in data
+		modules, and the form extended name,
+		if any.
+	- __eq(): tells whether two boxes hold the
+		same data, and should therefore be merged.
+	- addLabel(): adds a form name to the current
+		label set.
+	- labelFormsCount(): returns the number of
+		form names currently in the label.
+	- replaceLabel(): replaces the label as a whole
+		with the passed one.
+	- emptyLabel(): deletes all the form names from
+		the label.
 --]]
 l.makeFormsLabelledBoxes = function(args)
     local makeBox = function(sourceData, sourceKey)
@@ -385,9 +400,19 @@ l.Labelled.addLabel = function(this, label)
 	end
 end
 
+-- Deletes all the form names from the label
+l.Labelled.emptyLabel = function(this)
+	this:replaceLabel({})
+end
+
+-- Returns the number of labels
+l.Labelled.labelFormsCount = function(this)
+	return #this.labels
+end
+
 -- Ritorna true se la label è settata
 l.Labelled.hasLabel = function(this)
-	return #this.labels > 0
+	return this:labelsCount() > 0
 end
 
 return l

@@ -9,6 +9,7 @@ local mw = require('mw')
 
 local f = {}
 local tab = require('Wikilib-tables')
+local genUtil = require('Wikilib-gens')
 local alt = require("AltForms-data")
 
 --[[
@@ -227,13 +228,20 @@ end
 
 f.has_alola, f.hasalola = f.hasAlola, f.hasAlola
 
-f.formLast = function(poke, abbr)
-	if alt[poke] and abbr and abbr ~= '' then
-		return alt[poke].since[abbr],
-			(alt[poke]['until'] and alt[poke]['until'][abbr])
-	end
+--[[
+
+Returns the first and last game a form is
+available.
+
+--]]
+f.formSpan = function(poke, abbr)
+	return alt[poke].since[abbr], (
+			alt[poke]['until']
+					and alt[poke]['until'][abbr]
+					or genUtil.latest.game
+			)
 end
 
-f.formlast, f.form_last = f.formLast, f.formLast
+f.formspan, f.form_span = f.formSpan, f.formSpan
 
 return f

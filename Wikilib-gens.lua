@@ -59,4 +59,9 @@ gens.getGen.game = function(abbr)
 	return searchThroughGens('games', abbr:lower())
 end
 
+gens.latest = {}
+
+-- The latest game
+gens.latest.game = data[data.latest].games[#data[data.latest].games]
+
 return gens
