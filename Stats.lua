@@ -15,10 +15,13 @@ local tab = require('Wikilib-tables')
 local css = require('Css')
 local formUtil = require('Wikilib-forms')
 local formulas = require('Wikilib-formulas')
+local gamesUtil = require('Wikilib-games')
+local genUtil = require('Wikilib-gens')
 local list = require('Wikilib-lists')
 local mg = require('Wikilib-multigen')
 local oop = require('Wikilib-oop')
 local w = require('Wikilib')
+local alt = require('AltForms-data')
 local c = require("Colore-data")
 local gendata = require("Gens-data")
 local pokes = require('Poké-data')
@@ -93,24 +96,24 @@ ${box}
 
     listFooter = [=[
 
-* Le statistiche di questo Pokémon sono cambiati nel corso delle generazioni. Tutti i valori sono disponibili [[Elenco Pokémon per statistiche base|qui]]. ]=]
+* Le statistiche di questo Pokémon sono cambiate nel corso delle generazioni. Tutti i valori sono disponibili [[Elenco Pokémon per statistiche base|qui]]. ]=]
 }
 
 --[[
 
 Computes the avreage stats of the Pokémon
-whose names are given. Names must be the
-name + abbreviation combination seen in
-all data modules.
+whose names are given, for the provided generation.
+Names must be the name + abbreviation
+combination seen in all data modules.
 
 --]]
-local statsAvg = function(pokeNames)
+local statsAvg = function(pokeNames, gen)
     local avgStats = {hp = 0, atk = 0, def = 0,
         spatk = 0, spdef = 0, spe = 0}
 
     -- Computing sum for every stat
     avgStats = table.fold(pokeNames, avgStats, function(avgStats, poke)
-        local pokeStats = stats[poke]
+        local pokeStats = mg.getGen(stats[poke], gen)
         return table.map(avgStats, function(stat, statName)
             return stat + pokeStats[statName]
         end)
@@ -202,20 +205,20 @@ Prints a statistics box. Arguments are named:
             Defaults to false.
 
 --]]
-local boxStats = function(args)
+s.boxStats = function(args)
     local stats, types = args.stats, args.types
     local align, computeBounds = args.align, args.bounds
     local totalLink, listLink = args.totalLink, args.listLink
 
-    local tot = string.printNumber(table.fold(stats, 0, function(a, b)
-        return a + b end))
+    local tot = string.printNumber(table.fold(stats, 0,
+            function(a, b) return a + b end))
 
     --[[
         Need to get rid of non-existent stats because no
         holes are allowed when concatenating later on
     --]]
     local statRows = table.filter(wdata.statsOrder,
-        function(stat) return stats[stat] end)
+            function(stat) return stats[stat] end)
 
     --[[
         Interpolation values for basic case,
@@ -279,6 +282,13 @@ as a label for the box itself.
 --]]
 local PokeStatBox = oop.makeClass(list.Labelled)
 
+--[[
+
+Static method returning the table with statistics
+values for the provided Pokémon in the given
+generation.
+
+--]]
 PokeStatBox.getStats = function(poke, gen)
     local pokeStats = mg.getGen(stats[poke], gen)
     if gen == 1 then
@@ -288,11 +298,20 @@ PokeStatBox.getStats = function(poke, gen)
         pokeStats.spec = nil
     end
 
-    local hasPrevGen = stats[poke].spec
-            or table.any(stats[poke], function(stat)
-                return type(stat) == 'table' end)
+    return pokeStats
+end
 
-    return pokeStats, hasPrevGen
+--[[
+
+Static methods returning whether the statistics
+value changed for a single Pok;emon troughout
+the generations.
+
+--]]
+PokeStatBox.didStatsChange = function(poke)
+    return stats[poke].spec
+        or table.any(stats[poke], function(stat)
+                return type(stat) == 'table' end)
 end
 
 --[[
@@ -300,11 +319,15 @@ end
 Class constructor: as per makeFormsLabelledBoxes
 specifications, it takes the name of a Pokémon,
 with an appended abbreviations for alternative
-forms, and a form extended name.
+forms, a form extended name, and a generation.
+It will return nil, complying to makeFormsLabelledBoxes,
+if no statistics are defined for the Pokémon
+or if it is not present in the given generation.
 
 --]]
 PokeStatBox.new = function(poke, formExtName, gen)
-    -- If the Pokémon's data isn't in PokéStats-data the entry should be nil
+
+    -- No stats data for the Pokémon, aborting entry
     if not stats[poke] then
         return nil
     end
@@ -315,10 +338,23 @@ PokeStatBox.new = function(poke, formExtName, gen)
         Shared boxes have base form types,
         which are retrieved if necessary
         using the base form name.
+        The abbreviation is used to check
+        for presence in the passed generation
     --]]
-    this.baseFormName = formUtil.getNameAbbr(poke)
+    local abbr
+    this.baseFormName, abbr = formUtil.getNameAbbr(poke)
 
-    this.stats, this.listLink = PokeStatBox.getStats(poke, gen)
+    -- Aborting entry: Pokémon/form not in generation
+    if genUtil.getGen.ndex(pokes[poke].ndex) > gen
+            or abbr ~= '' and not gamesUtil.anyInGen(gen,
+                formUtil.formLast(this.baseFormName, abbr))
+    then
+        return nil
+    end
+
+    this.listLink = PokeStatBox.didStatsChange(poke)
+    this.stats = PokeStatBox.getStats(poke, gen)
+
     local pokeData = pokes[poke]
     this.types = {type1 = pokeData.type1, type2 = pokeData.type2}
 
@@ -341,7 +377,7 @@ according to the collapsed status.
 
 --]]
 PokeStatBox.__tostring = function(this)
-    local box = boxStats{
+    local box = s.boxStats{
         stats = this.stats,
         types = this.types,
         align = 'center',
@@ -457,14 +493,13 @@ s.pokeStats = function(frame)
     local gen = tonumber(p[3] or p.gen) or gendata.latest
 
     if noForms then
-        local stats, hasPrevGen = PokeStatBox.getStats(poke, gen)
-        return boxStats{
-            stats = stats,
+        return s.boxStats{
+            stats = PokeStatBox.getStats(poke, gen),
             types = pokes[poke],
             align = 'center',
             bounds = true,
             totalLink = true,
-            listLink = hasPrevGen
+            listLink = PokeStatBox.didStatsChange(poke)
         }
     else
         return list.makeFormsLabelledBoxes{
@@ -498,22 +533,27 @@ s.PokeStats, s['pokéStats'], s['PokéStats'] =
 
 Prints the average of the statistics for Pokémon
 of a specific type, alternative forms included,
-as a statistics box. Minimin and maximum values
-for each statistic are not displayed, and neither
-is the link to other Pokémon with the same base
-stat total.
+as a statistics box. A generation can be specified,
+and the latest one will be used if not. Minimin
+and maximum values for each statistic are not
+displayed, and neither is the link to other Pokémon
+with the same base stat total.
 
 Examples:
 
 {{#invoke: Stats | typeAvg | Elettro (tipo) }}
 
-IN TYPES PAGES ONLY!
+IN TYPE PAGES ONLY!
 {{#invoke: Stats | typeAvg | {{BASEPAGENAME}} }}
+
+With generation:
+{{#invoke Stats | typeAvg | Fuoco (tipo) | 4 }}
 
 --]]
 s.typeAvg = function(frame)
     local type = string.trim(frame.args[1])
         :match('^(%a+) %(tipo%)$'):lower()
+    local gen = tonumber(string.trim(frame.args[2]))
 
     --[[
         string.find is used instead of plain equality
@@ -525,10 +565,11 @@ s.typeAvg = function(frame)
     local typedPokes = table.keys(table.filter(pokes, function(poke, key)
         return stats[key]
             and not string.parseInt(key)
+                and genUtil.getGen.ndex(pokes[key].ndex) <= gen
             and (poke.type1:find(type) or poke.type2:find(type))
     end))
 
-    return boxStats{
+    return s.boxStats{
         stats = statsAvg(typedPokes),
         types = {type = type},
         align = 'left'
@@ -622,7 +663,7 @@ s.statsBox = function(frame)
         spec = p.spec
     }
 
-    return boxStats(p)
+    return s.boxStats(p)
 end
 s.StatsBox, s.statsbox = s.statsBox, s.statsBox
 

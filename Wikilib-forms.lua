@@ -227,4 +227,13 @@ end
 
 f.has_alola, f.hasalola = f.hasAlola, f.hasAlola
 
+f.formLast = function(poke, abbr)
+	if alt[poke] and abbr and abbr ~= '' then
+		return alt[poke].since[abbr],
+			(alt[poke]['until'] and alt[poke]['until'][abbr])
+	end
+end
+
+f.formlast, f.form_last = f.formLast, f.formLast
+
 return f
