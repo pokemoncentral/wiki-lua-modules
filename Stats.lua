@@ -21,7 +21,6 @@ local list = require('Wikilib-lists')
 local mg = require('Wikilib-multigen')
 local oop = require('Wikilib-oop')
 local w = require('Wikilib')
-local alt = require('AltForms-data')
 local c = require("Colore-data")
 local gendata = require("Gens-data")
 local pokes = require('Poké-data')
@@ -98,6 +97,17 @@ ${box}
 
 * Le statistiche di questo Pokémon sono cambiate nel corso delle generazioni. Tutti i valori sono disponibili [[Elenco Pokémon per statistiche base|qui]]. ]=]
 }
+
+local isInGen = function(poke, gen)
+    local baseForm, abbr = formUtil.getNameAbbr(poke)
+
+    if not abbr or abbr == '' then
+        return genUtil.getGen.ndex(pokes[baseForm].ndex) <= gen
+    end
+
+    return gamesUtil.anyInGen(gen,
+        formUtil.formSpan(baseForm, abbr))
+end
 
 --[[
 
@@ -303,7 +313,7 @@ end
 
 --[[
 
-Static methods returning whether the statistics
+Static method returning whether the statistics
 value changed for a single Pok;emon troughout
 the generations.
 
@@ -327,8 +337,11 @@ or if it is not present in the given generation.
 --]]
 PokeStatBox.new = function(poke, formExtName, gen)
 
-    -- No stats data for the Pokémon, aborting entry
-    if not stats[poke] then
+    --[[
+        Aborting entry: no stats data for the Pokémon
+        or Pokémon/form not in generation
+    --]]
+    if not stats[poke] or not isInGen(poke, gen)then
         return nil
     end
 
@@ -343,14 +356,6 @@ PokeStatBox.new = function(poke, formExtName, gen)
     --]]
     local abbr
     this.baseFormName, abbr = formUtil.getNameAbbr(poke)
-
-    -- Aborting entry: Pokémon/form not in generation
-    if genUtil.getGen.ndex(pokes[poke].ndex) > gen
-            or abbr ~= '' and not gamesUtil.anyInGen(gen,
-                formUtil.formLast(this.baseFormName, abbr))
-    then
-        return nil
-    end
 
     this.listLink = PokeStatBox.didStatsChange(poke)
     this.stats = PokeStatBox.getStats(poke, gen)
@@ -459,6 +464,8 @@ s.StatBar, s.statbar = s.statBar, s.statBar
 
 --[[
 
+TODO: gen-dependant min-max, categories
+
 Prints statistics box for a single Pokémon.
 Minimin and maximum values for each statistic are
 displayed, as well as a link to other Pokémon with
@@ -554,6 +561,7 @@ s.typeAvg = function(frame)
     local type = string.trim(frame.args[1])
         :match('^(%a+) %(tipo%)$'):lower()
     local gen = tonumber(string.trim(frame.args[2]))
+        or gendata.latest
 
     --[[
         string.find is used instead of plain equality
@@ -565,7 +573,7 @@ s.typeAvg = function(frame)
     local typedPokes = table.keys(table.filter(pokes, function(poke, key)
         return stats[key]
             and not string.parseInt(key)
-                and genUtil.getGen.ndex(pokes[key].ndex) <= gen
+                and isInGen(poke, gen)
             and (poke.type1:find(type) or poke.type2:find(type))
     end))
 
@@ -578,6 +586,8 @@ end
 s.TypeAvg, s.typeavg = s.typeAvg, s.typeavg
 
 --[[
+
+TODO: Gen for min-max calculation, categories
 
 Prints out a statistics box given
 everything necessary as a parameter:
