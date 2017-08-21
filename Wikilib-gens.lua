@@ -19,6 +19,16 @@ local searchThroughGens = function(index, value)
 	return nil
 end
 
+--[[
+
+Returns whether the passed generation is valid,
+that is a number between 1 and `latest`
+
+--]]
+gens.isValidGen = function(gen)
+	return type(gen) == 'number'
+			and gen > 0 and gen <= data.latest
+end
 
 -- Questa table contiene varie funzioni che ritornano la generazione di
 -- appartenenza dell'argomento, o ' in caso di errore

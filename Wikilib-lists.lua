@@ -412,7 +412,7 @@ end
 
 -- Ritorna true se la label è settata
 l.Labelled.hasLabel = function(this)
-	return this:labelsCount() > 0
+	return this:labelFormsCount() > 0
 end
 
 return l
