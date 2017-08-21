@@ -67,8 +67,8 @@ local strings = {
 
     boundsFooter = [=[
 
-* Le statistiche minime sono calcolate con 0 [[PA]], VI pari a 0, e una [[natura]] sfavorevole.
-* Le [[statistiche]] massime sono calcolate 252 PA, [[VI]] pari a 31, e una natura favorevole.]=],
+* Le statistiche minime sono calcolate con ${minParams}.
+* Le [[statistiche]] massime sono calcolate ${maxParams}.]=],
 
     footer = [=[
 
@@ -98,15 +98,18 @@ ${box}
 * Le statistiche di questo Pokémon sono cambiate nel corso delle generazioni. Tutti i valori sono disponibili [[Elenco Pokémon per statistiche base|qui]]. ]=]
 }
 
-local isInGen = function(poke, gen)
-    local baseForm, abbr = formUtil.getNameAbbr(poke)
+--[[
 
-    if not abbr or abbr == '' then
-        return genUtil.getGen.ndex(pokes[baseForm].ndex) <= gen
+Returns max value for both IV
+and EV for the passed generation.
+
+--]]
+local ivEvMax = function(gen)
+    if gen < 3 then
+        return 15, 2 ^ 16 - 1
+    else
+        return 31, 252
     end
-
-    return gamesUtil.anyInGen(gen,
-        formUtil.formSpan(baseForm, abbr))
 end
 
 --[[
@@ -140,14 +143,22 @@ end
 
 Prints a row of the stats box for a single stat.
 It's fed the stat name, its value, the roundyness
-and whether to computer max and min values for the
-stat. The roundyness can be: anything evaluating
-o false, in which case the row will have no roundyness;
-'top', which will make cells rounded at one top corner;
-'bottom', which will round cells bottom corners.
+and a generation; the latter two default to false.
+The meaning of roundyness values is:
+    - anything evaluating to false - no roundyness
+    - 'top' - cells rounded at one top corner
+    - 'bottom' - cells rounded at bottom corners
+The interpretation of the generation is:
+    - when valid (a number between 1 and `latest`),
+        it computest min and max values for the
+        stat, using that generation formula.
+    - when not valid, (a non-number, or a number
+        is less than 1 or more than `latest`),
+        nothing is computed
 
 --]]
-local statRow = function(stat, value, roundyness, computeBounds)
+local statRow = function(stat, value, gen, roundyness)
+    local computeBounds = genUtil.isValidGen(gen)
 
     --[[
         Interpolation values for basic case,
@@ -170,16 +181,22 @@ local statRow = function(stat, value, roundyness, computeBounds)
     end
 
     if computeBounds then
-        local calcStat = stat == 'hp' and formulas.hp or formulas.stat
+        local calcStat = formulas.stats[gen][stat == 'hp' and 'hp' or 'anyOther']
+        local maxIV, maxEV = ivEvMax(gen)
+
+        --[[
+            Natures are ignored for generations before third
+            because the function has one less argument
+        --]]
         bounds = string.interp(strings.statBounds,
             {
                 rleft = roundy.boundsLeft,
                 bg = c[stat].light,
                 min50 = calcStat(0, value, 0, 50, 0.9),
-                max50 = calcStat(31, value, 252, 50, 1.1),
+                max50 = calcStat(maxIV, value, maxEV, 50, 1.1),
                 rright = roundy.boundsRight,
                 min100 = calcStat(0, value, 0, 100, 0.9),
-                max100 = calcStat(31, value, 252, 100, 1.1),
+                max100 = calcStat(maxIV, value, maxEV, 100, 1.1)
             })
     end
 
@@ -198,6 +215,8 @@ end
 
 --[[
 
+TODO: categories
+
 Prints a statistics box. Arguments are named:
     - stats: table with statistics to be printed,
             in the format as PokéStats/data
@@ -205,8 +224,10 @@ Prints a statistics box. Arguments are named:
             accepted by css module
     - align: alignemnt of the table. One of
             'center', 'left' or 'right'
-    - bounds: whether min-max values for statistics
-            are to be computed. Defaults to false.
+    - gen: generation, used for statistics min-max
+            values calculation. When a non-number,
+            or an invalid generation, nothing is
+            computed. Defaults to false.
     - totalLink: if the link to other Pokémon with
             the same base stat total is to be displayed.
             Defaults to false.
@@ -216,9 +237,11 @@ Prints a statistics box. Arguments are named:
 
 --]]
 s.boxStats = function(args)
-    local stats, types = args.stats, args.types
-    local align, computeBounds = args.align, args.bounds
+    local stats, types  = args.stats, args.types
+    local gen, align = args.gen, args.align
     local totalLink, listLink = args.totalLink, args.listLink
+
+    local computeBounds = genUtil.isValidGen(gen)
 
     local tot = string.printNumber(table.fold(stats, 0,
             function(a, b) return a + b end))
@@ -251,17 +274,32 @@ s.boxStats = function(args)
                     roundy = 'bottom'
                 end
 
-                return statRow(stat, stats[stat], roundy, computeBounds)
+                return statRow(stat, stats[stat], gen, roundy)
             end),
         total = tot,
         footer = ''
     }
 
     if computeBounds then
+        local maxIV, maxEV = ivEvMax(gen)
+
         interpVal.width = ''
         interpVal.rs = 'rowspan="2" '
         interpVal.values = strings.headerValues
-        interpVal.footer = strings.boundsFooter
+        interpVal.footer = string.interp(strings.boundsFooter,
+            {
+                minParams = mw.text.listToText{
+                    '0 [[PA]]',
+                    'VI pari a 0',
+                    gen > 2 and 'una [[natura]] sfavorevole' or nil
+                },
+
+                maxParams = mw.text.listToText{
+                    maxEV .. ' PA',
+                    '[[VI]] pari a ' .. maxIV,
+                    gen > 2 and 'una natura favorevole' or nil
+                },
+            })
     end
 
     if totalLink then
@@ -341,7 +379,8 @@ PokeStatBox.new = function(poke, formExtName, gen)
         Aborting entry: no stats data for the Pokémon
         or Pokémon/form not in generation
     --]]
-    if not stats[poke] or not isInGen(poke, gen)then
+    if not stats[poke]
+            or not gamesUtil.isInGen(poke, gen) then
         return nil
     end
 
@@ -351,12 +390,10 @@ PokeStatBox.new = function(poke, formExtName, gen)
         Shared boxes have base form types,
         which are retrieved if necessary
         using the base form name.
-        The abbreviation is used to check
-        for presence in the passed generation
     --]]
-    local abbr
-    this.baseFormName, abbr = formUtil.getNameAbbr(poke)
+    this.baseFormName = formUtil.getNameAbbr(poke)
 
+    this.gen = gen
     this.listLink = PokeStatBox.didStatsChange(poke)
     this.stats = PokeStatBox.getStats(poke, gen)
 
@@ -386,12 +423,12 @@ PokeStatBox.__tostring = function(this)
         stats = this.stats,
         types = this.types,
         align = 'center',
-        bounds = true,
+        gen = this.gen,
         totalLink = true,
         listLink = this.listLink
     }
 
-    if #this.labels < 1 then
+    if not PokeStatBox.super.hasLabel(this) then
         return box
     end
 
@@ -464,7 +501,7 @@ s.StatBar, s.statbar = s.statBar, s.statBar
 
 --[[
 
-TODO: gen-dependant min-max, categories
+TODO: categories
 
 Prints statistics box for a single Pokémon.
 Minimin and maximum values for each statistic are
@@ -573,7 +610,7 @@ s.typeAvg = function(frame)
     local typedPokes = table.keys(table.filter(pokes, function(poke, key)
         return stats[key]
             and not string.parseInt(key)
-                and isInGen(poke, gen)
+                and gamesUtil.isInGen(poke, gen)
             and (poke.type1:find(type) or poke.type2:find(type))
     end))
 
@@ -587,7 +624,7 @@ s.TypeAvg, s.typeavg = s.typeAvg, s.typeavg
 
 --[[
 
-TODO: Gen for min-max calculation, categories
+TODO: categories
 
 Prints out a statistics box given
 everything necessary as a parameter:
@@ -608,6 +645,9 @@ everything necessary as a parameter:
 - bounds: yes/no flag telling whether to
         work out min and max values.
         Defaults to no.
+- gen: generation, only meaningful for min
+        and max statistic calculation.
+        Defaults to the latest one.
 - totalLink: yes/no flag telling whether to
         display the link for other Pokémon
         with the same base sta total.
@@ -642,6 +682,7 @@ Examples:
 |type1 = elettro
 |type2 = fuoco
 |bounds = yes
+|gen = 3
 |listLink = yes
 }}
 
@@ -652,9 +693,12 @@ s.statsBox = function(frame)
     local p = w.trimAndMap(mw.clone(frame.args), true,
         function(val) return tonumber(val) or val end)
 
+    local bounds = (p.bounds or 'no'):lower() == 'yes'
+    p.bounds = nil
+
     -- Defaults and boolean conversions
     p.type1 = p.type1 or p.type
-    p.bounds = (p.bounds or 'no'):lower() == 'yes'
+    p.gen = bounds and (p.gen or gendata.latest)
     p.totalLink = (p.totalLink or 'no'):lower() == 'yes'
     p.listLink = (p.listLink or 'no'):lower() == 'yes'
     p.align = (p.align or 'center')
