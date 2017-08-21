@@ -78,6 +78,13 @@ end
 g.is_in_game, g.isingame = g.isInGame, g.isInGame
 
 --[[
+
+Returns whether the passed Pokémon is
+present in the given generation.
+Alternative forms can also be checked,
+by passing the Pokémon name as the usual
+name + abbreviation.
+
 --]]
 g.isInGen = function(poke, gen)
     local baseForm, abbr = formUtil.getNameAbbr(poke)
