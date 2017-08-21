@@ -428,7 +428,7 @@ PokeStatBox.__tostring = function(this)
         listLink = this.listLink
     }
 
-    if not PokeStatBox.super.hasLabeL(this) then
+    if not PokeStatBox.super.hasLabel(this) then
         return box
     end
 

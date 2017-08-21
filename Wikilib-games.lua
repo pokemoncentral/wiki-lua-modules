@@ -86,8 +86,7 @@ g.isInGen = function(poke, gen)
         return genUtil.getGen.ndex(pokes[baseForm].ndex) <= gen
     end
 
-    return gamesUtil.anyInGen(gen,
-        formUtil.formSpan(baseForm, abbr))
+    return g.anyInGen(gen, formUtil.formSpan(baseForm, abbr))
 end
 g.isingen, g.is_in_gen = g.isInGen, g.isInGen
 
