@@ -12,6 +12,7 @@ local tab = require('Wikilib-tables')
 local formUtil = require('Wikilib-forms')
 local genUtil = require('Wikilib-gens')
 local gendata = require("Gens-data")
+local pokes = require("Poké-data")
 local alts = formUtil.allFormsData()
 
 --[[
@@ -90,7 +91,7 @@ g.isInGen = function(poke, gen)
     local baseForm, abbr = formUtil.getNameAbbr(poke)
 
     if not abbr or abbr == '' then
-        return genUtil.getGen.ndex(pokes[baseForm].ndex) <= gen
+        return genUtil.getGen.ndex(pokes[poke].ndex) <= gen
     end
 
     return g.anyInGen(gen, formUtil.formSpan(baseForm, abbr))
