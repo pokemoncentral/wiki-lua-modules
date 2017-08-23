@@ -8,6 +8,8 @@ values in data modules.
 local mg = {}
 
 local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings')
+local w = require('Wikilib')
 local gendata = require("Gens-data")
 
 --[[
@@ -51,9 +53,12 @@ mg.isfullgenspan, mg.is_full_gen_span = mg.isFullGenSpan, mg.isFullGenSpan
 If value is passed, returns the first and the last
 generation for which it is valid in the given entry
 property.
-Otherwise, it returns a table wich associates every
-value in the entry property with its first and last
-generation of validity.
+Otherwise, it returns an array having a table for
+every value with the following structure:
+    - val: the value itself
+    - first: the first generation the value is valid.
+    - last: the last generation the value is valid.
+The array is ordered by first generation.
 
 --]]
 mg.getGenSpan = function(data, value)
@@ -77,14 +82,23 @@ mg.getGenSpan = function(data, value)
 
     else
         if type(data) ~= 'table' then
-            return {data = {1, gendata.latest}}
+            return {{
+                val = data,
+                first = 1,
+                last = gendata.latest
+            }}
         end
 
         local spans = {}
         for gen = 1, gendata.latest do
             local value = data[gen]
             if value then
-                spans[value] = {mg.genGenSpan(data, value)}
+                local first, last = mg.getGenSpan(data, value)
+                table.insert(spans, {
+                    val = value,
+                    first = first,
+                    last = last
+                })
             end
         end
         return spans
@@ -118,5 +132,45 @@ mg.getGenSpans = function(entry)
     return table.map(entry, mg.getGenSpan)
 end
 mg.getgenspans, mg.get_gen_spans = mg.getGenSpans, mg.getGenSpans
+
+--[[
+
+Returns whether the given entry has a
+multi-generation proerty.
+
+--]]
+mg.hasMultiGen = function(entry)
+    return table.any(entry, function(data)
+        return type(data) == 'table' end)
+end
+mg.hasmultigen, mg.has_multi_gen = mg.hasMultiGen, mg.hasMultiGen
+
+--[[
+
+Prints a table of generation spans in the most
+common way, that is every value on one line, with
+relative first and last generation as superscripts.
+If there is only one span, no superscripts are
+generated. When first and last generation are the
+same, only one number is displayed.
+
+--]]
+mg.printSpans = function(spans, printVal, sep)
+    printVal = printVal or tostring
+    if #spans == 1 then
+        return printVal(spans[1].val)
+    end
+
+    return w.mapAndConcat(spans, sep or '\n',
+        function(data)
+            return string.interp('${val}<sup style="padding-left: 0.3em;">${bounds}</sup>',
+                {
+                    val = printVal(data.val),
+                    bounds = table.concat(table.unique
+                        {data.first, data.last}, '-')
+                })
+        end)
+end
+mg.printspans, mg.print_spans = mg.printSpans, mg.printSpans
 
 return mg

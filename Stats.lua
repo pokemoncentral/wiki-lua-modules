@@ -20,6 +20,7 @@ local genUtil = require('Wikilib-gens')
 local list = require('Wikilib-lists')
 local mg = require('Wikilib-multigen')
 local oop = require('Wikilib-oop')
+local statsUtil = require('Wikilib-stats')
 local w = require('Wikilib')
 local alt = require("AltForms-data")
 local c = require("Colore-data")
@@ -111,50 +112,6 @@ ${stats}
 
 --[[
 
-Returns whether the statistics value changed
-for a single Pokémon troughout the generations.
-
---]]
-local didStatsChange = function(poke)
-    return stats[poke].spec
-            or table.any(stats[poke], function(stat)
-        return type(stat) == 'table' end)
-end
-
---[[
-
-Returns only the values for the provided generation
-from a multi-generations statistics entry. It also
-takes care of the special gen I statistic.
-
---]]
-local getStatsGen = function(stats, gen)
-    local pokeStats = mg.getGen(stats, gen)
-    if gen == 1 then
-        pokeStats.spatk, pokeStats.spdef = nil, nil
-    else
-        pokeStats.spec = nil
-    end
-
-    return pokeStats
-end
-
---[[
-
-Returns max value for both IV
-and EV for the passed generation.
-
---]]
-local ivEvMax = function(gen)
-    if gen < 3 then
-        return 15, 2 ^ 16 - 1
-    else
-        return 31, 252
-    end
-end
-
---[[
-
 Returns the statistics-related categories
 a Pokémon should have. As usual, the Pokémon
 is to be given as the name + abbreviation
@@ -227,13 +184,13 @@ combination seen in all data modules.
 
 --]]
 local statsAvg = function(pokeNames, gen)
-    local avgStats = getStatsGen({hp = 0,
+    local avgStats = statsUtil.getStatsGen({hp = 0,
         atk = 0, def = 0, spatk = 0,
         spdef = 0, spe = 0, spec = 0}, gen)
 
     -- Computing sum for every stat
     avgStats = table.fold(pokeNames, avgStats, function(avgStats, poke)
-        local pokeStats = getStatsGen(stats[poke], gen)
+        local pokeStats = statsUtil.getStatsGen(stats[poke], gen)
         return table.map(avgStats, function(stat, statName)
             return stat + pokeStats[statName]
         end)
@@ -289,7 +246,7 @@ local statRow = function(stat, value, gen, roundyness)
 
     if computeBounds then
         local calcStat = formulas.stats[gen][stat == 'hp' and 'hp' or 'anyOther']
-        local maxIV, maxEV = ivEvMax(gen)
+        local maxIV, maxEV = statsUtil.ivEvMax(gen)
 
         --[[
             Natures are ignored for generations before third
@@ -318,18 +275,6 @@ local statRow = function(stat, value, gen, roundyness)
             statBar = s.statBarLua(stat, value),
             bounds = bounds
         })
-end
-
---[[
-
-Sums all the statistics up. Although
-it's just a simple fold, it's tedious
-to write it every time.
-
---]]
-local statsSum = function(stats)
-    return table.fold(stats, 0, function(a, b)
-        return a + b end)
 end
 
 --[[
@@ -380,9 +325,9 @@ PokeStatBox.new = function(poke, formExtName, args)
     this.baseFormName = formUtil.getNameAbbr(poke)
 
     this.gen = gen
-    this.listLink = didStatsChange(poke)
+    this.listLink = statsUtil.didStatsChange(poke)
     this.poke = not noCats and poke
-    this.stats = getStatsGen(stats[poke], gen)
+    this.stats = statsUtil.getStatsGen(stats[poke], gen)
 
     local pokeData = pokes[poke]
     this.types = {type1 = pokeData.type1, type2 = pokeData.type2}
@@ -407,7 +352,7 @@ related categories are also printed.
 
 --]]
 PokeStatBox.__tostring = function(this)
-    local statsTot = statsSum(this.stats)
+    local statsTot = statsUtil.statsSum(this.stats)
     local box = s.boxStats{
         stats = this.stats,
         tot = statsTot,
@@ -477,7 +422,8 @@ Prints a statistics box. Arguments are named:
 --]]
 s.boxStats = function(args)
     local stats, types = args.stats, args.types
-    local tot = string.printNumber(args.tot or statsSum(stats))
+    local tot = string.printNumber(args.tot
+            or statsUtil.statsSum(stats))
     local gen, align = args.gen, args.align
     local totalLink, listLink = args.totalLink, args.listLink
 
@@ -518,7 +464,7 @@ s.boxStats = function(args)
     }
 
     if computeBounds then
-        local maxIV, maxEV = ivEvMax(gen)
+        local maxIV, maxEV = statsUtil.ivEvMax(gen)
 
         interpVal.width = ''
         interpVal.rs = 'rowspan="2" '
@@ -814,19 +760,19 @@ s.statsBox = function(frame)
 end
 s.StatsBox, s.statsbox = s.statsBox, s.statsBox
 
---print(s[table.remove(arg, 1)]{args = arg})
-print(s.statsBox{args = {
-hp = 200,
-atk = 40,
-def = 80,
-spatk = 93,
-spdef = 135,
-spe = 63,
-type1 = 'elettro',
-type2 = 'fuoco',
-bounds = 'yes',
-gen = 2,
-listLink = 'yes'
-}})
+print(s[table.remove(arg, 1)]{args = arg})
+--print(s.statsBox{args = {
+--hp = 200,
+--atk = 40,
+--def = 80,
+--spatk = 93,
+--spdef = 135,
+--spe = 63,
+--type1 = 'elettro',
+--type2 = 'fuoco',
+--bounds = 'yes',
+--gen = 2,
+--listLink = 'yes'
+--}})
 
 return s

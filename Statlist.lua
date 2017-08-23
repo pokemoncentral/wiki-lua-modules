@@ -9,8 +9,11 @@ local s = {}
 
 local css = require('Css')
 local ms = require('MiniSprite')
+local w = require('Wikilib')
 local list = require('Wikilib-lists')
+local mg = require('Wikilib-multigen')
 local oop = require('Wikilib-oop')
+local statsUtil = require('Wikilib-stats')
 local tab = require('Wikilib-tables')
 local txt = require('Wikilib-strings')
 local c = require("Colore-data")
@@ -25,6 +28,16 @@ and makeList in Wikilib/lists
 
 --]]
 local Entry = oop.makeClass(list.PokeSortableEntry)
+
+--[[
+
+Static method returning the string representation of
+all generation spans for data of a given statistic.
+
+--]]
+Entry.printStatsSpan = function(statData)
+    return mg.printSpans(mg.getGenSpan(statData))
+end
 
 --[[
 
@@ -54,20 +67,20 @@ and average.
 
 --]]
 Entry.__tostring = function(this)
-    local sum = table.fold(this.stats, 0,
+    local sum = table.fold(mg.getGen(this.stats), 0,
             function(a, b) return a + b end)
 
     return string.interp([=[| style="padding: 0.3ex 0.8ex;" | ${ndex}
 | style="padding: 0.3ex 0.8ex;" | ${ms}
 | style="padding: 0.3ex 0.8ex;" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
-| style="padding: 0.3ex 0.8ex; background: #${hpColor};" | '''${hp}'''
-| style="padding: 0.3ex 0.8ex; background: #${atkColor};" | '''${atk}'''
-| style="padding: 0.3ex 0.8ex; background: #${defColor};" | '''${def}'''
-| style="padding: 0.3ex 0.8ex; background: #${spatkColor};" | '''${spatk}'''
-| style="padding: 0.3ex 0.8ex; background: #${spdefColor};" | '''${spdef}'''
-| style="padding: 0.3ex 0.8ex; background: #${speColor};" | '''${spe}'''
-| style="padding: 0.3ex 0.8ex; background: #${pcwColor};" | '''${sum}'''
-| style="padding: 0.3ex 0.8ex; background: #${pcwColor};" | '''${avg}''']=],
+| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${hpColor};" | ${hp}
+| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${atkColor};" | ${atk}
+| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${defColor};" | ${def}
+| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${spatkColor};" | ${spatk}
+| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${spdefColor};" | ${spdef}
+| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${speColor};" | ${spe}
+| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${pcwColor};" | ${sum}
+| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${pcwColor};" | ${avg}]=],
         {
             ndex = string.tf(this.ndex),
             ms = ms.staticLua(string.tf(this.ndex) ..
@@ -78,17 +91,17 @@ Entry.__tostring = function(this)
                     this.formsData.blacklinks[this.formAbbr]
                     or '',
             hpColor = c.ps.light,
-            hp = this.stats.hp,
+            hp = Entry.printStatsSpan(this.stats.hp),
             atkColor = c.attacco.light,
-            atk = this.stats.atk,
+            atk = Entry.printStatsSpan(this.stats.atk),
             defColor = c.difesa.light,
-            def = this.stats.def,
+            def = Entry.printStatsSpan(this.stats.def),
             spatkColor = c.attacco_speciale.light,
-            spatk = this.stats.spatk,
+            spatk = Entry.printStatsSpan(this.stats.spatk),
             spdefColor = c.difesa_speciale.light,
-            spdef = this.stats.spdef,
+            spdef = Entry.printStatsSpan(this.stats.spdef),
             speColor = c.velocita.light,
-            spe = this.stats.spe,
+            spe = Entry.printStatsSpan(this.stats.spe),
             pcwColor = c.pcwiki.medium_light,
             sum = sum,
             avg = string.printNumber(sum / 6)
