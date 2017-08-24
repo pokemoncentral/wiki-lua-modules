@@ -9,7 +9,7 @@ local s = {}
 
 local css = require('Css')
 local ms = require('MiniSprite')
-local w = require('Wikilib')
+local genUtil = require('Wikilib-gens')
 local list = require('Wikilib-lists')
 local mg = require('Wikilib-multigen')
 local oop = require('Wikilib-oop')
@@ -17,7 +17,10 @@ local statsUtil = require('Wikilib-stats')
 local tab = require('Wikilib-tables')
 local txt = require('Wikilib-strings')
 local c = require("Colore-data")
+local gendata = require("Gens-data")
 local pokes = require('Poké-data')
+
+local mw = requier('mw')
 
 --[[
 
@@ -29,14 +32,41 @@ and makeList in Wikilib/lists
 --]]
 local Entry = oop.makeClass(list.PokeSortableEntry)
 
---[[
+Entry.makeSumSpan = function(stats, gen)
+    gen = gen or gendata.latest
+    stats = statsUtil.getStatsGen(stats, gen)
 
-Static method returning the string representation of
-all generation spans for data of a given statistic.
+    return {
+        val = statsUtil.statsSum(stats),
+        first = gen
+    }
+end
 
---]]
-Entry.printStatsSpan = function(statData)
-    return mg.printSpans(mg.getGenSpan(statData))
+Entry.makeSum = function(stats, startGen)
+    if not statsUtil.didStatsChange(stats) then
+        local sum = Entry.makeSumSpan(stats)
+        sum.last = gendata.latest
+        return {sum}
+    end
+
+    startGen = startGen == 1 and 2 or startGen
+    local sums = {Entry.makeSumSpan(stats, startGen)}
+
+    for gen = startGen + 1, gendata.latest do
+        local anyChange = table.any(stats,
+            function(stat)
+                return type(stat) == 'table'
+                        and stat[gen]
+            end)
+        if anyChange then
+            sums[#sums].last = gen - 1
+            table.insert(sums,
+                Entry.makeSumSpan(stats, gen))
+        end
+    end
+
+    sums[#sums].last = gendata.latest
+    return sums
 end
 
 --[[
@@ -52,11 +82,21 @@ Entry.new = function(stats, poke)
 
     --[[
         Statistics are not merged at top level
-        to ease later total stat calculation
+        to ease following total stat calculation
     --]]
-    this.stats = stats
+    this.stats = mg.getGenSpans(stats)
+    this.statsSum = Entry.makeSum(stats,
+            genUtil.getGen.ndex(this.ndex))
 
     return setmetatable(this, Entry)
+end
+
+Entry.printStatCell = function(statSpans, statColor)
+    return string.interp('| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${bg};" | ${val}',
+        {
+            bg = c[statColor].light,
+            val = mg.printSpans(statSpans)
+        })
 end
 
 --[[
@@ -67,20 +107,23 @@ and average.
 
 --]]
 Entry.__tostring = function(this)
-    local sum = table.fold(mg.getGen(this.stats), 0,
-            function(a, b) return a + b end)
+    local avg = table.map(this.statsSum, function(span)
+        span = mw.clone(span)
+        span.val = string.printNumber(span.val / 6)
+        return span
+    end)
+    local cells = table.map(statsUtil.statsOrder[2],
+        function(stat)
+            return Entry.printStatCell(this.stats[stat], stat)
+        end, ipairs)
+    table.insert(cells, Entry.printStatCell(this.statsSum,
+            'pcwiki'))
+    table.insert(cells, Entry.printStatCell(avg, 'pcwiki'))
 
     return string.interp([=[| style="padding: 0.3ex 0.8ex;" | ${ndex}
 | style="padding: 0.3ex 0.8ex;" | ${ms}
 | style="padding: 0.3ex 0.8ex;" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
-| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${hpColor};" | ${hp}
-| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${atkColor};" | ${atk}
-| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${defColor};" | ${def}
-| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${spatkColor};" | ${spatk}
-| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${spdefColor};" | ${spdef}
-| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${speColor};" | ${spe}
-| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${pcwColor};" | ${sum}
-| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${pcwColor};" | ${avg}]=],
+${statsCells}]=],
         {
             ndex = string.tf(this.ndex),
             ms = ms.staticLua(string.tf(this.ndex) ..
@@ -90,26 +133,12 @@ Entry.__tostring = function(this)
             form = this.formsData and
                     this.formsData.blacklinks[this.formAbbr]
                     or '',
-            hpColor = c.ps.light,
-            hp = Entry.printStatsSpan(this.stats.hp),
-            atkColor = c.attacco.light,
-            atk = Entry.printStatsSpan(this.stats.atk),
-            defColor = c.difesa.light,
-            def = Entry.printStatsSpan(this.stats.def),
-            spatkColor = c.attacco_speciale.light,
-            spatk = Entry.printStatsSpan(this.stats.spatk),
-            spdefColor = c.difesa_speciale.light,
-            spdef = Entry.printStatsSpan(this.stats.spdef),
-            speColor = c.velocita.light,
-            spe = Entry.printStatsSpan(this.stats.spe),
-            pcwColor = c.pcwiki.medium_light,
-            sum = sum,
-            avg = string.printNumber(sum / 6)
+            statsCells = table.concat(cells, '\n')
         })
 end
 
 -- List header
-local header = string.interp([=[{| class="sortable roundy-corners text-center pull-center white-rows" style="border-spacing: 0; padding: 0.6ex; ${bg};"
+local header = string.interp([=[{| class="roundy-corners text-center pull-center white-rows" style="border-spacing: 0; padding: 0.6ex; ${bg};"
 |-
 ! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]
 ! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | &nbsp;

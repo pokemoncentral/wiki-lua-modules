@@ -9,6 +9,7 @@ local s = {}
 local tab = require('Wikilib-tables')
 local mg = require('Wikilib-multigen')
 
+-- Statistics order, split by generation
 s.statsOrder = {
     [1] = {'hp', 'atk', 'def', 'spec', 'spe'},
     [2] = {'hp', 'atk', 'def', 'spatk', 'spdef', 'spe' }

@@ -129,7 +129,14 @@ ones, which will have an extra table nesting.
 
 --]]
 mg.getGenSpans = function(entry)
-    return table.map(entry, mg.getGenSpan)
+
+    --[[
+        Passing mg.getGenSpan directly to table.map
+        yelds wrong results, since it is always passed
+        the key in the table as the second argument.
+    --]]
+    return table.map(entry, function(data)
+        return mg.getGenSpan(data) end)
 end
 mg.getgenspans, mg.get_gen_spans = mg.getGenSpans, mg.getGenSpans
 
@@ -150,20 +157,22 @@ mg.hasmultigen, mg.has_multi_gen = mg.hasMultiGen, mg.hasMultiGen
 Prints a table of generation spans in the most
 common way, that is every value on one line, with
 relative first and last generation as superscripts.
+The second argument is a function that returns a
+string given the value, and defaults to tostring.
 If there is only one span, no superscripts are
 generated. When first and last generation are the
 same, only one number is displayed.
 
 --]]
-mg.printSpans = function(spans, printVal, sep)
+mg.printSpans = function(spans, printVal)
     printVal = printVal or tostring
     if #spans == 1 then
         return printVal(spans[1].val)
     end
 
-    return w.mapAndConcat(spans, sep or '\n',
+    return w.mapAndConcat(spans,
         function(data)
-            return string.interp('${val}<sup style="padding-left: 0.3em;">${bounds}</sup>',
+            return string.interp('<div>${val}<sup style="padding-left: 0.3em;">${bounds}</sup></div>',
                 {
                     val = printVal(data.val),
                     bounds = table.concat(table.unique
