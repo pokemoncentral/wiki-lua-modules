@@ -27,7 +27,6 @@ local c = require("Colore-data")
 local gendata = require("Gens-data")
 local pokes = require('Poké-data')
 local stats = require("PokéStats-data")
-local wdata = require("Wikilib-data")
 
 local mw = require('mw')
 
@@ -433,7 +432,7 @@ s.boxStats = function(args)
         Need to get rid of non-existent stats because no
         holes are allowed when concatenating later on
     --]]
-    local statRows = table.filter(wdata.statsOrder,
+    local statRows = table.filter(statsUtil.statsOrder,
         function(stat) return stats[stat] end)
 
     --[[

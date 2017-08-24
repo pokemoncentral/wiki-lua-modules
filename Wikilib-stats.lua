@@ -8,7 +8,14 @@ local s = {}
 
 local tab = require('Wikilib-tables')
 local mg = require('Wikilib-multigen')
-local stats = require("PokéStats-data")
+
+s.statsOrder = {
+    [1] = {'hp', 'atk', 'def', 'spec', 'spe'},
+    [2] = {'hp', 'atk', 'def', 'spatk', 'spdef', 'spe' }
+}
+s.statsOrder[3], s.statsOrder[4], s.statsOrder[5]
+        = s.statsOrder[2], s.statsOrder[2], s.statsOrder[2]
+s.statsOrder[6], s.statsOrder[7] = s.statsOrder[2], s.statsOrder[2]
 
 --[[
 
@@ -16,8 +23,8 @@ Returns whether the statistics value changed
 for a single Pokémon troughout the generations.
 
 --]]
-s.didStatsChange = function(poke)
-    return stats[poke].spec or mg.hasMultiGen(stats[poke])
+s.didStatsChange = function(stats)
+    return stats.spec or mg.hasMultiGen(stats)
 end
 s.didstatchange, s.did_stat_change = s.didStatsChange, s.didStatsChange
 

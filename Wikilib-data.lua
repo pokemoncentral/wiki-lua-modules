@@ -100,8 +100,4 @@ t.genders = {male = '<span style="color:#0000FF;">♂</span>',
 t.genders['♂'] = t.genders.male
 t.genders['♀'] = t.genders.female
 
--- Misc data about statistics
-
-t.statsOrder = {'hp', 'atk', 'def', 'spatk', 'spdef', 'spec', 'spe'}
-
 return t
