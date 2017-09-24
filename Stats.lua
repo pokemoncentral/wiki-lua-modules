@@ -432,7 +432,7 @@ s.boxStats = function(args)
         Need to get rid of non-existent stats because no
         holes are allowed when concatenating later on
     --]]
-    local statRows = table.filter(statsUtil.statsOrder,
+    local statRows = table.filter(statsUtil.statsOrder[gen],
         function(stat) return stats[stat] end)
 
     --[[
@@ -659,7 +659,8 @@ s.typeAvg = function(frame)
     return s.boxStats{
         stats = statsAvg(typedPokes, gen),
         types = {type = type},
-        align = 'left'
+        align = 'left',
+        gen = gen
     }
 end
 s.TypeAvg, s.typeavg = s.typeAvg, s.typeavg
