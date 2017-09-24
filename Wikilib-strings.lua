@@ -157,7 +157,7 @@ is comma.
 string.printNumber = function(value, format)
     return math.floor(value) == math.ceil(value)
             and tostring(value)
-            or string.format(format or '%.2f', value):replace('%.', '%,')
+            or (string.format(format or '%.2f', value):gsub('%.', '%,'))
 end
 string.print_number, string.printnumber =
     string.printNumber, string.printNumber
