@@ -432,8 +432,9 @@ s.boxStats = function(args)
         Need to get rid of non-existent stats because no
         holes are allowed when concatenating later on
     --]]
-    local statRows = table.filter(statsUtil.statsOrder[gen],
-        function(stat) return stats[stat] end)
+    local statsOrder = statsUtil.statsOrder[stats.special and 1 or 2]
+    local statRows = table.filter(statsOrder, function(stat)
+            return stats[stat] end)
 
     --[[
         Interpolation values for basic case,
@@ -760,19 +761,18 @@ s.statsBox = function(frame)
 end
 s.StatsBox, s.statsbox = s.statsBox, s.statsBox
 
-print(s[table.remove(arg, 1)]{args = arg})
---print(s.statsBox{args = {
---hp = 200,
---atk = 40,
---def = 80,
---spatk = 93,
---spdef = 135,
---spe = 63,
---type1 = 'elettro',
---type2 = 'fuoco',
---bounds = 'yes',
---gen = 2,
---listLink = 'yes'
---}})
+print(s.statsBox{args = {
+hp = 200,
+atk = 40,
+def = 80,
+spatk = 93,
+spdef = 135,
+spe = 63,
+type1 = 'elettro',
+type2 = 'fuoco',
+bounds = 'yes',
+gen = 2,
+listLink = 'yes'
+}})
 
 return s
