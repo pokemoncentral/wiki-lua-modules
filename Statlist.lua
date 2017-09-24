@@ -1,7 +1,8 @@
 --[[
 
-This module prints a list of all
-Pokémon base statistics
+This module prints a list of all Pokémon base statistics.
+Generation I has a separate table because it has different
+statistics, while the other are merged into one.
 
 --]]
 
@@ -32,6 +33,14 @@ and makeList in Wikilib/lists
 --]]
 local Entry = oop.makeClass(list.PokeSortableEntry)
 
+--[[
+
+Returns a stub for the generation span of the statistics
+sum, which lacks the end. The starting generation is either
+the passed one or the latest; the value itself is computed
+from those of the passed statistics in such generation.
+
+--]]
 Entry.makeSumSpan = function(stats, gen)
     gen = gen or gendata.latest
     stats = statsUtil.getStatsGen(stats, gen)
@@ -42,22 +51,37 @@ Entry.makeSumSpan = function(stats, gen)
     }
 end
 
+--[[
+
+Returns the generation spans for the statistics sum,
+starting from the given generation. First generation
+is not included.
+
+--]]
 Entry.makeSum = function(stats, startGen)
+
+    --[[
+        If stats have not changed throughout the
+        generations, returning a single span beginning
+        and ends in the latest generation.
+    --]]
     if not statsUtil.didStatsChange(stats) then
         local sum = Entry.makeSumSpan(stats)
         sum.last = gendata.latest
         return {sum}
     end
 
+    -- Skipping first gen
     startGen = startGen == 1 and 2 or startGen
     local sums = {Entry.makeSumSpan(stats, startGen)}
 
     for gen = startGen + 1, gendata.latest do
-        local anyChange = table.any(stats,
-            function(stat)
-                return type(stat) == 'table'
-                        and stat[gen]
-            end)
+
+        -- Whether any stat changed in the current gen
+        local anyChange = table.any(stats, function(stat)
+            return type(stat) == 'table' and stat[gen]
+        end)
+
         if anyChange then
             sums[#sums].last = gen - 1
             table.insert(sums,
@@ -72,8 +96,12 @@ end
 --[[
 
 Constructor: the first argument is an entry from
-PokéStats/data and the second one its key. Since
-no filtering is needed, it never returns nil.
+PokéStats/data; the second one is its key; the third
+one is optional, and marks the generation this entry
+should display data for: if omitted, all the generation
+but the first are taken in account. Therefore, the
+only filtering performed is to exclude Pokémon and
+forms not existing in the passed generation, if any.
 
 --]]
 Entry.new = function(stats, poke)
