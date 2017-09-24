@@ -14,9 +14,11 @@ s.statsOrder = {
     [1] = {'hp', 'atk', 'def', 'spec', 'spe'},
     [2] = {'hp', 'atk', 'def', 'spatk', 'spdef', 'spe' }
 }
-s.statsOrder[3], s.statsOrder[4], s.statsOrder[5]
-        = s.statsOrder[2], s.statsOrder[2], s.statsOrder[2]
-s.statsOrder[6], s.statsOrder[7] = s.statsOrder[2], s.statsOrder[2]
+s.statsOrder[3], s.statsOrder[4] = s.statsOrder[2], s.statsOrder[2]
+s.statsOrder[5], s.statsOrder[6] = s.statsOrder[2], s.statsOrder[2]
+s.statsOrder[7] = s.statsOrder[2]
+
+s.statsorder, s.stats_order = s.statsOrder, s.statsOrder
 
 --[[
 

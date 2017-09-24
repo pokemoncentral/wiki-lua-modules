@@ -18,7 +18,7 @@ local tab = require('Wikilib-tables')
 local txt = require('Wikilib-strings')
 local c = require("Colore-data")
 local gendata = require("Gens-data")
-local pokes = require('Poké-data')
+local stats = require('PokéStats-data')
 
 local mw = requier('mw')
 
@@ -77,8 +77,7 @@ no filtering is needed, it never returns nil.
 
 --]]
 Entry.new = function(stats, poke)
-    local this = table.merge(Entry.super.new(poke),
-        pokes[poke])
+    local this = Entry.super.new(poke)
 
     --[[
         Statistics are not merged at top level
@@ -137,6 +136,17 @@ ${statsCells}]=],
         })
 end
 
+local FirstGenEntry = oop.MakeClass(Entry)
+
+FirstGenEntry.new = function(stats, poke)
+    local this = FirstGenEntry.super.new(stats, poke)
+
+    if genUtil.getGen.ndex(this.ndex) > 1 then
+        return nil
+    end
+
+end
+
 -- List header
 local header = string.interp([=[{| class="roundy-corners text-center pull-center white-rows" style="border-spacing: 0; padding: 0.6ex; ${bg};"
 |-
@@ -167,7 +177,8 @@ local header = string.interp([=[{| class="roundy-corners text-center pull-center
 
 Wiki interface function: called with no
 argument, returns the list of all Pokémon
-statistics.
+statistics for all generations but the
+first, which has a separate table.
 
 Example:
 {{#invoke: Statlist | statlist }}
@@ -175,10 +186,18 @@ Example:
 --]]
 s.statlist = function(frame)
     return list.makeList({
-        source = require('PokéStats-data'),
-        makeEntry = Entry,
+        source = stats,
+        makeEntry = Entry.new,
         iterator = list.pokeNames,
         header = header,
+        footer = '|}'
+    })
+    ..
+    list.makeList({
+        source = stats,
+        makeEntry = FirstGenEntry.new,
+        iterator = list.pokeNames,
+        header = firstGenHeader,
         footer = '|}'
     })
 end
