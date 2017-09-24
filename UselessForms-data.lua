@@ -31,6 +31,7 @@ end
 -- da alias, raggruppati in fondo al modulo
 
 t.pikachu = {}
+t.pichu = {}
 t.unown = {}
 t.burmy = {}
 t.cherrim = {}
@@ -55,6 +56,7 @@ t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
 	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
 	K = 'Berretto Kalos', A = 'Berretto Alola',
 	St = 'Berretto Scelgo Te', base = 'Pikachu'}
+t.pichu.names = {S = 'Pichu Spunzorek', base = 'Pichu'}
 t.unown.names = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
 	O = 'O', P = 'P', Q = 'Q', R = 'R', S = 'S', T = 'T', U = 'U', V = 'V',
@@ -86,8 +88,8 @@ t.furfrou.names = {C = 'Taglio Cuore', St = 'Taglio Stella',
 	F = 'Taglio Faraone', base = 'Nessun Taglio'}
 t.xerneas.names = {A = 'Modo Attivo', base = 'Modo Relax'}
 t.mimikyu.names = {S = 'Forma Smascherata', base = 'Forma Mascherata'}
-t.minior.names = {R = 'Nucleo Rosso', A = 'Nucleo Arancione', G = 'Nucleo Giallo',
-	Ve = 'Nucleo Verde', B = 'Nucleo Blu', I = 'Nucleo Indaco',
+t.minior.names = {R = 'Nucleo Rosso', Ar = 'Nucleo Arancione', G = 'Nucleo Giallo',
+	Ve = 'Nucleo Verde', Az = 'Nucleo Azzurro', I = 'Nucleo Indaco',
 	Vi = 'Nucleo Violetto', base = 'Forma Meteora'}
 
 -- Anchor per i link alle forme alternative,
@@ -111,6 +113,7 @@ makeLinks(true)
 
 t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
 	unima = 'U', kalos = 'K', alola = 'A', ['scelgo te'] = 'St'}
+t.pichu.ext = {spunzorek = 'S'}
 t.unown.ext = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
 	O = 'O', P = 'P', Q = 'Q', R = 'R', S = 'S', T = 'T', U = 'U', V = 'V',
@@ -136,14 +139,15 @@ t.furfrou.ext = {cuore = 'C', stella = 'St', diamante = 'D', dignorina = 'Si',
 	gentildonna = 'Gd', gentiluomo = 'Gu', regina = 'R', kabuki = 'K',
 	faraone = 'F'}
 t.xerneas.ext = {attivo = 'A'}
-t.minior.ext = {rosso = 'R', arancione = 'A', giallo = 'G', verde = 'Ve',
-	blu = 'B', indaco = 'I', violetto = 'Vi'}
+t.minior.ext = {rosso = 'R', arancione = 'Ar', giallo = 'G', verde = 'Ve',
+	azzurro = 'Az', indaco = 'I', violetto = 'Vi'}
 t.mimikyu.ext = {smascherata = 'S'}
 
 -- Arrays in cui è memorizzato l'ordine con cui le varie forme appaiono
 -- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
 
 t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'St'}
+t.pichu.gamesOrder = {'base', 'S'}
 t.unown.gamesOrder = {'base', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
 	'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 	'PE', 'PI'}
@@ -161,7 +165,7 @@ t.pyroar.gamesOrder = t.unfezant.gamesOrder
 t.floette.gamesOrder = {'base', 'G', 'A', 'Bl', 'Bi'}
 t.furfrou.gamesOrder = {'base', 'C', 'St', 'Si', 'Gd', 'D', 'Gu', 'R', 'K', 'F'}
 t.xerneas.gamesOrder = {'base', 'A'}
-t.minior.gamesOrder = {'base', 'R', 'A', 'G', 'Ve', 'B', 'I', 'Vi'}
+t.minior.gamesOrder = {'base', 'R', 'Ar', 'G', 'Ve', 'Az', 'I', 'Vi'}
 t.mimikyu.gamesOrder = {'base', 'S'}
 
 -- Tabelle contenenti le sigle dei primi giochi in ordine cronologico in cui
@@ -169,6 +173,7 @@ t.mimikyu.gamesOrder = {'base', 'S'}
 
 t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
 	K = 'sl', A = 'sl', St = 'usul', base = 'rb'}
+t.pichu.since = {S = 'hgss', base = 'oa'}
 t.unown.since = {base = 'oa', B = 'oa', C = 'oa', D = 'oa', E = 'oa', F = 'oa',
 	G = 'oa', H = 'oa', I = 'oa', J = 'oa', K = 'oa', L = 'oa', M = 'oa', N = 'oa',
 	O = 'oa', P = 'oa', Q = 'oa', R = 'oa', S = 'oa', T = 'oa', U = 'oa', V = 'oa',
@@ -190,9 +195,19 @@ t.floette.since = {G = 'xy', A = 'xy', Bi = 'xy', Bl = 'xy', base = 'xy'}
 t.furfrou.since = {C = 'xy', St = 'xy', D = 'xy', Si = 'xy', Gd = 'xy',
 	Gu = 'xy', R = 'xy', K = 'xy', F = 'xy', base = 'xy'}
 t.xerneas.since = {A = 'xy', base = 'xy'}
-t.minior.since = {base = 'sl', R = 'sl', A = 'sl', G = 'sl', Ve = 'sl',
-	B = 'sl', I = 'sl', Vi = 'sl'}
+t.minior.since = {base = 'sl', R = 'sl', Ar = 'sl', G = 'sl', Ve = 'sl',
+	Az = 'sl', I = 'sl', Vi = 'sl'}
 t.mimikyu.since = {base = 'sl', S = 'sl'}
+
+--[[
+
+Tables containing the last game a form is
+available, base form included. Anything
+not present defaults to latest games.
+
+--]]
+
+t.pichu['until'] = {S = 'hgss'}
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 
@@ -201,6 +216,7 @@ t.sawsbuck = t.deerling
 t.jellicent = t.frillish
 t['flabébé'], t.florges = t.floette, t.floette
 t[25] = t.pikachu
+t[172] = t.pichu
 t[201] = t.unown
 t[412] = t.burmy
 t[421] = t.cherrim

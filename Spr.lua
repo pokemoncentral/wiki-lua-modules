@@ -117,6 +117,20 @@ local sizes = {
 	sl = '|150px',
 }
 
+-- Table per le stringhe da interpolare a seconda del gioco
+local interpStrings = {
+	current = '[[File:${ndex}.png]]',
+	md = '[[File:MDP${ndex}.png]]',
+	rb = '[[File:Spr${game}${variant}${ndex}.${ext}${size}]]',
+}
+
+-- Alias per la table di cui sopra
+table.tableKeysAlias(interpStrings,
+	{'rb'},
+	{{'verde', 'gia', 'or', 'ar', 'cr', 'rz', 'rfvf',
+		'sme', 'dp', 'pt', 'hgss', 'nb', 'nb2', 'xy',
+		'roza', 'sl', 'colo', 'XD', 'stad', 'stad2'}})
+
 --[[
 
 Ritorna gif se il gioco è presente nella table
@@ -149,20 +163,17 @@ che 'male' e 'female' non possono coesistere
 --]]
 s.sprLua = function(ndex, game, variant, size)
 	game = string.lower(game or 'current')
-
-	if game == 'current' then
-		return table.concat{'[[File:', ndex, '.png]]'}
-	end
 	
 	variant = string.trim(variant or ''):lower()
 
 	game = gamesAbbr[game] or game
 	local gen = gens.getGen.game(gamesAbbrGen[game] or game)
+
 	--[[
 		I giochi di seconda generazione hanno
 		'oac' come gioco negli sprite posteriori
 	--]]
-	if gen == 2 and variant:find('back') then
+	if gen and gen == 2 and variant:find('back') then
 		game = 'oac'
 	end
 
@@ -180,15 +191,15 @@ s.sprLua = function(ndex, game, variant, size)
 		NB: la stringa 'male' è trovata sia in
 		'male' che in 'female'
 	--]]
-	if gen < 4 and variant:find('male') then
+	if gen and gen < 4 and variant:find('male') then
 		
 		-- Elimina il genere dalla variante
 		
 		variant = variant:match('male%s+([%w%s]+)')
 	end
 	variant = variants[variant] or ''
-		
-	return w.interp('[[File:Spr${game}${variant}${ndex}.${ext}${size}]]',
+
+	return w.interp(interpStrings[game],
 	{
 		game = game,
 		variant = variant,
