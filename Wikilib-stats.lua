@@ -9,6 +9,16 @@ local s = {}
 local tab = require('Wikilib-tables')
 local mg = require('Wikilib-multigen')
 
+local clearStats = function(stats, gen)
+    if gen == 1 then
+        stats.spatk, stats.spdef = nil, nil
+    else
+        stats.spec = nil
+    end
+
+    return stats
+end
+
 -- Statistics order, split by generation
 s.statsOrder = {
     [1] = {'hp', 'atk', 'def', 'spec', 'spe'},
@@ -39,14 +49,7 @@ takes care of the special gen I statistic.
 
 --]]
 s.getStatsGen = function(stats, gen)
-    stats = mg.getGen(stats, gen)
-    if gen == 1 then
-        stats.spatk, stats.spdef = nil, nil
-    else
-        stats.spec = nil
-    end
-
-    return stats
+    return clearStats(mg.getGen(stats, gen), gen)
 end
 s.getstatsgen, s.get_stats_gen = s.getStatsGen, s.getStatsGen
 
