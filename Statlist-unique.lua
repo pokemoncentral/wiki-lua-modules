@@ -9,11 +9,12 @@ local u = {}
 
 local css = require('Css')
 local ms = require('MiniSprite')
+local gamesUtil = require('Wikilib-games')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
+local statsUtil = require('Wikilib-stats')
 local str = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local mg = require('Wikilib-multigen')
 local gendata = require("Gens-data")
 local pokes = require('Poké-data')
 
@@ -30,13 +31,17 @@ based on the whole collection, making a separate
 function necessary.
 
 --]]
-local uniqueStatTotal = function(allStats)
+local uniqueStatTotal = function(allStats, gen)
+    local pokesInGen = table.filter(allStats, function(_, poke)
+        return not string.parseInt(poke)
+            and gamesUtil.isInGen(poke, gen)
+    end)
 
     -- Mapping to base stat totals
-    local tots = table.map(allStats, function(stats)
-            return table.fold(stats, 0,
-                    function(a, b) return a + mg.getGenValue(b, gendata.latest) end)
-        end, list.pokeNames)
+    local tots = table.map(pokesInGen, function(pokeStats)
+        return statsUtil.statsSum(
+                statsUtil.getStatsGen(pokeStats, gen))
+    end)
 
     --[[
         Filtering unique base stat totals only:
@@ -105,17 +110,24 @@ end
 
 --[[
 
-Wiki interface function: called with no
-argument, returns the list of all Pokémon
-having unique base sta total
+Wiki interface function: returns the list
+of all Pokémon having unique base stat total
+in the provided generation, which defaults
+to the latest.
 
-Example:
+Examples:
+
+Latest generation:
 {{#invoke: Statlist/unique | statlistUnique }}
+
+Specific generation:
+{{#invoke: Statlist/unique | statlistUnique | 4 }}
 
 --]]
 u.statlistUnique = function(frame)
+    local gen = tonumber(frame.args[1] or gendata.latest)
     return list.makeList({
-        source = uniqueStatTotal(require('PokéStats-data')),
+        source = uniqueStatTotal(require('PokéStats-data'), gen),
         makeEntry = Entry,
         header = string.interp([=[{| class="sortable roundy-corners pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
 |-
@@ -130,6 +142,6 @@ end
 
 u.StatlistUnique = u.statlistUnique
 
-print(u.statlistUnique())
+print(u.statlistUnique{args={}})
 
 return u

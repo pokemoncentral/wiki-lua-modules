@@ -150,13 +150,14 @@ text.parseNumber, text.parse_number = string.parseNumber, string.parseNumber
 Converts a number to string. If it's an
 integer, it has no decimal digits, otherwise
 the specified format is used, which defaults
-to two decimal digits.
+to two decimal digits. The decimal separator
+is comma.
 
 --]]
 string.printNumber = function(value, format)
     return math.floor(value) == math.ceil(value)
             and tostring(value)
-            or string.format(format or '%.2f', value)
+            or (string.format(format or '%.2f', value):gsub('%.', '%,'))
 end
 string.print_number, string.printnumber =
     string.printNumber, string.printNumber

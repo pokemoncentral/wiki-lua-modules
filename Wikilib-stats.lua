@@ -14,9 +14,28 @@ s.statsOrder = {
     [1] = {'hp', 'atk', 'def', 'spec', 'spe'},
     [2] = {'hp', 'atk', 'def', 'spatk', 'spdef', 'spe' }
 }
-s.statsOrder[3], s.statsOrder[4], s.statsOrder[5]
-        = s.statsOrder[2], s.statsOrder[2], s.statsOrder[2]
-s.statsOrder[6], s.statsOrder[7] = s.statsOrder[2], s.statsOrder[2]
+s.statsOrder[3], s.statsOrder[4] = s.statsOrder[2], s.statsOrder[2]
+s.statsOrder[5], s.statsOrder[6] = s.statsOrder[2], s.statsOrder[2]
+s.statsOrder[7] = s.statsOrder[2]
+
+s.statsorder, s.stats_order = s.statsOrder, s.statsOrder
+
+--[[
+
+Removes statistics that don't exist in the passed
+generation, eg, gen I special.
+
+--]]
+s.cleanStats = function(stats, gen)
+    if gen == 1 then
+        stats.spatk, stats.spdef = nil, nil
+    else
+        stats.spec = nil
+    end
+
+    return stats
+end
+s.cleanstats, s.clean_stats = s.cleanStats, s.cleanStats
 
 --[[
 
@@ -37,14 +56,7 @@ takes care of the special gen I statistic.
 
 --]]
 s.getStatsGen = function(stats, gen)
-    stats = mg.getGen(stats, gen)
-    if gen == 1 then
-        stats.spatk, stats.spdef = nil, nil
-    else
-        stats.spec = nil
-    end
-
-    return stats
+    return s.cleanStats(mg.getGen(stats, gen), gen)
 end
 s.getstatsgen, s.get_stats_gen = s.getStatsGen, s.getStatsGen
 
