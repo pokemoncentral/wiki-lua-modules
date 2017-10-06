@@ -1608,6 +1608,11 @@ t[801] = t.magearna
 t.marshadow = {ability1 = 'Tecnico'}
 t[802] = t.marshadow
 
+-- Pokémon senza ndex
+t['UC Fragor'] = {ability1 = 'Ultraboost'}
+t['UC Structura'] = {ability1 = 'Ultraboost'}
+t['UC Viscosus'] = {ability1 = 'Ultraboost'}
+
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
 -- Il nome è composto dal nome del Pokémon, seguito dalla sigla della forma alternativa

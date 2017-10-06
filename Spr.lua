@@ -127,9 +127,9 @@ local interpStrings = {
 -- Alias per la table di cui sopra
 table.tableKeysAlias(interpStrings,
 	{'rb'},
-	{{'verde', 'gia', 'or', 'ar', 'cr', 'rz', 'rfvf',
-		'sme', 'dp', 'pt', 'hgss', 'nb', 'nb2', 'xy',
-		'roza', 'sl', 'colo', 'XD', 'stad', 'stad2'}})
+	{{'verde', 'gia', 'or', 'ar', 'oa', 'cr', 'oac', 'rz',
+		'rfvf', 'sme', 'dp', 'pt', 'hgss', 'nb', 'nb2',
+		'xy', 'roza', 'sl', 'colo', 'xd', 'stad', 'stad2'}})
 
 --[[
 

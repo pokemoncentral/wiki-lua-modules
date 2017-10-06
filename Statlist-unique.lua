@@ -13,6 +13,8 @@ local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local str = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
+local mg = require('Wikilib-multigen')
+local gendata = require("Gens-data")
 local pokes = require('Poké-data')
 
 --[[
@@ -33,7 +35,7 @@ local uniqueStatTotal = function(allStats)
     -- Mapping to base stat totals
     local tots = table.map(allStats, function(stats)
             return table.fold(stats, 0,
-                    function(a, b) return a + b end)
+                    function(a, b) return a + mg.getGenValue(b, gendata.latest) end)
         end, list.pokeNames)
 
     --[[

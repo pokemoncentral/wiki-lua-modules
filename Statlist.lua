@@ -20,7 +20,7 @@ local c = require("Colore-data")
 local gendata = require("Gens-data")
 local pokes = require('Poké-data')
 
-local mw = requier('mw')
+local mw = require('mw')
 
 --[[
 

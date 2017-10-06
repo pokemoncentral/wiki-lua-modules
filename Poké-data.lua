@@ -1610,6 +1610,11 @@ t[801] = t.magearna
 t.marshadow = {name = 'Marshadow', ndex = 802, type1 = 'lotta', type2 = 'spettro'}
 t[802] = t.marshadow
 
+-- Pokémon senza ndex
+t['UC Fragor'] = {name = 'UC Fragor', type1 = 'fuoco', type2 = 'spettro'}
+t['UC Structura'] = {name = 'UC Structura', type1 = 'roccia', type2 = 'acciaio'}
+t['UC Viscosus'] = {name = 'UC Viscosus', type1 = 'veleno', type2 = 'veleno'}
+
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
 
