@@ -614,25 +614,19 @@ dr.EffTable.FooterLine.new = function(kind, types, abil)
 				Se l'abilità viene persa, la nuova
 				efficacia è piena, altrimenti ridotta
 			--]]
-			local x2Key, x4Key
+			local xKeys
 			if kind == 'TAKENOFF' then
-				x2Key, x4Key = 2, 4
+				xKeys = {[2] = 2, [4] = 4}
 			else
-				x2Key, x4Key = 1.5, 3
-			end
-
-			local x2 = et.difesa(2, types.type1, types.type2, 'tanfo')
-			-- Non è detto che vi siano debolezze singole (Necrozma Ali dell'Aurora)
-			if #x2 > 0 then
-				table.sort(x2) -- Vedi commento a this.newEff
-				this.newEff[x2Key] = x2
+				xKeys = {[2] = 1.5, [4] = 3}
 			end
 			
-			local x4 = et.difesa(4, types.type1, types.type2, 'tanfo')
-			-- Non è detto che vi siano doppie debolezze
-			if #x4 > 0 then
-				table.sort(x4) -- Vedi commento a this.newEff
-				this.newEff[x4Key] = x4
+			for k, v in pairs(xKeys) do
+				local x = et.difesa(k, types.type1, types.type2, 'tanfo')
+				if #x > 0 then
+					table.sort(x) -- Vedi commento a this.newEff
+					this.newEff[v] = x
+				end
 			end
 			
 			return this

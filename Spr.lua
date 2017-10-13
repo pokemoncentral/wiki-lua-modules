@@ -129,7 +129,8 @@ table.tableKeysAlias(interpStrings,
 	{'rb'},
 	{{'verde', 'gia', 'or', 'ar', 'oa', 'cr', 'oac', 'rz',
 		'rfvf', 'sme', 'dp', 'pt', 'hgss', 'nb', 'nb2',
-		'xy', 'roza', 'sl', 'colo', 'xd', 'stad', 'stad2'}})
+		'xy', 'roza', 'sl', 'usul', 'colo', 'xd', 'stad',
+		'stad2'}})
 
 --[[
 
