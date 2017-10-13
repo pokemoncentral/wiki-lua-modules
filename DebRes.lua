@@ -91,7 +91,7 @@ effetti di Filtro/Solidroccia e Pellearsa
 dr.EffTable.allEff = {0, 0.25, 0.5, 1, 2, 4, -- Standard
 -- 0.125, -- Tripla resistenza (al momento inutile)
 -- 0.3125, 0.625, 1.25, 2.5, 5, -- Pellearsa (al momento inutile)
-1.5 -- 3 -- Filtro/Solidroccia (al momento 3 è inutile)
+1.5, 3 -- Filtro/Solidroccia
 }
 
 --[[
@@ -622,11 +622,13 @@ dr.EffTable.FooterLine.new = function(kind, types, abil)
 			end
 
 			local x2 = et.difesa(2, types.type1, types.type2, 'tanfo')
-			table.sort(x2) -- Vedi commento a this.newEff
-			this.newEff[x2Key] = x2
+			-- Non è detto che vi siano debolezze singole (Necrozma Ali dell'Aurora)
+			if #x2 > 0 then
+				table.sort(x2) -- Vedi commento a this.newEff
+				this.newEff[x2Key] = x2
+			end
 			
 			local x4 = et.difesa(4, types.type1, types.type2, 'tanfo')
-			
 			-- Non è detto che vi siano doppie debolezze
 			if #x4 > 0 then
 				table.sort(x4) -- Vedi commento a this.newEff

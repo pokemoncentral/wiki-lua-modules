@@ -1756,6 +1756,10 @@ t.silvallyB = {name = 'Silvally', ndex = 773, type1 = 'buio', type2 = 'buio'}
 t['773B'] = t.silvallyB
 t.silvallyFo = {name = 'Silvally', ndex = 773, type1 = 'folletto', type2 = 'folletto'}
 t['773Fo'] = t.silvallyFo
+t.necrozmaV = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'acciaio'}
+t['800V'] = t.necrozmaV
+t.necrozmaA = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'spettro'}
+t['800A'] = t.necrozmaA
 
 -- Gli alias per le altre forme alternative rilevanti
 
