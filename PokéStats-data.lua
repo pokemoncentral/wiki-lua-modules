@@ -1674,8 +1674,16 @@ d.hoopaL = {hp = 80, atk = 160, def = 60, spatk = 170, spdef = 130, spe = 80}
 d['720L'] = d.hoopaL
 d.lycanrocN = {hp = 85, atk = 115, def = 75, spatk = 55, spdef = 75, spe = 82}
 d['745N'] = d.lycanrocN
+d.lycanrocC = {hp = 85, atk = 115, def = 75, spatk = 55, spdef = 75, spe = 82}
+d['745C'] = d.lycanrocC
 d.wishiwashiB = {hp = 45, atk = 140, def = 130, spatk = 140, spdef = 135, spe = 30}
 d['746B'] = d.wishiwashiB
+d.necrozmaV = {hp = 97, atk = 157, def = 127, spatk = 113, spdef = 109, spe = 77}
+d['800V'] = d.necrozmaV
+d.necrozmaA = {hp = 97, atk = 113, def = 109, spatk = 157, spdef = 127, spe = 77}
+d['800A'] = d.necrozmaA
+d.necrozmaU = {hp = 97, atk = 167, def = 97, spatk = 167, spdef = 97, spe = 129}
+d['800U'] = d.necrozmaU
 
 -- core formd.minior = {hp = 60, atk = 100, def = 60, spatk = 100, spdef = 60, spe = 120}
 -- d[774] = d.minior

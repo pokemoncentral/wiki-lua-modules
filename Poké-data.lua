@@ -1760,6 +1760,8 @@ t.necrozmaV = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'acciaio'
 t['800V'] = t.necrozmaV
 t.necrozmaA = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'spettro'}
 t['800A'] = t.necrozmaA
+t.necrozmaU = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'drago'}
+t['800U'] = t.necrozmaU
 
 -- Gli alias per le altre forme alternative rilevanti
 

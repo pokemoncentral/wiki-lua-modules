@@ -173,7 +173,7 @@ t.lycanroc.names = {N = 'Forma Notte', C = 'Forma Crepuscolo', base = 'Forma Gio
 t.wishiwashi.names = {B = 'Forma Banco', base = 'Forma Individuale'}
 t.silvally.names = mw.clone(t.arceus.names) 
 t.silvally.names.Sc = nil
-t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = 'Necrozma Ali dell\'Aurora', base = 'Necrozma'}
+t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = 'Necrozma Ali dell\'Aurora', U = 'Ultra Necrozma', base = 'Necrozma'}
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}
@@ -250,7 +250,7 @@ t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
 t.wishiwashi.ext = {banco = 'B', individuale = 'base'}
 t.silvally.ext = mw.clone(t.arceus.ext)
 t.silvally.ext.sconosciuto = nil
-t.necrozma.ext = {vespro = 'V', aurora = 'A', necrozma = 'base'}
+t.necrozma.ext = {vespro = 'V', aurora = 'A', ultra = 'U', necrozma = 'base'}
 for k, v in pairs(t.mega) do
 	t[v].ext = {mega = 'M'}
 end
@@ -291,7 +291,7 @@ t.lycanroc.gamesOrder = {'base', 'N', 'C'}
 t.oricorio.gamesOrder = {'base', 'C', 'H', 'B'}
 t.wishiwashi.gamesOrder = {'base', 'B'}
 t.silvally.gamesOrder = mw.clone(t.arceus.gamesOrder)
-t.necrozma.gamesOrder = {'base', 'V', 'A'}
+t.necrozma.gamesOrder = {'base', 'V', 'A', 'U'}
 table.remove(t.silvally.gamesOrder)
 for k, v in pairs(t.mega) do
 	t[v].gamesOrder = {'base', 'M'}
@@ -347,7 +347,7 @@ t.wishiwashi.since = {B = 'sl', base = 'sl'}
 t.silvally.since = {base = 'sl', L = 'sl', Vo = 'sl', Ve = 'sl', T = 'sl',
 	R = 'sl', Aq = 'sl', C = 'sl', Er = 'sl', P = 'sl', B = 'sl', S = 'sl',
 	Ai = 'sl', Fu = 'sl', D = 'sl', Fo = 'sl', El = 'sl', G = 'sl'}
-t.necrozma.since = {base = 'sl', V = 'usul', A = 'usul'}
+t.necrozma.since = {base = 'sl', V = 'usul', A = 'usul', U = 'usul'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
 t.blastoise.since = {M = 'xy', base = 'rb'}
 t.beedrill.since = {M = 'roza', base = 'rb'}

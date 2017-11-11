@@ -442,6 +442,20 @@ x.UsUl = {{
     }
 }}
 x.USUL, x.USL = x.UsUl, x.UsUl
+x.SUs = {x.So[1], x.Us[1]}
+x.SUS = x.SUs
+x.LUl = {x.L[1], x.Ul[1]}
+x.LUL = x.LUl
+x.SLUsUl =  {
+{
+    link = 'Sole e Luna',
+    text = 'Sole, Luna',
+    display = {
+		{'S', 'sole'},
+		{'L', 'luna'}
+    }
+}, x.USUL[1]}
+x.SLUSUL = x.SLUsUl
 x.SJ = {{
     link = 'Stadium (Giappone)',
     text = 'Stadium',

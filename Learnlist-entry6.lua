@@ -17,8 +17,8 @@ end
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return table.concat{'|-\n', lib.gameslevel(p[1] or
-		[[<span class="explain" title="Disponibile solo in Rubino Omega e Zaffiro Alpha">''Assente''</span>]],
-		p[2] or [[<span class="explain" title="Disponibile solo in X e Y">''Assente''</span>]]),
+		[[<span class="explain" title="Disponibile solo in Rubino Omega e Zaffiro Alpha">&mdash;</span>]],
+		p[2] or [[<span class="explain" title="Disponibile solo in X e Y">&mdash;</span>]]),
 		entry(p[10] or '', p[3] or 'Geloraggio', lib.makeNotes(p[9] or ''),
 			p[4] or 'Sconosciuto', p[5] or 'Speciale', p[6] or '0', p[7] or '0',
 			p[8] or '0', p[11] or 'Sconosciuto', p[12] or '?', p[13] or '?')}

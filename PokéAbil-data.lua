@@ -1685,6 +1685,8 @@ t.lycanrocN = {ability1 = 'Sguardofermo', ability2 = 'Spiritovivo', abilityd = '
 t['745N'] = t.lycanrocN
 t.lycanrocC = {ability1 = 'Unghiedure'}
 t['745C'] = t.lycanrocC
+t.necrozmaU = {ability1 = 'Cerebroforza'}
+t['800U'] = t.necrozmaU
 
 -- Alias per le altre forme alternative rilevanti
 

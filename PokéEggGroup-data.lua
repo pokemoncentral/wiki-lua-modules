@@ -1631,8 +1631,10 @@ t.meloettaD = t.meloetta
 t.greninjaD = {group1 = 'sconosciuto'}
 t.oricorioC, t.oricorioH, t.oricorioB =
 	t.oricorio, t.oricorio, t.oricorio
-t.lycanrocN = t.lycanroc
--- t.lycanrocC = t.lycanroc
+t.lycanrocN, t.lycanrocC =
+	t.lycanroc, t.lycanroc
+t.necrozmaV, t.necrozmaA, t.necrozmaU =
+	t.necrozma, t.necrozma, t.necrozma
 t.rattataA = t.rattata
 t.raticateA = t.raticate
 t.raichuA = t.raichu
