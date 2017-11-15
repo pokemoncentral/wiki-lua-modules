@@ -4,7 +4,7 @@ local t = {}
 
 -- Numero totale dei Pokémon
 
-t.pokeNum = 802
+t.pokeNum = 806
 t.poke_num = t.pokeNum
 
 --[[
@@ -99,5 +99,9 @@ t.genders = {male = '<span style="color:#0000FF;">♂</span>',
 		female = '<span style="color:#FF6060;">♀</span>'}
 t.genders['♂'] = t.genders.male
 t.genders['♀'] = t.genders.female
+
+-- Misc data about statistics
+
+t.statsOrder = {'hp', 'atk', 'def', 'spatk', 'spdef', 'spec', 'spe'}
 
 return t

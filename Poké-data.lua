@@ -1609,11 +1609,14 @@ t.magearna = {name = 'Magearna', ndex = 801, type1 = 'acciaio', type2 = 'follett
 t[801] = t.magearna
 t.marshadow = {name = 'Marshadow', ndex = 802, type1 = 'lotta', type2 = 'spettro'}
 t[802] = t.marshadow
-
--- Pokémon senza ndex
-t['UC Fragor'] = {name = 'UC Fragor', type1 = 'fuoco', type2 = 'spettro'}
-t['UC Structura'] = {name = 'UC Structura', type1 = 'roccia', type2 = 'acciaio'}
-t['UC Viscosus'] = {name = 'UC Viscosus', type1 = 'veleno', type2 = 'veleno'}
+t.poipole = {name = 'Poipole', ndex = 803, type1 = 'veleno', type2 = 'veleno'}
+t[803] = t.poipole
+t.naganadel = {name = 'Naganadel', ndex = 804, type1 = 'veleno', type2 = 'drago'}
+t[804] = t.naganadel
+t.stakataka = {name = 'Stakataka', ndex = 805, type1 = 'roccia', type2 = 'acciaio'}
+t[805] = t.stakataka
+t.blacephalon = {name = 'Blacephalon', ndex = 806, type1 = 'fuoco', type2 = 'spettro'}
+t[806] = t.blacephalon
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa

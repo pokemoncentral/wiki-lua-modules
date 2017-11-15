@@ -1607,6 +1607,14 @@ t.magearna = {group1 = 'sconosciuto'}
 t[801] = t.magearna
 t.marshadow = {group1 = 'sconosciuto'}
 t[802] = t.marshadow
+t.poipole = {group1 = 'sconosciuto'}
+t[803] = t.poipole
+t.naganadel = {group1 = 'sconosciuto'}
+t[804] = t.naganadel
+t.stakataka = {group1 = 'sconosciuto'}
+t[805] = t.stakataka
+t.blacephalon = {group1 = 'sconosciuto'}
+t[806] = t.blacephalon
 
 -- Forme alternative che esistono fuori dalla lotta e quindi
 -- possono avere un gruppo uova diverso da quello della forma base
