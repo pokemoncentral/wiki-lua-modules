@@ -33,6 +33,7 @@ local gamesAbbr = {
 	['x e y'] = 'xy',
 	['rubino omega e zaffiro alpha'] = 'roza',
 	['sole e luna'] = 'sl',
+	['ultrasole e ultraluna'] = 'usul',
 	colosseum = 'colo',
 	-- XD is not necessary
 	stadium = 'stad',
@@ -47,6 +48,7 @@ table.tableKeysAlias(gamesAbbr,
 		'heartgold e soulsilver', 'nero e bianco',
 		'nero 2 e bianco 2', 'x e y',
 		'rubino omega e zaffiro alpha', 'sole e luna',
+		'ultrasole e ultraluna',
 		'stadium 2'},
 	{{'rosso e verde', 'rv', 'v'}, {'rosso', 'blu', 'r', 'b'},
 	{'oro e argento', 'oa'}, {'c'}, {'rubino', 'zaffiro', 'ru',
@@ -58,7 +60,8 @@ table.tableKeysAlias(gamesAbbr,
 	{'nero', 'bianco', 'n', 'bi'}, {'nero 2', 'bianco 2',
 		'n2', 'b2', 'n2b2'},
 	{'x', 'y', 'xy'}, {'rubino omega', 'zaffiro alpha', 'ro', 'za'},
-	{'sole', 'luna', 'so', 'l'}, {'stad 2'}})
+	{'sole', 'luna', 'so', 'l'}, {'ultrasole', 'ultraluna', 'us', 'ul'},
+	{'stad 2'}})
 
 --[[
 
@@ -106,7 +109,7 @@ local variants = {
 }
 
 -- Table per i giochi che hanno gli sprite in .gif
-local gifs = {'cr', 'sme', 'xy', 'roza', 'sl'}
+local gifs = {'cr', 'sme', 'xy', 'roza', 'sl', 'usul'}
 
 -- Table per le dimensioni degli sprite
 local sizes = {
@@ -115,6 +118,7 @@ local sizes = {
 	xy = '|150px',
 	roza = '|150px',
 	sl = '|150px',
+	usul = '|150px',
 }
 
 -- Table per le stringhe da interpolare a seconda del gioco
