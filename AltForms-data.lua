@@ -173,7 +173,7 @@ t.lycanroc.names = {N = 'Forma Notte', C = 'Forma Crepuscolo', base = 'Forma Gio
 t.wishiwashi.names = {B = 'Forma Banco', base = 'Forma Individuale'}
 t.silvally.names = mw.clone(t.arceus.names) 
 t.silvally.names.Sc = nil
-t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = 'Necrozma Ali dell\'Aurora', U = 'Ultra Necrozma', base = 'Necrozma'}
+t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = 'Necrozma Ali dell\'Aurora', U = 'UltraNecrozma', base = 'Necrozma'}
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}

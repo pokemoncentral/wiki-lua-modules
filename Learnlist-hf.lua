@@ -29,15 +29,14 @@ cs.preevo, cs.event = cs.breed, cs.breed
 local firstcell = {cs = {}, rs = {}}
 
 -- In futuro dovranno essere tutti > 1
-firstcell.cs.level = {1, 1, 1, 1, 2, 2, 1}
-
+firstcell.cs.level = {1, 1, 1, 1, 2, 2, 2}
 firstcell.cs.tm = {1, 1, 1, 1, 1, 1, 1}
 firstcell.cs.breed = {1, 1, 1, 1, 1, 1, 1}
 firstcell.cs.tutor = {1, 1, 3, 3, 2, 2, 2}
 firstcell.cs.preevo = firstcell.cs.breed
 firstcell.cs.event = firstcell.cs.breed
 
-firstcell.rs.level = {1, 1, 1, 1, 2, 2, 1}
+firstcell.rs.level = {1, 1, 1, 1, 2, 2, 2}
 firstcell.rs.breed = {1, 1, 1, 1, 1, 1, 1}
 firstcell.rs.tm = firstcell.rs.breed
 firstcell.rs.tutor = firstcell.rs.breed
@@ -95,6 +94,11 @@ games[6] = [=[
 |-
 ! &nbsp;&nbsp;[[Pokémon X e Y|<span style="color:#000;">XY</span>]]&nbsp;&nbsp;
 ! &nbsp;[[Pokémon Rubino Omega e Zaffiro Alpha|<span style="color:#000;">ROZA</span>]]&nbsp;]=]
+games[7] = [=[
+
+|-
+! &nbsp;&nbsp;[[Pokémon Sole e Luna|<span style="color:#000;">SL</span>]]&nbsp;&nbsp;
+! &nbsp;[[Pokémon Ultrasole e Ultraluna|<span style="color:#000;">USUL</span>]]&nbsp;]=]
 
 -- Tabella con i Pokémon baby ottenibili tramite incensi, necessaria
 -- per le righe aggiuntive del footer per le mosse uovo

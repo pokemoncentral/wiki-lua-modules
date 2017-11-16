@@ -54,6 +54,10 @@ insOld.unima = function(newDex, oldDex)
 	return addtt(newDex, oldDex, 'in Nero e Bianco')
 end
 
+insOld.alola = function(newDex, oldDex)
+	return addtt(newDex, oldDex, 'in Sole e Luna')
+end
+
 -- Ordina la tabella store: la table è esterna alla
 -- funzione così da non essere ricreata ogni volta
 
@@ -83,16 +87,21 @@ local dexlist = function(dexes)
 			local zone = region:match('kalos(%a+)$')
 			table.insert(store, string.interp(kalos, {c = c['kalos' .. zone].normale,
 				reg = zone, rdex = rdex}))
+		elseif type(rdex) == 'table' then
+			local ndex = rdex[1]
+			local newDex, oldDex = table.search(dex[region][2], ndex), table.search(dex[region][1], ndex)
+			if newDex == oldDex then
+				rdex = newDex
+			else
+				rdex = insOld[region](newDex, oldDex or 'Non disponibile')
+			end
+			table.insert(store, string.interp(str, {reg = string.fu(region), rdex = rdex}))
 		else
 			local oldDexTable = dex[region .. 'Added']
 			if oldDexTable then
 				local oldDex = getOldDex(tonumber(rdex), oldDexTable)
 				if oldDex ~= rdex then
-					if oldDex then
-						rdex = insOld[region](rdex, oldDex)
-					else
-						rdex = insOld[region](rdex, 'Non disponibile')
-					end
+					rdex = insOld[region](rdex, oldDex or 'Non disponibile')
 				end
 			end
 			table.insert(store, string.interp(str, {reg = string.fu(region), rdex = rdex}))
@@ -110,14 +119,20 @@ end
 
 -- Semplicemente cerca tra tutti i dex se si trova il numero di dex
 -- nazionale fornito: in caso positivo, lo inserisce come elemento
--- di una table con indice il nome del dex
+-- di una table con indice il nome della regione. Se una certa regione
+-- ha più dex regionali (es: alola) inserisce come valore una table
+-- contenente il numero di dex nazionale
 
 local search = function(ndex)
 	local dexes = {}
 	for region, regionalDex in pairs(dex) do
-		local rdex = table.search(regionalDex, ndex)
-		if rdex then
-			dexes[region] = txt.three_figures(rdex)
+		if (type(regionalDex[1]) == 'table') and table.deepSearch(regionalDex, ndex) then
+			dexes[region] = {txt.three_figures(ndex)}
+		else
+			local rdex = table.search(regionalDex, ndex)
+			if rdex then
+				dexes[region] = txt.three_figures(rdex)
+			end
 		end
 	end
 	return dexes
