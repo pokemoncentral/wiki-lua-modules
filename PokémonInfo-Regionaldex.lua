@@ -13,7 +13,10 @@ local sup = require("Sup-data")
 -- dex regionale specificato: nel caso in cui non sia
 -- presente, ritorna nil
 
-local getOldDex = function(newDex, oldDexTable)
+local getOldDex = function(newDex, oldDexTable, changedDexTable)
+	if changedDexTable and changedDexTable[newDex] then
+		return txt.tf(changedDexTable[newDex])
+	end
 	for subtract, ndex in ipairs(oldDexTable) do
 		if ndex == newDex then
 			return nil;
@@ -87,19 +90,10 @@ local dexlist = function(dexes)
 			local zone = region:match('kalos(%a+)$')
 			table.insert(store, string.interp(kalos, {c = c['kalos' .. zone].normale,
 				reg = zone, rdex = rdex}))
-		elseif type(rdex) == 'table' then
-			local ndex = rdex[1]
-			local newDex, oldDex = table.search(dex[region][2], ndex), table.search(dex[region][1], ndex)
-			if newDex == oldDex then
-				rdex = newDex
-			else
-				rdex = insOld[region](newDex, oldDex or 'Non disponibile')
-			end
-			table.insert(store, string.interp(str, {reg = string.fu(region), rdex = rdex}))
 		else
 			local oldDexTable = dex[region .. 'Added']
 			if oldDexTable then
-				local oldDex = getOldDex(tonumber(rdex), oldDexTable)
+				local oldDex = getOldDex(tonumber(rdex), oldDexTable, dex[region .. 'Changed'])
 				if oldDex ~= rdex then
 					rdex = insOld[region](rdex, oldDex or 'Non disponibile')
 				end
@@ -126,13 +120,9 @@ end
 local search = function(ndex)
 	local dexes = {}
 	for region, regionalDex in pairs(dex) do
-		if (type(regionalDex[1]) == 'table') and table.deepSearch(regionalDex, ndex) then
-			dexes[region] = {txt.three_figures(ndex)}
-		else
-			local rdex = table.search(regionalDex, ndex)
-			if rdex then
-				dexes[region] = txt.three_figures(rdex)
-			end
+		local rdex = table.search(regionalDex, ndex)
+		if rdex then
+			dexes[region] = txt.three_figures(rdex)
 		end
 	end
 	return dexes
@@ -144,8 +134,7 @@ end
 rdex.regionaldex = function(frame)
 	local ndex = string.trim(frame.args[1]) or '000'
 	return string.interp([=[| colspan="2" | <div>[[Pokédex Regionale|<span style="color:#000;">'''Pokédex Regionali'''</span>]]</div>
-<div class="roundy" style="background: #fff; padding-top: 0.5ex; padding-bottom: 0.5ex;">
-<div class="flex-row-center-around">${dexlist}</div>
+<div class="roundy flex-row-center-around" style="background: #fff; padding-top: 0.5ex; padding-bottom: 0.5ex;">${dexlist}</div>
 ]=],
 {
 	dexlist = dexlist(search(ndex)) or 'In nessun Pokédex Regionale'
@@ -154,4 +143,5 @@ end
 
 rdex.Regionaldex, rdex.RegionalDex = rdex.regionaldex, rdex.regionaldex
 -- return rdex
+arg = {'001'}
 print(rdex.regionaldex{args={arg[1]}})

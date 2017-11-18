@@ -55,7 +55,7 @@ t.mimikyu = {}
 t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
 	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
 	K = 'Berretto Kalos', A = 'Berretto Alola',
-	St = 'Berretto Scelgo Te', base = 'Pikachu'}
+	Co = 'Berretto Compagni', base = 'Pikachu'}
 t.pichu.names = {S = 'Pichu Spunzorek', base = 'Pichu'}
 t.unown.names = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
@@ -112,7 +112,7 @@ makeLinks(true)
 -- Per passare dai nomi estesi delle forme alternative alle sigle
 
 t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
-	unima = 'U', kalos = 'K', alola = 'A', ['scelgo te'] = 'St'}
+	unima = 'U', kalos = 'K', alola = 'A', compagni = 'Co'}
 t.pichu.ext = {spunzorek = 'S'}
 t.unown.ext = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
@@ -146,7 +146,7 @@ t.mimikyu.ext = {smascherata = 'S'}
 -- Arrays in cui è memorizzato l'ordine con cui le varie forme appaiono
 -- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
 
-t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'St'}
+t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'Co'}
 t.pichu.gamesOrder = {'base', 'S'}
 t.unown.gamesOrder = {'base', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
 	'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -172,7 +172,7 @@ t.mimikyu.gamesOrder = {'base', 'S'}
 -- la forma è supportata, compresa la forma base
 
 t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
-	K = 'sl', A = 'sl', St = 'usul', base = 'rb'}
+	K = 'sl', A = 'sl', Co = 'usul', base = 'rb'}
 t.pichu.since = {S = 'hgss', base = 'oa'}
 t.unown.since = {base = 'oa', B = 'oa', C = 'oa', D = 'oa', E = 'oa', F = 'oa',
 	G = 'oa', H = 'oa', I = 'oa', J = 'oa', K = 'oa', L = 'oa', M = 'oa', N = 'oa',
