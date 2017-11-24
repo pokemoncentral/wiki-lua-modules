@@ -93,6 +93,19 @@ t.allTypes = {'acciaio', 'acqua', 'buio', 'coleot', 'drago',
 
 t.types, t.all_types = t.allTypes, t.allTypes
 
+--[[
+
+Tables of all the egg groups in alphabetic order.
+
+--]]
+
+t.allGroups = {'erba', 'coleottero', 'volante', 'umanoide',
+	'minerale', 'amorfo', 'campo', 'acqua 1', 'acqua 2',
+	'acqua 3', 'mostro', 'magico', 'drago', 'ditto',
+	'sconosciuto'}
+
+t.types, t.all_types = t.allTypes, t.allTypes
+
 -- Tabella sostitutiva dei template {{male}} e {{female}}
 
 t.genders = {male = '<span style="color:#0000FF;">♂</span>',
