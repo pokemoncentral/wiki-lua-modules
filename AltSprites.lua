@@ -339,6 +339,11 @@ local spriteGames = {
 			games = {'Sole', 'Luna'},
 			gamesAbbr = 'sl',
 			sprAbbr = 'sl'
+		},
+		{
+			games = {'Ultrasole', 'Ultraluna'},
+			gamesAbbr = 'usul',
+			sprAbbr = 'usul'
 		}
 	},
 }
@@ -665,6 +670,6 @@ end
 
 u.AltSprites, u.altsprites, u.alt_sprites =
 u.altSprites, u.altSprites, u.altSprites
-
+arg={'Pikachu'}
 print(u.altSprites{args={arg[1]}})
 --return u

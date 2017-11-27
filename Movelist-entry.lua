@@ -30,12 +30,12 @@ essere l'indice di un parametro
 
 --]]
 local gameGens = {Y = 1, C = 2, FRLG = 3, E = 3, HGSS = 4,
-		PTHGSS = 4, B2W2 = 5, ORAS = 6, SM = 7}
+		PTHGSS = 4, B2W2 = 5, ORAS = 6, USUM = 7}
 
 -- Contiene i colori di background delle celle del tutor
 local tutorCellsColors = {'cristallo', 'rossofuoco',
 	'smeraldo', 'xd', 'diamante', 'platino', 'heartgold',
-	'nero', 'nero2', 'x', 'rubinoomega', 'sole'
+	'nero', 'nero2', 'x', 'rubinoomega', 'sole', 'ultrasole',
 }
 
 --[[
@@ -86,7 +86,8 @@ splitCellsData.B2W2 = {{bg = 'bianco', txt = 'nero', abbr = 'NB'},
 	{bg = 'bianco2', txt = 'nero2', abbr = 'N2B2'}}
 splitCellsData.ORAS = {{bg = 'x', txt = 'y', abbr = 'XY'},
 	{bg = 'rubinoomega', txt = 'zaffiroalpha', abbr = 'ROZA'}}
-splitCellsData.SM = {{bg = 'sole', txt = 'luna', abbr = 'SL'}}
+splitCellsData.USUM = {{bg = 'sole', txt = 'luna', abbr = 'SL'},
+	{bg = 'ultrasole', txt = 'ultraluna', abbr = 'USUL'}}
 
 --[[
 

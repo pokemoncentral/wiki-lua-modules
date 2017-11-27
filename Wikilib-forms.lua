@@ -127,32 +127,11 @@ del Pokémon e quello esteso della forma alternativa.
 --]]
 f.getlink = function(poke, black, extform)
 	black = black and 'black' or ''
-
-	--[[
-		È stato fornito il terzo parametro,
-		si cerca nella table ext. Il '' a
-		default in abbr serve per assicurare
-		l'indicizzazione nell'istruzione successiva
-	--]]
-	if alt[tonumber(poke) or poke:lower()] then
-		extform = string.lower(extform or '')
-		poke = tonumber(poke) or poke:lower()
-		abbr = alt[poke].ext[extform] or ''
-		return alt[poke][black .. 'links'][abbr] or ''
-	end
-
-	--[[
-		Senza terzo parametro, bisogna estrarre
-		nome del Pokémon e sigla della forma
-		alternativa dal nome, per poi usarli come
-		indici del modulo AltForms/data
-	--]]
-	local name, form = poke:match("^([%lé%-♂♀'%s%.&#;%d]+)(%u*%a*)$")
-	if form == '' then
+	local poke, extform = f.getnameabbr(poke, extform)
+	if extform == '' or extform == 'base' then
 		return ''
 	end
-	name = tonumber(name) or name
-	return alt[name][black .. 'links'][form] or ''
+	return alt[poke] and alt[poke][black .. 'links'][extform] or ''
 end
 
 f.getLink, f.get_link = f.getlink, f.getlink

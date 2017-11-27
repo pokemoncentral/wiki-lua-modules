@@ -1609,6 +1609,14 @@ t.magearna = {name = 'Magearna', ndex = 801, type1 = 'acciaio', type2 = 'follett
 t[801] = t.magearna
 t.marshadow = {name = 'Marshadow', ndex = 802, type1 = 'lotta', type2 = 'spettro'}
 t[802] = t.marshadow
+t.poipole = {name = 'Poipole', ndex = 803, type1 = 'veleno', type2 = 'veleno'}
+t[803] = t.poipole
+t.naganadel = {name = 'Naganadel', ndex = 804, type1 = 'veleno', type2 = 'drago'}
+t[804] = t.naganadel
+t.stakataka = {name = 'Stakataka', ndex = 805, type1 = 'roccia', type2 = 'acciaio'}
+t[805] = t.stakataka
+t.blacephalon = {name = 'Blacephalon', ndex = 806, type1 = 'fuoco', type2 = 'spettro'}
+t[806] = t.blacephalon
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
@@ -1751,6 +1759,12 @@ t.silvallyB = {name = 'Silvally', ndex = 773, type1 = 'buio', type2 = 'buio'}
 t['773B'] = t.silvallyB
 t.silvallyFo = {name = 'Silvally', ndex = 773, type1 = 'folletto', type2 = 'folletto'}
 t['773Fo'] = t.silvallyFo
+t.necrozmaV = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'acciaio'}
+t['800V'] = t.necrozmaV
+t.necrozmaA = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'spettro'}
+t['800A'] = t.necrozmaA
+t.necrozmaU = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'drago'}
+t['800U'] = t.necrozmaU
 
 -- Gli alias per le altre forme alternative rilevanti
 

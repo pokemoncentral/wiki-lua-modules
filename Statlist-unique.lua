@@ -141,6 +141,6 @@ end
 
 u.StatlistUnique = u.statlistUnique
 
-print(u.statlistUnique())
+print(u.statlistUnique{args={}})
 
 return u

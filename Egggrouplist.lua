@@ -101,6 +101,18 @@ end
 
 --[[
 
+Function that creates the egg group cells
+in the __tostring method. It's body is
+separated from that method because
+Egggrouplist-allgroups overrides it.
+
+--]]
+g.Entry.groupsString = function(this)
+    return this.group2 and '|| style="height: 100%; padding: 1.2ex 0.3ex;" | ' .. g.Entry.makeGroupBox(this.group1 == this.group and this.group2 or this.group1) or ''
+end
+
+--[[
+
 Wikicode for a list entry: Pokémon ndex,
 mini sprite, name and types. Mono-typed
 Pokémon display the type only once.
@@ -110,18 +122,18 @@ g.Entry.__tostring = function(this)
 	return string.interp([=[| ${ndex}
 | ${static}
 | class="hidden-xs" style="padding: 0.5ex 0.5em;" | [[${name}]]${form}
-| class="hidden-sm" style="height: 100%; padding: 1.2ex 0.3ex;"${colspan} | ${type1}${type2}${otherGroup}]=],
+| class="hidden-sm" style="height: 100%; padding: 1.2ex 0.3ex;"${colspan} | ${type1}${type2}${groups}]=],
 	{
 		ndex = this.ndex and string.tf(this.ndex) or '???',
 		static = ms.staticLua(string.tf(this.ndex or 0) ..
 				(this.formAbbr == 'base' and '' or this.formAbbr or '')),
 		name = this.name,
 		form = this.formLink[this.formAbbr] or '',
-        type1 = g.Entry.makeTypeBox(this.type1),
-        colspan = this.type1 == this.type2 and ' colspan="2"' or '',
-        type2 = this.type1 == this.type2 and ''
-                or '|| class="hidden-sm" style="height: 100%; padding: 1.2ex 0.3ex;" | ' .. g.Entry.makeTypeBox(this.type2),
-		otherGroup = this.group2 and '|| style="height: 100%; padding: 1.2ex 0.3ex;" | ' .. g.Entry.makeGroupBox(this.group1 == this.group and this.group2 or this.group1) or ''
+	type1 = g.Entry.makeTypeBox(this.type1),
+	colspan = this.type1 == this.type2 and ' colspan="2"' or '',
+	type2 = this.type1 == this.type2 and ''
+		or '|| class="hidden-sm" style="height: 100%; padding: 1.2ex 0.3ex;" | ' .. g.Entry.makeTypeBox(this.type2),
+		groups = this:groupsString(),
 	})
 end
 
@@ -210,14 +222,15 @@ optional, defaulting to the return
 of the Entry class makeHeader method.
 
 --]]
-g.makeGroupTable = function(group, Entry, header)
+g.makeGroupTable = function(group, Entry, header, headerGenerator)
+	headerGenerator = headerGenerator or makeHeader
 	return table.concat({header or Entry.header,
 		list.makeList({
 			source = groups,
 			iterator = list.pokeNames,
 			entryArgs = group,
 			makeEntry = Entry.new,
-			header = makeHeader(group,
+			header = headerGenerator(group,
 					Entry == g.SingleGroupEntry and 1 or 2),
 			footer = '|}'
 		})}, '\n')

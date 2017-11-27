@@ -1610,6 +1610,14 @@ d.magearna = {hp = 80, atk = 95, def = 115, spatk = 130, spdef = 115, spe = 65}
 d[801] = d.magearna
 d.marshadow = {hp = 90, atk = 125, def = 80, spatk = 90, spdef = 90, spe = 125}
 d[802] = d.marshadow
+d.poipole = {hp = 67, atk = 73, def = 67, spatk = 73, spdef = 67, spe = 73}
+d[803] = d.poipole
+d.naganadel = {hp = 73, atk = 73, def = 73, spatk = 127, spdef = 73, spe = 121}
+d[804] = d.naganadel
+d.stakataka = {hp = 61, atk = 131, def = 211, spatk = 53, spdef = 101, spe = 13}
+d[805] = d.stakataka
+d.blacephalon = {hp = 53, atk = 127, def = 53, spatk = 151, spdef = 79, spe = 107}
+d[806] = d.blacephalon
 
 -- Alternative forms which actually change stats
 d.deoxysA = {hp = 50, atk = 180, def = 20, spatk = 180, spdef = 20, spe = 150}
@@ -1674,8 +1682,16 @@ d.hoopaL = {hp = 80, atk = 160, def = 60, spatk = 170, spdef = 130, spe = 80}
 d['720L'] = d.hoopaL
 d.lycanrocN = {hp = 85, atk = 115, def = 75, spatk = 55, spdef = 75, spe = 82}
 d['745N'] = d.lycanrocN
+d.lycanrocC = {hp = 85, atk = 115, def = 75, spatk = 55, spdef = 75, spe = 82}
+d['745C'] = d.lycanrocC
 d.wishiwashiB = {hp = 45, atk = 140, def = 130, spatk = 140, spdef = 135, spe = 30}
 d['746B'] = d.wishiwashiB
+d.necrozmaV = {hp = 97, atk = 157, def = 127, spatk = 113, spdef = 109, spe = 77}
+d['800V'] = d.necrozmaV
+d.necrozmaA = {hp = 97, atk = 113, def = 109, spatk = 157, spdef = 127, spe = 77}
+d['800A'] = d.necrozmaA
+d.necrozmaU = {hp = 97, atk = 167, def = 97, spatk = 167, spdef = 97, spe = 129}
+d['800U'] = d.necrozmaU
 
 -- core formd.minior = {hp = 60, atk = 100, def = 60, spatk = 100, spdef = 60, spe = 120}
 -- d[774] = d.minior
