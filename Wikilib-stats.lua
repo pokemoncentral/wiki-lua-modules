@@ -8,6 +8,24 @@ local s = {}
 
 local tab = require('Wikilib-tables')
 local mg = require('Wikilib-multigen')
+local gendata = require("Gens-data")
+
+--[[
+
+Returns a stub for the generation span of the statistics
+sum, which lacks the end. The starting generation is either
+the passed one or the latest; the value itself is computed
+from those of the passed statistics in such generation.
+
+--]]
+local makeSumSpan = function(stats, gen)
+    gen = gen or gendata.latest
+
+    return {
+        val = s.statsSum(s.getStatsGen(stats, gen)),
+        first = gen
+    }
+end
 
 -- Statistics order, split by generation
 s.statsOrder = {
@@ -87,5 +105,45 @@ s.statsSum = function(stats)
         return a + b end)
 end
 s.statssum, s.stats_sum = s.statsSum, s.statsSum
+
+--[[
+
+Returns the generation spans for the statistics sum,
+starting from the given generation. First generation
+is not included.
+
+--]]
+s.spansSum = function(statSpans, startGen)
+
+    --[[
+        If stats have not changed throughout the
+        generations, returning a single span beginning
+        and ends in the latest generation.
+    --]]
+    if not s.didStatsChange(statSpans) then
+        local sum = makeSumSpan(statSpans)
+        sum.last = gendata.latest
+        return {sum}
+    end
+
+    local sums = {makeSumSpan(statSpans, startGen)}
+
+    for gen = startGen + 1, gendata.latest do
+
+        -- Whether any stat changed in the current gen
+        local anyChange = table.any(statSpans, function(stat)
+            return type(stat) == 'table' and stat[gen]
+        end)
+
+        if anyChange then
+            sums[#sums].last = gen - 1
+            table.insert(sums, makeSumSpan(statSpans, gen))
+        end
+    end
+
+    sums[#sums].last = gendata.latest
+    return sums
+end
+s.spanssum, s.spans_sum = s.spansSum, s.spansSum
 
 return s

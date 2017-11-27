@@ -39,8 +39,7 @@ local uniqueStatTotal = function(allStats, gen)
 
     -- Mapping to base stat totals
     local tots = table.map(pokesInGen, function(pokeStats)
-        return statsUtil.statsSum(
-                statsUtil.getStatsGen(pokeStats, gen))
+        return statsUtil.spansSum(pokeStats)
     end)
 
     --[[
@@ -50,9 +49,9 @@ local uniqueStatTotal = function(allStats, gen)
         Pokémon
     --]]
     return table.filter(tots, function(tot, poke)
-            return not table.any(tots, function(otherTot, otherPoke)
-                return tot == otherTot and poke ~= otherPoke
-            end)
+        return not table.any(tots, function(otherTot, otherPoke)
+            return tot == otherTot and poke ~= otherPoke
+        end)
     end)
 end
 
