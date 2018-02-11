@@ -443,7 +443,7 @@ x.UsUl = {{
 }}
 x.USUL, x.USL = x.UsUl, x.UsUl
 x.SUs = {x.So[1], x.Us[1]}
-x.SUS = x.SUs
+x.SUS, x.SoUs = x.SUs, x.SUs
 x.LUl = {x.L[1], x.Ul[1]}
 x.LUL = x.LUl
 x.SLUsUl =  {
