@@ -61,9 +61,9 @@ t.sandslash = {group1 = 'campo'}
 t[28] = t.sandslash
 t["nidoran♀"] = {group1 = 'mostro', group2 = 'campo'}
 t[29] = t["nidoran♀"]
-t.nidorina = {group1 = 'non ancora scoperto'}
+t.nidorina = {group1 = 'sconosciuto'}
 t[30] = t.nidorina
-t.nidoqueen = {group1 = 'non ancora scoperto'}
+t.nidoqueen = {group1 = 'sconosciuto'}
 t[31] = t.nidoqueen
 t["nidoran♂"] = {group1 = 'mostro', group2 = 'campo'}
 t[32] = t["nidoran♂"]
@@ -289,11 +289,11 @@ t.aerodactyl = {group1 = 'volante'}
 t[142] = t.aerodactyl
 t.snorlax = {group1 = 'mostro'}
 t[143] = t.snorlax
-t.articuno = {group1 = 'non ancora scoperto'}
+t.articuno = {group1 = 'sconosciuto'}
 t[144] = t.articuno
-t.zapdos = {group1 = 'non ancora scoperto'}
+t.zapdos = {group1 = 'sconosciuto'}
 t[145] = t.zapdos
-t.moltres = {group1 = 'non ancora scoperto'}
+t.moltres = {group1 = 'sconosciuto'}
 t[146] = t.moltres
 t.dratini = {group1 = 'acqua 1', group2 = 'drago'}
 t[147] = t.dratini
@@ -301,9 +301,9 @@ t.dragonair = {group1 = 'acqua 1', group2 = 'drago'}
 t[148] = t.dragonair
 t.dragonite = {group1 = 'acqua 1', group2 = 'drago'}
 t[149] = t.dragonite
-t.mewtwo = {group1 = 'non ancora scoperto'}
+t.mewtwo = {group1 = 'sconosciuto'}
 t[150] = t.mewtwo
-t.mew = {group1 = 'non ancora scoperto'}
+t.mew = {group1 = 'sconosciuto'}
 t[151] = t.mew
 t.chikorita = {group1 = 'mostro', group2 = 'erba'}
 t[152] = t.chikorita
@@ -345,13 +345,13 @@ t.chinchou = {group1 = 'acqua 2'}
 t[170] = t.chinchou
 t.lanturn = {group1 = 'acqua 2'}
 t[171] = t.lanturn
-t.pichu = {group1 = 'non ancora scoperto'}
+t.pichu = {group1 = 'sconosciuto'}
 t[172] = t.pichu
-t.cleffa = {group1 = 'non ancora scoperto'}
+t.cleffa = {group1 = 'sconosciuto'}
 t[173] = t.cleffa
-t.igglybuff = {group1 = 'non ancora scoperto'}
+t.igglybuff = {group1 = 'sconosciuto'}
 t[174] = t.igglybuff
-t.togepi = {group1 = 'non ancora scoperto'}
+t.togepi = {group1 = 'sconosciuto'}
 t[175] = t.togepi
 t.togetic = {group1 = 'volante', group2 = 'magico'}
 t[176] = t.togetic
@@ -403,7 +403,7 @@ t.slowking = {group1 = 'mostro', group2 = 'acqua 1'}
 t[199] = t.slowking
 t.misdreavus = {group1 = 'amorfo'}
 t[200] = t.misdreavus
-t.unown = {group1 = 'non ancora scoperto'}
+t.unown = {group1 = 'sconosciuto'}
 t[201] = t.unown
 t.wobbuffet = {group1 = 'amorfo'}
 t[202] = t.wobbuffet
@@ -473,25 +473,25 @@ t.stantler = {group1 = 'campo'}
 t[234] = t.stantler
 t.smeargle = {group1 = 'campo'}
 t[235] = t.smeargle
-t.tyrogue = {group1 = 'non ancora scoperto'}
+t.tyrogue = {group1 = 'sconosciuto'}
 t[236] = t.tyrogue
 t.hitmontop = {group1 = 'umanoide'}
 t[237] = t.hitmontop
-t.smoochum = {group1 = 'non ancora scoperto'}
+t.smoochum = {group1 = 'sconosciuto'}
 t[238] = t.smoochum
-t.elekid = {group1 = 'non ancora scoperto'}
+t.elekid = {group1 = 'sconosciuto'}
 t[239] = t.elekid
-t.magby = {group1 = 'non ancora scoperto'}
+t.magby = {group1 = 'sconosciuto'}
 t[240] = t.magby
 t.miltank = {group1 = 'campo'}
 t[241] = t.miltank
 t.blissey = {group1 = 'magico'}
 t[242] = t.blissey
-t.raikou = {group1 = 'non ancora scoperto'}
+t.raikou = {group1 = 'sconosciuto'}
 t[243] = t.raikou
-t.entei = {group1 = 'non ancora scoperto'}
+t.entei = {group1 = 'sconosciuto'}
 t[244] = t.entei
-t.suicune = {group1 = 'non ancora scoperto'}
+t.suicune = {group1 = 'sconosciuto'}
 t[245] = t.suicune
 t.larvitar = {group1 = 'mostro'}
 t[246] = t.larvitar
@@ -499,11 +499,11 @@ t.pupitar = {group1 = 'mostro'}
 t[247] = t.pupitar
 t.tyranitar = {group1 = 'mostro'}
 t[248] = t.tyranitar
-t.lugia = {group1 = 'non ancora scoperto'}
+t.lugia = {group1 = 'sconosciuto'}
 t[249] = t.lugia
-t["ho-oh"] = {group1 = 'non ancora scoperto'}
+t["ho-oh"] = {group1 = 'sconosciuto'}
 t[250] = t["ho-oh"]
-t.celebi = {group1 = 'non ancora scoperto'}
+t.celebi = {group1 = 'sconosciuto'}
 t[251] = t.celebi
 t.treecko = {group1 = 'mostro', group2 = 'drago'}
 t[252] = t.treecko
@@ -597,7 +597,7 @@ t.makuhita = {group1 = 'umanoide'}
 t[296] = t.makuhita
 t.hariyama = {group1 = 'umanoide'}
 t[297] = t.hariyama
-t.azurill = {group1 = 'non ancora scoperto'}
+t.azurill = {group1 = 'sconosciuto'}
 t[298] = t.azurill
 t.nosepass = {group1 = 'minerale'}
 t[299] = t.nosepass
@@ -721,7 +721,7 @@ t.chimecho = {group1 = 'amorfo'}
 t[358] = t.chimecho
 t.absol = {group1 = 'campo'}
 t[359] = t.absol
-t.wynaut = {group1 = 'non ancora scoperto'}
+t.wynaut = {group1 = 'sconosciuto'}
 t[360] = t.wynaut
 t.snorunt = {group1 = 'magico', group2 = 'minerale'}
 t[361] = t.snorunt
@@ -755,25 +755,25 @@ t.metang = {group1 = 'minerale'}
 t[375] = t.metang
 t.metagross = {group1 = 'minerale'}
 t[376] = t.metagross
-t.regirock = {group1 = 'non ancora scoperto'}
+t.regirock = {group1 = 'sconosciuto'}
 t[377] = t.regirock
-t.regice = {group1 = 'non ancora scoperto'}
+t.regice = {group1 = 'sconosciuto'}
 t[378] = t.regice
-t.registeel = {group1 = 'non ancora scoperto'}
+t.registeel = {group1 = 'sconosciuto'}
 t[379] = t.registeel
-t.latias = {group1 = 'non ancora scoperto'}
+t.latias = {group1 = 'sconosciuto'}
 t[380] = t.latias
-t.latios = {group1 = 'non ancora scoperto'}
+t.latios = {group1 = 'sconosciuto'}
 t[381] = t.latios
-t.kyogre = {group1 = 'non ancora scoperto'}
+t.kyogre = {group1 = 'sconosciuto'}
 t[382] = t.kyogre
-t.groudon = {group1 = 'non ancora scoperto'}
+t.groudon = {group1 = 'sconosciuto'}
 t[383] = t.groudon
-t.rayquaza = {group1 = 'non ancora scoperto'}
+t.rayquaza = {group1 = 'sconosciuto'}
 t[384] = t.rayquaza
-t.jirachi = {group1 = 'non ancora scoperto'}
+t.jirachi = {group1 = 'sconosciuto'}
 t[385] = t.jirachi
-t.deoxys = {group1 = 'non ancora scoperto'}
+t.deoxys = {group1 = 'sconosciuto'}
 t[386] = t.deoxys
 t.turtwig = {group1 = 'mostro', group2 = 'erba'}
 t[387] = t.turtwig
@@ -813,7 +813,7 @@ t.luxio = {group1 = 'campo'}
 t[404] = t.luxio
 t.luxray = {group1 = 'campo'}
 t[405] = t.luxray
-t.budew = {group1 = 'non ancora scoperto'}
+t.budew = {group1 = 'sconosciuto'}
 t[406] = t.budew
 t.roserade = {group1 = 'magico', group2 = 'erba'}
 t[407] = t.roserade
@@ -867,7 +867,7 @@ t.glameow = {group1 = 'campo'}
 t[431] = t.glameow
 t.purugly = {group1 = 'campo'}
 t[432] = t.purugly
-t.chingling = {group1 = 'non ancora scoperto'}
+t.chingling = {group1 = 'sconosciuto'}
 t[433] = t.chingling
 t.stunky = {group1 = 'campo'}
 t[434] = t.stunky
@@ -877,11 +877,11 @@ t.bronzor = {group1 = 'minerale'}
 t[436] = t.bronzor
 t.bronzong = {group1 = 'minerale'}
 t[437] = t.bronzong
-t.bonsly = {group1 = 'non ancora scoperto'}
+t.bonsly = {group1 = 'sconosciuto'}
 t[438] = t.bonsly
-t["mime jr."] = {group1 = 'non ancora scoperto'}
+t["mime jr."] = {group1 = 'sconosciuto'}
 t[439] = t["mime jr."]
-t.happiny = {group1 = 'non ancora scoperto'}
+t.happiny = {group1 = 'sconosciuto'}
 t[440] = t.happiny
 t.chatot = {group1 = 'volante'}
 t[441] = t.chatot
@@ -893,9 +893,9 @@ t.gabite = {group1 = 'mostro', group2 = 'drago'}
 t[444] = t.gabite
 t.garchomp = {group1 = 'mostro', group2 = 'drago'}
 t[445] = t.garchomp
-t.munchlax = {group1 = 'non ancora scoperto'}
+t.munchlax = {group1 = 'sconosciuto'}
 t[446] = t.munchlax
-t.riolu = {group1 = 'non ancora scoperto'}
+t.riolu = {group1 = 'sconosciuto'}
 t[447] = t.riolu
 t.lucario = {group1 = 'campo', group2 = 'umanoide'}
 t[448] = t.lucario
@@ -917,7 +917,7 @@ t.finneon = {group1 = 'acqua 2'}
 t[456] = t.finneon
 t.lumineon = {group1 = 'acqua 2'}
 t[457] = t.lumineon
-t.mantyke = {group1 = 'non ancora scoperto'}
+t.mantyke = {group1 = 'sconosciuto'}
 t[458] = t.mantyke
 t.snover = {group1 = 'mostro', group2 = 'erba'}
 t[459] = t.snover
@@ -961,35 +961,35 @@ t.froslass = {group1 = 'magico', group2 = 'minerale'}
 t[478] = t.froslass
 t.rotom = {group1 = 'amorfo'}
 t[479] = t.rotom
-t.uxie = {group1 = 'non ancora scoperto'}
+t.uxie = {group1 = 'sconosciuto'}
 t[480] = t.uxie
-t.mesprit = {group1 = 'non ancora scoperto'}
+t.mesprit = {group1 = 'sconosciuto'}
 t[481] = t.mesprit
-t.azelf = {group1 = 'non ancora scoperto'}
+t.azelf = {group1 = 'sconosciuto'}
 t[482] = t.azelf
-t.dialga = {group1 = 'non ancora scoperto'}
+t.dialga = {group1 = 'sconosciuto'}
 t[483] = t.dialga
-t.palkia = {group1 = 'non ancora scoperto'}
+t.palkia = {group1 = 'sconosciuto'}
 t[484] = t.palkia
-t.heatran = {group1 = 'non ancora scoperto'}
+t.heatran = {group1 = 'sconosciuto'}
 t[485] = t.heatran
-t.regigigas = {group1 = 'non ancora scoperto'}
+t.regigigas = {group1 = 'sconosciuto'}
 t[486] = t.regigigas
-t.giratina = {group1 = 'non ancora scoperto'}
+t.giratina = {group1 = 'sconosciuto'}
 t[487] = t.giratina
-t.cresselia = {group1 = 'non ancora scoperto'}
+t.cresselia = {group1 = 'sconosciuto'}
 t[488] = t.cresselia
 t.phione = {group1 = 'acqua 1', group2 = 'magico'}
 t[489] = t.phione
 t.manaphy = {group1 = 'acqua 1', group2 = 'magico'}
 t[490] = t.manaphy
-t.darkrai = {group1 = 'non ancora scoperto'}
+t.darkrai = {group1 = 'sconosciuto'}
 t[491] = t.darkrai
-t.shaymin = {group1 = 'non ancora scoperto'}
+t.shaymin = {group1 = 'sconosciuto'}
 t[492] = t.shaymin
-t.arceus = {group1 = 'non ancora scoperto'}
+t.arceus = {group1 = 'sconosciuto'}
 t[493] = t.arceus
-t.victini = {group1 = 'non ancora scoperto'}
+t.victini = {group1 = 'sconosciuto'}
 t[494] = t.victini
 t.snivy = {group1 = 'campo', group2 = 'erba'}
 t[495] = t.snivy
@@ -1277,29 +1277,29 @@ t.larvesta = {group1 = 'coleottero'}
 t[636] = t.larvesta
 t.volcarona = {group1 = 'coleottero'}
 t[637] = t.volcarona
-t.cobalion = {group1 = 'non ancora scoperto'}
+t.cobalion = {group1 = 'sconosciuto'}
 t[638] = t.cobalion
-t.terrakion = {group1 = 'non ancora scoperto'}
+t.terrakion = {group1 = 'sconosciuto'}
 t[639] = t.terrakion
-t.virizion = {group1 = 'non ancora scoperto'}
+t.virizion = {group1 = 'sconosciuto'}
 t[640] = t.virizion
-t.tornadus = {group1 = 'non ancora scoperto'}
+t.tornadus = {group1 = 'sconosciuto'}
 t[641] = t.tornadus
-t.thundurus = {group1 = 'non ancora scoperto'}
+t.thundurus = {group1 = 'sconosciuto'}
 t[642] = t.thundurus
-t.reshiram = {group1 = 'non ancora scoperto'}
+t.reshiram = {group1 = 'sconosciuto'}
 t[643] = t.reshiram
-t.zekrom = {group1 = 'non ancora scoperto'}
+t.zekrom = {group1 = 'sconosciuto'}
 t[644] = t.zekrom
-t.landorus = {group1 = 'non ancora scoperto'}
+t.landorus = {group1 = 'sconosciuto'}
 t[645] = t.landorus
-t.kyurem = {group1 = 'non ancora scoperto'}
+t.kyurem = {group1 = 'sconosciuto'}
 t[646] = t.kyurem
-t.keldeo = {group1 = 'non ancora scoperto'}
+t.keldeo = {group1 = 'sconosciuto'}
 t[647] = t.keldeo
-t.meloetta = {group1 = 'non ancora scoperto'}
+t.meloetta = {group1 = 'sconosciuto'}
 t[648] = t.meloetta
-t.genesect = {group1 = 'non ancora scoperto'}
+t.genesect = {group1 = 'sconosciuto'}
 t[649] = t.genesect
 t.chespin = {group1 = 'campo'}
 t[650] = t.chespin
@@ -1433,17 +1433,17 @@ t.noibat = {group1 = 'volante'}
 t[714] = t.noibat
 t.noivern = {group1 = 'volante'}
 t[715] = t.noivern
-t.xerneas = {group1 = 'non ancora scoperto'}
+t.xerneas = {group1 = 'sconosciuto'}
 t[716] = t.xerneas
-t.yveltal = {group1 = 'non ancora scoperto'}
+t.yveltal = {group1 = 'sconosciuto'}
 t[717] = t.yveltal
-t.zygarde = {group1 = 'non ancora scoperto'}
+t.zygarde = {group1 = 'sconosciuto'}
 t[718] = t.zygarde
-t.diancie = {group1 = 'non ancora scoperto'}
+t.diancie = {group1 = 'sconosciuto'}
 t[719] = t.diancie
-t.hoopa = {group1 = 'non ancora scoperto'}
+t.hoopa = {group1 = 'sconosciuto'}
 t[720] = t.hoopa
-t.volcanion = {group1 = 'non ancora scoperto'}
+t.volcanion = {group1 = 'sconosciuto'}
 t[721] = t.volcanion
 t.rowlet = {group1 = 'volante'}
 t[722] = t.rowlet
@@ -1545,9 +1545,9 @@ t.palossand = {group1 = 'amorfo'}
 t[770] = t.palossand
 t.pyukumuku = {group1 = 'acqua 1'}
 t[771] = t.pyukumuku
-t["type: null"] = {group1 = 'non ancora scoperto'}
-t[772] = t["type: null"]
-t.silvally = {group1 = 'non ancora scoperto'}
+t["tipo zero"] = {group1 = 'sconosciuto'}
+t[772] = t["tipo zero"]
+t.silvally = {group1 = 'sconosciuto'}
 t[773] = t.silvally
 t.minior = {group1 = 'minerale'}
 t[774] = t.minior
@@ -1571,41 +1571,95 @@ t["hakamo-o"] = {group1 = 'drago'}
 t[783] = t["hakamo-o"]
 t["kommo-o"] = {group1 = 'drago'}
 t[784] = t["kommo-o"]
-t["tapu koko"] = {group1 = 'non ancora scoperto'}
+t["tapu koko"] = {group1 = 'sconosciuto'}
 t[785] = t["tapu koko"]
-t["tapu lele"] = {group1 = 'non ancora scoperto'}
+t["tapu lele"] = {group1 = 'sconosciuto'}
 t[786] = t["tapu lele"]
-t["tapu bulu"] = {group1 = 'non ancora scoperto'}
+t["tapu bulu"] = {group1 = 'sconosciuto'}
 t[787] = t["tapu bulu"]
-t["tapu fini"] = {group1 = 'non ancora scoperto'}
+t["tapu fini"] = {group1 = 'sconosciuto'}
 t[788] = t["tapu fini"]
-t.cosmog = {group1 = 'non ancora scoperto'}
+t.cosmog = {group1 = 'sconosciuto'}
 t[789] = t.cosmog
-t.cosmoem = {group1 = 'non ancora scoperto'}
+t.cosmoem = {group1 = 'sconosciuto'}
 t[790] = t.cosmoem
-t.solgaleo = {group1 = 'non ancora scoperto'}
+t.solgaleo = {group1 = 'sconosciuto'}
 t[791] = t.solgaleo
-t.lunala = {group1 = 'non ancora scoperto'}
+t.lunala = {group1 = 'sconosciuto'}
 t[792] = t.lunala
-t.nihilego = {group1 = 'non ancora scoperto'}
+t.nihilego = {group1 = 'sconosciuto'}
 t[793] = t.nihilego
-t.buzzwole = {group1 = 'non ancora scoperto'}
+t.buzzwole = {group1 = 'sconosciuto'}
 t[794] = t.buzzwole
-t.pheromosa = {group1 = 'non ancora scoperto'}
+t.pheromosa = {group1 = 'sconosciuto'}
 t[795] = t.pheromosa
-t.xurkitree = {group1 = 'non ancora scoperto'}
+t.xurkitree = {group1 = 'sconosciuto'}
 t[796] = t.xurkitree
-t.celesteela = {group1 = 'non ancora scoperto'}
+t.celesteela = {group1 = 'sconosciuto'}
 t[797] = t.celesteela
-t.kartana = {group1 = 'non ancora scoperto'}
+t.kartana = {group1 = 'sconosciuto'}
 t[798] = t.kartana
-t.guzzlord = {group1 = 'non ancora scoperto'}
+t.guzzlord = {group1 = 'sconosciuto'}
 t[799] = t.guzzlord
-t.necrozma = {group1 = 'non ancora scoperto'}
+t.necrozma = {group1 = 'sconosciuto'}
 t[800] = t.necrozma
-t.magearna = {group1 = 'non ancora scoperto'}
+t.magearna = {group1 = 'sconosciuto'}
 t[801] = t.magearna
-t.marshadow = {group1 = 'non ancora scoperto'}
+t.marshadow = {group1 = 'sconosciuto'}
 t[802] = t.marshadow
+t.poipole = {group1 = 'sconosciuto'}
+t[803] = t.poipole
+t.naganadel = {group1 = 'sconosciuto'}
+t[804] = t.naganadel
+t.stakataka = {group1 = 'sconosciuto'}
+t[805] = t.stakataka
+t.blacephalon = {group1 = 'sconosciuto'}
+t[806] = t.blacephalon
+
+-- Forme alternative che esistono fuori dalla lotta e quindi
+-- possono avere un gruppo uova diverso da quello della forma base
+
+t.pikachuCs = {group1 = 'sconosciuto'}
+t.deoxysA, t.deoxysD, t.deoxysV =
+	t.deoxys, t.deoxys, t.deoxys
+t.wormadamSa, t.wormadamSc =
+	t.wormadam, t.wormadam
+t.shellosE = t.shellos
+t.gastrodonE = t.gastrodon
+t.giratinaO = t.giratina
+t.shayminC = t.shaymin
+t.basculinB = t.basculin
+t.tornadusT = t.tornadus
+t.thundurusT = t.thundurus
+t.landorusT = t.landorus
+t.kyuremB, t.kyuremN =
+	t.kyurem, t.kyurem
+t.keldeoR = t.keldeo
+t.meloettaD = t.meloetta
+t.greninjaD = {group1 = 'sconosciuto'}
+t.oricorioC, t.oricorioH, t.oricorioB =
+	t.oricorio, t.oricorio, t.oricorio
+t.lycanrocN, t.lycanrocC =
+	t.lycanroc, t.lycanroc
+t.necrozmaV, t.necrozmaA =
+	t.necrozma, t.necrozma
+t.rattataA = t.rattata
+t.raticateA = t.raticate
+t.raichuA = t.raichu
+t.sandshrewA = t.sandshrew
+t.sandslashA = t.sandslash
+t.vulpixA = t.vulpix
+t.ninetalesA = t.ninetales
+t.diglettA = t.diglett
+t.dugtrioA = t.dugtrio
+t.meowthA = t.meowth
+t.persianA = t.persian
+t.geodudeA = t.geodude
+t.gravelerA = t.graveler
+t.golemA = t.golem
+t.grimerA = t.grimer
+t.mukA = t.muk
+t.exeggutorA = t.exeggutor
+t.marowakA = t.marowak
 
 return t

@@ -56,6 +56,9 @@ return {
         end,
         
         listToText = function(tab, sep, lastSep)
+			sep = sep or ', '
+			lastSep = lastSep or ' e '
+
 			if #tab > 1 then
 				local last = table.remove(tab)
 				return table.concat{table.concat(tab, sep), lastSep, last}

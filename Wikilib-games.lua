@@ -10,8 +10,9 @@ local g = {}
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local formUtil = require('Wikilib-forms')
-local gens = require('Wikilib-gens')
+local genUtil = require('Wikilib-gens')
 local gendata = require("Gens-data")
+local pokes = require("Poké-data")
 local alts = formUtil.allFormsData()
 
 --[[
@@ -57,8 +58,8 @@ g.isInGame = function(poke, game)
         This, comparing generations is enough.
     --]]
 	if abbr == 'base' then
-		return gens.getGen.game(game)
-				>= gens.getGen.ndex(ndex)
+		return genUtil.getGen.game(game)
+				>= genUtil.getGen.ndex(ndex)
 	end
 
 	local alt = alts[ndex]
@@ -76,6 +77,26 @@ g.isInGame = function(poke, game)
 end
 
 g.is_in_game, g.isingame = g.isInGame, g.isInGame
+
+--[[
+
+Returns whether the passed Pokémon is
+present in the given generation.
+Alternative forms can also be checked,
+by passing the Pokémon name as the usual
+name + abbreviation.
+
+--]]
+g.isInGen = function(poke, gen)
+    local baseForm, abbr = formUtil.getNameAbbr(poke)
+
+    if not abbr or abbr == '' then
+        return genUtil.getGen.ndex(pokes[poke].ndex) <= gen
+    end
+
+    return g.anyInGen(gen, formUtil.formSpan(baseForm, abbr))
+end
+g.isingen, g.is_in_gen = g.isInGen, g.isInGen
 
 --[[
 
@@ -115,7 +136,7 @@ g.anyInGen = function(gen, from, to)
         released previously or in passed gen.
     --]]
     if type(from) ~= 'table' and not to then
-        return gens.getGen.game(from) <= gen
+        return genUtil.getGen.game(from) <= gen
     end
 
     -- Flipping for faster indexing check

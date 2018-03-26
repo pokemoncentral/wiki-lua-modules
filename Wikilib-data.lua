@@ -4,7 +4,7 @@ local t = {}
 
 -- Numero totale dei Pokémon
 
-t.pokeNum = 802
+t.pokeNum = 806
 t.poke_num = t.pokeNum
 
 --[[
@@ -17,7 +17,7 @@ necessitano del testo bianco quando questo è usato come sfondo.
 t.whitetext = {'blu', 'rubino', 'zaffiro', 'nero', 'nero_2', 'nero2',
 	'nero 2', 'x', 'rubino omega', 'rubino_omega', 'rubinoomega',
 	'zaffiro alpha', 'zaffiro_alpha', 'zaffiroalpha', 'osa', 'xd', 'b',
-	'ru', 'za', 'n', 'n2', 'ro'}
+	'ru', 'za', 'n', 'n2', 'ro', 'ul'}
 
 -- Ndex e nomi dei Pokémon esclusivamente femmina
 
@@ -93,6 +93,19 @@ t.allTypes = {'acciaio', 'acqua', 'buio', 'coleot', 'drago',
 
 t.types, t.all_types = t.allTypes, t.allTypes
 
+--[[
+
+Tables of all the egg groups in alphabetic order.
+
+--]]
+
+t.allGroups = {'erba', 'coleottero', 'volante', 'umanoide',
+	'minerale', 'amorfo', 'campo', 'acqua 1', 'acqua 2',
+	'acqua 3', 'mostro', 'magico', 'drago', 'ditto',
+	'sconosciuto'}
+
+t.types, t.all_types = t.allTypes, t.allTypes
+
 -- Tabella sostitutiva dei template {{male}} e {{female}}
 
 t.genders = {male = '<span style="color:#0000FF;">♂</span>',
@@ -102,9 +115,6 @@ t.genders['♀'] = t.genders.female
 
 -- Misc data about statistics
 
-t.statsOrder = {'hp', 'atk', 'def', 'spatk', 'spdef', 'spe'}
-t.statsNames = {hp = 'PS', atk = 'Attacco', def = 'Difesa',
-        spatk = 'Atttacco speciale', spdef = 'Difesa speciale',
-        spe = 'Velocità'}
+t.statsOrder = {'hp', 'atk', 'def', 'spatk', 'spdef', 'spec', 'spe'}
 
 return t

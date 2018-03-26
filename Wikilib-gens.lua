@@ -19,6 +19,18 @@ local searchThroughGens = function(index, value)
 	return nil
 end
 
+--[[
+
+Returns whether the passed generation is valid,
+that is a number between 1 and `latest`
+
+--]]
+gens.isValidGen = function(gen)
+	return type(gen) == 'number'
+			and gen > 0 and gen <= data.latest
+end
+gens.isvalidgen, gens.is_valid_gen
+        = gens.isValidGen, gens.isValidGen
 
 -- Questa table contiene varie funzioni che ritornano la generazione di
 -- appartenenza dell'argomento, o ' in caso di errore
@@ -48,7 +60,7 @@ gens.getGen.ndex = function(ndex)
 		return 5
 	elseif ndex < 722 then
 		return 6
-	elseif ndex < 803 then
+	elseif ndex < 807 then
 		return 7
 	end
 end
@@ -58,5 +70,10 @@ end
 gens.getGen.game = function(abbr)
 	return searchThroughGens('games', abbr:lower())
 end
+
+gens.latest = {}
+
+-- The latest game
+gens.latest.game = data[data.latest].games[#data[data.latest].games]
 
 return gens

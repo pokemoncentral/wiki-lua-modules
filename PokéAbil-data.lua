@@ -1602,11 +1602,19 @@ t[798] = t.kartana
 t.guzzlord = {ability1 = 'Ultraboost'}
 t[799] = t.guzzlord
 t.necrozma = {ability1 = 'Scudoprisma'}
-t[800] = t.guzzlord
+t[800] = t.necrozma
 t.magearna = {ability1 = 'Cuoreanima'}
 t[801] = t.magearna
 t.marshadow = {ability1 = 'Tecnico'}
 t[802] = t.marshadow
+t.poipole = {ability1 = 'Ultraboost'}
+t[803] = t.poipole
+t.naganadel = {ability1 = 'Ultraboost'}
+t[804] = t.naganadel
+t.stakataka = {ability1 = 'Ultraboost'}
+t[805] = t.stakataka
+t.blacephalon = {ability1 = 'Ultraboost'}
+t[806] = t.blacephalon
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
@@ -1676,6 +1684,10 @@ t.zygardeP = {ability1 = 'Sciamefusione'}
 t['718P'] = t.zygardeP
 t.lycanrocN = {ability1 = 'Sguardofermo', ability2 = 'Spiritovivo', abilityd = 'Nullodifesa'}
 t['745N'] = t.lycanrocN
+t.lycanrocC = {ability1 = 'Unghiedure'}
+t['745C'] = t.lycanrocC
+t.necrozmaU = {ability1 = 'Cerebroforza'}
+t['800U'] = t.necrozmaU
 
 -- Alias per le altre forme alternative rilevanti
 
@@ -1733,6 +1745,8 @@ t['773P'], t['773G'], t['773D'] = t.silvally, t.silvally, t.silvally
 t.silvallyP, t.silvallyG, t.silvallyD = t.silvally, t.silvally, t.silvally
 t['773B'], t['773Fo'] = t.silvally, t.silvally
 t.silvallyB, t.silvallyFo = t.silvally, t.silvally
+t['800V'], t['800A'] = t.necrozma, t.necrozma
+t.necrozmaV, t.necrozmaA = t.necrozma, t.necrozma
 
 -- Mega evolutions
 

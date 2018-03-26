@@ -91,7 +91,7 @@ effetti di Filtro/Solidroccia e Pellearsa
 dr.EffTable.allEff = {0, 0.25, 0.5, 1, 2, 4, -- Standard
 -- 0.125, -- Tripla resistenza (al momento inutile)
 -- 0.3125, 0.625, 1.25, 2.5, 5, -- Pellearsa (al momento inutile)
-1.5 -- 3 -- Filtro/Solidroccia (al momento 3 è inutile)
+1.5, 3 -- Filtro/Solidroccia
 }
 
 --[[
@@ -614,23 +614,19 @@ dr.EffTable.FooterLine.new = function(kind, types, abil)
 				Se l'abilità viene persa, la nuova
 				efficacia è piena, altrimenti ridotta
 			--]]
-			local x2Key, x4Key
+			local xKeys
 			if kind == 'TAKENOFF' then
-				x2Key, x4Key = 2, 4
+				xKeys = {[2] = 2, [4] = 4}
 			else
-				x2Key, x4Key = 1.5, 3
+				xKeys = {[2] = 1.5, [4] = 3}
 			end
-
-			local x2 = et.difesa(2, types.type1, types.type2, 'tanfo')
-			table.sort(x2) -- Vedi commento a this.newEff
-			this.newEff[x2Key] = x2
 			
-			local x4 = et.difesa(4, types.type1, types.type2, 'tanfo')
-			
-			-- Non è detto che vi siano doppie debolezze
-			if #x4 > 0 then
-				table.sort(x4) -- Vedi commento a this.newEff
-				this.newEff[x4Key] = x4
+			for k, v in pairs(xKeys) do
+				local x = et.difesa(k, types.type1, types.type2, 'tanfo')
+				if #x > 0 then
+					table.sort(x) -- Vedi commento a this.newEff
+					this.newEff[v] = x
+				end
 			end
 			
 			return this

@@ -9,6 +9,7 @@ local mw = require('mw')
 
 local f = {}
 local tab = require('Wikilib-tables')
+local genUtil = require('Wikilib-gens')
 local alt = require("AltForms-data")
 
 --[[
@@ -20,7 +21,7 @@ Restituisce la tabella così creata
 --]]
 f.allFormsData = function()
 	local all = table.cloneLoadData(alt)
-	local useless = require("UselessForms-data")
+	local useless = require('UselessForms-data')
 
 	--[[
         No need for ipairs because integer keys
@@ -109,7 +110,7 @@ f.getnameabbr = function(name, extform)
 		name = tonumber(name) or name:lower()
 		return name, alt[name].ext[extform] or 'base'
 	end
-	poke, abbr = name:match("^([%lé%-♂♀%s%.&#;%d]+)(%u*%a*)$")
+	poke, abbr = name:match("^([%lé%-♂♀'%s%.&#;%d]+)(%u*%a*)$")
 	return tonumber(poke) or poke or '', abbr or 'base'
 end
 
@@ -126,32 +127,11 @@ del Pokémon e quello esteso della forma alternativa.
 --]]
 f.getlink = function(poke, black, extform)
 	black = black and 'black' or ''
-
-	--[[
-		È stato fornito il terzo parametro,
-		si cerca nella table ext. Il '' a
-		default in abbr serve per assicurare
-		l'indicizzazione nell'istruzione successiva
-	--]]
-	if alt[tonumber(poke) or poke:lower()] then
-		extform = string.lower(extform or '')
-		poke = tonumber(poke) or poke:lower()
-		abbr = alt[poke].ext[extform] or ''
-		return alt[poke][black .. 'links'][abbr] or ''
-	end
-
-	--[[
-		Senza terzo parametro, bisogna estrarre
-		nome del Pokémon e sigla della forma
-		alternativa dal nome, per poi usarli come
-		indici del modulo AltForms/data
-	--]]
-	local name, form = poke:match("^([%lé%-♂♀%s%.&#;%d]+)(%u*%a*)$")
-	if form == '' then
+	local poke, extform = f.getnameabbr(poke, extform)
+	if extform == '' or extform == 'base' then
 		return ''
 	end
-	name = tonumber(name) or name
-	return alt[name][black .. 'links'][form] or ''
+	return alt[poke] and alt[poke][black .. 'links'][extform] or ''
 end
 
 f.getLink, f.get_link = f.getlink, f.getlink
@@ -226,5 +206,21 @@ f.hasAlola = function(poke)
 end
 
 f.has_alola, f.hasalola = f.hasAlola, f.hasAlola
+
+--[[
+
+Returns the first and last game a form is
+available.
+
+--]]
+f.formSpan = function(poke, abbr)
+	return alt[poke].since[abbr], (
+			alt[poke]['until']
+					and alt[poke]['until'][abbr]
+					or genUtil.latest.game
+			)
+end
+
+f.formspan, f.form_span = f.formSpan, f.formSpan
 
 return f
