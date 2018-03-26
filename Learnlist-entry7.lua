@@ -18,6 +18,12 @@ end
 
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
+	if p[1] == 'Evo' or p[1] == 'Evoluzione' then
+		p[1] = 'Evo<span class="hidden-xs">luzione</span>'
+	end
+	if p[2] == 'Evo' or p[2] == 'Evoluzione' then
+		p[2] = 'Evo<span class="hidden-xs">luzione</span>'
+	end
     return table.concat{'|-\n', lib.gameslevel(p[1] or
 		[[<span class="explain" title="Disponibile solo in Ultrasole e Ultraluna">&mdash;</span>]], p[2] or [[<span class="explain" title="Disponibile solo in Sole e Luna">&mdash;</span>]]),
 		entry(p[5] or '', p[3] or 'Geloraggio', lib.makeNotes(p[4] or ''))}
@@ -47,7 +53,7 @@ z.breed = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return string.interp(table.concat{[[|-
 | style="padding: 0.1em 0.3em;" | ${p1}]],
-		entry(p[4] or '', p[2] or 'Lanciafiamme', lib.makeNotes(p[3] or ''))},
+		entry(p[4] or '', p[2] or 'Lanciafiamme', lib.makeNotes(p[3] or '', lib.makeNotes(p[5] or '', lib.makeNotes(p[6] or ''))))},
 {
 	p1 = lib.insertnwlns(p[1] or '', nil, '7')
 })

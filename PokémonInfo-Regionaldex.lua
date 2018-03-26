@@ -106,7 +106,7 @@ local dexlist = function(dexes)
 		store[k] = v
 	end
 	if #store > 5 then
-		table.insert(store, 1 + math.floor(#store / 2), '</div><div class="flex-row-center-around">')
+		table.insert(store, 1 + math.floor(#store / 2), '<div class="width-xl-100"></div>')
 	end
 	return table.concat(store)
 end
@@ -134,7 +134,7 @@ end
 rdex.regionaldex = function(frame)
 	local ndex = string.trim(frame.args[1]) or '000'
 	return string.interp([=[| colspan="2" | <div>[[Pokédex Regionale|<span style="color:#000;">'''Pokédex Regionali'''</span>]]</div>
-<div class="roundy flex-row-center-around" style="background: #fff; padding-top: 0.5ex; padding-bottom: 0.5ex;">${dexlist}</div>
+<div class="roundy flex-row-center-around flex-wrap" style="background: #fff; padding-top: 0.5ex; padding-bottom: 0.5ex;">${dexlist}</div>
 ]=],
 {
 	dexlist = dexlist(search(ndex)) or 'In nessun Pokédex Regionale'
@@ -143,5 +143,5 @@ end
 
 rdex.Regionaldex, rdex.RegionalDex = rdex.regionaldex, rdex.regionaldex
 -- return rdex
-arg = {'001'}
+arg = {'064'}
 print(rdex.regionaldex{args={arg[1]}})
