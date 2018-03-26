@@ -22,7 +22,7 @@ al.lastabils = function(abil)
 		if (type(v) == 'string') then
 			return v
 		end
-		for i=gen.lastGen,3,-1 do
+		for i = gen.lastGen, 3, -1 do
 			if (v[i]) then
 				return v[i]
 			end

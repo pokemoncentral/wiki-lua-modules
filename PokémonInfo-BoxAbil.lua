@@ -1,4 +1,4 @@
--- Box delle abilità per il PokémonInfo
+-- Abilities box for template PokémonInfo
 
 local b = {}
 
@@ -14,30 +14,27 @@ local tab = require('Wikilib-tables')
 local abils = require('PokéAbil-data')
 local c = require("Colore-data")
 
--- Table contenente le forme di Pikachu da ignorare
-local ignorableForms = {'pikachuR', 'pikachuD',
-	'pikachuCn', 'pikachuS', 'pikachuW'}
+-- Table holding Pikachu forms to be ignored
+local ignorableForms = {'pikachuR', 'pikachuD', 'pikachuCn', 'pikachuS',
+    'pikachuW'}
 
 --[[
 
-Questa classe rappresenta una casella
-del box delle abilità del PokémonInfo,
-mantenendo informazioni sulle combinazioni
-di abilità e sulle forme che le hanno.
+This class represents a cell of the abilities box and contains information
+about the abilities and the forms that share the same abilities combination.
 
 --]]
 local AbilsBox = oop.makeClass(list.Labelled)
 
 --[[
 
-Costruttore della classe: ha in ingresso il
-nome del Pokémon, nella forma nome/ndex + sigla,
-e, opzionalmente, il nome esteso della forma
+Constructor: takes the name of the Pokémon, and an optionally extended name of
+the form. The name is given in the form name/ndex + abbreviation,
 
 --]]
 AbilsBox.new = function(name, formName)
 
-	-- Meowstic e Pokémon con abilità non rivelata
+	-- Pokémon whose ability is yet unknown
 	if abils[name].ability1 == '' then
 		return nil
 	end
@@ -58,14 +55,15 @@ AbilsBox.__eq = function(a, b)
 	return a.ability1 == b.ability1
 			and a.ability2 == b.ability2
 			and a.abilityd == b.abilityd
-            and a.eventability == b.eventability
+            and a.abilitye == b.abilitye
 end
 
 --[[
 
-Wikicode per una cella del box delle abilità:
-le abilità standard sono a sinistra, quella
-nascosta a destra, e le forme sopra.
+Wikicode for an abilities box cell: the standard abilities are on the left,
+and the hidden one is on the right. The event ability takes the place of the
+hidden ability when there is none, otherwise it sits below. The form names
+are added at the top, if present.
 
 --]]
 AbilsBox.__tostring = function(this)
@@ -82,18 +80,17 @@ AbilsBox.__tostring = function(this)
 	end
 
     local eventAbil = ''
-	if this.abilityd then
+	if this.abilitye then
 		eventAbil = string.interp('<div class="width-xl-${width}">${abil}<div class="small-text">Abilit&agrave; evento</div></div>',
                 {
                     width = this.abilityd and '100' or '50',
-                    abil = l.aColor(this.eventability)
+                    abil = l.aColor(this.abilitye)
                 })
 	end
 
-	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center width-xl-${boxWidth}" style="box-sizing: border-box; padding: 0.2em;">${forms}<div class="width-xl-${stdWidth}">${stdAbils}</div>${hiddenAbil}${eventAbil}</div>',
+	return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center width-xl-100" style="padding: 0.2em;">${forms}<div class="width-xl-${stdWidth}">${stdAbils}</div>${hiddenAbil}${eventAbil}</div>',
 	{
-		boxWidth = this.abilityd and '100' or '50',
-		stdWidth = this.abilityd and '50' or '100',
+		stdWidth = (this.abilityd or this.abilitye) and '50' or '100',
 		forms = #this.labels < 1 and '' or table.concat{
 			'<div class="small-text width-xl-100" style="padding-bottom: 0.2em;">',
 			mw.text.listToText(this.labels, ', ', ' e '),
@@ -105,28 +102,19 @@ AbilsBox.__tostring = function(this)
 	})
 end
 
---[[
-
-Stampa in HTML una table di AbilBoxes:
-ogni forma ha una cella, che può
-affiancarsi a quella di un'altra forma
-in assenza di abilità nascosta.
-
---]]
+-- HTML code for the forms cells
 local printBoxes = function(boxes)
 	local acc = table.map(boxes, tostring)
-	table.insert(acc, 1, '<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center roundy text-center" style="background: #FFF; padding: 0.2em;">')
+	table.insert(acc, 1, '<div class="roundy text-center" style="background: #FFF; padding: 0.2em;">')
 	table.insert(acc, '</div>')
 	return table.concat(acc)
 end
 
 --[[
 
-Dato il nome di un Pokémon o il suo ndex,
-ritorna il box delle abilità, con una
-cella per ogni diversa configurazione di
-abilità delle forme alternative, con
-sotto i nomi delle forme che la hanno.
+Given a Pokémon name, or its ndex, returns the HTML code for the template
+PokémonInfo abilities box. Every combination of abilities has its own cell,
+with the forms that have if displayed above.
 
 --]]
 b.boxAbil = function(frame)

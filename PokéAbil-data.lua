@@ -1317,7 +1317,7 @@ t.froakie = {ability1 = 'Acquaiuto', abilityd = 'Mutatipo'}
 t[656] = t.froakie
 t.frogadier = {ability1 = 'Acquaiuto', abilityd = 'Mutatipo'}
 t[657] = t.frogadier
-t.greninja = {ability1 = 'Acquaiuto', abilityd = 'Mutatipo', eventability = 'Morfosintonia'}
+t.greninja = {ability1 = 'Acquaiuto', abilityd = 'Mutatipo', abilitye = 'Morfosintonia'}
 t[658] = t.greninja
 t.bunnelby = {ability1 = 'Raccolta', ability2 = 'Guancegonfie', abilityd = 'Macroforza'}
 t[659] = t.bunnelby
@@ -1437,7 +1437,7 @@ t.xerneas = {ability1 = 'Aurafolletto'}
 t[716] = t.xerneas
 t.yveltal = {ability1 = 'Auratetra'}
 t[717] = t.yveltal
-t.zygarde = {ability1 = 'Frangiaura', ability2 = 'Sciamefusione'}
+t.zygarde = {ability1 = 'Frangiaura', abilitye = 'Sciamefusione'}
 t[718] = t.zygarde
 t.diancie = {ability1 = 'Corpochiaro'}
 t[719] = t.diancie
@@ -1489,7 +1489,7 @@ t.cutiefly = {ability1 = 'Mielincetta', ability2 = 'Polvoscudo', abilityd = 'Dol
 t[742] = t.cutiefly
 t.ribombee = {ability1 = 'Mielincetta', ability2 = 'Polvoscudo', abilityd = 'Dolcevelo'}
 t[743] = t.ribombee
-t.rockruff = {ability1 = 'Sguardofermo', ability2 = 'Spiritovivo', abilityd = 'Cuordeciso'}
+t.rockruff = {ability1 = 'Sguardofermo', ability2 = 'Spiritovivo', abilityd = 'Cuordeciso', abilitye = 'Mente Locale'}
 t[744] = t.rockruff
 t.lycanroc = {ability1 = 'Sguardofermo', ability2 = 'Remasabbia', abilityd = 'Cuordeciso'}
 t[745] = t.lycanroc
