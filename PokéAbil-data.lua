@@ -1615,6 +1615,8 @@ t.stakataka = {ability1 = 'Ultraboost'}
 t[805] = t.stakataka
 t.blacephalon = {ability1 = 'Ultraboost'}
 t[806] = t.blacephalon
+t.zeraora = {ability1 = 'Assorbivolt'}
+t[807] = t.zeraora
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio

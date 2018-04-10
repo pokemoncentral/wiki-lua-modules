@@ -1615,6 +1615,8 @@ t.stakataka = {group1 = 'sconosciuto'}
 t[805] = t.stakataka
 t.blacephalon = {group1 = 'sconosciuto'}
 t[806] = t.blacephalon
+t.zeraora = {group1 = 'sconosciuto'}
+t[807] = t.zeraora
 
 -- Forme alternative che esistono fuori dalla lotta e quindi
 -- possono avere un gruppo uova diverso da quello della forma base

@@ -1617,6 +1617,8 @@ t.stakataka = {name = 'Stakataka', ndex = 805, type1 = 'roccia', type2 = 'acciai
 t[805] = t.stakataka
 t.blacephalon = {name = 'Blacephalon', ndex = 806, type1 = 'fuoco', type2 = 'spettro'}
 t[806] = t.blacephalon
+t.zeraora = {name = 'Zeraora', ndex = 807, type1 = 'elettro', type2 = 'elettro'}
+t[807] = t.zeraora
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa

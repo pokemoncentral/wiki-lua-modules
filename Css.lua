@@ -122,7 +122,7 @@ processInput.gradient = function(args)
 	-- Named parameters, as described above
 	if p.type1 or p.type then
 		p = w.emptyStringToNil(p)
-	
+
 		local type1, mod1 = (p.type1 or p.type)
 				:match('^(%S+)%s*(.*)$')
 
@@ -170,7 +170,7 @@ processInput.gradient = function(args)
 			Color name: next parameter should
 			be the shade, so nothing is appended
 			to args now.
-			
+
 			not currColor is necesary due to
 			'normale' being both a color and
 			a shade
@@ -182,7 +182,7 @@ processInput.gradient = function(args)
 		elseif type(currColor) =='table'
 			and currColor[param]
 		then
-			table.insert(gradArgs, '#' .. currColor[param])			
+			table.insert(gradArgs, '#' .. currColor[param])
 			currColor = nil
 
 		--[[
@@ -194,7 +194,7 @@ processInput.gradient = function(args)
 		--]]
 		elseif not param:find('%X') then
 			table.insert(gradArgs, '#' .. param)
-		
+
 		-- Color stop: appending to last args
 		elseif string.parseInt(param) then
 			gradArgs[#gradArgs] = table.concat{
@@ -263,7 +263,7 @@ styles.gradient.radial = function(config, colors)
 			funct, '(', config, ', ', colors, ')'})
 	end
 
-	return table.concat(css, '; ') .. ';'	
+	return table.concat(css, '; ') .. ';'
 end
 
 -- Generates horizontal linear gradients styles
@@ -282,12 +282,12 @@ css.vert_grad_lua = css.vertGradLua
 
 -- Generates slanted linear gradients styles
 css.slantedGradLua = function(args)
-	args = processInput.gradient(args)
 	local angle = table.remove(args, 1)
+	args = processInput.gradient(args)
 
 	return styles.gradient.linear('slanted',
 			tonumber(angle) and angle .. 'deg' or angle,
-			unpack(args)
+			args
 	)
 end
 css.slanted_grad_lua = css.slantedGradLua
@@ -296,7 +296,7 @@ css.slanted_grad_lua = css.slantedGradLua
 css.radialGradLua = function(args)
 	args = processInput.gradient(args)
 	local first = table.remove(args, 1)
-	
+
 	return styles.gradient.radial(first, args)
 end
 css.radial_grad_lua = css.radialGradLua
