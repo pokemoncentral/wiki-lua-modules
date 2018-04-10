@@ -282,8 +282,10 @@ css.vert_grad_lua = css.vertGradLua
 
 -- Generates slanted linear gradients styles
 css.slantedGradLua = function(args)
-	local angle = table.remove(args, 1)
+	-- Angle taken before input processing because an angle is considered as and hexadecimal
+	local angle = string.trim(args[1])
 	args = processInput.gradient(args)
+	table.remove(args, 1)
 
 	return styles.gradient.linear('slanted',
 			tonumber(angle) and angle .. 'deg' or angle,
