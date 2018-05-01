@@ -377,9 +377,9 @@ end
 
 c.pcwiki = function(frame)
     local var = (string.trim(frame.args[1] or 'normale')):lower()
-    local colors = {['medium light'] = 'CEE0F4',
-		['medium dark'] = '779FD3'}
-	return colors[var] or _colore(var, '9FC1E7', 'E4ECF5', '437DBF')
+    local colors = {['medium light'] = 'B1D6FF',
+		['medium dark'] = '5BA0FF'}
+	return colors[var] or _colore(var, '7CBAFF', 'D0E6FF', '0078FF')
 end
 
 c.PCWiki, c.PCwiki = c.pcwiki, c.pcwiki
