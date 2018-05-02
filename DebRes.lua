@@ -424,11 +424,11 @@ dr.EffTable.__tostring = function(this)
 	-- È inutile ordinare imm e std, hanno un solo elemento
 	table.sort(res, dr.EffTable.greatestEffFirst)
 	table.sort(weak, dr.EffTable.greatestEffFirst)
-	
+
 	interpData.effBoxes = dr.EffTable.printEffBoxes({weak, std,
 			res, imm}, this.colors)
-	
-	local tab = string.interp([[<div class="roundy pull-center text-center width-xl-80 width-md-100" style="padding: 0.5ex; padding-bottom: 0.01ex; ${bg}">${effBoxes}${foot}</div>]], interpData)
+
+	local tab = string.interp([[<div class="roundy pull-center text-center overflow-auto width-xl-80 width-md-100" style="padding: 0.5ex; padding-bottom: 0.01ex; ${bg}">${effBoxes}${foot}</div>]], interpData)
 
 	if #this.labels > 0 then
 		return string.interp([[==== ${title} ====
