@@ -78,8 +78,9 @@ EffTable.createColors = function(this, types)
 		type2 = types.type2,
 	}
 	for k, v in pairs(this.colors) do
-		this.colors[k] = string.lower(v)
-		this.colors[k] = table.search(data.allTypes, this.colors[k]) and this.colors[k] or 'sconosciuto'
+		v = string.lower(v)
+		this.colors[k] = (v == 'coleottero' or table.search(data.allTypes, v)) and
+							v or 'sconosciuto'
 	end
 end
 
@@ -223,5 +224,5 @@ dr.debRes = function(frame)
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
-print(dr.DebRes{args={"ゥ$ (F4)"}})
+print(dr.DebRes{args={'c (minuscolo)'}})
 return dr
