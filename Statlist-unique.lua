@@ -125,7 +125,7 @@ Specific generation:
 
 --]]
 u.statlistUnique = function(frame)
-    local gen = tonumber(frame.args[1] or gendata.latest)
+    local gen = tonumber(frame.args[1]) or gendata.latest
     return list.makeList({
         source = uniqueStatTotal(require('PokéStats-data'), gen),
         makeEntry = Entry,
