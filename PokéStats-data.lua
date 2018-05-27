@@ -1055,7 +1055,7 @@ d[523] = d.zebstrika
 d.roggenrola = {hp = 55, atk = 75, def = 85, spatk = 25, spdef = 25, spe = 15}
 d[524] = d.roggenrola
 d.boldore = {hp = 70, atk = 105, def = 105, spatk = 50, spdef = 40, spe = 20}
-d[525] = d.boldore 
+d[525] = d.boldore
 d.gigalith = {hp = 85, atk = 135, def = 130, spatk = 60, spdef = {[5] = 70, [6] = 80}, spe = 25}
 d[526] = d.gigalith
 d.woobat = {hp = {[5] = 55, [7] = 65}, atk = 45, def = 43, spatk = 55, spdef = 43, spe = 72}
@@ -1618,6 +1618,8 @@ d.stakataka = {hp = 61, atk = 131, def = 211, spatk = 53, spdef = 101, spe = 13}
 d[805] = d.stakataka
 d.blacephalon = {hp = 53, atk = 127, def = 53, spatk = 151, spdef = 79, spe = 107}
 d[806] = d.blacephalon
+d.zeraora = {hp = 88, atk = 112, def = 75, spatk = 102, spdef = 80, spe = 143}
+d[807] = d.zeraora
 
 -- Alternative forms which actually change stats
 d.deoxysA = {hp = 50, atk = 180, def = 20, spatk = 180, spdef = 20, spe = 150}
