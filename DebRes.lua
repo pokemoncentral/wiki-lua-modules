@@ -68,11 +68,11 @@ dr.EffTable = oop.makeClass(list.Labelled)
 -- Utility strings
 dr.EffTable.strings = {
 
-	-- Wikicode for the beginning of a box (Weaknesses, Resistances, etc)
-	BOX_INIT = [=[<div style="padding: 0.5em 0;"><span class="inline-block align-middle text-center width-xl-30 width-xs-100" style="padding: 0.3em;">'''${text}'''</span><div class="inline-block align-middle width-xl-70 width-xs-100" style="padding: 0;">]=],
+    -- Wikicode for the beginning of a box (Weaknesses, Resistances, etc)
+    BOX_INIT = [=[<div style="padding: 0.5em 0;"><span class="inline-block align-middle text-center width-xl-30 width-xs-100" style="padding: 0.3em;">'''${text}'''</span><div class="inline-block align-middle width-xl-70 width-xs-100" style="padding: 0;">]=],
 
-	-- Wikicode for an effextiveness line
-	BOX_LINE = [=[<div class="flex flex-row flex-wrap flex-items-stretch width-xl-100" style="padding: 0.1em;"><div class="roundy vert-middle width-xl-5 width-md-10 width-xs-100" style="padding: 0 0.2em; background: #FFF;"><span>${eff}&times;</span></div><div class="text-left text-center-xs width-xl-95 width-md-90 width-xs-100" style="padding-left: 0.2em;">${types}</div></div>]=],
+    -- Wikicode for an effextiveness line
+    BOX_LINE = [=[<div class="flex flex-row flex-wrap flex-items-stretch width-xl-100" style="padding: 0.1em;"><div class="roundy vert-middle width-xl-5 width-md-10 width-xs-100" style="padding: 0 0.2em; background: #FFF;"><span>${eff}&times;</span></div><div class="text-left text-center-xs width-xl-95 width-md-90 width-xs-100" style="padding-left: 0.2em;">${types}</div></div>]=],
 }
 
 --[[
@@ -89,8 +89,8 @@ dr.EffTable.allEff = {0, 0.25, 0.5, 1, 2, 4, -- Standard
 
 -- Dedicated effectiveness representations
 dr.EffTable.effStrings = {
-	[0.5] = '½',
-	[0.25] = '¼'
+    [0.5] = '½',
+    [0.25] = '¼'
 }
 
 --[[
@@ -98,7 +98,7 @@ dr.EffTable.effStrings = {
     Otherwise it just prints it using the comma as decimal separator
 --]]
 dr.EffTable.displayEff = function(eff)
-	return dr.EffTable.effStrings[eff] or (tostring(eff):gsub('%.', ','))
+    return dr.EffTable.effStrings[eff] or (tostring(eff):gsub('%.', ','))
 end
 
 --[[
@@ -108,69 +108,66 @@ types. This happens only if the ability doesn't modify the types immunities.
 
 --]]
 dr.EffTable.shouldAddMaybe = function(abil, types)
-	local abilMod = et.modTypesAbil[abil]
-	local immType1 = et.typesHaveImm[types.type1]
-	local immType2 = et.typesHaveImm[types.type2]
+    local abilMod = et.modTypesAbil[abil]
+    local immType1 = et.typesHaveImm[types.type1]
+    local immType2 = et.typesHaveImm[types.type2]
 
     -- Ability doesn't modify any types
-	if not abilMod then
-		return false
-	end
+    if not abilMod then
+        return false
+    end
 
     -- The types don't have immunities
-	if not (immType1 or immType2) then
-		return true
-	end
+    if not (immType1 or immType2) then
+        return true
+    end
 
-	for _, type in pairs(abilMod) do
-		if immType1 and table.search(immType1, type)
-				or immType2 and table.search(immType2, type) then
-			return false
-		end
-	end
-	return true
+    return not table.any(abilMod, function(type)
+            return immType1 and table.search(immType1, type)
+                    or immType2 and table.search(immType2, type)
+        end)
 end
 
 -- Used to sort effectiveness boxes by ascending effectiveness
 dr.EffTable.greatestEffFirst = function(line0, line1)
-	return line0.eff > line1.eff
+    return line0.eff > line1.eff
 end
 
 -- Prints a list of types as Boxes
 dr.EffTable.printTypes = function(types)
-	return box.listTipoLua(types, ' inline-block width-xl-15 width-md-20 width-sm-35 width-xs-45',
-		'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold;')
+    return box.listTipoLua(types, ' inline-block width-xl-15 width-md-20 width-sm-35 width-xs-45',
+        'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold;')
 end
 
 -- Prints a single lines of types having the same effectiveness
 dr.EffTable.printEffLine = function(data)
-	return string.interp(dr.EffTable.strings.BOX_LINE,
-		{
-			eff = dr.EffTable.displayEff(data.eff),
-			types = dr.EffTable.printTypes(data.types),
-		})
+    return string.interp(dr.EffTable.strings.BOX_LINE,
+        {
+            eff = dr.EffTable.displayEff(data.eff),
+            types = dr.EffTable.printTypes(data.types),
+        })
 end
 
 -- Prints a single effectiveness box (Weaknesses, Std, etc...)
 dr.EffTable.printSingleBox = function(boxData)
     -- Only effectiveness list have numbers as keys
-	local effData = table.filter(boxData, function(_, key)
+    local effData = table.filter(boxData, function(_, key)
             return type(key) == 'number' end)
     local allLines = w.mapAndConcat(effData, dr.EffTable.printEffLine)
 
-	return string.interp(table.concat{dr.EffTable.strings.BOX_INIT,
-			allLines, '</div></div>'},
-		{
-			text = boxData.text,
-		})
+    return string.interp(table.concat{dr.EffTable.strings.BOX_INIT,
+            allLines, '</div></div>'},
+        {
+            text = boxData.text,
+        })
 end
 
 -- Prints non-empty effectiveness boxes only
 dr.EffTable.printEffBoxes = function(boxes)
-	boxes = table.filter(boxes, function(b)
-		      return type(b) ~= 'table' or #b > 0
-	    end)
-	return w.mapAndConcat(boxes, dr.EffTable.printSingleBox)
+    boxes = table.filter(boxes, function(b)
+              return type(b) ~= 'table' or #b > 0
+        end)
+    return w.mapAndConcat(boxes, dr.EffTable.printSingleBox)
 end
 
 --[[
@@ -180,50 +177,50 @@ an optional extended name of the alternative form.
 
 --]]
 dr.EffTable.new = function(name, formName)
-	local types, abils
+    local types, abils
 
-	if type(name) == 'table' and type(formName) == 'table' then
-		types = table.map(name, string.lower)
-		abils = table.map(formName, string.lower)
-	else
-		types = pokes[name]
-		abils = table.map(abillib.lastAbils(abilData[name]), string.lower)
-	end
+    if type(name) == 'table' and type(formName) == 'table' then
+        types = table.map(name, string.lower)
+        abils = table.map(formName, string.lower)
+    else
+        types = pokes[name]
+        abils = table.map(abillib.lastAbils(abilData[name]), string.lower)
+    end
 
-	local this = setmetatable(dr.EffTable.super.new(formName),
-			dr.EffTable)
-	this.collapse = ''
+    local this = setmetatable(dr.EffTable.super.new(formName),
+            dr.EffTable)
+    this.collapse = ''
 
-	-- Printing stuff
-	this:createColors(types)
+    -- Printing stuff
+    this:createColors(types)
 
-	local onlyAbil = table.getn(abils) == 1
+    local onlyAbil = table.getn(abils) == 1
 
-	--[[
-		For non unique abilities, the effectiveness calculations have to be
+    --[[
+        For non unique abilities, the effectiveness calculations have to be
         made without ability, since the footer will contain lines about them.
-	--]]
-	local abil = onlyAbil and abils.ability1 or 'tanfo'
+    --]]
+    local abil = onlyAbil and abils.ability1 or 'tanfo'
 
-	--[[
-		For every possible effectiveness value, checks for types having it
+    --[[
+        For every possible effectiveness value, checks for types having it
         against the current types + ability combination. If some are found,
         they are added as a table to this, the key being the effectiveness.
-	--]]
-	for _, eff in ipairs(dr.EffTable.allEff) do
-		local effTypes = et.difesa(eff, types.type1, types.type2, abil)
-		if #effTypes > 0 then
+    --]]
+    for _, eff in ipairs(dr.EffTable.allEff) do
+        local effTypes = et.difesa(eff, types.type1, types.type2, abil)
+        if #effTypes > 0 then
 
             -- Sorting necessary for comparison and printing.
-			table.sort(effTypes)
-			this[eff] = effTypes
-		end
-	end
+            table.sort(effTypes)
+            this[eff] = effTypes
+        end
+    end
 
-	-- Contains footer lines as instances of dr.EffTable.FooterLine
-	this:makeFooter(abil, types, abils, onlyAbil)
+    -- Contains footer lines as instances of dr.EffTable.FooterLine
+    this:makeFooter(abil, types, abils, onlyAbil)
 
-	return this
+    return this
 end
 
 --[[
@@ -233,29 +230,24 @@ and the effectiveness values are equal.
 
 --]]
 dr.EffTable.__eq = function(a, b)
-	if not table.equal(a.footer, b.footer) then
-		return false
-	end
+    if not table.equal(a.footer, b.footer) then
+        return false
+    end
 
-	--[[
+    --[[
         dr.EffTable.allEff is used since a and b can have different
         effectinevess values.
     --]]
-	for _, eff in pairs(dr.EffTable.allEff) do
-		if not table.equal(a[eff], b[eff]) then
-			return false
-		end
-	end
-
-	return true
+    return table.all(dr.EffTable.allEff, function(eff)
+            return table.equal(a[eff], b[eff]) end)
 end
 
 -- Creates the colors to be used as input for the CSS module
 dr.EffTable.createColors = function(this, types)
-	this.colors = {
-		type1 = types.type1,
-		type2 = types.type2,
-	}
+    this.colors = {
+        type1 = types.type1,
+        type2 = types.type2,
+    }
 
     -- Because void methods are bad
     return this
@@ -267,41 +259,41 @@ dr.EffTable.makeFooter = function(this, abil, types, abils, onlyAbil)
     this.footer = {}
 
     -- Adding immunities footer lines
-	if abil ~= 'magidifesa' then
-		if et.typesHaveImm[types.type1] then
-			table.insert(this.footer, dr.EffTable.FooterLine.new('RINGTARGET',
-					types, abils))
-		end
+    if abil ~= 'magidifesa' then
+        if et.typesHaveImm[types.type1] then
+            table.insert(this.footer, dr.EffTable.FooterLine.new('RINGTARGET',
+                    types, abils))
+        end
 
-		if not (types.type1 == types.type2) and et.typesHaveImm[types.type2] then
+        if not (types.type1 == types.type2) and et.typesHaveImm[types.type2] then
             --[[
                 Swapping types for dual typed Pokémon, since
                 dr.EffTable.FooterLine only checks the first one for immunities
             --]]
-			table.insert(this.footer, dr.EffTable.FooterLine.new('RINGTARGET',
-					{type1 = types.type2, type2 = types.type1}, abils))
-		end
-	end
+            table.insert(this.footer, dr.EffTable.FooterLine.new('RINGTARGET',
+                    {type1 = types.type2, type2 = types.type1}, abils))
+        end
+    end
 
     -- Adding TAKENOFF footer line for Pokémon having just one ability
-	if onlyAbil then
-		if et.modTypesAbil[abil] then
-			table.insert(this.footer, dr.EffTable.FooterLine.new('TAKENOFF',
-					types, abil))
-		end
-	else
+    if onlyAbil then
+        if et.modTypesAbil[abil] then
+            table.insert(this.footer, dr.EffTable.FooterLine.new('TAKENOFF',
+                    types, abil))
+        end
+    else
 
-		-- Can't use table.map because of string indices
-		for _, ability in pairs(abils) do
-			if dr.EffTable.shouldAddMaybe(ability, types) then
-				table.insert(this.footer, dr.EffTable.FooterLine.new('MAYBE',
-						types, ability))
-			end
-		end
-	end
+        -- Can't use table.map because of string indices
+        for _, ability in pairs(abils) do
+            if dr.EffTable.shouldAddMaybe(ability, types) then
+                table.insert(this.footer, dr.EffTable.FooterLine.new('MAYBE',
+                        types, ability))
+            end
+        end
+    end
 
-	-- Footer should be sorted for equality and printing
-	table.sort(this.footer)
+    -- Footer should be sorted for equality and printing
+    table.sort(this.footer)
 
     -- Because void methods are bad
     return this
@@ -309,7 +301,7 @@ end
 
 -- Collapsed setter
 dr.EffTable.setCollapse = function(this, collapse)
-	this.collapse = collapse
+    this.collapse = collapse
 
     -- Because void methods are bad
     return this
@@ -323,60 +315,60 @@ contains at least one line.
 
 --]]
 dr.EffTable.__tostring = function(this)
-	local weak = {text = 'Debolezze'}
-	local std = {text = 'Danno normale'}
-	local res = {text = 'Resistenze'}
-	local imm = {text = 'Immunit&agrave;'}
+    local weak = {text = 'Debolezze'}
+    local std = {text = 'Danno normale'}
+    local res = {text = 'Resistenze'}
+    local imm = {text = 'Immunit&agrave;'}
 
-	local interpData = {
-		bg = css.horizGradLua(this.colors),
-		foot = #this.footer < 1 and '' or string.interp([=[<div class="roundy text-left text-small" style="padding: 0.5em 0; margin: 0;">${lines}</div>]=],
-				{
-					lines = w.mapAndConcat(this.footer, tostring)
-				})
-	}
+    local interpData = {
+        bg = css.horizGradLua(this.colors),
+        foot = #this.footer < 1 and '' or string.interp([=[<div class="roundy text-left text-small" style="padding: 0.5em 0; margin: 0;">${lines}</div>]=],
+                {
+                    lines = w.mapAndConcat(this.footer, tostring)
+                })
+    }
 
     -- Can't use ipairs because effectivenesses are not integers but floats
-	for eff, types in pairs(this) do
-		if type(eff) == 'number' then
+    for eff, types in pairs(this) do
+        if type(eff) == 'number' then
             --[[
                 eff is not used as an index since sorting is only supported for
                 integer indixes
             --]]
-			if eff == 0 then
-				table.insert(imm, {eff = 0, types = types})
-			elseif eff < 1 then
-				table.insert(res, {eff = eff, types = types})
-			elseif eff == 1 then
-				table.insert(std, {eff = 1, types = types})
-			else -- eff > 1
-				table.insert(weak, {eff = eff, types = types})
-			end
-		end
-	end
+            if eff == 0 then
+                table.insert(imm, {eff = 0, types = types})
+            elseif eff < 1 then
+                table.insert(res, {eff = eff, types = types})
+            elseif eff == 1 then
+                table.insert(std, {eff = 1, types = types})
+            else -- eff > 1
+                table.insert(weak, {eff = eff, types = types})
+            end
+        end
+    end
 
-	-- Pointless to sort imm and std, as they only have one item
-	table.sort(res, dr.EffTable.greatestEffFirst)
-	table.sort(weak, dr.EffTable.greatestEffFirst)
+    -- Pointless to sort imm and std, as they only have one item
+    table.sort(res, dr.EffTable.greatestEffFirst)
+    table.sort(weak, dr.EffTable.greatestEffFirst)
 
-	interpData.effBoxes = dr.EffTable.printEffBoxes({weak, std, res, imm},
+    interpData.effBoxes = dr.EffTable.printEffBoxes({weak, std, res, imm},
             this.colors)
 
-	local effTab = string.interp([[<div class="roundy pull-center text-center width-xl-80 width-md-100" style="padding: 0.5ex; padding-bottom: 0.01ex; ${bg}">${effBoxes}${foot}</div>]], interpData)
+    local effTab = string.interp([[<div class="roundy pull-center text-center width-xl-80 width-md-100" style="padding: 0.5ex; padding-bottom: 0.01ex; ${bg}">${effBoxes}${foot}</div>]], interpData)
 
-	if #this.labels > 0 then
-		return string.interp([[==== ${title} ====
+    if #this.labels > 0 then
+        return string.interp([[==== ${title} ====
 <div class="${collapse}">
 ${effTab}
 </div>]],
-			{
-				title = mw.text.listToText(this.labels, ', ', ' e '),
-				collapse = this.collapse or '',
-				effTab = effTab
-			})
-	end
+            {
+                title = mw.text.listToText(this.labels, ', ', ' e '),
+                collapse = this.collapse or '',
+                effTab = effTab
+            })
+    end
 
-	return effTab
+    return effTab
 end
 
 --[[
@@ -385,12 +377,12 @@ This class represents an item in the footer list of lines. It needs information
 about the line category, the initial text and the new effectivenesses.
 
 These are the line categories:
-	- MAYBE: This category tells about the effectiveness in case a specimen has
+    - MAYBE: This category tells about the effectiveness in case a specimen has
         a certain ability. Used for Pokémon species that can have more than one
         ability.
-	- TAKENOFF: This category tells about the effectiveness in case an ability
+    - TAKENOFF: This category tells about the effectiveness in case an ability
         is lost. Used for Pokémon species that can have only one ability.
-	- RINGTARGET: This category tells about the effectiveness of type-due
+    - RINGTARGET: This category tells about the effectiveness of type-due
         immunities when immunities are lost.
 --]]
 dr.EffTable.FooterLine = oop.makeClass()
@@ -398,29 +390,29 @@ dr.EffTable.FooterLine = oop.makeClass()
 -- Utility footerline strings. They can contain interpolation placeholders.
 dr.EffTable.FooterLine.strings = {
 
-	-- MAYBE category beginning text
-	MAYBE = 'Se questo Pok&eacute;mon ha [[${abil} (abilità)|${abil}]] ',
+    -- MAYBE category beginning text
+    MAYBE = 'Se questo Pok&eacute;mon ha [[${abil} (abilità)|${abil}]] ',
 
     -- TAKENOFF category beginning text
-	TAKENOFF = 'Se questo Pok&eacute;mon perde [[${abil} (abilità)|${abil}]], o se ne sono annullati gli effetti, ',
+    TAKENOFF = 'Se questo Pok&eacute;mon perde [[${abil} (abilità)|${abil}]], o se ne sono annullati gli effetti, ',
 
     -- RINGTARGET category beginning text
-	RINGTARGET = 'Se questo Pok&eacute;mon tiene un [[Facilsaglio]]',
+    RINGTARGET = 'Se questo Pok&eacute;mon tiene un [[Facilsaglio]]',
 
-	-- Strings to be concatenated to RINGTARGET for some types
-	SPETTRO = ', se un avversario usa [[Preveggenza (mossa)|Preveggenza]] o [[Segugio (mossa)|Segugio]] o ha [[Nervisaldi (abilità)|Nervisaldi]], ',
-	BUIO = ' o se un avversario usa [[Miracolvista (mossa)|Miracolvista]], ',
-	VOLANTE = ' o una [[Ferropalla]] o se viene usata [[Gravità (mossa)|Gravit&agrave;]], ',
+    -- Strings to be concatenated to RINGTARGET for some types
+    SPETTRO = ', se un avversario usa [[Preveggenza (mossa)|Preveggenza]] o [[Segugio (mossa)|Segugio]] o ha [[Nervisaldi (abilità)|Nervisaldi]], ',
+    BUIO = ' o se un avversario usa [[Miracolvista (mossa)|Miracolvista]], ',
+    VOLANTE = ' o una [[Ferropalla]] o se viene usata [[Gravità (mossa)|Gravit&agrave;]], ',
 
-	--[[
-		Strings to be concatenated to RINGTARGET for immunities shared by
+    --[[
+        Strings to be concatenated to RINGTARGET for immunities shared by
         ability and types
-	--]]
-	NOT_HAVE_ABIL = 'e se non ha [[${abil} (abilità)|${abil}]], ',
-	IMM_TAKENOFF = 'e se ha perso [[${abil} (abilità)|${abil}]] o ne sono stati annullati gli effetti, ',
+    --]]
+    NOT_HAVE_ABIL = 'e se non ha [[${abil} (abilità)|${abil}]], ',
+    IMM_TAKENOFF = 'e se ha perso [[${abil} (abilità)|${abil}]] o ne sono stati annullati gli effetti, ',
 
-	-- New effectieness text
-	EFF = "l'efficacia delle mosse di tipo ${types} &egrave; pari a ${eff}×"
+    -- New effectieness text
+    EFF = "l'efficacia delle mosse di tipo ${types} &egrave; pari a ${eff}×"
 }
 
 -- Sorting categories to sort footerlines
@@ -435,7 +427,7 @@ have immunities by itself is zero.
 
 --]]
 dr.EffTable.FooterLine.abilityGrantsImm = function(abil, type)
-	return 0 == et.efficacia(type, 'elettro', 'elettro', abil)
+    return 0 == et.efficacia(type, 'elettro', 'elettro', abil)
 end
 
 --[[
@@ -448,14 +440,14 @@ dr.EffTable.FooterLine.init = {}
 
 -- Initial part for MAYBE category. Simple string interpolation.
 dr.EffTable.FooterLine.init.MAYBE = function(abil)
-	return string.interp(dr.EffTable.FooterLine.strings.MAYBE,
-			{abil = string.camelCase(abil)})
+    return string.interp(dr.EffTable.FooterLine.strings.MAYBE,
+            {abil = string.camelCase(abil)})
 end
 
 -- Initial part for TAKENOFF category. Simple string interpolation.
 dr.EffTable.FooterLine.init.TAKENOFF = function(abil)
-	return string.interp(dr.EffTable.FooterLine.strings.TAKENOFF,
-			{abil = string.camelCase(abil)})
+    return string.interp(dr.EffTable.FooterLine.strings.TAKENOFF,
+            {abil = string.camelCase(abil)})
 end
 
 --[[
@@ -465,33 +457,33 @@ the type and the abilities, concatenates the result.
 
 --]]
 dr.EffTable.FooterLine.init.RINGTARGET = function(abils, type)
-	local pieces = {dr.EffTable.FooterLine.strings.RINGTARGET}
+    local pieces = {dr.EffTable.FooterLine.strings.RINGTARGET}
 
     -- Adding text for specific types, otherwise a space
-	table.insert(pieces, dr.EffTable.FooterLine.strings[type:upper()] or ' ')
+    table.insert(pieces, dr.EffTable.FooterLine.strings[type:upper()] or ' ')
 
-	--[[
+    --[[
         If the Pokémon has only one ability, the related string deals with its
         loss, otherwise it is about the possibility of it happening.
-	--]]
-	local notAbil = table.getn(abils) == 1
-			and dr.EffTable.FooterLine.strings.IMM_TAKENOFF
-			or dr.EffTable.FooterLine.strings.NOT_HAVE_ABIL
+    --]]
+    local notAbil = table.getn(abils) == 1
+            and dr.EffTable.FooterLine.strings.IMM_TAKENOFF
+            or dr.EffTable.FooterLine.strings.NOT_HAVE_ABIL
 
-	--[[
-		Adds a string for every ability that shares an immunity with the
+    --[[
+        Adds a string for every ability that shares an immunity with the
         type of the footerline
-	--]]
-	for _, abil in pairs(abils) do
-		for _, typeImm in pairs(et.typesHaveImm[type:lower()]) do
-			if dr.EffTable.FooterLine.abilityGrantsImm(abil, typeImm) then
-				table.insert(pieces, string.interp(notAbil,
-						{abil = string.camelCase(abil)}))
-			end
-		end
-	end
+    --]]
+    for _, abil in pairs(abils) do
+        for _, typeImm in pairs(et.typesHaveImm[type:lower()]) do
+            if dr.EffTable.FooterLine.abilityGrantsImm(abil, typeImm) then
+                table.insert(pieces, string.interp(notAbil,
+                        {abil = string.camelCase(abil)}))
+            end
+        end
+    end
 
-	return table.concat(pieces)
+    return table.concat(pieces)
 end
 
 --[[
@@ -502,27 +494,27 @@ requires all of the Pokémon abilities.
 
 --]]
 dr.EffTable.FooterLine.new = function(kind, types, abil)
-	local this = setmetatable({}, dr.EffTable.FooterLine)
+    local this = setmetatable({}, dr.EffTable.FooterLine)
 
-	kind = kind:upper()
-	types = table.map(types, string.lower)
-	abil = type(abil) ~= 'table' and abil:lower()
-			or table.map(abil, string.lower)
+    kind = kind:upper()
+    types = table.map(types, string.lower)
+    abil = type(abil) ~= 'table' and abil:lower()
+            or table.map(abil, string.lower)
 
-	-- Line category
-	this.kind = kind
+    -- Line category
+    this.kind = kind
 
-	-- Initial part of the footer line
-	this.init = '\n*' .. dr.EffTable.FooterLine.init[kind](abil, types.type1)
+    -- Initial part of the footer line
+    this.init = '\n*' .. dr.EffTable.FooterLine.init[kind](abil, types.type1)
 
-	--[[
+    --[[
         For every new effectiveness value, a key-value pair is added to this
         table: the key is the effectiveness (as a string), and the value is
         a table of all the types names having this effectiveness.
         Such types need to be kept sorted, so that table.equals can compare
         them correctly and printing is easier.
-	--]]
-	this.newEff = {}
+    --]]
+    this.newEff = {}
 
     -- Handling corner case abilities
     if this:makeSpecialAbil(abil, types) then
@@ -541,26 +533,26 @@ dr.EffTable.FooterLine.new = function(kind, types, abil)
         return this
     end
 
-	local newTypes
-	newTypes, types, abil = this:makeNewTypes(types, abil)
+    local newTypes
+    newTypes, types, abil = this:makeNewTypes(types, abil)
     -- See the comment for this.newEff
-	table.sort(newTypes)
+    table.sort(newTypes)
 
-	--[[
+    --[[
         Every type that changes effectiveness is routed into the mapping with
         the corresponding effectiveness in this.newEff. The mapping is
         created on the spot if not already existing.
-	--]]
-	for _, type in ipairs(newTypes) do
-		local eff = et.efficacia(type, types.type1, types.type2, abil)
-		if this.newEff[eff] then
-			table.insert(this.newEff[eff], type)
-		else
-			this.newEff[eff] = {type}
-		end
-	end
+    --]]
+    for _, type in ipairs(newTypes) do
+        local eff = et.efficacia(type, types.type1, types.type2, abil)
+        if this.newEff[eff] then
+            table.insert(this.newEff[eff], type)
+        else
+            this.newEff[eff] = {type}
+        end
+    end
 
-	return this
+    return this
 end
 
 --[[
@@ -598,52 +590,52 @@ end
     Solidroccia, Scudoprisma and Magidifesa.
 --]]
 dr.EffTable.FooterLine.makeSpecialAbil = function(this, abil, types)
-	if this.kind ~= 'RINGTARGET' then
-		if table.search({'filtro', 'solidroccia', 'scudoprisma'}, abil) then
-			local xKeys
-			if this.kind == 'TAKENOFF' then
+    if this.kind ~= 'RINGTARGET' then
+        if table.search({'filtro', 'solidroccia', 'scudoprisma'}, abil) then
+            local xKeys
+            if this.kind == 'TAKENOFF' then
                 --[[
                     The ability is taken off, hence the new effectiveness is
                     the non-reduced one, that without the ability.
                 --]]
-				xKeys = {[2] = 2, [4] = 4}
-			else
+                xKeys = {[2] = 2, [4] = 4}
+            else
                 --[[
                     The ability is acquired, hence the new effectiveness is
                     the reduced one, that with the ability.
                 --]]
-				xKeys = {[2] = 1.5, [4] = 3}
-			end
+                xKeys = {[2] = 1.5, [4] = 3}
+            end
 
-			for k, v in pairs(xKeys) do
-				local x = et.difesa(k, types.type1, types.type2, 'tanfo')
-				if #x > 0 then
+            for k, v in pairs(xKeys) do
+                local x = et.difesa(k, types.type1, types.type2, 'tanfo')
+                if #x > 0 then
                     -- See the comment for this.newEff in the constructor
-					table.sort(x)
-					this.newEff[v] = x
-				end
-			end
+                    table.sort(x)
+                    this.newEff[v] = x
+                end
+            end
 
-			return true
+            return true
 
         --[[
             The stantard footer would be too long here. Furthermore, the
             ability will always be Shedinja's peculiar, so we chose a custom
             solution.
         --]]
-		elseif abil == 'magidifesa' then
-			this.tostring = string.interp(table.concat{'\n*',
+        elseif abil == 'magidifesa' then
+            this.tostring = string.interp(table.concat{'\n*',
                     dr.EffTable.FooterLine.strings.TAKENOFF,
-					[=[solo mosse di tipo ${normale} e ${lotta} non lo renderanno esausto.]=]},
-					{
-						abil = 'Magidifesa',
-						normale = link.colorType('Normale'),
-						lotta = link.colorType('Lotta')
-					})
+                    [=[solo mosse di tipo ${normale} e ${lotta} non lo renderanno esausto.]=]},
+                    {
+                        abil = 'Magidifesa',
+                        normale = link.colorType('Normale'),
+                        lotta = link.colorType('Lotta')
+                    })
 
-			return true
-		end
-	end
+            return true
+        end
+    end
 
     return false
 end
@@ -656,10 +648,10 @@ newEff tables.
 
 --]]
 dr.EffTable.FooterLine.__eq = function(a, b)
-	return a.tostring and b.tostring
-		or not (a.tostring or b.tostring)
-			and a.init == b.init
-			and table.equal(a.newEff, b.newEff)
+    return a.tostring and b.tostring
+        or not (a.tostring or b.tostring)
+            and a.init == b.init
+            and table.equal(a.newEff, b.newEff)
 end
 
 --[[
@@ -670,9 +662,9 @@ equality, the initial parts of the lines are compared alphabetically.
 
 --]]
 dr.EffTable.FooterLine.__lt = function(a, b)
-	local aIndex = table.search(dr.EffTable.FooterLine.kindOrder, a.kind)
-	local bIndex = table.search(dr.EffTable.FooterLine.kindOrder, b.kind)
-	return aIndex == bIndex and a.init < b.init or aIndex < bIndex
+    local aIndex = table.search(dr.EffTable.FooterLine.kindOrder, a.kind)
+    local bIndex = table.search(dr.EffTable.FooterLine.kindOrder, b.kind)
+    return aIndex == bIndex and a.init < b.init or aIndex < bIndex
 end
 
 --[[
@@ -682,27 +674,27 @@ creates colored labels for its types, and it appends them to the initial text.
 
 --]]
 dr.EffTable.FooterLine.__tostring = function(this)
-	if this.tostring then
-		return this.tostring
-	end
+    if this.tostring then
+        return this.tostring
+    end
 
-	local newEff = {}
-	--[[
-		Can't use table.map because this.newEff has string indices, that
+    local newEff = {}
+    --[[
+        Can't use table.map because this.newEff has string indices, that
         wouldn't work with table.concat
-	--]]
-	for eff, types in pairs(this.newEff) do
-		local colorTypes = table.map(types, function(type)
-				return link.colorType(type)
-			end)
-		table.insert(newEff, string.interp(dr.EffTable.FooterLine.strings.EFF,
-				{
-					types = mw.text.listToText(colorTypes, ', ', ' e '),
-					eff = dr.EffTable.displayEff(eff)
-				}))
-	end
+    --]]
+    for eff, types in pairs(this.newEff) do
+        local colorTypes = table.map(types, function(type)
+                return link.colorType(type)
+            end)
+        table.insert(newEff, string.interp(dr.EffTable.FooterLine.strings.EFF,
+                {
+                    types = mw.text.listToText(colorTypes, ', ', ' e '),
+                    eff = dr.EffTable.displayEff(eff)
+                }))
+    end
 
-	return table.concat{this.init,
+    return table.concat{this.init,
         mw.text.listToText(newEff, ', ', ' e '),
         '.'
     }
@@ -716,17 +708,17 @@ first are collapsed by default.
 --]]
 dr.EffTable.printEffTables = function(EffTables)
 
-	-- If only one table is there, nothing to collapse
-	if #EffTables == 1 then
-		return tostring(EffTables[1])
-	end
+    -- If only one table is there, nothing to collapse
+    if #EffTables == 1 then
+        return tostring(EffTables[1])
+    end
 
-	-- All tables are collapsible and all default-collapsed but the first one
-	return w.mapAndConcat(EffTables, function(EffTable, key)
-			EffTable:setCollapse('mw-collapsible' ..
-					(key == 1 and '' or ' mw-collapsed'))
-			return tostring(EffTable)
-		end, '\n')
+    -- All tables are collapsible and all default-collapsed but the first one
+    return w.mapAndConcat(EffTables, function(EffTable, key)
+            EffTable:setCollapse('mw-collapsible' ..
+                    (key == 1 and '' or ' mw-collapsed'))
+            return tostring(EffTable)
+        end, '\n')
 end
 
 --[[
@@ -739,30 +731,30 @@ are all collapsed by default.
 
 --]]
 dr.debRes = function(frame)
-	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
-	local pokeData = pokes[string.parseInt(p[1]) or p[1]]
-			or pokes[mw.text.decode(p[1])]
+    local p = w.trimAndMap(mw.clone(frame.args), string.lower)
+    local pokeData = pokes[string.parseInt(p[1]) or p[1]]
+            or pokes[mw.text.decode(p[1])]
 
-	--[[
-		If no data is found, the first parameter is the type, that is no
+    --[[
+        If no data is found, the first parameter is the type, that is no
         Pokémon is given and types and abilities are directly provided
-	--]]
-	if not pokeData then
-		local types, abils = {}, {}
-		types.type1 = p[1] or p.type1 or p.type
-		types.type2 = p[2] or p.type2 or types.type1
-		abils.ability1 = p[3] or p.abil1 or p.abil
-		abils.ability2 = p[4] or p.abil2
-		abils.abilityd = p[5] or p.abild
-		abils.abilitye = p[6] or p.abile
-		return tostring(dr.EffTable.new(types, abils))
-	end
+    --]]
+    if not pokeData then
+        local types, abils = {}, {}
+        types.type1 = p[1] or p.type1 or p.type
+        types.type2 = p[2] or p.type2 or types.type1
+        abils.ability1 = p[3] or p.abil1 or p.abil
+        abils.ability2 = p[4] or p.abil2
+        abils.abilityd = p[5] or p.abild
+        abils.abilitye = p[6] or p.abile
+        return tostring(dr.EffTable.new(types, abils))
+    end
 
-	return list.makeFormsLabelledBoxes({
-		name = pokeData.name:lower(),
-		makeBox = dr.EffTable.new,
-		printBoxes = dr.EffTable.printEffTables
-	})
+    return list.makeFormsLabelledBoxes({
+        name = pokeData.name:lower(),
+        makeBox = dr.EffTable.new,
+        printBoxes = dr.EffTable.printEffTables
+    })
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
