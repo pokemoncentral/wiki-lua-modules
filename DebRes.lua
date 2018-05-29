@@ -122,9 +122,9 @@ dr.EffTable.shouldAddMaybe = function(abil, types)
         return true
     end
 
-    return not table.any(abilMod, function(type)
-            return immType1 and table.search(immType1, type)
-                    or immType2 and table.search(immType2, type)
+    return table.all(abilMod, function(type)
+            return immType1 and not table.search(immType1, type)
+                    or immType2 and not table.search(immType2, type)
         end)
 end
 
@@ -271,7 +271,7 @@ dr.EffTable.makeFooter = function(this, abil, types, abils, onlyAbil)
                 dr.EffTable.FooterLine only checks the first one for immunities
             --]]
             table.insert(this.footer, dr.EffTable.FooterLine.new('RINGTARGET',
-                    {type1 = types.type2, type2 = types.type1}, abils))
+                    types, abils))
         end
     end
 
@@ -281,15 +281,14 @@ dr.EffTable.makeFooter = function(this, abil, types, abils, onlyAbil)
             table.insert(this.footer, dr.EffTable.FooterLine.new('TAKENOFF',
                     types, abil))
         end
-    else
 
-        -- Can't use table.map because of string indices
-        for _, ability in pairs(abils) do
-            if dr.EffTable.shouldAddMaybe(ability, types) then
-                table.insert(this.footer, dr.EffTable.FooterLine.new('MAYBE',
-                        types, ability))
-            end
-        end
+    -- Adding MAYBE footer line for Pokémon having more than one ability
+    else
+        local maybeAbils = table.filter(abils, function(ability)
+                return dr.EffTable.shouldAddMaybe(ability, types) end)
+        local maybeLines = table.mapToNum(maybeAbils, function(ability)
+                return dr.EffTable.FooterLine.new('MAYBE', types, ability) end)
+        this.footer = table.merge(this.footer, maybeLines)
     end
 
     -- Footer should be sorted for equality and printing
@@ -482,6 +481,15 @@ dr.EffTable.FooterLine.init.RINGTARGET = function(abils, type)
             end
         end
     end
+    -- local abilImm = table.flatMap(et.typesHaveImm[type:lower()], function(typeImm)
+    --         return table.filter(abils, function(abil)
+    --                 return dr.EffTable.FooterLine.abilityGrantsImm(abil,
+    --                         typeImm) end)
+    --     end)
+    -- local abilImmString = table.mapToNum(abilImm, function(abil)
+    --         return string.interp(notAbil, {abil = string.camelCase(abil)}) end)
+    --
+    -- pieces = table.merge(pieces, abilImmString)
 
     return table.concat(pieces)
 end
