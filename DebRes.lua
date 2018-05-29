@@ -598,51 +598,68 @@ end
     Solidroccia, Scudoprisma and Magidifesa.
 --]]
 dr.EffTable.FooterLine.makeSpecialAbil = function(this, abil, types)
-    if this.kind ~= 'RINGTARGET' then
-        if table.search({'filtro', 'solidroccia', 'scudoprisma'}, abil) then
-            local xKeys
-            if this.kind == 'TAKENOFF' then
-                --[[
-                    The ability is taken off, hence the new effectiveness is
-                    the non-reduced one, that without the ability.
-                --]]
-                xKeys = {[2] = 2, [4] = 4}
-            else
-                --[[
-                    The ability is acquired, hence the new effectiveness is
-                    the reduced one, that with the ability.
-                --]]
-                xKeys = {[2] = 1.5, [4] = 3}
-            end
+    -- RINGTARGET footer line type doesn't deal with abilities
+    if this.kind == 'RINGTARGET' then
+        return false
+    end
 
-            for k, v in pairs(xKeys) do
-                local x = et.difesa(k, types.type1, types.type2, 'tanfo')
-                if #x > 0 then
-                    -- See the comment for this.newEff in the constructor
-                    table.sort(x)
-                    this.newEff[v] = x
-                end
-            end
-
-            return true
+    --[[
+        These abilities reduce the effectiveness of super-effective moves.
+        However, if the type is TAKENOFF, the effectiveness shown in the footer
+        should be the one without theability, that is the increased one.
+    --]]
+    if table.search({'filtro', 'solidroccia', 'scudoprisma'}, abil) then
+        -- Super-effective number values
+        local superEff = table.filter(dr.EffTable.allEff, function(eff)
+                return eff > 1 end)
 
         --[[
-            The stantard footer would be too long here. Furthermore, the
-            ability will always be Shedinja's peculiar, so we chose a custom
-            solution.
+            Multiplier to derive the effectiveness shown in the footer. It
+            should increase the current one if the footer line type is
+            TAKENOFF, since the basic calculation is made with the ability.
+            Otherwise, the new effectiveness should be decreased,
         --]]
-        elseif abil == 'magidifesa' then
-            this.tostring = string.interp(table.concat{'\n*',
-                    dr.EffTable.FooterLine.strings.TAKENOFF,
-                    [=[solo mosse di tipo ${normale} e ${lotta} non lo renderanno esausto.]=]},
-                    {
-                        abil = 'Magidifesa',
-                        normale = link.colorType('Normale'),
-                        lotta = link.colorType('Lotta')
-                    })
+        local mult = this.kind == 'TAKENOFF' and 1.33 or 0.75
 
-            return true
+        --[[
+            If the footer line kind is TAKENOFF, the ability needs to be taken
+            in account when looking for super-effective types. Otherwise, it
+            should be not.
+        --]]
+        local effAbil = this.kind == 'TAKENOFF' and abil or 'tanfo'
+
+        --[[
+            For any super-effective value that has some types, the types are
+            added to the footer with reduced/incrased effectiveness.
+        --]]
+        for _, eff in ipairs(superEff) do
+            local effTypes = et.difesa(eff, types.type1, types.type2, effAbil)
+            if #effTypes > 0 then
+                local newEff = math.ceil(eff * mult * 100) / 100
+                -- See the comment for this.newEff in the constructor
+                table.sort(effTypes)
+                this.newEff[newEff] = effTypes
+            end
         end
+
+        return true
+
+    --[[
+        The stantard footer would be too long here. Furthermore, the
+        ability will always be Shedinja's peculiar, so we chose a custom
+        solution.
+    --]]
+    elseif abil == 'magidifesa' then
+        this.tostring = string.interp(table.concat{'\n*',
+                dr.EffTable.FooterLine.strings.TAKENOFF,
+                [=[solo mosse di tipo ${normale} e ${lotta} non lo renderanno esausto.]=]},
+                {
+                    abil = 'Magidifesa',
+                    normale = link.colorType('Normale'),
+                    lotta = link.colorType('Lotta')
+                })
+
+        return true
     end
 
     return false
@@ -686,21 +703,16 @@ dr.EffTable.FooterLine.__tostring = function(this)
         return this.tostring
     end
 
-    local newEff = {}
-    --[[
-        Can't use table.map because this.newEff has string indices, that
-        wouldn't work with table.concat
-    --]]
-    for eff, types in pairs(this.newEff) do
-        local colorTypes = table.map(types, function(type)
-                return link.colorType(type)
-            end)
-        table.insert(newEff, string.interp(dr.EffTable.FooterLine.strings.EFF,
+    local newEff = table.mapToNum(this.newEff, function(types, eff)
+            local colorTypes = table.map(types, function(type)
+                    return link.colorType(type)
+                end, ipairs)
+            return string.interp(dr.EffTable.FooterLine.strings.EFF,
                 {
                     types = mw.text.listToText(colorTypes, ', ', ' e '),
                     eff = dr.EffTable.displayEff(eff)
-                }))
-    end
+                })
+        end)
 
     return table.concat{this.init,
         mw.text.listToText(newEff, ', ', ' e '),
