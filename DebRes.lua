@@ -473,23 +473,15 @@ dr.EffTable.FooterLine.init.RINGTARGET = function(abils, type)
         Adds a string for every ability that shares an immunity with the
         type of the footerline
     --]]
-    for _, abil in pairs(abils) do
-        for _, typeImm in pairs(et.typesHaveImm[type:lower()]) do
-            if dr.EffTable.FooterLine.abilityGrantsImm(abil, typeImm) then
-                table.insert(pieces, string.interp(notAbil,
-                        {abil = string.camelCase(abil)}))
-            end
-        end
-    end
-    -- local abilImm = table.flatMap(et.typesHaveImm[type:lower()], function(typeImm)
-    --         return table.filter(abils, function(abil)
-    --                 return dr.EffTable.FooterLine.abilityGrantsImm(abil,
-    --                         typeImm) end)
-    --     end)
-    -- local abilImmString = table.mapToNum(abilImm, function(abil)
-    --         return string.interp(notAbil, {abil = string.camelCase(abil)}) end)
-    --
-    -- pieces = table.merge(pieces, abilImmString)
+    local abilImm = table.flatMap(et.typesHaveImm[type:lower()], function(typeImm)
+            return table.filter(abils, function(abil)
+                    return dr.EffTable.FooterLine.abilityGrantsImm(abil,
+                            typeImm) end)
+        end)
+    local abilImmString = table.mapToNum(abilImm, function(abil)
+            return string.interp(notAbil, {abil = string.camelCase(abil)}) end)
+
+    pieces = table.merge(pieces, abilImmString)
 
     return table.concat(pieces)
 end

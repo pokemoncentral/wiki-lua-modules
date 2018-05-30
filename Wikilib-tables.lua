@@ -385,7 +385,7 @@ table.equal = function(tab1, tab2)
 end
 
 table.eq = table.equal
-t.equal, t.eq = table.qual, table.equal
+t.equal, t.eq = table.equal, table.equal
 
 --[[
 
