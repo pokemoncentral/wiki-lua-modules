@@ -82,7 +82,7 @@ resistances are taken in account and Filtro/Solidroccia e Pellearsa as well.
 
 -- ]]
 dr.EffTable.allEff = {0, 0.25, 0.5, 1, 2, 4, -- Standard
--- 0.125, -- Tripla resistenza (useless for the time being)
+-- 0.125, -- Triple resistance (useless for the time being)
 -- 0.3125, 0.625, 1.25, 2.5, 5, -- Pellearsa (useless for the time being)
 1.5, 3 -- Filtro/Solidroccia
 }
@@ -265,13 +265,13 @@ dr.EffTable.makeFooter = function(this, abil, types, abils, onlyAbil)
                     types, abils))
         end
 
-        if not (types.type1 == types.type2) and et.typesHaveImm[types.type2] then
+        if types.type1 ~= types.type2 and et.typesHaveImm[types.type2] then
             --[[
                 Swapping types for dual typed Pokémon, since
                 dr.EffTable.FooterLine only checks the first one for immunities
             --]]
             table.insert(this.footer, dr.EffTable.FooterLine.new('RINGTARGET',
-                    types, abils))
+                    {type1 = types.type2, type2 = types.type1}, abils))
         end
     end
 
@@ -771,5 +771,5 @@ end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
--- return dr
-print(dr.debres{args=arg})
+return dr
+-- print(dr.debres{args=arg})
