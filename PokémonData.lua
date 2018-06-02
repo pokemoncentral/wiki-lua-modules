@@ -10,7 +10,7 @@ local b = {}
 
 local mw = require('mw')
 
-local txt = require('Modulo:Wikilib/strings')
+local txt = require('Modulo:Wikilib/strings') -- luacheck: no unused
 local data
 local abils
 local forms

@@ -6,7 +6,7 @@
 -- {{#invoke: colore|fuoco|light}}
 
 local c = {}
-local txt = require('Wikilib-strings')
+local txt = require('Wikilib-strings') -- luacheck: no unused
 
 -- Questa è la funzione principale che viene chiamata da (quasi) tutte le altre.
 -- Restituisce il codice esadecimale giusto per la variante richiesta.
@@ -14,8 +14,8 @@ local txt = require('Wikilib-strings')
 local function _colore(variante, normale, light, dark)
     variante = string.trim(variante:lower())
     local colors = {normale = normale, light = light,
-		dark = dark, med = normale}
-	return colors[variante] or 'Errore'
+        dark = dark, med = normale}
+    return colors[variante] or 'Errore'
 end
 
 -- Colori tipi
@@ -66,45 +66,45 @@ c.Volante = c.volante
 
 c.Glitch, c.glitch = c.sconosciuto, c.sconosciuto
 c.IIIItoto, c.iiiitoto, c.Uccello, c.uccello =
-	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c['6!2?2 A'], c['6!2?2 a'], c['x v zA'], c['x v za'] =
-	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c['6!2?2_A'], c['6!2?2_a'], c['x_v_zA'], c['x_v_za'] =
-	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c.L, c.l, c.B, c.b = c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c[',K Pk(nome del giocatore)xX'], c[',k pk(nome del giocatore)xx'] =
-	c.sconosciuto, c.sconosciuto
+    c.sconosciuto, c.sconosciuto
 c[',K_Pk(nome_del_giocatore)xX'], c[',k_pk(nome_del_giocatore)xx'] =
-	c.sconosciuto, c.sconosciuto
+    c.sconosciuto, c.sconosciuto
 c['Allen. Jr ♀'], c['allen. jr ♀'], c['Allen._Jr_♀'], c['allen._jr_♀'] =
-	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c['Normale (glitch)'], c['normale (glitch)'], c['Normale_(glitch)'], c['normale_(glitch)'] =
-	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c["Pokémaniaco"], c['pokémaniaco'] = c.sconosciuto, c.sconosciuto
 c["'l) m) ZM"], c["'l) m) zm"], c["'l)_m)_ZM"], c["'l)_m)_zm"] =
-	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c["(Classe dell'ultimo allenatore affrontato)"] =
-	c.sconosciuto
+    c.sconosciuto
 c["(Classe_dell'ultimo_allenatore_affrontato)"] =
-	c.sconosciuto
+    c.sconosciuto
 c["(classe dell'ultimo allenatore affrontato)"] =
-	c.sconosciuto
+    c.sconosciuto
 c["(classe_dell'ultimo_allenatore_affrontato)"] =
-	c.sconosciuto
+    c.sconosciuto
 c['Qi JT(nome del giocatore)? POké BB(nome del Pokémon) de W N'] =
-	c.sconosciuto
+    c.sconosciuto
 c['Qi_JT(nome_del_giocatore)?_POké_BB(nome_del_Pokémon)_de_W_N'] =
-	c.sconosciuto
+    c.sconosciuto
 c['qi jt(nome del giocatore)? poké bb(nome del pokémon) de w n'] =
-	c.sconosciuto
+    c.sconosciuto
 c['qi_jt(nome_del_giocatore)?_poké_bb(nome_del_pokémon)_de_w_n'] =
-	c.sconosciuto
+    c.sconosciuto
 c['Poké BB'], c['poké bb'], c['Poké_BB'], c['poké_bb'] =
-	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c['8 8 9 5'], c['8_8_9_5'], c['999'], c['?'] =
-	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c['66848.04'], c["' ♀ ♀ ' 2222 37572"], c["'_♀_♀_'_2222_37572"] =
-	c.sconosciuto, c.sconosciuto, c.sconosciuto
+    c.sconosciuto, c.sconosciuto, c.sconosciuto
 
 -- Colori attacchi
 
@@ -128,11 +128,13 @@ c.Argento = c.argento
 c.soulsilver = function(frame) return _colore(frame.args[1] or 'normale', 'C0C0E1', 'D6D6EB', '7D7D92') end
 c.Soulsilver, c.SoulSilver = c.soulsilver, c.soulsilver
 c.br = function(frame) return _colore(frame.args[1] or 'normale', 'DCA202', 'FFD461', '684D02') end
-c.Battle_revolution, c.battle_revolution, c.Battlerevolution, c.battlerevolution, c.Br, c.BR = c.br, c.br, c.br, c.br, c.br, c.br
+c.Battle_revolution, c.battle_revolution, c.Battlerevolution, c.battlerevolution, c.Br, c.BR =
+    c.br, c.br, c.br, c.br, c.br, c.br
 c.bianco = function(frame) return _colore(frame.args[1] or 'normale', 'C3C3C3', 'D8D8D8', '7F7F7F') end
 c.Bianco = c.bianco
 c.bianco_2 = function(frame) return _colore(frame.args[1] or 'normale', 'E3CED0', 'EDDFE0', '948687') end
-c.Bianco_2, c.Bianco2, c.bianco2, c['bianco 2'], c['Bianco 2'] = c.bianco_2, c.bianco_2, c.bianco_2, c.bianco_2, c.bianco_2
+c.Bianco_2, c.Bianco2, c.bianco2, c['bianco 2'], c['Bianco 2'] =
+    c.bianco_2, c.bianco_2, c.bianco_2, c.bianco_2, c.bianco_2
 c.blu = function(frame) return _colore(frame.args[1] or 'normale', '1111FF', '7777FF', '0B0BA6') end
 c.Blu = c.blu
 c.colo = function(frame) return _colore(frame.args[1] or 'normale', 'B6CAE4', 'CFDCED', '768394') end
@@ -148,21 +150,27 @@ c.Md, c.MD = c.md, c.md
 c.md_blu = function(frame) return _colore(frame.args[1] or 'normale', '095BAF', '5A91C9', '063D75') end
 c.Md_blu, c.Mdblu, c.mdblu, c['md blu'], c['Md blu'] = c.md_blu, c.md_blu, c.md_blu, c.md_blu, c.md_blu
 c.md_cielo = function(frame) return _colore(frame.args[1] or 'normale', '7BB54F', 'A6CD89', '527935') end
-c.Md_cielo, c.Mdcielo, c.mdcielo, c['md cielo'], c['Md cielo'] = c.md_cielo, c.md_cielo, c.md_cielo, c.md_cielo, c.md_cielo
+c.Md_cielo, c.Mdcielo, c.mdcielo, c['md cielo'], c['Md cielo'] =
+    c.md_cielo, c.md_cielo, c.md_cielo, c.md_cielo, c.md_cielo
 c.md_oscurita = function(frame) return _colore(frame.args[1] or 'normale', 'C3141B', 'D76166', '830D12') end
 c.Md_oscurita, c.Mdoscurita, c.mdoscurita, c['md oscurita'], c['Md oscurita'] =
-	c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita
+    c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita
 c['Md_oscurità'], c['Mdoscurità'], c['mdoscurità'], c['md oscurità'], c['Md oscurità'] =
-	c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita
+    c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita
 c.md_portali = function(frame) return _colore(frame.args[1] or 'normale', '7D6A7A', 'AE9EAC', '4D3249') end
-c.Md_portali, c.mdportali, c.Mdportali, c['md portali'], c['Md portali'] = c.md_portali, c.md_portali, c.md_portali, c.md_portali, c.md_portali
+c.Md_portali, c.mdportali, c.Mdportali, c['md portali'], c['Md portali'] =
+    c.md_portali, c.md_portali, c.md_portali, c.md_portali, c.md_portali
 c.md_rosso = function(frame) return _colore(frame.args[1] or 'normale', 'C50C50', 'D85C8A', '840836') end
-c.Md_rosso, c.Mdrosso, c.mdrosso, c['md rosso'], c['Md rosso'] = c.md_rosso, c.md_rosso, c.md_rosso, c.md_rosso, c.md_rosso
+c.Md_rosso, c.Mdrosso, c.mdrosso, c['md rosso'], c['Md rosso'] =
+    c.md_rosso, c.md_rosso, c.md_rosso, c.md_rosso, c.md_rosso
 c.md_tempo = function(frame) return _colore(frame.args[1] or 'normale', '2190C7', '6AB5D9', '166185') end
-c.Md_tempo, c.Mdtempo, c.mdtempo, c['md tempo'], c['Md tempo'] = c.md_tempo, c.md_tempo, c.md_tempo, c.md_tempo, c.md_tempo
+c.Md_tempo, c.Mdtempo, c.mdtempo, c['md tempo'], c['Md tempo'] =
+    c.md_tempo, c.md_tempo, c.md_tempo, c.md_tempo, c.md_tempo
 c.md_super = function(frame) return _colore(frame.args[1] or 'normale', 'A5A3D2', 'CCC9FF', '7471A6') end
-c.Md_super, c.mdsuper, c.Mdsuper, c['md super'], c['Md super'] = c.md_super, c.md_super, c.md_super, c.md_super, c.md_super
-c.super_md, c.Super_md, c.supermd, c.Supermd, c['super md'], c['Super md'] = c.md_super, c.md_super, c.md_super, c.md_super, c.md_super, c.md_super
+c.Md_super, c.mdsuper, c.Mdsuper, c['md super'], c['Md super'] =
+    c.md_super, c.md_super, c.md_super, c.md_super, c.md_super
+c.super_md, c.Super_md, c.supermd, c.Supermd, c['super md'], c['Super md'] =
+    c.md_super, c.md_super, c.md_super, c.md_super, c.md_super, c.md_super
 c.nero = function(frame) return _colore(frame.args[1] or 'normale', '444444', '858585', '2C2C2C') end
 c.Nero = c.nero
 c.nero_2 = function(frame) return _colore(frame.args[1] or 'normale', '424B50', '848A8D', '2B3134') end
@@ -217,6 +225,12 @@ c.ultrasole = function(frame) return _colore(frame.args[1] or 'normale', 'EE7936
 c.Ultrasole = c.ultrasole
 c.ultraluna = function(frame) return _colore(frame.args[1] or 'normale', '884799', 'AF8DB7', '440E52') end
 c.Ultraluna = c.ultraluna
+c.LG_pikachu = function(frame) return _colore(frame.args[1] or 'normale', 'ffcf11', 'fff4c3', 'd09e2a') end
+c['LG Pikachu'], c.LG_Pikachu, c.LGP = c.LG_pikachu, c.LG_pikachu, c.LG_pikachu
+c.lgp, c.lgpikachu, c["Let's Go, Pikachu!"] = c.LG_pikachu, c.LG_pikachu, c.LG_pikachu
+c.LG_eevee = function(frame) return _colore(frame.args[1] or 'normale', 'c47e39', 'f9c876', '6a3f31') end
+c['LG Eevee'], c.LG_Eevee, c.LGE = c.LG_eevee, c.LG_eevee, c.LG_eevee
+c.lge, c.lgeevee, c["Let's Go, Eevee!"] = c.LG_eevee, c.LG_eevee, c.LG_eevee
 
 -- Colori regioni
 
@@ -363,13 +377,13 @@ c.zona_giallo, c.zona_Giallo = c.giallo, c.giallo
 c.zona_text = function(frame)
     local zone = string.trim(frame.args[1] or ''):lower()
     local colors = {palude = '573118', vulcano = 'FFBC00',
-		spazio = 'FFFFFF', distorsione = 'E0FAFF'}
-	colors.marsh = colors.palude
-	colors.volcano = colors.vulcano
-	colors.space, colors.shadow, colors.ombra =
-		colors.spazio, colors.spazio, colors.spazio
-	colors.distortion = colors.distorsione
-	return colors[zone] or '000000'
+        spazio = 'FFFFFF', distorsione = 'E0FAFF'}
+    colors.marsh = colors.palude
+    colors.volcano = colors.vulcano
+    colors.space, colors.shadow, colors.ombra =
+        colors.spazio, colors.spazio, colors.spazio
+    colors.distortion = colors.distorsione
+    return colors[zone] or '000000'
 end
 
 
@@ -378,8 +392,8 @@ end
 c.pcwiki = function(frame)
     local var = (string.trim(frame.args[1] or 'normale')):lower()
     local colors = {['medium light'] = 'B1D6FF',
-		['medium dark'] = '5BA0FF'}
-	return colors[var] or _colore(var, '7CBAFF', 'D0E6FF', '0078FF')
+        ['medium dark'] = '5BA0FF'}
+    return colors[var] or _colore(var, '7CBAFF', 'D0E6FF', '0078FF')
 end
 
 c.PCWiki, c.PCwiki = c.pcwiki, c.pcwiki
@@ -441,56 +455,56 @@ c.erba_gcc = function(frame) return _colore(frame.args[1] or 'normale', '7DB808'
 c.Erba_gcc, c['erba gcc'], c['Erba gcc'] = c.erba_gcc, c.erba_gcc, c.erba_gcc
 c.folletto_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'E03A83', 'EA7EAE', '912555') end
 c.Folletto_gcc, c['folletto gcc'], c['Folletto gcc'] =
-	c.folletto_gcc, c.folletto_gcc, c.folletto_gcc
+    c.folletto_gcc, c.folletto_gcc, c.folletto_gcc
 c.fuoco_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'E24242', 'EC8484', '932B2B') end
 c.Fuoco_gcc, c['fuoco gcc'], c['Fuoco gcc'] = c.fuoco_gcc, c.fuoco_gcc, c.fuoco_gcc
 c.incolore_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'E5D6D0', 'EEE4E0', '958B87') end
 c.Incolore_gcc, c['incolore gcc'], c['Incolore gcc'] =
-	c.incolore_gcc, c.incolore_gcc, c.incolore_gcc
+    c.incolore_gcc, c.incolore_gcc, c.incolore_gcc
 c.metallo_gcc = function(frame) return _colore(frame.args[1] or 'normale', '8A776E', 'B3A6A1', '5A4D48') end
 c.Metallo_gcc, c['metallo gcc'], c['Metallo gcc'] = c.metallo_gcc, c.metallo_gcc, c.metallo_gcc
 c.oscurita_gcc = function(frame) return _colore(frame.args[1] or 'normale', '2C2E2B', '767775', '1D1E1C') end
 c.Oscurita_gcc, c['oscurita gcc'], c['Oscurita gcc'] =
-	c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc
+    c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc
 c['oscurità_gcc'], c['Oscurità_gcc'], c['oscurità gcc'], c['Oscurità gcc'] =
-	c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc
+    c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc
 c.psiche_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'A65E9A', 'C596BD', '6C3D64') end
 c.Psiche_gcc, c['psiche gcc'], c['Psiche gcc'] =
-	c.psiche_gcc, c.psiche_gcc, c.psiche_gcc
+    c.psiche_gcc, c.psiche_gcc, c.psiche_gcc
 c.supporto_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'DC2222', 'E66363', '9A1717') end
 c.Supporto_gcc, c['supporto gcc'], c['Supporto gcc'] =
-	c.supporto_gcc, c.supporto_gcc, c.supporto_gcc
+    c.supporto_gcc, c.supporto_gcc, c.supporto_gcc
 c.aiuto_gcc, c.Aiuto_gcc, c['aiuto gcc'], c['Aiuto gcc'] =
-	c.supporto_gcc, c.supporto_gcc, c.supporto_gcc, c.supporto_gcc
+    c.supporto_gcc, c.supporto_gcc, c.supporto_gcc, c.supporto_gcc
 c.combattimento_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'FF501F', 'FF8D6D', 'A63414') end
 c.Combattimento_gcc, c['combattimento gcc'], c['Combattimento gcc'] =
-	c.combattimento_gcc, c.combattimento_gcc, c.combattimento_gcc
+    c.combattimento_gcc, c.combattimento_gcc, c.combattimento_gcc
 c.allenatore_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'FFE955', 'FFFCE4', 'B3A33B') end
 c.Allenatore_gcc, c['allenatore gcc'], c['Allenatore gcc'] =
-	c.allenatore_gcc, c.allenatore_gcc, c.allenatore_gcc
+    c.allenatore_gcc, c.allenatore_gcc, c.allenatore_gcc
 c.trainer_gcc, c.Trainer_gcc, c['trainer gcc'], c['Trainer gcc'] =
-	c.allenatore_gcc, c.allenatore_gcc, c.allenatore_gcc, c.allenatore_gcc
+    c.allenatore_gcc, c.allenatore_gcc, c.allenatore_gcc, c.allenatore_gcc
 c['pokébody_gcc'] = function(frame) return _colore(frame.args[1] or 'normale', '146837', '5A9572', '0E4926') end
 c['Pokébody_gcc'], c['pokébody gcc'], c['Pokébody gcc'] =
-	c['pokébody_gcc'], c['pokébody_gcc'], c['pokébody_gcc']
+    c['pokébody_gcc'], c['pokébody_gcc'], c['pokébody_gcc']
 c['poké-body_gcc'], c['Poké-body_gcc'], c['poké-body gcc'], c['Poké-body gcc'] =
-	c['pokébody_gcc'], c['pokébody_gcc'], c['pokébody_gcc'], c['pokébody_gcc']
+    c['pokébody_gcc'], c['pokébody_gcc'], c['pokébody_gcc'], c['pokébody_gcc']
 c['poképower_gcc'] = function(frame) return _colore(frame.args[1] or 'normale', '850921', 'A95263', '5D0617') end
 c['Poképower_gcc'], c['poképower gcc'], c['Poképower gcc'] =
-	c['poképower_gcc'], c['poképower_gcc'], c['poképower_gcc']
+    c['poképower_gcc'], c['poképower_gcc'], c['poképower_gcc']
 c['poké-power_gcc'], c['Poké-power_gcc'], c['poké-power gcc'], c['Poké-power gcc'] =
-	c['poképower_gcc'], c['poképower_gcc'], c['poképower_gcc'], c['poképower_gcc']
+    c['poképower_gcc'], c['poképower_gcc'], c['poképower_gcc'], c['poképower_gcc']
 c.abilita_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'C84923', 'D87F64', '8C3318') end
 c.Abilita_gcc, c['abilita gcc'], c['Abilita gcc'] =
-	c.abilita_gcc, c.abilita_gcc, c.abilita_gcc
+    c.abilita_gcc, c.abilita_gcc, c.abilita_gcc
 c['abilità_gcc'], c['Abilità_gcc'], c['abilità gcc'], c['Abilità gcc'] =
-	c.abilita_gcc, c.abilita_gcc, c.abilita_gcc, c.abilita_gcc
+    c.abilita_gcc, c.abilita_gcc, c.abilita_gcc, c.abilita_gcc
 c.strumento_gcc = function(frame) return _colore(frame.args[1] or 'normale', '7777EE', 'A6A6F4', '4D4D9B') end
 c.Strumento_gcc, c['strumento gcc'], c['Strumento gcc'] =
-	c.strumento_gcc, c.strumento_gcc, c.strumento_gcc
+    c.strumento_gcc, c.strumento_gcc, c.strumento_gcc
 c.stadio_gcc = function(frame) return _colore(frame.args[1] or 'normale', '90E183', 'B7EBAE', '5E9255') end
 c.Stadio_gcc, c['stadio gcc'], c['Stadio gcc'] =
-	c.stadio_gcc, c.stadio_gcc, c.stadio_gcc
+    c.stadio_gcc, c.stadio_gcc, c.stadio_gcc
 
 -- Colori Parco Lotta
 
@@ -538,9 +552,9 @@ c.Messaggi = c.messaggi
 c.cristalliz = function(frame) return _colore(frame.args[1] or 'normale', 'AB6B07', 'FFC039', '482C04') end
 c.Cristalliz, c.cristalliZ, c.CristalliZ = c.cristalliz, c.cristalliz, c.cristalliz
 c['cristalli z'], c['Cristalli z'], c['cristalli Z'], c['Cristalli Z'] =
-	c.cristalliz, c.cristalliz, c.cristalliz, c.cristalliz
+    c.cristalliz, c.cristalliz, c.cristalliz, c.cristalliz
 c.cristalli_z, c.Cristalli_z, c.cristalli_Z, c.Cristalli_Z =
-	c.cristalliz, c.cristalliz, c.cristalliz, c.cristalliz
+    c.cristalliz, c.cristalliz, c.cristalliz, c.cristalliz
 
 -- Colori gruppi uova
 
