@@ -7,7 +7,7 @@ gestire meglio i cambi di abilità tra generazioni
 
 local al = {}
 
-local tab = require('Wikilib-tables')
+local tab = require('Wikilib-tables')       -- luacheck: no unused
 local gen = require("Gens-data")
 
 --[[
@@ -18,20 +18,20 @@ e superiore (secondo) dell'intervallo
 
 --]]
 al.lastabils = function(abil)
-	return table.map(abil, function(v)
-		if (type(v) == 'string') then
-			return v
-		end
-		for i = gen.lastGen, 3, -1 do
-			if (v[i]) then
-				return v[i]
-			end
-		end
-	end)
+    return table.map(abil, function(v)
+        if (type(v) == 'string') then
+            return v
+        end
+        for i = gen.lastGen, 3, -1 do
+            if (v[i]) then
+                return v[i]
+            end
+        end
+    end)
 end
 
 al.lastAbils, al.Lastabils, al.LastAbils =
-	al.lastabils, al.lastabils, al.lastabils
+    al.lastabils, al.lastabils, al.lastabils
 
 --[[
 
@@ -45,22 +45,22 @@ Se il parametro è una stringa, ritorna semplicemente la stringa
 
 --]]
 al.abilspan = function(abil)
-	if type(abil) == 'string' then
-		return abil
-	end
-	local as = { {abil = 'placeholder', first = 2, last = 2} }
-	for i=3,gen.lastGen do
-		if (abil[i]) then
-			table.insert(as, {abil = abil[i], first = i, last = i})
-		else
-			as[#as].last = i
-		end
-	end
-	table.remove(as, 1)
-	return as
+    if type(abil) == 'string' then
+        return abil
+    end
+    local as = { {abil = 'placeholder', first = 2, last = 2} }
+    for i=3,gen.lastGen do
+        if (abil[i]) then
+            table.insert(as, {abil = abil[i], first = i, last = i})
+        else
+            as[#as].last = i
+        end
+    end
+    table.remove(as, 1)
+    return as
 end
 
 al.abilSpan, al.Abilspan, al.AbilSpan =
-	al.abilspan, al.abilspan, al.abilspan
+    al.abilspan, al.abilspan, al.abilspan
 
 return al

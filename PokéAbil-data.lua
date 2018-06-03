@@ -1694,9 +1694,9 @@ t['800U'] = t.necrozmaU
 -- Alias per le altre forme alternative rilevanti
 
 t.pikachuR, t['025R'], t.pikachuD, t['025D'], t.pikachuCn,
-	t['025Cn'], t.pikachuS, t['025S'], t.pikachuW, t['025W'] =
-	t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs,
-	t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs
+    t['025Cn'], t.pikachuS, t['025S'], t.pikachuW, t['025W'] =
+    t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs,
+    t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs
 t.castformS, t.castformP, t.castformN = t.castform, t.castform, t.castform
 t['351S'], t['351P'], t['351N'] = t.castform, t.castform, t.castform
 t.deoxysA, t.deoxysD, t.deoxysV = t.deoxys, t.deoxys, t.deoxys
