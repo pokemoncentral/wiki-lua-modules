@@ -102,7 +102,7 @@ Entry.__tostring = function(this)
     local typesCount = this.type1 == this.type2 and 1 or 2
 
     return string.interp([=[| ${static}
-| class="hidden-xs" | ${name}${form}
+| class="hidden-xs" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
 | class="hidden-xs" style="padding: 1ex 0.8ex; font-size: 90%;" | ${type1}${type2}
 | ${abil1}${abilEv}
 | ${abil2}
