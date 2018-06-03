@@ -35,7 +35,7 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
-local c = require("Colore-data")
+local css = require('Css')
 local data = require("Wikilib-data")
 local glitches = require('Glitch-data')
 
@@ -110,21 +110,18 @@ m.GlitchPrecSucc = function(frame)
     end
     game = glitches[game]
 
-    local tipo1 = game[glitchIndex].type1
-    local tipo2 = game[glitchIndex].type2 or tipo1
+    local tipo1 = game[glitchIndex].type1:gsub(' ', '_')
+    local tipo2 = (game[glitchIndex].type2 or tipo1):gsub(' ', '_')
     
     local size = table.getn(game)
     local prev = (glitchIndex - 2 + size) % size + 1
 	local nxt = glitchIndex % size + 1
-    return string.interp([=[{| class="roundy" style="background: #${bg}; border: 3px solid #${bd}; margin-bottom: 5px; margin-top: 5px; width: 100%;"
-| class="roundyleft text-right" style="padding-right: 3px; width: 45%; background: #${cells};" | [[${namePrev}|<span style="color:#000">&larr;</span>]]${sprPrev}<span style="display: inline-block; width: 70%;">[[${namePrev}|<span style="color:#000">#${prev}: ${displayPrev}</span>]]</span>
-| class="text-center" style="padding: 0 3px; background: #${cells};" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">${name}</span>]]
-| class="roundyright text-left" style="padding-left: 3px; width: 45%; background: #${cells};" | <span style="display: inline-block; width: 70%;">[[${nameNext}|<span style="color:#000">#${nxt}: ${displayNext}</span>]]</span>${sprNext}[[${nameNext}|<span style="color:#000">&rarr;</span>]]
-|}]=],
+	return string.interp([=[
+<div class="roundy-20" style="${bg} margin: 1ex 0;">
+<div class="inline-block width-xl-40 width-xs-50 text-right"><span class="inline-block width-xl-10 width-xs-20">[[${namePrev}|<span style="color:#000">&larr;</span>]]</span><span class="inline-block width-xl-10 hidden-xs">${sprPrev}</span><span class="inline-block width-xl-80" style="padding: 0 1em; box-sizing: border-box;">[[${namePrev}|<span style="color:#000">#${prev}: ${displayPrev}</span>]]</span></div><div class="inline-block text-center width-xl-20 hidden-xs">[[Elenco Pokémon Glitch|<span style="color:#000">${name}</span>]]</div><div class="inline-block width-xl-40 width-xs-50"><span class="inline-block width-xl-80" style="padding: 0 1em; box-sizing: border-box;">[[${nameNext}|<span style="color:#000">#${nxt}: ${displayNext}</span>]]</span><span class="inline-block width-xl-10 hidden-xs">${sprNext}</span><span class="inline-block width-xl-10 width-xs-20">[[${nameNext}|<span style="color:#000">&rarr;</span>]]</span></div>
+</div>]=],
 {
-    bg = c[tipo1].normale,
-    bd = tipo1 == tipo2 and c[tipo2].dark or c[tipo2].normale,
-    cells = c[tipo1].light,
+    bg = css.horizGradLua{type1 = tipo1, type2 = tipo2},
     namePrev = game[prev].name,
     sprPrev = not game[prev].spr:find('%.') and game[prev].spr
 			or table.concat{'[[File:', game[prev].spr, ']]'},
@@ -140,7 +137,7 @@ m.GlitchPrecSucc = function(frame)
 end
 
 m.glitchprecsucc, m.glitchPrecSucc = m.GlitchPrecSucc, m.GlitchPrecSucc
-
+arg={'Missingno.', 'RB'}
 print(m.glitchPrecSucc{args={arg[1], game = arg[2]}})
 
 -- return m

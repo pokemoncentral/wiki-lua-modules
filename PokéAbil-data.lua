@@ -1317,7 +1317,7 @@ t.froakie = {ability1 = 'Acquaiuto', abilityd = 'Mutatipo'}
 t[656] = t.froakie
 t.frogadier = {ability1 = 'Acquaiuto', abilityd = 'Mutatipo'}
 t[657] = t.frogadier
-t.greninja = {ability1 = 'Acquaiuto', abilityd = 'Mutatipo'}
+t.greninja = {ability1 = 'Acquaiuto', abilityd = 'Mutatipo', abilitye = 'Morfosintonia'}
 t[658] = t.greninja
 t.bunnelby = {ability1 = 'Raccolta', ability2 = 'Guancegonfie', abilityd = 'Macroforza'}
 t[659] = t.bunnelby
@@ -1437,7 +1437,7 @@ t.xerneas = {ability1 = 'Aurafolletto'}
 t[716] = t.xerneas
 t.yveltal = {ability1 = 'Auratetra'}
 t[717] = t.yveltal
-t.zygarde = {ability1 = 'Frangiaura', ability2 = 'Sciamefusione'}
+t.zygarde = {ability1 = 'Frangiaura', abilitye = 'Sciamefusione'}
 t[718] = t.zygarde
 t.diancie = {ability1 = 'Corpochiaro'}
 t[719] = t.diancie
@@ -1489,7 +1489,7 @@ t.cutiefly = {ability1 = 'Mielincetta', ability2 = 'Polvoscudo', abilityd = 'Dol
 t[742] = t.cutiefly
 t.ribombee = {ability1 = 'Mielincetta', ability2 = 'Polvoscudo', abilityd = 'Dolcevelo'}
 t[743] = t.ribombee
-t.rockruff = {ability1 = 'Sguardofermo', ability2 = 'Spiritovivo', abilityd = 'Cuordeciso'}
+t.rockruff = {ability1 = 'Sguardofermo', ability2 = 'Spiritovivo', abilityd = 'Cuordeciso', abilitye = 'Mente Locale'}
 t[744] = t.rockruff
 t.lycanroc = {ability1 = 'Sguardofermo', ability2 = 'Remasabbia', abilityd = 'Cuordeciso'}
 t[745] = t.lycanroc
@@ -1602,11 +1602,21 @@ t[798] = t.kartana
 t.guzzlord = {ability1 = 'Ultraboost'}
 t[799] = t.guzzlord
 t.necrozma = {ability1 = 'Scudoprisma'}
-t[800] = t.guzzlord
+t[800] = t.necrozma
 t.magearna = {ability1 = 'Cuoreanima'}
 t[801] = t.magearna
 t.marshadow = {ability1 = 'Tecnico'}
 t[802] = t.marshadow
+t.poipole = {ability1 = 'Ultraboost'}
+t[803] = t.poipole
+t.naganadel = {ability1 = 'Ultraboost'}
+t[804] = t.naganadel
+t.stakataka = {ability1 = 'Ultraboost'}
+t[805] = t.stakataka
+t.blacephalon = {ability1 = 'Ultraboost'}
+t[806] = t.blacephalon
+t.zeraora = {ability1 = 'Assorbivolt'}
+t[807] = t.zeraora
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
@@ -1668,8 +1678,6 @@ t.kyuremN = {ability1 = 'Teravolt'}
 t['646N'] = t.kyuremN
 t.kyuremB = {ability1 = 'Piroturbina'}
 t['646B'] = t.kyuremB
-t.greninjaD = {ability1 = 'Morfosintonia'}
-t['658D'] = t.greninjaD
 t.greninjaA = {ability1 = 'Morfosintonia'}
 t['658A'] = t.greninjaA
 t.meowsticF = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'Tenacia'}
@@ -1678,13 +1686,17 @@ t.zygardeP = {ability1 = 'Sciamefusione'}
 t['718P'] = t.zygardeP
 t.lycanrocN = {ability1 = 'Sguardofermo', ability2 = 'Spiritovivo', abilityd = 'Nullodifesa'}
 t['745N'] = t.lycanrocN
+t.lycanrocC = {ability1 = 'Unghiedure'}
+t['745C'] = t.lycanrocC
+t.necrozmaU = {ability1 = 'Cerebroforza'}
+t['800U'] = t.necrozmaU
 
 -- Alias per le altre forme alternative rilevanti
 
 t.pikachuR, t['025R'], t.pikachuD, t['025D'], t.pikachuCn,
-	t['025Cn'], t.pikachuS, t['025S'], t.pikachuW, t['025W'] =
-	t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs,
-	t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs
+    t['025Cn'], t.pikachuS, t['025S'], t.pikachuW, t['025W'] =
+    t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs,
+    t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs
 t.castformS, t.castformP, t.castformN = t.castform, t.castform, t.castform
 t['351S'], t['351P'], t['351N'] = t.castform, t.castform, t.castform
 t.deoxysA, t.deoxysD, t.deoxysV = t.deoxys, t.deoxys, t.deoxys
@@ -1735,6 +1747,8 @@ t['773P'], t['773G'], t['773D'] = t.silvally, t.silvally, t.silvally
 t.silvallyP, t.silvallyG, t.silvallyD = t.silvally, t.silvally, t.silvally
 t['773B'], t['773Fo'] = t.silvally, t.silvally
 t.silvallyB, t.silvallyFo = t.silvally, t.silvally
+t['800V'], t['800A'] = t.necrozma, t.necrozma
+t.necrozmaV, t.necrozmaA = t.necrozma, t.necrozma
 
 -- Mega evolutions
 

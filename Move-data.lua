@@ -678,5 +678,7 @@ t.occhionilucidi = {name = 'Occhionilucidi', type = 'normale', category = 'stato
 t.elettropizzico = {name = 'Elettropizzico', type = 'elettro', category = 'fisico', power = 80, accuracy = 100, pp = 10}
 t['ira della natura'] = {name = "Ira della Natura", type = 'folletto', category = 'speciale', power = '&mdash;', accuracy = 90, pp = 10}
 t.multiattacco = {name = 'Multiattacco', type = 'normale', category = 'fisico', power = 90, accuracy = 100, pp = 10}
+t['geyser fotonico'] = {name = 'Geyser Fotonico', type = 'psico', category = 'speciale', power = '&mdash;', accuracy = '&mdash;', pp = '&mdash;'}
+t['sbalorditesta'] = {name = 'Sbalorditesta', type = 'fuoco', category = 'speciale', power = '&mdash;', accuracy = '&mdash;', pp = '&mdash;'}
 
 return t

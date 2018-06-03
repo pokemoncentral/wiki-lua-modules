@@ -41,15 +41,15 @@ Dato che non funziona, viene commentata in blocco
 
 s.squadra = function(frame)
 	local p = w.trimAll(mw.clone(frame.args))
-		
+
 	-- La table poke contiene i dati dei Pokémon
 	local poke = {p.pokemon1}
 	for a = 2, p.pokemon do
 		table.insert(poke, p['pokemon' .. a])
 	end
-	
+
 	-- Colori in esadecimale, con valori di default dapprima "sconosciuto" e poi quelli calcolati prima
-	
+
 	local colors = lib.gethex{color = p.color or c.sconosciuto.normale, bordercolor = p.bordercolor or c.sconosciuto.dark,
 		headcolor = p.headcolor or c.sconosciuto.light}
 	local colors = lib.gethex({headcolor1 = p.headcolor1 or colors.headcolor, headcolor2 = p.headcolor2 or colors.headcolor,
@@ -59,12 +59,12 @@ s.squadra = function(frame)
 	-- Stringhe non sempre presenti
 	local extra = {
 		class = [=[<div class="small-text" style="line-height:10px;">'''[[${class} (classe allenatore)|<span style="color:#000">${class}</span>]]'''</div>]=],
-		
+
 		secondtrainer = [=[<div>''e''</div>
 <div>
 <div class="small-text" style="line-height:10px;">'''[[${class2} (classe allenatore)|<span style="color:#000">${class2}</span>]]'''</div><div class="big-text">'''${name2}'''</div>
 </div>]=],
-	
+
 		secondsprite = [=[<div style="padding: 0.3ex; height: 11ex; width: 11ex; ${r80} background: linear-gradient(to right, #${color2}, #${bordercolor2});">[[File:${sprite2}]]</div>]=]
 	}
 
@@ -134,9 +134,9 @@ local classString = [=[<div style="line-height: 10px" class="text-small">'''[[${
 
 s.single = function(frame)
 	local p = w.trimAll(mw.clone(frame.args))
-		
+
 	-- Colori in esadecimale, con valori di default dapprima "sconosciuto" e poi quelli calcolati prima
-	
+
 	local colors = lib.gethex{
 		color = p.color or c.sconosciuto.normale,
 		bordercolor = p.bordercolor or c.sconosciuto.dark,
@@ -151,7 +151,9 @@ s.single = function(frame)
 		}, colors)
 
 	local interpData = table.merge(colors, {
+
 		r80 = r.roundyLua('80px'),
+		collapsiblelighttext = (p.expandiblelight and p.expandiblelight:lower()) == 'yes' and 'light-text' or '',
 		sprite = p.sprite,
 		size = p.size and '|' .. p.size or '',
 		class = p.class and string.interp(classString, {class = p.class,
@@ -164,7 +166,7 @@ s.single = function(frame)
 		balls = lib.balls(tonumber(p.pokemon or p.pokemon1) or 0)
 	})
 
-	return string.interp([=[{| class="mw-collapsible mw-collapsed text-center pull-left roundy" style="padding: 0.5ex; background: linear-gradient(to right, #${back1}, #${back2});"
+	return string.interp([=[{| class="mw-collapsible mw-collapsed ${collapsiblelighttext} text-center pull-left roundy" style="padding: 0.5ex; background: linear-gradient(to right, #${back1}, #${back2});"
 |-
 | <div class="flex flex-row flex-nowrap flex-items-center flex-main-center" style="padding: 0 2.5em;">
 <div>
@@ -193,7 +195,7 @@ s.Single = s.single
 
 s.tag = function(frame)
 	local p = w.trimAll(mw.clone(frame.args))
-	
+
 	-- Colori in esadecimale, con valori di default "sconosciuto"
 
 	local colors = lib.gethex{
@@ -213,6 +215,7 @@ s.tag = function(frame)
 
 	local interpData = table.merge(colors, {
 		r80 = r.roundyLua('80px'),
+		collapsiblelighttext = (p.expandiblelight and p.expandiblelight:lower()) == 'yes' and 'light-text' or '',
 		sprite = p.sprite,
 		size = p.size and '|' .. p.size or '',
 		class = p.class and string.interp(classString, {class = p.class,
@@ -229,8 +232,8 @@ s.tag = function(frame)
 		prize = p.prize or '[[File:PokémonDollar.png|link=Pokémon Dollar]]0',
 		balls = lib.balls(tonumber(p.pokemon1) or 0, tonumber(p.pokemon2) or 0),
 	})
-	
-	return string.interp([=[{| class="mw-collapsible mw-collapsed text-center pull-left roundy" style="padding: 0.5ex; background: linear-gradient(to right, #${back1}, #${back2});"
+
+	return string.interp([=[{| class="mw-collapsible mw-collapsed ${collapsiblelighttext} text-center pull-left roundy" style="padding: 0.5ex; background: linear-gradient(to right, #${back1}, #${back2});"
 |-
 | <div class="flex flex-row flex-nowrap flex-items-center flex-main-center" style="padding: 0 2.5em;">
 <div>

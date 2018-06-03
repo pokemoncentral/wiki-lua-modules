@@ -34,17 +34,17 @@ return {
 
 			do
 				local matchBeg, matchEnd = str:find(pattern, beg, plain)
-								
+
 				-- Empty string matched, and would do thoughout the string
 
 				if matchBeg and matchBeg - 1 == matchEnd then
 					return splitByChar(str)
 				end
 			end
-	
+
             repeat
 				local matchBeg, matchEnd = str:find(pattern, beg, plain)
-				
+
 				if matchBeg then
 					table.insert(t, str:sub(beg, matchBeg - 1))
 					beg = matchEnd + 1
@@ -54,8 +54,11 @@ return {
 
 			return t
         end,
-        
+
         listToText = function(tab, sep, lastSep)
+			sep = sep or ', '
+			lastSep = lastSep or ' e '
+
 			if #tab > 1 then
 				local last = table.remove(tab)
 				return table.concat{table.concat(tab, sep), lastSep, last}
@@ -101,7 +104,7 @@ return {
 			end))
 		end
     },
-    
+
     clone = function(value)
 		return type(value) ~= 'table' and value or
 				table.map(value, function(x) return x end)

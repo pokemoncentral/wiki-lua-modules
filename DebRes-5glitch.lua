@@ -1,22 +1,28 @@
 --[[
 
 Crea una tabella in cui sono presenti tutte le debolezze e
-resistenze di un Pokémon Glitch di prima generazione.
+resistenze di un Pokémon Glitch di una generazione tra la
+seconda e la quinta.
 Per i Pokémon glitch con più forme (Missigno.), crea solo le tabelle
 effettivamente diverse, inserendo nel titolo tutte le
 forme che condividono la stessa.
 
 Può essere chiamato con il nome di un Pokémon, es:
 
-{{#invoke: DebRes/1glitch | DebRes | 'M (00) }}
+{{#invoke: DebRes/5glitch | DebRes | ????? (FF) }}
 
 Se un glitch con lo stesso nome compare in più giochi
 il modulo crea automaticamente una tabella diversa per
 ogni gioco in cui ha debolezze e resistenze diverse
-richiamandolo con solo il nome
+richiamandolo con solo il nome.
 (ATTENZIONE: non crea una tabella per ogni combinazione
 di tipi diversa ma per ogni combinazione di debolezze e
 resistenze diversa)
+
+È anche possibile passare un parametro game per indicare
+il gioco di cui si vuole la tabella, es:
+
+{{#invoke: DebRes/5glitch | DebRes | Uovo Peste | game = RZS }}
 
 --]]
 
@@ -32,7 +38,7 @@ local oop = require('Wikilib-oop')
 local tab = require('Wikilib-tables')
 local sig = require('Wikilib-sigle')
 local drp = require('DebRes')
-local et = require('EffTipi-1-glitch')
+local et = require('EffTipi-5-glitch')
 local glitch = require("Glitch-data")
 
 --[[
@@ -73,17 +79,19 @@ end
 -- Override di createColors per gestire i tipi glitch
 -- (nomi diversi ma stesso colore)
 EffTable.createColors = function(this, types)
+	-- The order is important because table.merge use mw.clone on first argument,
+	-- that can't be used on data.allTypes because of mw.loadData
+	local coloredTypes = table.merge({'grinta', 'grazia'}, data.allTypes)
+
 	this.colors = {
 		type1 = types.type1,
 		type2 = types.type2,
 	}
 	for k, v in pairs(this.colors) do
-		v = string.lower(v)
-		this.colors[k] = (v == 'coleottero' or table.search(data.allTypes, v)) and
-							v or 'sconosciuto'
+		this.colors[k] = string.lower(v)
+		this.colors[k] = table.search(coloredTypes, this.colors[k]) and this.colors[k] or 'sconosciuto'
 	end
 end
-
 
 --[[
 
@@ -105,7 +113,10 @@ EffTable.FooterStrings = {
 
 Costruttore della classe: ha in ingresso il
 nome del Pokémon, nella forma nome + sigla gioco,
-e, opzionalmente, il nome esteso dell gioco
+e, opzionalmente, il nome esteso del gioco
+
+Dato che i glitch non hanno abilità che modificano le
+efficacie questo modulo non si occupa di gestirle
 
 --]]
 EffTable.new = function(name, game)
@@ -122,6 +133,7 @@ EffTable.new = function(name, game)
 	end
 
 	local data = glitch[game][tab.deepSearch(glitch[game], name)]
+	-- data.typeEffectiveness viene usato solo per glitch di prima generazione
 	local types = data.typeEffectiveness and table.cloneLoadData(data.typeEffectiveness) or {data.type1, data.type2}
 	if not types[2] then
 		types[2] = types[1]
@@ -150,7 +162,8 @@ EffTable.new = function(name, game)
 	end
 
 	--[[
-		Contiene l'unica possibile riga del footer (se c'è)
+		Contiene l'unica possibile riga del footer (se c'è) dato che nessun glitch di 2 o 3
+		può perdere un'immunità per colpa di un'abilità o di una mossa in queste generazioni.
 	--]]
 	this.footer = {}
 	if data.typeEffectiveness then
@@ -170,6 +183,8 @@ EffTable.new = function(name, game)
 
 	return this
 end
+
+
 
 --[[
 
@@ -211,7 +226,9 @@ dr.debRes = function(frame)
 		end
 		-- Ordina altData.gamesOrder in modo da avere prima i giochi più vecchi
 		table.sort(altData.gamesOrder , function (a, b)
-			return gamesUtil.isBefore(string.lower(a), string.lower(b))
+			a = a == 'RZS' and 'rz' or string.lower(a)
+			b = b == 'RZS' and 'rz' or string.lower(b)
+			return gamesUtil.isBefore(a, b)
 		end)
 	end
 
@@ -224,5 +241,5 @@ dr.debRes = function(frame)
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
-
+print(dr.debres{args={'????? (FF)'}})
 return dr

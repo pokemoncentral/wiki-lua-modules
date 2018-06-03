@@ -1609,6 +1609,16 @@ t.magearna = {name = 'Magearna', ndex = 801, type1 = 'acciaio', type2 = 'follett
 t[801] = t.magearna
 t.marshadow = {name = 'Marshadow', ndex = 802, type1 = 'lotta', type2 = 'spettro'}
 t[802] = t.marshadow
+t.poipole = {name = 'Poipole', ndex = 803, type1 = 'veleno', type2 = 'veleno'}
+t[803] = t.poipole
+t.naganadel = {name = 'Naganadel', ndex = 804, type1 = 'veleno', type2 = 'drago'}
+t[804] = t.naganadel
+t.stakataka = {name = 'Stakataka', ndex = 805, type1 = 'roccia', type2 = 'acciaio'}
+t[805] = t.stakataka
+t.blacephalon = {name = 'Blacephalon', ndex = 806, type1 = 'fuoco', type2 = 'spettro'}
+t[806] = t.blacephalon
+t.zeraora = {name = 'Zeraora', ndex = 807, type1 = 'elettro', type2 = 'elettro'}
+t[807] = t.zeraora
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
@@ -1751,6 +1761,12 @@ t.silvallyB = {name = 'Silvally', ndex = 773, type1 = 'buio', type2 = 'buio'}
 t['773B'] = t.silvallyB
 t.silvallyFo = {name = 'Silvally', ndex = 773, type1 = 'folletto', type2 = 'folletto'}
 t['773Fo'] = t.silvallyFo
+t.necrozmaV = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'acciaio'}
+t['800V'] = t.necrozmaV
+t.necrozmaA = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'spettro'}
+t['800A'] = t.necrozmaA
+t.necrozmaU = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'drago'}
+t['800U'] = t.necrozmaU
 
 -- Gli alias per le altre forme alternative rilevanti
 
@@ -1776,7 +1792,8 @@ t.gourgeistS, t['711S'], t.gourgeistL, t['711L'], t.gourgeistXL, t['711XL'] =
 	t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist
 t.zygardeD, t['718D'], t.zygardeP, t['718P'] =
 	t.zygarde, t.zygarde, t.zygarde, t.zygarde
-t.lycanrocN, t['745N'] = t.lycanroc, t.lycanroc
+t.lycanrocN, t['745N'], t.lycanrocC, t['745C'] =
+	t.lycanroc, t.lycanroc, t.lycanroc, t.lycanroc
 t.wishiwashiB, t['746B'] = t.wishiwashi, t.wishiwashi
 
 -- I dati sulle megaevoluzioni; sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio

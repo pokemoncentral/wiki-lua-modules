@@ -83,13 +83,11 @@ influenzati gli elementi associati, es: all'indice
 pellearsa corrisponde una table contenente i tipi
 fuoco e acqua.
 Fanno eccezione Magidifesa, Filtro e Solidroccia,
-che non hanno tipi associati fissi
+che non hanno tipi associati fissi.
 La table viene creata dentro loadAbils per contenere
-solo le abilità delle generazioni volute
+solo le abilità delle generazioni volute.
 
 --]]
-
-et.modTypesAbil = {magidifesa = {}, filtro = {}, solidroccia = {}}
 
 --[[
 
@@ -98,19 +96,27 @@ generazione. Da chiamare prima di utilizzare le altre
 funzioni del modulo
 
 --]]
-local ability = {}
+et.ability = {}
+et.modTypesAbil = {}
 et.loadAbils = function(gen)
-	for	g=1,gen,1 do
+	for	g=1,gen do
 		for abil, types in pairs(allability[g]) do
-			ability[abil] = types
+			et.ability[abil] = types
 		end
 	end
 
-	for abil, types in pairs(ability) do
+	for abil, types in pairs(et.ability) do
 		et.modTypesAbil[abil] = {}
 		for Type, eff in pairs(types) do
 			table.insert(et.modTypesAbil[abil], Type)
 		end
+	end
+	if gen >= 3 then
+		et.modTypesAbil.magidifesa = {}
+	end
+	if gen >= 4 then
+		et.modTypesAbil.filtro = {}
+		et.modTypesAbil.solidroccia = {}
 	end
 end
 
@@ -154,8 +160,8 @@ et.efficacia = function(atk, def1, def2, abil)
 
 	-- Abilità standard
 
-	if ability[abil] and ability[abil][atk] then
-		return e * ability[abil][atk]
+	if et.ability[abil] and et.ability[abil][atk] then
+		return e * et.ability[abil][atk]
 
 	-- Filtro e solidroccia
 
@@ -193,6 +199,12 @@ end
 
 et.attacco = function(eff, tipo)
 	return cerca_tipi(function (x) return et.efficacia(tipo, x, x, 'Tanfo') == eff end)
+end
+
+--Restituisce i dati di efficacia in attacco del tipo passato
+
+et.data = function(tipo)
+	return eff[tipo]
 end
 
 return et
