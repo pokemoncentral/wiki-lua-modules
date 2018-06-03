@@ -1,18 +1,16 @@
 -- Abilities box for template PokémonInfo
 
-local b = {}
+local j = {}
 
 local mw = require('mw')
 
 local l = require('Links')
-local w = require('Wikilib')
 local abillib = require('Wikilib-abils')
 local oop = require('Wikilib-oop')
 local list = require('Wikilib-lists')
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings')      -- luacheck: no unused
+local tab = require('Wikilib-tables')       -- luacheck: no unused
 local abils = require('PokéAbil-data')
-local c = require("Colore-data")
 
 -- Table holding Pikachu forms to be ignored
 local ignorableForms = {'pikachuR', 'pikachuD', 'pikachuCn', 'pikachuS',
@@ -117,7 +115,7 @@ PokémonInfo abilities box. Every combination of abilities has its own cell,
 with the forms that have if displayed above.
 
 --]]
-b.boxAbil = function(frame)
+j.boxAbil = function(frame)
 	local name = string.trim(frame.args[1] or '')
 	name = string.parseInt(name) or mw.text.decode(name):lower()
 
@@ -128,7 +126,7 @@ b.boxAbil = function(frame)
 	})
 end
 
-b.BoxAbil, b.box_abil, b.Box_abil = b.boxAbil, b.boxAbil, b.boxAbil
+j.BoxAbil, j.box_abil, j.Box_abil = j.boxAbil, j.boxAbil, j.boxAbil
 
-print(b.boxAbil{args={arg[1]}})
+print(j.boxAbil{args={arg[1]}})
 -- return b
