@@ -14,7 +14,6 @@ local box = require('Box')
 local css = require('Css')
 local links = require('Links')
 local list = require('Wikilib-lists')
---local mg = require('Wikilib-multigen')
 local ms = require('MiniSprite')
 local oop = require('Wikilib-oop')
 local tab = require('Wikilib-tables')       -- luacheck: no unused
