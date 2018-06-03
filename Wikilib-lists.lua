@@ -154,8 +154,8 @@ l.sortNdex = function(a, b)
 			return a.fallbackSort < b.fallbackSort
 		end
 	end
-		
-	
+
+
 	if a.ndex ~= b.ndex then
 		return a.ndex < b.ndex
 	end
@@ -214,7 +214,7 @@ implementare la seguente interfaccia:
 		riga della tabella HTML relativa
 		alla entry corrente.
 --]]
-l.makeList = function(args)	
+l.makeList = function(args)
 	local makeEntry = function(sourceData, sourceKey)
 		return args.makeEntry(sourceData, sourceKey,
 				args.entryArgs)
@@ -235,7 +235,8 @@ l.makeList = function(args)
         "height: 100%" is just CSS making fun
         of us, can't really hurt anything
     --]]
-	return w.mapAndConcat(entries, '\n|- style="height: 100%"\n',
+	return w.mapAndConcat(entries,
+            table.concat{'\n' .. args.separator .. '\n'},
 			tostring)
 end
 
@@ -292,13 +293,13 @@ l.makeFormsLabelledBoxes = function(args)
 	if not altData then
 		return args.printBoxes({makeBox(args.name)})
 	end
-	
+
 	local boxes = {}
 
 	--[[
 		Scorrendo gamesOrder i boxes saranno già ordinati
 		senza bisogno di sorting successivo.
-		
+
 		Non si può usare table.map perché ciò porterebbe
 		ad avere buchi negli indici di effTables, cosa
 		difficilmente gestibile
@@ -355,7 +356,7 @@ l.PokeSortableEntry.new = function(name, ndex)
 	if this.formsData then
 		this.formAbbr = abbr
 	end
-	
+
 	return this
 end
 

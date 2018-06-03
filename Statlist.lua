@@ -16,8 +16,8 @@ local list = require('Wikilib-lists')
 local mg = require('Wikilib-multigen')
 local oop = require('Wikilib-oop')
 local statsUtil = require('Wikilib-stats')
-local tab = require('Wikilib-tables')
-local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')       -- luacheck: no unused
+local txt = require('Wikilib-strings')      -- luacheck: no unused
 local c = require("Colore-data")
 local gendata = require("Gens-data")
 local pokes = require('Poké-data')
@@ -248,7 +248,7 @@ Example:
 {{#invoke: Statlist | statlist }}
 
 --]]
-s.statlist = function(frame)
+s.statlist = function(frame)        -- luacheck: no unused
     return table.concat({
         [[===Dalla seconda generazione in poi===]],
         list.makeList({
