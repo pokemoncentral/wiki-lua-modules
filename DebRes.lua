@@ -1,6 +1,6 @@
 --[[
 
-Creates a table cisualizing the weaknesses and resistances of a Pokémon. It
+Creates a table visualizing the weaknesses and resistances of a Pokémon. It
 also displays footer notes. If a Pokémon has more forms, it only shows the
 tables that are actually different: the forms that share a table are displayed
 above the table itself.
