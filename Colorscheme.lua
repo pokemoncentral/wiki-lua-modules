@@ -8,7 +8,7 @@
 -- {{#invoke: colorscheme | kanto | dark}}
 
 local c = {}
-local txt = require('Wikilib-strings')
+local txt = require('Wikilib-strings') -- luacheck: no unused
 
 -- Questa è la funzione principale che viene chiamata da (quasi) tutte le altre.
 -- Restituisce il codice esadecimale giusto per la variante richiesta.
@@ -16,19 +16,22 @@ local txt = require('Wikilib-strings')
 local function _colore(variante, light, dark)
     variante = string.trim(variante:lower())
     local colors = {light = light, dark = dark}
-	return colors[variante] or 'Errore'
+    return colors[variante] or 'Errore'
 end
 
 -- Elenco colori
 
 c.kanto = function(frame) return _colore(frame.args[1], 'AAFFAA', 'FFAAAA') end
-c.Kanto, c.RG, c.RV, c['Red, Green & Blue'], c['Rosso, Verde & Blu'] = c.kanto, c.kanto, c.kanto, c.kanto, c.kanto
+c.Kanto, c.RG, c.RV, c['Red, Green & Blue'], c['Rosso, Verde & Blu'] =
+    c.kanto, c.kanto, c.kanto, c.kanto, c.kanto
 c.orange = function(frame) return _colore(frame.args[1], 'FFDDAA', 'FFBB55') end
 c.Orange = c.orange
 c.johto = function(frame) return _colore(frame.args[1], 'DDDDDD', 'FFCB49') end
-c.Johto, c.GS, c['Gold, Silver & Crystal'], c.OA, c['Oro, Argento & Cristallo'] = c.johto, c.johto, c.johto, c.johto, c.johto
+c.Johto, c.GS, c['Gold, Silver & Crystal'], c.OA, c['Oro, Argento & Cristallo'] =
+    c.johto, c.johto, c.johto, c.johto, c.johto
 c.hoenn = function(frame) return _colore(frame.args[1], '9999FF', 'FF7777') end
-c.Hoenn, c.AG, c.RS, c.RZ, c['Ruby & Sapphire'], c['Rubino & Zaffiro'] = c.hoenn, c.hoenn, c.hoenn, c.hoenn, c.hoenn, c.hoenn
+c.Hoenn, c.AG, c.RS, c.RZ, c['Ruby & Sapphire'], c['Rubino & Zaffiro'] =
+    c.hoenn, c.hoenn, c.hoenn, c.hoenn, c.hoenn, c.hoenn
 c.smeraldo = function(frame) return _colore(frame.args[1], '77FF77', '55DD55') end
 c.Smeraldo, c.Emerald, c.Frontier = c.smeraldo, c.smeraldo, c.smeraldo
 c.sinnoh = function(frame) return _colore(frame.args[1], 'FFCCCC', 'AAAAFF') end
@@ -68,6 +71,8 @@ c.XYZ = function(frame) return _colore(frame.args[1], 'A4CC51', '3EAE30') end
 c['XY & Z'], c.Z, c.xyz, c.z = c.XYZ, c.XYZ, c.XYZ, c.XYZ
 c.alola = function(frame) return _colore(frame.args[1], '7FC5F6', 'FFA94D') end
 c.Alola, c.SL, c.SM, c['S&M'], c['Sun & Moon'], c['Sole e Luna'] = c.alola, c.alola, c.alola, c.alola, c.alola, c.alola
+c.sconosciuto = function(frame) return _colore(frame.args[1], '9DC1B7', '68A090') end
+c.Sconosciuto = c.sconosciuto
 c.pcwiki = function(frame) return _colore(frame.args[1], 'CEE0F4', '779FD3') end
 c.Pcwiki = c.pcwiki
 
