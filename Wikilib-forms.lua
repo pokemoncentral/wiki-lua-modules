@@ -9,6 +9,7 @@ local mw = require('mw')
 
 local f = {}
 local tab = require('Wikilib-tables') -- luacheck: no unused
+local txt = require('Wikilib-strings') -- luacheck: no unused
 local genUtil = require('Wikilib-gens')
 local alt = require("AltForms-data")
 
@@ -239,6 +240,7 @@ f.nameToDataindex = function(name)
     if extform == 'base' or not alt[tonumber(trueName) or trueName] then
         return trueName
     end
+    trueName = type(trueName) == 'number' and string.tf(trueName) or trueName
     return trueName .. f.toEmptyAbbr(extform)
 end
 
