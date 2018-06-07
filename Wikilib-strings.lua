@@ -51,7 +51,7 @@ end
 
 string.first_uppercase, string.fu, string.ucfirst =
         string.firstUppercase, string.firstUppercase, string.firstUppercase
-text.firstUppercase, text.first_uppercase = 
+text.firstUppercase, text.first_uppercase =
         string.firstUppercase, string.firstUppercase
 text.fu, text.ucfirst = string.firstUppercase, string.firstUppercase
 
@@ -63,7 +63,7 @@ end
 
 string.first_lowercase, string.fl, string.lcfirst =
         string.firstLowercase, string.firstLowercase, string.firstLowercase
-text.firstLowercase, text.first_lowercase = 
+text.firstLowercase, text.first_lowercase =
         string.firstLowercase, string.firstLowercase
 text.fl, text.lcfirst = string.firstLowercase, string.firstLowercase
 

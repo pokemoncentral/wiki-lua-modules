@@ -10,7 +10,8 @@ local b = {}
 
 local mw = require('mw')
 
-local txt = require('Modulo:Wikilib/strings') -- luacheck: no unused
+local txt = require('Wikilib-strings') -- luacheck: no unused
+local form = require('Wikilib-forms')
 local data
 local abils
 local forms
@@ -24,87 +25,92 @@ with mw.loadData unless the third parameter is true
 --]]
 
 local loadData = function(tab, moduleName, useRequire)
-	if not tab then
-		local loadFunction = useRequire and require or mw.loadData
-		return loadFunction('Modulo:' .. moduleName)
-	end
-	return tab
+    if not tab then
+        local loadFunction = useRequire and require or mw.loadData
+        return loadFunction('Modulo:' .. moduleName)
+    end
+    return tab
 end
 
---[[
 
-Ritorna l'abilità richiesta al secondo argomento
-del Pokémon il cui nome o ndex è passato al primo
-argomento
-
---]]
-
-local getAbil = function(name, abilityNumber)
-	abils = loadData(abils, 'PokéAbil/data')
-	return abils[tonumber(name) or name]['ability' .. abilityNumber]
-end
-
--- Ritorna il dex nazionale dato il nome
+-- Returns ndex given the name
 
 b.getNdex = function(frame)
-	data = loadData(data, 'Poké/data')
-	return string.tf(data[string.trim(frame.args[1] or ''):lower()].ndex)
+    data = loadData(data, 'Poké/data')
+    return string.tf(data[string.trim(frame.args[1] or '')].ndex)
 end
 
 b.get_ndex = b.getNdex
 
--- Ritorna il nome dato il dex nazionale
+-- Returns the name given ndex
 
 b.getName = function(frame)
-	data = loadData(data, 'Poké/data')
-	return data[tonumber(string.trim(frame.args[1] or ''))].name
+    data = loadData(data, 'Poké/data')
+    return data[tonumber(string.trim(frame.args[1] or ''))].name
 end
 
 b.get_name = b.getName
 
--- Ritorna la prima abilità dato il nome o dex nazionale
+
+--[[
+
+Returns a Pokémon's ability (specified by the second parameter) given its name
+or ndex.
+The name can contain a form abbreviation, and if it's a Pokémon name (not an
+ndex) it should be lowercase but the first letter, that can be both upper or
+lower case.
+
+--]]
+
+local getAbil = function(name, abilityNumber)
+    abils = loadData(abils, 'PokéAbil/data')
+    return abils[form.nameToDataindex(name)]['ability' .. abilityNumber]
+end
+
+-- Returns a Pokémon's first ability given its name or ndex
 
 b.getAbil1 = function(frame)
-	return getAbil(string.trim(frame.args[1] or ''):lower(), '1')
+    return getAbil(frame.args[1] or '', '1')
 end
 
 b.get_abil_1 = b.getAbil1
 
--- Ritorna la seconda abilità dato il nome o dex nazionale
+-- Returns a Pokémon's second ability given its name or ndex
 
 b.getAbil2 = function(frame)
-	return getAbil(string.trim(frame.args[1] or ''):lower(), '2')
+    return getAbil(frame.args[1] or '', '2')
 end
 
 b.get_abil_2 = b.getAbil2
 
--- Ritorna l'abilità nascosta dato il nome o dex nazionale
+-- Returns a Pokémon's hidden ability given its name or ndex
 
 b.getAbild = function(frame)
-	return getAbil(string.trim(frame.args[1] or ''):lower(), 'd')
+    return getAbil(frame.args[1] or '', 'd')
 end
 
 b.get_abil_d, b.get_abil_h, b.get_abil_n = b.getAbild, b.getAbild, b.getAbild
 
+
 --[[
 
 Returns a Pokémon's type (specified by the second parameter) given its name or
-ndex. Transform 'coleot' into 'coleottero'
+ndex.
+The name can contain a form abbreviation, and if it's a Pokémon name (not an
+ndex) it should be lowercase but the first letter, that can be both upper or
+lower case.
 
 --]]
 
 local getType = function(name, typeNumber)
-	data = loadData(data, 'Poké/data')
-
-	local pkmnType = data[tonumber(name) or name]['type' .. typeNumber]
-	pkmnType = pkmnType == 'coleot' and 'coleottero' or pkmnType
-	return pkmnType
+    data = loadData(data, 'Poké/data')
+    return data[form.nameToDataindex(name)]['type' .. typeNumber]
 end
 
 -- Returns a Pokémon's first type given its name or ndex
 
 b.getType1 = function(frame)
-	return getType(string.trim(frame.args[1] or ''):lower(), '1')
+    return getType(frame.args[1] or '', '1')
 end
 
 b.get_type_1 = b.getType1
@@ -113,7 +119,7 @@ b.get_type_1 = b.getType1
 -- only one type, it returns the first type instead
 
 b.getType2 = function(frame)
-	return getType(string.trim(frame.args[1] or ''):lower(), '2')
+    return getType(frame.args[1] or '', '2')
 end
 
 b.get_type_2 = b.getType2
@@ -130,16 +136,16 @@ argument is a flag to get black or normal link
 --]]
 
 b.getLink = function(frame)
-	forms = loadData(forms, 'Wikilib/forms', true)
+    forms = loadData(forms, 'Wikilib/forms', true)
 
-	local name, black = string.trim(frame.args[1]), string.trim(frame.args[2])
-	local link = forms.getLink(name, black)
-	if link ~= '' then
-		return link
-	else
-		forms.loadUseless(false)
-		return forms.getLink(name, black)
-	end
+    local name, black = string.trim(frame.args[1]), string.trim(frame.args[2])
+    local link = forms.getLink(name, black)
+    if link ~= '' then
+        return link
+    else
+        forms.loadUseless(false)
+        return forms.getLink(name, black)
+    end
 end
 
 b.getlink = b.getLink
