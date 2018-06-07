@@ -29,11 +29,13 @@ and sortForms of Wikilib/lists
 local Entry = oop.makeClass(list.PokeSortableEntry)
 
 Entry.printTypeBox = function(type, typesCount)
+    local height = 100 / typesCount
+    local width = 70 / typesCount
     return box.boxTipoLua(
         string.fu(type),
-        'text-center roundy-5',
-        string.interp('padding: 0 0.5ex; margin-bottom: 0.2ex; height: ${width}%;',
-                {width = 100 / typesCount})
+        '-5 inline-block text-center min-width-xl-100 min-width-xs-' .. width,
+        string.interp('padding: 0 0.5ex; margin: 0 0.2ex 0.2ex 0; height: ${height}%;',
+                {height = height})
     )
 end
 
@@ -101,12 +103,12 @@ end
 Entry.__tostring = function(this)
     local typesCount = this.type1 == this.type2 and 1 or 2
 
-    return string.interp([=[| ${static}
-| class="hidden-xs" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
-| class="hidden-xs" style="padding: 1ex 0.8ex; font-size: 90%;" | ${type1}${type2}
-| ${abil1}${abilEv}
-| ${abil2}
-| ${abild}]=],
+    return string.interp([=[| class="min-width-xs-20" | ${static}
+| class="min-width-xs-80" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
+| class="width-xs-100" style="padding: 1ex 0.8ex; font-size: 90%;" | ${type1}${type2}
+| class="min-width-xs-33" | <div class="visible-xs text-small">Prima abilit&agrave;</div>${abil1}${abilEv}
+| class="min-width-xs-33" | <div class="visible-xs text-small">Seconda abilit&agrave;</div>${abil2}
+| class="min-width-xs-33" | <div class="visible-xs text-small">Abilit&agrave; evento</div>${abild}]=],
 {
     static = ms.staticLua(string.tf(this.ndex or 0) ..
             (this.formAbbr == 'base' and '' or this.formAbbr or '')),
@@ -127,10 +129,10 @@ end
 -- Wikicode for list header: it takes the type name, for colors
 local makeHeader = function(type)
     return string.interp([=[{| class="roundy text-center pull-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
-|-
+|- class="hidden-xs"
 ! style="padding-top: 0.5ex; padding-bottom: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000;">#</span>]]
-! class="hidden-xs" | Pok&eacute;mon
-! class="hidden-xs" | [[Tipo|<span style="color:#000;">Tipi</span>]]
+! Pok&eacute;mon
+! [[Tipo|<span style="color:#000;">Tipi</span>]]
 ! Prima abilit&agrave;
 ! Seconda abilit&agrave;
 ! Abilit&agrave; nascosta]=],
@@ -157,7 +159,9 @@ k.abillist = function(frame)
         entryArgs = abil,
         makeEntry = Entry.new,
         header = makeHeader(type),
-        footer = [[| class="text-left font-small" colspan="6" style="background: transparent; padding: 0.3ex 0.3em;" |
+        separator = '|- class="roundy flex-xs flex-row flex-wrap flex-main-stretch flex-items-center" style="margin-top: 0.5rem;"',
+        footer = [[|- style="background: transparent;"
+| class="text-left font-small" colspan="6" style="background: transparent; padding: 0.3ex 0.3em;" |
 * Le abilità in ''corsivo'' sono ottenibili solo in determinate circostanze.
 |}]]
     })
