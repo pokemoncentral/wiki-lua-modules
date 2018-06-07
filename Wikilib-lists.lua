@@ -166,55 +166,41 @@ l.sort_ndex = l.sortNdex
 
 --[[-----------------------------------------
 
-		Funzioni per creare elenchi
+		List-creating functions
 
 --]]-----------------------------------------
 
 --[[
 
-Crea un elenco in cui ogni entry è la riga di
-una tabella HTML.
+Creates a list where every entry is a row in an HTML table.
 
-Gli argomenti sono named poiché sono molti:
-	- source: la table lua da scorrere per
-		prelevare i dati.
-	- makeEntry: costruttore della classe
-		che rappresenta una entry.
-	- entryArgs: opzionale, argomento
-		supplementare da passare al
-		costruttore della entry.
-	- iterator: iteratore con cui scorrere
-		la table lua sorgente dei dati;
-		facoltativo, ha come default pairs.
-	- header: wikicode per l'intestazione
-		della tabella HTML.
-	- footer: wikicode per il footer della
-		tabella HTML. Opzionale, se non
-		fornito, la entry deve implementare
-		il metodo toFooter().
+Arguments (names because they are many):
+	- source: table to scan to retrieve the data.
+	- makeEntry: constructor of the class representing an entry.
+	- entryArgs: optional, value to be passed to the entry constructor as last
+        argument. Defaults to nil.
+	- iterator: optional, the iterator used to traverse source. Default to
+        pairs.
+	- header: wikicode to be used as table-header.
+    - separator: optional, the separator to be used when concatenating entries.
+        It's both prefixed and appended newlines, Defaults to
+        |- style="height: 100%"
+	- footer: optional, the footer for the HTML table. A newline is prepended
+        to it, but not the separator. If not provided, the entry needs to
+        implement the toFooter() method.
 
-La classe che rappresenta le entries deve
-implementare la seguente interfaccia:
-	- costruttore(): prende in ingeresso un
-		elemento della table lua da cui
-		vengono prelevati i dati, la chiave
-		corrispondente, ed un eventuale terzo
-		argomento specificato come parametro
-		a makeList di nome 'entryArgs'.
-		Deve ritornare nil se l'entry non
-		deve essere inserita nella lista.
-	- __lt(): usato per l'ordinamento con
-		table.sort.
-	- toFooter(): trasforma la entry nel
-		footer della table. Opzionale,
-		necessario solo in assensa di argomento
-		di nome 'footer' a makeList.
-	- __tostring(): conversione a stringa,
-		deve ritornare il wikicode per una
-		riga della tabella HTML relativa
-		alla entry corrente.
+The class representing the entries, needs to implement the following interface:
+	- constructor(): Takes as parameters an element of source, its key and
+        entryArgs when specified. Must return nil if the entry should not be
+        included in the list.
+	- __lt(): Used to sort the entries list by means of table.sort.
+	- toFooter(): Turn the entry to a footer. Needs not to be passed if footer
+        is given as an argument to makeList.
+	- __tostring(): Returns the wikicode representing the entry.
 --]]
 l.makeList = function(args)
+    -- "height: 100%" is just CSS making fun of us, can't really hurt anything
+    args.separator = args.separator or '|- style="height: 100%"'
 	local makeEntry = function(sourceData, sourceKey)
 		return args.makeEntry(sourceData, sourceKey,
 				args.entryArgs)
@@ -225,19 +211,14 @@ l.makeList = function(args)
 	table.sort(entries)
 
 	table.insert(entries, 1, args.header)
-	if args.footer then
-		table.insert(entries, args.footer)
-	else
+	if not args.footer then
 		entries[#entries]:toFooter()
 	end
 
-    --[[
-        "height: 100%" is just CSS making fun
-        of us, can't really hurt anything
-    --]]
 	return w.mapAndConcat(entries,
             table.concat{'\n' .. args.separator .. '\n'},
 			tostring)
+        .. (args.footer and '\n' .. args.footer or '')
 end
 
 --[[

@@ -17,8 +17,8 @@ local ms = require('MiniSprite')
 local form = require('Wikilib-forms')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings')      -- luacheck: no unused
+local tab = require('Wikilib-tables')       -- luacheck: no unused
 local pokes = require('Poké-data')
 local groups = require('PokéEggGroup-data')
 
@@ -88,14 +88,14 @@ g.Entry.new = function(eggData, name, group)
 		this.formLink = this.formsData and this.formsData.links or {}
 	else
 		this.formLink = {}
-		for k, v in pairs(this.formsData.names) do
+		for k in pairs(this.formsData.names) do
 			if groups[baseName .. k] then
 				this.formLink = this.formsData and this.formsData.links or {}
 				break
 			end
 		end
 	end
-	
+
 	return setmetatable(table.merge(this, pokeData), g.Entry)
 end
 
