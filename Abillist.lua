@@ -108,7 +108,7 @@ Entry.__tostring = function(this)
 | class="width-xs-100" style="padding: 1ex 0.8ex; font-size: 90%;" | ${type1}${type2}
 | class="min-width-xs-33" | <div class="visible-xs text-small">Prima abilit&agrave;</div>${abil1}${abilEv}
 | class="min-width-xs-33" | <div class="visible-xs text-small">Seconda abilit&agrave;</div>${abil2}
-| class="min-width-xs-33" | <div class="visible-xs text-small">Abilit&agrave; evento</div>${abild}]=],
+| class="min-width-xs-33" | <div class="visible-xs text-small">Abilit&agrave; nascoste</div>${abild}]=],
 {
     static = ms.staticLua(string.tf(this.ndex or 0) ..
             (this.formAbbr == 'base' and '' or this.formAbbr or '')),
@@ -120,7 +120,7 @@ Entry.__tostring = function(this)
     type2 = typesCount == 1 and ''
             or Entry.printTypeBox(this.type2, typesCount),
     abil1 = Entry.printAbil(this.ability1),
-    abilEv = Entry.printAbil(this.abilitye, true),
+    abilEv = Entry.printAbil(this.abilitye, true), 
     abil2 = Entry.printAbil(this.ability2),
     abild = Entry.printAbil(this.abilityd),
 })
