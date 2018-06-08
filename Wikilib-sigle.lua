@@ -7,8 +7,10 @@ i moduli che usano Sigle/data
 
 local q = {}
 
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local mw = require('mw')
+
+local txt = require('Wikilib-strings') -- luacheck: no unused
+local tab = require('Wikilib-tables') -- luacheck: no unused
 local sig = require("Sigle-data")
 local c = require("Colore-data")
 
@@ -87,7 +89,7 @@ q.displayAbbr = function(abbrData, sep, coloredAndBold)
 	else
 		makeAbbr = function(abbr) return abbr end
 	end
-		
+
 	return table.concat(table.map(abbrData, function(gamesData)
 			return table.concat(table.map(gamesData.display, function(displayData)
 					return makeAbbr(displayData[1], displayData[2])

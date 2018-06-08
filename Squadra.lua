@@ -17,9 +17,11 @@ inserire "parametro=nomecolore variante", es:
 
 local s = {}
 
+local mw = require('mw')
+
 local w = require('Wikilib')
-local lib = require('Squadra-lib')
-local txt = require('Wikilib-strings')
+local lib = require('Wikilib-squadra')
+local txt = require('Wikilib-strings') -- luacheck: no unused
 local r = require('Roundy')
 local gbl = require('GamesColorLinks')
 local c = require("Colore-data")
@@ -28,15 +30,15 @@ local c = require("Colore-data")
 
 s.squadra = function(frame)
 	local p = w.trimAll(mw.clone(frame.args))
-		
+
 	-- La table poke contiene i dati dei Pokémon
 	local poke = {p.pokemon1}
 	for a = 2, p.pokemon do
 		table.insert(poke, p['pokemon' .. a])
 	end
-	
+
 	-- Colori in esadecimale, con valori di default dapprima "sconosciuto" e poi quelli calcolati prima
-	
+
 	local colors = lib.gethex{color = p.color or c.sconosciuto.normale, bordercolor = p.bordercolor or c.sconosciuto.dark,
 		headcolor = p.headcolor or c.sconosciuto.light}
 	local colors = lib.gethex({headcolor1 = p.headcolor1 or colors.headcolor, headcolor2 = p.headcolor2 or colors.headcolor,
@@ -46,24 +48,24 @@ s.squadra = function(frame)
 	-- Stringhe non sempre presenti
 	local extra = {
 		class = [=[<div style="line-height:10px;">'''<span class="small-text">[[${class}|<span style="color:#000">${class}</span>]]</span>'''</div>]=],
-		
+
 		secondtrainer = [=[
-	
-	| ''e'' 
+
+	| ''e''
 	| <div style="line-height:10px;">'''<span class="small-text">[[${class2} (classe allenatore)|<span style="color:#000">${class2}</span>]]</span>'''</div>'''<span class="big-text">${name2}</span>'''</div>]=],
-	
+
 		secondsprite = [=[
-	
+
 	| style="width: 80px; height: 80px; ${r80} background: #${headcolor2}; border: 2px solid #${bordercolor2};" | [[File:${sprite2}]]]=]
 	}
 
 
 	-- Interpolation
 	return string.interp([=[{| class="text-center mw-collapsible mw-collapsed" style="${r20} background: #${color}; border: 2px solid #${bordercolor};" cellspacing="1" cellpadding="2"
-| 
+|
 {| class="pull-center" style="background: transparent;" cellspacing="1" cellpadding="2"
 ! style="width: 80px; height: 80px; ${r80} background: #${headcolor1}; border: 2px solid #${bordercolor1};" | [[File:${sprite}]]
-| 
+|
 {| class="roundy pull-center" style="width: 200px; background: #${headcolor}; border-collapse:collapse;"
 | ${class}'''<span class="big-text">${name}</span>'''${secondtrainer}
 |-
@@ -73,14 +75,14 @@ s.squadra = function(frame)
 |}${secondsprite}
 |-
 | <div style="line-height:10px;"><span class="small-text">Ricompensa:</span></div>'''${prize}'''
-| 
+|
 {| class="pull-center" style="background: transparent; border-collapse:collapse;"
 | class="roundy" style="background: #${headcolor}; line-height:10px;" | ${balls}
 |}
 |}
-|  
+|
 |-
-| colspan="2" | 
+| colspan="2" |
 {| class="roundytop pull-center" style="background:#${color1}; border: 5px solid #${color1};"
 |
 ${party}
@@ -120,9 +122,9 @@ s.Squadra = s.squadra
 
 s.single = function(frame)
 	local p = w.trimAll(mw.clone(frame.args))
-		
+
 	-- Colori in esadecimale, con valori di default dapprima "sconosciuto" e poi quelli calcolati prima
-	
+
 	local colors = lib.gethex{color = p.color or c.sconosciuto.normale, bordercolor = p.bordercolor or c.sconosciuto.dark,
 		headcolor = p.headcolor or c.sconosciuto.light}
 	local colors = lib.gethex({headcolor1 = p.headcolor1 or colors.headcolor,
@@ -136,10 +138,10 @@ s.single = function(frame)
 
 	return string.interp([=[{| class="mw-collapsible mw-collapsed" style="text-align: center; float: left; ${r20} background: #${color}; border: 2px solid #${bordercolor}" cellspacing="1" cellpadding="2"
 |-
-| 
+|
 {| style="margin:auto; background: transparent" cellspacing="1" cellpadding="2"
 ! width="80px" height="80px" style="${r80} background: #${headcolor1}; border: 2px solid #${bordercolor1}" | [[File:${sprite}${size}]]
-| 
+|
 {| class="roundy" width="200px" style="margin:auto; text-align:center; background: #${headcolor}; border-collapse:collapse"${class}
 |-
 | '''<big>${name}</big>'''
@@ -150,15 +152,15 @@ s.single = function(frame)
 |}
 |-
 | style="text-align:center;" | <div style="line-height:10px"><small>Ricompensa:</small></div>'''${prize}'''
-| 
+|
 {| class="roundy" style="margin:auto; background: transparent; border-collapse:collapse"
 |-
 | class="roundy" style="background: #${headcolor}; line-height:10px" | ${balls}
 |}
 |}
-|  
+|
 |-
-| colspan="2" | 
+| colspan="2" |
 {| class="roundy" style="text-align: center; background: #${color}; border: 5px solid #${color}; width: 100%;"]=],
 {
 	r20 = r.roundyLua('20px'),
@@ -171,7 +173,7 @@ s.single = function(frame)
 	size = p.size and '|' .. p.size or '',
 	headcolor = colors.headcolor,
 	class = p.class and string.interp(class, {class = p.class,
-		classlink = p.classlink or trainerClass[p.name] or p.class .. ' (classe allenatore)'}) or '',
+		classlink = p.classlink or lib.trainerClass[p.name] or p.class .. ' (classe allenatore)'}) or '',
 	name = p.name or 'Oak',
 	location = p.location or 'Brockolandia',
 	locationname = p.locationname or p.location or 'Brockolandia',
@@ -187,20 +189,20 @@ s.Single = s.single
 
 s.tag = function(frame)
 	local p = w.trimAll(mw.clone(frame.args))
-	
+
 	-- Colori in esadecimale, con valori di default "sconosciuto"
-	
+
 	local colors = lib.gethex{color = p.color or c.sconosciuto.normale, bordercolor = p.bordercolor or c.sconosciuto.dark,
 		headcolor = p.headcolor or c.sconosciuto.light, headcolor1 = p.headcolor1 or c.sconosciuto.light,
 		headcolor2 = p.headcolor2 or c.sconosciuto.light, bordercolor1 = p.bordercolor1 or c.sconosciuto.dark,
 		bordercolor2 = p.bordercolor2 or c.sconosciuto.dark, color1 = p.color1 or c.sconosciuto.dark}
-	
+
 	return string.interp([=[{| class="mw-collapsible mw-collapsed" style="text-align: center; float: left; ${r20} background: #${color}; border: 2px solid #${bordercolor}" cellspacing="1" cellpadding="2"
 |-
-| 
+|
 {| style="margin:auto; background: transparent" cellspacing="1" cellpadding="2"
 ! width="80px" height="80px" style="${r80} background: #${headcolor1}; border: 2px solid #${bordercolor1}" | [[File:${sprite}${size}]]
-| 
+|
 {| class="roundy" width="200px" style="margin:auto; text-align:center; background: #${headcolor}; border-collapse:collapse"
 |-
 | style="line-height:10px" | '''<small>[[${classlink}|<span style="color:#000">${class}</span>]]</small>'''
@@ -217,15 +219,15 @@ s.tag = function(frame)
 ! width="80px" height="80px" style="${r80} background: #${headcolor2}; border: 2px solid #${bordercolor2}" | [[File:${sprite2}${size2}]]
 |-
 | style="text-align:center;" | <div style="line-height:10px"><small>Ricompensa:</small></div>'''${prize}'''
-| 
+|
 {| class="roundy" style="margin:auto; background: transparent; border-collapse:collapse"
 |-
 | class="roundy" width="96px" style="background: #${headcolor}; line-height:10px" | ${balls}
 |}
 |}
-|  
+|
 |-
-| colspan="2" | 
+| colspan="2" |
 {| class="roundytop" style="width: 100%; background: #${color1}; border: 5px solid #${color1}"]=],
 {
 	r20 = r.roundyLua('20px'),
@@ -237,9 +239,9 @@ s.tag = function(frame)
 	sprite = p.sprite,
 	size = p.size and '|' .. p.size or '',
 	headcolor = colors.headcolor,
-	classlink = p.classlink or trainerClass[p.name] or p.class .. ' (classe allenatore)',
+	classlink = p.classlink or lib.trainerClass[p.name] or p.class .. ' (classe allenatore)',
 	class = p.class or 'Professor',
-	classlink2 = p.classlink2 or trainerClass[p.name2] or p.class2 .. ' (classe allenatore)',
+	classlink2 = p.classlink2 or lib.trainerClass[p.name2] or p.class2 .. ' (classe allenatore)',
 	class2 = p.class2 or 'Professor',
 	name = p.name or 'Oak',
 	name2 = p.name2 or 'Oak',

@@ -120,7 +120,7 @@ Entry.__tostring = function(this)
     type2 = typesCount == 1 and ''
             or Entry.printTypeBox(this.type2, typesCount),
     abil1 = Entry.printAbil(this.ability1),
-    abilEv = Entry.printAbil(this.abilitye, true), 
+    abilEv = Entry.printAbil(this.abilitye, true),
     abil2 = Entry.printAbil(this.ability2),
     abild = Entry.printAbil(this.abilityd),
 })
