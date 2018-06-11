@@ -16,18 +16,18 @@ local entryText = [=[
 | #${ndex}
 | ${ms}
 | [[${name}]]
-| colspan="${cs}" style="background:#${type1Color};" | [[${type1} (tipo)|<span style="color:#FFFFFF">${type1}</span>]]${type2}]=]
+| colspan="${cs}" style="background:#${type1Color};" | [[${type1}|<span style="color:#FFFFFF">${type1}</span>]]${type2}]=]
 local entryType2 = [=[
-| style="background:#${type2Color};" | [[${type2} (tipo)|<span style="color:#FFFFFF">${type2}</span>]]]=]
+| style="background:#${type2Color};" | [[${type2}|<span style="color:#FFFFFF">${type2}</span>]]]=]
 local footerText = [=[
 |-
 | style="background:#FFFFFF; ${rbl}" | ${rdex}
 | style="background:#FFFFFF;" | #${ndex}
 | style="background:#FFFFFF;" | ${ms}
 | style="background:#FFFFFF;" | [[${name}]]
-| style="background:#${type1Color}; ${rbr}" colspan="${cs}" | [[${type1} (tipo)|<span style="color:#FFFFFF">${type1}</span>]]${type2}]=]
+| style="background:#${type1Color}; ${rbr}" colspan="${cs}" | [[${type1}|<span style="color:#FFFFFF">${type1}</span>]]${type2}]=]
 local footerType2 = [=[
-| style="background:#${type2Color}; ${rbr}" | [[${type2} (tipo)|<span style="color:#FFFFFF">${type2}</span>]]]=]
+| style="background:#${type2Color}; ${rbr}" | [[${type2}|<span style="color:#FFFFFF">${type2}</span>]]]=]
 
 local title = function(start)
 	local stop = start + chunks - (start == 1 and 0 or 1)

@@ -232,14 +232,14 @@ end
 --[[
 
 Wikicode interface function: takes a type
-as the title of its page ('<type> (tipo)')
+as the title of its page ('<type>')
 and prints a list fo all the Pokémon having
 such type, dividing them into mono-typed,
 first-typed and second-typed. Heading for
 sublists are also displayed.
 
 Examples:
-{{#invoke: Typelist | Typelist | Ghiaccio (tipo) }}
+{{#invoke: Typelist | Typelist | Ghiaccio }}
 
 (in type pages only)
 {{#invoke: Typelist | Typelist | {{BASEPAGENAME}} }}
@@ -249,7 +249,7 @@ g.typelist = function(frame)
 
     -- Extracting type from page title
     local monoType = string.trim(mw.text.decode(frame.args[1]
-            or 'sconosciuto (tipo)')):match('^(%a+) %(tipo%)$'):lower()
+            or 'sconosciuto')):lower()
 
     -- Dual-typed Pokémon have 'coleottero' as 'coleot'
     local dualType = monoType == 'coleottero' and 'coleot' or monoType

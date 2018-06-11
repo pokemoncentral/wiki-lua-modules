@@ -390,25 +390,25 @@ dr.EffTable.FooterLine = oop.makeClass()
 dr.EffTable.FooterLine.strings = {
 
     -- MAYBE category beginning text
-    MAYBE = 'Se questo Pok&eacute;mon ha [[${abil} (abilità)|${abil}]] ',
+    MAYBE = 'Se questo Pok&eacute;mon ha [[${abil}]] ',
 
     -- TAKENOFF category beginning text
-    TAKENOFF = 'Se questo Pok&eacute;mon perde [[${abil} (abilità)|${abil}]], o se ne sono annullati gli effetti, ',
+    TAKENOFF = 'Se questo Pok&eacute;mon perde [[${abil}]], o se ne sono annullati gli effetti, ',
 
     -- RINGTARGET category beginning text
     RINGTARGET = 'Se questo Pok&eacute;mon tiene un [[Facilsaglio]]',
 
     -- Strings to be concatenated to RINGTARGET for some types
-    SPETTRO = ', se un avversario usa [[Preveggenza (mossa)|Preveggenza]] o [[Segugio (mossa)|Segugio]] o ha [[Nervisaldi (abilità)|Nervisaldi]], ',
-    BUIO = ' o se un avversario usa [[Miracolvista (mossa)|Miracolvista]], ',
-    VOLANTE = ' o una [[Ferropalla]] o se viene usata [[Gravità (mossa)|Gravit&agrave;]], ',
+    SPETTRO = ', se un avversario usa [[Preveggenza]] o [[Segugio]] o ha [[Nervisaldi]], ',
+    BUIO = ' o se un avversario usa [[Miracolvista]], ',
+    VOLANTE = ' o una [[Ferropalla]] o se viene usata [[Gravit&agrave;]], ',
 
     --[[
         Strings to be concatenated to RINGTARGET for immunities shared by
         ability and types
     --]]
-    NOT_HAVE_ABIL = 'e se non ha [[${abil} (abilità)|${abil}]], ',
-    IMM_TAKENOFF = 'e se ha perso [[${abil} (abilità)|${abil}]] o ne sono stati annullati gli effetti, ',
+    NOT_HAVE_ABIL = 'e se non ha [[${abil}]], ',
+    IMM_TAKENOFF = 'e se ha perso [[${abil}]] o ne sono stati annullati gli effetti, ',
 
     -- New effectieness text
     EFF = "l'efficacia delle mosse di tipo ${types} &egrave; pari a ${eff}×"

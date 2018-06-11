@@ -120,7 +120,7 @@ Entry.__tostring = function(this)
     type2 = typesCount == 1 and ''
             or Entry.printTypeBox(this.type2, typesCount),
     abil1 = Entry.printAbil(this.ability1),
-    abilEv = Entry.printAbil(this.abilitye, true), 
+    abilEv = Entry.printAbil(this.abilitye, true),
     abil2 = Entry.printAbil(this.ability2),
     abild = Entry.printAbil(this.abilityd),
 })
@@ -151,7 +151,7 @@ dell'abilità.
 k.abillist = function(frame)
     local type = string.trim(frame.args[1]) or 'pcwiki'
     local abil = string.trim(mw.text.decode(frame.args[2]))
-    abil = abil:match('^(.+) %(abilità%)') or 'Cacofonia'
+    abil = abil or 'Cacofonia'
 
     return list.makeList({
         source = require('PokéAbil-data'),
