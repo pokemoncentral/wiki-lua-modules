@@ -66,7 +66,7 @@ ${stats}
 | class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | ${total}${footer}
 |}]=],
 
-    catSpecToBoth = '[[Categoria:Pokémon la cui statistica Speciale è diventata sia Attacco Speciale che Difesa Speciale|${display}]]',
+    catSpecToBoth = '[[Categoria:Pokémon la cui statistica Speciali è diventata sia Attacco Speciale che Difesa Speciale|${display}]]',
 
     catSpecToSpatk = '[[Categoria:Pokémon la cui statistica Speciali è diventata Attacco Speciale|${display}]]',
 

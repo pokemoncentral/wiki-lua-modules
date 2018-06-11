@@ -1684,7 +1684,7 @@ d.hoopaL = {hp = 80, atk = 160, def = 60, spatk = 170, spdef = 130, spe = 80}
 d['720L'] = d.hoopaL
 d.lycanrocN = {hp = 85, atk = 115, def = 75, spatk = 55, spdef = 75, spe = 82}
 d['745N'] = d.lycanrocN
-d.lycanrocC = {hp = 85, atk = 115, def = 75, spatk = 55, spdef = 75, spe = 82}
+d.lycanrocC = {hp = 75, atk = 117, def = 65, spatk = 55, spdef = 65, spe = 110}
 d['745C'] = d.lycanrocC
 d.wishiwashiB = {hp = 45, atk = 140, def = 130, spatk = 140, spdef = 135, spe = 30}
 d['746B'] = d.wishiwashiB
