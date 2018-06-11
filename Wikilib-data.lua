@@ -9,8 +9,9 @@ t.poke_num = t.pokeNum
 
 --[[
 
-Tabella con i giochi che, avendo un colore normale troppo scuro,
-necessitano del testo bianco quando questo è usato come sfondo.
+Table containig the list of colors so dark that requires white text when used
+as background.
+The variant taken into account is normale
 
 --]]
 

@@ -47,7 +47,7 @@ fare. Un esempio può essere:
 	#{'aa', 'bb', nil, 'dd'} == 3
 
 Se ne consiglia dunque l'uso solo in casi in cui si faccia
-esclusivamente accesso diretto ai parametri. 
+esclusivamente accesso diretto ai parametri.
 
 --]]
 w.emptyStringToNil = function(tab, funct)
