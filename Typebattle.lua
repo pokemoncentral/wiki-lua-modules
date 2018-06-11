@@ -25,14 +25,14 @@ local eff = function(tipo, gen)
         test = et.attacco(v, tipo)
         f['ax' .. v] = test[1] and b.box_list(test, 'center') or 'Nessuna'
     end
-	return string.interp([=[{| class="roundy" style="background: #${bg}; border: 3px solid #${bd}; text-align: center;" 
+	return string.interp([=[{| class="roundy" style="background: #${bg}; border: 3px solid #${bd}; text-align: center;"
 ! class="roundytop" style="background:#${bd}; font-size: 120%;" | Danno inflitto
 ! class="roundytop" style="background:#${bd}; font-size: 120%;" | Danno subito
 |-
 ! style="background: #${cells};" | <span class="explain" title="2x">Superefficace</span>
 ! style="background: #${cells};" | <span class="explain" title="2x">Superefficace</span>
 |-
-| style="background: #FFF;" | 
+| style="background: #FFF;" |
 {| style="margin:auto;"
 | ${ax2}
 |}
@@ -64,11 +64,11 @@ local eff = function(tipo, gen)
 {| style="margin:auto;"
 | ${dx0}
 |}
-|}]=], f)	
-end	
-	
+|}]=], f)
+end
+
 tb.typebattle = function(frame)
-	local tipo = (string.trim(frame.args[1]) or 'sconosciuto (tipo)'):match('(%a+) %(tipo%)'):lower()
+	local tipo = (string.trim(frame.args[1]) or 'sconosciuto'):lower()
 	local notes = [=[
 
 <span style="font-size: 90%">'''Note''':
@@ -94,4 +94,3 @@ end
 tb.foo = tb.typebattle
 
 return tb
-

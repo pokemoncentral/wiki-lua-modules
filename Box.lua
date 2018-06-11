@@ -91,7 +91,7 @@ Chiamata da lua; argomenti:
 
 b.boxTipoLua = function(tipo, class, style)
 	tipo = string.fu(string.trim(tipo or 'Sconosciuto'))
-	return b.boxLua(tipo, tipo .. ' (tipo)', tipo, class, style, 'FFF')
+	return b.boxLua(tipo, tipo, tipo, class, style, 'FFF')
 end
 
 b.box_tipo_lua = b.boxTipoLua

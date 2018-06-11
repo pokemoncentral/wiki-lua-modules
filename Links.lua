@@ -15,7 +15,7 @@ colore normale del tipo
 
 --]]
 l.colorType = function(type, bgColor, textColor)
-	return string.interp('<span style="padding: 0.1ex 0.3em 0.2ex 0.3em; background: #${bg};">[[${type} (tipo)|<span style="color: #${tc};">${type}</span>]]</span>',
+	return string.interp('<span style="padding: 0.1ex 0.3em 0.2ex 0.3em; background: #${bg};">[[${type}|<span style="color: #${tc};">${type}</span>]]</span>',
 		{
 			type = string.fu(type),
 			bg = bgColor or c[type].normale,
@@ -35,7 +35,7 @@ il campo è del colore del tipo
 
 --]]
 l.colorType2 = function(type, bgColor, textColor)
-	return string.interp('<span style="padding: 0.1ex 0.3em 0.2ex 0.3em; background: #${bgColor}">[[${type} (tipo)|<span style="color: #${tc};">tipo ${type}</span>]]</span>',
+	return string.interp('<span style="padding: 0.1ex 0.3em 0.2ex 0.3em; background: #${bgColor}">[[${type}|<span style="color: #${tc};">tipo ${type}</span>]]</span>',
 		{
 			bgColor = bgColor or c[type].normale,
 			type = string.fu(type),
@@ -54,7 +54,7 @@ il colore della scritta è di default #000
 
 --]]
 l.aColor = function(ability, textColor, name)
-	return string.interp('[[${ability} (abilità)|<span style="color:#${tc};">${name}</span>]]',
+	return string.interp('[[${ability}|<span style="color:#${tc};">${name}</span>]]',
 		{
 			ability = ability,
 			tc = textColor or '000',

@@ -103,10 +103,10 @@ EffTable.FooterStrings = {
 	CHANGETYPE = "\n* Nonostante questo Pokémon sia di tipo ${typeOr}, subisce danni come se fosse di tipo ${typeEff}",
 
 	-- Link ad un tipo
-	TYPE = '[[${type1} (tipo)|${type1}]]',
+	TYPE = '[[${type1}]]',
 
 	-- Link ad un doppio tipo
-	DUALTYPE = '[[${type1} (tipo)|${type1}]]/[[${type2} (tipo)|${type2}]]'
+	DUALTYPE = '[[${type1}]]/[[${type2}]]'
 }
 
 --[[

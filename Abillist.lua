@@ -151,7 +151,7 @@ dell'abilità.
 k.abillist = function(frame)
     local type = string.trim(frame.args[1]) or 'pcwiki'
     local abil = string.trim(mw.text.decode(frame.args[2]))
-    abil = abil:match('^(.+) %(abilità%)') or 'Cacofonia'
+    abil = abil or 'Cacofonia'
 
     return list.makeList({
         source = require('PokéAbil-data'),
