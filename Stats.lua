@@ -10,8 +10,8 @@ user-supplied values
 
 local s = {}
 
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings') -- luacheck: no unused
+local tab = require('Wikilib-tables') -- luacheck: no unused
 local css = require('Css')
 local formUtil = require('Wikilib-forms')
 local formulas = require('Wikilib-formulas')
@@ -50,8 +50,8 @@ statLinks.spdef = 'Difesa_Speciale'
 local strings = {
     boundsFooter = [=[
 
-* Le statistiche minime sono calcolate con ${minParams}.
-* Le [[statistiche]] massime sono calcolate ${maxParams}.]=],
+* Le [[statistiche]] minime sono calcolate con ${minParams}.
+* Le statistiche massime sono calcolate ${maxParams}.]=],
 
     boxFormWrapper = [[==== ${title} ====
 <div class="${collapse}">
@@ -68,9 +68,9 @@ ${stats}
 
     catSpecToBoth = '[[Categoria:Pokémon la cui statistica Speciale è diventata sia Attacco Speciale che Difesa Speciale|${display}]]',
 
-    catSpecToSpatk = '[Categoria:Pokémon la cui statistica Speciale è diventata Attacco Speciale|${display}]]',
+    catSpecToSpatk = '[[Categoria:Pokémon la cui statistica Speciali è diventata Attacco Speciale|${display}]]',
 
-    catSpecToSpdef = '[Categoria:Pokémon la cui statistica Speciale è diventata Difesa Speciale|${display}]]',
+    catSpecToSpdef = '[[Categoria:Pokémon la cui statistica Speciali è diventata Difesa Speciale|${display}]]',
 
     catStatsChanged = '[[Categoria:Pokémon le cui statistiche base sono cambiate nella ${gen} generazione|${display}]]',
 
@@ -89,6 +89,14 @@ ${stats}
 ! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
 ! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
 ! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv.100]=],
+
+    oldValueFooter = [=[
+
+* La statistica <span style="background: #${stat_color}; padding: 0 0.3ex;">${stat}</span> di questo Pokémon ${when} era pari a '''${old_value}'''.]=],
+
+    singleGenFooter = [=[in [[${gen} generazione]]]=],
+    beforeGenFooter = [=[prima della [[${gen} generazione]]]=],
+    betweenGenFooter = [=[tra la [[${startGen} generazione|${startGen}]] e la [[${endGen} generazione]]]=],
 
     listFooter = [=[
 
@@ -278,6 +286,45 @@ end
 
 --[[
 
+Prints all the footer lines needed for a stat changed over time.
+It takes the stat name and the stat table (in multigen format).
+
+--]]
+local makeStatFooterLines = function(stat, values)
+    local footerLines = {}
+    local spans = mg.getGenSpan(values)
+    for k, v in ipairs(spans) do
+        if k < #spans then -- the last value shouldn't be in the footer
+            local interpVal = {
+                stat_color = c[stat].normale,
+                stat = statLinks[stat]:gsub('_', ' '),
+                old_value = v.val,
+            }
+            if v.first == v.last then
+                -- Single generation span
+                interpVal.when = string.interp(strings.singleGenFooter, {
+                    gen = gendata[v.first].ext,
+                })
+            elseif k == 1 then
+                -- The first element has a different text
+                interpVal.when = string.interp(strings.beforeGenFooter, {
+                    gen = gendata[v.last + 1].ext,
+                })
+            else
+                interpVal.when = string.interp(strings.betweenGenFooter, {
+                    startGen = gendata[v.first].ext,
+                    endGen = gendata[v.last].ext,
+                })
+            end
+            local line = string.interp(strings.oldValueFooter, interpVal)
+            footerLines[k] = line
+        end
+    end
+    return table.concat(footerLines)
+end
+
+--[[
+
 This class represents a statistics box for
 a single Pokémon. Forms having the same stats
 share can a single box, their names appearing
@@ -324,9 +371,16 @@ PokeStatBox.new = function(poke, formExtName, args)
     this.baseFormName = formUtil.getNameAbbr(poke)
 
     this.gen = gen
-    this.listLink = statsUtil.didStatsChange(poke)
+    this.listLink = statsUtil.didStatsChange(stats[poke])
     this.poke = not noCats and poke
     this.stats = statsUtil.getStatsGen(stats[poke], gen)
+    this.multigenStats = table.map(stats[poke], function(val, key)
+        if key == 'spec' then
+            -- Handling stats speciali
+            return {[1] = val, [2] = 0}
+        end
+        return type(val) == 'table' and val or nil
+    end)
 
     local pokeData = pokes[poke]
     this.types = {type1 = pokeData.type1, type2 = pokeData.type2}
@@ -359,7 +413,8 @@ PokeStatBox.__tostring = function(this)
         align = 'center',
         gen = this.gen,
         totalLink = true,
-        listLink = this.listLink
+        listLink = false,
+        multigenStats = this.multigenStats,
     } .. (not this.poke and '' or
             makeCategories(this.poke, statsTot))
 
@@ -417,6 +472,8 @@ Prints a statistics box. Arguments are named:
     - listLink: if the link to all Pokémon by stats
             list page is to be displayed.
             Defaults to false.
+    - multigenStats: table of stats with multigen values for the footer.
+            The keys are the stat names, the values the multigen tables
 
 --]]
 s.boxStats = function(args)
@@ -425,6 +482,7 @@ s.boxStats = function(args)
             or statsUtil.statsSum(stats))
     local gen, align = args.gen, args.align
     local totalLink, listLink = args.totalLink, args.listLink
+    local multigenStats = args.multigenStats
 
     local computeBounds = genUtil.isValidGen(gen)
 
@@ -493,6 +551,20 @@ s.boxStats = function(args)
 
     if listLink then
         interpVal.footer = interpVal.footer .. strings.listFooter
+    end
+
+    if multigenStats then
+        multigenStats = table.map(multigenStats, function(val, key)
+            return makeStatFooterLines(key, val)
+        end)
+        local multigenFooter = {}
+        -- Handling stat speciali
+        table.insert(multigenFooter, multigenStats.spec)
+        for _, stat in ipairs(statsUtil.statsOrder[2]) do
+            -- Doesn't insert non multigen stats because their value is nil
+            table.insert(multigenFooter, multigenStats[stat])
+        end
+        interpVal.footer = interpVal.footer .. table.concat(multigenFooter)
     end
 
     if interpVal.footer ~= '' then
@@ -628,18 +700,17 @@ with the same base stat total.
 
 Examples:
 
-{{#invoke: Stats | typeAvg | Elettro (tipo) }}
+{{#invoke: Stats | typeAvg | Elettro }}
 
 IN TYPE PAGES ONLY!
 {{#invoke: Stats | typeAvg | {{BASEPAGENAME}} }}
 
 With generation:
-{{#invoke Stats | typeAvg | Fuoco (tipo) | 4 }}
+{{#invoke Stats | typeAvg | Fuoco | 4 }}
 
 --]]
 s.typeAvg = function(frame)
-    local type = string.trim(frame.args[1])
-        :match('^(%a+) %(tipo%)$'):lower()
+    local type = string.trim(frame.args[1]):lower()
     local gen = tonumber(string.trim(frame.args[2]))
         or gendata.latest
 
@@ -760,19 +831,5 @@ s.statsBox = function(frame)
     return s.boxStats(p)
 end
 s.StatsBox, s.statsbox = s.statsBox, s.statsBox
-
-print(s.statsBox{args = {
-hp = 200,
-atk = 40,
-def = 80,
-spatk = 93,
-spdef = 135,
-spe = 63,
-type1 = 'elettro',
-type2 = 'fuoco',
-bounds = 'yes',
-gen = 2,
-listLink = 'yes'
-}})
 
 return s
