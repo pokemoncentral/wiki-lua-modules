@@ -4,9 +4,9 @@ local stats = require('Stats')
 
 -- =========== StatsBox ==============
 print(stats.statsBox{args = {
-	hp = 200,
-	atk = 40,
-	def = 80,
+	hp = 255,
+	atk = 5,
+	def = 10,
 	spatk = 93,
 	spdef = 135,
 	spe = 63,
@@ -38,6 +38,9 @@ print(stats.typeAvg{args = {'Fuoco', '4'}})
 
 -- Plain
 print(stats.PokeStats{args = {'Starly'}})
+
+-- Huge values
+print(stats.PokeStats{args = {'Blissey'}})
 
 -- Form collapse
 print(stats.PokeStats{args = {'Arceus'}})
