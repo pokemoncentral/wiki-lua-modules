@@ -7,13 +7,13 @@ local abillist = require('Abillist').abillist
 --      No second and hidden ability
 --      Lack second, ability in first
 --      Lack second, ability in hidden
-print(abillist{args={'buio', 'Prepotenza (abilità)'}})
+print(abillist{args={'buio', 'Prepotenza'}})
 
 -- Multi-gen
-print(abillist{args={'spettro', 'Pedinombra (abilità)'}})
+print(abillist{args={'spettro', 'Pedinombra'}})
 
 -- Event ability in other page
-print(abillist{args={'terra', 'Frangiaura (abilità)'}})
+print(abillist{args={'terra', 'Frangiaura'}})
 
 -- Event ability in page
-print(abillist{args={'acqua', 'Morfosintonia (abilità)'}})
+print(abillist{args={'acqua', 'Morfosintonia'}})

@@ -530,14 +530,14 @@ s.boxStats = function(args)
         interpVal.footer = string.interp(strings.boundsFooter,
             {
                 minParams = mw.text.listToText{
-                    '0 [[PA]]',
-                    'VI pari a 0',
+                    '0 [[Punti base|PA]]',
+                    '[[Punti individuali|VI]] pari a 0',
                     gen > 2 and 'una [[natura]] sfavorevole' or nil
                 },
 
                 maxParams = mw.text.listToText{
                     maxEV .. ' PA',
-                    '[[VI]] pari a ' .. maxIV,
+                    'VI pari a ' .. maxIV,
                     gen > 2 and 'una natura favorevole' or nil
                 },
             })
