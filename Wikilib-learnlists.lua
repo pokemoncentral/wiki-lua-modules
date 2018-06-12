@@ -160,7 +160,7 @@ precedenti l'introduzione delle categorie danno.
 --]]
 
 lib.basicentry = function(stab, mossa, notes, tipo, pw, acc, pp)
-    return string.interp([=[|| style="padding: 0.3em;" | ${stab}[[${mossa} (mossa)|<span style="color:#000;">${mossa}</span>]]${stab}${notes}
+    return string.interp([=[|| style="padding: 0.3em;" | ${stab}[[${mossa}|<span style="color:#000;">${mossa}</span>]]${stab}${notes}
 | style="padding: 0.8ex 0.3ex; height: 100%;" | ${tipo}
 | style="padding: 0.1em 0.3em;" | ${pw}
 | style="padding: 0.1em 0.3em;" | ${acc}%
@@ -183,7 +183,7 @@ successive l'introduzione delle categorie danno.
 
 --]]
 lib.categoryentry = function(stab, mossa, notes, tipo, cat, pw, acc, pp)
-	return string.interp([=[|| style="padding: 0.1em 0.3em;" | ${stab}[[${mossa} (mossa)|<span style="color:#000;">${mossa}</span>]]${stab}${notes}
+	return string.interp([=[|| style="padding: 0.1em 0.3em;" | ${stab}[[${mossa}|<span style="color:#000;">${mossa}</span>]]${stab}${notes}
 | style="padding: 0.8ex 0.3ex; height: 100%;" | ${tipo}
 | style="padding: 0.8ex 0.3ex; height: 100%;" | ${cat}
 | style="padding: 0.1em 0.3em;" | ${pw}
