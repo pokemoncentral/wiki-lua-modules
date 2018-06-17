@@ -641,9 +641,6 @@ All forms:
 IN POKÉMON PAGES ONLY!
 {{#invoke: Stats | PokeStats | {{BASEPAGENAME}} }}
 
-Single form:
-{{#invoke: Stats | PokeStats | BlastoiseM | yes }}
-
 Older generations and no category:
 {{#invoke: Stats | PokeStats | Gengar | | 5 | yes }}
 {{#invoke: Stats | PokeStats | Gengar | gen = 5 | noCat = yes }}
@@ -652,7 +649,7 @@ Older generations and no category:
 --]]
 s.pokeStats = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
-    local poke = string.firstLowercase(p[1] or p.poke)
+    local poke = string.lower(p[1] or p.poke)
     local noForms = (p[2] or p.noForms or 'no'):lower() == 'yes'
     local gen = tonumber(p[3] or p.gen) or gendata.latest
     local noCat = (p[4] or p.noCat or 'no'):lower() == 'yes'
