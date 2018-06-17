@@ -102,7 +102,7 @@ ${stats}
 
 * Le statistiche di questo Pokémon sono cambiate nel corso delle generazioni. Tutti i valori sono disponibili [[Elenco Pokémon per statistiche base|qui]]. ]=],
 
-    statBar = [=[<div class="roundyright text-left" style="margin-left: 1ex; width: calc(1em + ${width}%); ${bg}; color: #${dark};">'''${val}'''</div>]=],
+    statBar = [=[<div class="roundyright text-left" style="width: calc(1em + ${width}%); color: #${dark}; ${bg};">'''${val}'''</div>]=],
 
     statBounds = [=[
 
@@ -112,7 +112,7 @@ ${stats}
 
     statRow = [=[|-
 | ${rleft}style="width: 5.5em; padding: 0.3ex 0.8ex; background: #${light};" | [[Statistiche#${link}|<span style="color: #${normale};">${stat}</span>]]
-| ${rright}style="padding: 0.3ex 0.8ex; background: #${light};" | ${statBar}${bounds}]=],
+| ${rright}style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; background: #${light};" | ${statBar}${bounds}]=],
 
     totalLink = [=[<div class="flex flex-nowrap flex-row flex-main-start flex-items-center">${tot}<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di ${tot}|<span style="color: initial;">Altri Pokémon con questo totale</span>]]</span></div>]=]
 }
@@ -587,7 +587,7 @@ relatively to 255.
 s.statBarLua = function(stat, value)
     return string.interp(strings.statBar,
         {
-            width = value / 255 * 100,
+            width = value / 270 * 100,
             bg = css.horizGradLua{type = stat},
             dark = c[stat].dark,
             val = string.printNumber(value)

@@ -51,7 +51,7 @@ local makeMachinesList = function(list)
 							end), ' | ')
 					})
 			else
-				return string.interp("[[${mv} (mossa)|${num}]]",
+				return string.interp("[[${mv}|${num}]]",
 					{
 						mv = moves[move].name,
 						num = num
@@ -68,7 +68,7 @@ width è opzionale, default 65%
 
 --]]
 
-local MTGen = function(gen, width)	
+local MTGen = function(gen, width)
 	return string.interp([=[
 <div class="roundy text-center pull-center" style="${bg} width: ${wd}; padding: 0.5ex; margin-bottom: 0.5ex;">
 <div style="font-size: 90%; margin-bottom: 2px; font-weight: bold;">[[MT|<span style="color: #000;">MT</span>]] di [[${gen} generazione|<span style="color: #000;">${gen} generazione</span>]]</div>
@@ -110,7 +110,7 @@ m.MTCompatto = function(frame)
 		move = mw.text.decode(move)
 		moveData = moves[move]
 	end
-	
+
 	if moveData then
 		color = moveData.type
 		for gen, genMc in ipairs(machines) do
@@ -126,7 +126,7 @@ m.MTCompatto = function(frame)
 				return MTGen(tonumber(gen), "auto")
 			end)
 	end
-	
+
 	return string.interp([=[
 <div class="roundy pull-center text-center mw-collapsible${collapsed} width-xl-55 width-md-75 width-sm-100" style="${bg} padding: 0.5ex; padding-bottom: 0.01ex;">
 <div class="roundy text-center" style="color: #000; font-weight: bold; margin-bottom: 0.5ex;">[[MT|<span style="color: #000;">MT</span>]] nelle varie generazioni</div>
