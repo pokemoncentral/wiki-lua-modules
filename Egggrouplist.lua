@@ -119,10 +119,10 @@ Pokémon display the type only once.
 
 --]]
 g.Entry.__tostring = function(this)
-	return string.interp([=[| ${ndex}
-| ${static}
-| class="hidden-xs" style="padding: 0.5ex 0.5em;" | [[${name}]]${form}
-| class="hidden-sm" style="height: 100%; padding: 1.2ex 0.3ex;"${colspan} | ${type1}${type2}${groups}]=],
+	return string.interp([=[| class="min-width-xs-20" | ${ndex}
+| class="min-width-xs-20" | ${static}
+| class="min-width-xs-60" style="padding: 0 0.5em;" | [[${name}]]${form}
+| class="min-width-xs-100" hidden-sm" style="height: 100%; padding: 1.2ex 0.3ex;"${colspan} | ${type1}${type2}${groups}]=],
 	{
 		ndex = this.ndex and string.tf(this.ndex) or '???',
 		static = ms.staticLua(string.tf(this.ndex or 0) ..
@@ -197,11 +197,11 @@ to print the correct amount of group columns.
 
 --]]
 local makeHeader = function(group, groupsCount)
-	return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
+	return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer white-rows hidden-xs" style="border-spacing: 0; padding: 0.3ex; ${bg};"
 ! style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
 ! class="unsortable" | <span class="hidden-xs">&nbsp;</span><span class="visible-xs">Pokémon</span>
-! class="hidden-xs" | [[Pokémon|<span style="color:#000">Pokémon</span>]]
-! class="hidden-sm unsortable" colspan="2" | [[Tipo|<span style="color:#000">Tipo</span>]]
+! [[Pokémon|<span style="color:#000">Pokémon</span>]]
+! colspan="2" | [[Tipo|<span style="color:#000">Tipo</span>]]
 ${groups}]=],
 {
 	bg = css.horizGradLua{type = group:gsub(' ', '_') .. '_uova'},
@@ -232,6 +232,7 @@ g.makeGroupTable = function(group, Entry, header, headerGenerator)
 			makeEntry = Entry.new,
 			header = headerGenerator(group,
 					Entry == g.SingleGroupEntry and 1 or 2),
+            separator = '|- class="roundy flex-xs flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"',
 			footer = '|}'
 		})}, '\n')
 end

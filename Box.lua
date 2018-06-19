@@ -9,9 +9,27 @@ local b = {}
 
 local mw = require('mw')
 
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings')      -- luacheck: no unused
+local tab = require('Wikilib-tables')       -- luacheck: no unused
 local css = require('Css')
+local w = require('Wikilib')
+
+local styles = {
+    thick = {
+        classes = '-5 text-center',
+        styles = 'padding: 0.5ex 0.3em;'
+    },
+
+    thin = {
+        classes = '-5 text-center',
+        styles = 'padding: 0 0.5ex;'
+    },
+
+    ['same-cell'] = {
+        classes = 'inline-block min-width-xl-100 min-width-xs-',
+        styles = 'margin-bottom: 0.2ex; margin-left: 0.2ex; height: ${height}%;'
+    }
+}
 
 --[[
 
@@ -32,11 +50,8 @@ Chiamata da lua; argomenti:
 
 b.boxLua = function(text, link, color, class, style, textcolor)
 	if type(style) == 'table' then
-		local acc = {}
-		for property, value in pairs(style) do
-			table.insert(acc, table.concat{property, ': ', value})
-		end
-		style = table.concat(acc, '; ') .. ';'
+        style = w.mapAndConcat(style, function(value, property)
+                return table.concat{property, ': ', value} end, '; ') .. ';'
 	else
 		style = string.trim(style or '')
 	end
@@ -89,8 +104,18 @@ Chiamata da lua; argomenti:
 
 --]]
 
-b.boxTipoLua = function(tipo, class, style)
+b.boxTipoLua = function(tipo, class, style, predefs, typesCount)
 	tipo = string.fu(string.trim(tipo or 'Sconosciuto'))
+
+    if predefs then
+        predefs = type(predefs) == 'string' and mw.text.split(predefs, '')
+                or predefs
+        class = table.concat(table.merge({class, ' '}, table.map(predefs,
+                function(predef) return styles[predef].classes end)), ' ')
+        style = style .. w.mapAndConcat(predefs, function(predef)
+                return styles[predef].styles end, '')
+    end
+
 	return b.boxLua(tipo, tipo, tipo, class, style, 'FFF')
 end
 
@@ -129,8 +154,8 @@ Chiamata da lua; argomenti
 
 --]]
 
-b.listTipoLua = function(tab, class, style)
-    return table.concat(table.map(tab, function(type)
+b.listTipoLua = function(types, class, style)
+    return table.concat(table.map(types, function(type)
         return b.boxTipoLua(type, class, style)
     end))
 end
