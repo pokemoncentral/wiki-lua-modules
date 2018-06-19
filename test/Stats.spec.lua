@@ -39,6 +39,9 @@ print(stats.typeAvg{args = {'Fuoco', '4'}})
 -- Plain
 print(stats.PokeStats{args = {'Starly'}})
 
+-- Strange name
+print(stats.PokeStats{args = {'Ho-Oh'}})
+
 -- Huge values
 print(stats.PokeStats{args = {'Blissey'}})
 
@@ -47,9 +50,6 @@ print(stats.PokeStats{args = {'Arceus'}})
 
 -- Form non collapse
 print(stats.PokeStats{args = {'Giratina'}})
-
--- Single form
-print(stats.PokeStats{args = {'BlastoiseM', 'yes'}})
 
 -- Speciali
 print(stats.PokeStats{args = {'Magikarp'}})

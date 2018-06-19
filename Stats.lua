@@ -10,23 +10,25 @@ user-supplied values
 
 local s = {}
 
-local txt = require('Modulo:Wikilib/strings') -- luacheck: no unused
-local tab = require('Modulo:Wikilib/tables') -- luacheck: no unused
-local css = require('Modulo:Css')
-local formUtil = require('Modulo:Wikilib/forms')
-local formulas = require('Modulo:Wikilib/formulas')
-local gamesUtil = require('Modulo:Wikilib/games')
-local genUtil = require('Modulo:Wikilib/gens')
-local list = require('Modulo:Wikilib/lists')
-local mg = require('Modulo:Wikilib/multigen')
-local oop = require('Modulo:Wikilib/oop')
-local statsUtil = require('Modulo:Wikilib/stats')
-local w = require('Modulo:Wikilib')
-local alt = mw.loadData('Modulo:AltForms/data')
-local c = mw.loadData('Modulo:Colore/data')
-local gendata = mw.loadData('Modulo:Gens/data')
-local pokes = require('Modulo:Poké/data')
-local stats = mw.loadData('Modulo:PokéStats/data')
+local txt = require('Wikilib-strings') -- luacheck: no unused
+local tab = require('Wikilib-tables') -- luacheck: no unused
+local css = require('Css')
+local formUtil = require('Wikilib-forms')
+local formulas = require('Wikilib-formulas')
+local gamesUtil = require('Wikilib-games')
+local genUtil = require('Wikilib-gens')
+local list = require('Wikilib-lists')
+local mg = require('Wikilib-multigen')
+local oop = require('Wikilib-oop')
+local statsUtil = require('Wikilib-stats')
+local w = require('Wikilib')
+local alt = require("AltForms-data")
+local c = require("Colore-data")
+local gendata = require("Gens-data")
+local pokes = require('Poké-data')
+local stats = require("PokéStats-data")
+
+local mw = require('mw')
 
 -- Mapping of stat keys to user-interface names
 local statNames = {
@@ -639,9 +641,6 @@ All forms:
 IN POKÉMON PAGES ONLY!
 {{#invoke: Stats | PokeStats | {{BASEPAGENAME}} }}
 
-Single form:
-{{#invoke: Stats | PokeStats | BlastoiseM | yes }}
-
 Older generations and no category:
 {{#invoke: Stats | PokeStats | Gengar | | 5 | yes }}
 {{#invoke: Stats | PokeStats | Gengar | gen = 5 | noCat = yes }}
@@ -650,7 +649,7 @@ Older generations and no category:
 --]]
 s.pokeStats = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
-    local poke = string.firstLowercase(p[1] or p.poke)
+    local poke = string.lower(p[1] or p.poke)
     local noForms = (p[2] or p.noForms or 'no'):lower() == 'yes'
     local gen = tonumber(p[3] or p.gen) or gendata.latest
     local noCat = (p[4] or p.noCat or 'no'):lower() == 'yes'
@@ -831,4 +830,3 @@ end
 s.StatsBox, s.statsbox = s.statsBox, s.statsBox
 
 return s
-\
