@@ -104,18 +104,8 @@ Chiamata da lua; argomenti:
 
 --]]
 
-b.boxTipoLua = function(tipo, class, style, predefs, typesCount)
+b.boxTipoLua = function(tipo, class, style)
 	tipo = string.fu(string.trim(tipo or 'Sconosciuto'))
-
-    if predefs then
-        predefs = type(predefs) == 'string' and mw.text.split(predefs, '')
-                or predefs
-        class = table.concat(table.merge({class, ' '}, table.map(predefs,
-                function(predef) return styles[predef].classes end)), ' ')
-        style = style .. w.mapAndConcat(predefs, function(predef)
-                return styles[predef].styles end, '')
-    end
-
 	return b.boxLua(tipo, tipo, tipo, class, style, 'FFF')
 end
 
@@ -184,5 +174,17 @@ b.listTipo = function(frame)
 end
 
 b.ListTipo = b.listTipo
+
+b.typeLabels = function(type1, type2)
+    if predefs then
+        predefs = type(predefs) == 'string' and mw.text.split(predefs, '')
+                or predefs
+        class = table.concat(table.merge({class, ' '}, table.map(predefs,
+                function(predef) return styles[predef].classes end)), ' ')
+        style = style .. w.mapAndConcat(predefs, function(predef)
+                return styles[predef].styles end, '')
+    end
+
+end
 
 return b
