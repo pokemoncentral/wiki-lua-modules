@@ -16,6 +16,7 @@ local links = require('Links')
 local list = require('Wikilib-lists')
 local ms = require('MiniSprite')
 local oop = require('Wikilib-oop')
+local resp = require('Responsive')
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local pokes = require('Poké-data')
@@ -27,17 +28,6 @@ and sortForms of Wikilib/lists
 
 --]]
 local Entry = oop.makeClass(list.PokeSortableEntry)
-
-Entry.printTypeBox = function(type, typesCount)
-    local height = 100 / typesCount
-    local width = 70 / typesCount
-    return box.boxTipoLua(
-        string.fu(type),
-        '-5 inline-block text-center min-width-xl-100 min-width-xs-' .. width,
-        string.interp('padding: 0 0.5ex; margin: 0 0.2ex 0.2ex 0; height: ${height}%;',
-                {height = height})
-    )
-end
 
 --[[
 
@@ -101,11 +91,9 @@ end
 
 -- Wikicode for a list entry: Pokémon mini sprite, name, types and abilities.
 Entry.__tostring = function(this)
-    local typesCount = this.type1 == this.type2 and 1 or 2
-
     return string.interp([=[| class="min-width-xs-20" | ${static}
 | class="min-width-xs-80" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
-| class="width-xs-100" style="padding: 1ex 0.8ex; font-size: 90%;" | ${type1}${type2}
+| class="width-xs-100" style="padding: 1ex 0.8ex; font-size: 90%;" | ${types}
 | class="min-width-xs-33" | <div class="visible-xs text-small">Prima abilit&agrave;</div>${abil1}${abilEv}
 | class="min-width-xs-33" | <div class="visible-xs text-small">Seconda abilit&agrave;</div>${abil2}
 | class="min-width-xs-33" | <div class="visible-xs text-small">Abilit&agrave; nascoste</div>${abild}]=],
@@ -116,9 +104,8 @@ Entry.__tostring = function(this)
     form = this.formsData
             and this.formsData.blacklinks[this.formAbbr]
             or '',
-    type1 = Entry.printTypeBox(this.type1, typesCount),
-    type2 = typesCount == 1 and ''
-            or Entry.printTypeBox(this.type2, typesCount),
+    types = table.concat({resp.twoTypeBoxesLua(this.type1, this.type2, nil,
+        nil, 'thin')}),
     abil1 = Entry.printAbil(this.ability1),
     abilEv = Entry.printAbil(this.abilitye, true),
     abil2 = Entry.printAbil(this.ability2),

@@ -266,6 +266,44 @@ styles.gradient.radial = function(config, colors)
 	return table.concat(css, '; ') .. ';'
 end
 
+--[[
+
+This function returns classes and styles as strings. These can be generated
+by both custom user inputs and predefinite configurations. Arguments:
+
+- classes: Table/string of CSS classes. Optional defaults to '',
+- style: Table/string of CSS styles. As a table, it has the following format:
+    - string keys are property names, and their values are used as CSS values
+    - numeric keys are used as raw CSS styles.
+    Example:
+    {margin = '2px 3px', padding = '3px', 'color: #22AAEE'} -->
+    'margin: 2px 3px'; padding: 3px; color: #22AAEE;'
+    Optional, defaults to ''.
+- predefs: The table predefined configurations are taken from. Predefined
+    configuration names are the keys, while values are tables with 'classes'
+    and 'styles' keys. These hold classes and styles respectively, as strings.
+- pdfs: Table or space-spearated string of predefined configurations names.
+
+--]]
+styles.classesStyles = function(clss, stys, predefs, pdfs)
+    clss = type(clss) == 'table' and table.concat(clss, ' ') or clss
+    if type(stys) == 'table' then
+        stys = w.mapAndConcat(stys, function(value, property)
+                return table.concat{property, ': ', value} end, '; ') .. ';'
+    else
+        stys = string.trim(stys or '')
+    end
+
+    pdfs = type(pdfs) == 'string' and mw.text.split(pdfs, ' ') or pdfs
+    clss, stys = {clss}, {stys}
+    for _, predef in pairs(pdfs) do
+        table.insert(clss, predefs[predef].classes)
+        table.insert(stys, predefs[predef].styles)
+    end
+
+    return table.concat(clss, ' '), table.concat(stys, '; ') .. ';'
+end
+
 -- Generates horizontal linear gradients styles
 css.horizGradLua = function(args)
 	return styles.gradient.linear('horiz', 'to right',
@@ -348,6 +386,10 @@ css['radial-grad'] = function(frame)
 end
 css.radialGrad, css.radial_grad =
 		css['radial-grad'], css['radial-grad']
+
+-- External interface for classesStyles
+css.classesStyles = styles.classesStyles
+css.classes_styles = css.classesStyles
 
 -- First uppercase aliases
 for name, funct in pairs(css) do

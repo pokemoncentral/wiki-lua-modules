@@ -14,20 +14,15 @@ local tab = require('Wikilib-tables')       -- luacheck: no unused
 local css = require('Css')
 local w = require('Wikilib')
 
-local styles = {
+local predefs = {
     thick = {
-        classes = '-5 text-center',
+        classes = ' roundy-5 text-center',
         styles = 'padding: 0.5ex 0.3em;'
     },
 
     thin = {
-        classes = '-5 text-center',
+        classes = ' roundy-5 text-center',
         styles = 'padding: 0 0.5ex;'
-    },
-
-    ['same-cell'] = {
-        classes = 'inline-block min-width-xl-100 min-width-xs-',
-        styles = 'margin-bottom: 0.2ex; margin-left: 0.2ex; height: ${height}%;'
     }
 }
 
@@ -48,21 +43,19 @@ Chiamata da lua; argomenti:
 
 --]]
 
-b.boxLua = function(text, link, color, class, style, textcolor)
-	if type(style) == 'table' then
-        style = w.mapAndConcat(style, function(value, property)
-                return table.concat{property, ': ', value} end, '; ') .. ';'
-	else
-		style = string.trim(style or '')
-	end
+b.boxLua = function(text, link, color, classes, styles, textcolor, pdfs)
+    io.stderr:write(styles, '\n')
+    classes, styles = css.classesStyles(classes, styles, predefs, pdfs)
+
+    io.stderr:write(styles, '\n')
 
 	return string.interp([=[<div class="text-center roundy${class}" style="${bg}; ${style}">[[${link}|<span style="color:#${tc}">${text}</span>]]</div>]=], {
-		class = class or '',
+		class = classes,
 		bg = css.horizGradLua{color, 'dark', color, 'normale'},
 		tc = textcolor or 'FFF',
 		link = link or text,
 		text = text,
-		style = style
+		style = styles
 	})
 end
 
@@ -83,9 +76,8 @@ Chiamata da wikicode (adapter per lua); argomenti
 --]]
 
 b.box = function(frame)
-	return b.boxLua(frame.args[1], frame.args[2],
-		frame.args[3], frame.args[4], frame.args[5],
-		frame.args[6])
+    local p = w.trimAll(mw.clone(frame.args))
+	return b.boxLua(unpack(p))
 end
 
 b.Box = b.box
@@ -104,9 +96,9 @@ Chiamata da lua; argomenti:
 
 --]]
 
-b.boxTipoLua = function(tipo, class, style)
+b.boxTipoLua = function(tipo, class, style, pdfs)
 	tipo = string.fu(string.trim(tipo or 'Sconosciuto'))
-	return b.boxLua(tipo, tipo, tipo, class, style, 'FFF')
+	return b.boxLua(tipo, tipo, tipo, class, style, 'FFF', pdfs)
 end
 
 b.box_tipo_lua = b.boxTipoLua
@@ -122,13 +114,13 @@ Chiamata da wikicode (adapter per lua); argomenti
 
 Esempio:
 {{#invoke | Box | boxTipo | Elettro | left inline-block
-        | padding: 2px; | border = yes}}
+        | padding: 2px; }}
 
 --]]
 
 b.boxTipo = function(frame)
-    return b.boxTipoLua(frame.args[1], frame.args[2],
-        frame.args[3])
+    local p = w.trimAll(mw.clone(frame.args))
+    return b.boxTipoLua(unpack(p))
 end
 
 b.BoxTipo = b.boxTipo
@@ -144,9 +136,9 @@ Chiamata da lua; argomenti
 
 --]]
 
-b.listTipoLua = function(types, class, style)
+b.listTipoLua = function(types, class, style, pdfs)
     return table.concat(table.map(types, function(type)
-        return b.boxTipoLua(type, class, style)
+        return b.boxTipoLua(type, class, style, pdfs)
     end))
 end
 
@@ -169,22 +161,11 @@ Esempio:
 --]]
 
 b.listTipo = function(frame)
-    return b.listTipoLua(mw.text.split(frame.args[1], ',%s*'),
-            frame.args[2], frame.args[3])
+    local p = w.trimAll(mw.clone(frame.args))
+    local types = mw.text.split(table.remove(p, 1), ',%s*')
+    return b.listTipoLua(types, unpack(p))
 end
 
 b.ListTipo = b.listTipo
-
-b.typeLabels = function(type1, type2)
-    if predefs then
-        predefs = type(predefs) == 'string' and mw.text.split(predefs, '')
-                or predefs
-        class = table.concat(table.merge({class, ' '}, table.map(predefs,
-                function(predef) return styles[predef].classes end)), ' ')
-        style = style .. w.mapAndConcat(predefs, function(predef)
-                return styles[predef].styles end, '')
-    end
-
-end
 
 return b
