@@ -16,12 +16,12 @@ local w = require('Wikilib')
 
 local predefs = {
     thick = {
-        classes = ' roundy-5 text-center',
+        classes = 'roundy-5 text-center',
         styles = 'padding: 0.5ex 0.3em;'
     },
 
     thin = {
-        classes = ' roundy-5 text-center',
+        classes = 'roundy-5 text-center',
         styles = 'padding: 0 0.5ex;'
     }
 }
@@ -32,8 +32,7 @@ Chiamata da lua; argomenti:
 - text: testo visualizzato
 - link: link (default uguale a text)
 - color: colore del gradiente (da dark a normale)
-- class: opzionale (default ''), stringa di classi css,
-    viene concatenata a "text-center roundy"
+- class: opzionale (default ''), stringa di classi css
 - style: opzionale (default ''), stringa o table che
     descrive le property css da mettere nell'attributo
     style. Esempio:
@@ -43,13 +42,10 @@ Chiamata da lua; argomenti:
 
 --]]
 
-b.boxLua = function(text, link, color, classes, styles, textcolor, pdfs)
-    io.stderr:write(styles, '\n')
-    classes, styles = css.classesStyles(classes, styles, predefs, pdfs)
+b.boxLua = function(text, link, color, pdfs, classes, styles, textcolor)
+    classes, styles = css.classesStyles(predefs, pdfs, classes, styles)
 
-    io.stderr:write(styles, '\n')
-
-	return string.interp([=[<div class="text-center roundy${class}" style="${bg}; ${style}">[[${link}|<span style="color:#${tc}">${text}</span>]]</div>]=], {
+	return string.interp([=[<div class="${class}" style="${bg}; ${style}">[[${link}|<span style="color:#${tc}">${text}</span>]]</div>]=], {
 		class = classes,
 		bg = css.horizGradLua{color, 'dark', color, 'normale'},
 		tc = textcolor or 'FFF',
@@ -96,9 +92,9 @@ Chiamata da lua; argomenti:
 
 --]]
 
-b.boxTipoLua = function(tipo, class, style, pdfs)
+b.boxTipoLua = function(tipo, pdfs, class, style)
 	tipo = string.fu(string.trim(tipo or 'Sconosciuto'))
-	return b.boxLua(tipo, tipo, tipo, class, style, 'FFF', pdfs)
+	return b.boxLua(tipo, tipo, tipo, pdfs, class, style, 'FFF')
 end
 
 b.box_tipo_lua = b.boxTipoLua
@@ -136,9 +132,9 @@ Chiamata da lua; argomenti
 
 --]]
 
-b.listTipoLua = function(types, class, style, pdfs)
+b.listTipoLua = function(types, pdfs, class, style)
     return table.concat(table.map(types, function(type)
-        return b.boxTipoLua(type, class, style, pdfs)
+        return b.boxTipoLua(type, pdfs, class, style)
     end))
 end
 

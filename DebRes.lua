@@ -135,7 +135,8 @@ end
 
 -- Prints a list of types as Boxes
 dr.EffTable.printTypes = function(types)
-    return box.listTipoLua(types, ' inline-block width-xl-15 width-md-20 width-sm-35 width-xs-45',
+    return box.listTipoLua(types, nil,
+        'roundy text-center inline-block width-xl-15 width-md-20 width-sm-35 width-xs-45',
         'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold;')
 end
 

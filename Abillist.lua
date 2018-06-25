@@ -10,7 +10,6 @@ local k = {}
 local mw = require('mw')
 
 local abillib = require('Wikilib-abils')
-local box = require('Box')
 local css = require('Css')
 local links = require('Links')
 local list = require('Wikilib-lists')
@@ -106,8 +105,7 @@ Entry.__tostring = function(this)
     form = this.formsData
             and this.formsData.blacklinks[this.formAbbr]
             or '',
-    types = table.concat({resp.twoTypeBoxesLua(this.type1, this.type2, nil,
-        nil, 'thin')}),
+    types = resp.twoTypeBoxesLua(this.type1, this.type2, 'thin'),
     abil1 = Entry.printAbil(this.ability1),
     abilEv = Entry.printAbil(this.abilitye, true),
     abil2 = Entry.printAbil(this.ability2),

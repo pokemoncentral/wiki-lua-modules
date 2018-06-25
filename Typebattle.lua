@@ -15,15 +15,17 @@ local gen1 = {'coleottero', 'fuoco', 'ghiaccio', 'psico', 'spettro', 'veleno'}
 local gen5 = {'acciaio', 'buio', 'spettro'}
 
 local eff = function(tipo, gen)
+    local classes = 'roundy text-center inline-block width-xl-15 width-md-20 width-sm-35 width-xs-45'
+    local styles = 'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold;'
 	local et = require('EffTipi' .. (gen < 6 and gen or ''))
 	local values, test, f = {0, 0.5, 2}, {}, {bg = c[tipo].dark, bd = c[tipo].light, cells = c[tipo].normale}
 	for k, v in pairs(values) do
         test = {false}
         test = et.difesa(v, tipo, tipo, 'Tanfo')
-        f['dx' .. v] = test[1] and b.box_list(test, 'center') or 'Nessuna'
+        f['dx' .. v] = test[1] and b.listTipoLua(test, nil, classes, styles) or 'Nessuna'
         test = {false}
         test = et.attacco(v, tipo)
-        f['ax' .. v] = test[1] and b.box_list(test, 'center') or 'Nessuna'
+        f['ax' .. v] = test[1] and b.listTipoLua(test, nil, classes, styles) or 'Nessuna'
     end
 	return string.interp([=[{| class="roundy" style="background: #${bg}; border: 3px solid #${bd}; text-align: center;"
 ! class="roundytop" style="background:#${bd}; font-size: 120%;" | Danno inflitto

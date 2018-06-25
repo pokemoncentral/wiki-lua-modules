@@ -147,11 +147,6 @@ lib.hearts = function(frame)
 			string.trim(frame.args[2] or ''):lower() == 'black')
 end
 
-
--- Classi e stili per i box di tipi, categoria e gara
-local boxClasses = '-5'
-local boxStyles = 'padding: 0 2px; margin-bottom: 0.2ex;'
-
 --[[
 
 Le celle comuni a tutti gli entry nelle generazioni
@@ -169,7 +164,7 @@ lib.basicentry = function(stab, mossa, notes, tipo, pw, acc, pp)
    	mossa = mossa,
     stab = stab,
     notes = notes,
-    tipo = box.boxTipoLua(tipo, boxClasses, boxStyles),
+    tipo = box.boxTipoLua(tipo, 'thick'),
     pw = pw,
     acc = acc,
     pp = pp
@@ -193,8 +188,9 @@ lib.categoryentry = function(stab, mossa, notes, tipo, cat, pw, acc, pp)
 	mossa = mossa,
     stab = stab,
     notes = notes,
-    tipo = box.boxTipoLua(tipo, boxClasses, boxStyles),
-    cat = box.boxLua(cat, 'Categoria danno#' .. cat, cat, boxClasses, boxStyles, c[cat .. '_text']),
+    tipo = box.boxTipoLua(tipo, 'thick'),
+    cat = box.boxLua(cat, 'Categoria danno#' .. cat, cat, 'thick', nil, nil,
+            c[cat .. '_text']),
 	pw = pw,
     acc = acc,
     pp = pp
@@ -213,7 +209,7 @@ lib.contestentry = function(gara, fash, intr)
 	return string.interp([=[|| style="padding: 0.8ex 0.3ex; height: 100%;" | ${gara}
 | style="padding: 0.1em 0.3em;" | ${fash}${intr}]=],
 {
-    gara = box.boxLua(gara, gara .. ' (gara)', gara, boxClasses, boxStyles, 'fff'),
+    gara = box.boxLua(gara, gara .. ' (gara)', gara, 'thick'),
     fash = lib.concathearts(fash, false),
     intr = intr and table.concat{' || style="padding: 0.3em;" | ', lib.concathearts(intr, true)} or ''
 })

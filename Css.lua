@@ -271,6 +271,10 @@ end
 This function returns classes and styles as strings. These can be generated
 by both custom user inputs and predefinite configurations. Arguments:
 
+- predefs: The table predefined configurations are taken from. Predefined
+    configuration names are the keys, while values are tables with 'classes'
+    and 'styles' keys. These hold classes and styles respectively, as strings.
+- pdfs: Table or space-spearated string of predefined configurations names.
 - classes: Table/string of CSS classes. Optional defaults to '',
 - style: Table/string of CSS styles. As a table, it has the following format:
     - string keys are property names, and their values are used as CSS values
@@ -279,13 +283,9 @@ by both custom user inputs and predefinite configurations. Arguments:
     {margin = '2px 3px', padding = '3px', 'color: #22AAEE'} -->
     'margin: 2px 3px'; padding: 3px; color: #22AAEE;'
     Optional, defaults to ''.
-- predefs: The table predefined configurations are taken from. Predefined
-    configuration names are the keys, while values are tables with 'classes'
-    and 'styles' keys. These hold classes and styles respectively, as strings.
-- pdfs: Table or space-spearated string of predefined configurations names.
 
 --]]
-styles.classesStyles = function(clss, stys, predefs, pdfs)
+styles.classesStyles = function(predefs, pdfs, clss, stys)
     clss = type(clss) == 'table' and table.concat(clss, ' ') or clss
     if type(stys) == 'table' then
         stys = w.mapAndConcat(stys, function(value, property)
@@ -294,11 +294,14 @@ styles.classesStyles = function(clss, stys, predefs, pdfs)
         stys = string.trim(stys or '')
     end
 
-    pdfs = type(pdfs) == 'string' and mw.text.split(pdfs, ' ') or pdfs
-    clss, stys = {clss}, {stys}
-    for _, predef in pairs(pdfs) do
-        table.insert(clss, predefs[predef].classes)
-        table.insert(stys, predefs[predef].styles)
+    clss, stys = clss and {clss} or {}, stys and {stys} or {}
+
+    if pdfs then
+        pdfs = type(pdfs) == 'string' and mw.text.split(pdfs, ' ') or pdfs
+        for _, predef in pairs(pdfs) do
+            table.insert(clss, predefs[predef].classes)
+            table.insert(stys, predefs[predef].styles)
+        end
     end
 
     return table.concat(clss, ' '), table.concat(stys, '; ') .. ';'

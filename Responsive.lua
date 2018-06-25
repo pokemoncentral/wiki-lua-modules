@@ -4,15 +4,13 @@ This module contains responsive utility code
 
 --]]
 
-local mw = require('mw')
-
 local box = require('Box')
 local css = require('Css')
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 
 local predefs = {
     ['type-cell'] = {
-        styles = 'padding: 1.2ex 0.3ex;'
+        styles = 'padding: 1.2ex 0.6ex 1.2ex 0;'
     }
 }
 
@@ -61,20 +59,20 @@ responsive.twoBoxes = function(box1, box2)
     local styles = table.concat{'margin-bottom: 0.2ex; margin-left: 0.2ex; height: ',
         100 / boxesCount, '%;'}
 
-    box1[4] = addClass(box1[4], classes)
-    box1[5] = addStyle(box1[5], styles)
+    box1[5] = addClass(box1[5], classes)
+    box1[6] = addStyle(box1[6], styles)
 
     if box2 then
-        box2[4] = addClass(box2[4], classes)
-        box2[5] = addStyle(box2[5], styles)
+        box2[5] = addClass(box2[5], classes)
+        box2[6] = addStyle(box2[6], styles)
     end
 
     return box1, box2
 end
 
-responsive.twoCells = function(cell1, cell2, classes, styles, pdfs)
+responsive.twoCells = function(cell1, cell2, pdfs, classes, styles)
     local cellsCount = cell2 and 2 or 1
-    classes, styles = css.predefs(classes, styles, predefs, pdfs)
+    classes, styles = css.classesStyles(predefs, pdfs, classes, styles)
     local cell = string.interp('| class="${cls} min-width-xs-${xsWidth}" style="${sty}" | ',
         {
             cls = classes,
@@ -82,49 +80,71 @@ responsive.twoCells = function(cell1, cell2, classes, styles, pdfs)
             sty = styles
         })
 
-    return cell .. cell1, cell2 and cell .. cell2
+    if cell2 then
+        return cell .. cell1, cell .. cell2
+    end
+    return cell .. cell1
 end
 
 local r = {}
 
-r.twoBoxesLua = function(box1, box2)
+r.twoBoxesLua = function(box1, box2, concat)
+    concat = concat or concat == nil
     box1, box2 = responsive.twoBoxes(box1, box2)
     box1 = box.boxLua(unpack(box1))
 
     if box2 then
-        return box1, box2 and box.boxLua(unpack(box2))
+        box2 = box.boxLua(unpack(box2))
+        if concat then
+            return table.concat{box1, box2}
+        end
+        return box1, box2
     end
     return box1
 end
 
 r.two_boxes_lua = r.twoBoxesLua
 
-r.twoCellsLua = function(cell1, cell2, classes, styles, pdfs)
-    local cells = {responsive.twoCells(cell1, cell2, classes, styles, pdfs)}
-    return table.concat(cells, ' || ')
+r.twoCellsLua = function(cell1, cell2, pdfs, classes, styles)
+    local cells = {responsive.twoCells(cell1, cell2, pdfs, classes, styles)}
+    return table.concat(cells, ' |')
 end
 
 r.two_cells_lua = r.twoCellsLua
 
-r.twoTypeBoxesLua = function(type1, type2, classes, styles, pdfs)
-    local hasTwoTypes = type2 and type1 ~= type2
+r.twoTypeBoxesLua = function(type1, type2, pdfs, classes, styles, concat)
+    local hasTwoTypes = type1 ~= type2
     type1 = string.fu(string.trim(type1 or 'Sconosciuto'))
     type2 = hasTwoTypes and string.fu(string.trim(type2))
 
-    local box1 = {type1, type1, type1, classes, styles, 'FFF', pdfs}
-    local box2 = hasTwoTypes and {type2, type2, type2, classes, styles, 'FFF',
-        pdfs}
-	return r.twoBoxesLua(box1, box2)
+    local box1 = {type1, type1, type1, pdfs, classes, styles, 'FFF'}
+    local box2 = hasTwoTypes and {type2, type2, type2, pdfs, classes, styles,
+        'FFF'}
+	return r.twoBoxesLua(box1, box2, concat)
 end
 
 r.two_type_boxes_lua = r.twoTypeBoxesLua
 
-r.twoTypeCells = function(type1, type2, classes, styles, pdfsTypes, pdfsCells)
-    local box1, box2 = r.twoTypeBoxesLua(type1, type2, classes, styles,
-        pdfsTypes)
-    return r.twoCellsLua(box1, box2, pdfsCells)
+r.twoEggBoxesLua = function(egg1, egg2, pdfs, classes, styles, concat)
+    local hasTwoEggs = egg1 ~= egg2
+    egg1 = string.fu(string.trim(egg1))
+    egg2 = hasTwoEggs and string.fu(string.trim(egg2))
+
+    local box1 = {egg1, egg1 .. ' (gruppo uova)', egg1 .. '_uova', pdfs,
+        classes, styles, 'FFF'}
+    local box2 = hasTwoEggs and {egg2, egg2 .. ' (gruppo uova)',
+        egg2 .. '_uova', pdfs, classes, styles, 'FFF'}
+	return r.twoBoxesLua(box1, box2, concat)
 end
 
-r.two_type_cells = r.twoTypeCells
+r.two_egg_boxes_lua = r.twoEggBoxesLua
+
+r.twoTypeCellsLua = function(type1, type2, types, cells)
+    local box1 = box.boxTipoLua(type1, unpack(types))
+    local box2 = type1 ~= type2 and box.boxTipoLua(type2, unpack(types))
+    return r.twoCellsLua(box1, box2, unpack(cells))
+end
+
+r.two_type_cells_lua = r.twoTypeCellsLua
 
 return r

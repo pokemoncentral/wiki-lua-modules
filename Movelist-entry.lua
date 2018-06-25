@@ -4,21 +4,22 @@ local m = {}
 
 local mw = require('mw')
 
-local w = require('Wikilib')
-local ms = require('MiniSprite')
-local lib = require('Wikilib-learnlists')
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
-local forms = require('Wikilib-forms')
-forms.loadUseless(true) -- uses both AltForms and UselessForm
-local c = require("Colore-data")
 local css = require('Css')
-local box = require('Box')
-local gendata = require("Gens-data")
+local ms = require('MiniSprite')
+local forms = require('Wikilib-forms')
+local lib = require('Wikilib-learnlists')
+local resp = require('Responsive')
+local txt = require('Wikilib-strings')          -- luacheck: no unused
+local tab = require('Wikilib-tables')           -- luacheck: no unused
+local w = require('Wikilib')
+local c = require("Colore-data")
 local abbr = require("Blackabbrev-data")
-local pokes = require("Poké-data")
+local gendata = require("Gens-data")
 local groups = require("PokéEggGroup-data")
 local libdata = require("Wikilib-data")
+local pokes = require("Poké-data")
+
+forms.loadUseless(true)                 -- uses both AltForms and UselessForm
 
 -- Rappresentazione stringa dei parametri booleani
 local boolDisplay = {No = '×', Yes = '✔'}
@@ -204,14 +205,14 @@ local tail = function(startGen, data, splitCells, collapse)
 		end
 		table.insert(store, makeCell(bgColor, '000', '2', cellData, collapse))
 	end
-	
+
 	-- Si dividono le celle delle generazioni se necessario
 	for game in pairs(data) do
 		if type(game) == 'string' then
 			splitCells(store, data, startGen, game, collapse)
 		end
 	end
-	
+
 	return table.concat(store, '\n')
 end
 
@@ -226,15 +227,13 @@ local head = function(ndex, stab, notes, form)
 	pokedata.group2show = pokedata.group2 == 'coleottero' and 'Coleot' or string.fu(pokedata.group2)
 	pokedata.type2 = pokedata.type2 ~= pokedata.type1 and string.fu(pokedata.type2) or nil
 	pokedata.type1 = string.fu(pokedata.type1)
-	local boxClasses = '-5 flex flex-row flex-main-center flex-items-center'
-	local boxStyles = 'padding: 0 2px; margin-bottom: 0.2ex;'
 
 	return string.interp([=[|- style="height: 100%;"
 | class="hidden-xs" | ${num}
 | ${ani}
 | <span class="hidden-xs">${stab}[[${name}]]${stab}${notes}${forml}</span>
-| class="hidden-sm" style="height: 100%;${typesmall} padding: 0.8ex 0.3ex;" | ${types}
-| class="hidden-sm" style="height: 100%;${groupsmall} padding: 0.8ex 0.3ex;" | ${groups}
+| class="hidden-sm" style="height: 100%; padding: 0.8ex 0.3ex;" | ${types}
+| class="hidden-sm" style="height: 100%; padding: 0.8ex 0.3ex;" | ${groups}
 ]=],
 {
 	num = ndexFigures,
@@ -244,9 +243,8 @@ local head = function(ndex, stab, notes, form)
 	notes = lib.makeNotes(notes or ''),
 	forml = forms.getlink(ndex, false, form),
 	std = c[pokedata.group1 .. '_uova'].normale,
-	types = box.boxTipoLua(pokedata.type1, boxClasses, boxStyles .. (pokedata.type2 and 'height: 50%;' or ' height: 100%;')) .. (pokedata.type2 and box.boxTipoLua(pokedata.type2, boxClasses, boxStyles .. 'height: 50%;') or ''),
-	typesmall = pokedata.type2 and 'font-size: 90%;' or '',
-	groups = box.boxLua(pokedata.group1show, pokedata.group1 .. ' (gruppo uova)', pokedata.group1 .. '_uova', boxClasses, boxStyles .. (pokedata.group2 and 'height: 50%;' or ' height: 100%;')) .. (pokedata.group2 and box.boxLua(pokedata.group2show, pokedata.group2 .. ' (gruppo uova)', pokedata.group2 .. '_uova', boxClasses, boxStyles .. 'height: 50%;') or ''),
+	types = resp.twoTypeBoxesLua(pokedata.type1, pokedata.type2, 'thin'),
+	groups = resp.twoEggBoxesLua(pokedata.group1, pokedata.group2, 'thin'),
 	groupsmall = pokedata.group2 and 'font-size: 90%;' or '',
 })
 end

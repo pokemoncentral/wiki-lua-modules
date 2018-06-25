@@ -9,11 +9,11 @@ local g = {}
 
 local mw = require('mw')
 
-local box = require('Box')
 local css = require('Css')
 local ms = require('MiniSprite')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
+local resp = require('Responsive')
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local pokes = require('Poké-data')
@@ -26,24 +26,12 @@ not utilizable directly because it does not filter the type.
 --]]
 g.Entry = oop.makeClass(list.PokeSortableEntry)
 
--- Typebox-related constants
-g.Entry.typeBox = {
-    classes = '-5 text-center',
-    styles = 'padding: 0.5ex 0.3em;'
-}
-
 -- Returns the heading line for tables, given type, heading level and ending.
 g.Entry.makeHeader = function(type, level, ending)
     type = type == 'coleot' and 'Coleottero' or string.fu(type)
     local headerTags = string.rep('=', level)
     return table.concat({headerTags, 'Pokémon di tipo', type, ending,
             headerTags}, ' ')
-end
-
--- Returns wikicode for typeboxes
-g.Entry.makeTypeBox = function(type)
-    return box.boxTipoLua(string.fu(type), g.Entry.typeBox.classes,
-        g.Entry.typeBox.styles)
 end
 
 --[[
@@ -65,22 +53,18 @@ Mono-typed Pokémon display the type only once.
 
 --]]
 g.Entry.__tostring = function(this)
-    local monoType = this.type1 == this.type2
     return string.interp([=[| class="min-width-xs-20" | ${ndex}
 | class="min-width-xs-20" | ${static}
 | class="min-width-xs-60" style="padding: 0.5ex 0.5em;" | [[${name}]]${form}
-| class="min-width-xs-${xsWidth}" style="padding: 1.2ex 0.3ex;" | ${type1}${type2}]=],
+${types}]=],
     {
         ndex = this.ndex and string.tf(this.ndex) or '???',
         static = ms.staticLua(string.tf(this.ndex or 0) ..
                 (this.formAbbr == 'base' and '' or this.formAbbr or '')),
         name = this.name,
         form = this.formsData and this.formsData.links[this.formAbbr] or '',
-        xsWidth = 70 / (monoType and 1 or 2),
-        type1 = g.Entry.makeTypeBox(this.type1),
-        type2 = monoType and ''
-                or ' || class="min-width-xs-35" style="padding: 1.2ex 0.3ex;" | '
-                        .. g.Entry.makeTypeBox(this.type2)
+        types = resp.twoTypeCellsLua(this.type1, this.type2, {'thick'},
+            {'type-cell'})
     })
 end
 
@@ -174,7 +158,7 @@ local makeHeader = function(type, typesCount)
     return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
 |- class="hidden-xs"
 ! style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
-! &nbsp;
+! class="unsortable" | &nbsp;
 ! [[Pokémon|<span style="color:#000">Pokémon</span>]]
 ${types}]=],
 {

@@ -37,7 +37,7 @@ g.Entry = oop.makeClass(list.PokeSortableEntry)
 
 -- Typebox-related constants
 g.Entry.typeBox = {
-    classes = '-5 flex flex-row flex-main-center flex-items-center',
+    classes = 'roundy-5 text-center',
     styles = 'height: 100%; padding: 0.5ex 0.3em;'
 }
 
