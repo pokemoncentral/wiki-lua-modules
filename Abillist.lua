@@ -19,6 +19,7 @@ local oop = require('Wikilib-oop')
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local pokes = require('Poké-data')
+local gens = require('Gens-data')
 
 --[[
 
@@ -70,13 +71,14 @@ Entry.printAbil = function(abil, marked)
 
     -- Adding generations superscripts
     return table.concat(table.map(abillib.abilspan(abil), function(v)
+        local first, last = gens[v.first].roman, gens[v.last].roman
         return string.interp(
             '<div>${abil}<sup>${gen}</sup></div>',
             {
                 abil = v.abil == 'Nessuna' and v.abil
                         or toHTML(v.abil, '000'),
-                gen = v.first == v.last and v.first
-                        or table.concat{v.first, '-', v.last}
+                gen = v.first == v.last and first
+                        or table.concat{first, '-', last}
             })
     end))
 end
