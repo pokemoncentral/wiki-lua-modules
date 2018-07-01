@@ -10,7 +10,8 @@ local tab = require('Wikilib-tables')       -- luacheck: no unused
 
 local predefs = {
     ['type-cell'] = {
-        styles = 'padding: 1.2ex 0.6ex 1.2ex 0;'
+        classes = {},
+        styles = {['padding'] = '1.2ex 0.6ex 1.2ex 0'}
     }
 }
 
@@ -54,8 +55,8 @@ local responsive = {}
 responsive.twoBoxes = function(box1, box2)
     local boxesCount = box2 and 2 or 1
 
-    local classes = ' inline-block min-width-xl-100 min-width-xs-' ..
-        70 / boxesCount
+    local classes = string.interp('vert-center inline-block-xs min-width-xs-${w} max-width-xs-${w}',
+        {w = 70 / boxesCount})
     local styles = table.concat{'margin-bottom: 0.2ex; margin-left: 0.2ex; height: ',
         100 / boxesCount, '%;'}
 
@@ -113,7 +114,8 @@ end
 r.two_cells_lua = r.twoCellsLua
 
 r.twoTypeBoxesLua = function(type1, type2, pdfs, classes, styles, concat)
-    local hasTwoTypes = type1 ~= type2
+    -- io.stderr:write(tostring(type1), '-', tostring(type2), '\n')
+    local hasTwoTypes = type2 and type1 ~= type2
     type1 = string.fu(string.trim(type1 or 'Sconosciuto'))
     type2 = hasTwoTypes and string.fu(string.trim(type2))
 
@@ -126,7 +128,7 @@ end
 r.two_type_boxes_lua = r.twoTypeBoxesLua
 
 r.twoEggBoxesLua = function(egg1, egg2, pdfs, classes, styles, concat)
-    local hasTwoEggs = egg1 ~= egg2
+    local hasTwoEggs = egg2 and egg1 ~= egg2
     egg1 = string.fu(string.trim(egg1))
     egg2 = hasTwoEggs and string.fu(string.trim(egg2))
 

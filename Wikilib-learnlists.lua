@@ -161,10 +161,10 @@ lib.basicentry = function(stab, mossa, notes, tipo, pw, acc, pp)
 | style="padding: 0.1em 0.3em;" | ${acc}%
 | style="padding: 0.1em 0.3em;" | ${pp}]=],
 {
-   	mossa = mossa,
+    mossa = mossa,
     stab = stab,
     notes = notes,
-    tipo = box.boxTipoLua(tipo, 'thick'),
+    tipo = box.boxTipoLua(tipo, {'thick', 'narrow'}),
     pw = pw,
     acc = acc,
     pp = pp
@@ -188,9 +188,9 @@ lib.categoryentry = function(stab, mossa, notes, tipo, cat, pw, acc, pp)
 	mossa = mossa,
     stab = stab,
     notes = notes,
-    tipo = box.boxTipoLua(tipo, 'thick'),
-    cat = box.boxLua(cat, 'Categoria danno#' .. cat, cat, 'thick', nil, nil,
-            c[cat .. '_text']),
+    tipo = box.boxTipoLua(tipo, {'thick', 'narrow'}),
+    cat = box.boxLua(cat, 'Categoria danno#' .. cat, cat, {'thick', 'narrow'},
+            nil, nil, c[cat .. '_text']),
 	pw = pw,
     acc = acc,
     pp = pp
@@ -209,7 +209,7 @@ lib.contestentry = function(gara, fash, intr)
 	return string.interp([=[|| style="padding: 0.8ex 0.3ex; height: 100%;" | ${gara}
 | style="padding: 0.1em 0.3em;" | ${fash}${intr}]=],
 {
-    gara = box.boxLua(gara, gara .. ' (gara)', gara, 'thick'),
+    gara = box.boxLua(gara, gara .. ' (gara)', gara, {'thick', 'narrow'}),
     fash = lib.concathearts(fash, false),
     intr = intr and table.concat{' || style="padding: 0.3em;" | ', lib.concathearts(intr, true)} or ''
 })

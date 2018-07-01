@@ -243,9 +243,8 @@ local head = function(ndex, stab, notes, form)
 	notes = lib.makeNotes(notes or ''),
 	forml = forms.getlink(ndex, false, form),
 	std = c[pokedata.group1 .. '_uova'].normale,
-	types = resp.twoTypeBoxesLua(pokedata.type1, pokedata.type2, 'thin'),
-	groups = resp.twoEggBoxesLua(pokedata.group1, pokedata.group2, 'thin'),
-	groupsmall = pokedata.group2 and 'font-size: 90%;' or '',
+	types = resp.twoTypeBoxesLua(pokedata.type1, pokedata.type2, {'tiny'}),
+	groups = resp.twoEggBoxesLua(pokedata.group1, pokedata.group2, {'tiny'}),
 })
 end
 

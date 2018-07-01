@@ -105,7 +105,7 @@ Entry.__tostring = function(this)
     form = this.formsData
             and this.formsData.blacklinks[this.formAbbr]
             or '',
-    types = resp.twoTypeBoxesLua(this.type1, this.type2, 'thin'),
+    types = resp.twoTypeBoxesLua(this.type1, this.type2, {'thin', 'wide'}),
     abil1 = Entry.printAbil(this.ability1),
     abilEv = Entry.printAbil(this.abilitye, true),
     abil2 = Entry.printAbil(this.ability2),

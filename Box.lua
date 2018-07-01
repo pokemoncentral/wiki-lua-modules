@@ -15,14 +15,30 @@ local css = require('Css')
 local w = require('Wikilib')
 
 local predefs = {
+    narrow = {
+        classes = {'roundy-5', 'text-center'},
+        styles = {['padding-right'] = '0.5ex', ['padding-left'] = '0.5ex'}
+    },
+
     thick = {
-        classes = 'roundy-5 text-center',
-        styles = 'padding: 0.5ex 0.3em;'
+        classes = {'roundy-5', 'text-center'},
+        styles = {['padding-top'] = '0.5ex', ['padding-bottom'] = '0.5ex'}
     },
 
     thin = {
-        classes = 'roundy-5 text-center',
-        styles = 'padding: 0 0.5ex;'
+        classes = {'roundy-5', 'text-center'},
+        styles = {['padding-top'] = '0', ['padding-bottom'] = '0'}
+    },
+
+    tiny = {
+        classes = {'roundy-5', 'text-center', 'text-small'},
+        styles = {['padding'] = '0 0.3ex'}
+    },
+
+    wide = {
+        classes = {'roundy-5', 'text-center'},
+        styles = {['width'] = '8em', ['padding-right'] = '0.3ex',
+            ['padding-left'] = '0.3ex'}
     }
 }
 

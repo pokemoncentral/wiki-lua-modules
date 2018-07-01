@@ -286,25 +286,34 @@ by both custom user inputs and predefinite configurations. Arguments:
 
 --]]
 styles.classesStyles = function(predefs, pdfs, clss, stys)
-    clss = type(clss) == 'table' and table.concat(clss, ' ') or clss
-    if type(stys) == 'table' then
-        stys = w.mapAndConcat(stys, function(value, property)
-                return table.concat{property, ': ', value} end, '; ') .. ';'
-    else
-        stys = string.trim(stys or '')
-    end
+    clss = clss or {}
+    stys = stys or {}
 
-    clss, stys = clss and {clss} or {}, stys and {stys} or {}
+    clss = type(clss) == 'string' and mw.text.split(clss, ' ') or clss
+    if type(stys) == 'string' then
+        stys = table.filter(mw.text.split(stys, ';'), function(stmt)
+            return stmt:find('%S') end)
+        stys = table.fold(stys, {}, function(acc, stmt)
+            local splits = w.trimAll(mw.text.split(stmt, ':'))
+            acc[splits[1]] = splits[2]
+            return acc
+        end)
+    end
 
     if pdfs then
         pdfs = type(pdfs) == 'string' and mw.text.split(pdfs, ' ') or pdfs
         for _, predef in pairs(pdfs) do
-            table.insert(clss, predefs[predef].classes)
-            table.insert(stys, predefs[predef].styles)
+            clss = table.merge(clss, predefs[predef].classes)
+            stys = table.merge(predefs[predef].styles, stys)
         end
     end
 
-    return table.concat(clss, ' '), table.concat(stys, '; ') .. ';'
+    clss = table.concat(table.unique(clss), ' ')
+    stys = table.concat(table.mapToNum(stys, function(value, property)
+            return table.concat{property, ': ', value}
+        end), '; ') .. ';'
+
+    return clss, stys
 end
 
 -- Generates horizontal linear gradients styles
