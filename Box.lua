@@ -1,7 +1,10 @@
 --[[
 
-Crea un box tipo o una lista di boxes a partire da uno o
-più tipi rispettivamente, ed eventuali classi e styles css
+This module contains utility code for boxes: these are a link in a rounded
+box, with a left-to-right gradient from the dark shade of a color to the
+normal shade of the same color.
+
+Shortcuts are provided for boxes that display a type and lists of such boxes.
 
 --]]
 
@@ -14,47 +17,41 @@ local tab = require('Wikilib-tables')       -- luacheck: no unused
 local css = require('Css')
 local w = require('Wikilib')
 
+--[[
+    This table holds predefined styles configuration for boxes. Names of
+    such configurations are the keys, while values are tables with 'classes'
+    and 'styles' keys. These hold classes and styles respectively, and have as
+    values the same structures as arseClasses and parseStyles return.
+--]]
 local predefs = {
-    narrow = {
-        classes = {'roundy-5', 'text-center'},
-        styles = {['padding-right'] = '0.5ex', ['padding-left'] = '0.5ex'}
-    },
-
     thick = {
         classes = {'roundy-5', 'text-center'},
-        styles = {['padding-top'] = '0.5ex', ['padding-bottom'] = '0.5ex'}
+        styles = {['padding'] = '0.5ex'}
     },
 
     thin = {
         classes = {'roundy-5', 'text-center'},
-        styles = {['padding-top'] = '0', ['padding-bottom'] = '0'}
+        styles = {['padding'] = '0 0.5ex'}
     },
 
     tiny = {
         classes = {'roundy-5', 'text-center', 'text-small'},
         styles = {['padding'] = '0 0.3ex'}
-    },
-
-    wide = {
-        classes = {'roundy-5', 'text-center'},
-        styles = {['width'] = '8em', ['padding-right'] = '0.3ex',
-            ['padding-left'] = '0.3ex'}
     }
 }
 
 --[[
 
-Chiamata da lua; argomenti:
-- text: testo visualizzato
-- link: link (default uguale a text)
-- color: colore del gradiente (da dark a normale)
-- class: opzionale (default ''), stringa di classi css
-- style: opzionale (default ''), stringa o table che
-    descrive le property css da mettere nell'attributo
-    style. Esempio:
-    {margin = '2px 3px', padding = '3px'} -->
-    margin: 2px 3px; padding: 3px
-- textcolor: opzionale (default 'FFF'), colore del testo
+Main function creating a box. Lua interface. Arguments:
+- text: displayed text.
+- link: link target, Defaults to text.
+- color: gradient color, from dark to normal, right-to-left.
+- pdfs: Table or space-spearated string of predefined configurations names.
+- classes: Table/string of CSS classes, in the format parseClasses and
+    printClasses produce respectively. Optional, defaults to {}.
+- styles: Table/string of CSS styles, in the format parseStyles and
+    printStyles produce respectively. Optional, defaults to {}.
+- textcolor: Text color, defaults to #FFFFFF
 
 --]]
 
@@ -62,12 +59,12 @@ b.boxLua = function(text, link, color, pdfs, classes, styles, textcolor)
     classes, styles = css.classesStyles(predefs, pdfs, classes, styles)
 
 	return string.interp([=[<div class="${class}" style="${bg}; ${style}">[[${link}|<span style="color:#${tc}">${text}</span>]]</div>]=], {
-		class = classes,
+		class = css.printClasses(classes),
 		bg = css.horizGradLua{color, 'dark', color, 'normale'},
 		tc = textcolor or 'FFF',
 		link = link or text,
 		text = text,
-		style = styles
+		style = css.printStyles(styles)
 	})
 end
 
@@ -75,18 +72,13 @@ b.box_lua = b.boxLua
 
 --[[
 
-Chiamata da wikicode (adapter per lua); argomenti
-- 1: testo mostrato,
-- 2: link del testo (default uguale al testo),
-- 3: colore del background,
-- 4: opzionale, (default ''), classi css
-	(vedi b.boxLua)
-- 5: opzionale, (default ''), styles css,
-	stringa per ovvi motivi (vedi b.boxLua)
-- 6: opzionale (default 'FFF'), colore del testo
+Wikicode interface to boxLua. classes and styles must be given in the string
+format. Example:
+
+{{#invoke | Box | box | erba | erba (gruppo uova) | erba_uova | thin |
+    inline-block | padding: 2ex; | FFFFFF }}
 
 --]]
-
 b.box = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
 	return b.boxLua(unpack(p))
@@ -96,88 +88,84 @@ b.Box = b.box
 
 --[[
 
-Chiamata da lua; argomenti:
-- tipo: tipo
-- class: opzionale (default ''), stringa di classi css,
-    viene concatenata a "text-center roundy"
-- style: opzionale (default ''), stringa o table che
-    descrive le property css da mettere nell'attributo
-    style. Esempio:
-    {margin = '2px 3px', padding = '3px'} -->
-    margin: 2px 3px; padding: 3px
+Shortcut for creating a type box. Lua interface. Arguments:
+- type: The type, defaults to 'Sconosciuto'
+- pdfs: Table or space-spearated string of predefined configurations names.
+- classes: Table/string of CSS classes, in the format parseClasses and
+    printClasses produce respectively. Optional, defaults to {}.
+- styles: Table/string of CSS styles, in the format parseStyles and
+    printStyles produce respectively. Optional, defaults to {}.
 
 --]]
 
-b.boxTipoLua = function(tipo, pdfs, class, style)
-	tipo = string.fu(string.trim(tipo or 'Sconosciuto'))
-	return b.boxLua(tipo, tipo, tipo, pdfs, class, style, 'FFF')
+b.typeBoxLua = function(type, pdfs, classes, styles)
+	type = string.fu(string.trim(type or 'Sconosciuto'))
+	return b.boxLua(type, type, type, pdfs, classes, styles, 'FFF')
 end
 
-b.box_tipo_lua = b.boxTipoLua
+b.type_box_lua = b.typeBoxLua
+b.boxTipoLua, b.box_tipo_lua = b.typeBoxLua, b.typeBoxLua
 
 --[[
 
-Chiamata da wikicode (adapter per lua); argomenti
-- 1: tipo,
-- 2: opzionale, (default ''), classi css
-    (vedi b.boxLua)
-- 3: opzionale, (default ''), styles css,
-    stringa per ovvi motivi (vedi b.boxLua)
+Wikicode interface for typeBoxLua. classes and styles must be given in the
+string format. Example:
 
-Esempio:
-{{#invoke | Box | boxTipo | Elettro | left inline-block
+{{#invoke | Box | typeBox | Elettro | thick | inline-block | margin: 3em; }}
+
+--]]
+
+b.typeBox = function(frame)
+    local p = w.trimAll(mw.clone(frame.args))
+    return b.typeBoxLua(unpack(p))
+end
+
+b.TypeBox, b.boxTipo, b.BoxTipo = b.typeBox, b.typeBox, b.typeBox
+
+--[[
+
+Shortcut for creating a list of type boxes. Arguments:
+- types: The list of types, as a table of strings.
+- pdfs: Table or space-spearated string of predefined configurations names.
+- classes: Table/string of CSS classes, in the format parseClasses and
+    printClasses produce respectively. Optional, defaults to {}.
+- styles: Table/string of CSS styles, in the format parseStyles and
+    printStyles produce respectively. Optional, defaults to {}.
+
+--]]
+
+b.typeListLua = function(types, pdfs, class, style)
+    return table.concat(table.map(types, function(type)
+        return b.typeBoxLua(type, pdfs, class, style)
+    end))
+end
+
+b.type_list_lua = b.typeListLua
+b.listTipoLua, b.list_tipo_lua = b.typeListLua, b.typeListLua
+
+--[[
+
+Wikicode interface for typeBoxLua. Arguments:
+
+- 1: The list of types, as a comma-separated list. Spaces are ignored.
+- 2: The predefined configuration names, as a space-separated list of string.
+    Defaults to no predefined configuration.
+- 3: CSS classes, as space-separated list. Defaults to no CSS class.
+- 4: CSS styles, as an HTML style attribute value. Defaults to no CSS styles.
+
+Example:
+
+{{#invoke: Box | typeList | Normale, Acciaio,Terra | tiny | inline-block
         | padding: 2px; }}
 
 --]]
 
-b.boxTipo = function(frame)
-    local p = w.trimAll(mw.clone(frame.args))
-    return b.boxTipoLua(unpack(p))
-end
-
-b.BoxTipo = b.boxTipo
-
--- Crea una lista di boxes
-
---[[
-
-Chiamata da lua; argomenti
-- tab: una table di tipi
-- class: stringa di classi css (vedi b.boxLua)
-- style: stringa o table per gli styles (vedi b.boxLua)
-
---]]
-
-b.listTipoLua = function(types, pdfs, class, style)
-    return table.concat(table.map(types, function(type)
-        return b.boxTipoLua(type, pdfs, class, style)
-    end))
-end
-
-b.list_tipo_lua = b.listTipoLua
-
---[[
-
-Chiamata da wikicode (adapter per lua); argomenti
-- 1: elenco di tipi separato da virgole (gli spazi sono ignorati)
-- 2: opzionale, (default ''), classi css  (vedi b.box)
-- 3: opzionale, (default ''), styles css,
-    stringa per ovvi motivi (vedi b.box)
-- border: opzionale (default 'no'), yes o no,
-    visualizza il bordo
-Esempio:
-
-{{#invoke: Box | listTipo | Normale, Acciaio,Terra | inline-block
-        | padding: 2px; | border = yes}}
-
---]]
-
-b.listTipo = function(frame)
+b.typeList = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
     local types = mw.text.split(table.remove(p, 1), ',%s*')
-    return b.listTipoLua(types, unpack(p))
+    return b.typeListLua(types, unpack(p))
 end
 
-b.ListTipo = b.listTipo
+b.TypeList, b.listTipo, b.ListTipo = b.typeList, b.typeList, b.typeList
 
 return b

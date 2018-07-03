@@ -15,57 +15,21 @@ local predefs = {
     }
 }
 
-local addClass = function(src, item)
-    if not src then
-        return item
-    end
-
-    if type(src) == 'table' then
-        table.insert(src, item)
-        return src
-    end
-
-    return table.concat{src, ' ', item}
-end
-
-local addStyle = function(src, item)
-    if not src then
-        return item
-    end
-
-    local isSrcTable = type(src) == 'table'
-    local isItemTable = type(item) == 'table'
-
-    if isSrcTable then
-        if isItemTable then
-            return table.merge(src, item)
-        end
-        table.insert(src, item)
-        return table.concat(src, '; ') .. ';'
-    end
-    if isItemTable then
-        table.insert(item, 1, src)
-        return table.concat(item, '; ') .. ';'
-    end
-    return table.concat{src, '; ', item, ';'}
-end
-
 local responsive = {}
 
 responsive.twoBoxes = function(box1, box2)
     local boxesCount = box2 and 2 or 1
 
-    local classes = string.interp('vert-center inline-block-xs min-width-xs-${w} max-width-xs-${w}',
-        {w = 70 / boxesCount})
-    local styles = table.concat{'margin-bottom: 0.2ex; margin-left: 0.2ex; height: ',
-        100 / boxesCount, '%;'}
+    local classes = {'inline-block-xs', 'min-width-xs-' .. 70 / boxesCount}
+    local styles = {['margin-bottom'] = '0.2ex', ['margin-left'] = '0.2ex',
+        ['height'] = 100 / boxesCount .. '%'}
 
-    box1[5] = addClass(box1[5], classes)
-    box1[6] = addStyle(box1[6], styles)
+    box1[5] = table.merge(css.parseClasses(box1[5] or {}), classes)
+    box1[6] = table.merge(css.parseStyles(box1[6] or {}), styles)
 
     if box2 then
-        box2[5] = addClass(box2[5], classes)
-        box2[6] = addStyle(box2[6], styles)
+        box2[5] = table.merge(css.parseClasses(box2[5] or {}), classes)
+        box2[6] = table.merge(css.parseStyles(box2[6] or {}), styles)
     end
 
     return box1, box2
@@ -76,9 +40,9 @@ responsive.twoCells = function(cell1, cell2, pdfs, classes, styles)
     classes, styles = css.classesStyles(predefs, pdfs, classes, styles)
     local cell = string.interp('| class="${cls} min-width-xs-${xsWidth}" style="${sty}" | ',
         {
-            cls = classes,
+            cls = css.printClasses(classes),
             xsWidth = 70 / cellsCount,
-            sty = styles
+            sty = css.printStyles(styles)
         })
 
     if cell2 then
@@ -114,7 +78,6 @@ end
 r.two_cells_lua = r.twoCellsLua
 
 r.twoTypeBoxesLua = function(type1, type2, pdfs, classes, styles, concat)
-    -- io.stderr:write(tostring(type1), '-', tostring(type2), '\n')
     local hasTwoTypes = type2 and type1 ~= type2
     type1 = string.fu(string.trim(type1 or 'Sconosciuto'))
     type2 = hasTwoTypes and string.fu(string.trim(type2))

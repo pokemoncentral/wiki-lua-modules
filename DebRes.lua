@@ -93,6 +93,14 @@ dr.EffTable.effStrings = {
     [0.25] = '¼'
 }
 
+-- Classes and styles for type boxes
+dr.EffTable.typeBoxStyles = {
+    classes = {'roundy', 'text-center', 'inline-block', 'width-xl-15',
+        'width-md-20', 'width-sm-35', 'width-xs-45'},
+    styles = {['margin'] = '0.3ex', ['padding'] = '0.3ex 0',
+        ['line-height'] = '3ex', ['font-weight'] = 'bold'}
+}
+
 --[[
     Returns a dedicated representation of the effectiveness value, if any.
     Otherwise it just prints it using the comma as decimal separator
@@ -135,9 +143,8 @@ end
 
 -- Prints a list of types as Boxes
 dr.EffTable.printTypes = function(types)
-    return box.listTipoLua(types, nil,
-        'roundy text-center inline-block width-xl-15 width-md-20 width-sm-35 width-xs-45',
-        'margin: 0.3ex; padding: 0.3ex 0; line-height: 3ex; font-weight: bold;')
+    return box.listTipoLua(types, nil, dr.EffTable.typeBoxStyles.classes,
+        dr.EffTable.typeBoxStyles.styles)
 end
 
 -- Prints a single lines of types having the same effectiveness
