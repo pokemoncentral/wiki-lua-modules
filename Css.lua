@@ -264,6 +264,7 @@ predefinite configurations. Arguments:
     and 'styles' keys. These hold classes and styles respectively, and have as
     values the same structures as arseClasses and parseStyles return.
 - pdfs: Table or space-spearated string of predefined configurations names.
+    Optional, defaults to {}.
 - classes: Table/string of CSS classes, in the format parseClasses and
     printClasses produce respectively. Optional, defaults to {}.
 - stys: Table/string of CSS styles, in the format parseStyles and

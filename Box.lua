@@ -18,7 +18,7 @@ local css = require('Css')
 local w = require('Wikilib')
 
 --[[
-    This table holds predefined styles configuration for boxes. Names of
+    This table holds predefined styles configurations for boxes. Names of
     such configurations are the keys, while values are tables with 'classes'
     and 'styles' keys. These hold classes and styles respectively, and have as
     values the same structures as arseClasses and parseStyles return.
@@ -47,6 +47,7 @@ Main function creating a box. Lua interface. Arguments:
 - link: link target, Defaults to text.
 - color: gradient color, from dark to normal, right-to-left.
 - pdfs: Table or space-spearated string of predefined configurations names.
+    Optional, defaults to {}.
 - classes: Table/string of CSS classes, in the format parseClasses and
     printClasses produce respectively. Optional, defaults to {}.
 - styles: Table/string of CSS styles, in the format parseStyles and
@@ -54,7 +55,6 @@ Main function creating a box. Lua interface. Arguments:
 - textcolor: Text color, defaults to #FFFFFF
 
 --]]
-
 b.boxLua = function(text, link, color, pdfs, classes, styles, textcolor)
     classes, styles = css.classesStyles(predefs, pdfs, classes, styles)
 
@@ -72,11 +72,22 @@ b.box_lua = b.boxLua
 
 --[[
 
-Wikicode interface to boxLua. classes and styles must be given in the string
-format. Example:
+Wikicode interface to boxLua. Arguments:
+
+- 1: displayed text.
+- 2: link target, Defaults to text.
+- 3: gradient color, from dark to normal, right-to-left.
+- 4: Space-spearated string of predefined configurations names. Optional,
+    defaults to no predefined configurations.
+- 5: Space-separated list of CSS classes. Optional, defaults to no CSS classes.
+- 6: CSS styles, in the format of an HTML style attribute values. Optional,
+    defaults to no CSS styles.
+- 7: Text color, defaults to #FFFFFF
+
+Example:
 
 {{#invoke | Box | box | erba | erba (gruppo uova) | erba_uova | thin |
-    inline-block | padding: 2ex; | FFFFFF }}
+    inline-block width-sm-60 | padding: 2ex; margin-top: 0.5ex; | FFFFFF }}
 
 --]]
 b.box = function(frame)
@@ -91,13 +102,13 @@ b.Box = b.box
 Shortcut for creating a type box. Lua interface. Arguments:
 - type: The type, defaults to 'Sconosciuto'
 - pdfs: Table or space-spearated string of predefined configurations names.
+    Optional, defaults to {}.
 - classes: Table/string of CSS classes, in the format parseClasses and
     printClasses produce respectively. Optional, defaults to {}.
 - styles: Table/string of CSS styles, in the format parseStyles and
     printStyles produce respectively. Optional, defaults to {}.
 
 --]]
-
 b.typeBoxLua = function(type, pdfs, classes, styles)
 	type = string.fu(string.trim(type or 'Sconosciuto'))
 	return b.boxLua(type, type, type, pdfs, classes, styles, 'FFF')
@@ -108,13 +119,20 @@ b.boxTipoLua, b.box_tipo_lua = b.typeBoxLua, b.typeBoxLua
 
 --[[
 
-Wikicode interface for typeBoxLua. classes and styles must be given in the
-string format. Example:
+Wikicode interface for typeBoxLua. Arguments:
+
+- 1: The type. Defaults to 'Sconosciuto'.
+- 2: Space-spearated string of predefined configurations names. Optional,
+    defaults to no predefined configurations.
+- 3: Space-separated list of CSS classes. Optional, defaults to no CSS classes.
+- 4: CSS styles, in the format of an HTML style attribute values. Optional,
+    defaults to no CSS styles.
+
+Example:
 
 {{#invoke | Box | typeBox | Elettro | thick | inline-block | margin: 3em; }}
 
 --]]
-
 b.typeBox = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
     return b.typeBoxLua(unpack(p))
@@ -127,13 +145,15 @@ b.TypeBox, b.boxTipo, b.BoxTipo = b.typeBox, b.typeBox, b.typeBox
 Shortcut for creating a list of type boxes. Arguments:
 - types: The list of types, as a table of strings.
 - pdfs: Table or space-spearated string of predefined configurations names.
+    Used for every box in the list. Optional, defaults to {}.
 - classes: Table/string of CSS classes, in the format parseClasses and
-    printClasses produce respectively. Optional, defaults to {}.
+    printClasses produce respectively. Used for every box in the list.
+    Optional, defaults to {}.
+
 - styles: Table/string of CSS styles, in the format parseStyles and
     printStyles produce respectively. Optional, defaults to {}.
 
 --]]
-
 b.typeListLua = function(types, pdfs, class, style)
     return table.concat(table.map(types, function(type)
         return b.typeBoxLua(type, pdfs, class, style)
@@ -149,9 +169,11 @@ Wikicode interface for typeBoxLua. Arguments:
 
 - 1: The list of types, as a comma-separated list. Spaces are ignored.
 - 2: The predefined configuration names, as a space-separated list of string.
-    Defaults to no predefined configuration.
-- 3: CSS classes, as space-separated list. Defaults to no CSS class.
-- 4: CSS styles, as an HTML style attribute value. Defaults to no CSS styles.
+    Used for every box. Defaults to no predefined configuration.
+- 3: CSS classes, as space-separated list. Used for every box.
+    Defaults to no CSS class.
+- 4: CSS styles, as an HTML style attribute value. Used for every box.
+    Defaults to no CSS styles.
 
 Example:
 
@@ -159,7 +181,6 @@ Example:
         | padding: 2px; }}
 
 --]]
-
 b.typeList = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
     local types = mw.text.split(table.remove(p, 1), ',%s*')
