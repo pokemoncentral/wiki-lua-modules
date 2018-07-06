@@ -15,7 +15,7 @@ local links = require('Links')
 local list = require('Wikilib-lists')
 local ms = require('MiniSprite')
 local oop = require('Wikilib-oop')
-local resp = require('Responsive')
+local resp = require('Resp')
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local pokes = require('Poké-data')
@@ -102,9 +102,7 @@ Entry.__tostring = function(this)
     static = ms.staticLua(string.tf(this.ndex or 0) ..
             (this.formAbbr == 'base' and '' or this.formAbbr or '')),
     name = this.name,
-    form = this.formsData
-            and this.formsData.blacklinks[this.formAbbr]
-            or '',
+    form = this.formsData and this.formsData.blacklinks[this.formAbbr] or '',
     types = resp.twoTypeBoxesLua(this.type1, this.type2, {'thin'}),
     abil1 = Entry.printAbil(this.ability1),
     abilEv = Entry.printAbil(this.abilitye, true),

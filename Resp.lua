@@ -43,6 +43,7 @@ Arguments:
     - box1: A table containing the arguments to boxLua in Box modules.
     - box2: A table containing the arguments to boxLua in Box modules. Any
         value evaluating to false will trigger the single-box styles for box1.
+    - bp: The breakpont the responsive design is triggered at. Defaults to xs.
 
 Return:
     - 1: box1 adjusted to be responsive.
@@ -50,10 +51,11 @@ Return:
         given.
 
 --]]
-responsive.twoBoxes = function(box1, box2)
+responsive.twoBoxes = function(box1, box2, bp)
     local boxesCount = box2 and 2 or 1
 
-    local classes = {'inline-block-xs', 'min-width-xs-' .. 70 / boxesCount}
+    local classes = {'inline-block-xs', string.interp('min-width-${bp}-${wd}',
+        {bp = bp or 'xs', wd = 70 / boxesCount})}
     local styles = {['margin-bottom'] = '0.2ex', ['margin-left'] = '0.2ex',
         ['height'] = 100 / boxesCount .. '%'}
 
@@ -87,6 +89,7 @@ Arguments:
         to false will trigger the single-cell styles for cell1.
     - pdfs: Table or space-spearated string of predefined configurations names,
         to be used for both cells. Optional, defaults to {}.
+    - bp: The breakpont the responsive design is triggered at. Defaults to xs.
     - classes: Table/string of CSS classes, in the format parseClasses and
         printClasses produce respectively. Used for both cells. Optional,
         defaults to {}.
@@ -101,13 +104,14 @@ Return:
         responsive, if passed. Otherwise, cell2 as it is given.
 
 --]]
-responsive.twoCells = function(cell1, cell2, pdfs, classes, styles)
+responsive.twoCells = function(cell1, cell2, pdfs, bp, classes, styles)
     local cellsCount = cell2 and 2 or 1
     classes, styles = css.classesStyles(predefs, pdfs, classes, styles)
-    local cell = string.interp('| class="${cls} min-width-xs-${xsWidth}" style="${sty}" | ',
+    local cell = string.interp('| class="${cls} min-width-${bp}-${wd}" style="${sty}" | ',
         {
             cls = css.printClasses(classes),
-            xsWidth = 70 / cellsCount,
+            bp = bp or 'xs',
+            wd = 70 / cellsCount,
             sty = css.printStyles(styles)
         })
 
@@ -115,7 +119,7 @@ responsive.twoCells = function(cell1, cell2, pdfs, classes, styles)
     if cell2 then
         return cell1, cell .. cell2
     end
-    return cell1, cell2
+    return cell1
 end
 
 --[[
@@ -132,14 +136,15 @@ Arguments:
     - box2: A table containing the arguments to boxLua in Box modules.
         Any value evaluating to false will trigger the single-box styles
         for box1.
+    - bp: The breakpont the responsive design is triggered at. Defaults to xs.
     - concat: whether the two boxes should be concatenated or they should be
         returned as two seaprate strings. Defaults to true.
 
 --]]
-r.twoBoxesLua = function(box1, box2, concat)
+r.twoBoxesLua = function(box1, box2, bp, concat)
     concat = concat or concat == nil
 
-    box1, box2 = responsive.twoBoxes(box1, box2)
+    box1, box2 = responsive.twoBoxes(box1, box2, bp)
     box1 = box.boxLua(unpack(box1))
 
     if not box2 then
@@ -167,6 +172,7 @@ Arguments:
         to false will trigger the single-cell styles for cell1.
     - pdfs: Table or space-spearated string of predefined configurations names,
         to be used for both cells. Optional, defaults to {}.
+    - bp: The breakpont the responsive design is triggered at. Defaults to xs.
     - classes: Table/string of CSS classes, in the format parseClasses and
         printClasses produce respectively. Used for both cells. Optional,
         defaults to {}.
@@ -175,8 +181,9 @@ Arguments:
         defaults to {}.
 
 --]]
-r.twoCellsLua = function(cell1, cell2, pdfs, classes, styles)
-    local cells = {responsive.twoCells(cell1, cell2, pdfs, classes, styles)}
+r.twoCellsLua = function(cell1, cell2, pdfs, bp, classes, styles)
+    local cells = {responsive.twoCells(cell1, cell2, pdfs, bp,
+        classes, styles)}
     return table.concat(cells, ' |')
 end
 r.two_cells_lua = r.twoCellsLua
@@ -195,6 +202,7 @@ Arguments:
         will trigger the single-box styles for type1.
     - pdfs: Table or space-spearated string of predefined configurations names,
         to be used for both cells. Optional, defaults to {}.
+    - bp: The breakpont the responsive design is triggered at. Defaults to xs.
     - classes: Table/string of CSS classes, in the format parseClasses and
         printClasses produce respectively. Used for both cells. Optional,
         defaults to {}.
@@ -205,7 +213,7 @@ Arguments:
         returned as two seaprate strings. Defaults to true.
 
 --]]
-r.twoTypeBoxesLua = function(type1, type2, pdfs, classes, styles, concat)
+r.twoTypeBoxesLua = function(type1, type2, pdfs, bp, classes, styles, concat)
     local hasTwoTypes = type2 and type1 ~= type2
     type1 = string.fu(string.trim(type1 or 'Sconosciuto'))
     type2 = hasTwoTypes and string.fu(string.trim(type2))
@@ -213,7 +221,7 @@ r.twoTypeBoxesLua = function(type1, type2, pdfs, classes, styles, concat)
     local box1 = {type1, type1, type1, pdfs, classes, styles, 'FFF'}
     local box2 = hasTwoTypes and {type2, type2, type2, pdfs, classes, styles,
         'FFF'}
-	return r.twoBoxesLua(box1, box2, concat)
+	return r.twoBoxesLua(box1, box2, bp, concat)
 end
 r.two_type_boxes_lua = r.twoTypeBoxesLua
 
@@ -232,6 +240,7 @@ Arguments:
         styles for egg1.
     - pdfs: Table or space-spearated string of predefined configurations names,
         to be used for both cells. Optional, defaults to {}.
+    - bp: The breakpont the responsive design is triggered at. Defaults to xs.
     - classes: Table/string of CSS classes, in the format parseClasses and
         printClasses produce respectively. Used for both cells. Optional,
         defaults to {}.
@@ -242,7 +251,7 @@ Arguments:
         returned as two seaprate strings. Defaults to true.
 
 --]]
-r.twoEggBoxesLua = function(egg1, egg2, pdfs, classes, styles, concat)
+r.twoEggBoxesLua = function(egg1, egg2, pdfs, bp, classes, styles, concat)
     local hasTwoEggs = egg2 and egg1 ~= egg2
     egg1 = string.fu(string.trim(egg1))
     egg2 = hasTwoEggs and string.fu(string.trim(egg2))
@@ -251,7 +260,7 @@ r.twoEggBoxesLua = function(egg1, egg2, pdfs, classes, styles, concat)
         classes, styles, 'FFF'}
     local box2 = hasTwoEggs and {egg2, egg2 .. ' (gruppo uova)',
         egg2 .. '_uova', pdfs, classes, styles, 'FFF'}
-	return r.twoBoxesLua(box1, box2, concat)
+	return r.twoBoxesLua(box1, box2, bp, concat)
 end
 r.two_egg_boxes_lua = r.twoEggBoxesLua
 

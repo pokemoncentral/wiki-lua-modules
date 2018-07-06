@@ -8,7 +8,7 @@ local css = require('Css')
 local ms = require('MiniSprite')
 local forms = require('Wikilib-forms')
 local lib = require('Wikilib-learnlists')
-local resp = require('Responsive')
+local resp = require('Resp')
 local txt = require('Wikilib-strings')          -- luacheck: no unused
 local tab = require('Wikilib-tables')           -- luacheck: no unused
 local w = require('Wikilib')
@@ -244,9 +244,9 @@ local head = function(ndex, stab, notes, form)
 	forml = forms.getlink(ndex, false, form),
 	std = c[pokedata.group1 .. '_uova'].normale,
 	types = resp.twoTypeBoxesLua(pokedata.type1, pokedata.type2, {'tiny'},
-        {'vert-center'}),
+        nil, {'vert-center'}),
 	groups = resp.twoEggBoxesLua(pokedata.group1, pokedata.group2, {'tiny'},
-        {'vert-center'}),
+        nil, {'vert-center'}),
 })
 end
 
