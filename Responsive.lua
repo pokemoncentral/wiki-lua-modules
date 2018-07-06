@@ -255,9 +255,26 @@ r.twoEggBoxesLua = function(egg1, egg2, pdfs, classes, styles, concat)
 end
 r.two_egg_boxes_lua = r.twoEggBoxesLua
 
+--[[
+
+Shortcut method returning two responsive cells containing two type boxes. For
+more information about responsive cells, read the comment to
+responsive.twoCells above. The first cell will have single-cell styles if the
+second type is not passed, or it is equal to the first one.
+
+Arguments:
+    - type1: First type.
+    - type2: Second type. Any value evaluating to false or equal to type1
+        will trigger the single-cell styles for the first cell.
+    - types: Table containing the arguments for typeBoxLua in the Box module,
+        other than the type. Used for both type1 and type2.
+    - cells: Table containing the arguments for twoCellsLua.
+
+--]]
 r.twoTypeCellsLua = function(type1, type2, types, cells)
-    local box1 = box.boxTipoLua(type1, unpack(types))
-    local box2 = type1 ~= type2 and box.boxTipoLua(type2, unpack(types))
+    local box1 = box.typeBoxLua(type1, unpack(types))
+    local box2 = type2 and type1 ~= type2 and box.typeBoxLua(type2,
+        unpack(types))
     return r.twoCellsLua(box1, box2, unpack(cells))
 end
 r.two_type_cells_lua = r.twoTypeCellsLua
