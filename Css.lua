@@ -9,7 +9,7 @@ local css = {}
 
 local mw = require('mw')
 
-local str = require('Wikilib-strings') -- luacheck: no unused
+local str = require('Wikilib-strings')      -- luacheck: no unused
 local w = require('Wikilib')
 local c = require("Colore-data")
 

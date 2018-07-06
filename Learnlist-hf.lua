@@ -205,7 +205,7 @@ local header = function(pars, kind)
 <div class="text-center" style="max-width: 100%;">
 <div class="roundy text-center inline-block " style="max-width: 100%; ${bg}">
 <div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''${gentitle}&nbsp;generazione'''</span></span></div>
-<div class="text-center" style="font-weight: bold; padding: 0.5ex;"s>
+<div class="text-center" style="font-weight: bold; padding: 0.5ex;">
 <div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
 <div>${links}</div>
 </div>

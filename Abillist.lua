@@ -94,7 +94,7 @@ end
 Entry.__tostring = function(this)
     return string.interp([=[| class="min-width-xs-20" | ${static}
 | class="min-width-xs-80" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
-| class="width-xl-20 width-xs-100" style="padding: 1ex 0.8ex; font-size: 90%;" | ${types}
+| class="min-width-xl-20 width-xs-100" style="padding: 1ex 0.8ex; font-size: 90%;" | ${types}
 | class="min-width-xs-33" | <div class="visible-xs text-small">Prima abilit&agrave;</div>${abil1}${abilEv}
 | class="min-width-xs-33" | <div class="visible-xs text-small">Seconda abilit&agrave;</div>${abil2}
 | class="min-width-xs-33" | <div class="visible-xs text-small">Abilit&agrave; nascoste</div>${abild}]=],

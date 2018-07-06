@@ -10,8 +10,6 @@ Shortcuts are provided for boxes that display a type and lists of such boxes.
 
 local b = {}
 
-local mw = require('mw')
-
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local css = require('Css')
@@ -67,7 +65,6 @@ b.boxLua = function(text, link, color, pdfs, classes, styles, textcolor)
 		style = css.printStyles(styles)
 	})
 end
-
 b.box_lua = b.boxLua
 
 --[[
@@ -94,7 +91,6 @@ b.box = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
 	return b.boxLua(unpack(p))
 end
-
 b.Box = b.box
 
 --[[
@@ -113,7 +109,6 @@ b.typeBoxLua = function(type, pdfs, classes, styles)
 	type = string.fu(string.trim(type or 'Sconosciuto'))
 	return b.boxLua(type, type, type, pdfs, classes, styles, 'FFF')
 end
-
 b.type_box_lua = b.typeBoxLua
 b.boxTipoLua, b.box_tipo_lua = b.typeBoxLua, b.typeBoxLua
 
@@ -137,7 +132,6 @@ b.typeBox = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
     return b.typeBoxLua(unpack(p))
 end
-
 b.TypeBox, b.boxTipo, b.BoxTipo = b.typeBox, b.typeBox, b.typeBox
 
 --[[
@@ -159,7 +153,6 @@ b.typeListLua = function(types, pdfs, class, style)
         return b.typeBoxLua(type, pdfs, class, style)
     end))
 end
-
 b.type_list_lua = b.typeListLua
 b.listTipoLua, b.list_tipo_lua = b.typeListLua, b.typeListLua
 
@@ -186,7 +179,6 @@ b.typeList = function(frame)
     local types = mw.text.split(table.remove(p, 1), ',%s*')
     return b.typeListLua(types, unpack(p))
 end
-
 b.TypeList, b.listTipo, b.ListTipo = b.typeList, b.typeList, b.typeList
 
 return b

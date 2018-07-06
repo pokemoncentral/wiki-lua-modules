@@ -17,6 +17,7 @@ local ms = require('MiniSprite')
 local form = require('Wikilib-forms')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
+local resp = require('Resp')
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local pokes = require('Poké-data')
@@ -34,32 +35,6 @@ not filter the egg group.
 
 --]]
 g.Entry = oop.makeClass(list.PokeSortableEntry)
-
--- Typebox-related constants
-g.Entry.typeBox = {
-    classes = 'roundy-5 text-center',
-    styles = 'height: 100%; padding: 0.5ex 0.3em;'
-}
-
--- Returns wikicode for typeboxes
-g.Entry.makeTypeBox = function(type)
-    return box.boxTipoLua(
-            string.fu(type),
-            g.Entry.typeBox.classes,
-            g.Entry.typeBox.styles
-    )
-end
-
--- Returns wikicode for groupboxes
-g.Entry.makeGroupBox = function(group)
-    return box.boxLua(
-            string.fu(group),
-            string.fu(group) .. ' (gruppo uova)',
-            group .. '_uova',
-            g.Entry.typeBox.classes,
-            g.Entry.typeBox.styles
-    )
-end
 
 --[[
 
@@ -108,7 +83,16 @@ Egggrouplist-allgroups overrides it.
 
 --]]
 g.Entry.groupsString = function(this)
-    return this.group2 and '|| style="height: 100%; padding: 1.2ex 0.3ex;" | ' .. g.Entry.makeGroupBox(this.group1 == this.group and this.group2 or this.group1) or ''
+    if not this.group2 then
+        return ''
+    end
+
+    local group = string.fu(this.group1 == this.group
+        and this.group2 or this.group1)
+    local groupBox = box.boxLua(group, group .. ' (gruppo uova)', group .. '_uova',
+        {'thick'}, {'vert-center pull-center max-width-xs-70'}, {height = '100%;'})
+
+    return '|| class="width-xs-100" style="height: 100%; font-size: 90%; padding: 1ex 0.8ex;" | ' .. groupBox
 end
 
 --[[
@@ -122,18 +106,16 @@ g.Entry.__tostring = function(this)
 	return string.interp([=[| class="min-width-xs-20" | ${ndex}
 | class="min-width-xs-20" | ${static}
 | class="min-width-xs-60" style="padding: 0 0.5em;" | [[${name}]]${form}
-| class="min-width-xs-100" hidden-sm" style="height: 100%; padding: 1.2ex 0.3ex;"${colspan} | ${type1}${type2}${groups}]=],
+| class="min-width-xl-30 width-xs-100" style="padding: 1ex 0.8ex; font-size: 90%; height: 100%;" | ${types}${groups}]=],
 	{
 		ndex = this.ndex and string.tf(this.ndex) or '???',
 		static = ms.staticLua(string.tf(this.ndex or 0) ..
 				(this.formAbbr == 'base' and '' or this.formAbbr or '')),
 		name = this.name,
 		form = this.formLink[this.formAbbr] or '',
-	type1 = g.Entry.makeTypeBox(this.type1),
-	colspan = this.type1 == this.type2 and ' colspan="2"' or '',
-	type2 = this.type1 == this.type2 and ''
-		or '|| class="hidden-sm" style="height: 100%; padding: 1.2ex 0.3ex;" | ' .. g.Entry.makeTypeBox(this.type2),
-		groups = this:groupsString(),
+        types = resp.twoTypeBoxesLua(this.type1, this.type2, {'thin'}, nil,
+            {'vert-center'}),
+		groups = this:groupsString()
 	})
 end
 
@@ -197,11 +179,12 @@ to print the correct amount of group columns.
 
 --]]
 local makeHeader = function(group, groupsCount)
-	return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer white-rows hidden-xs" style="border-spacing: 0; padding: 0.3ex; ${bg};"
+	return string.interp([=[{| class="roundy-corners sortable pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
+|- class="hidden-xs"
 ! style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
-! class="unsortable" | <span class="hidden-xs">&nbsp;</span><span class="visible-xs">Pokémon</span>
+! class="unsortable" | &nbsp;
 ! [[Pokémon|<span style="color:#000">Pokémon</span>]]
-! colspan="2" | [[Tipo|<span style="color:#000">Tipo</span>]]
+! [[Tipo|<span style="color:#000">Tipo</span>]]
 ${groups}]=],
 {
 	bg = css.horizGradLua{type = group:gsub(' ', '_') .. '_uova'},
@@ -232,7 +215,7 @@ g.makeGroupTable = function(group, Entry, header, headerGenerator)
 			makeEntry = Entry.new,
 			header = headerGenerator(group,
 					Entry == g.SingleGroupEntry and 1 or 2),
-            separator = '|- class="roundy flex-xs flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"',
+            separator = '|- class="roundy flex-xs flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0; height: 100%;"',
 			footer = '|}'
 		})}, '\n')
 end
@@ -289,8 +272,5 @@ end
 
 g.Egggrouplist, g.eggGroupList, g.EggGroupList =
 	g.egggrouplist, g.egggrouplist, g.egggrouplist
-
--- print(g.singlegrouplist{args={arg[1]}})
--- print(g.doublegrouplist{args={arg[1]}})
 
 return g
