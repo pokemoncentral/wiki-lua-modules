@@ -92,18 +92,19 @@ end
 
 -- Wikicode for a list entry: Pokémon mini sprite, name, types and abilities.
 Entry.__tostring = function(this)
-    return string.interp([=[| class="min-width-xs-20" | ${static}
-| class="min-width-xs-80" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
-| class="min-width-xl-20 width-xs-100" style="padding: 1ex 0.8ex;" | ${types}
-| class="min-width-xs-33" | <div class="visible-xs text-small">Prima abilit&agrave;</div>${abil1}${abilEv}
-| class="min-width-xs-33" | <div class="visible-xs text-small">Seconda abilit&agrave;</div>${abil2}
-| class="min-width-xs-33" | <div class="visible-xs text-small">Abilit&agrave; nascoste</div>${abild}]=],
+    return string.interp([=[| class="min-width-sm-20" | ${static}
+| class="min-width-sm-40 min-width-xs-80" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
+| class="min-width-xl-20 width-sm-40 width-xs-100" style="padding: 1ex 0.8ex;" | ${types}
+| class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Prima abilit&agrave;</div>${abil1}${abilEv}
+| class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Seconda abilit&agrave;</div>${abil2}
+| class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Abilit&agrave; nascoste</div>${abild}]=],
 {
     static = ms.staticLua(string.tf(this.ndex or 0) ..
             (this.formAbbr == 'base' and '' or this.formAbbr or '')),
     name = this.name,
     form = this.formsData and this.formsData.blacklinks[this.formAbbr] or '',
-    types = resp.twoTypeBoxesLua(this.type1, this.type2, {'thin'}),
+    types = resp.twoTypeBoxesLua(this.type1, this.type2, {'thin'}, nil,
+        {'inline-block-sm', 'min-width-sm-70'}),
     abil1 = Entry.printAbil(this.ability1),
     abilEv = Entry.printAbil(this.abilitye, true),
     abil2 = Entry.printAbil(this.ability2),
@@ -114,7 +115,7 @@ end
 -- Wikicode for list header: it takes the type name, for colors
 local makeHeader = function(type)
     return string.interp([=[{| class="roundy text-center pull-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
-|- class="hidden-xs"
+|- class="hidden-sm"
 ! style="padding-top: 0.5ex; padding-bottom: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000;">#</span>]]
 ! Pok&eacute;mon
 ! [[Tipo|<span style="color:#000;">Tipi</span>]]
@@ -144,7 +145,7 @@ k.abillist = function(frame)
         entryArgs = abil,
         makeEntry = Entry.new,
         header = makeHeader(type),
-        separator = '|- class="roundy flex-xs flex-row flex-wrap flex-main-stretch flex-items-center" style="margin-top: 0.5rem;"',
+        separator = '|- class="roundy flex-sm flex-row flex-wrap flex-main-stretch flex-items-center" style="margin-top: 0.5rem;"',
         footer = [[|- style="background: transparent;"
 | class="text-left font-small" colspan="6" style="background: transparent; padding: 0.3ex 0.3em;" |
 * Le abilità in ''corsivo'' sono ottenibili solo in determinate circostanze.
