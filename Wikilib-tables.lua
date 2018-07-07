@@ -572,6 +572,25 @@ t.keys = table.keys
 
 --[[
 
+Returns a numeric table containing the values of the passed table, in the
+order they are returned in by the iterator. Such iterator defaults to pairs,
+and should return two values, the first being the key and the second the value.
+
+--]]
+table.values = function(tab, iter)
+    iter = iter or pairs
+
+    local values = {}
+    for _, value in iter(tab) do
+        table.insert(values, value)
+    end
+    return values
+end
+
+t.values = table.values
+
+--[[
+
 Given a table with numeric indexes,
 returns another table containing its
 elements in the specified indexes

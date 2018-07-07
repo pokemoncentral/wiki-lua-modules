@@ -19,6 +19,11 @@ the same structures as arseClasses and parseStyles return.
 
 --]]
 local predefs = {
+    ['one-box-cell'] = {
+        classes = {},
+        styles = {['height'] = '100%', ['padding'] = '1ex 0.8ex'}
+    },
+
     ['type-cell'] = {
         classes = {},
         styles = {['padding'] = '1.2ex 0.6ex 1.2ex 0'}
@@ -287,5 +292,28 @@ r.twoTypeCellsLua = function(type1, type2, types, cells)
     return r.twoCellsLua(box1, box2, unpack(cells))
 end
 r.two_type_cells_lua = r.twoTypeCellsLua
+
+--[[
+
+Shortcut method returning two responsive cells containing two egg group boxes.
+For more information about responsive cells, read the comment to
+responsive.twoCells above. The first cell will have single-cell styles if the
+second type is not passed, or it is equal to the first one.
+
+Arguments:
+    - type1: First egg group.
+    - type2: Second egg group. Any value evaluating to false or equal to egg1
+        will trigger the single-cell styles for the first cell.
+    - eggs: Table containing the arguments for eggBoxLua in the Box module,
+        other than the egg group. Used for both type1 and type2.
+    - cells: Table containing the arguments for twoCellsLua.
+
+--]]
+r.eggsTwoCellsLua = function(egg1, egg2, eggs, cells)
+    local box1 = box.eggBoxLua(egg1, unpack(eggs))
+    local box2 = egg2 and egg1 ~= egg2 and box.eggBoxLua(egg2, unpack(eggs))
+    return r.twoCellsLua(box1, box2, unpack(cells))
+end
+r.eggs_two_cells_lua = r.eggsTwoCellsLua
 
 return r

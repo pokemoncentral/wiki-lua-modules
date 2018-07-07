@@ -8,10 +8,12 @@ in the namesake page.
 
 local g = {}
 
-local data = require("Wikilib-data")
-local str = require('Wikilib-strings')
-local tl = require('Egggrouplist')
 local css = require('Css')
+local resp = require('Resp')
+local str = require('Wikilib-strings')      -- luacheck: no unused
+local tab = require('Wikilib-tables')       -- luacheck: no unused
+local tl = require('Egggrouplist')
+local data = require("Wikilib-data")
 
 --[[
 
@@ -20,9 +22,9 @@ both egg groups in the full list
 
 --]]
 tl.Entry.groupsString = function(this)
-	local group1str = '\n| style="height: 100%; padding: 1.2ex 0.3ex;" | ' .. tl.Entry.makeGroupBox(this.group)
-	local group2str = this.group2 and '\n| style="height: 100%; padding: 1.2ex 0.3ex;" | ' .. tl.Entry.makeGroupBox(this.group1 == this.group and this.group2 or this.group1) or ''
-	return group1str .. group2str
+    local otherGroup = this.group1 == this.group and this.group2 or this.group1
+    return '|' .. resp.eggsTwoCellsLua(this.group, otherGroup,
+        tl.Entry.eggBox, tl.Entry.eggCell)
 end
 
 --[[
@@ -36,7 +38,7 @@ tl.DoubleGroupEntry.__lt = function(a, b)
 	if a.type2 == b.type2 then
 		return tl.DoubleGroupEntry.super.__lt(a, b)
 	end
-	
+
 	return a.type2 < b.type2
 end
 
@@ -48,12 +50,12 @@ to print the correct amount of group columns.
 
 --]]
 local makeHeader = function(group, groupsCount)
-	return string.interp([=[
-{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
+	return string.interp([=[{| class="roundy-corners sortable pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
+|- class="hidden-xs"
 ! style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
-! class="unsortable" | <span class="hidden-xs">&nbsp;</span><span class="visible-xs">Pokémon</span>
-! class="hidden-xs" | [[Pokémon|<span style="color:#000">Pokémon</span>]]
-! class="hidden-sm unsortable" colspan="2" | [[Tipo|<span style="color:#000">Tipo</span>]]
+! class="unsortable" | <span class="hidden-xs">&nbsp;</span>
+! [[Pokémon|<span style="color:#000">Pokémon</span>]]
+! class="unsortable" | [[Tipo|<span style="color:#000">Tipo</span>]]
 ${groups}]=],
 {
 	bg = css.horizGradLua{type = group:gsub(' ', '_') .. '_uova'},
@@ -80,7 +82,7 @@ Example:
 g.grouplist = function(frame)
 	local tables = {}
 
-	for k, group in ipairs(data.allGroups) do
+	for _, group in ipairs(data.allGroups) do
 		table.insert(tables, tl.makeGroupTable(group, tl.SingleGroupEntry, table.concat{'===Solo nel gruppo ', string.fu(group), '==='}, makeHeader))
 		-- groups Ditto and Sconosciuto doesn't have the double entry
 		if group ~= 'ditto' and group ~= 'sconosciuto' then

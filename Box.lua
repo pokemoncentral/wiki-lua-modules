@@ -10,6 +10,8 @@ Shortcuts are provided for boxes that display a type and lists of such boxes.
 
 local b = {}
 
+-- luacheck: globals mw
+
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local css = require('Css')
@@ -29,7 +31,7 @@ local predefs = {
 
     thin = {
         classes = {'roundy-5', 'text-center'},
-        styles = {['padding'] = '0 0.5ex'}
+        styles = {['font-size'] = '90%', ['padding'] = '0 0.5ex'}
     },
 
     tiny = {
@@ -180,5 +182,46 @@ b.typeList = function(frame)
     return b.typeListLua(types, unpack(p))
 end
 b.TypeList, b.listTipo, b.ListTipo = b.typeList, b.typeList, b.typeList
+
+--[[
+
+Shortcut for creating an egg group box. Lua interface. Arguments:
+- egg: The egg group, defaults to 'Sconosciuto (gruppo uova)'
+- pdfs: Table or space-spearated string of predefined configurations names.
+    Optional, defaults to {}.
+- classes: Table/string of CSS classes, in the format parseClasses and
+    printClasses produce respectively. Optional, defaults to {}.
+- styles: Table/string of CSS styles, in the format parseStyles and
+    printStyles produce respectively. Optional, defaults to {}.
+
+--]]
+b.eggBoxLua = function(egg, pdfs, classes, styles)
+	egg = string.fu(string.trim(egg or 'Sconosciuto (gruppo uova)'))
+	return b.boxLua(egg, egg .. ' (gruppo uova)', egg .. '_uova', pdfs,
+        classes, styles, 'FFF')
+end
+b.egg_box_lua = b.eggBoxLua
+
+--[[
+
+Wikicode interface for eggBoxLua. Arguments:
+
+- 1: The egg group. Defaults to 'Sconosciuto (gruppo uova)'.
+- 2: Space-spearated string of predefined configurations names. Optional,
+    defaults to no predefined configurations.
+- 3: Space-separated list of CSS classes. Optional, defaults to no CSS classes.
+- 4: CSS styles, in the format of an HTML style attribute values. Optional,
+    defaults to no CSS styles.
+
+Example:
+
+{{#invoke | Box | eggBox | Erba | thick | inline-block | margin: 3em; }}
+
+--]]
+b.eggBox = function(frame)
+    local p = w.trimAll(mw.clone(frame.args))
+    return b.eggBoxLua(unpack(p))
+end
+b.EggBox = b.eggBox
 
 return b

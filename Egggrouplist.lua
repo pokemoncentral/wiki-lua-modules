@@ -11,7 +11,6 @@ local g = {}
 
 local mw = require('mw')
 
-local box = require('Box')
 local css = require('Css')
 local ms = require('MiniSprite')
 local form = require('Wikilib-forms')
@@ -76,6 +75,31 @@ end
 
 --[[
 
+Styles for egg groups boxes, given as arguments for eggBoxLua. The indices are
+numeric so that they can be easier used to call functions.
+
+--]]
+g.Entry.eggBox = {
+    {'thick'},          -- pdfs
+    {'vert-center'},    -- classes
+    {height = '100%'}   -- styles
+}
+
+--[[
+
+Styles for egg groups cells, given as arguments for eggsTwoCells. The indices
+are numeric so that they can be easier used to call functions.
+
+--]]
+g.Entry.eggCell = {
+    {'one-box-cell'},   -- pdfs
+    false,              -- bp
+    {},                 -- classes
+    {height = '100%'}   -- styles
+}
+
+--[[
+
 Function that creates the egg group cells
 in the __tostring method. It's body is
 separated from that method because
@@ -89,10 +113,10 @@ g.Entry.groupsString = function(this)
 
     local group = string.fu(this.group1 == this.group
         and this.group2 or this.group1)
-    local groupBox = box.boxLua(group, group .. ' (gruppo uova)', group .. '_uova',
-        {'thick'}, {'vert-center pull-center max-width-xs-70'}, {height = '100%;'})
 
-    return '|| class="width-xs-100" style="height: 100%; font-size: 90%; padding: 1ex 0.8ex;" | ' .. groupBox
+    -- Little abuse here, but ensures styles consistency
+    return '|' .. resp.eggsTwoCellsLua(group, nil,
+        g.Entry.eggBox, g.Entry.eggCell)
 end
 
 --[[
@@ -103,16 +127,18 @@ Pokémon display the type only once.
 
 --]]
 g.Entry.__tostring = function(this)
+    local twoGroups = this.group2 ~= nil
 	return string.interp([=[| class="min-width-xs-20" | ${ndex}
 | class="min-width-xs-20" | ${static}
 | class="min-width-xs-60" style="padding: 0 0.5em;" | [[${name}]]${form}
-| class="min-width-xl-30 width-xs-100" style="padding: 1ex 0.8ex; font-size: 90%; height: 100%;" | ${types}${groups}]=],
+| class="min-width-xl-${typesWidth} width-xs-100" style="padding: 1ex 0.8ex; height: 100%;" | ${types}${groups}]=],
 	{
 		ndex = this.ndex and string.tf(this.ndex) or '???',
 		static = ms.staticLua(string.tf(this.ndex or 0) ..
 				(this.formAbbr == 'base' and '' or this.formAbbr or '')),
 		name = this.name,
 		form = this.formLink[this.formAbbr] or '',
+        typesWidth = twoGroups and '20' or '30',
         types = resp.twoTypeBoxesLua(this.type1, this.type2, {'thin'}, nil,
             {'vert-center'}),
 		groups = this:groupsString()
