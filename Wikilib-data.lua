@@ -17,8 +17,8 @@ The variant taken into account is normale
 
 t.whitetext = {'blu', 'rubino', 'zaffiro', 'nero', 'nero_2', 'nero2',
 	'nero 2', 'x', 'rubino omega', 'rubino_omega', 'rubinoomega',
-	'zaffiro alpha', 'zaffiro_alpha', 'zaffiroalpha', 'osa', 'xd', 'b',
-	'ru', 'za', 'n', 'n2', 'ro', 'ul'}
+	'zaffiro alpha', 'zaffiro_alpha', 'zaffiroalpha', 'ultraluna',
+	'osa', 'xd', 'b', 'ru', 'za', 'n', 'n2', 'ro', 'ul'}
 
 -- Ndex e nomi dei Pokémon esclusivamente femmina
 
