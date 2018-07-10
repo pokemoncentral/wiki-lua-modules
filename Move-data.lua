@@ -680,6 +680,6 @@ t['ira della natura'] = {name = "Ira della Natura", type = 'folletto', category 
 t.multiattacco = {name = 'Multiattacco', type = 'normale', category = 'fisico', power = 90, accuracy = 100, pp = 10}
 t['geyser fotonico'] = {name = 'Geyser Fotonico', type = 'psico', category = 'speciale', power = '&mdash;', accuracy = '&mdash;', pp = '&mdash;'}
 t['sbalorditesta'] = {name = 'Sbalorditesta', type = 'fuoco', category = 'speciale', power = '&mdash;', accuracy = '&mdash;', pp = '&mdash;'}
-t['pugni plasma'] = {name = 'Pugni Plasma', type = 'elettro', category = 'fisica', power = '100', accuracy = '100', pp = '15'}
+t['pugni plasma'] = {name = 'Pugni Plasma', type = 'elettro', category = 'fisico', power = '100', accuracy = '100', pp = '15'}
 
 return t
