@@ -5,8 +5,8 @@
 -- alternative non sono puramente estetiche
 
 local t = {}
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings') -- luacheck: no unused
+local tab = require('Wikilib-tables') -- luacheck: no unused
 
 local mw = require('mw')
 
@@ -47,7 +47,7 @@ local makeLinks = function(black)
 	end
 
 	-- Link vuoti: mega, megaxy e archeo
-	
+
 	for _, poke in pairs(t.mega) do
 		t[poke][index] = table.map(t[poke].names, function()
 				return ''

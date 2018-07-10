@@ -39,7 +39,8 @@ local uniqueStatTotal = function(allStats, gen)
 
     -- Mapping to base stat totals
     local tots = table.map(pokesInGen, function(pokeStats)
-        return statsUtil.spansSum(pokeStats)
+        return statsUtil.statsSum(
+                statsUtil.getStatsGen(pokeStats, gen))
     end)
 
     --[[

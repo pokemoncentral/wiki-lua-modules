@@ -5,8 +5,8 @@
 -- alternative sono puramente estetiche
 
 local t = {}
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings') -- luacheck: no unused
+local tab = require('Wikilib-tables') -- luacheck: no unused
 
 -- Crea i link alle forme alternative
 

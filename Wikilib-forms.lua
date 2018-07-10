@@ -5,8 +5,6 @@ delle forme alternative
 
 --]]
 
-local mw = require('mw')
-
 local f = {}
 local tab = require('Wikilib-tables') -- luacheck: no unused
 local txt = require('Wikilib-strings') -- luacheck: no unused

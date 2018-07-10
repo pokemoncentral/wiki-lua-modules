@@ -43,7 +43,8 @@ stds.wiki = {
                 flatMap = {},
                 deepSearch = {},
                 keysAlias = {},
-                values = {}
+                values = {},
+                recursiveMerge = {}
             }
         },
 

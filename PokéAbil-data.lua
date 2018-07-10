@@ -1735,20 +1735,20 @@ t.oricorioC, t.oricorioH, t.oricorioB = t.oricorio, t.oricorio, t.oricorio
 t['741C'], t['741H'], t['741B'] = t.oricorio, t.oricorio, t.oricorio
 t.wishiwashiB = t.wishiwashi
 t['746B'] = t.wishiwashi
-t['773L'], t['773Vo'], t['773Ve'] = t.silvally, t.silvally, t.silvally
 t.silvallyL, t.silvallyVo, t.silvallyVe = t.silvally, t.silvally, t.silvally
-t['773T'], t['773R'], t['773C'] = t.silvally, t.silvally, t.silvally
+t['773L'], t['773Vo'], t['773Ve'] = t.silvally, t.silvally, t.silvally
 t.silvallyT, t.silvallyR, t.silvallyC = t.silvally, t.silvally, t.silvally
-t['773S'], t['773Ai'], t['773Fu'] = t.silvally, t.silvally, t.silvally
+t['773T'], t['773R'], t['773C'] = t.silvally, t.silvally, t.silvally
 t.silvallyS, t.silvallyAi, t.silvallyFu = t.silvally, t.silvally, t.silvally
-t['773Aq'], t['773Er'], t['773El'] = t.silvally, t.silvally, t.silvally
+t['773S'], t['773Ai'], t['773Fu'] = t.silvally, t.silvally, t.silvally
 t.silvallyAq, t.silvallyEr, t.silvallyEl = t.silvally, t.silvally, t.silvally
-t['773P'], t['773G'], t['773D'] = t.silvally, t.silvally, t.silvally
+t['773Aq'], t['773Er'], t['773El'] = t.silvally, t.silvally, t.silvally
 t.silvallyP, t.silvallyG, t.silvallyD = t.silvally, t.silvally, t.silvally
-t['773B'], t['773Fo'] = t.silvally, t.silvally
+t['773P'], t['773G'], t['773D'] = t.silvally, t.silvally, t.silvally
 t.silvallyB, t.silvallyFo = t.silvally, t.silvally
-t['800V'], t['800A'] = t.necrozma, t.necrozma
+t['773B'], t['773Fo'] = t.silvally, t.silvally
 t.necrozmaV, t.necrozmaA = t.necrozma, t.necrozma
+t['800V'], t['800A'] = t.necrozma, t.necrozma
 
 -- Mega evolutions
 
