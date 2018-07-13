@@ -90,7 +90,7 @@ Example:
 
 --]]
 b.box = function(frame)
-    local p = w.trimAll(mw.clone(frame.args))
+    local p = w.trimAll(mw.clone(frame.args), false)
 	return b.boxLua(unpack(p))
 end
 b.Box = b.box
@@ -131,7 +131,7 @@ Example:
 
 --]]
 b.typeBox = function(frame)
-    local p = w.trimAll(mw.clone(frame.args))
+    local p = w.trimAll(mw.clone(frame.args), false)
     return b.typeBoxLua(unpack(p))
 end
 b.TypeBox, b.boxTipo, b.BoxTipo = b.typeBox, b.typeBox, b.typeBox
@@ -177,7 +177,7 @@ Example:
 
 --]]
 b.typeList = function(frame)
-    local p = w.trimAll(mw.clone(frame.args))
+    local p = w.trimAll(mw.clone(frame.args), false)
     local types = mw.text.split(table.remove(p, 1), ',%s*')
     return b.typeListLua(types, unpack(p))
 end
@@ -219,7 +219,7 @@ Example:
 
 --]]
 b.eggBox = function(frame)
-    local p = w.trimAll(mw.clone(frame.args))
+    local p = w.trimAll(mw.clone(frame.args), false)
     return b.eggBoxLua(unpack(p))
 end
 b.EggBox = b.eggBox

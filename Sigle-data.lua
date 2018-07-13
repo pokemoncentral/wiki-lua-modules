@@ -456,6 +456,31 @@ x.SLUsUl =  {
     }
 }, x.USUL[1]}
 x.SLUSUL = x.SLUsUl
+x.LgP = {{
+    link = "Let's Go, Pikachu! e Let's Go, Eevee!",
+    text = "Let's Go, Pikachu!",
+    display = {
+	{'LgP', 'LG_pikachu'}
+    }
+}}
+x.LGP = x.LgP
+x.LgE = {{
+    link = "Let's Go, Pikachu! e Let's Go, Eevee!",
+    text = "Let's Go, Eevee!",
+    display = {
+	{'LgE', 'LG_eevee'}
+    }
+}}
+x.LGE = x.LgE
+x.LgPE = {{
+    link = "Let's Go, Pikachu! e Let's Go, Eevee!",
+    display = {
+		{'Lg', '000000'},
+		{'P', 'LG_pikachu'},
+		{'E', 'LG_eevee'}
+    }
+}}
+x.LGPE = x.LgPE
 x.SJ = {{
     link = 'Stadium (Giappone)',
     text = 'Stadium',

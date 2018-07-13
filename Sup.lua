@@ -1,36 +1,45 @@
--- Collegamenti in apice ai giochi tramite le sigle colorate
+--[[
 
-local x = {}
+This module creates link to games, displaying them in superscripts
+with colored abbreviations.
 
-local txt = require('Wikilib-strings')
+Examples:
+
+{{#invoke: Sup | UL }}
+{{#invoke: Sup | RZS | RFVF}}
+{{#invoke: Sup | HGSS | XY | ROZA }}
+
+HINT: If you get an Errore Script, try to split an abbreviation into
+smaller parts. For example:
+
+{{#invoke: Sup | OACPtHGSS }} --> {{#invoke: Sup | OAC | Pt | HGSS }}
+
+--]]
+
+local tab = require('Wikilib-tables')      -- luacheck: no unused
 local lib = require('Wikilib-sigle')
-local c = require("Colore-data")
 local m = require("Sigle-data")
 
---[=[
-
-Ritorna la sigla del gioco in apice e
-colorata del colore corrispondente.
-Pair è una coppia della subtable
-display degli elementi di Sigle/data,
-ovvero:
-    - primo elemento: sigla del gioco
-    - secondo elemento: colore del gioco
-
---]=]
-
-local singleDisplay = function(pair)
-	return string.interp([[<sup style="color:#${color};">'''${abbr}'''</sup>]],
-		{
-			color = c[pair[2]].normale,
-			abbr = pair[1]
-		})
+-- Creates the links for a single abbreviation, as a single string
+local makeLinks = function(data)
+    return table.concat(lib.coloredAbbrevLinks(data, lib.bolden))
 end
 
--- Crea la funzione d'interfaccia per ogni sigla
-
-for abbr, data in pairs(m) do
-	x[abbr] = function(frame) return lib.abbrLinks(data, singleDisplay) end
+-- Wraps a list of links content in sup tags
+local makeSup = function(links)
+    table.insert(links, 1, '<sup>')
+    table.insert(links, '</sup>')
+    return table.concat(links)
 end
 
-return x
+-- Dynamically generated Wikicode interface
+return table.map(m, function(_, abbr)
+
+    --[[
+        Wikicode arguments are first processed one-by-one by makeLinks,
+        resulting in a table having a string for every argument, containing
+        all the links. These strings are then concatenated and wrapped in sup
+        tags by makeSup.
+    --]]
+    return lib.onMergedAbbrs(abbr, makeLinks, makeSup)
+end)

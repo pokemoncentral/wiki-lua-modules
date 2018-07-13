@@ -1,37 +1,36 @@
--- Collegamenti ai giochi tramite le loro sigle: campo colorato e testo nero/bianco
+--[[
 
-local x = {}
+This module creates link to games, displaying them in colored background.
 
-local txt = require('Wikilib-strings')
+Examples:
+
+{{#invoke: Blackabbrev | UL }}
+{{#invoke: Blackabbrev | RZS | RFVF}}
+{{#invoke: Blackabbrev | HGSS | XY | ROZA }}
+
+HINT: If you get an Errore Script, try to split an abbreviation into
+smaller parts. For example:
+
+{{#invoke: Blackabbrev | OACPtHGSS }} --> {{#invoke: Blackabbrev | OAC | Pt | HGSS }}
+
+--]]
+
+local tab = require('Wikilib-tables')      -- luacheck: no unused
 local lib = require('Wikilib-sigle')
-local c = require("Colore-data")
 local m = require("Sigle-data")
-local wd = require("Wikilib-data")
 
---[=[
-
-Ritorna la sigla del gioco sullo sfondo
-del colore corrispondente. Pair è una
-coppia della subtable display degli
-elementi di Sigle/data, ovvero:
-    - primo elemento: sigla del gioco
-    - secondo elemento: colore del gioco
-
---]=]
-
-local singleDisplay = function(pair)
-   return string.interp([[<span style="padding: 0 0.3em; color:#${text}; background: #${colore};">'''${sigla}'''</span>]],
-	{
-		text = table.search(wd.whitetext, pair[2]:lower()) and c.background or '000',
-		colore = c[pair[2]].normale,
-		sigla = pair[1],
-	})
+-- Creates the links for a single abbreviation, as a single string
+local makeLinks = function(data)
+    return table.concat(lib.backgroundAbbrevLinks(data, lib.bolden))
 end
 
--- Crea la funzione d'interfaccia per ogni sigla
+-- Dynamically generated Wikicode interface
+return table.map(m, function(_, abbr)
 
-for abbr, data in pairs(m) do
-	x[abbr] = function(frame) return lib.abbrLinks(data, singleDisplay) end
-end
-
-return x
+    --[[
+        Wikicode arguments are first processed one-by-one by makeLinks,
+        resulting in a table having a string for every argument, containing
+        all the links. These strings are then concatenated.
+    --]]
+    return lib.onMergedAbbrs(abbr, makeLinks)
+end)

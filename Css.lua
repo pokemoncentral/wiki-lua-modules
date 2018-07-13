@@ -161,7 +161,13 @@ end
 
 -- Parses an HTML class attribute value into a list of strings
 parser.parseClasses = function(classes)
-    return type(classes) == 'string' and mw.text.split(classes, ' ') or classes
+    if classes == '' then
+        return {}
+    elseif type(classes) ~= 'string' then
+        return classes
+    end
+
+    return mw.text.split(classes, ' ')
 end
 
 -- Returns an HTML class attribute value from a list of class names
@@ -176,7 +182,9 @@ end
         {margin = '2px 3px', padding = '3px', 'color: #22AAEE'}
 --]]
 parser.parseStyles = function(stys)
-    if type(stys) ~= 'string' then
+    if stys == '' then
+        return {}
+    elseif type(stys) ~= 'string' then
         return stys
     end
 
@@ -275,15 +283,18 @@ styles.classesStyles = function(predefs, pdfs, classes, stys)
     classes = parser.parseClasses(classes or {})
     stys = parser.parseStyles(stys or {})
 
-    if pdfs then
+    if pdfs and pdfs ~= '' then
         pdfs = type(pdfs) == 'string' and mw.text.split(pdfs, ' ') or pdfs
         for _, predef in pairs(pdfs) do
-            classes = table.merge(classes, predefs[predef].classes)
-            --[[
-                stys is the second argument of table.merge so that
-                user-supplied styles override predefinite ones
-            --]]
-            stys = table.merge(predefs[predef].styles, stys)
+            local pdf = predef[predefs]
+            if pdf then
+                classes = table.merge(classes, pdf.classes)
+                --[[
+                    stys is the second argument of table.merge so that
+                    user-supplied styles override predefinite ones
+                --]]
+                stys = table.merge(pdf.styles, stys)
+            end
         end
     end
 
