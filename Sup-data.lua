@@ -4,5 +4,5 @@ local tab = require('Wikilib-tables')
 local sup = require('Sup')
 
 return table.map(sup, function(value)
-		return value()
+		return value{args={}}
 	end)

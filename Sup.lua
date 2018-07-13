@@ -16,9 +16,7 @@ smaller parts. For example:
 
 --]]
 
-local tab = require('Wikilib-tables')      -- luacheck: no unused
-local lib = require('Wikilib-sigle')
-local m = require("Sigle-data")
+local lib = require('Modulo:Wikilib/sigle')
 
 -- Creates the links for a single abbreviation, as a single string
 local makeLinks = function(data)
@@ -33,7 +31,7 @@ local makeSup = function(links)
 end
 
 -- Dynamically generated Wikicode interface
-return table.map(m, function(_, abbr)
+return lib.mapAbbrs(function(_, abbr)
 
     --[[
         Wikicode arguments are first processed one-by-one by makeLinks,

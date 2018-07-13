@@ -7,14 +7,12 @@ i moduli che usano Sigle/data
 
 local q = {}
 
-local mw = require('mw')
-
-local txt = require('Wikilib-strings')      -- luacheck: no unused
-local tab = require('Wikilib-tables')       -- luacheck: no unused
-local w = require('Wikilib')
-local c = require("Colore-data")
-local sig = require("Sigle-data")
-local wData = require("Wikilib-data")
+local txt = require('Modulo:Wikilib/strings')      -- luacheck: no unused
+local tab = require('Modulo:Wikilib/tables')       -- luacheck: no unused
+local w = require('Modulo:Wikilib')
+local c = mw.loadData('Modulo:Colore/data')
+local sig = mw.loadData('Modulo:Sigle/data')
+local wData = mw.loadData('Modulo:Wikilib/data')
 
 --[[
 
@@ -197,6 +195,20 @@ end
 
 --[[
 
+This function maps over all abbreviations in Sugle/data. Its main purpose is
+increased efficiency, since the client modules can avoid requiring Sigle/data,
+which is therefore mw.loaded here only once.
+
+Arguments:
+    - f: the mapping function.
+
+--]]
+q.mapAbbrs = function(f)
+    return table.map(sig, f)
+end
+
+--[[
+
 This function returns the links to all of the games in an abbreviation data,
 displayed as specified.
 
@@ -212,7 +224,7 @@ Return:
 q.makeLinks = function(data, makeText)
     return table.map(data, function(game)
         local text = w.mapAndConcat(game.display, function(pair)
-            return makeText(unpack(pair))
+            return makeText(pair[1], pair[2])
         end)
 
         return string.interp('[[${link}|${text}]]', {
@@ -253,7 +265,7 @@ q.onMergedAbbrs = function(abbr, makeAbbrev, postProcess)
     postProcess = postProcess or table.concat
 
     return function(frame)
-        local args = mw.clone(frame.args)
+        local args = w.trimAll(mw.clone(frame.args))
         table.insert(args, 1, abbr)
 
         return postProcess(table.map(args, function(game)
