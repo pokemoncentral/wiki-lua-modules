@@ -7,12 +7,14 @@ i moduli che usano Sigle/data
 
 local q = {}
 
-local txt = require('Modulo:Wikilib/strings')      -- luacheck: no unused
-local tab = require('Modulo:Wikilib/tables')       -- luacheck: no unused
-local w = require('Modulo:Wikilib')
-local c = mw.loadData('Modulo:Colore/data')
-local sig = mw.loadData('Modulo:Sigle/data')
-local wData = mw.loadData('Modulo:Wikilib/data')
+local mw = require('mw')
+
+local txt = require('Wikilib-strings')      -- luacheck: no unused
+local tab = require('Wikilib-tables')       -- luacheck: no unused
+local w = require('Wikilib')
+local c = require("Colore-data")
+local sig = require("Sigle-data")
+local wData = require("Wikilib-data")
 
 --[[
 

@@ -1,36 +1,34 @@
--- Collegamenti ai giochi tramite le loro sigle: lettere colorate in campo trasparente
+--[[
 
-local x = {}
+This module creates link to games, displaying them with colored abbreviations.
 
-local txt = require('Wikilib-strings')
+Examples:
+
+{{#invoke: Colorabbrev | UL }}
+{{#invoke: Colorabbrev | RZS | RFVF}}
+{{#invoke: Colorabbrev | HGSS | XY | ROZA }}
+
+HINT: If you get an Errore Script, try to split an abbreviation into
+smaller parts. For example:
+
+{{#invoke: Colorabbrev | OACPtHGSS }} --> {{#invoke: Colorabbrev | OAC | Pt | HGSS }}
+
+--]]
+
 local lib = require('Wikilib-sigle')
-local c = require("Colore-data")
-local m = require("Sigle-data")
 
---[=[
-
-Ritorna la sigla del gioco colorata
-del colore corrispondente. Pair è una
-coppia della subtable display degli
-elementi di Sigle/data, ovvero:
-    - primo elemento: sigla del gioco
-    - secondo elemento: colore del gioco
-
---]=]
-
-local singleDisplay = function(pair)
-	return string.interp([[<span style="color:#${color};">'''${abbr}'''</span>]],
-		{
-			color = c[pair[2]].normale,
-			abbr = pair[1]
-		})
+-- Creates the links for a single abbreviation, as a single string
+local makeLinks = function(data)
+    return table.concat(lib.coloredAbbrevLinks(data, lib.bolden))
 end
 
--- Crea la funzione d'interfaccia per ogni sigla
+-- Dynamically generated Wikicode interface
+return lib.mapAbbrs(function(_, abbr)
 
-for abbr, data in pairs(m) do
-	x[abbr] = function(frame) return lib.abbrLinks(data, singleDisplay) end
-end
-
-print(x[arg[1]]())
--- return x
+    --[[
+        Wikicode arguments are first processed one-by-one by makeLinks,
+        resulting in a table having a string for every argument, containing
+        all the links. These strings are then concatenated.
+    --]]
+    return lib.onMergedAbbrs(abbr, makeLinks)
+end)

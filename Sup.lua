@@ -16,7 +16,7 @@ smaller parts. For example:
 
 --]]
 
-local lib = require('Modulo:Wikilib/sigle')
+local lib = require('Wikilib-sigle')
 
 -- Creates the links for a single abbreviation, as a single string
 local makeLinks = function(data)
