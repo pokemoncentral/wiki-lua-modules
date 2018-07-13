@@ -44,7 +44,8 @@ stds.wiki = {
                 deepSearch = {},
                 keysAlias = {},
                 values = {},
-                recursiveMerge = {}
+                recursiveMerge = {},
+                copy = {}
             }
         },
 

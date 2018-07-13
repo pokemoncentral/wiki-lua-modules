@@ -134,7 +134,7 @@ EffTable.new = function(name, game)
 
 	local data = glitch[game][tab.deepSearch(glitch[game], name)]
 	-- data.typeEffectiveness viene usato solo per glitch di prima generazione
-	local types = data.typeEffectiveness and table.cloneLoadData(data.typeEffectiveness) or {data.type1, data.type2}
+	local types = data.typeEffectiveness and table.copy(data.typeEffectiveness) or {data.type1, data.type2}
 	if not types[2] then
 		types[2] = types[1]
 	end
