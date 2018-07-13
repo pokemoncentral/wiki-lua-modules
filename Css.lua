@@ -7,8 +7,6 @@ calls to Colore module and adding vendor prefixes
 
 local css = {}
 
-local mw = require('mw')
-
 local str = require('Wikilib-strings')      -- luacheck: no unused
 local w = require('Wikilib')
 local c = require("Colore-data")
@@ -341,7 +339,7 @@ horizontal linear gradients styles
 
 --]]
 css['horiz-grad'] = function(frame)
-	return css.horizGradLua(mw.clone(frame.args))
+	return css.horizGradLua(table.copy(frame.args))
 end
 css.horizGrad, css.horiz_grad = css['horiz-grad'], css['horiz-grad']
 
@@ -352,7 +350,7 @@ vertical linear gradients styles
 
 --]]
 css['vert-grad'] = function(frame)
-	return css.vertGradLua(mw.clone(frame.args))
+	return css.vertGradLua(table.copy(frame.args))
 end
 css.vertGrad, css.vert_grad = css['vert-grad'], css['vert-grad']
 
@@ -363,7 +361,7 @@ slanted linear gradients styles
 
 --]]
 css['slanted-grad'] = function(frame)
-	return css.slantedGradLua(mw.clone(frame.args))
+	return css.slantedGradLua(table.copy(frame.args))
 end
 css.slantedGrad, css.slanted_grad =
 		css['slanted-grad'], css['slanted-grad']
@@ -375,7 +373,7 @@ radial gradients styles
 
 --]]
 css['radial-grad'] = function(frame)
-	return css.radialGradLua(mw.clone(frame.args))
+	return css.radialGradLua(table.copy(frame.args))
 end
 css.radialGrad, css.radial_grad =
 		css['radial-grad'], css['radial-grad']

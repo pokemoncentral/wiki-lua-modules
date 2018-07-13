@@ -18,27 +18,32 @@ local a = {}
 
 local mw = require('mw')
 
-local w = require('Wikilib')
-local tab = require('Wikilib-tables')
+local tab = require('Wikilib-tables')       -- luacheck: no unused
+local txt = require('Wikilib-strings')      -- luacheck: no unused
 local lib = require('Wikilib-sigle')
-local abbr = require("Sigle-data")
+local w = require('Wikilib')
 
-for abbr, data in pairs(abbr) do
-	local abbrLua = abbr .. 'Lua'
+for abbr in pairs(lib.abbrs) do
+    local abbrLua = abbr .. 'Lua'
 
-	a[abbrLua] = function(link, sep, colored)
-		return string.interp('[[${link}|${abbr}]]',
-			{
-				link = link,
-				abbr = lib.displayAbbr(data, sep, colored)
-			})
-	end
-	a[abbr .. '_lua'] = a[abbrLua]
+    a[abbrLua] = function(...)
+        local args = {...}
+        local link = table.remove(args)
+        table.insert(args, 1, abbr)
 
-	a[abbr] = function(frame)
-		local p = w.trimAll(mw.clone(frame.args))
-		return a[abbrLua](p[1], p[2], true)
-	end
+        return string.interp('[[${link}|${abbr}]]', {
+            link = link,
+            abbr = w.mapAndConcat(args, function(game)
+                return lib.coloredAbbrevLinks(lib.abbrs[game], lib.bolden)
+            end)
+        })
+    end
+    a[abbr .. '_lua'] = a[abbrLua]
+
+    a[abbr] = function(frame)
+        local p = w.trimAll(mw.clone(frame.args))
+        return a[abbrLua](unpack(p))
+    end
 end
 
 return a

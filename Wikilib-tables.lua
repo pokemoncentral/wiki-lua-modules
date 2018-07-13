@@ -615,19 +615,20 @@ essendo una copia, non è read-only, ed è quindi
 possibile usare su di essa la table library
 
 --]]
-table.cloneLoadData = function(value)
-    return table.map(value, function(v)
-        if (type(v) == 'table') then
-            return table.cloneLoadData(v)
-        else
-            -- if v isn't a table, is a bool, num or string
-            return v
-        end
-    end)
+table.copy = function(value)
+    local dest = {}
+    for k, v in pairs(value) do
+        dest[k] = type(v) == 'table'
+            and table.copy(v)
+            or v
+    end
+    return dest
 end
 
-table.clone_load_data = table.cloneLoadData
+t.copy = table.copy
+table.cloneLoadData, table.clone_load_data =
+    table.copy, table.copy
 t.cloneLoadData, t.clone_load_data =
-    table.cloneLoadData , table.cloneLoadData
+    table.copy, table.copy
 
 return t

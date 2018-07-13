@@ -111,6 +111,7 @@ q.gamesName = function(s, sep)
 		end), sep or '/')
 end
 
+q.abbrs = sig
 
 --[[
 
