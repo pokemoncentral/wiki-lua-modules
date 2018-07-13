@@ -118,20 +118,20 @@ This function returns the links to all of the games in an abbreviation data,
 displayed as abbreviations with a background of the color of the game.
 
 Arguments:
-    - data: the data of an abbreviation, from module Sigle/data
+    - data: the data of an abbreviation, from module Sigle/data.
     - makeText: the function creating the text to be displayed. It takes the
         abbreviation of a single game, and returns the text to be displayed
         in the link. Defaults to tostring.
     - makeColors: the function returning the colors to be used. It takes the
         color name as an argument, and returns the background and text color
-        to be used in the link. Defaults to gameColors.
+        to be used in the link. Defaults to colorAndText.
 
 Return:
     - A list of strings, each one containing a single link.
 
 --]]
 q.backgroundAbbrevLinks = function(data, makeText, makeColors)
-    makeColors = makeColors or q.gameColors
+    makeColors = makeColors or q.colorAndText
     makeText = makeText or tostring
 
     return q.makeLinks(data, function(text, color)
@@ -149,6 +149,23 @@ q.bolden = function(text)
     return table.concat{"'''", text, "'''"}
 end
 
+--[[
+
+This function returns the links to all of the games in an abbreviation data,
+displayed as abbreviations colored in their game color.
+
+Arguments:
+    - data: the data of an abbreviation, from module Sigle/data.
+    - makeText: the function creating the text to be displayed. It takes the
+        abbreviation of a single game, and returns the text to be displayed
+        in the link. Defaults to tostring.
+    - shade: the shade of games color to be used for the abbreviations.
+        Defaults to 'normale'.
+
+Return:
+    - A list of strings, each one containing a single link.
+
+--]]
 q.coloredAbbrevLinks = function(data, makeText, shade)
     shade = shade or 'normale'
     makeText = makeText or tostring
@@ -161,14 +178,37 @@ q.coloredAbbrevLinks = function(data, makeText, shade)
     end)
 end
 
-q.gameColors = function(game)
-    local background = c[game] and c[game].normale or game
-    local text = table.search(wData.whitetext, game:lower())
+--[[
+
+This function returns the normal shade of a color, and the color the text
+should have is such color is used as a background.
+
+Arguments:
+    - color: the name of the color.
+
+--]]
+q.colorAndText = function(color)
+    local background = c[color] and c[color].normale or color
+    local text = table.search(wData.whitetext, color:lower())
             and c.background
             or '000'
     return background, text
 end
 
+--[[
+
+This function returns the links to all of the games in an abbreviation data,
+displayed as specified.
+
+Arguments:
+    - data: the data of an abbreviation, from module Sigle/data.
+    - makeText: the function creating the text to be displayed for a single
+        game. It takes the abbreviation of that one game and its color name.
+
+Return:
+    - A list of strings, each one containing a single link.
+
+--]]
 q.makeLinks = function(data, makeText)
     return table.map(data, function(game)
         local text = w.mapAndConcat(game.display, function(pair)
@@ -183,7 +223,33 @@ q.makeLinks = function(data, makeText)
 
 end
 
-q.onMergedAbbrs = function(abbr, makeGame, postProcess)
+--[[
+
+This function generates the WikiCode interface for the client modules.
+
+This function is meant to be given the name of an abbreviation, and can take
+an arbitrary number of other abbreviations as arguments. For this intended
+use, an example call would be:
+
+{{#invoke: ClientModule | abbr0 | abbr1 | abbr2 }}
+
+The function processes every abbreviaton, including the one it is meant to be
+named after, via makeGame, and then the resulting table is passed on to
+postProcess for the final processing before returning the value to WikiCode.
+
+Arguments:
+    - abbr: the abbreviaton this function is meant to be bound to, that will
+        always be prepended to the passed arguements.
+    - makeAbbrev: this function is used to geenrate data for a single
+        abbreviation. It takes the data of such abbreviation in Sugle/data,
+        and returns whatever postProcess is able to handle as list elements.
+    - postProcess: this function is used for processing the data generated from
+        the abbreviations before the final result is given back to WikiCode.
+        It takes a list of whatever makeAbbrev returns, and should return a
+        string. Defaults to table.concat.
+
+--]]
+q.onMergedAbbrs = function(abbr, makeAbbrev, postProcess)
     postProcess = postProcess or table.concat
 
     return function(frame)
@@ -191,7 +257,7 @@ q.onMergedAbbrs = function(abbr, makeGame, postProcess)
         table.insert(args, 1, abbr)
 
         return postProcess(table.map(args, function(game)
-            return makeGame(sig[game])
+            return makeAbbrev(sig[game])
         end))
     end
 end
