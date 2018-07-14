@@ -33,7 +33,7 @@ f.allFormsData = function()
             This Pokémon is in both useless and altForms
             Right now only Pikachu
             --]]
-            all[k] = table.recursiveMerge(all[k], v)
+            all[k] = table.deepMerge(all[k], v)
 
             --[[
             gamesOrder is a pain in the neck
@@ -41,7 +41,7 @@ f.allFormsData = function()
             simply concatenate the two tables and remove
             the second 'base'
             --]]
-            all[k].gamesOrder = table.noDuplicates(table.merge(
+            all[k].gamesOrder = table.unique(table.merge(
                                     all[k].gamesOrder,
                                     v.gamesOrder
                                 ))

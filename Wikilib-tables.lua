@@ -3,6 +3,7 @@
 
 local t = {}
 
+local mw = require('mw')
 
 -- Stateless iterator on non-integer keys
 local nextNonInt = function(tab, key)
@@ -74,6 +75,54 @@ t.any = table.any
 
 --[[
 
+Deep clones a table. It intentionally doesn't clone the metatables, as that's
+the job of mw.clone.
+
+--]]
+table.copy = function(value)
+    local dest = {}
+    for k, v in pairs(value) do
+        dest[k] = type(v) == 'table' and table.copy(v) or v
+    end
+    return dest
+end
+t.copy = table.copy
+
+
+--[[
+
+Merges two tables into a new one. Integer indices of the second table will
+follow the ones of the first. Other indices overwrite the ones of the first
+in case of equlity, unless the values are tables in both the source tables:
+in this case they are merged recursively.
+
+--]]
+table.deepMerge = function(tab1, tab2)
+    -- Better to use mw.clone, so as to keep metatable of items.
+    local dest = mw.clone(tab1)
+
+    -- Double loop to keep integer keys sorted
+    for _, value in ipairs(tab2) do
+        table.insert(dest, value)
+    end
+    for key, value in table.nonIntPairs(tab2) do
+        if dest[key]
+                and type(dest[key]) == 'table'
+                and type(value) == 'table'
+        then
+            dest[key] = table.deepMerge(dest[key], value)
+        else
+            dest[key] = value
+        end
+    end
+    return dest
+end
+table.deep_merge = table.deepMerge
+t.deep_merge, t.deepMerge = table.deepMerge, table.deepMerge
+
+
+--[[
+
 Recursive search: looks for a value in a table and possible subtables. Returns
 a list of indices, mapping the nesting of tables. This means that the last
 index is the one of the element, the second last is the subtable it is found
@@ -108,12 +157,93 @@ t.deepSearch, t.deep_search = table.deepSearch, table.deepSearch
 
 --[[
 
+Returns whether two tables are equal: this means same keys mapped to same
+values, where same is the == operator. For the sake of conveniente, it returns
+true also for non-table arguments, as long as they computer equals.
+
+--]]
+table.equal = function(tab1, tab2)
+    --[[
+        Arguments are compared directly if:
+            - One of them has the __eq metamethod
+            - One of them is not a table
+    --]]
+    local mt1 = getmetatable(tab1)
+    local mt2 = getmetatable(tab2)
+    if mt1 and mt1.__eq or mt2 and mt2.__eq
+            or type(tab1) ~= 'table'
+            or type(tab2) ~= 'table' then
+        return tab1 == tab2
+    end
+
+    -- Optimization: references to the same table can be assessed equal here
+    if tab1 == tab2 then
+        return true
+    end
+
+    --[[
+        If the two tables have different number of items, they aren't equal.
+
+        Furthermore, it covers the cases in which:
+            - tab1 is empty, and the upcoming loop doesn't run at all.
+            - tab1 is a subset of tab2, not covered by the loop, since only
+                tab1 indices are used.
+    --]]
+    if table.getn(tab1) ~= table.getn(tab2) then
+        return false
+    end
+
+    for key, value in pairs(tab1) do
+        -- Easerie to compare this way, being table.equal very type-safe
+        if not table.equal(value, tab2[key]) then
+            return false
+        end
+    end
+
+    return true
+end
+table.eq = table.equal
+t.equal, t.eq = table.equal, table.equal
+
+--[[
+
+Returns a table containing only the elements that satisfy the passed predicate.
+Integer keys are compacted, so that standard library functions will still work:
+in fact, they don't get along well with "holes" in integer keys. Other keys are
+kept unchanged.
+
+The predicate takes as input an element and its key, in this order: in fact,
+the key is often unnecessary, and would just clutter the code in these cases.
+It returns a boolean: if this is true, the element is kept, else is discarded.
+
+--]]
+table.filter = function(tab, cond)
+    local dest = {}
+
+    -- Double loop to keep integer keys sorted and compact
+    for key, value in ipairs(tab) do
+        if cond(value, key) then
+            table.insert(dest, value)
+        end
+    end
+    for key, value in table.nonIntPairs(tab) do
+        if cond(value, key) then
+            dest[key] = value
+        end
+    end
+    return dest
+end
+t.filter = table.filter
+
+
+--[[
+
 Applies a function over all of the elements of a table returned by the passed
 iterator. The function is expected to return a list. The lists produced from
 the elements are merged together in the same way as table.merge would do. The
 iterator defaults to pairs.
 
-The function takes as input an element and its ke, in this order: in fact, the
+The function takes as input an element and its key, in this order: in fact, the
 key is often unnecessary, and would just clutter the code in these cases.
 
 --]]
@@ -138,7 +268,7 @@ the elements are converted to numeric lists: the order of the elements is
 determined by the given iterator. These lists are then concatenated together,
 in the order the elements of the initial list are returned by the iterator.
 
-The function takes as input an element and its ke, in this order: in fact, the
+The function takes as input an element and its key, in this order: in fact, the
 key is often unnecessary, and would just clutter the code in these cases.
 
 --]]
@@ -155,6 +285,17 @@ table.flatMapToNum = function(tab, funct, iter)
 end
 table.flat_map_to_num = table.flatMapToNum
 t.flatMapToNum, t.flat_map_to_num = table.flatMapToNum, table.flatMapToNum
+
+
+-- Returns the input table, but with keys and values swapped.
+table.flip = function(tab)
+    local flipped = {}
+    for key, value in pairs(tab) do
+        flipped[value] = key
+    end
+    return flipped
+end
+t.flip = table.flip
 
 
 --[[
@@ -184,7 +325,7 @@ t.fold = table.fold
 
 Returns the number of elements in a table. It should only be used when
 Scribunto overrides the # operator so that it doesn't work propertly.
-If the second argument is 'num' it only counts items having a numeric index,
+If the second argument is 'num' it only counts items having a integer index,
 otherwise it takes all elements in account.
 
 --]]
@@ -206,12 +347,28 @@ t.getn = table.getn
 
 --[[
 
+Returns a numeric table whose elements are the keys of the passed one, in an
+unspecified order.
+
+--]]
+table.keys = function(tab)
+    local keys = {}
+    for key in pairs(tab) do
+        table.insert(keys, key)
+    end
+    return keys
+end
+t.keys = table.keys
+
+
+--[[
+
 Applies a function to the elements of a table scanned by the passed iterator.
 It returls a table holding the results of the function application, bound to
 the same keys as the original items. If no iterator is passed, all elements
 are scanned.
 
-The function takes as input an element and its ke, in this order: in fact, the
+The function takes as input an element and its key, in this order: in fact, the
 key is often unnecessary, and would just clutter the code in these cases.
 
 --]]
@@ -231,10 +388,10 @@ t.map = table.map
 
 Applies a function to the elements of a table scanned by the passed iterator.
 It returls a table holding the results of the function application, bound to
-numeric keys in the order the original elements are returned by the iterator.
+integer keys in the order the original elements are returned by the iterator.
 If no iterator is passed, all elements are scanned.
 
-The function takes as input an element and its ke, in this order: in fact, the
+The function takes as input an element and its key, in this order: in fact, the
 key is often unnecessary, and would just clutter the code in these cases.
 
 --]]
@@ -249,6 +406,29 @@ table.mapToNum = function(tab, funct, iter)
 end
 table.map_to_num = table.mapToNum
 t.mapToNum, t.map_to_num = table.mapToNum, table.mapToNum
+
+
+--[[
+
+Merges two tables into a new one. Integer indices of the second table will
+follow the ones of the first; other indices overwrite the ones of the first
+in case of equlity.
+
+--]]
+table.merge = function(tab1, tab2)
+    -- Better to use mw.clone, so as to keep metatable of items.
+    local dest = mw.clone(tab1)
+
+    -- Double loop to keep integer keys sorted
+    for _, value in ipairs(tab2) do
+        table.insert(dest, value)
+    end
+    for key, value in table.nonIntPairs(tab2) do
+        dest[key] = value
+    end
+    return dest
+end
+t.merge = table.merge
 
 
 -- Stateless iterator to be used in for loops
@@ -271,19 +451,35 @@ end
 t.search = table.search
 
 
+--[[
 
+Returns the elements of a numeric table whose indices are within the specified
+range. The end of the range defaults to the end of the source table.
+
+TODO: implement with builtins
+
+--]]
+table.slice = function(tab, from, to)
+    to = to or #tab
+    return table.filter(tab, function(_, key)
+        return key >= from and key <= to
+    end, ipairs)
+end
+t.slice = table.slice
 
 
 --[[
 
-Aggiunge elementi ad una table che sono alias di altri elementi della stessa table.
-Il primo argomento è la table in questione; il secondo una table contenente le
-chiavi degli elementi di cui si vogliono creare gli alias; il terzo una table
-di cui ogni elemento è a sua volta una table, che contiene le chiavi degli alias
-relativi all'elemento di indice uguale nel secondo argomento.
-Esempio di chiamata:
-table.tableKeysAlias(t, {'key', 'key1'}, {{'alias', alias1'}, {'alias2', 'alias3'}})
-Equivalente con assegnamenti:
+Aliases keys in a single table. Arguments:
+    - tab: the source table
+    - source: list of keys to be aliased
+    - dest: list of tables, in which every element contains the aliases
+        to its corresponding one in source.
+
+Example:
+table.tableKeysAlias(t, {'key', 'key1'}, {{'alias', alias1'},
+    {'alias2', 'alias3'}})
+Equivalent with assignments:
 t.alias, t.alias1 = t.key, t.key
 t.alias2, t.alias3 = t.key1, t.key1
 
@@ -301,214 +497,28 @@ table.table_keys_alias, table.keysAlias, table.keys_alias =
 t.tableKeysAlias, t.table_keys_alias, t.keysAlias, t.keys_alias =
         table.tableKeysAlias, table.tableKeysAlias, table.tableKeysAlias, table.tableKeysAlias
 
---[[
-
-Indica se due tables sono uguali, nel più
-brutale dei possibili significati: stessi
-elementi associati alle stesse chiavi.
-
-Per comodità, ritorna true anche se gli
-argomenti non sono tables, purché siano
-uguali.
-
---]]
-table.equal = function(tab1, tab2)
-
-    --[[
-        Si confrontano direttamente gli argomenti se
-        uno dei due ha il metamethod __eq o se uno
-        dei due non è una table
-    --]]
-    local mt1 = getmetatable(tab1)
-    local mt2 = getmetatable(tab2)
-    if mt1 and mt1.__eq or mt2 and mt2.__eq
-            or type(tab1) ~= 'table'
-            or type(tab2) ~= 'table' then
-        return tab1 == tab2
-    end
-
-    --[[
-        Se si hanno due riferimenti alla stessa
-        table si evitano molte computazioni inutili
-    --]]
-    if tab1 == tab2 then
-        return true
-    end
-
-    --[[
-        Se il numero di elementi è diverso le due
-        tables non possono essere uguali. Inoltre
-        gestisce anche il caso in cui tab1 sia vuota
-        e tab2 no, che porterebbe a tornare true
-        poiché il loop viene skippato, e quello in
-        cui tab1 sia un sottoinsieme di tab2 poiché
-        si controllano solo gli indici della prima.
-    --]]
-    if table.getn(tab1) ~= table.getn(tab2) then
-        return false
-    end
-
-    for key, value in pairs(tab1) do
-        --[[
-            Stante la type safety di table.equal, è
-            più comodo fare così
-        --]]
-        if not table.equal(value, tab2[key]) then
-            return false
-        end
-    end
-
-    return true
-end
-
-table.eq = table.equal
-t.equal, t.eq = table.equal, table.equal
 
 --[[
 
-Ritorna una table risultato della fusione delle
-due passate. Gli indici numerici della seconda
-seguiranno quelli della prima; gli altri sono
-lasciati invariati, ed in caso di uguaglianza
-quelli della seconda sovrascrivono i valori della
-prima.
+Returns a table with the same items of the input one, but without duplicates.
+The keys of repeated elements that are kept are the first in lexicographic
+order, unless they are integer: in this case they are compacted to allow
+compatibility with standard library functions.
 
 --]]
-table.merge = function(tab1, tab2)
-
-local mw = require('mw')
-
-    local dest = mw.clone(tab1)
-
+table.unique = function(tab)
     --[[
-        È necessario il doppio ciclo per avere
-        le chiavi intere in ordine
+        Check is meant to be used to test uniqueness of values: the most
+        efficient implementation is to keep values as indices, so that
+        uniqueness can be checked with simple table indexing. The values are
+        the indices in the final table, so that they can easily be flipped.
+
+        n is used as incremental integer index, to avoid "holes" in the final
+        table.
     --]]
-    for _, value in ipairs(tab2) do
-        table.insert(dest, value)
-    end
-    for key, value in table.nonIntPairs(tab2) do
-        dest[key] = value
-    end
-    return dest
-end
-
-t.merge = table.merge
-
---[[
-
-Ritorna una table risultato della fusione delle
-due passate. Gli indici numerici della seconda
-seguiranno quelli della prima; gli altri sono
-lasciati invariati, ed in caso di uguaglianza
-quelli della seconda sovrascrivono i valori della
-prima. Fanno però eccezione le tables, che sono
-fuse a loro volta.
-
---]]
-table.recursiveMerge = function(tab1, tab2)
-
-local mw = require('mw')
-
-    local dest = mw.clone(tab1)
-    --[[
-        È necessario il doppio ciclo per avere
-        le chiavi intere in ordine
-    --]]
-    for _, value in ipairs(tab2) do
-        table.insert(dest, value)
-    end
-    for key, value in table.nonIntPairs(tab2) do
-        if dest[key]
-                and type(dest[key]) == 'table'
-                and type(value) == 'table'
-        then
-            dest[key] = table.recursiveMerge(dest[key], value)
-        else
-            dest[key] = value
-        end
-    end
-    return dest
-end
-
-table.recursive_merge = table.recursiveMerge
-t.recursive_merge, t.recursive_merge =
-        table.recursiveMerge, table.recursiveMerge
-
---[[
-
-Ritorna una table con i soli elementi che
-rispettano la condizione passata. Tale
-funzione deve quindi ritornare un booleano,
-avendo in ingresso un elemento e la sua
-chiave, in quest'ordine perché la chiave
-non è sempre necessaria e sarebbe fastidioso
-avere un argomento placeholder.
-
-Le chiavi rimangono invariate con la sola
-eccezione di quelle numeriche, che sono
-rese continue
-
---]]
-table.filter = function(tab, cond)
-    local dest = {}
-    --[[
-        È necessario il doppio ciclo per avere
-        le chiavi intere in ordine
-    --]]
-    for key, value in ipairs(tab) do
-        if cond(value, key) then
-            table.insert(dest, value)
-        end
-    end
-    for key, value in table.nonIntPairs(tab) do
-        if cond(value, key) then
-            dest[key] = value
-        end
-    end
-    return dest
-end
-
-t.filter = table.filter
-
---[[
-
-Ritorna una table con chiavi e valori
-invertiti rispetto a quella passata.
-
---]]
-table.flip = function(tab)
-    local flipped = {}
-    for key, value in pairs(tab) do
-        flipped[value] = key
-    end
-    return flipped
-end
-
-t.flip = table.flip
-
---[[
-
-Ritorna una table con gli stessi elementi di
-quella passata, ma senza duplicati.
-
-Le chiavi degli elementi mantenuti sono le
-prime in ordine lessicografico rispetto alle
-chiavi dei grupppi di elementi uguali, con
-la sola eccezione di quelle intere che sono
-rese contigue.
-
---]]
-table.noDuplicates = function(tab)
     local check, n = {}, 1
 
-    --[[
-        Il doppio ciclo si rende necessario per
-        mantenere l'ordine delle chiavi numeriche.
-        La variabile n serve per non avere buchi.
-        Non si usa minor poiché le chiavi vengono
-        già tornate in ordine crescente da ipairs.
-    --]]
+    -- Minor is not used as ipairs returns integer keys in ascending order.
     for _, value in ipairs(tab) do
         if not check[value] then
             check[value] = n
@@ -517,6 +527,10 @@ table.noDuplicates = function(tab)
     end
 
     for key, value in table.nonIntPairs(tab) do
+        --[[
+            If value is not in check, minor returns true, as the second
+            argument is nil
+        --]]
         if minor(key, check[value]) then
             check[value] = key
         end
@@ -524,34 +538,13 @@ table.noDuplicates = function(tab)
 
     return table.flip(check)
 end
+t.unique = table.unique
 
-table.no_duplicates, table.unique =
-        table.noDuplicates, table.noDuplicates
-t.noDuplicates, t.no_duplicates, t.unique =
-        table.noDuplicates, table.noDuplicates, table.noDuplicates
-
---[[
-
-Ritorna una table con soli indici numerici
-i cui elementi sono le chiavi della table
-passata, in ordine non specificato
-
---]]
-table.keys = function(tab)
-    local keys = {}
-    for key in pairs(tab) do
-        table.insert(keys, key)
-    end
-    return keys
-end
-
-t.keys = table.keys
 
 --[[
 
 Returns a numeric table containing the values of the passed table, in the
-order they are returned in by the iterator. Such iterator defaults to pairs,
-and should return two values, the first being the key and the second the value.
+order they are returned in by the iterator. Such iterator defaults to pairs.
 
 --]]
 table.values = function(tab, iter)
@@ -563,45 +556,6 @@ table.values = function(tab, iter)
     end
     return values
 end
-
 t.values = table.values
-
---[[
-
-Given a table with numeric indexes,
-returns another table containing its
-elements in the specified indexes
-range. End index defaults to largest
-index in the table.
-
---]]
-table.slice = function(tab, from, to)
-    to = to or #tab
-    return table.filter(tab, function(_, key)
-        return key >= from and key <= to
-    end, ipairs)
-end
-
-t.slice = table.slice
-
---[[
-
-Deep clones a table. It intentionally doesn't clone the metatables, as that's
-the job of mw.clone.
-
---]]
-table.copy = function(value)
-    local dest = {}
-    for k, v in pairs(value) do
-        dest[k] = type(v) == 'table'
-            and table.copy(v)
-            or v
-    end
-    return dest
-end
-
-t.copy = table.copy
-table.cloneLoadData, table.clone_load_data = table.copy, table.copy
-t.cloneLoadData, t.clone_load_data = table.copy, table.copy
 
 return t
