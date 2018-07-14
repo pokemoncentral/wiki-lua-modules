@@ -111,8 +111,6 @@ q.gamesName = function(s, sep)
 		end), sep or '/')
 end
 
-q.abbrs = sig
-
 --[[
 
 This function returns the links to all of the games in an abbreviation data,

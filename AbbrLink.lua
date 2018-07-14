@@ -16,14 +16,17 @@ Esempio:
 
 local a = {}
 
-local mw = require('mw')
-
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local lib = require('Wikilib-sigle')
 local w = require('Wikilib')
+--[[
+    This is the only module that cannot use onMergedAbbr, so we can give up
+    optimizations here.
+--]]
+local abbrs = require("Sigle-data")
 
-for abbr in pairs(lib.abbrs) do
+for abbr in pairs(abbrs) do
     local abbrLua = abbr .. 'Lua'
 
     a[abbrLua] = function(...)
@@ -33,15 +36,18 @@ for abbr in pairs(lib.abbrs) do
 
         return string.interp('[[${link}|${abbr}]]', {
             link = link,
+
+            -- All of the abbreviations should be displayed in the same link
             abbr = w.mapAndConcat(args, function(game)
-                return lib.coloredAbbrevLinks(lib.abbrs[game], lib.bolden)
+                return table.concat(lib.coloredAbbrevLinks(abbrs[game],
+                    lib.bolden))
             end)
         })
     end
     a[abbr .. '_lua'] = a[abbrLua]
 
     a[abbr] = function(frame)
-        local p = w.trimAll(mw.clone(frame.args))
+        local p = w.trimAll(table.copy(frame.args))
         return a[abbrLua](unpack(p))
     end
 end
