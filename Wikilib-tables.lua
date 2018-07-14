@@ -3,7 +3,6 @@
 
 local t = {}
 
-local mw = require('mw')
 
 -- Stateless iterator on non-integer keys
 local nextNonInt = function(tab, key)
@@ -98,6 +97,7 @@ in this case they are merged recursively.
 
 --]]
 table.deepMerge = function(tab1, tab2)
+local mw = require('mw')
     -- Better to use mw.clone, so as to keep metatable of items.
     local dest = mw.clone(tab1)
 
@@ -416,6 +416,7 @@ in case of equlity.
 
 --]]
 table.merge = function(tab1, tab2)
+local mw = require('mw')
     -- Better to use mw.clone, so as to keep metatable of items.
     local dest = mw.clone(tab1)
 
