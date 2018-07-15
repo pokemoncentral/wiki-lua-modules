@@ -209,6 +209,23 @@ q.mapAbbrs = function(f)
     return table.map(sig, f)
 end
 
+--[[
+
+This function maps over the display key of every game in the passed
+abbreviation data. The results of the mapping are concatenated for every
+display property, so that the returned table is one-dimensioned.
+
+Arguments:
+    - data: The source abbreviation data.
+    - makeText: The mapping function. It takes as parameters the two elements
+        of display key elements, that is the abbreviation and the color of a
+        game. Must return a string.
+
+Return:
+    - A list of string, each one resulting from the concatenation of the items
+        in the display key of a game, after mapping.
+
+--]]
 q.mapDisplay = function(data, makeText)
     return table.map(data, function(game)
         return w.mapAndConcat(game.display, function(pair)
@@ -217,6 +234,23 @@ q.mapDisplay = function(data, makeText)
     end)
 end
 
+--[[
+
+This function returns a list of links from the passed abbreviation data. The
+links target is the page in the link key of every game in the data, while the
+displayed text is obtained by mapping with the specified function.
+
+Arguments:
+    - data: The source abbreviation data.
+    - makeText: The mapping function that produces the text to be displayed
+        for every game in the abbreviation data. Takes such data as an
+        argument, and must return a table with the text for every game in the
+        data, in the same order as they are in the abbreviation data.
+
+Return:
+    - A list of links, one for each game in the abbreviation data.
+
+--]]
 q.makeLinks = function(data, makeText)
     local zipped = table.zip(data, makeText(data))
 
@@ -230,6 +264,23 @@ q.makeLinks = function(data, makeText)
     end)
 end
 
+--[[
+
+This function returns a table containing interface functions, both for lua and
+wikicode. Wikicode interfaces are named after abbreviations, while lua
+interfaces have the 'Lua' and '_lua' suffixes.
+
+The interfaces are created by means of makeInterfaces, that must return at
+least the lua function: the wikicode interface defaults to the standard one
+calling the lua interface as in Wikilib.stdWikicodeInterface.
+
+Arguments:
+    - makeInterfaces: This is the functino used to generate the lua interfaces,
+        and optionally the wikicode ones. Its parameters are abbreviation data
+        and its abbreviation. Must return the lua function and optionally the
+        wikicode one.
+
+--]]
 q.makeLuaAndWikicode = function(makeInterfaces)
     local a = {}
 
@@ -248,22 +299,23 @@ end
 This function generates a WikiCode interface for client modules. As explained
 below, the interface takes no arguments other than optional abbreviations.
 
-This function is meant to be given the name of an abbreviation, and can take
-an arbitrary number of other abbreviations as arguments. For this intended
+This function is meant to be named after an abbreviation, and can take an
+arbitrary number of additional abbreviations as arguments. For this intended
 use, an example call would be:
 
 {{#invoke: ClientModule | abbr0 | abbr1 | abbr2 }}
 
-The function processes every abbreviaton, including the one it is meant to be
-named after, via makeGame, and then the resulting table is passed on to
-postProcess for the final processing before returning the value to WikiCode.
+The returned function processes every abbreviaton, including the one it is
+meant to be named after, via makeGame, and then the resulting table is passed
+on to postProcess for the final processing before returning the value to
+WikiCode.
 
 Arguments:
     - abbr: the abbreviaton this function is meant to be bound to, that will
-        always be prepended to the passed arguements.
+        always be prepended to the passed arguments.
     - makeAbbrev: this function is used to generate data for a single
-        abbreviation. It takes the data of such abbreviation in math.sinh(x)gle/data,
-        and returns whatever postProcess is able to handle as list elements.
+        abbreviation. It takes the data of such abbreviation in Sigle/data,
+        and returns whatever postProcess is able to handle as its list items.
     - postProcess: this function is used for processing the data generated from
         the abbreviations before the final result is given back to WikiCode.
         It takes a list of whatever makeAbbrev returns, and should return a
@@ -285,29 +337,35 @@ end
 
 --[[
 
-This function generates a WikiCode interface for client modules. As explained
-below, the interface takes no arguments other than optional abbreviations.
+This function generates a lua interface for client modules. As explained
+below, the interface takes a fixed number of arguments after the additional
+abbreviations, even though these are optional.
 
-This function is meant to be given the name of an abbreviation, and can take
-an arbitrary number of other abbreviations as arguments. For this intended
-use, an example call would be:
+This function is meant to be named after an abbreviation, and takes as
+arguments an arbitrary long sequence of abbreviations and a fixed number of
+parameters after these. Some example calls:
 
-{{#invoke: ClientModule | abbr0 | abbr1 | abbr2 }}
+myModule.abbr0(abbr1, abbr2, arg1, arg2, arg3)
+myModule.abbr0(arg1, arg2, arg3)
 
-The function processes every abbreviaton, including the one it is meant to be
-named after, via makeGame, and then the resulting table is passed on to
-postProcess for the final processing before returning the value to WikiCode.
+The returned function first splits the fixed final arguments from the
+abbreviations, and then processes every abbreviaton, including the one it is
+meant to be named after, via makeGame, Finally the resulting table is passed on
+to postProcess for the final processing before returning the value to WikiCode.
 
 Arguments:
     - abbr: the abbreviaton this function is meant to be bound to, that will
-        always be prepended to the passed arguements.
+        always be prepended to the passed arguments.
+    - argsCount: the number of fixes final arguments.
     - makeAbbrev: this function is used to generate data for a single
-        abbreviation. It takes the data of such abbreviation in math.sinh(x)gle/data,
-        and returns whatever postProcess is able to handle as list elements.
+        abbreviation. It takes the data of such abbreviation in Sigle/data and
+        the fixed final arguments packed in a table. It returns whatever
+        postProcess is able to handle as its list elements.
     - postProcess: this function is used for processing the data generated from
         the abbreviations before the final result is given back to WikiCode.
-        It takes a list of whatever makeAbbrev returns, and should return a
-        string. Defaults to table.concat.
+        It takes the fixed final arguments packed in a table and a list of
+        whatever makeAbbrev returns, and should return a string. Defaults to
+        a function concatenating the second argument.
 
 --]]
 q.onMergedAbbrsArgs = function(abbr, argsCount, makeAbbrev, postProcess)
