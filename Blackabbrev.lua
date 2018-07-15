@@ -19,7 +19,7 @@ local lib = require('Wikilib-sigle')
 
 -- Creates the links for a single abbreviation, as a single string
 local makeLinks = function(data)
-    return table.concat(lib.backgroundAbbrevLinks(data, lib.bolden))
+    return table.concat(lib.backgroundAbbrLinks(data, lib.bolden))
 end
 
 -- Dynamically generated Wikicode interface

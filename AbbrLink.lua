@@ -14,42 +14,22 @@ Esempio:
 
 --]]
 
-local a = {}
 
-local tab = require('Wikilib-tables')       -- luacheck: no unused
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local lib = require('Wikilib-sigle')
-local w = require('Wikilib')
---[[
-    This is the only module that cannot use onMergedAbbr, so we can give up
-    optimizations here.
---]]
-local abbrs = require("Sigle-data")
 
-for abbr in pairs(abbrs) do
-    local abbrLua = abbr .. 'Lua'
-
-    a[abbrLua] = function(...)
-        local args = {...}
-        local link = table.remove(args)
-        table.insert(args, 1, abbr)
-
-        return string.interp('[[${link}|${abbr}]]', {
-            link = link,
-
-            -- All of the abbreviations should be displayed in the same link
-            abbr = w.mapAndConcat(args, function(game)
-                return table.concat(lib.coloredAbbrevLinks(abbrs[game],
-                    lib.bolden))
-            end)
-        })
-    end
-    a[abbr .. '_lua'] = a[abbrLua]
-
-    a[abbr] = function(frame)
-        local p = w.trimAll(table.copy(frame.args))
-        return a[abbrLua](unpack(p))
-    end
+local makeText = function(data)
+    return table.concat(lib.coloredAbbrs(data, lib.bolden))
 end
 
-return a
+local makeLink = function(args, text)
+    local link = args[1]
+    return string.interp('[[${link}|${text}]]', {
+        link = link,
+        text = table.concat(text)
+    })
+end
+
+return lib.makeLuaAndWikicode(function(_, abbr)
+    return lib.onMergedAbbrsArgs(abbr, 1, makeText, makeLink)
+end)

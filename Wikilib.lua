@@ -130,4 +130,12 @@ end
 
 w.map_and_concat = w.mapAndConcat
 
+w.stdWikicodeInterface = function(luaInterface)
+    return function(frame)
+        local p = w.trimAll(table.copy(frame.args))
+        return luaInterface(unpack(p))
+    end
+end
+w.std_wikicode_interface = w.stdWikicodeInterface
+
 return w

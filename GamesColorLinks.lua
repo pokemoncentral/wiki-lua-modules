@@ -1,33 +1,22 @@
 -- Dalle sigle dei giochi, ritorna il link agli stessi
 -- del colore passato
 
-local l = {}
-
-local txt = require('Wikilib-strings')
+local txt = require('Wikilib-strings')      -- luacheck: no unused
 local lib = require('Wikilib-sigle')
-local s = require("Sigle-data")
+local c = require("Colore-data")
 
--- Crea la funzione d'interfaccia per ogni sigla
+local makeLink = function(data, args)
+    local color, shade = unpack(args)
 
-for abbr, data in pairs(s) do
-	l[abbr] = function(frame)
-		--[[
-			Ritorna il testo passato del colore
-			specificato come argomento dal wikicode:
-			dal momento che può ricevere come
-			argomento solo il testo da visualizzare,
-			deve essere una closure
-		--]]
-		local display = function(text)
-			return string.interp('<span style="color:#${color}">${text}</span>',
-				{
-					color = string.trim(frame.args[1] or 'FFF'),
-					text = text
-				})
-		end
-		return lib.textLinks(data, display)
-	end
+    return table.concat(lib.makeTextLinks(data, function(link, text)
+        return string.interp('<span style="color:#${color}">${text}</span>',
+            {
+                color = c[color] and c[color][shade or 'normale'] or color,
+                text = text or link
+            })
+    end))
 end
 
--- print(l[arg[1]]{args={arg[2]}})
-return l
+return lib.mapAbbrs(function(_, abbr)
+    return lib.onMergedAbbrsArgs(abbr, 2, makeLink)
+end)

@@ -461,10 +461,21 @@ TODO: implement with builtins
 
 --]]
 table.slice = function(tab, from, to)
-    to = to or #tab
-    return table.filter(tab, function(_, key)
-        return key >= from and key <= to
-    end, ipairs)
+    local length = #tab
+
+    to = to or length
+    if from < 0 then
+        from = length + from + 1      -- + because from is negative
+    end
+    if to < 0 then
+        to = length + to + 1          -- + because to is negative
+    end
+
+    local dest = {}
+    for k = from, to do
+        table.insert(dest, tab[k])
+    end
+    return dest
 end
 t.slice = table.slice
 
@@ -558,5 +569,18 @@ table.values = function(tab, iter)
     return values
 end
 t.values = table.values
+
+
+table.zip = function(tab1, tab2, zipper, iter)
+    zipper = zipper or function(a, b) return {a, b} end
+    iter = iter or pairs
+
+    local res = {}
+    for k, v in iter(tab1) do
+        res[k] = zipper(v, tab2[k])
+    end
+    return res
+end
+t.zip = table.zip
 
 return t
