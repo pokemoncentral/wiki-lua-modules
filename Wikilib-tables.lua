@@ -457,7 +457,8 @@ t.search = table.search
 Returns the elements of a numeric table whose indices are within the specified
 range. The end of the range defaults to the end of the source table.
 
-TODO: implement with builtins
+Negative values count from the end of the table. For example, -1 is the last
+element, -2 is the second last and so on.
 
 --]]
 table.slice = function(tab, from, to)
@@ -570,14 +571,24 @@ table.values = function(tab, iter)
 end
 t.values = table.values
 
+--[[
 
-table.zip = function(tab1, tab2, zipper, iter)
-    zipper = zipper or function(a, b) return {a, b} end
+Returns a table from two sources. The items of the new table are obtained by
+combining the elements with the same index in the two sources. The default
+combinator creates a pair, as a table with two elements.
+
+The used indices are those of the first table returned by the iterator. No
+other indices will be considered, especially the extra indices of the second
+table. The iterator defaults to pairs.
+
+--]]
+table.zip = function(tab1, tab2, combinator, iter)
+    combinator = combinator or function(a, b) return {a, b} end
     iter = iter or pairs
 
     local res = {}
     for k, v in iter(tab1) do
-        res[k] = zipper(v, tab2[k])
+        res[k] = combinator(v, tab2[k])
     end
     return res
 end
