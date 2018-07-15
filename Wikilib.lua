@@ -130,6 +130,13 @@ end
 
 w.map_and_concat = w.mapAndConcat
 
+--[[
+
+Generates the standard wikicode interface given a lua function. That is, a
+function that copies and trims all elements in frame.args and then passes
+them on to the lua interface unpacked.
+
+--]]
 w.stdWikicodeInterface = function(luaInterface)
     return function(frame)
         local p = w.trimAll(table.copy(frame.args))
