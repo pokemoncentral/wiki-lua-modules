@@ -124,28 +124,32 @@ end
 --[[
 
 This function returns the abbreviations of all the games in an abbreviaton
-data, displayed in the color of the game.
+data, displayed in the specified color and shade. The color can be passed as
+an hexadecimal or as a named color; it defaults to each game's own color. The
+shade to default is 'normale'.
 
 Arguments:
     - data: the data of an abbreviation, from module Sigle/data.
     - makeText: the function creating the text to be displayed. It takes the
         abbreviation of a single game, and returns the text to be displayed
         in the link. Defaults to tostring.
-    - makeColors: the function returning the colors to be used. It takes the
-        color name as an argument, and returns the background and text color
-        to be used in the link. Defaults to colorAndText.
+    - textColor: The color the abbreviations should have. Can be a named color
+        or an hexadecimal Defaults to each game's own color.
+    - shade: The shade of the color to use. Defaults to 'normale'.
 
 Return:
     - A list of strings, each one containing the text for the games grouped
         together in the abbreviation data.
 
 --]]
-q.coloredAbbrs = function(data, makeText, shade)
+q.coloredAbbrs = function(data, makeText, textColor, shade)
     shade = shade or 'normale'
     makeText = makeText or tostring
 
-    return q.mapDisplay(data, function(text, color)
+    return q.mapDisplay(data, function(text, gameColor)
+        local color = textColor or gameColor
         return string.interp('<span style="color: #${color};">${text}</span>', {
+            -- This is ok also for when c[color][shade] evaluates to false
             color = c[color] and c[color][shade] or color,
             text = makeText(text)
         })
@@ -181,13 +185,16 @@ end
 --[[
 
 This function returns the normal shade of a color, and the color the text
-should have is such color is used as a background.
+should have is such color is used as a background. The color can be given
+either as a named color or as an hexadecimal. In the latter case, however, the
+text color will always be black, except for black hexadecimal.
 
 Arguments:
-    - color: the name of the color.
+    - color: the name of the color or an hexadecimal.
 
 --]]
 q.colorAndText = function(color)
+    -- This is ok also for when c[color].normale evaluates to false
     local background = c[color] and c[color].normale or color
     local text = table.search(wData.whitetext, color:lower())
             and c.background
@@ -338,25 +345,30 @@ end
 --[[
 
 This function generates a lua interface for client modules. As explained
-below, the interface takes a fixed number of arguments after the additional
-abbreviations, even though these are optional.
+below, the interface takes a single table, containing both arbitrary arguments
+and extra abbreviations.
 
 This function is meant to be named after an abbreviation, and takes as
-arguments an arbitrary long sequence of abbreviations and a fixed number of
-parameters after these. Some example calls:
+argument a single table. One of the keys is meant to store some extra
+abbreviations, either as a table or as a space-separated list. The other items
+are the other arguments that the function needs.
 
-myModule.abbr0(abbr1, abbr2, arg1, arg2, arg3)
-myModule.abbr0(arg1, arg2, arg3)
+Some example calls:
 
-The returned function first splits the fixed final arguments from the
-abbreviations, and then processes every abbreviaton, including the one it is
-meant to be named after, via makeGame, Finally the resulting table is passed on
-to postProcess for the final processing before returning the value to WikiCode.
+myModule.abbr0{games = {'abbr1', 'abbr2'}, arg1, arg2, arg3)
+myModule.abbr0{games = 'abbr1 abbr2', arg1, arg2, arg3)
+myModule.abbr0{arg1, arg2, arg3}
+
+The returned function processes every abbreviaton, including the one it is
+meant to be named after, via makeGame, and then the resulting table is passed
+on to postProcess for the final processing before returning the value to
+WikiCode.
 
 Arguments:
     - abbr: the abbreviaton this function is meant to be bound to, that will
         always be prepended to the passed arguments.
-    - argsCount: the number of fixes final arguments.
+    - abbrKey: the key of the table the abbreviations are stored at.
+        Defaults to 'games'
     - makeAbbrev: this function is used to generate data for a single
         abbreviation. It takes the data of such abbreviation in Sigle/data and
         the fixed final arguments packed in a table. It returns whatever
@@ -373,7 +385,6 @@ q.onMergedAbbrsArgs = function(abbr, abbrKey, makeAbbrev, postProcess)
     abbrKey = abbrKey or 'games'
 
     local luaInterface = function(args)
-        print(args)
         local abbrs = args[abbrKey] or {}
 
         abbrs = type(abbrs) == 'string' and mw.text.split(abbrs, ' ') or abbrs
