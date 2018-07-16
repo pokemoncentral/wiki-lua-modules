@@ -7,6 +7,8 @@ calls to Colore module and adding vendor prefixes
 
 local css = {}
 
+local mw = require('mw')
+
 local str = require('Wikilib-strings')      -- luacheck: no unused
 local w = require('Wikilib')
 local c = require("Colore-data")
@@ -284,7 +286,7 @@ styles.classesStyles = function(predefs, pdfs, classes, stys)
     if pdfs and pdfs ~= '' then
         pdfs = type(pdfs) == 'string' and mw.text.split(pdfs, ' ') or pdfs
         for _, predef in pairs(pdfs) do
-            local pdf = predef[predefs]
+            local pdf = predefs[predef]
             if pdf then
                 classes = table.merge(classes, pdf.classes)
                 --[[
