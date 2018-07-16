@@ -5,11 +5,11 @@ local a = require('AbbrLink')
 -- Lua test cases
 
 -- Full abbreviation in function name
-local fullLua = a.RZSROZALua('Torre dei Cieli')
+local fullLua = a.RZSROZALua{'Torre dei Cieli'}
 print(fullLua)
 
 -- Abbreviations in arguments
-local argsLua = a.RZSLua('ROZA', 'Torre dei Cieli')
+local argsLua = a.RZLua{games = 'S ROZA', 'Torre dei Cieli'}
 print(argsLua)
 
 -- Syntax equivalence
@@ -22,7 +22,7 @@ local fullWikicode = a.RZSROZA{args={'Torre dei Cieli'}}
 print(fullWikicode)
 
 -- Abbreviations in arguments
-local argsWikicode = a.RZS{args={'ROZA', 'Torre dei Cieli'}}
+local argsWikicode = a.RZ{args={games = 'S ROZA', 'Torre dei Cieli'}}
 print(argsWikicode)
 
 -- Syntax equivalence

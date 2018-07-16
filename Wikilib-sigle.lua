@@ -368,17 +368,21 @@ Arguments:
         a function concatenating the second argument.
 
 --]]
-q.onMergedAbbrsArgs = function(abbr, argsCount, makeAbbrev, postProcess)
+q.onMergedAbbrsArgs = function(abbr, abbrKey, makeAbbrev, postProcess)
     postProcess = postProcess or function(_, t) return table.concat(t) end
+    abbrKey = abbrKey or 'games'
 
-    local luaInterface = function(...)
-        local args = {...}
-        local tail = table.slice(args, -argsCount)
-        args = table.slice(args, 1, -argsCount - 1)
-        table.insert(args, 1, abbr)
+    local luaInterface = function(args)
+        print(args)
+        local abbrs = args[abbrKey] or {}
 
-        return postProcess(tail, table.map(args, function(game)
-            return makeAbbrev(sig[game], tail)
+        abbrs = type(abbrs) == 'string' and mw.text.split(abbrs, ' ') or abbrs
+        table.insert(abbrs, 1, abbr)
+
+        args[abbrKey] = nil
+
+        return postProcess(args, table.map(abbrs, function(game)
+            return makeAbbrev(sig[game], args)
         end))
     end
 
