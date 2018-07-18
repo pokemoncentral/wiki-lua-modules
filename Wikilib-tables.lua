@@ -297,6 +297,35 @@ table.flip = function(tab)
 end
 t.flip = table.flip
 
+--[[
+
+Removes one level of nesting in a table-of-tables. Returns a new table.
+Non-table elements are left untouched, while subtables are merged in the
+returned as they are given by the iterator. The iterator defaults to pairs.
+
+As items are processed in the order they are returned by the iterator, care
+should be taken regarding non-integer indices, since their value are overridden
+in assignments. For example,
+
+table.flatten({{1, 2, key1 = 5}, {key1 = 9}}, ipairs) --> {1, 2, key1 = 9}
+table.flatten({{key1 = 9}, {1, 2, key1 = 5}}, ipairs) --> {1, 2, key1 = 5}
+
+--]]
+table.flatten = function(tab, iter)
+    iter = iter or pairs
+
+    local dest = {}
+    for k, v in iter(tab) do
+        if type(v) == 'table' then
+            dest = table.merge(dest, v)
+        else
+            dest[k] = v
+        end
+    end
+    return dest
+end
+t.flatten = table.flatten
+
 
 --[[
 

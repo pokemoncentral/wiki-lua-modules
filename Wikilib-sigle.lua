@@ -1,7 +1,6 @@
 --[[
 
-Libreria di funzioni di utilità per
-i moduli che usano Sigle/data
+Utility function for modules using Sigle/data
 
 --]]
 
