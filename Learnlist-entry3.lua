@@ -7,6 +7,7 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
 local s = require("Sup-data")
+local abbrLib = require('Wikilib-sigle')
 
 -- Funzione chiamata da tutti gli entry per generare le celle dalla seconda in poi
 
@@ -26,7 +27,7 @@ z.level = function(frame)
 			p[7] or 'Grinta', p[8] or '0', p[9] or '0')},
 {
 	p1 = p[1] or 'Inizio',
-	games = s[p[12]] or ''
+	games = abbrLib.concatAbbrs(p[12] or '', s)
 })
 end
 
@@ -45,7 +46,7 @@ z.tm = function(frame)
 	img = string.match(p[1] or 'MT55', '^(M[TN])%d'),
 	p1 = p[1] or 'MT55',
 	tipo = p[3] or 'Sconosciuto',
-    games = s[p[12]] or ''
+    games = abbrLib.concatAbbrs(p[12] or '', s)
 })
 end
 
@@ -58,8 +59,9 @@ z.breed = function(frame)
     return string.interp(table.concat{[=[|-
 | style="padding: 0.1em 0.3em;" | ${fathers}]=],
 		entry(p[11] or '', p[2] or 'Fulmine', lib.makeNotes(p[10] or '',
-			s[p[12]] or ''), p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0',
-			p[6] or '0', p[7] or 'Classe', p[8] or '0', p[9] or '0')},
+			abbrLib.concatAbbrs(p[12] or '', s)), p[3] or 'Sconosciuto',
+            p[4] or '0', p[5] or '0', p[6] or '0', p[7] or 'Classe',
+            p[8] or '0', p[9] or '0')},
 {
 	fathers = lib.insertnwlns(p[1] or '', nil, '3')
 })

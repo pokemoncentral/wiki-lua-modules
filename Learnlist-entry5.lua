@@ -7,13 +7,14 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
 local s = require("Sup-data")
+local abbrLib = require('Wikilib-sigle')
 
 --Entry per le mosse apprese aumentando di livello
 
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return table.concat{'|-\n', lib.gameslevel(p[1] or
-		[[<span class="explain" title="Disponibile solo in Nero 2 e Bianco 2">''Assente''</span>]], 
+		[[<span class="explain" title="Disponibile solo in Nero 2 e Bianco 2">''Assente''</span>]],
 		p[2] or [[<span class="explain" title="Disponibile solo in Nero 2 e Bianco 2">''Assente''</span>]]),
 		lib.categoryentry(p[10] or '', p[3] or 'Geloraggio',
 			lib.makeNotes(p[9] or ''), p[4] or 'Sconosciuto',
@@ -35,7 +36,7 @@ z.tm = function(frame)
 	img = string.match(p[1] or 'MT55', '^(M[TN])%d'),
 	p1 = p[1] or 'MT55',
 	tipo = p[3] or 'Sconosciuto',
-    games = s[p[10]] or ''
+    games = abbrLib.concatAbbrs(p[10] or '', s)
 })
 end
 
@@ -48,8 +49,9 @@ z.breed = function(frame)
     return string.interp(table.concat{[=[|-
 | style="padding: 0.1em 0.3em;" | ${fathers}]=],
 		lib.categoryentry(p[8] or '', p[2] or 'Lanciafiamme',
-			lib.makeNotes(p[9] or '', s[p[10]] or ''), p[3] or 'Sconosciuto',
-			p[4] or 'Stato', p[5] or '0', p[6] or '0', p[7] or '0')},
+			lib.makeNotes(p[9] or '', abbrLib.concatAbbrs(p[10] or '', s)),
+            p[3] or 'Sconosciuto', p[4] or 'Stato', p[5] or '0', p[6] or '0',
+            p[7] or '0')},
 {
 	fathers = lib.insertnwlns(p[1] or '', nil, '5')
 })

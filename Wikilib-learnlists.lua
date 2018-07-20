@@ -11,6 +11,7 @@ local c = require("Colore-data")
 local css = require('Css')
 local abbr = require("Sigle-data")
 local s = require("Sup-data")
+local abbrLib = require('Wikilib-sigle')
 
 -- local trimOnly = {'x v zA'}
 
@@ -58,8 +59,10 @@ invariato; negli altri casi le si usano come title.
 --]]
 lib.makeNotes = function(notes, ...)
 	local pieces = {...}
-	if s[notes] then
-		table.insert(pieces, 1, s[notes])
+    local firstGame = notes:match('^(%S+)')
+
+	if s[firstGame] then
+		table.insert(pieces, 1, abbrLib.concatAbbrs(notes, s))
 	elseif notes:len() < 2 then
 		table.insert(pieces, 1, notes)
 	else

@@ -17,34 +17,6 @@ local wData = require("Wikilib-data")
 
 --[[
 
-Crea i link ai giochi contenuti in games,
-visualizzandone il testo usando display.
-
-Questa deve ritornare la visualizzazione
-del link, avendo come argomento il valore
-dell'indice text, o link se il primo è
-assente, degli elementi di Sigle/data
-
---]]
-
-q.textLinks = function(games, display)
-	local links = table.map(games, function(data)
-		return string.interp('[[Pokémon ${link}|${display}]]',
-			{
-				link = data.link,
-				display = display(data.text or data.link)
-			})
-		end)
-	--[[
-		Se l'ultimo link ha ' e ' nel testo visualizzato
-		non serve aggiungerlo come separatore finale
-	--]]
-	return links[#links]:find('|.* e .*%]%]') and table.concat(links, ', ')
-			or mw.text.listToText(links, ', ', ' e ')
-end
-
---[[
-
 Ritorna il nome del/i gioco/i a partire dalla sigla,
 eventualmente con un separatore
 
@@ -125,7 +97,7 @@ end
 This function returns the abbreviations of all the games in an abbreviaton
 data, displayed in the specified color and shade. The color can be passed as
 an hexadecimal or as a named color; it defaults to each game's own color. The
-shade to default is 'normale'.
+shade default is 'normale'.
 
 Arguments:
     - data: the data of an abbreviation, from module Sigle/data.
@@ -158,13 +130,17 @@ end
 --[[
 
 This function returns the links to all of the games in an abbreviation data,
-displayed as abbreviations colored in their game color.
+displayed displayed in the specified color and shade. The color can be passed
+as an hexadecimal or as a named color; it defaults to each game's own color.
+The shade default is 'normale'.
 
 Arguments:
     - data: the data of an abbreviation, from module Sigle/data.
     - makeText: the function creating the text to be displayed. It takes the
         abbreviation of a single game, and returns the text to be displayed
         in the link. Defaults to tostring.
+    - textColor: The color the abbreviations should have. Can be a named color
+        or an hexadecimal Defaults to each game's own color.
     - shade: the shade of games color to be used for the abbreviations.
         Defaults to 'normale'.
 
@@ -172,12 +148,12 @@ Return:
     - A list of strings, each one containing a single link.
 
 --]]
-q.coloredAbbrLinks = function(data, makeText, shade)
+q.coloredAbbrLinks = function(data, makeText, textColor, shade)
     shade = shade or 'normale'
     makeText = makeText or tostring
 
     return q.makeLinks(data, function(abbrData)
-        return q.coloredAbbrs(abbrData, makeText, shade)
+        return q.coloredAbbrs(abbrData, makeText, textColor, shade)
     end)
 end
 
@@ -199,6 +175,27 @@ q.colorAndText = function(color)
             and c.background
             or '000'
     return background, text
+end
+
+--[[
+
+This function concatenates the string representation of the passed
+abbreviations, as found in the given data module. Every non-found abbreviaton
+will have the empty string as its string representation.
+
+Arguments:
+    - abbrs: The abbreviations to be merged, as a space separated string or as
+        a table
+    - dataModule: The data module holding the content that will be
+        concatenated.
+
+--]]
+q.concatAbbrs = function(abbrs, dataModule)
+    abbrs = type(abbrs) == 'string' and mw.text.split(abbrs, ' ') or abbrs
+
+    return w.mapAndConcat(abbrs, function(abbr)
+        return dataModule[abbr] or ''
+    end)
 end
 
 --[[

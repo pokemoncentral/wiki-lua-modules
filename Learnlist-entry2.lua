@@ -7,6 +7,7 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
 local s = require("Sup-data")
+local abbrLib = require('Wikilib-sigle')
 
 --Entry per le mosse apprese aumentando di livello
 
@@ -18,7 +19,7 @@ z.level = function(frame)
 			p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0', p[6] or '0')},
 {
 	p1 = p[1] or 'Inizio',
-	games = s[p[9]] or ''
+	games = abbrLib.concatAbbrs(p[9] or '', s)
 })
 end
 
@@ -34,7 +35,7 @@ z.tm = function(frame)
 	img = string.match(p[1] or 'MT55', '^(M[TN])%d'),
 	p1 = p[1] or 'MT55',
 	tipo = p[3] or 'Sconosciuto',
-    games = s[p[9]] or ''
+    games = abbrLib.concatAbbrs(p[9] or '', s)
 })
 end
 
@@ -47,8 +48,8 @@ z.breed = function(frame)
     return string.interp(table.concat{[=[|-
 | style="padding: 0.1em 0.3em;" | ${fathers}]=],
 	lib.basicentry(p[8] or '', p[2] or 'Schianto', lib.makeNotes(p[7] or '',
-			s[p[9]] or ''), p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0',
-			p[6] or '0')},
+			abbrLib.concatAbbrs(p[9] or '', s)), p[3] or 'Sconosciuto',
+            p[4] or '0', p[5] or '0', p[6] or '0')},
 {
 	fathers = lib.insertnwlns(p[1] or '', nil, '2')
 })

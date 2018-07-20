@@ -7,6 +7,7 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
 local s = require("Sup-data")
+local abbrLib = require('Wikilib-sigle')
 
 --Entry per le mosse apprese aumentando di livello
 
@@ -18,7 +19,7 @@ z.level = function(frame)
 			p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0', p[6] or '0')},
 {
 	level = p[1] or 'Inizio',
-	games = s[p[9]] or ''
+	games = abbrLib.concatAbbrs(p[9] or '', s)
 })
 end
 
@@ -36,7 +37,7 @@ z.tm = function(frame)
 	img = string.match(p[1] or 'MT55', '^(M[TN])%d'),
 	machine = p[1] or 'MT55',
 	tipo = p[3] or 'Sconosciuto',
-    games = s[p[9]] or ''
+    games = abbrLib.concatAbbrs(p[9] or '', s)
 })
 end
 
@@ -63,7 +64,7 @@ z.event = function(frame)
 			p[3] or 'Sconosciuto', p[4] or '0', p[5] or '0', p[6] or '0')},
 {
 	event = p[1] or 'Evento',
-	level = lib.maleLevel(p[9])
+	level = lib.makeLevel(p[9])
 })
 end
 

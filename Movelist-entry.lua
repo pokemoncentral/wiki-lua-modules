@@ -18,6 +18,7 @@ local gendata = require("Gens-data")
 local groups = require("PokéEggGroup-data")
 local libdata = require("Wikilib-data")
 local pokes = require("Poké-data")
+local abbrLib = require('Wikilib-sigle')
 
 forms.loadUseless(true)                 -- uses both AltForms and UselessForm
 
@@ -153,7 +154,7 @@ local makeSupCell = function(content, cellData, collapse)
 		return makeCell('FFF', cellData.txt, '1', content)
 	else
 		return makeCell(cellData.bg, cellData.txt, '1',
-			content .. abbr[cellData.abbr], collapse)
+			content .. abbrLib.concatAbbrs(cellData.abbr, abbr), collapse)
 	end
 end
 
