@@ -46,8 +46,12 @@ local makeMachinesList = function(list)
 					{
 						num = num,
 						games = table.concat(table.map(move, function(movegame)
-								return links[movegame[1]:upper() .. 'Lua'](
-										moves[movegame[2]].name, '', true)
+                                local games, move = movegame[1], movegame[2]
+                                games = mw.text.split(games:upper(), ' ')
+                                local keyGame = table.remove(games, 1)
+
+								return links[keyGame .. 'Lua']{games = games,
+										moves[move].name}
 							end), ' | ')
 					})
 			else
@@ -145,7 +149,7 @@ m.MTGen = function(frame)
 	return MTGen(tonumber(params[1]), params.width) ..
 			"[[Categoria:Mosse Macchina]]"
 end
-arg={'MTCompatto', 'Surf'}
+arg={'MTCompatto', 'Flash'}
 print(m[arg[1]]{ args={arg[2], width = arg[3]} })
 
 return m

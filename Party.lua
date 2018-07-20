@@ -167,6 +167,9 @@ local calcBaseInterpData = function(p, colors, collapsiblebackground)
 		collapsiblelighttext = needWhiteText(collapsiblebackground)
 	end
 
+    local games = mw.text.split(p.game, ' ')
+    local keyGame = table.remove(games, 1)
+
 	local interpData = {
 		sprite = p.sprite,
 		size = p.size and '|' .. p.size or '',
@@ -175,7 +178,7 @@ local calcBaseInterpData = function(p, colors, collapsiblebackground)
 		name = p.name or 'Oak',
 		location = p.location or 'Brockolandia',
 		locationname = p.locationname or p.location or 'Brockolandia',
-		game = gbl[p.game]{args={'000'}} or p.game,
+		game = gbl[keyGame .. 'Lua']{games = games, '000'} or p.game,
 		prize = p.prize or '[[File:PokémonDollar.png|link=Dollari Pokémon]]0',
 		balls = lib.balls(tonumber(p.pokemon or p.pokemon1) or 0),
 

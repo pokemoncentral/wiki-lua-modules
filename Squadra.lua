@@ -59,6 +59,8 @@ s.squadra = function(frame)
 	| style="width: 80px; height: 80px; ${r80} background: #${headcolor2}; border: 2px solid #${bordercolor2};" | [[File:${sprite2}]]]=]
 	}
 
+    local games = mw.text.split(p.game, ' ')
+    local keyGame = table.remove(games, 1)
 
 	-- Interpolation
 	return string.interp([=[{| class="text-center mw-collapsible mw-collapsed" style="${r20} background: #${color}; border: 2px solid #${bordercolor};" cellspacing="1" cellpadding="2"
@@ -103,7 +105,7 @@ ${party}
 	secondtrainer = p.tag == 'yes' and string.interp(extra.secondtrainer, {class2 = p.class2, name2 = p.name2}) or '',
 	location = p.location or 'Brockolandia',
 	locationname = p.locationname or p.location or 'Brockolandia',
-	game = gbl[p.game]{args={'000'}} or p.game,
+	game = gbl[keyGame .. 'Lua']{games = games, '000'} or p.game,
 	secondsprite = p.tag == 'yes' and
 		string.interp(extra.secondsprite, {r80 = r.roundyLua('80px'), headcolor2 = colors.headcolor2, bordercolor2 = colors.bordercolor2,
 		sprite2 = p.sprite2}) or '',
