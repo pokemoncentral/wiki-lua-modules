@@ -243,7 +243,7 @@ j.Shadowh = j.shadowh
 local foot = function(interpData)
 	return string.interp([=[|- class="text-left"
 | class="text-small" style="background: transparent;" colspan="${cs}" |
-* I Pokémon in '''grassetto''' sono quelli che ricevono lo [[Same-type attack bonus|<span style="color:#333;">STAB</span>]] dalla mossa.
+* I Pokémon in '''grassetto''' sono quelli che ricevono lo [[Bonus di tipo|<span style="color: #000;">bonus di tipo</span>]] dalla mossa.
 * I Pokémon in ''corsivo'' sono quelli con evoluzioni o [[Differenze di forma|<span style="color:#333">forme alternative</span>]] che ricevono lo STAB.${last}
 |}]=], interpData)
 end
