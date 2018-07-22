@@ -24,8 +24,8 @@ local mw = require('mw')
 local w = require('Wikilib')
 local wdata = require("Wikilib-data")
 local lib = require('Wikilib-squadra')
-local txt = require('Wikilib-strings') -- luacheck: no unused
-local tab = require('Wikilib-tables') -- luacheck: no unused
+local txt = require('Wikilib-strings')      -- luacheck: no unused
+local tab = require('Wikilib-tables')       -- luacheck: no unused
 local gbl = require('GamesColorLinks')
 local css = require('Css')
 
@@ -39,97 +39,6 @@ altre due funzioni. Per renderlo uguale a tag
 aggiungere il parametro tag=yes
 
 --]]
-
---[===[
-
-Dato che non funziona, viene commentata in blocco
-
-s.squadra = function(frame)
-	local p = w.trimAll(mw.clone(frame.args))
-
-	-- La table poke contiene i dati dei Pokémon
-	local poke = {p.pokemon1}
-	for a = 2, p.pokemon do
-		table.insert(poke, p['pokemon' .. a])
-	end
-
-	-- Colori in esadecimale, con valori di default dapprima "sconosciuto" e poi quelli calcolati prima
-
-	local colors = lib.gethex{color = p.color or c.sconosciuto.normale, bordercolor = p.bordercolor or c.sconosciuto.dark,
-		headcolor = p.headcolor or c.sconosciuto.light}
-	local colors = lib.gethex({headcolor1 = p.headcolor1 or colors.headcolor, headcolor2 = p.headcolor2 or colors.headcolor,
-		bordercolor1 = p.bordercolor1 or colors.bordercolor, bordercolor2 = p.bordercolor2 or colors.bordercolor,
-		color1 = p.color1 or colors.color, color2 = p.color2 or colors.color}, colors)
-
-	-- Stringhe non sempre presenti
-	local extra = {
-		class = [=[<div class="small-text" style="line-height:10px;">'''[[${class} (classe allenatore)|<span style="color:#000">${class}</span>]]'''</div>]=],
-
-		secondtrainer = [=[<div>''e''</div>
-<div>
-<div class="small-text" style="line-height:10px;">'''[[${class2} (classe allenatore)|<span style="color:#000">${class2}</span>]]'''</div><div class="big-text">'''${name2}'''</div>
-</div>]=],
-
-		secondsprite = [=[<div style="padding: 0.3ex; height: 11ex; width: 11ex; ${r80} background: linear-gradient(to right, #${color2}, #${bordercolor2});">[[File:${sprite2}]]</div>]=]
-	}
-
-
-	-- Interpolation
-	return string.interp([=[{| class="mw-collapsible mw-collapsed text-center pull-left roundy" style="padding: 0.5ex; background: linear-gradient(to right, #${headcolor}, #${bordercolor});"
-|-
-| <div class="flex flex-row flex-nowrap flex-items-center flex-main-center" style="padding: 0 2.5em;">
-<div>
-<div style="padding: 0.3ex; ${r80} background: linear-gradient(to right, #${color}, #${headcolor});">[[File:${sprite}]]</div>
-<div class="text-small" style="margin-top: 0.5ex; line-height: 10px">Ricompensa:</div>
-<div>'''${prize}'''</div>
-</div>
-<div>
-<div class="roundy text-center" style="margin-left: 1ex; width: 18em; padding: 0.2ex; background: linear-gradient(to right, #${color}, #${headcolor});"><div class="flex flex-row flex-nowrap flex-items-center flex-main-center">
-<div>
-${class}
-<div class="text-big">'''${name}'''</div>
-</div>${secondtrainer}
-</div>
-<div>'''[[${location}|<span style="color: #000;">${locationname}</span>]]'''</div>
-<div class="text-small">${game}</div>
-</div>
-<div class="roundy pull-center" style="margin-top: 0.5ex; width: 14ex; padding: 0.2ex; background: linear-gradient(to right, #${color}, #${headcolor}); line-height: 10px">${balls}</div>
-</div>${secondsprite}
-</div>
-|-
-| <div class="flex flex-row flex-nowrap flex-items-center flex-main-space-around">
-${party}
-</div>
-|}<br><br clear="left">
-]=],
-{
-	color = colors.color,
-	bordercolor = colors.bordercolor,
-	r80 = r.roundyLua('80px'),
-	headcolor1 = colors.headcolor1,
-	bordercolor1 = colors.bordercolor1,
-	sprite = p.sprite,
-	headcolor = colors.headcolor,
-	class = p.class and string.interp(extra.class, {class = p.class}) or '',
-	name = p.name,
-	secondtrainer = p.tag == 'yes' and string.interp(extra.secondtrainer, {class2 = p.class2, name2 = p.name2}) or '',
-	location = p.location or 'Brockolandia',
-	locationname = p.locationname or p.location or 'Brockolandia',
-	game = gbl[p.game]{args={'000'}} or p.game,
-	secondsprite = p.tag == 'yes' and
-		string.interp(extra.secondsprite, {r80 = r.roundyLua('80px'), headcolor2 = colors.headcolor2, bordercolor2 = colors.bordercolor2,
-		sprite2 = p.sprite2}) or '',
-	prize = p.prize or '[[File:PokémonDollar.png|link=Pokémon Dollar]]0',
-	balls = lib.balls(tonumber(p.pokemon) or 0),
-	color1 = colors.color1,
-	party = lib.party(poke,
-		string.interp('|}\n{| class="roundybottom pull-center" style="background:#${color2}; border: 5px solid #${color2};"',
-		{color2 = colors.color2})),
-})
-end
-
-s.Squadra = s.squadra
---]===]
 
 -- Returns true iff the text should be white on the passed color variant
 local needWhiteText = function(color)
