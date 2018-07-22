@@ -98,18 +98,26 @@ local makeAllLinks = function(args, links)
     local last = table.remove(links)
 
     --[[
-        If the last link contains more than one games, then the ' e ' is added
-        as a seaprator within the last link, and a comma should be used as the
-        separator preceding the last link.
+    If the last link contains more than one games, then the ' e ' is added
+    as a seaprator within the last link, and a comma should be used as the
+    separator preceding the last link.
 
-        In case the last link is a single game, then no ' e ' will be added as
-        a separator, meaning that ' e ' itself should be used as a separator
-        before the last link.
+    In case the last link is a single game, then no ' e ' will be added as
+    a separator, meaning that ' e ' itself should be used as a separator
+    before the last link.
     --]]
     local beforeLastSep = #last[2] > 1 and ', ' or ' e '
 
     -- The last link needs an ' e ' as a separator
     last = makeColoredLink(color, ' e ')(last)
+
+    --[[
+        One link only implies empty init later on, that is annoying to manage
+        with table.concat. It's easier and more efficient to handle it here.
+    --]]
+    if #links == 0 then
+        return last
+    end
 
     -- All but the last links are concatenated using a comma
     local init = w.mapAndConcat(links, makeLink, ', ')

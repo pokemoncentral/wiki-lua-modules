@@ -383,7 +383,9 @@ q.onMergedAbbrsArgs = function(abbr, abbrKey, makeAbbrev, postProcess)
     local luaInterface = function(args)
         local abbrs = args[abbrKey] or {}
 
-        abbrs = type(abbrs) == 'string' and mw.text.split(abbrs, ' ') or abbrs
+        if type(abbrs) == 'string' then
+            abbrs = abbrs == '' and {} or mw.text.split(abbrs, ' ')
+        end
         table.insert(abbrs, 1, abbr)
 
         args[abbrKey] = nil

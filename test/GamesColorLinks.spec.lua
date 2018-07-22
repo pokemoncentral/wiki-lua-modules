@@ -17,15 +17,15 @@ local testSuite = function(games, colors)
 
     -- Full abbreviation in function name
     local fullLua = gcl[allAbbrs .. 'Lua'](table.copy(args))
-    print(fullLua)
+    print(fullLua, '-----')
 
     -- Abbreviations in arguments
     local argsLua = gcl[firstAbbr .. 'Lua'](table.copy(gamesArgs))
-    print(argsLua)
+    print(argsLua, '-----')
 
     -- Abbreviations in split arguments
     local splitLua = gcl[firstAbbr .. 'Lua'](table.copy(gamesArgsSplit))
-    print(splitLua)
+    print(splitLua, '-----')
 
     -- Syntax equivalence
     assert(fullLua == argsLua, 'syntax mismatch in lua API, full vs args')
@@ -36,11 +36,11 @@ local testSuite = function(games, colors)
 
     -- Full abbreviation in function name
     local fullWikicode = gcl[allAbbrs]{args=table.copy(args)}
-    print(fullWikicode)
+    print(fullWikicode, '-----')
 
     -- Abbreviations in argument
     local argsWikicode = gcl[firstAbbr]{args=table.copy(gamesArgs)}
-    print(argsWikicode)
+    print(argsWikicode, '-----')
 
     -- Syntax equivalence
     assert(fullWikicode == argsWikicode, 'syntax mismatch in Wikicode API')
@@ -49,6 +49,8 @@ local testSuite = function(games, colors)
     assert(fullLua == fullWikicode, 'Lua and Wikicode API mismatch, full')
     assert(argsLua == argsWikicode, 'Lua and Wikicode API mismatch, args')
     assert(splitLua == argsWikicode, 'Lua and Wikicode API mismatch, split')
+
+    print('----------------')
 end
 
 -- 'e' in last link test cases
@@ -90,3 +92,43 @@ testSuite(table.copy(commaGames), {'zaffiro', 'dark'})
 -- Named color shadeless test cases
 
 testSuite(table.copy(commaGames), {'zaffiro'})
+
+-- Single link with two games test cases
+
+local singlePairGame = {'RZ'}
+
+-- Colorless test cases
+
+testSuite(table.copy(singlePairGame), {})
+
+-- Hexadecimal color test cases
+
+testSuite(table.copy(singlePairGame), {'7722AA'})
+
+-- Named color test cases
+
+testSuite(table.copy(singlePairGame), {'zaffiro', 'dark'})
+
+-- Named color shadeless test cases
+
+testSuite(table.copy(singlePairGame), {'zaffiro'})
+
+-- Single link with one game test cases
+
+local singleGame = {'S'}
+
+-- Colorless test cases
+
+testSuite(table.copy(singleGame), {})
+
+-- Hexadecimal color test cases
+
+testSuite(table.copy(singleGame), {'7722AA'})
+
+-- Named color test cases
+
+testSuite(table.copy(singleGame), {'zaffiro', 'dark'})
+
+-- Named color shadeless test cases
+
+testSuite(table.copy(singleGame), {'zaffiro'})
