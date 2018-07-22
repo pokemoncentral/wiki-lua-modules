@@ -1,10 +1,10 @@
---  "Test cases" for Party
+--  "Test cases" for Squadra
 
-local party = require('Party')
+local squadra = require('Squadra')
 
 local poke = [==[
 
-<div class="inline-block">
+|<div class="inline-block">
 <div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
 <div class="width-xl-50 width-xs-100">
 <div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
@@ -28,84 +28,61 @@ local poke = [==[
 </div>
 </div>]==]
 
--- Single + Shaded named colors + manual expandablelight
+-- Single + Shaded named colors
 
-print(party.single{args={
-    color = 'ghiaccio normale',
-    headcolor = 'ghiaccio light',
-    bordercolor = 'ghiaccio dark',
-    sprite = 'RB Agatha.png',
-    prize = '[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]5940',
-    name = '<span style="color: #000;">Agatha</span>',
-    game = 'RB',
-    location = 'Altopiano Blu',
-    pokemon = '5',
-    expandiblelight = 'yes'
+print(squadra.single{args={
+    color = 'buio normale',
+    headcolor = 'buio light',
+    bordercolor = 'buio dark',
+    sprite = 'N2B2 Alfredo.gif',
+    prize = '1[[Punti Lotta|<span style="color: #000;">PL</span>]]',
+    name = '<span style="color: #000;">Alfredo</span>',
+    game = 'N2B2',
+    location = 'Pokémon World Tournament',
+    pokemon = '6'
 }})
 
 print(poke:rep(3))
 
 -- Div
 
-print(party.div{args={color = 'spettro'}})
-
-print(poke:rep(2))
-
-print(party.footer())
-
--- Single + Shaded named colors + no expandablelight
-
-print(party.single{args={
-    color = 'ghiaccio dark',
-    headcolor = 'ghiaccio light',
-    bordercolor = 'ghiaccio normale',
-    sprite = 'RB Agatha.png',
-    prize = '[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]5940',
-    name = '<span style="color: #000;">Agatha</span>',
-    game = 'RB',
-    location = 'Altopiano Blu',
-    pokemon = '5'
-}})
+print(squadra.div{args={color = 'ghiaccio'}})
 
 print(poke:rep(3))
 
--- Div
+print(squadra.footer())
 
-print(party.div{args={color = 'spettro'}})
+-- Tag + hexes + shadeless named color + more games
 
-print(poke:rep(2))
-
-print(party.footer())
-
--- Tag + hexes + shadeless named color + more games + automatic expandablelight
-
-print(party.tag{args={
-    back1 = '7722FF',
-    back2 = 'rubinoomega',
-    sprcolor1 = 'terra normale',
-    sprcolor2 = 'terra light',
-    head1 = 'terra normale',
-    head2 = 'terra light',
-    spr2color1 = 'terra normale',
-    spr2color2 = 'terra light',
-    class = 'Magmatenente',
-    name = '[[Magmatenente Ottavio|<span style="color: #000;">Ottavio</span>]]',
-    sprite = 'ROZA VSOttavio.png',
+print(squadra.tag{args={
+    color = '55DD11',
+    bordercolor = 'zaffiro',
+    headcolor = 'acqua',
+    color1 = 'zaffiro light',
+    bordercolor1 = 'zaffiro',
+    headcolor1 = 'acqua',
+    color2 = 'zaffiro light',
+    bordercolor2 = 'zaffiro',
+    headcolor2 = 'acqua',
+    sprite = 'ROZA VSAda.png',
     size = '200px',
-    class2 = 'Recluta Team Magma',
-    name2 = '<span style="color: #000;">Recluta</span>',
-    sprite2 = 'ROZA VSRecluta Team Magma F.png|200px',
-    game = 'RO S',
-    location = 'Cascate Meteora',
+    sprite2 = 'ROZA VSRecluta Team Idro M.png',
+    size2= '200px',
     prize = '[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]3.220',
+    class = 'Idrotenente',
+    class2 = 'Recluta Idro',
+    name = '[[Idrotenente Ada|<span style="color: #000;">Ada</span>]]',
+    name2 = '[[Recluta Idro|<span style="color: #000;">Recluta</span>]]',
+    game = 'ZA S',
+    location = 'Cascate Meteora',
     pokemon1 = '2',
     pokemon2 = '1'
 }})
 
 print(poke:rep(2))
 
-print(party.div{args={color = 'Rubinoomega light'}})
+print(squadra.div{args={color = 'Zaffiroalpha'}})
 
 print(poke)
 
-print(party.footer())
+print(squadra.footer())

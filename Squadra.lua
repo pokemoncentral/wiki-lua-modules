@@ -132,6 +132,9 @@ s.single = function(frame)
 	local colors = lib.gethex({headcolor1 = p.headcolor1 or colors.headcolor,
 		bordercolor1 = p.bordercolor1 or colors.bordercolor}, colors)
 
+    local games = mw.text.split(p.game, ' ')
+    local keyGame = table.remove(games, 1)
+
 	-- Stringa per la trainerclass, non sempre presente
 	local class = [=[
 
@@ -179,7 +182,7 @@ s.single = function(frame)
 	name = p.name or 'Oak',
 	location = p.location or 'Brockolandia',
 	locationname = p.locationname or p.location or 'Brockolandia',
-	game = gbl[p.game]{args={'000'}} or p.game,
+	game = gbl[keyGame .. 'Lua']{games = games, '000'} or p.game,
 	prize = p.prize or '[[File:PokémonDollar.png|link=Pokémon Dollar]]0',
 	balls = lib.balls(tonumber(p.pokemon or p.pokemon1) or 0)
 })
@@ -198,6 +201,9 @@ s.tag = function(frame)
 		headcolor = p.headcolor or c.sconosciuto.light, headcolor1 = p.headcolor1 or c.sconosciuto.light,
 		headcolor2 = p.headcolor2 or c.sconosciuto.light, bordercolor1 = p.bordercolor1 or c.sconosciuto.dark,
 		bordercolor2 = p.bordercolor2 or c.sconosciuto.dark, color1 = p.color1 or c.sconosciuto.dark}
+
+    local games = mw.text.split(p.game, ' ')
+    local keyGame = table.remove(games, 1)
 
 	return string.interp([=[{| class="mw-collapsible mw-collapsed" style="text-align: center; float: left; ${r20} background: #${color}; border: 2px solid #${bordercolor}" cellspacing="1" cellpadding="2"
 |-
@@ -249,7 +255,7 @@ s.tag = function(frame)
 	name2 = p.name2 or 'Oak',
 	location = p.location or 'Brockolandia',
 	locationname = p.locationname or p.location  or 'Brockolandia',
-	game = gbl[p.game]{args={'000'}} or p.game,
+	game = gbl[keyGame .. 'Lua']{games = games, '000'} or p.game,
 	headcolor2 = colors.headcolor2,
 	bordercolor2 = colors.bordercolor2,
 	sprite2 = p.sprite2,
