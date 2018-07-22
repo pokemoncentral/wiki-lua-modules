@@ -317,10 +317,11 @@ This function generates a WikiCode interface for client modules. As explained
 below, the interface takes no arguments other than optional abbreviations.
 
 This function is meant to be named after an abbreviation, and can take an
-arbitrary number of additional abbreviations as arguments. For this intended
-use, an example call would be:
+arbitrary number of additional abbreviations as arguments, even
+space-seaparated within a single argument. For this intended use, an example
+call would be:
 
-{{#invoke: ClientModule | abbr0 | abbr1 | abbr2 }}
+{{#invoke: ClientModule | abbr0 | abbr1 | abbr2 abbr3 | abbr4 }}
 
 The returned function processes every abbreviaton, including the one it is
 meant to be named after, via makeGame, and then the resulting table is passed
@@ -344,6 +345,9 @@ q.onMergedAbbrs = function(abbr, makeAbbrev, postProcess)
 
     return function(frame)
         local args = w.trimAll(table.copy(frame.args))
+        args = table.flatMap(args, function(argument)
+            return mw.text.split(argument, ' ')
+        end)
         table.insert(args, 1, abbr)
 
         return postProcess(table.map(args, function(game)

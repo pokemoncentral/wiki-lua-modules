@@ -7,7 +7,7 @@ local solid = sup.OACRFVFHGSS{args={}}
 print(solid)
 
 -- The very long one, but split
-local split = sup.OA{args={'C', 'RFVF', 'HGSS'}}
+local split = sup.OA{args={'C RFVF', 'HGSS'}}
 print(split)
 
 -- Syntax equivalence

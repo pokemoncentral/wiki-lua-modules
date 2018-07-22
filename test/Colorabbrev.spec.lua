@@ -7,7 +7,7 @@ local solid = ca.OACRFVFHGSS{args={}}
 print(solid)
 
 -- The very long one, but split
-local split = ca.OA{args={'C', 'RFVF', 'HGSS'}}
+local split = ca.OA{args={'C RFVF', 'HGSS'}}
 print(split)
 
 -- Syntax equivalence
