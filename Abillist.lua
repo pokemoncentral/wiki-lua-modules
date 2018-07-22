@@ -92,13 +92,14 @@ end
 
 -- Wikicode for a list entry: Pokémon mini sprite, name, types and abilities.
 Entry.__tostring = function(this)
-    return string.interp([=[| class="min-width-sm-20" | ${static}
+    return string.interp([=[| class="min-width-sm-20" data-sort-value="${ndex}" | ${static}
 | class="min-width-sm-40 min-width-xs-80" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
 | class="min-width-xl-20 width-sm-40 width-xs-100" style="padding: 1ex 0.8ex;" | ${types}
 | class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Prima abilit&agrave;</div>${abil1}${abilEv}
 | class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Seconda abilit&agrave;</div>${abil2}
 | class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Abilit&agrave; nascoste</div>${abild}]=],
 {
+    ndex = this.ndex,
     static = ms.staticLua(string.tf(this.ndex or 0) ..
             (this.formAbbr == 'base' and '' or this.formAbbr or '')),
     name = this.name,
@@ -114,7 +115,7 @@ end
 
 -- Wikicode for list header: it takes the type name, for colors
 local makeHeader = function(type)
-    return string.interp([=[{| class="roundy text-center pull-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
+    return string.interp([=[{| class="sortable roundy text-center pull-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
 |- class="hidden-sm"
 ! style="padding-top: 0.5ex; padding-bottom: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000;">#</span>]]
 ! Pok&eacute;mon
@@ -147,7 +148,7 @@ k.abillist = function(frame)
         header = makeHeader(type),
         separator = '|- class="roundy flex-sm flex-row flex-wrap flex-main-stretch flex-items-center" style="margin-top: 0.5rem;"',
         footer = [[|- style="background: transparent;"
-| class="text-left font-small" colspan="6" style="background: transparent; padding: 0.3ex 0.3em;" |
+! class="text-left font-small" colspan="6" style="padding: 0.3ex 0.3em;" |
 * Le abilità in ''corsivo'' sono ottenibili solo in determinate circostanze.
 |}]]
     })
