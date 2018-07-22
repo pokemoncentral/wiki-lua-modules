@@ -13,3 +13,8 @@ print(split)
 -- Syntax equivalence
 
 assert(solid == split, 'syntax mismatch')
+
+-- No color specified
+
+local noColor = ba.LGPE{args={}}
+print(noColor)

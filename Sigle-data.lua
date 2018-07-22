@@ -382,7 +382,7 @@ x.RZSROZA = {x.RZS[1], x.S[1], x.ROZA[1]}
 x.DemoROZA = {{
     link = 'Rubino Omega e Zaffiro Alpha Versione Demo Speciale',
     display = {
-		{'Demo', '000000'},
+		{'Demo'},
 		{'RΩ', 'rubinoomega'},
 		{'Zα', 'zaffiroalpha'},
     }
@@ -413,7 +413,7 @@ x.DemoSL = {{
     link = 'Sole e Pokémon Luna: Versione demo speciale',
     text = 'Sole e Luna: Versione demo speciale',
     display = {
-		{'Demo', '000000'},
+		{'Demo'},
 		{'S', 'sole'},
 		{'L', 'luna'},
     }
@@ -475,7 +475,7 @@ x.LgE = x.LGE
 x.LGPE = {{
     link = "Let's Go, Pikachu! e Let's Go, Eevee!",
     display = {
-		{'LG', '000000'},
+		{'LG'},
 		{'P', 'LG_pikachu'},
 		{'E', 'LG_eevee'}
     }

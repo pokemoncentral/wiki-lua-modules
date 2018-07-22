@@ -30,7 +30,8 @@ end
 --[[
 
 This function returns the abbreviations of all the games in an abbreviaton
-data, displayed in a background of the color of the game.
+data, displayed in a background of the color of the game, or a very light gray
+if the game has no color.
 
 Arguments:
     - data: the data of an abbreviation, from module Sigle/data.
@@ -63,7 +64,8 @@ end
 --[[
 
 This function returns the links to all of the games in an abbreviation data,
-displayed as abbreviations with a background of the color of the game.
+displayed as abbreviations with a background of the color of the game, or
+a very light gray if the game has no color.
 
 Arguments:
     - data: the data of an abbreviation, from module Sigle/data.
@@ -96,8 +98,8 @@ end
 
 This function returns the abbreviations of all the games in an abbreviaton
 data, displayed in the specified color and shade. The color can be passed as
-an hexadecimal or as a named color; it defaults to each game's own color. The
-shade default is 'normale'.
+an hexadecimal or as a named color; it defaults to each game's own color, or
+black if the game has no color. The shade default is 'normale'.
 
 Arguments:
     - data: the data of an abbreviation, from module Sigle/data.
@@ -118,7 +120,8 @@ q.coloredAbbrs = function(data, makeText, textColor, shade)
     makeText = makeText or tostring
 
     return q.mapDisplay(data, function(text, gameColor)
-        local color = textColor or gameColor
+        -- If the game has no color, using the text color from q.colorAndText
+        local color = textColor or gameColor or ({q.colorAndText()})[2]
         return string.interp('<span style="color: #${color};">${text}</span>', {
             -- This is ok also for when c[color][shade] evaluates to false
             color = c[color] and c[color][shade] or color,
@@ -131,8 +134,8 @@ end
 
 This function returns the links to all of the games in an abbreviation data,
 displayed displayed in the specified color and shade. The color can be passed
-as an hexadecimal or as a named color; it defaults to each game's own color.
-The shade default is 'normale'.
+as an hexadecimal or as a named color; it defaults to each game's own color, or
+black if the game has no color. The shade default is 'normale'.
 
 Arguments:
     - data: the data of an abbreviation, from module Sigle/data.
@@ -159,21 +162,32 @@ end
 
 --[[
 
-This function returns the normal shade of a color, and the color the text
-should have is such color is used as a background. The color can be given
-either as a named color or as an hexadecimal. In the latter case, however, the
-text color will always be black, except for black hexadecimal.
+This function takes as input a color as found in the elements if display key
+in abbreviation data. It returns two hexadecimal colors: the first one is the
+passed color one, the second one is the color the text should have if the first
+color is used as a background.
+
+The color can be passed in the following formats. A named color, in which case
+the normale shade will be returned. An hexadecimal, that will be returned
+unchanged: however, in this case the text color will always be black. Nil, that
+implies returning a very light gray and black, as background and text color
+respectively.
 
 Arguments:
-    - color: the name of the color or an hexadecimal.
+    - color: input color, as found in display keys items.
 
 --]]
 q.colorAndText = function(color)
+    if not color then
+        return c.background, '000'
+    end
+
     -- This is ok also for when c[color].normale evaluates to false
     local background = c[color] and c[color].normale or color
     local text = table.search(wData.whitetext, color:lower())
             and c.background
             or '000'
+
     return background, text
 end
 
