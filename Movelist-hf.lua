@@ -6,7 +6,7 @@ local j = {}
 local mw = require('mw')
 
 local w = require('Wikilib')
-local txt = require('Wikilib-strings')
+local txt = require('Wikilib-strings')          -- luacheck: no unused
 local c = require("Colore-data")
 local css = require('Css')
 local gendata = require("Gens-data")
@@ -242,9 +242,9 @@ j.Shadowh = j.shadowh
 
 local foot = function(interpData)
 	return string.interp([=[|- class="text-left"
-| class="text-small" style="background: transparent;" colspan="${cs}" |
-* I Pokémon in '''grassetto''' sono quelli che ricevono lo [[Bonus di tipo|<span style="color: #000;">bonus di tipo</span>]] dalla mossa.
-* I Pokémon in ''corsivo'' sono quelli con evoluzioni o [[Differenze di forma|<span style="color:#333">forme alternative</span>]] che ricevono lo STAB.${last}
+! class="text-small" colspan="${cs}" |
+* I Pokémon in '''grassetto''' sono quelli che ricevono il [[Bonus di tipo|<span style="color: #000;">bonus di tipo</span>]] dalla mossa.
+* I Pokémon in ''corsivo'' sono quelli con evoluzioni o [[Differenze di forma|<span style="color:#333">forme alternative</span>]] che ricevono il bonus di tipo.${last}
 |}]=], interpData)
 end
 

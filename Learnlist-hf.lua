@@ -232,8 +232,8 @@ local footer = function(pars, kind)
 |}</div>
 <div class="text-left small-font" style="line-height: 1em; padding: 0 0.5ex 1ex;">
 ${kindrows}
-*Il '''grassetto''' indica una mossa che ha lo [[Bonus di tipo|<span style="color: #000;">bonus di tipo</span>]] quando viene usata da un ${poke}.
-*Il ''corsivo'' indica una mossa che ha lo STAB solo quando viene usata da un${form} di ${poke}.${last}
+*Il '''grassetto''' indica una mossa che ha il [[Bonus di tipo|<span style="color: #000;">bonus di tipo</span>]] quando viene usata da un ${poke}.
+*Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un${form} di ${poke}.${last}
 </div>
 </div>
 </div>]=],

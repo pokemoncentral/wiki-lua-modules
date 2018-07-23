@@ -220,12 +220,10 @@ Arguments:
 --]]
 r.twoTypeBoxesLua = function(type1, type2, pdfs, bp, classes, styles, concat)
     local hasTwoTypes = type2 and type1 ~= type2
-    type1 = string.fu(string.trim(type1 or 'Sconosciuto'))
-    type2 = hasTwoTypes and string.fu(string.trim(type2))
 
-    local box1 = {type1, type1, type1, pdfs, classes, styles, 'FFF'}
-    local box2 = hasTwoTypes and {type2, type2, type2, pdfs, classes, styles,
-        'FFF'}
+    local box1 = {box.shortHand.type(type1, pdfs, classes, styles)}
+    local box2 = hasTwoTypes and
+            {box.shortHand.type(type2, pdfs, classes, styles)}
 	return r.twoBoxesLua(box1, box2, bp, concat)
 end
 r.two_type_boxes_lua = r.twoTypeBoxesLua
