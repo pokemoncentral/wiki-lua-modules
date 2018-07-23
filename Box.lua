@@ -4,13 +4,13 @@ This module contains utility code for boxes: these are a link in a rounded
 box, with a left-to-right gradient from the dark shade of a color to the
 normal shade of the same color.
 
-Shortcuts are provided for boxes that display a type and lists of such boxes.
+Shorthands are provided for boxes that display a type and lists of such boxes.
 
 --]]
 
 local b = {}
 
--- luacheck: globals mw
+local mw = require('mw')
 
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
@@ -42,6 +42,98 @@ local predefs = {
 
 --[[
 
+Aliases for auto-generated shorthands.
+
+Every top-level item relates to the shorthand with the same key, defined below
+in b.shortHands.
+
+Every alias has two subtables, one for box shorthands and the other one for
+the corresponding list shorthand. These can contain an arbitrary number of
+elements.
+
+--]]
+local aliases = {
+    type = {
+        box = {'boxTipo', 'box_tipo'},
+        list = {'listTipo', 'list_tipo'}
+    }
+}
+
+--[[
+
+This function exports the given pair of lua-wikicode interface, taking care of
+aliasing. Aliases are added for both lua and wikicode intefaces, in the
+CamelCase and snake_case flavor for the former and CamelCase only for the
+latter.
+
+Arguments:
+    - name: the name of the shorthand, as top-level key in aliases.
+    - suffix: the second-level key in the aliases table, also used as a suffix
+        for the non-alias exports.
+    - luaFunction: the lua function to be exported.
+    - wikicodeFunction: the wikicode companion of luaFunction.
+
+--]]
+local export = function(name, suffix, luaFunction, wikicodeFunction)
+    suffix = suffix or 'box'
+    local nameAliases = aliases[name] and aliases[name][suffix]
+
+    -- Aliases-independent names (eg. typeBoxLua)
+    local luaNames = {table.concat{name, string.fu(suffix), 'Lua'},
+            table.concat{name, '_', suffix, '_lua'}}
+    local wikicodeNames = {name .. string.fu(suffix),
+            string.fu(name) .. string.fu(suffix)}
+
+    -- Aliases-dependent names (eg, boxTipoLua)
+    if nameAliases then
+        luaNames = table.merge(luaNames, table.flatMap(nameAliases,
+                function(alias) return {alias .. 'Lua', alias .. '_lua'} end))
+        wikicodeNames = table.merge(wikicodeNames. table.flatMap(nameAliases,
+                function(alias) return {alias, string.fu(alias)} end))
+    end
+
+    for _, luaName in pairs(luaNames) do
+        b[luaName] = luaFunction
+    end
+
+    for _, wikicodeName in pairs(wikicodeNames) do
+        b[wikicodeName] = wikicodeFunction
+    end
+end
+
+--[[
+
+This function returns the wikicode interface for a given lua one.
+
+Unlike Wikilib.stdWikicodeInterface, it does not map the empty string to nil:
+in fact, the predefinite styles list can be empty, and it is in such cases
+that classes and styles are more important. However, with empty string mapped
+to nil, classes and styles wouldn't be unpacked and passed to the lua function,
+meaning that the box would basically be unstyled.
+
+--]]
+local makeWikicodeIntreface = function(luaFunction)
+    return function(frame)
+        local p = w.trimAll(table.copy(frame.args), false)
+        return luaFunction(unpack(p))
+    end
+end
+
+b.shortHands = {
+    type = function(type, pdfs, classes, styles)
+        type = string.fu(string.trim(type or 'Sconosciuto'))
+        return type, type, type, pdfs, classes, styles, 'FFF'
+    end,
+
+    egg = function(egg, pdfs, classes, styles)
+        egg = string.fu(string.trim(egg or 'Sconosciuto (gruppo uova)'))
+        return egg, egg .. ' (gruppo uova)', egg .. '_uova', pdfs,
+            classes, styles, 'FFF'
+    end
+}
+
+--[[
+
 Main function creating a box. Lua interface. Arguments:
 - text: displayed text.
 - link: link target, Defaults to text.
@@ -58,14 +150,14 @@ Main function creating a box. Lua interface. Arguments:
 b.boxLua = function(text, link, color, pdfs, classes, styles, textcolor)
     classes, styles = css.classesStyles(predefs, pdfs, classes, styles)
 
-	return string.interp([=[<div class="${class}" style="${bg}; ${style}">[[${link}|<span style="color:#${tc}">${text}</span>]]</div>]=], {
-		class = css.printClasses(classes),
-		bg = css.horizGradLua{color, 'dark', color, 'normale'},
-		tc = textcolor or 'FFF',
-		link = link or text,
-		text = text,
-		style = css.printStyles(styles)
-	})
+    return string.interp([=[<div class="${class}" style="${bg}; ${style}">[[${link}|<span style="color:#${tc}">${text}</span>]]</div>]=], {
+        class = css.printClasses(classes),
+        bg = css.horizGradLua{color, 'dark', color, 'normale'},
+        tc = textcolor or 'FFF',
+        link = link or text,
+        text = text,
+        style = css.printStyles(styles)
+    })
 end
 b.box_lua = b.boxLua
 
@@ -89,12 +181,32 @@ Example:
     inline-block width-sm-60 | padding: 2ex; margin-top: 0.5ex; | FFFFFF }}
 
 --]]
-b.box = function(frame)
-    local p = w.trimAll(mw.clone(frame.args), false)
-	return b.boxLua(unpack(p))
-end
+b.box = makeWikicodeIntreface(b.boxLua)
 b.Box = b.box
 
+for name, makeBoxArgs in pairs(b.shortHands) do
+    local luaFunction = function(...)
+        return b.boxLua(makeBoxArgs(...))
+    end
+    local wikicodeFunction = makeWikicodeIntreface(luaFunction)
+
+    export(name, 'box', luaFunction, wikicodeFunction)
+
+    local luaList = function(items, ...)
+        local args = {...}
+        if type(items) == 'string' then
+            items = items == '' and {} or mw.text.split(items, ',%s*')
+        end
+        return w.mapAndConcat(items, function(item)
+            return luaFunction(item, unpack(args))
+        end)
+    end
+    local wikicodeList = makeWikicodeIntreface(luaList)
+
+    export(name, 'list', luaList, wikicodeList)
+end
+
+--[======[
 --[[
 
 Shortcut for creating a type box. Lua interface. Arguments:
@@ -108,8 +220,8 @@ Shortcut for creating a type box. Lua interface. Arguments:
 
 --]]
 b.typeBoxLua = function(type, pdfs, classes, styles)
-	type = string.fu(string.trim(type or 'Sconosciuto'))
-	return b.boxLua(type, type, type, pdfs, classes, styles, 'FFF')
+    type = string.fu(string.trim(type or 'Sconosciuto'))
+    return b.boxLua(type, type, type, pdfs, classes, styles, 'FFF')
 end
 b.type_box_lua = b.typeBoxLua
 b.boxTipoLua, b.box_tipo_lua = b.typeBoxLua, b.typeBoxLua
@@ -196,8 +308,8 @@ Shortcut for creating an egg group box. Lua interface. Arguments:
 
 --]]
 b.eggBoxLua = function(egg, pdfs, classes, styles)
-	egg = string.fu(string.trim(egg or 'Sconosciuto (gruppo uova)'))
-	return b.boxLua(egg, egg .. ' (gruppo uova)', egg .. '_uova', pdfs,
+    egg = string.fu(string.trim(egg or 'Sconosciuto (gruppo uova)'))
+    return b.boxLua(egg, egg .. ' (gruppo uova)', egg .. '_uova', pdfs,
         classes, styles, 'FFF')
 end
 b.egg_box_lua = b.eggBoxLua
@@ -224,4 +336,5 @@ b.eggBox = function(frame)
 end
 b.EggBox = b.eggBox
 
+--]======]
 return b
