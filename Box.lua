@@ -4,6 +4,12 @@ This module contains utility code for boxes: these are a link in a rounded
 box, with a left-to-right gradient from the dark shade of a color to the
 normal shade of the same color.
 
+Other than this basic styles, the best way to style a box is via predefinite
+configurations. For example, 'thick' creates a box with lots of whitespace
+above and below the text, while 'tiny' returns a small box, with small text
+and little whitespace around it. For more predefinite styles, check the
+MANUALE DI STILE INTERMEDIO.
+
 The basic function is called box, and has the following arguments:
 
 - 1: displayed text.
@@ -18,7 +24,7 @@ The basic function is called box, and has the following arguments:
 
 Example call:
 
-{{#invoke | Box | box | erba | erba (gruppo uova) | erba_uova | thin |
+{{#invoke: Box | box | erba | erba (gruppo uova) | erba_uova | thin |
     inline-block width-sm-60 | padding: 2ex; margin-top: 0.5ex; | FFFFFF }}
 
 There is also a number of shorthands, with a rather similar call. They are
@@ -34,7 +40,7 @@ listed below:
     - 4: CSS styles, in the format of an HTML style attribute values. Optional,
         defaults to no CSS styles.
 
-    Example: {{#invoke | Box | typeBox | Elettro | thick | | margin: 3em; }}
+    Example: {{#invoke: Box | typeBox | Elettro | thick | | margin: 3em; }}
 
 - EggBox: a box displaying an egg grup, in its color as a background. Arguments:
 
@@ -47,7 +53,7 @@ listed below:
     - 4: CSS styles, in the format of an HTML style attribute values. Optional,
         defaults to no CSS styles.
 
-    Example: {{#invoke | Box | eggBox | Erba | | inline-block | margin: 3em; }}
+    Example: {{#invoke: Box | eggBox | Erba | | inline-block | margin: 3em; }}
 
 In addition to the single box versions, also multiple box version are provided
 for the shorthands. Their name is the same as the shorthand, with 'box'
@@ -55,10 +61,10 @@ replaced by 'list'. They are invoked the same way, except that the first
 argument is a comma-separated list of types, egg groups, etc. The other
 arguemnts are applied to al generated boxes. Some example calls below:
 
-- typeList: {{#invoke | Box | typeList | Elettro, Terra, Acciaio | |
-    inline-block | margin: 3em; }}
+    - typeList: {{#invoke: Box | typeList | Elettro, Terra, Acciaio | |
+        inline-block | margin: 3em; }}
 
-- eggList: {{#invoke | Box | eggList | Acqua 1, Campo, Magico | thin }}
+        - eggList: {{#invoke: Box | eggList | Acqua 1, Campo, Magico | tiny }}
 
 --]]
 
@@ -142,7 +148,7 @@ local export = function(name, suffix, luaFunction, wikicodeFunction)
     if nameAliases then
         luaNames = table.merge(luaNames, table.flatMap(nameAliases,
                 function(alias) return {alias .. 'Lua', alias .. '_lua'} end))
-        wikicodeNames = table.merge(wikicodeNames. table.flatMap(nameAliases,
+        wikicodeNames = table.merge(wikicodeNames, table.flatMap(nameAliases,
                 function(alias) return {alias, string.fu(alias)} end))
     end
 
