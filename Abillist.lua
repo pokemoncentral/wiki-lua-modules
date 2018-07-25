@@ -147,7 +147,7 @@ k.abillist = function(frame)
         makeEntry = Entry.new,
         header = makeHeader(type),
         separator = '|- class="roundy flex-sm flex-row flex-wrap flex-main-stretch flex-items-center" style="margin-top: 0.5rem;"',
-        footer = [[|- style="background: transparent;"
+        footer = [[|-
 ! class="text-left font-small" colspan="6" style="padding: 0.3ex 0.3em;" |
 * Le abilità in ''corsivo'' sono ottenibili solo in determinate circostanze.
 |}]]

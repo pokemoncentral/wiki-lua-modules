@@ -255,8 +255,7 @@ s.statlist = function(frame)        -- luacheck: no unused
             source = stats,
             makeEntry = Entry.new,
             iterator = list.pokeNames,
-            header = header,
-            footer = '|}'
+            header = header
         }),
         [[===Nella prima generazione===]],
         list.makeList({
@@ -264,14 +263,11 @@ s.statlist = function(frame)        -- luacheck: no unused
             makeEntry = Entry.new,
             entryArgs = 1,
             iterator = list.pokeNames,
-            header = firstGenHeader,
-            footer = '|}'
+            header = firstGenHeader
         })
     }, '\n')
 end
 
 s.Statlist = s.statlist
-
-print(s.statlist())
 
 return s

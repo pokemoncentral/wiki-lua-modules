@@ -135,13 +135,10 @@ u.statlistUnique = function(frame)
 ! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | &nbsp;
 ! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | Pokémon
 ! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | Totale]=],
-            { bg = css.horizGradLua{type = 'pcwiki'} }),
-        footer = '|}'
+            { bg = css.horizGradLua{type = 'pcwiki'} })
     })
 end
 
 u.StatlistUnique = u.statlistUnique
-
-print(u.statlistUnique{args={}})
 
 return u

@@ -44,33 +44,33 @@ by makeList in Wikilib/lists.
 
 --]]
 g.Entry.new = function(eggData, name, group)
-	local baseName, abbr = form.getnameabbr(name)
-	local pokeData = table.merge(eggData, pokes[name] or pokes[baseName])
-	local this = g.Entry.super.new(name, pokeData.ndex)
+    local baseName, abbr = form.getnameabbr(name)
+    local pokeData = table.merge(eggData, pokes[name] or pokes[baseName])
+    local this = g.Entry.super.new(name, pokeData.ndex)
 
-	this.group = group
-	this.formsData = alt[baseName]
-	if this.formsData and not this.formsData.names[abbr] then
-		-- Se la forma non esiste in alt[baseName] è una versione evento che non esiste
-		-- nei moduli dati. Prende tutti i dati dalla forma normale
-		this.formsData.links[abbr] = this.formsData.links.base:gsub(this.formsData.names.base, 'Evento')
-	end
-	this.formAbbr = abbr
-	-- Se c'è un'altra forma del Pokémon in PokéEggGroup-data
-	-- ha senso scrivere la forma, altrimenti no
-	if abbr ~= 'base' then
-		this.formLink = this.formsData and this.formsData.links or {}
-	else
-		this.formLink = {}
-		for k in pairs(this.formsData.names) do
-			if groups[baseName .. k] then
-				this.formLink = this.formsData and this.formsData.links or {}
-				break
-			end
-		end
-	end
+    this.group = group
+    this.formsData = alt[baseName]
+    if this.formsData and not this.formsData.names[abbr] then
+        -- Se la forma non esiste in alt[baseName] è una versione evento che non esiste
+        -- nei moduli dati. Prende tutti i dati dalla forma normale
+        this.formsData.links[abbr] = this.formsData.links.base:gsub(this.formsData.names.base, 'Evento')
+    end
+    this.formAbbr = abbr
+    -- Se c'è un'altra forma del Pokémon in PokéEggGroup-data
+    -- ha senso scrivere la forma, altrimenti no
+    if abbr ~= 'base' then
+        this.formLink = this.formsData and this.formsData.links or {}
+    else
+        this.formLink = {}
+        for k in pairs(this.formsData.names) do
+            if groups[baseName .. k] then
+                this.formLink = this.formsData and this.formsData.links or {}
+                break
+            end
+        end
+    end
 
-	return setmetatable(table.merge(this, pokeData), g.Entry)
+    return setmetatable(table.merge(this, pokeData), g.Entry)
 end
 
 --[[
@@ -128,21 +128,21 @@ Pokémon display the type only once.
 --]]
 g.Entry.__tostring = function(this)
     local twoGroups = this.group2 ~= nil
-	return string.interp([=[| class="min-width-xs-20" | ${ndex}
+    return string.interp([=[| class="min-width-xs-20" | ${ndex}
 | class="min-width-xs-20" | ${static}
 | class="min-width-xs-60" style="padding: 0 0.5em;" | [[${name}]]${form}
 | class="min-width-xl-${typesWidth} width-xs-100" style="padding: 1ex 0.8ex; height: 100%;" | ${types}${groups}]=],
-	{
-		ndex = this.ndex and string.tf(this.ndex) or '???',
-		static = ms.staticLua(string.tf(this.ndex or 0) ..
-				(this.formAbbr == 'base' and '' or this.formAbbr or '')),
-		name = this.name,
-		form = this.formLink[this.formAbbr] or '',
+    {
+        ndex = this.ndex and string.tf(this.ndex) or '???',
+        static = ms.staticLua(string.tf(this.ndex or 0) ..
+                (this.formAbbr == 'base' and '' or this.formAbbr or '')),
+        name = this.name,
+        form = this.formLink[this.formAbbr] or '',
         typesWidth = twoGroups and '20' or '30',
         types = resp.twoTypeBoxesLua(this.type1, this.type2, {'thin'}, nil,
             {'vert-center'}),
-		groups = this:groupsString()
-	})
+        groups = this:groupsString()
+    })
 end
 
 -- Single-grouped Pokémon entry class
@@ -162,13 +162,13 @@ dual-grouped or not of the passed group.
 
 --]]
 g.SingleGroupEntry.new = function(eggData, name, group)
-	if eggData.group2
-			or group ~= eggData.group1 then
-		return nil
-	end
+    if eggData.group2
+            or group ~= eggData.group1 then
+        return nil
+    end
 
-	return setmetatable(g.SingleGroupEntry.super.new(eggData,
-			name, group), g.SingleGroupEntry)
+    return setmetatable(g.SingleGroupEntry.super.new(eggData,
+            name, group), g.SingleGroupEntry)
 end
 
 -- First-typed Pokémon entry class
@@ -188,13 +188,13 @@ single-grouped or it hasn't the passed one.
 
 --]]
 g.DoubleGroupEntry.new = function(eggData, name, group)
-	if not eggData.group2
-			or not table.search(eggData, group) then
-		return nil
-	end
+    if not eggData.group2
+            or not table.search(eggData, group) then
+        return nil
+    end
 
-	return setmetatable(g.DoubleGroupEntry.super.new(eggData,
-			name, group), g.DoubleGroupEntry)
+    return setmetatable(g.DoubleGroupEntry.super.new(eggData,
+            name, group), g.DoubleGroupEntry)
 end
 
 --[[
@@ -205,7 +205,7 @@ to print the correct amount of group columns.
 
 --]]
 local makeHeader = function(group, groupsCount)
-	return string.interp([=[{| class="roundy-corners sortable pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
+    return string.interp([=[{| class="roundy-corners sortable pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
 |- class="hidden-xs"
 ! style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
 ! class="unsortable" | &nbsp;
@@ -213,9 +213,9 @@ local makeHeader = function(group, groupsCount)
 ! [[Tipo|<span style="color:#000">Tipo</span>]]
 ${groups}]=],
 {
-	bg = css.horizGradLua{type = group:gsub(' ', '_') .. '_uova'},
-	groups = groupsCount < 2 and ''
-		or '! [[Gruppi uova|<span style="color:#000">Altro gruppo</span>]]'
+    bg = css.horizGradLua{type = group:gsub(' ', '_') .. '_uova'},
+    groups = groupsCount < 2 and ''
+        or '! [[Gruppi uova|<span style="color:#000">Altro gruppo</span>]]'
 })
 end
 
@@ -232,18 +232,17 @@ of the Entry class makeHeader method.
 
 --]]
 g.makeGroupTable = function(group, Entry, header, headerGenerator)
-	headerGenerator = headerGenerator or makeHeader
-	return table.concat({header or Entry.header,
-		list.makeList({
-			source = groups,
-			iterator = list.pokeNames,
-			entryArgs = group,
-			makeEntry = Entry.new,
-			header = headerGenerator(group,
-					Entry == g.SingleGroupEntry and 1 or 2),
-            separator = '|- class="roundy flex-xs flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0; height: 100%;"',
-			footer = '|}'
-		})}, '\n')
+    headerGenerator = headerGenerator or makeHeader
+    return table.concat({header or Entry.header,
+        list.makeList({
+            source = groups,
+            iterator = list.pokeNames,
+            entryArgs = group,
+            makeEntry = Entry.new,
+            header = headerGenerator(group,
+                    Entry == g.SingleGroupEntry and 1 or 2),
+            separator = '|- class="roundy flex-xs flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0; height: 100%;"'
+        })}, '\n')
 end
 
 --[[
@@ -263,14 +262,14 @@ Examples:
 g.singlegrouplist = function(frame)
 
     -- Extracting type from page title
-	local group = string.trim(mw.text.decode(frame.args[1]
-			or 'sconosciuto (gruppo uova)')):match('^([%a%d%s]+) %(gruppo uova%)$'):lower()
+    local group = string.trim(mw.text.decode(frame.args[1]
+            or 'sconosciuto (gruppo uova)')):match('^([%a%d%s]+) %(gruppo uova%)$'):lower()
 
     return g.makeGroupTable(group, g.SingleGroupEntry)
 end
 
 g.Singlegrouplist, g.singleGroupList, g.SingleGroupList =
-	g.singlegrouplist, g.singlegrouplist, g.singlegrouplist
+    g.singlegrouplist, g.singlegrouplist, g.singlegrouplist
 
 --[[
 
@@ -290,13 +289,13 @@ Examples:
 g.doublegrouplist = function(frame)
 
     -- Extracting type from page title
-	local group = string.trim(mw.text.decode(frame.args[1]
-			or 'sconosciuto (gruppo uova)')):match('^([%a%d%s]+) %(gruppo uova%)$'):lower()
+    local group = string.trim(mw.text.decode(frame.args[1]
+            or 'sconosciuto (gruppo uova)')):match('^([%a%d%s]+) %(gruppo uova%)$'):lower()
 
     return g.makeGroupTable(group, g.DoubleGroupEntry)
 end
 
 g.Egggrouplist, g.eggGroupList, g.EggGroupList =
-	g.egggrouplist, g.egggrouplist, g.egggrouplist
+    g.egggrouplist, g.egggrouplist, g.egggrouplist
 
 return g

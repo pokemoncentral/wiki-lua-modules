@@ -186,8 +186,7 @@ g.makeTypeTable = function(type, Entry, header)
             makeEntry = Entry.new,
             header = makeHeader(type,
                     Entry == g.MonoTypeEntry and 1 or 2),
-            separator = '|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"',
-            footer = '|}'
+            separator = '|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"'
         })}, '\n')
 end
 
@@ -223,7 +222,5 @@ g.typelist = function(frame)
 end
 
 g.Typelist, g.TypeList, g.typeList = g.typelist, g.typelist, g.typelist
-
--- print(g.typelist{args={arg[1]}})
 
 return g
