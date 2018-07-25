@@ -129,6 +129,25 @@ end
 
 --[[
 
+This function returns the wikicode interface for a given lua one.
+
+Unlike Wikilib.stdWikicodeInterface, it does not map the empty string to nil:
+in fact, the predefinite styles list of the Box module can be empty, and it is
+in such cases that classes and styles are more important. However, with empty
+string mapped to nil, classes and styles wouldn't be unpacked and passed to
+the lua function, meaning that the box would basically be unstyled.
+
+--]]
+local makeWikicodeIntreface = function(luaFunction)
+    return function(frame)
+        local p = w.trimAll(table.copy(frame.args), false)
+        return luaFunction(unpack(p))
+    end
+end
+
+
+--[[
+
 This function returns the HTML code for two responsive boxe, given their
 respective arguments passed as tables. For more information about responsive
 boxes, read the comment to responsive.twoBoxes above.
@@ -192,6 +211,20 @@ r.twoCellsLua = function(cell1, cell2, pdfs, bp, classes, styles)
     return table.concat(cells, ' |')
 end
 r.two_cells_lua = r.twoCellsLua
+
+for name, makeBoxArgs in pairs(b.shortHands) do
+    local twoBoxesLua = function(box1, box2, bp, concat, ...)
+        box1 = {makeBoxArgs(box1, ...)}
+        box2 = {makeBoxArgs(box2, ...)}
+        return r.twoBoxesLua(box1, box2, bp, concat)
+    end
+    local twoBoxes = makeWikicodeIntreface(twoBoxesLua)
+
+    local twoCellsLua = function(box1, box2, bp, concat, boxes, cells)
+    end
+
+
+end
 
 --[[
 
