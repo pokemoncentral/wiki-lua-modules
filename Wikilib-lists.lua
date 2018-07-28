@@ -14,12 +14,12 @@ rendono possibile l'automazione del sorting.
 --]]
 local l = {}
 
-local w = require('Modulo:Wikilib')
-local form = require('Modulo:Wikilib/forms')
-local oop = require('Modulo:Wikilib/oop')
-local txt = require('Modulo:Wikilib/strings')
-local tab = require('Modulo:Wikilib/tables')
-local alts = require('Modulo:AltForms/data')
+local w = require('Wikilib')
+local form = require('Wikilib-forms')
+local oop = require('Wikilib-oop')
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
+local alts = require('AltForms-data')
 
 --[[-----------------------------------------
 

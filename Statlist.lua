@@ -1,8 +1,9 @@
 --[[
 
 This module prints a list of all Pokémon base statistics.
-Generation I has a separate table because it has different
-statistics, while the other are merged into one.
+
+Generation I has a separate table because it has different statistics, while
+the other are merged into one.
 
 --]]
 
@@ -27,20 +28,18 @@ local mw = require('mw')
 
 --[[
 
-Class representing an entry for the base statistics
-list. By subclassing PokeSortableEntry it implements
-all the interfaces needed for sortForm, sortNdex
-and makeList in Wikilib/lists
+Class representing an entry for the base statistics list. By subclassing
+PokeSortableEntry it implements all the interfaces needed for sortForm,
+sortNdex and makeList in Wikilib/lists
 
 --]]
 local Entry = oop.makeClass(list.PokeSortableEntry)
 
 --[[
 
-Returns a stub for the generation span of the statistics
-sum, which lacks the end. The starting generation is either
-the passed one or the latest; the value itself is computed
-from those of the passed statistics in such generation.
+Returns a stub for the generation span of the statistics sum, which lacks the
+end. The starting generation is either the passed one or the latest; the value
+itself is computed from those of the passed statistics in such generation.
 
 --]]
 Entry.makeSumSpan = function(stats, gen)
@@ -55,17 +54,15 @@ end
 
 --[[
 
-Returns the generation spans for the statistics sum,
-starting from the given generation. First generation
-is not included.
+Returns the generation spans for the statistics sum, starting from the given
+generation. First generation is not included.
 
 --]]
 Entry.makeSum = function(stats, startGen)
 
     --[[
-        If stats have not changed throughout the
-        generations, returning a single span beginning
-        and ends in the latest generation.
+        If stats have not changed throughout the generations, returning a
+        single span beginning and ends in the latest generation.
     --]]
     if not statsUtil.didStatsChange(stats) then
         local sum = Entry.makeSumSpan(stats)
@@ -96,28 +93,29 @@ end
 
 --[[
 
-Wikicode for a single stat cell: can print both
-generation spans and single values
+Wikicode for a single stat cell: can print both generation spans and single
+values
 
 --]]
 Entry.printStatCell = function(stat, statName)
-    return string.interp('| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${bg};" | ${val}',
-        {
-            bg = c[statName].light,
-            val = type(stat) == 'number'
-                    and string.printNumber(stat)
-                    or mg.printSpans(stat, string.printNumber)
-        })
+    local interpData = {bg = c[statName].light}
+    if type(stat) == 'number' then
+        interpData.val = string.printNumber(stat)
+        interpData.latest = stat
+    else
+        interpData.val = mg.printSpans(stat, string.printNumber)
+        interpData.latest = stat[#stat].val
+    end
+    return string.interp('| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${bg};" data-sort-value="${latest}" | ${val}',
+        interpData)
 end
 
 --[[
 
-Constructor: the first argument is an entry from
-PokéStats/data; the second one is its key; the third
-one is optional, and marks the generation this entry
-should display data for: if omitted, all the generation
-but the first are taken in account. Therefore, the
-only filtering performed is to exclude Pokémon and
+Constructor: the first argument is an entry from PokéStats/data; the second one
+is its key; the third one is optional, and marks the generation this entry
+should display data for: if omitted, all the generation but the first are taken
+in account. Therefore, the only filtering performed is to exclude Pokémon and
 forms not existing in the passed generation, if any.
 
 --]]
@@ -131,10 +129,7 @@ Entry.new = function(stats, poke, gen)
     -- No generation means from second onwards
     this.statsOrder = statsUtil.statsOrder[gen or 2]
 
-    --[[
-        Statistics are not merged at top level
-        to ease subsequent calculations
-    --]]
+    -- Statistics are not merged at top level to ease subsequent calculations
     if gen then
 
         -- No need for generation spans in single-generation case
@@ -158,9 +153,8 @@ end
 
 --[[
 
-Wikicode for a list entry: shows Pokémon ndex,
-mini sprite, name and base stats, plus total
-and average.
+Wikicode for a list entry: shows Pokémon ndex, mini sprite, name and base
+stats, plus total and average.
 
 --]]
 Entry.__tostring = function(this)
@@ -170,37 +164,36 @@ Entry.__tostring = function(this)
     table.insert(cells, Entry.printStatCell(this.statsSum, 'pcwiki'))
     table.insert(cells, Entry.printStatCell(this.statsAvg, 'pcwiki'))
 
-    return string.interp([=[| style="padding: 0.3ex 0.8ex;" | ${ndex}
-| style="padding: 0.3ex 0.8ex;" | ${ms}
+    return string.interp([=[| style="padding: 0.3ex 0.8ex;" data-sort-value="${sort}" | ${ndex}
+| style="padding: 0.3ex 0.8ex;" data-sort-value="${sort}" | ${ms}
 | style="padding: 0.3ex 0.8ex;" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
 ${statsCells}]=],
         {
+            sort = this.ndex,
             ndex = string.tf(this.ndex),
             ms = ms.staticLua(string.tf(this.ndex) .. (this.formAbbr == 'base'
-                    and ''
-                    or this.formAbbr or '')),
-            name = pokes[this.ndex].name,
+                    and '' or this.formAbbr or '')),
+            name = pokes[this.name].name,
             form = this.formsData
-                    and this.formsData.blacklinks[this.formAbbr]
-                    or '',
+                    and this.formsData.blacklinks[this.formAbbr] or '',
             statsCells = table.concat(cells, '\n')
         })
 end
 
 -- List header
-local header = string.interp([=[{| class="roundy-corners text-center pull-center white-rows" style="border-spacing: 0; padding: 0.6ex; ${bg};"
+local header = string.interp([=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
 |-
-! style="padding: 0.8ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]
-! style="padding: 0.8ex;" | &nbsp;
-! style="padding: 0.8ex;" | Pokémon
-! class="roundytop text-small" style="padding: 0.8ex; background-color: #${hp};" | [[Statistiche#PS|<span style="color: #FFF;">PS</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background-color: #${atk};" | [[Statistiche#Attacco|<span style="color: #FFF;">Attacco</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background-color: #${def};" | [[Statistiche#Difesa|<span style="color: #FFF;">Difesa</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background-color: #${spatk};" | [[Statistiche#Attacco Speciale|<span style="color: #FFF;">Attacco sp.</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background-color: #${spdef};" | [[Statistiche#Difesa Speciale|<span style="color: #FFF;">Difesa sp.</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background-color: #${spe};" | [[Statistiche#Velocità|<span style="color: #FFF;">Velocità</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; color: #FFF; background-color: #${pcw};" | Totale
-! class="roundytop text-small" style="padding: 0.8ex; color: #FFF; background-color: #${pcw};" | Media]=],
+! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]
+! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | &nbsp;
+! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${hp};" | [[Statistiche#PS|<span style="color: #FFF;">PS</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${atk};" | [[Statistiche#Attacco|<span style="color: #FFF;">Attacco</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${def};" | [[Statistiche#Difesa|<span style="color: #FFF;">Difesa</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spatk};" | [[Statistiche#Attacco Speciale|<span style="color: #FFF;">Attacco sp.</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spdef};" | [[Statistiche#Difesa Speciale|<span style="color: #FFF;">Difesa sp.</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spe};" | [[Statistiche#Velocità|<span style="color: #FFF;">Velocità</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; color: #FFF; background-color: #${pcw};" | Totale
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; color: #FFF; background-color: #${pcw};" | Media]=],
     {
         bg = css.horizGradLua{type = 'pcwiki'},
         hp = c.ps.normale,
@@ -214,18 +207,18 @@ local header = string.interp([=[{| class="roundy-corners text-center pull-center
 )
 
 -- List header
-local firstGenHeader = string.interp([=[{| class="roundy-corners text-center pull-center white-rows" style="border-spacing: 0; padding: 0.6ex; ${bg};"
+local firstGenHeader = string.interp([=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
 |-
-! style="padding: 0.8ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]
-! style="padding: 0.8ex;" | &nbsp;
-! style="padding: 0.8ex;" | Pokémon
-! class="roundytop text-small" style="padding: 0.8ex; background-color: #${hp};" | [[Statistiche#PS|<span style="color: #FFF;">PS</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background-color: #${atk};" | [[Statistiche#Attacco|<span style="color: #FFF;">Attacco</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background-color: #${def};" | [[Statistiche#Difesa|<span style="color: #FFF;">Difesa</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background-color: #${spec};" | [[Statistiche#Speciali|<span style="color: #FFF;">Speciali</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; background-color: #${spe};" | [[Statistiche#Velocità|<span style="color: #FFF;">Velocità</span>]]
-! class="roundytop text-small" style="padding: 0.8ex; color: #FFF; background-color: #${pcw};" | Totale
-! class="roundytop text-small" style="padding: 0.8ex; color: #FFF; background-color: #${pcw};" | Media]=],
+! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]
+! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | &nbsp;
+! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${hp};" | [[Statistiche#PS|<span style="color: #FFF;">PS</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${atk};" | [[Statistiche#Attacco|<span style="color: #FFF;">Attacco</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${def};" | [[Statistiche#Difesa|<span style="color: #FFF;">Difesa</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spec};" | [[Statistiche#Speciali|<span style="color: #FFF;">Speciali</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spe};" | [[Statistiche#Velocità|<span style="color: #FFF;">Velocità</span>]]
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; color: #FFF; background-color: #${pcw};" | Totale
+! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; color: #FFF; background-color: #${pcw};" | Media]=],
     {
         bg = css.horizGradLua{type = 'pcwiki'},
         hp = c.ps.normale,
@@ -239,10 +232,9 @@ local firstGenHeader = string.interp([=[{| class="roundy-corners text-center pul
 
 --[[
 
-Wiki interface function: called with no
-argument, returns the list of all Pokémon
-statistics for all generations but the
-first, which has a separate table.
+Wiki interface function: called with no argument, returns the list of all
+Pokémon statistics for all generations but the first, which has a separate
+table.
 
 Example:
 {{#invoke: Statlist | statlist }}
