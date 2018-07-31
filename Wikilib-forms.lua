@@ -144,7 +144,11 @@ per il modulo Poké/data. Ritorna 0 in caso di errore.
 
 --]]
 f.getNdexForm = function(poke)
-    poke = string.lower(poke or '')
+    if type(poke) == 'number' then
+        return poke
+    end
+
+    poke = string.lower(poke)
     if not alt[poke] then
         return 0
     end
@@ -240,6 +244,38 @@ f.nameToDataindex = function(name)
     end
     trueName = type(trueName) == 'number' and string.tf(trueName) or trueName
     return trueName .. f.toEmptyAbbr(extform)
+end
+
+--[[
+
+This function returns the sorting key of Pokémon names, taking care of
+alternative forms. The returned value is meant to be used as data-sort-value
+in sortable tables.
+
+The sorting key should be just the Pokémon name when it has no forms, or no
+displayed link. Otherwise, the name should be used first, followed by the
+form name.
+
+Arguments:
+    - ndex: The ndex or the name of the base form Pokémon.
+    - abbr: The form abbreviation name.
+    - poke: The name of the Pokémon.
+
+--]]
+f.formSortValue = function(ndex, abbr, poke)
+    ndex = f.getNdexForm(type(ndex) == 'string' and ndex:lower() or ndex)
+    local data, value, name = alt[ndex], '${name}', poke
+    local formName
+
+    if data and data.links[abbr] ~= '' then
+        formName = data.names[abbr]
+        value = '${name}, ${form}'
+    end
+
+    return string.interp(value, {
+        name = name,
+        form = formName
+    })
 end
 
 return f
