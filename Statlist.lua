@@ -13,6 +13,7 @@ local css = require('Css')
 local ms = require('MiniSprite')
 local gamesUtil = require('Wikilib-games')
 local genUtil = require('Wikilib-gens')
+local formUtil = require('Wikilib-forms')
 local list = require('Wikilib-lists')
 local mg = require('Wikilib-multigen')
 local oop = require('Wikilib-oop')
@@ -163,17 +164,19 @@ Entry.__tostring = function(this)
     end, ipairs)
     table.insert(cells, Entry.printStatCell(this.statsSum, 'pcwiki'))
     table.insert(cells, Entry.printStatCell(this.statsAvg, 'pcwiki'))
+    local name = pokes[this.name].name
 
-    return string.interp([=[| style="padding: 0.3ex 0.8ex;" data-sort-value="${sort}" | ${ndex}
-| style="padding: 0.3ex 0.8ex;" data-sort-value="${sort}" | ${ms}
+    return string.interp([=[| style="padding: 0.3ex 0.8ex;" data-sort-value="${sortDex}" | ${ndex}
+| style="padding: 0.3ex 0.8ex;" data-sort-value="${sortName}" | ${ms}
 | style="padding: 0.3ex 0.8ex;" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
 ${statsCells}]=],
         {
-            sort = this.ndex,
+            sortDex = this.ndex,
             ndex = string.tf(this.ndex),
+            sortName = formUtil.formSortValue(this.ndex, this.formAbbr, name),
             ms = ms.staticLua(string.tf(this.ndex) .. (this.formAbbr == 'base'
                     and '' or this.formAbbr or '')),
-            name = pokes[this.name].name,
+            name = name,
             form = this.formsData
                     and this.formsData.blacklinks[this.formAbbr] or '',
             statsCells = table.concat(cells, '\n')
@@ -184,8 +187,7 @@ end
 local header = string.interp([=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
 |-
 ! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]
-! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | &nbsp;
-! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
+! colspan="2" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
 ! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${hp};" | [[Statistiche#PS|<span style="color: #FFF;">PS</span>]]
 ! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${atk};" | [[Statistiche#Attacco|<span style="color: #FFF;">Attacco</span>]]
 ! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${def};" | [[Statistiche#Difesa|<span style="color: #FFF;">Difesa</span>]]
@@ -210,8 +212,7 @@ local header = string.interp([=[{| class="roundy-corners text-center pull-center
 local firstGenHeader = string.interp([=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
 |-
 ! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]
-! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | &nbsp;
-! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
+! colspan="2" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
 ! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${hp};" | [[Statistiche#PS|<span style="color: #FFF;">PS</span>]]
 ! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${atk};" | [[Statistiche#Attacco|<span style="color: #FFF;">Attacco</span>]]
 ! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${def};" | [[Statistiche#Difesa|<span style="color: #FFF;">Difesa</span>]]
