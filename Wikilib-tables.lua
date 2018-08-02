@@ -623,4 +623,32 @@ table.zip = function(tab1, tab2, combinator, iter)
 end
 t.zip = table.zip
 
+--[[
+
+Returns a table from a source, grouping elements by a function value. The items
+of the new table are tables, each corresponding to a group. Groups are
+determined by the return value of a function: the result is used as a key for
+the group table, that contains all the elements of the passed table that
+returned that value.
+
+The getGroup function takes an element and its key, in this order: in fact, the
+key is often unnecessary, and would just clutter the code in these cases.
+
+--]]
+table.groupBy = function(tab, getGroup, iter)
+    iter = iter or pairs
+
+    local groups = {}
+    for k, v in iter(tab) do
+        local groupID = getGroup(v)
+        if not groups[groupID] then
+            groups[groupID] = {}
+        end
+        table.insert(groups[groupID], v)
+    end
+
+    return groups
+end
+t.groupBy = table.groupBy
+
 return t

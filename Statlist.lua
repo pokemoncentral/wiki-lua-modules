@@ -34,7 +34,7 @@ PokeSortableEntry it implements all the interfaces needed for sortForm,
 sortNdex and makeList in Wikilib/lists
 
 --]]
-local Entry = oop.makeClass(list.PokeSortableEntry)
+local Entry = oop.makeClass(list.PokeLabelledEntry)
 
 --[[
 
@@ -154,6 +154,16 @@ end
 
 --[[
 
+Equality operator for entries' merging.
+
+--]]
+Entry.__eq = function(a, b)
+    -- The two entries are equals iff their stats tables are the same
+    return table.equal(a.stats, b.stats)
+end
+
+--[[
+
 Wikicode for a list entry: shows Pokémon ndex, mini sprite, name and base
 stats, plus total and average.
 
@@ -165,6 +175,15 @@ Entry.__tostring = function(this)
     table.insert(cells, Entry.printStatCell(this.statsSum, 'pcwiki'))
     table.insert(cells, Entry.printStatCell(this.statsAvg, 'pcwiki'))
     local name = pokes[this.name].name
+    local labelLinks = table.map(this.labels, function(abbr)
+        if abbr == 'Tutte le forme' then
+            return '<div class="small-text">Tutte le forme</div>'
+        end
+        return this.formsData.blacklinks[abbr]
+    end)
+    local form = #this.labels > 0
+                 and mw.text.listToText(labelLinks, ', ', ' e ')
+                 or ''
 
     return string.interp([=[| style="padding: 0.3ex 0.8ex;" data-sort-value="${sortDex}" | ${ndex}
 | style="padding: 0.3ex 0.8ex;" data-sort-value="${sortName}" | ${ms}
@@ -177,8 +196,7 @@ ${statsCells}]=],
             ms = ms.staticLua(string.tf(this.ndex) .. (this.formAbbr == 'base'
                     and '' or this.formAbbr or '')),
             name = name,
-            form = this.formsData
-                    and this.formsData.blacklinks[this.formAbbr] or '',
+            form = form,
             statsCells = table.concat(cells, '\n')
         })
 end
@@ -244,19 +262,21 @@ Example:
 s.statlist = function(frame)        -- luacheck: no unused
     return table.concat({
         [[===Dalla seconda generazione in poi===]],
-        list.makeList({
+        list.makeGroupedList({
             source = stats,
             makeEntry = Entry.new,
             iterator = list.pokeNames,
-            header = header
+            header = header,
+            fullGroupLabel = 'Tutte le forme'
         }),
         [[===Nella prima generazione===]],
-        list.makeList({
+        list.makeGroupedList({
             source = stats,
             makeEntry = Entry.new,
             entryArgs = 1,
             iterator = list.pokeNames,
-            header = firstGenHeader
+            header = firstGenHeader,
+            fullGroupLabel = 'Tutte le forme'
         })
     }, '\n')
 end

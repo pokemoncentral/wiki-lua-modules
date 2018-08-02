@@ -35,7 +35,8 @@ stds.wiki = {
                 nonIntPairs = {},
                 flatMap = {},
                 filter = {},
-                keysAlias = {}
+                keysAlias = {},
+                groupBy = {}
             }
         },
 

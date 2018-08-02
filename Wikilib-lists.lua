@@ -17,8 +17,8 @@ local l = {}
 local w = require('Wikilib')
 local form = require('Wikilib-forms')
 local oop = require('Wikilib-oop')
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings') -- luacheck: no unused
+local tab = require('Wikilib-tables') -- luacheck: no unused
 local alts = require('AltForms-data')
 
 --[[-----------------------------------------
@@ -29,19 +29,19 @@ local alts = require('AltForms-data')
 
 --[[
 
-Replaces the label with 'Tutte le forme' when
+Replaces the label with the parameter when
 all forms share the same box. If only one form
 exists, it deletes all the labels instead.
 The boxes are returned for composition convenience.
 
 --]]
-local allForms = function(boxes)
+local allForms = function(boxes, label)
     if #boxes == 1 then
         local box = boxes[1]
         if box:labelFormsCount() == 1 then
             box:emptyLabel()
         else
-            box:replaceLabel('Tutte le forme')
+            box:replaceLabel(label)
         end
     end
     return boxes
@@ -68,7 +68,7 @@ local nextPokeName = function(tab, key)
     return nextKey, nextValue
 end
 
-local next_poke_name = nextPokeName
+-- local next_poke_name = nextPokeName
 
 -- Stateless iterator da usare nei generic for loops
 l.pokeNames = function(tab)
@@ -216,6 +216,84 @@ end
 
 --[[
 
+Creates a list where every entry is a row in an HTML table, entries grouped by
+a property. Entries grouped that holds the same data are merged, and the labels
+of the entries are merged. Groups of one element are printed without the label.
+If a whole group is collapsed in a single entry, the label may become a custom
+text.
+
+Arguments (names because they are many):
+	- source: table to scan to retrieve the data.
+	- makeEntry: constructor of the class representing an entry.
+	- entryArgs: optional, value to be passed to the entry constructor as last
+        argument. Defaults to nil.
+	- iterator: optional, the iterator used to traverse source. Default to
+        pairs.
+	- header: wikicode to be used as table-header.
+    - separator: optional, the separator to be used when concatenating entries.
+        It's both prefixed and appended newlines, Defaults to
+        |- style="height: 100%"
+    - footer: optional, the footer for the HTML table. A newline is prepended
+        to it, but not the separator. Defaults to '|}'.
+	- fullGroupLabel: optional, the label to use when a whole group generates a
+		single entry. Defaults to 'Tutte le forme'
+
+The class representing the entries, needs to implement the following interface:
+    - constructor(): Takes as parameters an element of source, its key and
+        entryArgs when specified. Must return nil if the entry should not be
+        included in the list.
+    - __lt(): Used to sort the entries list by means of table.sort.
+    - __tostring(): Returns the wikicode representing the entry.
+    - __eq(): tells whether two boxes hold the same data, and should therefore
+        be merged.
+    - groupID(): Returns the identifier of the group this entry belongs to.
+        There's no need for the ID to be sortable.
+    - getLabel(): Returns this entry's label(s).
+    - addLabel(): Adds a form name to the current label set.
+    - labelFormsCount(): returns the number of labels currently in the label.
+    - replaceLabel(): Replaces the label as a whole with the passed one.
+    - emptyLabel(): Empties the label.
+--]]
+l.makeGroupedList = function(args)
+    args.footer = '\n' .. (args.footer or '|}')
+    args.fullGroupLabel = args.fullGroupLabel or 'Tutte le forme'
+
+    -- "height: 100%" is just CSS making fun of us, can't really hurt anything
+    args.separator = table.concat{'\n',
+            args.separator or '|- style="height: 100%"', '\n'}
+
+    local makeEntry = function(sourceData, sourceKey)
+        return args.makeEntry(sourceData, sourceKey, args.entryArgs)
+    end
+
+    local entries = table.map(args.source, makeEntry, args.iterator)
+    local groups = table.groupBy(entries, function(v)
+        return v:groupID()
+    end)
+    entries = table.flatMapToNum(groups, function(group)
+        local groupEntries = {}
+
+        for k, entry in pairs(group) do
+            local index = table.search(groupEntries, entry)
+            if index then
+                groupEntries[index]:addLabel(entry:getLabel())
+            else
+                table.insert(groupEntries, entry)
+            end
+        end
+        -- No need for sorting here because all entries are sorted after the
+        -- flatten
+        return allForms(groupEntries, args.fullGroupLabel)
+    end)
+    table.sort(entries)
+
+    table.insert(entries, 1, args.header)
+
+    return w.mapAndConcat(entries, args.separator, tostring) .. args.footer
+end
+
+--[[
+
 Creates and prints a list of boxes for all
 forms of a given Pokémon: boxes holding the
 same data are merged, and the name of the
@@ -275,7 +353,7 @@ l.makeFormsLabelledBoxes = function(args)
         senza bisogno di sorting successivo.
 
         Non si può usare table.map perché ciò porterebbe
-        ad avere buchi negli indici di effTables, cosa
+        ad avere buchi negli indici di boxes, cosa
         difficilmente gestibile
     --]]
     for k, abbr in ipairs(altData.gamesOrder) do
@@ -297,7 +375,7 @@ l.makeFormsLabelledBoxes = function(args)
         end
     end
 
-    return args.printBoxes(allForms(boxes))
+    return args.printBoxes(allForms(boxes, 'Tutte le forme'))
 end
 
 --[[-----------------------------------------
@@ -366,6 +444,11 @@ l.Labelled.new = function(label)
     return this
 end
 
+-- Returns the labels
+l.Labelled.getLabel = function(this)
+    return this.labels
+end
+
 -- Aggiunge una label o una table di labels
 l.Labelled.addLabel = function(this, label)
     if type(label) == 'table' then
@@ -388,6 +471,85 @@ end
 -- Ritorna true se la label è settata
 l.Labelled.hasLabel = function(this)
     return this:labelFormsCount() > 0
+end
+
+--[[
+
+Base class of a Pokémon entry for a labelled list. Inherits from Labelled and
+add the sort, like PokeSortableEntry, and the grouping by ndex. The sort is by
+ndex first, using the name if it's missing. With the same ndex, entries are
+sorted by form order (according to gamesOrder). The form abbr in case of
+multiple labels is the least.
+
+Note that the labels are the abbr, NOT the formNames. The duty to convert abbr
+to extended name is left to the printing function.
+
+--]]
+l.PokeLabelledEntry = oop.makeClass(l.Labelled)
+
+l.PokeLabelledEntry.new = function(name, ndex)
+    local baseName, abbr = form.getNameAbbr(name)
+
+    local this = setmetatable(l.PokeLabelledEntry.super.new(abbr),
+        l.PokeLabelledEntry)
+    this.ndex = ndex
+    this.name = name
+
+    if not this.ndex then
+        this.fallbackSort = this.name
+    end
+
+    this.formsData = alts[baseName]
+    if this.formsData then
+        this.formAbbr = abbr
+    end
+
+    return this
+end
+
+l.PokeLabelledEntry.__lt = l.sortNdex
+
+l.PokeLabelledEntry.groupID = function(this)
+    return this.ndex
+end
+
+--[[
+
+Should be reimplemented to take into account the change in this.formAbbr
+
+]]
+l.PokeLabelledEntry.replaceLabel = function(this, label)
+    l.PokeLabelledEntry.super.replaceLabel(this, label)
+
+    if type(label) == 'table' then
+        -- Takes care also of the empty label case
+        this.formAbbr = label[1]
+        for k, v in ipairs(label) do
+            if form.abbrLT(this.formsData, v, this.formAbbr) then
+                this.formAbbr = v
+            end
+        end
+    else
+        -- This can happen also because of label change to 'Tutte le forme',
+        -- thus this check
+        if this.formsData.names[label] then
+            this.formAbbr = label
+        else
+            this.formAbbr = 'base'
+        end
+    end
+end
+
+l.PokeLabelledEntry.addLabel = function(this, label)
+    if type(label) ~= 'table' then
+        label = {label}
+    end
+    for k, v in ipairs(label) do
+        table.insert(this.labels, v)
+        if form.abbrLT(this.formsData, v, this.formAbbr) then
+            this.formAbbr = v
+        end
+    end
 end
 
 return l

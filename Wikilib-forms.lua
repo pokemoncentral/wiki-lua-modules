@@ -248,6 +248,17 @@ end
 
 --[[
 
+Less than confront for form abbr of a Pokémon. The parameters are the Pokémon's
+AltForms-data and the two form abbr.
+
+--]]
+f.abbrLT = function(formsData, abbr1, abbr2)
+    return table.search(formsData.gamesOrder, abbr1)
+            < table.search(formsData.gamesOrder, abbr2)
+end
+
+--[[
+
 This function returns the sorting key of Pokémon names, taking care of
 alternative forms. The returned value is meant to be used as data-sort-value
 in sortable tables.
