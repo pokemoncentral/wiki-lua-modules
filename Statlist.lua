@@ -175,15 +175,12 @@ Entry.__tostring = function(this)
     table.insert(cells, Entry.printStatCell(this.statsSum, 'pcwiki'))
     table.insert(cells, Entry.printStatCell(this.statsAvg, 'pcwiki'))
     local name = pokes[this.name].name
-    local labelLinks = table.map(this.labels, function(abbr)
-        if abbr == 'Tutte le forme' then
-            return '<div class="small-text">Tutte le forme</div>'
-        end
-        return this.formsData.blacklinks[abbr]
-    end)
-    local form = #this.labels > 0
-                 and mw.text.listToText(labelLinks, ', ', ' e ')
-                 or ''
+    local form = ''
+    if this.labels[1] then
+        form = this.labels[1] == 'Tutte le forme'
+                and '<div class="small-text">Tutte le forme</div>'
+                or this.formsData.blacklinks[this.formAbbr]
+    end
 
     return string.interp([=[| style="padding: 0.3ex 0.8ex;" data-sort-value="${sortDex}" | ${ndex}
 | style="padding: 0.3ex 0.8ex;" data-sort-value="${sortName}" | ${ms}
@@ -262,7 +259,7 @@ Example:
 s.statlist = function(frame)        -- luacheck: no unused
     return table.concat({
         [[===Dalla seconda generazione in poi===]],
-        list.makeGroupedList({
+        list.makeCollapsedList({
             source = stats,
             makeEntry = Entry.new,
             iterator = list.pokeNames,
@@ -270,7 +267,7 @@ s.statlist = function(frame)        -- luacheck: no unused
             fullGroupLabel = 'Tutte le forme'
         }),
         [[===Nella prima generazione===]],
-        list.makeGroupedList({
+        list.makeCollapsedList({
             source = stats,
             makeEntry = Entry.new,
             entryArgs = 1,

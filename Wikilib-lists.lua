@@ -200,7 +200,7 @@ l.makeList = function(args)
 
     -- "height: 100%" is just CSS making fun of us, can't really hurt anything
     args.separator = table.concat{'\n',
-            args.separator or '|- style="height: 100%"', '\n'}
+            args.separator or '|- style="height: 100%;"', '\n'}
 
     local makeEntry = function(sourceData, sourceKey)
         return args.makeEntry(sourceData, sourceKey, args.entryArgs)
@@ -216,7 +216,7 @@ end
 
 --[[
 
-Creates a list where every entry is a row in an HTML table, entries grouped by
+Creates a list where every entry is a row in an HTML table, grouping entries by
 a property. Entries grouped that holds the same data are merged, and the labels
 of the entries are merged. Groups of one element are printed without the label.
 If a whole group is collapsed in a single entry, the label may become a custom
@@ -260,7 +260,7 @@ l.makeGroupedList = function(args)
 
     -- "height: 100%" is just CSS making fun of us, can't really hurt anything
     args.separator = table.concat{'\n',
-            args.separator or '|- style="height: 100%"', '\n'}
+            args.separator or '|- style="height: 100%;"', '\n'}
 
     local makeEntry = function(sourceData, sourceKey)
         return args.makeEntry(sourceData, sourceKey, args.entryArgs)
@@ -284,6 +284,81 @@ l.makeGroupedList = function(args)
         -- No need for sorting here because all entries are sorted after the
         -- flatten
         return allForms(groupEntries, args.fullGroupLabel)
+    end)
+    table.sort(entries)
+
+    table.insert(entries, 1, args.header)
+
+    return w.mapAndConcat(entries, args.separator, tostring) .. args.footer
+end
+
+--[[
+
+Creates a list where every entry is a row in an HTML table, grouping entries by
+a property and merging together all the entries in a group if they are all
+equal, with a specific label. Groups of one element are printed without the
+label.
+
+Arguments (names because they are many):
+	- source: table to scan to retrieve the data.
+	- makeEntry: constructor of the class representing an entry.
+	- entryArgs: optional, value to be passed to the entry constructor as last
+        argument. Defaults to nil.
+	- iterator: optional, the iterator used to traverse source. Default to
+        pairs.
+	- header: wikicode to be used as table-header.
+    - separator: optional, the separator to be used when concatenating entries.
+        It's both prefixed and appended newlines, Defaults to
+        |- style="height: 100%"
+    - footer: optional, the footer for the HTML table. A newline is prepended
+        to it, but not the separator. Defaults to '|}'.
+	- fullGroupLabel: optional, the label to use when a whole group generates a
+		single entry. Defaults to 'Tutte le forme'
+
+The class representing the entries, needs to implement the following interface:
+    - constructor(): Takes as parameters an element of source, its key and
+        entryArgs when specified. Must return nil if the entry should not be
+        included in the list.
+    - __lt(): Used to sort the entries list by means of table.sort.
+    - __tostring(): Returns the wikicode representing the entry.
+    - __eq(): tells whether two boxes hold the same data, and should therefore
+        be merged.
+    - groupID(): Returns the identifier of the group this entry belongs to.
+        There's no need for the ID to be sortable.
+    - replaceLabel(): Replaces the label as a whole with the passed one.
+    - emptyLabel(): Empties the label.
+--]]
+l.makeCollapsedList = function(args)
+    args.footer = '\n' .. (args.footer or '|}')
+    args.fullGroupLabel = args.fullGroupLabel or 'Tutte le forme'
+
+    -- "height: 100%" is just CSS making fun of us, can't really hurt anything
+    args.separator = table.concat{'\n',
+            args.separator or '|- style="height: 100%;"', '\n'}
+
+    local makeEntry = function(sourceData, sourceKey)
+        return args.makeEntry(sourceData, sourceKey, args.entryArgs)
+    end
+
+    local entries = table.map(args.source, makeEntry, args.iterator)
+    local groups = table.groupBy(entries, function(v)
+        return v:groupID()
+    end)
+    entries = table.flatMapToNum(groups, function(group)
+        if #group == 1 then
+            group[1]:emptyLabel()
+            return group
+        end
+
+        local equalFirst = function(val)
+            return group[1] == val
+        end
+
+        if not table.all(group, equalFirst) then
+            return group
+        end
+        group[1]:replaceLabel(args.fullGroupLabel)
+        return { group[1] }
     end)
     table.sort(entries)
 
