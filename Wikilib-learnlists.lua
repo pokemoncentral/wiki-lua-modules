@@ -3,8 +3,8 @@
 local lib = {}
 
 local w = require('Wikilib')
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings') -- luacheck: no unused
+local tab = require('Wikilib-tables')  -- luacheck: no unused
 local ms = require('MiniSprite')
 local box = require('Box')
 local c = require("Colore-data")
@@ -132,6 +132,48 @@ end
 -- Interfaccia per mediaWiki della funzione di cui sopra
 lib.newline = function(frame)
     return lib.insertnwlns(string.trim(frame.args[1]), frame.args[2])
+end
+
+--[=[
+
+Creates a modal containing a list of MS from the list of ndex or MS passed.
+
+The first parameter is a string in one of the following formats:
+* a list of MS links in Wikicode syntax ([[File:.-MS.png|.-|link=.-]])
+* a list of ndexes, each surrounded by a pair of #
+The second parameter is the gen for the ms (unused if list is in the first
+format, default to the latest), the third is the text displayed inside the
+element that binds the modal (default to '✔').
+
+In order for the modal to work IT IS REQUIRED that at some point in the page
+is included the widget. This function doesn't do it on his own to avoid lots
+of useless calls.
+
+--]=]
+lib.mslistToModal = function(list, gen, textDisplay)
+	list = list:gsub('<br>', '')
+	gen = gen or ''
+	textDisplay = textDisplay or '✔'
+
+	local res = {}
+	local pattern, op
+	if list:match('File') then
+		pattern = '%[%[File:.-MS%.png|.-|link=.-%]%]'
+		op = function(sprite) return sprite end
+	else
+		pattern = '#(.-)#'
+		op = function(ndex) return ms.staticLua(ndex, gen) end
+	end
+
+	table.insert(res, '<span class="open-popup-element explain">')
+	table.insert(res, textDisplay)
+	table.insert(res, '<div class="mfp-hide pull-center max-width-xl-80 roundy" style="display: table; padding: 0.5em; background: #fff;">')
+	for minisprite in list:gmatch(pattern) do
+		table.insert(res, op(minisprite))
+	end
+	table.insert(res, '</div></span>')
+
+	return table.concat(res)
 end
 
 -- Funzione che restituisce i cuori per le gare

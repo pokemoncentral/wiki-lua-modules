@@ -137,7 +137,7 @@ il title
 local makeTitleCell = function(content, cellData)
 	return makeCell(content == '×' and 'FFF' or cellData.bg,
 			'000', '1',
-			table.concat{'<span class="explain" title="', cellData.abbr,
+			table.concat{'<span class="explain tooltips" title="', cellData.abbr,
 			'">', content, '</span>'})
 end
 
@@ -222,11 +222,21 @@ local head = function(ndex, stab, notes, form)
 	local ndexFigures = ndex:match('^(%d+)')
 	local abbr = forms.getabbr(ndex, form)
 	local pokedata = table.copy(pokes[abbr == 'base' and tonumber(ndexFigures) or ndexFigures .. abbr]
-		or table.copy(pokes[tonumber(ndexFigures)]) or {name = 'Missingno.', ndex = '000'})
+					or table.copy(pokes[tonumber(ndexFigures)])
+					or {name = 'Missingno.', ndex = '000'})
 	pokedata = table.merge(pokedata, table.copy(groups[pokedata.ndex] or {group1 = 'sconosciuto'}))
-	pokedata.group1show = pokedata.group1 == 'coleottero' and 'Coleot' or (pokedata.group1 == 'non ancora scoperto' and 'Non ancora<div>scoperto</div>' or string.fu(pokedata.group1))
-	pokedata.group2show = pokedata.group2 == 'coleottero' and 'Coleot' or string.fu(pokedata.group2)
-	pokedata.type2 = pokedata.type2 ~= pokedata.type1 and string.fu(pokedata.type2) or nil
+	pokedata.group1show = pokedata.group1 == 'coleottero'
+							and 'Coleot'
+							or (pokedata.group1 == 'non ancora scoperto'
+								and 'Non ancora<div>scoperto</div>'
+								or string.fu(pokedata.group1)
+							)
+	pokedata.group2show = pokedata.group2 == 'coleottero'
+						and 'Coleot'
+						or string.fu(pokedata.group2)
+	pokedata.type2 = pokedata.type2 ~= pokedata.type1
+					and string.fu(pokedata.type2)
+					or nil
 	pokedata.type1 = string.fu(pokedata.type1)
 
 	return string.interp([=[|- style="height: 100%;"
@@ -268,8 +278,9 @@ local removeOldParams = function(p)
 	-- rimuove i parametri 3, 4 e 5 (ora 2, 3 e 4)
 	--		se 3 è 1 o 2 (il numero di tipi)
 	--		e se 4 e 5 sono tipi
-	if ((p[2] == '1' or p[2] == '2') and p[3] and
-		(table.search(libdata.allTypes, string.lower(p[3])) or string.lower(p[3]) == 'coleottero')) then
+	if (p[2] == '1' or p[2] == '2')
+		and p[3]
+		and (table.search(libdata.allTypes, string.lower(p[3])) or string.lower(p[3]) == 'coleottero') then
 		table.remove(p, 4)
 		table.remove(p, 3)
 		table.remove(p, 2)
@@ -310,8 +321,11 @@ local entry = function(p, makeText, splitCells, latestGenDefault, collapse)
 	p = removeOldParams(p)
 
 	p.note, p.STAB, p.form = nil, nil, nil
-	p[(1 + gendata.latest) - gen] = p[(1 + gendata.latest) - gen] or latestGenDefault or p[gendata.latest - gen]
-	p[(2 + gendata.latest) - gen] = p[(2 + gendata.latest) - gen] or 'N/D'
+	p[(1 + gendata.latest) - gen] = p[(1 + gendata.latest) - gen]
+									or latestGenDefault
+									or p[gendata.latest - gen]
+	p[(2 + gendata.latest) - gen] = p[(2 + gendata.latest) - gen]
+									or 'N/D'
 
 	--[[
 		Si applica makeText solo ai dati relativi all'
@@ -359,9 +373,12 @@ primo argomento la generazione, seguita dagli altri
 
 --]]
 m.breed = function(frame)
-	return entry(mw.clone(frame.args), function(v) return v == 'No'
-			and '×' or (v:match('%#') and lib.insertnwlns(v, 6, nil, true) or v)
-		end, splitSup, nil, true)
+	local makeBreedCells = function(v)
+		return v == 'No' and '×'
+				or (v:match('%#') and lib.mslistToModal(v, nil, '✔') or v)
+	end
+
+	return entry(mw.clone(frame.args), makeBreedCells, splitSup)
 end
 
 m.Breed = m.breed

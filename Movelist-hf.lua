@@ -92,6 +92,7 @@ end
 
 local headers = function(tipo, gen, kind)
 	return string.interp([=[
+{{#widget: Zebra Tooltips}}
 {| class="roundy text-center white-rows roundy-footer" style="${bg}; border-spacing: 0; padding: 0.3ex;"
 ! class="roundytl hidden-xs" rowspan="${rs}" | #
 ! rowspan="${rs}" colspan="2" | Pokémon
@@ -151,7 +152,9 @@ j.TMh, j.Tmh = j.tmh, j.tmh
 j.breedh = function(frame)
     local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     local tipo, gen = p[1] or 'pcwiki', tonumber(p[2]) < 2 and 2 or tonumber(p[2])
-    return string.interp([=[${str}Padre
+    return string.interp([=[
+{{#widget: Magnific-Popup}}
+${str}Padre
 |-
 ${g}]=], {str = headers(tipo, gen, 'breed'), g = cells.breed(gen)})
 end
@@ -241,8 +244,8 @@ j.Shadowh = j.shadowh
 -- Footer
 
 local foot = function(interpData)
-	return string.interp([=[|- class="text-left"
-! class="text-small" colspan="${cs}" |
+	return string.interp([=[|-
+! class="text-small text-left" colspan="${cs}" |
 * I Pokémon in '''grassetto''' sono quelli che ricevono il [[Bonus di tipo|<span style="color: #000;">bonus di tipo</span>]] dalla mossa.
 * I Pokémon in ''corsivo'' sono quelli con evoluzioni o [[Differenze di forma|<span style="color:#333">forme alternative</span>]] che ricevono il bonus di tipo.${last}
 |}]=], interpData)
@@ -262,6 +265,16 @@ j.levelf = function(frame)
 		last = [=[
 
 * Le mosse segnate al livello "Evo" possono essere apprese al momento dell'evoluzione.]=]})
+end
+
+-- Footer per le mosse apprese per accoppiamento
+
+j.breedf = function(frame)
+    return foot({
+		cs = 5 + cs.level(1),
+		last = [=[
+
+* Premendo su ✔ è possibile vedere i genitori da cui il Pokémon può imparare la mossa.]=]})
 end
 
 -- Divisore generazioni event
