@@ -90,9 +90,8 @@ end
 
 -- Ritorna le prime celle, comuni a tutti gli headers
 
-local headers = function(tipo, gen, kind, frame)
-	return string.interp(frame:callParserFunction('#widget', 'Zebra Tooltips') ..
-[=[
+local headers = function(tipo, gen, kind)
+	return string.interp([=[
 
 {| class="roundy text-center white-rows roundy-footer" style="${bg}; border-spacing: 0; padding: 0.3ex;"
 ! class="roundytl hidden-xs" rowspan="${rs}" | #
@@ -116,7 +115,7 @@ j.levelh = function(frame)
     local tipo, gen = p[1] or 'pcwiki', tonumber(p[2]) or 0
     return string.interp([=[${str}Livello
 |-
-${g}]=], {str = headers(tipo, gen, 'level', frame), g = cells.level(gen)})
+${g}]=], {str = headers(tipo, gen, 'level'), g = cells.level(gen)})
 end
 
 j.Levelh = j.levelh
@@ -128,7 +127,7 @@ j.eventh = function(frame)
     local tipo = p[1] or 'pcwiki'
     return string.interp([=[${str}Ottenuto in
 |-
-]=], {str = headers(tipo, gen, 'event', frame)})
+]=], {str = headers(tipo, gen, 'event')})
 end
 
 j.Eventh = j.eventh
@@ -143,7 +142,7 @@ j.tmh = function(frame)
     end
     return string.interp([=[${str}Macchina
 |-
-${g}]=], {str = headers(tipo, gen, 'tm', frame), g = cells.tm(gen, tms)})
+${g}]=], {str = headers(tipo, gen, 'tm'), g = cells.tm(gen, tms)})
 end
 
 j.TMh, j.Tmh = j.tmh, j.tmh
@@ -153,11 +152,10 @@ j.TMh, j.Tmh = j.tmh, j.tmh
 j.breedh = function(frame)
     local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     local tipo, gen = p[1] or 'pcwiki', tonumber(p[2]) < 2 and 2 or tonumber(p[2])
-    return string.interp(frame:callParserFunction('#widget', 'Magnific-Popup') ..
-[=[
+    return string.interp([=[
 ${str}Padre
 |-
-${g}]=], {str = headers(tipo, gen, 'breed', frame), g = cells.breed(gen)})
+${g}]=], {str = headers(tipo, gen, 'breed'), g = cells.breed(gen)})
 end
 
 j.Breedh = j.breedh
@@ -169,7 +167,7 @@ j.tutorh = function(frame)
     local tipo, cs = p[1] or 'pcwiki', tonumber(p[2]) or 0
 	return string.interp([=[${str}Gioco
 |-
-]=], {str = headers(tipo, cs, 'tutor', frame)})
+]=], {str = headers(tipo, cs, 'tutor')})
 end
 
 j.Tutorh = j.tutorh
@@ -234,7 +232,7 @@ j.shadowh = function(frame)
 ! class="roundytop" style="background: #${bg}; width: 100px;" | [[Pokémon XD: Tempesta Oscura|<span style="color:#FFF">XD</span>]]]=],
 {
     str = headers('xd', game == 'colo' and gendata.latest or gendata.latest - 1,
-		'level', frame),
+		'level'),
     bg = c.xd.light,
     colo = game == 'colo' and colo or ''
 })
