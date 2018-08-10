@@ -6,6 +6,7 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
+local links = require('Links')
 
 local entry = function(stab, mossa, notes, tipo, cat, pw, acc, pp, gara, exib, inib)
     return lib.categoryentry(stab, mossa, notes, tipo, cat, pw, acc, pp) ..
@@ -16,9 +17,10 @@ end
 
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{'|-\n', lib.gameslevel(p[1] or
-		[[<span class="explain" title="Disponibile solo in Rubino Omega e Zaffiro Alpha">&mdash;</span>]],
-		p[2] or [[<span class="explain" title="Disponibile solo in X e Y">&mdash;</span>]]),
+    return table.concat{'|-\n', lib.gameslevel(
+            p[1] or links.tt('&mdash;', 'Disponibile solo in Rubino Omega e Zaffiro Alpha'),
+            p[2] or links.tt('&mdash;', 'Disponibile solo in X e Y')
+        ),
 		entry(p[10] or '', p[3] or 'Geloraggio', lib.makeNotes(p[9] or ''),
 			p[4] or 'Sconosciuto', p[5] or 'Speciale', p[6] or '0', p[7] or '0',
 			p[8] or '0', p[11] or 'Sconosciuto', p[12] or '?', p[13] or '?')}

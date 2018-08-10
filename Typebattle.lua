@@ -7,6 +7,7 @@ local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local b = require('Box')
 local c = require("Colore-data")
+local links = require('Links')
 
 -- Le tabelle seguenti contengono i tipi che cambiano rapporti con gli altri DOPO
 -- la prima e la quinta rispettivamente
@@ -27,12 +28,15 @@ local eff = function(tipo, gen)
         test = et.attacco(v, tipo)
         f['ax' .. v] = test[1] and b.listTipoLua(test, nil, classes, styles) or 'Nessuna'
     end
+    f['ttx2'] = links.tt('Superefficace', '2x')
+    f['ttx0.5'] = links.tt('Non molto efficace', '½x')
+    f['ttx0'] = links.tt('Non ha effetto', '0x')
 	return string.interp([=[{| class="roundy" style="background: #${bg}; border: 3px solid #${bd}; text-align: center;"
 ! class="roundytop" style="background:#${bd}; font-size: 120%;" | Danno inflitto
 ! class="roundytop" style="background:#${bd}; font-size: 120%;" | Danno subito
 |-
-! style="background: #${cells};" | <span class="explain" title="2x">Superefficace</span>
-! style="background: #${cells};" | <span class="explain" title="2x">Superefficace</span>
+! style="background: #${cells};" | ${ttx2}
+! style="background: #${cells};" | ${ttx2}
 |-
 | style="background: #FFF;" |
 {| style="margin:auto;"
@@ -43,8 +47,8 @@ local eff = function(tipo, gen)
 | ${dx2}
 |}
 |-
-! style="background: #${cells};" | <span class="explain" title="½x">Non molto efficace</span>
-! style="background: #${cells};" | <span class="explain" title="½x">Non molto efficace</span>
+! style="background: #${cells};" | ${ttx0.5}
+! style="background: #${cells};" | ${ttx0.5}
 |-
 | style="background: #FFF;" |
 {| style="margin:auto;"
@@ -55,8 +59,8 @@ local eff = function(tipo, gen)
 | ${dx0.5}
 |}
 |-
-! style="background: #${cells};" | <span class="explain" title="0x">Non ha effetto</span>
-! style="background: #${cells};" | <span class="explain" title="0x">Non ha effetto</span>
+! style="background: #${cells};" | ${ttx0}
+! style="background: #${cells};" | ${ttx0}
 |-
 | class="roundybottom" style="background: #FFF;" |
 {| style="margin:auto;"
@@ -94,5 +98,5 @@ tb.typebattle = function(frame)
 end
 
 tb.foo = tb.typebattle
-
+print(tb.typebattle{args={'Folletto'}})
 return tb

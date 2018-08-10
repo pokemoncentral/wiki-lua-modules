@@ -19,6 +19,7 @@ local groups = require("PokéEggGroup-data")
 local libdata = require("Wikilib-data")
 local pokes = require("Poké-data")
 local abbrLib = require('Wikilib-sigle')
+local links = require('Links')
 
 forms.loadUseless(true)                 -- uses both AltForms and UselessForm
 
@@ -136,9 +137,8 @@ il title
 --]]
 local makeTitleCell = function(content, cellData)
 	return makeCell(content == '×' and 'FFF' or cellData.bg,
-			'000', '1',
-			table.concat{'<span class="explain tooltips" title="', cellData.abbr,
-			'">', content, '</span>'})
+			'000', '1', links.tt(content, cellData.abbr)
+		)
 end
 
 --[[

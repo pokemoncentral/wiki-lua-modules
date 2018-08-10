@@ -38,6 +38,7 @@ local tab = require('Wikilib-tables')
 local css = require('Css')
 local data = require("Wikilib-data")
 local glitches = require('Glitch-data')
+local links = require('Links')
 
 --[[
 
@@ -87,8 +88,7 @@ printHex.table = function(hexes)
     for k, hex in ipairs(hexes) do
         hexes[k] = printHex.number(hex)
     end
-    return table.concat{'<span class="explain" title="',
-            table.concat(hexes, ', '), '">Vari</span>'}
+    return links.tt('Vari', table.concat(hexes, ', '))
 end
 
 --[[
@@ -112,7 +112,7 @@ m.GlitchPrecSucc = function(frame)
 
     local tipo1 = game[glitchIndex].type1:gsub(' ', '_')
     local tipo2 = (game[glitchIndex].type2 or tipo1):gsub(' ', '_')
-    
+
     local size = table.getn(game)
     local prev = (glitchIndex - 2 + size) % size + 1
 	local nxt = glitchIndex % size + 1

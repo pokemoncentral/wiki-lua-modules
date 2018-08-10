@@ -12,6 +12,7 @@ local css = require('Css')
 local abbr = require("Sigle-data")
 local s = require("Sup-data")
 local abbrLib = require('Wikilib-sigle')
+local links = require('Links')
 
 -- local trimOnly = {'x v zA'}
 
@@ -29,7 +30,11 @@ local entryNullEnd = { level = 'aumentando di livello', tm = 'tramite MT',
 	breed = 'tramite accoppiamento', tutor = "dall'Esperto Mosse", preevo = 'tramite evoluzioni precedenti'}
 
 -- Contiene i title per le pre-evoluzioni
-lib.preevott = {T = [[<span class="explain" title="Mossa appresa dall'Esperto Mosse">*</span>]], E = [[<span class="explain" title="Mossa appresa tramite evento">†</span>]], D = [[<span class="explain" title="Mossa appresa nel Dream World">‡</span>]]}
+lib.preevott = {
+	T = links.tt('*', "Mossa appresa dall'Esperto Mosse",
+	E = links.tt('†', "Mossa appresa tramite evento"),
+	D = links.tt('‡', "Mossa appresa nel Dream World")
+}
 
 --[[
 
@@ -66,9 +71,7 @@ lib.makeNotes = function(notes, ...)
 	elseif notes:len() < 2 then
 		table.insert(pieces, 1, notes)
 	else
-		table.insert(pieces, 1, '<span class="explain" title="')
-		table.insert(pieces, 2, notes)
-		table.insert(pieces, 3, '">*</span>')
+		table.insert(pieces, 1, links.tt('*', notes)
 	end
 	return table.concat(pieces)
 end

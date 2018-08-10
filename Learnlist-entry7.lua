@@ -7,6 +7,7 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
 local moves = require("Move-data")
+local links = require('Links')
 
 -- stab, mossa, notes, tipo, cat, pw, acc, pp, gara, exib, inib
 local entry = function(stab, mossa, notes)
@@ -24,8 +25,10 @@ z.level = function(frame)
 	if p[2] == 'Evo' or p[2] == 'Evoluzione' then
 		p[2] = 'Evo<span class="hidden-xs">luzione</span>'
 	end
-    return table.concat{'|-\n', lib.gameslevel(p[1] or
-		[[<span class="explain" title="Disponibile solo in Ultrasole e Ultraluna">&mdash;</span>]], p[2] or [[<span class="explain" title="Disponibile solo in Sole e Luna">&mdash;</span>]]),
+    return table.concat{'|-\n', lib.gameslevel(
+			p[1] or links.tt('&mdash;', 'Disponibile solo in Ultrasole e Ultraluna'),
+			p[2] or links.tt('&mdash;', 'Disponibile solo in Sole e Luna')
+		),
 		entry(p[5] or '', p[3] or 'Geloraggio', lib.makeNotes(p[4] or ''))}
 end
 

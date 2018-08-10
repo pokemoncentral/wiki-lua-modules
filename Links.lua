@@ -84,4 +84,22 @@ end
 
 l.cat_color = l.catColor
 
+--[[
+
+Template:tt
+
+Not very useful, but you don't know if the future will bring another change.
+Used to add a tooltip to a text
+
+--]]
+l.tt = function(text, title)
+	return table.concat{
+		'<span class="explain tooltips" title="',
+		title,
+		'">',
+		text,
+		'</span>'
+	}
+end
+
 return l

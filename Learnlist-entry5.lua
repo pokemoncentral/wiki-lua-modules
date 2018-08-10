@@ -8,14 +8,16 @@ local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
 local s = require("Sup-data")
 local abbrLib = require('Wikilib-sigle')
+local links = require('Links')
 
 --Entry per le mosse apprese aumentando di livello
 
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{'|-\n', lib.gameslevel(p[1] or
-		[[<span class="explain" title="Disponibile solo in Nero 2 e Bianco 2">''Assente''</span>]],
-		p[2] or [[<span class="explain" title="Disponibile solo in Nero 2 e Bianco 2">''Assente''</span>]]),
+    return table.concat{'|-\n', lib.gameslevel(
+            p[1] or links.tt("''Assente''", 'Disponibile solo in Nero 2 e Bianco 2'),
+            p[2] or links.tt("''Assente''", 'Disponibile solo in Nero 2 e Bianco 2')
+        ),
 		lib.categoryentry(p[10] or '', p[3] or 'Geloraggio',
 			lib.makeNotes(p[9] or ''), p[4] or 'Sconosciuto',
 			p[5] or 'Speciale', p[6] or '0', p[7] or '0', p[8] or '0')}

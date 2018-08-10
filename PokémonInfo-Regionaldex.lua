@@ -8,6 +8,7 @@ local tab = require('Wikilib-tables')
 local dex = require("Dex-data")
 local c = require("Colore-data")
 local sup = require("Sup-data")
+local links = require('Links')
 
 -- Ritorna il dex regionale di un Pokémon nel vecchio
 -- dex regionale specificato: nel caso in cui non sia
@@ -31,8 +32,7 @@ end
 -- dal secondo e dal terzo separati da uno spazio
 
 local addtt = function(newDex, oldDex, title)
-	return string.interp('<span class="explain" title="${oldDex} ${title}">${newDex}</span>',
-		{oldDex = oldDex, title = title, newDex = newDex})
+	return string.interp(links.tt(newDex, oldDex .. title))
 end
 
 -- Inserisce le informazioni relative al vecchio dex
@@ -42,11 +42,11 @@ end
 local insOld = {}
 
 insOld.johto = function(newDex, oldDex)
-	return addtt(newDex, oldDex, 'nella seconda generazione')
+	return addtt(newDex, oldDex, ' nella seconda generazione')
 end
 
 insOld.hoenn = function(newDex, oldDex)
-	return addtt(newDex, oldDex, 'nella terza generazione')
+	return addtt(newDex, oldDex, ' nella terza generazione')
 end
 
 insOld.sinnoh = function(newDex, oldDex)
@@ -54,11 +54,11 @@ insOld.sinnoh = function(newDex, oldDex)
 end
 
 insOld.unima = function(newDex, oldDex)
-	return addtt(newDex, oldDex, 'in Nero e Bianco')
+	return addtt(newDex, oldDex, ' in Nero e Bianco')
 end
 
 insOld.alola = function(newDex, oldDex)
-	return addtt(newDex, oldDex, 'in Sole e Luna')
+	return addtt(newDex, oldDex, ' in Sole e Luna')
 end
 
 -- Ordina la tabella store: la table è esterna alla
@@ -83,13 +83,13 @@ local dexlist = function(dexes)
 	end
 	local store = {}
 	local str = [=[<span><div class="small-font">'''[[Elenco Pokémon secondo il Pokédex di ${reg}|<span style="color:#000">${reg}</span>]]'''</div>#${rdex}</span>]=]
-	local kalos = [=[<span><div class="small-font">'''[[Elenco Pokémon secondo i Pokédex di Kalos#Pokédex di Kalos ${reg}|<span style="color:#${c}">Kalos</span>]]'''</div>#<span class="explain" title="${reg}">${rdex}</span></span>]=]
+	local kalos = [=[<span><div class="small-font">'''[[Elenco Pokémon secondo i Pokédex di Kalos#Pokédex di Kalos ${reg}|<span style="color:#${c}">Kalos</span>]]'''</div>#${ttdex}</span>]=]
 	local incl = '<includeonly>[[Categoria:Pokémon originari della regione di ${reg}|${rdex}]]</includeonly>'
 	for region, rdex in pairs(dexes) do
 		if region:find('kalos') then
 			local zone = region:match('kalos(%a+)$')
 			table.insert(store, string.interp(kalos, {c = c['kalos' .. zone].normale,
-				reg = zone, rdex = rdex}))
+				ttdex = links.tt(rdex, zone), reg = zone}))
 		else
 			local oldDexTable = dex[region .. 'Added']
 			if oldDexTable then
