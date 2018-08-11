@@ -31,7 +31,7 @@ local entryNullEnd = { level = 'aumentando di livello', tm = 'tramite MT',
 
 -- Contiene i title per le pre-evoluzioni
 lib.preevott = {
-	T = links.tt('*', "Mossa appresa dall'Esperto Mosse",
+	T = links.tt('*', "Mossa appresa dall'Esperto Mosse"),
 	E = links.tt('†', "Mossa appresa tramite evento"),
 	D = links.tt('‡', "Mossa appresa nel Dream World")
 }
@@ -71,7 +71,7 @@ lib.makeNotes = function(notes, ...)
 	elseif notes:len() < 2 then
 		table.insert(pieces, 1, notes)
 	else
-		table.insert(pieces, 1, links.tt('*', notes)
+		table.insert(pieces, 1, links.tt('*', notes))
 	end
 	return table.concat(pieces)
 end
@@ -146,14 +146,11 @@ The first parameter is a string in one of the following formats:
 * a list of ndexes, each surrounded by a pair of #
 The second parameter is the gen for the ms (unused if list is in the first
 format, default to the latest), the third is the text displayed inside the
-element that binds the modal (default to '✔').
-
-In order for the modal to work IT IS REQUIRED that at some point in the page
-is included the widget. This function doesn't do it on his own to avoid lots
-of useless calls.
+element that binds the modal (default to '✔'), the fourth is the max number of
+ms in a single line (default nil, that means no line breaks).
 
 --]=]
-lib.mslistToModal = function(list, gen, textDisplay)
+lib.mslistToModal = function(list, gen, textDisplay, linelength)
 	list = list:gsub('<br>', '')
 	gen = gen or ''
 	textDisplay = textDisplay or '✔'
@@ -171,9 +168,18 @@ lib.mslistToModal = function(list, gen, textDisplay)
 	table.insert(res, '<span class="open-popup-element explain">')
 	table.insert(res, textDisplay)
 	table.insert(res, '<div class="mfp-hide pull-center max-width-xl-80 roundy" style="display: table; padding: 0.5em; background: #fff;">')
+
+	table.insert(res, '<div>')
+	local mscount = 0
 	for minisprite in list:gmatch(pattern) do
 		table.insert(res, op(minisprite))
+		mscount = mscount + 1
+		if linelength and mscount % linelength == 0 then
+			table.insert(res, '</div><div>')
+		end
 	end
+	table.insert(res, '</div>')
+
 	table.insert(res, '</div></span>')
 
 	return table.concat(res)

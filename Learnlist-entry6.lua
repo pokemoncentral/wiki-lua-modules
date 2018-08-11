@@ -56,7 +56,7 @@ z.breed = function(frame)
 			p[3] or 'Sconosciuto', p[4] or 'Stato', p[5] or '0', p[6] or '0',
 			p[7] or '0', p[10] or 'Sconosciuto', p[11] or '?', p[12] or '?')},
 {
-	p1 = lib.insertnwlns(p[1] or '', nil, '6')
+    p1 = lib.mslistToModal(p[1] or '', '6', nil, 6)
 })
 end
 

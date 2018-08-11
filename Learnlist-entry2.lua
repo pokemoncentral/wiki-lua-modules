@@ -51,7 +51,7 @@ z.breed = function(frame)
 			abbrLib.concatAbbrs(p[9] or '', s)), p[3] or 'Sconosciuto',
             p[4] or '0', p[5] or '0', p[6] or '0')},
 {
-	fathers = lib.insertnwlns(p[1] or '', nil, '2')
+    fathers = lib.mslistToModal(p[1] or '', '2', nil, 6)
 })
 end
 

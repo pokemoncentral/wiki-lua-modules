@@ -58,7 +58,7 @@ z.breed = function(frame)
 | style="padding: 0.1em 0.3em;" | ${p1}]],
 		entry(p[4] or '', p[2] or 'Lanciafiamme', lib.makeNotes(p[3] or '', lib.makeNotes(p[5] or '', lib.makeNotes(p[6] or ''))))},
 {
-	p1 = lib.insertnwlns(p[1] or '', nil, '7')
+	p1 = lib.mslistToModal(p[1] or '', '7', nil, 6)
 })
 end
 
