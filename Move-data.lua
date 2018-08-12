@@ -589,7 +589,7 @@ t['campo erboso'] = {name = 'Campo Erboso', type = 'erba', category = 'stato', p
 t['campo nebbioso'] = {name = 'Campo Nebbioso', type = 'folletto', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10}
 t.elettrocontagio = {name = 'Elettrocontagio', type = 'elettro', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 20}
 t.carineria = {name = 'Carineria', type = 'folletto', category = 'fisico', power = 90, accuracy = 90, pp = 10}
-t['vento di fata'] = {name = 'Vento di Fata', type = 'folletto', category = 'speciale', power = 40, accuracy = '&mdash;', pp = 30}
+t['vento di fata'] = {name = 'Vento di Fata', type = 'folletto', category = 'speciale', power = 40, accuracy = 100, pp = 30}
 t['forza lunare'] = {name = 'Forza Lunare', type = 'folletto', category = 'speciale', power = 95, accuracy = 100, pp = 15}
 t.ondaboato = {name = 'Ondaboato', type = 'normale', category = 'speciale', power = 140, accuracy = 100, pp = 10}
 t['blocco fatato'] = {name = 'Blocco Fatato', type = 'folletto', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10}
