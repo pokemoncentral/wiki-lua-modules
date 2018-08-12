@@ -678,8 +678,8 @@ t.occhionilucidi = {name = 'Occhionilucidi', type = 'normale', category = 'stato
 t.elettropizzico = {name = 'Elettropizzico', type = 'elettro', category = 'fisico', power = 80, accuracy = 100, pp = 10}
 t['ira della natura'] = {name = "Ira della Natura", type = 'folletto', category = 'speciale', power = '&mdash;', accuracy = 90, pp = 10}
 t.multiattacco = {name = 'Multiattacco', type = 'normale', category = 'fisico', power = 90, accuracy = 100, pp = 10}
-t['geyser fotonico'] = {name = 'Geyser Fotonico', type = 'psico', category = 'speciale', power = '&mdash;', accuracy = '&mdash;', pp = '&mdash;'}
-t['sbalorditesta'] = {name = 'Sbalorditesta', type = 'fuoco', category = 'speciale', power = '&mdash;', accuracy = '&mdash;', pp = '&mdash;'}
-t['pugni plasma'] = {name = 'Pugni Plasma', type = 'elettro', category = 'fisico', power = '100', accuracy = '100', pp = '15'}
+t['geyser fotonico'] = {name = 'Geyser Fotonico', type = 'psico', category = 'speciale', power = 100, accuracy = 100, pp = 5}
+t['sbalorditesta'] = {name = 'Sbalorditesta', type = 'fuoco', category = 'speciale', power = 150, accuracy = 100, pp = 5}
+t['pugni plasma'] = {name = 'Pugni Plasma', type = 'elettro', category = 'fisico', power = 100, accuracy = 100, pp = 15}
 
 return t
