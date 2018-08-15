@@ -46,11 +46,19 @@ b.get_ndex = b.getNdex
 
 b.getName = function(frame)
     data = loadData(data, 'Poké/data')
-    return data[tonumber(string.trim(frame.args[1] or ''))].name
+    local ndex = string.trim(frame.args[1] or '')
+    return data[tonumber(ndex) or ndex].name
 end
 
 b.get_name = b.getName
 
+-- Return the form name given ndex with abbr
+
+b.getFormName = function(frame)
+    forms = loadData(forms, 'AltForms/data')
+    local name, abbr = form.getnameabbr(string.trim(frame.args[1]))
+    return forms[name] and forms[name].names[abbr] or b.getName{args={name}}
+end
 
 --[[
 
@@ -104,7 +112,7 @@ lower case.
 
 local getType = function(name, typeNumber)
     data = loadData(data, 'Poké/data')
-    return data[form.nameToDataindex(name)]['type' .. typeNumber]
+    return string.fu(data[form.nameToDataindex(name)]['type' .. typeNumber])
 end
 
 -- Returns a Pokémon's first type given its name or ndex
@@ -126,25 +134,38 @@ b.get_type_2 = b.getType2
 
 --[[
 
-Frontend for wikilib/forms.getlink: returns the link
-to an'alternate form from module AltForms/data or
-UselessForms/data.
-The Pokémon name (first argument) can be both a name
-or a ndex followed by the form abbreviation, the second
-argument is a flag to get black or normal link
+The first parameter is an ndex (maybe with an abbr). Returns the second
+parameter if the Pokémon has two types, otherwise the third. The two last
+parameters are trimmed.
+This function is meant to replace an #if parser function to check whether a
+Pokémon has two types or not.
+
+--]]
+b.ifTwoTypes = function(frame)
+    data = loadData(data, 'Poké/data')
+    local poke = data[form.nameToDataindex(frame.args[1])]
+    local isDualType = poke.type1 == poke.type2
+    return isDualType and string.trim(frame.args[2]) or string.trim(frame.args[3])
+end
+
+
+--[[
+
+Frontend for wikilib/forms.getlink: returns the link to an'alternate form from
+module AltForms/data or UselessForms/data. The Pokémon name (first argument)
+may be both a name or a ndex followed by the abbr, the second argument is a
+flag to get black or normal link.
 
 --]]
 
 b.getLink = function(frame)
-    forms = loadData(forms, 'Wikilib/forms', true)
-
     local name, black = string.trim(frame.args[1]), string.trim(frame.args[2])
-    local link = forms.getLink(name, black)
+    local link = form.getLink(name, black)
     if link ~= '' then
         return link
     else
-        forms.loadUseless(false)
-        return forms.getLink(name, black)
+        form.loadUseless(false)
+        return form.getLink(name, black)
     end
 end
 
