@@ -52,7 +52,12 @@ end
 
 b.get_name = b.getName
 
--- Return the form name given ndex with abbr
+--[[
+
+Return the form name given ndex with abbr. If the ndex is without abbr, returns
+the Pokémon name even if it hasn't got alternate forms.
+
+--]]
 
 b.getFormName = function(frame)
     forms = loadData(forms, 'AltForms/data')

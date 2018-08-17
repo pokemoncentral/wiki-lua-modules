@@ -108,5 +108,11 @@ return {
     clone = function(value)
 		return type(value) ~= 'table' and value or
 				table.map(value, function(x) return x end)
-	end
+	end,
+
+	title = {
+		getCurrentTitle = function()
+			return 'mw'
+		end
+	}
 }

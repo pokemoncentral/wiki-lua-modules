@@ -86,6 +86,28 @@ l.cat_color = l.catColor
 
 --[[
 
+Template:Bag
+
+Returns the sprite of an item with a link to its page. The item name is case
+sensitive because the module can't handle somthing like 'Fune di Fuga'.
+
+--]]
+
+l.bag = function(item, md)
+	local nospriteitems = {'Genefurioso', 'Fiocco Pois', 'Messaggio Visione', 'Messaggio Surf', 'Messaggio Ritratto', 'Messaggio Musica', 'Messaggio Morph', 'Messaggio Fiore', 'Messaggio Eon', 'Messaggio Dolce', 'Messaggio Cielo', 'Messaggio Azzurro', 'Bacca Misteriosa', 'Bacca Miracolosa', 'Bacca Menta', 'Bacca Ghiaccio', 'Bacca Bruciata', 'Bacca Amara', 'Baccantiveleno', 'Baccantiparalisi', 'Bacca Oro', 'Bacca'}
+	if table.search(nospriteitems, item) then
+		return ''
+	else
+		return string.interp('[[File:${item} Sprite Zaino${md}.png|${item}|link=${link}]]', {
+			item = item,
+			md = md and 'MD' or '',
+			link = item == 'Perla' and 'Perla (strumento)' or item
+		})
+	end
+end
+
+--[[
+
 Template:tt
 
 Not very useful, but you don't know if the future will bring another change.
