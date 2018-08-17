@@ -35,7 +35,7 @@ eb.strings = {
 <div class="roundy-full inline-block img-fluid" style="padding: 1ex; background: #fff;"><div class="roundy-full" style="padding: 0.5ex; ${background}">[[File:${ndex}.png|150px]]</div></div>
 <div class="small-text" style="padding-top: 0.5ex;">${phase}</div>
 <div>
-<div>[[${name}|<span style="color: #000;">${formName}</span>]]</div>
+<div>[[${name}|<span style="color: #000;">${name}</span>]]</div>
 <div class="small-text hidden-sm">${type1rect}${type2rect}</div>
 </div>
 </div>]=],
@@ -43,10 +43,10 @@ eb.strings = {
     BOX_ARROW = [=[${img}<div class="text-small inline-block width-xl-100">${evodesc}</div>${info}<div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
 
     SINGLE_ARROW = [=[<div style="margin: 1em 0.5em;">${boxarrow}</div>]=],
-    DOUBLE_ARROW = [=[<div class="flex-md flex-row flex-nowrap flex-items-center" style="margin: 1em 0;"><div class="width-md-50" style="padding: 1em;">${boxarrow1}</div><div class="width-md-50" style="padding: 1em;">${boxarrow2}</div></div>]=],
+    DOUBLE_ARROW = [=[<div class="inline-block-md"><div class="flex-md flex-row flex-nowrap flex-items-center" style="margin: 1em 0;"><div class="width-md-50" style="padding: 1em;">${boxarrow1}</div><div class="width-md-50" style="padding: 1em;">${boxarrow2}</div></div></div>]=],
 
     ROW_ONE = [=[<div class="vert-middle">${box}</div>]=],
-    ROW_TWO = [=[<div class="flex-md flex-row flex-nowrap"><div class="width-md-50 vert-middle" style="margin: 0 0.5ex; height: 50%;">${box1}</div><div class="width-md-50 vert-middle" style="margin: 0 0.5ex; height: 50%;">${box2}</div></div>]=],
+    ROW_TWO = [=[<div class="flex-md flex-row flex-nowrap flex-items-center"><div class="width-md-50 vert-middle" style="margin: 0 0.5ex; height: 50%;">${box1}</div><div class="width-md-50 vert-middle" style="margin: 0 0.5ex; height: 50%;">${box2}</div></div>]=],
 
     LITTLE_TEXT_NEWLINE = [=[<div class="small-text" >${text}</div>]=],
     LITTLE_TEXT_INLINE = [=[<span class="small-text" >${text}</span>]=]
@@ -117,7 +117,7 @@ eb.strings.boxArrowImg = {
 eb.strings.boxArrowEvodesc = {
     livello = boxArrowFunctionGenerator('[[Livello|<span style="color: #000;">Livello</span>]] ${param1}'),
     felicita = boxArrowFunctionGenerator('[[Felicità|<span style="color: #000;">Felicità</span>]]'),
-    posizione = boxArrowFunctionGenerator('[[Livello|<span style="color: #000;">Aumento di livello</span>]]<br>presso ${param1}'),
+    posizione = boxArrowFunctionGenerator('[[Livello|<span style="color: #000;">Aumento di livello</span>]]<br>presso: ${param1}'),
     pietra = boxArrowFunctionGenerator('${param1}'),
     mossa = boxArrowFunctionGenerator('[[Livello|<span style="color: #000;">Aumento di livello</span>]]<br>avendo appreso [[${param1}|<span style="color: #000;">${param1}</span>]]'),
     held = boxArrowFunctionGenerator('[[Livello|<span style="color: #000;">Aumento di livello</span>]]<br>tenendo [[${param1}|<span style="color: #000;">${param1}</span>]]'),
@@ -152,7 +152,7 @@ eb.strings.boxArrowEvodesc = {
                 '|<span style="color: #000;">',
                 pokes[tonumber(param2)].name,
                 '</span>]]',
-                'in [[squadra|<span style="color: #000;">squadra</span>]]'
+                ' in [[squadra|<span style="color: #000;">squadra</span>]]'
             }
         end,
     baby = boxArrowFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]]'),
@@ -170,8 +170,8 @@ The parameters are the Pokémon ndex, the evolutionary phase and the notes.
 
 --]]
 eb.BoxPokemonLua = function(ndex, phase, notes)
-    local name, abbr = form.getnameabbr(ndex)
-    local poke = pokes[tonumber(name)] or pokes[name]
+    --local name, abbr = form.getnameabbr(ndex)
+    local poke = pokes[form.nameToDataindex(ndex)]
 
     return string.interp(eb.strings.BOX_POKEMON, {
         notes = notes and string.interp(eb.strings.LITTLE_TEXT_NEWLINE, {
@@ -181,7 +181,6 @@ eb.BoxPokemonLua = function(ndex, phase, notes)
         ndex = ndex,
         phase = phase or 'Non si evolve',
         name = poke.name,
-        formName = forms[name] and forms[name].names[abbr] or poke.name,
         type1rect = links.colorType(poke.type1, c[poke.type1].dark),
         type2rect = poke.type2 ~= poke.type1
                     and links.colorType(poke.type2, c[poke.type2].dark)
@@ -217,6 +216,10 @@ eb.BoxArrowLua = function(args)
     args.direction = args.direction
                     or (args.evotype == 'breedonly' and 'reverse' or 'normal')
     args.move = args.move and args.move:lower() or nil
+    args.location = args.location
+        and string.interp('[[${text}|<span style="color: #000;">${text}</span>]]', {
+            text = args.location
+        })
     local movedata = moves[args.move]
     local param1 = args.level or args.location or args.evostone
                     or (movedata and movedata.name) or args.held or args.incense
@@ -312,6 +315,8 @@ This functions takes the module args and returns a subset of the args, made by
 those args whose keys ended with the passed ending. This ending is removed in
 the keys of the result.
 
+Adds also 'evotype' .. ending .. 'info' to the result with key 'evoinfo'.
+
 --]]
 local argsEndingSubset = function(args, ending)
     local newArgs = {}
@@ -320,6 +325,7 @@ local argsEndingSubset = function(args, ending)
             newArgs[k:match('(.*)' .. ending .. '$')] = v
         end
     end
+    newArgs.evoinfo = args['evotype' .. ending .. 'info']
     return newArgs
 end
 
@@ -335,7 +341,7 @@ Some elements of this table are lua patterns. Any key key that matches any of
 those patterns should have its value lowered.
 
 --]]
-eb.processInput.mapToLower = { 'pagename', 'family', 'sprite%da?', 'evotype%da?', 'move%da?' }
+eb.processInput.mapToLower = { 'family', 'evotype%da?', 'move%da?', 'type%d' }
 
 --[[
 
@@ -357,7 +363,7 @@ evotypes
 
 --]]
 eb.processInput.process = function(v, k)
-    if type(k) ~= 'string' or table.any(eb.processInput.mapToLower, function(pattern)
+    if type(k) == 'string' and table.any(eb.processInput.mapToLower, function(pattern)
         return string.match(k, pattern)
     end) then
         v = string.lower(v)
@@ -376,7 +382,7 @@ Main Wikicode interface. It takes the same parameters as template:Evobox/2, in
 order tu replace it in the pages.
 
 Parameters are named because of their number:
-    - pagename: the page name, as returned by {{PAGENAME}}
+    - pagename or 1: the page name, as returned by {{PAGENAME}}
     - family (nessuna|normale|baby|incenso|breedonly): the kind of family.
         Defaults to 'nessuna', that means no evolutions. 'normale' means an
         evolution without baby or alike, and includes branched evolutions.
@@ -400,26 +406,15 @@ Parameters are named because of their number:
         Pokémon, if any
     - any parameter paired with evotypeN, but with an "a" appended
     - incense: the incese used to breed the baby form
-
-{{evobox2
-|family=Normale
-|sprite1=001
-|evotype1=Livello
-|level1=16
-|sprite2=002
-|evotype2=Livello
-|level2=32
-|sprite3=003
-}}
 --]]
 eb.Evobox = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
     local p = table.map(p, eb.processInput.process)
 
-    local pagename = string.lower(p.pagename or p[1] or mw.title.getCurrentTitle())
+    local pagename = string.fl(p.pagename or p[1] or mw.title.getCurrentTitle())
     p[1] = nil
     p.family = p.family or 'nessuna'
-    local pagepoke = pokes[pagename]
+    local pagepoke = pokes[form.nameToDataindex(pagename)]
             or {name = 'Sconosciuto', ndex = 0, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 
     local evobox = {}
@@ -502,10 +497,12 @@ eb.Evobox = function(frame)
         table.insert(evobox, '[[Categoria:Pokémon che non fanno parte di una linea di evoluzione]]')
     end
     if p.evotype1a or p.evotype2a then
-        table.insert(evobox, '[[Categoria:Pokémon da cui si diramano evoluzioni]]')
+        table.insert(evobox, '[[Categoria:Pokémon con evoluzioni diramate]]')
     end
 
     return table.concat(evobox)
 end
+
+eb.evobox = eb.Evobox
 
 return eb
