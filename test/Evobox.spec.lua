@@ -192,3 +192,38 @@ evotype2='Pietra',
 evostone2='Pietratuono',
 sprite3='026A'
 }})
+
+-- Evoinfo
+print(evobox{args={
+'Sylveon',
+family='Normale',
+sprite1='133',
+evotype1='Livello',
+level1='qualsiasi',
+evotype1info='+ ♥♥ di {{colore2|000|amicizia}}<br>+ conoscere una mossa di tipo {{colore2|000|Folletto}}',
+sprite2='700'
+}})
+
+-- Feebas
+print(evobox{args={
+'Feebas',
+family='Normale',
+sprite1='349',
+evotype1='Scambio',
+held1='Squama Bella',
+evotype1info='o<br>{{bag|Fascia Blu}}<br>{{colore2|000|Livello|Aumento di livello}}<br>con la {{colore2|000|Bellezza (virtù)|virtù Bellezza}} alta',
+sprite2='350'
+}})
+
+-- Shedinja
+print(evobox{args={
+'Ninjask',
+family='Normale',
+sprite1='290',
+evotype1='Livello',
+level1='20',
+sprite2='291',
+evotype1a='other',
+evotype1ainfo='{{bag|Poké Ball}}<br>Con spazio in {{colore2|000|squadra}}<br>e almeno una {{colore2|000|Poké Ball}} nello {{colore2|000|zaino}}',
+sprite2a='292'
+}})

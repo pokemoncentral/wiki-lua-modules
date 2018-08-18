@@ -40,7 +40,7 @@ eb.strings = {
 </div>
 </div>]=],
 
-    BOX_ARROW = [=[${img}<div class="text-small inline-block width-xl-100">${evodesc}</div>${info}<div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
+    BOX_ARROW = [=[${img}<div class="text-small inline-block width-xl-100">${evodesc}${info}${timegender}</div><div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
 
     SINGLE_ARROW = [=[<div style="margin: 1em 0.5em;">${boxarrow}</div>]=],
     DOUBLE_ARROW = [=[<div class="inline-block-md"><div class="flex-md flex-row flex-nowrap flex-items-center" style="margin: 1em 0;"><div class="width-md-50" style="padding: 1em;">${boxarrow1}</div><div class="width-md-50" style="padding: 1em;">${boxarrow2}</div></div></div>]=],
@@ -109,6 +109,9 @@ eb.strings.boxArrowImg = {
     pokemon = function(param1, param2)
             return table.concat{'<div>', ms.staticLua(param2), '</div>'}
         end,
+    other = function(param1, param2)
+            return ''
+        end,
     baby = boxArrowFunctionGenerator(ms.staticLua('Uovo')),
     incenso = boxArrowFunctionGenerator(links.bag('${param1}')),
     breedonly = boxArrowFunctionGenerator(ms.staticLua('132'))
@@ -155,6 +158,9 @@ eb.strings.boxArrowEvodesc = {
                 ' in [[squadra|<span style="color: #000;">squadra</span>]]'
             }
         end,
+    other = function(param1, param2)
+            return ''
+        end,
     baby = boxArrowFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]]'),
     incenso = boxArrowFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]] tenendo [[${param1}]]'),
     breedonly = boxArrowFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]] con [[Ditto|<span style="color: #000;">Ditto</span>]]')
@@ -199,8 +205,8 @@ Parameters are named because of their number:
             the default if evotype is 'breedonly' is 'reverse', otherwise is
             'normal'
     - evotype (livello|felicita|posizione|pietra|mossa|held|scambio|pokémon
-              |baby|incenso|breedonly): states the evolutionary method
-    - evoinfo (string): additional notes, added as small between parenthesis
+              |other|baby|incenso|breedonly): states the evolutionary method
+    - evoinfo (string): additional notes
     - time (string): the time of the day during which evolution can occur
     - gender (string): the gender required in order for evolution to occur
     - level: the level for evolution
@@ -224,16 +230,19 @@ eb.BoxArrowLua = function(args)
     local param1 = args.level or args.location or args.evostone
                     or (movedata and movedata.name) or args.held or args.incense
     local param2 = (movedata and string.fu(movedata.type)) or args.ms
-    local info = table.concat{args.evoinfo or '', args.time or '', args.gender or ''}
-    info = info == '' and ''
-            or string.interp(eb.strings.LITTLE_TEXT_NEWLINE, {
-                text = table.concat{'(', info, ')'}
-            })
+    local info = args.evoinfo
+                 and table.concat{'<div>', args.evoinfo, '</div>'}
+                 or ''
+    local timegender = table.concat{args.time or '', args.gender or ''}
+    timegender = timegender == ''
+                 and ''
+                 or table.concat{'<div>(', timegender, ')</div>'}
 
     return string.interp(eb.strings.BOX_ARROW, {
         img = eb.strings.boxArrowImg[args.evotype](param1, param2),
         evodesc = eb.strings.boxArrowEvodesc[args.evotype](param1, param2),
         info = info,
+        timegender = timegender,
         desktoparrow = eb.strings.desktoparrows[args.direction],
         mobilearrow = eb.strings.mobilearrows[args.direction]
     })
@@ -364,7 +373,7 @@ evotypes
 --]]
 eb.processInput.process = function(v, k)
     if type(k) == 'string' and table.any(eb.processInput.mapToLower, function(pattern)
-        return string.match(k, pattern)
+        return string.match(k, '^' .. pattern .. '$')
     end) then
         v = string.lower(v)
     end
@@ -490,9 +499,9 @@ eb.Evobox = function(frame)
 
     -- Adds the categories
     if p.evotype2 then
-        table.insert(evobox, '[[Categoria:Pokémon appartenenenti a una linea di evoluzione a tre stadi]]')
+        table.insert(evobox, '[[Categoria:Pokémon appartenenti a una linea di evoluzione a tre stadi]]')
     elseif p.evotype1 then
-        table.insert(evobox, '[[Categoria:Pokémon appartenenenti a una linea di evoluzione a due stadi]]')
+        table.insert(evobox, '[[Categoria:Pokémon appartenenti a una linea di evoluzione a due stadi]]')
     else
         table.insert(evobox, '[[Categoria:Pokémon che non fanno parte di una linea di evoluzione]]')
     end
