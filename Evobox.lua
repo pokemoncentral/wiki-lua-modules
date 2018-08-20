@@ -31,11 +31,13 @@ Utility strings
 --]]
 
 eb.strings = {
+    BOX_CONTAINER = [=[<div class="text-center"><div class="inline-block-md inline-flex flex-row flex-nowrap flex-items-stretch roundy" style="padding: 0.5em; ${background}">${content}</div></div><br style="clear: both;">]=],
+
     BOX_POKEMON = [=[<div class="text-center" style="margin: 0.5ex;">${notes}
 <div class="roundy-full inline-block img-fluid" style="padding: 1ex; background: #fff;"><div class="roundy-full" style="padding: 0.5ex; ${background}">[[File:${ndex}.png|150px]]</div></div>
 <div class="small-text" style="padding-top: 0.5ex;">${phase}</div>
 <div>
-<div>[[${name}|<span style="color: #000;">${name}</span>]]</div>
+<div>[[${name}|<span style="color: #000;">${shownName}</span>]]</div>
 <div class="small-text hidden-sm">${type1rect}${type2rect}</div>
 </div>
 </div>]=],
@@ -172,11 +174,12 @@ eb.strings.boxArrowEvodesc = {
 Returns a single Pokémon box, with notes, image, name, evolutionary phase and
 types.
 
-The parameters are the Pokémon ndex, the evolutionary phase and the notes.
+The parameters are the Pokémon ndex, the evolutionary phase, the notes and the
+name to be displayed in place of the Pokémon name (optional, defaults to the
+Pokémon's name).
 
 --]]
-eb.BoxPokemonLua = function(ndex, phase, notes)
-    --local name, abbr = form.getnameabbr(ndex)
+eb.BoxPokemon = function(ndex, phase, notes, shownName)
     local poke = pokes[form.nameToDataindex(ndex)]
 
     return string.interp(eb.strings.BOX_POKEMON, {
@@ -187,6 +190,7 @@ eb.BoxPokemonLua = function(ndex, phase, notes)
         ndex = ndex,
         phase = phase or 'Non si evolve',
         name = poke.name,
+        shownName = shownName or poke.name,
         type1rect = links.colorType(poke.type1, c[poke.type1].dark),
         type2rect = poke.type2 ~= poke.type1
                     and links.colorType(poke.type2, c[poke.type2].dark)
@@ -206,9 +210,9 @@ Parameters are named because of their number:
             'normal'
     - evotype (livello|felicita|posizione|pietra|mossa|held|scambio|pokémon
               |other|baby|incenso|breedonly): states the evolutionary method
-    - evoinfo (string): additional notes
-    - time (string): the time of the day during which evolution can occur
-    - gender (string): the gender required in order for evolution to occur
+    - evoinfo: additional notes
+    - time: the time of the day during which evolution can occur
+    - gender: the gender required in order for evolution to occur
     - level: the level for evolution
     - location: the location where the Pokémon can evolve
     - evostone: the evolutionary stone needed for evolution
@@ -218,7 +222,7 @@ Parameters are named because of their number:
     - ms: the dex number of the Pokémon needed for evolution
 
 --]]
-eb.BoxArrowLua = function(args)
+eb.BoxArrow = function(args)
     args.direction = args.direction
                     or (args.evotype == 'breedonly' and 'reverse' or 'normal')
     args.move = args.move and args.move:lower() or nil
@@ -253,8 +257,8 @@ end
 Returns a single arrow. Parameters are the same as BoxArrowLua
 
 --]]
-eb.SingleArrowLua = function(args)
-    return string.interp(eb.strings.SINGLE_ARROW, {boxarrow = eb.BoxArrowLua(args)})
+eb.SingleArrow = function(args)
+    return string.interp(eb.strings.SINGLE_ARROW, {boxarrow = eb.BoxArrow(args)})
 end
 
 --[[
@@ -265,9 +269,9 @@ case of baby Pokémon.
 Parameters are named because of their number:
     - evotype (livello|felicita|posizione|pietra|mossa|held|scambio|pokémon
               |baby|incenso|breedonly): states the evolutionary method
-    - evoinfo (string): additional notes, added as small between parenthesis
-    - time (string): the time of the day during which evolution can occur
-    - gender (string): the gender required in order for evolution to occur
+    - evoinfo: additional notes, added as small between parenthesis
+    - time: the time of the day during which evolution can occur
+    - gender: the gender required in order for evolution to occur
     - level: the level for evolution
     - location: the location where the Pokémon can evolve
     - evostone: the evolutionary stone needed for evolution
@@ -278,7 +282,7 @@ Parameters are named because of their number:
     - evotype2 (baby|incenso): states the reverse evolutionary method
 
 --]]
-eb.DoubleArrowLua = function(args)
+eb.DoubleArrow = function(args)
     args.direction = 'normal'
     local args2 = {
         evotype = args.evotype2,
@@ -286,8 +290,8 @@ eb.DoubleArrowLua = function(args)
         incense = args.incense
     }
     return string.interp(eb.strings.DOUBLE_ARROW, {
-        boxarrow1 = eb.BoxArrowLua(args),
-        boxarrow2 = eb.BoxArrowLua(args2),
+        boxarrow1 = eb.BoxArrow(args),
+        boxarrow2 = eb.BoxArrow(args2),
     })
 end
 
@@ -324,8 +328,6 @@ This functions takes the module args and returns a subset of the args, made by
 those args whose keys ended with the passed ending. This ending is removed in
 the keys of the result.
 
-Adds also 'evotype' .. ending .. 'info' to the result with key 'evoinfo'.
-
 --]]
 local argsEndingSubset = function(args, ending)
     local newArgs = {}
@@ -334,16 +336,74 @@ local argsEndingSubset = function(args, ending)
             newArgs[k:match('(.*)' .. ending .. '$')] = v
         end
     end
-    newArgs.evoinfo = args['evotype' .. ending .. 'info']
     return newArgs
 end
+
+--[[
+
+Prints two rows, one with arrows and the other with Pokémon boxes.
+
+The first parameter is a table that should contain all the values about the
+phase, that are the ones about the evolutionary method with numer 'phase' - 1
+and the ones about the Pokémons with number 'phase' . In fact, the first
+parameter may be the frame.args processed. The second parameter is a number
+that specify the phase to print. The phase should be the one of the Pokémon,
+non of the evolutionary method.
+
+This function only handles standard evolutions, maybe branched. It DOES NOT
+handle baby/incense level evolutions with a couple of arrows or strange things
+like that.
+
+--]]
+eb.makePhaseRows = function(p, phase)
+    local result = {}
+    local evotypePhase = tostring(phase - 1)
+    if p['evotype' .. evotypePhase] then
+        -- There is at least one evolution
+        if p['evotype' .. evotypePhase .. 'a'] then
+            -- There are two evolutions
+            table.insert(result, string.interp(eb.strings.ROW_TWO, {
+                box1 = eb.SingleArrow(argsEndingSubset(p, evotypePhase)),
+                box2 = eb.SingleArrow(argsEndingSubset(p, evotypePhase .. 'a'))
+            }))
+            table.insert(result, string.interp(eb.strings.ROW_TWO, {
+                box1 = eb.BoxPokemon(
+                        p['sprite' .. tostring(phase)],
+                        phaseName(phase, p.family),
+                        p['form' .. tostring(phase)]
+                    ),
+                box2 = eb.BoxPokemon(
+                        p['sprite' .. tostring(phase) .. 'a'],
+                        phaseName(phase, p.family),
+                        p['form' .. tostring(phase) .. 'a']
+                    ),
+            }))
+        else
+            -- There's only one evolution
+            table.insert(result, string.interp(eb.strings.ROW_ONE, {
+                box = eb.SingleArrow(argsEndingSubset(p, evotypePhase)),
+            }))
+            table.insert(result, string.interp(eb.strings.ROW_ONE, {
+                box = eb.BoxPokemon(
+                        p['sprite' .. tostring(phase)],
+                        phaseName(phase, p.family),
+                        p['form' .. tostring(phase)]
+                    )
+            }))
+        end
+    end
+
+    return table.concat(result)
+end
+
+
 
 eb.processInput = {}
 
 --[[
 
 This table holds the list of keys whose values should be mapped to lowercase
-in the arguments of Evobox. Not all the keys should be lowered becaus some
+in the arguments of Evobox. Not all the keys should be lowered because some
 arguments are case sensitive.
 
 Some elements of this table are lua patterns. Any key key that matches any of
@@ -367,11 +427,10 @@ eb.processInput.evotypes = {
 
 --[[
 
-Processes an argument, mapping to lowercase those that need it and parsing
-evotypes
+Processes an argument: maps to lowercase when needed and parses evotypes.
 
 --]]
-eb.processInput.process = function(v, k)
+eb.processInput.processElement = function(v, k)
     if type(k) == 'string' and table.any(eb.processInput.mapToLower, function(pattern)
         return string.match(k, '^' .. pattern .. '$')
     end) then
@@ -387,11 +446,28 @@ end
 
 --[[
 
+Processes the entire arguments table: moves keys 'evotypeNinfo' to 'evoinfoN'.
+This function modifies the table in place, and returns a reference to the table
+itself.
+
+--]]
+eb.processInput.processTable = function(args)
+    for k, v in pairs(args) do
+        local num = type(k) == 'string' and string.match(k, 'evotype(%da?)info')
+        if num then
+            args['evoinfo' .. num] = v
+        end
+    end
+    return args
+end
+
+--[[
+
 Main Wikicode interface. It takes the same parameters as template:Evobox/2, in
 order tu replace it in the pages.
 
 Parameters are named because of their number:
-    - pagename or 1: the page name, as returned by {{PAGENAME}}
+    - 1: the page name, as returned by {{PAGENAME}}
     - family (nessuna|normale|baby|incenso|breedonly): the kind of family.
         Defaults to 'nessuna', that means no evolutions. 'normale' means an
         evolution without baby or alike, and includes branched evolutions.
@@ -418,84 +494,45 @@ Parameters are named because of their number:
 --]]
 eb.Evobox = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
-    local p = table.map(p, eb.processInput.process)
+    p = eb.processInput.processTable(table.map(p, eb.processInput.processElement))
 
-    local pagename = string.fl(p.pagename or p[1] or mw.title.getCurrentTitle())
+    local pagename = string.fl(p[1] or mw.title.getCurrentTitle())
     p[1] = nil
     p.family = p.family or 'nessuna'
     local pagepoke = pokes[form.nameToDataindex(pagename)]
             or {name = 'Sconosciuto', ndex = 0, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 
-    local evobox = {}
-    table.insert(evobox, string.interp('<div class="text-center"><div class="inline-block-md inline-flex flex-row flex-nowrap flex-items-stretch roundy text-center" style="padding: 0.5em; ${background}>', {
-        background = css.horizGradLua{ type1 = pagepoke.type1, type2 = pagepoke.type2 }
+    local evoboxcontent = {}
+
+    -- Insert the first phase Pokémon box
+    table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
+        box = eb.BoxPokemon(p.sprite1, phaseName(1, p.family), p.form1)
     }))
 
-    -- Insert the first Pokémon box
-    table.insert(evobox, string.interp(eb.strings.ROW_ONE, {
-        box = eb.BoxPokemonLua(p.sprite1, phaseName(1, p.family), p.form1)
-    }))
-
-    -- Insert -the death- the first arrow box
-    if p.evotype1 then
-        -- There is at least one evolution
+    -- If the family is 'baby' or 'incenso' the second phase shouldbe handled
+    -- "by hand", otherwise there's the function that creates the row.
+    if p.family == 'baby' or p.family == 'incenso' then
+        -- There is one phase one evolution, but with double arrow
         local firstArrowArgs = argsEndingSubset(p, '1')
-        if p.evotype1a then
-            -- There are two phase one evolutions
-            table.insert(evobox, string.interp(eb.strings.ROW_TWO, {
-                box1 = eb.SingleArrowLua(firstArrowArgs),
-                box2 = eb.SingleArrowLua(argsEndingSubset(p, '1a'))
-            }))
-            table.insert(evobox, string.interp(eb.strings.ROW_TWO, {
-                box1 = eb.BoxPokemonLua(p.sprite2, phaseName(2, p.family), p.form2),
-                box2 = eb.BoxPokemonLua(p.sprite2a, phaseName(2, p.family), p.form2a),
-            }))
-        elseif p.family == 'baby' or p.family == 'incenso' then
-            -- There is one phase one evolution, but with double arrow
-            firstArrowArgs.evotype2 = p.family
-            firstArrowArgs.incense = p.incense
-            table.insert(evobox, string.interp(eb.strings.ROW_ONE, {
-                box = eb.DoubleArrowLua(firstArrowArgs)
-            }))
-            table.insert(evobox, string.interp(eb.strings.ROW_ONE, {
-                box = eb.BoxPokemonLua(p.sprite2, phaseName(2, p.family), p.form2)
-            }))
-        else
-            -- There is one phase one evolution, with single arrow
-            table.insert(evobox, string.interp(eb.strings.ROW_ONE, {
-                box = eb.SingleArrowLua(firstArrowArgs)
-            }))
-            table.insert(evobox, string.interp(eb.strings.ROW_ONE, {
-                box = eb.BoxPokemonLua(p.sprite2, phaseName(2, p.family), p.form2)
-            }))
-        end
+        firstArrowArgs.evotype2 = p.family
+        firstArrowArgs.incense = p.incense
+        table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
+            box = eb.DoubleArrow(firstArrowArgs)
+        }))
+        table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
+            box = eb.BoxPokemon(p.sprite2, phaseName(2, p.family), p.form2)
+        }))
+    else
+        table.insert(evoboxcontent, eb.makePhaseRows(p, 2))
     end
-    -- This if should be nested inside the previous one, but I'm not doing it
-    -- in order to avoid excessive indentation
-    if p.evotype2 then
-        -- There is at least one phase two evolution
-        if p.evotype2a then
-            -- There are two phase two evolutions
-            table.insert(evobox, string.interp(eb.strings.ROW_TWO, {
-                box1 = eb.SingleArrowLua(argsEndingSubset(p, '2')),
-                box2 = eb.SingleArrowLua(argsEndingSubset(p, '2a'))
-            }))
-            table.insert(evobox, string.interp(eb.strings.ROW_TWO, {
-                box1 = eb.BoxPokemonLua(p.sprite3, phaseName(3, p.family), p.form3),
-                box2 = eb.BoxPokemonLua(p.sprite3a, phaseName(3, p.family), p.form3a),
-            }))
-        else
-            -- At this level there can't be double arrows
-            table.insert(evobox, string.interp(eb.strings.ROW_ONE, {
-                box = eb.SingleArrowLua(argsEndingSubset(p, '2'))
-            }))
-            table.insert(evobox, string.interp(eb.strings.ROW_ONE, {
-                box = eb.BoxPokemonLua(p.sprite3, phaseName(3, p.family), p.form3)
-            }))
-        end
-    end
+    table.insert(evoboxcontent, eb.makePhaseRows(p, 3))
 
-    table.insert(evobox, '</div></div>')
+    local evobox = {
+        string.interp(eb.strings.BOX_CONTAINER, {
+            background = css.horizGradLua{ type1 = pagepoke.type1, type2 = pagepoke.type2 },
+            content = table.concat(evoboxcontent)
+        })
+    }
 
     -- Adds the categories
     if p.evotype2 then
@@ -513,5 +550,133 @@ eb.Evobox = function(frame)
 end
 
 eb.evobox = eb.Evobox
+
+
+
+-- ============================== Alternate forms box =========================
+
+--[[
+
+Returns the box of a single Pokémon form given its ndex with abbr. Notes may be
+added using the second parameter.
+
+--]]
+eb.BoxForm = function(ndex, notes)
+    local name, abbr = form.getnameabbr(ndex)
+    local altdata = forms[name]
+    return eb.BoxPokemon(ndex, '', notes, altdata.names[abbr])
+end
+
+--[[
+
+Returns a single form arrow.
+
+Parameters are named to make easier a possible future extension that exploits
+the whole interface of the underlying eb.BoxArrow:
+    - item: the name of the item required to change form
+    - evoinfo: additional notes
+
+--]]
+eb.FormArrow = function(args)
+    args.evotype = args.item and 'held' or 'other'
+    args.held = args.item
+    return string.interp(eb.strings.SINGLE_ARROW, {boxarrow = eb.BoxArrow(args)})
+end
+
+--[[
+
+Prints two rows, one with arrows and the other with form boxes.
+
+The first parameter is a table that should contain all the values about the
+row, that are the ones about the form change method with numer 'index' - 1
+and the ones about the form with number 'index'. In fact, the first parameter
+may be the frame.args processed. The second parameter is a number that specify
+the row to print. The row should be the one of the form, non of the form change
+method.
+
+--]]
+eb.makeFormRows = function(p, index)
+    local result = {}
+    local evotypeIdx = tostring(index - 1)
+    if p['sprite' .. tostring(index)] then
+        -- There is at least one evolution
+        if p['sprite' .. tostring(index) .. 'a'] then
+            -- There are two evolutions
+            table.insert(result, string.interp(eb.strings.ROW_TWO, {
+                box1 = eb.FormArrow(argsEndingSubset(p, evotypeIdx)),
+                box2 = eb.FormArrow(argsEndingSubset(p, evotypeIdx .. 'a'))
+            }))
+            table.insert(result, string.interp(eb.strings.ROW_TWO, {
+                box1 = eb.BoxForm(
+                        p['sprite' .. tostring(index)],
+                        p['loc' .. tostring(index)]
+                    ),
+                box2 = eb.BoxForm(
+                        p['sprite' .. tostring(index) .. 'a'],
+                        p['loc' .. tostring(index) .. 'a']
+                    ),
+            }))
+        else
+            -- There's only one evolution
+            table.insert(result, string.interp(eb.strings.ROW_ONE, {
+                box = eb.FormArrow(argsEndingSubset(p, evotypeIdx)),
+            }))
+            table.insert(result, string.interp(eb.strings.ROW_ONE, {
+                box = eb.BoxForm(
+                        p['sprite' .. tostring(index)],
+                        p['loc' .. tostring(index)]
+                    )
+            }))
+        end
+    end
+
+    return table.concat(result)
+end
+
+--[[
+
+Wikicode interface function to create a box for alternatives forms
+transformation methods.
+
+Parameters are named because of their number:
+    - 1: the page name, as returned by {{PAGENAME}}. This parameter is used
+         only to determine the colors of the background gradient.
+    - spriteN: the ndex of the N-th form
+    - locN: any additional note for the N-th form
+    - itemN: the item needed to change from N-th to (N+1)-th form
+    - evoinfoN: any additional info for form change from N-th to (N+1)-th
+    - any N-ed parameter, but with an "a" appended (for instance spriteNa): the
+      same information, but for the second N-th form (if any)
+--]]
+eb.Formbox = function(frame)
+    local p = w.trimAll(mw.clone(frame.args))
+
+    local pagename = string.fl(p[1] or mw.title.getCurrentTitle())
+    p[1] = nil
+    p.family = p.family or 'nessuna'
+    local pagepoke = pokes[form.nameToDataindex(pagename)]
+            or {name = 'Sconosciuto', ndex = 0, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+
+    local formboxcontent = {}
+
+    -- Insert the first phase Pokémon box
+    table.insert(formboxcontent, string.interp(eb.strings.ROW_ONE, {
+        box = eb.BoxForm(p.sprite1, p.loc1)
+    }))
+
+    -- Adds any form passed as argument
+    local i = 2
+    while p['sprite' .. tostring(i)] do
+        table.insert(formboxcontent, eb.makeFormRows(p, i))
+        i = i + 1
+    end
+
+    return string.interp(eb.strings.BOX_CONTAINER, {
+        background = css.horizGradLua{ type1 = pagepoke.type1, type2 = pagepoke.type2 },
+        content = table.concat(formboxcontent)
+    })
+end
+
+eb.formbox = eb.Formbox
 
 return eb

@@ -1,10 +1,10 @@
--- "Test cases" for debRes
+-- "Test cases" for Evobox
 
 local evobox = require('Evobox').Evobox
 
 -- Somethign normal first
 print(evobox{args={
-pagename='Bulbasaur',
+'Bulbasaur',
 family='Normale',
 sprite1='001',
 evotype1='Livello',
@@ -16,7 +16,7 @@ sprite3='003'
 }})
 
 print(evobox{args={
-pagename='Staraptor',
+'Staraptor',
 family='Normale',
 sprite1='396',
 evotype1='Livello',
@@ -32,7 +32,7 @@ print(evobox{args={'Tauros', sprite1='128'}})
 
 -- With notes
 print(evobox{args={
-pagename='Frillish',
+'Frillish',
 family='Normale',
 sprite1='592',
 form1='Maschio',
@@ -44,7 +44,7 @@ form2='Maschio'
 
 -- Evolution by trade
 print(evobox{args={
-pagename='Gourgeist',
+'Gourgeist',
 family='Normale',
 sprite1='710',
 evotype1='Scambio',
@@ -217,7 +217,7 @@ sprite2='350'
 
 -- Shedinja
 print(evobox{args={
-'Ninjask',
+'Nincada',
 family='Normale',
 sprite1='290',
 evotype1='Livello',
@@ -226,4 +226,21 @@ sprite2='291',
 evotype1a='other',
 evotype1ainfo='{{bag|Poké Ball}}<br>Con spazio in {{colore2|000|squadra}}<br>e almeno una {{colore2|000|Poké Ball}} nello {{colore2|000|zaino}}',
 sprite2a='292'
+}})
+
+
+-- ====================== Evobox/formbox ====================
+local formbox = require('Evobox').Formbox
+
+-- Something normal
+print(formbox{args={
+'Castform',
+sprite1='351',
+loc1='{{colore2|000|condizione atmosferica|Normale}}',
+sprite2='351S',
+loc2='{{colore2|000|condizione atmosferica#Luce solare intensa|Sole}}',
+sprite3='351P',
+loc3='{{colore2|000|condizione atmosferica#Pioggia battente|Pioggia}}',
+sprite4='351N',
+loc4='{{colore2|000|condizione atmosferica#Grandinata|Grandine}}'
 }})
