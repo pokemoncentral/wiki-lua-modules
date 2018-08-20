@@ -42,6 +42,7 @@ eb.strings = {
 </div>
 </div>]=],
 
+    BOX_ARROW_INFOLESS = [=[${img}<div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
     BOX_ARROW = [=[${img}<div class="text-small inline-block width-xl-100">${evodesc}${info}${timegender}</div><div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
 
     SINGLE_ARROW = [=[<div style="margin: 1em 0.5em;">${boxarrow}</div>]=],
@@ -116,7 +117,8 @@ eb.strings.boxArrowImg = {
         end,
     baby = boxArrowFunctionGenerator(ms.staticLua('Uovo')),
     incenso = boxArrowFunctionGenerator(links.bag('${param1}')),
-    breedonly = boxArrowFunctionGenerator(ms.staticLua('132'))
+    breedonly = boxArrowFunctionGenerator(ms.staticLua('132')),
+    formitem = boxArrowFunctionGenerator(links.bag('${param1}'))
 }
 
 eb.strings.boxArrowEvodesc = {
@@ -165,7 +167,8 @@ eb.strings.boxArrowEvodesc = {
         end,
     baby = boxArrowFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]]'),
     incenso = boxArrowFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]] tenendo [[${param1}]]'),
-    breedonly = boxArrowFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]] con [[Ditto|<span style="color: #000;">Ditto</span>]]')
+    breedonly = boxArrowFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]] con [[Ditto|<span style="color: #000;">Ditto</span>]]'),
+    formitem = boxArrowFunctionGenerator('[[${param1}|<span style="color: #000;">${param1}</span>]]')
 }
 
 
@@ -242,14 +245,22 @@ eb.BoxArrow = function(args)
                  and ''
                  or table.concat{'<div>(', timegender, ')</div>'}
 
-    return string.interp(eb.strings.BOX_ARROW, {
+    local interpData = {
         img = eb.strings.boxArrowImg[args.evotype](param1, param2),
         evodesc = eb.strings.boxArrowEvodesc[args.evotype](param1, param2),
         info = info,
         timegender = timegender,
         desktoparrow = eb.strings.desktoparrows[args.direction],
         mobilearrow = eb.strings.mobilearrows[args.direction]
-    })
+    }
+
+    if interpData.evodesc == ''
+       and interpData.info == ''
+       and interpData.timegender == '' then
+        return string.interp(eb.strings.BOX_ARROW_INFOLESS, interpData)
+    else
+        return string.interp(eb.strings.BOX_ARROW, interpData)
+    end
 end
 
 --[[
@@ -578,8 +589,9 @@ the whole interface of the underlying eb.BoxArrow:
 
 --]]
 eb.FormArrow = function(args)
-    args.evotype = args.item and 'held' or 'other'
+    args.evotype = args.item and 'formitem' or 'other'
     args.held = args.item
+    args.direction = 'double'
     return string.interp(eb.strings.SINGLE_ARROW, {boxarrow = eb.BoxArrow(args)})
 end
 

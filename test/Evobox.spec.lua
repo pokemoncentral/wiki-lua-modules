@@ -200,7 +200,7 @@ family='Normale',
 sprite1='133',
 evotype1='Livello',
 level1='qualsiasi',
-evotype1info='+ ♥♥ di {{colore2|000|amicizia}}<br>+ conoscere una mossa di tipo {{colore2|000|Folletto}}',
+evotype1info='con due cuori di {{colore2|000|amicizia}}<br>avendo appreso una mossa di tipo {{colore2|000|Folletto}}',
 sprite2='700'
 }})
 
@@ -243,4 +243,45 @@ sprite3='351P',
 loc3='{{colore2|000|condizione atmosferica#Pioggia battente|Pioggia}}',
 sprite4='351N',
 loc4='{{colore2|000|condizione atmosferica#Grandinata|Grandine}}'
+}})
+
+-- With item
+print(formbox{args={
+'Giratina',
+sprite1='487',
+loc1='{{colore2|000|Mondo Pokémon}},<br>senza tenere la {{colore2|000|Grigiosfera}}',
+item1='Grigiosfera',
+sprite2='487O',
+loc2='{{colore2|000|Mondo Distorto}}<br>o tenendo la {{colore2|000|Grigiosfera}}'
+}})
+
+-- Branched
+print(formbox{args={
+'Necrozma',
+sprite1='800',
+item1='Necrosolix',
+sprite2='800V',
+loc2='{{#invoke: MiniSprite | static | 791}} con {{colore2|000|Solgaleo}}',
+item1a='Necrolunix',
+sprite2a='800A',
+loc2a='{{#invoke: MiniSprite | static | 792}} con {{colore2|000|Lunala}}',
+item2='Ultranecrozium Z',
+sprite3='800U'
+}})
+
+-- Rotom (extra large)
+print(formbox{args={
+'Rotom',
+sprite1='479',
+loc1='Normale',
+sprite2='479C',
+loc2='Forno',
+sprite3='479L',
+loc3='Lavatrice',
+sprite4='479G',
+loc4='Frigorifero',
+sprite5='479V',
+loc5='Ventilatore',
+sprite6='479T',
+loc6='Tagliaerba'
 }})
