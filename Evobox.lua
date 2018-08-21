@@ -32,6 +32,13 @@ Utility strings
 
 eb.strings = {
     BOX_CONTAINER = [=[<div class="text-center"><div class="inline-block-md inline-flex flex-row flex-nowrap flex-items-stretch roundy" style="padding: 0.5em; ${background}">${content}</div></div><br style="clear: both;">]=],
+    BOX_CONTAINER_UNRESPONSIVE = [=[<div class="text-center"><div class="inline-flex flex-row flex-nowrap flex-items-center roundy" style="padding: 0.5em; ${background}">${content}</div></div><br style="clear: both;">]=],
+
+    ROW_ONE = [=[<div class="vert-middle">${box}</div>]=],
+    ROW_TWO = [=[<div class="flex-md flex-row flex-nowrap flex-items-center"><div class="width-md-50 vert-middle" style="margin: 0 0.5ex; height: 50%;">${box1}</div><div class="width-md-50 vert-middle" style="margin: 0 0.5ex; height: 50%;">${box2}</div></div>]=],
+    ROW_THREE = [=[<div><div class="grid" style="border-collapse: separate; border-spacing: 0.5ex 0;">${boxes}</div></div>]=],
+
+    GRID_ROW = [=[<div><div class="align-middle">${arrow}</div><div class="align-middle">${pokebox}</div></div>]=],
 
     BOX_POKEMON = [=[<div class="text-center" style="margin: 0.5ex;">${notes}
 <div class="roundy-full inline-block img-fluid" style="padding: 1ex; background: #fff;"><div class="roundy-full" style="padding: 0.5ex; ${background}">[[File:${ndex}.png|150px]]</div></div>
@@ -43,13 +50,11 @@ eb.strings = {
 </div>]=],
 
     BOX_ARROW_INFOLESS = [=[${img}<div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
+    BOX_ARROW_UNRESPONSIVE = [=[${img}<div class="text-small inline-block width-xl-100">${evodesc}${info}${timegender}</div><div>${desktoparrow}</div>]=],
     BOX_ARROW = [=[${img}<div class="text-small inline-block width-xl-100">${evodesc}${info}${timegender}</div><div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
 
     SINGLE_ARROW = [=[<div style="margin: 1em 0.5em;">${boxarrow}</div>]=],
     DOUBLE_ARROW = [=[<div class="inline-block-md"><div class="flex-md flex-row flex-nowrap flex-items-center" style="margin: 1em 0;"><div class="width-md-50" style="padding: 1em;">${boxarrow1}</div><div class="width-md-50" style="padding: 1em;">${boxarrow2}</div></div></div>]=],
-
-    ROW_ONE = [=[<div class="vert-middle">${box}</div>]=],
-    ROW_TWO = [=[<div class="flex-md flex-row flex-nowrap flex-items-center"><div class="width-md-50 vert-middle" style="margin: 0 0.5ex; height: 50%;">${box1}</div><div class="width-md-50 vert-middle" style="margin: 0 0.5ex; height: 50%;">${box2}</div></div>]=],
 
     LITTLE_TEXT_NEWLINE = [=[<div class="small-text" >${text}</div>]=],
     LITTLE_TEXT_INLINE = [=[<span class="small-text" >${text}</span>]=]
@@ -57,12 +62,14 @@ eb.strings = {
 
 eb.strings.desktoparrows = {
     normal = '&rarr;',
+    fixed = '&rarr;',
     reverse = '&larr;',
     double = '&harr;'
 }
 
 eb.strings.mobilearrows = {
     normal = '&darr;',
+    fixed = '&rarr;',
     reverse = '&uarr;',
     double = '↕'
 }
@@ -253,14 +260,16 @@ eb.BoxArrow = function(args)
         desktoparrow = eb.strings.desktoparrows[args.direction],
         mobilearrow = eb.strings.mobilearrows[args.direction]
     }
+    local interpString = eb.strings.BOX_ARROW
 
     if interpData.evodesc == ''
        and interpData.info == ''
        and interpData.timegender == '' then
-        return string.interp(eb.strings.BOX_ARROW_INFOLESS, interpData)
-    else
-        return string.interp(eb.strings.BOX_ARROW, interpData)
+        interpString = eb.strings.BOX_ARROW_INFOLESS
+    elseif interpData.direction == 'fixed' then
+        interpString = eb.strings.BOX_ARROW_UNRESPONSIVE
     end
+    return string.interp(interpString, interpData)
 end
 
 --[[
@@ -407,6 +416,45 @@ eb.makePhaseRows = function(p, phase)
     return table.concat(result)
 end
 
+--[[
+
+Creates the row for more than 2 evolutions, that doesn't switch to vertical
+layout on small screen.
+
+The first parameter is a table that should contain all the values about the
+phases, that are the ones about the evolutionary method and the ones about the
+Pokémons. In fact, the first parameter may be the frame.args processed.
+
+--]]
+eb.makeManyEvosRow = function(p)
+    local rowContent = {}
+    -- Creates the alphabet, starting with empty string
+    local letters = { '' }
+    for ascii = 97, 122 do
+        table.insert(letters, string.char(ascii))
+    end
+
+    rowContent = table.map(letters, function(letter)
+        if p['sprite2' .. letter] then
+            local arrowArgs = argsEndingSubset(p, '1' .. letter)
+            arrowArgs.direction = 'fixed'
+            return string.interp(eb.strings.GRID_ROW, {
+                arrow = eb.SingleArrow(arrowArgs),
+                pokebox = eb.BoxPokemon(
+                        p['sprite2' .. letter],
+                        phaseName(2, 'normale'),
+                        p['form2' .. letter]
+                    )
+            })
+        else
+            return ''
+        end
+    end)
+
+    return string.interp(eb.strings.ROW_THREE, {
+        boxes = table.concat(rowContent)
+    })
+end
 
 
 eb.processInput = {}
@@ -421,7 +469,7 @@ Some elements of this table are lua patterns. Any key key that matches any of
 those patterns should have its value lowered.
 
 --]]
-eb.processInput.mapToLower = { 'family', 'evotype%da?', 'move%da?', 'type%d' }
+eb.processInput.mapToLower = { 'family', 'evotype%d%a?', 'move%d%a?', 'type%d' }
 
 --[[
 
@@ -464,7 +512,7 @@ itself.
 --]]
 eb.processInput.processTable = function(args)
     for k, v in pairs(args) do
-        local num = type(k) == 'string' and string.match(k, 'evotype(%da?)info')
+        local num = type(k) == 'string' and string.match(k, 'evotype(%d%a?)info')
         if num then
             args['evoinfo' .. num] = v
         end
@@ -486,6 +534,7 @@ Parameters are named because of their number:
         means there is a baby form, born with breeding holding and incense.
         'breedonly' means that there is a Pokémon that can be born by breeding
         but doesn't evolve back in the parent Pokémon (only Phione and Manaphy)
+    - incense: the incese used to breed the baby form
     - spriteN: the ndex of the N-th Pokémon (or form) to display
     - formN: notes about the N-th Pokémon, put above the sprite
     - evotypeN: the evolutionary method from N-th to (N+1)-th Pokémon
@@ -500,8 +549,14 @@ Parameters are named because of their number:
     - genderN: gender paired with evotypeN
     - evotypeNa: the evolutionary method from N-th to the second (N+1)-th
         Pokémon, if any
-    - any parameter paired with evotypeN, but with an "a" appended
-    - incense: the incese used to breed the baby form
+    - any N-ed parameter, but with a trailing "a" (for instance: 'evotypeNa'):
+        the same information of un-a-ed parameter, but for the second N-th
+        form (if any)
+    - any parameter paired with N = 1, but with a trailing letter. Following
+        alphabetical order, those parameters specify details of other first
+        evolutions (if any). It is possible not to use all the letters
+        sequentially (for instance: only sprite1, sprite1c and sprite1e) but I
+        STRONGLY ADVISE NOT TO.
 --]]
 eb.Evobox = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
@@ -514,15 +569,21 @@ eb.Evobox = function(frame)
             or {name = 'Sconosciuto', ndex = 0, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 
     local evoboxcontent = {}
+    local boxContainer = eb.strings.BOX_CONTAINER
 
     -- Insert the first phase Pokémon box
     table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
         box = eb.BoxPokemon(p.sprite1, phaseName(1, p.family), p.form1)
     }))
 
+    -- If there are more than 2 phase one evolutions the module assumes there
+    -- aren't higher level evolutions and uses the unresponsive layout
+    if p.sprite2b then
+        boxContainer = eb.strings.BOX_CONTAINER_UNRESPONSIVE
+        table.insert(evoboxcontent, eb.makeManyEvosRow(p))
     -- If the family is 'baby' or 'incenso' the second phase shouldbe handled
     -- "by hand", otherwise there's the function that creates the row.
-    if p.family == 'baby' or p.family == 'incenso' then
+    elseif p.family == 'baby' or p.family == 'incenso' then
         -- There is one phase one evolution, but with double arrow
         local firstArrowArgs = argsEndingSubset(p, '1')
         firstArrowArgs.evotype2 = p.family
@@ -539,7 +600,7 @@ eb.Evobox = function(frame)
     table.insert(evoboxcontent, eb.makePhaseRows(p, 3))
 
     local evobox = {
-        string.interp(eb.strings.BOX_CONTAINER, {
+        string.interp(boxContainer, {
             background = css.horizGradLua{ type1 = pagepoke.type1, type2 = pagepoke.type2 },
             content = table.concat(evoboxcontent)
         })

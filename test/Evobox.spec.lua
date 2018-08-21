@@ -204,6 +204,25 @@ evotype1info='con due cuori di {{colore2|000|amicizia}}<br>avendo appreso una mo
 sprite2='700'
 }})
 
+-- More than 2 phase one
+print(evobox{args={
+'Rockruff',
+family='Normale',
+sprite1='744',
+evotype1='Livello',
+level1='25',
+time1='Giorno',
+sprite2='745',
+evotype1a='Livello',
+level1a='25',
+time1a='Notte',
+sprite2a='745N',
+evotype1b='Livello',
+level1b='25',
+time1b="con l'abilità [[Mente Locale]]<br>tra le 17:00 e le 17:59{{#invoke:sup|US}} / le 5:00 e le 5:59{{#invoke:sup|Ul}}, ora del 3DS",
+sprite2b='745C',
+}})
+
 -- Feebas
 print(evobox{args={
 'Feebas',
@@ -228,6 +247,37 @@ evotype1ainfo='{{bag|Poké Ball}}<br>Con spazio in {{colore2|000|squadra}}<br>e 
 sprite2a='292'
 }})
 
+-- Eevee
+print(evobox{args={
+'Eevee',
+family='Normale',
+sprite1='133',
+evotype1='Pietra',
+evostone1='Pietraidrica',
+sprite2='134',
+evotype1a='Pietra',
+evostone1a='Pietratuono',
+sprite2a='135',
+evotype1b='Pietra',
+evostone1b='Pietrafocaia',
+sprite2b='136',
+evotype1c='Felicità',
+time1c='Giorno',
+sprite2c='196',
+evotype1d='Felicità',
+time1d='Notte',
+sprite2d='197',
+evotype1e='Posizione',
+location1e='Roccia Muschio',
+sprite2e='470',
+evotype1f='Posizione',
+location1f='Roccia Ghiaccio',
+sprite2f='471',
+evotype1g='Livello',
+level1g='qualsiasi',
+evotype1ginfo='con due cuori di {{colore2|000|amicizia}}<br>avendo appreso una mossa di tipo {{colore2|000|Folletto}}',
+sprite2g='700'
+}})
 
 -- ====================== Evobox/formbox ====================
 local formbox = require('Evobox').Formbox
