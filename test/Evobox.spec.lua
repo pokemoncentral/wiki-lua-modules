@@ -234,7 +234,7 @@ evotype1info='o<br>{{bag|Fascia Blu}}<br>{{colore2|000|Livello|Aumento di livell
 sprite2='350'
 }})
 
--- Shedinja
+-- Nincada
 print(evobox{args={
 'Nincada',
 family='Normale',
@@ -303,6 +303,14 @@ loc1='{{colore2|000|Mondo Pokémon}},<br>senza tenere la {{colore2|000|Grigiosfe
 item1='Grigiosfera',
 sprite2='487O',
 loc2='{{colore2|000|Mondo Distorto}}<br>o tenendo la {{colore2|000|Grigiosfera}}'
+}})
+
+-- Megaevo
+print(formbox{args={
+'Aerodactyl',
+sprite1='142',
+item1='Aerodactylite',
+sprite2='142M',
 }})
 
 -- Branched

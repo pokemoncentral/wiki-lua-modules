@@ -20,7 +20,8 @@ local links = require('Links')
 local ms = require('MiniSprite')
 local css = require('Css')
 local c = require("Colore-data")
-local forms = require("AltForms-data")
+local altforms = require("AltForms-data")
+local useless = require("UselessForms-data")
 local pokes = require("Poké-data")
 local moves = require("Move-data")
 
@@ -31,8 +32,8 @@ Utility strings
 --]]
 
 eb.strings = {
-    BOX_CONTAINER = [=[<div class="text-center"><div class="inline-block-md inline-flex flex-row flex-nowrap flex-items-stretch roundy" style="padding: 0.5em; ${background}">${content}</div></div><br style="clear: both;">]=],
-    BOX_CONTAINER_UNRESPONSIVE = [=[<div class="text-center"><div class="inline-flex flex-row flex-nowrap flex-items-center roundy" style="padding: 0.5em; ${background}">${content}</div></div><br style="clear: both;">]=],
+    BOX_CONTAINER = [=[<div class="text-center"><div class="roundy inline-flex flex-row flex-nowrap flex-items-stretch inline-block-md width-sm-100" style="padding: 0.5em; ${background}">${content}</div></div><br style="clear: both;">]=],
+    BOX_CONTAINER_UNRESPONSIVE = [=[<div class="text-center"><div class="roundy inline-flex flex-row flex-nowrap flex-items-center width-sm-100" style="padding: 0.5em; ${background}">${content}</div></div><br style="clear: both;">]=],
 
     ROW_ONE = [=[<div class="vert-middle">${box}</div>]=],
     ROW_TWO = [=[<div class="flex-md flex-row flex-nowrap flex-items-center"><div class="width-md-50 vert-middle" style="margin: 0 0.5ex; height: 50%;">${box1}</div><div class="width-md-50 vert-middle" style="margin: 0 0.5ex; height: 50%;">${box2}</div></div>]=],
@@ -566,6 +567,7 @@ eb.Evobox = function(frame)
     p[1] = nil
     p.family = p.family or 'nessuna'
     local pagepoke = pokes[form.nameToDataindex(pagename)]
+            or pokes[pagename:lower()]
             or {name = 'Sconosciuto', ndex = 0, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 
     local evoboxcontent = {}
@@ -635,7 +637,7 @@ added using the second parameter.
 --]]
 eb.BoxForm = function(ndex, notes)
     local name, abbr = form.getnameabbr(ndex)
-    local altdata = forms[name]
+    local altdata = altforms[name] or useless[name]
     return eb.BoxPokemon(ndex, '', notes, altdata.names[abbr])
 end
 
