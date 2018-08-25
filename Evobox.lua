@@ -24,6 +24,7 @@ local altforms = require("AltForms-data")
 local useless = require("UselessForms-data")
 local pokes = require("Poké-data")
 local moves = require("Move-data")
+local evodata = require("Evo-data")
 
 --[[
 
@@ -104,30 +105,51 @@ param2: move type, ndex of the other Pokémon involved
 
 --]]
 eb.strings.boxArrowImg = {
-    livello = boxArrowFunctionGenerator(links.bag('Caramella Rara')),
-    felicita = boxArrowFunctionGenerator(links.bag('Calmanella')),
-    posizione = boxArrowFunctionGenerator(links.bag('Mappa Città')),
-    pietra = boxArrowFunctionGenerator(links.bag('${param1}')),
-    mossa = boxArrowFunctionGenerator(links.bag('MT ${param2}')),
-    held = boxArrowFunctionGenerator(links.bag('${param1}')),
-    scambio = function(param1, param2)
-            if param2 then
+    [evodata.methods.OTHER] = boxArrowFunctionGenerator(''),
+
+    [evodata.methods.LEVEL] = {
+        [evodata.conditions.OTHER] = boxArrowFunctionGenerator(links.bag('Caramella Rara')),
+        [evodata.conditions.ITEM] = boxArrowFunctionGenerator(links.bag('${param1}')),
+        [evodata.conditions.LOCATION] = boxArrowFunctionGenerator(links.bag('Mappa Città')),
+        [evodata.conditions.MOVE] = boxArrowFunctionGenerator(links.bag('MT ${param2}')),
+        [evo.conditions.TRADED_FOR] = function(param1, param2)
+                return table.concat{'<div>', ms.staticLua(param2), '</div>'}
+            end,
+    },
+
+    [evodata.methods.HAPPINESS] = boxArrowFunctionGenerator(links.bag('Calmanella')),
+
+    [evodata.methods.STONE] = boxArrowFunctionGenerator(links.bag('${param1}')),
+
+    [evodata.methods.TRADE] = {
+        [evo.conditions.OTHER] = boxArrowFunctionGenerator(links.bag('Blocco Amici')),
+        [evodata.conditions.ITEM] = function(param1)
+                return links.bag('${param1}')
+            end,
+        [evodata.conditions.TRADED_FOR] = function(param1, param2)
                 return ms.staticLua(param2)
-            else
-                return links.bag(param1 or 'Blocco Amici')
-            end
-        end,
-    pokemon = function(param1, param2)
-            return table.concat{'<div>', ms.staticLua(param2), '</div>'}
-        end,
-    other = function(param1, param2)
-            return ''
-        end,
-    baby = boxArrowFunctionGenerator(ms.staticLua('Uovo')),
-    incenso = boxArrowFunctionGenerator(links.bag('${param1}')),
-    breedonly = boxArrowFunctionGenerator(ms.staticLua('132')),
-    formitem = boxArrowFunctionGenerator(links.bag('${param1}'))
+            end,
+    },
+
+    [evodata.methods.BREED] = {
+        [evodata.conditions.OTHER] = boxArrowFunctionGenerator(ms.staticLua('Uovo')),
+        [evodata.conditions.ITEM] = boxArrowFunctionGenerator(links.bag('${param1}')),
+    },
+
+    -- breedonly = boxArrowFunctionGenerator(ms.staticLua('132')),
+    -- formitem = boxArrowFunctionGenerator(links.bag('${param1}'))
 }
+table.tableKeysAlias(
+    eb.strings.boxArrowImg[evodata.methods.LEVEL],
+    { evodata.conditions.OTHER },
+    { { evodata.conditions.TIME, evo.conditions.GENDER } }
+)
+table.tableKeysAlias(
+    eb.strings.boxArrowImg[evodata.methods.TRADE],
+    { evodata.conditions.OTHER },
+    { { evo.conditions.MOVE, evo.conditions.GENDER } }
+)
+
 
 eb.strings.boxArrowEvodesc = {
     livello = boxArrowFunctionGenerator('[[Livello|<span style="color: #000;">Livello</span>]] ${param1}'),
@@ -209,40 +231,28 @@ eb.BoxPokemon = function(ndex, phase, notes, shownName)
     })
 end
 
-
 --[[
 
 Returns a single arrow box, with image (if any), evotype brief description and
 responsive arrow (that turns at md breakpoint).
 
-Parameters are named because of their number:
-    - direction (normal|reverse|double): states the direction of the arrow,
-            the default if evotype is 'breedonly' is 'reverse', otherwise is
-            'normal'
-    - evotype (livello|felicita|posizione|pietra|mossa|held|scambio|pokémon
-              |other|baby|incenso|breedonly): states the evolutionary method
-    - evoinfo: additional notes
-    - time: the time of the day during which evolution can occur
-    - gender: the gender required in order for evolution to occur
-    - level: the level for evolution
-    - location: the location where the Pokémon can evolve
-    - evostone: the evolutionary stone needed for evolution
-    - move: the name of the move required for evolution
-    - held: the name of the item required for evolution
-    - incense: the name of the incense needed to breed the Pokémon
-    - ms: the dex number of the Pokémon needed for evolution
+The only parameter is the table of evo-data correspondig to the Pokémon this
+arrows points to. If method is methods.BREED than the arrow is reversed (so
+data should belong to the Pokémon before the arrow).
 
 --]]
-eb.BoxArrow = function(args)
-    args.direction = args.direction
-                    or (args.evotype == 'breedonly' and 'reverse' or 'normal')
-    args.move = args.move and args.move:lower() or nil
-    args.location = args.location
-        and string.interp('[[${text}|<span style="color: #000;">${text}</span>]]', {
-            text = args.location
-        })
-    local movedata = moves[args.move]
-    local param1 = args.level or args.location or args.evostone
+eb.BoxArrow = function(data)
+    local direction = data.method == evodata.methods.BREED
+                      and 'reverse'
+                      or 'normal'
+    local movedata = data[evodata.conditions.MOVE]
+                     and moves[data[evodata.conditions.MOVE]]
+    local location = data[evodata.conditions.LOCATION]
+                     and string.interp('[[${text}|<span style="color: #000;">${text}</span>]]', {
+                         text = data[evodata.conditions.LOCATION]
+                     })
+
+    local param1 = data or args.location or args.evostone
                     or (movedata and movedata.name) or args.held or args.incense
     local param2 = (movedata and string.fu(movedata.type)) or args.ms
     local info = args.evoinfo

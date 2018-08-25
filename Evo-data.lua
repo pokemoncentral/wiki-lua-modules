@@ -67,7 +67,7 @@ evo[41] = {
 		{
 			ndex = 42,
 			method = evo.methods.LEVEL,
-			[evo.methods.LEVEL] = 22
+			[evo.methods.LEVEL] = 22,
 
 			evos = {
 				{
@@ -136,27 +136,27 @@ evo[133] = {
 		{
 			ndex = 196,
 			method = evo.methods.HAPPINESS,
-			conditions = { evo.conditions.TIME = 'Giorno' }
+			conditions = { [evo.conditions.TIME] = 'Giorno' }
 		},
 		{
 			ndex = 197,
 			method = evo.methods.HAPPINESS,
-			conditions = { evo.conditions.TIME = 'Notte' }
+			conditions = { [evo.conditions.TIME] = 'Notte' }
 		},
 		{
 			ndex = 470,
 			method = evo.methods.LEVEL,
-			conditions = { evo.conditions.LOCATION = 'Roccia Muschio' }
+			conditions = { [evo.conditions.LOCATION] = 'Roccia Muschio' }
 		},
 		{
 			ndex = 471,
 			method = evo.methods.LEVEL,
-			conditions = { evo.conditions.LOCATION = 'Roccia Ghiaccio' }
+			conditions = { [evo.conditions.LOCATION] = 'Roccia Ghiaccio' }
 		},
 		{
 			ndex = 700,
 			method = evo.methods.LEVEL,
-			conditions = { evo.conditions.OTHER = 'con due cuori di {{colore2|000|amicizia}}<div>avendo appreso una mossa di tipo {{colore2|000|Folletto}}</div>' }
+			conditions = { [evo.conditions.OTHER] = 'con due cuori di {{colore2|000|amicizia}}<div>avendo appreso una mossa di tipo {{colore2|000|Folletto}}</div>' }
 		}
 	}
 }
@@ -167,17 +167,35 @@ evo.eevee, evo.vaporeon, evo.jolteon, evo.flareon, evo.espeon, evo.umbreon =
 	evo[133], evo[133], evo[133], evo[133], evo[133], evo[133]
 evo.leafeon, evo.glaceon, evo.sylveon = evo[133], evo[133], evo[133]
 
+-- Nincada, example of OTHER
+evo[290] = {
+	ndex = 290,
+
+	evos = {
+		{
+			ndex = 291,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 20,
+		},
+		{
+			ndex = 292,
+			method = evo.methods.OTHER,
+			[evo.methods.OTHER] = '{{bag|Poké Ball}}<div>Con spazio in {{colore2|000|squadra}}</div>e almeno una {{colore2|000|Poké Ball}} nello {{colore2|000|zaino}}'
+		}
+	}
+}
+
 -- Roselia, breed evoline
 evo[406] = {
 	ndex = 406,
-	methods = evo.method.BREED,
-	conditions = {evo.conditions.ITEM = 'Rosaroma'},
+	methods = evo.methods.BREED,
+	conditions = { [evo.conditions.ITEM] = 'Rosaroma' },
 
 	evos = {
 		{
 			ndex = 315,
 			method = evo.methods.HAPPINESS,
-			conditions = { evo.conditions.TIME = 'Giorno' },
+			conditions = { [evo.conditions.TIME] = 'Giorno' },
 
 			evos = {
 				{
@@ -202,7 +220,7 @@ evo[215] = {
 		{
 			ndex = 461,
 			method = evo.methods.LEVEL,
-			conditions = { evo.conditions.ITEM = 'Affilodente' }
+			conditions = { [evo.conditions.ITEM] = 'Affilodente' }
 		}
 	}
 }
@@ -224,7 +242,7 @@ evo[361] = {
 			ndex = 478,
 			method = evo.methods.STONE,
 			[evo.methods.STONE] = 'Pietralbore',
-			conditions = { evo.conditions.GENDER = 'female' }
+			conditions = { [evo.conditions.GENDER] = 'female' }
 		}
 	}
 }
