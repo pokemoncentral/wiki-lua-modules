@@ -51,7 +51,7 @@ t.ruggito = {name = 'Ruggito', type = 'normale', category = 'stato', power = '&m
 t.boato = {name = 'Boato', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 20}
 t.canto = {name = 'Canto', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 55, pp = 15}
 t.supersuono = {name = 'Supersuono', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 55, pp = 20}
-t.sonicboom = {name = 'Sonicboom', type = 'normale', category = 'speciale', power = 90, accuracy = '&mdash;', pp = 20}
+t.sonicboom = {name = 'Sonicboom', type = 'normale', category = 'speciale', power = '&mdash;', accuracy = 90, pp = 20}
 t.inibitore = {name = 'Inibitore', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 100, pp = 20}
 t.acido = {name = 'Acido', type = 'veleno', category = 'speciale', power = 40, accuracy = 100, pp = 30}
 t.braciere = {name = 'Braciere', type = 'fuoco', category = 'speciale', power = 40, accuracy = 100, pp = 25}
