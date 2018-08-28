@@ -25,6 +25,7 @@ local useless = require("UselessForms-data")
 local pokes = require("Poké-data")
 local moves = require("Move-data")
 local evodata = require("Evo-data")
+local wdata = require("Wikilib-data")
 
 --[[
 
@@ -52,14 +53,13 @@ eb.strings = {
 </div>]=],
 
     BOX_ARROW_INFOLESS = [=[${img}<div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
-    BOX_ARROW_UNRESPONSIVE = [=[${img}<div class="text-small inline-block width-xl-100">${evodesc}${info}${timegender}</div><div>${desktoparrow}</div>]=],
-    BOX_ARROW = [=[${img}<div class="text-small inline-block width-xl-100">${evodesc}${info}${timegender}</div><div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
+    BOX_ARROW_UNRESPONSIVE = [=[${img}<div class="inline-block width-xl-100">${evodesc}${info}</div><div>${desktoparrow}</div>]=],
+    BOX_ARROW = [=[${img}<div class="inline-block width-xl-100">${evodesc}${info}</div><div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
 
     SINGLE_ARROW = [=[<div style="margin: 1em 0.5em;">${boxarrow}</div>]=],
     DOUBLE_ARROW = [=[<div class="inline-block-md"><div class="flex-md flex-row flex-nowrap flex-items-center" style="margin: 1em 0;"><div class="width-md-50" style="padding: 1em;">${boxarrow1}</div><div class="width-md-50" style="padding: 1em;">${boxarrow2}</div></div></div>]=],
 
-    LITTLE_TEXT_NEWLINE = [=[<div class="small-text" >${text}</div>]=],
-    LITTLE_TEXT_INLINE = [=[<span class="small-text" >${text}</span>]=]
+    SMALL_TEXT_NEWLINE = [=[<div class="small-text" >${text}</div>]=],
 }
 
 eb.strings.desktoparrows = {
@@ -78,132 +78,6 @@ eb.strings.mobilearrows = {
 
 --[[
 
-Utility function that creates the boxArrow functions in the simplest case, that
-is plain interpolation of thetwo parameters
-
---]]
-local boxArrowFunctionGenerator = function(text)
-    return function(param1, param2)
-        return string.interp(text, {
-            param1 = param1,
-            param2 = param2
-        })
-    end
-end
-
---[[
-
-To handle the many evolutionary methods, descriptions and images are stored in
-this table of functions. The index is the evotype (lowercase), the content is a
-function that takes two parameters and returns the img/description wanted. The
-parameters are made so that each parameter of the parent call should be put in
-OR in exactly one of the two paramters of this function.
-
-Follows the list of which parameters should be put where.
-param1: level, locations list, evolutionary stone, move name, item name, incense
-param2: move type, ndex of the other Pokémon involved
-
---]]
-eb.strings.boxArrowImg = {
-    [evodata.methods.OTHER] = boxArrowFunctionGenerator(''),
-
-    [evodata.methods.LEVEL] = {
-        [evodata.conditions.OTHER] = boxArrowFunctionGenerator(links.bag('Caramella Rara')),
-        [evodata.conditions.ITEM] = boxArrowFunctionGenerator(links.bag('${param1}')),
-        [evodata.conditions.LOCATION] = boxArrowFunctionGenerator(links.bag('Mappa Città')),
-        [evodata.conditions.MOVE] = boxArrowFunctionGenerator(links.bag('MT ${param2}')),
-        [evo.conditions.TRADED_FOR] = function(param1, param2)
-                return table.concat{'<div>', ms.staticLua(param2), '</div>'}
-            end,
-    },
-
-    [evodata.methods.HAPPINESS] = boxArrowFunctionGenerator(links.bag('Calmanella')),
-
-    [evodata.methods.STONE] = boxArrowFunctionGenerator(links.bag('${param1}')),
-
-    [evodata.methods.TRADE] = {
-        [evo.conditions.OTHER] = boxArrowFunctionGenerator(links.bag('Blocco Amici')),
-        [evodata.conditions.ITEM] = function(param1)
-                return links.bag('${param1}')
-            end,
-        [evodata.conditions.TRADED_FOR] = function(param1, param2)
-                return ms.staticLua(param2)
-            end,
-    },
-
-    [evodata.methods.BREED] = {
-        [evodata.conditions.OTHER] = boxArrowFunctionGenerator(ms.staticLua('Uovo')),
-        [evodata.conditions.ITEM] = boxArrowFunctionGenerator(links.bag('${param1}')),
-    },
-
-    -- breedonly = boxArrowFunctionGenerator(ms.staticLua('132')),
-    -- formitem = boxArrowFunctionGenerator(links.bag('${param1}'))
-}
-table.tableKeysAlias(
-    eb.strings.boxArrowImg[evodata.methods.LEVEL],
-    { evodata.conditions.OTHER },
-    { { evodata.conditions.TIME, evo.conditions.GENDER } }
-)
-table.tableKeysAlias(
-    eb.strings.boxArrowImg[evodata.methods.TRADE],
-    { evodata.conditions.OTHER },
-    { { evo.conditions.MOVE, evo.conditions.GENDER } }
-)
-
-
-eb.strings.boxArrowEvodesc = {
-    livello = boxArrowFunctionGenerator('[[Livello|<span style="color: #000;">Livello</span>]] ${param1}'),
-    felicita = boxArrowFunctionGenerator('[[Felicità|<span style="color: #000;">Felicità</span>]]'),
-    posizione = boxArrowFunctionGenerator('[[Livello|<span style="color: #000;">Aumento di livello</span>]]<br>presso: ${param1}'),
-    pietra = boxArrowFunctionGenerator('${param1}'),
-    mossa = boxArrowFunctionGenerator('[[Livello|<span style="color: #000;">Aumento di livello</span>]]<br>avendo appreso [[${param1}|<span style="color: #000;">${param1}</span>]]'),
-    held = boxArrowFunctionGenerator('[[Livello|<span style="color: #000;">Aumento di livello</span>]]<br>tenendo [[${param1}|<span style="color: #000;">${param1}</span>]]'),
-    scambio = function(param1, param2)
-            local resultString = '[[Scambio|<span style="color: #000;">Scambio</span>]]'
-                if param1 then
-                    resultString = table.concat{
-                        resultString,
-                        '<br>tenendo [[',
-                        param1,
-                        '|<span style="color: #000;">',
-                        param1,
-                        '</span>]]'
-                    }
-                end
-                if param2 then
-                    resultString = table.concat{
-                        resultString,
-                        '<br>per [[',
-                        pokes[tonumber(param2)].name,
-                        '|<span style="color: #000;">',
-                        pokes[tonumber(param2)].name,
-                        '</span>]]'
-                    }
-                end
-            return resultString
-        end,
-    pokemon = function(param1, param2)
-            return table.concat{
-                '[[Livello|<span style="color: #000;">Aumento di livello</span>]]<br>con [[',
-                pokes[tonumber(param2)].name,
-                '|<span style="color: #000;">',
-                pokes[tonumber(param2)].name,
-                '</span>]]',
-                ' in [[squadra|<span style="color: #000;">squadra</span>]]'
-            }
-        end,
-    other = function(param1, param2)
-            return ''
-        end,
-    baby = boxArrowFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]]'),
-    incenso = boxArrowFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]] tenendo [[${param1}]]'),
-    breedonly = boxArrowFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]] con [[Ditto|<span style="color: #000;">Ditto</span>]]'),
-    formitem = boxArrowFunctionGenerator('[[${param1}|<span style="color: #000;">${param1}</span>]]')
-}
-
-
---[[
-
 Returns a single Pokémon box, with notes, image, name, evolutionary phase and
 types.
 
@@ -216,7 +90,7 @@ eb.BoxPokemon = function(ndex, phase, notes, shownName)
     local poke = pokes[form.nameToDataindex(ndex)]
 
     return string.interp(eb.strings.BOX_POKEMON, {
-        notes = notes and string.interp(eb.strings.LITTLE_TEXT_NEWLINE, {
+        notes = notes and string.interp(eb.strings.SMALL_TEXT_NEWLINE, {
             text = notes
         }) or '',
         background = css.radialGradLua{ type1 = poke.type1, type2 = poke.type2 },
@@ -233,6 +107,116 @@ end
 
 --[[
 
+The followings are utility functions to create the elements of eb.boxArrow.
+The first function takes a parameter and returns a function that interps its
+own parameter in the text passed to the generating function, with name "param".
+The second is almost the same as the first one, but the text is inserted into a
+div.small-text. The third is the nil constant function.
+
+--]]
+
+local methodsFunctionGenerator = function(text)
+    return function(param)
+        return string.interp(text, { param = param })
+    end
+end
+
+local smallMethodsFunctionGenerator = function(text)
+    text = string.interp(eb.strings.SMALL_TEXT_NEWLINE, { text = text })
+    return function(param)
+        return string.interp(text, { param = param })
+    end
+end
+
+local nilConst = function()
+    return nil
+end
+
+--[[
+
+Those tables contain images and texts related to evomethods. Their elements are
+functions that, called with the value of that methods' key (from the data
+module) as the only parameter returns the string to insert in the result.
+
+--]]
+
+eb.boxArrow = { img = {}, desc = {} }
+eb.boxArrow.img.methods = {
+    [evodata.methods.OTHER] = methodsFunctionGenerator(''),
+    [evodata.methods.LEVEL] = methodsFunctionGenerator(links.bag('Caramella Rara')),
+    [evodata.methods.HAPPINESS] = methodsFunctionGenerator(links.bag('Calmanella')),
+    [evodata.methods.STONE] = methodsFunctionGenerator(links.bag('${param}')),
+    [evodata.methods.TRADE] = methodsFunctionGenerator(links.bag('Blocco Amici')),
+    [evodata.methods.BREED] = methodsFunctionGenerator(ms.staticLua('Uovo')),
+}
+eb.boxArrow.img.conditions = {
+    [evodata.conditions.OTHER] = nilConst,
+    [evodata.conditions.TIME] = nilConst,
+    [evodata.conditions.ITEM] = methodsFunctionGenerator(links.bag('${param}')),
+    [evodata.conditions.LOCATION] = methodsFunctionGenerator(links.bag('Mappa Città')),
+    [evodata.conditions.MOVE] = function(movename)
+        -- Takes move name and gets move type for the MT image
+        local movedata = moves[movename]
+        return links.bag('MT ' .. string.fu(movedata.type))
+    end,
+    [evodata.conditions.GENDER] = nilConst,
+    [evodata.conditions.TRADED_FOR] = function(ndex)
+        return ms.staticLua(ndex)
+    end
+}
+
+eb.boxArrow.desc.methods = {
+    [evodata.methods.OTHER] = methodsFunctionGenerator('${param}'),
+    [evodata.methods.LEVEL] = function(level)
+        if not level then
+            return '[[Livello|<span style="color: #000;">Aumento di livello</span>]]'
+        end
+        return table.concat{
+            '[[Livello|<span style="color: #000;">Livello ',
+            level,
+            '</span>]]'
+        }
+    end,
+    [evodata.methods.HAPPINESS] = methodsFunctionGenerator('[[Felicità|<span style="color: #000;">Felicità</span>]]'),
+    [evodata.methods.STONE] = methodsFunctionGenerator('${param}'),
+    [evodata.methods.TRADE] = methodsFunctionGenerator(links.bag('Blocco Amici')),
+    [evodata.methods.BREED] = methodsFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]]'),
+}
+eb.boxArrow.desc.conditions = {
+    [evodata.conditions.OTHER] = smallMethodsFunctionGenerator('${param}'),
+    [evodata.conditions.TIME] = smallMethodsFunctionGenerator('(${param})'),
+    [evodata.conditions.ITEM] = smallMethodsFunctionGenerator('tenendo [[${param}|<span style="color: #000;">${param}</span>]]'),
+    [evodata.conditions.LOCATION] = smallMethodsFunctionGenerator('presso [[${param}|<span style="color: #000;">${param}</span>]]'),
+    [evodata.conditions.MOVE] = function(movename)
+        -- Takes move name (lowercase) and get the real name from data module
+        -- (because case in names is unpredictable)
+        local movedata = moves[movename]
+        return string.interp(eb.strings.SMALL_TEXT_NEWLINE, {
+            text = table.concat{
+                'avendo appreso [[',
+                string.fu(movedata.name),
+                '|<span style="color: #000;">',
+                string.fu(movedata.name),
+                '</span>]]'
+            }
+        })
+    end,
+    [evodata.conditions.GENDER] = smallMethodsFunctionGenerator('(${param})'),
+    [evodata.conditions.TRADED_FOR] = function(ndex)
+            local name = pokes[tonumber(ndex)].name
+            return table.concat{
+                'per [[',
+                name,
+                '|<span style="color: #000;">',
+                name,
+                '</span>]]'
+            }
+        end,
+}
+
+
+--[[
+
 Returns a single arrow box, with image (if any), evotype brief description and
 responsive arrow (that turns at md breakpoint).
 
@@ -245,31 +229,25 @@ eb.BoxArrow = function(data)
     local direction = data.method == evodata.methods.BREED
                       and 'reverse'
                       or 'normal'
-    local movedata = data[evodata.conditions.MOVE]
-                     and moves[data[evodata.conditions.MOVE]]
-    local location = data[evodata.conditions.LOCATION]
-                     and string.interp('[[${text}|<span style="color: #000;">${text}</span>]]', {
-                         text = data[evodata.conditions.LOCATION]
-                     })
 
-    local param1 = data or args.location or args.evostone
-                    or (movedata and movedata.name) or args.held or args.incense
-    local param2 = (movedata and string.fu(movedata.type)) or args.ms
-    local info = args.evoinfo
-                 and table.concat{'<div>', args.evoinfo, '</div>'}
-                 or ''
-    local timegender = table.concat{args.time or '', args.gender or ''}
-    timegender = timegender == ''
-                 and ''
-                 or table.concat{'<div>(', timegender, ')</div>'}
+    -- Only uses the first image found. The actual order is the keys' one
+    -- because there souldn't be more than one condition with and img at a time
+    local img = table.mapToNum(data.conditions or {}, function(val, condition)
+        return eb.boxArrow.img.conditions[condition](val)
+    end)
+    table.insert(img, eb.boxArrow.img.methods[data.method](data[data.method]))
+
+    local desc = table.mapToNum(data.conditions or {}, function(val, condition)
+        return eb.boxArrow.desc.conditions[condition](val)
+    end)
+    table.insert(desc, 1, eb.boxArrow.desc.methods[data.method](data[data.method]))
 
     local interpData = {
-        img = eb.strings.boxArrowImg[args.evotype](param1, param2),
-        evodesc = eb.strings.boxArrowEvodesc[args.evotype](param1, param2),
-        info = info,
-        timegender = timegender,
-        desktoparrow = eb.strings.desktoparrows[args.direction],
-        mobilearrow = eb.strings.mobilearrows[args.direction]
+        img = img[1],
+        evodesc = table.concat(desc),
+        desktoparrow = eb.strings.desktoparrows[direction],
+        mobilearrow = eb.strings.mobilearrows[direction],
+        info = ''
     }
     local interpString = eb.strings.BOX_ARROW
 

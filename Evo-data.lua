@@ -47,8 +47,8 @@ evo[1] = {
 			evos = {
 				{
 					ndex = 3,
-					[evo.methods.LEVEL] = evo.methods.LEVEL,
-					level = 32
+					method = evo.methods.LEVEL,
+					[evo.methods.LEVEL] = 32
 				}
 			}
 		}
@@ -180,7 +180,8 @@ evo[290] = {
 		{
 			ndex = 292,
 			method = evo.methods.OTHER,
-			[evo.methods.OTHER] = '{{bag|Poké Ball}}<div>Con spazio in {{colore2|000|squadra}}</div>e almeno una {{colore2|000|Poké Ball}} nello {{colore2|000|zaino}}'
+			[evo.methods.OTHER] = '{{bag|Poké Ball}}',
+			conditions = { [evo.conditions.OTHER] = 'Con spazio in {{colore2|000|squadra}}<div>e almeno una {{colore2|000|Poké Ball}} nello {{colore2|000|zaino}}</div>' }
 		}
 	}
 }
@@ -188,7 +189,7 @@ evo[290] = {
 -- Roselia, breed evoline
 evo[406] = {
 	ndex = 406,
-	methods = evo.methods.BREED,
+	method = evo.methods.BREED,
 	conditions = { [evo.conditions.ITEM] = 'Rosaroma' },
 
 	evos = {
@@ -242,7 +243,7 @@ evo[361] = {
 			ndex = 478,
 			method = evo.methods.STONE,
 			[evo.methods.STONE] = 'Pietralbore',
-			conditions = { [evo.conditions.GENDER] = 'female' }
+			conditions = { [evo.conditions.GENDER] = 'Femmina' }
 		}
 	}
 }
