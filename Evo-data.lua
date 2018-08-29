@@ -24,12 +24,13 @@ evo.methods.BREED = 5
 
 evo.conditions = {}
 evo.conditions.OTHER = 0
-evo.conditions.TIME = 3
-evo.conditions.ITEM = 4
-evo.conditions.LOCATION = 5
-evo.conditions.MOVE = 6
-evo.conditions.GENDER = 7
-evo.conditions.TRADED_FOR = 8
+evo.conditions.TIME = 1
+evo.conditions.ITEM = 2
+evo.conditions.LOCATION = 3
+evo.conditions.MOVE = 4
+evo.conditions.GENDER = 5
+evo.conditions.TRADED_FOR = 6
+evo.conditions.BREEDONLY = 7
 -- evo.conditions.STATS = 6
 -- evo.conditions.PARTY = 8
 -- evo.conditions.EMPTY_SLOT = 9
@@ -115,7 +116,7 @@ evo.oddish, evo.gloom, evo.vileplume, evo.bellossom =
 
 -- Eevee
 evo[133] = {
-	ndex = 33,
+	ndex = 133,
 
 	evos = {
 		{
@@ -185,6 +186,7 @@ evo[290] = {
 		}
 	}
 }
+evo[291], evo[292] = evo[290], evo[290]
 
 -- Roselia, breed evoline
 evo[406] = {
