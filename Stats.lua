@@ -490,7 +490,7 @@ s.boxStats = function(args)
         Need to get rid of non-existent stats because no
         holes are allowed when concatenating later on
     --]]
-    local statsOrder = statsUtil.statsOrder[stats.special and 1 or 2]
+    local statsOrder = statsUtil.statsOrder[gen or (stats.spec and 1 or 2)]
     local statRows = table.filter(statsOrder, function(stat)
             return stats[stat] end)
 

@@ -29,6 +29,19 @@ print(stats.statsBox{args = {
 	align = 'left',
 }})
 
+-- First gen, with spec
+print(stats.statsBox{args={
+	hp = '33',
+	atk = '136',
+	def = '0',
+	spec = '6',
+	spe = '29',
+	type1 = 'sconosciuto',
+	type2 = 'normale',
+	bounds = 'yes',
+	gen = '1',
+}})
+
 -- =================== TypeAvg =================
 print(stats.typeAvg{args = {'Elettro'}})
 
