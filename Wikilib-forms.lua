@@ -128,7 +128,7 @@ del Pokémon e quello esteso della forma alternativa.
 f.getlink = function(poke, black, extform)
     black = black and 'black' or ''
     poke, extform = f.getnameabbr(poke, extform)
-    if extform == '' or extform == 'base' then
+    if extform == '' then
         return ''
     end
     return alt[poke] and alt[poke][black .. 'links'][extform] or ''

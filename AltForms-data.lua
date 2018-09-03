@@ -39,7 +39,9 @@ local makeLinks = function(black)
 
 	for name, poke in pairs(stdLinks) do
 		poke[index] = table.map(poke.names, function(formName)
-			return string.interp(link, {
+			return formName = ''
+				   and ''
+				   or string.interp(link, {
 					anchor = poke.anchor or string.fu(name),
 					formName = formName
 			})
@@ -70,7 +72,9 @@ local makeLinks = function(black)
 	link = link:gsub('Differenze di forma', 'Forma di Alola')
 	for _, poke in pairs(t.alola) do
 		t[poke][index] = table.map(t[poke].names, function(formName)
-			return string.interp(link, {
+			return formName = ''
+				   and ''
+				   or string.interp(link, {
 					anchor = t[poke].anchor or string.fu(poke),
 					formName = formName
 			})
@@ -139,7 +143,7 @@ t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'diglett', 'meowth',
 
 t.pikachu.names = {Cs = 'Pikachu Cosplay', R = 'Pikachu Rockstar',
 	D = 'Pikachu Damigella', Cn = 'Pikachu Confetto',
-	S = 'Pikachu Scienziata', W = 'Pikachu Wrestler', base = 'Pikachu'}
+	S = 'Pikachu Scienziata', W = 'Pikachu Wrestler', base = ''}
 t.castform.names = {S = 'Forma Sole', P = 'Forma Pioggia',
 	N = 'Forma Nuvola di Neve', base = 'Forma Castform'}
 t.deoxys.names = {A = 'Forma Attacco', D = 'Forma Difesa',
@@ -150,18 +154,17 @@ t.rotom.names = {C = 'Rotom Calore', L = 'Rotom Lavaggio', G = 'Rotom Gelo',
 	V = 'Rotom Vortice', T = 'Rotom Taglio', base = 'Forma Rotom'}
 t.giratina.names = {O = 'Forma Originale', base = 'Forma Alterata'}
 t.shaymin.names = {C = 'Forma Cielo', base = 'Forma Terra'}
-t.arceus.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante',
-	Ve = 'Tipo Veleno', T = 'Tipo Terra', R = 'Tipo Roccia', Aq = 'Tipo Acqua',
-	C = 'Tipo Coleottero', Er = 'Tipo Erba', P = 'Tipo Psico', B = 'Tipo Buio',
-	S = 'Tipo Spettro', Ai = 'Tipo Acciaio', Fu = 'Tipo Fuoco',
-	D = 'Tipo Drago', Fo = 'Tipo Folletto', El = 'Tipo Elettro',
-	G = 'Tipo Ghiaccio', Sc = 'Tipo Sconosciuto'}
+t.arceus.names = {base = 'Normale', L = 'Lotta', Vo = 'Volante', Ve = 'Veleno',
+	T = 'Terra', R = 'Roccia', Aq = 'Acqua', C = 'Coleottero', Er = 'Erba',
+	P = 'Psico', B = 'Buio', S = 'Spettro', Ai = 'Acciaio', Fu = 'Fuoco',
+	D = 'Drago', Fo = 'Folletto', El = 'Elettro', G = 'Ghiaccio',
+	Sc = 'Sconosciuto'}
 t.basculin.names = {B = 'Forma Lineablu', base = 'Forma Linearossa'}
 t.darmanitan.names = {Z = 'Stato Zen', base = 'Stato Normale'}
 t.tornadus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
-t.kyurem.names = {N = 'Kyurem Nero', B = 'Kyurem Bianco', base = 'Kyurem'}
+t.kyurem.names = {N = 'Kyurem Nero', B = 'Kyurem Bianco', base = 'Forma di Kyurem'}
 t.meloetta.names = {D = 'Forma Danza', base = 'Forma Canto'}
-t.greninja.names = {A = 'Forma Ash', base = 'Forma Normale'}
+t.greninja.names = {A = 'Forma Ash', base = ''}
 t.meowstic.names = {F = 'Femmina', base = 'Maschio'}
 t.aegislash.names = {S = 'Forma Spada', base = 'Forma Scudo'}
 t.pumpkaboo.names = {S = 'Mini', L = 'Grande', XL = 'Maxi', base = 'Normale'}
@@ -171,9 +174,14 @@ t.oricorio.names = {C = 'Stile Cheerdance', H = 'Stile Hula', B = 'Stile Buyō',
 	base = 'Stile Flamenco'}
 t.lycanroc.names = {N = 'Forma Notte', C = 'Forma Crepuscolo', base = 'Forma Giorno'}
 t.wishiwashi.names = {B = 'Forma Banco', base = 'Forma Individuale'}
-t.silvally.names = mw.clone(t.arceus.names)
-t.silvally.names.Sc = nil
-t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = 'Necrozma Ali dell\'Aurora', U = 'UltraNecrozma', base = 'Necrozma'}
+t.silvally.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante',
+	Ve = 'Tipo Veleno', T = 'Tipo Terra', R = 'Tipo Roccia', Aq = 'Tipo Acqua',
+	C = 'Tipo Coleottero', Er = 'Tipo Erba', P = 'Tipo Psico', B = 'Tipo Buio',
+	S = 'Tipo Spettro', Ai = 'Tipo Acciaio', Fu = 'Tipo Fuoco',
+	D = 'Tipo Drago', Fo = 'Tipo Folletto', El = 'Tipo Elettro',
+	G = 'Tipo Ghiaccio'}
+t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = 'Necrozma Ali dell\'Aurora',
+	U = 'UltraNecrozma', base = ''}
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}
@@ -192,7 +200,7 @@ for k, v in pairs(t.archeo) do
 end
 for k, v in pairs(t.alola) do
 	t[v] = {}
-	t[v].names = {A = 'Forma di Alola', base = 'Forma Normale'}
+	t[v].names = {A = 'Forma di Alola', base = ''}
 end
 
 -- Anchor per i link alle forme alternative,

@@ -20,6 +20,7 @@ local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings') -- luacheck: no unused
 local tab = require('Wikilib-tables') -- luacheck: no unused
 local alts = require('AltForms-data')
+local pokes = require("Poké-data")
 
 --[[-----------------------------------------
 
@@ -433,13 +434,21 @@ l.makeFormsLabelledBoxes = function(args)
     --]]
     for k, abbr in ipairs(altData.gamesOrder) do
         local formName = altData.names[abbr]
+        -- Replaces empty base form name with Pokémon's name
+        formName = abbr == 'base' and formName == ''
+                   and pokes[args.name] and pokes[args.name].name
+                   or formName
         --[[
-            Se viene passato l'ndex, la forma base deve
-            restare un number, quindi non può essere
-            concatenata alla stringa vuota
+            If ndex is passed, base form should stay a number (thus can't be
+            concatenated to the empty string) and other forms should have three
+            digits followed by form abbr.
         --]]
-        local name = abbr == 'base' and args.name
-                or (args.name .. abbr)
+        local name = abbr == 'base'
+                     and args.name
+                     or (type(args.name) == 'number'
+                         and string.threeFigures(args.name) .. abbr
+                         or args.name .. abbr
+                     )
         local formBox = makeBox(name, formName)
 
         local index = table.search(boxes, formBox)

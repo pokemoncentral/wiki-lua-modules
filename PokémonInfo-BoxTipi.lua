@@ -92,7 +92,7 @@ b.boxTipi = function(frame)
 	local pokeData = pokes[string.parseInt(name) or name]
 			or pokes[mw.text.decode(name)]
 	name = pokeData.name:lower()
-	
+
 	return list.makeFormsLabelledBoxes({
 		name = name,
 		makeBox = TypesBox.new,

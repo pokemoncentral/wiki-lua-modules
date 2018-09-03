@@ -18,7 +18,9 @@ local makeLinks = function(black)
 
 	for name, poke in pairs(t) do
 		poke[index] = table.map(poke.names, function(formName)
-			return string.interp(link, {
+			return formName = ''
+				   and ''
+				   or string.interp(link, {
 					anchor = poke.anchor or string.fu(name),
 					formName = formName
 			})
@@ -55,8 +57,8 @@ t.mimikyu = {}
 t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
 	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
 	K = 'Berretto Kalos', A = 'Berretto Alola',
-	Co = 'Berretto Compagni', base = 'Pikachu'}
-t.pichu.names = {S = 'Pichu Spunzorek', base = 'Pichu'}
+	Co = 'Berretto Compagni', base = ''}
+t.pichu.names = {S = 'Pichu Spunzorek', base = ''}
 t.unown.names = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
 	O = 'O', P = 'P', Q = 'Q', R = 'R', S = 'S', T = 'T', U = 'U', V = 'V',
@@ -70,8 +72,8 @@ t.deerling.names = {E = 'Forma Estate', A = 'Forma Autunno',
 	I = 'Forma Inverno', base = 'Forma Primavera'}
 t.frillish.names = t.unfezant.names
 t.keldeo.names = {R = 'Forma Risoluta', base = 'Forma Normale'}
-t.genesect.names = {I = 'Forma Idromodulo', V = 'Forma Voltmodulo', P = 'Forma Piromodulo',
-	G = 'Forma Gelomodulo', base = 'Forma Normale'}
+t.genesect.names = {I = 'Con Idromodulo', V = 'Con Voltmodulo',
+	P = 'Con Piromodulo', G = 'Con Gelomodulo', base = 'Senza Modulo'}
 t.vivillon.names = {base = 'Motivo Nevi Perenni', No = 'Motivo Nordico',
 	Mn = 'Motivo Manto di Neve', C = 'Motivo Continentale', Pr = 'Motivo Prato',
 	E = 'Motivo Eleganza', Ga = 'Motivo Giardinfiore', T = 'Motivo Trendy',
