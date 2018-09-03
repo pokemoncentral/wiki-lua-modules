@@ -28,9 +28,12 @@ local makeLinks = function(black)
 	end
 end
 
--- Tabelle associate ai Pokémon: ne mancano alcuni perché sarebbero
--- identici, in questo modulo, ad altri, e dunque sono costituiti
--- da alias, raggruppati in fondo al modulo
+--[[
+
+There's a table for each Pokémon. Some are missing because they would be equal
+to others, thus there's aliasing at the end of the module.
+
+--]]
 
 t.pikachu = {}
 t.pichu = {}
@@ -51,8 +54,11 @@ t.xerneas = {}
 t.minior = {}
 t.mimikyu = {}
 
--- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
--- mettere solo queste nelle altre sottotabelle
+--[[
+
+Alternative forms names. Keys are the abbr.
+
+--]]
 
 t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
 	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
@@ -90,9 +96,9 @@ t.furfrou.names = {C = 'Taglio Cuore', St = 'Taglio Stella',
 	F = 'Taglio Faraone', base = 'Nessun Taglio'}
 t.xerneas.names = {A = 'Modo Attivo', base = 'Modo Relax'}
 t.mimikyu.names = {S = 'Forma Smascherata', base = 'Forma Mascherata'}
-t.minior.names = {R = 'Nucleo Rosso', Ar = 'Nucleo Arancione', G = 'Nucleo Giallo',
-	Ve = 'Nucleo Verde', Az = 'Nucleo Azzurro', I = 'Nucleo Indaco',
-	Vi = 'Nucleo Violetto', base = 'Forma Meteora'}
+t.minior.names = {R = 'Nucleo Rosso', Ar = 'Nucleo Arancione',
+	G = 'Nucleo Giallo', Ve = 'Nucleo Verde', Az = 'Nucleo Azzurro',
+	I = 'Nucleo Indaco', Vi = 'Nucleo Violetto', base = 'Forma Meteora'}
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
@@ -103,15 +109,15 @@ t.deerling.anchor = 'Deerling e Sawsbuck'
 t.frillish.anchor = 'Frillish e Jellicent'
 t.floette.anchor = 'Flabébé, Floette e Florges'
 
--- Link alle forme alternative.
+-- Alternative forms' links
 
 makeLinks()
 
--- Link neri alle forme alternative.
+-- Alternative forms' black links
 
 makeLinks(true)
 
--- Per passare dai nomi estesi delle forme alternative alle sigle
+-- Table to map extended names to abbrs
 
 t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
 	unima = 'U', kalos = 'K', alola = 'A', compagni = 'Co'}
@@ -142,11 +148,15 @@ t.furfrou.ext = {cuore = 'C', stella = 'St', diamante = 'D', dignorina = 'Si',
 	faraone = 'F'}
 t.xerneas.ext = {attivo = 'A'}
 t.minior.ext = {rosso = 'R', arancione = 'Ar', giallo = 'G', verde = 'Ve',
-	azzurro = 'Az', indaco = 'I', violetto = 'Vi'}
+	azzurro = 'Az', indaco = 'I', violetto = 'Vi', meteora = 'base'}
 t.mimikyu.ext = {smascherata = 'S'}
 
--- Arrays in cui è memorizzato l'ordine con cui le varie forme appaiono
--- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
+--[[
+
+Arrays keeping the order in which alternative forms are listed in the latest
+game.
+
+--]]
 
 t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'Co'}
 t.pichu.gamesOrder = {'base', 'S'}
@@ -170,8 +180,11 @@ t.xerneas.gamesOrder = {'base', 'A'}
 t.minior.gamesOrder = {'base', 'R', 'Ar', 'G', 'Ve', 'Az', 'I', 'Vi'}
 t.mimikyu.gamesOrder = {'base', 'S'}
 
--- Tabelle contenenti le sigle dei primi giochi in ordine cronologico in cui
--- la forma è supportata, compresa la forma base
+--[[
+
+Oldest game in which each form, included base form, appears.
+
+--]]
 
 t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
 	K = 'sl', A = 'sl', Co = 'usul', base = 'rb'}

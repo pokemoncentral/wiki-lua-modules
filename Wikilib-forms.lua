@@ -11,6 +11,8 @@ local txt = require('Wikilib-strings') -- luacheck: no unused
 local genUtil = require('Wikilib-gens')
 local alt = require("AltForms-data")
 
+local mw = require('mw')
+
 --[[
 
 Unisce le tabelle AltForms/data e UselessForms/data
@@ -19,8 +21,9 @@ Restituisce la tabella così creata
 
 --]]
 f.allFormsData = function()
-    local all = table.copy(alt)
-    local useless = require('UselessForms-data')
+    local all = mw.clone(alt)
+    local useless = require("UselessForms-data")
+    local both = require("BothForms-data")
 
     --[[
         No need for ipairs because integer keys
@@ -30,22 +33,10 @@ f.allFormsData = function()
         if all[k] then
 
             --[[
-            This Pokémon is in both useless and altForms
-            Right now only Pikachu
+                This Pokémon is in both useless and altForms, thus it is
+                granted to be also in bothForms
             --]]
-            all[k] = table.deepMerge(all[k], v)
-
-            --[[
-            gamesOrder is a pain in the neck
-            right now, with Pikachu, it is possible to
-            simply concatenate the two tables and remove
-            the second 'base'
-            --]]
-            all[k].gamesOrder = table.unique(table.merge(
-                                    all[k].gamesOrder,
-                                    v.gamesOrder
-                                ))
-
+            all[k] = both[k]
         else
             all[k] = v
         end

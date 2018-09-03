@@ -82,9 +82,12 @@ local makeLinks = function(black)
 	end
 end
 
--- Tabelle associate ai Pokémon: ne mancano alcuni perché sarebbero
--- identici, in questo modulo, ad altri, e dunque sono costituiti
--- da alias, raggruppati in fondo al modulo
+--[[
+
+There's a table for each Pokémon. Some are missing because they would be equal
+to others, thus there's aliasing at the end of the module.
+
+--]]
 
 t.pikachu = {}
 t.castform = {}
@@ -109,6 +112,7 @@ t.lycanroc = {}
 t.oricorio = {}
 t.wishiwashi = {}
 t.silvally = {}
+t.minior = {}
 t.necrozma = {}
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
@@ -138,8 +142,11 @@ t.archeo = {'kyogre', 'groudon'}
 t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'diglett', 'meowth',
 	'geodude', 'grimer', 'exeggutor', 'marowak'}
 
--- Nomi delle forme alternative: le chiavi sono le sigle, così da poter
--- mettere solo queste nelle altre sottotabelle
+--[[
+
+Alternative forms names. Keys are the abbr.
+
+--]]
 
 t.pikachu.names = {Cs = 'Pikachu Cosplay', R = 'Pikachu Rockstar',
 	D = 'Pikachu Damigella', Cn = 'Pikachu Confetto',
@@ -180,6 +187,7 @@ t.silvally.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante'
 	S = 'Tipo Spettro', Ai = 'Tipo Acciaio', Fu = 'Tipo Fuoco',
 	D = 'Tipo Drago', Fo = 'Tipo Folletto', El = 'Tipo Elettro',
 	G = 'Tipo Ghiaccio'}
+t.minior.names = {R = 'Forma Nucleo', base = 'Forma Meteora'}
 t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = 'Necrozma Ali dell\'Aurora',
 	U = 'UltraNecrozma', base = ''}
 for k, v in pairs(t.mega) do
@@ -217,15 +225,15 @@ t.wormadam.anchor = 'Burmy e Wormadam'
 t.tornadus.anchor = 'Forze della Natura'
 t.pumpkaboo.anchor = 'Pumpkaboo e Gourgeist'
 
--- Link alle forme alternative.
+-- Alternative forms' links
 
 makeLinks()
 
--- Link neri alle forme alternative.
+-- Alternative forms' black links
 
 makeLinks(true)
 
--- Per passare dai nomi estesi delle forme alternative alle sigle
+-- Table to map extended names to abbrs
 
 t.pikachu.ext = {cosplay = 'Cs', rockstar = 'R', damigella = 'D',
 	confetto = 'Cn', scienziata = 'S', wrestler = 'W'}
@@ -258,6 +266,7 @@ t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
 t.wishiwashi.ext = {banco = 'B', individuale = 'base'}
 t.silvally.ext = mw.clone(t.arceus.ext)
 t.silvally.ext.sconosciuto = nil
+t.minior.ext = {nucleo = 'R', meteora = 'base'}
 t.necrozma.ext = {vespro = 'V', aurora = 'A', ultra = 'U', necrozma = 'base'}
 for k, v in pairs(t.mega) do
 	t[v].ext = {mega = 'M'}
@@ -272,8 +281,12 @@ for k, v in pairs(t.alola) do
 	t[v].ext = {alola = 'A'}
 end
 
--- Arrays in cui è memorizzato l'ordine con cui le varie forme appaiono
--- nell'ultimo gioco. Si usano indici numerici per facilitare l'ordinamento
+--[[
+
+Arrays keeping the order in which alternative forms are listed in the latest
+game.
+
+--]]
 
 t.pikachu.gamesOrder = {'base', 'Cs', 'R', 'D', 'Cn', 'S', 'W'}
 t.castform.gamesOrder = {'base', 'S', 'P', 'N'}
@@ -299,6 +312,7 @@ t.lycanroc.gamesOrder = {'base', 'N', 'C'}
 t.oricorio.gamesOrder = {'base', 'C', 'H', 'B'}
 t.wishiwashi.gamesOrder = {'base', 'B'}
 t.silvally.gamesOrder = mw.clone(t.arceus.gamesOrder)
+t.minior.gamesOrder = {'base', 'R'}
 t.necrozma.gamesOrder = {'base', 'V', 'A', 'U'}
 table.remove(t.silvally.gamesOrder)
 for k, v in pairs(t.mega) do
@@ -314,8 +328,11 @@ for k, v in pairs(t.alola) do
 	t[v].gamesOrder = {'base', 'A'}
 end
 
--- Tabelle contenenti le sigle dei primi giochi in ordine cronologico in cui
--- la forma è supportata, compresa la forma base
+--[[
+
+Oldest game in which each form, included base form, appears.
+
+--]]
 
 t.rattata.since = {A = 'sl', base = 'rb'}
 t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
@@ -355,6 +372,7 @@ t.wishiwashi.since = {B = 'sl', base = 'sl'}
 t.silvally.since = {base = 'sl', L = 'sl', Vo = 'sl', Ve = 'sl', T = 'sl',
 	R = 'sl', Aq = 'sl', C = 'sl', Er = 'sl', P = 'sl', B = 'sl', S = 'sl',
 	Ai = 'sl', Fu = 'sl', D = 'sl', Fo = 'sl', El = 'sl', G = 'sl'}
+t.minior.since = {base = 'sl', R = 'sl'}
 t.necrozma.since = {base = 'sl', V = 'usul', A = 'usul', U = 'usul'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
 t.blastoise.since = {M = 'xy', base = 'rb'}
@@ -484,6 +502,7 @@ t[741] = t.oricorio
 t[745] = t.lycanroc
 t[746] = t.wishiwashi
 t[773] = t.silvally
+t[774] = t.minior
 t[800] = t.necrozma
 t[3] = t.venusaur
 t[9] = t.blastoise
