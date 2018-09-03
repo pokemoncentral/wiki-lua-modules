@@ -18,7 +18,7 @@ local makeLinks = function(black)
 
 	for name, poke in pairs(t) do
 		poke[index] = table.map(poke.names, function(formName)
-			return formName = ''
+			return formName == ''
 				   and ''
 				   or string.interp(link, {
 					anchor = poke.anchor or string.fu(name),
