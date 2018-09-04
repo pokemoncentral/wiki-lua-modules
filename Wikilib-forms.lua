@@ -13,6 +13,10 @@ local alt = require("AltForms-data")
 
 local mw = require('mw')
 
+
+-- Boolean used to avoid double loading of useless forms
+local allFormsLoaded = false
+
 --[[
 
 Unisce le tabelle AltForms/data e UselessForms/data
@@ -21,6 +25,12 @@ Restituisce la tabella così creata
 
 --]]
 f.allFormsData = function()
+    -- Avoid a second loading of all forms
+    if allFormsLoaded then
+        return alt
+    end
+
+    allFormsLoaded = true
     local all = mw.clone(alt)
     local useless = require("UselessForms-data")
     local both = require("BothForms-data")
@@ -31,11 +41,8 @@ f.allFormsData = function()
     --]]
     for k, v in pairs(useless) do
         if all[k] then
-
-            --[[
-                This Pokémon is in both useless and altForms, thus it is
-                granted to be also in bothForms
-            --]]
+            -- This Pokémon is in both useless and altForms, thus it is
+            -- granted to be also in bothForms
             all[k] = both[k]
         else
             all[k] = v

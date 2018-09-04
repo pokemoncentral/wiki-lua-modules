@@ -53,7 +53,10 @@ g.Entry.new = function(eggData, name, group)
     if this.formsData and not this.formsData.names[abbr] then
         -- Se la forma non esiste in alt[baseName] è una versione evento che non esiste
         -- nei moduli dati. Prende tutti i dati dalla forma normale
-        this.formsData.links[abbr] = this.formsData.links.base:gsub(this.formsData.names.base, 'Evento')
+        this.formsData.links[abbr] = this.formsData.links.base:gsub(
+                                            this.formsData.names.base,
+                                            '<div class="text-small">Evento</div>'
+                                        )
     end
     this.formAbbr = abbr
     -- Se c'è un'altra forma del Pokémon in PokéEggGroup-data
