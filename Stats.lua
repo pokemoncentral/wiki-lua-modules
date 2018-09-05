@@ -10,23 +10,23 @@ user-supplied values
 
 local s = {}
 
-local txt = require('Modulo:Wikilib/strings') -- luacheck: no unused
-local tab = require('Modulo:Wikilib/tables') -- luacheck: no unused
-local css = require('Modulo:Css')
-local formUtil = require('Modulo:Wikilib/forms')
-local formulas = require('Modulo:Wikilib/formulas')
-local gamesUtil = require('Modulo:Wikilib/games')
-local genUtil = require('Modulo:Wikilib/gens')
-local list = require('Modulo:Wikilib/lists')
-local mg = require('Modulo:Wikilib/multigen')
-local oop = require('Modulo:Wikilib/oop')
-local statsUtil = require('Modulo:Wikilib/stats')
-local w = require('Modulo:Wikilib')
-local alt = mw.loadData('Modulo:AltForms/data')
-local c = mw.loadData('Modulo:Colore/data')
-local gendata = mw.loadData('Modulo:Gens/data')
-local pokes = require('Modulo:Poké/data')
-local stats = mw.loadData('Modulo:PokéStats/data')
+local txt = require('Wikilib-strings') -- luacheck: no unused
+local tab = require('Wikilib-tables') -- luacheck: no unused
+local css = require('Css')
+local formUtil = require('Wikilib-forms')
+local formulas = require('Wikilib-formulas')
+local gamesUtil = require('Wikilib-games')
+local genUtil = require('Wikilib-gens')
+local list = require('Wikilib-lists')
+local mg = require('Wikilib-multigen')
+local oop = require('Wikilib-oop')
+local statsUtil = require('Wikilib-stats')
+local w = require('Wikilib')
+local alt = require("AltForms-data")
+local c = require("Colore-data")
+local gendata = require("Gens-data")
+local pokes = require('Poké-data')
+local stats = require("PokéStats-data")
 
 -- Mapping of stat keys to user-interface names
 local statNames = {
