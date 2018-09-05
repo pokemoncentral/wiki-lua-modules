@@ -10,25 +10,23 @@ user-supplied values
 
 local s = {}
 
-local txt = require('Wikilib-strings') -- luacheck: no unused
-local tab = require('Wikilib-tables') -- luacheck: no unused
-local css = require('Css')
-local formUtil = require('Wikilib-forms')
-local formulas = require('Wikilib-formulas')
-local gamesUtil = require('Wikilib-games')
-local genUtil = require('Wikilib-gens')
-local list = require('Wikilib-lists')
-local mg = require('Wikilib-multigen')
-local oop = require('Wikilib-oop')
-local statsUtil = require('Wikilib-stats')
-local w = require('Wikilib')
-local alt = require("AltForms-data")
-local c = require("Colore-data")
-local gendata = require("Gens-data")
-local pokes = require('Poké-data')
-local stats = require("PokéStats-data")
-
-local mw = require('mw')
+local txt = require('Modulo:Wikilib/strings') -- luacheck: no unused
+local tab = require('Modulo:Wikilib/tables') -- luacheck: no unused
+local css = require('Modulo:Css')
+local formUtil = require('Modulo:Wikilib/forms')
+local formulas = require('Modulo:Wikilib/formulas')
+local gamesUtil = require('Modulo:Wikilib/games')
+local genUtil = require('Modulo:Wikilib/gens')
+local list = require('Modulo:Wikilib/lists')
+local mg = require('Modulo:Wikilib/multigen')
+local oop = require('Modulo:Wikilib/oop')
+local statsUtil = require('Modulo:Wikilib/stats')
+local w = require('Modulo:Wikilib')
+local alt = mw.loadData('Modulo:AltForms/data')
+local c = mw.loadData('Modulo:Colore/data')
+local gendata = mw.loadData('Modulo:Gens/data')
+local pokes = require('Modulo:Poké/data')
+local stats = mw.loadData('Modulo:PokéStats/data')
 
 -- Mapping of stat keys to user-interface names
 local statNames = {
@@ -252,15 +250,30 @@ local statRow = function(stat, value, gen, roundyness)
     end
 
     if computeBounds then
-        local calcStat = formulas.stats[gen][stat == 'hp' and 'hp' or 'anyOther']
-        local maxIV, maxEV = statsUtil.ivEvMax(gen)
+        local interpVal
 
-        --[[
-            Natures are ignored for generations before third
-            because the function has one less argument
-        --]]
-        bounds = string.interp(strings.statBounds,
-            {
+        -- Shedinja's HP are not worth to be handled in any other way
+        if value == 1 then
+            interpVal = {
+                rleft = roundy.boundsLeft,
+                bg = c[stat].light,
+                min50 = 1,
+                max50 = 1,
+                rright = roundy.boundsRight,
+                min100 = 1,
+                max100 = 1
+            }
+
+        -- Any normal stat calculation
+        else
+            local calcStat = formulas.stats[gen][stat == 'hp' and 'hp' or 'anyOther']
+            local maxIV, maxEV = statsUtil.ivEvMax(gen)
+
+            --[[
+                Natures are ignored for generations before third and for HP
+                because the function has one less argument
+            --]]
+            interpVal = {
                 rleft = roundy.boundsLeft,
                 bg = c[stat].light,
                 min50 = calcStat(0, value, 0, 50, 0.9),
@@ -268,7 +281,10 @@ local statRow = function(stat, value, gen, roundyness)
                 rright = roundy.boundsRight,
                 min100 = calcStat(0, value, 0, 100, 0.9),
                 max100 = calcStat(maxIV, value, maxEV, 100, 1.1)
-            })
+            }
+        end
+
+        bounds = string.interp(strings.statBounds, interpVal)
     end
 
     return string.interp(strings.statRow,
