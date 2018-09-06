@@ -58,6 +58,9 @@ print(stats.PokeStats{args = {'Ho-Oh'}})
 -- Huge values
 print(stats.PokeStats{args = {'Blissey'}})
 
+-- Non-standard stat calculation
+print(stats.PokeStats{args = {'Shedinja'}})
+
 -- Form collapse
 print(stats.PokeStats{args = {'Arceus'}})
 

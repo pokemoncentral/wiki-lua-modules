@@ -28,8 +28,6 @@ local gendata = require("Gens-data")
 local pokes = require('Poké-data')
 local stats = require("PokéStats-data")
 
-local mw = require('mw')
-
 -- Mapping of stat keys to user-interface names
 local statNames = {
     hp = 'PS',
@@ -252,15 +250,30 @@ local statRow = function(stat, value, gen, roundyness)
     end
 
     if computeBounds then
-        local calcStat = formulas.stats[gen][stat == 'hp' and 'hp' or 'anyOther']
-        local maxIV, maxEV = statsUtil.ivEvMax(gen)
+        local interpVal
 
-        --[[
-            Natures are ignored for generations before third
-            because the function has one less argument
-        --]]
-        bounds = string.interp(strings.statBounds,
-            {
+        -- Shedinja's HP are not worth to be handled in any other way
+        if value == 1 then
+            interpVal = {
+                rleft = roundy.boundsLeft,
+                bg = c[stat].light,
+                min50 = 1,
+                max50 = 1,
+                rright = roundy.boundsRight,
+                min100 = 1,
+                max100 = 1
+            }
+
+        -- Any normal stat calculation
+        else
+            local calcStat = formulas.stats[gen][stat == 'hp' and 'hp' or 'anyOther']
+            local maxIV, maxEV = statsUtil.ivEvMax(gen)
+
+            --[[
+                Natures are ignored for generations before third and for HP
+                because the function has one less argument
+            --]]
+            interpVal = {
                 rleft = roundy.boundsLeft,
                 bg = c[stat].light,
                 min50 = calcStat(0, value, 0, 50, 0.9),
@@ -268,7 +281,10 @@ local statRow = function(stat, value, gen, roundyness)
                 rright = roundy.boundsRight,
                 min100 = calcStat(0, value, 0, 100, 0.9),
                 max100 = calcStat(maxIV, value, maxEV, 100, 1.1)
-            })
+            }
+        end
+
+        bounds = string.interp(strings.statBounds, interpVal)
     end
 
     return string.interp(strings.statRow,
