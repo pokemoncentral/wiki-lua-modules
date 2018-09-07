@@ -15,6 +15,7 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local form = require('Wikilib-forms')
+local multigen = require('Wikilib-multigen')
 local w = require('Wikilib')
 local links = require('Links')
 local ms = require('MiniSprite')
@@ -191,7 +192,7 @@ Pokémon's name).
 
 --]]
 eb.BoxPokemon = function(ndex, phase, notes, shownName)
-    local poke = pokes[form.nameToDataindex(ndex)]
+    local poke = multigen.getGen(pokes[form.nameToDataindex(ndex)])
 
     return string.interp(eb.strings.BOX_POKEMON, {
         notes = notes and string.interp(eb.strings.LITTLE_TEXT_NEWLINE, {
@@ -569,6 +570,7 @@ eb.Evobox = function(frame)
     local pagepoke = pokes[form.nameToDataindex(pagename)]
             or pokes[pagename:lower()]
             or {name = 'Sconosciuto', ndex = 0, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+    pagepoke = multigen.getGen(pagepoke)
 
     local evoboxcontent = {}
     local boxContainer = eb.strings.BOX_CONTAINER
@@ -731,6 +733,7 @@ eb.Formbox = function(frame)
     p.family = p.family or 'nessuna'
     local pagepoke = pokes[form.nameToDataindex(pagename)]
             or {name = 'Sconosciuto', ndex = 0, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+    pagepoke = multigen.getGen(pagepoke)
 
     local formboxcontent = {}
 

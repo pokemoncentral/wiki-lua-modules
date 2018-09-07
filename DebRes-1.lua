@@ -25,6 +25,7 @@ local w = require('Wikilib')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local tab = require('Wikilib-tables')
+local multigen = require('Wikilib-multigen')
 local drp = require('DebRes')
 local et = require('EffTipi-1')
 local pokes = require("Poké-data")
@@ -63,7 +64,7 @@ dr.EffTable.new = function(name, formName)
 	if type(name) == 'table' and type(formName) == 'table' then
 		types = table.map(name, string.lower)
 	else
-		types = pokes[name]
+		types = multigen.getGen(pokes[name], 1)
 	end
 
 	local this = setmetatable(dr.EffTable.super.super.new(),
@@ -125,6 +126,8 @@ dr.debRes = function(frame)
 		types.type2 = p[2] or p.type2 or types.type1
 		return tostring(dr.EffTable.new(types, {}))
 	end
+
+	pokeData = multigen.getGen(pokeData, 1)
 
 	return list.makeFormsLabelledBoxes({
 		name = pokeData.name:lower(),

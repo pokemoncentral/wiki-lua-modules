@@ -16,10 +16,11 @@ local u = {}
 local mw = require('mw')
 
 local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local tab = require('Wikilib-tables') -- luacheck: no unused
 local gamesUtil = require('Wikilib-games')
 local gens = require('Wikilib-gens')
 local forms = require('Wikilib-forms')
+local multigen = require('Wikilib-multigen')
 local ms = require('MiniSprite')
 local spr = require('Spr')
 local c = require("Colore-data")
@@ -181,7 +182,8 @@ funzioni
 --]]
 
 local msTable = function(gen, ndex)
-	local type1, type2 = pokes[ndex].type1, pokes[ndex].type2
+	local pokedata = multigen.getGen(pokes[ndex])
+	local type1, type2 = pokedata.type1, pokedata.type2
 	--[[
 		Si determinano le generazioni dei mini
 		sprites, che non sono continue poiché
@@ -469,7 +471,7 @@ local headGames = function(gen, ndex)
 
 	return table.concat(table.map(spriteGames[gen], function(data)
 			if #data.games == 2 then
-				local ink = table.concat{data.games[1]:gsub('%s%(J%)', ''),
+				local link = table.concat{data.games[1]:gsub('%s%(J%)', ''),
 						' e ', data.games[2]}
 				local width = math.floor(50 / (#spriteGames[gen] + 2)) -- 100 / (...) / 2
 				return table.concat{gameBox(width, data.games[1], link, 'left'),
@@ -670,6 +672,5 @@ end
 
 u.AltSprites, u.altsprites, u.alt_sprites =
 u.altSprites, u.altSprites, u.altSprites
-local arg = {'Pikachu'}
-print(u.altSprites{args={arg[1]}})
---return u
+
+return u

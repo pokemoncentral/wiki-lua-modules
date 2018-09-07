@@ -14,11 +14,12 @@ local gendata = require("Gens-data")
 
 --[[
 
-Returns the value of a property in
-an entry for the given generation.
+Returns the value of a property in an entry for the given generation. The
+generation defaults to the latest.
 
 --]]
 mg.getGenValue = function(data, gen)
+    gen = gen or gendata.latest
     if type(data) ~= 'table' then
         return data
     end

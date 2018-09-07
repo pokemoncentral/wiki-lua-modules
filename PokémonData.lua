@@ -156,7 +156,7 @@ end
 
 --[[
 
-Frontend for wikilib/forms.getlink: returns the link to an'alternative form
+Frontend for wikilib/forms.getlink: returns the link to an alternative form
 from module AltForms/data or UselessForms/data. The Pokémon name (first argument)
 may be both a name or a ndex followed by the abbr, the second argument is a
 flag to get black or normal link.
