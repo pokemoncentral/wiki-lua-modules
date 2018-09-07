@@ -30,8 +30,7 @@ f.allFormsData = function()
         return alt
     end
 
-    allFormsLoaded = true
-    local all = mw.clone(alt)
+    local all = table.copy(alt)
     local useless = require("UselessForms-data")
     local both = require("BothForms-data")
 
@@ -66,6 +65,7 @@ in entrambi i moduli dati.
 f.loadUseless = function(merge)
     if merge then
         alt = f.allFormsData()
+        allFormsLoaded = true
     else
         alt = require("UselessForms-data")
     end

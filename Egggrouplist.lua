@@ -50,6 +50,7 @@ g.Entry.new = function(eggData, name, group)
 
     this.group = group
     this.formsData = alt[baseName]
+    this.formsData = this.formsData and table.copy(this.formsData)
     if this.formsData and not this.formsData.names[abbr] then
         -- Se la forma non esiste in alt[baseName] è una versione evento che non esiste
         -- nei moduli dati. Prende tutti i dati dalla forma normale

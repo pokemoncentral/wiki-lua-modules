@@ -19,30 +19,42 @@ to others, thus there's aliasing at the end of the module.
 --]]
 
 t.pikachu = {}
-t.minior = useless.minior
+-- The copy is needed to remove metatable that mw.loadData doesn't like
+t.minior = table.copy(useless.minior)
 
 --[[
 
 Alternative forms names. Keys are the abbr.
 
+Table.copy is needed because table.merge doesn't work on mw.loadDataed tables.
+
 --]]
 
-t.pikachu.names = table.merge(alt.pikachu.names, useless.pikachu.names)
+t.pikachu.names = table.merge(
+						table.copy(alt.pikachu.names),
+						table.copy(useless.pikachu.names)
+					)
 
 -- Alternative forms' links
 
-t.pikachu.links = table.merge(alt.pikachu.links, useless.pikachu.links)
+t.pikachu.links = table.merge(
+						table.copy(alt.pikachu.links),
+						table.copy(useless.pikachu.links)
+					)
 
 -- Alternative forms' black links
 
 t.pikachu.blacklinks = table.merge(
-				   			alt.pikachu.blacklinks,
-					   		useless.pikachu.blacklinks
-					   )
+						table.copy(alt.pikachu.blacklinks),
+						table.copy(useless.pikachu.blacklinks)
+			   		)
 
 -- Table to map extended names to abbrs
 
-t.pikachu.ext = table.merge(alt.pikachu.ext, useless.pikachu.ext)
+t.pikachu.ext = table.merge(
+						table.copy(alt.pikachu.ext),
+						table.copy(useless.pikachu.ext)
+					)
 
 --[[
 
@@ -60,7 +72,10 @@ Oldest game in which each form, included base form, appears.
 
 --]]
 
-t.pikachu.since = table.merge(alt.pikachu.since, useless.pikachu.since)
+t.pikachu.since = table.merge(
+						table.copy(alt.pikachu.since),
+						table.copy(useless.pikachu.since)
+					)
 
 --[[
 
