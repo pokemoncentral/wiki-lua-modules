@@ -1747,6 +1747,7 @@ t.silvallyP, t.silvallyG, t.silvallyD = t.silvally, t.silvally, t.silvally
 t['773P'], t['773G'], t['773D'] = t.silvally, t.silvally, t.silvally
 t.silvallyB, t.silvallyFo = t.silvally, t.silvally
 t['773B'], t['773Fo'] = t.silvally, t.silvally
+t.miniorR, t['774R'] = t.minior, t.minior
 t.necrozmaV, t.necrozmaA = t.necrozma, t.necrozma
 t['800V'], t['800A'] = t.necrozma, t.necrozma
 

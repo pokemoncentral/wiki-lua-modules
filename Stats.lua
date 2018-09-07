@@ -28,6 +28,8 @@ local gendata = require("Gens-data")
 local pokes = require('Poké-data')
 local stats = require("PokéStats-data")
 
+local mw = require('mw')
+
 -- Mapping of stat keys to user-interface names
 local statNames = {
     hp = 'PS',

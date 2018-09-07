@@ -1795,6 +1795,7 @@ t.zygardeD, t['718D'], t.zygardeP, t['718P'] =
 t.lycanrocN, t['745N'], t.lycanrocC, t['745C'] =
 	t.lycanroc, t.lycanroc, t.lycanroc, t.lycanroc
 t.wishiwashiB, t['746B'] = t.wishiwashi, t.wishiwashi
+t.miniorR, t['774R'] = t.minior, t.minior
 
 -- I dati sulle megaevoluzioni; sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
 -- Il nome è composto dal nome del Pokémon seguito da 'M'
