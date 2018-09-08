@@ -1,6 +1,8 @@
 --[[
 
-Module used as a frontend to wikicode for data modules
+Module used as a frontend to wikicode for data modules.
+
+Each interface function is documented in its own comment, with examples.
 
 --]]
 
@@ -9,10 +11,12 @@ local b = {}
 -- Data modules aren't loaded here because they probably won't be used
 
 local mw = require('mw')
+mw.loadData = require
 
 local txt = require('Wikilib-strings') -- luacheck: no unused
-local form = require('Wikilib-forms')
-local data
+local formlib = require('Wikilib-forms')
+local multigen = require('Wikilib-multigen')
+local pokes
 local abils
 local forms
 
@@ -27,79 +31,130 @@ with mw.loadData unless the third parameter is true
 local loadData = function(tab, moduleName, useRequire)
     if not tab then
         local loadFunction = useRequire and require or mw.loadData
-        return loadFunction('Modulo:' .. moduleName)
+        return loadFunction(moduleName) --loadFunction('Modulo:' .. moduleName)
     end
     return tab
 end
 
 
--- Returns ndex given the name
+--[[
+
+Returns ndex given the name.
+
+--]]
 
 b.getNdex = function(frame)
-    data = loadData(data, 'Poké/data')
-    return string.tf(data[string.trim(frame.args[1] or '')].ndex)
+    pokes = loadData(pokes, 'Poké-data')
+    return string.tf(pokes[formlib.nameToDataindex(frame.args[1])].ndex)
 end
 
 b.get_ndex = b.getNdex
 
--- Returns the name given ndex
+--[[
+
+Returns the name given ndex. The argument can be an alternative forms' ndex.
+
+Ex:
+{{#invoke: PokémonData | getNdex | 398 }}   --> Staraptor
+{{#invoke: PokémonData | getNdex | 65 }}    --> Alakazam
+{{#invoke: PokémonData | getNdex | 487O }}  --> Giratina
+
+--]]
 
 b.getName = function(frame)
-    data = loadData(data, 'Poké/data')
-    local ndex = string.trim(frame.args[1] or '')
-    return data[tonumber(ndex) or ndex].name
+    pokes = loadData(pokes, 'Poké-data')
+    return pokes[formlib.nameToDataindex(frame.args[1])].name
 end
 
 b.get_name = b.getName
 
 --[[
 
-Return the form name given ndex with abbr. If the ndex is without abbr, returns
-the Pokémon name even if it hasn't got alternative forms.
+Return the form name given ndex with abbr. If the abbr doesn't have a form name
+(or there's no abbr at all) it returns an empty string.
+
+Ex:
+{{#invoke: PokémonData | getFormName | 800A }}  --> Ali dell'Aurora
+{{#invoke: PokémonData | getFormName | 422E }}  --> Mare Est
+{{#invoke: PokémonData | getFormName | 422 }}   --> Mare Ovest
+{{#invoke: PokémonData | getFormName | 28 }}    --> (empty string)
 
 --]]
 
 b.getFormName = function(frame)
-    forms = loadData(forms, 'AltForms/data')
-    local name, abbr = form.getnameabbr(string.trim(frame.args[1]))
-    return forms[name] and forms[name].names[abbr] or b.getName{args={name}}
+    forms = formlib.allFormsData()
+    local name, abbr = formlib.getnameabbr(string.trim(frame.args[1]))
+    return forms[name] and forms[name].names[formlib.toBase(abbr)] or ''
 end
 
 --[[
 
 Returns a Pokémon's ability (specified by the second parameter) given its name
-or ndex.
+or ndex. The optional third parameter is the generation.
 The name can contain a form abbreviation, and if it's a Pokémon name (not an
 ndex) it should be lowercase but the first letter, that can be both upper or
 lower case.
 
 --]]
 
-local getAbil = function(name, abilityNumber)
-    abils = loadData(abils, 'PokéAbil/data')
-    return abils[form.nameToDataindex(name)]['ability' .. abilityNumber]
+local getAbil = function(name, abilityNumber, gen)
+    abils = loadData(abils, 'PokéAbil-data')
+    return multigen.getGenValue(
+        abils[formlib.nameToDataindex(name)]['ability' .. abilityNumber] or '',
+        tonumber(gen)
+    )
 end
 
--- Returns a Pokémon's first ability given its name or ndex
+--[[
+
+Returns a Pokémon's first ability given its name or ndex. An optional 'gen'
+parameter specifies the generation.
+
+Ex:
+{{#invoke: PokémonData | getAbil1 | 065 }}   --> Sincronismo
+{{#invoke: PokémonData | getAbil1 | 487O }}  --> Levitazione
+{{#invoke: PokémonData | getAbil1 | 094 | gen = 5 }}  --> Levitazione
+
+--]]
 
 b.getAbil1 = function(frame)
-    return getAbil(frame.args[1] or '', '1')
+    return getAbil(frame.args[1], '1', frame.args.gen)
 end
 
 b.get_abil_1 = b.getAbil1
 
--- Returns a Pokémon's second ability given its name or ndex
+--[[
+
+Returns a Pokémon's second ability given its name or ndex. If the Pokémon
+has no second ability, it returns an empty string. An optional 'gen'
+parameter specifies the generation.
+
+Ex:
+{{#invoke: PokémonData | getAbil2 | 65 }}    --> Forza Interiore
+{{#invoke: PokémonData | getAbil2 | 398 }}   --> (empty string)
+
+--]]
 
 b.getAbil2 = function(frame)
-    return getAbil(frame.args[1] or '', '2')
+    return getAbil(frame.args[1], '2', frame.args.gen)
 end
 
 b.get_abil_2 = b.getAbil2
 
--- Returns a Pokémon's hidden ability given its name or ndex
+--[[
+
+Returns a Pokémon's hidden ability given its name or ndex. If the Pokémon
+has no second ability, it returns an empty string. An optional 'gen'
+parameter specifies the generation.
+
+Ex:
+{{#invoke: PokémonData | getAbild | 65 }}    --> Magicscudo
+{{#invoke: PokémonData | getAbild | 487O }}  --> (empty string)
+
+--]]
 
 b.getAbild = function(frame)
-    return getAbil(frame.args[1] or '', 'd')
+    return getAbil(frame.args[1], 'd', frame.args.gen)
 end
 
 b.get_abil_d, b.get_abil_h, b.get_abil_n = b.getAbild, b.getAbild, b.getAbild
@@ -108,31 +163,54 @@ b.get_abil_d, b.get_abil_h, b.get_abil_n = b.getAbild, b.getAbild, b.getAbild
 --[[
 
 Returns a Pokémon's type (specified by the second parameter) given its name or
-ndex.
+ndex. The optional third parameter is the generation.
 The name can contain a form abbreviation, and if it's a Pokémon name (not an
 ndex) it should be lowercase but the first letter, that can be both upper or
 lower case.
 
 --]]
 
-local getType = function(name, typeNumber)
-    data = loadData(data, 'Poké/data')
-    return string.fu(data[form.nameToDataindex(name)]['type' .. typeNumber])
+local getType = function(name, typeNumber, gen)
+    pokes = loadData(pokes, 'Poké-data')
+    return string.fu(multigen.getGenValue(
+        pokes[formlib.nameToDataindex(name)]['type' .. typeNumber],
+        tonumber(gen)
+    ))
 end
 
--- Returns a Pokémon's first type given its name or ndex
+--[[
+
+Returns a Pokémon's first type given its name or ndex. An optional 'gen'
+parameter specifies the generation.
+
+Ex:
+{{#invoke: PokémonData | getType1 | 398 }}    --> Normale
+{{#invoke: PokémonData | getType1 | 493Fu }}  --> Fuoco
+
+--]]
 
 b.getType1 = function(frame)
-    return getType(frame.args[1] or '', '1')
+    return getType(frame.args[1], '1', frame.args.gen)
 end
 
 b.get_type_1 = b.getType1
 
--- Returns a Pokémon's second type given its name or ndex. If the Pokémon has
--- only one type, it returns the first type instead
+--[[
+
+Returns a Pokémon's second type given its name or ndex. If the Pokémon has
+only one type, it returns the first type instead. An optional 'gen' parameter
+specifies the generation.
+
+Ex:
+{{#invoke: PokémonData | getType2 | 398 }}   --> Volante
+{{#invoke: PokémonData | getType2 | 65 }}    --> Psico
+{{#invoke: PokémonData | getType2 | 479L }}  --> Acqua
+{{#invoke: PokémonData | getType2 | 082 | gen = 1 }}  --> Elettro
+
+--]]
 
 b.getType2 = function(frame)
-    return getType(frame.args[1] or '', '2')
+    return getType(frame.args[1], '2', frame.args.gen)
 end
 
 b.get_type_2 = b.getType2
@@ -146,9 +224,10 @@ This function is meant to replace an #if parser function to check whether a
 Pokémon has two types or not.
 
 --]]
+
 b.ifTwoTypes = function(frame)
-    data = loadData(data, 'Poké/data')
-    local poke = data[form.nameToDataindex(frame.args[1])]
+    pokes = loadData(pokes, 'Poké-data')
+    local poke = pokes[formlib.nameToDataindex(frame.args[1])]
     local isDualType = poke.type1 == poke.type2
     return isDualType and string.trim(frame.args[2]) or string.trim(frame.args[3])
 end
@@ -156,22 +235,27 @@ end
 
 --[[
 
-Frontend for wikilib/forms.getlink: returns the link to an alternative form
-from module AltForms/data or UselessForms/data. The Pokémon name (first argument)
-may be both a name or a ndex followed by the abbr, the second argument is a
-flag to get black or normal link.
+Returns the link to an alternative form. The Pokémon name (first parameter) can
+be both a name or a ndex followed by the abbr, the second argument is a flag
+to get black or normal link.
+The ndex may be the base form's one. If the ndex doesn't correspond to a
+Pokémon with alternative forms, it returns an empty string.
+
+Ex:
+{{#invoke: PokémonData | getLink | 487 }}
+{{#invoke: PokémonData | getLink | 487O }}
+{{#invoke: PokémonData | getLink | 028A }}
+{{#invoke: PokémonData | getLink | 028 }}
+{{#invoke: PokémonData | getLink | 774R }}
+{{#invoke: PokémonData | getLink | 398 }}
 
 --]]
 
 b.getLink = function(frame)
     local name, black = string.trim(frame.args[1]), string.trim(frame.args[2])
-    local link = form.getLink(name, black)
-    if link ~= '' then
-        return link
-    else
-        form.loadUseless(false)
-        return form.getLink(name, black)
-    end
+    -- Links also to UselessForms
+    formlib.loadUseless(true)
+    return formlib.getLink(name, black)
 end
 
 b.getlink = b.getLink
