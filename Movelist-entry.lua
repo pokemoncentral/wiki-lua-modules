@@ -227,7 +227,7 @@ local head = function(ndex, stab, notes, form)
 	local pokedata = pokes[abbr == 'base' and tonumber(ndexFigures) or ndexFigures .. abbr]
 					 or pokes[tonumber(ndexFigures)]
 					 or {name = 'Missingno.', ndex = '000'}
-	pokedata = table.merge(multigen.getGen(pokedata), groups[pokedata.ndex] or {group1 = 'sconosciuto'})
+	pokedata = table.merge(multigen.getGen(pokedata), table.copy(groups[pokedata.ndex] or {group1 = 'sconosciuto'}))
 	pokedata.group1show = pokedata.group1 == 'coleottero'
 							and 'Coleot'
 							or (pokedata.group1 == 'non ancora scoperto'
