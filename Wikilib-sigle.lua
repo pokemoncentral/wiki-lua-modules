@@ -275,7 +275,7 @@ q.makeLinks = function(data, makeText)
         local game, text = unpack(pair)
 
         return string.interp('[[${link}|${text}]]', {
-            link = 'Pokémon ' .. game.link,
+            link = game.link,
             text = text
         })
     end)

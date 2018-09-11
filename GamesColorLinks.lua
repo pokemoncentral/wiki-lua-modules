@@ -39,7 +39,7 @@ link target with a list of its games names.
 --]]
 local makeText = function(data)
     return table.map(data, function(game)
-        local text = game.text or game.link
+        local text = game.text or game.link:gsub('^Pokémon ', '')
 
         -- Splitting by comma and then by ' e '
         local singleGames = mw.text.split(text, ',')
@@ -65,7 +65,7 @@ local makeColoredLink = function(color, sep)
 
         return string.interp('[[${link}|<span style="color: #${color};">${text}</span>]]', {
             color = color,
-            link = 'Pokémon ' .. target,
+            link = target,
             text = mw.text.listToText(text, ', ', sep)
         })
     end
