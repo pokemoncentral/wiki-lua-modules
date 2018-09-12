@@ -9,7 +9,7 @@ local o = {}
 
 local mw = require('mw')
 
-local txt = require('Wikilib-strings')
+local txt = require('Wikilib-strings') -- luacheck: no unused
 local gendata = require("Gens-data")
 local pokes = require("Poké-data")
 
@@ -44,7 +44,7 @@ local getData = function(n, gen, link)
 	if gen == tostring(gendata.latest) then
 	    gen = ''
 	end
-	
+
 	if link == 'nil' or link == '' then
 	    local numberN = string.parseInt(n)
 	    if pokes[numberN] then

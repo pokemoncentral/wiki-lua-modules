@@ -21,6 +21,7 @@ local list = require('Wikilib-lists')
 local mg = require('Wikilib-multigen')
 local oop = require('Wikilib-oop')
 local statsUtil = require('Wikilib-stats')
+local multigen = require('Wikilib-multigen')
 local w = require('Wikilib')
 local alt = require("AltForms-data")
 local c = require("Colore-data")
@@ -400,7 +401,7 @@ PokeStatBox.new = function(poke, formExtName, args)
         return type(val) == 'table' and val or nil
     end)
 
-    local pokeData = pokes[poke]
+    local pokeData = multigen.getGen(pokes[poke])
     this.types = {type1 = pokeData.type1, type2 = pokeData.type2}
 
     return setmetatable(this, PokeStatBox)
@@ -458,7 +459,7 @@ base form types, which is the rule for shared boxes.
 PokeStatBox.addLabel = function(this, label)
     PokeStatBox.super.addLabel(this, label)
 
-    local pokeData = pokes[this.baseFormName]
+    local pokeData = multigen.getGen(pokes[this.baseFormName])
     this.types = {type1 = pokeData.type1, type2 = pokeData.type2}
 end
 
@@ -737,6 +738,7 @@ s.typeAvg = function(frame)
         together consistently.
     --]]
     local typedPokes = table.keys(table.filter(pokes, function(data, poke)
+        data = multigen.getGen(data)
         return stats[poke]
             and not string.parseInt(poke)
                 and gamesUtil.isInGen(poke, gen)

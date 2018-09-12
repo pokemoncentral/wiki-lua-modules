@@ -16,6 +16,7 @@ local ms = require('MiniSprite')
 local form = require('Wikilib-forms')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
+local multigen = require('Wikilib-multigen')
 local resp = require('Resp')
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
@@ -46,6 +47,7 @@ by makeList in Wikilib/lists.
 g.Entry.new = function(eggData, name, group)
     local baseName, abbr = form.getnameabbr(name)
     local pokeData = table.merge(eggData, pokes[name] or pokes[baseName])
+    pokeData = multigen.getGen(pokeData)
     local this = g.Entry.super.new(name, pokeData.ndex)
 
     this.group = group

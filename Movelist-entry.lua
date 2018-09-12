@@ -12,6 +12,7 @@ local resp = require('Resp')
 local txt = require('Wikilib-strings')          -- luacheck: no unused
 local tab = require('Wikilib-tables')           -- luacheck: no unused
 local w = require('Wikilib')
+local multigen = require('Wikilib-multigen')
 local c = require("Colore-data")
 local abbr = require("Blackabbrev-data")
 local gendata = require("Gens-data")
@@ -20,6 +21,8 @@ local libdata = require("Wikilib-data")
 local pokes = require("Poké-data")
 local abbrLib = require('Wikilib-sigle')
 local links = require('Links')
+
+local mw = require('mw')
 
 forms.loadUseless(true)                 -- uses both AltForms and UselessForm
 
@@ -221,10 +224,10 @@ end
 local head = function(ndex, stab, notes, form)
 	local ndexFigures = ndex:match('^(%d+)')
 	local abbr = forms.getabbr(ndex, form)
-	local pokedata = table.copy(pokes[abbr == 'base' and tonumber(ndexFigures) or ndexFigures .. abbr]
-					or table.copy(pokes[tonumber(ndexFigures)])
-					or {name = 'Missingno.', ndex = '000'})
-	pokedata = table.merge(pokedata, table.copy(groups[pokedata.ndex] or {group1 = 'sconosciuto'}))
+	local pokedata = pokes[abbr == 'base' and tonumber(ndexFigures) or ndexFigures .. abbr]
+					 or pokes[tonumber(ndexFigures)]
+					 or {name = 'Missingno.', ndex = '000'}
+	pokedata = table.merge(multigen.getGen(pokedata), table.copy(groups[pokedata.ndex] or {group1 = 'sconosciuto'}))
 	pokedata.group1show = pokedata.group1 == 'coleottero'
 							and 'Coleot'
 							or (pokedata.group1 == 'non ancora scoperto'
@@ -270,6 +273,7 @@ modulo
 --]]
 local removeOldParams = function(p)
 	local pokedata = pokes[tonumber(p[1])] or pokes[p[1]] or {name = 'Missingno.'}
+	pokedata = multigen.getGen(pokedata)
 
 	-- rimuove il parametro 2 se è il nome del Pokémon
 	if (string.fu(p[2]) == pokedata.name) then

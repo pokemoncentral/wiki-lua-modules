@@ -9,7 +9,6 @@ local k = {}
 
 local mw = require('mw')
 
-local abillib = require('Wikilib-abils')
 local css = require('Css')
 local links = require('Links')
 local list = require('Wikilib-lists')
@@ -18,6 +17,7 @@ local oop = require('Wikilib-oop')
 local resp = require('Resp')
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local txt = require('Wikilib-strings')      -- luacheck: no unused
+local genlib = require('Wikilib-multigen')
 local pokes = require('Poké-data')
 local gens = require('Gens-data')
 
@@ -59,13 +59,13 @@ Entry.printAbil = function(abil, marked)
     end
 
     -- Adding generations superscripts
-    return table.concat(table.map(abillib.abilspan(abil), function(v)
+    return table.concat(table.map(genlib.getGenSpan(abil), function(v)
         local first, last = gens[v.first].roman, gens[v.last].roman
         return string.interp(
             '<div>${abil}<sup>${gen}</sup></div>',
             {
-                abil = v.abil == 'Nessuna' and v.abil
-                        or toHTML(v.abil, '000'),
+                abil = v.val == 'Nessuna' and v.val
+                        or toHTML(v.val, '000'),
                 gen = v.first == v.last and first
                         or table.concat{first, '-', last}
             })
@@ -85,9 +85,10 @@ Entry.new = function(pokeAbil, name, abil)
         return nil
     end
 
-    local this = Entry.super.new(name, pokes[name].ndex)
+    local pokedata = genlib.getGen(pokes[name])
+    local this = Entry.super.new(name, pokedata.ndex)
     this = table.merge(this, pokeAbil)
-    return setmetatable(table.merge(this, pokes[name]), Entry)
+    return setmetatable(table.merge(this, pokedata), Entry)
 end
 
 -- Wikicode for a list entry: Pokémon mini sprite, name, types and abilities.

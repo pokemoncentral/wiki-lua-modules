@@ -9,7 +9,8 @@ local m = {}
 
 local mw = require('mw')
 
-local txt = require('Wikilib-strings')
+local txt = require('Wikilib-strings') -- luacheck: no unused
+local multigen = require('Wikilib-multigen')
 local ms = require('MiniSprite')
 local css = require('Css')
 local data = require("Wikilib-data")
@@ -17,7 +18,7 @@ local pokes = require("Poké-data")
 
 m.PokePrecSucc = function(frame)
     local poke = string.trim(frame.args[1]):lower()
-    local pokeData = pokes[poke] or pokes[mw.text.decode(poke)]
+    local pokeData = multigen.getGen(pokes[poke] or pokes[mw.text.decode(poke)])
     local type1, type2 = pokeData.type1, pokeData.type2
     local prev = (pokeData.ndex - 2 + data.pokeNum) % data.pokeNum + 1
     local nxt = pokeData.ndex % data.pokeNum + 1

@@ -13,8 +13,9 @@ local gamesUtil = require('Wikilib-games')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local statsUtil = require('Wikilib-stats')
-local str = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local str = require('Wikilib-strings') -- luacheck: no unused
+local tab = require('Wikilib-tables') -- luacheck: no unused
+local multigen = require('Wikilib-multigen')
 local gendata = require("Gens-data")
 local pokes = require('Poké-data')
 
@@ -76,7 +77,10 @@ never returns nil.
 
 --]]
 Entry.new = function(total, name)
-    local this = table.merge(Entry.super.new(name), pokes[name])
+    local this = table.merge(
+                    Entry.super.new(name),
+                    multigen.getGen(pokes[name])
+                )
 
     this.total = total
 
