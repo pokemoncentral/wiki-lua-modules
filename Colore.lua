@@ -179,6 +179,7 @@ c.TL = function(frame) return _colore(frame.args[1] or 'normale', '2CB8E9', '76D
 c.Tl, c.tl = c.TL, c.TL
 c.xd = function(frame) return _colore(frame.args[1] or 'normale', '604E82', '8674A8', '3E3355') end
 c.XD, c.Xd = c.xd, c.xd
+c.conquest = function(frame) return _colore(frame.args[1] or 'normale', 'EC9722', 'F8DF9D', '945F13') end
 
 -- Colori regioni
 
