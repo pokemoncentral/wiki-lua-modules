@@ -600,6 +600,12 @@ x.PSMD = {{
 	}
 }}
 x.Super, x.super = x.PSMD, x.PSMD
+x.Cq = {{
+    link = 'Pokémon Conquest',
+    display = {
+	{'Cq', 'conquest'}
+    }
+}}
 
 -- Non-games abbreviations
 x.CPM = {{
