@@ -145,18 +145,16 @@ c.xd = function(frame) return _colore(frame.args[1] or 'normale', '604E82', '867
 c.XD = c.xd
 c.br = function(frame) return _colore(frame.args[1] or 'normale', 'DCA202', 'FFD461', '684D02') end
 c.battle_revolution = c.br
-
 c.md = function(frame) return _colore(frame.args[1] or 'normale', 'D78144', 'DECAA9', '7C4B2D') end
 c.MD = c.md
-c.md_blu = function(frame) return _colore(frame.args[1] or 'normale', '095BAF', '5A91C9', '063D75') end
-c.md_cielo = function(frame) return _colore(frame.args[1] or 'normale', '7BB54F', 'A6CD89', '527935') end
-c['md_oscurità'] = function(frame) return _colore(frame.args[1] or 'normale', 'C3141B', 'D76166', '830D12') end
-c.md_portali = function(frame) return _colore(frame.args[1] or 'normale', '7D6A7A', 'AE9EAC', '4D3249') end
 c.md_rosso = function(frame) return _colore(frame.args[1] or 'normale', 'C50C50', 'D85C8A', '840836') end
+c.md_blu = function(frame) return _colore(frame.args[1] or 'normale', '095BAF', '5A91C9', '063D75') end
 c.md_tempo = function(frame) return _colore(frame.args[1] or 'normale', '2190C7', '6AB5D9', '166185') end
+c['md_oscurità'] = function(frame) return _colore(frame.args[1] or 'normale', 'C3141B', 'D76166', '830D12') end
+c.md_cielo = function(frame) return _colore(frame.args[1] or 'normale', '7BB54F', 'A6CD89', '527935') end
+c.md_portali = function(frame) return _colore(frame.args[1] or 'normale', '7D6A7A', 'AE9EAC', '4D3249') end
 c.md_super = function(frame) return _colore(frame.args[1] or 'normale', 'A5A3D2', 'CCC9FF', '7471A6') end
 c.super_md = c.md_super
-
 c.ranger = function(frame) return _colore(frame.args[1] or 'normale', 'F7681A', 'FA9D6A', 'A14411') end
 c.osa = function(frame) return _colore(frame.args[1] or 'normale', '2D4B98', '768ABC', '1D3163') end
 c.osA = c.osa
@@ -212,6 +210,7 @@ c.resistenza = function(frame) return _colore(frame.args[1] or 'normale', 'EECD3
 c.speciali = function(frame) return _colore(frame.args[1] or 'normale', '3ECDB4', 'A3FFEF', '179881') end
 c.spec = c.speciali
 c['velocità'] = function(frame) return _colore(frame.args[1] or 'normale', 'D425CE', 'EF8DEC', '380036') end
+c.spe = c['velocità']
 c.thlon = function(frame) return _colore(frame.args[1] or 'normale', '90a8e0', 'B7C6EB', '5E6D92') end
 c['pokéAthlon'], c['pokéathlon'] = c.thlon, c.thlon
 

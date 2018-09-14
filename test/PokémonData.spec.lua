@@ -1,84 +1,120 @@
 -- "Test cases" for Typelist
 
 local pokeData = require('PokémonData')
+local tests = {}
 
 -- ================================ getName ================================
+-- Tests 1, 5
 -- Standard case
-print(pokeData.getName{args={'398'}})
+table.insert(tests, { pokeData.getName{args={'398'}}, 'Staraptor' })
 
 -- Few digits
-print(pokeData.getName{args={'65'}})
+table.insert(tests, { pokeData.getName{args={'65'}}, 'Alakazam' })
 
 -- getName alt form
-print(pokeData.getName{args={'487O'}})
+table.insert(tests, { pokeData.getName{args={'487O'}}, 'Giratina' })
 
 -- getName useless form
-print(pokeData.getName{args={'422E'}})
+table.insert(tests, { pokeData.getName{args={'422E'}}, 'Shellos' })
 
 -- getName both (Minior is better than Pikachu because it has a form in both)
-print(pokeData.getName{args={'774R'}})
+table.insert(tests, { pokeData.getName{args={'774R'}}, 'Minior' })
 
 -- ================================ getFormName ===============================
+-- Tests 6, 11
 -- AltForms
-print(pokeData.getFormName{args={'800A'}})
+table.insert(tests, { pokeData.getFormName{args={'800A'}}, "Necrozma Ali dell'Aurora" })
 
 -- UselessForms
-print(pokeData.getFormName{args={'422E'}})
+table.insert(tests, { pokeData.getFormName{args={'422E'}}, 'Mare Est' })
 
 -- BothForms
-print(pokeData.getFormName{args={'774R'}})
+table.insert(tests, { pokeData.getFormName{args={'774R'}}, 'Nucleo Rosso' })
 
 -- Base form
-print(pokeData.getFormName{args={'422'}})
+table.insert(tests, { pokeData.getFormName{args={'422'}}, 'Mare Ovest' })
 
 -- Empty form name, few digits
-print(pokeData.getFormName{args={'28'}})
+table.insert(tests, { pokeData.getFormName{args={'28'}}, '' })
 
 -- Pokémon without alternative form
-print(pokeData.getFormName{args={'398'}})
+table.insert(tests, { pokeData.getFormName{args={'398'}}, '' })
 
 -- ================================ getAbil ================================
+-- Tests 12, 18
 -- Standard cases, names or two digits
-print(pokeData.getAbil1{args={'065'}})
-print(pokeData.getAbil2{args={'alakazam'}})
-print(pokeData.getAbild{args={'65'}})
+table.insert(tests, { pokeData.getAbil1{args={'065'}}, 'Sincronismo' })
+table.insert(tests, { pokeData.getAbil2{args={'alakazam'}}, 'Forza Interiore' })
+table.insert(tests, { pokeData.getAbild{args={'65'}}, 'Magicscudo' })
 
 -- Second ability on Pokémon with only one ability
-print(pokeData.getAbil2{args={'398'}})
+table.insert(tests, { pokeData.getAbil2{args={'398'}}, '' })
 
 -- Alternative form ability
-print(pokeData.getAbil1{args={'487O'}})
-print(pokeData.getAbild{args={'giratinaO'}})
+table.insert(tests, { pokeData.getAbil1{args={'487O'}}, 'Levitazione' })
+table.insert(tests, { pokeData.getAbild{args={'giratinaO'}}, '' })
 
 -- Old gen ability
-print(pokeData.getAbil1{args={'94', gen = '5'}})
+table.insert(tests, { pokeData.getAbil1{args={'94', gen = '5'}}, 'Levitazione' })
 
 -- ================================ getType ================================
+-- Tests 19, 24
 -- Standard case
-print(pokeData.getType1{args={'398'}})
-print(pokeData.getType2{args={'398'}})
+table.insert(tests, { pokeData.getType1{args={'398'}}, 'Normale' })
+table.insert(tests, { pokeData.getType2{args={'398'}}, 'Volante' })
 
 -- Second type on Pokémon with only one type, two digits
-print(pokeData.getType2{args={'65'}})
+table.insert(tests, { pokeData.getType2{args={'65'}}, 'Psico' })
 
 -- Alternative form type
-print(pokeData.getType1{args={'493Fu'}})
-print(pokeData.getType2{args={'479L'}})
+table.insert(tests, { pokeData.getType1{args={'493Fu'}}, 'Fuoco' })
+table.insert(tests, { pokeData.getType2{args={'479L'}}, 'Acqua' })
 
 -- Old gen type
-print(pokeData.getType2{args={'082', gen = '1'}})
+table.insert(tests, { pokeData.getType2{args={'082', gen = '1'}}, 'Elettro' })
 
 -- ================================ getLink ================================
+-- Tests 25, 30
 -- Standard case
-print(pokeData.getLink{args={'487'}})
-print(pokeData.getLink{args={'487O'}})
+table.insert(tests, {
+	pokeData.getLink{args={'487'}},
+	'<div class="small-text">[[Differenze di forma#Giratina|Forma Alterata]]</div>'
+})
+table.insert(tests, {
+	pokeData.getLink{args={'487O'}},
+	'<div class="small-text">[[Differenze di forma#Giratina|Forma Originale]]</div>'
+})
 
 -- Empty base form link
-print(pokeData.getLink{args={'028A'}})
-print(pokeData.getLink{args={'028'}})
+table.insert(tests, {
+	pokeData.getLink{args={'028A'}},
+	'<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|Forma di Alola]]</div>'
+})
+table.insert(tests, { pokeData.getLink{args={'028'}}, '' })
 
 -- BothForms
-print(pokeData.getLink{args={'774R'}})
+table.insert(tests, {
+	pokeData.getLink{args={'774R'}},
+	'<div class="small-text">[[Differenze di forma#Minior|Nucleo Rosso]]</div>'
+})
 
 -- Pokémon without alternative forms
-print(pokeData.getLink{args={'398'}})
+table.insert(tests, { pokeData.getLink{args={'398'}}, '' })
+
+
+-- ==================== Actual execution ======================
+for n, v in ipairs(tests) do
+	if v[1] ~= v[2] then
+		print(table.concat{
+			'Test ',
+			tostring(n),
+			' failed: ',
+			v[2],
+			' expected, but ',
+			v[1],
+			' got'
+		})
+		return
+	end
+end
+print('All tests succesfull!')

@@ -74,7 +74,7 @@ Return the form name given ndex with abbr. If the abbr doesn't have a form name
 (or there's no abbr at all) it returns an empty string.
 
 Ex:
-{{#invoke: PokémonData | getFormName | 800A }}  --> Ali dell'Aurora
+{{#invoke: PokémonData | getFormName | 800A }}  --> Necrozma Ali dell'Aurora
 {{#invoke: PokémonData | getFormName | 422E }}  --> Mare Est
 {{#invoke: PokémonData | getFormName | 422 }}   --> Mare Ovest
 {{#invoke: PokémonData | getFormName | 28 }}    --> (empty string)
@@ -252,7 +252,7 @@ Ex:
 --]]
 
 b.getLink = function(frame)
-    local name, black = string.trim(frame.args[1]), string.trim(frame.args[2])
+    local name, black = string.trim(frame.args[1]), frame.args[2]
     -- Links also to UselessForms
     formlib.loadUseless(true)
     return formlib.getLink(name, black)
