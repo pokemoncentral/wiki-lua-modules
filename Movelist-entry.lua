@@ -4,27 +4,26 @@ local m = {}
 
 local mw = require('mw')
 
-local css = require('Css')
-local ms = require('MiniSprite')
-local forms = require('Wikilib-forms')
-local lib = require('Wikilib-learnlists')
-local resp = require('Resp')
 local txt = require('Wikilib-strings')          -- luacheck: no unused
 local tab = require('Wikilib-tables')           -- luacheck: no unused
-local w = require('Wikilib')
+local forms = require('Wikilib-forms')
+local lib = require('Wikilib-learnlists')
 local multigen = require('Wikilib-multigen')
+local abbrLib = require('Wikilib-sigle')
+local libdata = require("Wikilib-data")
+local w = require('Wikilib')
 local c = require("Colore-data")
+local css = require('Css')
+local ms = require('MiniSprite')
+local resp = require('Resp')
+local links = require('Links')
 local abbr = require("Blackabbrev-data")
 local gendata = require("Gens-data")
 local groups = require("PokéEggGroup-data")
-local libdata = require("Wikilib-data")
 local pokes = require("Poké-data")
-local abbrLib = require('Wikilib-sigle')
-local links = require('Links')
+local useless = require("UselessForms-data")
 
 local mw = require('mw')
-
-forms.loadUseless(true)                 -- uses both AltForms and UselessForm
 
 -- Rappresentazione stringa dei parametri booleani
 local boolDisplay = {No = '×', Yes = '✔'}
@@ -221,13 +220,20 @@ local tail = function(startGen, data, splitCells, collapse)
 end
 
 -- Le prime celle degli entry
-local head = function(ndex, stab, notes, form)
+local head = function(ndex, stab, notes, form, allForms, isUseless)
 	local ndexFigures = ndex:match('^(%d+)')
 	local abbr = forms.getabbr(ndex, form)
-	local pokedata = pokes[abbr == 'base' and tonumber(ndexFigures) or ndexFigures .. abbr]
-					 or pokes[tonumber(ndexFigures)]
+	local pokedata = pokes[forms.nameToDataindex(ndexFigures .. forms.toEmptyAbbr(abbr))]
 					 or {name = 'Missingno.', ndex = '000'}
-	pokedata = table.merge(multigen.getGen(pokedata), table.copy(groups[pokedata.ndex] or {group1 = 'sconosciuto'}))
+	local forml = allForms and '<div class="text-small">Tutte le forme</div>' or
+					(isUseless
+						and useless[tonumber(ndexFigures)].links[abbr]
+						or forms.getlink(ndex, false, form)
+					)
+	pokedata = table.merge(
+		multigen.getGen(pokedata),
+		table.copy(groups[pokedata.ndex] or {group1 = 'sconosciuto'})
+	)
 	pokedata.group1show = pokedata.group1 == 'coleottero'
 							and 'Coleot'
 							or (pokedata.group1 == 'non ancora scoperto'
@@ -251,11 +257,11 @@ local head = function(ndex, stab, notes, form)
 ]=],
 {
 	num = ndexFigures,
-	ani = ms.staticLua(ndexFigures .. (abbr == 'base' and '' or abbr)),
+	ani = ms.staticLua(ndexFigures .. forms.toEmptyAbbr(abbr)),
 	stab = stab,
 	name = pokedata.name,
 	notes = lib.makeNotes(notes or ''),
-	forml = forms.getlink(ndex, false, form),
+	forml = forml,
 	std = c[pokedata.group1 .. '_uova'].normale,
 	types = resp.twoTypeBoxesLua(pokedata.type1, pokedata.type2, {'tiny'},
         nil, {'vert-center'}),
@@ -319,12 +325,13 @@ local entry = function(p, makeText, splitCells, latestGenDefault, collapse)
 	--]]
 	p = w.trimAndMap(p, string.fu, false)
 
-	local gen = tonumber(table.remove(p, 1)) or gendata.latest+1
+	local gen = tonumber(table.remove(p, 1)) or gendata.latest + 1
 	local note, stab = p.note or '', p.STAB or ''
 	local form = string.lower(p.form or '')
+	local allForms, isUseless = p.allforms, p.useless
 	p = removeOldParams(p)
 
-	p.note, p.STAB, p.form = nil, nil, nil
+	p.note, p.STAB, p.form, p.allforms, p.useless = nil, nil, nil, nil, nil
 	p[(1 + gendata.latest) - gen] = p[(1 + gendata.latest) - gen]
 									or latestGenDefault
 									or p[gendata.latest - gen]
@@ -341,7 +348,8 @@ local entry = function(p, makeText, splitCells, latestGenDefault, collapse)
 			return type(key) == 'string' or key > 1 and key < (3 + gendata.latest) - gen
 		end), makeText)
 
-	return head(p[1] or '000', stab, note, form) .. tail(gen, data, splitCells, collapse)
+	return head(p[1] or '000', stab, note, form, allForms, isUseless)
+			.. tail(gen, data, splitCells, collapse)
 end
 
 --[[
@@ -400,7 +408,14 @@ m.event = function(frame)
 	return string.interp([=[${h}
 | style="padding: 0.5ex;" | ${event}${level}]=],
 {
-	h = head(p[1] or '000', p.STAB or '', p.notes or '', p.form or ''),
+	h = head(
+		p[1] or '000',
+		p.STAB or '',
+		p.notes or '',
+		p.form or '',
+		p.allforms,
+		p.useless
+	),
 	event = p[2] or 'Per la fine del mondo',
 	level = lib.makeLevel(p.level)
 })
@@ -418,7 +433,14 @@ m.tutor = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.fu)
 	p = removeOldParams(p)
 
-	local store = {head(p[1] or '000', p.STAB or '', p.notes or '', p.form or '')}
+	local store = { head(
+						p[1] or '000',
+						p.STAB or '',
+						p.notes or '',
+						p.form or '',
+						p.allforms,
+						p.useless
+					)}
 
 	-- Si scorrono i parametri relativi ai giochi
 	for k = 2, #p do

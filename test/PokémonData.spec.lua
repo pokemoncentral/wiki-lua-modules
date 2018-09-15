@@ -77,25 +77,25 @@ table.insert(tests, { pokeData.getType2{args={'082', gen = '1'}}, 'Elettro' })
 -- Tests 25, 30
 -- Standard case
 table.insert(tests, {
-	pokeData.getLink{args={'487'}},
-	'<div class="small-text">[[Differenze di forma#Giratina|Forma Alterata]]</div>'
+    pokeData.getLink{args={'487'}},
+    '<div class="small-text">[[Differenze di forma#Giratina|Forma Alterata]]</div>'
 })
 table.insert(tests, {
-	pokeData.getLink{args={'487O'}},
-	'<div class="small-text">[[Differenze di forma#Giratina|Forma Originale]]</div>'
+    pokeData.getLink{args={'487O'}},
+    '<div class="small-text">[[Differenze di forma#Giratina|Forma Originale]]</div>'
 })
 
 -- Empty base form link
 table.insert(tests, {
-	pokeData.getLink{args={'028A'}},
-	'<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|Forma di Alola]]</div>'
+    pokeData.getLink{args={'028A'}},
+    '<div class="small-text">[[Forma di Alola#Sandshrew e Sandslash|Forma di Alola]]</div>'
 })
 table.insert(tests, { pokeData.getLink{args={'028'}}, '' })
 
 -- BothForms
 table.insert(tests, {
-	pokeData.getLink{args={'774R'}},
-	'<div class="small-text">[[Differenze di forma#Minior|Nucleo Rosso]]</div>'
+    pokeData.getLink{args={'774R'}},
+    '<div class="small-text">[[Differenze di forma#Minior|Nucleo Rosso]]</div>'
 })
 
 -- Pokémon without alternative forms
@@ -104,17 +104,17 @@ table.insert(tests, { pokeData.getLink{args={'398'}}, '' })
 
 -- ==================== Actual execution ======================
 for n, v in ipairs(tests) do
-	if v[1] ~= v[2] then
-		print(table.concat{
-			'Test ',
-			tostring(n),
-			' failed: ',
-			v[2],
-			' expected, but ',
-			v[1],
-			' got'
-		})
-		return
-	end
+    if v[1] ~= v[2] then
+        print(table.concat{
+            'Test ',
+            tostring(n),
+            ' failed: ',
+            v[2],
+            ' expected, but ',
+            v[1],
+            ' got'
+        })
+        return
+    end
 end
 print('All tests succesfull!')

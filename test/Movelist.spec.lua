@@ -5,7 +5,7 @@ local entry = require('Movelist-entry')
 
 print(header.Levelh{args={'Elettro', '4'}})
 print(render.entry{args={'Movelist-entry.Level',
-"[[€4|025Co|26|22|20|B2W2=10|12|USUM=40|STAB='''£]]",
+"[[€4|025Co|26|22|20|B2W2=10|12|USUM=40|STAB='''|useless=yes£]]",
 "[[€4|361|26|22|20|9000|STAB='''£]]",
 "[[€4|598|26|22|20|213|STAB='''£]]",
 "[[€4|377|50|49|48|no£]]",
@@ -59,12 +59,12 @@ print(entry.Event{args={'491', 'Darkrai', '1', 'Buio', 'Buio', '[[F10|Evento dec
 print(entry.Event{args={'493', 'Arceus', '1', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
 print(entry.Event{args={'492', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
 print(entry.Event{args={'492C', 'Shaymin', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
-print(entry.Event{args={'493', 'Arceus', 'Normale', 'Normale', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
+print(entry.Event{args={'493', 'Arceus', 'Normale', 'Normale', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''", allforms = 'yes'}})
 print(header.footer{args={'drago'}})
 
 
 
 print(header.Eventh{args = {'Normale'}})
 print(header.div{args={'4'}})
-print(entry.Event{args={'422E', 'My Pokémon Ranch'}})
+print(entry.Event{args={'422E', 'My Pokémon Ranch', useless = 'yes'}})
 print(header.footer{args={'Normale'}})

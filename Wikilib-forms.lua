@@ -231,13 +231,20 @@ Parse an argument that should be a Pokémon name or ndex followed by a form
 abbreviation so that it can be used to index a data module.
 If name is a Pokémon name (not an ndex) it should be lowercase but the first
 letter, that can be both upper or lower case.
+Doesn't work when name ends with 'base'.
 
 --]]
 f.nameToDataindex = function(name)
     local trueName, extform = f.getnameabbr(string.fl(string.trim(name)))
+    -- The local variable is needed because global alt can be changed with
+    -- loadUseless
+    local trueAlt = require("AltForms-data")
     -- If the Pokémon isn't in altForms/data, should return the plain name
-    -- The return when extform == 'base' settles problems with number and concat
-    if extform == 'base' or not alt[tonumber(trueName) or trueName] then
+    -- extform == 'base' settles problems with numbers and string concat
+    -- The last check is for Pokémon with both forms
+    if extform == 'base'
+        or not trueAlt[tonumber(trueName) or trueName]
+        or not trueAlt[tonumber(trueName) or trueName].names[extform] then
         return trueName
     end
     trueName = type(trueName) == 'number' and string.tf(trueName) or trueName
