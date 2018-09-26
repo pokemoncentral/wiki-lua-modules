@@ -1619,6 +1619,8 @@ t.blacephalon = {name = 'Blacephalon', ndex = 806, type1 = 'fuoco', type2 = 'spe
 t[806] = t.blacephalon
 t.zeraora = {name = 'Zeraora', ndex = 807, type1 = 'elettro', type2 = 'elettro'}
 t[807] = t.zeraora
+t.meltan = {name = 'Meltan', ndex = nil, type1 = 'acciaio', type2 = 'acciaio'}
+-- t[0xDENIELOPUZZA] = t.meltan
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
