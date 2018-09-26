@@ -1,4 +1,4 @@
--- Ogni Pokémon con forme alternative ha una tabella associata con
+﻿-- Ogni Pokémon con forme alternative ha una tabella associata con
 -- tutte le informazioni necessarie come sottotabelle: si usano le
 -- sigle come chiavi, o come elementi stessi se l'informazione della
 -- tabella è booleana; sono considerati solo i Pokémon le cui forme
@@ -327,6 +327,60 @@ end
 for k, v in pairs(t.alola) do
 	t[v].gamesOrder = {'base', 'A'}
 end
+
+--[[
+
+
+
+Pokémon with different cries between forms.
+
+--]]
+
+
+
+for k, v in pairs(t.mega) do
+
+	t[v].cries = {'M'}
+
+end
+
+for k, v in pairs(t.megaxy) do
+
+	t[v].cries = {'MX', 'MY'}
+
+end
+
+for k, v in pairs(t.archeo) do
+
+	t[v].cries = {'A'}
+
+end
+
+t.shaymin.cries = {'C'}
+
+t.tornadus.cries = {'T'}
+
+t.thundurus.cries = {'T'}
+
+t.kyurem.cries = {'B', 'N'}
+
+t.landorus.cries = {'T'}
+
+t.pumpkaboo.cries = {'XL'}
+
+t.gourgeist.cries = {'XL'}
+
+t.zygarde.cries = {'D', 'P'}
+
+t.hoopa.cries = {'L'}
+
+t.oricorio.cries = {'B', 'C', 'H'}
+
+t.lycanroc.cries = {'C', 'N'}
+
+t.wishiwashi.cries = {'B'}
+
+t.necrozma.cries = {'A', 'U', 'V'}
 
 --[[
 
