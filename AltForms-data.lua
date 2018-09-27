@@ -330,56 +330,30 @@ end
 
 --[[
 
-
-
 Pokémon with different cries between forms.
 
 --]]
 
-
-
 for k, v in pairs(t.mega) do
-
 	t[v].cries = {'M'}
-
 end
-
 for k, v in pairs(t.megaxy) do
-
 	t[v].cries = {'MX', 'MY'}
-
 end
-
 for k, v in pairs(t.archeo) do
-
 	t[v].cries = {'A'}
-
 end
-
 t.shaymin.cries = {'C'}
-
 t.tornadus.cries = {'T'}
-
 t.thundurus.cries = {'T'}
-
 t.kyurem.cries = {'B', 'N'}
-
 t.landorus.cries = {'T'}
-
 t.pumpkaboo.cries = {'XL'}
-
-t.gourgeist.cries = {'XL'}
-
 t.zygarde.cries = {'D', 'P'}
-
 t.hoopa.cries = {'L'}
-
 t.oricorio.cries = {'B', 'C', 'H'}
-
 t.lycanroc.cries = {'C', 'N'}
-
 t.wishiwashi.cries = {'B'}
-
 t.necrozma.cries = {'A', 'U', 'V'}
 
 --[[
