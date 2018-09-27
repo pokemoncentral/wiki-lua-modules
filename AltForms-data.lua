@@ -345,9 +345,7 @@ for k, v in pairs(t.archeo) do
 end
 t.shaymin.cries = {'C'}
 t.tornadus.cries = {'T'}
-t.thundurus.cries = {'T'}
 t.kyurem.cries = {'B', 'N'}
-t.landorus.cries = {'T'}
 t.pumpkaboo.cries = {'XL'}
 t.zygarde.cries = {'D', 'P'}
 t.hoopa.cries = {'L'}
