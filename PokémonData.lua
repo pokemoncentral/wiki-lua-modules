@@ -27,7 +27,6 @@ named after the second parameter is loaded and returned. The module is loaded
 with mw.loadData unless the third parameter is true
 
 --]]
-
 local loadData = function(tab, moduleName, useRequire)
     if not tab then
         local loadFunction = useRequire and require or mw.loadData
@@ -42,7 +41,6 @@ end
 Returns ndex given the name.
 
 --]]
-
 b.getNdex = function(frame)
     pokes = loadData(pokes, 'Poké-data')
     return string.tf(pokes[formlib.nameToDataindex(frame.args[1])].ndex)
@@ -60,7 +58,6 @@ Ex:
 {{#invoke: PokémonData | getNdex | 487O }}  --> Giratina
 
 --]]
-
 b.getName = function(frame)
     pokes = loadData(pokes, 'Poké-data')
     return pokes[formlib.nameToDataindex(frame.args[1])].name
@@ -80,7 +77,6 @@ Ex:
 {{#invoke: PokémonData | getFormName | 28 }}    --> (empty string)
 
 --]]
-
 b.getFormName = function(frame)
     forms = formlib.allFormsData()
     local name, abbr = formlib.getnameabbr(string.trim(frame.args[1]))
@@ -96,7 +92,6 @@ ndex) it should be lowercase but the first letter, that can be both upper or
 lower case.
 
 --]]
-
 local getAbil = function(name, abilityNumber, gen)
     abils = loadData(abils, 'PokéAbil-data')
     return multigen.getGenValue(
@@ -116,7 +111,6 @@ Ex:
 {{#invoke: PokémonData | getAbil1 | 094 | gen = 5 }}  --> Levitazione
 
 --]]
-
 b.getAbil1 = function(frame)
     return getAbil(frame.args[1], '1', frame.args.gen)
 end
@@ -134,7 +128,6 @@ Ex:
 {{#invoke: PokémonData | getAbil2 | 398 }}   --> (empty string)
 
 --]]
-
 b.getAbil2 = function(frame)
     return getAbil(frame.args[1], '2', frame.args.gen)
 end
@@ -152,7 +145,6 @@ Ex:
 {{#invoke: PokémonData | getAbild | 487O }}  --> (empty string)
 
 --]]
-
 b.getAbild = function(frame)
     return getAbil(frame.args[1], 'd', frame.args.gen)
 end
@@ -169,7 +161,6 @@ ndex) it should be lowercase but the first letter, that can be both upper or
 lower case.
 
 --]]
-
 local getType = function(name, typeNumber, gen)
     pokes = loadData(pokes, 'Poké-data')
     return string.fu(multigen.getGenValue(
@@ -188,7 +179,6 @@ Ex:
 {{#invoke: PokémonData | getType1 | 493Fu }}  --> Fuoco
 
 --]]
-
 b.getType1 = function(frame)
     return getType(frame.args[1], '1', frame.args.gen)
 end
@@ -208,12 +198,12 @@ Ex:
 {{#invoke: PokémonData | getType2 | 082 | gen = 1 }}  --> Elettro
 
 --]]
-
 b.getType2 = function(frame)
     return getType(frame.args[1], '2', frame.args.gen)
 end
 
 b.get_type_2 = b.getType2
+
 
 --[[
 
@@ -224,14 +214,12 @@ This function is meant to replace an #if parser function to check whether a
 Pokémon has two types or not.
 
 --]]
-
 b.ifTwoTypes = function(frame)
     pokes = loadData(pokes, 'Poké-data')
     local poke = pokes[formlib.nameToDataindex(frame.args[1])]
     local isDualType = poke.type1 == poke.type2
     return isDualType and string.trim(frame.args[2]) or string.trim(frame.args[3])
 end
-
 
 --[[
 
@@ -250,7 +238,6 @@ Ex:
 {{#invoke: PokémonData | getLink | 398 }}
 
 --]]
-
 b.getLink = function(frame)
     local name, black = string.trim(frame.args[1]), frame.args[2]
     -- Links also to UselessForms
@@ -259,5 +246,38 @@ b.getLink = function(frame)
 end
 
 b.getlink = b.getLink
+
+--[[
+
+Returns a list of pairs (abbr, name) of alternative forms with different cry.
+The list is comma-separated, with elements in a pair a separated by a dash.
+If a Pokémon has no alternative form returns an empty string. If all forms have
+the same cry, returns the special value 'all'
+
+--]]
+b.getCriesList = function(frame)
+    forms = loadData(forms, 'AltForms-data')
+    local result = {}
+    local ndex = string.trim(frame.args[1])
+    local formData = forms[tonumber(ndex) or ndex]
+    -- No alt forms case
+    if formData == nil then
+        return ''
+    end
+    -- No alt forms with different cries
+    if not formData.cries then
+        return 'all'
+    end
+    -- Standard list
+    local list = table.map(formData.cries, function(abbr)
+        table.insert(result, table.concat{
+            abbr,
+            '-',
+            formData.names[abbr]
+        })
+    end)
+    return table.concat(result, ',')
+end
+
 
 return b

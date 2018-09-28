@@ -74,7 +74,31 @@ table.insert(tests, { pokeData.getType2{args={'479L'}}, 'Acqua' })
 table.insert(tests, { pokeData.getType2{args={'082', gen = '1'}}, 'Elettro' })
 
 -- ================================ getLink ================================
--- Tests 25, 30
+-- Tests 25, 28
+-- Standard
+table.insert(tests, {
+    pokeData.getCriesList{args={'800'}},
+    'V-Necrozma Criniera del Vespro,A-Necrozma Ali dell\'Aurora,U-UltraNecrozma'
+})
+-- Only some form
+table.insert(tests, {
+    pokeData.getCriesList{args={'710'}},
+    'XL-Maxi'
+})
+-- No alternative forms
+table.insert(tests, {
+    pokeData.getCriesList{args={'398'}},
+    ''
+})
+-- All alternative forms equal
+table.insert(tests, {
+    pokeData.getCriesList{args={'487'}},
+    'all'
+})
+
+-- ================================ getLink ================================
+-- Those should be last because loads useless in Wikilib-forms
+-- Tests 29, 34
 -- Standard case
 table.insert(tests, {
     pokeData.getLink{args={'487'}},

@@ -1,4 +1,4 @@
-﻿-- Ogni Pokémon con forme alternative ha una tabella associata con
+-- Ogni Pokémon con forme alternative ha una tabella associata con
 -- tutte le informazioni necessarie come sottotabelle: si usano le
 -- sigle come chiavi, o come elementi stessi se l'informazione della
 -- tabella è booleana; sono considerati solo i Pokémon le cui forme
@@ -331,6 +331,7 @@ end
 --[[
 
 Pokémon with different cries between forms.
+This array is guaranteed to be a sorted subset of gamesOrder (same sorting)
 
 --]]
 
@@ -349,10 +350,10 @@ t.kyurem.cries = {'B', 'N'}
 t.pumpkaboo.cries = {'XL'}
 t.zygarde.cries = {'D', 'P'}
 t.hoopa.cries = {'L'}
-t.oricorio.cries = {'B', 'C', 'H'}
-t.lycanroc.cries = {'C', 'N'}
+t.oricorio.cries = {'C', 'H', 'B'}
+t.lycanroc.cries = {'N', 'C'}
 t.wishiwashi.cries = {'B'}
-t.necrozma.cries = {'A', 'U', 'V'}
+t.necrozma.cries = {'V', 'A', 'U'}
 
 --[[
 
