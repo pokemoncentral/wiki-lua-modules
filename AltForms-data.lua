@@ -188,7 +188,7 @@ t.silvally.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante'
 	D = 'Tipo Drago', Fo = 'Tipo Folletto', El = 'Tipo Elettro',
 	G = 'Tipo Ghiaccio'}
 t.minior.names = {R = 'Forma Nucleo', base = 'Forma Meteora'}
-t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = 'Necrozma Ali dell\'Aurora',
+t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = "Necrozma Ali dell'Aurora",
 	U = 'UltraNecrozma', base = ''}
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
