@@ -93,7 +93,7 @@ t.floette.names = {G = 'Fiore Giallo', A = 'Fiore Arancione',
 t.furfrou.names = {C = 'Taglio Cuore', St = 'Taglio Stella',
 	D = 'Taglio Diamante', Si = 'Taglio Signorina', Gd = 'Taglio Gentildonna',
 	Gu = 'Taglio Gentiluomo', R = 'Taglio Regina', K = 'Taglio Kabuki',
-	F = 'Taglio Faraone', base = 'Nessun Taglio'}
+	F = 'Taglio Faraone', base = 'Forma Selvatica'}
 t.xerneas.names = {A = 'Modo Attivo', base = 'Modo Relax'}
 t.mimikyu.names = {S = 'Forma Smascherata', base = 'Forma Mascherata'}
 t.minior.names = {R = 'Nucleo Rosso', Ar = 'Nucleo Arancione',
