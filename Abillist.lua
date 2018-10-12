@@ -98,7 +98,7 @@ Entry.__tostring = function(this)
 | class="min-width-xl-20 width-sm-40 width-xs-100" style="padding: 1ex 0.8ex;" | ${types}
 | class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Prima abilit&agrave;</div>${abil1}${abilEv}
 | class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Seconda abilit&agrave;</div>${abil2}
-| class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Abilit&agrave; nascoste</div>${abild}]=],
+| class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Abilit&agrave; speciali</div>${abild}]=],
 {
     ndex = this.ndex,
     static = ms.staticLua(string.tf(this.ndex or 0) ..
@@ -123,7 +123,7 @@ local makeHeader = function(type)
 ! [[Tipo|<span style="color:#000;">Tipi</span>]]
 ! Prima abilit&agrave;
 ! Seconda abilit&agrave;
-! Abilit&agrave; nascosta]=],
+! Abilit&agrave; speciale]=],
         {
             bg = css.horizGradLua{type = type}
         })

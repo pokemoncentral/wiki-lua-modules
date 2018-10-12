@@ -1,5 +1,5 @@
 -- Tabella con le abilità dei Pokémon: laddove non vi siano seconda
--- abilità o abilità nascosta, tale valore non esiste. Gli indici sono tutti in minuscolo
+-- abilità o abilità speciale, tale valore non esiste. Gli indici sono tutti in minuscolo
 
 local t = {}
 
