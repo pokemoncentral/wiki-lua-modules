@@ -214,7 +214,7 @@ end
 
 --[[
 
-This function maps over all abbreviations in Sugle/data. Its main purpose is
+This function maps over all abbreviations in Sigle/data. Its main purpose is
 increased efficiency, since the client modules can avoid requiring Sigle/data,
 which is therefore mw.loaded here only once.
 

@@ -239,7 +239,7 @@ Arguments (names because they are many):
 	- fullGroupLabel: optional, the label to use when a whole group generates a
 		single entry. Defaults to 'Tutte le forme'
 
-The class representing the entries, needs to implement the following interface:
+The class representing the entries must implement the following interface:
     - constructor(): Takes as parameters an element of source, its key and
         entryArgs when specified. Must return nil if the entry should not be
         included in the list.
@@ -296,7 +296,7 @@ end
 --[[
 
 Creates a list where every entry is a row in an HTML table, grouping entries by
-a property and merging together all the entries in a group if they are all
+a property and merging together all the entries in a group only if they are all
 equal, with a specific label. Groups of one element are printed without the
 label.
 
@@ -316,7 +316,7 @@ Arguments (names because they are many):
 	- fullGroupLabel: optional, the label to use when a whole group generates a
 		single entry. Defaults to 'Tutte le forme'
 
-The class representing the entries, needs to implement the following interface:
+The class representing the entries must implement the following interface:
     - constructor(): Takes as parameters an element of source, its key and
         entryArgs when specified. Must return nil if the entry should not be
         included in the list.

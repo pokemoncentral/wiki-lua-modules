@@ -136,7 +136,7 @@ Main wikicode interface.
 --]]
 h.helditem = function(frame)
 	return list.makeList{
-		source = require("Helditems-data"),
+		source = require("PokéItems-data"),
 		makeEntry = h.Entry.new,
 		iterator = list.pokeNames,
 		header = '',
