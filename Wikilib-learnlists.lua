@@ -20,7 +20,7 @@ local links = require('Links')
 local gameLevelCell = '| '
 
 -- Wikicode per la cella di un gioco nell'entry tutor
-local gameTutorCell = [=[| style="background:#${bg};" | [[Pokémon ${gameLink}|<span style="padding: 0.3em 0; color:#${txtColor};">'''${gameAbbr}'''</span>]]]=]
+local gameTutorCell = [=[| style="background:#${bg};" | [[${gameLink}|<span style="padding: 0.3em 0; color:#${txtColor};">'''${gameAbbr}'''</span>]]]=]
 
 -- Wikicode per gli entrynull
 local entryNull = [[|-
@@ -346,7 +346,7 @@ lib.tutorgames = function(games)
 			if game[2] == 'Yes' then
 				if gameData.display[2] then
 					table.insert(cell, string.interp([=[
-<div class="text-center roundy-5" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[Pokémon ${gamesLink}|<span style="padding: 0.3em 0; color: #fff;">'''${game1sig}'''</span><span style="padding: 0.3em 0; color: #fff;">'''${game2sig}'''</span>]]</div>]=],
+<div class="text-center roundy-5" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[${gamesLink}|<span style="padding: 0.3em 0; color: #fff;">'''${game1sig}'''</span><span style="padding: 0.3em 0; color: #fff;">'''${game2sig}'''</span>]]</div>]=],
 					{
 						bg = css.horizGradLua{gameData.display[1][2], 'dark', gameData.display[2][2], 'dark'},
 						gamesLink = gameData.link,
@@ -355,7 +355,7 @@ lib.tutorgames = function(games)
 					}))
 				else
 					table.insert(cell, string.interp([=[
-<div class="text-center roundy-5" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[Pokémon ${gamesLink}|<span style="padding: 0.3em 0; color: #fff;">'''${gamesig}'''</span>]]</div>]=],
+<div class="text-center roundy-5" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[${gamesLink}|<span style="padding: 0.3em 0; color: #fff;">'''${gamesig}'''</span>]]</div>]=],
 					{
 						bg = css.horizGradLua{gameData.display[1][2], 'dark', gameData.display[1][2], 'normale'},
 						gamesLink = gameData.link,
@@ -365,7 +365,7 @@ lib.tutorgames = function(games)
 			else
 				if gameData.display[2] then
 					table.insert(cell, string.interp([=[
-[[Pokémon ${gamesLink}|<span style="padding: 0.3em 0; color: #${game1color};">'''${game1sig}'''</span><span style="padding: 0.3em 0; color: #${game2color};">'''${game2sig}'''</span>]]]=],
+[[${gamesLink}|<span style="padding: 0.3em 0; color: #${game1color};">'''${game1sig}'''</span><span style="padding: 0.3em 0; color: #${game2color};">'''${game2sig}'''</span>]]]=],
 					{
 						gamesLink = gameData.link,
 						game1sig = gameData.display[1][1],
@@ -375,7 +375,7 @@ lib.tutorgames = function(games)
 					}))
 				else
 					table.insert(cell, string.interp([=[
-[[Pokémon ${gamesLink}|<span style="padding: 0.3em 0; color: #${gamecolor};">'''${gamesig}'''</span>]]]=],
+[[${gamesLink}|<span style="padding: 0.3em 0; color: #${gamecolor};">'''${gamesig}'''</span>]]]=],
 					{
 						gamesLink = gameData.link,
 						gamesig = gameData.display[1][1],
