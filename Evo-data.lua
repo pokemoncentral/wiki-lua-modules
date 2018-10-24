@@ -491,6 +491,33 @@ evo.growlithe = {
 evo.arcanine = evo.growlithe
 evo[58], evo[59] = evo.growlithe, evo.growlithe
 
+evo.poliwag = {
+	ndex = 60,
+
+	evos = {
+		{
+			ndex = 61,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 25,
+
+			evos = {
+				{
+					ndex = 62,
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietraidrica'
+				},
+				{
+					ndex = 186,
+					method = '[[Scambio]] tenendo una [[Roccia di Re]]',
+				}
+			}
+		}
+	}
+}
+evo.poliwhirl, evo.poliwrath, evo.politoed = evo.poliwag, evo.poliwag, evo.poliwag
+evo[60], evo[61], evo[62], evo[186] =
+	evo.poliwag, evo.poliwag, evo.poliwag, evo.poliwag
+
 evo.abra = {
 	ndex = 63,
 
