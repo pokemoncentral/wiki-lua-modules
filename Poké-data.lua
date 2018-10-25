@@ -1621,6 +1621,8 @@ t.zeraora = {name = 'Zeraora', ndex = 807, type1 = 'elettro', type2 = 'elettro'}
 t[807] = t.zeraora
 t.meltan = {name = 'Meltan', ndex = nil, type1 = 'acciaio', type2 = 'acciaio'}
 -- t[0xDENIELOPUZZA] = t.meltan
+t.melmetal = {name = 'Melmetal', ndex = nil, type1 = 'acciaio', type2 = 'acciaio'}
+-- t[0xDENIELOPUZZA] = t.melmetal
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
