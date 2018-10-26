@@ -1,6 +1,15 @@
 --[[
 
-Data module for evolutionary families
+Data module for evolutionary families.
+
+The structure of the module is as following: there's a table for each Pokémon,
+containing the ndex and possibly other infos. The field "evos", if any, should
+contain an array of tables of Pokémons that evolves from the Pokémon the table
+belongs to. Other fields are used to describe the methods used to evolve into
+this Pokémon. The field "method" should be one of the constants evo.methods.*,
+there may be a field [evo.methods.THISMETHOD] if required by the method (see
+details after) and a field conditions, that is a table indexed by
+evo.conditions.* with values as described by the condition itself.
 
 --]]
 
@@ -17,17 +26,46 @@ that occur in AT MOST ONE evolutionary lines. Should that method/condition be
 used again in a new evolutionary line, it's best if we add a new constant to
 identify it.
 
+Follows a detailed description of the use of each method and condition.
+
+Methods:
+	- OTHER: requires [evo.methods.OTHER] to contain the image to be printed.
+			Doesn't have any default text but relies on the fact that it may be
+			provided via OTHER condition if needed.
+	- LEVEL: [evo.methods.LEVEL] may contain the level for evolution, if any,
+			otherwise nil, meaning that evolution is possible at any level
+			(given that all other conditions are met).
+	- HAPPINESS: should be a condition for LEVEL method, but everywhere is
+			considered a standalone method. Doesn't have any parameters.
+	- STONE: requires [evo.methods.STONE] to be the name of the evostone.
+	- TRADE: no parameters.
+	- BREED: used in the baby form, showing that it may be breeded from the next
+			phase.
+
 --]]
 evo.methods = {}
 evo.methods.OTHER = 0
 evo.methods.LEVEL = 1
--- HAPPINESS should be a condition for LEVEL method, but everywhere is
--- considered a standalone method
 evo.methods.HAPPINESS = 2
 evo.methods.STONE = 3
 evo.methods.TRADE = 4
 evo.methods.BREED = 5
+--[[
+Conditions:
+	- OTHER: any custom text passed in this condition will be displayed.
+	- TIME: time of the day, with first uppercase. Normally either "giorno" or
+			"notte".
+	- ITEM: the name of the item required for evolution, with correct case.
+	- LOCATION: the place in which evolution may occur.
+	- MOVE: the name of the move that has to be known by the Pokémon, lowercase.
+	- GENDER: the gender required, with first uppercase.
+	- TRADED_FOR: the ndex of the Pokémon required for the trade (makes sense
+				only as a condition with TRADE method).
+	- BREEDONLY: this condition specifies that the BREED doesn't imply the
+				evolution, thus the second phase doesn't need a method and so.
+				Make sense only as a condition with BREED method.
 
+--]]
 evo.conditions = {}
 evo.conditions.OTHER = 0
 evo.conditions.TIME = 1
@@ -37,9 +75,6 @@ evo.conditions.MOVE = 4
 evo.conditions.GENDER = 5
 evo.conditions.TRADED_FOR = 6
 evo.conditions.BREEDONLY = 7
--- evo.conditions.STATS = 6
--- evo.conditions.PARTY = 8
--- evo.conditions.EMPTY_SLOT = 9
 
 
 evo.bulbasaur = {
@@ -882,7 +917,7 @@ evo.lickitung = {
 		{
 			ndex = 463,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.MOVE] = 'Rotolamento' }
+			conditions = { [evo.conditions.MOVE] = 'rotolamento' }
 		}
 	}
 }
@@ -955,7 +990,7 @@ evo.tangela = {
 		{
 			ndex = 465,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.MOVE] = 'Forzantica' },
+			conditions = { [evo.conditions.MOVE] = 'forzantica' },
 		}
 	}
 }
@@ -1024,7 +1059,7 @@ evo["mime jr."] = {
 		{
 			ndex = 122,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.MOVE] = 'Mimica' },
+			conditions = { [evo.conditions.MOVE] = 'mimica' },
 		}
 	}
 }
