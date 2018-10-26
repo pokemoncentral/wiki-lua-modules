@@ -831,7 +831,32 @@ evo.cubone = {
 evo.marowak = evo.cubone
 evo[104], evo[105] = evo.cubone, evo.cubone
 
--- TODO: Tyrogue evolutionary line
+evo.tyrogue = {
+	ndex = 236,
+
+	evos = {
+		{
+			ndex = 106,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 20,
+			conditions = { [evo.conditions.OTHER] = 'Con {{colore2|000|Attacco}} > {{colore2|000|Difesa}}' }
+		},
+		{
+			ndex = 107,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 20,
+			conditions = { [evo.conditions.OTHER] = 'Con {{colore2|000|Attacco}} < {{colore2|000|Difesa}}' }
+		},
+		{
+			ndex = 237,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 20,
+			conditions = { [evo.conditions.OTHER] = 'Con {{colore2|000|Attacco}} = {{colore2|000|Difesa}}' }
+		}
+	}
+}
+evo.hitmonlee, evo.hitmonchan, evo.hitmontop = evo.tyrogue, evo.tyrogue, evo.tyrogue
+evo[236], evo[106], evo[107], evo[237] = evo.tyrogue, evo.tyrogue, evo.tyrogue, evo.tyrogue
 
 evo.lickitung = {
 	ndex = 108,
@@ -839,7 +864,8 @@ evo.lickitung = {
 	evos = {
 		{
 			ndex = 463,
-			method = 'Se conosce [[Rotolamento]] salendo di livello',
+			method = evo.methods.LEVEL,
+			conditions = { [evo.conditions.OTHER] = 'Se conosce [[Rotolamento]] salendo di livello' }
 		}
 	}
 }
