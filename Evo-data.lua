@@ -630,6 +630,25 @@ evo.ponyta = {
 evo.rapidash = evo.ponyta
 evo[77], evo[78] = evo.ponyta, evo.ponyta
 
+evo.slowpoke = {
+	ndex = 79,
+
+	evos = {
+		{
+			ndex = 80,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 25,
+
+		},
+		{
+			ndex = 199,
+			method = '[[Scambio]] tenendo una [[Roccia di Re]]',
+		}
+	}
+}
+evo.slowbro, evo.slowking = evo.slowpoke, evo.slowpoke
+evo[79], evo[80], evo[199] = evo.slowpoke, evo.slowpoke, evo.slowpoke
+
 evo.magnemite = {
 	ndex = 81,
 
@@ -811,6 +830,8 @@ evo.cubone = {
 }
 evo.marowak = evo.cubone
 evo[104], evo[105] = evo.cubone, evo.cubone
+
+-- TODO: Tyrogue evolutionary line
 
 evo.lickitung = {
 	ndex = 108,
@@ -1167,6 +1188,15 @@ evo.munchlax = {
 evo.snorlax = evo.munchlax
 evo[446], evo[143] = evo.munchlax, evo.munchlax
 
+evo.articuno = { ndex = 144 }
+evo[144] = evo.articuno
+
+evo.zapdos = { ndex = 145 }
+evo[145] = evo.zapdos
+
+evo.moltres = { ndex = 146 }
+evo[146] = evo.moltres
+
 evo.dratini = {
 	ndex = 147,
 
@@ -1188,6 +1218,12 @@ evo.dratini = {
 }
 evo.dragonair, evo.dragonite = evo.dratini, evo.dratini
 evo[147], evo[148], evo[149] = evo.dratini, evo.dratini, evo.dratini
+
+evo.mewtwo = { ndex = 150 }
+evo[150] = evo.mewtwo
+
+evo.mew = { ndex = 151 }
+evo[151] = evo.mew
 
 evo.chikorita = {
 	ndex = 152,
