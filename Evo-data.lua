@@ -222,12 +222,13 @@ evo.pichu = {
 	evos = {
 		{
 			ndex = 25,
-			method = '[[Affetto]]',
+			method = evo.methods.HAPPINESS,
 
 			evos = {
 				{
 					ndex = 26,
-					method = '[[Pietratuono]]',
+					evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietratuono'
 				}
 			}
 		}
@@ -262,7 +263,8 @@ evo["nidoran♀"] = {
 			evos = {
 				{
 					ndex = 31,
-					method = '[[Pietralunare]]',
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietralunare',
 				}
 			}
 		}
@@ -283,7 +285,8 @@ evo["nidoran♂"] = {
 			evos = {
 				{
 					ndex = 34,
-					method = '[[Pietralunare]]',
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietralunare',
 				}
 			}
 		}
@@ -294,16 +297,18 @@ evo[32], evo[33], evo[34] = evo["nidoran♂"], evo["nidoran♂"], evo["nidoran�
 
 evo.cleffa = {
 	ndex = 173,
+	methods = evo.methods.BREED,
 
 	evos = {
 		{
 			ndex = 35,
-			method = '[[Affetto]]',
+			method = evo.methods.HAPPINESS,
 
 			evos = {
 				{
 					ndex = 36,
-					method = '[[Pietralunare]]',
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietralunare'
 				}
 			}
 		}
@@ -318,7 +323,8 @@ evo.vulpix = {
 	evos = {
 		{
 			ndex = 38,
-			method = '[[Pietrafocaia]]',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietrafocaia',
 		}
 	}
 }
@@ -327,16 +333,18 @@ evo[37], evo[38] = evo.vulpix, evo.vulpix
 
 evo.igglybuff = {
 	ndex = 174,
+	method = evo.methods.BREED,
 
 	evos = {
 		{
 			ndex = 39,
-			method = '[[Affetto]]',
+			method = evo.methods.HAPPINESS,
 
 			evos = {
 				{
 					ndex = 40,
-					method = '[[Pietralunare]]',
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietralunare',
 				}
 			}
 		}
@@ -484,7 +492,8 @@ evo.growlithe = {
 	evos = {
 		{
 			ndex = 59,
-			method = '[[Pietrafocaia]]',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietrafocaia',
 		}
 	}
 }
@@ -508,7 +517,8 @@ evo.poliwag = {
 				},
 				{
 					ndex = 186,
-					method = '[[Scambio]] tenendo una [[Roccia di Re]]',
+					method = evo.methods.TRADE,
+					conditions = { [evo.conditions.ITEM] = 'Roccia di Re' },
 				}
 			}
 		}
@@ -530,7 +540,7 @@ evo.abra = {
 			evos = {
 				{
 					ndex = 65,
-					method = '[[Scambio]]',
+					method = evo.methods.TRADE,
 				}
 			}
 		}
@@ -551,7 +561,7 @@ evo.machop = {
 			evos = {
 				{
 					ndex = 68,
-					method = '[[Scambio]]',
+					method = evo.methods.TRADE,
 				}
 			}
 		}
@@ -572,7 +582,8 @@ evo.bellsprout = {
 			evos = {
 				{
 					ndex = 71,
-					method = '[[Pietrafoglia]]',
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietrafoglia',
 				}
 			}
 		}
@@ -607,7 +618,7 @@ evo.geodude = {
 			evos = {
 				{
 					ndex = 76,
-					method = '[[Scambio]]',
+					method = evo.methods.TRADE,
 				}
 			}
 		}
@@ -642,7 +653,8 @@ evo.slowpoke = {
 		},
 		{
 			ndex = 199,
-			method = '[[Scambio]] tenendo una [[Roccia di Re]]',
+			method = evo.methods.TRADE,
+			conditions = { [evo.conditions.ITEM] = 'Roccia di Re' }
 		}
 	}
 }
@@ -661,7 +673,8 @@ evo.magnemite = {
 			evos = {
 				{
 					ndex = 462,
-					method = 'Su di livello in un [[Campo magnetico speciale]]',
+					method = evo.methods.LEVEL,
+					conditions = { [evo.conditions.LOCATION] = 'campo magnetico speciale' },
 				}
 			}
 		}
@@ -721,7 +734,8 @@ evo.shellder = {
 	evos = {
 		{
 			ndex = 91,
-			method = '[[Pietraidrica]]',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietraidrica',
 		}
 	}
 }
@@ -740,7 +754,7 @@ evo.gastly = {
 			evos = {
 				{
 					ndex = 94,
-					method = '[[Scambio]]',
+					method = evo.methods.TRADE,
 				}
 			}
 		}
@@ -755,7 +769,8 @@ evo.onix = {
 	evos = {
 		{
 			ndex = 208,
-			method = '[[Scambio]] tenendo una [[Metalcoperta]]',
+			method = evo.methods.TRADE,
+			conditions = { [evo.conditions.ITEM] = 'Metalcoperta' },
 		}
 	}
 }
@@ -810,7 +825,8 @@ evo.exeggcute = {
 	evos = {
 		{
 			ndex = 103,
-			method = '[[Pietrafoglia]]',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietrafoglia',
 		}
 	}
 }
@@ -833,6 +849,7 @@ evo[104], evo[105] = evo.cubone, evo.cubone
 
 evo.tyrogue = {
 	ndex = 236,
+	method = evo.methods.BREED,
 
 	evos = {
 		{
@@ -865,7 +882,7 @@ evo.lickitung = {
 		{
 			ndex = 463,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.OTHER] = 'Se conosce [[Rotolamento]] salendo di livello' }
+			conditions = { [evo.conditions.MOVE] = 'Rotolamento' }
 		}
 	}
 }
@@ -898,7 +915,8 @@ evo.rhyhorn = {
 			evos = {
 				{
 					ndex = 464,
-					method = '[[Scambio]] tenendo una [[Copertura]]',
+					method = evo.methods.TRADE,
+					conditions = { [evo.conditions.ITEM] = 'Copertura' },
 				}
 			}
 		}
@@ -909,16 +927,19 @@ evo[111], evo[112], evo[464] = evo.rhyhorn, evo.rhyhorn, evo.rhyhorn
 
 evo.happiny = {
 	ndex = 440,
+	method = evo.methods.BREED,
+	conditions = { [evo.conditions.ITEM] = 'Fortunaroma'},
 
 	evos = {
 		{
 			ndex = 113,
-			method = 'Se sale di livello tenendo una [[Pietraovale]] (giorno)',
+			method = evo.methods.LEVEL,
+			conditions = { [evo.conditions.ITEM] = 'Pietraovale', [evo.conditions.TIME] = 'Giorno'},
 
 			evos = {
 				{
 					ndex = 242,
-					method = '[[Affetto]]',
+					method = evo.methods.HAPPINESS,
 				}
 			}
 		}
@@ -933,7 +954,8 @@ evo.tangela = {
 	evos = {
 		{
 			ndex = 465,
-			method = 'Se conosce [[Forzantica]] salendo di livello',
+			method = evo.methods.LEVEL,
+			conditions = { [evo.conditions.MOVE] = 'Forzantica' },
 		}
 	}
 }
@@ -955,7 +977,8 @@ evo.horsea = {
 			evos = {
 				{
 					ndex = 230,
-					method = '[[Scambio]] tenendo una [[Squama Drago]]',
+					method = evo.methods.TRADE,
+					conditions = { [evo.conditions.ITEM] = 'Squama Drago' },
 				}
 			}
 		}
@@ -984,7 +1007,8 @@ evo.staryu = {
 	evos = {
 		{
 			ndex = 121,
-			method = '[[Pietraidrica]]',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietraidrica',
 		}
 	}
 }
@@ -993,11 +1017,14 @@ evo[120], evo[121] = evo.staryu, evo.staryu
 
 evo["mime jr."] = {
 	ndex = 439,
+	method = evo.methods.BREED,
+	conditions = { [evo.conditions.ITEM] = 'Bizzoaroma' },
 
 	evos = {
 		{
 			ndex = 122,
-			method = 'Se conosce [[Mimica]] salendo di livello',
+			method = evo.methods.LEVEL,
+			conditions = { [evo.conditions.MOVE] = 'Mimica' },
 		}
 	}
 }
@@ -1010,7 +1037,8 @@ evo.scyther = {
 	evos = {
 		{
 			ndex = 212,
-			method = '[[Scambio]] tenendo una [[Metalcoperta]]',
+			method = evo.methods.TRADE,
+			conditions = { [evo.conditions.ITEM] = 'Metalcoperta' },
 		}
 	}
 }
@@ -1019,6 +1047,7 @@ evo[123], evo[212] = evo.scyther, evo.scyther
 
 evo.smoochum = {
 	ndex = 238,
+	method = evo.methods.BREED,
 
 	evos = {
 		{
@@ -1033,6 +1062,7 @@ evo[238], evo[124] = evo.smoochum, evo.smoochum
 
 evo.elekid = {
 	ndex = 239,
+	method = evo.methods.BREED,
 
 	evos = {
 		{
@@ -1043,7 +1073,8 @@ evo.elekid = {
 			evos = {
 				{
 					ndex = 466,
-					method = '[[Scambio]] tenendo un [[Elettritore]]',
+					method = evo.methods.TRADE,
+					conditions = { [evo.conditions.ITEM] = 'Elettritore' },
 				}
 			}
 		}
@@ -1054,6 +1085,7 @@ evo[239], evo[125], evo[466] = evo.elekid, evo.elekid, evo.elekid
 
 evo.magby = {
 	ndex = 240,
+	method = evo.methods.BREED,
 
 	evos = {
 		{
@@ -1064,7 +1096,8 @@ evo.magby = {
 			evos = {
 				{
 					ndex = 467,
-					method = '[[Scambio]] tenendo un [[Magmatore]]',
+					method = evo.methods.TRADE,
+					conditions = { [evo.conditions.ITEM] = 'Magmatore' },
 				}
 			}
 		}
@@ -1148,7 +1181,7 @@ evo.eevee = {
 evo.vaporeon, evo.jolteon, evo.flareon, evo.espeon, evo.umbreon, evo.leafeon, evo.glaceon, evo.sylveon =
 	evo.eevee, evo.eevee, evo.eevee, evo.eevee, evo.eevee, evo.eevee, evo.eevee, evo.eevee
 evo[133], evo[134], evo[135], evo[136], evo[196], evo[197], evo[470], evo[471], evo[700] =
-	evo.eevee, evo.eevee, evo.eevee, evo.eevee, evo.eevee, evo.eevee, evo.eevee, evo.eevee
+	evo.eevee, evo.eevee, evo.eevee, evo.eevee, evo.eevee, evo.eevee, evo.eevee, evo.eevee, evo.eevee
 
 evo.porygon = {
 	ndex = 137,
@@ -1156,12 +1189,14 @@ evo.porygon = {
 	evos = {
 		{
 			ndex = 233,
-			method = '[[Scambio]] tenendo un [[Upgrade]]',
+			method = evo.methods.TRADE,
+			conditions = { [evo.conditions.ITEM] = 'Upgrade' },
 
 			evos = {
 				{
 					ndex = 474,
-					method = '[[Scambio]] tenendo un [[Dubbiodisco]]',
+					method = evo.methods.TRADE,
+					conditions = { [evo.conditions.ITEM] = 'Dubbiodisco' },
 				}
 			}
 		}
@@ -1203,11 +1238,13 @@ evo[142] = evo.aerodactyl
 
 evo.munchlax = {
 	ndex = 446,
+	method = evo.methods.BREED,
+	conditions = { [evo.conditions.ITEM] = 'Gonfioaroma' },
 
 	evos = {
 		{
 			ndex = 143,
-			method = '[[Affetto]]',
+			method = evo.methods.HAPPINESS,
 		}
 	}
 }

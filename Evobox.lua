@@ -157,7 +157,7 @@ eb.boxArrow.img.conditions = {
     [evodata.conditions.LOCATION] = methodsFunctionGenerator(links.bag('Mappa Città')),
     [evodata.conditions.MOVE] = function(movename)
         -- Takes move name and gets move type for the MT image
-        local movedata = moves[movename]
+        local movedata = moves[movename:lower()]
         return links.bag('MT ' .. string.fu(movedata.type))
     end,
     [evodata.conditions.GENDER] = nilConst,
@@ -180,24 +180,23 @@ eb.boxArrow.desc.methods = {
     end,
     [evodata.methods.HAPPINESS] = methodsFunctionGenerator('[[Felicità|<span style="color: #000;">Felicità</span>]]'),
     [evodata.methods.STONE] = methodsFunctionGenerator('${param}'),
-    [evodata.methods.TRADE] = methodsFunctionGenerator(links.bag('Blocco Amici')),
+    [evodata.methods.TRADE] = methodsFunctionGenerator('[[Scambio|<span style="color: #000;">Scambio</span>]]'),
     [evodata.methods.BREED] = methodsFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]]'),
 }
 eb.boxArrow.desc.conditions = {
     [evodata.conditions.OTHER] = smallMethodsFunctionGenerator('${param}'),
     [evodata.conditions.TIME] = smallMethodsFunctionGenerator('(${param})'),
     [evodata.conditions.ITEM] = smallMethodsFunctionGenerator('tenendo [[${param}|<span style="color: #000;">${param}</span>]]'),
-    [evodata.conditions.LOCATION] = smallMethodsFunctionGenerator('presso [[${param}|<span style="color: #000;">${param}</span>]]'),
+    [evodata.conditions.LOCATION] = smallMethodsFunctionGenerator('presso: [[${param}|<span style="color: #000;">${param}</span>]]'),
     [evodata.conditions.MOVE] = function(movename)
-        -- Takes move name (lowercase) and get the real name from data module
-        -- (because case in names is unpredictable)
-        local movedata = moves[movename]
+        -- Takes move name and get the real name from data module
+        local movedata = moves[movename:lower()]
         return string.interp(eb.strings.SMALL_TEXT_NEWLINE, {
             text = table.concat{
                 'avendo appreso [[',
-                string.fu(movedata.name),
+                movedata.name,
                 '|<span style="color: #000;">',
-                string.fu(movedata.name),
+                movedata.name,
                 '</span>]]'
             }
         })
@@ -394,7 +393,7 @@ eb.makeManyEvosRow = function(evos)
             arrow = eb.SingleArrow(v, 'fixed'),
             box = eb.boxPokemon(
                 v.ndex,
-                eb.phaseName(phase, evodata[v.ndex]),
+                eb.phaseName(2, evodata[v.ndex]),
                 v.notes
             )
         })
@@ -438,7 +437,7 @@ eb.Evobox2 = function(frame)
             box1 = eb.DoubleArrow(data)
         }))
         table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
-            box1 = eb.boxPokemon(data.evos[1].ndex, eb.phaseName(1, data), data.evos[1].notes)
+            box1 = eb.boxPokemon(data.evos[1].ndex, eb.phaseName(2, data), data.evos[1].notes)
         }))
     else
         table.insert(evoboxcontent, eb.makePhaseRows(data.evos, 2))
