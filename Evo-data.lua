@@ -1465,12 +1465,13 @@ evo.togepi = {
 	evos = {
 		{
 			ndex = 176,
-			method = '[[Affetto]]',
+			method = evo.methods.HAPPINESS,
 
 			evos = {
 				{
 					ndex = 468,
-					method = '[[Pietrabrillo]]',
+					evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietrabrillo',
 				}
 			}
 		}
@@ -1521,7 +1522,7 @@ evo.azurill = {
 	evos = {
 		{
 			ndex = 183,
-			method = '[[Affetto]]',
+			method = evo.methods.HAPPINESS,
 
 			evos = {
 				{
@@ -1542,7 +1543,8 @@ evo.bonsly = {
 	evos = {
 		{
 			ndex = 185,
-			method = 'Se conosce [[Mimica]] salendo di livello',
+			method = evo.methods.LEVEL,
+			conditions = { [evo.conditions.MOVE] = 'mimica' },
 		}
 	}
 }
@@ -1577,7 +1579,8 @@ evo.aipom = {
 	evos = {
 		{
 			ndex = 424,
-			method = 'Se conosce [[Doppiosmash]] salendo di livello',
+			method = evo.methods.LEVEL,
+			conditions = { [evo.conditions.MOVE] = 'doppiosmash' },
 		}
 	}
 }
@@ -1590,7 +1593,8 @@ evo.sunkern = {
 	evos = {
 		{
 			ndex = 192,
-			method = '[[Pietrasolare]]',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietrasolare',
 		}
 	}
 }
@@ -1603,7 +1607,8 @@ evo.yanma = {
 	evos = {
 		{
 			ndex = 469,
-			method = 'Se conosce [[Forzantica]] salendo di livello',
+			method = evo.methods.LEVEL,
+			conditions = { [evo.conditions.MOVE] = 'forzantica' },
 		}
 	}
 }
@@ -1630,7 +1635,8 @@ evo.murkrow = {
 	evos = {
 		{
 			ndex = 430,
-			method = '[[Neropietra]]',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Neropietra',
 		}
 	}
 }
@@ -1643,12 +1649,16 @@ evo.misdreavus = {
 	evos = {
 		{
 			ndex = 429,
-			method = '[[Neropietra]]',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Neropietra',
 		}
 	}
 }
 evo.mismagius = evo.misdreavus
 evo[200], evo[429] = evo.misdreavus, evo.misdreavus
+
+evo.unown = { ndex = 201 }
+evo[201] = evo.unown
 
 evo.wynaut = {
 	ndex = 360,
@@ -1690,7 +1700,9 @@ evo.gligar = {
 	evos = {
 		{
 			ndex = 472,
-			method = 'Se sale di livello tenendo un [[Affilodente]] (notte)',
+			method = evo.methods.LEVEL,
+			conditions = { [evo.conditions.ITEM] = 'Affilodente',
+			[evo.condition.TIME] = 'Notte' },
 		}
 	}
 }
@@ -1727,7 +1739,8 @@ evo.sneasel = {
 		{
 			ndex = 461,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.ITEM] = 'Affilodente' }
+			conditions = { [evo.conditions.ITEM] = 'Affilartigli',
+			[evo.condition.TIME] = 'Notte' },
 		}
 	}
 }
@@ -1774,7 +1787,8 @@ evo.swinub = {
 			evos = {
 				{
 					ndex = 473,
-					method = 'Se conosce [[Forzantica]] salendo di livello',
+					method = evo.methods.LEVEL,
+					conditions = { [evo.conditions.MOVE] = 'forzantica' },
 				}
 			}
 		}
@@ -1809,7 +1823,8 @@ evo.mantyke = {
 	evos = {
 		{
 			ndex = 226,
-			method = 'Se sale di livello con [[Remoraid]] in squadra',
+			method = evo.methods.LEVEL,
+			conditions = { [evo.conditions.OTHER] = 'con [[Remoraid]] in [[squadra]]' },
 		}
 	}
 }
@@ -1856,6 +1871,15 @@ evo[235] = evo.smeargle
 evo.miltank = { ndex = 241 }
 evo[241] = evo.miltank
 
+evo.raikou = { ndex = 243 }
+evo[243] = evo.raikou
+
+evo.entei = { ndex = 244 }
+evo[244] = evo.entei
+
+evo.suicune = { ndex = 245 }
+evo[245] = evo.suicune
+
 evo.larvitar = {
 	ndex = 246,
 
@@ -1877,6 +1901,12 @@ evo.larvitar = {
 }
 evo.pupitar, evo.tyranitar = evo.larvitar, evo.larvitar
 evo[246], evo[247], evo[248] = evo.larvitar, evo.larvitar, evo.larvitar
+
+evo.lugia = { ndex = 249 }
+evo[249] = evo.lugia
+
+evo.["ho-oh"] = { ndex = 250 }
+evo[250] = evo.["ho-oh"]
 
 evo.celebi = { ndex = 251 }
 evo[251] = evo.celebi
