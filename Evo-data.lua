@@ -53,8 +53,8 @@ evo.methods.BREED = 5
 --[[
 Conditions:
 	- OTHER: any custom text passed in this condition will be displayed.
-	- TIME: time of the day, with first uppercase. Normally either "giorno" or
-			"notte".
+	- TIME: time of the day, with first uppercase. Normally either "Giorno" or
+			"Notte".
 	- ITEM: the name of the item required for evolution, with correct case.
 	- LOCATION: the place in which evolution may occur.
 	- MOVE: the name of the move that has to be known by the Pokémon, lowercase.
