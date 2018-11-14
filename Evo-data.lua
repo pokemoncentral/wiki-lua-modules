@@ -3,12 +3,14 @@
 Data module for evolutionary families.
 
 The structure of the module is as following: there's a table for each Pokémon,
-containing the ndex and possibly other infos. The field "evos", if any, should
-contain an array of tables of Pokémons that evolves from the Pokémon the table
-belongs to. Other fields are used to describe the methods used to evolve into
-this Pokémon. The field "method" should be one of the constants evo.methods.*,
-there may be a field [evo.methods.THISMETHOD] if required by the method (see
-details after) and a field conditions, that is a table indexed by
+containing the "ndex" and possibly other infos. The field "notes" contains a
+string that is put above the sprite. The special value "default" means that the
+note should be the name of the alternative form. The field "evos", if any,
+should contain an array of tables of Pokémons that evolves from the Pokémon the
+table belongs to. Other fields are used to describe the methods used to evolve
+into this Pokémon. The field "method" should be one of the constants
+evo.methods.*, there may be a field [evo.methods.THISMETHOD] if required by the
+method (see details after) and a field conditions, that is a table indexed by
 evo.conditions.* with values as described by the condition itself.
 
 --]]
@@ -1702,7 +1704,7 @@ evo.gligar = {
 			ndex = 472,
 			method = evo.methods.LEVEL,
 			conditions = { [evo.conditions.ITEM] = 'Affilodente',
-			[evo.condition.TIME] = 'Notte' },
+			[evo.conditions.TIME] = 'Notte' },
 		}
 	}
 }
@@ -1740,7 +1742,7 @@ evo.sneasel = {
 			ndex = 461,
 			method = evo.methods.LEVEL,
 			conditions = { [evo.conditions.ITEM] = 'Affilartigli',
-			[evo.condition.TIME] = 'Notte' },
+			[evo.conditions.TIME] = 'Notte' },
 		}
 	}
 }
@@ -1905,8 +1907,8 @@ evo[246], evo[247], evo[248] = evo.larvitar, evo.larvitar, evo.larvitar
 evo.lugia = { ndex = 249 }
 evo[249] = evo.lugia
 
-evo.["ho-oh"] = { ndex = 250 }
-evo[250] = evo.["ho-oh"]
+evo["ho-oh"] = { ndex = 250 }
+evo[250] = evo["ho-oh"]
 
 evo.celebi = { ndex = 251 }
 evo[251] = evo.celebi
@@ -3461,7 +3463,7 @@ evo.petilil = {
 evo.lilligant = evo.petilil
 evo[548], evo[549] = evo.petilil, evo.petilil
 
-evo.basculin = { ndex = 550 }
+evo.basculin = { ndex = 550, notes = '<default>' }
 evo[550] = evo.basculin
 
 evo.sandile = {
@@ -4180,17 +4182,21 @@ evo[667], evo[668] = evo.litleo, evo.litleo
 
 evo["flabébé"] = {
 	ndex = 669,
+	notes = '<default>',
 
 	evos = {
 		{
 			ndex = 670,
+			notes = '<default>',
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 19,
 
 			evos = {
 				{
 					ndex = 671,
-					method = '[[Pietrabrillo]]',
+					notes = '<default>',
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietrabrillo',
 				}
 			}
 		}
@@ -5051,5 +5057,13 @@ evo[807] = evo.zeraora
 -- }
 -- evo.marowakA = evo.cubone
 -- evo[104], evo[nil] = evo.cubone, evo.cubone
+
+-- Aliases for alternative forms
+evo.basculinB = evo.basculin
+evo['550B'] = evo.basculinB
+
+evo["flabébéG"] = evo['flabébé']
+-- evo.floette, evo.florges = evo["flabébé"], evo["flabébé"]
+-- evo[669], evo[670], evo[671] = evo["flabébé"], evo["flabébé"], evo["flabébé"]
 
 return evo
