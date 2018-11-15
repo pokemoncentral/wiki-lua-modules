@@ -1621,9 +1621,9 @@ d[806] = d.blacephalon
 d.zeraora = {hp = 88, atk = 112, def = 75, spatk = 102, spdef = 80, spe = 143}
 d[807] = d.zeraora
 d.meltan = {hp = 46, atk = 65, def = 65, spatk = 55, spdef = 35, spe = 34}
-t[808] = t.meltan
+d[808] = d.meltan
 d.melmetal = {hp = 135, atk = 143, def = 143, spatk = 80, spdef = 65, spe = 34}
-t[809] = t.melmetal
+d[809] = d.melmetal
 
 -- Alternative forms which actually change stats
 d.deoxysA = {hp = 50, atk = 180, def = 20, spatk = 180, spdef = 20, spe = 150}
