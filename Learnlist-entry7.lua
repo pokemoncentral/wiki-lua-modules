@@ -33,6 +33,9 @@ z.level = function(frame)
 end
 
 z.Level = z.level
+-- It's perfect but for a colspan, so I'll use this because right now I'm in a
+-- hurry
+z.levelLGPE = z.level
 
 -- Entry per le mosse appprese tramite MT/MN
 
@@ -49,6 +52,8 @@ z.tm = function(frame)
 end
 
 z.Tm = z.tm
+-- It's perfect, here just to make easier a future update
+z.tmLGPE = z.tm
 
 -- Entry per le mosse apprese tramite accoppiamento
 
