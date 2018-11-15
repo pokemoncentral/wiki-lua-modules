@@ -72,4 +72,22 @@ ev.evoList = function(name)
     end)
 end
 
+--[[
+
+Given a Pokémon's ndex, returns the list of types of its evolutions that it
+doesn't have.
+
+--]]
+ev.evoTypesList = function(name)
+    local thisdata = pokes[forms.nameToDataindex(name)]
+    return table.filter(table.unique(table.flatMap(ev.foldEvoTree(ev.preciseEvotable(name), {}, function(acc, v)
+        table.insert(acc, v.ndex)
+        return acc
+    end), function(ndex)
+        return { pokes[ndex].type1, pokes[ndex].type2 }
+    end)), function(type)
+        return not (type == thisdata.type1 or type == thisdata.type2)
+    end)
+end
+
 return ev
