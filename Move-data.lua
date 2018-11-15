@@ -681,5 +681,6 @@ t.multiattacco = {name = 'Multiattacco', type = 'normale', category = 'fisico', 
 t['geyser fotonico'] = {name = 'Geyser Fotonico', type = 'psico', category = 'speciale', power = 100, accuracy = 100, pp = 5}
 t['sbalorditesta'] = {name = 'Sbalorditesta', type = 'fuoco', category = 'speciale', power = 150, accuracy = 100, pp = 5}
 t['pugni plasma'] = {name = 'Pugni Plasma', type = 'elettro', category = 'fisico', power = 100, accuracy = 100, pp = 15}
+t['pugni corazzati'] = {name = 'Pugni Corazzati', type = 'acciaio', category = 'fisico', power = 60, accuracy = 100, pp = 5}
 
 return t
