@@ -33,9 +33,12 @@ z.level = function(frame)
 end
 
 z.Level = z.level
--- It's perfect but for a colspan, so I'll use this because right now I'm in a
--- hurry
-z.levelLGPE = z.level
+-- It's perfect un corno, doesn't work becuase it takes one more parameter
+-- Wrapper for level function, adding a "second level"
+z.levelLGPE = function(frame)
+	table.insert(frame.args, 1, frame.args[1])
+	return z.level(frame)
+end
 
 -- Entry per le mosse appprese tramite MT/MN
 
