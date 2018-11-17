@@ -402,7 +402,7 @@ dr.EffTable.FooterLine.strings = {
     MAYBE = 'Se questo Pok&eacute;mon ha [[${abil}]] ',
 
     -- TAKENOFF category beginning text
-    TAKENOFF = 'Se questo Pok&eacute;mon perde [[${abil}]], o se ne sono annullati gli effetti, ',
+    TAKENOFF = 'Se le abilit&agrave; non compaiono nel gioco, se questo Pok&eacute;mon perde [[${abil}]] o se ne sono annullati gli effetti, ',
 
     -- RINGTARGET category beginning text
     RINGTARGET = 'Se questo Pok&eacute;mon tiene un [[Facilsaglio]]',
