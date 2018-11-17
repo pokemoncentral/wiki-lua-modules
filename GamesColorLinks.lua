@@ -41,11 +41,9 @@ local makeText = function(data)
     return table.map(data, function(game)
         local text = game.text or game.link:gsub('^Pokémon ', '')
 
-        -- Splitting by comma and then by ' e '
-        local singleGames = mw.text.split(text, ',')
-        singleGames = table.flatMap(singleGames, function(singleGame)
-            return mw.text.split(singleGame, ' e ')
-        end)
+        -- Splitting by ' e ', so that games paired by that can be joined via
+        -- commas instead later.
+        local singleGames = mw.text.split(text, ' e ')
 
         return {game.link, w.trimAll(singleGames)}
     end)
