@@ -2,11 +2,9 @@
 
 local s = {}
 
-local mw = require('mw')
-
-local tab = require('Wikilib-tables')       -- luacheck: no unused
-local w = require('Wikilib')
-local gens = require('Wikilib-gens')
+local tab = require('Modulo:Wikilib/tables')       -- luacheck: no unused
+local w = require('Modulo:Wikilib')
+local gens = require('Modulo:Wikilib/gens')
 
 --[[
 
@@ -106,7 +104,7 @@ local variants = {
 }
 
 -- Table per i giochi che hanno gli sprite in .gif
-local gifs = {'cr', 'sme', 'xy', 'roza', 'sl', 'usul'}
+local gifs = {'cr', 'sme', 'xy', 'roza', 'sl', 'usul', 'lgpe'}
 
 -- Table per le dimensioni degli sprite
 local sizes = {

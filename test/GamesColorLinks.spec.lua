@@ -53,6 +53,7 @@ local testSuite = function(games, colors)
     print('----------------')
 end
 
+
 -- 'e' in last link test cases
 
 local eGames = {'RZ', 'S', 'ROZA'}
@@ -72,6 +73,7 @@ testSuite(table.copy(eGames), {'zaffiro', 'dark'})
 -- Named color shadeless test cases
 
 testSuite(table.copy(eGames), {'zaffiro'})
+
 
 -- 'e' as last seaprator test cases
 
@@ -93,6 +95,7 @@ testSuite(table.copy(commaGames), {'zaffiro', 'dark'})
 
 testSuite(table.copy(commaGames), {'zaffiro'})
 
+
 -- Single link with two games test cases
 
 local singlePairGame = {'RZ'}
@@ -113,6 +116,7 @@ testSuite(table.copy(singlePairGame), {'zaffiro', 'dark'})
 
 testSuite(table.copy(singlePairGame), {'zaffiro'})
 
+
 -- Single link with one game test cases
 
 local singleGame = {'S'}
@@ -132,3 +136,47 @@ testSuite(table.copy(singleGame), {'zaffiro', 'dark'})
 -- Named color shadeless test cases
 
 testSuite(table.copy(singleGame), {'zaffiro'})
+
+
+-- LGPE tests (comma in game's name)
+
+local lgpe = {'LGPE'}
+
+-- Colorless test cases
+
+testSuite(table.copy(lgpe), {})
+
+-- Hexadecimal color test cases
+
+testSuite(table.copy(lgpe), {'7722AA'})
+
+-- Named color test cases
+
+testSuite(table.copy(lgpe), {'zaffiro', 'dark'})
+
+-- Named color shadeless test cases
+
+testSuite(table.copy(lgpe), {'zaffiro'})
+
+
+
+
+-- LGE tests (comma in game's name)
+
+local lge = {'LGE'}
+
+-- Colorless test cases
+
+testSuite(table.copy(lge), {})
+
+-- Hexadecimal color test cases
+
+testSuite(table.copy(lge), {'7722AA'})
+
+-- Named color test cases
+
+testSuite(table.copy(lge), {'zaffiro', 'dark'})
+
+-- Named color shadeless test cases
+
+testSuite(table.copy(lge), {'zaffiro'})
