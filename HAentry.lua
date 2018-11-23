@@ -43,7 +43,7 @@ m.haentry = function(frame)
 		'|-\n|',
 		poke.ndex,
 		"\n|",
-		ms.staticLua(ndex),
+		ms.staticLua(type(ndex) == 'number' and string.tf(ndex) or ndex),
 		"\n|",
 		"[[",
 		poke.name,
