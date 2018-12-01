@@ -3,18 +3,18 @@ local header = require('Movelist-hf')
 local entry = require('Movelist-entry')
 
 
-print(header.Levelh{args={'Elettro', '4'}})
+print(header.Levelh{args={'Elettro', '1'}})
 print(render.entry{args={'Movelist-entry.Level',
-"[[€4|025Co|26|22|20|B2W2=10|12|USUM=40|STAB='''|useless=yes£]]",
-"[[€4|361|26|22|20|9000|STAB='''£]]",
-"[[€4|598|26|22|20|213|STAB='''£]]",
-"[[€4|377|50|49|48|no£]]",
-"[[€4|376|50|49|48|2£]]",
-"[[€4|398|50|49|48|no£]]",
-"[[€4|720L|50|49|48|no£]]",
-"[[€4|720|50|49|48|no£]]",}})
+"[[€1|025Co|no|no|no|26|22|20|B2W2=10|12|USUM=40|STAB='''|useless=yes£]]",
+"[[€1|361|no|no|no|26|22|20|9000|STAB='''£]]",
+"[[€1|598|no|no|no|26|22|20|213|STAB='''£]]",
+"[[€1|377|no|no|no|50|49|48|no£]]",
+"[[€1|376|1|Y=2|3|C=4|no|50|49|48|2|LGPE=123£]]",
+"[[€1|398|no|no|no|50|49|48|no£]]",
+"[[€1|065|no|no|no|50|49|48|no£]]",
+"[[€1|720L|no|no|no|50|49|48|no£]]",
+"[[€1|720|no|no|no|50|49|48|no£]]",}})
 print(header.levelf{args={'Elettro'}})
-
 
 
 print(header.Breedh{args = {'Ghiaccio', '3'}})
@@ -28,12 +28,12 @@ print(header.footer{args={'Ghiaccio'}})
 print(header.TMh{args = {'Ghiaccio', '1', 'MT13', 'no', 'MT13', 'MT13', 'MT13', 'MT13', 'MT13'}})
 print(render.entry{args={'Movelist-entry.TM',
 "[[€1|116|yes|no|yes|yes|yes|yes|yes£]]",
-"[[€1|117|yes|no|yes|yes|yes|yes£]]",
-"[[€1|199|no|no|yes|yes|yes|yes£]]",
-"[[€1|359|no|no|yes|yes|yes|yes£]]",
-"[[€1|368|no|no|yes|yes|yes|yes£]]",
-"[[€1|478|no|no|no|yes|yes|yes|STAB='''£]]",
-"[[€1|713|no|no|no|no|no|yes|yes|STAB='''£]]"}})
+"[[€1|117|yes|no|yes|yes|yes|yes|yes£]]",
+"[[€1|199|no|no|yes|yes|yes|yes|yes£]]",
+"[[€1|359|no|no|yes|yes|yes|yes|yes£]]",
+"[[€1|368|no|no|yes|yes|yes|yes|yes£]]",
+"[[€1|478|no|no|no|yes|yes|yes|yes|STAB='''£]]",
+"[[€1|713|no|no|no|no|no|yes|yes|yes|STAB='''£]]"}})
 print(header.footer{args={'Ghiaccio'}})
 
 
