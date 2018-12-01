@@ -1,4 +1,4 @@
--- Entries for i movelist
+-- Entries for movelists
 
 local m = {}
 
@@ -7,22 +7,17 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')          -- luacheck: no unused
 local tab = require('Wikilib-tables')           -- luacheck: no unused
 local forms = require('Wikilib-forms')
+local w = require('Wikilib')
 local multigen = require('Wikilib-multigen')
 local lib = require('Wikilib-learnlists')
-
+local libdata = require("Wikilib-data")
 local css = require('Css')
 local links = require('Links')
+local ms = require('MiniSprite')
+local resp = require('Resp')
 local blackabbr = require("Blackabbrev-data")
 local gendata = require("Gens-data")
 local pokes = require("Poké-data")
-
-
-local abbrLib = require('Wikilib-sigle')
-local libdata = require("Wikilib-data")
-local w = require('Wikilib')
-local c = require("Colore-data")
-local ms = require('MiniSprite')
-local resp = require('Resp')
 local groups = require("PokéEggGroup-data")
 local useless = require("UselessForms-data")
 
@@ -75,7 +70,7 @@ entry.strings = {
 entry.tutorCellsColors = {
 	'cristallo', 'rossofuoco', 'smeraldo', 'xd', 'diamante', 'platino',
 	'heartgold', 'nero', 'nero2', 'x', 'rubinoomega', 'sole', 'ultrasole',
-	'lg_pikachu'
+	'lgpikachu'
 }
 --[[
 
@@ -400,7 +395,6 @@ entry.head = function(ndex, stab, notes, form, allForms, isUseless)
 	name = pokedata.name,
 	notes = lib.makeNotes(notes or ''),
 	forml = forml,
-	std = c[pokedata.group1 .. '_uova'].normale,
 	types = resp.twoTypeBoxesLua(pokedata.type1, pokedata.type2, {'tiny'},
         nil, {'vert-center'}),
 	groups = resp.twoEggBoxesLua(pokedata.group1, pokedata.group2, {'tiny'},

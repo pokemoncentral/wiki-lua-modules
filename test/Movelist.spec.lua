@@ -42,14 +42,14 @@ print(header.tutorh{args = {'drago', '8'}})
 print(header.tutor4{args = {'yes', 'yes', 'yes'}})
 print(header.tutor5{args = {'yes', 'yes'}})
 print(header.tutor6{args = {'yes', 'yes'}})
-print(header.tutor7{args = {'yes', 'yes'}})
+print(header.tutor7{args = {'yes', 'yes', 'yes'}})
 print(render.entry{args={'Movelist-entry.tutor',
-"[[€148|X|X|X|X|yes|yes|yes|yes|yes|yes|yes|no|no|STAB='''£]]",
-"[[€487|X|X|X|X|no|yes|yes|yes|yes|yes|yes|yes|no|STAB='''|form=originale£]]",
-"[[€646|X|X|X|X|no|no|no|no|yes|yes|yes|yes|no|STAB='''|form=nero£]]",
-"[[€715|X|X|X|X|no|no|no|no|no|yes|yes|no|no|STAB='''£]]",
-"[[€718|X|X|X|X|no|no|no|no|no|yes|yes|yes|yes|STAB='''£]]",
-"[[€284|X|X|X|X|no|no|no|no|no|no|yes|yes|no£]]",}})
+"[[€148|X|X|X|X|yes|yes|yes|yes|yes|yes|yes|no|no|yes|STAB='''£]]",
+"[[€487|X|X|X|X|no|yes|yes|yes|yes|yes|yes|yes|no|yes|STAB='''|form=originale£]]",
+"[[€646|X|X|X|X|no|no|no|no|yes|yes|yes|yes|no|no|STAB='''|form=nero£]]",
+"[[€715|X|X|X|X|no|no|no|no|no|yes|yes|no|no|yes|STAB='''£]]",
+"[[€718|X|X|X|X|no|no|no|no|no|yes|yes|yes|yes|yes|STAB='''£]]",
+"[[€284|X|X|X|X|no|no|no|no|no|no|yes|yes|no|no£]]",}})
 print(header.footer{args={'drago'}})
 
 
