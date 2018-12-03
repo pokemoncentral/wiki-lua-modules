@@ -333,10 +333,12 @@ entry.tail = function(kind, args)
 	end
 	local cells = table.map(dataSource, function(v, k)
 		-- Simply applies the right function, depending on kind
-		return entry.valueMapper[kind](v, args, entry.printValue[kind], k)
+		return entry.valueMapper[kind](v, args, entry.printValue[kind], k) .. "\n"
 	end)
 
-	return table.concat(cells, "\n")
+	return table.concat(table.filter(cells, function(v)
+		return string.trim(v) ~= ""
+	end, "\n"))
 end
 
 --[[
