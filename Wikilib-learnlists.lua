@@ -13,6 +13,10 @@ local abbr = require("Sigle-data")
 local s = require("Sup-data")
 local abbrLib = require('Wikilib-sigle')
 local links = require('Links')
+local pokes = require("Poké-data")
+local moves = require("Move-data")
+local forms = require('Wikilib-forms')
+local multigen = require('Wikilib-multigen')
 
 -- local trimOnly = {'x v zA'}
 
@@ -416,6 +420,29 @@ lib.entrynull = function(entry, cs)
 		ending = entryNullEnd[entry],
 		cs = cs
 	})
+end
+
+--[[
+
+Computes the STAB value given the ndex and move name. If ndex or movename
+doesn't matches an entry of the respective module, an empty string is returned.
+Arguments:
+	- ndex
+	- movename
+	- form (optional): abbr or extended form name
+
+--]]
+lib.computeSTAB = function(ndex, movename, form)
+	local abbr = forms.getabbr(ndex, form)
+	local pokedata = multigen.getGen(pokes[forms.nameToDataindex(ndex:match('^(%d+)') .. forms.toEmptyAbbr(abbr))])
+	local movedata = moves[movename:lower()]
+	if not pokedata or not movedata or movedata.power == '&mdash;' then
+		return ""
+	elseif (movedata.type == pokedata.type1 or movedata.type == pokedata.type2) then
+		return "'''"
+	else -- Add the branch to use Evo-data and compute ''
+		return ""
+	end
 end
 
 return lib

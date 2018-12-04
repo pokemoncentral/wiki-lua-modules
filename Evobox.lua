@@ -564,7 +564,7 @@ eb.Evobox = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
     p = eb.processInput.processTable(table.map(p, eb.processInput.processElement))
 
-    local pagename = string.fl(p[1] or mw.title.getCurrentTitle())
+    local pagename = string.fl(p[1] or mw.title.getCurrentTitle().text)
     p[1] = nil
     p.family = p.family or 'nessuna'
     local pagepoke = pokes[form.nameToDataindex(pagename)]
@@ -728,7 +728,7 @@ Parameters are named because of their number:
 eb.Formbox = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
 
-    local pagename = string.fl(p[1] or mw.title.getCurrentTitle())
+    local pagename = string.fl(p[1] or mw.title.getCurrentTitle().text)
     p[1] = nil
     p.family = p.family or 'nessuna'
     local pagepoke = pokes[form.nameToDataindex(pagename)]

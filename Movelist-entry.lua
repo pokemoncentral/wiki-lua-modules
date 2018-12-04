@@ -369,6 +369,9 @@ entry.head = function(ndex, stab, notes, form, allForms, isUseless)
 		multigen.getGen(pokedata),
 		table.copy(groups[pokedata.ndex] or {group1 = 'sconosciuto'})
 	)
+	stab = stab == ""
+			and lib.computeSTAB(ndex, mw.title.getCurrentTitle().text, form)
+			or stab
 	pokedata.group1show = pokedata.group1 == 'coleottero'
 							and 'Coleot'
 							or (pokedata.group1 == 'non ancora scoperto'
