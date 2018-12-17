@@ -3,7 +3,7 @@
 local evobox = require('Evobox')
 
 -- ============================= Evobox with parameters ========================
-if true then
+if false then
 	-- Something normal first
 	print(evobox.Evobox{args={
 	'Bulbasaur',
@@ -348,45 +348,45 @@ if false then
 end
 
 -- ============================= Evobox2 (automatic) ========================
-if false then
+if true then
 	-- Standard
-	print(evobox.Evobox2{args={'Staraptor'}})
+	-- print(evobox.Evobox2{args={'Staraptor'}})
 	-- No evos
-	print(evobox.Evobox2{args={'Giratina'}})
+	-- print(evobox.Evobox2{args={'Giratina'}})
 	-- With notes
-	print(evobox.Evobox2{args={'Frillish'}})
+	-- print(evobox.Evobox2{args={'Frillish'}})
 	-- Trade
 	print(evobox.Evobox2{args={'Abra'}})
 	-- Happiness
 	print(evobox.Evobox2{args={'Golbat'}})
 	-- Baby Pokémon, happiness
-	print(evobox.Evobox2{args={'Lucario'}})
+	-- print(evobox.Evobox2{args={'Lucario'}})
 	-- Incense, held, time, evostone
 	print(evobox.Evobox2{args={'Chansey'}})
 	-- Incense, move
-	print(evobox.Evobox2{args={'Sudowoodo'}})
+	-- print(evobox.Evobox2{args={'Sudowoodo'}})
 	-- Trade for a specific Pokémon
-	print(evobox.Evobox2{args={'Escavalier'}})
+	-- print(evobox.Evobox2{args={'Escavalier'}})
 	-- Held item, time
-	print(evobox.Evobox2{args={'Gliscor'}})
+	-- print(evobox.Evobox2{args={'Gliscor'}})
 	-- Location
 	print(evobox.Evobox2{args={'Magneton'}})
 	-- Branched evolution at second level, trade with item, evostone
 	print(evobox.Evobox2{args={'Poliwag'}})
 	-- Branched evolution at first level, evostone, gender
-	print(evobox.Evobox2{args={'Snorunt'}})
+	-- print(evobox.Evobox2{args={'Snorunt'}})
 	-- Wurmple, branched at phase one AND two
-	print(evobox.Evobox2{args={'Wurmple'}})
+	-- print(evobox.Evobox2{args={'Wurmple'}})
 	-- Baby, alternate form
-	print(evobox.Evobox2{args={'RaichuA'}})
+	-- print(evobox.Evobox2{args={'RaichuA'}})
 	-- Evoinfo, trim at higher level
 	print(evobox.Evobox2{args={'Sylveon'}})
 	-- More than 2 phase one
 	print(evobox.Evobox2{args={'Tyrogue'}})
 	-- Feebas
-	print(evobox.Evobox2{args={'Feebas'}})
+	-- print(evobox.Evobox2{args={'Feebas'}})
 	-- Nincada
-	print(evobox.Evobox2{args={'Nincada',}})
+	-- print(evobox.Evobox2{args={'Nincada'}})
 	-- Eevee
 	print(evobox.Evobox2{args={'Eevee'}})
 end

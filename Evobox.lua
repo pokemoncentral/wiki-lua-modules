@@ -53,13 +53,13 @@ eb.strings = {
 </div>]=],
 
     BOX_ARROW_INFOLESS = [=[${img}<div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
-    BOX_ARROW_UNRESPONSIVE = [=[${img}<div class="inline-block width-xl-100">${evodesc}${info}</div><div>${desktoparrow}</div>]=],
-    BOX_ARROW = [=[${img}<div class="inline-block width-xl-100">${evodesc}${info}</div><div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
+    BOX_ARROW_UNRESPONSIVE = [=[${img}<div class="inline-block width-xl-100 black-text">${evodesc}${info}</div><div>${desktoparrow}</div>]=],
+    BOX_ARROW = [=[${img}<div class="inline-block width-xl-100 black-text">${evodesc}${info}</div><div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
 
     SINGLE_ARROW = [=[<div style="margin: 1em 0.5em;">${boxarrow}</div>]=],
     DOUBLE_ARROW = [=[<div class="inline-block-md"><div class="flex-md flex-row flex-nowrap flex-items-center" style="margin: 1em 0;"><div class="width-md-50" style="padding: 1em;">${boxarrow1}</div><div class="width-md-50" style="padding: 1em;">${boxarrow2}</div></div></div>]=],
 
-    SMALL_TEXT_NEWLINE = [=[<div class="small-text" >${text}</div>]=],
+    SMALL_TEXT_NEWLINE = [=[<div class="small-text">${text}</div>]=],
 }
 
 eb.strings.desktoparrows = {
@@ -144,7 +144,7 @@ module) as the only parameter returns the string to insert in the result.
 eb.boxArrow = { img = {}, desc = {} }
 eb.boxArrow.img.methods = {
     [evodata.methods.OTHER] = methodsFunctionGenerator(''),
-    [evodata.methods.LEVEL] = methodsFunctionGenerator(links.bag('Caramella Rara')),
+    [evodata.methods.LEVEL] = methodsFunctionGenerator(links.bag('Caramella rara')),
     [evodata.methods.HAPPINESS] = methodsFunctionGenerator(links.bag('Calmanella')),
     [evodata.methods.STONE] = methodsFunctionGenerator(links.bag('${param}')),
     [evodata.methods.TRADE] = methodsFunctionGenerator(links.bag('Blocco Amici')),
@@ -154,7 +154,7 @@ eb.boxArrow.img.conditions = {
     [evodata.conditions.OTHER] = nilConst,
     [evodata.conditions.TIME] = nilConst,
     [evodata.conditions.ITEM] = methodsFunctionGenerator(links.bag('${param}')),
-    [evodata.conditions.LOCATION] = methodsFunctionGenerator(links.bag('Mappa Città')),
+    [evodata.conditions.LOCATION] = methodsFunctionGenerator(links.bag('Mappa città')),
     [evodata.conditions.MOVE] = function(movename)
         -- Takes move name and gets move type for the MT image
         local movedata = moves[movename:lower()]
@@ -170,47 +170,31 @@ eb.boxArrow.desc.methods = {
     [evodata.methods.OTHER] = methodsFunctionGenerator('${param}'),
     [evodata.methods.LEVEL] = function(level)
         if not level then
-            return '[[Livello|<span style="color: #000;">Aumento di livello</span>]]'
+            return '[[Livello|Aumento di livello]]'
         end
-        return table.concat{
-            '[[Livello|<span style="color: #000;">Livello ',
-            level,
-            '</span>]]'
-        }
+        return table.concat{ '[[Livello|Livello ', level, ']]' }
     end,
-    [evodata.methods.HAPPINESS] = methodsFunctionGenerator('[[Felicità|<span style="color: #000;">Felicità</span>]]'),
+    [evodata.methods.HAPPINESS] = methodsFunctionGenerator('[[Felicità]]'),
     [evodata.methods.STONE] = methodsFunctionGenerator('${param}'),
-    [evodata.methods.TRADE] = methodsFunctionGenerator('[[Scambio|<span style="color: #000;">Scambio</span>]]'),
-    [evodata.methods.BREED] = methodsFunctionGenerator('[[Accoppiamento Pokémon|<span style="color: #000;">Accoppiamento</span>]]'),
+    [evodata.methods.TRADE] = methodsFunctionGenerator('[[Scambio]]'),
+    [evodata.methods.BREED] = methodsFunctionGenerator('[[Accoppiamento Pokémon|Accoppiamento]]'),
 }
 eb.boxArrow.desc.conditions = {
     [evodata.conditions.OTHER] = smallMethodsFunctionGenerator('${param}'),
     [evodata.conditions.TIME] = smallMethodsFunctionGenerator('(${param})'),
-    [evodata.conditions.ITEM] = smallMethodsFunctionGenerator('tenendo [[${param}|<span style="color: #000;">${param}</span>]]'),
-    [evodata.conditions.LOCATION] = smallMethodsFunctionGenerator('presso: [[${param}|<span style="color: #000;">${param}</span>]]'),
+    [evodata.conditions.ITEM] = smallMethodsFunctionGenerator('tenendo [[${param}]]'),
+    [evodata.conditions.LOCATION] = smallMethodsFunctionGenerator('presso: [[${param}]]'),
     [evodata.conditions.MOVE] = function(movename)
         -- Takes move name and get the real name from data module
         local movedata = moves[movename:lower()]
         return string.interp(eb.strings.SMALL_TEXT_NEWLINE, {
-            text = table.concat{
-                'avendo appreso [[',
-                movedata.name,
-                '|<span style="color: #000;">',
-                movedata.name,
-                '</span>]]'
-            }
+            text = table.concat{ 'avendo appreso [[', movedata.name, ']]' }
         })
     end,
     [evodata.conditions.GENDER] = smallMethodsFunctionGenerator('(${param})'),
     [evodata.conditions.TRADED_FOR] = function(ndex)
             local name = pokes[tonumber(ndex)].name
-            return table.concat{
-                'per [[',
-                name,
-                '|<span style="color: #000;">',
-                name,
-                '</span>]]'
-            }
+            return table.concat{ 'per [[', name, ']]' }
         end,
 }
 
