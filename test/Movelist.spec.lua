@@ -12,6 +12,7 @@ print(render.entry{args={'Movelist-entry.Level',
 "[[€1|376|1|Y=2|3|C=4|no|50|49|48|2|LGPE=123£]]",
 "[[€1|398|no|no|no|50|49|48|no£]]",
 "[[€1|065|no|no|no|50|49|48|no£]]",
+"[[€1|065M|no|no|no|50|49|48|no£]]",
 "[[€1|720L|no|no|no|50|49|48|no£]]",
 "[[€1|720|no|no|no|50|49|48|no£]]",}})
 print(header.levelf{args={'Elettro'}})

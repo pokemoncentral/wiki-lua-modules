@@ -10,17 +10,31 @@ local tab = require('Wikilib-tables') -- luacheck: no unused
 
 local mw = require('mw')
 
--- Crea i link alle forme alternative
+-- Creates link to alternative forms in list pointing to target instead of
+-- "Differenze di forma"
+local makeTargetedLink = function(linkstr, index, target, list)
+	linkstr = linkstr:gsub('Differenze di forma', target)
+	for _, poke in pairs(list) do
+		t[poke][index] = table.map(t[poke].names, function(formName)
+			return formName == ''
+				   and ''
+				   or string.interp(linkstr, {
+					anchor = t[poke].anchor or string.fu(poke),
+					formName = formName
+			})
+		end)
+	end
+end
 
+-- Creates links to alternative forms
 local makeLinks = function(black)
 	local link = black
-			and '<div class="small-text">[[Differenze di forma#${anchor}|<span style="color:#000">${formName}</span>]]</div>'
+			and '<div class="small-text black-text">[[Differenze di forma#${anchor}|${formName}]]</div>'
 			or '<div class="small-text">[[Differenze di forma#${anchor}|${formName}]]</div>'
 	local index = black and 'blacklinks' or 'links'
 
 	-- Si eliminano le table di supporto e i
 	-- Pokémon che non hanno i link standard
-
 	local stdLinks = table.filter(t, function(_, key)
 		return
 				not table.search({'mega', 'megaxy',
@@ -36,7 +50,6 @@ local makeLinks = function(black)
 	end)
 
 	-- Links standard
-
 	for name, poke in pairs(stdLinks) do
 		poke[index] = table.map(poke.names, function(formName)
 			return formName == ''
@@ -48,38 +61,10 @@ local makeLinks = function(black)
 		end)
 	end
 
-	-- Link vuoti: mega, megaxy e archeo
-
-	for _, poke in pairs(t.mega) do
-		t[poke][index] = table.map(t[poke].names, function()
-				return ''
-		end)
-	end
-	for _, poke in pairs(t.megaxy) do
-		t[poke][index] = table.map(t[poke].names, function()
-				return ''
-		end)
-	end
-	for _, poke in pairs(t.archeo) do
-		t[poke][index] = table.map(t[poke].names, function()
-				return ''
-		end)
-	end
-
-	-- Link alle forme di alola, che puntano ad una
-	-- pagina apposita e non "Differenze di forma"
-
-	link = link:gsub('Differenze di forma', 'Forma di Alola')
-	for _, poke in pairs(t.alola) do
-		t[poke][index] = table.map(t[poke].names, function(formName)
-			return formName == ''
-				   and ''
-				   or string.interp(link, {
-					anchor = t[poke].anchor or string.fu(poke),
-					formName = formName
-			})
-		end)
-	end
+	-- Link of forms with a dedicated page instead of "Differenze di forma"
+	makeTargetedLink(link, index, 'Megaevoluzione', table.merge(t.mega, t.megaxy))
+	makeTargetedLink(link, index, 'Archeorisveglio', t.archeo)
+	makeTargetedLink(link, index, 'Forma di Alola', t.alola)
 end
 
 --[[
@@ -193,18 +178,18 @@ t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = "Necrozma Ali dell'A
 for k, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}
-	t[v].names = {M = 'Mega' .. fu, base = fu}
+	t[v].names = {M = 'Mega' .. fu, base = ''}
 end
 for k, v in pairs(t.megaxy) do
 	local fu = string.fu(v)
 	t[v] = {}
 	t[v].names = {MX = table.concat{'Mega', fu, ' X'},
-		MY = table.concat{'Mega', fu, ' Y'}, base = fu}
+		MY = table.concat{'Mega', fu, ' Y'}, base = ''}
 end
 for k, v in pairs(t.archeo) do
 	local fu = string.fu(v)
 	t[v] = {}
-	t[v].names = {A = 'Archeo' .. fu, base = fu}
+	t[v].names = {A = 'Archeorisveglio', base = ''}
 end
 for k, v in pairs(t.alola) do
 	t[v] = {}
