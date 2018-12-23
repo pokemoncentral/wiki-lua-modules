@@ -6,8 +6,7 @@
 -- {{#invoke: colore|fuoco|light}}
 
 local c = {}
-local tab = require('Modulo:Wikilib/tables') -- luacheck: no unused
-local txt = require('Modulo:Wikilib/strings') -- luacheck: no unused
+local txt = require('Wikilib-strings') -- luacheck: no unused
 
 -- Questa è la funzione principale che viene chiamata da (quasi) tutte le altre.
 -- Restituisce il codice esadecimale giusto per la variante richiesta.
@@ -15,204 +14,297 @@ local txt = require('Modulo:Wikilib/strings') -- luacheck: no unused
 local function _colore(variante, normale, light, dark)
     variante = string.trim(variante:lower())
     local colors = {normale = normale, light = light,
-        dark = dark, med = normale}
-    return colors[variante] or 'Errore'
+		dark = dark, med = normale}
+	return colors[variante] or 'Errore'
 end
 
 -- Colori tipi
 
 c.acciaio = function(frame) return _colore(frame.args[1] or 'normale', 'AAAABB', 'DFDFE1', '74747B') end
+c.Acciaio = c.acciaio
 c.acqua = function(frame) return _colore(frame.args[1] or 'normale', '3399FF', '9FCEFF', '0D6AC8') end
+c.Acqua = c.acqua
 c.buio = function(frame) return _colore(frame.args[1] or 'normale', '775544', 'BDA396', '442C21') end
+c.Buio = c.buio
 c.coleottero = function(frame) return _colore(frame.args[1] or 'normale', 'AABB22', 'DAEC44', '849400') end
-c.coleot = c.coleottero
+c.Coleottero, c.coleot, c.Coleot = c.coleottero, c.coleottero, c.coleottero
 c.drago = function(frame) return _colore(frame.args[1] or 'normale', '7766EE', 'A194FF', '31229D') end
+c.Drago = c.drago
 c.elettro = function(frame) return _colore(frame.args[1] or 'normale', 'FFCC33', 'FFEEBC', 'BD8E00') end
+c.Elettro = c.elettro
 c.erba = function(frame) return _colore(frame.args[1] or 'normale', '77CC55', 'BDFFA3', '299100') end
+c.Erba = c.erba
 c.folletto = function(frame) return _colore(frame.args[1] or 'normale', 'FFAAFF', 'FFDDFF', 'EC67EA') end
+c.Folletto = c.folletto
 c.fuoco = function(frame) return _colore(frame.args[1] or 'normale', 'FF4422', 'FF927D', 'BA1F00') end
+c.Fuoco = c.fuoco
 c.ghiaccio = function(frame) return _colore(frame.args[1] or 'normale', '77DDFF', 'DBF6FF', '13A8D9') end
+c.Ghiaccio = c.ghiaccio
 c.lotta = function(frame) return _colore(frame.args[1] or 'normale', 'BB5544', 'EA9A8D', '912E1E') end
+c.Lotta = c.lotta
 c.normale = function(frame) return _colore(frame.args[1] or 'normale', 'BBBBAA', 'E7E7D8', '8A8A7B') end
+c.Normale = c.normale
 c.ombra = function(frame) return _colore(frame.args[1] or 'normale', '604E82', '8674A8', '3E3355') end
+c.Ombra = c.ombra
 c.psico = function(frame) return _colore(frame.args[1] or 'normale', 'FF5599', 'FF9CC4', 'D00053') end
+c.Psico = c.psico
 c.roccia = function(frame) return _colore(frame.args[1] or 'normale', 'BBAA66', 'E1D08C', '88762C') end
+c.Roccia = c.roccia
 c.sconosciuto = function(frame) return _colore(frame.args[1] or 'normale', '68A090', '9DC1B7', '44685E') end
-c['???'] = c.sconosciuto
+c.Sconosciuto, c['???'] = c.sconosciuto, c.sconosciuto
 c.spettro = function(frame) return _colore(frame.args[1] or 'normale', '6666BB', '9F9FEC', '42428E') end
+c.Spettro = c.spettro
 c.terra = function(frame) return _colore(frame.args[1] or 'normale', 'DDBB55', 'F1DDA0', 'B59226') end
+c.Terra = c.terra
 c.veleno = function(frame) return _colore(frame.args[1] or 'normale', 'AA5599', 'C689BA', '792F6A') end
+c.Veleno = c.veleno
 c.volante = function(frame) return _colore(frame.args[1] or 'normale', '6699FF', '9CBDFF', '3678FF') end
+c.Volante = c.volante
 
 -- Alias glitch
 -- Aliases with the underscore are needed because of module css
 
 c.Glitch, c.glitch = c.sconosciuto, c.sconosciuto
 c.IIIItoto, c.iiiitoto, c.Uccello, c.uccello =
-    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c['6!2?2 A'], c['6!2?2 a'], c['x v zA'], c['x v za'] =
-    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c['6!2?2_A'], c['6!2?2_a'], c['x_v_zA'], c['x_v_za'] =
-    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c.L, c.l, c.B, c.b = c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c[',K Pk(nome del giocatore)xX'], c[',k pk(nome del giocatore)xx'] =
-    c.sconosciuto, c.sconosciuto
+	c.sconosciuto, c.sconosciuto
 c[',K_Pk(nome_del_giocatore)xX'], c[',k_pk(nome_del_giocatore)xx'] =
-    c.sconosciuto, c.sconosciuto
+	c.sconosciuto, c.sconosciuto
 c['Allen. Jr ♀'], c['allen. jr ♀'], c['Allen._Jr_♀'], c['allen._jr_♀'] =
-    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c['Normale (glitch)'], c['normale (glitch)'], c['Normale_(glitch)'], c['normale_(glitch)'] =
-    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c["Pokémaniaco"], c['pokémaniaco'] = c.sconosciuto, c.sconosciuto
 c["'l) m) ZM"], c["'l) m) zm"], c["'l)_m)_ZM"], c["'l)_m)_zm"] =
-    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c["(Classe dell'ultimo allenatore affrontato)"] =
-    c.sconosciuto
+	c.sconosciuto
 c["(Classe_dell'ultimo_allenatore_affrontato)"] =
-    c.sconosciuto
+	c.sconosciuto
 c["(classe dell'ultimo allenatore affrontato)"] =
-    c.sconosciuto
+	c.sconosciuto
 c["(classe_dell'ultimo_allenatore_affrontato)"] =
-    c.sconosciuto
+	c.sconosciuto
 c['Qi JT(nome del giocatore)? POké BB(nome del Pokémon) de W N'] =
-    c.sconosciuto
+	c.sconosciuto
 c['Qi_JT(nome_del_giocatore)?_POké_BB(nome_del_Pokémon)_de_W_N'] =
-    c.sconosciuto
+	c.sconosciuto
 c['qi jt(nome del giocatore)? poké bb(nome del pokémon) de w n'] =
-    c.sconosciuto
+	c.sconosciuto
 c['qi_jt(nome_del_giocatore)?_poké_bb(nome_del_pokémon)_de_w_n'] =
-    c.sconosciuto
+	c.sconosciuto
 c['Poké BB'], c['poké bb'], c['Poké_BB'], c['poké_bb'] =
-    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c['8 8 9 5'], c['8_8_9_5'], c['999'], c['?'] =
-    c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
+	c.sconosciuto, c.sconosciuto, c.sconosciuto, c.sconosciuto
 c['66848.04'], c["' ♀ ♀ ' 2222 37572"], c["'_♀_♀_'_2222_37572"] =
-    c.sconosciuto, c.sconosciuto, c.sconosciuto
+	c.sconosciuto, c.sconosciuto, c.sconosciuto
 
 -- Colori attacchi
 
-c.fisico = function(frame) return _colore(frame.args[1] or 'normale', 'C92112', 'D96358', '82150B') end
-c.fisico_text = function(frame) return 'F67A1A' end
-c.speciale = function(frame) return _colore(frame.args[1] or 'normale', '4F5870', '83899A', '333948') end
-c.speciale_text = function(frame) return 'FFFFFF' end
-c.stato = function(frame) return _colore(frame.args[1] or 'normale', '8C888C', 'AEABAE', '5B585B') end
-c.stato_text = function(frame) return 'F7F7F7' end
+c.Fisico = function(frame) return _colore(frame.args[1] or 'normale', 'C92112', 'D96358', '82150B') end
+c.fisico = c.Fisico
+c.Speciale = function(frame) return _colore(frame.args[1] or 'normale', '4F5870', '83899A', '333948') end
+c.speciale = c.Speciale
+c.Stato = function(frame) return _colore(frame.args[1] or 'normale', '8C888C', 'AEABAE', '5B585B') end
+c.stato = c.Stato
+c.Fisico_text = function(frame) return 'F67A1A' end
+c.fisico_text = c.Fisico_text
+c.Speciale_text = function(frame) return 'FFFFFF' end
+c.speciale_text = c.Speciale_text
+c.Stato_text = function(frame) return 'F7F7F7' end
+c.stato_text = c.Stato_text
 
 -- Colori versioni
 
-c.verde = function(frame) return _colore(frame.args[1] or 'normale', '11BB11', 'A7DB8D', '0B7A0B') end
-c.rosso = function(frame) return _colore(frame.args[1] or 'normale', 'FF1111', 'FF7777', 'A60B0B') end
-c.blu = function(frame) return _colore(frame.args[1] or 'normale', '1111FF', '7777FF', '0B0BA6') end
-c.giallo = function(frame) return _colore(frame.args[1] or 'normale', 'FFD733', 'FFE57A', 'A68C21') end
-c.oro = function(frame) return _colore(frame.args[1] or 'normale', 'DAA520', 'E7C46E', '8E6B15') end
 c.argento = function(frame) return _colore(frame.args[1] or 'normale', 'C0C0C0', 'D6D6D6', '7D7D7D') end
-c.cristallo = function(frame) return _colore(frame.args[1] or 'normale', '4FD9FF', '8CE6FF', '338DA6') end
-c.rubino = function(frame) return _colore(frame.args[1] or 'normale', 'A00000', 'D42E2E', '680000') end
-c.zaffiro = function(frame) return _colore(frame.args[1] or 'normale', '0000A0', '5959C1', '000068') end
-c.rosso_fuoco = function(frame) return _colore(frame.args[1] or 'normale', 'FF7327', 'FFA472', 'A64B19') end
-c.rosso_Fuoco = c.rosso_fuoco
-c.verde_foglia = function(frame) return _colore(frame.args[1] or 'normale', '00DD00', '59E959', '015701') end
-c.verde_Foglia = c.verde_foglia
-c.smeraldo = function(frame) return _colore(frame.args[1] or 'normale', '00A000', '2ED42E', '006800') end
-c.diamante = function(frame) return _colore(frame.args[1] or 'normale', 'AAAAFF', 'CCCCFF', '6F6FA6') end
-c.perla = function(frame) return _colore(frame.args[1] or 'normale', 'FFAAAA', 'FFC8C8', 'A66F6F') end
-c.platino = function(frame) return _colore(frame.args[1] or 'normale', '999999', 'BDBDBD', '646464') end
-c.heartgold = function(frame) return _colore(frame.args[1] or 'normale', 'B69E00', 'CEB654', '766700') end
-c.heartGold = c.heartgold
+c.Argento = c.argento
 c.soulsilver = function(frame) return _colore(frame.args[1] or 'normale', 'C0C0E1', 'D6D6EB', '7D7D92') end
-c.soulSilver = c.soulsilver
-c.nero = function(frame) return _colore(frame.args[1] or 'normale', '444444', '858585', '2C2C2C') end
-c.bianco = function(frame) return _colore(frame.args[1] or 'normale', 'C3C3C3', 'D8D8D8', '7F7F7F') end
-c.nero_2 = function(frame) return _colore(frame.args[1] or 'normale', '424B50', '848A8D', '2B3134') end
-c.bianco_2 = function(frame) return _colore(frame.args[1] or 'normale', 'E3CED0', 'EDDFE0', '948687') end
-c.x = function(frame) return _colore(frame.args[1] or 'normale', '025DA6', '5A96C5', '013D6C') end
-c.y = function(frame) return _colore(frame.args[1] or 'normale', 'EA1A3E', 'F16A81', '981128') end
-c.rubino_omega = function(frame) return _colore(frame.args[1] or 'normale', 'AB2813', 'C87365', '6F1A0C') end
-c.rubino_Omega = c.rubino_omega
-c.zaffiro_alpha = function(frame) return _colore(frame.args[1] or 'normale', '26649C', '729ABF', '194166') end
-c.zaffiro_Alpha = c.zaffiro_alpha
-c.sole = function(frame) return _colore(frame.args[1] or 'normale', 'F2952D', 'FFC587', 'A45500') end
-c.luna = function(frame) return _colore(frame.args[1] or 'normale', '5599C8', '9ACFF4', '155785') end
-c.ultrasole = function(frame) return _colore(frame.args[1] or 'normale', 'EE7936', 'FFB58C', 'B54000') end
-c.ultraluna = function(frame) return _colore(frame.args[1] or 'normale', '884799', 'AF8DB7', '440E52') end
-c.lgp = function(frame) return _colore(frame.args[1] or 'normale', 'FFCF11', 'FFF4C3', 'D09E2A') end
-c.LG_Pikachu, c.LG_pikachu, c.LGP, c.lgpikachu, c["Let's Go, Pikachu!"] = c.lgp, c.lgp, c.lgp, c.lgp, c.lgp
-c.lge = function(frame) return _colore(frame.args[1] or 'normale', 'C47E39', 'F9C876', '6A3F31') end
-c.LG_Eevee, c.LG_eevee, c.LGE, c.lgeevee, c["Let's Go, Eevee!"] = c.lge, c.lge, c.lge, c.lge, c.lge
-c.colo = function(frame) return _colore(frame.args[1] or 'normale', 'B6CAE4', 'CFDCED', '768394') end
-c.colosseum = c.colo
-c.xd = function(frame) return _colore(frame.args[1] or 'normale', '604E82', '8674A8', '3E3355') end
-c.XD = c.xd
+c.Soulsilver, c.SoulSilver = c.soulsilver, c.soulsilver
 c.br = function(frame) return _colore(frame.args[1] or 'normale', 'DCA202', 'FFD461', '684D02') end
-c.battle_revolution = c.br
+c.Battle_revolution, c.battle_revolution, c.Battlerevolution, c.battlerevolution, c.Br, c.BR =
+    c.br, c.br, c.br, c.br, c.br, c.br
+c.bianco = function(frame) return _colore(frame.args[1] or 'normale', 'C3C3C3', 'D8D8D8', '7F7F7F') end
+c.Bianco = c.bianco
+c.bianco_2 = function(frame) return _colore(frame.args[1] or 'normale', 'E3CED0', 'EDDFE0', '948687') end
+c.Bianco_2, c.Bianco2, c.bianco2, c['bianco 2'], c['Bianco 2'] =
+    c.bianco_2, c.bianco_2, c.bianco_2, c.bianco_2, c.bianco_2
+c.blu = function(frame) return _colore(frame.args[1] or 'normale', '1111FF', '7777FF', '0B0BA6') end
+c.Blu = c.blu
+c.colo = function(frame) return _colore(frame.args[1] or 'normale', 'B6CAE4', 'CFDCED', '768394') end
+c.Colo, c.colosseum, c.Colosseum = c.colo, c.colo, c.colo
+c.cristallo = function(frame) return _colore(frame.args[1] or 'normale', '4FD9FF', '8CE6FF', '338DA6') end
+c.Cristallo = c.cristallo
+c.diamante = function(frame) return _colore(frame.args[1] or 'normale', 'AAAAFF', 'CCCCFF', '6F6FA6') end
+c.Diamante = c.diamante
+c.giallo = function(frame) return _colore(frame.args[1] or 'normale', 'FFD733', 'FFE57A', 'A68C21') end
+c.Giallo = c.giallo
 c.md = function(frame) return _colore(frame.args[1] or 'normale', 'D78144', 'DECAA9', '7C4B2D') end
-c.MD = c.md
-c.md_rosso = function(frame) return _colore(frame.args[1] or 'normale', 'C50C50', 'D85C8A', '840836') end
+c.Md, c.MD = c.md, c.md
 c.md_blu = function(frame) return _colore(frame.args[1] or 'normale', '095BAF', '5A91C9', '063D75') end
-c.md_tempo = function(frame) return _colore(frame.args[1] or 'normale', '2190C7', '6AB5D9', '166185') end
-c['md_oscurità'] = function(frame) return _colore(frame.args[1] or 'normale', 'C3141B', 'D76166', '830D12') end
+c.Md_blu, c.Mdblu, c.mdblu, c['md blu'], c['Md blu'] = c.md_blu, c.md_blu, c.md_blu, c.md_blu, c.md_blu
 c.md_cielo = function(frame) return _colore(frame.args[1] or 'normale', '7BB54F', 'A6CD89', '527935') end
+c.Md_cielo, c.Mdcielo, c.mdcielo, c['md cielo'], c['Md cielo'] =
+    c.md_cielo, c.md_cielo, c.md_cielo, c.md_cielo, c.md_cielo
+c.md_oscurita = function(frame) return _colore(frame.args[1] or 'normale', 'C3141B', 'D76166', '830D12') end
+c.Md_oscurita, c.Mdoscurita, c.mdoscurita, c['md oscurita'], c['Md oscurita'] =
+	c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita
+c['Md_oscurità'], c['Mdoscurità'], c['mdoscurità'], c['md oscurità'], c['Md oscurità'] =
+	c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita, c.md_oscurita
 c.md_portali = function(frame) return _colore(frame.args[1] or 'normale', '7D6A7A', 'AE9EAC', '4D3249') end
+c.Md_portali, c.mdportali, c.Mdportali, c['md portali'], c['Md portali'] =
+    c.md_portali, c.md_portali, c.md_portali, c.md_portali, c.md_portali
+c.md_rosso = function(frame) return _colore(frame.args[1] or 'normale', 'C50C50', 'D85C8A', '840836') end
+c.Md_rosso, c.Mdrosso, c.mdrosso, c['md rosso'], c['Md rosso'] =
+    c.md_rosso, c.md_rosso, c.md_rosso, c.md_rosso, c.md_rosso
+c.md_tempo = function(frame) return _colore(frame.args[1] or 'normale', '2190C7', '6AB5D9', '166185') end
+c.Md_tempo, c.Mdtempo, c.mdtempo, c['md tempo'], c['Md tempo'] =
+    c.md_tempo, c.md_tempo, c.md_tempo, c.md_tempo, c.md_tempo
 c.md_super = function(frame) return _colore(frame.args[1] or 'normale', 'A5A3D2', 'CCC9FF', '7471A6') end
-c.super_md = c.md_super
+c.Md_super, c.mdsuper, c.Mdsuper, c['md super'], c['Md super'] =
+    c.md_super, c.md_super, c.md_super, c.md_super, c.md_super
+c.super_md, c.Super_md, c.supermd, c.Supermd, c['super md'], c['Super md'] =
+    c.md_super, c.md_super, c.md_super, c.md_super, c.md_super, c.md_super
+c.nero = function(frame) return _colore(frame.args[1] or 'normale', '444444', '858585', '2C2C2C') end
+c.Nero = c.nero
+c.nero_2 = function(frame) return _colore(frame.args[1] or 'normale', '424B50', '848A8D', '2B3134') end
+c.Nero_2, c.Nero2, c.nero2, c['nero 2'], c['Nero 2'] = c.nero_2, c.nero_2, c.nero_2, c.nero_2, c.nero_2
+c.OsA = function(frame) return _colore(frame.args[1] or 'normale', '2D4B98', '768ABC', '1D3163') end
+c.osA, c.osa = c.OsA, c.OsA
+c.oro = function(frame) return _colore(frame.args[1] or 'normale', 'DAA520', 'E7C46E', '8E6B15') end
+c.Oro = c.oro
+c.heartgold = function(frame) return _colore(frame.args[1] or 'normale', 'B69E00', 'CEB654', '766700') end
+c.Heartgold, c.HeartGold = c.heartgold, c.heartgold
+c.perla = function(frame) return _colore(frame.args[1] or 'normale', 'FFAAAA', 'FFC8C8', 'A66F6F') end
+c.Perla = c.perla
+c.platino = function(frame) return _colore(frame.args[1] or 'normale', '999999', 'BDBDBD', '646464') end
+c.Platino = c.platino
+c['pokémon'] = function(frame) return _colore(frame.args[1] or 'normale', 'E5653C', 'E2947C', 'A62F19') end
+c['Pokémon'] = c['pokémon']
 c.ranger = function(frame) return _colore(frame.args[1] or 'normale', 'F7681A', 'FA9D6A', 'A14411') end
-c.osa = function(frame) return _colore(frame.args[1] or 'normale', '2D4B98', '768ABC', '1D3163') end
-c.osA = c.osa
-c.tl = function(frame) return _colore(frame.args[1] or 'normale', '2CB8E9', '76D1F1', '1D7898') end
-c.TL = c.tl
+c.Ranger = c.ranger
+c.rosso = function(frame) return _colore(frame.args[1] or 'normale', 'FF1111', 'FF7777', 'A60B0B') end
+c.Rosso = c.rosso
+c.rossofuoco = function(frame) return _colore(frame.args[1] or 'normale', 'FF7327', 'FFA472', 'A64B19') end
+c.Rossofuoco, c.RossoFuoco, c['Rosso Fuoco'] =
+c.rossofuoco, c.rossofuoco, c.rossofuoco
+c.rubino = function(frame) return _colore(frame.args[1] or 'normale', 'A00000', 'D42E2E', '680000') end
+c.Rubino = c.rubino
+c.rubinoomega = function(frame) return _colore(frame.args[1] or 'normale', 'AB2813', 'C87365', '6F1A0C') end
+c.Rubinoomega, c.RubinoOmega, c['Rubino Omega'] = c.rubinoomega, c.rubinoomega, c.rubinoomega
+c.smeraldo = function(frame) return _colore(frame.args[1] or 'normale', '00A000', '2ED42E', '006800') end
+c.Smeraldo = c.smeraldo
+c.TL = function(frame) return _colore(frame.args[1] or 'normale', '2CB8E9', '76D1F1', '1D7898') end
+c.Tl, c.tl = c.TL, c.TL
+c.verde = function(frame) return _colore(frame.args[1] or 'normale', '11BB11', 'A7DB8D', '0B7A0B') end
+c.Verde = c.verde
+c.verdefoglia = function(frame) return _colore(frame.args[1] or 'normale', '00DD00', '59E959', '015701') end
+c.Verdefoglia, c.VerdeFoglia, c['Verde Foglia'] =
+c.verdefoglia, c.verdefoglia, c.verdefoglia
+c.x = function(frame) return _colore(frame.args[1] or 'normale', '025DA6', '5A96C5', '013D6C') end
+c.X = c.x
+c.y = function(frame) return _colore(frame.args[1] or 'normale', 'EA1A3E', 'F16A81', '981128') end
+c.Y = c.y
+c.xd = function(frame) return _colore(frame.args[1] or 'normale', '604E82', '8674A8', '3E3355') end
+c.XD, c.Xd = c.xd, c.xd
+c.zaffiro = function(frame) return _colore(frame.args[1] or 'normale', '0000A0', '5959C1', '000068') end
+c.Zaffiro = c.zaffiro
+c.zaffiroalpha = function(frame) return _colore(frame.args[1] or 'normale', '26649C', '729ABF', '194166') end
+c.Zaffiroalpha, c.ZaffiroAplha, c['Zaffiro Alpha'] = c.zaffiroalpha, c.zaffiroalpha, c.zaffiroalpha
+c.sole = function(frame) return _colore(frame.args[1] or 'normale', 'F2952D', 'FFC587', 'A45500') end
+c.Sole = c.sole
+c.luna = function(frame) return _colore(frame.args[1] or 'normale', '5599C8', '9ACFF4', '155785') end
+c.Luna = c.luna
+c.ultrasole = function(frame) return _colore(frame.args[1] or 'normale', 'EE7936', 'FFB58C', 'B54000') end
+c.Ultrasole = c.ultrasole
+c.ultraluna = function(frame) return _colore(frame.args[1] or 'normale', '884799', 'AF8DB7', '440E52') end
+c.Ultraluna = c.ultraluna
+c.LG_pikachu = function(frame) return _colore(frame.args[1] or 'normale', 'ffcf11', 'fff4c3', 'd09e2a') end
+c['LG Pikachu'], c.LG_Pikachu, c.LGP = c.LG_pikachu, c.LG_pikachu, c.LG_pikachu
+c.lgp, c.lgpikachu, c["Let's Go, Pikachu!"] = c.LG_pikachu, c.LG_pikachu, c.LG_pikachu
+c.LG_eevee = function(frame) return _colore(frame.args[1] or 'normale', 'c47e39', 'f9c876', '6a3f31') end
+c['LG Eevee'], c.LG_Eevee, c.LGE = c.LG_eevee, c.LG_eevee, c.LG_eevee
+c.lge, c.lgeevee, c["Let's Go, Eevee!"] = c.LG_eevee, c.LG_eevee, c.LG_eevee
 c.conquest = function(frame) return _colore(frame.args[1] or 'normale', 'EC9722', 'F8DF9D', '945F13') end
+c.Conquest = c.conquest
 
 -- Colori regioni
 
 c.kanto = function(frame) return _colore(frame.args[1] or 'normale', 'FF3600', 'FFA48C', '6A0000') end
+c.Kanto = c.kanto
 c.johto = function(frame) return _colore(frame.args[1] or 'normale', 'FF7D00', 'FFC791', '9D4E00') end
+c.Johto = c.johto
 c.hoenn = function(frame) return _colore(frame.args[1] or 'normale', 'FFC300', 'FFF99A', 'BA8300') end
+c.Hoenn = c.hoenn
 c.sinnoh = function(frame) return _colore(frame.args[1] or 'normale', '00DB05', '96FF96', '008303') end
+c.Sinnoh = c.sinnoh
 c.unima = function(frame) return _colore(frame.args[1] or 'normale', '00A2FF', 'A3DDFF', '0057CD') end
-c.unova = c.unima
+c.Unima, c.unova, c.Unova = c.unima, c.unima, c.unima
 c.settipelago = function(frame) return _colore(frame.args[1] or 'normale', '52CC91', '8DEBBC', '2B915E') end
+c.Settipelago = c.settipelago
 c.auros = function(frame) return _colore(frame.args[1] or 'normale', '817548', 'ADA588', '544C2F') end
-c.orre = c.auros
+c.Auros, c.orre, c.Orre = c.auros, c.auros, c.auros
 c.kalos = function(frame) return _colore(frame.args[1] or 'normale', 'AE45FF', 'D49CFF', '5A009F') end
-c.kalos_centrale = function(frame) return _colore(frame.args[1] or 'normale', 'D1D1D1', 'EAEAEA', 'BBBBBB') end
-c.kalosce = c.kalos_centrale
-c.kalos_costiera = function(frame) return _colore(frame.args[1] or 'normale', '013D6C', '026FC4', '002847') end
-c.kalosco = c.kalos_costiera
-c.kalos_montana = function(frame) return _colore(frame.args[1] or 'normale', '981128', 'EA1A3E', '76071A') end
-c.kalosmo = c.kalos_montana
+c.Kalos = c.kalos
+c.kaloscentrale = function(frame) return _colore(frame.args[1] or 'normale', 'D1D1D1', 'EAEAEA', 'BBBBBB') end
+c.Kaloscentrale, c.Kalosce, c.kalosce = c.kaloscentrale, c.kaloscentrale, c.kaloscentrale
+c['kalos centrale'], c['Kalos centrale'], c.kalosCentrale = c.kaloscentrale, c.kaloscentrale, c.kaloscentrale
+c.kaloscostiera = function(frame) return _colore(frame.args[1] or 'normale', '013D6C', '026FC4', '002847') end
+c.Kaloscostiera, c.Kalosco, c.kalosco = c.kaloscostiera, c.kaloscostiera, c.kaloscostiera
+c['kalos costiera'], c['Kalos costiera'], c.kalosCostiera = c.kaloscostiera, c.kaloscostiera, c.kaloscostiera
+c.kalosmontana = function(frame) return _colore(frame.args[1] or 'normale', '981128', 'EA1A3E', '76071A') end
+c.Kalosmontana, c.Kalosmo, c.kalosmo = c.kalosmontana, c.kalosmontana, c.kalosmontana
+c['kalos montana'], c['Kalos montana'], c.kalosMontana = c.kalosmontana, c.kalosmontana, c.kalosmontana
 c.orange = function(frame) return _colore(frame.args[1] or 'normale', 'FF7F00', 'FFAC59', 'A65300') end
-c.alola = function(frame) return _colore(frame.args[1] or 'normale', 'EE82EE', 'FCCAFC', 'AC4BAB') end
-c.mele_mele = c.giallo
-c.mele_Mele = c.mele_mele
-c.akala = c.psico
-c.ula_ula = c.rosso
-c.ula_Ula = c.ula_ula
-c.poni = c.spettro
+c.Orange = c.orange
 c.cristalline = function(frame) return _colore(frame.args[1] or 'normale', 'FFB200', 'FFD36B', 'AE7E00') end
-c.decolora = c.cristalline
+c.Cristalline, c.decolora, c.Decolora = c.cristalline, c.cristalline, c.cristalline
+c.alola = function(frame) return _colore(frame.args[1] or 'normale', 'EE82EE', 'FCCAFC', 'AC4BAB') end
+c.Alola = c.alola
+c.melemele = c.giallo
+c.Melemele, c['mele mele'], c['Mele mele'], c['Mele Mele'] = c.melemele, c.melemele, c.melemele, c.melemele
+c.akala = c.psico
+c.Akala = c.akala
+c.ulaula = c.rosso
+c.Ulaula, c['ula ula'], c['Ula ula'], c['Ula Ula'] = c.ulaula, c.ulaula, c.ulaula, c.ulaula
+c.poni = c.spettro
+c.Poni = c.poni
 
 -- Colori statistiche
 
-c['abilità'] = function(frame) return _colore(frame.args[1] or 'normale', '317BEE', '83B4FF', '2052A4') end
-c['agilità'] = function(frame) return _colore(frame.args[1] or 'normale', '38BD62', '83EEA4', '188339') end
+c.abilita = function(frame) return _colore(frame.args[1] or 'normale', '317BEE', '83B4FF', '2052A4') end
+c.Abilita, c['Abilità'], c['abilità'] = c.abilita, c.abilita, c.abilita
+c.agilita = function(frame) return _colore(frame.args[1] or 'normale', '38BD62', '83EEA4', '188339') end
+c.Agilita, c['Agilità'], c['agilità'] = c.agilita, c.agilita, c.agilita
 c.attacco = function(frame) return _colore(frame.args[1] or 'normale', 'EACA2F', 'FFFBE6', 'B88C00') end
-c.atk = c.attacco
+c.Attacco, c.atk = c.attacco, c.attacco
 c.attacco_speciale = function(frame) return _colore(frame.args[1] or 'normale', '26BAE0', 'B2E3EF', '15687D') end
-c.spatk = c.attacco_speciale
+c.Attacco_speciale, c.spatk = c.attacco_speciale, c.attacco_speciale
+c['attacco speciale'], c['Attacco speciale'] = c.attacco_speciale, c.attacco_speciale
 c.difesa = function(frame) return _colore(frame.args[1] or 'normale', 'E5721D', 'FFC499', '8E3600') end
-c.def = c.difesa
+c.Difesa, c.def = c.difesa, c.difesa
 c.difesa_speciale = function(frame) return _colore(frame.args[1] or 'normale', '4C6CD4', '9EB5FF', '0A163D') end
-c.spdef = c.difesa_speciale
+c.Difesa_speciale, c.spdef = c.difesa_speciale, c.difesa_speciale
+c['difesa speciale'], c['Difesa speciale'] = c.difesa_speciale, c.difesa_speciale
 c.forza = function(frame) return _colore(frame.args[1] or 'normale', 'FF4131', 'FF9494', 'BD2018') end
-c.ps = function(frame) return _colore(frame.args[1] or 'normale', '58E810', 'E1FFD3', '2E7A08') end
-c.PS, c.hp = c.ps, c.ps
+c.Forza = c.forza
+c.PS = function(frame) return _colore(frame.args[1] or 'normale', '58E810', 'E1FFD3', '2E7A08') end
+c.Ps, c.ps, c.hp = c.PS, c.PS, c.PS
 c.resistenza = function(frame) return _colore(frame.args[1] or 'normale', 'EECD31', 'FFE683', 'C58308') end
+c.Resistenza = c.resistenza
 c.speciali = function(frame) return _colore(frame.args[1] or 'normale', '3ECDB4', 'A3FFEF', '179881') end
-c.spec = c.speciali
-c['velocità'] = function(frame) return _colore(frame.args[1] or 'normale', 'D425CE', 'EF8DEC', '380036') end
-c.spe = c['velocità']
+c.Speciali, c.spec = c.speciali, c.speciali
+c.velocita = function(frame) return _colore(frame.args[1] or 'normale', 'D425CE', 'EF8DEC', '380036') end
+c.Velocita, c.spe = c.velocita, c.velocita
+c['Velocità'], c['velocità'] = c.velocita, c.velocita
 c.thlon = function(frame) return _colore(frame.args[1] or 'normale', '90a8e0', 'B7C6EB', '5E6D92') end
-c['pokéAthlon'], c['pokéathlon'] = c.thlon, c.thlon
+c.Thlon, c['PokéAthlon'], c['pokéathlon'] = c.thlon, c.thlon, c.thlon
 
 -- Colori zone
 -- NB: La regex è {{colorezona/(.*?)|(.*?)}} --> {{#invoke: colore | zona_$2 | $1}}, con le variabili invertite.
@@ -287,22 +379,23 @@ c.zona_giallo, c.zona_Giallo = c.giallo, c.giallo
 c.zona_text = function(frame)
     local zone = string.trim(frame.args[1] or ''):lower()
     local colors = {palude = '573118', vulcano = 'FFBC00',
-        spazio = 'FFFFFF', distorsione = 'E0FAFF'}
-    colors.marsh = colors.palude
-    colors.volcano = colors.vulcano
-    colors.space, colors.shadow, colors.ombra =
-        colors.spazio, colors.spazio, colors.spazio
-    colors.distortion = colors.distorsione
-    return colors[zone] or '000000'
+		spazio = 'FFFFFF', distorsione = 'E0FAFF'}
+	colors.marsh = colors.palude
+	colors.volcano = colors.vulcano
+	colors.space, colors.shadow, colors.ombra =
+		colors.spazio, colors.spazio, colors.spazio
+	colors.distortion = colors.distorsione
+	return colors[zone] or '000000'
 end
+
 
 -- Colore pcwiki
 
 c.pcwiki = function(frame)
     local var = (string.trim(frame.args[1] or 'normale')):lower()
     local colors = {['medium light'] = 'B1D6FF',
-        ['medium dark'] = '5BA0FF'}
-    return colors[var] or _colore(var, '7CBAFF', 'D0E6FF', '0078FF')
+		['medium dark'] = '5BA0FF'}
+	return colors[var] or _colore(var, '7CBAFF', 'D0E6FF', '0078FF')
 end
 
 c.PCWiki, c.PCwiki = c.pcwiki, c.pcwiki
@@ -310,185 +403,230 @@ c.PCWiki, c.PCwiki = c.pcwiki, c.pcwiki
 -- Colori ore
 
 c.giorno = function(frame) return _colore(frame.args[1] or 'normale', '5ED0FF', '96E0FF', '4192B3') end
-c.giorno_text = function(frame) return '000000' end
+c.Giorno = c.giorno
 c.mattina = function(frame) return _colore(frame.args[1] or 'normale', 'FFFFAA', 'FFFFC8', 'B3B377') end
-c.mattina_text = function(frame) return '000000' end
+c.Mattina = c.mattina
 c.notte = function(frame) return _colore(frame.args[1] or 'normale', '003366', '597A9B', '002347') end
-c.notte_text = function(frame) return 'FFFF99' end
+c.Notte = c.notte
 c.sera = function(frame) return _colore(frame.args[1] or 'normale', 'FF8741', 'FEAD7E', 'AD3F00') end
+c.Sera = c.sera
+c.Giorno_text = function(frame) return '000000' end
+c.giorno_text = c.Giorno_text
+c.Mattina_text = function(frame) return '000000' end
+c.mattina_text = c.Mattina_text
+c.Notte_text = function(frame) return 'FFFF99' end
+c.notte_text = c.Notte_text
 c.sera_text = function(frame) return '000000' end
+c.Sera_text = c.Sera_text
 
 -- Colori stagioni
 
 c.autunno = function(frame) return _colore(frame.args[1] or 'normale', 'F89058', 'FAB189', 'AE653D') end
+c.Autunno = c.autunno
 c.inverno = function(frame) return _colore(frame.args[1] or 'normale', 'F0D8F8', 'F4E3FA', 'A897AE') end
+c.Inverno = c.inverno
 c.estate = function(frame) return _colore(frame.args[1] or 'normale', '78D0F8', 'A0DEFA', '5492AE') end
+c.Estate = c.estate
 c.primavera = function(frame) return _colore(frame.args[1] or 'normale', 'B0F858', 'C7FA89', '7BAE3D') end
+c.Primavera = c.primavera
 
 -- Colori gare
 
 c.acume = function(frame) return _colore(frame.args[1] or 'normale', '78C850', 'A7DB8D', '4E8234') end
-c.amaro = c.acume
+c.Acume, c.Amaro, c.amaro = c.acume, c.acume, c.acume
 c.bellezza = function(frame) return _colore(frame.args[1] or 'normale', '6890F0', '9DB7F5', '445E9C') end
-c.secco = c.bellezza
+c.Bellezza, c.Secco, c.secco = c.bellezza, c.bellezza, c.bellezza
 c.classe = function(frame) return _colore(frame.args[1] or 'normale', 'F08030', 'F5AC78', '9C531F') end
-c.pepato = c.classe
+c.Classe, c.Pepato, c.pepato = c.classe, c.classe, c.classe
 c.gara = function(frame) return _colore(frame.args[1] or 'normale', 'E090A8', 'EBB7C6', '925E6D') end
+c.Gara = c.gara
 c.grazia = function(frame) return _colore(frame.args[1] or 'normale', 'F85888', 'FA92B2', 'A13959') end
-c.dolce = c.grazia
+c.Grazia, c.Dolce, c.dolce = c.grazia, c.grazia, c.grazia
 c.grinta = function(frame) return _colore(frame.args[1] or 'normale', 'F8D030', 'FAE078', 'A1871F') end
-c.aspro = c.grinta
+c.Grinta, c.Aspro, c.aspro = c.grinta, c.grinta, c.grinta
 
 -- Colori gcc
 
 c.acqua_gcc = function(frame) return _colore(frame.args[1] or 'normale', '5BC7E5', '94DBEE', '3B8295') end
+c.Acqua_gcc, c['acqua gcc'], c['Acqua gcc'] = c.acqua_gcc, c.acqua_gcc, c.acqua_gcc
 c.lampo_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'FAB536', 'FCCE7C', 'A37523') end
+c.Lampo_gcc, c['lampo gcc'], c['Lampo gcc'] = c.lampo_gcc, c.lampo_gcc, c.lampo_gcc
 c.drago_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'C6A114', 'DAC266', '81690D') end
+c.Drago_gcc, c['drago gcc'], c['Drago gcc'] = c.drago_gcc, c.drago_gcc, c.drago_gcc
 c.erba_gcc = function(frame) return _colore(frame.args[1] or 'normale', '7DB808', 'AAD15E', '517805') end
+c.Erba_gcc, c['erba gcc'], c['Erba gcc'] = c.erba_gcc, c.erba_gcc, c.erba_gcc
 c.folletto_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'E03A83', 'EA7EAE', '912555') end
+c.Folletto_gcc, c['folletto gcc'], c['Folletto gcc'] =
+	c.folletto_gcc, c.folletto_gcc, c.folletto_gcc
 c.fuoco_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'E24242', 'EC8484', '932B2B') end
+c.Fuoco_gcc, c['fuoco gcc'], c['Fuoco gcc'] = c.fuoco_gcc, c.fuoco_gcc, c.fuoco_gcc
 c.incolore_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'E5D6D0', 'EEE4E0', '958B87') end
-c.arcobaleno_gcc = c.incolore_gcc
+c.Incolore_gcc, c['incolore gcc'], c['Incolore gcc'] =
+	c.incolore_gcc, c.incolore_gcc, c.incolore_gcc
+c.arcobaleno_gcc, c.Arcobaleno_gcc, c['arcobaleno gcc'], c['Arcobaleno gcc'] =
+	c.incolore_gcc, c.incolore_gcc, c.incolore_gcc, c.incolore_gcc
 c.metallo_gcc = function(frame) return _colore(frame.args[1] or 'normale', '8A776E', 'B3A6A1', '5A4D48') end
+c.Metallo_gcc, c['metallo gcc'], c['Metallo gcc'] = c.metallo_gcc, c.metallo_gcc, c.metallo_gcc
 c.oscurita_gcc = function(frame) return _colore(frame.args[1] or 'normale', '2C2E2B', '767775', '1D1E1C') end
-c['oscurità_gcc'] = c.oscurita_gcc
+c.Oscurita_gcc, c['oscurita gcc'], c['Oscurita gcc'] =
+	c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc
+c['oscurità_gcc'], c['Oscurità_gcc'], c['oscurità gcc'], c['Oscurità gcc'] =
+	c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc
 c.psiche_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'A65E9A', 'C596BD', '6C3D64') end
+c.Psiche_gcc, c['psiche gcc'], c['Psiche gcc'] =
+	c.psiche_gcc, c.psiche_gcc, c.psiche_gcc
 c.supporto_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'DC2222', 'E66363', '9A1717') end
-c.aiuto_gcc = c.supporto_gcc
+c.Supporto_gcc, c['supporto gcc'], c['Supporto gcc'] =
+	c.supporto_gcc, c.supporto_gcc, c.supporto_gcc
+c.aiuto_gcc, c.Aiuto_gcc, c['aiuto gcc'], c['Aiuto gcc'] =
+	c.supporto_gcc, c.supporto_gcc, c.supporto_gcc, c.supporto_gcc
 c.combattimento_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'FF501F', 'FF8D6D', 'A63414') end
+c.Combattimento_gcc, c['combattimento gcc'], c['Combattimento gcc'] =
+	c.combattimento_gcc, c.combattimento_gcc, c.combattimento_gcc
 c.allenatore_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'FFE955', 'FFFCE4', 'B3A33B') end
-c.trainer_gcc = c.allenatore_gcc
+c.Allenatore_gcc, c['allenatore gcc'], c['Allenatore gcc'] =
+	c.allenatore_gcc, c.allenatore_gcc, c.allenatore_gcc
+c.trainer_gcc, c.Trainer_gcc, c['trainer gcc'], c['Trainer gcc'] =
+	c.allenatore_gcc, c.allenatore_gcc, c.allenatore_gcc, c.allenatore_gcc
 c['pokébody_gcc'] = function(frame) return _colore(frame.args[1] or 'normale', '146837', '5A9572', '0E4926') end
-c['poké-body_gcc'] = c['pokébody_gcc']
+c['Pokébody_gcc'], c['pokébody gcc'], c['Pokébody gcc'] =
+	c['pokébody_gcc'], c['pokébody_gcc'], c['pokébody_gcc']
+c['poké-body_gcc'], c['Poké-body_gcc'], c['poké-body gcc'], c['Poké-body gcc'] =
+	c['pokébody_gcc'], c['pokébody_gcc'], c['pokébody_gcc'], c['pokébody_gcc']
 c['poképower_gcc'] = function(frame) return _colore(frame.args[1] or 'normale', '850921', 'A95263', '5D0617') end
-c['poké-power_gcc'] = c['poképower_gcc']
+c['Poképower_gcc'], c['poképower gcc'], c['Poképower gcc'] =
+	c['poképower_gcc'], c['poképower_gcc'], c['poképower_gcc']
+c['poké-power_gcc'], c['Poké-power_gcc'], c['poké-power gcc'], c['Poké-power gcc'] =
+	c['poképower_gcc'], c['poképower_gcc'], c['poképower_gcc'], c['poképower_gcc']
 c.abilita_gcc = function(frame) return _colore(frame.args[1] or 'normale', 'C84923', 'D87F64', '8C3318') end
-c['abilità_gcc'] = c.abilita_gcc
+c.Abilita_gcc, c['abilita gcc'], c['Abilita gcc'] =
+	c.abilita_gcc, c.abilita_gcc, c.abilita_gcc
+c['abilità_gcc'], c['Abilità_gcc'], c['abilità gcc'], c['Abilità gcc'] =
+	c.abilita_gcc, c.abilita_gcc, c.abilita_gcc, c.abilita_gcc
 c.strumento_gcc = function(frame) return _colore(frame.args[1] or 'normale', '7777EE', 'A6A6F4', '4D4D9B') end
+c.Strumento_gcc, c['strumento gcc'], c['Strumento gcc'] =
+	c.strumento_gcc, c.strumento_gcc, c.strumento_gcc
 c.stadio_gcc = function(frame) return _colore(frame.args[1] or 'normale', '90E183', 'B7EBAE', '5E9255') end
+c.Stadio_gcc, c['stadio gcc'], c['Stadio gcc'] =
+	c.stadio_gcc, c.stadio_gcc, c.stadio_gcc
 
 -- Colori Parco Lotta
 
 c.arena = function(frame) return _colore(frame.args[1] or 'normale', 'FFC115', 'FFD767', 'A67E0E') end
+c.Arena = c.arena
 c.azienda = function(frame) return _colore(frame.args[1] or 'normale', '3291C1', '7AB7D7', '215E7E') end
-c.fabbrica = c.azienda
+c.Azienda, c.fabbrica, c.Fabbrica = c.azienda, c.azienda, c.azienda
 c.cupola = function(frame) return _colore(frame.args[1] or 'normale', 'AD32DA', 'D35CFF', '71009B') end
+c.Cupola = c.cupola
 c.dojo = function(frame) return _colore(frame.args[1] or 'normale', '20811D', '2DBA29', '043503') end
+c.Dojo = c.dojo
 c.maniero = function(frame) return _colore(frame.args[1] or 'normale', '40AD72', '83CAA3', '2A714A') end
+c.Maniero = c.maniero
 c.palazzo = function(frame) return _colore(frame.args[1] or 'normale', 'F6F60A', 'FFFF67', '888600') end
+c.Palazzo = c.palazzo
 c.palco = function(frame) return _colore(frame.args[1] or 'normale', 'F87A97', 'FFADC0', 'A14F62') end
+c.Palco = c.palco
 c.parco_lotta = function(frame) return _colore(frame.args[1] or 'normale', '3FA9D0', '82C7E0', '296E87') end
-c.parco_Lotta = c.parco_lotta
+c.Parco_lotta, c.Parco_Lotta, c.Parcolotta, c.parcolotta = c.parco_lotta, c.parco_lotta, c.parco_lotta, c.parco_lotta
 c.piramide = function(frame) return _colore(frame.args[1] or 'normale', 'FF5900', 'FF9049', 'A13500') end
+c.Piramide = c.piramide
 c.serpe = function(frame) return _colore(frame.args[1] or 'normale', '7D000C', 'B51826', '300105') end
+c.Serpe = c.serpe
 c.torre = function(frame) return _colore(frame.args[1] or 'normale', 'D6553C', 'E49080', '8B3727') end
+c.Torre = c.torre
 
 -- Colori tasche
 
 c.bacche = function(frame) return _colore(frame.args[1] or 'normale', '6161FD', 'BBC5FF', '08088C') end
+c.Bacche = c.bacche
 c.macchine = function(frame) return _colore(frame.args[1] or 'normale', '9248E5', 'D4ABFD', '1F0042') end
-c.MT_e_MN = c.macchine
-c['poké_ball'] = function(frame) return _colore(frame.args[1] or 'normale', 'C88820', 'E0A038', 'B87008') end
-c['poké_Ball'] = c['poké_ball']
+c.Macchine, c['MT e MN'] = c.macchine, c.macchine
+c['pokéball'] = function(frame) return _colore(frame.args[1] or 'normale', 'C88820', 'E0A038', 'B87008') end
+c['Pokéball'], c['poké Ball'], c['Poké Ball'] = c['pokéball'], c['pokéball'], c['pokéball']
 c.rimedi = function(frame) return _colore(frame.args[1] or 'normale', '00BE00', '99FF99', '006100') end
+c.Rimedi = c.rimedi
 c.strumenti = function(frame) return _colore(frame.args[1] or 'normale', '0296C8', '6DE0FF', '00384B') end
-c.strumenti_base = function(frame) return _colore(frame.args[1] or 'normale', 'F93333', 'FFA7A7', '8E0808') end
-c.strumenti_lotta = function(frame) return _colore(frame.args[1] or 'normale', '3070E0', '4880F0', '2058C8') end
+c.Strumenti = c.strumenti
+c.strumentibase = function(frame) return _colore(frame.args[1] or 'normale', 'F93333', 'FFA7A7', '8E0808') end
+c.Strumentibase, c['strumenti base'], c['Strumenti base'] = c.strumentibase, c.strumentibase, c.strumentibase
+c.strumentilotta = function(frame) return _colore(frame.args[1] or 'normale', '3070E0', '4880F0', '2058C8') end
+c.Strumentilotta, c['strumenti lotta'], c['Strumenti lotta'] = c.strumentilotta, c.strumentilotta, c.strumentilotta
 c.messaggi = function(frame) return _colore(frame.args[1] or 'normale', '1890B0', '18A8D0', '208090') end
-c.cristalli_z = function(frame) return _colore(frame.args[1] or 'normale', 'AB6900', 'FFB744', '4D1F00') end
-c.cristalli_Z = c.cristalli_z
+c.Messaggi = c.messaggi
+c.cristalliz = function(frame) return _colore(frame.args[1] or 'normale', 'AB6900', 'FFB744', '4D1F00') end
+c.Cristalliz, c.cristalliZ, c.CristalliZ = c.cristalliz, c.cristalliz, c.cristalliz
+c['cristalli z'], c['Cristalli z'], c['cristalli Z'], c['Cristalli Z'] =
+	c.cristalliz, c.cristalliz, c.cristalliz, c.cristalliz
+c.cristalli_z, c.Cristalli_z, c.cristalli_Z, c.Cristalli_Z =
+	c.cristalliz, c.cristalliz, c.cristalliz, c.cristalliz
 
 -- Colori gruppi uova
 
 c.mostro_uova = function(frame) return _colore(frame.args[1] or 'normale', 'D25064', 'D25064', '933846') end
-c.acqua_1_uova = function(frame) return _colore(frame.args[1] or 'normale', '97B5FD', '97B5FD', '697FB1') end
-c['acqua 1_uova'] = c.acqua_1_uova
+c.Mostro_uova = c.mostro_uova
+c['acqua_1_uova'] = function(frame) return _colore(frame.args[1] or 'normale', '97B5FD', '97B5FD', '697FB1') end
+c['Acqua_1_uova'], c['acqua 1_uova'], c['Acqua 1_uova'] = c['acqua_1_uova'], c['acqua_1_uova'], c['acqua_1_uova']
 c.coleottero_uova = function(frame) return _colore(frame.args[1] or 'normale', 'AAC22A', 'AAC22A', '77881D') end
-c.coleot_uova = c.coleot_uova
+c.Coleottero_uova = c.coleottero_uova
 c.volante_uova = function(frame) return _colore(frame.args[1] or 'normale', 'B29AFA', 'B29AFA', '7C6CAF') end
+c.Volante_uova = c.volante_uova
 c.campo_uova = function(frame) return _colore(frame.args[1] or 'normale', 'E0C068', 'E0C068', '9D8649') end
+c.Campo_uova = c.campo_uova
 c.magico_uova = function(frame) return _colore(frame.args[1] or 'normale', 'FFC8F0', 'FFC8F0', 'B38CA8') end
+c.Magico_uova = c.magico_uova
 c.erba_uova = function(frame) return _colore(frame.args[1] or 'normale', '82D25A', '82D25A', '5B933F') end
+c.Erba_uova = c.erba_uova
 c.umanoide_uova = function(frame) return _colore(frame.args[1] or 'normale', 'D29682', 'D29682', '93695B') end
-c.acqua_3_uova = function(frame) return _colore(frame.args[1] or 'normale', '5876BE', '5876BE', '3D5285') end
-c['acqua 3_uova'] = c.acqua_3_uova
+c.Umanoide_uova = c.umanoide_uova
+c['acqua_3_uova'] = function(frame) return _colore(frame.args[1] or 'normale', '5876BE', '5876BE', '3D5285') end
+c['Acqua_3_uova'], c['acqua 3_uova'], c['Acqua 3_uova'] = c['acqua_3_uova'], c['acqua_3_uova'], c['acqua_3_uova']
 c.minerale_uova = function(frame) return _colore(frame.args[1] or 'normale', '7A6252', '7A6252', '554439') end
+c.Minerale_uova = c.minerale_uova
 c.amorfo_uova = function(frame) return _colore(frame.args[1] or 'normale', '8A8A8A', '8A8A8A', '606060') end
-c.acqua_2_uova = function(frame) return _colore(frame.args[1] or 'normale', '729AFA', '729AFA', '506CAF') end
-c['acqua 2_uova'] = c.acqua_2_uova
+c.Amorfo_uova = c.amorfo_uova
+c['acqua_2_uova'] = function(frame) return _colore(frame.args[1] or 'normale', '729AFA', '729AFA', '506CAF') end
+c['Acqua_2_uova'], c['acqua 2_uova'], c['Acqua 2_uova'] = c['acqua_2_uova'], c['acqua_2_uova'], c['acqua_2_uova']
 c.ditto_uova = function(frame) return _colore(frame.args[1] or 'normale', 'A664BF', 'A664BF', '744686') end
+c.Ditto_uova = c.ditto_uova
 c.drago_uova = function(frame) return _colore(frame.args[1] or 'normale', '7A42FF', '7A42FF', '552EB3') end
+c.Drago_uova = c.drago_uova
 c.sconosciuto_uova = function(frame) return _colore(frame.args[1] or 'normale', '0080C0', '0080C0', '005986') end
+c.Sconosciuto_uova = c.sconosciuto_uova
 c.asessuato_uova = function(frame) return _colore(frame.args[1] or 'normale', '333333', '333333', '232323') end
+c.Asessuato_uova = c.asessuato_uova
 
 -- Varie ed eventuali
 
-c.arancione = c.orange
-c.background = function(frame) return 'EAEAEA' end
-c.bronzo = function(frame) return _colore(frame.args[1] or 'normale', 'DEAB79', 'EBCDAF', '856749') end
+c.arancione, c.Arancione = c.orange, c.orange
 c.bulba = function(frame) return _colore(frame.args[1] or 'normale', 'C4E673', 'E0F2B6', '80964B') end
-c.camilla = function(frame) return _colore(frame.args[1] or 'normale', '525252', '8E8E8E', '353535') end
+c.Bulba = c.bulba
+c.background = function(frame) return 'EAEAEA' end
+c.Background = c.background
 c['club pokémiglia'] = function(frame) return _colore(frame.args[1] or 'normale', '389AD8', '9ECEEC', '075282') end
-c.diantha = function(frame) return _colore(frame.args[1] or 'normale', 'E64A80', 'F08FB1', 'A5385C') end
-c.dw = function(frame) return _colore(frame.args[1] or 'normale', 'E78EA0', 'F3DBDE', '984852') end
-c.DW, c['dream world'] = c.dw, c.dw
+c['Club pokémiglia'], c['club_pokémiglia'], c['Club_pokémiglia'] =
+    c['club pokémiglia'], c['club pokémiglia'], c['club pokémiglia']
 c.FFFFFF = function(frame) return 'FFFFFF' end
 c.ffffff = c.FFFFFF
-c.ghicocca = function(frame) return _colore(frame.args[1] or 'normale', 'F0A018', 'F8C038', 'A05840') end
-c.nardo = function(frame) return _colore(frame.args[1] or 'normale', 'E88058', 'F0AA8F', 'C84040') end
-c.olio = function(frame) return _colore(frame.args[1] or 'normale', 'BAB1C9', 'DCD7E3', '978CAE') end
-c['pokémon'] = function(frame) return _colore(frame.args[1] or 'normale', 'E5653C', 'E2947C', 'A62F19') end
-c['pokéwalker'] = function(frame) return _colore(frame.args[1] or 'normale', 'D82D40', 'ED7B88', '700A16') end
-c.safari_amici = function(frame) return _colore(frame.args[1] or 'normale', '68AA57', 'AFDBA5', '447039') end
 c['000000'] = function(frame) return '000000' end
 c['000'] = c['000000']
-
--- Generating aliases
-
---[[
-
-This function generate aliases for colors that contain an underscore in their
-name. It adds to the exported table aliases with both spaces and nothing
-instead of the underscores, both original and first uppercase variations (so,
-four aliases are added in total). Arguments:
-
-- name: The name tobe aliased.
-- funct: the function to be mapped to the alias.
-
---]]
-local makeUnderscoreAliases = function(name, funct)
-    if name:find('_') then
-        local spaces = name:gsub('_', ' ')
-        c[spaces], c[string.fu(spaces)] = funct, funct
-
-        local noSpaces = name:gsub('_', '')
-        c[noSpaces], c[string.fu(noSpaces)] = funct, funct
-    end
-end
-
---[[
-    table.keys is necessary because a plain pairs would act wierd, in that
-    we are adding keys to the c in the for loop
---]]
-for _, name in ipairs(table.keys(c)) do
-    local funct = c[name]
-
-    c[string.fu(name)] = funct
-    makeUnderscoreAliases(name, funct)
-
-    if name:find('é') then
-        local noAccent = name:gsub('é', 'e')
-        c[noAccent], c[string.fu(noAccent)] = funct, funct
-
-        makeUnderscoreAliases(noAccent, funct)
-    end
-
-    if name:find('à') then
-        local noAccent = name:gsub('à', 'a')
-        c[noAccent], c[string.fu(noAccent)] = funct, funct
-
-        makeUnderscoreAliases(noAccent, funct)
-    end
-end
+c.bronzo = function(frame) return _colore(frame.args[1] or 'normale', 'DEAB79', 'EBCDAF', '856749') end
+c.Bronzo = c.bronzo
+c.camilla = function(frame) return _colore(frame.args[1] or 'normale', '525252', '8E8E8E', '353535') end
+c.Camilla = c.camilla
+c.nardo = function(frame) return _colore(frame.args[1] or 'normale', 'E88058', 'F0AA8F', 'C84040') end
+c.Nardo = c.nardo
+c.diantha = function(frame) return _colore(frame.args[1] or 'normale', 'E64A80', 'F08FB1', 'A5385C') end
+c.Diantha = c.diantha
+c.dw = function(frame) return _colore(frame.args[1] or 'normale', 'E78EA0', 'F3DBDE', '984852') end
+c.Dw, c.DW, c.dream_world, c.Dream_world, c['dream world'], c['Dream world'] =
+    c.dw, c.dw, c.dw, c.dw, c.dw, c.dw
+c.ghicocca = function(frame) return _colore(frame.args[1] or 'normale', 'F0A018', 'F8C038', 'A05840') end
+c.Ghicocca = c.ghicocca
+c.olio = function(frame) return _colore(frame.args[1] or 'normale', 'BAB1C9', 'DCD7E3', '978CAE') end
+c.Olio = c.olio
+c['pokéwalker'] = function(frame) return _colore(frame.args[1] or 'normale', 'D82D40', 'ED7B88', '700A16') end
+c['Pokéwalker'], c.pokewalker, c.Pokewalker = c['pokéwalker'], c['pokéwalker'], c['pokéwalker']
+c['safari amici'] = function(frame) return _colore(frame.args[1] or 'normale', '68AA57', 'AFDBA5', '447039') end
+c['Safari amici'], c.safari_amici, c.Safari_amici = c['safari amici'], c['safari amici'], c['safari amici']
 
 return c
