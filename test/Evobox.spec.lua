@@ -283,7 +283,7 @@ if false then
 end
 
 -- ============================= Formbox with parameters ========================
-if false then
+if true then
 	-- Something normal
 	print(evobox.Formbox{args={
 	'Castform',
@@ -298,7 +298,7 @@ if false then
 	}})
 
 	-- With item
-	print(formbox{args={
+	print(evobox.Formbox{args={
 	'Giratina',
 	sprite1='487',
 	loc1='{{colore2|000|Mondo Pokémon}},<br>senza tenere la {{colore2|000|Grigiosfera}}',
@@ -308,7 +308,7 @@ if false then
 	}})
 
 	-- Megaevo
-	print(formbox{args={
+	print(evobox.Formbox{args={
 	'Aerodactyl',
 	sprite1='142',
 	item1='Aerodactylite',
@@ -316,7 +316,7 @@ if false then
 	}})
 
 	-- Branched
-	print(formbox{args={
+	print(evobox.Formbox{args={
 	'Necrozma',
 	sprite1='800',
 	item1='Necrosolix',
@@ -330,7 +330,7 @@ if false then
 	}})
 
 	-- Rotom (extra large)
-	print(formbox{args={
+	print(evobox.Formbox{args={
 	'Rotom',
 	sprite1='479',
 	loc1='Normale',
@@ -348,7 +348,7 @@ if false then
 end
 
 -- ============================= Evobox2 (automatic) ========================
-if true then
+if false then
 	-- Standard
 	-- print(evobox.Evobox2{args={'Staraptor'}})
 	-- No evos

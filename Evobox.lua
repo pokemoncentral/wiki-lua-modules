@@ -20,6 +20,7 @@ local w = require('Wikilib')
 local links = require('Links')
 local ms = require('MiniSprite')
 local css = require('Css')
+local spr = require('Spr')
 local c = require("Colore-data")
 local altforms = require("AltForms-data")
 local useless = require("UselessForms-data")
@@ -45,7 +46,7 @@ eb.strings = {
     GRID_ROW = [=[<div><div class="align-middle">${arrow}</div><div class="align-middle">${box}</div></div>]=],
 
     BOX_POKEMON = [=[<div class="text-center" style="margin: 0.5ex;">${notes}
-<div class="roundy-full inline-block img-fluid" style="padding: 1ex; background: #fff;"><div class="roundy-full" style="padding: 0.5ex; ${background}">[[File:${ndex}.png|150px]]</div></div>
+<div class="roundy-full inline-block img-fluid" style="padding: 1ex; background: #fff;"><div class="roundy-full" style="padding: 0.5ex; ${background}">${spr}</div></div>
 <div class="small-text" style="padding-top: 0.5ex;">${phase}</div>
 <div>
 <div>[[${name}|<span style="color: #000;">${shownName}</span>]]</div>
@@ -89,13 +90,14 @@ defaults to the Pokémon's name).
 --]]
 eb.boxPokemon = function(ndex, phase, notes, shownName)
     local poke = multigen.getGen(pokes[form.nameToDataindex(ndex)])
+    ndex = type(ndex) == type("") and ndex or string.threeFigures(ndex)
 
     return string.interp(eb.strings.BOX_POKEMON, {
         notes = notes and string.interp(eb.strings.SMALL_TEXT_NEWLINE, {
             text = notes
         }) or '',
         background = css.radialGradLua{ type1 = poke.type1, type2 = poke.type2 },
-        ndex = string.threeFigures(ndex),
+        spr = spr.sprLua(ndex, 'current', 'male'),
         phase = phase or 'Non si evolve',
         name = poke.name,
         shownName = shownName or poke.name,
@@ -304,23 +306,6 @@ end
 
 --[[
 
-This functions takes the module args and returns a subset of the args, made by
-those args whose keys ended with the passed ending. This ending is removed in
-the keys of the result.
-
---]]
-local argsEndingSubset = function(args, ending)
-    local newArgs = {}
-    for k, v in pairs(args) do
-        if k:match(ending .. '$') then
-            newArgs[k:match('(.*)' .. ending .. '$')] = v
-        end
-    end
-    return newArgs
-end
-
---[[
-
 Prints two rows, one with arrows and the other with Pokémon boxes.
 
 The first parameter is a table, whose elements should be the data tables
@@ -331,7 +316,7 @@ print, starting from 1 for base Pokémon (for instance: Iysaur is a phase 2).
 If the array 'evos' passed is empty, returns the empty string.
 
 This function only handles standard evolutions, maybe branched. It DOES NOT
-handle baby/incense level evolutions with a pair of arrows or strange things
+handle baby/incense level evolutions with a pair of arrows or odd things
 like that.
 
 --]]
@@ -399,6 +384,7 @@ eb.Evobox2 = function(frame)
     local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     local pokeData = pokes[string.parseInt(p[1]) or p[1]]
             or pokes[mw.text.decode(p[1])]
+    pokeData = multigen.getGen(pokeData)
     local data = evodata[pokeData.ndex]
 
     local evoboxcontent = {}
@@ -454,6 +440,25 @@ eb.Evobox2 = function(frame)
     return table.concat(evobox)
 end
 
+
+-- ========================== Non-automatic interface ==========================
+
+--[[
+
+This functions takes the module args and returns a subset of the args, made by
+those args whose keys ended with the passed ending. This ending is removed in
+the keys of the result.
+
+--]]
+local argsEndingSubset = function(args, ending)
+    local newArgs = {}
+    for k, v in pairs(args) do
+        if k:match(ending .. '$') then
+            newArgs[k:match('(.*)' .. ending .. '$')] = v
+        end
+    end
+    return newArgs
+end
 
 eb.processInput = {}
 
@@ -521,10 +526,14 @@ end
 --[[
 
 Main Wikicode interface. It takes the same parameters as template:Evobox/2, in
-order tu replace it in the pages.
+order to replace it in the pages.
 
 Parameters are named because of their number:
-    - 1: the page name, as returned by {{PAGENAME}}
+    - 1: the page name, as returned by {{BASEPAGENAME}}
+    - 2 (optional): first type of the Pokémon. Used only for printing, may as
+                    well be a glitch type
+    - 3 (optional): second type of the Pokémon. Used only for printing, may as
+                    well be a glitch type
     - family (nessuna|normale|baby|incenso|breedonly): the kind of family.
         Defaults to 'nessuna', that means no evolutions. 'normale' means an
         evolution without baby or alike, and includes branched evolutions.
@@ -563,10 +572,15 @@ eb.Evobox = function(frame)
     local pagename = string.fl(p[1] or mw.title.getCurrentTitle().text)
     p[1] = nil
     p.family = p.family or 'nessuna'
-    local pagepoke = pokes[form.nameToDataindex(pagename)]
+    local pagepoke
+    if p[2] then
+        pagepoke = {name = 'Sconosciuto', ndex = 0, type1 = p[2], type2 = p[3]}
+    else
+        pagepoke = pokes[form.nameToDataindex(pagename)]
             or pokes[pagename:lower()]
             or {name = 'Sconosciuto', ndex = 0, type1 = 'sconosciuto', type2 = 'sconosciuto'}
-    pagepoke = multigen.getGen(pagepoke)
+        pagepoke = multigen.getGen(pagepoke)
+    end
 
     local evoboxcontent = {}
     local boxContainer = eb.strings.BOX_CONTAINER
@@ -625,7 +639,7 @@ eb.evobox = eb.Evobox
 
 
 
--- ============================== Alternate forms box =========================
+-- ============================ Alternative forms box ==========================
 
 --[[
 
@@ -636,7 +650,9 @@ added using the second parameter.
 eb.BoxForm = function(ndex, notes)
     local name, abbr = form.getnameabbr(ndex)
     local altdata = altforms[name] or useless[name]
-    return eb.boxPokemon(ndex, '', notes, altdata.names[abbr])
+    local shownname = altdata.names[abbr]
+    shownname = shownname == "" and pokes[name].name:fu() or shownname
+    return eb.boxPokemon(ndex, '', notes, shownname)
 end
 
 --[[
@@ -650,10 +666,20 @@ the whole interface of the underlying eb.BoxArrow:
 
 --]]
 eb.FormArrow = function(args)
-    args.evotype = args.item and 'formitem' or 'other'
-    args.held = args.item
-    args.direction = 'double'
-    return string.interp(eb.strings.SINGLE_ARROW, {boxarrow = eb.boxArrowGen(args)})
+    local fakeEvo = {
+        method = evodata.methods.OTHER,
+        [evodata.methods.OTHER] = args.item
+                            and table.concat{
+                                links.bag(args.item),
+                                "<div>",
+                                args.item,
+                                "</div>",
+                            }
+                            or "",
+    }
+    return string.interp(eb.strings.SINGLE_ARROW, {
+        boxarrow = eb.boxArrowGen(fakeEvo, 'double')
+    })
 end
 
 --[[
