@@ -20,11 +20,11 @@ local ms = require('MiniSprite')
 local css = require('Css')
 local pokes = require("Poké-data")
 local abbrevModules = {
-	blackabbrev = require('Blackabbrev-data'),
-	colorabbrev = require('Colorabbrev-data'),
+	blackabbrev = require("Blackabbrev-data"),
+	colorabbrev = require("Colorabbrev-data"),
 }
 
-h.Entry = oop.makeClass(list.PokeSortableEntry)
+h.Entry = oop.makeClass(list.PokeLabelledEntry)
 
 -- Utility strings
 h.Entry.strings = {
@@ -66,7 +66,7 @@ h.Entry.makeGameBox = function(this, itemsList, gen)
 			abbrev = abbrevs,
 			img = gen < 3
 					and string.interp(
-						'[[${item}|<span style="color: #000;">${item}</span>]]',
+						'<span class="black-text">[[${item}]]</span>',
 						{ item = v.item }
 					)
 					or links.bag(v.item),
@@ -98,14 +98,24 @@ end
 
 --[[
 
+Equality operator for grouping. True iff the two entries have the exact same
+this.helds
+
+--]]
+h.Entry.__eq = function(a, b)
+	return a.ndex == b.ndex and table.equal(a.helds, b.helds)
+end
+
+--[[
+
 Wikicode for a list entry.
 
 --]]
 h.Entry.__tostring = function(this)
 	local pokedata = multigen.getGen(pokes[this.name])
-	local form = type(this.formsData) == 'table'
-				and this.formsData.blacklinks[this.formAbbr]
-				or ''
+	local form = "<div>" .. table.concat(table.map(this.labels, function(label)
+		return this.formsData.blacklinks[label]:gsub("<(/?)div", "<%1span")
+	end), ", ") .. "</div>"
 
 	local result = { string.interp(this.strings.ENTRY_HEAD, {
 		bg = css.slantedGradLua{
@@ -135,13 +145,14 @@ Main wikicode interface.
 
 --]]
 h.helditem = function(frame)
-	return list.makeList{
+	return list.makeGroupedList{
 		source = require('PokéItems-data'),
 		makeEntry = h.Entry.new,
 		iterator = list.pokeNames,
 		header = '',
 		separator = '',
 		footer = '',
+		fullGroupLabel = '',
 	}
 end
 h.Helditem = h.helditem

@@ -248,8 +248,8 @@ d.pikachu = {
     },
     {
         { item = 'Elettropalla', perc = 1, games = {'NB'}, abbrTypes = {'colorabbrev'} },
-        { item = 'Elettropalla', perc = 5, games = {'N2B2'}, abbrTypes = {'colorabbrev'} },
         { item = 'Baccarancia', perc = 50, games = {'NB'}, abbrTypes = {'colorabbrev'} },
+        { item = 'Elettropalla', perc = 5, games = {'N2B2'}, abbrTypes = {'colorabbrev'} },
     },
     {
         { item = 'Elettropalla', perc = 5, games = {'XYROZA'} },
@@ -369,8 +369,8 @@ d.clefairy = {
         { item = 'Bacca Misteriosa', perc = 23, games = {'OAC'} },
     },
     {
-        { item = 'Pietralunare', perc = 5, games = {'RZS', 'RFVF'}, abbrTypes = {'colorabbrev', 'blackabbrev'} },
         { item = 'Baccamela', perc = 50, games = {'RZS'}, abbrTypes = {'colorabbrev'} },
+        { item = 'Pietralunare', perc = 5, games = {'RZS', 'RFVF'}, abbrTypes = {'colorabbrev', 'blackabbrev'} },
     },
     {
         { item = 'Pietralunare', perc = 5, games = {'DPPtHGSS'} },
@@ -427,8 +427,8 @@ d.vulpix = {
         { item = 'Bacca Bruciata', perc = 23, games = {'O', 'A', 'C'}, abbrTypes = {'colorabbrev', 'blackabbrev', 'colorabbrev'} },
     },
     {
-        { item = 'Baccafrago', perc = 50, games = {'RF', 'VF'}, abbrTypes = {'colorabbrev', 'blackabbrev'} },
         { item = 'Baccafrago', perc = 100, games = {'RZS'} },
+        { item = 'Baccafrago', perc = 50, games = {'RF', 'VF'}, abbrTypes = {'colorabbrev', 'blackabbrev'} },
     },
     {
         { item = 'Baccafrago', perc = 100, games = {'DPPt', 'HG', 'SS'}, abbrTypes = {'blackabbrev', 'colorabbrev', 'blackabbrev'} },
@@ -453,8 +453,8 @@ d.ninetales = {
         { item = 'Bacca Bruciata', perc = 23, games = {'OAC'}, abbrTypes = {'colorabbrev'} },
     },
     {
-        { item = 'Baccafrago', perc = 50, games = {'RFVF'}, abbrTypes = {'colorabbrev'} },
         { item = 'Baccafrago', perc = 100, games = {'RZS'}, abbrTypes = {'colorabbrev'} },
+        { item = 'Baccafrago', perc = 50, games = {'RFVF'}, abbrTypes = {'colorabbrev'} },
     },
     {
         { item = 'Baccafrago', perc = 100, games = {'DPPtHGSS'}, abbrTypes = {'colorabbrev'} },
@@ -765,15 +765,15 @@ d.growlithe = {
         { item = 'Bacca Bruciata', perc = 23, games = {'O', 'A', 'C'}, abbrTypes = {'blackabbrev', 'colorabbrev', 'blackabbrev'} },
     },
     {
-        { item = 'Baccafrago', perc = 50, games = {'RF', 'VF'}, abbrTypes = {'blackabbrev', 'colorabbrev'} },
         { item = 'Baccafrago', perc = 100, games = {'RZS'}, abbrTypes = {'colorabbrev'} },
+        { item = 'Baccafrago', perc = 50, games = {'RF', 'VF'}, abbrTypes = {'blackabbrev', 'colorabbrev'} },
     },
     {
         { item = 'Baccafrago', perc = 100, games = {'DPPt', 'HG', 'SS'}, abbrTypes = {'blackabbrev', 'blackabbrev', 'colorabbrev'} },
     },
     {
-        { item = 'Baccafrago', perc = 50, games = {'N2B2'} },
         { item = 'Baccafrago', perc = 100, games = {'NB'}, abbrTypes = {'colorabbrev'} },
+        { item = 'Baccafrago', perc = 50, games = {'N2B2'} },
     },
 }
 d[58] = d.growlithe
@@ -786,15 +786,15 @@ d.arcanine = {
         { item = 'Bacca Bruciata', perc = 23, games = {'OAC'}, abbrTypes = {'colorabbrev'} },
     },
     {
-        { item = 'Baccafrago', perc = 50, games = {'RFVF'}, abbrTypes = {'colorabbrev'} },
         { item = 'Baccafrago', perc = 100, games = {'RZS'}, abbrTypes = {'colorabbrev'} },
+        { item = 'Baccafrago', perc = 50, games = {'RFVF'}, abbrTypes = {'colorabbrev'} },
     },
     {
         { item = 'Baccafrago', perc = 100, games = {'DPPtHGSS'}, abbrTypes = {'colorabbrev'} },
     },
     {
-        { item = 'Baccafrago', perc = 50, games = {'N2B2'}, abbrTypes = {'colorabbrev'} },
         { item = 'Baccafrago', perc = 100, games = {'NB'}, abbrTypes = {'colorabbrev'} },
+        { item = 'Baccafrago', perc = 50, games = {'N2B2'}, abbrTypes = {'colorabbrev'} },
     },
 }
 d[59] = d.arcanine
@@ -1183,7 +1183,7 @@ d.magnemite = {
         { item = 'Metalcoperta', perc = 5, games = {'DPPtHGSS'} },
     },
     {
-        { item = 'Metalcoperta', perc = 5, games = {'N', 'B', 'N2B2'}, abbrTypes = {'colorabbrev', 'blackabbrev', 'blackabbrev'} },
+        { item = 'Metalcoperta', perc = 5, games = {'N', 'Bi', 'N2B2'}, abbrTypes = {'colorabbrev', 'blackabbrev', 'blackabbrev'} },
     },
     {
         { item = 'Metalcoperta', perc = 5, games = {'XY', 'ROZA'}, abbrTypes = {'colorabbrev', 'blackabbrev'} },
@@ -1348,8 +1348,8 @@ d.muk = {
         { item = 'Pepita', perc = 5, games = {'DPPt', 'HGSS'}, abbrTypes = {'colorabbrev', 'blackabbrev'} },
     },
     {
-        { item = 'Tossicsfera', perc = 1, games = {'N2B2'} },
         { item = 'Pepita', perc = 5, games = {'NB'}, abbrTypes = {'colorabbrev'} },
+        { item = 'Tossicsfera', perc = 1, games = {'N2B2'} },
         { item = 'Fangopece', perc = 50, games = {'N2B2'} },
     },
     {
@@ -1865,8 +1865,8 @@ d.electabuzz = {
     },
     {}, {},
     {
-        { item = 'Elettritore', perc = 5, games = {'P', 'Pt'}, abbrTypes = {'colorabbrev', 'blackabbrev'} },
         { item = 'Elettritore', perc = 50, games = {'D'}, abbrTypes = {'colorabbrev'} },
+        { item = 'Elettritore', perc = 5, games = {'P', 'Pt'}, abbrTypes = {'colorabbrev', 'blackabbrev'} },
     },
     {},
     {
@@ -2303,8 +2303,8 @@ d.cleffa = {
         { item = 'Bacca Misteriosa', perc = 23, games = {'OAC'}, abbrTypes = {'colorabbrev'} },
     },
     {
-        { item = 'Pietralunare', perc = 5, games = {'RZSRFVF'}, abbrTypes = {'colorabbrev'} },
         { item = 'Baccamela', perc = 50, games = {'RZS'}, abbrTypes = {'colorabbrev'} },
+        { item = 'Pietralunare', perc = 5, games = {'RZSRFVF'}, abbrTypes = {'colorabbrev'} },
     },
     {
         { item = 'Pietralunare', perc = 5, games = {'DPPt', 'HGSS'}, abbrTypes = {'blackabbrev', 'colorabbrev'} },
@@ -2571,8 +2571,8 @@ d.sneasel = {
         { item = 'Presartigli', perc = 50, games = {'NBN2B2'} },
     },
     {
-        { item = 'Rapidartigli', perc = 5, games = {'XY', 'ROZA'}, abbrTypes = {'blackabbrev', 'colorabbrev'} },
         { item = 'Presartigli', perc = 50, games = {'XY'} },
+        { item = 'Rapidartigli', perc = 5, games = {'XY', 'ROZA'}, abbrTypes = {'blackabbrev', 'colorabbrev'} },
     },
     {
         { item = 'Rapidartigli', perc = 5, games = {'SLUSUL'} },
@@ -2737,8 +2737,8 @@ d[238] = d.smoochum
 d.elekid = {
     {}, {}, {},
     {
-        { item = 'Elettritore', perc = 5, games = {'P', 'Pt'}, abbrTypes = {'blackabbrev', 'colorabbrev'} },
         { item = 'Elettritore', perc = 50, games = {'D'} },
+        { item = 'Elettritore', perc = 5, games = {'P', 'Pt'}, abbrTypes = {'blackabbrev', 'colorabbrev'} },
     },
     {},
     {
@@ -3464,8 +3464,8 @@ d.roselia = {
         { item = 'Velenaculeo', perc = 5, games = {'DPPtHGSS'} },
     },
     {
-        { item = 'Bulbo', perc = 1, games = {'N2B2'} },
         { item = 'Velenaculeo', perc = 5, games = {'NB', 'N2B2'}, abbrTypes = {'colorabbrev', 'blackabbrev'} },
+        { item = 'Bulbo', perc = 1, games = {'N2B2'} },
     },
     {
         { item = 'Velenaculeo', perc = 5, games = {'XYROZA'} },
@@ -4364,8 +4364,8 @@ d.roserade = {
         { item = 'Velenaculeo', perc = 5, games = {'DPPtHGSS'}, abbrTypes = {'colorabbrev'} },
     },
     {
-        { item = 'Bulbo', perc = 1, games = {'N2B2'} },
         { item = 'Velenaculeo', perc = 5, games = {'NB', 'N2B2'}, abbrTypes = {'colorabbrev', 'blackabbrev'} },
+        { item = 'Bulbo', perc = 1, games = {'N2B2'} },
     },
     {
         { item = 'Velenaculeo', perc = 5, games = {'XYROZA'}, abbrTypes = {'colorabbrev'} },
@@ -4423,8 +4423,8 @@ d.combee = {
         { item = 'Miele', perc = 100, games = {'DPPtHGSS'} },
     },
     {
+    { item = 'Miele', perc = 100, games = {'NB'} },
         { item = 'Miele', perc = 5, games = {'N2B2'} },
-        { item = 'Miele', perc = 100, games = {'NB'} },
     },
     {
         { item = 'Miele', perc = 5, games = {'XY', 'ROZA'}, abbrTypes = {'blackabbrev', 'colorabbrev'} },
@@ -4872,8 +4872,8 @@ d.weavile = {
         { item = 'Presartigli', perc = 50, games = {'NBN2B2'}, abbrTypes = {'colorabbrev'} },
     },
     {
-        { item = 'Rapidartigli', perc = 5, games = {'XYROZA'}, abbrTypes = {'colorabbrev'} },
         { item = 'Presartigli', perc = 50, games = {'XY'}, abbrTypes = {'colorabbrev'} },
+        { item = 'Rapidartigli', perc = 5, games = {'XYROZA'}, abbrTypes = {'colorabbrev'} },
     },
     {
         { item = 'Rapidartigli', perc = 5, games = {'SLUSUL'}, abbrTypes = {'colorabbrev'} },
@@ -4919,8 +4919,8 @@ d[465] = d.tangrowth
 d.electivire = {
     {}, {}, {},
     {
-        { item = 'Elettritore', perc = 5, games = {'PPtHGSS'}, abbrTypes = {'colorabbrev'} },
         { item = 'Elettritore', perc = 50, games = {'D'}, abbrTypes = {'colorabbrev'} },
+        { item = 'Elettritore', perc = 5, games = {'PPtHGSS'}, abbrTypes = {'colorabbrev'} },
     },
     {},
     {
@@ -5340,8 +5340,8 @@ d[542] = d.leavanny
 d.venipede = {
     {}, {}, {}, {},
     {
+    { item = 'Baccapesca', perc = 50, games = {'NB'} },
         { item = 'Velenaculeo', perc = 5, games = {'NBN2B2'} },
-        { item = 'Baccapesca', perc = 50, games = {'NB'} },
     },
     {
         { item = 'Velenaculeo', perc = 5, games = {'XY', 'ROZA'}, abbrTypes = {'blackabbrev', 'colorabbrev'} },
@@ -5354,8 +5354,8 @@ d[543] = d.venipede
 d.whirlipede = {
     {}, {}, {}, {},
     {
-        { item = 'Velenaculeo', perc = 5, games = {'NBN2B2'} },
         { item = 'Baccapesca', perc = 50, games = {'NB'} },
+        { item = 'Velenaculeo', perc = 5, games = {'NBN2B2'} },
     },
     {
         { item = 'Velenaculeo', perc = 5, games = {'XY', 'ROZA'}, abbrTypes = {'blackabbrev', 'colorabbrev'} },
@@ -5368,8 +5368,8 @@ d[544] = d.whirlipede
 d.scolipede = {
     {}, {}, {}, {},
     {
-        { item = 'Velenaculeo', perc = 5, games = {'NB', 'N2B2'}, abbrTypes = {'colorabbrev', 'blackabbrev'} },
         { item = 'Baccapesca', perc = 50, games = {'NB'}, abbrTypes = {'colorabbrev'} },
+        { item = 'Velenaculeo', perc = 5, games = {'NB', 'N2B2'}, abbrTypes = {'colorabbrev', 'blackabbrev'} },
     },
     {
         { item = 'Velenaculeo', perc = 5, games = {'XYROZA'}, abbrTypes = {'colorabbrev'} },
@@ -6495,6 +6495,8 @@ d.blacephalon = {}
 d[806] = d.blacephalon
 d.zeraora = {}
 d[807] = d.zeraora
+
+-- Alternative forms
 d.rattataA = {
     {}, {}, {}, {}, {}, {},
     {
