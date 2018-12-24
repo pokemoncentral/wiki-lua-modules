@@ -112,7 +112,7 @@ return {
 
 	title = {
 		getCurrentTitle = function()
-			return 'mw'
+			return { text = 'mw' }
 		end
 	}
 }

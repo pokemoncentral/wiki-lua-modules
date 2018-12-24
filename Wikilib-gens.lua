@@ -60,7 +60,7 @@ gens.getGen.ndex = function(ndex)
 		return 5
 	elseif ndex < 722 then
 		return 6
-	elseif ndex < 808 then
+	elseif ndex < 810 then
 		return 7
 	end
 end

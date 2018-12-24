@@ -20,6 +20,7 @@ local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings') -- luacheck: no unused
 local tab = require('Wikilib-tables') -- luacheck: no unused
 local alts = require('AltForms-data')
+local pokes = require("Poké-data")
 
 --[[-----------------------------------------
 
@@ -238,7 +239,7 @@ Arguments (names because they are many):
 	- fullGroupLabel: optional, the label to use when a whole group generates a
 		single entry. Defaults to 'Tutte le forme'
 
-The class representing the entries, needs to implement the following interface:
+The class representing the entries must implement the following interface:
     - constructor(): Takes as parameters an element of source, its key and
         entryArgs when specified. Must return nil if the entry should not be
         included in the list.
@@ -295,7 +296,7 @@ end
 --[[
 
 Creates a list where every entry is a row in an HTML table, grouping entries by
-a property and merging together all the entries in a group if they are all
+a property and merging together all the entries in a group only if they are all
 equal, with a specific label. Groups of one element are printed without the
 label.
 
@@ -315,7 +316,7 @@ Arguments (names because they are many):
 	- fullGroupLabel: optional, the label to use when a whole group generates a
 		single entry. Defaults to 'Tutte le forme'
 
-The class representing the entries, needs to implement the following interface:
+The class representing the entries must implement the following interface:
     - constructor(): Takes as parameters an element of source, its key and
         entryArgs when specified. Must return nil if the entry should not be
         included in the list.
@@ -433,13 +434,21 @@ l.makeFormsLabelledBoxes = function(args)
     --]]
     for k, abbr in ipairs(altData.gamesOrder) do
         local formName = altData.names[abbr]
+        -- Replaces empty base form name with Pokémon's name
+        formName = abbr == 'base' and formName == ''
+                   and pokes[args.name] and pokes[args.name].name
+                   or formName
         --[[
-            Se viene passato l'ndex, la forma base deve
-            restare un number, quindi non può essere
-            concatenata alla stringa vuota
+            If ndex is passed, base form should stay a number (thus can't be
+            concatenated to the empty string) and other forms should have three
+            digits followed by form abbr.
         --]]
-        local name = abbr == 'base' and args.name
-                or (args.name .. abbr)
+        local name = abbr == 'base'
+                     and args.name
+                     or (type(args.name) == 'number'
+                         and string.threeFigures(args.name) .. abbr
+                         or args.name .. abbr
+                     )
         local formBox = makeBox(name, formName)
 
         local index = table.search(boxes, formBox)

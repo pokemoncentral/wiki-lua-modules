@@ -7,8 +7,8 @@ and data related to games
 
 local g = {}
 
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings') -- luacheck: no unused
+local tab = require('Wikilib-tables') -- luacheck: no unused
 local formUtil = require('Wikilib-forms')
 local genUtil = require('Wikilib-gens')
 local gendata = require("Gens-data")

@@ -21,6 +21,7 @@ local list = require('Wikilib-lists')
 local mg = require('Wikilib-multigen')
 local oop = require('Wikilib-oop')
 local statsUtil = require('Wikilib-stats')
+local multigen = require('Wikilib-multigen')
 local w = require('Wikilib')
 local alt = require("AltForms-data")
 local c = require("Colore-data")
@@ -84,7 +85,7 @@ ${stats}
 
     headerValues = [=[
 
-! colspan="3" class="width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
 |-
 ! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
 ! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
@@ -107,8 +108,8 @@ ${stats}
     statBounds = [=[
 
 | class="hidden-xs" | &nbsp;
-| class="${rleft}text-small hidden-xs" style="padding: 0.3ex 0.8ex; background: #${bg};" | ${min50} - ${max50}
-| class="${rright}text-small hidden-xs" style="padding: 0.3ex 0.8ex; background: #${bg};" | ${min100} - ${max100}]=],
+| class="${rleft}text-small hidden-xs" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min50} - ${max50}
+| class="${rright}text-small hidden-xs" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min100} - ${max100}]=],
 
     statRow = [=[|-
 | ${rleft}style="width: 5.5em; padding: 0.3ex 0.8ex; background: #${light};" | [[Statistiche#${link}|<span style="color: #${normale};">${stat}</span>]]
@@ -252,15 +253,30 @@ local statRow = function(stat, value, gen, roundyness)
     end
 
     if computeBounds then
-        local calcStat = formulas.stats[gen][stat == 'hp' and 'hp' or 'anyOther']
-        local maxIV, maxEV = statsUtil.ivEvMax(gen)
+        local interpVal
 
-        --[[
-            Natures are ignored for generations before third
-            because the function has one less argument
-        --]]
-        bounds = string.interp(strings.statBounds,
-            {
+        -- Shedinja's HP are not worth to be handled in any other way
+        if value == 1 then
+            interpVal = {
+                rleft = roundy.boundsLeft,
+                bg = c[stat].light,
+                min50 = 1,
+                max50 = 1,
+                rright = roundy.boundsRight,
+                min100 = 1,
+                max100 = 1
+            }
+
+        -- Any normal stat calculation
+        else
+            local calcStat = formulas.stats[gen][stat == 'hp' and 'hp' or 'anyOther']
+            local maxIV, maxEV = statsUtil.ivEvMax(gen)
+
+            --[[
+                Natures are ignored for generations before third and for HP
+                because the function has one less argument
+            --]]
+            interpVal = {
                 rleft = roundy.boundsLeft,
                 bg = c[stat].light,
                 min50 = calcStat(0, value, 0, 50, 0.9),
@@ -268,7 +284,10 @@ local statRow = function(stat, value, gen, roundyness)
                 rright = roundy.boundsRight,
                 min100 = calcStat(0, value, 0, 100, 0.9),
                 max100 = calcStat(maxIV, value, maxEV, 100, 1.1)
-            })
+            }
+        end
+
+        bounds = string.interp(strings.statBounds, interpVal)
     end
 
     return string.interp(strings.statRow,
@@ -382,7 +401,7 @@ PokeStatBox.new = function(poke, formExtName, args)
         return type(val) == 'table' and val or nil
     end)
 
-    local pokeData = pokes[poke]
+    local pokeData = multigen.getGen(pokes[poke])
     this.types = {type1 = pokeData.type1, type2 = pokeData.type2}
 
     return setmetatable(this, PokeStatBox)
@@ -440,7 +459,7 @@ base form types, which is the rule for shared boxes.
 PokeStatBox.addLabel = function(this, label)
     PokeStatBox.super.addLabel(this, label)
 
-    local pokeData = pokes[this.baseFormName]
+    local pokeData = multigen.getGen(pokes[this.baseFormName])
     this.types = {type1 = pokeData.type1, type2 = pokeData.type2}
 end
 
@@ -490,7 +509,7 @@ s.boxStats = function(args)
         Need to get rid of non-existent stats because no
         holes are allowed when concatenating later on
     --]]
-    local statsOrder = statsUtil.statsOrder[stats.special and 1 or 2]
+    local statsOrder = statsUtil.statsOrder[gen or (stats.spec and 1 or 2)]
     local statRows = table.filter(statsOrder, function(stat)
             return stats[stat] end)
 
@@ -649,7 +668,7 @@ Older generations and no category:
 --]]
 s.pokeStats = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
-    local poke = string.lower(p[1] or p.poke)
+    local poke = string.lower(mw.text.decode(p[1] or p.poke))
     local noForms = (p[2] or p.noForms or 'no'):lower() == 'yes'
     local gen = tonumber(p[3] or p.gen) or gendata.latest
     local noCat = (p[4] or p.noCat or 'no'):lower() == 'yes'
@@ -719,6 +738,7 @@ s.typeAvg = function(frame)
         together consistently.
     --]]
     local typedPokes = table.keys(table.filter(pokes, function(data, poke)
+        data = multigen.getGen(data)
         return stats[poke]
             and not string.parseInt(poke)
                 and gamesUtil.isInGen(poke, gen)

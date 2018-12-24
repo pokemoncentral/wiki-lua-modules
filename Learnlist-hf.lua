@@ -251,6 +251,33 @@ end
 
 d.Levelh = d.levelh
 
+d.levelhLGPE = function(frame)
+	local pars = lib.sanitize(mw.clone(frame.args))
+	local tipo1, tipo2 = pars[2] or 'Sconosciuto', pars[3] or 'Sconosciuto'
+	local genh, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
+	local poke = pars[1] or ''
+	return txt.interp([=[
+<div class="text-center" style="max-width: 100%;">
+<div class="roundy text-center inline-block " style="max-width: 100%; ${bg}">
+<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''Settima&nbsp;generazione: [[Pokémon: Let's Go, Pikachu! e Let's Go, Eevee!|<span class="black-text">LGPE</span>]]'''</span></span></div>
+</div>
+<div style="overflow-x: auto; margin: 0 0.3ex;">
+{| class="white-rows" style="max-width: 100%; width: 100% !important; margin-top: 0; border-spacing: 0; background: transparent;"
+|- class="text-center black-text"
+! colspan="2" | [[Livello|Lv.]]
+! [[Mossa]]
+! [[Tipo]]
+! [[Categoria danno|Cat.]]
+! [[Potenza|Pot.]]
+! [[Statistiche#Precisione|Prec.]]
+! [[PP]]]=],
+{
+	bg = css.horizGradLua{type1 = tipo1, type2 = tipo2}
+})
+end
+
+d.LevelhLGPE = d.levelhLGPE
+
 -- Header per le mosse imparate tramite MT/MN
 
 d.tmh = function(frame)
@@ -258,6 +285,33 @@ d.tmh = function(frame)
 end
 
 d.Tmh = d.tmh
+
+d.tmhLGPE = function(frame)
+	local pars = lib.sanitize(mw.clone(frame.args))
+	local tipo1, tipo2 = pars[2] or 'Sconosciuto', pars[3] or 'Sconosciuto'
+	local genh, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
+	local poke = pars[1] or ''
+	return txt.interp([=[
+<div class="text-center" style="max-width: 100%;">
+<div class="roundy text-center inline-block " style="max-width: 100%; ${bg}">
+<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''Settima&nbsp;generazione: [[Pokémon: Let's Go, Pikachu! e Let's Go, Eevee!|<span class="black-text">LGPE</span>]]'''</span></span></div>
+</div>
+<div style="overflow-x: auto; margin: 0 0.3ex;">
+{| class="white-rows" style="max-width: 100%; width: 100% !important; margin-top: 0; border-spacing: 0; background: transparent;"
+|- class="text-center black-text"
+! [[MT]]
+! [[Mossa]]
+! [[Tipo]]
+! [[Categoria danno|Cat.]]
+! [[Potenza|Pot.]]
+! [[Statistiche#Precisione|Prec.]]
+! [[PP]]]=],
+{
+	bg = css.horizGradLua{type1 = tipo1, type2 = tipo2}
+})
+end
+
+d.TmhLGPE = d.tmhLGPE
 
 -- Header per le mosse imparate aumentando di livello
 
@@ -298,6 +352,9 @@ d.levelf = function(frame)
 end
 
 d.Levelf = d.levelf
+-- It's not accurate, but almost so I'll use this because right now I'm in a
+-- hurry
+d.levelfLGPE = d.levelf
 
 -- Footer per le mosse imparate tramite MT/MN
 
@@ -306,6 +363,9 @@ d.tmf = function(frame)
 end
 
 d.Tmf = d.tmf
+-- It's not accurate, but almost so I'll use this because right now I'm in a
+-- hurry
+d.tmfLGPE = d.tmf
 
 -- Footer per le mosse imparate tramite accoppiamento
 

@@ -1,5 +1,5 @@
 -- Tabella con le abilità dei Pokémon: laddove non vi siano seconda
--- abilità o abilità nascosta, tale valore non esiste. Gli indici sono tutti in minuscolo
+-- abilità o abilità speciale, tale valore non esiste. Gli indici sono tutti in minuscolo
 
 local t = {}
 
@@ -1355,7 +1355,7 @@ t.pangoro = {ability1 = 'Ferropugno', ability2 = 'Rompiforma', abilityd = 'Nervi
 t[675] = t.pangoro
 t.furfrou = {ability1 = 'Foltopelo'}
 t[676] = t.furfrou
-t.espurr = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'Mentelocale'}
+t.espurr = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'Mente Locale'}
 t[677] = t.espurr
 t.meowstic = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'Burla'}
 t[678] = t.meowstic
@@ -1425,9 +1425,9 @@ t.pumpkaboo = {ability1 = 'Raccolta', ability2 = 'Indagine', abilityd = 'Insonni
 t[710] = t.pumpkaboo
 t.gourgeist = {ability1 = 'Raccolta', ability2 = 'Indagine', abilityd = 'Insonnia'}
 t[711] = t.gourgeist
-t.bergmite = {ability1 = 'Mentelocale', ability2 = 'Corpogelo', abilityd = 'Vigore'}
+t.bergmite = {ability1 = 'Mente Locale', ability2 = 'Corpogelo', abilityd = 'Vigore'}
 t[712] = t.bergmite
-t.avalugg = {ability1 = 'Mentelocale', ability2 = 'Corpogelo', abilityd = 'Vigore'}
+t.avalugg = {ability1 = 'Mente Locale', ability2 = 'Corpogelo', abilityd = 'Vigore'}
 t[713] = t.avalugg
 t.noibat = {ability1 = 'Indagine', ability2 = 'Intrapasso', abilityd = 'Telepatia'}
 t[714] = t.noibat
@@ -1747,6 +1747,7 @@ t.silvallyP, t.silvallyG, t.silvallyD = t.silvally, t.silvally, t.silvally
 t['773P'], t['773G'], t['773D'] = t.silvally, t.silvally, t.silvally
 t.silvallyB, t.silvallyFo = t.silvally, t.silvally
 t['773B'], t['773Fo'] = t.silvally, t.silvally
+t.miniorR, t['774R'] = t.minior, t.minior
 t.necrozmaV, t.necrozmaA = t.necrozma, t.necrozma
 t['800V'], t['800A'] = t.necrozma, t.necrozma
 

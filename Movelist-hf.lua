@@ -10,6 +10,7 @@ local txt = require('Wikilib-strings')          -- luacheck: no unused
 local c = require("Colore-data")
 local css = require('Css')
 local gendata = require("Gens-data")
+local mlentry = require('Movelist-entry')
 
 -- Tabelle dati
 
@@ -29,7 +30,7 @@ games[3] = {{'RFVF', 'rossofuoco'}, {'S', 'smeraldo'}, {'XD', 'xd'}}
 games[4] = {{'DP', 'diamante'}, {'PT', 'platino'}, {'HGSS', 'heartgold'}}
 games[5] = {{'NB', 'nero'}, {'N2B2', 'nero2'}}
 games[6] = {{'XY', 'x'}, {'RΩZα', 'rubinoomega'}}
-games[7] = {{'SL', 'sole'}, {'USUL', 'ultrasole'}}
+games[7] = {{'SL', 'sole'}, {'USUL', 'ultrasole'}, {'LGPE', 'lgpikachu'}}
 
 -- Contiene le varie funzioni che generano le celle
 
@@ -40,11 +41,12 @@ local cells = {}
 -- Funzione per generale le celle dei level
 
 cells.level = function(gen)
-	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex;" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
+	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex;" colspan="${cs}" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
     local row = {}
     for a = gen, gendata.latest do
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
-			genl = gendata[a].ext, genr = gendata[a].roman}))
+			genl = gendata[a].ext, genr = gendata[a].roman,
+			cs = mlentry.maxCellsNumber[a]}))
     end
     return table.concat(row)
 end
@@ -52,12 +54,13 @@ end
 -- Genera le celle dei tm
 
 cells.tm = function(gen, tms)
-	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex; line-height: 1em;" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]<div class="text-small">${tm}</div>\n'
+	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex; line-height: 1em;" colspan="${cs}" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]<div class="text-small">${tm}</div>\n'
     local row, l = {}, ''
     for a = gen, gendata.latest do
         l = tms[a] == 'NO' and '<span style="color:#FFF;">Ness.</span>' or string.interp('[[${tm}|<span style="color:#FFF;">${tm}</span>]]', {tm = tms[a]})
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
-			genl = gendata[a].ext, genr = gendata[a].roman, tm = l}))
+			genl = gendata[a].ext, genr = gendata[a].roman, tm = l,
+			cs = mlentry.maxCellsNumber[a]}))
     end
     return table.concat(row)
 end
@@ -65,11 +68,12 @@ end
 -- Genera le celle del breed
 
 cells.breed = function(gen)
-	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex" colspan="2" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
+	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex" colspan="${cs}" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
     local row = {}
     for a = gen, gendata.latest do
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
-			genl = gendata[a].ext, genr = gendata[a].roman}))
+			genl = gendata[a].ext, genr = gendata[a].roman,
+			cs = mlentry.maxCellsNumber[a]}))
     end
     return table.concat(row)
 end

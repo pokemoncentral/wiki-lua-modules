@@ -3,18 +3,19 @@ local header = require('Movelist-hf')
 local entry = require('Movelist-entry')
 
 
-print(header.Levelh{args={'Elettro', '4'}})
+print(header.Levelh{args={'Elettro', '1'}})
 print(render.entry{args={'Movelist-entry.Level',
-"[[€4|025Co|26|22|20|B2W2=10|12|USUM=40|STAB='''£]]",
-"[[€4|361|26|22|20|9000|STAB='''£]]",
-"[[€4|598|26|22|20|213|STAB='''£]]",
-"[[€4|377|50|49|48|no£]]",
-"[[€4|376|50|49|48|2£]]",
-"[[€4|398|50|49|48|no£]]",
-"[[€4|720L|50|49|48|no£]]",
-"[[€4|720|50|49|48|no£]]",}})
+"[[€1|025Co|no|no|no|26|22|20|B2W2=10|12|USUM=40|STAB='''|useless=yes£]]",
+"[[€1|361|no|no|no|26|22|20|9000|STAB='''£]]",
+"[[€1|598|no|no|no|26|22|20|213|STAB='''£]]",
+"[[€1|377|no|no|no|50|49|48|no£]]",
+"[[€1|376|1|Y=2|3|C=4|no|50|49|48|2|LGPE=123£]]",
+"[[€1|398|no|no|no|50|49|48|no£]]",
+"[[€1|065|no|no|no|50|49|48|no£]]",
+"[[€1|065M|no|no|no|50|49|48|no£]]",
+"[[€1|720L|no|no|no|50|49|48|no£]]",
+"[[€1|720|no|no|no|50|49|48|no£]]",}})
 print(header.levelf{args={'Elettro'}})
-
 
 
 print(header.Breedh{args = {'Ghiaccio', '3'}})
@@ -28,12 +29,12 @@ print(header.footer{args={'Ghiaccio'}})
 print(header.TMh{args = {'Ghiaccio', '1', 'MT13', 'no', 'MT13', 'MT13', 'MT13', 'MT13', 'MT13'}})
 print(render.entry{args={'Movelist-entry.TM',
 "[[€1|116|yes|no|yes|yes|yes|yes|yes£]]",
-"[[€1|117|yes|no|yes|yes|yes|yes£]]",
-"[[€1|199|no|no|yes|yes|yes|yes£]]",
-"[[€1|359|no|no|yes|yes|yes|yes£]]",
-"[[€1|368|no|no|yes|yes|yes|yes£]]",
-"[[€1|478|no|no|no|yes|yes|yes|STAB='''£]]",
-"[[€1|713|no|no|no|no|no|yes|yes|STAB='''£]]"}})
+"[[€1|117|yes|no|yes|yes|yes|yes|yes£]]",
+"[[€1|199|no|no|yes|yes|yes|yes|yes£]]",
+"[[€1|359|no|no|yes|yes|yes|yes|yes£]]",
+"[[€1|368|no|no|yes|yes|yes|yes|yes£]]",
+"[[€1|478|no|no|no|yes|yes|yes|yes|STAB='''£]]",
+"[[€1|713|no|no|no|no|no|yes|yes|yes|STAB='''£]]"}})
 print(header.footer{args={'Ghiaccio'}})
 
 
@@ -42,14 +43,14 @@ print(header.tutorh{args = {'drago', '8'}})
 print(header.tutor4{args = {'yes', 'yes', 'yes'}})
 print(header.tutor5{args = {'yes', 'yes'}})
 print(header.tutor6{args = {'yes', 'yes'}})
-print(header.tutor7{args = {'yes', 'yes'}})
+print(header.tutor7{args = {'yes', 'yes', 'yes'}})
 print(render.entry{args={'Movelist-entry.tutor',
-"[[€148|X|X|X|X|yes|yes|yes|yes|yes|yes|yes|no|no|STAB='''£]]",
-"[[€487|X|X|X|X|no|yes|yes|yes|yes|yes|yes|yes|no|STAB='''|form=originale£]]",
-"[[€646|X|X|X|X|no|no|no|no|yes|yes|yes|yes|no|STAB='''|form=nero£]]",
-"[[€715|X|X|X|X|no|no|no|no|no|yes|yes|no|no|STAB='''£]]",
-"[[€718|X|X|X|X|no|no|no|no|no|yes|yes|yes|yes|STAB='''£]]",
-"[[€284|X|X|X|X|no|no|no|no|no|no|yes|yes|no£]]",}})
+"[[€148|X|X|X|X|yes|yes|yes|yes|yes|yes|yes|no|no|yes|STAB='''£]]",
+"[[€487|X|X|X|X|no|yes|yes|yes|yes|yes|yes|yes|no|yes|STAB='''|form=originale£]]",
+"[[€646|X|X|X|X|no|no|no|no|yes|yes|yes|yes|no|no|STAB='''|form=nero£]]",
+"[[€715|X|X|X|X|no|no|no|no|no|yes|yes|no|no|yes|STAB='''£]]",
+"[[€718|X|X|X|X|no|no|no|no|no|yes|yes|yes|yes|yes|STAB='''£]]",
+"[[€284|X|X|X|X|no|no|no|no|no|no|yes|yes|no|no£]]",}})
 print(header.footer{args={'drago'}})
 
 
@@ -59,12 +60,12 @@ print(entry.Event{args={'491', 'Darkrai', '1', 'Buio', 'Buio', '[[F10|Evento dec
 print(entry.Event{args={'493', 'Arceus', '1', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
 print(entry.Event{args={'492', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
 print(entry.Event{args={'492C', 'Shaymin', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
-print(entry.Event{args={'493', 'Arceus', 'Normale', 'Normale', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
+print(entry.Event{args={'493', 'Arceus', 'Normale', 'Normale', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''", allforms = 'yes'}})
 print(header.footer{args={'drago'}})
 
 
 
 print(header.Eventh{args = {'Normale'}})
 print(header.div{args={'4'}})
-print(entry.Event{args={'422E', 'My Pokémon Ranch'}})
+print(entry.Event{args={'422E', 'My Pokémon Ranch', useless = 'yes'}})
 print(header.footer{args={'Normale'}})

@@ -16,10 +16,11 @@ local u = {}
 local mw = require('mw')
 
 local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local tab = require('Wikilib-tables') -- luacheck: no unused
 local gamesUtil = require('Wikilib-games')
 local gens = require('Wikilib-gens')
 local forms = require('Wikilib-forms')
+local multigen = require('Wikilib-multigen')
 local ms = require('MiniSprite')
 local spr = require('Spr')
 local c = require("Colore-data")
@@ -102,7 +103,7 @@ local msLine = function(abbr, name, ndex, type1, type2, msGens)
 
 	--[[
 		Caso particolare: unown è il solo Pokémon ad
-		avere il mini sprite di seconda generazione 
+		avere il mini sprite di seconda generazione
 		uguale per tutte le forme, con un rowspan di
 		26, che viene inserito a parte una sola volta,
 		con la sigla della forma base; per le forme ?
@@ -116,9 +117,9 @@ local msLine = function(abbr, name, ndex, type1, type2, msGens)
 			table.insert(formLine, '| &nbsp;')
 		end
 	end
-    
+
 	for k, gen in ipairs(msGens) do
-    
+
         --[[
             Checking if the current form is
             available in any of the current
@@ -130,7 +131,7 @@ local msLine = function(abbr, name, ndex, type1, type2, msGens)
                 alt[ndex].since[abbr],
                 alt[ndex]['until'] and alt[ndex]['until'][abbr])
         end
-        
+
         if shouldShow then
 			table.insert(formLine, msBox(abbr, ndex, gen))
 		else
@@ -144,7 +145,7 @@ ${forms}]=],
 {
 	light = c[type1].light,
 	dark = type1 == type2 and c[type1].dark or c[type2].normale,
-	name = name,
+	name = name == '' and pokes[ndex].name or name,
 	forms = table.concat(formLine, '\n')
 })
 end
@@ -181,13 +182,14 @@ funzioni
 --]]
 
 local msTable = function(gen, ndex)
-	local type1, type2 = pokes[ndex].type1, pokes[ndex].type2
+	local pokedata = multigen.getGen(pokes[ndex])
+	local type1, type2 = pokedata.type1, pokedata.type2
 	--[[
 		Si determinano le generazioni dei mini
 		sprites, che non sono continue poiché
 		terza, quarta e quinta generazione
 		condividono gli stessi.
-		
+
 		I mini sprite di Unown della seconda
 		generazione vengono aggiunti come caso
 		particolare, quindi qui si inseriscono
@@ -271,7 +273,7 @@ local spriteGames = {
 			sprAbbr = 'cr'
 		}
 	},
-	
+
 	[3] = {
 		{
 			games = {'Rubino', 'Zaffiro'},
@@ -289,7 +291,7 @@ local spriteGames = {
 			sprAbbr = 'sme'
 		}
 	},
-	
+
 	[4] = {
 		{
 			games = {'Diamante', 'Perla'},
@@ -307,7 +309,7 @@ local spriteGames = {
 			sprAbbr = 'hgss'
 		}
 	},
-	
+
 	[5] = {
 		{
 			games = {'Nero', 'Bianco'},
@@ -320,7 +322,7 @@ local spriteGames = {
 			sprAbbr = 'nb2'
 		}
 	},
-	
+
 	[6] = {
 		{
 			games = {'X', 'Y'},
@@ -333,7 +335,7 @@ local spriteGames = {
 			sprAbbr = 'roza'
 		}
 	},
-	
+
 	[7] = {
 		{
 			games = {'Sole', 'Luna'},
@@ -391,17 +393,17 @@ degne di nota sono:
 --]]
 
 local fixGenders = function(abbr, gen, ndex, variant)
-	if gen > 3 then	
+	if gen > 3 then
 		if alt[ndex].names[abbr] == 'Femmina' then
 			return 'base', 'Femmina', 'fe' .. variant
 		end
-		
+
 		if alt[ndex].names[abbr] == 'Maschio' or abbr == 'base'
 				and table.search(wlib.alsoFemales, ndex) then
 			return 'base', 'Maschio', variant
 		end
 	end
-	
+
 	return abbr, alt[ndex].names[abbr], variant
 end
 
@@ -434,7 +436,7 @@ end
 
 --[[
 
-Crea tutte le celle dei giochi della 
+Crea tutte le celle dei giochi della
 generazione passata delle tables degli
 sprite.
 
@@ -466,10 +468,10 @@ local headGames = function(gen, ndex)
 	end
 
 	-- Suddette elaborazioni; il gsub del game[1] serve per "Rosso (J)"
-	
+
 	return table.concat(table.map(spriteGames[gen], function(data)
 			if #data.games == 2 then
-				local ink = table.concat{data.games[1]:gsub('%s%(J%)', ''),
+				local link = table.concat{data.games[1]:gsub('%s%(J%)', ''),
 						' e ', data.games[2]}
 				local width = math.floor(50 / (#spriteGames[gen] + 2)) -- 100 / (...) / 2
 				return table.concat{gameBox(width, data.games[1], link, 'left'),
@@ -531,7 +533,7 @@ ${back}]=],
 {
 	light = c[region].light,
 	dark = c[region].dark,
-	name = name,
+	name = name == '' and pokes[ndex].name or name,
 	shinyStar = var:find('shiny') and table.concat{'[[File:Cromatico',
 			gendata[gen].roman, '.png]]'} or '',
 	boxes = table.concat(boxes, '\n'),
@@ -598,7 +600,7 @@ local formsBoxes = function(ndex, gen, var)
 	return table.concat(lines, '\n')
 end
 
--- Wikicode per la tabella degli sprite di una singola generazione. 
+-- Wikicode per la tabella degli sprite di una singola generazione.
 
 local genTable = function(gen, ndex)
 	local region = gendata[gen].region
@@ -670,6 +672,5 @@ end
 
 u.AltSprites, u.altsprites, u.alt_sprites =
 u.altSprites, u.altSprites, u.altSprites
-arg={'Pikachu'}
-print(u.altSprites{args={arg[1]}})
---return u
+
+return u

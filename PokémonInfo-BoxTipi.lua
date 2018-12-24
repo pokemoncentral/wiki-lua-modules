@@ -9,6 +9,7 @@ local w = require('Wikilib')
 local oop = require('Wikilib-oop')
 local list = require('Wikilib-lists')
 local txt = require('Wikilib-strings')
+local multigen = require('Wikilib-multigen')
 local c = require("Colore-data")
 local pokes = require("Poké-data")
 
@@ -33,7 +34,7 @@ TypesBox.new = function(name, formName)
 	local this = setmetatable(TypesBox.super.new(formName),
 			TypesBox)
 
-	local pokeData = pokes[name]
+	local pokeData = multigen.getGen(pokes[name])
 	this.type1, this.type2 = pokeData.type1, pokeData.type2
 
 	return this
@@ -91,8 +92,9 @@ b.boxTipi = function(frame)
 	local name = string.trim(frame.args[1] or ''):lower()
 	local pokeData = pokes[string.parseInt(name) or name]
 			or pokes[mw.text.decode(name)]
+	pokeData = multigen.getGen(pokeData)
 	name = pokeData.name:lower()
-	
+
 	return list.makeFormsLabelledBoxes({
 		name = name,
 		makeBox = TypesBox.new,

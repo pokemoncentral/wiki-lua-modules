@@ -73,17 +73,17 @@ t.nidorino = {name = 'Nidorino', ndex = 33, type1 = 'veleno', type2 = 'veleno'}
 t[33] = t.nidorino
 t.nidoking = {name = 'Nidoking', ndex = 34, type1 = 'veleno', type2 = 'terra'}
 t[34] = t.nidoking
-t.clefairy = {name = 'Clefairy', ndex = 35, type1 = 'folletto', type2 = 'folletto'}
+t.clefairy = {name = 'Clefairy', ndex = 35, type1 = {[1] = 'normale', [6] = 'folletto'}, type2 = {[1] = 'normale', [6] = 'folletto'}}
 t[35] = t.clefairy
-t.clefable = {name = 'Clefable', ndex = 36, type1 = 'folletto', type2 = 'folletto'}
+t.clefable = {name = 'Clefable', ndex = 36, type1 = {[1] = 'normale', [6] = 'folletto'}, type2 = {[1] = 'normale', [6] = 'folletto'}}
 t[36] = t.clefable
 t.vulpix = {name = 'Vulpix', ndex = 37, type1 = 'fuoco', type2 = 'fuoco'}
 t[37] = t.vulpix
 t.ninetales = {name = 'Ninetales', ndex = 38, type1 = 'fuoco', type2 = 'fuoco'}
 t[38] = t.ninetales
-t.jigglypuff = {name = 'Jigglypuff', ndex = 39, type1 = 'normale', type2 = 'folletto'}
+t.jigglypuff = {name = 'Jigglypuff', ndex = 39, type1 = 'normale', type2 = {[1] = 'normale', [6] = 'folletto'}}
 t[39] = t.jigglypuff
-t.wigglytuff = {name = 'Wigglytuff', ndex = 40, type1 = 'normale', type2 = 'folletto'}
+t.wigglytuff = {name = 'Wigglytuff', ndex = 40, type1 = 'normale', type2 = {[1] = 'normale', [6] = 'folletto'}}
 t[40] = t.wigglytuff
 t.zubat = {name = 'Zubat', ndex = 41, type1 = 'veleno', type2 = 'volante'}
 t[41] = t.zubat
@@ -165,9 +165,9 @@ t.slowpoke = {name = 'Slowpoke', ndex = 79, type1 = 'acqua', type2 = 'psico'}
 t[79] = t.slowpoke
 t.slowbro = {name = 'Slowbro', ndex = 80, type1 = 'acqua', type2 = 'psico'}
 t[80] = t.slowbro
-t.magnemite = {name = 'Magnemite', ndex = 81, type1 = 'elettro', type2 = 'acciaio'}
+t.magnemite = {name = 'Magnemite', ndex = 81, type1 = 'elettro', type2 = {[1] = 'elettro', [2] = 'acciaio'}}
 t[81] = t.magnemite
-t.magneton = {name = 'Magneton', ndex = 82, type1 = 'elettro', type2 = 'acciaio'}
+t.magneton = {name = 'Magneton', ndex = 82, type1 = 'elettro', type2 = {[1] = 'elettro', [2] = 'acciaio'}}
 t[82] = t.magneton
 t["farfetch'd"] = {name = "Farfetch'd", ndex = 83, type1 = 'normale', type2 = 'volante'}
 t[83] = t["farfetch'd"]
@@ -247,7 +247,7 @@ t.staryu = {name = 'Staryu', ndex = 120, type1 = 'acqua', type2 = 'acqua'}
 t[120] = t.staryu
 t.starmie = {name = 'Starmie', ndex = 121, type1 = 'acqua', type2 = 'psico'}
 t[121] = t.starmie
-t['mr. mime'] = {name = 'Mr. Mime', ndex = 122, type1 = 'psico', type2 = 'folletto'}
+t['mr. mime'] = {name = 'Mr. Mime', ndex = 122, type1 = 'psico', type2 = {[1] = 'psico', [6] = 'folletto'}}
 t[122] = t['mr. mime']
 t.scyther = {name = 'Scyther', ndex = 123, type1 = 'coleot', type2 = 'volante'}
 t[123] = t.scyther
@@ -349,13 +349,13 @@ t.lanturn = {name = 'Lanturn', ndex = 171, type1 = 'acqua', type2 = 'elettro'}
 t[171] = t.lanturn
 t.pichu = {name = 'Pichu', ndex = 172, type1 = 'elettro', type2 = 'elettro'}
 t[172] = t.pichu
-t.cleffa = {name = 'Cleffa', ndex = 173, type1 = 'folletto', type2 = 'folletto'}
+t.cleffa = {name = 'Cleffa', ndex = 173, type1 = {[2] = 'normale', [6] = 'folletto'}, type2 = {[2] = 'normale', [6] = 'folletto'}}
 t[173] = t.cleffa
-t.igglybuff = {name = 'Igglybuff', ndex = 174, type1 = 'normale', type2 = 'folletto'}
+t.igglybuff = {name = 'Igglybuff', ndex = 174, type1 = 'normale', type2 = {[2] = 'normale', [6] = 'folletto'}}
 t[174] = t.igglybuff
-t.togepi = {name = 'Togepi', ndex = 175, type1 = 'folletto', type2 = 'folletto'}
+t.togepi = {name = 'Togepi', ndex = 175, type1 = {[2] = 'normale', [6] = 'folletto'}, type2 = {[2] = 'normale', [6] = 'folletto'}}
 t[175] = t.togepi
-t.togetic = {name = 'Togetic', ndex = 176, type1 = 'folletto', type2 = 'volante'}
+t.togetic = {name = 'Togetic', ndex = 176, type1 = {[2] = 'normale', [6] = 'folletto'}, type2 = 'volante'}
 t[176] = t.togetic
 t.natu = {name = 'Natu', ndex = 177, type1 = 'psico', type2 = 'volante'}
 t[177] = t.natu
@@ -369,9 +369,9 @@ t.ampharos = {name = 'Ampharos', ndex = 181, type1 = 'elettro', type2 = 'elettro
 t[181] = t.ampharos
 t.bellossom = {name = 'Bellossom', ndex = 182, type1 = 'erba', type2 = 'erba'}
 t[182] = t.bellossom
-t.marill = {name = 'Marill', ndex = 183, type1 = 'acqua', type2 = 'folletto'}
+t.marill = {name = 'Marill', ndex = 183, type1 = 'acqua', type2 = {[2] = 'acqua', [6] = 'folletto'}}
 t[183] = t.marill
-t.azumarill = {name = 'Azumarill', ndex = 184, type1 = 'acqua', type2 = 'folletto'}
+t.azumarill = {name = 'Azumarill', ndex = 184, type1 = 'acqua', type2 = {[2] = 'acqua', [6] = 'folletto'}}
 t[184] = t.azumarill
 t.sudowoodo = {name = 'Sudowoodo', ndex = 185, type1 = 'roccia', type2 = 'roccia'}
 t[185] = t.sudowoodo
@@ -421,9 +421,9 @@ t.gligar = {name = 'Gligar', ndex = 207, type1 = 'terra', type2 = 'volante'}
 t[207] = t.gligar
 t.steelix = {name = 'Steelix', ndex = 208, type1 = 'acciaio', type2 = 'terra'}
 t[208] = t.steelix
-t.snubbull = {name = 'Snubbull', ndex = 209, type1 = 'folletto', type2 = 'folletto'}
+t.snubbull = {name = 'Snubbull', ndex = 209, type1 = {[2] = 'normale', [6] = 'folletto'}, type2 = {[2] = 'normale', [6] = 'folletto'}}
 t[209] = t.snubbull
-t.granbull = {name = 'Granbull', ndex = 210, type1 = 'folletto', type2 = 'folletto'}
+t.granbull = {name = 'Granbull', ndex = 210, type1 = {[2] = 'normale', [6] = 'folletto'}, type2 = {[2] = 'normale', [6] = 'folletto'}}
 t[210] = t.granbull
 t.qwilfish = {name = 'Qwilfish', ndex = 211, type1 = 'acqua', type2 = 'veleno'}
 t[211] = t.qwilfish
@@ -563,11 +563,11 @@ t.wingull = {name = 'Wingull', ndex = 278, type1 = 'acqua', type2 = 'volante'}
 t[278] = t.wingull
 t.pelipper = {name = 'Pelipper', ndex = 279, type1 = 'acqua', type2 = 'volante'}
 t[279] = t.pelipper
-t.ralts = {name = 'Ralts', ndex = 280, type1 = 'psico', type2 = 'folletto'}
+t.ralts = {name = 'Ralts', ndex = 280, type1 = 'psico', type2 = {[3] = 'psico', [6] = 'folletto'}}
 t[280] = t.ralts
-t.kirlia = {name = 'Kirlia', ndex = 281, type1 = 'psico', type2 = 'folletto'}
+t.kirlia = {name = 'Kirlia', ndex = 281, type1 = 'psico', type2 = {[3] = 'psico', [6] = 'folletto'}}
 t[281] = t.kirlia
-t.gardevoir = {name = 'Gardevoir', ndex = 282, type1 = 'psico', type2 = 'folletto'}
+t.gardevoir = {name = 'Gardevoir', ndex = 282, type1 = 'psico', type2 = {[3] = 'psico', [6] = 'folletto'}}
 t[282] = t.gardevoir
 t.surskit = {name = 'Surskit', ndex = 283, type1 = 'coleot', type2 = 'acqua'}
 t[283] = t.surskit
@@ -599,7 +599,7 @@ t.makuhita = {name = 'Makuhita', ndex = 296, type1 = 'lotta', type2 = 'lotta'}
 t[296] = t.makuhita
 t.hariyama = {name = 'Hariyama', ndex = 297, type1 = 'lotta', type2 = 'lotta'}
 t[297] = t.hariyama
-t.azurill = {name = 'Azurill', ndex = 298, type1 = 'normale', type2 = 'folletto'}
+t.azurill = {name = 'Azurill', ndex = 298, type1 = 'normale', type2 = {[3] = 'normale', [6] = 'folletto'}}
 t[298] = t.azurill
 t.nosepass = {name = 'Nosepass', ndex = 299, type1 = 'roccia', type2 = 'roccia'}
 t[299] = t.nosepass
@@ -609,7 +609,7 @@ t.delcatty = {name = 'Delcatty', ndex = 301, type1 = 'normale', type2 = 'normale
 t[301] = t.delcatty
 t.sableye = {name = 'Sableye', ndex = 302, type1 = 'buio', type2 = 'spettro'}
 t[302] = t.sableye
-t.mawile = {name = 'Mawile', ndex = 303, type1 = 'acciaio', type2 = 'folletto'}
+t.mawile = {name = 'Mawile', ndex = 303, type1 = 'acciaio', type2 = {[3] = 'acciaio', [6] = 'folletto'}}
 t[303] = t.mawile
 t.aron = {name = 'Aron', ndex = 304, type1 = 'acciaio', type2 = 'roccia'}
 t[304] = t.aron
@@ -881,7 +881,7 @@ t.bronzong = {name = 'Bronzong', ndex = 437, type1 = 'acciaio', type2 = 'psico'}
 t[437] = t.bronzong
 t.bonsly = {name = 'Bonsly', ndex = 438, type1 = 'roccia', type2 = 'roccia'}
 t[438] = t.bonsly
-t['mime jr.'] = {name = 'Mime Jr.', ndex = 439, type1 = 'psico', type2 = 'folletto'}
+t['mime jr.'] = {name = 'Mime Jr.', ndex = 439, type1 = 'psico', type2 = {[4] = 'psico', [6] = 'folletto'}}
 t[439] = t['mime jr.']
 t.happiny = {name = 'Happiny', ndex = 440, type1 = 'normale', type2 = 'normale'}
 t[440] = t.happiny
@@ -939,7 +939,7 @@ t.electivire = {name = 'Electivire', ndex = 466, type1 = 'elettro', type2 = 'ele
 t[466] = t.electivire
 t.magmortar = {name = 'Magmortar', ndex = 467, type1 = 'fuoco', type2 = 'fuoco'}
 t[467] = t.magmortar
-t.togekiss = {name = 'Togekiss', ndex = 468, type1 = 'folletto', type2 = 'volante'}
+t.togekiss = {name = 'Togekiss', ndex = 468, type1 = {[4] = 'normale', [6] = 'folletto'}, type2 = 'volante'}
 t[468] = t.togekiss
 t.yanmega = {name = 'Yanmega', ndex = 469, type1 = 'coleot', type2 = 'volante'}
 t[469] = t.yanmega
@@ -1095,9 +1095,9 @@ t.whirlipede = {name = 'Whirlipede', ndex = 544, type1 = 'coleot', type2 = 'vele
 t[544] = t.whirlipede
 t.scolipede = {name = 'Scolipede', ndex = 545, type1 = 'coleot', type2 = 'veleno'}
 t[545] = t.scolipede
-t.cottonee = {name = 'Cottonee', ndex = 546, type1 = 'erba', type2 = 'folletto'}
+t.cottonee = {name = 'Cottonee', ndex = 546, type1 = 'erba', type2 = {[5] = 'erba', [6] = 'folletto'}}
 t[546] = t.cottonee
-t.whimsicott = {name = 'Whimsicott', ndex = 547, type1 = 'erba', type2 = 'folletto'}
+t.whimsicott = {name = 'Whimsicott', ndex = 547, type1 = 'erba', type2 = {[5] = 'erba', [6] = 'folletto'}}
 t[547] = t.whimsicott
 t.petilil = {name = 'Petilil', ndex = 548, type1 = 'erba', type2 = 'erba'}
 t[548] = t.petilil
@@ -1619,6 +1619,10 @@ t.blacephalon = {name = 'Blacephalon', ndex = 806, type1 = 'fuoco', type2 = 'spe
 t[806] = t.blacephalon
 t.zeraora = {name = 'Zeraora', ndex = 807, type1 = 'elettro', type2 = 'elettro'}
 t[807] = t.zeraora
+t.meltan = {name = 'Meltan', ndex = 808, type1 = 'acciaio', type2 = 'acciaio'}
+t[808] = t.meltan
+t.melmetal = {name = 'Melmetal', ndex = 809, type1 = 'acciaio', type2 = 'acciaio'}
+t[809] = t.melmetal
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
@@ -1768,6 +1772,32 @@ t['800A'] = t.necrozmaA
 t.necrozmaU = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'drago'}
 t['800U'] = t.necrozmaU
 
+t.charizardMX = {name = 'Charizard', ndex = 6, type1 = 'fuoco', type2 = 'drago'}
+t['006MX'] = t.charizardMX
+t.pinsirM = {name = 'Pinsir', ndex = 127, type1 = 'coleot', type2 = 'volante'}
+t['127M'] = t.pinsirM
+t.mewtwoMX = {name = 'Mewtwo', ndex = 150, type1 = 'psico', type2 = 'lotta'}
+t['150MX'] = t.mewtwoMX
+t.ampharosM = {name = 'Ampharos', ndex = 181, type1 = 'elettro', type2 = 'drago'}
+t['181M'] = t.ampharosM
+t.sceptileM = {name = 'Sceptile', ndex = 254, type1 = 'erba', type2 = 'drago'}
+t['254M'] = t.sceptileM
+-- It's not an alias because Gardevoir changed its type in sixth gen
+t.gardevoirM = {name = 'Gardevoir', ndex = 282, type1 = 'psico', type2 = 'folletto'}
+t['282M'] = t.gardevoirM
+t.mawileM = {name = 'Mawile', ndex = 303, type1 = 'acciaio', type2 = 'folletto'}
+t['303M'] = t.mawileM
+t.aggronM = {name = 'Aggron', ndex = 306, type1 = 'acciaio', type2 = 'acciaio'}
+t['306M'] = t.aggronM
+t.altariaM = {name = 'Altaria', ndex = 334, type1 = 'drago', type2 = 'folletto'}
+t['334M'] = t.altariaM
+t.groudonA = {name = 'Groudon', ndex = 383, type1 = 'terra', type2 = 'fuoco'}
+t['383A'] = t.groudonA
+t.lopunnyM = {name = 'Lopunny', ndex = 428, type1 = 'normale', type2 = 'lotta'}
+t['428M'] = t.lopunnyM
+t.audinoM = {name = 'Audino', ndex = 531, type1 = 'normale', type2 = 'folletto'}
+t['531M'] = t.audinoM
+
 -- Gli alias per le altre forme alternative rilevanti
 
 t.pikachuCs, t['025Cs'], t.pikachuR, t['025R'], t.pikachuD, t['025D'],
@@ -1795,109 +1825,45 @@ t.zygardeD, t['718D'], t.zygardeP, t['718P'] =
 t.lycanrocN, t['745N'], t.lycanrocC, t['745C'] =
 	t.lycanroc, t.lycanroc, t.lycanroc, t.lycanroc
 t.wishiwashiB, t['746B'] = t.wishiwashi, t.wishiwashi
+t.miniorR, t['774R'] = t.minior, t.minior
 
--- I dati sulle megaevoluzioni; sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
--- Il nome è composto dal nome del Pokémon seguito da 'M'
-
-t.venusaurM = {name = 'MegaVenusaur', ndex = 3, type1 = 'erba', type2 = 'veleno'}
-t['003M'] = t.venusaurM
-t.charizardMX = {name = 'MegaCharizard X', ndex = 6, type1 = 'fuoco', type2 = 'drago'}
-t['006MX'] = t.charizardMX
-t.charizardMY = {name = 'MegaCharizard Y', ndex = 6, type1 = 'fuoco', type2 = 'volante'}
-t['006MY'] = t.charizardMY
-t.blastoiseM = {name = 'MegaBlastoise', ndex = 9, type1 = 'acqua', type2 = 'acqua'}
-t['009M'] = t.blastoiseM
-t.beedrillM = {name = 'MegaBeedrill', ndex = 15, type1 = 'coleot', type2 = 'veleno'}
-t['015M'] = t.beedrillM
-t.pidgeotM = {name = 'MegaPidgeot', ndex = 18, type1 = 'normale', type2 = 'volante'}
-t['018M'] = t.pidgeotM
-t.alakazamM = {name = 'MegaAlakazam', ndex = 65, type1 = 'psico', type2 = 'psico'}
-t['065M'] = t.alakazamM
-t.slowbroM = {name = 'MegaSlowbro', ndex = 80, type1 = 'acqua', type2 = 'psico'}
-t['080M'] = t.slowbroM
-t.gengarM = {name = 'MegaGengar', ndex = 94, type1 = 'spettro', type2 = 'veleno'}
-t['094M'] = t.gengarM
-t.kangaskhanM = {name = 'MegaKangaskhan', ndex = 115, type1 = 'normale', type2 = 'normale'}
-t['115M'] = t.kangaskhanM
-t.pinsirM = {name = 'MegaPinsir', ndex = 127, type1 = 'coleot', type2 = 'volante'}
-t['127M'] = t.pinsirM
-t.gyaradosM = {name = 'MegaGyarados', ndex = 130, type1 = 'acqua', type2 = 'buio'}
-t['130M'] = t.gyaradosM
-t.aerodactylM = {name = 'MegaAerodactyl', ndex = 142, type1 = 'roccia', type2 = 'volante'}
-t['142M'] = t.aerodactylM
-t.mewtwoMX = {name = 'MegaMewtwo X', ndex = 150, type1 = 'psico', type2 = 'lotta'}
-t['150MX'] = t.mewtwoMX
-t.mewtwoMY = {name = 'MegaMewtwo Y', ndex = 150, type1 = 'psico', type2 = 'psico'}
-t['150MY'] = t.mewtwoMY
-t.ampharosM = {name = 'MegaAmpharos', ndex = 181, type1 = 'elettro', type2 = 'drago'}
-t['181M'] = t.ampharosM
-t.steelixM = {name = 'MegaSteelix', ndex = 208, type1 = 'acciaio', type2 = 'terra'}
-t['208M'] = t.steelixM
-t.scizorM = {name = 'MegaScizor', ndex = 212, type1 = 'coleot', type2 = 'acciaio'}
-t['212M'] = t.scizorM
-t.heracrossM = {name = 'MegaHeracross', ndex = 214, type1 = 'coleot', type2 = 'lotta'}
-t['214M'] = t.heracrossM
-t.houndoomM = {name = 'MegaHoundoom', ndex = 229, type1 = 'buio', type2 = 'fuoco'}
-t['229M'] = t.houndoomM
-t.tyranitarM = {name = 'MegaTyranitar', ndex = 248, type1 = 'roccia', type2 = 'buio'}
-t['248M'] = t.tyranitarM
-t.sceptileM = {name = 'MegaSceptile', ndex = 254, type1 = 'erba', type2 = 'drago'}
-t['254M'] = t.sceptileM
-t.blazikenM = {name = 'MegaBlaziken', ndex = 257, type1 = 'fuoco', type2 = 'lotta'}
-t['257M'] = t.blazikenM
-t.swampertM = {name = 'MegaSwampert', ndex = 260, type1 = 'acqua', type2 = 'terra'}
-t['260M'] = t.swampertM
-t.gardevoirM = {name = 'MegaGardevoir', ndex = 282, type1 = 'psico', type2 = 'folletto'}
-t['282M'] = t.gardevoirM
-t.sableyeM = {name = 'MegaSableye', ndex = 302, type1 = 'buio', type2 = 'spettro'}
-t['302M'] = t.sableyeM
-t.mawileM = {name = 'MegaMawile', ndex = 303, type1 = 'acciaio', type2 = 'folletto'}
-t['303M'] = t.mawileM
-t.aggronM = {name = 'MegaAggron', ndex = 306, type1 = 'acciaio', type2 = 'acciaio'}
-t['306M'] = t.aggronM
-t.medichamM = {name = 'MegaMedicham', ndex = 308, type1 = 'lotta', type2 = 'psico'}
-t['308M'] = t.medichamM
-t.manectricM = {name = 'MegaManectric', ndex = 310, type1 = 'elettro', type2 = 'elettro'}
-t['310M'] = t.manectricM
-t.sharpedoM = {name = 'MegaSharpedo', ndex = 319, type1 = 'acqua', type2 = 'buio'}
-t['319M'] = t.sharpedoM
-t.cameruptM = {name = 'MegaCamerupt', ndex = 323, type1 = 'fuoco', type2 = 'terra'}
-t['323M'] = t.cameruptM
-t.altariaM = {name = 'MegaAltaria', ndex = 334, type1 = 'drago', type2 = 'folletto'}
-t['334M'] = t.altariaM
-t.banetteM = {name = 'MegaBanette', ndex = 354, type1 = 'spettro', type2 = 'spettro'}
-t['354M'] = t.banetteM
-t.absolM = {name = 'MegaAbsol', ndex = 359, type1 = 'buio', type2 = 'buio'}
-t['359M'] = t.absolM
-t.glalieM = {name = 'MegaGlalie', ndex = 362, type1 = 'ghiaccio', type2 = 'ghiaccio'}
-t['362M'] = t.glalieM
-t.salamenceM = {name = 'MegaSalamence', ndex = 373, type1 = 'drago', type2 = 'volante'}
-t['373M'] = t.salamenceM
-t.metagrossM = {name = 'MegaMetagross', ndex = 376, type1 = 'acciaio', type2 = 'psico'}
-t['376M'] = t.metagrossM
-t.latiasM = {name = 'MegaLatias', ndex = 380, type1 = 'drago', type2 = 'psico'}
-t['380M'] = t.latiasM
-t.latiosM = {name = 'MegaLatios', ndex = 381, type1 = 'drago', type2 = 'psico'}
-t['381M'] = t.latiosM
-t.rayquazaM = {name = 'MegaRayquaza', ndex = 384, type1 = 'drago', type2 = 'volante'}
-t['384M'] = t.rayquazaM
-t.kyogreA = {name = 'ArcheoKyogre', ndex = 382, type1 = 'acqua', type2 = 'acqua'}
-t['382A'] = t.kyogreA
-t.groudonA = {name = 'ArcheoGroudon', ndex = 383, type1 = 'terra', type2 = 'fuoco'}
-t['383A'] = t.groudonA
-t.lopunnyM = {name = 'MegaLopunny', ndex = 428, type1 = 'normale', type2 = 'lotta'}
-t['428M'] = t.lopunnyM
-t.garchompM = {name = 'MegaGarchomp', ndex = 445, type1 = 'drago', type2 = 'terra'}
-t['445M'] = t.garchompM
-t.lucarioM = {name = 'MegaLucario', ndex = 448, type1 = 'lotta', type2 = 'acciaio'}
-t['448M'] = t.lucarioM
-t.abomasnowM = {name = 'MegaAbomasnow', ndex = 460, type1 = 'erba', type2 = 'ghiaccio'}
-t['460M'] = t.abomasnowM
-t.galladeM = {name = 'MegaGallade', ndex = 475, type1 = 'psico', type2 = 'lotta'}
-t['475M'] = t.galladeM
-t.audinoM = {name = 'MegaAudino', ndex = 531, type1 = 'normale', type2 = 'folletto'}
-t['531M'] = t.audinoM
-t.diancieM = {name = 'MegaDiancie', ndex = 719, type1 = 'roccia', type2 = 'folletto'}
-t['719M'] = t.diancieM
+t.venusaurM, t['003M'] = t.venusaur, t.venusaur
+t.charizardMY, t['006MY'] = t.charizard, t.charizard
+t.blastoiseM, t['009M'] = t.blastoise, t.blastoise
+t.beedrillM, t['015M'] = t.beedrill, t.beedrill
+t.pidgeotM, t['018M'] = t.pidgeot, t.pidgeot
+t.alakazamM, t['065M'] = t.alakazam, t.alakazam
+t.slowbroM, t['080M'] = t.slowbro, t.slowbro
+t.gengarM, t['094M'] = t.gengar, t.gengar
+t.kangaskhanM, t['115M'] = t.kangaskhan, t.kangaskhan
+t.gyaradosM, t['130M'] = t.gyarados, t.gyarados
+t.aerodactylM, t['142M'] = t.aerodactyl, t.aerodactyl
+t.mewtwoMY, t['150MY'] = t.mewtwo, t.mewtwo
+t.steelixM, t['208M'] = t.steelix, t.steelix
+t.scizorM, t['212M'] = t.scizor, t.scizor
+t.heracrossM, t['214M'] = t.heracross, t.heracross
+t.houndoomM, t['229M'] = t.houndoom, t.houndoom
+t.tyranitarM, t['248M'] = t.tyranitar, t.tyranitar
+t.blazikenM, t['257M'] = t.blaziken, t.blaziken
+t.swampertM, t['260M'] = t.swampert, t.swampert
+t.sableyeM, t['302M'] = t.sableye, t.sableye
+t.medichamM, t['308M'] = t.medicham, t.medicham
+t.manectricM, t['310M'] = t.manectric, t.manectric
+t.sharpedoM, t['319M'] = t.sharpedo, t.sharpedo
+t.cameruptM, t['323M'] = t.camerupt, t.camerupt
+t.banetteM, t['354M'] = t.banette, t.banette
+t.absolM, t['359M'] = t.absol, t.absol
+t.glalieM, t['362M'] = t.glalie, t.glalie
+t.salamenceM, t['373M'] = t.salamence, t.salamence
+t.metagrossM, t['376M'] = t.metagross, t.metagross
+t.latiasM, t['380M'] = t.latias, t.latias
+t.latiosM, t['381M'] = t.latios, t.latios
+t.rayquazaM, t['384M'] = t.rayquaza, t.rayquaza
+t.kyogreA, t['382A'] = t.kyogre, t.kyogre
+t.garchompM, t['445M'] = t.garchomp, t.garchomp
+t.lucarioM, t['448M'] = t.lucario, t.lucario
+t.abomasnowM, t['460M'] = t.abomasnow, t.abomasnow
+t.galladeM, t['475M'] = t.gallade, t.gallade
+t.diancieM, t['719M'] = t.diancie, t.diancie
 
 return t

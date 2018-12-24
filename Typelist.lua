@@ -16,6 +16,7 @@ local oop = require('Wikilib-oop')
 local resp = require('Resp')
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
+local multigen = require('Wikilib-multigen')
 local pokes = require('Poké-data')
 
 --[[
@@ -85,8 +86,8 @@ of the passed type.
 
 --]]
 g.MonoTypeEntry.new = function(pokeData, name, type)
-    if pokeData.type1 ~= pokeData.type2
-            or type ~= pokeData.type1 then
+    pokeData = multigen.getGen(pokeData)
+    if pokeData.type1 ~= pokeData.type2 or type ~= pokeData.type1 then
         return nil
     end
 
@@ -112,8 +113,8 @@ mono-typed or its first type is not the passed one.
 
 --]]
 g.FirstTypeEntry.new = function(pokeData, name, type)
-    if pokeData.type1 == pokeData.type2
-            or type ~= pokeData.type1 then
+    pokeData = multigen.getGen(pokeData)
+    if pokeData.type1 == pokeData.type2 or type ~= pokeData.type1 then
         return nil
     end
 
@@ -139,6 +140,7 @@ mono-typed or its second type is not the passed one.
 
 --]]
 g.SecondTypeEntry.new = function(pokeData, name, type)
+    pokeData = multigen.getGen(pokeData)
     if pokeData.type1 == pokeData.type2
             or type ~= pokeData.type2 then
         return nil

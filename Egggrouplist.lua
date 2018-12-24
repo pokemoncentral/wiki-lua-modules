@@ -16,6 +16,7 @@ local ms = require('MiniSprite')
 local form = require('Wikilib-forms')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
+local multigen = require('Wikilib-multigen')
 local resp = require('Resp')
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
@@ -46,14 +47,19 @@ by makeList in Wikilib/lists.
 g.Entry.new = function(eggData, name, group)
     local baseName, abbr = form.getnameabbr(name)
     local pokeData = table.merge(eggData, pokes[name] or pokes[baseName])
+    pokeData = multigen.getGen(pokeData)
     local this = g.Entry.super.new(name, pokeData.ndex)
 
     this.group = group
     this.formsData = alt[baseName]
+    this.formsData = this.formsData and table.copy(this.formsData)
     if this.formsData and not this.formsData.names[abbr] then
         -- Se la forma non esiste in alt[baseName] è una versione evento che non esiste
         -- nei moduli dati. Prende tutti i dati dalla forma normale
-        this.formsData.links[abbr] = this.formsData.links.base:gsub(this.formsData.names.base, 'Evento')
+        this.formsData.links[abbr] = this.formsData.links.base:gsub(
+                                            this.formsData.names.base,
+                                            '<div class="text-small">Evento</div>'
+                                        )
     end
     this.formAbbr = abbr
     -- Se c'è un'altra forma del Pokémon in PokéEggGroup-data

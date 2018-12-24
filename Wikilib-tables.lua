@@ -92,7 +92,7 @@ t.copy = table.copy
 
 Merges two tables into a new one. Integer indices of the second table will
 follow the ones of the first. Other indices overwrite the ones of the first
-in case of equlity, unless the values are tables in both the source tables:
+in case of equality, unless the values are tables in both the source tables:
 in this case they are merged recursively.
 
 --]]

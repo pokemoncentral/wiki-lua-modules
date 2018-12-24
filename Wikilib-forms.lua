@@ -11,6 +11,12 @@ local txt = require('Wikilib-strings') -- luacheck: no unused
 local genUtil = require('Wikilib-gens')
 local alt = require("AltForms-data")
 
+local mw = require('mw')
+
+
+-- Boolean used to avoid double loading of useless forms
+local allFormsLoaded = false
+
 --[[
 
 Unisce le tabelle AltForms/data e UselessForms/data
@@ -19,8 +25,14 @@ Restituisce la tabella così creata
 
 --]]
 f.allFormsData = function()
+    -- Avoid a second loading of all forms
+    if allFormsLoaded then
+        return alt
+    end
+
     local all = table.copy(alt)
-    local useless = require('UselessForms-data')
+    local useless = require("UselessForms-data")
+    local both = require("BothForms-data")
 
     --[[
         No need for ipairs because integer keys
@@ -28,24 +40,9 @@ f.allFormsData = function()
     --]]
     for k, v in pairs(useless) do
         if all[k] then
-
-            --[[
-            This Pokémon is in both useless and altForms
-            Right now only Pikachu
-            --]]
-            all[k] = table.deepMerge(all[k], v)
-
-            --[[
-            gamesOrder is a pain in the neck
-            right now, with Pikachu, it is possible to
-            simply concatenate the two tables and remove
-            the second 'base'
-            --]]
-            all[k].gamesOrder = table.unique(table.merge(
-                                    all[k].gamesOrder,
-                                    v.gamesOrder
-                                ))
-
+            -- This Pokémon is in both useless and altForms, thus it is
+            -- granted to be also in bothForms
+            all[k] = both[k]
         else
             all[k] = v
         end
@@ -68,6 +65,7 @@ in entrambi i moduli dati.
 f.loadUseless = function(merge)
     if merge then
         alt = f.allFormsData()
+        allFormsLoaded = true
     else
         alt = require("UselessForms-data")
     end
@@ -128,7 +126,7 @@ del Pokémon e quello esteso della forma alternativa.
 f.getlink = function(poke, black, extform)
     black = black and 'black' or ''
     poke, extform = f.getnameabbr(poke, extform)
-    if extform == '' or extform == 'base' then
+    if extform == '' then
         return ''
     end
     return alt[poke] and alt[poke][black .. 'links'][extform] or ''
@@ -233,13 +231,20 @@ Parse an argument that should be a Pokémon name or ndex followed by a form
 abbreviation so that it can be used to index a data module.
 If name is a Pokémon name (not an ndex) it should be lowercase but the first
 letter, that can be both upper or lower case.
+Doesn't work when name ends with 'base'.
 
 --]]
 f.nameToDataindex = function(name)
     local trueName, extform = f.getnameabbr(string.fl(string.trim(name)))
+    -- The local variable is needed because global alt can be changed with
+    -- loadUseless
+    local trueAlt = require("AltForms-data")
     -- If the Pokémon isn't in altForms/data, should return the plain name
-    -- The return when extform == 'base' settles problems with number and concat
-    if extform == 'base' or not alt[tonumber(trueName) or trueName] then
+    -- extform == 'base' settles problems with numbers and string concat
+    -- The last check is for Pokémon with both forms
+    if extform == 'base'
+        or not trueAlt[tonumber(trueName) or trueName]
+        or not trueAlt[tonumber(trueName) or trueName].names[extform] then
         return trueName
     end
     trueName = type(trueName) == 'number' and string.tf(trueName) or trueName

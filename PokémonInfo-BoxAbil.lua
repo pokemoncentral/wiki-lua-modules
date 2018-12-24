@@ -74,7 +74,7 @@ AbilsBox.__tostring = function(this)
     local hiddenAbil = ''
     if this.abilityd then
         hiddenAbil = table.concat{'<div class="width-xl-50">',
-            l.aColor(this.abilityd), '<div class="small-text">Abilit&agrave; nascosta</div></div>'}
+            l.aColor(this.abilityd), '<div class="small-text">Abilit&agrave; speciale</div></div>'}
     end
 
     local eventAbil = ''

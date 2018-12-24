@@ -1620,6 +1620,10 @@ d.blacephalon = {hp = 53, atk = 127, def = 53, spatk = 151, spdef = 79, spe = 10
 d[806] = d.blacephalon
 d.zeraora = {hp = 88, atk = 112, def = 75, spatk = 102, spdef = 80, spe = 143}
 d[807] = d.zeraora
+d.meltan = {hp = 46, atk = 65, def = 65, spatk = 55, spdef = 35, spe = 34}
+d[808] = d.meltan
+d.melmetal = {hp = 135, atk = 143, def = 143, spatk = 80, spdef = 65, spe = 34}
+d[809] = d.melmetal
 
 -- Alternative forms which actually change stats
 d.deoxysA = {hp = 50, atk = 180, def = 20, spatk = 180, spdef = 20, spe = 150}
@@ -1688,15 +1692,14 @@ d.lycanrocC = {hp = 75, atk = 117, def = 65, spatk = 55, spdef = 65, spe = 110}
 d['745C'] = d.lycanrocC
 d.wishiwashiB = {hp = 45, atk = 140, def = 130, spatk = 140, spdef = 135, spe = 30}
 d['746B'] = d.wishiwashiB
+d.miniorR = {hp = 60, atk = 100, def = 60, spatk = 100, spdef = 60, spe = 120}
+d['774R'] = d.miniorR
 d.necrozmaV = {hp = 97, atk = 157, def = 127, spatk = 113, spdef = 109, spe = 77}
 d['800V'] = d.necrozmaV
 d.necrozmaA = {hp = 97, atk = 113, def = 109, spatk = 157, spdef = 127, spe = 77}
 d['800A'] = d.necrozmaA
 d.necrozmaU = {hp = 97, atk = 167, def = 97, spatk = 167, spdef = 97, spe = 129}
 d['800U'] = d.necrozmaU
-
--- core formd.minior = {hp = 60, atk = 100, def = 60, spatk = 100, spdef = 60, spe = 120}
--- d[774] = d.minior
 
 -- Mega evolutions and Primal reversions
 d.venusaurM = {hp = 80, atk = 100, def = 123, spatk = 122, spdef = 120, spe = 80}

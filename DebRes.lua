@@ -50,6 +50,7 @@ local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings')  -- luacheck: no unused
 local tab = require('Wikilib-tables')   -- luacheck: no unused
+local multigen = require('Wikilib-multigen')
 local css = require('Css')
 local abilData = require("PokéAbil-data")
 local pokes = require("Poké-data")
@@ -191,7 +192,7 @@ dr.EffTable.new = function(name, formName)
         types = table.map(name, string.lower)
         abils = table.map(formName, string.lower)
     else
-        types = pokes[name]
+        types = multigen.getGen(pokes[name])
         abils = table.map(abillib.lastAbils(abilData[name]), string.lower)
     end
 
@@ -401,7 +402,7 @@ dr.EffTable.FooterLine.strings = {
     MAYBE = 'Se questo Pok&eacute;mon ha [[${abil}]] ',
 
     -- TAKENOFF category beginning text
-    TAKENOFF = 'Se questo Pok&eacute;mon perde [[${abil}]], o se ne sono annullati gli effetti, ',
+    TAKENOFF = 'Se le abilit&agrave; non compaiono nel gioco, se questo Pok&eacute;mon perde [[${abil}]] o se ne sono annullati gli effetti, ',
 
     -- RINGTARGET category beginning text
     RINGTARGET = 'Se questo Pok&eacute;mon tiene un [[Facilsaglio]]',
@@ -769,6 +770,8 @@ dr.debRes = function(frame)
         abils.abilitye = p[6] or p.abile
         return tostring(dr.EffTable.new(types, abils))
     end
+
+    pokeData = multigen.getGen(pokeData)
 
     return list.makeFormsLabelledBoxes({
         name = pokeData.name:lower(),

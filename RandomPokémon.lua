@@ -8,9 +8,8 @@ fa usi diversi in base alla funzione
 local p = {}
 
 local form = require('Wikilib-forms')
-local tab = require('Wikilib-tables')
-local txt = require('Wikilib-strings')
-local ot = require('Wikilib-others')
+local tab = require('Wikilib-tables') -- luacheck: no unused
+local txt = require('Wikilib-strings') -- luacheck: no unused
 local data = require("Wikilib-data")
 local pokedata = require("Poké-data")
 local alt = require("AltForms-data")
@@ -21,7 +20,6 @@ local useless = require("UselessForms-data")
 local randomNdex = function()
 	math.randomseed(os.time())
 	return math.random(data.pokeNum)
---	return ot.random(data.pokeNum)
 end
 
 --[[
