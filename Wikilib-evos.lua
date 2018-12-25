@@ -51,6 +51,46 @@ end
 
 --[[
 
+Given a Pokémon name or ndex, returns the evo tree pruned of branches that
+aren't in the subtree nor in the path to root of that Pokémon, that is the tree
+reachable by going only up or only down.
+That is the exact tree that Evobox should print.
+
+Example: given Eevee, this functions returns Eevee and all its evolutions, but
+given Vaporeon it returns only Eevee with evolution Vaporeon, pruning away all
+the other evolutions.
+
+--]]
+ev.prunedEvotree = function(name)
+    local ndex = pokes[forms.nameToDataindex(name)].ndex
+    -- Support function. Needed because it's recursive. Local to access ndex and
+    -- simplify pass to map. Two step declaration because it's recursive
+    local recPruneEvoTree
+    recPruneEvoTree = function(evotab)
+        if (evotab.ndex == ndex) then
+            return evotab
+        end
+        if not evotab.evos then
+            return nil
+        end
+        local result = {}
+        result.evos = table.mapToNum(evotab.evos, recPruneEvoTree, ipairs)
+        if #result.evos == 0 then
+            return nil
+        end
+        for k, v in pairs(evotab) do
+            if k ~= "evos" then
+                result[k] = v
+            end
+        end
+        return result
+    end
+
+    return recPruneEvoTree(evodata[ndex])
+end
+
+--[[
+
 Given two Pokémon names or ndexes returns true iff they are in the same
 evolutionary line. The two arguments must be able to index Poké/data.
 

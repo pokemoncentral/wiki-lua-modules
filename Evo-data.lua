@@ -919,7 +919,7 @@ evo.lickitung = {
 		{
 			ndex = 463,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.MOVE] = 'rotolamento' }
+			conditions = { [evo.conditions.MOVE] = 'Rotolamento' }
 		}
 	}
 }
@@ -992,7 +992,7 @@ evo.tangela = {
 		{
 			ndex = 465,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.MOVE] = 'forzantica' },
+			conditions = { [evo.conditions.MOVE] = 'Forzantica' },
 		}
 	}
 }
@@ -1061,7 +1061,7 @@ evo["mime jr."] = {
 		{
 			ndex = 122,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.MOVE] = 'mimica' },
+			conditions = { [evo.conditions.MOVE] = 'Mimica' },
 		}
 	}
 }
@@ -1546,7 +1546,7 @@ evo.bonsly = {
 		{
 			ndex = 185,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.MOVE] = 'mimica' },
+			conditions = { [evo.conditions.MOVE] = 'Mimica' },
 		}
 	}
 }
@@ -1582,7 +1582,7 @@ evo.aipom = {
 		{
 			ndex = 424,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.MOVE] = 'doppiosmash' },
+			conditions = { [evo.conditions.MOVE] = 'Doppiosmash' },
 		}
 	}
 }
@@ -1610,7 +1610,7 @@ evo.yanma = {
 		{
 			ndex = 469,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.MOVE] = 'forzantica' },
+			conditions = { [evo.conditions.MOVE] = 'Forzantica' },
 		}
 	}
 }
@@ -1790,7 +1790,7 @@ evo.swinub = {
 				{
 					ndex = 473,
 					method = evo.methods.LEVEL,
-					conditions = { [evo.conditions.MOVE] = 'forzantica' },
+					conditions = { [evo.conditions.MOVE] = 'Forzantica' },
 				}
 			}
 		}
