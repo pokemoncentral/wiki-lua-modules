@@ -479,23 +479,6 @@ eb.processInput = {}
 
 --[[
 
-This functions takes the module args and returns a subset of the args, made by
-those args whose keys ended with the passed ending. This ending is removed in
-the keys of the result.
-
---]]
-eb.processInput.argsEndingSubset = function(args, ending)
-    local newArgs = {}
-    for k, v in pairs(args) do
-        if k:match(ending .. '$') then
-            newArgs[k:match('(.*)' .. ending .. '$')] = v
-        end
-    end
-    return newArgs
-end
-
---[[
-
 This table holds the list of keys whose values should be mapped to lowercase
 in the arguments of Evobox. Not all the keys should be lowered because some
 arguments are case sensitive (eg: moves names).
@@ -510,7 +493,7 @@ eb.processInput.mapToLower = { '^family$', '^evotype%d%a?$', '^move%d%a?$',
 -- Processes an argument: maps to lowercase when needed.
 eb.processInput.processElement = function(v, k)
     if type(k) == 'string' and table.any(eb.processInput.mapToLower, function(pattern)
-        return string.match(k, '^' .. pattern .. '$')
+        return string.match(k, pattern)
     end) then
         v = string.lower(v)
     end
@@ -531,12 +514,13 @@ eb.boxPokemonManual = function(p, suff)
     if p["name" .. suff]:lower() == "none" then
         return ""
     end
+    local fakephase = p.family == "normale" and { evos = {} } or {}
     return eb.boxPokemon{
         notes = p["form" .. suff],
         type1 = p["type1-" .. suff],
-        type2 = p["type2-" .. suff],
+        type2 = p["type2-" .. suff] or p["type1-" .. suff],
         spr = "[[File:" .. p["sprite" .. suff] .. ".png]]",
-        phase = eb.phaseName(tonumber(suff), p.family),
+        phase = eb.phaseName(tonumber(suff:match("^(%d*)%a")), fakephase),
         name = p["name" .. suff],
     }
 end
@@ -552,14 +536,23 @@ eb.evotypeToMethod = {
     ['ogg. tenuto'] = evodata.methods.LEVEL,
     scambio = evodata.methods.TRADE,
 }
+
 --[[
+
+Returns a single arrow given frames.args and a suffix that identifies a subset
+of parameters. If evotypeN is nil it returns an empty string (to handle branches
+of different height).
 
 Transform the subset of frame.args that ends with a specified suffix in an
 evodata table that can be passed to boxArrowGen. If the evotype is unknown the
 method defaults to OTHER.
 
 --]]
-eb.suffsetToEvodata = function(p, suff)
+eb.SingleArrowMaybe = function(p, suff, direction)
+    if not p["evotype" .. suff] then
+        return ""
+    end
+
     local fakeevo = { conditions = {} }
     fakeevo.method = eb.evotypeToMethod[p["evotype" .. suff]]
                     or evodata.methods.OTHER
@@ -567,18 +560,19 @@ eb.suffsetToEvodata = function(p, suff)
     fakeevo[evodata.methods.LEVEL] = p["level" .. suff]
     fakeevo[evodata.methods.STONE] = p["evostone" .. suff]
 
-    fakeevo[evodata.conditions.LOCATION] = p["location" .. suff]
-    fakeevo[evodata.conditions.MOVE] = p["move" .. suff]
-    fakeevo[evodata.conditions.ITEM] = p["held" .. suff]
-    fakeevo[evodata.conditions.OTHER] = p["evoinfo" .. suff]
-    fakeevo[evodata.conditions.TIME] = p["time" .. suff]
-    fakeevo[evodata.conditions.GENDER] = p["gender" .. suff]
+    fakeevo.conditions[evodata.conditions.LOCATION] = p["location" .. suff]
+    fakeevo.conditions[evodata.conditions.MOVE] = p["move" .. suff]
+    fakeevo.conditions[evodata.conditions.ITEM] = p["held" .. suff]
+    fakeevo.conditions[evodata.conditions.OTHER] = p["evoinfo" .. suff]
+    fakeevo.conditions[evodata.conditions.TIME] = p["time" .. suff]
+    fakeevo.conditions[evodata.conditions.GENDER] = p["gender" .. suff]
 
     -- Checks for emptyness
     if next(fakeevo.conditions) == nil then
         fakeevo.conditions = nil
     end
-    return fakeevo
+
+    return eb.SingleArrow(fakeevo, direction)
 end
 
 --[[
@@ -598,12 +592,12 @@ like that.
 eb.makeGlitchPhaseRows = function(p, phase)
     local result = {}
     local evotypePhase = tostring(phase - 1)
-    if p['evotype' .. evotypePhase] then
-        if p['evotype' .. evotypePhase .. 'a'] then
+    if p['name' .. phase] or p['name' .. phase .. 'a'] then
+        if p['name' .. phase .. 'a'] then
             -- There are two evolutions
             table.insert(result, string.interp(eb.strings.ROW_TWO, {
-                box1 = eb.SingleArrow(eb.suffsetToEvodata(p, evotypePhase)),
-                box2 = eb.SingleArrow(eb.suffsetToEvodata(p, evotypePhase .. 'a'))
+                box1 = eb.SingleArrowMaybe(p, evotypePhase),
+                box2 = eb.SingleArrowMaybe(p, evotypePhase .. 'a')
             }))
             table.insert(result, string.interp(eb.strings.ROW_TWO, {
                 box1 = eb.boxPokemonManual(p, tostring(phase)),
@@ -612,7 +606,7 @@ eb.makeGlitchPhaseRows = function(p, phase)
         else
             -- There's only one evolution
             table.insert(result, string.interp(eb.strings.ROW_ONE, {
-                box1 = eb.SingleArrow(eb.suffsetToEvodata(p, evotypePhase)),
+                box1 = eb.SingleArrowMaybe(p, evotypePhase),
             }))
             table.insert(result, string.interp(eb.strings.ROW_ONE, {
                 box1 = eb.boxPokemonManual(p, tostring(phase)),
@@ -631,7 +625,7 @@ and some values allowed for that template aren't allowed for this module.
 
 Parameters are named because of their number:
     - 1, 2: types of the Pokémon. Used only for printing, may as well be glitch
-		types.
+		types. 2 is optional, defaults to 1.
     - family (nessuna|normale): the kind of family. Defaults to 'nessuna',
 		that means no evolutions. 'normale' means an evolution without baby or
 		alike, and includes branched evolutions. Other families (baby, incenso,
@@ -671,13 +665,13 @@ eb.GlitchEvobox = function(frame)
     table.insert(evoboxcontent, eb.makeGlitchPhaseRows(p, 3))
 
     return string.interp(eb.strings.BOX_CONTAINER, {
-            background = css.horizGradLua{ type1 = p[1], type2 = p[2] },
+            background = css.horizGradLua{ type1 = p[1], type2 = p[2] or p[2] },
             content = table.concat(evoboxcontent)
         })
 end
 
-eb.evobox = eb.Evobox
-
+eb.glitchEvobox, eb.glitchevobox, eb.Glitchevobox =
+    eb.GlitchEvobox, eb.GlitchEvobox, eb.GlitchEvobox
 
 
 -- ============================ Alternative forms box ==========================
@@ -707,7 +701,7 @@ the whole interface of the underlying eb.BoxArrow:
 
 --]]
 eb.FormArrow = function(args)
-    local fakeEvo = {
+    local fakeevo = {
         method = evodata.methods.OTHER,
         [evodata.methods.OTHER] = args.item
                             and table.concat{
@@ -719,8 +713,25 @@ eb.FormArrow = function(args)
                             or "",
     }
     return string.interp(eb.strings.SINGLE_ARROW, {
-        boxarrow = eb.boxArrowGen(fakeEvo, 'double')
+        boxarrow = eb.boxArrowGen(fakeevo, 'double')
     })
+end
+
+--[[
+
+This functions takes the module args and returns a subset of the args, made by
+those args whose keys ended with the passed ending. This ending is removed in
+the keys of the result.
+
+--]]
+eb.argsEndingSubset = function(args, ending)
+    local newArgs = {}
+    for k, v in pairs(args) do
+        if k:match(ending .. '$') then
+            newArgs[k:match('(.*)' .. ending .. '$')] = v
+        end
+    end
+    return newArgs
 end
 
 --[[
@@ -743,8 +754,8 @@ eb.makeFormRows = function(p, index)
         if p['sprite' .. tostring(index) .. 'a'] then
             -- There are two evolutions
             table.insert(result, string.interp(eb.strings.ROW_TWO, {
-                box1 = eb.FormArrow(argsEndingSubset(p, evotypeIdx)),
-                box2 = eb.FormArrow(argsEndingSubset(p, evotypeIdx .. 'a'))
+                box1 = eb.FormArrow(eb.argsEndingSubset(p, evotypeIdx)),
+                box2 = eb.FormArrow(eb.argsEndingSubset(p, evotypeIdx .. 'a'))
             }))
             table.insert(result, string.interp(eb.strings.ROW_TWO, {
                 box1 = eb.BoxForm(
@@ -759,7 +770,7 @@ eb.makeFormRows = function(p, index)
         else
             -- There's only one evolution
             table.insert(result, string.interp(eb.strings.ROW_ONE, {
-                box1 = eb.FormArrow(argsEndingSubset(p, evotypeIdx)),
+                box1 = eb.FormArrow(eb.argsEndingSubset(p, evotypeIdx)),
             }))
             table.insert(result, string.interp(eb.strings.ROW_ONE, {
                 box1 = eb.BoxForm(

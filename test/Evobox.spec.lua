@@ -3,7 +3,7 @@
 local evobox = require('Evobox')
 
 -- ============================ Formbox with parameters ========================
-if false then
+if true then
 	-- Something normal
 	print(evobox.Formbox{args={
 	'Castform',
@@ -68,7 +68,7 @@ if false then
 end
 
 -- ============================ Evobox (automatic) =============================
-if false then
+if true then
 	-- Standard
 	-- print(evobox.Evobox{args={'Staraptor'}})
 	-- No evos
@@ -113,7 +113,6 @@ if false then
 	print(evobox.Evobox{args={'Eevee'}})
 end
 
-
 -- ============================ GlitchEvobox (parameters) ======================
 if true then
 	-- Something normal first
@@ -127,87 +126,41 @@ if true then
 	name3="Staraptor", sprite3='398', ["type1-3"]="normale", ["type2-3"]="volante",
 	}})
 
-	-- -- Pokémon without evolutions
-	-- print(evobox.GlitchEvobox{args={'Tauros', sprite1='128'}})
-    --
-	-- -- With notes
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Frillish',
-	-- family='Normale',
-	-- sprite1='592',
-	-- form1='Maschio',
-	-- evotype1='Livello',
-	-- level1='40',
-	-- sprite2='593',
-	-- form2='Maschio'
-	-- }})
-    --
-	-- -- Evolution by trade
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Gourgeist',
-	-- family='Normale',
-	-- sprite1='710',
-	-- evotype1='Scambio',
-	-- sprite2='711',
-	-- }})
-    --
-	-- -- Level, Happiness
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Golbat',
-	-- family='Normale',
-	-- sprite1='041',
-	-- evotype1='Livello',
-	-- level1='22',
-	-- sprite2='042',
-	-- evotype2='Felicità',
-	-- sprite3='169'
-	-- }})
-    --
-	-- -- Baby Pokémon, happiness
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Lucario',
-	-- family='Baby',
-	-- sprite1='447',
-	-- evotype1='Felicità',
-	-- time1='Giorno',
-	-- sprite2='448',
-	-- }})
-    --
-	-- -- Incense, held, time, evostone
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Chansey',
-	-- family='Incenso',
-	-- sprite1='440',
-	-- evotype1='Ogg. Tenuto',
-	-- held1='Pietraovale',
-	-- time1='Giorno',
-	-- incense='Fortunaroma',
-	-- sprite2='113',
-	-- evotype2='Felicità',
-	-- sprite3='242'
-	-- }})
-    --
-	-- -- Incense, move
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Sudowoodo',
-	-- family='Incenso',
-	-- sprite1='438',
-	-- evotype1='Mossa',
-	-- move1='Mimica',
-	-- incense='Roccioaroma',
-	-- sprite2='185'
-	-- }})
-    --
-	-- -- Trade for a specific Pokémon
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Escavalier',
-	-- family='Normale',
-	-- sprite1='588',
-	-- evotype1='Scambio',
-	-- ms1='616',
-	-- sprite2='589'
-	-- }})
-    --
+	-- Pokémon without evolutions
+	print(evobox.GlitchEvobox{args={'normale',
+		name1="Tauros", sprite1='128', ["type1-1"]="normale"
+	}})
+
+	-- With notes
+	print(evobox.GlitchEvobox{args={
+	"acqua", "spettro",
+	family='Normale',
+	name1='Frillish',sprite1='592',["type1-1"]="acqua", ["type2-1"]="spettro",
+	form1='Maschio',
+	evotype1='Livello',level1='40',
+	name2='Jellicent',sprite2='593',["type1-2"]="acqua", ["type2-2"]="spettro",
+	form2='Maschio'
+	}})
+
+	-- Evolution by trade
+	print(evobox.GlitchEvobox{args={
+	"erba", "spettro",
+	family='Normale',
+	name1='Pumpkaboo', sprite1='710', ["type1-1"]="erba", ["type2-1"]="spettro",
+	evotype1='Scambio',
+	name2='Gourgeist', sprite2='711', ["type1-2"]="erba", ["type2-2"]="spettro",
+	}})
+
+	-- Level, Happiness
+	print(evobox.GlitchEvobox{args={
+	"veleno", "volante",
+	family='Normale',
+	name1="Zubat", sprite1='041', ["type1-1"]="veleno", ["type2-1"]="volante",
+	evotype1='Livello',	level1='22',
+	name2="Golbat", sprite2='042', ["type1-2"]="veleno", ["type2-2"]="volante",
+	evotype2='Felicità',
+	name3="Crobat", sprite3='169', ["type1-3"]="veleno", ["type2-3"]="volante",
+	}})
 	-- -- Held item, time
 	-- print(evobox.GlitchEvobox{args={
 	-- 'Gliscor',
@@ -230,22 +183,6 @@ if true then
 	-- evotype2='Posizione',
 	-- location2='campo magnetico speciale',
 	-- sprite3='462'
-	-- }})
-    --
-	-- -- Branched evolution at second level, trade with item, evostone
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Poliwag',
-	-- family='Normale',
-	-- sprite1='060',
-	-- evotype1='Livello',
-	-- level1='25',
-	-- sprite2='061',
-	-- evotype2='Pietra',
-	-- evostone2='Pietraidrica',
-	-- sprite3='062',
-	-- evotype2a='Scambio',
-	-- held2a='Roccia di Re',
-	-- sprite3a='186'
 	-- }})
     --
 	-- -- Branched evolution at first level, evostone, gender
@@ -291,28 +228,19 @@ if true then
 	-- evotype1info='con due cuori di {{colore2|000|amicizia}}<br>avendo appreso una mossa di tipo {{colore2|000|Folletto}}',
 	-- sprite2='700'
 	-- }})
-    --
-	-- -- Feebas
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Feebas',
-	-- family='Normale',
-	-- sprite1='349',
-	-- evotype1='Scambio',
-	-- held1='Squama Bella',
-	-- evotype1info='o<br>{{bag|Fascia Blu}}<br>{{colore2|000|Livello|Aumento di livello}}<br>con la {{colore2|000|Bellezza (virtù)|virtù Bellezza}} alta',
-	-- sprite2='350'
-	-- }})
-    --
-	-- -- Nincada
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Nincada',
-	-- family='Normale',
-	-- sprite1='290',
-	-- evotype1='Livello',
-	-- level1='20',
-	-- sprite2='291',
-	-- evotype1a='other',
-	-- evotype1ainfo='{{bag|Poké Ball}}<br>Con spazio in {{colore2|000|squadra}}<br>e almeno una {{colore2|000|Poké Ball}} nello {{colore2|000|zaino}}',
-	-- sprite2a='292'
-	-- }})
+
+	-- Glitch, branches of different height
+	print(evobox.GlitchEvobox{args={
+		"Uccello", "Normale",
+		family="Normale",
+		sprite1="Missingno RB", name1="File:GlitchName00.png",
+		["type1-1"]="Uccello",["type2-1"]="Normale",
+		evotype1="Livello",level1="0",
+		sprite2="Sprrb115",name2="Kangaskhan", ["type1-2"]="Normale",
+		evotype1a="Livello",level1a="128",
+		sprite2a="Sprrb035", name2a="Clefairy", ["type1-2a"]="Normale",
+		name3="None",
+		evotype2a="Pietra", evostone2a="Pietralunare",
+		sprite3a="Sprrb036",name3a="Clefable",["type1-3a"]="Normale"
+	}})
 end
