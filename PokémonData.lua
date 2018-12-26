@@ -13,7 +13,7 @@ local b = {}
 local mw = require('mw')
 mw.loadData = require
 
-local txt = require('Wikilib-strings') -- luacheck: no unused
+local txt = require('Wikilib-strings')      -- luacheck: no unused
 local formlib = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
 local pokes
@@ -204,6 +204,23 @@ end
 
 b.get_type_2 = b.getType2
 
+--[[
+
+Returns a Pokémon's types given its name or ndex, in a format suitable to be
+used as CSS gradient classes. An optional 'gen' parameter specifies the
+generation.
+
+Ex:
+{{#invoke: PokémonData | gradTypes | 398 }}   --> normale-volante
+{{#invoke: PokémonData | gradTypes | 65 }}    --> psico-psico
+{{#invoke: PokémonData | gradTypes | 479L }}  --> elettro-acqua
+{{#invoke: PokémonData | gradTypes | 082 | gen = 1 }}  --> elettro-elettro
+
+--]]
+b.gradTypes = function(frame)
+    return table.concat({b.getType1(frame), b.getType2(frame)}, '-'):lower()
+end
+b.grad_types = b.gradTypes
 
 --[[
 

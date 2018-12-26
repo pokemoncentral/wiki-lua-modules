@@ -73,6 +73,11 @@ table.insert(tests, { pokeData.getType2{args={'479L'}}, 'Acqua' })
 -- Old gen type
 table.insert(tests, { pokeData.getType2{args={'082', gen = '1'}}, 'Elettro' })
 
+-- Gradient types
+table.insert(tests, { pokeData.gradTypes{args={'400'}}, 'normale-acqua'})
+table.insert(tests, { pokeData.gradTypes{args={'035', gen = '1'}},
+    'normale-normale'})
+
 -- ================================ getLink ================================
 -- Tests 25, 28
 -- Standard
