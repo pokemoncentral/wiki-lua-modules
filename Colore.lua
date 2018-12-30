@@ -375,6 +375,17 @@ c.zona_rosso, c.zona_Rosso = c.rosso, c.rosso
 c.zona_blu, c.zona_Blu = c.blu, c.blu
 c.zona_verde, c.zona_Verde = c.verde, c.verde
 c.zona_giallo, c.zona_Giallo = c.giallo, c.giallo
+c.zona_arena, c.zona_Arena = c.arena, c.arena
+c.zona_azienda, c.zona_Azienda = c.azienda, c.azienda
+c.zona_cupola, c.zona_Cupola = c.cupola, c.cupola
+c.zona_dojo, c.zona_Dojo = c.dojo, c.dojo
+c.zona_maniero, c.zona_Maniero = c.maniero, c.maniero
+c.zona_palazzo, c.zona_Palazzo = c.palazzo, c.palazzo
+c.zona_palco, c.zona_Palco = c.palco, c.palco
+c.zona_parcolotta, c.zona_Parcolotta, c.zona_Parco_lotta, c.zona_parco_lotta = c.parco_lotta, c.parco_lotta, c.parco_lotta, c.parco_lotta
+c.zona_piramide, c.zona_Piramide = c.piramide, c.piramide
+c.zona_serpe, c.zona_Serpe = c.serpe, c.serpe
+c.zona_torre, c.zona_Torre = c.torre, c.torre
 
 c.zona_text = function(frame)
     local zone = string.trim(frame.args[1] or ''):lower()
