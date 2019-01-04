@@ -408,16 +408,16 @@ end
 
 --[[
 
-Main Wikicode interface, but using data module. The only parameter is the
-Pokémon's name ({{BASEPAGENAME}})
+Main Wikicode interface, but using data module. The first parameter is the
+Pokémon's name ({{BASEPAGENAME}}). There's an optional parameter "form" to
+specify the form using its abbr.
 
 --]]
 eb.Evobox = function(frame)
-    local p = w.trimAndMap(mw.clone(frame.args), string.lower)
-    local pokeData = pokes[string.parseInt(p[1]) or p[1]]
-            or pokes[mw.text.decode(p[1])]
-    pokeData = multigen.getGen(pokeData)
-    local data = evolib.prunedEvotree(pokeData.ndex)
+    local pokename = mw.text.decode(frame.args[1]):trim():lower()
+    local abbr = (frame.args.form or ""):trim()
+    local pokeData = multigen.getGen(pokes[form.nameToDataindex(pokename .. abbr)])
+    local data = evolib.prunedEvotree(abbr == "" and pokeData.ndex or pokeData.ndex .. abbr)
 
     local evoboxcontent = {}
     local boxContainer = eb.strings.BOX_CONTAINER
@@ -427,28 +427,31 @@ eb.Evobox = function(frame)
         box1 = eb.boxPokemonAuto(data.ndex, eb.phaseName(1, data), data.notes)
     }))
 
-    -- If there are more than 2 phase one evolutions the module assumes there
-    -- aren't higher level evolutions and uses the unresponsive layout
-    if #data.evos > 2 then
-        boxContainer = eb.strings.BOX_CONTAINER_UNRESPONSIVE
-        table.insert(evoboxcontent, eb.makeManyEvosRow(data.evos))
-    -- If the family is 'baby' or 'incenso' the second phase should be handled
-    -- "by hand", otherwise there's the function that creates the row.
-    elseif data.method == evodata.methods.BREED then
-        -- There is one phase one evolution, but with double arrow
-        table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
-            box1 = eb.DoubleArrow(data)
-        }))
-        table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
-            box1 = eb.boxPokemonAuto(data.evos[1].ndex, eb.phaseName(2, data), data.evos[1].notes)
-        }))
-    else
-        table.insert(evoboxcontent, eb.makePhaseRows(data.evos, 2))
+    local phase3evos
+    if data.evos then
+        -- If there are more than 2 phase one evolutions the module assumes there
+        -- aren't higher level evolutions and uses the unresponsive layout
+        if #data.evos > 2 then
+            boxContainer = eb.strings.BOX_CONTAINER_UNRESPONSIVE
+            table.insert(evoboxcontent, eb.makeManyEvosRow(data.evos))
+        -- If the family is 'baby' or 'incenso' the second phase should be handled
+        -- "by hand", otherwise there's the function that creates the row.
+        elseif data.method == evodata.methods.BREED then
+            -- There is one phase one evolution, but with double arrow
+            table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
+                box1 = eb.DoubleArrow(data)
+            }))
+            table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
+                box1 = eb.boxPokemonAuto(data.evos[1].ndex, eb.phaseName(2, data), data.evos[1].notes)
+            }))
+        else
+            table.insert(evoboxcontent, eb.makePhaseRows(data.evos, 2))
+        end
+        phase3evos = table.flatMapToNum(data.evos, function(v)
+            return v.evos or {}
+        end)
+        table.insert(evoboxcontent, eb.makePhaseRows(phase3evos, 3))
     end
-    local phase3evos = table.flatMapToNum(data.evos, function(v)
-        return v.evos or {}
-    end)
-    table.insert(evoboxcontent, eb.makePhaseRows(phase3evos, 3))
 
     local evobox = {
         string.interp(boxContainer, {
@@ -458,14 +461,14 @@ eb.Evobox = function(frame)
     }
 
     -- Adds the categories
-    if #phase3evos > 0 then
+    if phase3evos and #phase3evos > 0 then
         table.insert(evobox, '[[Categoria:Pokémon appartenenti a una linea di evoluzione a tre stadi]]')
     elseif data.evos then
         table.insert(evobox, '[[Categoria:Pokémon appartenenti a una linea di evoluzione a due stadi]]')
     else
         table.insert(evobox, '[[Categoria:Pokémon che non fanno parte di una linea di evoluzione]]')
     end
-    if #phase3evos > 1 or (data.evos and #data.evos > 1) then
+    if phase3evos and #phase3evos > 1 or (data.evos and #data.evos > 1) then
         table.insert(evobox, '[[Categoria:Pokémon con evoluzioni diramate]]')
     end
 

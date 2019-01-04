@@ -4,16 +4,18 @@ Data module for evolutionary families.
 
 The structure of the module is as following: there's a table for each Pokémon,
 containing the "ndex" and possibly other infos. The field "notes" contains a
-string that is put above the sprite. The special value "default" means that the
-note should be the name of the alternative form. The field "evos", if any,
-should contain an array of tables of Pokémons that evolves from the Pokémon the
-table belongs to. Other fields are used to describe the methods used to evolve
-into this Pokémon. The field "method" should be one of the constants
-evo.methods.*, there may be a field [evo.methods.THISMETHOD] if required by the
-method (see details after) and a field conditions, that is a table indexed by
-evo.conditions.* with values as described by the condition itself.
+string that is put above the sprite. The field "evos", if any, should contain an
+array of tables of Pokémons that evolves from the Pokémon the table belongs to.
+Other fields are used to describe the methods used to evolve into this Pokémon.
+The field "method" should be one of the constants evo.methods.*, there may be a
+field [evo.methods.THISMETHOD] if required by the method (see details after) and
+a field conditions, that is a table indexed by evo.conditions.* with values as
+described by the condition itself.
 
 --]]
+
+local altforms = require("AltForms-data")
+local useless = require("UselessForms-data")
 
 local evo = {}
 
@@ -3463,7 +3465,7 @@ evo.petilil = {
 evo.lilligant = evo.petilil
 evo[548], evo[549] = evo.petilil, evo.petilil
 
-evo.basculin = { ndex = 550, notes = '<default>' }
+evo.basculin = { ndex = 550, notes = altforms.basculin.names.base }
 evo[550] = evo.basculin
 
 evo.sandile = {
@@ -4180,30 +4182,7 @@ evo.litleo = {
 evo.pyroar = evo.litleo
 evo[667], evo[668] = evo.litleo, evo.litleo
 
-evo["flabébé"] = {
-	ndex = 669,
-	notes = '<default>',
-
-	evos = {
-		{
-			ndex = 670,
-			notes = '<default>',
-			method = evo.methods.LEVEL,
-			[evo.methods.LEVEL] = 19,
-
-			evos = {
-				{
-					ndex = 671,
-					notes = '<default>',
-					method = evo.methods.STONE,
-					[evo.methods.STONE] = 'Pietrabrillo',
-				}
-			}
-		}
-	}
-}
-evo.floette, evo.florges = evo["flabébé"], evo["flabébé"]
-evo[669], evo[670], evo[671] = evo["flabébé"], evo["flabébé"], evo["flabébé"]
+-- Flabébé is at the end, with alternative forms
 
 evo.skiddo = {
 	ndex = 672,
@@ -5058,12 +5037,41 @@ evo[807] = evo.zeraora
 -- evo.marowakA = evo.cubone
 -- evo[104], evo[nil] = evo.cubone, evo.cubone
 
--- Aliases for alternative forms
-evo.basculinB = evo.basculin
-evo['550B'] = evo.basculinB
+-- Alternative forms
+evo.basculinB = { ndex = "550B", notes = altforms.basculin.names.B }
+evo["550B"] = evo.basculinB
 
-evo["flabébéG"] = evo['flabébé']
--- evo.floette, evo.florges = evo["flabébé"], evo["flabébé"]
--- evo[669], evo[670], evo[671] = evo["flabébé"], evo["flabébé"], evo["flabébé"]
+table.map(useless.floette.names, function(name, abbr)
+	evo["flabébé" .. abbr] = {
+		ndex = abbr == "base" and 669 or "669" .. abbr,
+		notes = name,
+
+		evos = {
+			{
+				ndex = abbr == "base" and 670 or "670" .. abbr,
+				notes = name,
+				method = evo.methods.LEVEL,
+				[evo.methods.LEVEL] = 19,
+
+				evos = {
+					{
+						ndex = abbr == "base" and 671 or "671" .. abbr,
+						notes = name,
+						method = evo.methods.STONE,
+						[evo.methods.STONE] = 'Pietrabrillo',
+					}
+				}
+			}
+		}
+	}
+	evo[abbr == "base" and 669 or "669" .. abbr] =
+		evo["flabébé" .. abbr]
+	evo["floette" .. abbr], evo[abbr == "base" and 670 or "670" .. abbr] =
+		evo["flabébé" .. abbr], evo["flabébé" .. abbr]
+	evo["florges" .. abbr], evo[abbr == "base" and 671 or "671" .. abbr] =
+		evo["flabébé" .. abbr], evo["flabébé" .. abbr]
+end)
+
+
 
 return evo

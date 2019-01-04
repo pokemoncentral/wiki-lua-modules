@@ -3,7 +3,7 @@
 local evobox = require('Evobox')
 
 -- ============================ Formbox with parameters ========================
-if true then
+if false then
 	-- Something normal
 	print(evobox.Formbox{args={
 	'Castform',
@@ -70,11 +70,14 @@ end
 -- ============================ Evobox (automatic) =============================
 if true then
 	-- Standard
-	-- print(evobox.Evobox{args={'Staraptor'}})
+	print(evobox.Evobox{args={'Squirtle'}})
 	-- No evos
-	-- print(evobox.Evobox{args={'Giratina'}})
+	print(evobox.Evobox{args={'Tauros'}})
 	-- With notes
-	-- print(evobox.Evobox{args={'Frillish'}})
+	print(evobox.Evobox{args={'Basculin'}})
+	print(evobox.Evobox{args={'Basculin', form = "B"}})
+	print(evobox.Evobox{args={'Floette'}})
+	print(evobox.Evobox{args={'Floette', form = "Bl"}})
 	-- Trade
 	print(evobox.Evobox{args={'Abra'}})
 	-- Happiness
@@ -99,7 +102,7 @@ if true then
 	-- print(evobox.Evobox{args={'Wurmple'}})
 	-- Dustox, branched at phase one AND two with prune
 	-- print(evobox.Evobox{args={'Dustox'}})
-	-- Baby, alternate form
+	-- Baby, alternative form
 	-- print(evobox.Evobox{args={'RaichuA'}})
 	-- Evoinfo, prune at higher level
 	print(evobox.Evobox{args={'Sylveon'}})
@@ -114,7 +117,7 @@ if true then
 end
 
 -- ============================ GlitchEvobox (parameters) ======================
-if true then
+if false then
 	-- Something normal first
 	print(evobox.GlitchEvobox{args={
 	'normale', "volante",
