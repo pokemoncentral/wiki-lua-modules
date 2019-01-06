@@ -27,6 +27,7 @@ Examples:
 local mw = require('mw')
 
 local txt = require('Wikilib-strings')      -- luacheck: no unused
+local tab = require('Wikilib-tables')       -- luacheck: no unused
 local lib = require('Wikilib-sigle')
 local w = require('Wikilib')
 local c = require("Colore-data")
@@ -59,7 +60,7 @@ games.
 --]]
 local makeColoredLink = function(color, sep)
     return function(link)
-        local target, text = unpack(link)
+        local target, text = table.unpack(link)
 
         return string.interp('[[${link}|<span style="color: #${color};">${text}</span>]]', {
             color = color,
@@ -81,7 +82,7 @@ local makeAllLinks = function(args, links)
     -- The library returns a nested list
     links = table.flatten(links)
 
-    local color, shade = unpack(args)
+    local color, shade = table.unpack(args)
 
     --[[
         First try to index colore/data: if such color does not exist, an

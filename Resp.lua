@@ -150,13 +150,13 @@ r.twoBoxesLua = function(box1, box2, bp, concat)
     concat = concat or concat == nil
 
     box1, box2 = responsive.twoBoxes(box1, box2, bp)
-    box1 = box.boxLua(unpack(box1))
+    box1 = box.boxLua(table.unpack(box1))
 
     if not box2 then
         return box1
     end
 
-    box2 = box.boxLua(unpack(box2))
+    box2 = box.boxLua(table.unpack(box2))
     if concat then
         return box1 .. box2
     end
@@ -286,10 +286,11 @@ Arguments:
 
 --]]
 r.twoTypeCellsLua = function(type1, type2, types, cells)
-    local box1 = box.typeBoxLua(type1, unpack(types))
-    local box2 = type2 and type1 ~= type2 and box.typeBoxLua(type2,
-        unpack(types))
-    return r.twoCellsLua(box1, box2, unpack(cells))
+    local box1 = box.typeBoxLua(type1, table.unpack(types))
+    local box2 = type2
+                 and type1 ~= type2
+                 and box.typeBoxLua(type2, table.unpack(types))
+    return r.twoCellsLua(box1, box2, table.unpack(cells))
 end
 r.two_type_cells_lua = r.twoTypeCellsLua
 
@@ -310,9 +311,11 @@ Arguments:
 
 --]]
 r.eggsTwoCellsLua = function(egg1, egg2, eggs, cells)
-    local box1 = box.eggBoxLua(egg1, unpack(eggs))
-    local box2 = egg2 and egg1 ~= egg2 and box.eggBoxLua(egg2, unpack(eggs))
-    return r.twoCellsLua(box1, box2, unpack(cells))
+    local box1 = box.eggBoxLua(egg1, table.unpack(eggs))
+    local box2 = egg2
+                 and egg1 ~= egg2
+                 and box.eggBoxLua(egg2, table.unpack(eggs))
+    return r.twoCellsLua(box1, box2, table.unpack(cells))
 end
 r.eggs_two_cells_lua = r.eggsTwoCellsLua
 

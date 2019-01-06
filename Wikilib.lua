@@ -9,8 +9,8 @@ tipici per la creazione dell'output
 
 local w = {}
 
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings') -- luacheck: no unused
+local tab = require('Wikilib-tables') -- luacheck: no unused
 
 -- Rimuove gli spazi vuoti all'inizio e alla fine di una stringa
 w.trim = string.trim
@@ -140,7 +140,7 @@ them on to the lua interface unpacked.
 w.stdWikicodeInterface = function(luaInterface)
     return function(frame)
         local p = w.trimAll(table.copy(frame.args))
-        return luaInterface(unpack(p))
+        return luaInterface(table.unpack(p))
     end
 end
 w.std_wikicode_interface = w.stdWikicodeInterface

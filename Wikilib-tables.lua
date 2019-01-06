@@ -33,6 +33,14 @@ end
 
 --[[
 
+Since lua5.2 unpack has been moved to table.unpack, this allows migration with
+older versions on PCW.
+
+--]]
+table.unpack = table.unpack or unpack
+
+--[[
+
 Returns true if all of the elements in the list satisties a predicate.
 
 The predicate function takes the value as the first argument, then the key;
@@ -145,7 +153,7 @@ table.deepSearch = function(tab, value)
             --]]
             local valueKeys = {table.deepSearch(v, value)}
             if valueKeys[#valueKeys] then
-                return k, unpack(valueKeys)
+                return k, table.unpack(valueKeys)
             end
         end
     end
@@ -639,7 +647,7 @@ table.groupBy = function(tab, getGroup, iter)
     iter = iter or pairs
 
     local groups = {}
-    for k, v in iter(tab) do
+    for _, v in iter(tab) do
         local groupID = getGroup(v)
         if not groups[groupID] then
             groups[groupID] = {}

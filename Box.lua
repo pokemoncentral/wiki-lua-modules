@@ -175,7 +175,7 @@ meaning that the box would basically be unstyled.
 local makeWikicodeIntreface = function(luaFunction)
     return function(frame)
         local p = w.trimAll(table.copy(frame.args), false)
-        return luaFunction(unpack(p))
+        return luaFunction(table.unpack(p))
     end
 end
 
@@ -294,7 +294,7 @@ for name, makeBoxArgs in pairs(b.shortHands) do
             items = items == '' and {} or mw.text.split(items, ',%s*')
         end
         return w.mapAndConcat(items, function(item)
-            return luaFunction(item, unpack(args))
+            return luaFunction(item, table.unpack(args))
         end)
     end
     local wikicodeList = makeWikicodeIntreface(luaList)

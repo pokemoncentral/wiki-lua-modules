@@ -272,7 +272,7 @@ q.makeLinks = function(data, makeText)
     local zipped = table.zip(data, makeText(data))
 
     return table.map(zipped, function(pair)
-        local game, text = unpack(pair)
+        local game, text = table.unpack(pair)
 
         return string.interp('[[${link}|${text}]]', {
             link = game.link,
