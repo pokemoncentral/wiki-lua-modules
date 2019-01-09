@@ -59,7 +59,7 @@ In addition to the single box versions, also multiple box version are provided
 for the shorthands. Their name is the same as the shorthand, with 'box'
 replaced by 'list'. They are invoked the same way, except that the first
 argument is a comma-separated list of types, egg groups, etc. The other
-arguemnts are applied to al generated boxes. Some example calls below:
+arguments are applied to all generated boxes. Some example calls below:
 
     - typeList: {{#invoke: Box | typeList | Elettro, Terra, Acciaio | |
         inline-block | margin: 3em; }}

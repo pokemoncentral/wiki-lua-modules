@@ -30,8 +30,7 @@ h.Entry.strings = {
 <div class="flex-row-stretch-around flex-wrap">]=],
 	ENTRY_FOOT = [[</div></div>]],
 
-	BOX_HEAD = [[<div class="roundy bg-white flex-row-center-around flex-wrap" style="
-	margin: 0.5ex;">]],
+	BOX_HEAD = [[<div class="roundy bg-white flex-row-center-around flex-wrap" style="margin: 0.5ex;">]],
 	BOX_FOOT = [[</div>]],
 
 	PERC_BOX = [=[<div style="padding: 1ex;">
@@ -93,6 +92,11 @@ is its key.
 
 --]]
 h.Entry.new = function(helds, poke)
+	-- Skip empty entries
+	if #helds == 0 then
+		return
+	end
+
     local this = h.Entry.super.new(poke, pokes[poke].ndex)
 
 	this.helds = helds

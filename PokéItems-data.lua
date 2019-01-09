@@ -2759,15 +2759,15 @@ d.magby = {
         { item = 'Baccafrago', perc = 100, games = {'RZS'}, abbrTypes = {'color'} },
     },
     {
-        { item = 'Elettritore', perc = 5, games = {'D', 'Pt'}, abbrTypes = {'black', 'color'} },
-        { item = 'Elettritore', perc = 50, games = {'P'} },
+        { item = 'Magmatore', perc = 5, games = {'D', 'Pt'}, abbrTypes = {'black', 'color'} },
+        { item = 'Magmatore', perc = 50, games = {'P'} },
     },
     {},
     {
-        { item = 'Elettritore', perc = 5, games = {'ROZA'} },
+        { item = 'Magmatore', perc = 5, games = {'ROZA'} },
     },
     {
-        { item = 'Elettritore', perc = 5, games = {'SLUSUL'} },
+        { item = 'Magmatore', perc = 5, games = {'SLUSUL'} },
     },
 }
 d[240] = d.magby
