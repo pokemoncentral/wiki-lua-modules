@@ -18,6 +18,7 @@ local formlib = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
 local pokes
 local abils
+local stats
 local forms
 
 --[[
@@ -27,10 +28,9 @@ named after the second parameter is loaded and returned. The module is loaded
 with mw.loadData unless the third parameter is true
 
 --]]
-local loadData = function(tab, moduleName, useRequire)
+local loadData = function(tab, moduleName)
     if not tab then
-        local loadFunction = useRequire and require or mw.loadData
-        return loadFunction(moduleName) --loadFunction('Modulo:' .. moduleName)
+        return mw.loadData(moduleName) --mw.loadData('Modulo:' .. moduleName)
     end
     return tab
 end
@@ -137,7 +137,7 @@ b.get_abil_2 = b.getAbil2
 --[[
 
 Returns a Pokémon's hidden ability given its name or ndex. If the Pokémon
-has no second ability, it returns an empty string. An optional 'gen'
+has no hidden ability, it returns an empty string. An optional 'gen'
 parameter specifies the generation.
 
 Ex:
@@ -150,6 +150,23 @@ b.getAbild = function(frame)
 end
 
 b.get_abil_d, b.get_abil_h, b.get_abil_n = b.getAbild, b.getAbild, b.getAbild
+
+--[[
+
+Returns a Pokémon's event ability given its name or ndex. If the Pokémon
+has no event ability, it returns an empty string. An optional 'gen'
+parameter specifies the generation.
+
+Ex:
+{{#invoke: PokémonData | getAbile | 487O }}  --> (empty string)
+{{#invoke: PokémonData | getAbile | 744 }}   --> Mente Locale
+
+--]]
+b.getAbile = function(frame)
+    return getAbil(frame.args[1], 'e', frame.args.gen)
+end
+
+b.get_abil_e = b.getAbile
 
 
 --[[
@@ -221,6 +238,30 @@ b.gradTypes = function(frame)
     return table.concat({b.getType1(frame), b.getType2(frame)}, '-'):lower()
 end
 b.grad_types = b.gradTypes
+
+
+--[[
+
+Returns a Pokémon's stats (specified by the second parameter) given its name or
+ndex. The optional third parameter is the generation.
+If the Pokémon doesn't have the stat (i.e: stat "spec" of a non gen 1 Pokémon)
+return an empty string.
+
+Ex:
+{{#invoke: PokémonData | getStat | 398 | hp }}     --> 85
+{{#invoke: PokémonData | getStat | 65 | spatk }}   --> 135
+{{#invoke: PokémonData | getStat | 487O | def }}   --> 100
+{{#invoke: PokémonData | getStat | 189 | spdef | gen = 2 }}  --> 85
+
+--]]
+b.getStat = function(frame)
+    stats = loadData(stats, 'PokéStats-data')
+    return multigen.getGenValue(
+        stats[formlib.nameToDataindex(frame.args[1])][frame.args[2]:trim()],
+        tonumber(frame.args.gen)
+    )
+end
+
 
 --[[
 
