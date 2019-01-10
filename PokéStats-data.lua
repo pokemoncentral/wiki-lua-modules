@@ -1703,7 +1703,7 @@ d['800U'] = d.necrozmaU
 
 -- Mega evolutions and Primal reversions
 d.venusaurM = {hp = 80, atk = 100, def = 123, spatk = 122, spdef = 120, spe = 80}
-d['003M'] = d.venusaur
+d['003M'] = d.venusaurM
 d.charizardMX = {hp = 78, atk = 130, def = 111, spatk = 130, spdef = 85, spe = 100}
 d['006MX'] = d.charizardMX
 d.charizardMY = {hp = 78, atk = 104, def = 78, spatk = 159, spdef = 115, spe = 100}
