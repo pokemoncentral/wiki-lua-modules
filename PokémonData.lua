@@ -256,8 +256,9 @@ Ex:
 --]]
 b.getStat = function(frame)
     stats = loadData(stats, 'PokéStats-data')
+    local stat = string.trim(frame.args[2])
     return multigen.getGenValue(
-        stats[formlib.nameToDataindex(frame.args[1])][frame.args[2]:trim()],
+        stats[formlib.nameToDataindex(frame.args[1])][stat],
         tonumber(frame.args.gen)
     )
 end
