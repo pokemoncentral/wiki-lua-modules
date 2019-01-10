@@ -121,7 +121,7 @@ local sizes = {
 
 -- Table per le stringhe da interpolare a seconda del gioco
 local interpStrings = {
-	current = '[[File:${ndex}.png]]',
+	current = '[[File:${ndex}.png${size}]]',
 	md = '[[File:MDP${ndex}.png]]',
 	rb = '[[File:Spr${game}${variant}${ndex}.${ext}${size}]]',
 }
