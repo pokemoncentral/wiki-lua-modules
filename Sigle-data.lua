@@ -600,6 +600,27 @@ x.PSMD = {{
 	}
 }}
 x.Super, x.super = x.PSMD, x.PSMD
+x.Ra = {{
+	link = "Pokémon Ranger (gioco)",
+	display = {
+		{'Ra', 'ranger'}
+	}
+}}
+x.RA, x.ra = x.Ra, x.Ra
+x.OsA = {{
+	link = "Pokémon Ranger: Ombre su Almia",
+	display = {
+		{'OsA', 'OsA'}
+	}
+}}
+x.OSA, x.osa, x.Osa = x.OsA, x.OsA, x.OsA
+x.Tdl = {{
+	link = "Pokémon Ranger: Tracce di luce",
+	display = {
+		{'Tdl', 'TL'}
+	}
+}}
+x.TDL, x.TdL = x.Tdl, x.Tdl
 x.Cq = {{
     link = 'Pokémon Conquest',
     display = {
