@@ -585,7 +585,7 @@ x.PMDTS = x.PMDTC
 x.PMDOC = {x.PMDO[1], x.PMDC[1]}
 x.PMDDS = x.PMDOC
 x.PMDPSI = {{
-	link = "Pokémon Mystery Dungeon: I Portali sull'Infinito",
+	link = "Pokémon Mystery Dungeon: i portali sull'infinito",
 	display = {
 		{'PSI', 'mdportali'}
 	}
