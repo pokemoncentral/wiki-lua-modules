@@ -13,6 +13,12 @@ smaller parts. For example:
 
 {{#invoke: Colorabbrev | OACPtHGSS }} --> {{#invoke: Colorabbrev | OAC | Pt | HGSS }}
 
+However, this doesn't work if the first abbreviation is not constant, for
+example if it's a parameter in a template. In that case, you can use the
+_abbr function to pass all the abbreviations as parameters:
+
+{{#invoke: Colorabbrev | _abbr | {{{1}}} }}
+
 --]]
 
 local lib = require('Wikilib-sigle')
@@ -23,7 +29,7 @@ local makeLinks = function(data)
 end
 
 -- Dynamically generated Wikicode interface
-return lib.mapAbbrs(function(_, abbr)
+local ca = lib.mapAbbrs(function(_, abbr)
 
     --[[
         Wikicode arguments are first processed one-by-one by makeLinks,
@@ -32,3 +38,8 @@ return lib.mapAbbrs(function(_, abbr)
     --]]
     return lib.onMergedAbbrs(abbr, makeLinks)
 end)
+
+-- Adding _abbr proxy function
+lib.proxy(ca)
+
+return ca

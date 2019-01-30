@@ -18,3 +18,7 @@ assert(solid == split, 'syntax mismatch')
 
 local noColor = ba.LGPE{args={}}
 print(noColor)
+
+-- _abbr function
+local abbr = ba._abbr{args={'RBG RFVF LGPE'}}
+print(abbr)
