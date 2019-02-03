@@ -876,7 +876,7 @@ d.abra = {
 d[63] = d.abra
 d.kadabra = {
     {
-        { item = 'Baca', perc = 100, games = {'RBG'} },
+        { item = 'Bacca', perc = 100, games = {'RBG'} },
     },
     {},
     {
