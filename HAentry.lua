@@ -41,7 +41,7 @@ m.haentry = function(frame)
 
 	local final = {
 		'|- class="flex-sm flex-row flex-wrap flex-main-center flex-items-center roundy" style="margin-top: 0.3em;"\n| style="padding: 0.5em;" |',
-		poke.ndex,
+		string.tf(poke.ndex),
 		'\n| style="padding: 0.5em;" |',
 		ms.staticLua(type(ndex) == 'number' and string.tf(ndex) or ndex),
 		'\n| style="padding: 0.5em;" |',
