@@ -22,7 +22,7 @@ Returns type given move name.
 b.getType = function(frame)
     return string.fu(
         multigen.getGenValue(
-            moves[frame.args[1]:lower()].type,
+            moves[string.trim(frame.args[1]:lower())].type,
             tonumber(frame.args.gen)
         )
     )
@@ -38,7 +38,7 @@ Returns damage category given move name.
 b.getDamageCategory = function(frame)
     return string.fu(
         multigen.getGenValue(
-            moves[frame.args[1]:lower()].category,
+            moves[string.trim(frame.args[1]:lower())].category,
             tonumber(frame.args.gen)
         )
     )
@@ -54,7 +54,7 @@ Returns power given move name.
 --]]
 b.getPower = function(frame)
     return multigen.getGenValue(
-        moves[frame.args[1]:lower()].power,
+        moves[string.trim(frame.args[1]:lower())].power,
         tonumber(frame.args.gen)
     )
 end
@@ -68,7 +68,7 @@ Returns type given move name.
 --]]
 b.getAccuracy = function(frame)
     return multigen.getGenValue(
-        moves[frame.args[1]:lower()].accuracy,
+        moves[string.trim(frame.args[1]:lower())].accuracy,
         tonumber(frame.args.gen)
     )
 end
@@ -82,12 +82,11 @@ Returns type given move name.
 --]]
 b.getPP = function(frame)
     return multigen.getGenValue(
-        moves[frame.args[1]:lower()].pp,
+        moves[string.trim(frame.args[1]:lower())].pp,
         tonumber(frame.args.gen)
     )
 end
 
 b.get_pp = b.getPP
-
 
 return b
