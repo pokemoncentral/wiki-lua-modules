@@ -1213,7 +1213,7 @@ evo.eevee = {
 		{
 			ndex = 700,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.OTHER] = 'con due cuori di {{colore2|000|amicizia}}<div>avendo appreso una mossa di tipo {{colore2|000|Folletto}}</div>' }
+			conditions = { [evo.conditions.OTHER] = 'con due cuori di {{colore2|000|Amicizia}}<div>avendo appreso una mossa di tipo {{colore2|000|Folletto}}</div>' }
 		}
 	}
 }
@@ -1522,6 +1522,8 @@ evo[179], evo[180], evo[181] = evo.mareep, evo.mareep, evo.mareep
 
 evo.azurill = {
 	ndex = 298,
+	method = evo.methods.BREED,
+	conditions = { [evo.conditions.ITEM] = 'Marearoma' },
 
 	evos = {
 		{
@@ -1828,7 +1830,7 @@ evo.mantyke = {
 		{
 			ndex = 226,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.OTHER] = 'con [[Remoraid]] in [[squadra]]' },
+			conditions = { [evo.conditions.OTHER] = 'con {{colore2|000|Remoraid}} in {{colore2|000|squadra}}' },
 		}
 	}
 }
@@ -2009,6 +2011,43 @@ evo.zigzagoon = {
 evo.linoone = evo.zigzagoon
 evo[263], evo[264] = evo.zigzagoon, evo.zigzagoon
 
+evo.wurmple = {--CHECK
+	ndex = 265,
+
+	evos = {
+		{
+			ndex = 266,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 7,
+			conditions = { [evo.conditions.OTHER] = 'A seconda della {{colore2|000|personalità}}' },
+
+			evos = {
+				{
+					ndex = 267,
+					method = evo.methods.LEVEL,
+					[evo.methods.LEVEL] = 10,
+				}
+			}
+		},
+		{
+			ndex = 268,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 7,
+			conditions = { [evo.conditions.OTHER] = 'A seconda della {{colore2|000|personalità}}' },
+
+			evos = {
+				{
+					ndex = 269,
+					method = evo.methods.LEVEL,
+					[evo.methods.LEVEL] = 10,
+				}
+			}
+		}
+	}
+}
+evo.silcoon, evo.beautifly, evo.cascoon, evo.dustox = evo.wurmple, evo.wurmple, evo.wurmple, evo.wurmple
+evo[265], evo[266], evo[267], evo[268], evo[269] = evo.wurmple, evo.wurmple, evo.wurmple, evo.wurmple, evo.wurmple
+
 evo.lotad = {
 	ndex = 270,
 
@@ -2021,7 +2060,8 @@ evo.lotad = {
 			evos = {
 				{
 					ndex = 272,
-					method = '[[Pietraidrica]]',
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietraidrica',
 				}
 			}
 		}
@@ -2042,7 +2082,8 @@ evo.seedot = {
 			evos = {
 				{
 					ndex = 275,
-					method = '[[Pietrafoglia]]',
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietrafoglia',
 				}
 			}
 		}
@@ -2078,6 +2119,34 @@ evo.wingull = {
 }
 evo.pelipper = evo.wingull
 evo[278], evo[279] = evo.wingull, evo.wingull
+
+evo.ralts = {
+	ndex = 280,
+
+	evos = {
+		{
+			ndex = 281,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 20,
+
+			evos = {
+				{
+					ndex = 282,
+					method = evo.methods.LEVEL,
+					[evo.methods.LEVEL] = 30,
+				},
+				{
+					ndex = 475,
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietralbore',
+					conditions = { [evo.conditions.GENDER] = 'Maschio' },
+				}
+			}
+		}
+	}
+}
+evo.kirlia, evo.gardevoir, evo.gallade = evo.ralts, evo.ralts, evo.ralts
+evo[280], evo[281], evo[282], evo[475] =	evo.ralts, evo.ralts, evo.ralts, evo.ralts
 
 evo.surskit = {
 	ndex = 283,
@@ -2129,7 +2198,7 @@ evo.slakoth = {
 evo.vigoroth, evo.slaking = evo.slakoth, evo.slakoth
 evo[287], evo[288], evo[289] = evo.slakoth, evo.slakoth, evo.slakoth
 
-evo.nincada = {
+evo.nincada = {--CHECK
 	ndex = 290,
 
 	evos = {
@@ -2142,7 +2211,7 @@ evo.nincada = {
 			ndex = 292,
 			method = evo.methods.OTHER,
 			[evo.methods.OTHER] = '{{bag|Poké Ball}}',
-			conditions = { [evo.conditions.OTHER] = 'Con spazio in {{colore2|000|squadra}}<div>e almeno una {{colore2|000|Poké Ball}} nello {{colore2|000|zaino}}</div>' }
+			conditions = { [evo.conditions.OTHER] = 'Con spazio in {{colore2|000|squadra}}<div>e almeno una {{colore2|000|Poké Ball}} nella {{colore2|000|borsa}}</div>' },
 		}
 	}
 }
@@ -2191,7 +2260,8 @@ evo.nosepass = {
 	evos = {
 		{
 			ndex = 476,
-			method = 'Su di livello in un [[Campo magnetico speciale]]',
+			method = evo.methods.LEVEL,
+			conditions = { [evo.conditions.LOCATION] = 'Campo magnetico speciale' },
 		}
 	}
 }
@@ -2204,7 +2274,8 @@ evo.skitty = {
 	evos = {
 		{
 			ndex = 301,
-			method = '[[Pietralunare]]',
+			method = evo.method.STONE,
+			[evo.method.STONE] = 'Pietralunare',
 		}
 	}
 }
@@ -2294,7 +2365,7 @@ evo.budew = {
 				{
 					ndex = 407,
 					method = evo.methods.STONE,
-					stone = 'Pietrabrillo'
+					stone = 'Pietrabrillo',
 				}
 			}
 		}
@@ -2511,6 +2582,30 @@ evo.anorith = {
 evo.armaldo = evo.anorith
 evo[347], evo[348] = evo.anorith, evo.anorith
 
+--[[ What to do with different evo methods?
+evo.feebas = {
+	ndex = 349,
+
+	evos = {
+		{
+			ndex = 354,
+			method = evo.methods.LEVEL,
+			conditions = { [evo.conditions.OTHER] = 'Con {{colore2|000|Bellezza (virtù)|Bellezza}} alta' },
+		}
+	}
+
+	evos = {
+		{
+			ndex = 354,
+			method = evo.methods.TRADE,
+			conditions = { [evo.conditions.ITEM] = 'Squama Bella' },
+		}
+	}
+}
+evo.milotic = evo.feebas
+evo[349], evo[350] = evo.feebas, evo.feebas
+--]]
+
 evo.castform = { ndex = 351 }
 evo[351] = evo.castform
 
@@ -2543,7 +2638,8 @@ evo.duskull = {
 			evos = {
 				{
 					ndex = 477,
-					method = '[[Scambio]] tenendo un [[Terrorpanno]]',
+					method = evo.methods.TRADE,
+					conditions = { [evo.conditions.ITEM] = 'Terrorpanno' },
 				}
 			}
 		}
@@ -2561,7 +2657,8 @@ evo.chingling = {
 	evos = {
 		{
 			ndex = 358,
-			method = '[[Affetto]] (notte)',
+			method = evo.methods.HAPPINESS,
+			conditions = { [evo.conditions.TIME] = 'Notte' }
 		}
 	}
 }
@@ -2578,7 +2675,7 @@ evo.snorunt = {
 		{
 			ndex = 362,
 			method = evo.methods.LEVEL,
-			[evo.methods.LEVEL] = 21
+			[evo.methods.LEVEL] = 21,
 		},
 		{
 			ndex = 478,
@@ -2612,6 +2709,25 @@ evo.spheal = {
 }
 evo.sealeo, evo.walrein = evo.spheal, evo.spheal
 evo[363], evo[364], evo[365] = evo.spheal, evo.spheal, evo.spheal
+
+evo.clamperl = {
+	ndex = 366,
+
+	evos = {
+		{
+			ndex = 367,
+			method = evo.methods.TRADE,
+			conditions = { [evo.conditions.ITEM] = 'Dente Abissi' },
+		},
+		{
+			ndex = 368,
+			method = evo.methods.TRADE,
+			conditions = { [evo.conditions.ITEM] = 'Squamabissi' },
+		}
+	}
+}
+evo.huntail, evo.gorebyss = evo.clamperl, evo.clamperl
+evo[366], evo[367], evo[368] = evo.clamperl, evo.clamperl, evo.clamperl
 
 evo.relicanth = { ndex = 369 }
 evo[369] = evo.relicanth
@@ -2663,8 +2779,35 @@ evo.beldum = {
 evo.metang, evo.metagross = evo.beldum, evo.beldum
 evo[374], evo[375], evo[376] = evo.beldum, evo.beldum, evo.beldum
 
+evo.regirock = { ndex = 377 }
+evo[377] = evo.regirock
+
+evo.regice = { ndex = 378 }
+evo[378] = evo.regice
+
+evo.registeel = { ndex = 379 }
+evo[379] = evo.registeel
+
+evo.latias = { ndex = 380 }
+evo[380] = evo.latias
+
+evo.latios = { ndex = 381 }
+evo[381] = evo.latios
+
+evo.kyogre = { ndex = 382 }
+evo[382] = evo.kyogre
+
+evo.groudon = { ndex = 383 }
+evo[383] = evo.groudon
+
+evo.rayquaza = { ndex = 384 }
+evo[384] = evo.rayquaza
+
 evo.jirachi = { ndex = 385 }
 evo[385] = evo.jirachi
+
+evo.deoxys = { ndex = 386 }
+evo[386] = evo.deoxys
 
 evo.turtwig = {
 	ndex = 387,
