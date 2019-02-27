@@ -481,6 +481,27 @@ x.LGPE = {{
     }
 }}
 x.LgPE = x.LGPE
+x.Sp = {{
+    link = 'Pokémon Spada e Scudo',
+    text = 'Spada',
+    display = {
+        {'Sp', 'spada'}
+    }
+}}
+x.Sc = {{
+    link = 'Pokémon Spada e Scudo',
+    text = 'Scudo',
+    display = {
+        {'Sc', 'scudo'}
+    }
+}}
+x.SpSc = {{
+    link = 'Pokémon Spada e Scudo',
+    display = {
+        {'Sp', 'spada'},
+        {'Sc', 'scudo'}
+    }
+}}
 x.SJ = {{
     link = 'Pokémon Stadium (Giappone)',
     text = 'Stadium',
