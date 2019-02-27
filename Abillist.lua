@@ -100,7 +100,7 @@ Entry.__tostring = function(this)
 | class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Seconda abilit&agrave;</div>${abil2}
 | class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Abilit&agrave; speciali</div>${abild}]=],
 {
-    ndex = this.ndex,
+    ndex = this.ndex and string.tf(this.ndex) or '???',
     static = ms.staticLua(string.tf(this.ndex or 0) ..
             (this.formAbbr == 'base' and '' or this.formAbbr or '')),
     name = this.name,
