@@ -236,22 +236,24 @@ c.Conquest = c.conquest
 
 -- Colori regioni
 
-c.kanto = function(frame) return _colore(frame.args[1] or 'normale', 'FF3600', 'FFA48C', '6A0000') end
+c.kanto = function(frame) return _colore(frame.args[1] or 'normale', 'FF173D', 'FF6680', '870018') end
 c.Kanto = c.kanto
-c.johto = function(frame) return _colore(frame.args[1] or 'normale', 'FF7D00', 'FFC791', '9D4E00') end
+c.johto = function(frame) return _colore(frame.args[1] or 'normale', 'FF6600', 'FFB287', 'C33E00') end
 c.Johto = c.johto
-c.hoenn = function(frame) return _colore(frame.args[1] or 'normale', 'FFC300', 'FFF99A', 'BA8300') end
+c.hoenn = function(frame) return _colore(frame.args[1] or 'normale', 'FFCE1C', 'FFFF7D', 'D9B200') end
 c.Hoenn = c.hoenn
-c.sinnoh = function(frame) return _colore(frame.args[1] or 'normale', '00DB05', '96FF96', '008303') end
+c.sinnoh = function(frame) return _colore(frame.args[1] or 'normale', '9ECF17', 'DEFF70', '649600') end
 c.Sinnoh = c.sinnoh
-c.unima = function(frame) return _colore(frame.args[1] or 'normale', '00A2FF', 'A3DDFF', '0057CD') end
+c.unima = function(frame) return _colore(frame.args[1] or 'normale', '00C200', '66FF36', '299100') end
 c.Unima, c.unova, c.Unova = c.unima, c.unima, c.unima
 c.settipelago = function(frame) return _colore(frame.args[1] or 'normale', '52CC91', '8DEBBC', '2B915E') end
 c.Settipelago = c.settipelago
 c.auros = function(frame) return _colore(frame.args[1] or 'normale', '817548', 'ADA588', '544C2F') end
 c.Auros, c.orre, c.Orre = c.auros, c.auros, c.auros
-c.kalos = function(frame) return _colore(frame.args[1] or 'normale', 'AE45FF', 'D49CFF', '5A009F') end
+c.kalos = function(frame) return _colore(frame.args[1] or 'normale', '1FE0B4', 'A1FFE1', '00A388') end
 c.Kalos = c.kalos
+c.ottavagen = function(frame) return _colore(frame.args[1] or 'normale', 'FF3DF0', 'FF85F7', 'B81684') end
+c.Ottavagen = c.ottavagen
 c.kaloscentrale = function(frame) return _colore(frame.args[1] or 'normale', 'D1D1D1', 'EAEAEA', 'BBBBBB') end
 c.Kaloscentrale, c.Kalosce, c.kalosce = c.kaloscentrale, c.kaloscentrale, c.kaloscentrale
 c['kalos centrale'], c['Kalos centrale'], c.kalosCentrale = c.kaloscentrale, c.kaloscentrale, c.kaloscentrale
