@@ -1623,6 +1623,9 @@ t.meltan = {name = 'Meltan', ndex = 808, type1 = 'acciaio', type2 = 'acciaio'}
 t[808] = t.meltan
 t.melmetal = {name = 'Melmetal', ndex = 809, type1 = 'acciaio', type2 = 'acciaio'}
 t[809] = t.melmetal
+t.grookey = {name = 'Grookey', ndex = nil, type1 = 'erba', type2 = 'erba'}
+t.scorbunny = {name = 'Scorbunny', ndex = nil, type1 = 'fuoco', type2 = 'fuoco'}
+t.sobble = {name = 'Sobble', ndex = nil, type1 = 'acqua', type2 = 'acqua'}
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa

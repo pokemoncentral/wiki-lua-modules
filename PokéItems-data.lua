@@ -6495,6 +6495,9 @@ d.blacephalon = {}
 d[806] = d.blacephalon
 d.zeraora = {}
 d[807] = d.zeraora
+d.grookey = {}
+d.scorbunny = {}
+d.sobble = {}
 
 -- Alternative forms
 d.rattataA = {

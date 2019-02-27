@@ -1617,6 +1617,9 @@ t.blacephalon = {ability1 = 'Ultraboost'}
 t[806] = t.blacephalon
 t.zeraora = {ability1 = 'Assorbivolt'}
 t[807] = t.zeraora
+t.grookey = {ability1 = ''}
+t.scorbunny = {ability1 = ''}
+t.sobble = {ability1 = ''}
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio

@@ -1624,6 +1624,9 @@ d.meltan = {hp = 46, atk = 65, def = 65, spatk = 55, spdef = 35, spe = 34}
 d[808] = d.meltan
 d.melmetal = {hp = 135, atk = 143, def = 143, spatk = 80, spdef = 65, spe = 34}
 d[809] = d.melmetal
+-- d.grookey = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d.scorbunny = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d.sobble = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
 
 -- Alternative forms which actually change stats
 d.deoxysA = {hp = 50, atk = 180, def = 20, spatk = 180, spdef = 20, spe = 150}
