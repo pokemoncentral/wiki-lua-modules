@@ -233,6 +233,10 @@ c['LG Eevee'], c.LG_Eevee, c.lg_eevee, c.LGE = c.LG_eevee, c.LG_eevee, c.LG_eeve
 c.lge, c.lgeevee, c["Let's Go, Eevee!"] = c.LG_eevee, c.LG_eevee, c.LG_eevee
 c.conquest = function(frame) return _colore(frame.args[1] or 'normale', 'EC9722', 'F8DF9D', '945F13') end
 c.Conquest = c.conquest
+c.spada = function(frame) return _colore(frame.args[1] or 'normale', '00AEEF', '6AE5FF', '0079CD') end
+c.Spada = c.spada
+c.scudo = function(frame) return _colore(frame.args[1] or 'normale', 'ED1165', 'FA89AB', '851042') end
+c.Scudo = c.scudo
 
 -- Colori regioni
 
