@@ -78,29 +78,6 @@ local css = require('Css')
 local w = require('Wikilib')
 
 --[[
-    This table holds predefined styles configurations for boxes. Names of
-    such configurations are the keys, while values are tables with 'classes'
-    and 'styles' keys. These hold classes and styles respectively, and have as
-    values the same structures as arseClasses and parseStyles return.
---]]
-local predefs = {
-    thick = {
-        classes = {'roundy-5', 'text-center'},
-        styles = {['padding'] = '0.5ex'}
-    },
-
-    thin = {
-        classes = {'roundy-5', 'text-center'},
-        styles = {['font-size'] = '90%', ['padding'] = '0 0.5ex'}
-    },
-
-    tiny = {
-        classes = {'roundy-5', 'text-center', 'text-small'},
-        styles = {['padding'] = '0 0.3ex'}
-    }
-}
-
---[[
 
 Aliases for auto-generated shorthands.
 
@@ -201,15 +178,19 @@ b.shortHands = {
             - styles: Table/string of CSS styles, in the format parseStyles and
                 printStyles produce respectively. Optional, defaults to {}.
     --]]
-    type = function(tipo, pdfs, classes, styles)
-        tipo = string.fu(string.trim(tipo or 'Sconosciuto'))
-        if type(classes) == 'table' then
-            classes = table.copy(classes)
-            table.insert(classes, 'box-' .. tipo:lower())
-        else
-            classes = table.concat{ classes or "", ' box-',  tipo:lower() }
-        end
-        return tipo, tipo, nil, pdfs, classes, styles, 'FFF'
+    type = function(type, pdfs, classes, styles)
+        type = type or 'Sconosciuto'
+
+        --[[
+            Need table.copy for Box list functions: they pass the same table
+            along to every item, and as tables are passed by reference we need
+            a local copy for every item.
+        --]]
+        classes = table.copy(css.parseClasses(classes))
+        table.insert(classes, 1, 'box-' .. type:lower())
+        type = string.fu(type)
+
+        return type, false, false, pdfs, classes, styles, false
     end,
 
     --[[
@@ -248,15 +229,33 @@ Main function creating a box. Lua interface. Arguments:
 
 --]]
 b.boxLua = function(text, link, color, pdfs, classes, styles, textcolor)
-    classes, styles = css.classesStyles(predefs, pdfs, classes, styles)
+    classes, styles = css.classesStyles(pdfs, classes, styles)
 
-    return string.interp([=[<div class="${class}" style="${bg}; ${style}">[[${link}|<span style="color:#${tc}">${text}</span>]]</div>]=], {
+    styles = css.printStyles(styles)
+    local bg = color
+        and css.horizGradLua{color, 'dark', color, 'normale'}
+        or ''
+
+    if styles ~= '' or bg ~= '' then
+        styles = string.interp(' style="${bg}; ${style}"', {
+            bg = bg,
+            style = styles
+        })
+    end
+
+    link = link or text
+    if textcolor then
+        link = string.interp('${link}|<span style="color:#${tc}">${text}</span>', {
+            link = link,
+            tc = textcolor or 'FFF',
+            text = text
+        })
+    end
+
+    return string.interp([=[<div class="box ${class}"${style}>[[${link}]]</div>]=], {
         class = css.printClasses(classes),
-        bg = color and css.horizGradLua{color, 'dark', color, 'normale'} or '',
-        tc = textcolor or 'FFF',
-        link = link or text,
-        text = text,
-        style = css.printStyles(styles)
+        style = styles,
+        link = link
     })
 end
 b.box_lua = b.boxLua
