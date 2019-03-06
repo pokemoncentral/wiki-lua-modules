@@ -2011,7 +2011,7 @@ evo.zigzagoon = {
 evo.linoone = evo.zigzagoon
 evo[263], evo[264] = evo.zigzagoon, evo.zigzagoon
 
-evo.wurmple = {--CHECK
+evo.wurmple = {
 	ndex = 265,
 
 	evos = {
@@ -2198,7 +2198,7 @@ evo.slakoth = {
 evo.vigoroth, evo.slaking = evo.slakoth, evo.slakoth
 evo[287], evo[288], evo[289] = evo.slakoth, evo.slakoth, evo.slakoth
 
-evo.nincada = {--CHECK
+evo.nincada = {
 	ndex = 290,
 
 	evos = {
@@ -2211,7 +2211,7 @@ evo.nincada = {--CHECK
 			ndex = 292,
 			method = evo.methods.OTHER,
 			[evo.methods.OTHER] = '{{bag|Poké Ball}}',
-			conditions = { [evo.conditions.OTHER] = 'Con spazio in {{colore2|000|squadra}}<div>e almeno una {{colore2|000|Poké Ball}} nella {{colore2|000|borsa}}</div>' },
+			conditions = { [evo.conditions.OTHER] = 'Con spazio in {{colore2|000|squadra}}<div>e almeno una {{colore2|000|Poké Ball}} nella {{colore2|000|Borsa}}</div>' },
 		}
 	}
 }
@@ -2274,8 +2274,8 @@ evo.skitty = {
 	evos = {
 		{
 			ndex = 301,
-			method = evo.method.STONE,
-			[evo.method.STONE] = 'Pietralunare',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietralunare',
 		}
 	}
 }
@@ -2582,23 +2582,17 @@ evo.anorith = {
 evo.armaldo = evo.anorith
 evo[347], evo[348] = evo.anorith, evo.anorith
 
---[[ What to do with different evo methods?
+-- What to do with different evo methods? Answer: we go ignorant!
 evo.feebas = {
 	ndex = 349,
 
 	evos = {
 		{
-			ndex = 354,
-			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.OTHER] = 'Con {{colore2|000|Bellezza (virtù)|Bellezza}} alta' },
-		}
-	}
-
-	evos = {
-		{
-			ndex = 354,
+			ndex = 350,
 			method = evo.methods.TRADE,
-			conditions = { [evo.conditions.ITEM] = 'Squama Bella' },
+			conditions = { [evo.conditions.ITEM] = 'Squama Bella',
+						   [evo.conditions.OTHER] = 'o<div>{{bag|Fascia Blu}}</div>{{colore2|000|Livello|Aumento di livello}}<div>con la {{colore2|000|Bellezza (virtù)|virtù Bellezza}} alta</div>'
+						 },
 		}
 	}
 }

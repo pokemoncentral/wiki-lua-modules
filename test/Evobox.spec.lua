@@ -87,21 +87,21 @@ if true then
 	-- Incense, held, time, evostone
 	print(evobox.Evobox{args={'Chansey'}})
 	-- Incense, move
-	-- print(evobox.Evobox{args={'Sudowoodo'}})
+	print(evobox.Evobox{args={'Sudowoodo'}})
 	-- Trade for a specific Pokémon
 	-- print(evobox.Evobox{args={'Escavalier'}})
 	-- Held item, time
-	-- print(evobox.Evobox{args={'Gliscor'}})
+	print(evobox.Evobox{args={'Gliscor'}})
 	-- Location
 	print(evobox.Evobox{args={'Magneton'}})
 	-- Branched evolution at second level, trade with item, evostone
 	print(evobox.Evobox{args={'Poliwag'}})
 	-- Branched evolution at first level, evostone, gender
-	-- print(evobox.Evobox{args={'Snorunt'}})
+	print(evobox.Evobox{args={'Snorunt'}})
 	-- Wurmple, branched at phase one AND two
-	-- print(evobox.Evobox{args={'Wurmple'}})
+	print(evobox.Evobox{args={'Wurmple'}})
 	-- Dustox, branched at phase one AND two with prune
-	-- print(evobox.Evobox{args={'Dustox'}})
+	print(evobox.Evobox{args={'Dustox'}})
 	-- Baby, alternative form
 	-- print(evobox.Evobox{args={'RaichuA'}})
 	-- Evoinfo, prune at higher level
@@ -109,9 +109,9 @@ if true then
 	-- More than 2 phase one
 	print(evobox.Evobox{args={'Tyrogue'}})
 	-- Feebas
-	-- print(evobox.Evobox{args={'Feebas'}})
+	print(evobox.Evobox{args={'Feebas'}})
 	-- Nincada
-	-- print(evobox.Evobox{args={'Nincada'}})
+	print(evobox.Evobox{args={'Nincada'}})
 	-- Eevee
 	print(evobox.Evobox{args={'Eevee'}})
 end
