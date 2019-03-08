@@ -213,7 +213,7 @@ evo.pidgey = {
 evo.pidgeotto, evo.pidgeot = evo.pidgey, evo.pidgey
 evo[16], evo[17], evo[18] = evo.pidgey, evo.pidgey, evo.pidgey
 
-evo.rattata = {
+evo.rattata = {--CHECK: Alola form evolves only at night (same level)
 	ndex = 19,
 
 	evos = {
@@ -713,7 +713,7 @@ evo.magnemite = {
 				{
 					ndex = 462,
 					method = evo.methods.LEVEL,
-					conditions = { [evo.conditions.LOCATION] = 'campo magnetico speciale' },
+					conditions = { [evo.conditions.LOCATION] = 'Campo magnetico speciale' },
 				}
 			}
 		}
@@ -872,7 +872,7 @@ evo.exeggcute = {
 evo.exeggutor = evo.exeggcute
 evo[102], evo[103] = evo.exeggcute, evo.exeggcute
 
-evo.cubone = {
+evo.cubone = {--CHECK: Alola form evolves only at night (same level)
 	ndex = 104,
 
 	evos = {
@@ -973,7 +973,8 @@ evo.happiny = {
 		{
 			ndex = 113,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.ITEM] = 'Pietraovale', [evo.conditions.TIME] = 'Giorno'},
+			conditions = { [evo.conditions.ITEM] = 'Pietraovale',
+			[evo.conditions.TIME] = 'Giorno'},
 
 			evos = {
 				{
@@ -1213,7 +1214,7 @@ evo.eevee = {
 		{
 			ndex = 700,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.OTHER] = 'con due cuori di {{colore2|000|Amicizia}}<div>avendo appreso una mossa di tipo {{colore2|000|Folletto}}</div>' },
+			conditions = { [evo.conditions.OTHER] = 'Con due cuori di {{colore2|000|Amicizia}}<div>avendo appreso una mossa di tipo {{colore2|000|Folletto}}</div>' },
 		}
 	}
 }
@@ -1830,7 +1831,7 @@ evo.mantyke = {
 		{
 			ndex = 226,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.OTHER] = 'con {{colore2|000|Remoraid}} in {{colore2|000|squadra}}' },
+			conditions = { [evo.conditions.OTHER] = 'Con {{colore2|000|Remoraid}} in {{colore2|000|squadra}}' },
 		}
 	}
 }
@@ -2591,7 +2592,7 @@ evo.feebas = {
 			ndex = 350,
 			method = evo.methods.TRADE,
 			conditions = { [evo.conditions.ITEM] = 'Squama Bella',
-						   [evo.conditions.OTHER] = 'o<div>{{bag|Fascia Blu}}</div>{{colore2|000|Livello|Aumento di livello}}<div>con la {{colore2|000|Bellezza (virtù)|virtù Bellezza}} alta</div>'
+						   [evo.conditions.OTHER] = 'oppure<div>{{bag|Fascia Blu}}</div>{{colore2|000|Livello|Aumento di livello}}<div>con la {{colore2|000|Bellezza (virtù)|virtù Bellezza}} alta</div>'
 						 },
 		}
 	}
@@ -3923,7 +3924,7 @@ evo.karrablast = {
 		{
 			ndex = 589,
 			method = evo.methods.TRADE,
-			conditions = { [evo.conditions.OTHER] = 'in cambio di {{colore2|000|Shelmet}}' },
+			conditions = { [evo.conditions.OTHER] = 'In cambio di {{colore2|000|Shelmet}}' },
 		}
 	}
 }
@@ -4115,7 +4116,7 @@ evo.shelmet = {
 		{
 			ndex = 617,
 			method = evo.methods.TRADE,
-			conditions = { [evo.conditions.OTHER] = 'in cambio di {{colore2|000|Karrablast}}' },
+			conditions = { [evo.conditions.OTHER] = 'In cambio di {{colore2|000|Karrablast}}' },
 		}
 	}
 }
@@ -4441,6 +4442,7 @@ evo.pancham = {
 			ndex = 675,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 32,
+			conditions = { [evo.conditions.OTHER] = 'Con un Pokémon {{colore2|000|Buio}} in {{colore2|000|squadra}}' },
 		}
 	}
 }
@@ -4476,7 +4478,8 @@ evo.honedge = {
 			evos = {
 				{
 					ndex = 681,
-					method = '[[Neropietra]]',
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = 'Neropietra',
 				}
 			}
 		}
@@ -4491,7 +4494,8 @@ evo.spritzee = {
 	evos = {
 		{
 			ndex = 683,
-			method = '[[Scambio]] tenendo una [[Bustina aromi]]',
+			method = evo.methods.TRADE,
+			conditions = { [evo.conditions.ITEM] = 'Bustina aromi' },
 		}
 	}
 }
@@ -4504,7 +4508,8 @@ evo.swirlix = {
 	evos = {
 		{
 			ndex = 685,
-			method = '[[Scambio]] tenendo una [[Dolcespuma]]',
+			method = evo.methods.TRADE,
+			conditions = { [evo.conditions.ITEM] = 'Dolcespuma' },
 		}
 	}
 }
@@ -4519,6 +4524,7 @@ evo.inkay = {
 			ndex = 687,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 30,
+			conditions = { [evo.conditions.OTHER] = 'Capovolgendo la console' },
 		}
 	}
 }
@@ -4573,7 +4579,8 @@ evo.helioptile = {
 	evos = {
 		{
 			ndex = 695,
-			method = '[[Pietrasolare]]',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietrasolare',
 		}
 	}
 }
@@ -4588,6 +4595,7 @@ evo.tyrunt = {
 			ndex = 697,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 39,
+			conditions = { [evo.conditions.TIME] = 'Giorno' },
 		}
 	}
 }
@@ -4602,6 +4610,7 @@ evo.amaura = {
 			ndex = 699,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 39,
+			conditions = { [evo.conditions.TIME] = 'Giorno' },
 		}
 	}
 }
@@ -4631,6 +4640,7 @@ evo.goomy = {
 					ndex = 706,
 					method = evo.methods.LEVEL,
 					[evo.methods.LEVEL] = 50,
+					conditions = { [evo.conditions.OTHER] = 'Se {{colore2|000|Condizione atmosferica#Pioggia battente|piove}} nell\'overworld' },
 				}
 			}
 		}
@@ -4648,7 +4658,7 @@ evo.phantump = {
 	evos = {
 		{
 			ndex = 709,
-			method = '[[Scambio]]',
+			method = evo.methods.TRADE,
 		}
 	}
 }
@@ -4661,7 +4671,7 @@ evo.pumpkaboo = {
 	evos = {
 		{
 			ndex = 711,
-			method = '[[Scambio]]',
+			method = evo.methods.TRADE,
 		}
 	}
 }
@@ -4696,8 +4706,20 @@ evo.noibat = {
 evo.noivern = evo.noibat
 evo[714], evo[715] = evo.noibat, evo.noibat
 
+evo.xerneas = { ndex = 716 }
+evo[716] = evo.xerneas
+
+evo.yveltal = { ndex = 717 }
+evo[717] = evo.yveltal
+
+evo.zygarde = { ndex = 718 }
+evo[718] = evo.zygarde
+
 evo.diancie = { ndex = 719 }
 evo[719] = evo.diancie
+
+evo.hoopa = { ndex = 720 }
+evo[720] = evo.hoopa
 
 evo.volcanion = { ndex = 721 }
 evo[721] = evo.volcanion
@@ -4798,6 +4820,7 @@ evo.yungoos = {
 			ndex = 735,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 20,
+			conditions = { [evo.conditions.TIME] = 'Giorno' },
 		}
 	}
 }
@@ -4816,7 +4839,8 @@ evo.grubbin = {
 			evos = {
 				{
 					ndex = 738,
-					method = 'Su di livello in un [[Campo magnetico speciale]]',
+					method = evo.methods.LEVEL,
+					conditions = { [evo.conditions.LOCATION] = 'Campo magnetico speciale' },
 				}
 			}
 		}
@@ -4831,12 +4855,16 @@ evo.crabrawler = {
 	evos = {
 		{
 			ndex = 740,
-			method = 'Su di livello sul [[Monte Lanakila]]',
+			method = evo.methods.LEVEL,
+			conditions = { [evo.conditions.LOCATION] = 'Monte Lanakila' },
 		}
 	}
 }
 evo.crabominable = evo.crabrawler
 evo[739], evo[740] = evo.crabrawler, evo.crabrawler
+
+evo.oricorio = { ndex = 741 }
+evo[741] = evo.oricorio
 
 evo.cutiefly = {
 	ndex = 742,
@@ -4851,6 +4879,35 @@ evo.cutiefly = {
 }
 evo.ribombee = evo.cutiefly
 evo[742], evo[743] = evo.cutiefly, evo.cutiefly
+
+--[[ CHECK
+evo.rockruff = {
+	ndex = 744,
+
+	evos = {
+		{
+			ndex = 745,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 25,
+			conditions = { [evo.conditions.OTHER] = 'Di {{colore2|000|Tempo|giorno}} in {{colore2|000|Pokémon Sole e Luna|Sole}} e {{colore2|000|Pokémon Ultrasole e Ultraluna|Ultrasole}}' }
+		},
+		{
+			ndex = 745N,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 25,
+			conditions = { [evo.conditions.OTHER] = 'Di {{colore2|000|Tempo|notte}} in {{colore2|000|Pokémon Sole e Luna|Luna}} e {{colore2|000|Pokémon Ultrasole e Ultraluna|Ultraluna}}' }
+		},
+		{
+			ndex = 745C,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 25,
+			conditions = { [evo.conditions.OTHER] = 'Al tramonto se ha {{colore2|000|Mente Locale}} in {{colore2|000|Pokémon Ultrasole e Ultraluna|Ultrasole e Ultraluna}}' }
+		}
+	}
+}
+evo.lycanroc = evo.rockruff
+evo[745], = evo.rockruff
+--]]
 
 evo.wishiwashi = { ndex = 746 }
 evo[746] = evo.wishiwashi
@@ -4905,6 +4962,7 @@ evo.fomantis = {
 			ndex = 754,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 34,
+			conditions = { [evo.conditions.TIME] = 'Giorno' },
 		}
 	}
 }
@@ -4933,6 +4991,7 @@ evo.salandit = {
 			ndex = 758,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 33,
+			conditions = { [evo.conditions.GENDER] = 'Femmina' },
 		}
 	}
 }
@@ -4965,7 +5024,7 @@ evo.bounsweet = {
 			evos = {
 				{
 					ndex = 763,
-					method = 'Se conosce [[Pestone]] quando sale di livello',
+					conditions = { [evo.conditions.MOVE] = 'Pestone' },
 				}
 			}
 		}
@@ -5020,7 +5079,7 @@ evo["tipo zero"] = {
 	evos = {
 		{
 			ndex = 773,
-			method = '[[Affetto]]',
+			method = evo.methods.HAPPINESS,
 		}
 	}
 }
@@ -5073,6 +5132,47 @@ evo["jangmo-o"] = {
 evo["hakamo-o"], evo["kommo-o"] = evo["jangmo-o"], evo["jangmo-o"]
 evo[782], evo[783], evo[784] = evo["jangmo-o"], evo["jangmo-o"], evo["jangmo-o"]
 
+evo.['tapu koko'] = { ndex = 785 }
+evo[785] = evo.['tapu koko']
+
+evo.['tapu lele'] = { ndex = 786 }
+evo[786] = evo.['tapu lele']
+
+evo.['tapu bulu'] = { ndex = 787 }
+evo[787] = evo.['tapu bulu']
+
+evo.['tapu fini'] = { ndex = 788 }
+evo[788] = evo.['tapu fini']
+
+evo.cosmog = {
+	ndex = 789,
+
+	evos = {
+		{
+			ndex = 790,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 43,
+
+			evos = {
+				{
+					ndex = 791,
+					method = evo.methods.LEVEL,
+					[evo.methods.LEVEL] = 53,
+					conditions = { [evo.conditions.OTHER] = 'In {{colore2|000|Pokémon Sole e Luna|Sole}} e {{colore2|000|Pokémon Ultrasole e Ultraluna|Ultrasole}}' }
+				},
+				{
+					ndex = 792,
+					method = evo.methods.LEVEL,
+					[evo.methods.LEVEL] = 53,
+					conditions = { [evo.conditions.OTHER] = 'In {{colore2|000|Pokémon Sole e Luna|Luna}} e {{colore2|000|Pokémon Ultrasole e Ultraluna|Ultraluna}}' }
+				}
+			}
+		}
+	}
+}
+evo.cosmoem, evo.solgaleo, evo.lunala = evo.cosmog, evo.cosmog, evo.cosmog
+evo[789], evo[790], evo[791], evo[792] = evo.cosmog, evo.cosmog, evo.cosmog, evo.cosmog
+
 evo.nihilego = { ndex = 793 }
 evo[793] = evo.nihilego
 
@@ -5094,6 +5194,9 @@ evo[798] = evo.kartana
 evo.guzzlord = { ndex = 799 }
 evo[799] = evo.guzzlord
 
+evo.necrozma = { ndex = 800 }
+evo[800] = evo.necrozma
+
 evo.magearna = { ndex = 801 }
 evo[801] = evo.magearna
 
@@ -5106,7 +5209,7 @@ evo.poipole = {
 	evos = {
 		{
 			ndex = 804,
-			method = 'Se conosce [[Dragopulsar]] salendo di livello',
+			conditions = { [evo.conditions.MOVE] = 'Dragopulsar' },
 		}
 	}
 }
