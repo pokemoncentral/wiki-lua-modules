@@ -5209,6 +5209,7 @@ evo.poipole = {
 	evos = {
 		{
 			ndex = 804,
+			method = evo.methods.LEVEL,
 			conditions = { [evo.conditions.MOVE] = 'Dragopulsar' },
 		}
 	}
@@ -5224,6 +5225,18 @@ evo[806] = evo.blacephalon
 
 evo.zeraora = { ndex = 807 }
 evo[807] = evo.zeraora
+
+evo.meltan = {--CHECK
+	ndex = 808,
+
+	evos = {
+		ndex = 809,
+		method = evo.methods.OTHER,
+		evo.methods.OTHER = 'Con 400 {{colore2|000|Caramelle}} Meltan in {{colore2|000|Pokémon GO}}',
+	}
+}
+evo.melmetal = evo.meltan
+evo[808], evo[809] = evo.meltan, evo.meltan
 
 -- Alolan forms
 -- evo.rattataA = {
