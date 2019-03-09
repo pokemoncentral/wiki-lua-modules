@@ -213,7 +213,7 @@ evo.pidgey = {
 evo.pidgeotto, evo.pidgeot = evo.pidgey, evo.pidgey
 evo[16], evo[17], evo[18] = evo.pidgey, evo.pidgey, evo.pidgey
 
-evo.rattata = {--CHECK: Alola form evolves only at night (same level)
+evo.rattata = {
 	ndex = 19,
 
 	evos = {
@@ -872,7 +872,7 @@ evo.exeggcute = {
 evo.exeggutor = evo.exeggcute
 evo[102], evo[103] = evo.exeggcute, evo.exeggcute
 
-evo.cubone = {--CHECK: Alola form evolves only at night (same level)
+evo.cubone = {
 	ndex = 104,
 
 	evos = {
@@ -3264,12 +3264,15 @@ evo[487] = evo.giratina
 evo.cresselia = { ndex = 488 }
 evo[488] = evo.cresselia
 
-evo.phione = {--CHECK
+evo.phione = {
 	ndex = 489,
 	method = evo.methods.BREED,
+	conditions = { [evo.conditions.BREEDONLY] = true },
 
 	evos = {
-		ndex = 490,
+		{
+			ndex = 490,
+		}
 	}
 }
 evo.manaphy = evo.phione
@@ -3924,7 +3927,7 @@ evo.karrablast = {
 		{
 			ndex = 589,
 			method = evo.methods.TRADE,
-			conditions = { [evo.conditions.OTHER] = 'In cambio di {{colore2|000|Shelmet}}' },
+			conditions = { [evo.conditions.TRADED_FOR] = 616 },
 		}
 	}
 }
@@ -4116,7 +4119,7 @@ evo.shelmet = {
 		{
 			ndex = 617,
 			method = evo.methods.TRADE,
-			conditions = { [evo.conditions.OTHER] = 'In cambio di {{colore2|000|Karrablast}}' },
+			conditions = { [evo.conditions.TRADED_FOR] = 588 },
 		}
 	}
 }
@@ -5132,17 +5135,17 @@ evo["jangmo-o"] = {
 evo["hakamo-o"], evo["kommo-o"] = evo["jangmo-o"], evo["jangmo-o"]
 evo[782], evo[783], evo[784] = evo["jangmo-o"], evo["jangmo-o"], evo["jangmo-o"]
 
-evo.['tapu koko'] = { ndex = 785 }
-evo[785] = evo.['tapu koko']
+evo['tapu koko'] = { ndex = 785 }
+evo[785] = evo['tapu koko']
 
-evo.['tapu lele'] = { ndex = 786 }
-evo[786] = evo.['tapu lele']
+evo['tapu lele'] = { ndex = 786 }
+evo[786] = evo['tapu lele']
 
-evo.['tapu bulu'] = { ndex = 787 }
-evo[787] = evo.['tapu bulu']
+evo['tapu bulu'] = { ndex = 787 }
+evo[787] = evo['tapu bulu']
 
-evo.['tapu fini'] = { ndex = 788 }
-evo[788] = evo.['tapu fini']
+evo['tapu fini'] = { ndex = 788 }
+evo[788] = evo['tapu fini']
 
 evo.cosmog = {
 	ndex = 789,
@@ -5226,13 +5229,15 @@ evo[806] = evo.blacephalon
 evo.zeraora = { ndex = 807 }
 evo[807] = evo.zeraora
 
-evo.meltan = {--CHECK
+evo.meltan = {
 	ndex = 808,
 
 	evos = {
-		ndex = 809,
-		method = evo.methods.OTHER,
-		evo.methods.OTHER = 'Con 400 {{colore2|000|Caramelle}} Meltan in {{colore2|000|Pokémon GO}}',
+		{
+			ndex = 809,
+			method = evo.methods.OTHER,
+			[evo.methods.OTHER] = '<span class="text-small">Con 400 {{colore2|000|Caramelle}} Meltan in {{colore2|000|Pokémon GO}}</span>',
+		}
 	}
 }
 evo.melmetal = evo.meltan

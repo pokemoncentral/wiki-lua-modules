@@ -28,7 +28,6 @@ local useless = require("UselessForms-data")
 local pokes = require("Poké-data")
 local moves = require("Move-data")
 local evodata = require("Evo-data")
-local wdata = require("Wikilib-data")
 
 -- ============================= General functions =============================
 
@@ -200,7 +199,7 @@ eb.boxArrow.desc.conditions = {
     [evodata.conditions.GENDER] = smallMethodsFunctionGenerator('(${param})'),
     [evodata.conditions.TRADED_FOR] = function(ndex)
             local name = pokes[tonumber(ndex)].name
-            return table.concat{ 'per [[', name, ']]' }
+            return table.concat{ ' per [[', name, ']]' }
         end,
 }
 

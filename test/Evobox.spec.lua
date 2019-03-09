@@ -83,13 +83,13 @@ if true then
 	-- Happiness
 	print(evobox.Evobox{args={'Golbat'}})
 	-- Baby Pokémon, happiness
-	-- print(evobox.Evobox{args={'Lucario'}})
+	print(evobox.Evobox{args={'Lucario'}})
 	-- Incense, held, time, evostone
 	print(evobox.Evobox{args={'Chansey'}})
 	-- Incense, move
 	print(evobox.Evobox{args={'Sudowoodo'}})
 	-- Trade for a specific Pokémon
-	-- print(evobox.Evobox{args={'Escavalier'}})
+	print(evobox.Evobox{args={'Escavalier'}})
 	-- Held item, time
 	print(evobox.Evobox{args={'Gliscor'}})
 	-- Location
@@ -104,6 +104,8 @@ if true then
 	print(evobox.Evobox{args={'Dustox'}})
 	-- Baby, alternative form
 	-- print(evobox.Evobox{args={'RaichuA'}})
+	-- Methdo OTHER
+	print(evobox.Evobox{args={'Meltan'}})
 	-- Evoinfo, prune at higher level
 	print(evobox.Evobox{args={'Sylveon'}})
 	-- More than 2 phase one
@@ -114,6 +116,8 @@ if true then
 	print(evobox.Evobox{args={'Nincada'}})
 	-- Eevee
 	print(evobox.Evobox{args={'Eevee'}})
+	-- Phione
+	-- print(evobox.Evobox{args={'Phione'}})
 end
 
 -- ============================ GlitchEvobox (parameters) ======================
