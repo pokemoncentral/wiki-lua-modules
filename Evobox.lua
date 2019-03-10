@@ -416,7 +416,8 @@ eb.Evobox = function(frame)
     local pokename = mw.text.decode(frame.args[1]):trim():lower()
     local abbr = (frame.args.form or ""):trim()
     local pokeData = multigen.getGen(pokes[form.nameToDataindex(pokename .. abbr)])
-    local data = evolib.prunedEvotree(abbr == "" and pokeData.ndex or pokeData.ndex .. abbr)
+    local data = evolib.prunedEvotree(abbr == "" and pokeData.ndex
+                                      or string.tf(pokeData.ndex) .. abbr)
 
     local evoboxcontent = {}
     local boxContainer = eb.strings.BOX_CONTAINER

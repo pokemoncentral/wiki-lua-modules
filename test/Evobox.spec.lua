@@ -74,6 +74,9 @@ if true then
 	-- No evos
 	print(evobox.Evobox{args={'Tauros'}})
 	-- With notes
+	print(evobox.Evobox{args={'Burmy'}})
+	print(evobox.Evobox{args={'Burmy', form = "Sc"}})
+	print(evobox.Evobox{args={'Mothim'}})
 	print(evobox.Evobox{args={'Basculin'}})
 	print(evobox.Evobox{args={'Basculin', form = "B"}})
 	print(evobox.Evobox{args={'Floette'}})
@@ -102,6 +105,8 @@ if true then
 	print(evobox.Evobox{args={'Wurmple'}})
 	-- Dustox, branched at phase one AND two with prune
 	print(evobox.Evobox{args={'Dustox'}})
+	-- Alolan form
+	print(evobox.Evobox{args={'Geodude', form = 'A'}})
 	-- Baby, alternative form
 	-- print(evobox.Evobox{args={'RaichuA'}})
 	-- Methdo OTHER

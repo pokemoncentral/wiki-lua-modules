@@ -14,6 +14,9 @@ described by the condition itself.
 
 --]]
 
+local mw = require('mw')
+
+local pokes = require("Poké-data")
 local altforms = require("AltForms-data")
 local useless = require("UselessForms-data")
 
@@ -2971,10 +2974,12 @@ evo[410], evo[411] = evo.shieldon, evo.shieldon
 
 evo.burmy = {
 	ndex = 412,
+	notes = useless.burmy.names.base,
 
 	evos = {
 		{
 			ndex = 413,
+			notes = useless.burmy.names.base,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 20,
 			conditions = { [evo.conditions.GENDER] = 'Femmina' },
@@ -3038,10 +3043,12 @@ evo[420], evo[421] = evo.cherubi, evo.cherubi
 
 evo.shellos = {
 	ndex = 422,
+	notes = useless.shellos.names.base,
 
 	evos = {
 		{
 			ndex = 423,
+			notes = useless.shellos.names.base,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 30,
 		}
@@ -3950,10 +3957,12 @@ evo[590], evo[591] = evo.foongus, evo.foongus
 
 evo.frillish = {
 	ndex = 592,
+	notes = useless.frillish.names.base,
 
 	evos = {
 		{
 			ndex = 593,
+			notes = useless.frillish.names.base,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 40,
 		}
@@ -4421,7 +4430,30 @@ evo.litleo = {
 evo.pyroar = evo.litleo
 evo[667], evo[668] = evo.litleo, evo.litleo
 
--- Flabébé is at the end, with alternative forms
+evo["flabébé"] = {
+	ndex = 669,
+	notes = useless.floette.names.base,
+
+	evos = {
+		{
+			ndex = 670,
+			notes = useless.floette.names.base,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 19,
+
+			evos = {
+				{
+					ndex = 671,
+					notes = useless.floette.names.base,
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietrabrillo',
+				}
+			}
+		}
+	}
+}
+evo.floette, evo.florges = evo["flabébé"], evo["flabébé"]
+evo[669], evo[670], evo[671] = evo["flabébé"], evo["flabébé"], evo["flabébé"]
 
 evo.skiddo = {
 	ndex = 672,
@@ -5243,21 +5275,22 @@ evo.meltan = {
 evo.melmetal = evo.meltan
 evo[808], evo[809] = evo.meltan, evo.meltan
 
--- Alolan forms
--- evo.rattataA = {
--- 	ndex = nil,
---
--- 	evos = {
--- 		{
--- 			ndex = nil,
--- 			method = evo.methods.LEVEL,
--- 			[evo.methods.LEVEL] = 20,
--- 		}
--- 	}
--- }
--- evo.raticateA = evo.rattataA
--- evo[nil], evo[nil] = evo.rattataA, evo.rattataA
---
+-- Alternative forms
+evo.rattataA = {
+	ndex = '019A',
+
+	evos = {
+		{
+			ndex = '020A',
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 20,
+			conditions = { [evo.conditions.TIME] = 'Notte' },
+		}
+	}
+}
+evo.raticateA = evo.rattataA
+evo['019A'], evo['020A'] = evo.rattataA, evo.rattataA
+
 -- evo.pichu = {
 -- 	ndex = 172,
 --
@@ -5278,93 +5311,95 @@ evo[808], evo[809] = evo.meltan, evo.meltan
 -- evo.pikachu, evo.raichuA = evo.pichu, evo.pichu
 -- evo[172], evo[25], evo[nil] = evo.pichu, evo.pichu, evo.pichu
 --
--- evo.sandshrewA = {
--- 	ndex = nil,
---
--- 	evos = {
--- 		{
--- 			ndex = nil,
--- 			method = '[[Pietragelo]]',
--- 		}
--- 	}
--- }
--- evo.sandslashA = evo.sandshrewA
--- evo[nil], evo[nil] = evo.sandshrewA, evo.sandshrewA
---
--- evo.vulpixA = {
--- 	ndex = nil,
---
--- 	evos = {
--- 		{
--- 			ndex = nil,
--- 			method = '[[Pietragelo]]',
--- 		}
--- 	}
--- }
--- evo.ninetalesA = evo.vulpixA
--- evo[nil], evo[nil] = evo.vulpixA, evo.vulpixA
---
--- evo.diglettA = {
--- 	ndex = nil,
---
--- 	evos = {
--- 		{
--- 			ndex = nil,
--- 			method = evo.methods.LEVEL,
--- 			[evo.methods.LEVEL] = 26,
--- 		}
--- 	}
--- }
--- evo.dugtrioA = evo.diglettA
--- evo[nil], evo[nil] = evo.diglettA, evo.diglettA
---
--- evo.meowthA = {
--- 	ndex = nil,
---
--- 	evos = {
--- 		{
--- 			ndex = nil,
--- 			method = '[[Affetto]]',
--- 		}
--- 	}
--- }
--- evo.persianA = evo.meowthA
--- evo[nil], evo[nil] = evo.meowthA, evo.meowthA
---
--- evo.geodudeA = {
--- 	ndex = nil,
---
--- 	evos = {
--- 		{
--- 			ndex = nil,
--- 			method = evo.methods.LEVEL,
--- 			[evo.methods.LEVEL] = 25,
---
--- 			evos = {
--- 				{
--- 					ndex = nil,
--- 					method = '[[Scambio]]',
--- 				}
--- 			}
--- 		}
--- 	}
--- }
--- evo.gravelerA, evo.golemA = evo.geodudeA, evo.geodudeA
--- evo[nil], evo[nil], evo[nil] = evo.geodudeA, evo.geodudeA, evo.geodudeA
---
--- evo.grimerA = {
--- 	ndex = nil,
---
--- 	evos = {
--- 		{
--- 			ndex = nil,
--- 			method = evo.methods.LEVEL,
--- 			[evo.methods.LEVEL] = 38,
--- 		}
--- 	}
--- }
--- evo.mukA = evo.grimerA
--- evo[nil], evo[nil] = evo.grimerA, evo.grimerA
+evo.sandshrewA = {
+	ndex = '027A',
+
+	evos = {
+		{
+			ndex = '028A',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietragelo',
+		}
+	}
+}
+evo.sandslashA = evo.sandshrewA
+evo['027A'], evo['028A'] = evo.sandshrewA, evo.sandshrewA
+
+evo.vulpixA = {
+	ndex = '037A',
+
+	evos = {
+		{
+			ndex = '038A',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietragelo',
+		}
+	}
+}
+evo.ninetalesA = evo.vulpixA
+evo['037A'], evo['038A'] = evo.vulpixA, evo.vulpixA
+
+evo.diglettA = {
+	ndex = '050A',
+
+	evos = {
+		{
+			ndex = '051A',
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 26,
+		}
+	}
+}
+evo.dugtrioA = evo.diglettA
+evo['050A'], evo['051A'] = evo.diglettA, evo.diglettA
+
+evo.meowthA = {
+	ndex = '052A',
+
+	evos = {
+		{
+			ndex = '053A',
+			method = evo.methods.HAPPINESS,
+		}
+	}
+}
+evo.persianA = evo.meowthA
+evo['052A'], evo['053A'] = evo.meowthA, evo.meowthA
+
+evo.geodudeA = {
+	ndex = '074A',
+
+	evos = {
+		{
+			ndex = '075A',
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 25,
+
+			evos = {
+				{
+					ndex = '076A',
+					method = evo.methods.TRADE,
+				}
+			}
+		}
+	}
+}
+evo.gravelerA, evo.golemA = evo.geodudeA, evo.geodudeA
+evo['074A'], evo['075A'], evo['076A'] = evo.geodudeA, evo.geodudeA, evo.geodudeA
+
+evo.grimerA = {
+	ndex = '088A',
+
+	evos = {
+		{
+			ndex = '089A',
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 38,
+		}
+	}
+}
+evo.mukA = evo.grimerA
+evo['088A'], evo['089A'] = evo.grimerA, evo.grimerA
 --
 -- evo.exeggcute = {
 -- 	ndex = 102,
@@ -5393,41 +5428,63 @@ evo[808], evo[809] = evo.meltan, evo.meltan
 -- evo.marowakA = evo.cubone
 -- evo[104], evo[nil] = evo.cubone, evo.cubone
 
--- Alternative forms
-evo.basculinB = { ndex = "550B", notes = altforms.basculin.names.B }
-evo["550B"] = evo.basculinB
+--[[
 
-table.map(useless.floette.names, function(name, abbr)
-	evo["flabébé" .. abbr] = {
-		ndex = abbr == "base" and 669 or "669" .. abbr,
-		notes = name,
+Given a Pokémon's tree builds versions for its alternative forms and binds them
+with the expected names. Tables are created only for the Pokémon and it's
+evolutions, not for it's preevo (actually it takes ndexes from it's traversal
+of the tree).
 
-		evos = {
-			{
-				ndex = abbr == "base" and 670 or "670" .. abbr,
-				notes = name,
-				method = evo.methods.LEVEL,
-				[evo.methods.LEVEL] = 19,
+If a node doesn't have the "notes" field it's kept as is, without adding
+neither notes nor adding the abbr to the ndex.
 
-				evos = {
-					{
-						ndex = abbr == "base" and 671 or "671" .. abbr,
-						notes = name,
-						method = evo.methods.STONE,
-						[evo.methods.STONE] = 'Pietrabrillo',
-					}
-				}
-			}
-		}
-	}
-	evo[abbr == "base" and 669 or "669" .. abbr] =
-		evo["flabébé" .. abbr]
-	evo["floette" .. abbr], evo[abbr == "base" and 670 or "670" .. abbr] =
-		evo["flabébé" .. abbr], evo["flabébé" .. abbr]
-	evo["florges" .. abbr], evo[abbr == "base" and 671 or "671" .. abbr] =
-		evo["flabébé" .. abbr], evo["flabébé" .. abbr]
-end)
+--]]
+local createAlternativeForm = function(altdata, basetab)
+	-- Internal tree map function
+	local function mapTree(evotab, func)
+		local result = func(mw.clone(evotab))
+		if evotab.evos then
+			result.evos = table.map(result.evos, function(v)
+				return mapTree(v, func)
+			end)
+		end
+		return result
+	end
 
+	table.map(altdata.names, function(name, abbr)
+		local ndexes = {}
+		if abbr == "base" then
+			return
+		end
+		local newtab = mapTree(basetab, function(basenode)
+			if basenode.notes then
+				table.insert(ndexes, basenode.ndex)
+				basenode.ndex = tostring(basenode.ndex) .. abbr
+				basenode.notes = name
+			end
+			return basenode
+		end)
 
+		table.map(ndexes, function(ndex)
+			evo[tostring(ndex) .. abbr] = newtab
+			evo[pokes[ndex].name .. abbr] = newtab
+		end)
+	end)
+end
+
+evo.unown = { ndex = 201 }
+evo[201] = evo.unown
+
+createAlternativeForm(useless.burmy, evo.burmy)
+
+createAlternativeForm(useless.shellos, evo.shellos)
+
+createAlternativeForm(altforms.basculin, evo.basculin)
+-- evo.basculinB = { ndex = "550B", notes = altforms.basculin.names.B }
+-- evo["550B"] = evo.basculinB
+
+createAlternativeForm(useless.frillish, evo.frillish)
+
+createAlternativeForm(useless.floette, evo.floette)
 
 return evo
