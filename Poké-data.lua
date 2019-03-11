@@ -1676,15 +1676,20 @@ t.wormadamSa = {name = 'Wormadam', ndex = 413, type1 = 'coleot', type2 = 'terra'
 t['413Sa'] = t.wormadamSa
 t.wormadamSc = {name = 'Wormadam', ndex = 413, type1 = 'coleot', type2 = 'acciaio'}
 t['413Sc'] = t.wormadamSc
-t.rotomC = {name = 'Rotom', ndex = 479, type1 = 'elettro', type2 = 'fuoco'}
+t.rotomC = {name = 'Rotom', ndex = 479, type1 = 'elettro',
+            type2 = {[4] = 'spettro', [5] = 'fuoco'}}
 t['479C'] = t.rotomC
-t.rotomL = {name = 'Rotom', ndex = 479, type1 = 'elettro', type2 = 'acqua'}
+t.rotomL = {name = 'Rotom', ndex = 479, type1 = 'elettro',
+            type2 = {[4] = 'spettro', [5] = 'acqua'}}
 t['479L'] = t.rotomL
-t.rotomG = {name = 'Rotom', ndex = 479, type1 = 'elettro', type2 = 'ghiaccio'}
+t.rotomG = {name = 'Rotom', ndex = 479, type1 = 'elettro',
+            type2 = {[4] = 'spettro', [5] = 'ghiaccio'}}
 t['479G'] = t.rotomG
-t.rotomV = {name = 'Rotom', ndex = 479, type1 = 'elettro', type2 = 'volante'}
+t.rotomV = {name = 'Rotom', ndex = 479, type1 = 'elettro',
+            type2 = {[4] = 'spettro', [5] = 'volante'}}
 t['479V'] = t.rotomV
-t.rotomT = {name = 'Rotom', ndex = 479, type1 = 'elettro', type2 = 'erba'}
+t.rotomT = {name = 'Rotom', ndex = 479, type1 = 'elettro',
+            type2 = {[4] = 'spettro', [5] = 'erba'}}
 t['479T'] = t.rotomT
 t.shayminC = {name = 'Shaymin', ndex = 492, type1 = 'erba', type2 = 'volante'}
 t['492C'] = t.shayminC

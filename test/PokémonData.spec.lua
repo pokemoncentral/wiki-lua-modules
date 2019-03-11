@@ -41,10 +41,10 @@ table.insert(tests, { pokeData.getFormName{args={'28'}}, '' })
 table.insert(tests, { pokeData.getFormName{args={'398'}}, '' })
 
 -- ================================ getAbil ================================
--- Tests 12, 19
+-- Tests 12, 18
 -- Standard cases, names or two digits
 table.insert(tests, { pokeData.getAbil1{args={'065'}}, 'Sincronismo' })
-table.insert(tests, { pokeData.getAbil2{args={'alakazam'}}, 'Forza Interiore' })
+table.insert(tests, { pokeData.getAbil2{args={'Alakazam'}}, 'Forza Interiore' })
 table.insert(tests, { pokeData.getAbild{args={'65'}}, 'Magicscudo' })
 table.insert(tests, { pokeData.getAbile{args={'744'}}, 'Mente Locale' })
 
@@ -53,16 +53,18 @@ table.insert(tests, { pokeData.getAbil2{args={'398'}}, '' })
 
 -- Alternative form ability
 table.insert(tests, { pokeData.getAbil1{args={'487O'}}, 'Levitazione' })
-table.insert(tests, { pokeData.getAbild{args={'giratinaO'}}, '' })
 
 -- Old gen ability
 table.insert(tests, { pokeData.getAbil1{args={'94', gen = '5'}}, 'Levitazione' })
 
 -- ================================ getType ================================
--- Tests 20, 27
+-- Tests 19, 27
 -- Standard case
 table.insert(tests, { pokeData.getType1{args={'398'}}, 'Normale' })
 table.insert(tests, { pokeData.getType2{args={'398'}}, 'Volante' })
+
+-- From name
+table.insert(tests, { pokeData.getType1{args={'Ho-Oh'}}, 'Fuoco' })
 
 -- Second type on Pokémon with only one type, two digits
 table.insert(tests, { pokeData.getType2{args={'65'}}, 'Psico' })
@@ -153,7 +155,7 @@ for n, v in ipairs(tests) do
             ' failed: ',
             v[2],
             ' expected, but ',
-            v[1],
+            v[1] or 'nil',
             ' got'
         })
         return
