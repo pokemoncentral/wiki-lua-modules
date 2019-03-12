@@ -28,10 +28,10 @@ m.PokePrecSucc = function(frame)
         color2 = type2,
         series = pokeData.name,
         list = "Elenco Pokémon secondo il Pokédex Nazionale",
-        prev = table.concat{"#", prevTf, ":", prevname},
+        prev = table.concat{"#", prevTf, ": ", prevname},
         prevlink = prevname,
         prevspr = prevTf,
-        next = table.concat{"#", nextTf, ":", nextname},
+        next = table.concat{"#", nextTf, ": ", nextname},
         nextlink = nextname,
         nextspr = nextTf,
     }

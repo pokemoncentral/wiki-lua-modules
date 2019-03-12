@@ -22,12 +22,14 @@ Arguments are (in Italian, copied from the template):
     - prevsup: per mostrare un eventuale [[Modulo:Sup|sup]] di fianco alla voce
                (le sigle utilizzabili sono elencate in [[Modulo:Sigle/data|questa pagina]])
     - prevbag: ''yes'' se è uno strumento e va mostrato lo sprite della borsa
-    - next, nextlink, nextspr, nextsup, nextbag: come sopra ma per l'elemento
-                successivo
-    - prev2, prevlink2, prevspr2, prevsup2, prevbag2: per mostrare un secondo
-                elemento precedente (funzionano come i precedenti)
-    - next2, nextlink2, nextspr2, nextsup2, nextbag2: per mostrare un secondo
-                elemento successivo (funzionano come i precedenti)
+    - previmg: link ad un'immagine, che sarà aggiunta as is vicino alla voce.
+               Se passato viene ignorato "prevspr" (ma non prevbag).
+    - next, nextlink, nextspr, nextsup, nextbag, nextimg: come sopra ma per
+                l'elemento successivo
+    - prev2, prevlink2, prevspr2, prevsup2, prevbag2, previmg2: per mostrare un
+                secondo elemento precedente (funzionano come i precedenti)
+    - next2, nextlink2, nextspr2, nextsup2, nextbag2, nextimg2: per mostrare un
+                secondo elemento successivo (funzionano come i precedenti)
     - list: link dell'elemento centrale
     - series: se deve mostrare altro testo
     - img: per mostrare una miniimmagine ai lati dell'elemento centrale
@@ -41,8 +43,8 @@ local txt = require('Wikilib-strings') -- luacheck: no unused
 local w = require('Wikilib')
 local css = require('Css')
 local ms = require('MiniSprite')
-local sup = require("Sup-data")
 local links = require('Links')
+local sup = require("Sup-data")
 
 p.strings = {
     MAIN_BOX = [=[
@@ -63,15 +65,18 @@ p.strings = {
 --[[
 
 Add a &nbsp; at the beginning or at the end of a string, depending on the
-direction.
+direction. If str is nil, returns nil.
 
 Arguments:
-    - str: the string to add the &nbsp; to
+    - str: the string to add the &nbsp; to. If nil, the funciton returns nil
     - dir: direction, either "prev" or "next" (add the &nbsp; resp. before and
            after the string)
 
 --]]
 local addNbsp = function(str, dir)
+    if not str then
+        return nil
+    end
     if dir == "prev" then
         return "&nbsp;" .. str
     else
@@ -109,9 +114,9 @@ Arguments:
 p.middleBox = function(list, img)
     local imglink = img and table.concat{"[[File:", img, "]]"}
     return string.interp(p.strings.MIDDLE_BOX, {
-        imgpre = img and addNbsp(imglink, "next") or "",
+        imgpre = addNbsp(imglink, "next") or "",
         list = list,
-        imgpost = img and addNbsp(imglink, "prev") or "",
+        imgpost = addNbsp(imglink, "prev") or "",
     })
 end
 
@@ -124,6 +129,8 @@ Arguments (named):
     - spr: (optional) ndex for the MiniSprite of the element
     - bag: (optional) if "yes" the element should display an image via the
                       template bag
+    - img: (optional) an image to add. If given, spr parameter is ignored (but
+                      not bag)
     - sup: (optional) abbr of the game to put in the sup
 
 --]]
@@ -131,7 +138,7 @@ p.makeContentLine = function(args)
     local interpdata = {
         link = args.link or args.name,
         name = args.name,
-        spr = args.spr and addNbsp(ms.staticLua(args.spr), args.dir) or "",
+        spr = addNbsp(args.img or ms.staticLua(args.spr), args.dir) or "",
         bag = args.bag == "yes" and addNbsp(links.bag(args.name), args.dir)
                                 or "",
         sup = args.sup and sup[args.sup] or "",
@@ -150,8 +157,9 @@ Arguments (named):
     - name: name of the element
     - link: (optional) link of the element
     - spr:
-    - bag
-    - sup
+    - bag:
+    - img:
+    - sup:
     - all these with a trailing 2 (optionals)
 
 --]]
@@ -165,6 +173,7 @@ p.makeContent = function(args)
             link = args.link2,
             spr = args.spr2,
             bag = args.bag2,
+            img = args.img2,
             sup = args.sup2,
         }
     end
@@ -195,11 +204,13 @@ p.PrevNextLua = function(args)
         link = args.prevlink,
         spr = args.prevspr,
         bag = args.prevbag,
+        img = args.previmg,
         sup = args.prevsup,
         name2 = args.prev2,
         link2 = args.prevlink2,
         spr2 = args.prevspr2,
         bag2 = args.prevbag2,
+        img2 = args.previmg2,
         sup2 = args.prevsup2,
     }
     local nextcontent = p.makeContent{
@@ -208,11 +219,13 @@ p.PrevNextLua = function(args)
         link = args.nextlink,
         spr = args.nextspr,
         bag = args.nextbag,
+        img = args.nextimg,
         sup = args.nextsup,
         name2 = args.next2,
         link2 = args.nextlink2,
         spr2 = args.nextspr2,
         bag2 = args.nextbag2,
+        img2 = args.nextimg2,
         sup2 = args.nextsup2,
     }
     return string.interp(p.strings.MAIN_BOX, {
