@@ -131,7 +131,5 @@ m.GlitchPrecSucc = function(frame)
 end
 
 m.glitchprecsucc, m.glitchPrecSucc = m.GlitchPrecSucc, m.GlitchPrecSucc
-arg = {'Missingno.', 'RB'}
-print(m.glitchPrecSucc{args={arg[1], game = arg[2]}})
 
--- return m
+return m

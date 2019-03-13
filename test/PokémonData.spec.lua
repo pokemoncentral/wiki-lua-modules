@@ -93,7 +93,7 @@ table.insert(tests, { pokeData.getStat{args={'487O', 'def'}}, 100 })
 -- Old gen
 table.insert(tests, { pokeData.getStat{args={'189', 'spdef', gen = '2'}}, 85 })
 
--- ================================ getLink ================================
+-- =============================== getCriesList ===============================
 -- Tests 32, 35
 -- Standard
 table.insert(tests, {

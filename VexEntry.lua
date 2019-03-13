@@ -54,15 +54,17 @@ end
 Main builder of WikiCode interfaces.
 
 Parametri (named):
-* <code>ndex</code>: numero di Dex (compresa sigla dell'eventuale forma alternativa).
-* <code>pkmn</code>: nome del Pokémon (senza eventuale forma alternativa).
-* <code>type1</code> e <code>type2</code>: tipi.
-* <code>abbr1</code>: sigla del primo gioco.
-* <code>disp1</code>: disponibilità nel primo gioco (''yes''/''no'').
-* <code>abbr2</code>, <code>disp2</code>: seconda sigla e disponibilità nel secondo gioco (come sopra).
-* <code>abbr3</code>, <code>disp3</code>: terza sigla e disponibilità nel terzo gioco (come sopra, ma appare solo se presente).
-* <code>abbr4</code>, <code>disp4</code>: quarta sigla e disponibilità nel quarto gioco (come sopra, ma appare solo se presente).
-</noinclude>
+	- ndex: numero di Dex (compresa sigla dell'eventuale forma alternativa).
+	- pkmn: nome del Pokémon (senza eventuale forma alternativa).
+	- gen: generazione dell'entry, usata per prendere i tipi del Pokémon
+	       (opzionale, default alla generazione corrente).
+	- abbr1: sigla del primo gioco.
+	- disp1: disponibilità nel primo gioco (''yes''/''no'').
+	- abbr2, disp2: seconda sigla e disponibilità nel secondo gioco (come sopra).
+	- abbr3, disp3: terza sigla e disponibilità nel terzo gioco (come sopra, ma
+	                appare solo se presente).
+	- abbr4, disp4: quarta sigla e disponibilità nel quarto gioco (come sopra,
+	                ma appare solo se presente).
 
 --]]
 v.VexEntry = function(args)
@@ -82,7 +84,7 @@ v.VexEntry = function(args)
 	ms = ms.staticLua(p.ndex),
 	pkmn = p.pkmn,
 	formLink = form ~= "" and string.interp(
-			'<div class="small-text">${form}</div>', { form = form }) or "",
+	        '<div class="small-text">${form}</div>', { form = form }) or "",
 	abbr1 = v.makeGame(p.disp1, p.abbr1),
 	abbr2 = v.makeGame(p.disp2, p.abbr2),
 	abbr3 = v.makeGame(p.disp3, p.abbr3),
