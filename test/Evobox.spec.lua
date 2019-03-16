@@ -122,7 +122,7 @@ if true then
 	-- Eevee
 	print(evobox.Evobox{args={'Eevee'}})
 	-- Phione
-	-- print(evobox.Evobox{args={'Phione'}})
+	print(evobox.Evobox{args={'Phione'}})
 end
 
 -- ============================ GlitchEvobox (parameters) ======================

@@ -170,7 +170,8 @@ eb.boxArrow.img.conditions = {
     [evodata.conditions.GENDER] = nilConst,
     [evodata.conditions.TRADED_FOR] = function(ndex)
         return ms.staticLua(ndex)
-    end
+    end,
+    [evodata.conditions.BREEDONLY] = methodsFunctionGenerator(ms.staticLua('132')),
 }
 
 eb.boxArrow.desc.methods = {
@@ -201,6 +202,7 @@ eb.boxArrow.desc.conditions = {
             local name = pokes[tonumber(ndex)].name
             return table.concat{ ' per [[', name, ']]' }
         end,
+    [evodata.conditions.BREEDONLY] = methodsFunctionGenerator(' con [[Ditto]]'),
 }
 
 
@@ -291,14 +293,20 @@ and the presence of evolutions (NOT their datas).
 eb.phaseName = function(position, baseData)
     if position == 1 then
         if baseData.method == evodata.methods.BREED then
-            return 'Forma Baby'
+            if baseData.conditions
+               and baseData.conditions[evodata.conditions.BREEDONLY] then
+                return 'Non si evolve'
+            else
+                return 'Forma Baby'
+            end
         elseif not baseData.method and baseData.evos then
             return 'Forma Base'
         else
             return 'Non si evolve'
         end
     elseif position == 2 then
-        if baseData.conditions and baseData.conditions[evodata.conditions.BREEDONLY] then
+        if baseData.conditions
+           and baseData.conditions[evodata.conditions.BREEDONLY] then
             return 'Genitore'
         else
             return 'Prima evoluzione'
@@ -437,13 +445,27 @@ eb.Evobox = function(frame)
         -- If the family is 'baby' or 'incenso' the second phase should be handled
         -- "by hand", otherwise there's the function that creates the row.
         elseif data.method == evodata.methods.BREED then
-            -- There is one phase one evolution, but with double arrow
-            table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
-                box1 = eb.DoubleArrow(data)
-            }))
-            table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
-                box1 = eb.boxPokemonAuto(data.evos[1].ndex, eb.phaseName(2, data), data.evos[1].notes)
-            }))
+            if data.conditions[evodata.conditions.BREEDONLY] then
+                -- Breedonly (aka Phione)
+                table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
+                    box1 = eb.SingleArrow(data)
+                }))
+                table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
+                    box1 = eb.boxPokemonAuto(data.evos[1].ndex,
+                                             eb.phaseName(2, data),
+                                             data.evos[1].notes)
+                }))
+            else
+                -- There is one phase one evolution, but with double arrow
+                table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
+                    box1 = eb.DoubleArrow(data)
+                }))
+                table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
+                    box1 = eb.boxPokemonAuto(data.evos[1].ndex,
+                                             eb.phaseName(2, data),
+                                             data.evos[1].notes)
+                }))
+            end
         else
             table.insert(evoboxcontent, eb.makePhaseRows(data.evos, 2))
         end
@@ -460,8 +482,11 @@ eb.Evobox = function(frame)
         })
     }
 
-    -- Adds the categories
-    if phase3evos and #phase3evos > 0 then
+    -- Adds categories
+    if data.conditions
+       and data.conditions[evodata.conditions.BREEDONLY] then -- luacheck: ignore
+        -- No category to add
+    elseif phase3evos and #phase3evos > 0 then
         table.insert(evobox, '[[Categoria:Pokémon appartenenti a una linea di evoluzione a tre stadi]]')
     elseif data.evos then
         table.insert(evobox, '[[Categoria:Pokémon appartenenti a una linea di evoluzione a due stadi]]')
