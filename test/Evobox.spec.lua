@@ -108,9 +108,12 @@ if true then
 	-- Alolan form
 	print(evobox.Evobox{args={'Geodude', form = 'A'}})
 	-- Baby, alternative form
-	-- print(evobox.Evobox{args={'RaichuA'}})
+	print(evobox.Evobox{args={'Pikachu'}})
+	print(evobox.Evobox{args={'Raichu', form = 'A'}})
 	-- Methdo OTHER
 	print(evobox.Evobox{args={'Meltan'}})
+	-- No prune
+	print(evobox.Evobox{args={'Exeggutor', prune = 'no'}})
 	-- Evoinfo, prune at higher level
 	print(evobox.Evobox{args={'Sylveon'}})
 	-- More than 2 phase one

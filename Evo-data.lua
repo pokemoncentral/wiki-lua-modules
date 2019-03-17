@@ -82,6 +82,7 @@ evo.conditions.MOVE = 4
 evo.conditions.GENDER = 5
 evo.conditions.TRADED_FOR = 6
 evo.conditions.BREEDONLY = 7
+evo.conditions.REGION = 8
 
 
 evo.bulbasaur = {
@@ -269,15 +270,23 @@ evo.pichu = {
 			evos = {
 				{
 					ndex = 26,
-					evo.methods.STONE,
+					method = evo.methods.STONE,
 					[evo.methods.STONE] = 'Pietratuono'
+				},
+				{
+					ndex = '026A',
+					notes = altforms.raichu.names.A,
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = 'Pietratuono',
+					conditions = { [evo.conditions.REGION] = 'Alola' },
 				}
 			}
 		}
 	}
 }
-evo.pikachu, evo.raichu = evo.pichu, evo.pichu
-evo[172], evo[25], evo[26] = evo.pichu, evo.pichu, evo.pichu
+evo.pikachu, evo.raichu, evo.raichuA = evo.pichu, evo.pichu, evo.pichu
+evo[172], evo[25], evo[26], evo['026A'] =
+	evo.pichu, evo.pichu, evo.pichu, evo.pichu
 
 evo.sandshrew = {
 	ndex = 27,
@@ -869,11 +878,18 @@ evo.exeggcute = {
 			ndex = 103,
 			method = evo.methods.STONE,
 			[evo.methods.STONE] = 'Pietrafoglia',
-		}
+		},
+		{
+			ndex = '103A',
+			notes = altforms.exeggutor.names.A,
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietrafoglia',
+			conditions = { [evo.conditions.REGION] = 'Alola' },
+		},
 	}
 }
-evo.exeggutor = evo.exeggcute
-evo[102], evo[103] = evo.exeggcute, evo.exeggcute
+evo.exeggutor, evo.exeggutorA = evo.exeggcute, evo.exeggcute
+evo[102], evo[103], evo['103A'] = evo.exeggcute, evo.exeggcute, evo.exeggcute
 
 evo.cubone = {
 	ndex = 104,
@@ -883,11 +899,19 @@ evo.cubone = {
 			ndex = 105,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 28,
+		},
+		{
+			ndex = '105A',
+			notes = altforms.marowak.names.A,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 28,
+			conditions = { [evo.conditions.TIME] = 'Notte',
+				[evo.conditions.REGION] = 'Alola' },
 		}
 	}
 }
-evo.marowak = evo.cubone
-evo[104], evo[105] = evo.cubone, evo.cubone
+evo.marowak, evo.marowakA = evo.cubone, evo.cubone
+evo[104], evo[105], evo['105A'] = evo.cubone, evo.cubone, evo.cubone
 
 evo.tyrogue = {
 	ndex = 236,
@@ -5291,26 +5315,6 @@ evo.rattataA = {
 evo.raticateA = evo.rattataA
 evo['019A'], evo['020A'] = evo.rattataA, evo.rattataA
 
--- evo.pichu = {
--- 	ndex = 172,
---
--- 	evos = {
--- 		{
--- 			ndex = 25,
--- 			method = '[[Affetto]]',
---
--- 			evos = {
--- 				{
--- 					ndex = nil,
--- 					method = '[[Pietratuono]]',
--- 				}
--- 			}
--- 		}
--- 	}
--- }
--- evo.pikachu, evo.raichuA = evo.pichu, evo.pichu
--- evo[172], evo[25], evo[nil] = evo.pichu, evo.pichu, evo.pichu
---
 evo.sandshrewA = {
 	ndex = '027A',
 
@@ -5400,33 +5404,6 @@ evo.grimerA = {
 }
 evo.mukA = evo.grimerA
 evo['088A'], evo['089A'] = evo.grimerA, evo.grimerA
---
--- evo.exeggcute = {
--- 	ndex = 102,
---
--- 	evos = {
--- 		{
--- 			ndex = nil,
--- 			method = '[[Pietrafoglia]]',
--- 		}
--- 	}
--- }
--- evo.exeggutorA = evo.exeggcute
--- evo[102], evo[nil] = evo.exeggcute, evo.exeggcute
---
--- evo.cubone = {
--- 	ndex = 104,
---
--- 	evos = {
--- 		{
--- 			ndex = nil,
--- 			method = evo.methods.LEVEL,
--- 			[evo.methods.LEVEL] = 28,
--- 		}
--- 	}
--- }
--- evo.marowakA = evo.cubone
--- evo[104], evo[nil] = evo.cubone, evo.cubone
 
 --[[
 
@@ -5480,8 +5457,6 @@ createAlternativeForm(useless.burmy, evo.burmy)
 createAlternativeForm(useless.shellos, evo.shellos)
 
 createAlternativeForm(altforms.basculin, evo.basculin)
--- evo.basculinB = { ndex = "550B", notes = altforms.basculin.names.B }
--- evo["550B"] = evo.basculinB
 
 createAlternativeForm(useless.frillish, evo.frillish)
 

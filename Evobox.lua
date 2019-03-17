@@ -172,6 +172,7 @@ eb.boxArrow.img.conditions = {
         return ms.staticLua(ndex)
     end,
     [evodata.conditions.BREEDONLY] = methodsFunctionGenerator(ms.staticLua('132')),
+    [evodata.conditions.REGION] = nilConst,
 }
 
 eb.boxArrow.desc.methods = {
@@ -203,6 +204,7 @@ eb.boxArrow.desc.conditions = {
             return table.concat{ ' per [[', name, ']]' }
         end,
     [evodata.conditions.BREEDONLY] = methodsFunctionGenerator(' con [[Ditto]]'),
+    [evodata.conditions.REGION] = smallMethodsFunctionGenerator('nella regione di [[${param}]]'),
 }
 
 
@@ -416,16 +418,24 @@ end
 --[[
 
 Main Wikicode interface, but using data module. The first parameter is the
-Pokémon's name ({{BASEPAGENAME}}). There's an optional parameter "form" to
-specify the form using its abbr.
+Pokémon's name ({{BASEPAGENAME}}). There are some optional parameters:
+    - form: the abbr of the form of which create the box.
+    - prune: if "no" then doesn't prune the evo-tree
 
 --]]
 eb.Evobox = function(frame)
-    local pokename = mw.text.decode(frame.args[1]):trim():lower()
-    local abbr = (frame.args.form or ""):trim()
+    local p = w.trimAll(frame.args)
+    local pokename = mw.text.decode(p[1]):lower()
+    local abbr = p.form or ""
     local pokeData = multigen.getGen(pokes[form.nameToDataindex(pokename .. abbr)])
-    local data = evolib.prunedEvotree(abbr == "" and pokeData.ndex
-                                      or string.tf(pokeData.ndex) .. abbr)
+    local nameabbr = abbr == "" and pokeData.ndex
+                                  or string.tf(pokeData.ndex) .. abbr
+    local data
+    if p.prune == "no" then
+        data = evodata[nameabbr]
+    else
+        data = evolib.prunedEvotree(nameabbr)
+    end
 
     local evoboxcontent = {}
     local boxContainer = eb.strings.BOX_CONTAINER
