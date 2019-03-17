@@ -3936,10 +3936,12 @@ evo[582], evo[583], evo[584] = evo.vanillite, evo.vanillite, evo.vanillite
 
 evo.deerling = {
 	ndex = 585,
+	notes = useless.deerling.names.base,
 
 	evos = {
 		{
 			ndex = 586,
+			notes = useless.sawsbuck.names.base,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 34,
 		}
@@ -5457,6 +5459,8 @@ createAlternativeForm(useless.burmy, evo.burmy)
 createAlternativeForm(useless.shellos, evo.shellos)
 
 createAlternativeForm(altforms.basculin, evo.basculin)
+
+createAlternativeForm(useless.deerling, evo.deerling)
 
 createAlternativeForm(useless.frillish, evo.frillish)
 

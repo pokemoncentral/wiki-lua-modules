@@ -2,8 +2,69 @@
 
 local evobox = require('Evobox')
 
+-- ============================ Evobox (automatic) =============================
+if true then
+	-- Standard
+	print(evobox.Evobox{args={'Squirtle'}})
+	-- No evos
+	print(evobox.Evobox{args={'Tauros'}})
+	-- With notes
+	print(evobox.Evobox{args={'Burmy'}})
+	print(evobox.Evobox{args={'Burmy', form = "Sc"}})
+	print(evobox.Evobox{args={'Mothim'}})
+	print(evobox.Evobox{args={'Basculin'}})
+	print(evobox.Evobox{args={'Basculin', form = "B"}})
+	print(evobox.Evobox{args={'Floette'}})
+	print(evobox.Evobox{args={'Floette', form = "Bl"}})
+	-- Trade
+	print(evobox.Evobox{args={'Abra'}})
+	-- Happiness
+	print(evobox.Evobox{args={'Golbat'}})
+	-- Baby Pokémon, happiness
+	print(evobox.Evobox{args={'Lucario'}})
+	-- Incense, held, time, evostone
+	print(evobox.Evobox{args={'Chansey'}})
+	-- Incense, move
+	print(evobox.Evobox{args={'Sudowoodo'}})
+	-- Trade for a specific Pokémon
+	print(evobox.Evobox{args={'Escavalier'}})
+	-- Held item, time
+	print(evobox.Evobox{args={'Gliscor'}})
+	-- Location
+	print(evobox.Evobox{args={'Magneton'}})
+	-- Branched evolution at second level, trade with item, evostone
+	print(evobox.Evobox{args={'Poliwag'}})
+	-- Branched evolution at first level, evostone, gender
+	print(evobox.Evobox{args={'Snorunt'}})
+	-- Wurmple, branched at phase one AND two
+	print(evobox.Evobox{args={'Wurmple'}})
+	-- Dustox, branched at phase one AND two with prune
+	print(evobox.Evobox{args={'Dustox'}})
+	-- Alolan form
+	print(evobox.Evobox{args={'Geodude', form = 'A'}})
+	-- Baby, alternative form
+	print(evobox.Evobox{args={'Pikachu'}})
+	print(evobox.Evobox{args={'Raichu', form = 'A'}})
+	-- Methdo OTHER
+	print(evobox.Evobox{args={'Meltan'}})
+	-- No prune
+	print(evobox.Evobox{args={'Exeggutor', prune = 'no'}})
+	-- Evoinfo, prune at higher level
+	print(evobox.Evobox{args={'Sylveon'}})
+	-- More than 2 phase one
+	print(evobox.Evobox{args={'Tyrogue'}})
+	-- Feebas
+	print(evobox.Evobox{args={'Feebas'}})
+	-- Nincada
+	print(evobox.Evobox{args={'Nincada'}})
+	-- Eevee
+	print(evobox.Evobox{args={'Eevee'}})
+	-- Phione
+	print(evobox.Evobox{args={'Phione'}})
+end
+
 -- ============================ Formbox with parameters ========================
-if false then
+if true then
 	-- Something normal
 	print(evobox.Formbox{args={
 	'Castform',
@@ -67,69 +128,8 @@ if false then
 	}})
 end
 
--- ============================ Evobox (automatic) =============================
-if true then
-	-- Standard
-	print(evobox.Evobox{args={'Squirtle'}})
-	-- No evos
-	print(evobox.Evobox{args={'Tauros'}})
-	-- With notes
-	print(evobox.Evobox{args={'Burmy'}})
-	print(evobox.Evobox{args={'Burmy', form = "Sc"}})
-	print(evobox.Evobox{args={'Mothim'}})
-	print(evobox.Evobox{args={'Basculin'}})
-	print(evobox.Evobox{args={'Basculin', form = "B"}})
-	print(evobox.Evobox{args={'Floette'}})
-	print(evobox.Evobox{args={'Floette', form = "Bl"}})
-	-- Trade
-	print(evobox.Evobox{args={'Abra'}})
-	-- Happiness
-	print(evobox.Evobox{args={'Golbat'}})
-	-- Baby Pokémon, happiness
-	print(evobox.Evobox{args={'Lucario'}})
-	-- Incense, held, time, evostone
-	print(evobox.Evobox{args={'Chansey'}})
-	-- Incense, move
-	print(evobox.Evobox{args={'Sudowoodo'}})
-	-- Trade for a specific Pokémon
-	print(evobox.Evobox{args={'Escavalier'}})
-	-- Held item, time
-	print(evobox.Evobox{args={'Gliscor'}})
-	-- Location
-	print(evobox.Evobox{args={'Magneton'}})
-	-- Branched evolution at second level, trade with item, evostone
-	print(evobox.Evobox{args={'Poliwag'}})
-	-- Branched evolution at first level, evostone, gender
-	print(evobox.Evobox{args={'Snorunt'}})
-	-- Wurmple, branched at phase one AND two
-	print(evobox.Evobox{args={'Wurmple'}})
-	-- Dustox, branched at phase one AND two with prune
-	print(evobox.Evobox{args={'Dustox'}})
-	-- Alolan form
-	print(evobox.Evobox{args={'Geodude', form = 'A'}})
-	-- Baby, alternative form
-	print(evobox.Evobox{args={'Pikachu'}})
-	print(evobox.Evobox{args={'Raichu', form = 'A'}})
-	-- Methdo OTHER
-	print(evobox.Evobox{args={'Meltan'}})
-	-- No prune
-	print(evobox.Evobox{args={'Exeggutor', prune = 'no'}})
-	-- Evoinfo, prune at higher level
-	print(evobox.Evobox{args={'Sylveon'}})
-	-- More than 2 phase one
-	print(evobox.Evobox{args={'Tyrogue'}})
-	-- Feebas
-	print(evobox.Evobox{args={'Feebas'}})
-	-- Nincada
-	print(evobox.Evobox{args={'Nincada'}})
-	-- Eevee
-	print(evobox.Evobox{args={'Eevee'}})
-	-- Phione
-	print(evobox.Evobox{args={'Phione'}})
-end
-
 -- ============================ GlitchEvobox (parameters) ======================
-if false then
+if true then
 	-- Something normal first
 	print(evobox.GlitchEvobox{args={
 	'normale', "volante",
@@ -176,73 +176,6 @@ if false then
 	evotype2='Felicità',
 	name3="Crobat", sprite3='169', ["type1-3"]="veleno", ["type2-3"]="volante",
 	}})
-	-- -- Held item, time
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Gliscor',
-	-- family='Normale',
-	-- sprite1='207',
-	-- evotype1='Ogg. Tenuto',
-	-- held1='Affilodente',
-	-- time1='Notte',
-	-- sprite2='472'
-	-- }})
-    --
-	-- -- Location
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Magneton',
-	-- family='Normale',
-	-- sprite1='081',
-	-- evotype1='Livello',
-	-- level1='30',
-	-- sprite2='082',
-	-- evotype2='Posizione',
-	-- location2='campo magnetico speciale',
-	-- sprite3='462'
-	-- }})
-    --
-	-- -- Branched evolution at first level, evostone, gender
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Snorunt',
-	-- family='normale',
-	-- sprite1='361',
-	-- evotype1='Livello',
-	-- level1='42',
-	-- sprite2='362',
-	-- evotype1a='Pietra',
-	-- evostone1a='Pietralbore',
-	-- gender1a='Femmina',
-	-- sprite2a='478'
-	-- }})
-    --
-	-- -- Wurmple, branched at phase one AND two
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Wurmple',
-	-- family='Normale',
-	-- sprite1='265',
-	-- evotype1='Livello',
-	-- level1='7',
-	-- sprite2='266',
-	-- evotype2='Livello',
-	-- level2='10',
-	-- sprite3='267',
-	-- evotype1a='Livello',
-	-- level1a='7',
-	-- sprite2a='268',
-	-- evotype2a='Livello',
-	-- level2a='10',
-	-- sprite3a='269',
-	-- }})
-    --
-	-- -- Evoinfo
-	-- print(evobox.GlitchEvobox{args={
-	-- 'Sylveon',
-	-- family='Normale',
-	-- sprite1='133',
-	-- evotype1='Livello',
-	-- level1='qualsiasi',
-	-- evotype1info='con due cuori di {{colore2|000|amicizia}}<br>avendo appreso una mossa di tipo {{colore2|000|Folletto}}',
-	-- sprite2='700'
-	-- }})
 
 	-- Glitch, branches of different height
 	print(evobox.GlitchEvobox{args={

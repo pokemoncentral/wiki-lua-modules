@@ -338,7 +338,7 @@ eb.boxPokemonAuto = function(ndex, phase, notes, shownName)
         notes = notes,
         type1 = poke.type1,
         type2 = poke.type2,
-        spr = spr.sprLua(ndex, 'current', 'male'),
+        spr = spr.sprLua(ndex, 'current', 'male', '150px'),
         phase = phase,
         name = poke.name,
         shownName = shownName
@@ -557,8 +557,8 @@ eb.boxPokemonManual = function(p, suff)
         notes = p["form" .. suff],
         type1 = p["type1-" .. suff],
         type2 = p["type2-" .. suff] or p["type1-" .. suff],
-        spr = "[[File:" .. p["sprite" .. suff] .. ".png]]",
-        phase = eb.phaseName(tonumber(suff:match("^(%d*)%a")), fakephase),
+        spr = "[[File:" .. p["sprite" .. suff] .. ".png|150px]]",
+        phase = eb.phaseName(tonumber(suff:match("^(%d*)%a?")), fakephase),
         name = p["name" .. suff],
     }
 end
@@ -693,7 +693,7 @@ eb.GlitchEvobox = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
     p = table.map(p, eb.processInput.processElement)
 
-    p.family = p.family or 'nessuna'
+    p.family = p.family and p.family:lower() or 'nessuna'
 
     local evoboxcontent = {
         string.interp(eb.strings.ROW_ONE, { box1 = eb.boxPokemonManual(p, "1") })
