@@ -18,3 +18,7 @@ assert(solid == split, 'syntax mismatch')
 
 local noColor = ca.LGPE{args={}}
 print(noColor)
+
+-- _abbr function
+local abbr = ca._abbr{args={'RBG', 'RFVF LGPE'}}
+print(abbr)

@@ -272,7 +272,7 @@ q.makeLinks = function(data, makeText)
     local zipped = table.zip(data, makeText(data))
 
     return table.map(zipped, function(pair)
-        local game, text = unpack(pair)
+        local game, text = table.unpack(pair)
 
         return string.interp('[[${link}|${text}]]', {
             link = game.link,
@@ -414,6 +414,55 @@ q.onMergedAbbrsArgs = function(abbr, abbrKey, makeAbbrev, postProcess)
     end
 
     return luaInterface
+end
+
+--[[
+
+This function returns a proxy for abbreviation functions, meant to be called
+from wikicode only. Unlike other abbreviation functions, this proxy doesn't
+need to be named after any abbreviation, and takes all the abbreviations as
+arguments. It then calls the abbreviation function named after the first
+abbreviation in its arguments, passing along all the other ones.
+
+The abbreviations can be given as positional arguments, even space-separated
+within single arguments. Alternatively, the abbreviations can be passed as a
+space-separated string in a named argument.
+
+Arguments:
+    - abbrFuncts: the table containing the abbreviation functions.
+    - abbrsKey: optional, the name of the named arguments the abbreviations
+        will be looked for in. When omitted, the first positional argument is
+        used instead.
+    - proxyKey: optional, specifies the key the proxy is set to in abbrFuncts.
+        If set to false, abbrFuncts is left untouched. Defaults to '_abbr'.
+--]]
+q.proxy = function(abbrFuncts, abbrsKey, proxyKey)
+    proxyKey = proxyKey ~= false and (proxyKey or '_abbr') or false
+
+    local funct
+    if abbrsKey then
+        funct = function(frame)
+            local abbrs = string.trim(frame.args[abbrsKey])
+            local firstGame, otherGames = abbrs:match('^(%S+)%s*(.*)$')
+            frame.args[abbrsKey] = otherGames
+
+            return abbrFuncts[firstGame](frame)
+        end
+    else
+        funct = function(frame)
+            local abbrs = w.mapAndConcat(frame.args, string.trim, ' ')
+            local firstGame, otherGames = abbrs:match('^(%S+)%s*(.*)$')
+            frame.args = {otherGames}
+
+            return abbrFuncts[firstGame](frame)
+        end
+    end
+
+    if proxyKey then
+        abbrFuncts[proxyKey] = funct
+    end
+
+    return funct
 end
 
 return q

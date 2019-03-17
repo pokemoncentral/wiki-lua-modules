@@ -1623,6 +1623,9 @@ t.meltan = {name = 'Meltan', ndex = 808, type1 = 'acciaio', type2 = 'acciaio'}
 t[808] = t.meltan
 t.melmetal = {name = 'Melmetal', ndex = 809, type1 = 'acciaio', type2 = 'acciaio'}
 t[809] = t.melmetal
+t.grookey = {name = 'Grookey', ndex = nil, type1 = 'erba', type2 = 'erba'}
+t.scorbunny = {name = 'Scorbunny', ndex = nil, type1 = 'fuoco', type2 = 'fuoco'}
+t.sobble = {name = 'Sobble', ndex = nil, type1 = 'acqua', type2 = 'acqua'}
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
@@ -1673,15 +1676,20 @@ t.wormadamSa = {name = 'Wormadam', ndex = 413, type1 = 'coleot', type2 = 'terra'
 t['413Sa'] = t.wormadamSa
 t.wormadamSc = {name = 'Wormadam', ndex = 413, type1 = 'coleot', type2 = 'acciaio'}
 t['413Sc'] = t.wormadamSc
-t.rotomC = {name = 'Rotom', ndex = 479, type1 = 'elettro', type2 = 'fuoco'}
+t.rotomC = {name = 'Rotom', ndex = 479, type1 = 'elettro',
+            type2 = {[4] = 'spettro', [5] = 'fuoco'}}
 t['479C'] = t.rotomC
-t.rotomL = {name = 'Rotom', ndex = 479, type1 = 'elettro', type2 = 'acqua'}
+t.rotomL = {name = 'Rotom', ndex = 479, type1 = 'elettro',
+            type2 = {[4] = 'spettro', [5] = 'acqua'}}
 t['479L'] = t.rotomL
-t.rotomG = {name = 'Rotom', ndex = 479, type1 = 'elettro', type2 = 'ghiaccio'}
+t.rotomG = {name = 'Rotom', ndex = 479, type1 = 'elettro',
+            type2 = {[4] = 'spettro', [5] = 'ghiaccio'}}
 t['479G'] = t.rotomG
-t.rotomV = {name = 'Rotom', ndex = 479, type1 = 'elettro', type2 = 'volante'}
+t.rotomV = {name = 'Rotom', ndex = 479, type1 = 'elettro',
+            type2 = {[4] = 'spettro', [5] = 'volante'}}
 t['479V'] = t.rotomV
-t.rotomT = {name = 'Rotom', ndex = 479, type1 = 'elettro', type2 = 'erba'}
+t.rotomT = {name = 'Rotom', ndex = 479, type1 = 'elettro',
+            type2 = {[4] = 'spettro', [5] = 'erba'}}
 t['479T'] = t.rotomT
 t.shayminC = {name = 'Shaymin', ndex = 492, type1 = 'erba', type2 = 'volante'}
 t['492C'] = t.shayminC
@@ -1776,6 +1784,8 @@ t.charizardMX = {name = 'Charizard', ndex = 6, type1 = 'fuoco', type2 = 'drago'}
 t['006MX'] = t.charizardMX
 t.pinsirM = {name = 'Pinsir', ndex = 127, type1 = 'coleot', type2 = 'volante'}
 t['127M'] = t.pinsirM
+t.gyaradosM = {name = 'Gyarados', ndex = 130, type1 = 'acqua', type2 = 'buio'}
+t['130M'] = t.gyaradosM
 t.mewtwoMX = {name = 'Mewtwo', ndex = 150, type1 = 'psico', type2 = 'lotta'}
 t['150MX'] = t.mewtwoMX
 t.ampharosM = {name = 'Ampharos', ndex = 181, type1 = 'elettro', type2 = 'drago'}
@@ -1836,7 +1846,6 @@ t.alakazamM, t['065M'] = t.alakazam, t.alakazam
 t.slowbroM, t['080M'] = t.slowbro, t.slowbro
 t.gengarM, t['094M'] = t.gengar, t.gengar
 t.kangaskhanM, t['115M'] = t.kangaskhan, t.kangaskhan
-t.gyaradosM, t['130M'] = t.gyarados, t.gyarados
 t.aerodactylM, t['142M'] = t.aerodactyl, t.aerodactyl
 t.mewtwoMY, t['150MY'] = t.mewtwo, t.mewtwo
 t.steelixM, t['208M'] = t.steelix, t.steelix

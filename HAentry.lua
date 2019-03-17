@@ -1,13 +1,13 @@
 -- Da usarsi in ((Elenco Pokémon con abilità nascosta disponibile))
 
 local m = {}
-local txt = require('Wikilib-strings')
-local multigen = require('Wikilib-multigen')
-local gens = require('Wikilib-gens')
-local ms = require('MiniSprite')
-local sup = require("Sup-data")
-local pokes = require("Poké-data")
-local abils = require("PokéAbil-data")
+local txt = require('Modulo:Wikilib/strings')
+local multigen = require('Modulo:Wikilib/multigen')
+local gens = require('Modulo:Wikilib/gens')
+local ms = require('Modulo:MiniSprite')
+local sup = mw.loadData('Modulo:Sup/data')
+local pokes = mw.loadData('Modulo:Poké/data')
+local abils = mw.loadData('Modulo:PokéAbil/data')
 
 -- accessoria (non esportata) per i link alle aree
 local function splitareas(text,gen)
@@ -40,14 +40,14 @@ m.haentry = function(frame)
 	local abil = abils[ndex]
 
 	local final = {
-		'|-\n|',
-		poke.ndex,
-		"\n|",
+		'|- class="flex-sm flex-row flex-wrap flex-main-center flex-items-center roundy" style="margin-top: 0.3em;"\n| style="padding: 0.5em;" |',
+		string.tf(poke.ndex),
+		'\n| style="padding: 0.5em;" |',
 		ms.staticLua(type(ndex) == 'number' and string.tf(ndex) or ndex),
-		"\n|",
+		'\n| style="padding: 0.5em;" |',
 		"[[",
 		poke.name,
-		"]]\n|[[",
+		']]\n| class="width-sm-100" style="padding: 0.5em;" | <span class="visible-sm">Abilità speciale: </span>[[',
 		multigen.getGenValue(abil.abilityd or abil.ability1),
 		"]]"
 	}
@@ -58,7 +58,7 @@ m.haentry = function(frame)
 	if not abil.abilityd then
 		table.insert(final, table.concat{'<span class="explain tooltips" title="Uguale all\'abilità normale">*</span>'})
 	end
-	table.insert(final, "\n|")
+	table.insert(final, '\n| class="width-sm-100" style="padding: 0.5em;" |')
 
 	-- QUINTA GENERAZIONE
 
@@ -122,7 +122,7 @@ m.haentry = function(frame)
 			else disp5 = table.concat(disp5,"<br />")
 		end
 
-		table.insert(final, disp5.."\n|")
+		table.insert(final, '<span class="visible-sm">Nella [[quinta generazione]]: </span>' .. disp5..'\n| class="width-sm-100" style="padding: 0.5em;" |')
 
 	end
 
@@ -170,7 +170,8 @@ m.haentry = function(frame)
 			disp6="[[Pokétrasferitore]]"
 			else disp6 = table.concat(disp6,"<br />")
 		end
-		table.insert(final, disp6.."\n|")
+		
+		table.insert(final, '<span class="visible-sm">Nella [[sesta generazione]]: </span>'..disp6..'\n| class="width-sm-100" style="padding: 0.5em;" |')
 	end
 
 	if gens.getGen.ndex(poke.ndex) <= 7 then
@@ -194,7 +195,8 @@ m.haentry = function(frame)
 		else
 			disp7 = table.concat(disp7,"<br />")
 		end
-		table.insert(final, disp7 .. "\n")
+		
+		table.insert(final, '<span class="visible-sm">Nella [[settima generazione]]: </span>' .. disp7 .. "\n")
 	end
 
 	return table.concat(final)

@@ -12,6 +12,7 @@ local mw = require('mw')
 local str = require('Wikilib-strings')      -- luacheck: no unused
 local w = require('Wikilib')
 local c = require("Colore-data")
+local colorscheme = require("Colorscheme-data")
 
 -- Holds mappings from standard values to vendor-specific ones
 local vendorMappings = {}
@@ -73,6 +74,9 @@ A convenience syntax can be used with named parameters 'type1' (or 'type')
 and 'type2': if type2 exists and it is different from type1, then
 type1-normale and type2-normale are returned; otherwise, type1-light and
 type1-normale are.
+Another syntax with named parameter 'colorscheme' allows to use colorscheme as
+gradient colors: returns the light and dark (in this order) version of the
+colorscheme.
 
 --]]
 parser.gradientArgs = function(args)
@@ -105,6 +109,12 @@ parser.gradientArgs = function(args)
 		p.type1, p.type2, p.type = nil, nil, nil
 
 		return parser.gradientArgs(p)
+	end
+
+	-- Colorscheme syntax
+	if p.colorscheme then
+		local cs = p.colorscheme
+		return { '#' .. colorscheme[cs].light, '#' .. colorscheme[cs].dark }
 	end
 
 	-- Standard behavior

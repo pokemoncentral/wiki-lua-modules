@@ -22,6 +22,12 @@ Examples:
 {{#invoke: AbbrLink | RZS | games = ROZA XY | Sala Antica | smeraldo }}
 {{#invoke: AbbrLink | RZS | games = ROZA XY | Sala Antica | smeraldo | dark }}
 
+If the first abbreviation is not constant, for example if it's a parameter in a
+template, the above calls don't work. In that case, you can use the _abbr
+function to pass all the abbreviations in the "games" argument:
+
+{{#invoke: AbbrLink | _abbr | games = {{{1}}} | Sala Antica | smeraldo }}
+
 --]]
 
 local tab = require('Wikilib-tables')       -- luacheck: no unused
@@ -58,7 +64,7 @@ local makeLink = function(args, text)
 end
 
 -- Dynamically generates lua and wikicode interfaces
-return lib.makeLuaAndWikicode(function(_, abbr)
+local al = lib.makeLuaAndWikicode(function(_, abbr)
     local lua = lib.onMergedAbbrsArgs(abbr, 'games', makeText, makeLink)
 
     -- Not standard from Wikilib, it is necessary not to unpack
@@ -69,3 +75,8 @@ return lib.makeLuaAndWikicode(function(_, abbr)
 
     return lua, wikicode
 end)
+
+-- Adding _abbr proxy function
+lib.proxy(al, 'games')
+
+return al

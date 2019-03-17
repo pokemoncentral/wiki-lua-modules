@@ -18,3 +18,7 @@ assert(solid == split, 'syntax mismatch')
 
 local noColor = sup.LGPE{args={}}
 print(noColor)
+
+-- _abbr function
+local abbr = sup._abbr{args={'RBG RFVF', 'LGPE'}}
+print(abbr)

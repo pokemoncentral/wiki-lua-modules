@@ -481,6 +481,27 @@ x.LGPE = {{
     }
 }}
 x.LgPE = x.LGPE
+x.Sp = {{
+    link = 'Pokémon Spada e Scudo',
+    text = 'Spada',
+    display = {
+        {'Sp', 'spada'}
+    }
+}}
+x.Sc = {{
+    link = 'Pokémon Spada e Scudo',
+    text = 'Scudo',
+    display = {
+        {'Sc', 'scudo'}
+    }
+}}
+x.SpSc = {{
+    link = 'Pokémon Spada e Scudo',
+    display = {
+        {'Sp', 'spada'},
+        {'Sc', 'scudo'}
+    }
+}}
 x.SJ = {{
     link = 'Pokémon Stadium (Giappone)',
     text = 'Stadium',
@@ -585,7 +606,7 @@ x.PMDTS = x.PMDTC
 x.PMDOC = {x.PMDO[1], x.PMDC[1]}
 x.PMDDS = x.PMDOC
 x.PMDPSI = {{
-	link = "Pokémon Mystery Dungeon: I Portali sull'Infinito",
+	link = "Pokémon Mystery Dungeon: i portali sull'infinito",
 	display = {
 		{'PSI', 'mdportali'}
 	}
@@ -600,6 +621,27 @@ x.PSMD = {{
 	}
 }}
 x.Super, x.super = x.PSMD, x.PSMD
+x.Ra = {{
+	link = "Pokémon Ranger (gioco)",
+	display = {
+		{'Ra', 'ranger'}
+	}
+}}
+x.RA, x.ra = x.Ra, x.Ra
+x.OsA = {{
+	link = "Pokémon Ranger: Ombre su Almia",
+	display = {
+		{'OsA', 'OsA'}
+	}
+}}
+x.OSA, x.osa, x.Osa = x.OsA, x.OsA, x.OsA
+x.Tdl = {{
+	link = "Pokémon Ranger: Tracce di luce",
+	display = {
+		{'Tdl', 'TL'}
+	}
+}}
+x.TDL, x.TdL = x.Tdl, x.Tdl
 x.Cq = {{
     link = 'Pokémon Conquest',
     display = {

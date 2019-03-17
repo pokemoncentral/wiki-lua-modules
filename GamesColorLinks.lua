@@ -22,11 +22,18 @@ Examples:
 {{#invoke: GamesColorLinks | RZS | games = ROZA XY | smeraldo }}
 {{#invoke: GamesColorLinks | RZS | games = ROZA XY | smeraldo | dark }}
 
+If the first abbreviation is not constant, for example if it's a parameter in a
+template, the above calls don't work. In that case, you can use the _abbr
+function to pass all the abbreviations in the "games" argument:
+
+{{#invoke: GamesColorLinks | _abbr | games = {{{1}}} | Sala Antica | 772299 }}
+
 --]]
 
 local mw = require('mw')
 
 local txt = require('Wikilib-strings')      -- luacheck: no unused
+local tab = require('Wikilib-tables')       -- luacheck: no unused
 local lib = require('Wikilib-sigle')
 local w = require('Wikilib')
 local c = require("Colore-data")
@@ -59,7 +66,7 @@ games.
 --]]
 local makeColoredLink = function(color, sep)
     return function(link)
-        local target, text = unpack(link)
+        local target, text = table.unpack(link)
 
         return string.interp('[[${link}|<span style="color: #${color};">${text}</span>]]', {
             color = color,
@@ -81,7 +88,7 @@ local makeAllLinks = function(args, links)
     -- The library returns a nested list
     links = table.flatten(links)
 
-    local color, shade = unpack(args)
+    local color, shade = table.unpack(args)
 
     --[[
         First try to index colore/data: if such color does not exist, an
@@ -124,7 +131,7 @@ local makeAllLinks = function(args, links)
 end
 
 -- Dynamically generates lua and wikicode interfaces
-return lib.makeLuaAndWikicode(function(_, abbr)
+local gcl = lib.makeLuaAndWikicode(function(_, abbr)
     local lua = lib.onMergedAbbrsArgs(abbr, 'games', makeText, makeAllLinks)
 
     -- Not standard from Wikilib, it is necessary not to unpack
@@ -135,3 +142,8 @@ return lib.makeLuaAndWikicode(function(_, abbr)
 
     return lua, wikicode
 end)
+
+-- Adding _abbr proxy function
+lib.proxy(gcl, 'games')
+
+return gcl

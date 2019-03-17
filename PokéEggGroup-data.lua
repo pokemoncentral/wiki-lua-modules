@@ -1617,6 +1617,9 @@ t.blacephalon = {group1 = 'sconosciuto'}
 t[806] = t.blacephalon
 t.zeraora = {group1 = 'sconosciuto'}
 t[807] = t.zeraora
+-- t.grookey = {group1 = ''}
+-- t.scorbunny = {group1 = ''}
+-- t.sobble = {group1 = ''}
 
 -- Forme alternative che esistono fuori dalla lotta e quindi
 -- possono avere un gruppo uova diverso da quello della forma base

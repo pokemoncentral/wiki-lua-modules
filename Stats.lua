@@ -709,7 +709,7 @@ s.PokeStats, s['pokéStats'], s['PokéStats'] =
 Prints the average of the statistics for Pokémon
 of a specific type, alternative forms included,
 as a statistics box. A generation can be specified,
-and the latest one will be used if not. Minimin
+and the latest one will be used if not. Minimum
 and maximum values for each statistic are not
 displayed, and neither is the link to other Pokémon
 with the same base stat total.
@@ -749,7 +749,6 @@ s.typeAvg = function(frame)
         stats = statsAvg(typedPokes, gen),
         types = {type = type},
         align = 'left',
-        gen = gen
     }
 end
 s.TypeAvg, s.typeavg = s.typeAvg, s.typeavg

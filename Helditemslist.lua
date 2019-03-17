@@ -6,38 +6,31 @@ Module to create an entry in the list of Pokémon by wild held items.
 
 local h = {}
 
-local mw = require('mw')
-
-local w = require('Wikilib')
 local txt = require('Wikilib-strings')          -- luacheck: no unused
 local tab = require('Wikilib-tables')           -- luacheck: no unused
-local games = require('Wikilib-games')
 local oop = require('Wikilib-oop')
 local list = require('Wikilib-lists')
 local multigen = require('Wikilib-multigen')
 local links = require('Links')
 local ms = require('MiniSprite')
-local css = require('Css')
 local pokes = require("Poké-data")
-local abbrevModules = {
-	blackabbrev = require("Blackabbrev-data"),
-	colorabbrev = require("Colorabbrev-data"),
-}
+local blackabbrev = require("Blackabbrev-data")
+local colorabbrev = require("Colorabbrev-data")
 
 h.Entry = oop.makeClass(list.PokeLabelledEntry)
 
 -- Utility strings
 h.Entry.strings = {
-	ENTRY_HEAD = [=[<div class="roundy flex flex-row flex-wrap flex-main-center flex-items-center text-center width-xl-100" style="padding: 0.5ex; margin: 1ex 0; ${bg}">
-<div class="roundy flex flex-row flex-nowrap flex-main-center flex-items-center" style="padding: 0 1ex; margin: 0.5ex; background: #fff;">
+	ENTRY_HEAD = [=[<div class="roundy text-center width-xl-100 flex flex-row flex-wrap flex-main-center flex-items-center horiz-grad-${type1}-${type2}" style="padding: 0.5ex; margin: 1ex 0">
+<div class="roundy bg-white flex flex-row flex-nowrap flex-main-center flex-items-center" style="padding: 0 1ex; margin: 0.5ex;">
 <div>'''${ndex}'''</div>
 <div>${ms}</div>
 <div>[[${name}]]${blacklink}</div>
 </div>
-<div class="flex flex-row flex-wrap flex-main-space-around flex-items-stretch">]=],
+<div class="flex-row-stretch-around flex-wrap">]=],
 	ENTRY_FOOT = [[</div></div>]],
 
-	BOX_HEAD = [[<div class="roundy flex flex-row flex-wrap flex-main-space-around flex-items-center" style="background: #fff; margin: 0.5ex;">]],
+	BOX_HEAD = [[<div class="roundy bg-white flex-row-center-around flex-wrap" style="margin: 0.5ex;">]],
 	BOX_FOOT = [[</div>]],
 
 	PERC_BOX = [=[<div style="padding: 1ex;">
@@ -47,6 +40,16 @@ h.Entry.strings = {
 </div>]=]
 }
 
+-- Table to get colored abbrevs from type and game abbr
+h.Entry.abbrevs = {
+	black = function(abbr) return blackabbrev[abbr] end,
+	color = function(abbr) return table.concat{
+			"&nbsp;", colorabbrev[abbr], "&nbsp;"
+		}
+	end,
+}
+
+
 --[[
 
 Create a single game box taking an array of item/game tables (element of the
@@ -54,12 +57,12 @@ data module array).
 
 --]]
 h.Entry.makeGameBox = function(this, itemsList, gen)
-	percBoxes = table.map(itemsList, function(v)
+	local percBoxes = table.map(itemsList, function(v)
 		local abbrevs = table.concat(table.map(v.games, function(abbr, index)
 			if v.abbrTypes then
-				return abbrevModules[v.abbrTypes[index]][abbr]
+				return this.abbrevs[v.abbrTypes[index]](abbr)
 			else
-				return abbrevModules.blackabbrev[abbr]
+				return this.abbrevs.black(abbr)
 			end
 		end))
 		return string.interp(this.strings.PERC_BOX, {
@@ -89,6 +92,11 @@ is its key.
 
 --]]
 h.Entry.new = function(helds, poke)
+	-- Skip empty entries
+	if #helds == 0 then
+		return
+	end
+
     local this = h.Entry.super.new(poke, pokes[poke].ndex)
 
 	this.helds = helds
@@ -118,11 +126,8 @@ h.Entry.__tostring = function(this)
 	end), ", ") .. "</div>"
 
 	local result = { string.interp(this.strings.ENTRY_HEAD, {
-		bg = css.slantedGradLua{
-			150,
-			type = pokedata.type1,
-			type2 = pokedata.type2
-		},
+		type1 = pokedata.type1,
+		type2 = pokedata.type2,
 		ndex = string.tf(this.ndex),
 		ms = ms.staticLua(string.tf(this.ndex) .. (this.formAbbr == 'base'
 				and '' or this.formAbbr or '')),

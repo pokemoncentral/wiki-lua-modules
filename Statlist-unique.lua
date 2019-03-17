@@ -100,8 +100,8 @@ Entry.__tostring = function(this)
 | style="padding: 0.3ex 0.6ex" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
 | style="padding: 0.3ex 0.6ex" | '''${total}''']=],
         {
-            ndex = string.tf(this.ndex),
-            ms = ms.staticLua(string.tf(this.ndex) ..
+            ndex = this.ndex and string.tf(this.ndex) or '???',
+            ms = ms.staticLua(string.tf(this.ndex or 0) ..
                     (this.formAbbr == 'base' and ''
                             or this.formAbbr or '')),
             name = this.name,

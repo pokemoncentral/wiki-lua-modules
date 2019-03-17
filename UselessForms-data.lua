@@ -73,7 +73,7 @@ t.burmy.names = {Sa = 'Manto Sabbia', Sc = 'Manto Scarti',
 	base = 'Manto Pianta'}
 t.cherrim.names = {S = 'Forma Splendore', base = 'Forma Nuvola'}
 t.shellos.names = {E = 'Mare Est', base = 'Mare Ovest'}
-t.unfezant.names = {F = 'Femmina', base = 'Maschio'}
+t.unfezant.names = {F = '', base = ''}
 t.deerling.names = {E = 'Forma Estate', A = 'Forma Autunno',
 	I = 'Forma Inverno', base = 'Forma Primavera'}
 t.frillish.names = t.unfezant.names
@@ -106,7 +106,6 @@ t.minior.names = {R = 'Nucleo Rosso', Ar = 'Nucleo Arancione',
 t.shellos.anchor = 'Shellos e Gastrodon'
 t.burmy.anchor = 'Burmy e Wormadam'
 t.deerling.anchor = 'Deerling e Sawsbuck'
-t.frillish.anchor = 'Frillish e Jellicent'
 t.floette.anchor = 'Flabébé, Floette e Florges'
 
 -- Alternative forms' links

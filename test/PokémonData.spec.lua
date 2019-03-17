@@ -44,24 +44,27 @@ table.insert(tests, { pokeData.getFormName{args={'398'}}, '' })
 -- Tests 12, 18
 -- Standard cases, names or two digits
 table.insert(tests, { pokeData.getAbil1{args={'065'}}, 'Sincronismo' })
-table.insert(tests, { pokeData.getAbil2{args={'alakazam'}}, 'Forza Interiore' })
+table.insert(tests, { pokeData.getAbil2{args={'Alakazam'}}, 'Forza Interiore' })
 table.insert(tests, { pokeData.getAbild{args={'65'}}, 'Magicscudo' })
+table.insert(tests, { pokeData.getAbile{args={'744'}}, 'Mente Locale' })
 
 -- Second ability on Pokémon with only one ability
 table.insert(tests, { pokeData.getAbil2{args={'398'}}, '' })
 
 -- Alternative form ability
 table.insert(tests, { pokeData.getAbil1{args={'487O'}}, 'Levitazione' })
-table.insert(tests, { pokeData.getAbild{args={'giratinaO'}}, '' })
 
 -- Old gen ability
 table.insert(tests, { pokeData.getAbil1{args={'94', gen = '5'}}, 'Levitazione' })
 
 -- ================================ getType ================================
--- Tests 19, 24
+-- Tests 19, 27
 -- Standard case
 table.insert(tests, { pokeData.getType1{args={'398'}}, 'Normale' })
 table.insert(tests, { pokeData.getType2{args={'398'}}, 'Volante' })
+
+-- From name
+table.insert(tests, { pokeData.getType1{args={'Ho-Oh'}}, 'Fuoco' })
 
 -- Second type on Pokémon with only one type, two digits
 table.insert(tests, { pokeData.getType2{args={'65'}}, 'Psico' })
@@ -73,8 +76,25 @@ table.insert(tests, { pokeData.getType2{args={'479L'}}, 'Acqua' })
 -- Old gen type
 table.insert(tests, { pokeData.getType2{args={'082', gen = '1'}}, 'Elettro' })
 
--- ================================ getLink ================================
--- Tests 25, 28
+-- Gradient types
+table.insert(tests, { pokeData.gradTypes{args={'400'}}, 'normale-acqua'})
+table.insert(tests, { pokeData.gradTypes{args={'035', gen = '1'}},
+    'normale-normale'})
+
+-- ================================ getStat ================================
+-- Tests 28, 31
+-- Standard
+table.insert(tests, { pokeData.getStat{args={'398', 'hp'}}, 85 })
+table.insert(tests, { pokeData.getStat{args={'65', 'spatk'}}, 135 })
+
+-- Alternative form
+table.insert(tests, { pokeData.getStat{args={'487O', 'def'}}, 100 })
+
+-- Old gen
+table.insert(tests, { pokeData.getStat{args={'189', 'spdef', gen = '2'}}, 85 })
+
+-- =============================== getCriesList ===============================
+-- Tests 32, 35
 -- Standard
 table.insert(tests, {
     pokeData.getCriesList{args={'800'}},
@@ -98,7 +118,7 @@ table.insert(tests, {
 
 -- ================================ getLink ================================
 -- Those should be last because loads useless in Wikilib-forms
--- Tests 29, 34
+-- Tests 36, 41
 -- Standard case
 table.insert(tests, {
     pokeData.getLink{args={'487'}},
@@ -135,7 +155,7 @@ for n, v in ipairs(tests) do
             ' failed: ',
             v[2],
             ' expected, but ',
-            v[1],
+            v[1] or 'nil',
             ' got'
         })
         return

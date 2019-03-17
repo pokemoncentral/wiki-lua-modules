@@ -7,7 +7,7 @@ Source code from
 
 --]]
 
-local tab = require('Wikilib-tables')
+local tab = require('Wikilib-tables')  -- luacheck: no unused
 
 local splitByChar = function(str)
 	local t = {}

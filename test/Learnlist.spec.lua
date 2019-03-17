@@ -545,7 +545,7 @@ print(header.eventf{args={'Zygarde', 'Drago', 'Terra', '5', '5'}})
 
 print(header.eventh{args={'Celebi', 'Erba', 'Psico', '6', '2'}})
 print(render.entry{args={ 'Learnlist-entry6.event',
-[[€Celebi Banca Pokémon}}|Riguardo|Normale|Fisico|40|100|40||||Classe|4|0£]]}})
+[[€Celebi Banca Pokémon|Riguardo|Normale|Fisico|40|100|40||||Classe|4|0£]]}})
 print(header.eventf{args={'Celebi', 'Erba', 'Psico', '6', '2'}})
 
 
@@ -597,18 +597,18 @@ print(header.tutorf{args={'Bulbasaur', 'erba', 'veleno', '3', '1'}})
 
 print(header.tutorh{args={'Bulbasaur', 'erba', 'veleno', '2', '1'}})
 print(render.entry{args={ 'Learnlist-entry2.tutor',
-[[€Corposcontro|Normale|85|100|15|Grinta|1|4|||yes|yes|yes£]],
-[[€Ricciolscudo|Normale|&mdash;|&mdash;|40|Grazia|2|0|||no|yes|no£]],
-[[€Sdoppiatore|Normale|120|100|15|Grinta|6|0|||yes|yes|yes£]],
-[[€Resistenza|Normale|&mdash;|&mdash;|10|Grinta|2|0|||no|yes|no£]],
-[[€Tagliofuria|Coleottero|10|95|20|Classe|3|0|||no|yes|no£]],
-[[€Mimica|Normale|&mdash;|&mdash;|10|Grazia|1|0|||yes|yes|yes£]],
-[[€Fangosberla|Terra|20|100|10|Grazia|2|1|||no|yes|no£]],
-[[€Sonnolalia|Normale|&mdash;|&mdash;|10|Grazia|3|0|||no|yes|no£]],
-[[€Russare|Normale|40|100|15|Grazia|4|0|||no|yes|no£]],
-[[€Sostituto|Normale|&mdash;|&mdash;|10|Acume|2|0|||yes|yes|yes£]],
-[[€Bullo|Normale|&mdash;|90|15|Grazia|2|0|||no|yes|yes£]],
-[[€Danzaspada|Normale|&mdash;|&mdash;|30|Bellezza|1|0|||yes|yes|no£]]}})
+[[€Corposcontro|Normale|85|100|15|||yes|yes|yes£]],
+[[€Ricciolscudo|Normale|&mdash;|&mdash;|40|||no|yes|no£]],
+[[€Sdoppiatore|Normale|120|100|15|||yes|yes|yes£]],
+[[€Resistenza|Normale|&mdash;|&mdash;|10|||no|yes|no£]],
+[[€Tagliofuria|Coleottero|10|95|20|||no|yes|no£]],
+[[€Mimica|Normale|&mdash;|&mdash;|10|||yes|yes|yes£]],
+[[€Fangosberla|Terra|20|100|10|||no|yes|no£]],
+[[€Sonnolalia|Normale|&mdash;|&mdash;|10|||no|yes|no£]],
+[[€Russare|Normale|40|100|15|||no|yes|no£]],
+[[€Sostituto|Normale|&mdash;|&mdash;|10|||yes|yes|yes£]],
+[[€Bullo|Normale|&mdash;|90|15|||no|yes|yes£]],
+[[€Danzaspada|Normale|&mdash;|&mdash;|30|||yes|yes|no£]]}})
 print(header.tutorf{args={'Bulbasaur', 'erba', 'veleno', '2', '1'}})
 
 

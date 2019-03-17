@@ -227,15 +227,18 @@ f.formspan, f.form_span = f.formSpan, f.formSpan
 
 --[[
 
-Parse an argument that should be a Pokémon name or ndex followed by a form
-abbreviation so that it can be used to index a data module.
-If name is a Pokémon name (not an ndex) it should be lowercase but the first
-letter, that can be both upper or lower case.
-Doesn't work when name ends with 'base'.
+Parse an argument that should be a Pokémon name or ndex, the latter possibly
+followed by a form abbr, so that it can be used to index a data module.
+If name is a Pokémon name it can't be followed by the abbr.
 
 --]]
 f.nameToDataindex = function(name)
-    local trueName, extform = f.getnameabbr(string.fl(string.trim(name)))
+    name = string.trim(tostring(name))
+    local trueName, extform = f.getnameabbr(name)
+    -- If the name contains uppercase letters it's not recognized by
+    -- getnameabbr, so this mess is needed
+    trueName = type(trueName) == 'number' and trueName or (
+                    trueName == '' and name:lower() or trueName:lower())
     -- The local variable is needed because global alt can be changed with
     -- loadUseless
     local trueAlt = require("AltForms-data")

@@ -36,7 +36,8 @@ stds.wiki = {
                 flatMap = {},
                 filter = {},
                 keysAlias = {},
-                groupBy = {}
+                groupBy = {},
+                unpack = {}
             }
         },
 
