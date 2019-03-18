@@ -162,6 +162,20 @@ end
 table.deep_search = table.deepSearch
 t.deepSearch, t.deep_search = table.deepSearch, table.deepSearch
 
+--[[
+
+Returns true if table is empty, that is it has no values.
+
+--]]
+table.empty = function(tab)
+    --[[
+        next() is a stateless iterator, it doesn't modify the table;
+        need to compare to nil as false is also a value
+    --]]
+    return next(tab) == nil
+end
+t.empty, t.isEmpty, t.is_empty = table.empty, table.empty, table.empty
+table.isEmpty, table.is_empty = table.empty, table.empty
 
 --[[
 
