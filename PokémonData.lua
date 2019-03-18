@@ -25,7 +25,7 @@ local forms
 
 Returns the passed table if it's already been loaded, otherwise the module
 named after the second parameter is loaded and returned. The module is loaded
-with mw.loadData unless the third parameter is true
+with mw.loadData
 
 --]]
 local loadData = function(tab, moduleName)
@@ -35,6 +35,14 @@ local loadData = function(tab, moduleName)
     return tab
 end
 
+--[[
+
+Parse the input data when it's a Pokémon name.
+
+--]]
+local parseName = function(name)
+    return formlib.nameToDataindex(mw.text.decode(name))
+end
 
 --[[
 
@@ -43,7 +51,7 @@ Returns ndex given the name.
 --]]
 b.getNdex = function(frame)
     pokes = loadData(pokes, 'Poké-data')
-    return string.tf(pokes[formlib.nameToDataindex(frame.args[1])].ndex)
+    return string.tf(pokes[parseName(frame.args[1])].ndex)
 end
 
 b.get_ndex = b.getNdex
@@ -60,7 +68,7 @@ Ex:
 --]]
 b.getName = function(frame)
     pokes = loadData(pokes, 'Poké-data')
-    return pokes[formlib.nameToDataindex(frame.args[1])].name
+    return pokes[parseName(frame.args[1])].name
 end
 
 b.get_name = b.getName
@@ -95,7 +103,7 @@ lower case.
 local getAbil = function(name, abilityNumber, gen)
     abils = loadData(abils, 'PokéAbil-data')
     return multigen.getGenValue(
-        abils[formlib.nameToDataindex(name)]['ability' .. abilityNumber] or '',
+        abils[parseName(name)]['ability' .. abilityNumber] or '',
         tonumber(gen)
     )
 end
@@ -107,6 +115,7 @@ parameter specifies the generation.
 
 Ex:
 {{#invoke: PokémonData | getAbil1 | 065 }}   --> Sincronismo
+{{#invoke: PokémonData | getAbil1 | Alakazam }}  --> Sincronismo
 {{#invoke: PokémonData | getAbil1 | 487O }}  --> Levitazione
 {{#invoke: PokémonData | getAbil1 | 094 | gen = 5 }}  --> Levitazione
 
@@ -125,6 +134,7 @@ parameter specifies the generation.
 
 Ex:
 {{#invoke: PokémonData | getAbil2 | 65 }}    --> Forza Interiore
+{{#invoke: PokémonData | getAbil2 | Alakazam }} --> Forza Interiore
 {{#invoke: PokémonData | getAbil2 | 398 }}   --> (empty string)
 
 --]]
@@ -142,6 +152,7 @@ parameter specifies the generation.
 
 Ex:
 {{#invoke: PokémonData | getAbild | 65 }}    --> Magicscudo
+{{#invoke: PokémonData | getAbild | Alakazam }}    --> Magicscudo
 {{#invoke: PokémonData | getAbild | 487O }}  --> (empty string)
 
 --]]
@@ -181,7 +192,7 @@ lower case.
 local getType = function(name, typeNumber, gen)
     pokes = loadData(pokes, 'Poké-data')
     return string.fu(multigen.getGenValue(
-        pokes[formlib.nameToDataindex(name)]['type' .. typeNumber],
+        pokes[parseName(name)]['type' .. typeNumber],
         tonumber(gen)
     ))
 end
@@ -193,6 +204,7 @@ parameter specifies the generation.
 
 Ex:
 {{#invoke: PokémonData | getType1 | 398 }}    --> Normale
+{{#invoke: PokémonData | getType1 | Staraptor }}    --> Normale
 {{#invoke: PokémonData | getType1 | 493Fu }}  --> Fuoco
 
 --]]
@@ -210,6 +222,7 @@ specifies the generation.
 
 Ex:
 {{#invoke: PokémonData | getType2 | 398 }}   --> Volante
+{{#invoke: PokémonData | getType2 | Staraptor }}  --> Volante
 {{#invoke: PokémonData | getType2 | 65 }}    --> Psico
 {{#invoke: PokémonData | getType2 | 479L }}  --> Acqua
 {{#invoke: PokémonData | getType2 | 082 | gen = 1 }}  --> Elettro
@@ -229,6 +242,7 @@ generation.
 
 Ex:
 {{#invoke: PokémonData | gradTypes | 398 }}   --> normale-volante
+{{#invoke: PokémonData | gradTypes | Staraptor }}  --> normale-volante
 {{#invoke: PokémonData | gradTypes | 65 }}    --> psico-psico
 {{#invoke: PokémonData | gradTypes | 479L }}  --> elettro-acqua
 {{#invoke: PokémonData | gradTypes | 082 | gen = 1 }}  --> elettro-elettro
@@ -249,6 +263,7 @@ return an empty string.
 
 Ex:
 {{#invoke: PokémonData | getStat | 398 | hp }}     --> 85
+{{#invoke: PokémonData | getStat | Staraptor | hp }}    --> 85
 {{#invoke: PokémonData | getStat | 65 | spatk }}   --> 135
 {{#invoke: PokémonData | getStat | 487O | def }}   --> 100
 {{#invoke: PokémonData | getStat | 189 | spdef | gen = 2 }}  --> 85
@@ -258,7 +273,7 @@ b.getStat = function(frame)
     stats = loadData(stats, 'PokéStats-data')
     local stat = string.trim(frame.args[2])
     return multigen.getGenValue(
-        stats[formlib.nameToDataindex(frame.args[1])][stat],
+        stats[parseName(frame.args[1])][stat],
         tonumber(frame.args.gen)
     )
 end
@@ -275,7 +290,7 @@ Pokémon has two types or not.
 --]]
 b.ifTwoTypes = function(frame)
     pokes = loadData(pokes, 'Poké-data')
-    local poke = pokes[formlib.nameToDataindex(frame.args[1])]
+    local poke = pokes[parseName(frame.args[1])]
     local isDualType = poke.type1 == poke.type2
     return isDualType and string.trim(frame.args[2]) or string.trim(frame.args[3])
 end
@@ -328,7 +343,7 @@ b.getCriesList = function(frame)
         return 'all'
     end
     -- Standard list
-    local list = table.map(formData.cries, function(abbr)
+    table.map(formData.cries, function(abbr)
         table.insert(result, table.concat{
             abbr,
             '-',
