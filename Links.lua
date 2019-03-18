@@ -2,7 +2,7 @@
 
 local l = {}
 
-local txt = require('Wikilib-strings')
+local txt = require('Wikilib-strings')  -- luacheck: no unused
 local c = require("Colore-data")
 
 --[[

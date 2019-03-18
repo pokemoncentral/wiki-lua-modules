@@ -53,6 +53,7 @@ if true then
 	print(evobox.Evobox{args={'Sylveon'}})
 	-- More than 2 phase one
 	print(evobox.Evobox{args={'Tyrogue'}})
+	print(evobox.Evobox{args={'Lycanroc', prune = 'no'}})
 	-- Feebas
 	print(evobox.Evobox{args={'Feebas'}})
 	-- Nincada

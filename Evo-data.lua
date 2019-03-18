@@ -17,6 +17,7 @@ described by the condition itself.
 local mw = require('mw')
 
 local tab = require('Wikilib-tables')  -- luacheck: no unused
+local links = require('Links')
 local pokes = require("Poké-data")
 local altforms = require("AltForms-data")
 local useless = require("UselessForms-data")
@@ -923,19 +924,19 @@ evo.tyrogue = {
 			ndex = 106,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 20,
-			conditions = { [evo.conditions.OTHER] = 'Con {{colore2|000|Attacco}} > {{colore2|000|Difesa}}' }
+			conditions = { [evo.conditions.OTHER] = 'Con [[Attacco]] > [[Difesa]]' }
 		},
 		{
 			ndex = 107,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 20,
-			conditions = { [evo.conditions.OTHER] = 'Con {{colore2|000|Attacco}} < {{colore2|000|Difesa}}' }
+			conditions = { [evo.conditions.OTHER] = 'Con [[Attacco]] < [[Difesa]]' }
 		},
 		{
 			ndex = 237,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 20,
-			conditions = { [evo.conditions.OTHER] = 'Con {{colore2|000|Attacco}} = {{colore2|000|Difesa}}' }
+			conditions = { [evo.conditions.OTHER] = 'Con [[Attacco]] = [[Difesa]]' }
 		}
 	}
 }
@@ -1242,7 +1243,7 @@ evo.eevee = {
 		{
 			ndex = 700,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.OTHER] = 'Con due cuori di {{colore2|000|Amicizia}}<div>avendo appreso una mossa di tipo {{colore2|000|Folletto}}</div>' },
+			conditions = { [evo.conditions.OTHER] = 'Con due cuori di [[Amicizia]]<div>avendo appreso una mossa di tipo [[Folletto]]</div>' },
 		}
 	}
 }
@@ -1494,6 +1495,7 @@ evo[170], evo[171] = evo.chinchou, evo.chinchou
 
 evo.togepi = {
 	ndex = 175,
+	method = evo.methods.BREED,
 
 	evos = {
 		{
@@ -1503,7 +1505,7 @@ evo.togepi = {
 			evos = {
 				{
 					ndex = 468,
-					evo.methods.STONE,
+					method = evo.methods.STONE,
 					[evo.methods.STONE] = 'Pietrabrillo',
 				}
 			}
@@ -1859,7 +1861,7 @@ evo.mantyke = {
 		{
 			ndex = 226,
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.OTHER] = 'Con {{colore2|000|Remoraid}} in {{colore2|000|squadra}}' },
+			conditions = { [evo.conditions.OTHER] = 'Con [[Remoraid]] in [[squadra]]' },
 		}
 	}
 }
@@ -2048,7 +2050,7 @@ evo.wurmple = {
 			ndex = 266,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 7,
-			conditions = { [evo.conditions.OTHER] = 'A seconda della {{colore2|000|personalità}}' },
+			conditions = { [evo.conditions.OTHER] = 'A seconda della [[personalità]]' },
 
 			evos = {
 				{
@@ -2062,7 +2064,7 @@ evo.wurmple = {
 			ndex = 268,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 7,
-			conditions = { [evo.conditions.OTHER] = 'A seconda della {{colore2|000|personalità}}' },
+			conditions = { [evo.conditions.OTHER] = 'A seconda della [[personalità]]' },
 
 			evos = {
 				{
@@ -2239,8 +2241,8 @@ evo.nincada = {
 		{
 			ndex = 292,
 			method = evo.methods.OTHER,
-			[evo.methods.OTHER] = '{{bag|Poké Ball}}',
-			conditions = { [evo.conditions.OTHER] = 'Con spazio in {{colore2|000|squadra}}<div>e almeno una {{colore2|000|Poké Ball}} nella {{colore2|000|Borsa}}</div>' },
+			[evo.methods.OTHER] = links.bag("Poké Ball"),
+			conditions = { [evo.conditions.OTHER] = 'Con spazio in [[squadra]]<div>e almeno una [[Poké Ball]] nella [[Borsa]]</div>' },
 		}
 	}
 }
@@ -2619,9 +2621,14 @@ evo.feebas = {
 		{
 			ndex = 350,
 			method = evo.methods.TRADE,
-			conditions = { [evo.conditions.ITEM] = 'Squama Bella',
-						   [evo.conditions.OTHER] = 'oppure<div>{{bag|Fascia Blu}}</div>{{colore2|000|Livello|Aumento di livello}}<div>con la {{colore2|000|Bellezza (virtù)|virtù Bellezza}} alta</div>'
-						 },
+			conditions = {
+				[evo.conditions.ITEM] = "Squama Bella",
+				[evo.conditions.OTHER] = table.concat{
+					"oppure<div>",
+					links.bag("Fascia Blu"),
+					"</div>[[Livello|Aumento di livello]]<div>con la [[Bellezza (virtù)|virtù Bellezza]] alta</div>",
+				},
+			}
 		}
 	}
 }
@@ -4504,7 +4511,7 @@ evo.pancham = {
 			ndex = 675,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 32,
-			conditions = { [evo.conditions.OTHER] = 'Con un Pokémon {{colore2|000|Buio}} in {{colore2|000|squadra}}' },
+			conditions = { [evo.conditions.OTHER] = 'Con un Pokémon [[Buio]] in [[squadra]]' },
 		}
 	}
 }
@@ -4702,7 +4709,7 @@ evo.goomy = {
 					ndex = 706,
 					method = evo.methods.LEVEL,
 					[evo.methods.LEVEL] = 50,
-					conditions = { [evo.conditions.OTHER] = 'Se {{colore2|000|Condizione atmosferica#Pioggia battente|piove}} nell\'overworld' },
+					conditions = { [evo.conditions.OTHER] = 'Se [[Condizione atmosferica#Pioggia battente|piove]] nell\'overworld' },
 				}
 			}
 		}
@@ -4942,7 +4949,6 @@ evo.cutiefly = {
 evo.ribombee = evo.cutiefly
 evo[742], evo[743] = evo.cutiefly, evo.cutiefly
 
---[[ CHECK
 evo.rockruff = {
 	ndex = 744,
 
@@ -4951,25 +4957,26 @@ evo.rockruff = {
 			ndex = 745,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 25,
-			conditions = { [evo.conditions.OTHER] = 'Di {{colore2|000|Tempo|giorno}} in {{colore2|000|Pokémon Sole e Luna|Sole}} e {{colore2|000|Pokémon Ultrasole e Ultraluna|Ultrasole}}' }
+			conditions = { [evo.conditions.OTHER] = 'Di [[Tempo|giorno]] in [[Pokémon Sole e Luna|Sole]] e [[Pokémon Ultrasole e Ultraluna|Ultrasole]]' }
 		},
 		{
-			ndex = 745N,
+			ndex = '745N',
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 25,
-			conditions = { [evo.conditions.OTHER] = 'Di {{colore2|000|Tempo|notte}} in {{colore2|000|Pokémon Sole e Luna|Luna}} e {{colore2|000|Pokémon Ultrasole e Ultraluna|Ultraluna}}' }
+			conditions = { [evo.conditions.OTHER] = 'Di [[Tempo|notte]] in [[Pokémon Sole e Luna|Luna]] e [[Pokémon Ultrasole e Ultraluna|Ultraluna]]' }
 		},
 		{
-			ndex = 745C,
+			ndex = '745C',
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 25,
-			conditions = { [evo.conditions.OTHER] = 'Al tramonto se ha {{colore2|000|Mente Locale}} in {{colore2|000|Pokémon Ultrasole e Ultraluna|Ultrasole e Ultraluna}}' }
+			conditions = { [evo.conditions.OTHER] = 'Al tramonto se ha [[Mente Locale]] in [[Pokémon Ultrasole e Ultraluna|Ultrasole e Ultraluna]]' }
 		}
 	}
 }
-evo.lycanroc = evo.rockruff
-evo[745], = evo.rockruff
---]]
+evo.lycanroc, evo.lycanrocN, evo.lycanrocC =
+	evo.rockruff, evo.rockruff, evo.rockruff
+evo[744], evo[745], evo['745N'], evo['745C'] =
+	evo.rockruff, evo.rockruff, evo.rockruff, evo.rockruff
 
 evo.wishiwashi = { ndex = 746 }
 evo[746] = evo.wishiwashi
@@ -5086,6 +5093,7 @@ evo.bounsweet = {
 			evos = {
 				{
 					ndex = 763,
+					method = evo.methods.LEVEL,
 					conditions = { [evo.conditions.MOVE] = 'Pestone' },
 				}
 			}
@@ -5220,13 +5228,13 @@ evo.cosmog = {
 					ndex = 791,
 					method = evo.methods.LEVEL,
 					[evo.methods.LEVEL] = 53,
-					conditions = { [evo.conditions.OTHER] = 'In {{colore2|000|Pokémon Sole e Luna|Sole}} e {{colore2|000|Pokémon Ultrasole e Ultraluna|Ultrasole}}' }
+					conditions = { [evo.conditions.OTHER] = 'In [[Pokémon Sole e Luna|Sole]] e [[Pokémon Ultrasole e Ultraluna|Ultrasole]]' }
 				},
 				{
 					ndex = 792,
 					method = evo.methods.LEVEL,
 					[evo.methods.LEVEL] = 53,
-					conditions = { [evo.conditions.OTHER] = 'In {{colore2|000|Pokémon Sole e Luna|Luna}} e {{colore2|000|Pokémon Ultrasole e Ultraluna|Ultraluna}}' }
+					conditions = { [evo.conditions.OTHER] = 'In [[Pokémon Sole e Luna|Luna]] e [[Pokémon Ultrasole e Ultraluna|Ultraluna]]' }
 				}
 			}
 		}
@@ -5295,7 +5303,7 @@ evo.meltan = {
 		{
 			ndex = 809,
 			method = evo.methods.OTHER,
-			[evo.methods.OTHER] = '<span class="text-small">Con 400 {{colore2|000|Caramelle}} Meltan in {{colore2|000|Pokémon GO}}</span>',
+			[evo.methods.OTHER] = '<span class="text-small">Con 400 [[Caramelle]] Meltan in [[Pokémon GO]]</span>',
 		}
 	}
 }

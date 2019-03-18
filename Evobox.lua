@@ -449,13 +449,14 @@ eb.Evobox = function(frame)
     if data.evos then
         -- If there are more than 2 phase one evolutions the module assumes there
         -- aren't higher level evolutions and uses the unresponsive layout
-        if #data.evos > 2 then
+        if table.getn(data.evos, "num") > 2 then
             boxContainer = eb.strings.BOX_CONTAINER_UNRESPONSIVE
             table.insert(evoboxcontent, eb.makeManyEvosRow(data.evos))
         -- If the family is 'baby' or 'incenso' the second phase should be handled
         -- "by hand", otherwise there's the function that creates the row.
         elseif data.method == evodata.methods.BREED then
-            if data.conditions[evodata.conditions.BREEDONLY] then
+            if data.conditions
+               and data.conditions[evodata.conditions.BREEDONLY] then
                 -- Breedonly (aka Phione)
                 table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
                     box1 = eb.SingleArrow(data)
@@ -496,14 +497,15 @@ eb.Evobox = function(frame)
     if data.conditions
        and data.conditions[evodata.conditions.BREEDONLY] then -- luacheck: ignore
         -- No category to add
-    elseif phase3evos and #phase3evos > 0 then
+    elseif phase3evos and table.getn(phase3evos, "num") > 0 then
         table.insert(evobox, '[[Categoria:Pokémon appartenenti a una linea di evoluzione a tre stadi]]')
     elseif data.evos then
         table.insert(evobox, '[[Categoria:Pokémon appartenenti a una linea di evoluzione a due stadi]]')
     else
         table.insert(evobox, '[[Categoria:Pokémon che non fanno parte di una linea di evoluzione]]')
     end
-    if phase3evos and #phase3evos > 1 or (data.evos and #data.evos > 1) then
+    if phase3evos and table.getn(phase3evos, "num") > 1
+       or (data.evos and table.getn(data.evos, "num") > 1) then
         table.insert(evobox, '[[Categoria:Pokémon con evoluzioni diramate]]')
     end
 
