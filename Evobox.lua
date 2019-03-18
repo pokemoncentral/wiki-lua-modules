@@ -724,7 +724,7 @@ eb.BoxForm = function(ndex, notes)
     local name, abbr = form.getnameabbr(ndex)
     local altdata = altforms[name] or useless[name]
     local shownname = altdata.names[abbr]
-    shownname = shownname == "" and pokes[name].name:fu() or shownname
+    shownname = shownname == "" and string.fu(pokes[name].name) or shownname
     return eb.boxPokemonAuto(ndex, '', notes, shownname)
 end
 

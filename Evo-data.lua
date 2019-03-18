@@ -16,6 +16,7 @@ described by the condition itself.
 
 local mw = require('mw')
 
+local tab = require('Wikilib-tables')  -- luacheck: no unused
 local pokes = require("Poké-data")
 local altforms = require("AltForms-data")
 local useless = require("UselessForms-data")
