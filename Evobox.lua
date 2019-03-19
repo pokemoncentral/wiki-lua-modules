@@ -2,9 +2,16 @@
 
 Displays the box containing the evolutionary line of a Pokémon.
 
-Sadly right now we don't have a data module for evolutions, so this module
-takes a lot of arguments. It's been introduced only in order to make use of
-variables.
+This module exposes three WikiCode interfaces. The main one is Evobox, that is
+automatic and meant to be used in Pokémon pages. It's called with
+
+{{#invoke: Evobox | Evobox | {{BASEPAGENAME}} }}
+
+The other two interfaces are Formbox and GlitchEvobox. The former creates the
+box of form changes, with double arrows. The third is a manual call that
+requires parameters for anything, mainly intended to be used in glitch's pages
+because we lack a data module for glitches evolutions (and we don't plan to
+create one).
 
 --]]
 
@@ -562,6 +569,7 @@ eb.boxPokemonManual = function(p, suff)
         spr = "[[File:" .. p["sprite" .. suff] .. ".png|150px]]",
         phase = eb.phaseName(tonumber(suff:match("^(%d*)%a?")), fakephase),
         name = p["name" .. suff],
+        shownName = p["displayname" .. suff],
     }
 end
 
@@ -575,6 +583,7 @@ eb.evotypeToMethod = {
     ['strum. tenuto'] = evodata.methods.LEVEL,
     ['ogg. tenuto'] = evodata.methods.LEVEL,
     scambio = evodata.methods.TRADE,
+    other = evodata.methods.OTHER,
 }
 
 --[[
@@ -591,6 +600,11 @@ method defaults to OTHER.
 eb.SingleArrowMaybe = function(p, suff, direction)
     if not p["evotype" .. suff] then
         return ""
+    end
+
+    if p["evotype" .. suff] == "double" then
+        p["evotype" .. suff] = "other"
+        direction = "double"
     end
 
     local fakeevo = { conditions = {} }
@@ -665,19 +679,24 @@ and some values allowed for that template aren't allowed for this module.
 
 Parameters are named because of their number:
     - 1, 2: types of the Pokémon. Used only for printing, may as well be glitch
-		types. 2 is optional, defaults to 1.
+        types. 2 is optional, defaults to 1.
     - family (nessuna|normale): the kind of family. Defaults to 'nessuna',
-		that means no evolutions. 'normale' means an evolution without baby or
-		alike, and includes branched evolutions. Other families (baby, incenso,
-		breedonly) are not supported by this module.
-	- nameN: the name of the N-th Pokémon. If the value is "none" it will be
-		rendered as an empty slot (for instance to show branches of different
-		height)
+        that means no evolutions. 'normale' means an evolution without baby or
+        alike, and includes branched evolutions. Other families (baby, incenso,
+        breedonly) are not supported by this module.
+    - nameN: the name of the N-th Pokémon. If the value is "none" it will be
+        rendered as an empty slot (for instance to show branches of different
+        height)
+    - displaynameN: if given, it used instead of nameN in the display (not in
+        the link)
     - spriteN: the ndex of the N-th Pokémon (or form) to display
-	- type1-N, type2-N: types of the N-th form
+    - type1-N, type2-N: types of the N-th form
     - formN: notes about the N-th Pokémon, put above the sprite
     - evotypeN (livello|felicità|posizione|pietra|mossa|strum. tenuto|scambio
-            |other): the evolutionary method from N-th to (N+1)-th Pokémon.
+            |other|double): the evolutionary method from N-th to (N+1)-th
+            Pokémon. Values have the same meaning as in evo-data. The value
+            "double" (not present in evo-data) is like "other" but with a
+            double arrow.
     - levelN: the level paired with evotypeN
     - locationN: the location paired with evotypeN
     - evostoneN: the evostone paired with evotypeN
@@ -690,6 +709,9 @@ Parameters are named because of their number:
     - any N-ed parameter, but with a trailing "a" (for instance: 'evotypeNa'):
         the same information of un-a-ed parameter, but for the second N-th
         form (if any)
+
+TODO: support for GlitchEvobox/forms, many rows (same assumption as in Evobox).
+
 --]]
 eb.GlitchEvobox = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
@@ -703,6 +725,7 @@ eb.GlitchEvobox = function(frame)
 
     table.insert(evoboxcontent, eb.makeGlitchPhaseRows(p, 2))
     table.insert(evoboxcontent, eb.makeGlitchPhaseRows(p, 3))
+    table.insert(evoboxcontent, eb.makeGlitchPhaseRows(p, 4))
 
     return string.interp(eb.strings.BOX_CONTAINER, {
             background = css.horizGradLua{ type1 = p[1], type2 = p[2] or p[2] },
