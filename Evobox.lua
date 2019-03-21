@@ -613,11 +613,11 @@ eb.SingleArrowMaybe = function(p, suff, direction)
 
     fakeevo[evodata.methods.LEVEL] = p["level" .. suff]
     fakeevo[evodata.methods.STONE] = p["evostone" .. suff]
+    fakeevo[evodata.methods.OTHER] = p["evoinfo" .. suff]
 
     fakeevo.conditions[evodata.conditions.LOCATION] = p["location" .. suff]
     fakeevo.conditions[evodata.conditions.MOVE] = p["move" .. suff]
     fakeevo.conditions[evodata.conditions.ITEM] = p["held" .. suff]
-    fakeevo.conditions[evodata.conditions.OTHER] = p["evoinfo" .. suff]
     fakeevo.conditions[evodata.conditions.TIME] = p["time" .. suff]
     fakeevo.conditions[evodata.conditions.GENDER] = p["gender" .. suff]
 

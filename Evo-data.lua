@@ -4709,7 +4709,7 @@ evo.goomy = {
 					ndex = 706,
 					method = evo.methods.LEVEL,
 					[evo.methods.LEVEL] = 50,
-					conditions = { [evo.conditions.OTHER] = 'Se [[Condizione atmosferica#Pioggia battente|piove]] nell\'overworld' },
+					conditions = { [evo.conditions.OTHER] = "Se [[Condizione atmosferica#Pioggia battente|piove]] o c'è [[Condizione atmosferica#Nebbia|nebbia]] nell'overworld" },
 				}
 			}
 		}
