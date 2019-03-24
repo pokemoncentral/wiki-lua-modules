@@ -21,8 +21,6 @@ local pokes = require("Poké-data")
 local groups = require("PokéEggGroup-data")
 local useless = require("UselessForms-data")
 
-local mw = require('mw')
-
 --[[
 
 This table holds all the interesting values for an entry
@@ -63,7 +61,7 @@ end)
 
 -- Strings for printing
 entry.strings = {
-	valueCell = [[| class="black-text height-100" style="padding: 0.8ex 0.3ex;${cs}" | <div class="text-center height-100 roundy-5 vert-middle" style="${bg}; padding: 0 0.3ex;">${cnt}${blackabbr}</div>]]
+	valueCell = [[| class="black-text height-100" style="padding: 0.8ex 0.3ex;${cs}" | <div class="text-center height-100 roundy-5 vert-middle" style="${bg}; padding: 0 0.3ex;">${cnt}</div>]]
 }
 
 -- Sorted background colors of tutor cells
@@ -174,13 +172,14 @@ entry.makeBox = function(text, bgcolor, bold, colspan, tt, abbr)
 				and ""
 				or css.horizGradLua{ type = bgcolor }
 	text = bold and table.concat{"'''", text, "'''"} or text
+	local cnt = tt and links.tt(text, tt) or text
 	return string.interp(
 		entry.strings.valueCell,
 		{
 			bg = bg,
 			cs = colspan and table.concat{'" colspan="', colspan} or "",
-			cnt = tt and links.tt(text, tt) or text,
-			blackabbr = abbr and blackabbr[abbr] or "",
+			cnt = abbr and table.concat{"<span>", cnt, blackabbr[abbr] or "",
+			                            "</span>"} or cnt,
 		}
 	)
 end
