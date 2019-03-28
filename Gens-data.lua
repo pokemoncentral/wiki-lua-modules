@@ -40,6 +40,6 @@ gendata[3].games = {'rz', 'rfvf', 's', 'colo', 'xd'}
 gendata[4].games = {'dp', 'pt', 'hgss', 'pbr'}
 gendata[5].games = {'nb', 'n2b2'}
 gendata[6].games = {'xy', 'roza'}
-gendata[7].games = {'sl', 'usul'}
+gendata[7].games = {'sl', 'usul', 'lgpe'}
 
 return gendata

@@ -2396,7 +2396,7 @@ evo.budew = {
 				{
 					ndex = 407,
 					method = evo.methods.STONE,
-					stone = 'Pietrabrillo',
+					[evo.methods.STONE] = 'Pietrabrillo',
 				}
 			}
 		}
@@ -2682,6 +2682,8 @@ evo[357] = evo.tropius
 
 evo.chingling = {
 	ndex = 433,
+	method = evo.methods.BREED,
+	conditions = { [evo.conditions.ITEM] = 'Puroaroma' },
 
 	evos = {
 		{

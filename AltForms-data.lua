@@ -175,23 +175,22 @@ t.silvally.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante'
 t.minior.names = {R = 'Forma Nucleo', base = 'Forma Meteora'}
 t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = "Necrozma Ali dell'Aurora",
 	U = 'UltraNecrozma', base = ''}
-for k, v in pairs(t.mega) do
+for _, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}
 	t[v].names = {M = 'Mega' .. fu, base = ''}
 end
-for k, v in pairs(t.megaxy) do
+for _, v in pairs(t.megaxy) do
 	local fu = string.fu(v)
 	t[v] = {}
 	t[v].names = {MX = table.concat{'Mega', fu, ' X'},
 		MY = table.concat{'Mega', fu, ' Y'}, base = ''}
 end
-for k, v in pairs(t.archeo) do
-	local fu = string.fu(v)
+for _, v in pairs(t.archeo) do
 	t[v] = {}
 	t[v].names = {A = 'Archeorisveglio', base = ''}
 end
-for k, v in pairs(t.alola) do
+for _, v in pairs(t.alola) do
 	t[v] = {}
 	t[v].names = {A = 'Forma di Alola', base = ''}
 end
@@ -253,16 +252,16 @@ t.silvally.ext = mw.clone(t.arceus.ext)
 t.silvally.ext.sconosciuto = nil
 t.minior.ext = {nucleo = 'R', meteora = 'base'}
 t.necrozma.ext = {vespro = 'V', aurora = 'A', ultra = 'U', necrozma = 'base'}
-for k, v in pairs(t.mega) do
+for _, v in pairs(t.mega) do
 	t[v].ext = {mega = 'M'}
 end
-for k, v in pairs(t.megaxy) do
+for _, v in pairs(t.megaxy) do
 	t[v].ext = {megax = 'MX', megay = 'MY'}
 end
-for k, v in pairs(t.archeo) do
+for _, v in pairs(t.archeo) do
 	t[v].ext = {archeo = 'A'}
 end
-for k, v in pairs(t.alola) do
+for _, v in pairs(t.alola) do
 	t[v].ext = {alola = 'A'}
 end
 
@@ -300,16 +299,16 @@ t.silvally.gamesOrder = mw.clone(t.arceus.gamesOrder)
 t.minior.gamesOrder = {'base', 'R'}
 t.necrozma.gamesOrder = {'base', 'V', 'A', 'U'}
 table.remove(t.silvally.gamesOrder)
-for k, v in pairs(t.mega) do
+for _, v in pairs(t.mega) do
 	t[v].gamesOrder = {'base', 'M'}
 end
-for k, v in pairs(t.megaxy) do
+for _, v in pairs(t.megaxy) do
 	t[v].gamesOrder = {'base', 'MX', 'MY'}
 end
-for k, v in pairs(t.archeo) do
+for _, v in pairs(t.archeo) do
 	t[v].gamesOrder = {'base', 'A'}
 end
-for k, v in pairs(t.alola) do
+for _, v in pairs(t.alola) do
 	t[v].gamesOrder = {'base', 'A'}
 end
 
@@ -320,13 +319,13 @@ This array is guaranteed to be a sorted subset of gamesOrder (same sorting)
 
 --]]
 
-for k, v in pairs(t.mega) do
+for _, v in pairs(t.mega) do
 	t[v].cries = {'M'}
 end
-for k, v in pairs(t.megaxy) do
+for _, v in pairs(t.megaxy) do
 	t[v].cries = {'MX', 'MY'}
 end
-for k, v in pairs(t.archeo) do
+for _, v in pairs(t.archeo) do
 	t[v].cries = {'A'}
 end
 t.shaymin.cries = {'C'}

@@ -22,8 +22,8 @@ end
 -- Elenco colori
 
 c.kanto = function(frame) return _colore(frame.args[1], 'AAFFAA', 'FFAAAA') end
-c.Kanto, c.RG, c.RV, c['Red, Green & Blue'], c['Rosso, Verde & Blu'] =
-    c.kanto, c.kanto, c.kanto, c.kanto, c.kanto
+c.Kanto, c.RG, c.RV, c['Red, Green & Blue'], c['Rosso, Verde & Blu'], c['Rosso, Blu & Verde'] =
+    c.kanto, c.kanto, c.kanto, c.kanto, c.kanto, c.kanto
 c.orange = function(frame) return _colore(frame.args[1], 'FFDDAA', 'FFBB55') end
 c.Orange = c.orange
 c.johto = function(frame) return _colore(frame.args[1], 'DDDDDD', 'FFCB49') end
@@ -71,6 +71,7 @@ c.XYZ = function(frame) return _colore(frame.args[1], 'A4CC51', '3EAE30') end
 c['XY & Z'], c.Z, c.xyz, c.z = c.XYZ, c.XYZ, c.XYZ, c.XYZ
 c.alola = function(frame) return _colore(frame.args[1], '7FC5F6', 'FFA94D') end
 c.Alola, c.SL, c.SM, c['S&M'], c['Sun & Moon'], c['Sole e Luna'] = c.alola, c.alola, c.alola, c.alola, c.alola, c.alola
+c.LGPE = function(frame) return _colore(frame.args[1], 'FFCF11', 'C47E39') end
 c.sconosciuto = function(frame) return _colore(frame.args[1], '9DC1B7', '68A090') end
 c.Sconosciuto = c.sconosciuto
 c.pcwiki = function(frame) return _colore(frame.args[1], 'CEE0F4', '779FD3') end
