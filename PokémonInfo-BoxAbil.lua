@@ -12,9 +12,9 @@ local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local abils = require('PokéAbil-data')
 
--- Table holding Pikachu forms to be ignored
+-- Table holding (Pikachu) forms to be ignored
 local ignorableForms = {'pikachuR', 'pikachuD', 'pikachuCn', 'pikachuS',
-    'pikachuW'}
+    'pikachuW', 'pikachuCm', 'eeveeCm'}
 
 --[[
 
@@ -37,7 +37,7 @@ AbilsBox.new = function(name, formName)
         return nil
     end
 
-    -- Pikachu (@nalkio visto che questo Pokémon fa danni?)
+    -- Pikachu (@Stygian visto che questo Pokémon fa danni?) e EeveeCm
     if table.search(ignorableForms, name) then
         return nil
     end

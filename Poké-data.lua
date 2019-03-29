@@ -1811,9 +1811,12 @@ t['531M'] = t.audinoM
 -- Gli alias per le altre forme alternative rilevanti
 
 t.pikachuCs, t['025Cs'], t.pikachuR, t['025R'], t.pikachuD, t['025D'],
-	t.pikachuCn, t['025Cn'], t.pikachuS, t['025S'], t.pikachuW, t['025W'] =
+	t.pikachuCn, t['025Cn'], t.pikachuS, t['025S'], t.pikachuW, t['025W'],
+	t.pikachuCm, t['025Cm'] =
 	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu,
-	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu
+	t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu,
+	t.pikachu, t.pikachu
+t.eeveeCm, t['133Cm'] = t.eevee, t.eevee
 t.deoxysA, t['386A'], t.deoxysD, t['386D'], t.deoxysV, t['386V'] =
 	t.deoxys, t.deoxys, t.deoxys, t.deoxys, t.deoxys, t.deoxys
 t.giratinaO, t['487O'] = t.giratina, t.giratina

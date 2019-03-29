@@ -1631,6 +1631,8 @@ t.raticateA = {ability1 = 'Voracità', ability2 = 'Tuttafretta', abilityd = 'Gra
 t['020A'] = t.raticateA
 t.pikachuCs = {ability1 = 'Parafulmine'}
 t['025Cs'] = t.pikachuCs
+t.pikachuCm = {ability1 = 'Nessuna'}
+t['025Cm'] = t.pikachuCm
 t.raichuA = {ability1 = 'Codasurf'}
 t['026A'] = t.raichuA
 t.sandshrewA = {ability1 = 'Mantelneve', abilityd = 'Spalaneve'}
@@ -1663,6 +1665,8 @@ t.exeggutorA = {ability1 = 'Indagine', abilityd = 'Coglibacche'}
 t['103A'] = t.exeggutorA
 t.marowakA = {ability1 = 'Corpofunesto', ability2 = 'Parafulmine', abilityd = 'Testadura'}
 t['105A'] = t.marowakA
+t.eeveeCm = {ability1 = 'Nessuna'}
+t['133Cm'] = t.eeveeCm
 t.giratinaO = {ability1 = 'Levitazione'}
 t['487O'] = t.giratinaO
 t.shayminC = {ability1 = 'Leggiadro'}

@@ -75,6 +75,7 @@ to others, thus there's aliasing at the end of the module.
 --]]
 
 t.pikachu = {}
+t.eevee = {}
 t.castform = {}
 t.deoxys = {}
 t.wormadam = {}
@@ -135,7 +136,9 @@ Alternative forms names. Keys are the abbr.
 
 t.pikachu.names = {Cs = 'Pikachu Cosplay', R = 'Pikachu Rockstar',
 	D = 'Pikachu Damigella', Cn = 'Pikachu Confetto',
-	S = 'Pikachu Scienziata', W = 'Pikachu Wrestler', base = ''}
+	S = 'Pikachu Scienziata', W = 'Pikachu Wrestler', Cm = 'Compagno',
+	base = ''}
+t.eevee.names = {Cm = 'Compagno', base = ''}
 t.castform.names = {S = 'Forma Sole', P = 'Forma Pioggia',
 	N = 'Forma Nuvola di Neve', base = 'Forma Castform'}
 t.deoxys.names = {A = 'Forma Attacco', D = 'Forma Difesa',
@@ -220,7 +223,8 @@ makeLinks(true)
 -- Table to map extended names to abbrs
 
 t.pikachu.ext = {cosplay = 'Cs', rockstar = 'R', damigella = 'D',
-	confetto = 'Cn', scienziata = 'S', wrestler = 'W'}
+	confetto = 'Cn', scienziata = 'S', wrestler = 'W', compagno = 'Cm'}
+t.eevee.ext = {compagno = 'Cm'}
 t.castform.ext = {sole = 'S', pioggia = 'P', neve = 'N'}
 t.deoxys.ext = {attacco = 'A', difesa = 'D', ['velocità'] = 'V'}
 t.wormadam.ext = {sabbia = 'Sa', scarti = 'Sc'}
@@ -272,7 +276,8 @@ game.
 
 --]]
 
-t.pikachu.gamesOrder = {'base', 'Cs', 'R', 'D', 'Cn', 'S', 'W'}
+t.pikachu.gamesOrder = {'base', 'Cs', 'R', 'D', 'Cn', 'S', 'W', 'Cm'}
+t.eevee.gamesOrder = {'base', 'Cm'}
 t.castform.gamesOrder = {'base', 'S', 'P', 'N'}
 t.deoxys.gamesOrder = {'base', 'A', 'D', 'V'}
 t.wormadam.gamesOrder = {'base', 'Sa', 'Sc'}
@@ -347,7 +352,7 @@ Oldest game in which each form, included base form, appears.
 
 t.rattata.since = {A = 'sl', base = 'rb'}
 t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
-	Cn = 'roza', S = 'roza', W = 'roza', base = 'rb'}
+	Cn = 'roza', S = 'roza', W = 'roza', Cm = 'lgpe', base = 'rb'}
 t.raichu.since = {A = 'sl', base = 'rb'}
 t.sandshrew.since = {A = 'sl', base = 'rb'}
 t.vulpix.since = {A = 'sl', base = 'rb'}
@@ -357,6 +362,7 @@ t.geodude.since = {A = 'sl', base = 'rb'}
 t.grimer.since = {A = 'sl', base = 'rb'}
 t.exeggutor.since = {A = 'sl', base = 'rb'}
 t.marowak.since = {A = 'sl', base = 'rb'}
+t.eevee.since = {Cm = 'lgpe', base = 'rb'}
 t.castform.since = {S = 'rz', P = 'rz', N = 'rz', base = 'rz'}
 t.deoxys.since = {A = 'rfvf', D = 'rfvf', V = 's', base = 'rz'}
 t.wormadam.since = {Sa = 'dp', Sc = 'dp', base = 'dp'}
@@ -443,7 +449,8 @@ not present defaults to latest games.
 --]]
 
 t.pikachu['until'] = {Cs = 'roza', R = 'roza', D = 'roza',
-	Cn = 'roza', S = 'roza', W = 'roza'}
+	Cn = 'roza', S = 'roza', W = 'roza', Cm = 'lgpe'}
+t.eevee['until'] = {Cm = 'lgpe'}
 t.arceus['until'] = {Sc = 'hgss'}
 
 -- Altre forme di Alola, messe qui per evitare inutili iterazioni dei cicli precedenti
@@ -488,6 +495,7 @@ t[88] = t.grimer
 t[89] = t.muk
 t[103] = t.exeggutor
 t[105] = t.marowak
+t[133] = t.eevee
 t[351] = t.castform
 t[386] = t.deoxys
 t[413] = t.wormadam

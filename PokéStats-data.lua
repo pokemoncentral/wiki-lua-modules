@@ -1629,6 +1629,10 @@ d[809] = d.melmetal
 -- d.sobble = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
 
 -- Alternative forms which actually change stats
+d.pikachuCm = {hp = 45, atk = 80, def = 50, spatk = 75, spdef = 60, spe = 120}
+d['025Cm'] = d.pikachuCm
+d.eeveeCm = {hp = 65, atk = 75, def = 70, spatk = 65, spdef = 85, spe = 75}
+d['133Cm'] = d.eeveeCm
 d.deoxysA = {hp = 50, atk = 180, def = 20, spatk = 180, spdef = 20, spe = 150}
 d['386A'] = d.deoxysA
 d.deoxysD = {hp = 50, atk = 70, def = 160, spatk = 70, spdef = 160, spe = 90}
