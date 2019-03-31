@@ -95,6 +95,8 @@ types. Requires many details.
 The parameters are named:
     - notes: (optional) any additional note to be printed above the image
     - type1, type2: the two types of the Pokémon. Both mandatory
+    - disptype1, disptype2 (optionals): colors for the background of the two
+            type boxes. Defaults to type1/type2
     - spr: the full link to the sprite of the Pokémon
     - phase: (optional) the evolutionary phase ("Prima evoluzione", etc...).
             Defaults to "Non si evolve"
@@ -112,10 +114,13 @@ eb.boxPokemon = function(args)
         phase = args.phase or "Non si evolve",
         name = args.name,
         shownName = args.shownName or args.name,
-        type1rect = links.colorType(args.type1, c[args.type1].dark),
-        type2rect = args.type2 ~= args.type1
-                    and links.colorType(args.type2, c[args.type2].dark)
-                    or ''
+        type1rect = links.colorType(args.type1,
+                                    c[args.disptype1 or args.type1].dark),
+        type2rect = args.disptype2
+                    and links.colorType(args.type2, c[args.disptype2].dark)
+                    or (args.type2 ~= args.type1
+                        and links.colorType(args.type2, c[args.type2].dark)
+                        or '')
     })
 end
 
@@ -556,6 +561,8 @@ informations with that suffix.
 In the special case in which the name is "none" it returns an empty string (to
 handle branches of different height).
 
+If there's a parameter ["forme" .. suff] uses it in place of the phase name.
+
 --]]
 eb.boxPokemonManual = function(p, suff)
     if p["name" .. suff]:lower() == "none" then
@@ -563,11 +570,14 @@ eb.boxPokemonManual = function(p, suff)
     end
     local fakephase = p.family == "normale" and { evos = {} } or {}
     return eb.boxPokemon{
-        notes = p["form" .. suff],
+        notes = p["loc" .. suff],
         type1 = p["type1-" .. suff],
+        disptype1 = p["disptype1-" .. suff],
         type2 = p["type2-" .. suff] or p["type1-" .. suff],
+        disptype2 = p["disptype2-" .. suff],
         spr = "[[File:" .. p["sprite" .. suff] .. ".png|150px]]",
-        phase = eb.phaseName(tonumber(suff:match("^(%d*)%a?")), fakephase),
+        phase = p["forme" .. suff]
+                or eb.phaseName(tonumber(suff:match("^(%d*)%a?")), fakephase),
         name = p["name" .. suff],
         shownName = p["displayname" .. suff],
     }
@@ -691,7 +701,10 @@ Parameters are named because of their number:
         the link)
     - spriteN: the ndex of the N-th Pokémon (or form) to display
     - type1-N, type2-N: types of the N-th form
-    - formN: notes about the N-th Pokémon, put above the sprite
+    - disptype1/2-N: color for the box of the type. Forces the second type to
+        be displayed even if it's equal to the first one
+    - locN: notes about the N-th Pokémon, put above the sprite
+    - formeN: name of the form, put in place of the phase below the sprite
     - evotypeN (livello|felicità|posizione|pietra|mossa|strum. tenuto|scambio
             |other|double): the evolutionary method from N-th to (N+1)-th
             Pokémon. Values have the same meaning as in evo-data. The value
@@ -709,8 +722,6 @@ Parameters are named because of their number:
     - any N-ed parameter, but with a trailing "a" (for instance: 'evotypeNa'):
         the same information of un-a-ed parameter, but for the second N-th
         form (if any)
-
-TODO: support for GlitchEvobox/forms, many rows (same assumption as in Evobox).
 
 --]]
 eb.GlitchEvobox = function(frame)

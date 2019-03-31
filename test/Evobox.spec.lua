@@ -142,9 +142,10 @@ if true then
 	name3="Staraptor", sprite3='398', ["type1-3"]="normale", ["type2-3"]="volante",
 	}})
 
-	-- Pokémon without evolutions
+	-- Pokémon without evolutions, two equal types and disptype
 	print(evobox.GlitchEvobox{args={'normale',
-		name1="Tauros", sprite1='128', ["type1-1"]="normale"
+		name1="Tauros", sprite1='128', ["type1-1"]="normale",
+		["type2-1"] = "normale", ["disptype2-1"] = "glitch"
 	}})
 
 	-- With notes
@@ -191,5 +192,25 @@ if true then
 		name3="None",
 		evotype2a="Pietra", evostone2a="Pietralunare",
 		sprite3a="Sprrb036",name3a="Clefable",["type1-3a"]="Normale"
+	}})
+
+	print(evobox.GlitchEvobox{args={
+		"Uccello", "Normale",
+		sprite1="Missingno RB",
+		name1="Missingno.",
+		forme1="RB",
+		loc1="36 numeri d'indice.",
+		["type1-1"]="Uccello",
+		["type2-1"]="Normale",
+		["disptype1-1"]="sconosciuto",
+		evotype1="double",
+		evoinfo1="&nbsp;",
+		name2="Missingno.",
+		sprite2="Missingno Y",
+		forme2="Giallo",
+		loc2="36 numeri d'indice.",
+		["type1-2"]="Normale",
+		["type2-2"]="999",
+		["disptype2-2"]="sconosciuto"
 	}})
 end
