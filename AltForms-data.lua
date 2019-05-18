@@ -134,9 +134,9 @@ Alternative forms names. Keys are the abbr.
 
 --]]
 
-t.pikachu.names = {Cs = 'Pikachu Cosplay', R = 'Pikachu Rockstar',
-	D = 'Pikachu Damigella', Cn = 'Pikachu Confetto',
-	S = 'Pikachu Scienziata', W = 'Pikachu Wrestler', Cm = 'Compagno',
+t.pikachu.names = {Cs = 'Pikachu Cosplay', R = 'Pikachu rockstar',
+	D = 'Pikachu damigella', Cn = 'Pikachu confetto',
+	S = 'Pikachu scienziata', W = 'Pikachu wrestler', Cm = 'Compagno',
 	base = ''}
 t.eevee.names = {Cm = 'Compagno', base = ''}
 t.castform.names = {S = 'Forma Sole', P = 'Forma Pioggia',
