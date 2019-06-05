@@ -1627,6 +1627,13 @@ d[809] = d.melmetal
 -- d.grookey = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
 -- d.scorbunny = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
 -- d.sobble = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d.gossifleur = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d.eldegoss = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d.wooloo = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d.corviknight = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d.drednaw = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d.zacian = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d.zamazenta = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
 
 -- Alternative forms which actually change stats
 d.pikachuCm = {hp = 45, atk = 80, def = 50, spatk = 75, spdef = 60, spe = 120}

@@ -6498,6 +6498,13 @@ d[807] = d.zeraora
 d.grookey = {}
 d.scorbunny = {}
 d.sobble = {}
+d.gossifleur = {}
+d.eldegoss = {}
+d.wooloo = {}
+d.corviknight = {}
+d.drednaw = {}
+d.zacian = {}
+d.zamazenta = {}
 
 -- Alternative forms
 d.rattataA = {

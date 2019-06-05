@@ -1620,6 +1620,13 @@ t[807] = t.zeraora
 -- t.grookey = {group1 = ''}
 -- t.scorbunny = {group1 = ''}
 -- t.sobble = {group1 = ''}
+-- t.gossifleur = {group1 = ''}
+-- t.eldegoss = {group1 = ''}
+-- t.wooloo = {group1 = ''}
+-- t.corviknight = {group1 = ''}
+-- t.drednaw = {group1 = ''}
+-- t.zacian = {group1 = 'sconosciuto'}
+-- t.zamazenta = {group1 = 'sconosciuto'}
 
 -- Forme alternative che esistono fuori dalla lotta e quindi
 -- possono avere un gruppo uova diverso da quello della forma base

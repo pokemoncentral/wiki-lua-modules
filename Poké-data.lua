@@ -1626,6 +1626,13 @@ t[809] = t.melmetal
 t.grookey = {name = 'Grookey', ndex = nil, type1 = 'erba', type2 = 'erba'}
 t.scorbunny = {name = 'Scorbunny', ndex = nil, type1 = 'fuoco', type2 = 'fuoco'}
 t.sobble = {name = 'Sobble', ndex = nil, type1 = 'acqua', type2 = 'acqua'}
+t.gossifleur = {name = 'Gossifleur', ndex = nil, type1 = 'erba', type2 = 'erba'}
+t.eldegoss = {name = 'Eldegoss', ndex = nil, type1 = 'erba', type2 = 'erba'}
+t.wooloo = {name = 'Wooloo', ndex = nil, type1 = 'normale', type2 = 'normale'}
+t.corviknight = {name = 'Corviknight', ndex = nil, type1 = 'volante', type2 = 'acciaio'}
+t.drednaw = {name = 'Drednaw', ndex = nil, type1 = 'acqua', type2 = 'roccia'}
+t.zacian = {name = 'Zacian', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+t.zamazenta = {name = 'Zamazenta', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa

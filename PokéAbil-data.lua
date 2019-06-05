@@ -1620,6 +1620,13 @@ t[807] = t.zeraora
 t.grookey = {ability1 = ''}
 t.scorbunny = {ability1 = ''}
 t.sobble = {ability1 = ''}
+t.gossifleur = {ability1 = 'Lanugine', ability2 = 'Rigenergia'}
+t.eldegoss = {ability1 = 'Lanugine', ability2 = 'Rigenergia'}
+t.wooloo = {ability1 = 'Morbidone', ability2 = 'Fugafacile'}
+t.corviknight = {ability1 = 'Pressione', ability2 = 'Agitazione'}
+t.drednaw = {ability1 = 'Ferromascella', ability2 = 'Guscioscudo'}
+t.zacian = {ability1 = ''}
+t.zamazenta = {ability1 = ''}
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
