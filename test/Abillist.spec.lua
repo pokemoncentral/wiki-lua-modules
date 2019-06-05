@@ -17,3 +17,8 @@ print(abillist{args={'terra', 'Frangiaura'}})
 
 -- Event ability in page
 print(abillist{args={'acqua', 'Morfosintonia'}})
+
+if #arg > 0 then
+    -- Specific ability from command line
+    print(abillist{args={'elettro', arg[1]}})
+end
