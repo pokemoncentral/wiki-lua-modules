@@ -1617,9 +1617,9 @@ t.blacephalon = {ability1 = 'Ultraboost'}
 t[806] = t.blacephalon
 t.zeraora = {ability1 = 'Assorbivolt'}
 t[807] = t.zeraora
-t.grookey = {ability1 = ''}
-t.scorbunny = {ability1 = ''}
-t.sobble = {ability1 = ''}
+t.grookey = {ability1 = 'Erbaiuto'}
+t.scorbunny = {ability1 = 'Aiutofuoco'}
+t.sobble = {ability1 = 'Acquaiuto'}
 t.gossifleur = {ability1 = 'Lanugine', ability2 = 'Rigenergia'}
 t.eldegoss = {ability1 = 'Lanugine', ability2 = 'Rigenergia'}
 t.wooloo = {ability1 = 'Morbidone', ability2 = 'Fugafacile'}
