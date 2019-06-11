@@ -6503,6 +6503,8 @@ d.eldegoss = {}
 d.wooloo = {}
 d.corviknight = {}
 d.drednaw = {}
+d.impidimp = {}
+d.yamper = {}
 d.zacian = {}
 d.zamazenta = {}
 

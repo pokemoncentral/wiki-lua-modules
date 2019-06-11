@@ -1632,6 +1632,8 @@ d[809] = d.melmetal
 -- d.wooloo = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
 -- d.corviknight = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
 -- d.drednaw = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d.impidimp = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d.yamper = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
 -- d.zacian = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
 -- d.zamazenta = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
 

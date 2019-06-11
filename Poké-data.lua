@@ -1631,6 +1631,8 @@ t.eldegoss = {name = 'Eldegoss', ndex = nil, type1 = 'erba', type2 = 'erba'}
 t.wooloo = {name = 'Wooloo', ndex = nil, type1 = 'normale', type2 = 'normale'}
 t.corviknight = {name = 'Corviknight', ndex = nil, type1 = 'volante', type2 = 'acciaio'}
 t.drednaw = {name = 'Drednaw', ndex = nil, type1 = 'acqua', type2 = 'roccia'}
+t.impidimp = {name = 'Impidimp', ndex = nil, type1 = 'buio', type2 = 'folletto'}
+t.yamper = {name = 'Yamper', ndex = nil, type1 = 'elettro', type2 = 'elettro'}
 t.zacian = {name = 'Zacian', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 t.zamazenta = {name = 'Zamazenta', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 

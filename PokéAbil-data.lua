@@ -1625,6 +1625,8 @@ t.eldegoss = {ability1 = 'Lanugine', ability2 = 'Rigenergia'}
 t.wooloo = {ability1 = 'Morbidone', ability2 = 'Fugafacile'}
 t.corviknight = {ability1 = 'Pressione', ability2 = 'Agitazione'}
 t.drednaw = {ability1 = 'Ferromascella', ability2 = 'Guscioscudo'}
+t.impidimp = {ability1 = ''}
+t.yamper = {ability1 = ''}
 t.zacian = {ability1 = ''}
 t.zamazenta = {ability1 = ''}
 
