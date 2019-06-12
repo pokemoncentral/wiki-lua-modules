@@ -753,8 +753,8 @@ are all collapsed by default.
 --]]
 dr.debRes = function(frame)
     local p = w.trimAndMap(mw.clone(frame.args), string.lower)
-    local pokeData = pokes[string.parseInt(p[1]) or p[1]]
-            or pokes[mw.text.decode(p[1])]
+    local pokeData = p[1] and (pokes[string.parseInt(p[1]) or p[1]]
+            or pokes[mw.text.decode(p[1])])
 
     --[[
         If no data is found, the first parameter is the type, that is no
