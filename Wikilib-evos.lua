@@ -13,6 +13,28 @@ local pokes = require("Poké-data")
 
 --[[
 
+Given a Pokémon's table from Evo/data and an identifier of a Pokémon, check
+whether the table belongs to that Pokémon or not.
+The identifier can be either an ndex (possibly with an abbr) or a name.
+
+This function is based on the assumption that a Pokémon's name won't ever be
+the same as an ndex with abbr; if that is ever falsified by TPCi this function
+have to be rewritten.
+
+--]]
+ev.ownTable = function(pkmn, evotab)
+    -- if type(pkmn) == 'number' then
+    --     return pkmn == evotab.ndex
+    -- if evotab.name == pkmn then
+    --     return true
+    -- else
+    --     return evotab.ndex == pkmn
+    -- end
+    return pkmn == evotab.name or pkmn == evotab.ndex
+end
+
+--[[
+
 Given a Pokémon's table from Evo/data module, applies a fold on the tree rooted
 at that table.
 The function takes the accumulator as the first argument, then the value.
@@ -23,8 +45,8 @@ module's order.
 ev.foldEvoTree = function(evotab, acc, func)
     acc = func(acc, evotab)
     if evotab.evos then
-        table.map(evotab.evos, function(v)
-            acc = ev.foldEvoTree(v, acc, func)
+        acc = table.fold(evotab.evos, acc, function(acc1, v)
+            return ev.foldEvoTree(v, acc1, func)
         end, ipairs) -- Uses ipairs to keep the module's order
     end
     return acc
@@ -33,15 +55,14 @@ end
 --[[
 
 Given a Pokémon name or ndex, returns the evotable of that Pokémon, not of its
-whole evolutionary line.
+whole evolutionary line, that is the subtree rooted at the Pokémon's node.
 
 --]]
 ev.preciseEvotable = function(name)
-    local ndex = pokes[forms.nameToDataindex(name)].ndex
-    return ev.foldEvoTree(evodata[ndex], nil, function(acc, v)
+    return ev.foldEvoTree(evodata[name], nil, function(acc, v)
         if acc then
             return acc
-        elseif v.ndex == ndex then
+        elseif ev.ownTable(name, v) then
             return v
         else
             return nil
@@ -51,8 +72,8 @@ end
 
 --[[
 
-Given a Pokémon ndex (possibly with abbr), returns the evo tree pruned of
-branches that aren't in the subtree nor in the path to root of that Pokémon.
+Given a Pokémon name or ndex (possibly with abbr), returns the evo tree pruned
+of branches that aren't in the subtree nor in the path to root of that Pokémon.
 I.e: the exact tree that Evobox should print.
 
 Example: given Eevee, this functions returns Eevee and all its evolutions, but
@@ -63,12 +84,12 @@ The parameter should be the ndex as found in the evo-data module (that is, three
 digits possibly followed by the abbr, in first uppercase).
 
 --]]
-ev.prunedEvotree = function(ndex)
+ev.prunedEvotree = function(name)
     -- Support function. Needed because it's recursive. Local to access ndex and
     -- simplify pass to map. Two step declaration because it's recursive
     local recPruneEvoTree
     recPruneEvoTree = function(evotab)
-        if (evotab.ndex == ndex) then
+        if ev.ownTable(name, evotab) then
             return evotab
         end
         if not evotab.evos then
@@ -87,7 +108,7 @@ ev.prunedEvotree = function(ndex)
         return result
     end
 
-    return recPruneEvoTree(evodata[ndex])
+    return recPruneEvoTree(evodata[name])
 end
 
 --[[
@@ -104,6 +125,7 @@ end
 
 Given a Pokémon's ndex, returns the list of all Pokémon in which it can evolve.
 The list is of ndexes.
+If a Pokémon without ndex should be inserted in this list, it doesn't appear.
 
 --]]
 ev.evoList = function(name)

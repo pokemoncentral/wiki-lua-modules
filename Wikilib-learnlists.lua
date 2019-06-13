@@ -440,7 +440,7 @@ lib.computeSTAB = function(ndex, movename, form)
 		return ""
 	elseif (movedata.type == pokedata.type1 or movedata.type == pokedata.type2) then
 		return "'''"
-	else -- Add the branch to use Evo-data and compute ''
+	else -- TODO: add a branch to use Evo-data and compute ''
 		return ""
 	end
 end

@@ -1,6 +1,8 @@
 -- "Test cases" for evobox
 
 local evobox = require('Evobox')
+local nondex = require('test.LoadNondex')
+nondex{ types = false }
 
 -- ============================ Evobox (automatic) =============================
 if true then
@@ -54,6 +56,8 @@ if true then
 	-- More than 2 phase one
 	print(evobox.Evobox{args={'Tyrogue'}})
 	print(evobox.Evobox{args={'Lycanroc', prune = 'no'}})
+	-- Guy without ndex nor types
+	print(evobox.Evobox{args={'SnorloBello', prune = 'yes'}})
 	-- Feebas
 	print(evobox.Evobox{args={'Feebas'}})
 	-- Nincada

@@ -168,6 +168,7 @@ eb.boxArrow.img.methods = {
     [evodata.methods.STONE] = methodsFunctionGenerator(links.bag('${param}')),
     [evodata.methods.TRADE] = methodsFunctionGenerator(links.bag('Blocco Amici')),
     [evodata.methods.BREED] = methodsFunctionGenerator(ms.staticLua('Uovo')),
+    [evodata.methods.UNKNOWN] = methodsFunctionGenerator(''),
 }
 eb.boxArrow.img.conditions = {
     [evodata.conditions.OTHER] = nilConst,
@@ -199,6 +200,7 @@ eb.boxArrow.desc.methods = {
     [evodata.methods.STONE] = methodsFunctionGenerator('${param}'),
     [evodata.methods.TRADE] = methodsFunctionGenerator('[[Scambio]]'),
     [evodata.methods.BREED] = methodsFunctionGenerator('[[Accoppiamento Pokémon|Accoppiamento]]'),
+    [evodata.methods.UNKNOWN] = methodsFunctionGenerator('Sconosciuto'),
 }
 eb.boxArrow.desc.conditions = {
     [evodata.conditions.OTHER] = smallMethodsFunctionGenerator('${param}'),
@@ -344,13 +346,13 @@ number), the notes and the name to be displayed in place of the Pokémon name
 --]]
 eb.boxPokemonAuto = function(ndex, phase, notes, shownName)
     local poke = multigen.getGen(pokes[form.nameToDataindex(ndex)])
-    ndex = type(ndex) == type("") and ndex or string.threeFigures(ndex)
+    ndex = type(ndex) == "string" and ndex or string.threeFigures(ndex)
 
     return eb.boxPokemon{
         notes = notes,
-        type1 = poke.type1,
-        type2 = poke.type2,
-        spr = spr.sprLua(ndex, 'current', 'male', '150px'),
+        type1 = poke.type1 or "sconosciuto",
+        type2 = poke.type2 or "sconosciuto",
+        spr = spr.sprLua(ndex, "current", "male", "150px"),
         phase = phase,
         name = poke.name,
         shownName = shownName
@@ -379,8 +381,8 @@ eb.makePhaseRows = function(evos, phase)
         local key = 'box' .. tostring(k)
         arrows[key] = eb.SingleArrow(v)
         boxes[key] = eb.boxPokemonAuto(
-            v.ndex,
-            eb.phaseName(phase, evodata[v.ndex]),
+            v.ndex or v.name,
+            eb.phaseName(phase, evodata[v.name]),
             v.notes
         )
         return v
@@ -415,8 +417,8 @@ eb.makeManyEvosRow = function(evos)
         return string.interp(eb.strings.GRID_ROW, {
             arrow = eb.SingleArrow(v, 'fixed'),
             box = eb.boxPokemonAuto(
-                v.ndex,
-                eb.phaseName(2, evodata[v.ndex]),
+                v.ndex or v.name,
+                eb.phaseName(2, evodata[v.name]),
                 v.notes
             )
         })
@@ -440,8 +442,8 @@ eb.Evobox = function(frame)
     local pokename = mw.text.decode(p[1]):lower()
     local abbr = p.form or ""
     local pokeData = multigen.getGen(pokes[form.nameToDataindex(pokename .. abbr)])
-    local nameabbr = abbr == "" and pokeData.ndex
-                                  or string.tf(pokeData.ndex) .. abbr
+    local nameabbr = abbr == "" and pokename or pokename .. abbr
+
     local data
     if p.prune == "no" then
         data = evodata[nameabbr]
@@ -454,7 +456,7 @@ eb.Evobox = function(frame)
 
     -- Insert the first phase Pokémon box
     table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
-        box1 = eb.boxPokemonAuto(data.ndex, eb.phaseName(1, data), data.notes)
+        box1 = eb.boxPokemonAuto(data.ndex or data.name, eb.phaseName(1, data), data.notes)
     }))
 
     local phase3evos
@@ -474,7 +476,7 @@ eb.Evobox = function(frame)
                     box1 = eb.SingleArrow(data)
                 }))
                 table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
-                    box1 = eb.boxPokemonAuto(data.evos[1].ndex,
+                    box1 = eb.boxPokemonAuto(data.evos[1].ndex or data.evos[1].name,
                                              eb.phaseName(2, data),
                                              data.evos[1].notes)
                 }))
@@ -484,7 +486,7 @@ eb.Evobox = function(frame)
                     box1 = eb.DoubleArrow(data)
                 }))
                 table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
-                    box1 = eb.boxPokemonAuto(data.evos[1].ndex,
+                    box1 = eb.boxPokemonAuto(data.evos[1].ndex or data.evos[1].name,
                                              eb.phaseName(2, data),
                                              data.evos[1].notes)
                 }))
@@ -500,7 +502,10 @@ eb.Evobox = function(frame)
 
     local evobox = {
         string.interp(boxContainer, {
-            background = css.horizGradLua{ type1 = pokeData.type1, type2 = pokeData.type2 },
+            background = css.horizGradLua{
+                type1 = pokeData.type1 or 'sconosciuto',
+                type2 = pokeData.type2 or 'sconosciuto'
+            },
             content = table.concat(evoboxcontent)
         })
     }
