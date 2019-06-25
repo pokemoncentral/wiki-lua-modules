@@ -594,7 +594,7 @@ end
 l.PokeLabelledEntry.__lt = l.sortNdex
 
 l.PokeLabelledEntry.groupID = function(this)
-    return this.ndex
+    return this.ndex or this.name:lower()
 end
 
 --[[
@@ -608,7 +608,7 @@ l.PokeLabelledEntry.replaceLabel = function(this, label)
     if type(label) == 'table' then
         -- Takes care also of the empty label case
         this.formAbbr = label[1]
-        for k, v in ipairs(label) do
+        for _, v in ipairs(label) do
             if form.abbrLT(this.formsData, v, this.formAbbr) then
                 this.formAbbr = v
             end
@@ -628,7 +628,7 @@ l.PokeLabelledEntry.addLabel = function(this, label)
     if type(label) ~= 'table' then
         label = {label}
     end
-    for k, v in ipairs(label) do
+    for _, v in ipairs(label) do
         table.insert(this.labels, v)
         if form.abbrLT(this.formsData, v, this.formAbbr) then
             this.formAbbr = v

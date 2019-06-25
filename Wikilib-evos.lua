@@ -137,8 +137,8 @@ end
 
 --[[
 
-Given a Pokémon's ndex, returns the list of types of its evolutions that it
-doesn't have.
+Given a Pokémon name od ndex, returns the list of types of its evolutions that
+it doesn't have.
 
 --]]
 ev.evoTypesList = function(name)
@@ -151,6 +151,16 @@ ev.evoTypesList = function(name)
     end)), function(type)
         return not (type == thisdata.type1 or type == thisdata.type2)
     end)
+end
+
+--[[
+
+Given a Pokémon name or ndex return true iff that Pokémon can't evolve further.
+
+--]]
+ev.isFullyEvolved = function(name)
+    return ev.preciseEvotable(name).evos == nil
+    -- return table.empty(ev.preciseEvotable(name).evos)
 end
 
 return ev

@@ -5984,7 +5984,6 @@ evo.melmetal = evo.meltan
 evo[808], evo[809] = evo.meltan, evo.meltan
 
 -- Pokémon without an ndex
--- NB: the ndex field should be usable as index for the evo table
 
 evo.grookey = {
 	ndex = nil,

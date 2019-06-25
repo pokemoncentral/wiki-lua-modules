@@ -2,7 +2,7 @@
 
 local gens = {}
 
-local tab = require('Wikilib-tables')
+local tab = require('Wikilib-tables') -- luacheck: no unused
 local data = require("Gens-data")
 
 -- Il primo argomento è un indice delle sottotables delle tables delle

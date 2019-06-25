@@ -7,19 +7,20 @@ a given ability.
 
 local k = {}
 
-local mw = require('mw')
-
-local css = require('Css')
-local links = require('Links')
-local list = require('Wikilib-lists')
-local ms = require('MiniSprite')
-local oop = require('Wikilib-oop')
-local resp = require('Resp')
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local txt = require('Wikilib-strings')      -- luacheck: no unused
+local list = require('Wikilib-lists')
+local oop = require('Wikilib-oop')
 local genlib = require('Wikilib-multigen')
-local pokes = require('Poké-data')
-local gens = require('Gens-data')
+local css = require('Css')
+local links = require('Links')
+local ms = require('MiniSprite')
+local resp = require('Resp')
+local pokes = require("Poké-data")
+local abils = require('PokéAbil-data')
+local gens = require("Gens-data")
+
+local mw = require('mw')
 
 --[[
 
@@ -27,7 +28,7 @@ Class representing a list entry. Fulfills requirements of makeList, sortNdex
 and sortForms of Wikilib/lists
 
 --]]
-local Entry = oop.makeClass(list.PokeSortableEntry)
+k.Entry = oop.makeClass(list.PokeLabelledEntry)
 
 --[[
 
@@ -36,7 +37,7 @@ generation changes. The first argumetn is the ability to be printed, the second
 one whether it should be marked or not, to be used for events.
 
 --]]
-Entry.printAbil = function(abil, marked)
+k.Entry.printAbil = function(abil, marked)
     if not abil then
         return marked and '' or 'Nessuna'
     end
@@ -74,25 +75,31 @@ end
 
 --[[
 
-Constructor: the first argument is an entry from Poké/data, the second one its
-key and the third is the ability the Pokémon must have. As specified by
-makeList in Wikilib/lists, returns nil whenever the Pokémon can not have the
-ability.
+Constructor: the first argument is an entry from PokéAbil/data, the second
+one its key.
 
 --]]
-Entry.new = function(pokeAbil, name, abil)
-    if not table.deepSearch(pokeAbil, abil) then
-        return nil
-    end
-
+k.Entry.new = function(pokeAbil, name)
     local pokedata = genlib.getGen(pokes[name])
-    local this = Entry.super.new(name, pokedata.ndex)
-    this = table.merge(this, pokeAbil)
-    return setmetatable(table.merge(this, pokedata), Entry)
+    local this = k.Entry.super.new(name, pokedata.ndex)
+    this.abils = pokeAbil
+    if this.labels[1] == "" then
+        this.labels[1] = nil
+    end
+    return setmetatable(table.merge(this, pokedata), k.Entry)
 end
 
 -- Wikicode for a list entry: Pokémon mini sprite, name, types and abilities.
-Entry.__tostring = function(this)
+k.Entry.__tostring = function(this)
+    -- local form = this.formsData
+    --              and this.formsData.blacklinks[this.formAbbr] or ''
+    local form = ""
+    if this.labels[1] then
+        form = this.labels[1] == 'Tutte le forme'
+                and '<div class="small-text">Tutte le forme</div>'
+                or this.formsData.blacklinks[this.formAbbr]
+    end
+
     return string.interp([=[| class="min-width-sm-20" data-sort-value="${ndex}" | ${static}
 | class="min-width-sm-40 min-width-xs-80" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
 | class="min-width-xl-20 width-sm-40 width-xs-100" style="padding: 1ex 0.8ex;" | ${types}
@@ -104,18 +111,20 @@ Entry.__tostring = function(this)
     static = ms.staticLua(string.tf(this.ndex or 0) ..
             (this.formAbbr == 'base' and '' or this.formAbbr or '')),
     name = this.name,
-    form = this.formsData and this.formsData.blacklinks[this.formAbbr] or '',
+    form = form,
     types = resp.twoTypeBoxesLua(this.type1, this.type2, {'thin'}, nil,
         {'inline-block-sm', 'min-width-sm-70'}),
-    abil1 = Entry.printAbil(this.ability1),
-    abilEv = Entry.printAbil(this.abilitye, true),
-    abil2 = Entry.printAbil(this.ability2),
-    abild = Entry.printAbil(this.abilityd),
+    abil1 = k.Entry.printAbil(this.abils.ability1),
+    abilEv =k.Entry.printAbil(this.abils.abilitye, true),
+    abil2 = k.Entry.printAbil(this.abils.ability2),
+    abild = k.Entry.printAbil(this.abils.abilityd),
 })
 end
 
--- Wikicode for list header: it takes the type name, for colors
-local makeHeader = function(type)
+k.headers = {}
+
+-- Wikicode for list header: it takes the color name
+k.headers.makeHeader = function(color)
     return string.interp([=[{| class="sortable roundy text-center pull-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
 |- class="hidden-sm"
 ! style="padding-top: 0.5ex; padding-bottom: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000;">#</span>]]
@@ -125,8 +134,36 @@ local makeHeader = function(type)
 ! Seconda abilit&agrave;
 ! Abilit&agrave; speciale]=],
         {
-            bg = css.horizGradLua{type = type}
+            bg = css.horizGradLua{type = color}
         })
+end
+
+k.headers.separator = '|- class="roundy flex-sm flex-row flex-wrap flex-main-stretch flex-items-center" style="margin-top: 0.5rem;"'
+
+k.headers.footer = [[|-
+! class="text-left font-small" colspan="6" style="padding: 0.3ex 0.3em;" |
+* Le abilità in ''corsivo'' sono ottenibili solo in determinate circostanze.
+|}]]
+
+-- =============================== AbilEntry ===============================
+-- Class representing an entry of a Pokémon with a certain ability.
+k.AbilEntry = oop.makeClass(k.Entry)
+
+--[[
+
+Constructor: the same as the superclass but adding a filter for Pokémon with
+a certain ability.
+The first argument is an entry from PokéAbil/data, the second one its key and
+the third is the ability the Pokémon must have.
+
+--]]
+k.AbilEntry.new = function(pokeAbil, name, abil)
+    if not table.deepSearch(pokeAbil, abil) then
+        return nil
+    end
+
+    local this = k.AbilEntry.super.new(pokeAbil, name)
+    return setmetatable(this, k.AbilEntry)
 end
 
 --[[
@@ -142,16 +179,13 @@ k.abillist = function(frame)
     abil = abil or 'Cacofonia'
 
     return list.makeList({
-        source = require('PokéAbil-data'),
+        source = abils,
         iterator = list.pokeNames,
         entryArgs = abil,
-        makeEntry = Entry.new,
-        header = makeHeader(type),
-        separator = '|- class="roundy flex-sm flex-row flex-wrap flex-main-stretch flex-items-center" style="margin-top: 0.5rem;"',
-        footer = [[|-
-! class="text-left font-small" colspan="6" style="padding: 0.3ex 0.3em;" |
-* Le abilità in ''corsivo'' sono ottenibili solo in determinate circostanze.
-|}]]
+        makeEntry = k.AbilEntry.new,
+        header = k.headers.makeHeader(type),
+        separator = k.headers.separator,
+        footer = k.headers.footer,
     })
 end
 

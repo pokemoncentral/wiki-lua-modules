@@ -34,7 +34,7 @@ PokeSortableEntry it implements all the interfaces needed for sortForm,
 sortNdex and makeList in Wikilib/lists
 
 --]]
-local Entry = oop.makeClass(list.PokeLabelledEntry)
+s.Entry = oop.makeClass(list.PokeLabelledEntry)
 
 --[[
 
@@ -43,7 +43,7 @@ end. The starting generation is either the passed one or the latest; the value
 itself is computed from those of the passed statistics in such generation.
 
 --]]
-Entry.makeSumSpan = function(stats, gen)
+s.Entry.makeSumSpan = function(stats, gen)
     gen = gen or gendata.latest
     stats = statsUtil.getStatsGen(stats, gen)
 
@@ -59,21 +59,21 @@ Returns the generation spans for the statistics sum, starting from the given
 generation. First generation is not included.
 
 --]]
-Entry.makeSum = function(stats, startGen)
+s.Entry.makeSum = function(stats, startGen)
 
     --[[
         If stats have not changed throughout the generations, returning a
         single span beginning and ends in the latest generation.
     --]]
     if not statsUtil.didStatsChange(stats) then
-        local sum = Entry.makeSumSpan(stats)
+        local sum = s.Entry.makeSumSpan(stats)
         sum.last = gendata.latest
         return {sum}
     end
 
     -- Skipping first gen
     startGen = math.max(startGen, 2)
-    local sums = {Entry.makeSumSpan(stats, startGen)}
+    local sums = {s.Entry.makeSumSpan(stats, startGen)}
 
     for gen = startGen + 1, gendata.latest do
 
@@ -84,7 +84,7 @@ Entry.makeSum = function(stats, startGen)
 
         if anyChange then
             sums[#sums].last = gen - 1
-            table.insert(sums, Entry.makeSumSpan(stats, gen))
+            table.insert(sums, s.Entry.makeSumSpan(stats, gen))
         end
     end
 
@@ -98,7 +98,7 @@ Wikicode for a single stat cell: can print both generation spans and single
 values
 
 --]]
-Entry.printStatCell = function(stat, statName)
+s.Entry.printStatCell = function(stat, statName)
     local interpData = {bg = c[statName].light}
     if type(stat) == 'number' then
         interpData.val = string.printNumber(stat)
@@ -120,12 +120,12 @@ in account. Therefore, the only filtering performed is to exclude Pokémon and
 forms not existing in the passed generation, if any.
 
 --]]
-Entry.new = function(stats, poke, gen)
+s.Entry.new = function(stats, poke, gen)
     if gen and not gamesUtil.isInGen(poke, gen) then
         return nil
     end
 
-    local this = Entry.super.new(poke, pokes[poke].ndex)
+    local this = s.Entry.super.new(poke, pokes[poke].ndex)
 
     -- No generation means from second onwards
     this.statsOrder = statsUtil.statsOrder[gen or 2]
@@ -140,7 +140,7 @@ Entry.new = function(stats, poke, gen)
     else
         local pokeGen = math.max(genUtil.getGen.ndex(this.ndex), 2)
         this.stats = statsUtil.cleanStats(mg.getGenSpans(stats), 2)
-        this.statsSum = Entry.makeSum(stats, pokeGen)
+        this.statsSum = s.Entry.makeSum(stats, pokeGen)
         local statsCount = table.getn(this.stats)
         this.statsAvg = table.map(this.statsSum, function(span)
             span = mw.clone(span)
@@ -149,7 +149,7 @@ Entry.new = function(stats, poke, gen)
         end)
     end
 
-    return setmetatable(this, Entry)
+    return setmetatable(this, s.Entry)
 end
 
 --[[
@@ -157,7 +157,7 @@ end
 Equality operator for entries' merging.
 
 --]]
-Entry.__eq = function(a, b)
+s.Entry.__eq = function(a, b)
     -- The two entries are equals iff their stats tables are the same
     return table.equal(a.stats, b.stats)
 end
@@ -168,12 +168,12 @@ Wikicode for a list entry: shows Pokémon ndex, mini sprite, name and base
 stats, plus total and average.
 
 --]]
-Entry.__tostring = function(this)
+s.Entry.__tostring = function(this)
     local cells = table.map(this.statsOrder, function(stat)
-        return Entry.printStatCell(this.stats[stat], stat)
+        return s.Entry.printStatCell(this.stats[stat], stat)
     end, ipairs)
-    table.insert(cells, Entry.printStatCell(this.statsSum, 'pcwiki'))
-    table.insert(cells, Entry.printStatCell(this.statsAvg, 'pcwiki'))
+    table.insert(cells, s.Entry.printStatCell(this.statsSum, 'pcwiki'))
+    table.insert(cells, s.Entry.printStatCell(this.statsAvg, 'pcwiki'))
     local name = pokes[this.name].name
     local form = ''
     if this.labels[1] then
@@ -198,8 +198,11 @@ ${statsCells}]=],
         })
 end
 
+-- Headers
+s.headers = {}
+
 -- List header
-local header = string.interp([=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
+s.headers.header = string.interp([=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
 |-
 ! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]
 ! colspan="2" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
@@ -224,7 +227,7 @@ local header = string.interp([=[{| class="roundy-corners text-center pull-center
 )
 
 -- List header
-local firstGenHeader = string.interp([=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
+s.headers.firstGenHeader = string.interp([=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
 |-
 ! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]
 ! colspan="2" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
@@ -261,18 +264,18 @@ s.statlist = function(frame)        -- luacheck: no unused
         [[===Dalla seconda generazione in poi===]],
         list.makeCollapsedList({
             source = stats,
-            makeEntry = Entry.new,
+            makeEntry = s.Entry.new,
             iterator = list.pokeNames,
-            header = header,
+            header = s.headers.header,
             fullGroupLabel = 'Tutte le forme'
         }),
         [[===Nella prima generazione===]],
         list.makeCollapsedList({
             source = stats,
-            makeEntry = Entry.new,
+            makeEntry = s.Entry.new,
             entryArgs = 1,
             iterator = list.pokeNames,
-            header = firstGenHeader,
+            header = s.headers.firstGenHeader,
             fullGroupLabel = 'Tutte le forme'
         })
     }, '\n')
