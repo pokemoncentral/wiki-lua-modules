@@ -6505,6 +6505,9 @@ d.corviknight = {}
 d.drednaw = {}
 d.impidimp = {}
 d.yamper = {}
+d.alcremie = {}
+d.rolycoly = {}
+d.duraludon = {}
 d.zacian = {}
 d.zamazenta = {}
 

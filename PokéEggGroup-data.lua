@@ -1627,6 +1627,9 @@ t[807] = t.zeraora
 -- t.drednaw = {group1 = ''}
 -- t.impidimp = {group1 = ''}
 -- t.yamper = {group1 = ''}
+-- t.alcremie = {group1 = ''}
+-- t.rolycoly = {group1 = ''}
+-- t.duraludon = {group1 = ''}
 -- t.zacian = {group1 = 'sconosciuto'}
 -- t.zamazenta = {group1 = 'sconosciuto'}
 

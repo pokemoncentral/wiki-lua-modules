@@ -6073,6 +6073,9 @@ evo.drednaw = { ndex = nil, name = 'drednaw' }
 evo.impidimp = { ndex = nil, name = 'impidimp' }
 evo.wooloo = { ndex = nil, name = 'wooloo' }
 evo.yamper = { ndex = nil, name = 'yamper' }
+evo.alcremie = { ndex = nil, name = 'alcremie' }
+evo.rolycoly = { ndex = nil, name = 'rolycoly' }
+evo.duraludon = { ndex = nil, name = 'duraludon' }
 evo.zacian = { ndex = nil, name = 'zacian' }
 evo.zamazenta = { ndex = nil, name = 'zamazenta' }
 

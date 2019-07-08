@@ -37,7 +37,7 @@ print(debRes{args = {'Altaria'}})
 print(debRes{args = {'Veleno', 'Terra', 'Velenopunto', 'Antagonismo',
     'Forzabruta', 'Remasabbia'}})
 print(debRes{args = {type1 = 'Veleno', type2 = 'Terra', abil1 = 'Velenopunto',
-        abil2 = 'Antagonismo', abild = 'Clorofilla', abile = 'Risplendi'}})
+    abil2 = 'Antagonismo', abild = 'Clorofilla', abile = 'Risplendi'}})
 
 print(debRes{args = {'Spettro', '', 'Levitazione'}})
 print(debRes{args = {type = 'Spettro', abil = 'Levitazione'}})

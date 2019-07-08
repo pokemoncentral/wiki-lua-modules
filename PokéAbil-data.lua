@@ -1626,7 +1626,10 @@ t.wooloo = {ability1 = 'Morbidone', ability2 = 'Fugafacile'}
 t.corviknight = {ability1 = 'Pressione', ability2 = 'Agitazione'}
 t.drednaw = {ability1 = 'Ferromascella', ability2 = 'Guscioscudo'}
 t.impidimp = {ability1 = ''}
-t.yamper = {ability1 = ''}
+t.yamper = {ability1 = 'Raccattapalle'}
+t.alcremie = {ability1 = 'Dolcevelo'}
+t.rolycoly = {ability1 = 'Vapormacchina', ability2 = 'Antifuoco'}
+t.duraludon = {ability1 = 'Metalleggero', ability2 = 'Metalpesante'}
 t.zacian = {ability1 = ''}
 t.zamazenta = {ability1 = ''}
 

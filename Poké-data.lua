@@ -1633,6 +1633,9 @@ t.corviknight = {name = 'Corviknight', ndex = nil, type1 = 'volante', type2 = 'a
 t.drednaw = {name = 'Drednaw', ndex = nil, type1 = 'acqua', type2 = 'roccia'}
 t.impidimp = {name = 'Impidimp', ndex = nil, type1 = 'buio', type2 = 'folletto'}
 t.yamper = {name = 'Yamper', ndex = nil, type1 = 'elettro', type2 = 'elettro'}
+t.alcremie = {name = 'Alcremie', ndex = nil, type1 = 'folletto', type2 = 'folletto'}
+t.rolycoly = {name = 'Rolycoly', ndex = nil, type1 = 'roccia', type2 = 'roccia'}
+t.duraludon = {name = 'Duraludon', ndex = nil, type1 = 'acciaio', type2 = 'drago'}
 t.zacian = {name = 'Zacian', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 t.zamazenta = {name = 'Zamazenta', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 
