@@ -119,6 +119,7 @@ local fixedParams = {
 	roza = { abbr1 = "RO", abbr2 = "ZA" },
 	['7'] = { abbr1 = "So", abbr2 = "L" },
 	usul = { abbr1 = "US", abbr2 = "UL" },
+	['8'] = { abbr1 = "Sp", abbr2 = "Sc" },
 	LGPE = { abbr1 = "LGP", abbr2 = "LGE" },
 	md1 = { abbr1 = "PMDR", abbr2 = "PMDB" },
 	md2 = { abbr1 = "PMDT", abbr2 = "PMDO", abbr3 = "PMDC" },
