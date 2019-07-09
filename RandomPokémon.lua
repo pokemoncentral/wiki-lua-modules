@@ -16,54 +16,12 @@ local alt = require("AltForms-data")
 local useless = require("UselessForms-data")
 
 -- Ritorna un ndex randomico
-
 local randomNdex = function()
 	math.randomseed(os.time())
 	return math.random(data.pokeNum)
 end
 
---[[
-
-Ritorna le forme alternative nella nomenclatura degli artwork.
-Si aspetta la sigla della forma e il nome del Pokémon
-
---]]
-
-local getArtworkForm = function(abbr, name)
-
-	-- Forma base
-
-	if abbr == 'base' then
-		return ''
-	end
-
-	local formName = (alt[name] or useless[name]).names[abbr]
-
-	-- Mega e archeo evoluzioni
-
-	if form.hasMega(name) then
-		return table.concat{'-', abbr:find('M') and 'Mega' or 'Archeo',
-			formName:match(' [XY]') or ''}
-	end
-
-	-- Forme di Alola
-
-	if form.hasAlola(name) then
-		return '-Alola'
-	end
-
-	--[[
-
-	Altre forme alternative: è necessario rimuovere
-	un'eventuale prima parola, es 'Forma' o 'Manto'
-
-	--]]
-
-	return '-' .. (formName:match('%S*%s(.+)') or formName)
-end
-
 -- Ritorna l'artwork di un Pokèmon random
-
 p.artwork = function(frame)
 	local dimensione = string.trim(frame.args[1] or '100')
 	local num = tonumber(frame.args[2]) or randomNdex()
@@ -75,7 +33,7 @@ p.artwork = function(frame)
 	end
 	num = string.three_figures(num)
 	if forme then
-		num = num .. getArtworkForm(forme[math.random(table.getn(forme))], nome:lower())
+		num = num .. form.toEmptyAbbr(forme[math.random(table.getn(forme))], nome:lower())
 	end
 
 	return string.interp("[[File:Artwork${num}.png|center|${dimensione}x${dimensione}px|link=${nome}]]",
