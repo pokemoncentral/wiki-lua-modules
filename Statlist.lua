@@ -175,8 +175,9 @@ s.Entry.__tostring = function(this)
     table.insert(cells, s.Entry.printStatCell(this.statsSum, 'pcwiki'))
     table.insert(cells, s.Entry.printStatCell(this.statsAvg, 'pcwiki'))
     local name = pokes[this.name].name
+
     local form = ''
-    if this.labels[1] then
+    if this.labels[1] and this.labels[1] ~= "" then
         form = this.labels[1] == 'Tutte le forme'
                 and '<div class="small-text">Tutte le forme</div>'
                 or this.formsData.blacklinks[this.formAbbr]

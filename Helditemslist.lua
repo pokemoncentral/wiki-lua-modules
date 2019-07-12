@@ -149,7 +149,7 @@ end
 Main wikicode interface.
 
 --]]
-h.helditem = function(frame)
+h.helditem = function(_)
 	return list.makeGroupedList{
 		source = require('PokéItems-data'),
 		makeEntry = h.Entry.new,

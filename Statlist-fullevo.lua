@@ -61,21 +61,23 @@ Example:
 s.statlist = function(frame)        -- luacheck: no unused
     return table.concat({
         [[===Dalla seconda generazione in poi===]],
-        list.makeCollapsedList({
+        list.makeGroupedList({
             source = stats,
             makeEntry = Entry.new,
             iterator = list.pokeNames,
             header = stl.headers.header,
-            fullGroupLabel = 'Tutte le forme'
+            fullGroupLabel = 'Tutte le forme',
+            noEmptyLabel = true
         }),
         [[===Nella prima generazione===]],
-        list.makeCollapsedList({
+        list.makeGroupedList({
             source = stats,
             makeEntry = Entry.new,
             entryArgs = 1,
             iterator = list.pokeNames,
             header = stl.headers.firstGenHeader,
-            fullGroupLabel = 'Tutte le forme'
+            fullGroupLabel = 'Tutte le forme',
+            noEmptyLabel = true
         })
     }, '\n')
 end

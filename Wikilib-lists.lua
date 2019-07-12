@@ -32,15 +32,18 @@ local pokes = require("Poké-data")
 
 Replaces the label with the parameter when
 all forms share the same box. If only one form
-exists, it deletes all the labels instead.
+exists it deletes all the labels instead, unless
+the third parameter is true.
 The boxes are returned for composition convenience.
 
 --]]
-local allForms = function(boxes, label)
+local allForms = function(boxes, label, empty)
     if #boxes == 1 then
         local box = boxes[1]
         if box:labelFormsCount() == 1 then
-            box:emptyLabel()
+            if empty then
+                box:emptyLabel()
+            end
         else
             box:replaceLabel(label)
         end
@@ -219,9 +222,9 @@ end
 
 Creates a list where every entry is a row in an HTML table, grouping entries by
 a property. Entries grouped that holds the same data are merged, and the labels
-of the entries are merged. Groups of one element are printed without the label.
-If a whole group is collapsed in a single entry, the label may become a custom
-text.
+of the entries are merged. If a whole group is collapsed in a single entry, the
+label may become a custom text. If not specified otherwise, groups of one
+element are printed without the label.
 
 Arguments (names because they are many):
 	- source: table to scan to retrieve the data.
@@ -238,6 +241,8 @@ Arguments (names because they are many):
         to it, but not the separator. Defaults to '|}'.
 	- fullGroupLabel: optional, the label to use when a whole group generates a
 		single entry. Defaults to 'Tutte le forme'
+    - noEmptyLabel: flag, specifies if a group with one element should use the
+        label of the element instead of an empty one. Defaults to false
 
 The class representing the entries must implement the following interface:
     - constructor(): Takes as parameters an element of source, its key and
@@ -274,7 +279,7 @@ l.makeGroupedList = function(args)
     entries = table.flatMapToNum(groups, function(group)
         local groupEntries = {}
 
-        for k, entry in pairs(group) do
+        for _, entry in pairs(group) do
             local index = table.search(groupEntries, entry)
             if index then
                 groupEntries[index]:addLabel(entry:getLabel())
@@ -284,7 +289,9 @@ l.makeGroupedList = function(args)
         end
         -- No need for sorting here because all entries are sorted after the
         -- flatten
-        return allForms(groupEntries, args.fullGroupLabel)
+        return allForms(groupEntries,
+                        args.fullGroupLabel,
+                        not args.noEmptyLabel)
     end)
     table.sort(entries)
 
