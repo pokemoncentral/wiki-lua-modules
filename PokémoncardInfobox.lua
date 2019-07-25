@@ -9,6 +9,25 @@ local t = require('Wikilib-tables')
 local ot = require('Wikilib-others')
 local c = require("Colore-data")
 
+-- Wikicode for the images in nameImage
+local nameImages = {
+	Leggenda = '[[File:Pokémon LEGGENDA.png|LEGGENDA]]',
+	PlasmaEX = '[[File:Pokémon EX.png|x18px|EX]]',
+	Galassia = '[[File:Pokémon SP G.png|Galassia]]',
+	Capopalestra = '[[File:Pokémon SP CP.png|Capopalestra]]',
+	Superquattro = '[[File:Pokémon SP 4.png|Superquattro]]',
+	Campione = '[[File:Pokémon SP C.png|Campione]]',
+	['Asso Lotta'] = '[[File:Pokémon SP AL.png|Asso Lotta]]',
+	Film = '[[File:Pokémon SP F.png|Film]]',
+	TURBO = '[[File:TURBO.png|TURBO]]',
+	Prism = '[[File:Stella prisma.png|17px|Stella prisma]]',
+	GX = '[[File:Icona Pokémon GX.svg|x18px|GX]]',
+ 	RedGX = '[[File:Pokémon Red GX.png|x18px|GX]]',
+ 	TTGX = '[[File:Pokémon TT GX.png|x18px|GX ALLEATI]]',
+ 	RedTTGX = '[[File:Pokémon Red TT GX.png|x18px|GX ALLEATI]]'
+}
+t.tableKeysAlias(nameImages,  {'PlasmaEX', 'Leggenda', 'Galassia'}, {{'EX', 'MegaEX'}, {'Legend'}, {'Galactic'}})
+
 -- Ritorna "light" se il parametro è 'Light', "dark" se il parametro è
 -- 'Dark', Rocket', 'Rocketex', 'Idro', 'Aqua', 'Magma', 'Galassia',
 -- 'Galactic', 'Plasma' o 'PlasmaEX';
@@ -72,13 +91,7 @@ switches.Color = switches.color
 -- chiamata:  {{#invoke | PokémoncardInfobox | nameImage | <parametroSwitch> }}
 
 switches.nameImage = function(frame)
-	local image = {Leggenda = '[[File:Pokémon LEGGENDA.png|LEGGENDA]]', PlasmaEX = '[[File:Pokémon EX.png|x18px|EX]]',
-		Galassia = '[[File:Pokémon SP G.png|Galassia]]', Capopalestra = '[[File:Pokémon SP CP.png|Capopalestra]]',
-		Superquattro = '[[File:Pokémon SP 4.png|Superquattro]]', Campione = '[[File:Pokémon SP C.png|Campione]]',
-		['Asso Lotta'] = '[[File:Pokémon SP AL.png|Asso Lotta]]', Film = '[[File:Pokémon SP F.png|Film]]',
-		TURBO = '[[File:TURBO.png|TURBO]]'}
-	t.tableKeysAlias(image,  {'PlasmaEX', 'Leggenda', 'Galassia'}, {{'EX', 'MegaEX'}, {'Legend'}, {'Galactic'}})
-	return image[txt.trim(frame.args[1])] or ''
+	return nameImages[txt.trim(frame.args[1])] or ''
 end
 
 switches.NameImage = switches.nameImage
