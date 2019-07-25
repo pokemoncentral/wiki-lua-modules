@@ -221,7 +221,7 @@ ${groups}]=],
 {
     bg = css.horizGradLua{type = group:gsub(' ', '_') .. '_uova'},
     groups = groupsCount < 2 and ''
-        or '! [[Gruppi uova|<span style="color:#000">Altro gruppo</span>]]'
+        or '! [[Gruppi Uova|<span style="color:#000">Altro gruppo</span>]]'
 })
 end
 
@@ -254,12 +254,12 @@ end
 --[[
 
 Wikicode interface function: takes a egg group
-as the title of its page ('<group> (gruppo uova)')
+as the title of its page ('<group> (Gruppo Uova)')
 and prints a list fo all the Pokémon having
 only such group. Heading for sublists are also displayed.
 
 Examples:
-{{#invoke: Egggrouplist | singlegrouplist | Mostro (gruppo uova) }}
+{{#invoke: Egggrouplist | singlegrouplist | Mostro (Gruppo Uova) }}
 
 (in type pages only)
 {{#invoke: Egggrouplist | singlegrouplist | {{BASEPAGENAME}} }}
@@ -269,7 +269,7 @@ g.singlegrouplist = function(frame)
 
     -- Extracting type from page title
     local group = string.trim(mw.text.decode(frame.args[1]
-            or 'sconosciuto (gruppo uova)')):match('^([%a%d%s]+) %(gruppo uova%)$'):lower()
+            or 'sconosciuto (Gruppo Uova)')):match('^([%a%d%s]+) %(Gruppo Uova%)$'):lower()
 
     return g.makeGroupTable(group, g.SingleGroupEntry)
 end
@@ -280,13 +280,13 @@ g.Singlegrouplist, g.singleGroupList, g.SingleGroupList =
 --[[
 
 Wikicode interface function: takes a egg group
-as the title of its page ('<group> (gruppo uova)')
+as the title of its page ('<group> (Gruppo Uova)')
 and prints a list fo all the Pokémon having
 both that and another group. Heading for
 sublists are also displayed.
 
 Examples:
-{{#invoke: Egggrouplist | doublegrouplist | Mostro (gruppo uova) }}
+{{#invoke: Egggrouplist | doublegrouplist | Mostro (Gruppo Uova) }}
 
 (in type pages only)
 {{#invoke: Egggrouplist | doublegrouplist | {{BASEPAGENAME}} }}
@@ -296,7 +296,7 @@ g.doublegrouplist = function(frame)
 
     -- Extracting type from page title
     local group = string.trim(mw.text.decode(frame.args[1]
-            or 'sconosciuto (gruppo uova)')):match('^([%a%d%s]+) %(gruppo uova%)$'):lower()
+            or 'sconosciuto (Gruppo Uova)')):match('^([%a%d%s]+) %(Gruppo Uova%)$'):lower()
 
     return g.makeGroupTable(group, g.DoubleGroupEntry)
 end
