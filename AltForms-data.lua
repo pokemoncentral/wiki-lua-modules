@@ -38,7 +38,7 @@ local makeLinks = function(black)
 	local stdLinks = table.filter(t, function(_, key)
 		return
 				not table.search({'mega', 'megaxy',
-						'archeo', 'alola'}, key)
+						'archeo', 'alola', 'galar'}, key)
 			and
 				not table.search(t.mega, key)
 			and
@@ -47,6 +47,8 @@ local makeLinks = function(black)
 				not table.search(t.archeo, key)
 			and
 				not table.search(t.alola, key)
+			and
+				not table.search(t.galar, key)
 	end)
 
 	-- Links standard
@@ -65,6 +67,7 @@ local makeLinks = function(black)
 	makeTargetedLink(link, index, 'Megaevoluzione', table.merge(t.mega, t.megaxy))
 	makeTargetedLink(link, index, 'Archeorisveglio', t.archeo)
 	makeTargetedLink(link, index, 'Forma di Alola', t.alola)
+	makeTargetedLink(link, index, 'Forma di Galar', t.galar)
 end
 
 --[[
@@ -100,6 +103,7 @@ t.wishiwashi = {}
 t.silvally = {}
 t.minior = {}
 t.necrozma = {}
+t.morpeko = {}
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
 
@@ -127,6 +131,11 @@ t.archeo = {'kyogre', 'groudon'}
 
 t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'diglett', 'meowth',
 	'geodude', 'grimer', 'exeggutor', 'marowak'}
+
+-- Tabella contenente i Pokémon che hanno una forma di Galar:
+-- per efficienza, alcuni sono alla fine del modulo
+
+t.galar = {'weezing', 'zigzagoon'}
 
 --[[
 
@@ -178,6 +187,7 @@ t.silvally.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante'
 t.minior.names = {R = 'Forma Nucleo', base = 'Forma Meteora'}
 t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = "Necrozma Ali dell'Aurora",
 	U = 'UltraNecrozma', base = ''}
+t.morpeko.names = {V = 'Motivo Panciavuota', base = 'Motivo Panciapiena'}
 for _, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}
@@ -197,6 +207,10 @@ for _, v in pairs(t.alola) do
 	t[v] = {}
 	t[v].names = {A = 'Forma di Alola', base = ''}
 end
+for _, v in pairs(t.galar) do
+	t[v] = {}
+	t[v].names = {G = 'Forma di Galar', base = ''}
+end
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
@@ -208,6 +222,7 @@ t.diglett.anchor = 'Diglett e Dugtrio'
 t.meowth.anchor = 'Meowth e Persian'
 t.geodude.anchor = 'Geodude, Graveler e Golem'
 t.grimer.anchor = 'Grimer e Muk'
+t.zigzagoon.anchor = 'Zigzagoon e Linoone'
 t.wormadam.anchor = 'Burmy e Wormadam'
 t.tornadus.anchor = 'Forze della Natura'
 t.pumpkaboo.anchor = 'Pumpkaboo e Gourgeist'
@@ -256,6 +271,7 @@ t.silvally.ext = mw.clone(t.arceus.ext)
 t.silvally.ext.sconosciuto = nil
 t.minior.ext = {nucleo = 'R', meteora = 'base'}
 t.necrozma.ext = {vespro = 'V', aurora = 'A', ultra = 'U', necrozma = 'base'}
+t.morpeko.ext = {panciavuota = 'V', panciapiena = 'base'}
 for _, v in pairs(t.mega) do
 	t[v].ext = {mega = 'M'}
 end
@@ -267,6 +283,9 @@ for _, v in pairs(t.archeo) do
 end
 for _, v in pairs(t.alola) do
 	t[v].ext = {alola = 'A'}
+end
+for _, v in pairs(t.galar) do
+	t[v].ext = {galar = 'G'}
 end
 
 --[[
@@ -303,6 +322,7 @@ t.wishiwashi.gamesOrder = {'base', 'B'}
 t.silvally.gamesOrder = mw.clone(t.arceus.gamesOrder)
 t.minior.gamesOrder = {'base', 'R'}
 t.necrozma.gamesOrder = {'base', 'V', 'A', 'U'}
+t.morpeko.gamesOrder = {'base', 'V'}
 table.remove(t.silvally.gamesOrder)
 for _, v in pairs(t.mega) do
 	t[v].gamesOrder = {'base', 'M'}
@@ -315,6 +335,9 @@ for _, v in pairs(t.archeo) do
 end
 for _, v in pairs(t.alola) do
 	t[v].gamesOrder = {'base', 'A'}
+end
+for _, v in pairs(t.galar) do
+	t[v].gamesOrder = {'base', 'G'}
 end
 
 --[[
@@ -362,7 +385,9 @@ t.geodude.since = {A = 'sl', base = 'rb'}
 t.grimer.since = {A = 'sl', base = 'rb'}
 t.exeggutor.since = {A = 'sl', base = 'rb'}
 t.marowak.since = {A = 'sl', base = 'rb'}
+t.weezing.since = {G = 'spsc', base = 'rb'}
 t.eevee.since = {Cm = 'lgpe', base = 'rb'}
+t.zigzagoon.since = {G = 'spsc', base = 'rz'}
 t.castform.since = {S = 'rz', P = 'rz', N = 'rz', base = 'rz'}
 t.deoxys.since = {A = 'rfvf', D = 'rfvf', V = 's', base = 'rz'}
 t.wormadam.since = {Sa = 'dp', Sc = 'dp', base = 'dp'}
@@ -391,6 +416,7 @@ t.silvally.since = {base = 'sl', L = 'sl', Vo = 'sl', Ve = 'sl', T = 'sl',
 	Ai = 'sl', Fu = 'sl', D = 'sl', Fo = 'sl', El = 'sl', G = 'sl'}
 t.minior.since = {base = 'sl', R = 'sl'}
 t.necrozma.since = {base = 'sl', V = 'usul', A = 'usul', U = 'usul'}
+t.morpeko.since = {base = 'spsc', V = 'spsc'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
 t.blastoise.since = {M = 'xy', base = 'rb'}
 t.beedrill.since = {M = 'roza', base = 'rb'}
@@ -464,6 +490,9 @@ table.insert(t.alola, 'graveler')
 table.insert(t.alola, 'golem')
 table.insert(t.alola, 'muk')
 
+-- Other Galar forms
+table.insert(t.galar, 'linoone')
+
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 
 t.raticate = t.rattata
@@ -474,6 +503,7 @@ t.persian = t.meowth
 t.graveler = t.geodude
 t.golem = t.geodude
 t.muk = t.grimer
+t.linoone = t.zigzagoon
 t.thundurus, t.landorus = t.tornadus, t.tornadus
 t.gourgeist = t.pumpkaboo
 t[19] = t.rattata
@@ -495,7 +525,10 @@ t[88] = t.grimer
 t[89] = t.muk
 t[103] = t.exeggutor
 t[105] = t.marowak
+t[100] = t.weezing
 t[133] = t.eevee
+t[263] = t.zigzagoon
+t[264] = t.linoone
 t[351] = t.castform
 t[386] = t.deoxys
 t[413] = t.wormadam

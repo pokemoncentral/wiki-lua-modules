@@ -1636,6 +1636,8 @@ t.yamper = {name = 'Yamper', ndex = nil, type1 = 'elettro', type2 = 'elettro'}
 t.alcremie = {name = 'Alcremie', ndex = nil, type1 = 'folletto', type2 = 'folletto'}
 t.rolycoly = {name = 'Rolycoly', ndex = nil, type1 = 'roccia', type2 = 'roccia'}
 t.duraludon = {name = 'Duraludon', ndex = nil, type1 = 'acciaio', type2 = 'drago'}
+t.obstagoon = {name = 'Obstagoon', ndex = nil, type1 = 'buio', type2 = 'normale'}
+t.morpeko = {name = 'Morpeko', ndex = nil, type1 = 'elettro', type2 = 'buio'}
 t.zacian = {name = 'Zacian', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 t.zamazenta = {name = 'Zamazenta', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 
@@ -1678,6 +1680,12 @@ t.exeggutorA = {name = 'Exeggutor', ndex = 103, type1 = 'erba', type2 = 'drago'}
 t['103A'] = t.exeggutorA
 t.marowakA = {name = 'Marowak', ndex = 105, type1 = 'fuoco', type2 = 'spettro'}
 t['105A'] = t.marowakA
+t.weezingG = {name = 'Weezing', ndex = 110, type1 = 'veleno', type2 = 'folletto'}
+t['110G'] = t.weezingG
+t.zigzagoonG = {name = 'Zigzagoon', ndex = 263, type1 = 'buio', type2 = 'normale'}
+t['263G'] = t.zigzagoonG
+t.linooneG = {name = 'Linoone', ndex = 264, type1 = 'buio', type2 = 'normale'}
+t['264G'] = t.linooneG
 t.castformS = {name = 'Castform', ndex = 351, type1 = 'fuoco', type2 = 'fuoco'}
 t['351S'] = t.castformS
 t.castformP = {name = 'Castform', ndex = 351, type1 = 'acqua', type2 = 'acqua'}
@@ -1851,6 +1859,7 @@ t.lycanrocN, t['745N'], t.lycanrocC, t['745C'] =
 	t.lycanroc, t.lycanroc, t.lycanroc, t.lycanroc
 t.wishiwashiB, t['746B'] = t.wishiwashi, t.wishiwashi
 t.miniorR, t['774R'] = t.minior, t.minior
+t.morpekoV = t.morpeko
 
 t.venusaurM, t['003M'] = t.venusaur, t.venusaur
 t.charizardMY, t['006MY'] = t.charizard, t.charizard

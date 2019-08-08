@@ -6076,6 +6076,7 @@ evo.yamper = { ndex = nil, name = 'yamper' }
 evo.alcremie = { ndex = nil, name = 'alcremie' }
 evo.rolycoly = { ndex = nil, name = 'rolycoly' }
 evo.duraludon = { ndex = nil, name = 'duraludon' }
+evo.morpeko = { ndex = nil, name = 'morpeko' }
 evo.zacian = { ndex = nil, name = 'zacian' }
 evo.zamazenta = { ndex = nil, name = 'zamazenta' }
 
@@ -6199,6 +6200,31 @@ evo.grimerA = {
 }
 evo.mukA = evo.grimerA
 evo['088A'], evo['089A'] = evo.grimerA, evo.grimerA
+
+evo.zigzagoonG = {
+	ndex = '263G',
+	name = 'zigzagoonG',
+
+	evos = {
+		{
+			ndex = '264G',
+			name = 'linooneG',
+			method = evo.methods.UNKNOWN,
+			-- [evo.methods.LEVEL] = 20,
+			-- conditions = { [evo.conditions.TIME] = 'Notte' },
+
+			evos = {
+				{
+					ndex = nil,
+					name = 'obstagoon',
+					method = evo.methods.UNKNOWN,
+				}
+			}
+		}
+	}
+}
+evo.linooneG, evo.obstagoon = evo.zigzagoonG, evo.zigzagoonG
+evo['263G'], evo['264G'] = evo.zigzagoonG, evo.zigzagoonG
 
 --[[
 

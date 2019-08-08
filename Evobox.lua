@@ -345,7 +345,9 @@ number), the notes and the name to be displayed in place of the Pokémon name
 
 --]]
 eb.boxPokemonAuto = function(ndex, phase, notes, shownName)
-    local poke = multigen.getGen(pokes[form.nameToDataindex(ndex)])
+    local poke = multigen.getGen(pokes[ndex]
+                    or pokes[tonumber(ndex)]
+                    or pokes[tonumber(string.match(ndex, "(%d%d%d)%u%l*"))])
     ndex = type(ndex) == "string" and ndex or string.threeFigures(ndex)
 
     return eb.boxPokemon{

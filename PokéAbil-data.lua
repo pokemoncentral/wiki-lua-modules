@@ -1630,6 +1630,8 @@ t.yamper = {ability1 = 'Raccattapalle'}
 t.alcremie = {ability1 = 'Dolcevelo'}
 t.rolycoly = {ability1 = 'Vapormacchina', ability2 = 'Antifuoco'}
 t.duraludon = {ability1 = 'Metalleggero', ability2 = 'Metalpesante'}
+t.obstagoon = {ability1 = 'Temerarietà', ability2 = 'Dentistretti'}
+t.morpeko = {ability1 = 'Pancialterna'}
 t.zacian = {ability1 = ''}
 t.zamazenta = {ability1 = ''}
 
@@ -1677,8 +1679,14 @@ t.exeggutorA = {ability1 = 'Indagine', abilityd = 'Coglibacche'}
 t['103A'] = t.exeggutorA
 t.marowakA = {ability1 = 'Corpofunesto', ability2 = 'Parafulmine', abilityd = 'Testadura'}
 t['105A'] = t.marowakA
+t.weezingG = {ability1 = 'Levitazione'}
+t['110G'] = t.weezingG
 t.eeveeCm = {ability1 = 'Nessuna'}
 t['133Cm'] = t.eeveeCm
+t.zigzagoonG = {ability1 = 'Raccolta', ability2 = 'Voracità'}
+t['263G'] = t.zigzagoonG
+t.linooneG = {ability1 = 'Raccolta', ability2 = 'Voracità'}
+t['264G'] = t.linooneG
 t.giratinaO = {ability1 = 'Levitazione'}
 t['487O'] = t.giratinaO
 t.shayminC = {ability1 = 'Leggiadro'}
@@ -1769,6 +1777,7 @@ t['773B'], t['773Fo'] = t.silvally, t.silvally
 t.miniorR, t['774R'] = t.minior, t.minior
 t.necrozmaV, t.necrozmaA = t.necrozma, t.necrozma
 t['800V'], t['800A'] = t.necrozma, t.necrozma
+t.morpekoV = t.morpeko
 
 -- Mega evolutions
 
