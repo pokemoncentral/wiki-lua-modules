@@ -133,9 +133,9 @@ end
 --[[
 
 This function returns the links to all of the games in an abbreviation data,
-displayed displayed in the specified color and shade. The color can be passed
-as an hexadecimal or as a named color; it defaults to each game's own color, or
-black if the game has no color. The shade default is 'normale'.
+displayed in the specified color and shade. The color can be passed as an
+hexadecimal or as a named color; it defaults to each game's own color, or black
+if the game has no color. The shade default is 'normale'.
 
 Arguments:
     - data: the data of an abbreviation, from module Sigle/data.

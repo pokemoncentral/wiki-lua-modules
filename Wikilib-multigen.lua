@@ -7,8 +7,8 @@ values in data modules.
 
 local mg = {}
 
-local tab = require('Wikilib-tables')
-local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')  -- luacheck: no unused
+local txt = require('Wikilib-strings') -- luacheck: no unused
 local w = require('Wikilib')
 local gendata = require("Gens-data")
 
