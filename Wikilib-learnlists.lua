@@ -9,7 +9,7 @@ local ms = require('MiniSprite')
 local box = require('Box')
 local c = require("Colore-data")
 local css = require('Css')
-local abbr = require("Sigle-data")
+local sig = require("Sigle-data")
 local s = require("Sup-data")
 local abbrLib = require('Wikilib-sigle')
 local links = require('Links')
@@ -17,6 +17,7 @@ local pokes = require("Poké-data")
 local moves = require("Move-data")
 local forms = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
+local evolib = require('Wikilib-evos')
 
 -- local trimOnly = {'x v zA'}
 
@@ -344,7 +345,7 @@ lib.tutorgames = function(games)
 				Uso del Modulo:Sigle/data per ricavare il
 				colore del gioco dalla sigla
 			--]]
-			local gameData = abbr[game[1]][1]
+			local gameData = sig[game[1]][1]
 			local cell = {'| style="padding: 0.8ex 0.5ex;" |'}
 
 			if game[2] == 'Yes' then
@@ -427,20 +428,27 @@ end
 Computes the STAB value given the ndex and move name. If ndex or movename
 doesn't matches an entry of the respective module, an empty string is returned.
 Arguments:
-	- ndex
-	- movename
+	- ndex: either the ndex or the Pokémon's name, all but the abbr lowercase
+	- movename: name of the move to compute the STAB against
 	- form (optional): abbr or extended form name
 
 --]]
 lib.computeSTAB = function(ndex, movename, form)
-	local abbr = forms.getabbr(ndex, form)
-	local pokedata = multigen.getGen(pokes[forms.nameToDataindex(ndex:match('^(%d+)') .. forms.toEmptyAbbr(abbr))])
+	local name, abbr = forms.getnameabbr(ndex, form)
+	local iname = forms.toEmptyAbbr(abbr) == "" and name
+				or (type(name) == 'number' and string.tf(name) or name
+					) .. forms.toEmptyAbbr(abbr)
+	-- The or pokes[name] is needed for useless forms, not indexed in Poké-data
+	local pokedata = multigen.getGen(pokes[iname] or pokes[name])
 	local movedata = moves[movename:lower()]
 	if not pokedata or not movedata or movedata.power == '&mdash;' then
 		return ""
 	elseif (movedata.type == pokedata.type1 or movedata.type == pokedata.type2) then
 		return "'''"
-	else -- TODO: add a branch to use Evo-data and compute ''
+	elseif table.search(evolib.evoTypesList(iname), movedata.type) then
+		-- TODO: add something to take alternative forms into account
+		return "''"
+	else
 		return ""
 	end
 end

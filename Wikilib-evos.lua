@@ -142,12 +142,13 @@ it doesn't have.
 
 --]]
 ev.evoTypesList = function(name)
-    local thisdata = pokes[forms.nameToDataindex(name)]
+    local thisdata = pokes[name] or pokes[forms.getnameabbr(name)]
     return table.filter(table.unique(table.flatMap(ev.foldEvoTree(ev.preciseEvotable(name), {}, function(acc, v)
         table.insert(acc, v.ndex)
         return acc
     end), function(ndex)
-        return { pokes[ndex].type1, pokes[ndex].type2 }
+        local pokedata = pokes[ndex] or pokes[forms.getnameabbr(name)]
+        return { pokedata.type1, pokedata.type2 }
     end)), function(type)
         return not (type == thisdata.type1 or type == thisdata.type2)
     end)

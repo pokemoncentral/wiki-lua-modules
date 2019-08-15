@@ -1,8 +1,10 @@
 local render = require('Render')
 local header = require('Movelist-hf')
 local entry = require('Movelist-entry')
+local mw = require('mw')
 
 
+mw.title.setTitle("Fulmine")
 print(header.Levelh{args={'Elettro', '1'}})
 print(render.entry{args={'Movelist-entry.Level',
 "[[€1|025Co|no|no|no|26|22|20|B2W2=10|12|USUM=40|STAB='''|useless=yes£]]",
@@ -18,6 +20,7 @@ print(render.entry{args={'Movelist-entry.Level',
 print(header.levelf{args={'Elettro'}})
 
 
+mw.title.setTitle("Pallagelo")
 print(header.Breedh{args = {'Ghiaccio', '3'}})
 print(render.entry{args={'Movelist-entry.breed',
 [[€3|276|no|#396##397##398#|PtHGSS=#627##628#|no|#580##581##627##628#|ORAS=no|N/D|STAB='''£]],
@@ -26,6 +29,7 @@ print(render.entry{args={'Movelist-entry.breed',
 print(header.footer{args={'Ghiaccio'}})
 
 
+mw.title.setTitle("Geloraggio")
 print(header.TMh{args = {'Ghiaccio', '1', 'MT13', 'no', 'MT13', 'MT13', 'MT13', 'MT13', 'MT13'}})
 print(render.entry{args={'Movelist-entry.TM',
 "[[€1|116|yes|no|yes|yes|yes|yes|yes£]]",
@@ -38,7 +42,7 @@ print(render.entry{args={'Movelist-entry.TM',
 print(header.footer{args={'Ghiaccio'}})
 
 
-
+mw.title.setTitle("Dragobolide")
 print(header.tutorh{args = {'drago', '8'}})
 print(header.tutor4{args = {'yes', 'yes', 'yes'}})
 print(header.tutor5{args = {'yes', 'yes'}})
@@ -54,17 +58,18 @@ print(render.entry{args={'Movelist-entry.tutor',
 print(header.footer{args={'drago'}})
 
 
-print(header.Eventh{args = {'drago'}})
+mw.title.setTitle("Eterelama")
+print(header.Eventh{args = {'volante'}})
 print(header.div{args={'4'}})
 print(entry.Event{args={'491', 'Darkrai', '1', 'Buio', 'Buio', '[[F10|Evento decimo film]]<br>Toys "R" Us e Nintendo World Store<br>Darkrai Alamos europeo<br>Darkrai Alamos australano'}})
 print(entry.Event{args={'493', 'Arceus', '1', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
 print(entry.Event{args={'492', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
 print(entry.Event{args={'492C', 'Shaymin', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
 print(entry.Event{args={'493', 'Arceus', 'Normale', 'Normale', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''", allforms = 'yes'}})
-print(header.footer{args={'drago'}})
+print(header.footer{args={'volante'}})
 
 
-
+mw.title.setTitle("Azione")
 print(header.Eventh{args = {'Normale'}})
 print(header.div{args={'4'}})
 print(entry.Event{args={'422E', 'My Pokémon Ranch', useless = 'yes'}})

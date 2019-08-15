@@ -17,6 +17,7 @@ described by the condition itself.
 local mw = require('mw')
 
 local tab = require('Wikilib-tables')  -- luacheck: no unused
+local str = require('Wikilib-strings') -- luacheck: no unused
 local links = require('Links')
 local pokes = require("Poké-data")
 local altforms = require("AltForms-data")
@@ -3745,6 +3746,9 @@ evo[489], evo[490] = evo.phione, evo.phione
 evo.darkrai = { ndex = 491, name = 'darkrai' }
 evo[491] = evo.darkrai
 
+evo.shaymin = { ndex = 492, name = 'shaymin' }
+evo[492] = evo.shaymin
+
 evo.arceus = { ndex = 493, name = 'arceus' }
 evo[493] = evo.arceus
 
@@ -6080,7 +6084,7 @@ evo.morpeko = { ndex = nil, name = 'morpeko' }
 evo.zacian = { ndex = nil, name = 'zacian' }
 evo.zamazenta = { ndex = nil, name = 'zamazenta' }
 
--- Alternative forms
+-- Alternative forms with evolutions
 evo.rattataA = {
 	ndex = '019A',
 	name = 'rattataA',
@@ -6257,7 +6261,7 @@ local createAlternativeForm = function(altdata, basetab)
 		local newtab = mapTree(basetab, function(basenode)
 			if basenode.notes then
 				table.insert(ndexes, basenode.ndex)
-				basenode.ndex = tostring(basenode.ndex) .. abbr
+				basenode.ndex = string.tf(basenode.ndex) .. abbr
 				basenode.name = tostring(basenode.name) .. abbr
 				basenode.notes = name
 			end
@@ -6265,7 +6269,7 @@ local createAlternativeForm = function(altdata, basetab)
 		end)
 
 		table.map(ndexes, function(ndex)
-			evo[tostring(ndex) .. abbr] = newtab
+			evo[string.tf(ndex) .. abbr] = newtab
 			evo[pokes[ndex].name:lower() .. abbr] = newtab
 		end)
 	end)
@@ -6285,5 +6289,46 @@ createAlternativeForm(useless.deerling, evo.deerling)
 createAlternativeForm(useless.frillish, evo.frillish)
 
 createAlternativeForm(useless.floette, evo.floette)
+
+-- Alternative forms without evolutions, here just to avoid burst of the module
+-- when indexing them
+--[[
+
+Simple function that creates empty tables for all alternative forms but base
+
+--]]
+local emptyAlternativeForms = function(altdata, name)
+	local ndex = pokes[name].ndex
+	table.map(altdata.names, function(_, abbr)
+		if abbr == "base" then
+			return
+		end
+		-- Avoid to overwrite an existing table
+		if evo[name .. abbr] then
+			return
+		end
+		evo[name .. abbr] = {
+			ndex = ndex and (string.tf(ndex) .. abbr) or nil,
+			name = name .. abbr
+		}
+		if ndex then
+			evo[string.tf(ndex) .. abbr] = evo[name .. abbr]
+		end
+	end)
+end
+
+-- Given that emptyAlternativeForms can't overwrite an existing table, simply
+-- maps over altforms and useless
+local nopokes = { 'mega', 'megaxy', 'archeo', 'alola', 'galar' }
+for k, v in pairs(altforms) do
+	if type(k) == 'string' and not table.search(nopokes, k) then
+		emptyAlternativeForms(v, k)
+	end
+end
+for k, v in pairs(useless) do
+	if type(k) == 'string' and not table.search(nopokes, k) then
+		emptyAlternativeForms(v, k)
+	end
+end
 
 return evo

@@ -27,6 +27,9 @@ local htmlencode_map = {
 }
 local htmldecode_map = table.flip(htmlencode_map)
 
+-- Title to return for a page. Can be changed for testing
+local pagetitle = "mw"
+
 return {
     text = {
         split = function(str, pattern, plain)
@@ -112,7 +115,9 @@ return {
 
 	title = {
 		getCurrentTitle = function()
-			return { text = 'mw' }
-		end
-	}
+			return { text = pagetitle }
+		end,
+		-- Testing functions: changes the title returned by getCurrentTitle
+		setTitle = function(title) pagetitle = title end,
+	},
 }
