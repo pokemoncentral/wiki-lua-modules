@@ -1,8 +1,46 @@
 local render = require('Render')
 local header = require('Learnlist-hf')
 local ll = require('Learnlist')
+local pokemoves = require('PokéMoves-data')
 
+-- Compare the structure of two tables, that is the equality of the two tables
+-- up to non-table values
+-- This means that if a chain of indexing can be done on one of the tables it
+-- can be done on the other without errors
+local function same_structure(tab1, tab2)
+    if type(tab1) ~= 'table' and type(tab2) ~= 'table' then
+        -- Both non tables
+        return true
+    elseif type(tab1) ~= 'table' or type(tab2) ~= 'table' then
+        -- One table and one not
+        return false
+    end
+
+    -- Both tables
+    for key, value in pairs(tab1) do
+        if not same_structure(value, tab2[key]) then
+            return false
+        end
+    end
+    for key, _ in pairs(tab2) do
+        if not tab1[key] then
+            return false
+        end
+    end
+
+    return true
+end
+
+-- Check that ll.nogameText and pokemoves.games have the same structure
+-- because correctness of the output depends on this.
+assert(same_structure(ll.nogameText, pokemoves.games),
+        "ll.nogameText and pokemoves.games doesn't have the same structure")
+
+-- ========================== Standard test (prints) ==========================
 print(ll.levelLua('staraptor', '7'))
+
+-- ======================== Old Learnlist-entryn tests ========================
+if false then
 
 print(header.levelh{args={'Necrozma', 'Psico', 'Psico', '7', '7'}})
 print(render.entry{args={'Learnlist-entry7.level',
@@ -626,3 +664,5 @@ print(render.entry{args={ 'Learnlist-entry5.tutor',
 [[€Sintesi|Erba|Stato|&mdash;|&mdash;|5|||no|yes£]],
 [[€Affannoseme|Erba|Stato|&mdash;|100|10|||no|yes£]]}})
 print(header.tutorf{args={'Bulbasaur', 'erba', 'veleno', '5', '1'}})
+
+end

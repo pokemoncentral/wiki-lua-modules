@@ -10,34 +10,34 @@ levels, representing levels at which the Pokémon learns the move in the
 corresponding game. The ordering of games is given in the table "games". A
 level can be a number, "inizio" or "evo".
 
+So for instance the table
+
+{"inizio"}, {"inizio", "evo"}
+
+corresponding to gen 7 means that the Pokémon learns that move at level
+"inizio" in SL (first element of games["7"]) and both at level "inizio" and
+"evo" in USUL (second element of games["7"]).
+
+TODO: something for notes. Inquire: are notes associated with moves or the pair
+      (move, level)?
+TODO: inquire: for other kind of learnlist (tm, breed, etc.) are there moves
+      with more than one "level"?
+
 --]]
 
 local m = {}
 
 m.games = {
-    [7] = { "SL", "USUL" },
+    ["7"] = { "SL", "USUL" },
     LGPE = { "LGPE" },
 }
 
 m.staraptor = {
-    [7] = {
+    ["7"] = {
         ["zuffa"] = { {"inizio"}, {"inizio", "evo"} },
         ["attacco rapido"] = { {"inizio", 5}, {"inizio", 5} },
         ["geyser fotonico"] = { {}, {50} },
         doppioteam = { {13}, {13} },
-
-        -- inizio = {"attacco d'ala", "attacco rapido", "azione", "ruggito", "zuffa"},
-        -- evo = "zuffa",
-        -- [5] = "attacco rapido",
-        -- [9] = "attacco d'ala",
-        -- [13] = "doppioteam",
-        -- [18] = "rimonta",
-        -- [23] = "turbine",
-        -- [28] = "aeroassalto",
-        -- [33] = "riduttore",
-        -- [41] = "agilità",
-        -- [49] = "baldeali",
-        -- [57] = "azzardo"
     },
     LGPE = {},
 }
