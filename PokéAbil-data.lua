@@ -1623,7 +1623,7 @@ t.sobble = {ability1 = 'Acquaiuto'}
 t.gossifleur = {ability1 = 'Lanugine', ability2 = 'Rigenergia'}
 t.eldegoss = {ability1 = 'Lanugine', ability2 = 'Rigenergia'}
 t.wooloo = {ability1 = 'Morbidone', ability2 = 'Fugafacile'}
-t.corviknight = {ability1 = 'Pressione', ability2 = 'Agitazione'}
+t.corviknight = {ability1 = 'Pressione', ability2 = 'Agitazione', abilityd = 'Blindospecchio'}
 t.drednaw = {ability1 = 'Ferromascella', ability2 = 'Guscioscudo'}
 t.impidimp = {ability1 = ''}
 t.yamper = {ability1 = 'Raccattapalle'}
@@ -1679,7 +1679,7 @@ t.exeggutorA = {ability1 = 'Indagine', abilityd = 'Coglibacche'}
 t['103A'] = t.exeggutorA
 t.marowakA = {ability1 = 'Corpofunesto', ability2 = 'Parafulmine', abilityd = 'Testadura'}
 t['105A'] = t.marowakA
-t.weezingG = {ability1 = 'Levitazione'}
+t.weezingG = {ability1 = 'Levitazione', ability2 = 'Gas Reagente'}
 t['110G'] = t.weezingG
 t.eeveeCm = {ability1 = 'Nessuna'}
 t['133Cm'] = t.eeveeCm
