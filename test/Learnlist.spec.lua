@@ -1,6 +1,8 @@
 local render = require('Render')
 local header = require('Learnlist-hf')
+local ll = require('Learnlist')
 
+print(ll.levelLua('staraptor', '7'))
 
 print(header.levelh{args={'Necrozma', 'Psico', 'Psico', '7', '7'}})
 print(render.entry{args={'Learnlist-entry7.level',

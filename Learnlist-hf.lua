@@ -202,8 +202,8 @@ local header = function(pars, kind)
 	local genh, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
 	return txt.interp([=[
-<div class="text-center" style="max-width: 100%;">
-<div class="roundy text-center inline-block " style="max-width: 100%; ${bg}">
+<div class="text-center max-width-xl-100">
+<div class="roundy text-center inline-block max-width-xl-100" style="${bg}">
 <div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''${gentitle}&nbsp;generazione'''</span></span></div>
 <div class="text-center" style="font-weight: bold; padding: 0.5ex;">
 <div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
@@ -211,7 +211,7 @@ local header = function(pars, kind)
 </div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
-{| class="white-rows" style="max-width: 100%; width: 100% !important; margin-top: 0; border-spacing: 0; background: transparent;"
+{| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
 |- class="text-center"
 ${low_row}]=],
 {
