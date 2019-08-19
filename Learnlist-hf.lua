@@ -57,21 +57,21 @@ ways.event = 'tramite eventi'
 -- Tabella con le celle della prima riga degli headers
 
 local cells = {}
-cells.moveandtype = '!! rowspan = "${r}" | &nbsp;[[Mossa|<span style="color:#000;">Mossa</span>]]&nbsp; !! rowspan = "${r}" | &nbsp;[[Tipi|<span style="color:#000;">Tipo</span>]]&nbsp;'
-cells.ppp = [=[!! rowspan = "${r}" | &nbsp;[[Potenza|<span style="color:#000;">Pot.</span>]]&nbsp;
-! rowspan = "${r}" | &nbsp;[[Precisione|<span style="color:#000;">Prec.</span>]]&nbsp;
-! rowspan = "${r}" | &nbsp;[[PP|<span style="color:#000;">PP</span>]]&nbsp;]=]
-cells.cat = '!! rowspan = "${r}" | &nbsp;[[Categoria danno|<span style="color:#000;">Cat.</span>]]&nbsp;'
-cells.gara = [=[!! rowspan = "${r}" | &nbsp;[[Virtù Gara|<span style="color:#000;">Virtù</span>]]&nbsp;
-! rowspan = "${r}" | &nbsp;[[Saggio di recitazione|<span style="color:#000;">Fascino</span>]]&nbsp;]=]
-cells.inib = '!! rowspan = "${r}" | &nbsp;[[Intralcio|<span style="color:#000;">Intralcio</span>]]&nbsp;'
-cells.level = '! colspan = "${c}" | &nbsp;[[Livello|<span style="color:#000;">Lv.</span>]]&nbsp;'
-cells.tm = '! colspan = "${c}" | &nbsp;[[MT|<span style="color:#000;">MT</span>]]&nbsp;'
-cells.tmhm = '! colspan = "${c}" | &nbsp;[[MT|<span style="color:#000;">MT</span>]]/[[MN|<span style="color:#000;">MN</span>]]&nbsp;'
-cells.breed = '! colspan = "${c}" | &nbsp;[[Mossa uovo|<span style="color:#000;">${parent}</span>]]&nbsp;'
-cells.tutor = '! colspan = "${c}" | &nbsp;[[Videogiochi Pokémon|<span style="color:#000;">Gioco</span>]]&nbsp;'
-cells.preevo = '! colspan = "${c}" | &nbsp;[[Evoluzione|<span style="color:#000;">Stadio</span>]]&nbsp;'
-cells.event = '! colspan = "${c}" | &nbsp;[[Evento Pokémon|<span style="color:#000;">Evento</span>]]&nbsp;'
+cells.moveandtype = '!! rowspan = "${r}" | &nbsp;[[Mossa]]&nbsp; !! rowspan = "${r}" | &nbsp;[[Tipo]]&nbsp;'
+cells.ppp = [=[!! rowspan = "${r}" | &nbsp;[[Potenza|Pot.]]&nbsp;
+! rowspan = "${r}" | &nbsp;[[Precisione|Prec.]]&nbsp;
+! rowspan = "${r}" | &nbsp;[[PP]]&nbsp;]=]
+cells.cat = '!! rowspan = "${r}" | &nbsp;[[Categoria danno|Cat.]]&nbsp;'
+cells.gara = [=[!! rowspan = "${r}" | &nbsp;[[Virtù Gara|Virtù]]&nbsp;
+! rowspan = "${r}" | &nbsp;[[Saggio di recitazione|Fascino]]&nbsp;]=]
+cells.inib = '!! rowspan = "${r}" | &nbsp;[[Intralcio]]&nbsp;'
+cells.level = '! colspan = "${c}" | &nbsp;[[Livello|Lv.]]&nbsp;'
+cells.tm = '! colspan = "${c}" | &nbsp;[[MT]]&nbsp;'
+cells.tmhm = '! colspan = "${c}" | &nbsp;[[MT]]/[[MN]]&nbsp;'
+cells.breed = '! colspan = "${c}" | &nbsp;[[Mossa uovo|${parent}]]&nbsp;'
+cells.tutor = '! colspan = "${c}" | &nbsp;[[Videogiochi Pokémon|Gioco]]&nbsp;'
+cells.preevo = '! colspan = "${c}" | &nbsp;[[Evoluzione|Stadio]]&nbsp;'
+cells.event = '! colspan = "${c}" | &nbsp;[[Evento Pokémon|Evento]]&nbsp;'
 cells.basic = table.concat{cells.moveandtype, cells.ppp}
 cells.category = table.concat{cells.moveandtype, cells.cat, cells.ppp}
 cells[1], cells[2] = cells.basic, cells.basic
@@ -86,19 +86,19 @@ cells[6] = table.concat{cells.category, cells.gara, cells.inib}
 local games = {}
 games[5] = [=[
 
-|-
-! style="min-width: 2.2em;" | [[Pokémon Nero e Bianco|<span style="color:#000;">NB</span>]]
-! style="min-width: 3em;" | [[Pokémon Nero 2 e Bianco 2|<span style="color:#000;">N2B2</span>]]]=]
+|- class="black-text"
+! style="min-width: 2.2em;" | [[Pokémon Nero e Bianco|NB]]
+! style="min-width: 3em;" | [[Pokémon Nero 2 e Bianco 2|N2B2]]]=]
 games[6] = [=[
 
-|-
-! style="min-width: 2.2em;" | [[Pokémon X e Y|<span style="color:#000;">XY</span>]]
-! style="min-width: 3em;" | [[Pokémon Rubino Omega e Zaffiro Alpha|<span style="color:#000;">ROZA</span>]]]=]
+|- class="black-text"
+! style="min-width: 2.2em;" | [[Pokémon X e Y|XY]]
+! style="min-width: 3em;" | [[Pokémon Rubino Omega e Zaffiro Alpha|ROZA]]]=]
 games[7] = [=[
 
-|-
-! style="min-width: 2.2em;" | [[Pokémon Sole e Luna|<span style="color:#000;">SL</span>]]
-! style="min-width: 3em;" | [[Pokémon Ultrasole e Ultraluna|<span style="color:#000;">USUL</span>]]]=]
+|- class="black-text"
+! style="min-width: 2.2em;" | [[Pokémon Sole e Luna|SL]]
+! style="min-width: 3em;" | [[Pokémon Ultrasole e Ultraluna|USUL]]]=]
 
 -- Tabella con i Pokémon baby ottenibili tramite incensi, necessaria
 -- per le righe aggiuntive del footer per le mosse uovo
@@ -120,12 +120,12 @@ baby.Mantine = 'Mantyke'
 local rowsf = {}
 rowsf.level = [=[*Il livello "Inizio" indica una mossa conosciuta da ${poke} ottenuto a livello 1 in ${genl} generazione.
 *Le mosse segnate al livello "Evo" possono essere apprese al momento dell'evoluzione.]=]
-rowsf.breed1 = [=[*Le mosse segnate con un asterisco (*) si ottengono solo con una [[catena di accoppiamenti|<span style="color:#000;">catena di accoppiamenti</span>]] su ${poke} in ${genl} generazione.
+rowsf.breed1 = [=[*Le mosse segnate con un asterisco (*) si ottengono solo con una [[catena di accoppiamenti|<span class="black-text">catena di accoppiamenti</span>]] su ${poke} in ${genl} generazione.
 *Le mosse segnate con una doppia croce (‡) possono essere ottenute solo da un Pokémon che le abbia apprese in una generazione precedente.
 *Le mosse segnate con un'abbreviazione di un gioco in apice si possono ottenere su ${poke} solo in quel gioco.]=]
 rowsf.breed2 = [=[
 
-*Le mosse segnate con una croce (†) si possono ottenere su ${poke} solo se ad uscire dall'uovo è [[${baby}|<span style="color: #000">${baby}</span>]], e non altrimenti.]=]
+*Le mosse segnate con una croce (†) si possono ottenere su ${poke} solo se ad uscire dall'uovo è [[${baby}|<span class="black-text">${baby}</span>]], e non altrimenti.]=]
 rowsf.tutor = [=[*Un'abbreviazione bianca in una casella colorata indica che ${poke} può imparare la mossa dall'Insegnamosse in quel gioco.
 *Un'abbreviazione colorata su sfondo bianco indica che ${poke} non può imparare la mossa dall'Insegnamosse in quel gioco.]=]
 rowsf.event = '*Un livello in apice indica che ${poke} può imparare questa mossa normalmente in ${genl} generazione a quel livello.'
@@ -137,8 +137,8 @@ rowsf.last = [[
 
 rowsf.forms = {}
 rowsf.forms.none = "'evoluzione"
-rowsf.forms.yes = '\'evoluzione o una [[Differenze di forma#${poke}|<span style="color: #000;">forma alternativa</span>]]'
-rowsf.forms.mega = 'a [[Megaevoluzione|<span style="color: #000;">Megaevoluzione</span>]]'
+rowsf.forms.yes = '\'evoluzione o una [[Differenze di forma#${poke}|<span class="black-text">forma alternativa</span>]]'
+rowsf.forms.mega = 'a [[Megaevoluzione|<span class="black-text">Megaevoluzione</span>]]'
 
 -- Funzioni di supporto
 
@@ -147,11 +147,11 @@ rowsf.forms.mega = 'a [[Megaevoluzione|<span style="color: #000;">Megaevoluzione
 local genlink = function(gen, method, poke)
 	method = (method == 'tm' and tonumber(gen) > 6) and 'tm2' or method
     if gen == gendata.latest then
-        return txt.interp('[[${poke}#${way}|<span style="color:#000;">${genroman}</span>]]',
+        return txt.interp('[[${poke}#${way}|${genroman}]]',
             {poke = poke, way = string.fu(ways[method]),
 			genroman = gendata[gen].roman})
     else
-        return txt.interp('[[${poke}/Mosse apprese nella ${genletters} generazione#${way}|<span style="color:#000;">${genroman}</span>]]',
+        return txt.interp('[[${poke}/Mosse apprese in ${genletters} generazione#${way}|${genroman}]]',
             {poke = poke, genletters = gendata[gen].ext,
             way = string.fu(ways[method]), genroman = gendata[gen].roman})
     end
@@ -205,14 +205,14 @@ local header = function(pars, kind)
 <div class="text-center max-width-xl-100">
 <div class="roundy text-center inline-block max-width-xl-100" style="${bg}">
 <div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''${gentitle}&nbsp;generazione'''</span></span></div>
-<div class="text-center" style="font-weight: bold; padding: 0.5ex;">
+<div class="text-center black-text" style="font-weight: bold; padding: 0.5ex;">
 <div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
 <div>${links}</div>
 </div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
 {| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
-|- class="text-center"
+|- class="text-center black-text"
 ${low_row}]=],
 {
 	bg = css.horizGradLua{type1 = tipo1, type2 = tipo2},
@@ -232,7 +232,7 @@ local footer = function(pars, kind)
 |}</div>
 <div class="text-left small-font" style="line-height: 1em; padding: 0 0.5ex 1ex;">
 ${kindrows}
-*Il '''grassetto''' indica una mossa che ha il [[Bonus di tipo|<span style="color: #000;">bonus di tipo</span>]] quando viene usata da un ${poke}.
+*Il '''grassetto''' indica una mossa che ha il [[Bonus di tipo|<span class="black-text">bonus di tipo</span>]] quando viene usata da un ${poke}.
 *Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un${form} di ${poke}.${last}
 </div>
 </div>
@@ -257,12 +257,12 @@ d.levelhLGPE = function(frame)
 	local genh, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
 	return txt.interp([=[
-<div class="text-center" style="max-width: 100%;">
-<div class="roundy text-center inline-block " style="max-width: 100%; ${bg}">
-<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''Settima&nbsp;generazione: [[Pokémon: Let's Go, Pikachu! e Let's Go, Eevee!|<span class="black-text">LGPE</span>]]'''</span></span></div>
+<div class="text-center max-width-xl-100">
+<div class="roundy text-center inline-block max-width-xl-100" style="${bg}">
+<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font black-text">'''Settima&nbsp;generazione: [[Pokémon: Let's Go, Pikachu! e Let's Go, Eevee!|LGPE]]'''</span></div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
-{| class="white-rows" style="max-width: 100%; width: 100% !important; margin-top: 0; border-spacing: 0; background: transparent;"
+{| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
 |- class="text-center black-text"
 ! colspan="2" | [[Livello|Lv.]]
 ! [[Mossa]]
@@ -292,12 +292,12 @@ d.tmhLGPE = function(frame)
 	local genh, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
 	return txt.interp([=[
-<div class="text-center" style="max-width: 100%;">
-<div class="roundy text-center inline-block " style="max-width: 100%; ${bg}">
-<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''Settima&nbsp;generazione: [[Pokémon: Let's Go, Pikachu! e Let's Go, Eevee!|<span class="black-text">LGPE</span>]]'''</span></span></div>
+<div class="text-center max-width-xl-100">
+<div class="roundy text-center inline-block max-width-xl-100" style="${bg}">
+<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font black-text">'''Settima&nbsp;generazione: [[Pokémon: Let's Go, Pikachu! e Let's Go, Eevee!|LGPE]]'''</span></div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
-{| class="white-rows" style="max-width: 100%; width: 100% !important; margin-top: 0; border-spacing: 0; background: transparent;"
+{| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
 |- class="text-center black-text"
 ! [[MT]]
 ! [[Mossa]]
@@ -408,11 +408,12 @@ d.alltm = function(frame)
     tab2['1'], tab2['2'], tab2['3'], tab2['4'], tab2['5'], tab2['6'] = 'prima', 'seconda', 'terza', 'quarta', 'quinta', 'sesta'
     tab2.I, tab2.II, tab2.III, tab2.IV, tab2.V, tab2.VI = tab2['1'], tab2['2'], tab2['3'], tab2['4'], tab2['5'], tab2['6']
     return txt.interp([=[|-
+! style="background:#FFFFFF; padding: 0.1em 0.3em;" colspan ="8" | ${poke} può imparare ''qualsiasi'' ${moveKind} in ${gen} generazione${except}.]=],
 {
     poke = p[1] or 'Questo Pokémon',
     moveKind = moveKind[p[3] or 'tm'],
     gen = letterGen[p[2]] or 'brockolosa',
-    except = p[3] == 'tm' and '' or ' tranne [[mosse tutor peculiari|<span style="color:#000">quelle peculiari</span>]]'
+    except = p[3] == 'tm' and '' or ' tranne [[mosse tutor peculiari|<span class="black-text">quelle peculiari</span>]]'
 })
 end
 
