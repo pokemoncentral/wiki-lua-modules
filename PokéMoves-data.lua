@@ -20,8 +20,11 @@ corresponding to gen 7 means that the Pokémon learns that move at level
 
 TODO: something for notes. Inquire: are notes associated with moves or the pair
       (move, level)?
+      ANSWER: level learnlists don't have any note
 TODO: inquire: for other kind of learnlist (tm, breed, etc.) are there moves
       with more than one "level"?
+      ANSWER: no
+INFO: notes are needed only for breed
 
 --]]
 
@@ -32,13 +35,19 @@ m.games = {
     LGPE = { "LGPE" },
 }
 
-m.staraptor = {
+m.staraptor = {}
+m.staraptor.level = {
     ["7"] = {
         ["zuffa"] = { {"inizio"}, {"inizio", "evo"} },
         ["attacco rapido"] = { {"inizio", 5}, {"inizio", 5} },
         ["geyser fotonico"] = { {}, {50} },
         doppioteam = { {13}, {13} },
     },
+    LGPE = {},
+}
+m.staraptor.tm = {
+    ["6"] = { 'spaccaroccia', 'sub', 'furto', 'energipalla', 'protezione' },
+    ["7"] = {},
     LGPE = {},
 }
 m[398] = m.staraptor

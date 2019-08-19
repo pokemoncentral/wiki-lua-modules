@@ -68,7 +68,9 @@ stds.wiki = {
                 printnumber = {},
                 firstUppercase = {},
                 threeFigures = {},
-                fl = {}
+                fl = {},
+                nFigures = {},
+                n_figures = {},
             }
         }
     }

@@ -38,6 +38,7 @@ assert(same_structure(ll.nogameText, pokemoves.games),
 
 -- ========================== Standard test (prints) ==========================
 print(ll.levelLua('staraptor', '7'))
+print(ll.tmLua('staraptor', '6'))
 
 -- ======================== Old Learnlist-entryn tests ========================
 if false then

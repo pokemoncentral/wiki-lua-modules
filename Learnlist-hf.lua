@@ -118,9 +118,9 @@ baby.Mantine = 'Mantyke'
 -- perché non vi è nessuna riga da aggiungere
 
 local rowsf = {}
-rowsf.level = [=[*Il livello "Inizio" indica una mossa conosciuta da ${poke} ottenuto a livello 1 nella ${genl} generazione.
+rowsf.level = [=[*Il livello "Inizio" indica una mossa conosciuta da ${poke} ottenuto a livello 1 in ${genl} generazione.
 *Le mosse segnate al livello "Evo" possono essere apprese al momento dell'evoluzione.]=]
-rowsf.breed1 = [=[*Le mosse segnate con un asterisco (*) si ottengono solo con una [[catena di accoppiamenti|<span style="color:#000;">catena di accoppiamenti</span>]] su ${poke} nella ${genl} generazione.
+rowsf.breed1 = [=[*Le mosse segnate con un asterisco (*) si ottengono solo con una [[catena di accoppiamenti|<span style="color:#000;">catena di accoppiamenti</span>]] su ${poke} in ${genl} generazione.
 *Le mosse segnate con una doppia croce (‡) possono essere ottenute solo da un Pokémon che le abbia apprese in una generazione precedente.
 *Le mosse segnate con un'abbreviazione di un gioco in apice si possono ottenere su ${poke} solo in quel gioco.]=]
 rowsf.breed2 = [=[
@@ -128,7 +128,7 @@ rowsf.breed2 = [=[
 *Le mosse segnate con una croce (†) si possono ottenere su ${poke} solo se ad uscire dall'uovo è [[${baby}|<span style="color: #000">${baby}</span>]], e non altrimenti.]=]
 rowsf.tutor = [=[*Un'abbreviazione bianca in una casella colorata indica che ${poke} può imparare la mossa dall'Insegnamosse in quel gioco.
 *Un'abbreviazione colorata su sfondo bianco indica che ${poke} non può imparare la mossa dall'Insegnamosse in quel gioco.]=]
-rowsf.event = '*Un livello in apice indica che ${poke} può imparare questa mossa normalmente nella ${genl} generazione a quel livello.'
+rowsf.event = '*Un livello in apice indica che ${poke} può imparare questa mossa normalmente in ${genl} generazione a quel livello.'
 rowsf.last = [[
 
 *Clicca sui numeri delle generazioni in alto per vedere le mosse apprese ${way} nelle altre generazioni.]]
@@ -408,7 +408,6 @@ d.alltm = function(frame)
     tab2['1'], tab2['2'], tab2['3'], tab2['4'], tab2['5'], tab2['6'] = 'prima', 'seconda', 'terza', 'quarta', 'quinta', 'sesta'
     tab2.I, tab2.II, tab2.III, tab2.IV, tab2.V, tab2.VI = tab2['1'], tab2['2'], tab2['3'], tab2['4'], tab2['5'], tab2['6']
     return txt.interp([=[|-
-! style="background:#FFFFFF; padding: 0.1em 0.3em;" colspan ="8" | ${poke} può imparare ''qualsiasi'' ${moveKind} nella ${gen} generazione${except}.]=],
 {
     poke = p[1] or 'Questo Pokémon',
     moveKind = moveKind[p[3] or 'tm'],

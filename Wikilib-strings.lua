@@ -84,12 +84,18 @@ text.camelCase, text.camel_case, text.cc =
 
 --[[
 
-Formatta i numeri interi su tre cifre, aggiungendo
-zeri a sinistra: nonostante il codice sia banale è
-comunque utile una funzione, visto l'ampio utilizzo
-nel wiki, specialmente per gli ndex
+These functions format integer numbers on a fixed amount of digits, specified
+in the second parameter, padding with zeros.
+
+The special case for three figures is usefull because, given that ndexes have
+three figures, is widely used.
 
 --]]
+string.nFigures = function(n, figures)
+    return string.format('%0' .. tostring(figures) .. 'd', n)
+end
+string.n_figures = string.nFigures
+text.nFigures, text.n_figures = string.n_figures, string.nFigures
 
 string.threeFigures = function(n)
 	return string.format('%03d', n)
