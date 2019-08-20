@@ -29,10 +29,11 @@ local gameTutorCell = [=[| style="background:#${bg};" | [[${gameLink}|<span styl
 
 -- Wikicode per gli entrynull
 local entryNull = [[|-
-! style="background: #fff; padding: 0.1em 0.3em;" colspan="${cs}" | Questo Pokémon non impara nessuna mossa ${ending}.]]
+! class="white-bg" style="padding: 0.1em 0.3em;" colspan="${cs}" | Questo Pokémon non impara nessuna mossa ${ending}.]]
 
 local entryNullEnd = { level = 'aumentando di livello', tm = 'tramite MT',
-	breed = 'tramite accoppiamento', tutor = "dall'Esperto Mosse", preevo = 'tramite evoluzioni precedenti'}
+	breed = 'tramite accoppiamento', tutor = "dall'Insegnamosse",
+	preevo = 'tramite evoluzioni precedenti', event = 'tramite evento' }
 
 -- Contiene i title per le pre-evoluzioni
 lib.preevott = {
@@ -142,6 +143,22 @@ lib.newline = function(frame)
     return lib.insertnwlns(string.trim(frame.args[1]), frame.args[2])
 end
 
+--[[
+
+Given a string encloses it within a modal. textDisplay is the text displayed
+inside the element that binds the modal (defaults to '✔')
+
+--]]
+lib.toModal = function(str, textDisplay)
+	return table.concat({
+		'<span class="open-popup-element explain">',
+		textDisplay or '✔',
+		'<div class="mfp-hide pull-center max-width-xl-80 roundy white-bg" style="display: table; padding: 0.5em;">',
+		str,
+		'</div></span>',
+	})
+end
+
 --[=[
 
 Creates a modal containing a list of MS from the list of ndex or MS passed.
@@ -158,7 +175,6 @@ ms in a single line (default nil, that means no line breaks).
 lib.mslistToModal = function(list, gen, textDisplay, linelength)
 	list = list:gsub('<br>', '')
 	gen = gen or ''
-	textDisplay = textDisplay or '✔'
 
 	local res = {}
 	local pattern, op
@@ -169,10 +185,6 @@ lib.mslistToModal = function(list, gen, textDisplay, linelength)
 		pattern = '#(.-)#'
 		op = function(ndex) return ms.staticLua(ndex, gen) end
 	end
-
-	table.insert(res, '<span class="open-popup-element explain">')
-	table.insert(res, textDisplay)
-	table.insert(res, '<div class="mfp-hide pull-center max-width-xl-80 roundy" style="display: table; padding: 0.5em; background: #fff;">')
 
 	table.insert(res, '<div>')
 	local mscount = 0
@@ -185,9 +197,36 @@ lib.mslistToModal = function(list, gen, textDisplay, linelength)
 	end
 	table.insert(res, '</div>')
 
-	table.insert(res, '</div></span>')
+	return lib.toModal(table.concat(res), textDisplay)
+end
 
-	return table.concat(res)
+--[=[
+
+Creates a modal containing a list of MS from an array of ndexes.
+
+The second parameter is the gen for the ms (default to the latest), the third
+is the text displayed inside the element that binds the modal (default to '✔'),
+the fourth is the max number of ms in a single line (default nil, that means no
+line breaks).
+
+--]=]
+lib.msarrayToModal = function(array, gen, textDisplay, linelength)
+	gen = gen or ''
+
+	local res = {}
+
+	table.insert(res, '<div>')
+	local mscount = 0
+	for _, ndex in ipairs(array) do
+		table.insert(res, ms.staticLua(string.tf(ndex), gen))
+		mscount = mscount + 1
+		if linelength and mscount % linelength == 0 then
+			table.insert(res, '</div><div>')
+		end
+	end
+	table.insert(res, '</div>')
+
+	return lib.toModal(table.concat(res), textDisplay)
 end
 
 -- Funzione che restituisce i cuori per le gare

@@ -1,6 +1,8 @@
 -- I vari headers e footers dei learnlist, tutti riuniti per condividere
 -- la tabella dei colori
 
+-- TODO: add a Lua interface for many of the functions here
+
 local d = {}
 
 local mw = require('mw')
@@ -403,17 +405,18 @@ d.Eventf = d.eventf
 
 d.alltm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    local moveKind = {tm = 'MT e MN', tutor = 'mossa tutor'}
-    local letterGen = {}
-    tab2['1'], tab2['2'], tab2['3'], tab2['4'], tab2['5'], tab2['6'] = 'prima', 'seconda', 'terza', 'quarta', 'quinta', 'sesta'
-    tab2.I, tab2.II, tab2.III, tab2.IV, tab2.V, tab2.VI = tab2['1'], tab2['2'], tab2['3'], tab2['4'], tab2['5'], tab2['6']
-    return txt.interp([=[|-
-! style="background:#FFFFFF; padding: 0.1em 0.3em;" colspan ="8" | ${poke} può imparare ''qualsiasi'' ${moveKind} in ${gen} generazione${except}.]=],
+	local gen = tonumber(p[2]) or gendata.latest
+	local moveKind = {Tm = gen > 6 and '[[MT]]' or '[[MT]] e [[MN]]',
+					  Tutor = 'mossa tutor'}
+    return txt.interp([=[
+|-
+! class="white-bg black-text" style="padding: 0.1em 0.3em;" colspan ="${cs}" | ${poke} può imparare ''qualsiasi'' ${moveKind} in ${gen} generazione${except}.]=],
 {
     poke = p[1] or 'Questo Pokémon',
-    moveKind = moveKind[p[3] or 'tm'],
-    gen = letterGen[p[2]] or 'brockolosa',
-    except = p[3] == 'tm' and '' or ' tranne [[mosse tutor peculiari|<span class="black-text">quelle peculiari</span>]]'
+    moveKind = moveKind[p[3] or 'Tm'],
+    gen = gendata[gen].ext or 'brockolosa',
+    except = p[3] == 'Tm' and '' or ' tranne [[mosse tutor peculiari|quelle peculiari]]',
+	cs = cs.tm[gen],
 })
 end
 

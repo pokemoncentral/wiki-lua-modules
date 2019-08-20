@@ -31,14 +31,25 @@ local function same_structure(tab1, tab2)
     return true
 end
 
--- Check that ll.nogameText and pokemoves.games have the same structure
+-- Check that ll.nogameText and pokemoves.games.leve have the same structure
 -- because correctness of the output depends on this.
-assert(same_structure(ll.nogameText, pokemoves.games),
-        "ll.nogameText and pokemoves.games doesn't have the same structure")
+assert(same_structure(ll.nogameText, pokemoves.games.level),
+        "ll.nogameText and pokemoves.games.level doesn't have the same structure")
 
 -- ========================== Standard test (prints) ==========================
+print(ll.levelLua('staraptor', '6'))
 print(ll.levelLua('staraptor', '7'))
 print(ll.tmLua('staraptor', '6'))
+print(ll.tmLua('staraptor', '7'))
+print(ll.tmLua('mew', '7'))
+print(ll.breedLua('staraptor', '6'))
+print(ll.breedLua('staraptor', '7'))
+print(ll.tutorLua('staraptor', '6'))
+print(ll.tutorLua('staraptor', '7'))
+print(ll.preevoLua('staraptor', '6'))
+print(ll.preevoLua('staraptor', '7'))
+print(ll.eventLua('staraptor', '6'))
+print(ll.eventLua('staraptor', '7'))
 
 -- ======================== Old Learnlist-entryn tests ========================
 if false then

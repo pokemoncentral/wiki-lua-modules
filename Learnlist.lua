@@ -34,7 +34,7 @@ local lib = require('Wikilib-learnlists')
 local genlib = require('Wikilib-gens')
 -- local w = require('Wikilib')
 local links = require('Links')
--- local ms = require('MiniSprite')
+local ms = require('MiniSprite')
 -- local css = require('Css')
 local hf = require('Learnlist-hf')
 -- local c = require("Colore-data")
@@ -52,6 +52,8 @@ local STRINGS = {
     evolevelstr = 'Evo<span class="hidden-xs">luzione</span>',
     tmcell = [=[
 | class="black-text" style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:${img} ${tipo} VI Sprite Zaino.png]]</span>[[${p1}]]]=],
+    breedcell = [=[
+| style="padding: 0.1em 0.3em;" | ${p}]=],
 }
 
 --[[
@@ -72,6 +74,28 @@ l.entrytail = function(poke, mossa, notes)
     return lib.categoryentry(stab, data.name, notes, string.fu(data.type),
                              string.fu(data.category), data.power,
                              data.accuracy, data.pp)
+end
+
+--[[
+
+Add header and footer for a learnlist table.
+Arguments:
+    - str: body of the learnlist, to enclose between header and footer
+    - poke: Pokémon name or ndex
+    - gen: the generation of this entry
+    - kind: kind of entry. Either "level", "tm", "breed", "tutor", "preevo" and
+            "event". Also used to select functions (picks the funcDict)
+
+--]]
+l.addhf = function(str, poke, gen, kind)
+    local pokedata = pokes[poke]
+    local hfargs = { pokedata.name, pokedata.type1, pokedata.type2, gen,
+                     genlib.getGen.ndex(pokedata.ndex) }
+    return table.concat({
+        hf[kind .. "h"]{ args = hfargs },
+        str,
+        hf[kind .. "f"]{ args = hfargs },
+    }, "\n")
 end
 
 --[[
@@ -98,6 +122,8 @@ implement details of the entry. It should contain the following functions:
                     - key: the key of that value
                    It should return an array of elements that will be sorted
                    and printed using other functions in the dict.
+    - dataMap: the kind of map used to map processData over the collection.
+               Often table.flatMapToNum or table.mapToNum
     - le: given two elements produced by processData, compares them
           Takes two arguments, the two elements to compare.
     - makeEntry: create the string of an entry from an element produced by
@@ -111,21 +137,20 @@ implement details of the entry. It should contain the following functions:
 l.entryLua = function(poke, gen, kind)
     local funcDict = l.dicts[kind]
 
-    local res = table.flatMapToNum(pokemoves[poke][kind][tostring(gen)],
+    local res = funcDict.dataMap(pokemoves[poke][kind][tostring(gen)],
             function(v, k) return funcDict.processData(poke, gen, v, k) end)
-    table.sort(res, funcDict.le)
-    local resstr = table.map(res, function(val)
-        return funcDict.makeEntry(poke, gen, val)
-    end)
+    local resstr
+    -- TODO: Check if res is empty and behave consequently
+    if #res == 0 then
+        resstr = lib.entrynull(kind, "100")
+    else
+        table.sort(res, funcDict.le)
+        resstr = table.concat(table.map(res, function(val)
+            return funcDict.makeEntry(poke, gen, val)
+        end), "\n")
+    end
 
-    local pokedata = pokes[poke]
-    local hfargs = { pokedata.name, pokedata.type1, pokedata.type2, gen,
-                     genlib.getGen.ndex(pokedata.ndex) }
-    return table.concat({
-        hf[kind .. "h"]{ args = hfargs },
-        table.concat(resstr, "\n"),
-        hf[kind .. "f"]{ args = hfargs },
-    }, "\n")
+    return l.addhf(resstr, poke, gen, kind)
 end
 
 l.dicts = {}
@@ -169,10 +194,14 @@ end
 --[[
 
 This table hold texts used when a Pokémon can't learn a move in a game. It is
-guaranteed to have the very same structure as pokemoves.games
+guaranteed to have the very same structure as pokemoves.games.level
 
 --]]
 l.nogameText = {
+    ["6"] = {
+        "Disponibile solo in Rubino Omega e Zaffiro Alpha",
+        "Disponibile solo in X e Y"
+    },
     ["7"] = {
         "Disponibile solo in Ultrasole e Ultraluna",
         "Disponibile solo in Sole e Luna"
@@ -186,12 +215,13 @@ Creates and entry of a level learnlist.
 
 Arguments:
     - poke: Pokémon name or ndex
-    - gen: set of game for this entry. Should be an index of pokemoves.games
+    - gen: set of game for this entry. Should be an index of
+           pokemoves.games.level
     - move: move name
     - levels: the set of levels to print. It should be in the following format:
-        an array, of the same length ad pokemoves.games[gen], with each element
-        being either a level (a number, "inizio" or "evo") or false, meaning
-        that the Pokémon can't learn the move in that game
+        an array, of the same length ad pokemoves.games.level[gen], with each
+        element being either a level (a number, "inizio" or "evo") or false,
+        meaning that the Pokémon can't learn the move in that game
 
 --]]
 l.levelEntry = function(poke, gen, move, levels)
@@ -269,6 +299,7 @@ l.dicts.level = {
             end) }
         end)
     end,
+    dataMap = table.flatMapToNum,
     -- elements of res are like
     -- {
     --     <movename>,
@@ -335,6 +366,7 @@ l.dicts.tm = {
             return nil
         end)
     end,
+    dataMap = table.flatMapToNum,
     -- elements of res are like
     -- { <movename>, { "M[TN]", "12"}, <games abbr> }
     le = function(a, b)
@@ -345,7 +377,128 @@ l.dicts.tm = {
     end,
 }
 
-addInterfaces("tm")
+-- Added by hand to handle the special case with all tms
+l.tmLua = function(poke, gen)
+    if pokemoves[poke].tm[tostring(gen)].all then
+        return l.addhf(hf.alltm{args={poke, gen, "tm"}}, poke, gen, "tm")
+    end
+    return l.entryLua(poke, gen, "tm")
+end
+
+l.tm = function(frame)
+    return l.tmLua(l.getParams(frame))
+end
+l.Tm = l.tm
+-- addInterfaces("tm")
+
+-- ================================== Breed ==================================
+l.dicts.breed = {
+    processData = function(poke, gen, movedata)
+        movedata[3] = movedata[3] or ""
+        -- TODO: compute notes
+        return movedata
+    end,
+    dataMap = table.mapToNum,
+    -- elements of res are like
+    -- { <movename>, { <array of parents> }, <notes> }
+    le = function(a, b)
+        return a[1] <= b[1]
+    end,
+    makeEntry = function(poke, gen, val)
+        local firstcell = string.interp(STRINGS.breedcell, {
+            p = lib.msarrayToModal(val[2], gen),
+        })
+        return table.concat{
+            '|-\n',
+            firstcell,
+            l.entrytail(poke, val[1], val[3]),
+        }
+    end,
+}
+
+addInterfaces("breed")
+
+-- ================================== Tutor ==================================
+l.dicts.tutor = {
+    processData = function(_, gen, games, move)
+        return {
+            move,
+            table.zip(pokemoves.games.tutor[tostring(gen)], games, function(a, b)
+                return { a, b and "Yes" or "No" }
+            end)
+        }
+    end,
+    dataMap = table.mapToNum,
+    -- elements of res are like
+    -- { <movename>, { <array of games> } }
+    le = function(a, b)
+        return a[1] <= b[1]
+    end,
+    makeEntry = function(poke, _, val)
+        return table.concat{
+            '|-\n',
+            lib.tutorgames(val[2]),
+            l.entrytail(poke, val[1], ""),
+        }
+    end,
+}
+
+addInterfaces("tutor")
+
+-- ================================== Preevo ==================================
+-- TODO: in theory this whole table can be computed automatically...
+l.dicts.preevo = {
+    processData = function(_, _, preevos, move)
+        -- TODO: compute notes
+        return { move, table.map(preevos, function(ndex)
+            return { ndex, "" }
+        end) }
+    end,
+    dataMap = table.mapToNum,
+    -- elements of res are like
+    -- { <movename>, { <array of preevo pairs { ndex, notes }> } }
+    le = function(a, b)
+        return a[1] <= b[1]
+    end,
+    makeEntry = function(poke, gen, val)
+        local firstcell = table.concat(table.map(val[2], function(pair)
+            return ms.staticLua(string.tf(pair[1] or "000"), gen or "")
+                   .. (lib.preevott[pair[2]] or "")
+        end))
+        return table.concat{
+            "|-\n| ",
+            firstcell,
+            l.entrytail(poke, val[1], ""),
+        }
+    end,
+}
+
+addInterfaces("preevo")
+
+-- ================================== Event ==================================
+l.dicts.event = {
+    processData = function(_, _, occasion, move)
+        return { move, occasion }
+    end,
+    dataMap = table.mapToNum,
+    -- elements of res are like
+    -- { <movename>, <occasion> }
+    le = function(a, b)
+        return a[1] <= b[1]
+    end,
+    makeEntry = function(poke, _, val)
+        local firstcell = string.interp(STRINGS.breedcell, {
+            p = val[2],
+        })
+        return table.concat{
+            '|-\n',
+            firstcell,
+            l.entrytail(poke, val[1], ""),
+        }
+    end,
+}
+
+addInterfaces("event")
 
 -- ============================================================================
 return l
