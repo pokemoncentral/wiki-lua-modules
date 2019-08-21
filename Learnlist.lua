@@ -140,7 +140,6 @@ l.entryLua = function(poke, gen, kind)
     local res = funcDict.dataMap(pokemoves[poke][kind][tostring(gen)],
             function(v, k) return funcDict.processData(poke, gen, v, k) end)
     local resstr
-    -- TODO: Check if res is empty and behave consequently
     if #res == 0 then
         resstr = lib.entrynull(kind, "100")
     else
@@ -393,10 +392,34 @@ l.Tm = l.tm
 
 -- ================================== Breed ==================================
 l.dicts.breed = {
-    processData = function(poke, gen, movedata)
-        movedata[3] = movedata[3] or ""
-        -- TODO: compute notes
-        return movedata
+    processData = function(_, gen, movedata, move)
+        local notes = { movedata[2] }
+        -- To compute notes it checks only the first ndex because they should
+        -- all be equal in this. Otherwise the different one would be the only
+        -- one (for instance: parents that need a chain aren't listed if there
+        -- are some that doesn't)
+        local parent1 = movedata[1][1]
+        if parent1 and not lib.learnNotBreed(move, parent1, gen) then
+            if lib.learnKind(move, parent1, gen, "breed") then
+                -- Parent can learn by breed but not in any other way: chain
+                table.insert(notes, 1, "catena di accoppiamenti")
+            -- In theory this second check is useless because a parent wouldn't
+            -- be listed if it doesn't learn the move, so if it doesn't in this
+            -- gen it should in a past one
+            -- elseif lib.learnPreviousGen(move, parent1, gen) then
+            else
+                table.insert(notes, 1, "il padre deve aver imparato la mossa in una generazione precedente")
+            end
+        end
+
+        notes = table.concat(notes, ", ")
+        local res = { move, movedata[1],
+                      notes == "" and "" or links.tt("*", string.fu(notes))
+                    }
+        if movedata.games then
+            res[3] = sup[movedata.games] .. res[3]
+        end
+        return res
     end,
     dataMap = table.mapToNum,
     -- elements of res are like
@@ -446,17 +469,16 @@ l.dicts.tutor = {
 addInterfaces("tutor")
 
 -- ================================== Preevo ==================================
--- TODO: in theory this whole table can be computed automatically...
 l.dicts.preevo = {
     processData = function(_, _, preevos, move)
-        -- TODO: compute notes
+        -- TODO: compute notes (not for the time being)
         return { move, table.map(preevos, function(ndex)
             return { ndex, "" }
         end) }
     end,
     dataMap = table.mapToNum,
     -- elements of res are like
-    -- { <movename>, { <array of preevo pairs { ndex, notes }> } }
+    -- { <movename>, { <array of preevo pairs: { ndex, notes }> } }
     le = function(a, b)
         return a[1] <= b[1]
     end,

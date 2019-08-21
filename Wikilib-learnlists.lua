@@ -15,6 +15,8 @@ local abbrLib = require('Wikilib-sigle')
 local links = require('Links')
 local pokes = require("Poké-data")
 local moves = require("Move-data")
+local pokemoves = require("PokéMoves-data")
+local tmdata = require("Machines-data")
 local forms = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
 local evolib = require('Wikilib-evos')
@@ -490,6 +492,76 @@ lib.computeSTAB = function(ndex, movename, form)
 	else
 		return ""
 	end
+end
+
+-- ========================== Check learn functions ==========================
+--[[
+
+Given a move, an ndex, a gen and a kind check whether that Pokémon can learn
+that move in that generation in that kind. Return a true value if it can, a
+false otherwise.
+Arguments:
+	- move: name of the move
+	- ndex: name or ndex of the Pokémon
+	- gen: generation (a string)
+	- kind: kind of learnlist ("level", "tm", ...)
+
+--]]
+lib.learnKind = function(move, ndex, gen, kind)
+	if not pokemoves[ndex][kind] or not pokemoves[ndex][kind][gen] then
+		return false
+	end
+	local mdata = pokemoves[ndex][kind][gen]
+	if kind == "tm" then
+		local mlist = mdata.all and tmdata[tonumber(gen)] or mdata
+		-- Extra parentheses to force a single return value
+		return (table.deepSearch(mlist, move))
+	else
+		return mdata[move]
+	end
+end
+
+--[[
+
+Given a move and an ndex check whether that Pokémon can learn the given move
+not by breed in a given generation. Used to verify whether a move require a
+breed chain or not. Return a true value if it can, a false otherwise.
+Arguments:
+	- move: name of the move
+	- ndex: name or ndex of the Pokémon
+	- gen: generation (a string)
+
+--]]
+lib.learnNotBreed = function(move, ndex, gen)
+	return table.any(pokemoves[ndex], function(_, kind)
+		if kind == "breed" then
+			return false
+		end
+		return lib.learnKind(move, ndex, gen, kind)
+	end)
+end
+
+--[[
+
+Check whether a a Pokémon can learn a move in a generation previous than the
+given one. If it can't returns false, otherwise the highest generation in which
+it can  learn it.
+Arguments:
+	- move: name of the move
+	- ndex: name or ndex of the Pokémon
+	- gen: the gen considered: the function controls any generation strictly
+	       lower than this.
+
+--]]
+lib.learnPreviousGen = function(move, ndex, gen)
+	for g = tonumber(gen) - 1, 1, -1 do
+		if table.any(pokemoves[ndex], function(_, kind)
+			return lib.learnKind(move, ndex, tostring(g), kind)
+		end) then
+			return g
+		end
+	end
+	return false
 end
 
 return lib
