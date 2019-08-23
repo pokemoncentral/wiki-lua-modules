@@ -28,18 +28,12 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
--- local form = require('Wikilib-forms')
--- local multigen = require('Wikilib-multigen')
 local lib = require('Wikilib-learnlists')
 local genlib = require('Wikilib-gens')
--- local w = require('Wikilib')
+local wlib = require('Wikilib')
 local links = require('Links')
 local ms = require('MiniSprite')
--- local css = require('Css')
 local hf = require('Learnlist-hf')
--- local c = require("Colore-data")
--- local altforms = require("AltForms-data")
--- local useless = require("UselessForms-data")
 local sup = require("Sup-data")
 local pokes = require("Poké-data")
 local moves = require("Move-data")
@@ -124,7 +118,7 @@ implement details of the entry. It should contain the following functions:
                    and printed using other functions in the dict.
     - dataMap: the kind of map used to map processData over the collection.
                Often table.flatMapToNum or table.mapToNum
-    - le: given two elements produced by processData, compares them
+    - lt: given two elements produced by processData, compares them
           Takes two arguments, the two elements to compare.
     - makeEntry: create the string of an entry from an element produced by
                  processData.
@@ -137,16 +131,16 @@ implement details of the entry. It should contain the following functions:
 l.entryLua = function(poke, gen, kind)
     local funcDict = l.dicts[kind]
 
-    local res = funcDict.dataMap(pokemoves[poke][kind][tostring(gen)],
+    local res = funcDict.dataMap(pokemoves[poke][kind][gen],
             function(v, k) return funcDict.processData(poke, gen, v, k) end)
     local resstr
     if #res == 0 then
         resstr = lib.entrynull(kind, "100")
     else
-        table.sort(res, funcDict.le)
-        resstr = table.concat(table.map(res, function(val)
+        table.sort(res, funcDict.lt)
+        resstr = wlib.mapAndConcat(res, "\n", function(val)
             return funcDict.makeEntry(poke, gen, val)
-        end), "\n")
+        end)
     end
 
     return l.addhf(resstr, poke, gen, kind)
@@ -162,7 +156,7 @@ order.
 --]]
 l.getParams = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    local gen = p.gen or gendata.latest
+    local gen = tonumber(p.gen) or gendata.latest
     local poke = string.lower(p[1] or mw.title.getCurrentTitle().text)
     return poke, gen
 end
@@ -197,15 +191,36 @@ guaranteed to have the very same structure as pokemoves.games.level
 
 --]]
 l.nogameText = {
-    ["6"] = {
+    [1] = {
+        "Disponibile solo in Giallo",
+        "Disponibile solo in Rosso e Blu"
+    },
+    [2] = {
+        "Disponibile solo in Cristallo",
+        "Disponibile solo in Oro e Argento"
+    },
+    [3] = {
+        "Non disponibile in Rubino e Zaffiro",
+        "Non disponibile in Rosso Fuoco e Verde Foglia",
+        "Non disponibile in Smeraldo"
+    },
+    [4] = {
+        "Non disponibile in Diamante e Perla",
+        "Non disponibile in Platino",
+        "Non disponibile in Oro HeartGold e Argento SoulSilver"
+    },
+    [5] = {
+        "Disponibile solo in Nero 2 e Bianco 2",
+        "Disponibile solo in Nero e Bianco"
+    },
+    [6] = {
         "Disponibile solo in Rubino Omega e Zaffiro Alpha",
         "Disponibile solo in X e Y"
     },
-    ["7"] = {
+    [7] = {
         "Disponibile solo in Ultrasole e Ultraluna",
         "Disponibile solo in Sole e Luna"
     },
-    LGPE = { "" },
 }
 
 --[[
@@ -243,17 +258,17 @@ end
 
 -- Compares two levels (a number, "inizio", "evo" or nil). The order is
 -- "inizio" < "evo" < numbers < nil
-l.leLevel = function(a, b)
-    if a == "inizio" then
-        return true
-    elseif a == "evo" and b ~= "inizio" then
-        return true
-    elseif a == nil then
-        return b == nil
-    elseif (type(b) == "number" and a <= b) or b == nil then -- a is a number
-        return true
+l.ltLevel = function(a, b)
+    if b == "inizio" then
+        return false
+    elseif b == "evo" and a ~= "inizio" then
+        return false
+    elseif b == nil then
+        return a ~= nil
+    elseif (type(a) == "number" and a >= b) or a == nil then -- b is a number
+        return false
     end
-    return false
+    return true
 end
 
 --[[
@@ -268,7 +283,7 @@ non-false value.
 TODO: make this function more efficient
 
 --]]
-l.leLevelarr = function(a, b)
+l.ltLevelarr = function(a, b)
     for k, v in ipairs(a) do
         local aval, k1 = v, k
         -- Can't use (not aval) because that is true also for nil
@@ -281,11 +296,14 @@ l.leLevelarr = function(a, b)
             k2 = k2 + 1
             bval = b[k2]
         end
-        if not l.leLevel(aval, bval) then
+        if l.ltLevel(aval, bval) then
+            return true
+        elseif aval ~= bval then -- if they aren't equale then bval > aval
             return false
         end
     end
-    return true
+    -- here aval == bval at any iteration => equality => return false
+    return false
 end
 
 l.dicts.level = {
@@ -304,8 +322,8 @@ l.dicts.level = {
     --     <movename>,
     --    { <level of first game or false>, <level of second game or false>, ... },
     -- }
-    le = function(a, b)
-        return l.leLevelarr(a[2], b[2])
+    lt = function(a, b)
+        return l.ltLevelarr(a[2], b[2])
     end,
     makeEntry = function(poke, gen, val)
         return l.levelEntry(poke, gen, unpack(val))
@@ -344,13 +362,13 @@ end
 Comparator for two tm/hm pairs.
 
 --]]
-l.leTm = function(a, b)
-    return a[1] > b[1] or (a[1] == b[1] and a[2] <= b[2])
+l.ltTm = function(a, b)
+    return a[1] > b[1] or (a[1] == b[1] and tonumber(a[2]) < tonumber(b[2]))
 end
 
 l.dicts.tm = {
     processData = function(_, gen, move)
-        return table.mapToNum(mtdata[tonumber(gen)], function(tmdata, tmkind)
+        return table.mapToNum(mtdata[gen], function(tmdata, tmkind)
             local tmnum, i = table.deepSearch(tmdata, move)
             if tmnum then
                 local tmnums = string.nFigures(tmnum, 2)
@@ -368,8 +386,8 @@ l.dicts.tm = {
     dataMap = table.flatMapToNum,
     -- elements of res are like
     -- { <movename>, { "M[TN]", "12"}, <games abbr> }
-    le = function(a, b)
-        return l.leTm(a[2], b[2])
+    lt = function(a, b)
+        return l.ltTm(a[2], b[2])
     end,
     makeEntry = function(poke, _, val)
         return l.tmEntry(poke, unpack(val))
@@ -378,7 +396,7 @@ l.dicts.tm = {
 
 -- Added by hand to handle the special case with all tms
 l.tmLua = function(poke, gen)
-    if pokemoves[poke].tm[tostring(gen)].all then
+    if pokemoves[poke].tm[gen].all then
         return l.addhf(hf.alltm{args={poke, gen, "tm"}}, poke, gen, "tm")
     end
     return l.entryLua(poke, gen, "tm")
@@ -399,7 +417,7 @@ l.dicts.breed = {
         -- one (for instance: parents that need a chain aren't listed if there
         -- are some that doesn't)
         local parent1 = movedata[1][1]
-        if parent1 and not lib.learnNotBreed(move, parent1, gen) then
+        if parent1 and not lib.canLearn(move, parent1, gen, {"breed"}) then
             if lib.learnKind(move, parent1, gen, "breed") then
                 -- Parent can learn by breed but not in any other way: chain
                 table.insert(notes, 1, "catena di accoppiamenti")
@@ -410,22 +428,26 @@ l.dicts.breed = {
             else
                 table.insert(notes, 1, "il padre deve aver imparato la mossa in una generazione precedente")
             end
+        elseif not parent1 then
+            table.insert(notes, 1, "nessun genitore può apprendere la mossa")
         end
 
         notes = table.concat(notes, ", ")
-        local res = { move, movedata[1],
+        local res = { move, parent1 and movedata[1] or { 000 },
                       notes == "" and "" or links.tt("*", string.fu(notes))
                     }
         if movedata.games then
-            res[3] = sup[movedata.games] .. res[3]
+            res[3] = wlib.mapAndConcat(movedata.games,
+                                       function(s) return sup[s] end)
+                     .. res[3]
         end
         return res
     end,
     dataMap = table.mapToNum,
     -- elements of res are like
     -- { <movename>, { <array of parents> }, <notes> }
-    le = function(a, b)
-        return a[1] <= b[1]
+    lt = function(a, b)
+        return a[1] < b[1]
     end,
     makeEntry = function(poke, gen, val)
         local firstcell = string.interp(STRINGS.breedcell, {
@@ -446,16 +468,22 @@ l.dicts.tutor = {
     processData = function(_, gen, games, move)
         return {
             move,
-            table.zip(pokemoves.games.tutor[tostring(gen)], games, function(a, b)
+            table.zip(pokemoves.games.tutor[gen], games, function(a, b)
                 return { a, b and "Yes" or "No" }
             end)
         }
     end,
     dataMap = table.mapToNum,
     -- elements of res are like
-    -- { <movename>, { <array of games> } }
-    le = function(a, b)
-        return a[1] <= b[1]
+    -- { <movename>, { <array of games pairs { <abbr>, "Yes"/"No" }> } }
+    lt = function(a, b)
+        for k, v in ipairs(a[2]) do
+            if v[2] ~= b[2][k][2] then
+                -- Equivalent to v[2] < b[2][k][2]
+                return v[2] == "Yes"
+            end
+        end
+        return a[1] < b[1]
     end,
     makeEntry = function(poke, _, val)
         return table.concat{
@@ -479,14 +507,14 @@ l.dicts.preevo = {
     dataMap = table.mapToNum,
     -- elements of res are like
     -- { <movename>, { <array of preevo pairs: { ndex, notes }> } }
-    le = function(a, b)
-        return a[1] <= b[1]
+    lt = function(a, b)
+        return a[1] < b[1]
     end,
     makeEntry = function(poke, gen, val)
-        local firstcell = table.concat(table.map(val[2], function(pair)
+        local firstcell = wlib.mapAndConcat(val[2], function(pair)
             return ms.staticLua(string.tf(pair[1] or "000"), gen or "")
                    .. (lib.preevott[pair[2]] or "")
-        end))
+        end)
         return table.concat{
             "|-\n| ",
             firstcell,
@@ -505,8 +533,8 @@ l.dicts.event = {
     dataMap = table.mapToNum,
     -- elements of res are like
     -- { <movename>, <occasion> }
-    le = function(a, b)
-        return a[1] <= b[1]
+    lt = function(a, b)
+        return a[1] < b[1]
     end,
     makeEntry = function(poke, _, val)
         local firstcell = string.interp(STRINGS.breedcell, {

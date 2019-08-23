@@ -37,19 +37,25 @@ assert(same_structure(ll.nogameText, pokemoves.games.level),
         "ll.nogameText and pokemoves.games.level doesn't have the same structure")
 
 -- ========================== Standard test (prints) ==========================
-print(ll.levelLua('staraptor', '6'))
-print(ll.levelLua('staraptor', '7'))
-print(ll.tmLua('staraptor', '6'))
-print(ll.tmLua('staraptor', '7'))
-print(ll.tmLua('mew', '7'))
-print(ll.breedLua('staraptor', '6'))
-print(ll.breedLua('staraptor', '7'))
-print(ll.tutorLua('staraptor', '6'))
-print(ll.tutorLua('staraptor', '7'))
-print(ll.preevoLua('staraptor', '6'))
-print(ll.preevoLua('staraptor', '7'))
-print(ll.eventLua('staraptor', '6'))
-print(ll.eventLua('staraptor', '7'))
+for gen=6,7 do
+    print(ll.levelLua('fennekin', gen))
+    print(ll.tmLua('fennekin', gen))
+    print(ll.breedLua('fennekin', gen))
+    print(ll.tutorLua('fennekin', gen))
+end
+print(ll.levelLua('staraptor', 6))
+print(ll.levelLua('staraptor', 7))
+print(ll.tmLua('staraptor', 6))
+print(ll.tmLua('staraptor', 7))
+print(ll.tmLua('mew', 7))
+print(ll.breedLua('staraptor', 6))
+print(ll.breedLua('staraptor', 7))
+print(ll.tutorLua('staraptor', 6))
+print(ll.tutorLua('staraptor', 7))
+print(ll.preevoLua('staraptor', 6))
+print(ll.preevoLua('staraptor', 7))
+print(ll.eventLua('staraptor', 6))
+print(ll.eventLua('staraptor', 7))
 
 -- ======================== Old Learnlist-entryn tests ========================
 if false then

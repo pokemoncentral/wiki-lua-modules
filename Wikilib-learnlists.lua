@@ -513,7 +513,7 @@ lib.learnKind = function(move, ndex, gen, kind)
 	end
 	local mdata = pokemoves[ndex][kind][gen]
 	if kind == "tm" then
-		local mlist = mdata.all and tmdata[tonumber(gen)] or mdata
+		local mlist = mdata.all and tmdata[gen] or mdata
 		-- Extra parentheses to force a single return value
 		return (table.deepSearch(mlist, move))
 	else
@@ -524,17 +524,20 @@ end
 --[[
 
 Given a move and an ndex check whether that Pokémon can learn the given move
-not by breed in a given generation. Used to verify whether a move require a
-breed chain or not. Return a true value if it can, a false otherwise.
+in a given generation. Return a true value if it can, a false otherwise. It is
+also possible to give an array of kind that aren't considered when determining
+whether it can learn the move or not.
 Arguments:
 	- move: name of the move
 	- ndex: name or ndex of the Pokémon
-	- gen: generation (a string)
+	- gen: generation
+	- excludekinds: (optional) array of kinds to exclude
 
 --]]
-lib.learnNotBreed = function(move, ndex, gen)
+lib.canLearn = function(move, ndex, gen, excludekinds)
+	excludekinds = excludekinds or {}
 	return table.any(pokemoves[ndex], function(_, kind)
-		if kind == "breed" then
+		if table.search(excludekinds, kind) then
 			return false
 		end
 		return lib.learnKind(move, ndex, gen, kind)
@@ -551,12 +554,13 @@ Arguments:
 	- ndex: name or ndex of the Pokémon
 	- gen: the gen considered: the function controls any generation strictly
 	       lower than this.
+	- firstgen: (optional) the lowest gen to check. Defaults to 1
 
 --]]
-lib.learnPreviousGen = function(move, ndex, gen)
-	for g = tonumber(gen) - 1, 1, -1 do
+lib.learnPreviousGen = function(move, ndex, gen, firstgen)
+	for g = gen - 1, firstgen or 1, -1 do
 		if table.any(pokemoves[ndex], function(_, kind)
-			return lib.learnKind(move, ndex, tostring(g), kind)
+			return lib.learnKind(move, ndex, g, kind)
 		end) then
 			return g
 		end
