@@ -472,17 +472,20 @@ Arguments:
 	- ndex: either the ndex or the Pokémon's name, all but the abbr lowercase
 	- movename: name of the move to compute the STAB against
 	- form (optional): abbr or extended form name
+	- gen (optional): the generation in which compute the STAB. Defaults to the
+					  latest
 
 --]]
-lib.computeSTAB = function(ndex, movename, form)
+lib.computeSTAB = function(ndex, movename, form, gen)
 	local name, abbr = forms.getnameabbr(ndex, form)
 	local iname = forms.toEmptyAbbr(abbr) == "" and name
 				or (type(name) == 'number' and string.tf(name) or name
 					) .. forms.toEmptyAbbr(abbr)
 	-- The or pokes[name] is needed for useless forms, not indexed in Poké-data
-	local pokedata = multigen.getGen(pokes[iname] or pokes[name])
+	local pokedata = multigen.getGen(pokes[iname] or pokes[name], gen)
 	local movedata = moves[movename:lower()]
-	if not pokedata or not movedata or movedata.power == '&mdash;' then
+	if not pokedata or not movedata
+	   or (movedata.power == '&mdash;' and not multigen.getGenValue(movedata.stab, gen)) then
 		return ""
 	elseif (movedata.type == pokedata.type1 or movedata.type == pokedata.type2) then
 		return "'''"
@@ -566,6 +569,35 @@ lib.learnPreviousGen = function(move, ndex, gen, firstgen)
 		end
 	end
 	return false
+end
+
+--[[
+
+Computes the list of moves that a Pokémon can learn in any way, possibly
+excluding breed.
+Arguments:
+	- ndex: name or ndex of the Pokémon
+	- gen: generation to compute the list for
+	- excludekinds: (optional) an array of kinds to esclude from the list. For
+	                instance, if this argument is { "breed" } moves that the
+					Pokémon can only learn by breed aren't included.
+Return an array of move names.
+
+--]]
+lib.learnset = function(ndex, gen, excludekinds)
+	local movedata = pokemoves[ndex]
+	excludekinds = excludekinds or {}
+	local res = {}
+	if movedata.tm[gen] and not table.search(excludekinds, "tm") then
+		res = table.copy(movedata.tm[gen])
+		table.insert(excludekinds, "tm")
+	end
+	for kind, data in pairs(movedata) do
+		if not table.search(excludekinds, kind) and data[gen] then
+			res = table.merge(res, table.keys(data[gen]))
+		end
+	end
+	return table.unique(res)
 end
 
 return lib

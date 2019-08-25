@@ -30,6 +30,7 @@ local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local lib = require('Wikilib-learnlists')
 local genlib = require('Wikilib-gens')
+local multigen = require('Wikilib-multigen')
 local wlib = require('Wikilib')
 local links = require('Links')
 local ms = require('MiniSprite')
@@ -60,11 +61,12 @@ Arguments:
     - poke: Pokémon name or ndex
     - mossa: move name
     - notes: any note that should be added to this entry
+    - gen: (optional) gen of the entry. Defaults to latest
 
 --]]
-l.entrytail = function(poke, mossa, notes)
+l.entrytail = function(poke, mossa, notes, gen)
     local data = moves[mossa]
-    local stab = lib.computeSTAB(poke, mossa)
+    local stab = lib.computeSTAB(poke, mossa, nil, gen)
     return lib.categoryentry(stab, data.name, notes, string.fu(data.type),
                              string.fu(data.category), data.power,
                              data.accuracy, data.pp)
@@ -82,7 +84,7 @@ Arguments:
 
 --]]
 l.addhf = function(str, poke, gen, kind)
-    local pokedata = pokes[poke]
+    local pokedata = multigen.getGen(pokes[poke], gen)
     local hfargs = { pokedata.name, pokedata.type1, pokedata.type2, gen,
                      genlib.getGen.ndex(pokedata.ndex) }
     return table.concat({
@@ -252,7 +254,7 @@ l.levelEntry = function(poke, gen, move, levels)
     return table.concat{
         '|-\n',
         lib.gameslevel(unpack(levels)),
-        l.entrytail(poke, move, ''),
+        l.entrytail(poke, move, '', gen),
     }
 end
 
@@ -284,17 +286,17 @@ TODO: make this function more efficient
 
 --]]
 l.ltLevelarr = function(a, b)
-    for k, v in ipairs(a) do
+    for k, v in ipairs(a[2]) do
         local aval, k1 = v, k
         -- Can't use (not aval) because that is true also for nil
         while aval == false do
             k1 = k1 + 1
-            aval = a[k1]
+            aval = a[2][k1]
         end
-        local bval, k2 = b[k], k
+        local bval, k2 = b[2][k], k
         while bval == false do
             k2 = k2 + 1
-            bval = b[k2]
+            bval = b[2][k2]
         end
         if l.ltLevel(aval, bval) then
             return true
@@ -302,8 +304,8 @@ l.ltLevelarr = function(a, b)
             return false
         end
     end
-    -- here aval == bval at any iteration => equality => return false
-    return false
+    -- here aval == bval at any iteration => equality => check name
+    return a[1] < b[1]
 end
 
 l.dicts.level = {
@@ -322,9 +324,7 @@ l.dicts.level = {
     --     <movename>,
     --    { <level of first game or false>, <level of second game or false>, ... },
     -- }
-    lt = function(a, b)
-        return l.ltLevelarr(a[2], b[2])
-    end,
+    lt = l.ltLevelarr,
     makeEntry = function(poke, gen, val)
         return l.levelEntry(poke, gen, unpack(val))
     end,
@@ -353,7 +353,7 @@ l.tmEntry = function(poke, move, tmnum, games)
     return table.concat{
         '|-\n',
         tmcell,
-        l.entrytail(poke, move, sup[games:upper()] or ""),
+        l.entrytail(poke, move, sup[games:upper()] or "", gen),
     }
 end
 
@@ -456,7 +456,7 @@ l.dicts.breed = {
         return table.concat{
             '|-\n',
             firstcell,
-            l.entrytail(poke, val[1], val[3]),
+            l.entrytail(poke, val[1], val[3], gen),
         }
     end,
 }
@@ -489,7 +489,7 @@ l.dicts.tutor = {
         return table.concat{
             '|-\n',
             lib.tutorgames(val[2]),
-            l.entrytail(poke, val[1], ""),
+            l.entrytail(poke, val[1], "", gen),
         }
     end,
 }
@@ -518,7 +518,7 @@ l.dicts.preevo = {
         return table.concat{
             "|-\n| ",
             firstcell,
-            l.entrytail(poke, val[1], ""),
+            l.entrytail(poke, val[1], "", gen),
         }
     end,
 }
@@ -543,7 +543,7 @@ l.dicts.event = {
         return table.concat{
             '|-\n',
             firstcell,
-            l.entrytail(poke, val[1], ""),
+            l.entrytail(poke, val[1], "", gen),
         }
     end,
 }

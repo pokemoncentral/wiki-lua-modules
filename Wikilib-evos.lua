@@ -86,9 +86,8 @@ digits possibly followed by the abbr, in first uppercase).
 --]]
 ev.prunedEvotree = function(name)
     -- Support function. Needed because it's recursive. Local to access ndex and
-    -- simplify pass to map. Two step declaration because it's recursive
-    local recPruneEvoTree
-    recPruneEvoTree = function(evotab)
+    -- simplify pass to map.
+    local function recPruneEvoTree(evotab)
         if ev.ownTable(name, evotab) then
             return evotab
         end
