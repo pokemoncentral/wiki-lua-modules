@@ -133,8 +133,11 @@ implement details of the entry. It should contain the following functions:
 l.entryLua = function(poke, gen, kind)
     local funcDict = l.dicts[kind]
 
-    local res = funcDict.dataMap(pokemoves[poke][kind][gen],
+    local res = {}
+    if pokemoves[poke][kind] and pokemoves[poke][kind][gen] then
+        res = funcDict.dataMap(pokemoves[poke][kind][gen],
             function(v, k) return funcDict.processData(poke, gen, v, k) end)
+    end
     local resstr
     if #res == 0 then
         resstr = lib.entrynull(kind, "100")
@@ -411,12 +414,15 @@ l.Tm = l.tm
 -- ================================== Breed ==================================
 l.dicts.breed = {
     processData = function(_, gen, movedata, move)
-        local notes = { movedata[2] }
+        local notes = { movedata.notes }
+        --Bulba style: in a Pokémon page it prints parents for the latest game
+        local parents = lib.moveParentsGame(movedata,
+                        pokemoves.games.breed[gen][#pokemoves.games.breed[gen]])
         -- To compute notes it checks only the first ndex because they should
         -- all be equal in this. Otherwise the different one would be the only
         -- one (for instance: parents that need a chain aren't listed if there
         -- are some that doesn't)
-        local parent1 = movedata[1][1]
+        local parent1 = parents[1]
         if parent1 and not lib.canLearn(move, parent1, gen, {"breed"}) then
             if lib.learnKind(move, parent1, gen, "breed") then
                 -- Parent can learn by breed but not in any other way: chain
@@ -433,7 +439,7 @@ l.dicts.breed = {
         end
 
         notes = table.concat(notes, ", ")
-        local res = { move, parent1 and movedata[1] or { 000 },
+        local res = { move, parent1 and parents or { 000 },
                       notes == "" and "" or links.tt("*", string.fu(notes))
                     }
         if movedata.games then
@@ -499,10 +505,9 @@ addInterfaces("tutor")
 -- ================================== Preevo ==================================
 l.dicts.preevo = {
     processData = function(_, _, preevos, move)
-        -- TODO: compute notes (not for the time being)
         return { move, table.map(preevos, function(ndex)
             return { ndex, "" }
-        end) }
+        end, ipairs), games = preevos.games }
     end,
     dataMap = table.mapToNum,
     -- elements of res are like
@@ -515,10 +520,13 @@ l.dicts.preevo = {
             return ms.staticLua(string.tf(pair[1] or "000"), gen or "")
                    .. (lib.preevott[pair[2]] or "")
         end)
+        local notes = val.games
+                      and wlib.mapAndConcat(val.games, function(s) return sup[s] end)
+                      or ""
         return table.concat{
             "|-\n| ",
             firstcell,
-            l.entrytail(poke, val[1], "", gen),
+            l.entrytail(poke, val[1], notes, gen),
         }
     end,
 }

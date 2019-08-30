@@ -297,4 +297,19 @@ f.formSortValue = function(ndex, abbr, poke)
     })
 end
 
+--[[
+
+Given the name or ndex of an useless form maps it to the base form's name or
+ndex. On other names and ndexes is the identity.
+
+--]]
+f.uselessToEmpty = function(name)
+    local useless = require("UselessForms-data")
+    local basename, abbr = f.getnameabbr(name)
+    if useless[basename] and useless[basename].names[abbr] then
+        return basename
+    end
+    return name
+end
+
 return f

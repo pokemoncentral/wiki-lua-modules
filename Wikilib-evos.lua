@@ -136,6 +136,32 @@ end
 
 --[[
 
+Given a Pokémon name or ndex return the list of names of Pokémon that can
+evolve into it. The list is sorted in reverse evolution order.
+
+--]]
+ev.preevoList = function(name)
+    local function explore(evotab)
+        if ev.ownTable(name, evotab) then
+            return {}
+        end
+        if not evotab.evos then
+            return nil
+        end
+        for _, v in pairs(evotab.evos) do
+            local acc = explore(v)
+            if acc then
+                table.insert(acc, evotab.name)
+                return acc
+            end
+        end
+        return nil
+    end
+    return explore(evodata[name])
+end
+
+--[[
+
 Given a Pokémon name od ndex, returns the list of types of its evolutions that
 it doesn't have.
 
@@ -161,6 +187,26 @@ Given a Pokémon name or ndex return true iff that Pokémon can't evolve further
 ev.isFullyEvolved = function(name)
     return ev.preciseEvotable(name).evos == nil
     -- return table.empty(ev.preciseEvotable(name).evos)
+end
+
+--[[
+
+Given a Pokémon name or ndex return the name of the Pokémon that can evolve
+into it. If no such Pokémon exists, return nil.
+
+--]]
+ev.directPreevo = function(name)
+    return ev.foldEvoTree(evodata[name], nil, function(acc, v)
+        if acc then
+            return acc
+        elseif v.evos and table.any(v.evos, function(a)
+            return ev.ownTable(name, a)
+        end) then
+            return v.name
+        else
+            return nil
+        end
+    end)
 end
 
 return ev

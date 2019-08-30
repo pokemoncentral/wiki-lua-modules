@@ -19,6 +19,7 @@ local mw = require('mw')
 local tab = require('Wikilib-tables')  -- luacheck: no unused
 local str = require('Wikilib-strings') -- luacheck: no unused
 local links = require('Links')
+local ms = require('MiniSprite')
 local pokes = require("Poké-data")
 local altforms = require("AltForms-data")
 local useless = require("UselessForms-data")
@@ -6277,6 +6278,21 @@ end
 
 evo.unown = { ndex = 201, name = 'unown' }
 evo[201] = evo.unown
+
+evo.meowsticF = {
+	ndex = 677,
+	name = 'espurr',
+
+	evos = {
+		{
+			ndex = "678F",
+			name = 'meowsticF',
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 25,
+		}
+	}
+}
+evo["678F"] = evo.meowsticF
 
 createAlternativeForm(useless.burmy, evo.burmy)
 

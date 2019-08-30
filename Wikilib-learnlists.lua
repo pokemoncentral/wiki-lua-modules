@@ -214,13 +214,15 @@ line breaks).
 --]=]
 lib.msarrayToModal = function(array, gen, textDisplay, linelength)
 	gen = gen or ''
+	linelength = linelength or 6
 
 	local res = {}
 
 	table.insert(res, '<div>')
 	local mscount = 0
 	for _, ndex in ipairs(array) do
-		table.insert(res, ms.staticLua(string.tf(ndex), gen))
+		table.insert(res, ms.staticLua(type(ndex) == "number"
+		                               and string.tf(ndex) or ndex, gen))
 		mscount = mscount + 1
 		if linelength and mscount % linelength == 0 then
 			table.insert(res, '</div><div>')
@@ -495,6 +497,24 @@ lib.computeSTAB = function(ndex, movename, form, gen)
 	else
 		return ""
 	end
+end
+
+--[[
+
+Given the table for a learnlist breed of a Pokémon in a gen and a game, return
+the list of parents for that game.
+Arguments:
+	- movedata: table associated with the move in PokéMoves[poke].breed
+	- game: the abbr of the game
+
+--]]
+lib.moveParentsGame = function(movedata, game)
+	for _, v in ipairs(movedata) do
+		if v.games and table.search(v.games, game) then
+			return v
+		end
+	end
+	return movedata[1]
 end
 
 -- ========================== Check learn functions ==========================
