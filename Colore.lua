@@ -612,6 +612,8 @@ c.sconosciuto_uova = function(frame) return _colore(frame.args[1] or 'normale', 
 c.Sconosciuto_uova = c.sconosciuto_uova
 c.asessuato_uova = function(frame) return _colore(frame.args[1] or 'normale', '333333', '333333', '232323') end
 c.Asessuato_uova = c.asessuato_uova
+c.genere_sconosciuto_uova, c.Genere_sconosciuto_uova =
+    c.asessuato_uova, c.asessuato_uova
 
 -- Varie ed eventuali
 
