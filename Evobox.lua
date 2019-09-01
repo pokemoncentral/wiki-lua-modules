@@ -71,6 +71,11 @@ eb.strings = {
     DOUBLE_ARROW = [=[<div class="inline-block-md"><div class="flex-md flex-row flex-nowrap flex-items-center" style="margin: 1em 0;"><div class="width-md-50" style="padding: 1em;">${boxarrow1}</div><div class="width-md-50" style="padding: 1em;">${boxarrow2}</div></div></div>]=],
 
     SMALL_TEXT_NEWLINE = [=[<div class="small-text">${text}</div>]=],
+
+    CAT_TRE_PHASES = '[[Categoria:Pokémon appartenenti a una linea di evoluzione a tre stadi]]',
+    CAT_TWO_PHASES =  '[[Categoria:Pokémon appartenenti a una linea di evoluzione a due stadi]]',
+    CAT_ONE_PHASE =  '[[Categoria:Pokémon che non fanno parte di una linea di evoluzione]]',
+    CAT_BRANCHED_PHASES =  '[[Categoria:Pokémon con evoluzioni diramate]]',
 }
 
 eb.strings.desktoparrows = {
@@ -435,8 +440,9 @@ end
 
 Main Wikicode interface, but using data module. The first parameter is the
 Pokémon's name ({{BASEPAGENAME}}). There are some optional parameters:
-    - form: the abbr of the form of which create the box.
+    - form: the abbr of the form of which create the box
     - prune: if "no" then doesn't prune the evo-tree
+    - cat: if "no" then doesn't add categories
 
 --]]
 eb.Evobox = function(frame)
@@ -513,19 +519,20 @@ eb.Evobox = function(frame)
     }
 
     -- Adds categories
-    if data.conditions
-       and data.conditions[evodata.conditions.BREEDONLY] then -- luacheck: ignore
-        -- No category to add
-    elseif phase3evos and table.getn(phase3evos, "num") > 0 then
-        table.insert(evobox, '[[Categoria:Pokémon appartenenti a una linea di evoluzione a tre stadi]]')
-    elseif data.evos then
-        table.insert(evobox, '[[Categoria:Pokémon appartenenti a una linea di evoluzione a due stadi]]')
-    else
-        table.insert(evobox, '[[Categoria:Pokémon che non fanno parte di una linea di evoluzione]]')
-    end
-    if phase3evos and table.getn(phase3evos, "num") > 1
-       or (data.evos and table.getn(data.evos, "num") > 1) then
-        table.insert(evobox, '[[Categoria:Pokémon con evoluzioni diramate]]')
+    if p.cat ~= "no"
+       and not (data.conditions
+                and data.conditions[evodata.conditions.BREEDONLY]) then
+        if phase3evos and table.getn(phase3evos, "num") > 0 then
+            table.insert(evobox, eb.strings.CAT_TRE_PHASES)
+        elseif data.evos then
+            table.insert(evobox, eb.strings.CAT_TWO_PHASES)
+        else
+            table.insert(evobox, eb.strings.CAT_ONE_PHASE)
+        end
+        if phase3evos and table.getn(phase3evos, "num") > 1
+           or (data.evos and table.getn(data.evos, "num") > 1) then
+            table.insert(evobox, eb.strings.CAT_BRANCHED_PHASES)
+        end
     end
 
     return table.concat(evobox)

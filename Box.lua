@@ -193,7 +193,7 @@ returns the b.boxLua arguments.
 b.shortHands = {
     --[[
         Box displaying a type. Arguments:
-            - type: The type, defaults to 'Sconosciuto'
+            - tipo: The type, defaults to 'Sconosciuto'
             - pdfs: Table or space-spearated string of predefined
                 configurations names. Optional, defaults to {}.
             - classes: Table/string of CSS classes, in the format parseClasses
@@ -201,9 +201,15 @@ b.shortHands = {
             - styles: Table/string of CSS styles, in the format parseStyles and
                 printStyles produce respectively. Optional, defaults to {}.
     --]]
-    type = function(type, pdfs, classes, styles)
-        type = string.fu(string.trim(type or 'Sconosciuto'))
-        return type, type, type, pdfs, classes, styles, 'FFF'
+    type = function(tipo, pdfs, classes, styles)
+        tipo = string.fu(string.trim(tipo or 'Sconosciuto'))
+        if type(classes) == 'table' then
+            classes = table.copy(classes)
+            table.insert(classes, 'box-' .. tipo:lower())
+        else
+            classes = table.concat{ classes or "", ' box-',  tipo:lower() }
+        end
+        return tipo, tipo, nil, pdfs, classes, styles, 'FFF'
     end,
 
     --[[
@@ -230,7 +236,8 @@ Main function creating a box. Lua interface. Arguments:
 
 - text: displayed text.
 - link: link target, Defaults to text.
-- color: gradient color, from dark to normal, right-to-left.
+- color: gradient color, from dark to normal, right-to-left. If nil, doesn't
+    apply any background (leaving it to classes).
 - pdfs: Table or space-spearated string of predefined configurations names.
     Optional, defaults to {}.
 - classes: Table/string of CSS classes, in the format parseClasses and
@@ -245,7 +252,7 @@ b.boxLua = function(text, link, color, pdfs, classes, styles, textcolor)
 
     return string.interp([=[<div class="${class}" style="${bg}; ${style}">[[${link}|<span style="color:#${tc}">${text}</span>]]</div>]=], {
         class = css.printClasses(classes),
-        bg = css.horizGradLua{color, 'dark', color, 'normale'},
+        bg = color and css.horizGradLua{color, 'dark', color, 'normale'} or '',
         tc = textcolor or 'FFF',
         link = link or text,
         text = text,
