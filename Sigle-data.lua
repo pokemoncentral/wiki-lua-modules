@@ -44,6 +44,13 @@ x.G = {{
         {'G', 'giallo'}
     }
 }}
+x.Bj = {{
+    link = 'Pokémon Blu (Giappone)',
+    text = 'Blu',
+    display = {
+        {'B', 'blu'}
+    }
+}}
 x.RB = {{
     link = 'Pokémon Rosso e Blu',
     display = {
@@ -67,15 +74,7 @@ x.RBG = {
         {'B', 'blu'}
     }
 }, x.G[1]}
-x.RVBG = {x.RBG[1],
-{
-    link = 'Pokémon Blu (Giappone)',
-    text = 'Blu',
-    display = {
-        {'B', 'blu'}
-    }
-}, x.G[1]
-}
+x.RVBG = {x.RBG[1], x.Bj[1], x.G[1]}
 x.O = {{
 	link = 'Pokémon Oro e Argento',
 	text = 'Oro',
@@ -672,6 +671,12 @@ x.SA = {{
     link = 'Safari Amici',
     display = {
         {'SA', 'safari_amici'}
+    }
+}}
+x.PA = {{
+    link = 'Parco Amici',
+    display = {
+        {'PA', 'parco_amici'}
     }
 }}
 

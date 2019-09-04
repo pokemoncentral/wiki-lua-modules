@@ -650,5 +650,7 @@ c['pokéwalker'] = function(frame) return _colore(frame.args[1] or 'normale', 'D
 c['Pokéwalker'], c.pokewalker, c.Pokewalker = c['pokéwalker'], c['pokéwalker'], c['pokéwalker']
 c['safari amici'] = function(frame) return _colore(frame.args[1] or 'normale', '68AA57', 'AFDBA5', '447039') end
 c['Safari amici'], c.safari_amici, c.Safari_amici = c['safari amici'], c['safari amici'], c['safari amici']
+c['Parco amici'], c['parco amici'], c.Parco_amici, c.parco_amici
+    = c['zona_terra'], c['zona_terra'], c['zona_terra'], c['zona_terra']
 
 return c
