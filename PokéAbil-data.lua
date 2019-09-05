@@ -1631,6 +1631,8 @@ t.alcremie = {ability1 = 'Dolcevelo'}
 t.rolycoly = {ability1 = 'Vapormacchina', ability2 = 'Antifuoco'}
 t.duraludon = {ability1 = 'Metalleggero', ability2 = 'Metalpesante'}
 t.obstagoon = {ability1 = 'Temerarietà', ability2 = 'Dentistretti'}
+t.cramorant = {ability1 = 'Inghiottimissile'}
+t.polteageist = {ability1 = 'Sottilguscio'}
 t.morpeko = {ability1 = 'Pancialterna'}
 t.zacian = {ability1 = ''}
 t.zamazenta = {ability1 = ''}

@@ -1637,6 +1637,8 @@ t.alcremie = {name = 'Alcremie', ndex = nil, type1 = 'folletto', type2 = 'follet
 t.rolycoly = {name = 'Rolycoly', ndex = nil, type1 = 'roccia', type2 = 'roccia'}
 t.duraludon = {name = 'Duraludon', ndex = nil, type1 = 'acciaio', type2 = 'drago'}
 t.obstagoon = {name = 'Obstagoon', ndex = nil, type1 = 'buio', type2 = 'normale'}
+t.cramorant = {name = 'Cramorant', ndex = nil, type1 = 'volante', type2 = 'acqua'}
+t.polteageist = {name = 'Polteageist', ndex = nil, type1 = 'spettro', type2 = 'spettro'}
 t.morpeko = {name = 'Morpeko', ndex = nil, type1 = 'elettro', type2 = 'buio'}
 t.zacian = {name = 'Zacian', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 t.zamazenta = {name = 'Zamazenta', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
