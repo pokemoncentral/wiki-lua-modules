@@ -479,7 +479,7 @@ Arguments:
 
 --]]
 lib.computeSTAB = function(ndex, movename, form, gen)
-	local name, abbr = forms.getnameabbr(ndex, form)
+	local name, abbr = forms.getnameabbr(tostring(ndex), form)
 	local iname = forms.toEmptyAbbr(abbr) == "" and name
 				or (type(name) == 'number' and string.tf(name) or name
 					) .. forms.toEmptyAbbr(abbr)

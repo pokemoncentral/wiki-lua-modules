@@ -1,9 +1,24 @@
 local render = require('Render')
 local header = require('Movelist-hf')
 local entry = require('Movelist-entry')
+local ml = require('Movelist')
 local mw = require('mw')
 
+mw.title.setTitle("Fulmine")
+print(header.Levelh{args={'Elettro', '1'}})
+print(render.entry{args={'Movelist.entryTEST',
+"[[€1|025Co|LGPE=10|useless=yes£]]",
+"[[€1|738£]]",
+"[[€1|738|LGPE=10£]]",
+"[[€1|720£]]",}})
+mw.title.setTitle("Frustata")
+print(render.entry{args={'Movelist.entryTEST',
+"[[€1|001£]]",
+"[[€1|398£]]",}})
+print(header.levelf{args={'Elettro'}})
 
+
+if false then
 mw.title.setTitle("Fulmine")
 print(header.Levelh{args={'Elettro', '1'}})
 print(render.entry{args={'Movelist-entry.Level',
@@ -18,8 +33,8 @@ print(render.entry{args={'Movelist-entry.Level',
 "[[€1|720L|no|no|no|50|49|48|no£]]",
 "[[€1|720|no|no|no|50|49|48|no£]]",}})
 print(header.levelf{args={'Elettro'}})
-
-
+end
+if false then
 mw.title.setTitle("Pallagelo")
 print(header.Breedh{args = {'Ghiaccio', '3'}})
 print(render.entry{args={'Movelist-entry.breed',
@@ -74,3 +89,4 @@ print(header.Eventh{args = {'Normale'}})
 print(header.div{args={'4'}})
 print(entry.Event{args={'422E', 'My Pokémon Ranch', useless = 'yes'}})
 print(header.footer{args={'Normale'}})
+end

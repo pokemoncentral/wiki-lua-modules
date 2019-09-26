@@ -1,5 +1,7 @@
 -- Modulo dati per le mosse
 -- TODO: dati delle gare
+-- TODO: generation
+-- TODO: multigen (some moves changed stats between generations)
 
 local t = {}
 

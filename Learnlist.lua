@@ -80,7 +80,7 @@ Arguments:
     - poke: Pokémon name or ndex
     - gen: the generation of this entry
     - kind: kind of entry. Either "level", "tm", "breed", "tutor", "preevo" and
-            "event". Also used to select functions (picks the funcDict)
+            "event".
 
 --]]
 l.addhf = function(str, poke, gen, kind)

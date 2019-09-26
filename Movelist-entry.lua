@@ -11,11 +11,12 @@ local w = require('Wikilib')
 local multigen = require('Wikilib-multigen')
 local lib = require('Wikilib-learnlists')
 local libdata = require("Wikilib-data")
-local css = require('Css')
-local links = require('Links')
+local ml = require('Movelist')
+-- local css = require('Css')
+-- local links = require('Links')
 local ms = require('MiniSprite')
 local resp = require('Resp')
-local blackabbr = require("Blackabbrev-data")
+-- local blackabbr = require("Blackabbrev-data")
 local gendata = require("Gens-data")
 local pokes = require("Poké-data")
 local groups = require("PokéEggGroup-data")
@@ -155,34 +156,34 @@ m.maxCellsNumber = table.map(entry.levelCellsData, function(v)
 		return acc > #val and acc or #val
 	end)
 end)
-
---[[
-
-Prints a cell for a single value.
-Parameters are:
-	- text: text content
-	- bgcolor: name of bg color (from colore module)
-	- bold: whether the content should be bold or not
-	- colspan: the number of colspan (default 1)
-	- tt: tt text (optional)
-	- abbr: games abbr to add after text (optional)
---]]
-entry.makeBox = function(text, bgcolor, bold, colspan, tt, abbr)
-	local bg = bgcolor:lower() == "fff"
-				and ""
-				or css.horizGradLua{ type = bgcolor }
-	text = bold and table.concat{"'''", text, "'''"} or text
-	local cnt = tt and links.tt(text, tt) or text
-	return string.interp(
-		entry.strings.valueCell,
-		{
-			bg = bg,
-			cs = colspan and table.concat{'" colspan="', colspan} or "",
-			cnt = abbr and table.concat{"<span>", cnt, blackabbr[abbr] or "",
-			                            "</span>"} or cnt,
-		}
-	)
-end
+--
+-- --[[
+--
+-- Prints a cell for a single value.
+-- Parameters are:
+-- 	- text: text content
+-- 	- bgcolor: name of bg color (from colore module)
+-- 	- bold: whether the content should be bold or not
+-- 	- colspan: the number of colspan (default 1)
+-- 	- tt: tt text (optional)
+-- 	- abbr: games abbr to add after text (optional)
+-- --]]
+-- entry.makeBox = function(text, bgcolor, bold, colspan, tt, abbr)
+-- 	local bg = bgcolor:lower() == "fff"
+-- 				and ""
+-- 				or css.horizGradLua{ type = bgcolor }
+-- 	text = bold and table.concat{"'''", text, "'''"} or text
+-- 	local cnt = tt and links.tt(text, tt) or text
+-- 	return string.interp(
+-- 		entry.strings.valueCell,
+-- 		{
+-- 			bg = bg,
+-- 			cs = colspan and table.concat{'" colspan="', colspan} or "",
+-- 			cnt = abbr and table.concat{"<span>", cnt, blackabbr[abbr] or "",
+-- 			                            "</span>"} or cnt,
+-- 		}
+-- 	)
+-- end
 
 --[[
 
@@ -205,7 +206,7 @@ entry.printValue = {
 			text = entry.boolDisplay.no
 			bg = "fff"
 		end
-		return entry.makeBox(text, bg, true, args.colspan, args.abbr)
+		return ml.makeBox(text, bg, true, args.colspan, args.abbr)
 	end,
 	tm = function(args)
 		local text = entry.boolDisplay[args.data:lower()]
@@ -213,7 +214,7 @@ entry.printValue = {
 		if text == entry.boolDisplay.no then
 			bg = "fff"
 		end
-		return entry.makeBox(text, bg, true, args.colspan, args.abbr)
+		return ml.makeBox(text, bg, true, args.colspan, args.abbr)
 	end,
 	breed = function(args)
 		local text = args.data:match('%#')
@@ -224,22 +225,22 @@ entry.printValue = {
 			text = entry.boolDisplay.no
 			bg = "fff"
 		end
-		return entry.makeBox(text, bg, true, args.colspan, nil, args.abbr)
+		return ml.makeBox(text, bg, true, args.colspan, nil, args.abbr)
 	end,
 	tutor = function(args)
 		if not args.data or args.data:lower() == 'x' then
 			return ""
 		elseif args.data:lower() == "no" then
-			return entry.makeBox(entry.boolDisplay.no, "fff", true)
+			return ml.makeBox(entry.boolDisplay.no, "fff", true)
 		elseif args.data:lower() == "yes" then
-			return entry.makeBox(entry.boolDisplay.yes, args.bg, true)
+			return ml.makeBox(entry.boolDisplay.yes, args.bg, true)
 		end
 	end,
 	event = function(args)
 		-- Should be wrapped in a div because this text may go to multiple lines
 		-- and this breaks vert-middle
 		local text = table.concat{"<div>", args.data, "</div>"}
-		return entry.makeBox(text, args.bg, false)
+		return ml.makeBox(text, args.bg, false)
 	end,
 }
 
