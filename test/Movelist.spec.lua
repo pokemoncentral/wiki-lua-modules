@@ -6,28 +6,48 @@ local mw = require('mw')
 
 print(header.Levelh{args={'Elettro', '1'}})
 mw.title.setTitle("Fulmine")
-print(render.entry{args={'Movelist.entryTEST',
+print(render.entry{args={'Movelist.levelTEST',
 "[[€025Co|LGPE=10|useless=yes£]]",
+"[[€493|LGPE=10|allforms=yes£]]",
 "[[€738£]]",
 "[[€738|LGPE=10£]]",
 "[[€720£]]",}})
 mw.title.setTitle("Frustata")
-print(render.entry{args={'Movelist.entryTEST',
+print(render.entry{args={'Movelist.levelTEST',
 "[[€001|LGPE=5£]]",
 "[[€398£]]",}})
 print(header.levelf{args={'Elettro'}})
 
 print(header.Breedh{args = {'Ghiaccio', '2'}})
 mw.title.setTitle("Palla Gelo")
-print(render.entry{args={'Movelist.entryTEST',
+print(render.entry{args={'Movelist.breedTEST',
 "[[€225£]]",}})
 mw.title.setTitle("Bodyguard")
-print(render.entry{args={'Movelist.entryTEST',
+print(render.entry{args={'Movelist.breedTEST',
 "[[€075£]]",}})
 mw.title.setTitle("Fango")
-print(render.entry{args={'Movelist.entryTEST',
+print(render.entry{args={'Movelist.breedTEST',
 "[[€422E|useless=yes£]]",}})
+mw.title.setTitle("Punizione")
+print(render.entry{args={'Movelist.breedTEST',
+"[[€198£]]",}})
 print(header.levelf{args={'Ghiaccio'}})
+
+print(header.TMh{args = {'Acqua', '1'}})
+mw.title.setTitle("Cuordileone")
+print(render.entry{args={'Movelist.tmTEST',
+"[[€807£]]",
+"[[€019£]]",}})
+mw.title.setTitle("Cascata")
+print(render.entry{args={'Movelist.tmTEST',
+"[[€007|LGPE=yes£]]",}})
+mw.title.setTitle("Sub")
+print(render.entry{args={'Movelist.tmTEST',
+"[[€007|LGPE=yes£]]",}})
+mw.title.setTitle("Scacciabruma")
+print(render.entry{args={'Movelist.tmTEST',
+"[[€398£]]",}})
+print(header.footer{args={'Acqua'}})
 
 if false then
 mw.title.setTitle("Fulmine")

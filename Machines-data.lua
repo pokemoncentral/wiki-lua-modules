@@ -33,7 +33,7 @@ m[3].MT = {'centripugno', 'dragartigli', 'idropulsar', 'calmamente', 'boato', 't
 	'riflesso', 'ondashock', 'lanciafiamme', 'fangobomba', 'terrempesta', 'fuocobomba',
 	'rocciotomba', 'aeroassalto', 'attaccalite', 'facciata', 'forzasegreta', 'riposo', 'attrazione',
 	'furto', 'alacciaio', 'baratto', 'scippo', 'vampata'}
-m[3].MN = {'taglio', 'volo', 'surf', 'forza', 'flash', 'spaccaroccia', 'cascata', 'sub'}
+m[3].MN = {'taglio', 'volo', 'surf', 'forza', 'flash', 'spaccaroccia', 'cascata', {{'RZS', 'sub'}}}
 
 m[4] = {}
 m[4].MT = {'centripugno', 'dragartigli', 'idropulsar', 'calmamente', 'boato', 'tossina',
@@ -50,7 +50,7 @@ m[4].MT = {'centripugno', 'dragartigli', 'idropulsar', 'calmamente', 'boato', 't
 	'slavina', 'tuononda', 'vortexpalla', 'danzaspada', 'levitoroccia', 'psicamisù', 'incanto',
 	'neropulsar', 'frana', 'forbice x', 'sonnolalia', 'dononaturale', 'velenpuntura', 'mangiasogni',
 	'laccioerboso', 'bullo', 'spennata', 'retromarcia', 'sostituto', 'cannonflash', 'distortozona'}
-m[4].MN = {'taglio', 'volo', 'surf', 'forza', {{'dppt', 'scacciabruma'}, {'hgss', 'mulinello'}},
+m[4].MN = {'taglio', 'volo', 'surf', 'forza', {{'DPPt', 'scacciabruma'}, {'HGSS', 'mulinello'}},
 	'spaccaroccia', 'cascata', 'scalaroccia'}
 
 m[5] = {}
@@ -87,10 +87,10 @@ m[6].MT = {'unghiaguzze', 'dragartigli', 'psicoshock', 'calmamente', 'boato', 't
 	'danzaspada', 'entomoblocco', 'psicamisù', 'battiterra', 'alitogelido', 'frana',
 	'forbice x', 'codadrago', 'assillo', 'velenpuntura', 'mangiasogni', 'laccioerboso',
 	'bullo', 'sonnolalia', 'retromarcia', 'sostituto', 'cannonflash', 'distortozona',
-	'sprizzalampo', {{'xy', 'spaccaroccia'}, {'roza', 'forzasegreta'}}, 'urlorabbia',
+	'sprizzalampo', {{'XY', 'spaccaroccia'}, {'ROZA', 'forzasegreta'}}, 'urlorabbia',
 	'naturforza', 'neropulsar', 'crescipugno',	'magibrillio', 'confidenza' }
-m[6].MN = {'taglio', 'volo', 'surf', 'forza', 'cascata', {{'roza', 'spaccaroccia'}},
-	{{'roza', 'sub'}}}
+m[6].MN = {'taglio', 'volo', 'surf', 'forza', 'cascata', {{'ROZA', 'spaccaroccia'}},
+	{{'ROZA', 'sub'}}}
 
 m[7] = {}
 m[7].MT = {'cuordileone', 'dragartigli', 'psicoshock', 'calmamente', 'boato', 'tossina',

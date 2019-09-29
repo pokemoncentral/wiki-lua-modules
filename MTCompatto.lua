@@ -22,8 +22,8 @@ local m = {}
 local mw = require('mw')
 
 local w = require('Wikilib')
-local tab = require('Wikilib-tables')
-local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')  -- luacheck: no unused
+local txt = require('Wikilib-strings') -- luacheck: no unused
 local links = require('AbbrLink')
 local css = require('Css')
 local machines = require("Machines-data")

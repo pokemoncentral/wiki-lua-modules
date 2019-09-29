@@ -45,7 +45,7 @@ local groups = require("PokéEggGroup-data")
 local useless = require("UselessForms-data")
 local pokemoves = require("PokéMoves-data")
 local gendata = require("Gens-data")
--- local mtdata = require("Machines-data")
+local mtdata = require("Machines-data")
 
 -- ============================= Library functions ============================
 --     ======================== From Movelist-entry =======================
@@ -95,7 +95,7 @@ ml.levelgames = {
 	{ -- 7
 		{bg = 'sole', abbr = 'SL'},
 		{bg = 'ultrasole', abbr = 'USUL'},
-		-- {bg = 'lgp', abbr = 'LGPE'},
+		{bg = 'lgp', abbr = 'LGPE'},
 	},
 }
 
@@ -104,7 +104,7 @@ ml.levelgames = {
 Prints a (real) cell for a single value.
 Arguments:
 	- text: text content
-	- bgcolor: name of bg color (from colore module)
+	- bgcolor: name of bg color (from modulo colore)
 	- bold: whether the content should be bold or not
 	- colspan: the number of colspan (default 1)
 	- tt: tt text (optional)
@@ -131,6 +131,11 @@ end
 --     ================ First main cancer: tm/breed header ================
 
 --     ======== Second main cancer: datas given move, ndex and kind =======
+-- Given a (physical) cell returns it columnspan
+ml.getcs = function(cell)
+	return cell.cs or (cell.abbr and #cell.abbr) or 1
+end
+
 --[[
 
 Given the array of (logical) cells it prints it to a string.
@@ -159,7 +164,7 @@ ml.printtail = function(cells, kind)
 			-- physcell = { str = <>, bg = <>, abbr = { <>, <>, ... },
 			--              [cs = #] }
 			local abbrs = table.concat(physcell.abbr or {})
-			local cs = physcell.cs or physcell.abbr and #physcell.abbr or 1
+			local cs = ml.getcs(physcell)
 			return ml.makeBox(physcell.str, physcell.bg,
 			                  bold, cs,
 							  ttabbr and abbrs, not ttabbr and abbrs)
@@ -169,109 +174,197 @@ end
 
 --[[
 
-Functions that creates the table of args for one gen and kind "level". This
-function takes as many info as possible from data module, but support also
-arguments for some games not listed in data modules (right now only LGPE).
-Arguments:
-	- g: generation (a number)
-	- ndex: ndex or name of the Pokémon
-	- move: name of the move
-	- args: table of additional arguments. Only the following keys are checked:
-		* LGPE (optional): level(s) of LGPE, not listed in data modules
+Dict of functions to specify details of general gencell function.
+There are three keys:
+	- getbasedata(g, ndex, move, args) creates the table basedata, that is a
+	                                   merge of datas from data module and
+								       arguments
+		* g: generation of the entry (a number)
+		* ndex: name or ndex of the Pokémon
+		* move: move name
+		* args: any additional argument, that may depend on kind:
+			- "level" checks keys corresponding to games that aren't in the
+			          data module. Right now only LGPE
+		    - "tm" checks keys corresponding to games that aren't in the data
+					  module. Right now only LGPE
+	- makegencell(basedata, g) maps base data to a logical cell (array of
+	                           physical cells)
+		* basedata: base data, as produced by mergedata
+		* g: generation of the entry (a number)
+	- games: specs of games for each generation for this kind of entry. Each
+	         element correspond to a generation, and is an array of dicts.
+			 Elements of the array correspond to a group of games that are
+			 always together in entries of that kind, and contains informations
+			 about abbr and background color.
 
 --]]
-ml.genlevelcell = function(g, ndex, move, args)
-	local basedata = pokemoves[ndex].level[g][move]
-	local gencell
-	if basedata then
-		gencell = table.map(basedata, function(t, idx)
-			local empty = #t > 0
-			return {
-				str = empty and string.fu(table.concat(t, ", "))
-				            or ml.strings.BOOLNO,
-				bg = empty and ml.levelgames[g][idx].bg or "fff",
-				abbr = { ml.levelgames[g][idx].abbr },
-			}
-		end)
-	else
-		gencell = table.map(ml.levelgames[g], function(v)
-			return {
-				str = ml.strings.BOOLNO,
-				bg = "fff",
-				abbr = { v.abbr },
-			}
-		end)
-	end
-	-- TODO: this is an horrible workaround, I know I can do better
-	if g == 7 and args.LGPE then
-		table.insert(gencell, { str = args.LGPE, bg = "lgp",
-		                           abbr = { "LGPE" } })
-	end
-	-- Collapse groups with the same string value
-	local res = {}
-	for _, v in ipairs(gencell) do
-		local idx = table.deepSearch(res, v.str)
-		if not idx then
-			table.insert(res, v)
-		else
-			-- res[idx].abbr = table.merge(res[idx].abbr, v.abbr)
-			table.insert(res[idx].abbr, v.abbr[1])
-		end
-	end
-	if #res == 1 then
-		res[1].bg = gendata[g].region
-		res[1].cs = #res[1].abbr
-		res[1].abbr = nil
-	end
-	-- TODO: horrible solution pt. 2
-	if g == 7 and not args.LGPE then
-		local last = res[#res]
-		last.cs = (last.cs and last.cs or #last.abbr) + 1
-	end
-	return res
-end
+ml.gencelldict = {
+	level = {
+		getbasedata = function(g, ndex, move, args)
+			local basedata = pokemoves[ndex].level[g][move]
+			if g == 7 and args.LGPE then
+				basedata = table.copy(basedata or  { {}, {} })
+				table.insert(basedata, { args.LGPE })
+			end
+			return basedata
+		end,
+		makegencell = function(basedata, g)
+			local gencell = table.map(basedata, function(t, idx)
+				local empty = #t > 0
+				return {
+					str = empty and string.fu(table.concat(t, ", "))
+					            or ml.strings.BOOLNO,
+					bg = empty and ml.levelgames[g][idx].bg or "fff",
+					abbr = { ml.levelgames[g][idx].abbr },
+				}
+			end)
+			return gencell
+		end,
+		games = ml.levelgames,
+	},
+	tm = {
+		-- TODO: refactor to be less handcrafted
+		getbasedata = function(g, ndex, move, args)
+			if not table.search(pokemoves[ndex].tm[g], move)
+			   and not (g == 7 and args.LGPE) then
+				return false
+			end
+			local basedata = table.map(ml.gencelldict.tm.games[g], function(game)
+				if game.abbr == "" then
+					return true
+				end
+				-- There are more games in this gen
+				local idx1, idx2, idx3 = table.deepSearch(mtdata[g], move)
+				if not idx1 then
+					return false
+				end
+				if not idx3 then
+					-- No idx3 => the move is a TM in every game of gen g
+					return true
+				end
+				if mtdata[g][idx1][idx2][idx3][1] == game.abbr then
+					return true
+				end
+				local otheridx1 = idx1 == "MT" and "MN" or "MT"
+				local oidx2, oidx3 = table.deepSearch(mtdata[g][otheridx1], move)
+				if oidx2 and mtdata[g][otheridx1][oidx2][oidx3][1] == game.abbr then
+					return true
+				end
+				return false
+			end)
+			if g == 7 then
+				if args.LGPE then
+					basedata[2] = true
+				else
+					basedata[2] = nil
+				end
+			end
+			return basedata
+		end,
+		makegencell = function(basedata, g)
+			return table.map(basedata, function(find, idx)
+				local game = ml.gencelldict.tm.games[g][idx]
+				return {
+					str = find and ml.strings.BOOLYES or ml.strings.BOOLNO,
+					bg = find and game.bg or "fff",
+					abbr = { game.abbr },
+				}
+			end)
+		end,
+		games = {
+			{ { bg = gendata[1].region, abbr = "" } }, -- 1
+			{ { bg = gendata[2].region, abbr = "" } }, -- 2
+			{ -- 3
+				{ bg = gendata[3].region, abbr = "RZS" },
+				{ bg = gendata[3].region, abbr = "RFVF" },
+			},
+			{ -- 4
+				{ bg = "diamante", abbr = "DPPt" },
+				{ bg = "heartgold", abbr = "HGSS" },
+			},
+			{ { bg = gendata[5].region, abbr = "" } }, -- 5
+			{ -- 6
+				{bg = 'x', abbr = 'XY'},
+				{bg = 'rubinoomega', abbr = 'ROZA'},
+			},
+			{
+				{ bg = 'sole', abbr = "SLUSUL" },
+				{ bg = 'lgp', abbr = "LGPE" },
+			}, -- 7
+		},
+	},
+	breed = {
+		getbasedata = function(g, ndex, move)
+			local basedata = pokemoves[ndex].breed[g][move]
+			return basedata
+		end,
+		makegencell = function(basedata, g)
+			local gencell = table.map(basedata, function(t)
+				local bg = t.games
+				           and ml.levelgames[g][table.deepSearch(ml.levelgames[g],
+						                                         t.games[1])].bg
+						   or gendata[g].region
+				return {
+					str = lib.msarrayToModal(#t > 0 and t or { 0 }, g, nil, 6),
+					bg = bg,
+					abbr = t.games,
+					cs = (not t.games) and #ml.levelgames[g] or nil,
+				}
+			end, ipairs)
+			if basedata.games then
+				table.insert(gencell, 1, {
+						str = ml.strings.BOOLNO,
+						bg = "fff",
+						abbr = table.filter(pokemoves.games.breed[g], function(abbr)
+							return not table.deepSearch(basedata.games, abbr)
+						end)
+					})
+			end
+			return gencell
+		end,
+		games = ml.levelgames,
+	},
+	tutor = {
+		getbasedata = function(g, ndex, move)
+			local basedata = pokemoves[ndex].tutor[g][move]
+			return basedata
+		end,
+		makegencell = function(basedata, g) end,
+		games = ml.levelgames,
+	},
+	-- event = {},
+}
 
 --[[
 
-Function that creates the table of args for one gen and kind "breed". Nice
-because breed doesn't exists in LGPE.
-
+Functions that creates the table of args for one gen and kind. This function
+takes as many info as possible from data module, but support also arguments
+for some games not listed in data modules (right now only LGPE).
+This is just the main skeleton, completed with functions in gencelldict that
+depend on kind.
 Arguments:
 	- g: generation (a number)
 	- ndex: ndex or name of the Pokémon
 	- move: name of the move
+	- kind: kind of entry ("level", "tm", ...)
+	- args: table of additional arguments. Only the following keys are checked:
 
 --]]
-ml.genbreedcell = function(g, ndex, move)
-	local basedata = pokemoves[ndex].breed[g][move]
+-- require('dumper')
+-- -- luacheck: globals DataDumper
+ml.gencell = function(g, ndex, move, kind, args)
+	local basedata = ml.gencelldict[kind].getbasedata(g, ndex, move, args)
+    -- print(DataDumper(basedata, "basedata"))
+	-- If no basedata the Pokémon doesn't learn the move in gen g, so empty cell
 	if not basedata then
 		return { {
 				str = ml.strings.BOOLNO,
 				bg = "fff",
-				cs = #ml.levelgames[g]
+				cs = #ml.gencelldict[kind].games[g]
 			} }
 	end
-	local gencell = table.map(basedata, function(t)
-		local bg = t.games
-		           and ml.levelgames[g][table.deepSearch(ml.levelgames[g],
-				                                         t.games[1])].bg
-				   or gendata[g].region
-		return {
-			str = lib.msarrayToModal(t, g, nil, 6),
-			bg = bg,
-			abbr = t.games,
-			cs = (not t.games) and #ml.levelgames[g] or nil,
-		}
-	end, ipairs)
-	if basedata.games then
-		table.insert(gencell, 1, {
-				str = ml.strings.BOOLNO,
-				bg = "fff",
-				abbr = table.filter(pokemoves.games.breed[g], function(abbr)
-					return not table.deepSearch(basedata.games, abbr)
-				end)
-			})
-	end
+	local gencell = ml.gencelldict[kind].makegencell(basedata, g)
+	-- print(DataDumper(gencell, "gencell"))
 
 	-- Collapse groups with the same string value
 	local res = {}
@@ -280,13 +373,24 @@ ml.genbreedcell = function(g, ndex, move)
 		if not idx then
 			table.insert(res, v)
 		else
-			res[idx].abbr = table.merge(res[idx].abbr, v.abbr)
-			-- table.insert(res[idx].abbr, v.abbr[1])
+			res[idx].abbr = res[idx].abbr
+							and table.merge(res[idx].abbr, v.abbr)
+			                or v.abbr
 		end
 	end
 	if #res == 1 then
-		res[1].cs = res[1].abbr and #res[1].abbr or #ml.levelgames[g]
+		res[1].bg = gendata[g].region
+		res[1].cs = res[1].abbr and #res[1].abbr or #ml.gencelldict[kind].games[g]
 		res[1].abbr = nil
+	end
+	-- Pads the cell, adding cs to the last element
+	local totcs = table.fold(res, 0, function(acc, cell)
+		return acc + ml.getcs(cell)
+	end)
+	-- print("totcs = ", totcs)
+	if totcs < #ml.gencelldict[kind].games[g] then
+		local last = res[#res]
+		last.cs = #ml.gencelldict[kind].games[g] - totcs + ml.getcs(last)
 	end
 	return res
 end
@@ -303,34 +407,25 @@ Arguments:
 	- args: a table with any additional argument. Its structure depend on kind,
 		but it makes use of general arguments described in ml.entry
 
-"tutor": an array of "X", "yes" and "no" at most as long as
-		entry.tutorCellsColors. Each value is interpreted as no cell, can
-		learn and can't learn respectively. Trailing missing values are
-		the same as "X".
-
 --]]
 ml.entrytail = function(move, kind, ndex, args)
 	-- cells is an array of logical cells, as described in the docs of
 	-- ml.printtail
     local cells = {}
-	local startGen = 1
     if kind == "event" then
         cells[1] = { str = args[1], bg = "fff" }
-    elseif kind == "tutor" then
-		-- TODO
-	elseif kind == "level" then
-		for g = startGen, gendata.latest do
-			cells[g - startGen + 1] = ml.genlevelcell(g, ndex, move, args or {})
+    else
+		local startGen = moves[move].gen or 1
+		if kind == "breed" then
+			startGen = math.max(startGen, 2)
 		end
-	elseif kind == "breed" then
-		startGen = math.max(startGen, 2)
+		if kind == "tutor" then
+			-- TODO
+	    end
 		for g = startGen, gendata.latest do
-			cells[g - startGen + 1] = ml.genbreedcell(g, ndex, move)
+			cells[g - startGen + 1] = ml.gencell(g, ndex, move, kind, args)
 		end
-	elseif kind == "tm" then
-		-- TODO
-        -- local basedata = pokemoves[ndex][kind][gen][move]
-    end
+	end
 
     return ml.printtail(cells, kind)
 end
@@ -431,9 +526,17 @@ ml.entry = function(move, kind, ndex, args)
 end
 
 -- TODO: temporary test function
-ml.entryTEST = function(frame)
+ml.levelTEST = function(frame)
+	local p = frame.args
+	return ml.entry(mw.title.getCurrentTitle().text:lower(), "level", p[1], p)
+end
+ml.breedTEST = function(frame)
 	local p = frame.args
 	return ml.entry(mw.title.getCurrentTitle().text:lower(), "breed", p[1], p)
+end
+ml.tmTEST = function(frame)
+	local p = frame.args
+	return ml.entry(mw.title.getCurrentTitle().text:lower(), "tm", p[1], p)
 end
 
 return ml
