@@ -457,7 +457,7 @@ l.dicts.breed = {
     end,
     makeEntry = function(poke, gen, val)
         local firstcell = string.interp(STRINGS.breedcell, {
-            p = lib.msarrayToModal(val[2], gen),
+            p = lib.msarrayToModal(val[2], gen, nil, 6),
         })
         return table.concat{
             '|-\n',

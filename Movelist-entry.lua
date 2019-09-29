@@ -151,10 +151,8 @@ entry.levelCellsData = {
 Maximum of columns for a generation. Exported because used also in Movelist/hf
 
 --]]
-m.maxCellsNumber = table.map(entry.levelCellsData, function(v)
-	return table.fold(v, 0, function(acc, val)
-		return acc > #val and acc or #val
-	end)
+m.maxCellsNumber = table.map(ml.levelgames, function(v)
+	return #v
 end)
 --
 -- --[[

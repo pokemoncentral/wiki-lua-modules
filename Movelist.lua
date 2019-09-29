@@ -40,7 +40,7 @@ local blackabbr = require("Blackabbrev-data")
 -- local sig = require("Sigle-data")
 -- local sup = require("Sup-data")
 local pokes = require("Poké-data")
--- local moves = require("Move-data")
+local moves = require("Move-data")
 local groups = require("PokéEggGroup-data")
 local useless = require("UselessForms-data")
 local pokemoves = require("PokéMoves-data")
@@ -169,8 +169,15 @@ end
 
 --[[
 
-Functions that creates the table of args for one gen and kind "level".
--- TODO: docs
+Functions that creates the table of args for one gen and kind "level". This
+function takes as many info as possible from data module, but support also
+arguments for some games not listed in data modules (right now only LGPE).
+Arguments:
+	- g: generation (a number)
+	- ndex: ndex or name of the Pokémon
+	- move: name of the move
+	- args: table of additional arguments. Only the following keys are checked:
+		* LGPE (optional): level(s) of LGPE, not listed in data modules
 
 --]]
 ml.genlevelcell = function(g, ndex, move, args)
@@ -212,6 +219,7 @@ ml.genlevelcell = function(g, ndex, move, args)
 		end
 	end
 	if #res == 1 then
+		res[1].bg = gendata[g].region
 		res[1].cs = #res[1].abbr
 		res[1].abbr = nil
 	end
@@ -219,6 +227,66 @@ ml.genlevelcell = function(g, ndex, move, args)
 	if g == 7 and not args.LGPE then
 		local last = res[#res]
 		last.cs = (last.cs and last.cs or #last.abbr) + 1
+	end
+	return res
+end
+
+--[[
+
+Function that creates the table of args for one gen and kind "breed". Nice
+because breed doesn't exists in LGPE.
+
+Arguments:
+	- g: generation (a number)
+	- ndex: ndex or name of the Pokémon
+	- move: name of the move
+
+--]]
+ml.genbreedcell = function(g, ndex, move)
+	local basedata = pokemoves[ndex].breed[g][move]
+	if not basedata then
+		return { {
+				str = ml.strings.BOOLNO,
+				bg = "fff",
+				cs = #ml.levelgames[g]
+			} }
+	end
+	local gencell = table.map(basedata, function(t)
+		local bg = t.games
+		           and ml.levelgames[g][table.deepSearch(ml.levelgames[g],
+				                                         t.games[1])].bg
+				   or gendata[g].region
+		return {
+			str = lib.msarrayToModal(t, g, nil, 6),
+			bg = bg,
+			abbr = t.games,
+			cs = (not t.games) and #ml.levelgames[g] or nil,
+		}
+	end, ipairs)
+	if basedata.games then
+		table.insert(gencell, 1, {
+				str = ml.strings.BOOLNO,
+				bg = "fff",
+				abbr = table.filter(pokemoves.games.breed[g], function(abbr)
+					return not table.deepSearch(basedata.games, abbr)
+				end)
+			})
+	end
+
+	-- Collapse groups with the same string value
+	local res = {}
+	for _, v in ipairs(gencell) do
+		local idx = table.deepSearch(res, v.str)
+		if not idx then
+			table.insert(res, v)
+		else
+			res[idx].abbr = table.merge(res[idx].abbr, v.abbr)
+			-- table.insert(res[idx].abbr, v.abbr[1])
+		end
+	end
+	if #res == 1 then
+		res[1].cs = res[1].abbr and #res[1].abbr or #ml.levelgames[g]
+		res[1].abbr = nil
 	end
 	return res
 end
@@ -245,18 +313,25 @@ ml.entrytail = function(move, kind, ndex, args)
 	-- cells is an array of logical cells, as described in the docs of
 	-- ml.printtail
     local cells = {}
+	local startGen = 1
     if kind == "event" then
         cells[1] = { str = args[1], bg = "fff" }
     elseif kind == "tutor" then
 		-- TODO
 	elseif kind == "level" then
-		for g = 1, gendata.latest do
-			cells[g] = ml.genlevelcell(g, ndex, move, args or {})
+		for g = startGen, gendata.latest do
+			cells[g - startGen + 1] = ml.genlevelcell(g, ndex, move, args or {})
 		end
-    elseif table.search({"tm", "breed"}, kind) then
+	elseif kind == "breed" then
+		startGen = math.max(startGen, 2)
+		for g = startGen, gendata.latest do
+			cells[g - startGen + 1] = ml.genbreedcell(g, ndex, move)
+		end
+	elseif kind == "tm" then
 		-- TODO
         -- local basedata = pokemoves[ndex][kind][gen][move]
     end
+
     return ml.printtail(cells, kind)
 end
 
@@ -358,7 +433,7 @@ end
 -- TODO: temporary test function
 ml.entryTEST = function(frame)
 	local p = frame.args
-	return ml.entry(mw.title.getCurrentTitle().text:lower(), "level", p[2], p)
+	return ml.entry(mw.title.getCurrentTitle().text:lower(), "breed", p[1], p)
 end
 
 return ml

@@ -214,7 +214,6 @@ line breaks).
 --]=]
 lib.msarrayToModal = function(array, gen, textDisplay, linelength)
 	gen = gen or ''
-	linelength = linelength or 6
 
 	local res = {}
 

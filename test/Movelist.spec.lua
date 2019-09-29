@@ -4,19 +4,30 @@ local entry = require('Movelist-entry')
 local ml = require('Movelist')
 local mw = require('mw')
 
-mw.title.setTitle("Fulmine")
 print(header.Levelh{args={'Elettro', '1'}})
+mw.title.setTitle("Fulmine")
 print(render.entry{args={'Movelist.entryTEST',
-"[[€1|025Co|LGPE=10|useless=yes£]]",
-"[[€1|738£]]",
-"[[€1|738|LGPE=10£]]",
-"[[€1|720£]]",}})
+"[[€025Co|LGPE=10|useless=yes£]]",
+"[[€738£]]",
+"[[€738|LGPE=10£]]",
+"[[€720£]]",}})
 mw.title.setTitle("Frustata")
 print(render.entry{args={'Movelist.entryTEST',
-"[[€1|001£]]",
-"[[€1|398£]]",}})
+"[[€001|LGPE=5£]]",
+"[[€398£]]",}})
 print(header.levelf{args={'Elettro'}})
 
+print(header.Breedh{args = {'Ghiaccio', '2'}})
+mw.title.setTitle("Palla Gelo")
+print(render.entry{args={'Movelist.entryTEST',
+"[[€225£]]",}})
+mw.title.setTitle("Bodyguard")
+print(render.entry{args={'Movelist.entryTEST',
+"[[€075£]]",}})
+mw.title.setTitle("Fango")
+print(render.entry{args={'Movelist.entryTEST',
+"[[€422E|useless=yes£]]",}})
+print(header.levelf{args={'Ghiaccio'}})
 
 if false then
 mw.title.setTitle("Fulmine")
