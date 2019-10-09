@@ -1674,6 +1674,8 @@ t.gravelerA = {name = 'Graveler', ndex = 75, type1 = 'roccia', type2 = 'elettro'
 t['075A'] = t.gravelerA
 t.golemA = {name = 'Golem', ndex = 76, type1 = 'roccia', type2 = 'elettro'}
 t['076A'] = t.golemA
+t.ponytaG = {name = 'Ponyta', ndex = 77, type1 = 'psico', type2 = 'psico'}
+t['077G'] = t.ponytaG
 t.grimerA = {name = 'Grimer', ndex = 88, type1 = 'veleno', type2 = 'buio'}
 t['088A'] = t.grimerA
 t.mukA = {name = 'Muk', ndex = 89, type1 = 'veleno', type2 = 'buio'}

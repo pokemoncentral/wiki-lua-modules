@@ -1673,6 +1673,8 @@ t.gravelerA = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Pellele
 t['075A'] = t.gravelerA
 t.golemA = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Pellelettro'}
 t['076A'] = t.golemA
+t.ponytaG = {ability1 = 'Fugafacile', ability2 = 'Pastelvelo'}
+t['077G'] = t.ponytaG
 t.grimerA = {ability1 = 'Velentocco', ability2 = 'Voracità', abilityd = 'Forza Chimica'}
 t['088A'] = t.grimerA
 t.mukA = {ability1 = 'Velentocco', ability2 = 'Voracità', abilityd = 'Forza Chimica'}
