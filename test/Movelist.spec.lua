@@ -49,11 +49,12 @@ print(render.entry{args={'Movelist.tmTEST',
 "[[€398£]]",}})
 print(header.footer{args={'Acqua'}})
 
-print(header.tutorh{args = {'veleno'}})
-print(header.tutor4{args = {'no', 'yes', 'yes'}})
-print(header.tutor5{args = {'no', 'yes'}})
-print(header.tutor6{args = {'no', 'yes'}})
-print(header.tutor7{args = {'no', 'yes', 'no'}})
+-- print(header.tutorh{args = {'veleno'}})
+-- print(header.tutor4{args = {'no', 'yes', 'yes'}})
+-- print(header.tutor5{args = {'no', 'yes'}})
+-- print(header.tutor6{args = {'no', 'yes'}})
+-- print(header.tutor7{args = {'no', 'yes', 'no'}})
+print(ml.tutorhlua("gastroacido"))
 mw.title.setTitle("Gastroacido")
 print(render.entry{args={'Movelist.tutorTEST',
 [[€023£]],

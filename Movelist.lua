@@ -37,6 +37,7 @@ local ms = require('MiniSprite')
 local resp = require('Resp')
 -- local hf = require('Movelist-hf')
 local blackabbr = require("Blackabbrev-data")
+local c = require("Colore-data")
 -- local sig = require("Sigle-data")
 -- local sup = require("Sup-data")
 local pokes = require("Poké-data")
@@ -44,6 +45,7 @@ local moves = require("Move-data")
 local groups = require("PokéEggGroup-data")
 local useless = require("UselessForms-data")
 local pokemoves = require("PokéMoves-data")
+local movepokes = require("MovePokés-data")
 local gendata = require("Gens-data")
 local mtdata = require("Machines-data")
 
@@ -144,7 +146,50 @@ ml.makeBox = function(text, bgcolor, bold, colspan, tt, abbr)
 	)
 end
 
---     ================ First main cancer: tm/breed header ================
+--     ========================== From Movelist-hf =========================
+ml.headers = function(tipo, kind, cs)
+	return string.interp([=[
+{| class="roundy text-center white-rows roundy-footer" style="${bg}; border-spacing: 0; padding: 0.3ex;"
+! class="roundytl hidden-xs" rowspan="${rs}" | #
+! rowspan="${rs}" colspan="2" | Pokémon
+! class="hidden-sm" rowspan="${rs}" | Tipo
+! class="hidden-sm" style="padding: 0 0.7ex;" rowspan="${rs}" | Gruppo uova
+! class="roundytr" colspan="${cs}" | ]=],
+{
+	bg = css.horizGradLua{type = tipo},
+    rs = kind == 'event' and 1 or 2,
+    cs = cs,
+})
+end
+
+--     ================ First main cancer: tm/tutor header ================
+--         ========================== Tm =============================
+-- TODO: tm header (take from machines-data)
+
+--         ========================= Tutor ===========================
+ml.tutorhlua = function(move)
+	move = move or mw.title.getCurrentTitle().text:lower()
+	local tipo = moves[move].type
+	local tutorgames = movepokes.movetutorindexes[move] or {}
+	return table.concat{
+		ml.headers(tipo, 'tutor', #tutorgames),
+		'Gioco\n|- class="white-text"\n',
+		wlib.mapAndConcat(tutorgames, function(idx)
+			local data = ml.tutorgames[idx]
+			return string.interp([=[
+! class="roundytop" style="background: #${bg}; min-width: 6ex;" | ${abbr}
+]=], {
+				bg = c[data.bg].normale,
+				abbr = data.abbr,
+			})
+		end),
+	}
+end
+
+-- TODO: add WikiCode interface
+ml.tutorh = ml.tutorh
+
+ml.Tutorh = ml.tutorh
 
 --     ======== Second main cancer: datas given move, ndex and kind =======
 -- Given a (physical) cell returns it columnspan
@@ -333,7 +378,7 @@ ml.gencelldict = {
 				table.insert(gencell, 1, {
 						str = ml.strings.BOOLNO,
 						bg = "fff",
-						abbr = table.filter(pokemoves.games.breed[g], function(abbr)
+						abbr = table.filter(lib.games.breed[g], function(abbr)
 							return not table.deepSearch(basedata.games, abbr)
 						end)
 					})
@@ -356,15 +401,12 @@ Arguments:
 	- ndex: ndex or name of the Pokémon
 	- move: name of the move
 	- kind: kind of entry ("level", "tm", ...)
-	- args: table of additional arguments. Only the following keys are checked:
-		TODO
+	- args: table of additional arguments. Only used by getbasedata in
+	        gencelldict
 
 --]]
--- require('dumper')
--- -- luacheck: globals DataDumper
 ml.gencell = function(g, ndex, move, kind, args)
 	local basedata = ml.gencelldict[kind].getbasedata(g, ndex, move, args)
-    -- print(DataDumper(basedata, "basedata"))
 	-- If no basedata the Pokémon doesn't learn the move in gen g, so empty cell
 	if not basedata then
 		return { {
@@ -374,7 +416,6 @@ ml.gencell = function(g, ndex, move, kind, args)
 			} }
 	end
 	local gencell = ml.gencelldict[kind].makegencell(basedata, g)
-	-- print(DataDumper(gencell, "gencell"))
 
 	-- Collapse groups with the same string value
 	local res = {}
@@ -407,8 +448,8 @@ end
 
 --[[
 
-This functions build the tail of an entry given move, Pokémon and kind taking
-datas from data module. Some data is still required to the caller.
+Build the tail of an entry given some basic informations taking as much data as
+possible from data modules. Some data is still required to the caller.
 
 Arguments:
     - move: move name
@@ -425,9 +466,8 @@ ml.entrytail = function(move, kind, ndex, args)
     if kind == "event" then
         cells[1] = { { str = table.concat{ "<div>", args[1], "</div>" }, bg = "fff" } }
     elseif kind == "tutor" then
-		-- args.games is an array of indexes of ml.tutorgames
-		cells[1] = table.map(args.games, function(idx)
-			local g, num = table.deepSearch(pokemoves.games.tutor,
+		cells[1] = table.map(movepokes.movetutorindexes[move], function(idx)
+			local g, num = table.deepSearch(lib.games.tutor,
 			                                ml.tutorgames[idx].abbr)
 			local find = pokemoves[ndex].tutor[g]
 			             and pokemoves[ndex].tutor[g][move]
@@ -452,7 +492,8 @@ end
 
 --[[
 
-TODO: write docs, autocompute some notes from data module
+Build the head of an entry from some basic informations. The head is the part
+of the entry that doesn't depend on kind.
 
 Args:
     - move: move name
@@ -530,8 +571,6 @@ Args:
 		* (kind "event") [1]: the string to print
 		* (kind "level" and "tm") LGPE: level at which the Pokémon learn the
 					                    move in LGPE
-		* (kind "tutor") games: a list of games in which the move is a tutor,
-		                        as a list of indexes of ml.tutorgames
 
 --]]
 ml.entry = function(move, kind, ndex, args)
@@ -542,7 +581,9 @@ ml.entry = function(move, kind, ndex, args)
 	else
 		args.form = forms.getabbr(tostring(ndex), args.form) or nil
 	end
-    return ml.entryhead(move, ndex, args.notes or '',
+	-- TODO: autocompute some notes from data module
+	local notes = ''
+    return ml.entryhead(move, ndex, args.notes or notes,
 						args.form or '',
 						args.allforms, args.useless)
         .. ml.entrytail(move, kind, ndex, args)
@@ -563,7 +604,6 @@ ml.tmTEST = function(frame)
 end
 ml.tutorTEST = function(frame)
 	local p = frame.args
-	p.games = { 6, 7, 9, 11, 13 }
 	return ml.entry(mw.title.getCurrentTitle().text:lower(), "tutor", p[1], p)
 end
 ml.eventTEST = function(frame)

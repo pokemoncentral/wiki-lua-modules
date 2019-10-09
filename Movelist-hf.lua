@@ -7,10 +7,11 @@ local mw = require('mw')
 
 local w = require('Wikilib')
 local txt = require('Wikilib-strings')          -- luacheck: no unused
-local c = require("Colore-data")
-local css = require('Css')
-local gendata = require("Gens-data")
 local mlentry = require('Movelist-entry')
+local ml = require('Movelist')
+local css = require('Css')
+local c = require("Colore-data")
+local gendata = require("Gens-data")
 
 -- Tabelle dati
 
@@ -19,7 +20,7 @@ local mlentry = require('Movelist-entry')
 local cs = {}
 cs.level = function(gen) return 2 * (gendata.latest + 1) - 2 * gen end
 cs.breed, cs.tm = cs.level, cs.level
-cs.event = function(gen) return 1 end
+cs.event = function() return 1 end
 cs.tutor = function(gen) return gen end
 
 -- Contiene le sigle e i nomi interi dei giochi delle celle del tutor
@@ -84,7 +85,7 @@ cells.tutor = function(gen, gms)
 	local str = '! class="roundytop" style="background: #${bg}; color: #fff; min-width: 6ex;" | ${game}\n'
     local row = {}
     for a in ipairs(gms) do
-    	if gms[a] == 'yes' then
+		if gms[a] == 'yes' then
 			table.insert(row, string.interp(str, {bg = c[games[gen][a][2]].normale,
 				game = games[gen][a][1]}))
 		end
@@ -95,19 +96,7 @@ end
 -- Ritorna le prime celle, comuni a tutti gli headers
 
 local headers = function(tipo, gen, kind)
-	return string.interp([=[
-
-{| class="roundy text-center white-rows roundy-footer" style="${bg}; border-spacing: 0; padding: 0.3ex;"
-! class="roundytl hidden-xs" rowspan="${rs}" | #
-! rowspan="${rs}" colspan="2" | Pokémon
-! class="hidden-sm" rowspan="${rs}" | Tipo
-! class="hidden-sm" style="padding: 0 0.7ex;" rowspan="${rs}" | Gruppo uova
-! class="roundytr" colspan="${cs}" | ]=],
-{
-	bg = css.horizGradLua{type = tipo},
-    rs = kind == 'event' and 1 or 2,
-    cs = cs[kind](gen)
-})
+	return ml.headers(tipo, kind, cs[kind](gen))
 end
 
 -- Interfaccia
