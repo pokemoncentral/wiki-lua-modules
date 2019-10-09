@@ -201,7 +201,7 @@ eb.boxArrow.desc.methods = {
         end
         return table.concat{ '[[Livello|Livello ', level, ']]' }
     end,
-    [evodata.methods.HAPPINESS] = methodsFunctionGenerator('[[Felicità]]'),
+    [evodata.methods.HAPPINESS] = methodsFunctionGenerator('[[Affetto]]'),
     [evodata.methods.STONE] = methodsFunctionGenerator('${param}'),
     [evodata.methods.TRADE] = methodsFunctionGenerator('[[Scambio]]'),
     [evodata.methods.BREED] = methodsFunctionGenerator('[[Accoppiamento Pokémon|Accoppiamento]]'),
@@ -600,7 +600,7 @@ end
 -- Tables mapping evotype to method for fake evodata building
 eb.evotypeToMethod = {
     livello = evodata.methods.LEVEL,
-    ['felicità'] = evodata.methods.HAPPINESS,
+    ['affetto'] = evodata.methods.HAPPINESS,
     posizione = evodata.methods.LEVEL,
     pietra = evodata.methods.STONE,
     mossa = evodata.methods.LEVEL,
@@ -719,7 +719,7 @@ Parameters are named because of their number:
         be displayed even if it's equal to the first one
     - locN: notes about the N-th Pokémon, put above the sprite
     - formeN: name of the form, put in place of the phase below the sprite
-    - evotypeN (livello|felicità|posizione|pietra|mossa|strum. tenuto|scambio
+    - evotypeN (livello|affetto|posizione|pietra|mossa|strum. tenuto|scambio
             |other|double): the evolutionary method from N-th to (N+1)-th
             Pokémon. Values have the same meaning as in evo-data. The value
             "double" (not present in evo-data) is like "other" but with a
