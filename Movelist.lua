@@ -4,7 +4,7 @@ Right now this module is just a convenient library for movelist-entry, used to
 automatically build an entry with few parameters.
 
 ===============================================================================
-TODO
+TODO: all this part is a LIE (like the cake)
 Creates the list of Pokémon that learns a certain move.
 
 The module has a function for kind (level, tm, ...). All these functions have 2
@@ -16,6 +16,7 @@ Examples:
 {{#invoke: Movelist | level | {{BASEPAGENAME}} | 5 }}
 {{#invoke: Movelist | tm | abbattimento | 5 }}
 {{#invoke: Movelist | event | oscurotuffo | 4 }}
+===============================================================================
 
 --]]
 
@@ -30,7 +31,6 @@ local lib = require('Wikilib-learnlists')
 local multigen = require('Wikilib-multigen')
 local forms = require('Wikilib-forms')
 local wlib = require('Wikilib')
--- local links = require('Links')
 local css = require('Css')
 local links = require('Links')
 local ms = require('MiniSprite')
@@ -97,6 +97,22 @@ ml.levelgames = {
 		{bg = 'ultrasole', abbr = 'USUL'},
 		{bg = 'lgp', abbr = 'LGPE'},
 	},
+}
+-- Table of tutor games
+ml.tutorgames = {
+	ml.levelgames[2][2], -- C
+	ml.levelgames[3][2], -- RFVF
+	ml.levelgames[3][3], -- S
+	{ bg = "xd", abbr = "XD" },
+	ml.levelgames[4][1], -- DP
+	ml.levelgames[4][2], -- Pt
+	ml.levelgames[4][3], -- HGSS
+	{ bg = "nero", abbr = "NB" },
+	{ bg = "nero2", abbr = "N2B2" },
+	ml.levelgames[6][1], -- XY
+	ml.levelgames[6][2], -- ROZA
+	ml.levelgames[7][1], -- SL
+	ml.levelgames[7][2], -- USUL
 }
 
 --[[
@@ -174,7 +190,9 @@ end
 
 --[[
 
-Dict of functions to specify details of general gencell function.
+Dict of functions to specify details of general gencell function. Tutor and
+event aren't included because their strcture is fundamentally different than
+the other three.
 There are three keys:
 	- getbasedata(g, ndex, move, args) creates the table basedata, that is a
 	                                   merge of datas from data module and
@@ -324,15 +342,6 @@ ml.gencelldict = {
 		end,
 		games = ml.levelgames,
 	},
-	tutor = {
-		getbasedata = function(g, ndex, move)
-			local basedata = pokemoves[ndex].tutor[g][move]
-			return basedata
-		end,
-		makegencell = function(basedata, g) end,
-		games = ml.levelgames,
-	},
-	-- event = {},
 }
 
 --[[
@@ -348,6 +357,7 @@ Arguments:
 	- move: name of the move
 	- kind: kind of entry ("level", "tm", ...)
 	- args: table of additional arguments. Only the following keys are checked:
+		TODO
 
 --]]
 -- require('dumper')
@@ -413,15 +423,25 @@ ml.entrytail = function(move, kind, ndex, args)
 	-- ml.printtail
     local cells = {}
     if kind == "event" then
-        cells[1] = { str = args[1], bg = "fff" }
-    else
+        cells[1] = { { str = table.concat{ "<div>", args[1], "</div>" }, bg = "fff" } }
+    elseif kind == "tutor" then
+		-- args.games is an array of indexes of ml.tutorgames
+		cells[1] = table.map(args.games, function(idx)
+			local g, num = table.deepSearch(pokemoves.games.tutor,
+			                                ml.tutorgames[idx].abbr)
+			local find = pokemoves[ndex].tutor[g]
+			             and pokemoves[ndex].tutor[g][move]
+						 and pokemoves[ndex].tutor[g][move][num]
+			return {
+				str = find and ml.strings.BOOLYES or ml.strings.BOOLNO,
+				bg = find and ml.tutorgames[idx].bg or "fff",
+			}
+		end)
+	else
 		local startGen = moves[move].gen or 1
 		if kind == "breed" then
 			startGen = math.max(startGen, 2)
 		end
-		if kind == "tutor" then
-			-- TODO
-	    end
 		for g = startGen, gendata.latest do
 			cells[g - startGen + 1] = ml.gencell(g, ndex, move, kind, args)
 		end
@@ -492,7 +512,8 @@ end
 
 --[[
 
-TODO: docs
+Creates a single entry for a movelist. It isn't fully automated because
+something isn't in data modules (most notably LGPE learnsets)
 
 Args:
     - move: move name
@@ -507,8 +528,10 @@ Args:
 				     useless, and will be searched in the right module
 	some are dependent on kind:
 		* (kind "event") [1]: the string to print
-		* (kind "level") LGPE: level at which the Pokémon learn the move in
-					           LGPE, because it isn't in the data module
+		* (kind "level" and "tm") LGPE: level at which the Pokémon learn the
+					                    move in LGPE
+		* (kind "tutor") games: a list of games in which the move is a tutor,
+		                        as a list of indexes of ml.tutorgames
 
 --]]
 ml.entry = function(move, kind, ndex, args)
@@ -537,6 +560,16 @@ end
 ml.tmTEST = function(frame)
 	local p = frame.args
 	return ml.entry(mw.title.getCurrentTitle().text:lower(), "tm", p[1], p)
+end
+ml.tutorTEST = function(frame)
+	local p = frame.args
+	p.games = { 6, 7, 9, 11, 13 }
+	return ml.entry(mw.title.getCurrentTitle().text:lower(), "tutor", p[1], p)
+end
+ml.eventTEST = function(frame)
+	local p = frame.args
+	local ndex = table.remove(p, 1)
+	return ml.entry(mw.title.getCurrentTitle().text:lower(), "event", ndex, p)
 end
 
 return ml

@@ -44,6 +44,22 @@ lib.preevott = {
 	D = links.tt('‡', "Mossa appresa nel Dream World")
 }
 
+-- Games for various kinds of learn, divided by gen
+lib.games = {
+level = { { "RB", "G" }, { "OA", "C" }, { "RZ", "RFVF", "S" },
+    { "DP", "Pt", "HGSS" }, { "NB", "N2B2" }, { "XY", "ROZA" },
+    { "SL", "USUL" },
+},
+breed = { {}, { "OA", "C" }, { "RZ", "RFVF", "S" },
+    { "DP", "Pt", "HGSS" }, { "NB", "N2B2" }, { "XY", "ROZA" },
+    { "SL", "USUL" },
+},
+tutor = { {}, { "C" }, { "RFVF", "S", "XD" },
+    { "DP", "Pt", "HGSS" }, { "NB", "N2B2" }, { "XY", "ROZA" },
+    { "SL", "USUL" },
+},
+}
+
 --[[
 
 Processa i parametri passati al modulo, effettuando

@@ -417,7 +417,7 @@ l.dicts.breed = {
         local notes = { movedata.notes }
         --Bulba style: in a Pokémon page it prints parents for the latest game
         local parents = lib.moveParentsGame(movedata,
-                        pokemoves.games.breed[gen][#pokemoves.games.breed[gen]])
+                        lib.games.breed[gen][#lib.games.breed[gen]])
         -- To compute notes it checks only the first ndex because they should
         -- all be equal in this. Otherwise the different one would be the only
         -- one (for instance: parents that need a chain aren't listed if there
@@ -474,7 +474,7 @@ l.dicts.tutor = {
     processData = function(_, gen, games, move)
         return {
             move,
-            table.zip(pokemoves.games.tutor[gen], games, function(a, b)
+            table.zip(lib.games.tutor[gen], games, function(a, b)
                 return { a, b and "Yes" or "No" }
             end)
         }

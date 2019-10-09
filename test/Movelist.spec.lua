@@ -49,6 +49,30 @@ print(render.entry{args={'Movelist.tmTEST',
 "[[€398£]]",}})
 print(header.footer{args={'Acqua'}})
 
+print(header.tutorh{args = {'veleno'}})
+print(header.tutor4{args = {'no', 'yes', 'yes'}})
+print(header.tutor5{args = {'no', 'yes'}})
+print(header.tutor6{args = {'no', 'yes'}})
+print(header.tutor7{args = {'no', 'yes', 'no'}})
+mw.title.setTitle("Gastroacido")
+print(render.entry{args={'Movelist.tutorTEST',
+[[€023£]],
+[[€088A£]],
+[[€336£]],
+[[€455£]],
+[[€511£]],
+[[€631£]],
+[[€804£]]}})
+print(header.footer{args={'veleno'}})
+
+print(header.Eventh{args = {'spettro'}})
+print(header.div{args={'4'}})
+mw.title.setTitle("Oscurotuffo")
+print(render.entry{args={'Movelist.eventTEST',
+[[€493|Evento dodicesimo film<br>Arceus Michina australiano<br>Toys "R" Us Arceus<br>Arceus Michina europeo£]]}})
+print(header.footer{args={'spettro'}})
+
+
 if false then
 mw.title.setTitle("Fulmine")
 print(header.Levelh{args={'Elettro', '1'}})
