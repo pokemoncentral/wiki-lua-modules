@@ -35,7 +35,6 @@ local css = require('Css')
 local links = require('Links')
 local ms = require('MiniSprite')
 local resp = require('Resp')
--- local hf = require('Movelist-hf')
 local blackabbr = require("Blackabbrev-data")
 local c = require("Colore-data")
 -- local sig = require("Sigle-data")
@@ -64,6 +63,20 @@ ml.strings = {
 ]=],
 	BOOLNO = '×',
 	BOOLYES = '✔',
+
+	HEADERBASE = [=[
+{| class="roundy text-center white-rows roundy-footer" style="${bg}; border-spacing: 0; padding: 0.3ex;"
+! class="roundytl hidden-xs" rowspan="${rs}" | #
+! rowspan="${rs}" colspan="2" | Pokémon
+! class="hidden-sm" rowspan="${rs}" | Tipo
+! class="hidden-sm" style="padding: 0 0.7ex;" rowspan="${rs}" | Gruppo uova
+! class="roundytr" colspan="${cs}" | ]=],
+	HEADERTM = [=[
+! class="roundytop" style="background: #${bg}; min-width: 4ex; line-height: 1em;" colspan="${cs}" | [[${genl} generazione|${genr}]]<div class="text-small">${tm}</div>
+]=],
+	HEADERTUTOR = [=[
+! class="roundytop" style="background: #${bg}; min-width: 6ex;" | ${abbr}
+]=],
 }
 
 -- Table of level games for generation
@@ -148,27 +161,56 @@ end
 
 --     ========================== From Movelist-hf =========================
 ml.headers = function(tipo, kind, cs)
-	return string.interp([=[
-{| class="roundy text-center white-rows roundy-footer" style="${bg}; border-spacing: 0; padding: 0.3ex;"
-! class="roundytl hidden-xs" rowspan="${rs}" | #
-! rowspan="${rs}" colspan="2" | Pokémon
-! class="hidden-sm" rowspan="${rs}" | Tipo
-! class="hidden-sm" style="padding: 0 0.7ex;" rowspan="${rs}" | Gruppo uova
-! class="roundytr" colspan="${cs}" | ]=],
-{
-	bg = css.horizGradLua{type = tipo},
-    rs = kind == 'event' and 1 or 2,
-    cs = cs,
-})
+	return string.interp(ml.strings.HEADERBASE, {
+		bg = css.horizGradLua{type = tipo},
+	    rs = kind == 'event' and 1 or 2,
+	    cs = cs,
+	})
 end
 
 --     ================ First main cancer: tm/tutor header ================
 --         ========================== Tm =============================
--- TODO: tm header (take from machines-data)
+ml.tmhlua = function(move)
+	local tipo = moves[move].type
+	local startgen = moves[move].gen or 1
+	local gamesdata = ml.gencelldict.tm.games
+	local totcs = table.fold(gamesdata, 0, function(acc, gengames)
+		return acc + #gengames
+	end, ipairs)
+	local res = {
+		ml.headers(tipo, 'tm', totcs),
+		'Macchine\n|- class="white-text"\n',
+	}
+	local link
+	for g = startgen, gendata.latest do
+		local tmkind, tmnum = table.deepSearch(mtdata[g], move)
+		link = tmkind
+		     and table.concat{'[[', tmkind, string.nFigures(tmnum, 2), ']]'}
+			 or 'Ness.'
+		table.insert(res, string.interp(ml.strings.HEADERTM, {
+			bg = c[gendata[g].region].normale,
+			genl = gendata[g].ext,
+			genr = gendata[g].roman,
+			tm = link,
+			cs = #gamesdata[g],
+		}))
+	end
+	return table.concat(res)
+end
+
+-- WikiCode interface for tmhlua: the only (optional) argument is the move
+-- name, defaults to {{BASEPAGENAME}}
+ml.tmh = function(frame)
+	local move = frame.args[1] or mw.title.getCurrentTitle().text
+	move = move:lower()
+	return ml.tmhlua(move)
+end
+
+ml.TMh, ml.Tmh = ml.tmh, ml.tmh
 
 --         ========================= Tutor ===========================
+-- Given a move creates the tutor header for that move
 ml.tutorhlua = function(move)
-	move = move or mw.title.getCurrentTitle().text:lower()
 	local tipo = moves[move].type
 	local tutorgames = movepokes.movetutorindexes[move] or {}
 	return table.concat{
@@ -176,9 +218,7 @@ ml.tutorhlua = function(move)
 		'Gioco\n|- class="white-text"\n',
 		wlib.mapAndConcat(tutorgames, function(idx)
 			local data = ml.tutorgames[idx]
-			return string.interp([=[
-! class="roundytop" style="background: #${bg}; min-width: 6ex;" | ${abbr}
-]=], {
+			return string.interp(ml.strings.HEADERTUTOR, {
 				bg = c[data.bg].normale,
 				abbr = data.abbr,
 			})
@@ -186,8 +226,13 @@ ml.tutorhlua = function(move)
 	}
 end
 
--- TODO: add WikiCode interface
-ml.tutorh = ml.tutorh
+-- WikiCode interface for tutorhlua: the only (optional) argument is the move
+-- name, defaults to {{BASEPAGENAME}}
+ml.tutorh = function(frame)
+	local move = frame.args[1] or mw.title.getCurrentTitle().text
+	move = move:lower()
+	return ml.tutorhlua(move)
+end
 
 ml.Tutorh = ml.tutorh
 
@@ -438,7 +483,6 @@ ml.gencell = function(g, ndex, move, kind, args)
 	local totcs = table.fold(res, 0, function(acc, cell)
 		return acc + ml.getcs(cell)
 	end)
-	-- print("totcs = ", totcs)
 	if totcs < #ml.gencelldict[kind].games[g] then
 		local last = res[#res]
 		last.cs = #ml.gencelldict[kind].games[g] - totcs + ml.getcs(last)
@@ -478,12 +522,12 @@ ml.entrytail = function(move, kind, ndex, args)
 			}
 		end)
 	else
-		local startGen = moves[move].gen or 1
+		local startgen = moves[move].gen or 1
 		if kind == "breed" then
-			startGen = math.max(startGen, 2)
+			startgen = math.max(startgen, 2)
 		end
-		for g = startGen, gendata.latest do
-			cells[g - startGen + 1] = ml.gencell(g, ndex, move, kind, args)
+		for g = startgen, gendata.latest do
+			cells[g - startgen + 1] = ml.gencell(g, ndex, move, kind, args)
 		end
 	end
 
@@ -589,6 +633,7 @@ ml.entry = function(move, kind, ndex, args)
         .. ml.entrytail(move, kind, ndex, args)
 end
 
+-- ============================================================================
 -- TODO: temporary test function
 ml.levelTEST = function(frame)
 	local p = frame.args

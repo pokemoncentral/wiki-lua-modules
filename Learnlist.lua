@@ -20,6 +20,14 @@ A typical usage is
 in a Pokémon's page in order to build the list of moves it learns in the latest
 generation.
 
+-- ============================================================================
+
+Some useful informations for developers:
+    - notes are needed only for breed and preevo
+    - except for level and tm, other methods has exactly one line per move.
+      A move can be learned at multiple levels, and a tm or hm with a move can
+      change within a generation (es: spaccaroccia)
+
 --]]
 
 local l = {}

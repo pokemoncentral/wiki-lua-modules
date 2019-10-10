@@ -33,8 +33,9 @@ print(render.entry{args={'Movelist.breedTEST',
 "[[€198£]]",}})
 print(header.levelf{args={'Ghiaccio'}})
 
-print(header.TMh{args = {'Acqua', '1'}})
+-- print(header.TMh{args = {'Acqua', '1'}})
 mw.title.setTitle("Cuordileone")
+print(ml.TMh{args = {}})
 print(render.entry{args={'Movelist.tmTEST',
 "[[€807£]]",
 "[[€019£]]",}})
@@ -47,7 +48,7 @@ print(render.entry{args={'Movelist.tmTEST',
 mw.title.setTitle("Scacciabruma")
 print(render.entry{args={'Movelist.tmTEST',
 "[[€398£]]",}})
-print(header.footer{args={'Acqua'}})
+print(header.footer{args={}})
 
 -- print(header.tutorh{args = {'veleno'}})
 -- print(header.tutor4{args = {'no', 'yes', 'yes'}})
