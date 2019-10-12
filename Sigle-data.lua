@@ -648,6 +648,57 @@ x.Cq = {{
     }
 }}
 
+-- Super Smash Bros.
+x['64'] = {{
+    link = 'Super Smash Bros.',
+    display = {
+	{'64', 'arancione'}
+    }
+}}
+x.Melee = {{
+    link = 'Super Smash Bros. Melee',
+    display = {
+	{'Melee', 'arancione'}
+    }
+}}
+x.melee = x.Melee
+x.Brawl = {{
+    link = 'Super Smash Bros. Brawl',
+    display = {
+	{'Brawl', 'arancione'}
+    }
+}}
+x.brawl = x.Brawl
+x['3DS/Wii U'] = {{
+    link = 'Super Smash Bros. for Nintendo 3DS/Wii U',
+    display = {
+	{'3DS', 'arancione'},
+	{'/', 'nero'},
+	{'Wii U', 'TL'}
+    }
+}}
+x['4'], x['3DSWiiU'], x['3DS/WiiU'] = x['3DS/Wii U'], x['3DS/Wii U'], x['3DS/Wii U']
+x['3DS'] = {{
+    link = 'Super Smash Bros. for Nintendo 3DS/Wii U',
+    display = {
+	{'3DS', 'arancione'}
+    }
+}}
+x['Wii U'] = {{
+    link = 'Super Smash Bros. for Nintendo 3DS/Wii U',
+    display = {
+	{'Wii U', 'TL'}
+    }
+}}
+x.WiiU = x['Wii U']
+x.Ultimate = {{
+    link = 'Super Smash Bros. Ultimate',
+    display = {
+	{'Ultimate', 'nero'},
+    }
+}}
+x.ultimate = x.Ultimate
+
 -- Non-games abbreviations
 x.CPM = {{
     link = 'Club Pokémiglia',
