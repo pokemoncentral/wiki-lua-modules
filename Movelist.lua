@@ -27,7 +27,7 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local lib = require('Wikilib-learnlists')
--- local genlib = require('Wikilib-gens')
+local genlib = require('Wikilib-gens')
 local multigen = require('Wikilib-multigen')
 local forms = require('Wikilib-forms')
 local wlib = require('Wikilib')
@@ -42,6 +42,7 @@ local c = require("Colore-data")
 local pokes = require("Poké-data")
 local moves = require("Move-data")
 local groups = require("PokéEggGroup-data")
+local altforms = require("AltForms-data")
 local useless = require("UselessForms-data")
 local pokemoves = require("PokéMoves-data")
 local movepokes = require("MovePokés-data")
@@ -77,6 +78,14 @@ ml.strings = {
 	HEADERTUTOR = [=[
 ! class="roundytop" style="background: #${bg}; min-width: 6ex;" | ${abbr}
 ]=],
+
+	notes = {
+		STAB = 'Ottiene il bonus di tipo ',
+
+		SINCE = 'a partire dal${art}${gen} generazione',
+		UNTIL = 'prima del${art}${gen} generazione',
+		INGAME = 'in ${gen}',
+	},
 }
 
 -- Table of level games for generation
@@ -543,29 +552,32 @@ Args:
     - move: move name
     - ndex: name or ndex of the Pokémon of this entry. This value should be an
 	        index of data modules as is.
-	- notes: any note that should be added in tt after the Pokémon's name
-	- form (optional): the abbr of the form. This argument is mandatory if the
-			Pokémon isn't a base form (so empty abbr), won't be extracted from
-			ndex
-	- allforms (optional): a true value means that this entry is about all the
-			 forms of this Pokémon
-	- useless (optional): a true value means that the form of this entry is
-			useless, and will be searched in the right module
+	- args: named parameters, all optional
+		* notes: any note that should be added in tt after the Pokémon's name
+		* STAB: value of the stab. If not given is autocomputed (do note that
+	            an empty value IS a value that means no STAB)
+		* form: the abbr of the form. This argument is mandatory if the
+			    Pokémon isn't a base form (so empty abbr), won't be extracted
+				from ndex
+		* allforms: a true value means that this entry is about all the
+			        forms of this Pokémon
+		* useless: a true value means that the form of this entry is
+			       useless, and will be searched in the right module
 
 --]]
-ml.entryhead = function(move, ndex, notes, form, allforms, isUseless)
+ml.entryhead = function(move, ndex, args)
 	local pokedata = pokes[ndex]
 					 or {name = 'Missingno.', ndex = '000'}
-	local forml = allforms and '<div class="text-small">Tutte le forme</div>'
-	              or (isUseless
-						and useless[ndex].links[form]
-						or forms.getlink(tostring(ndex), false, form)
+	local forml = args.allforms and '<div class="text-small">Tutte le forme</div>'
+	              or (args.useless
+						and useless[ndex].links[args.form]
+						or forms.getlink(tostring(ndex), false, args.form)
 					)
 	pokedata = table.merge(
 		multigen.getGen(pokedata),
 		table.copy(groups[pokedata.ndex] or {group1 = 'sconosciuto'})
 	)
-	local stab = lib.computeSTAB(ndex, move, form)
+	local stab = args.STAB or lib.computeSTAB(ndex, move, args.form)
 	local ndextf = string.tf(pokedata.ndex)
 	pokedata.group1show = pokedata.group1 == 'coleottero'
 							and 'Coleot'
@@ -583,16 +595,96 @@ ml.entryhead = function(move, ndex, notes, form, allforms, isUseless)
 
 	return string.interp(ml.strings.CELLHEAD, {
 		num = ndextf,
-		ani = ms.staticLua(ndextf .. forms.toEmptyAbbr(form)),
+		ani = ms.staticLua(ndextf .. forms.toEmptyAbbr(args.form)),
 		stab = stab,
 		name = pokedata.name,
-		notes = lib.makeNotes(notes or ''),
+		notes = lib.makeNotes(args.notes or ''),
 		forml = forml,
 		types = resp.twoTypeBoxesLua(pokedata.type1, pokedata.type2, {'tiny'},
 	        nil, {'vert-center'}),
 		groups = resp.twoEggBoxesLua(pokedata.group1, pokedata.group2, {'tiny'},
 	        nil, {'vert-center'}),
 	})
+end
+
+--[[
+
+Compute the since/until string of a given gen.
+Arguments:
+	- gen: a number representing the gen since/until the sentence is true
+	- su: a boolean value, with true meaning SINCE and false meaning UNTIL
+
+--]]
+ml.sinceuntilstr = function(gen, su)
+	local genstr = gendata[gen].ext
+	return string.interp(ml.strings.notes[su and "SINCE" or "UNTIL"], {
+		gen = genstr,
+		art = genstr:match("^[aeiou]") and "l'" or "la ",
+	})
+end
+
+--[[
+
+Compute notes for an entry.
+Args:
+	- move: move name
+	- kind: kind of the entry
+	- ndex: ndex of the Pokémon of this entry
+	- args (optional): named parameters, all optional:
+		* form: abbr of the form
+
+--]]
+ml.computenotes = function(move, kind, ndex, args)
+	local notes = {}
+	local form = args.useless and ""
+	             or forms.toEmptyAbbr(args.form or forms.getabbr(tostring(ndex)))
+	local pokegen
+	if form ~= "" then
+		ndex = type(ndex) == "string" and tonumber(ndex:sub(1, 3)) or ndex
+		pokegen = genlib.getGen.game(altforms[ndex].since[form])
+	else
+		pokegen = genlib.getGen.ndex(pokes[ndex].ndex)
+	end
+	local sgen = math.max(moves[move].gen or 1, pokegen)
+	-- STAB/no STAB in gen x
+	-- Assumption: fixed Pokémon and move, there is only one switch between yes
+	-- and no STAB
+	local STAB = lib.computeSTAB(ndex, move, args.form, sgen)
+	for g = sgen + 1, gendata.latest do
+		if STAB ~= lib.computeSTAB(ndex, move, args.form, g) then
+			table.insert(notes, ml.strings.notes.STAB
+			                    .. ml.sinceuntilstr(g, STAB == ""))
+			-- STAB is "'''" or "", not a bool
+			break
+		end
+	end
+	-- breed notes
+	if kind == "breed" then
+		for g = math.max(sgen, 2), gendata.latest do
+			if pokemoves[ndex][kind][g] and pokemoves[ndex][kind][g][move] then
+				local movegendata = pokemoves[ndex][kind][g][move]
+				for _, parents in ipairs(movegendata) do
+					local localnotes = lib.breednotes(g, move, parents[1],
+													  movegendata.notes)
+					if localnotes ~= "" then
+						-- Add notes: select game/gen
+						local scope
+						if parents.games
+						   and not table.equal(parents.games, movegendata.games) then
+							-- Game wise notes
+							scope = "in " .. table.concat(parents.games, ", ")
+						else
+							-- Gen wise notes
+							scope = table.concat{ "in ", gendata[g].ext,
+							                      " generazione" }
+						end
+						table.insert(notes, scope .. " " .. localnotes)
+					end
+				end
+			end
+		end
+	end
+	return table.concat(notes, "; ")
 end
 
 --[[
@@ -605,7 +697,9 @@ Args:
     - kind: kind of the entry
     - ndex: ndex of the Pokémon of this entry
 	- args (optional): any other optional argument. General ones are:
-		* notes: any note that should be added in tt after the Pokémon's name
+		* notes: any note that should be added in tt after the Pokémon's name.
+		         If not given is autocomputed
+		* STAB: the value of the STAB. If not given is autocomputed
 		* form: abbr of the form
 		* allforms: a true value means that this entry is about all the
 				    forms of this Pokémon
@@ -625,11 +719,9 @@ ml.entry = function(move, kind, ndex, args)
 	else
 		args.form = forms.getabbr(tostring(ndex), args.form) or nil
 	end
-	-- TODO: autocompute some notes from data module
-	local notes = ''
-    return ml.entryhead(move, ndex, args.notes or notes,
-						args.form or '',
-						args.allforms, args.useless)
+	args.form = args.form or ''
+	args.notes = args.notes or ml.computenotes(move, kind, ndex, args)
+    return ml.entryhead(move, ndex, args)
         .. ml.entrytail(move, kind, ndex, args)
 end
 

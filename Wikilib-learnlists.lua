@@ -496,17 +496,19 @@ Arguments:
 lib.computeSTAB = function(ndex, movename, form, gen)
 	local name, abbr = forms.getnameabbr(tostring(ndex), form)
 	local iname = forms.toEmptyAbbr(abbr) == "" and name
-				or (type(name) == 'number' and string.tf(name) or name
-					) .. forms.toEmptyAbbr(abbr)
+				or (type(name) == 'number' and string.tf(name) or name)
+				   .. forms.toEmptyAbbr(abbr)
 	-- The or pokes[name] is needed for useless forms, not indexed in Poké-data
 	local pokedata = multigen.getGen(pokes[iname] or pokes[name], gen)
 	local movedata = moves[movename:lower()]
+	local movetype = multigen.getGenValue(movedata.type, gen)
 	if not pokedata or not movedata
-	   or (movedata.power == '&mdash;' and not multigen.getGenValue(movedata.stab, gen)) then
+	   or (movedata.power == '&mdash;'
+	       and not multigen.getGenValue(movedata.stab, gen)) then
 		return ""
-	elseif (movedata.type == pokedata.type1 or movedata.type == pokedata.type2) then
+	elseif (movetype == pokedata.type1 or movetype == pokedata.type2) then
 		return "'''"
-	elseif table.search(evolib.evoTypesList(iname), movedata.type) then
+	elseif table.search(evolib.evoTypesList(iname), movetype) then
 		-- TODO: add something to take alternative forms into account
 		return "''"
 	else
@@ -530,6 +532,43 @@ lib.moveParentsGame = function(movedata, game)
 		end
 	end
 	return movedata[1]
+end
+
+--[[
+
+Given something, compute breed notes, ie. "breed chain", "the parent should
+have learned the move in a previous gen" or "no parent can learn the move".
+Arguments:
+	- gen: the generation of this entry
+	- move: the name of the move
+	- parent: any parent listed in the data module
+	- basenotes (optional): notes from the data module
+	                        (ie. pokemoves[poke][kind][gen][move].notes)
+
+--]]
+lib.breednotes = function(gen, move, parent, basenotes)
+	local notes = { basenotes }
+	-- To compute notes it checks only one parent because they should all be
+	-- the same for this. Otherwise the different one would be the only one
+	-- (for instance: parents that need a chain aren't listed if there are
+	-- some that doesn't)
+
+	if parent and not lib.canLearn(move, parent, gen, {"breed"}) then
+		if lib.learnKind(move, parent, gen, "breed") then
+			-- Parent can learn by breed but not in any other way: chain
+			table.insert(notes, 1, "catena di accoppiamenti")
+		-- In theory this second check is useless because a parent wouldn't
+		-- be listed if it doesn't learn the move, so if it doesn't in this
+		-- gen it should in a past one
+		-- elseif lib.learnPreviousGen(move, parent1, gen) then
+		else
+			table.insert(notes, 1, "il padre deve aver imparato la mossa in una generazione precedente")
+		end
+	elseif not parent then
+		table.insert(notes, 1, "nessun genitore può apprendere la mossa")
+	end
+
+	return table.concat(notes, ", ")
 end
 
 -- ========================== Check learn functions ==========================

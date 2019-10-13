@@ -116,13 +116,13 @@ Arguments:
 
 This function makes use of a dictionary of function, retrieved using "kind", to
 implement details of the entry. It should contain the following functions:
-    - processData: given a single value of pokemoves[poke][kind][tostring(gen)]
+    - processData: given a single value of pokemoves[poke][kind][gen]
                    transform it in a format more suitable for sorting and
-                   printing. It is mapped over that table with flatMapToNum.
+                   printing. It is mapped over that table with dataMap.
                    Takes four arguments:
                     - poke: Pokémon name or ndex
                     - gen: the generation of this entry
-                    - value: the value of pokemoves[poke][kind][tostring(gen)]
+                    - value: the value of pokemoves[poke][kind][gen][key]
                     - key: the key of that value
                    It should return an array of elements that will be sorted
                    and printed using other functions in the dict.
@@ -422,32 +422,12 @@ l.Tm = l.tm
 -- ================================== Breed ==================================
 l.dicts.breed = {
     processData = function(_, gen, movedata, move)
-        local notes = { movedata.notes }
         --Bulba style: in a Pokémon page it prints parents for the latest game
         local parents = lib.moveParentsGame(movedata,
                         lib.games.breed[gen][#lib.games.breed[gen]])
-        -- To compute notes it checks only the first ndex because they should
-        -- all be equal in this. Otherwise the different one would be the only
-        -- one (for instance: parents that need a chain aren't listed if there
-        -- are some that doesn't)
-        local parent1 = parents[1]
-        if parent1 and not lib.canLearn(move, parent1, gen, {"breed"}) then
-            if lib.learnKind(move, parent1, gen, "breed") then
-                -- Parent can learn by breed but not in any other way: chain
-                table.insert(notes, 1, "catena di accoppiamenti")
-            -- In theory this second check is useless because a parent wouldn't
-            -- be listed if it doesn't learn the move, so if it doesn't in this
-            -- gen it should in a past one
-            -- elseif lib.learnPreviousGen(move, parent1, gen) then
-            else
-                table.insert(notes, 1, "il padre deve aver imparato la mossa in una generazione precedente")
-            end
-        elseif not parent1 then
-            table.insert(notes, 1, "nessun genitore può apprendere la mossa")
-        end
 
-        notes = table.concat(notes, ", ")
-        local res = { move, parent1 and parents or { 000 },
+        local notes = lib.breednotes(gen, move, parents[1], movedata.notes)
+        local res = { move, parents[1] and parents or { 000 },
                       notes == "" and "" or links.tt("*", string.fu(notes))
                     }
         if movedata.games then
