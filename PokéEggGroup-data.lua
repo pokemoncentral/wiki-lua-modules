@@ -1618,8 +1618,11 @@ t[806] = t.blacephalon
 t.zeraora = {group1 = 'sconosciuto'}
 t[807] = t.zeraora
 -- t.grookey = {group1 = ''}
+-- t[810] = t.grookey
 -- t.scorbunny = {group1 = ''}
+-- t[813] = t.scorbunny
 -- t.sobble = {group1 = ''}
+-- t[816] = t.sobble
 -- t.gossifleur = {group1 = ''}
 -- t.eldegoss = {group1 = ''}
 -- t.wooloo = {group1 = ''}

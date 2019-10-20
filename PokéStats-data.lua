@@ -1625,8 +1625,11 @@ d[808] = d.meltan
 d.melmetal = {hp = 135, atk = 143, def = 143, spatk = 80, spdef = 65, spe = 34}
 d[809] = d.melmetal
 -- d.grookey = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d[810] = d.grookey
 -- d.scorbunny = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d[813] = d.scorbunny
 -- d.sobble = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
+-- d[816] = d.sobble
 -- d.gossifleur = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
 -- d.eldegoss = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}
 -- d.wooloo = {hp = '', atk = '', def = '', spatk = '', spdef = '', spe = ''}

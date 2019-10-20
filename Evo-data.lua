@@ -5986,19 +5986,19 @@ evo[808], evo[809] = evo.meltan, evo.meltan
 -- Pokémon without an ndex
 
 evo.grookey = {
-	ndex = nil,
+	ndex = 810,
 	name = 'grookey',
 
 	-- evos = {
 	-- 	{
-	-- 		ndex = 723,
+	-- 		ndex = 811,
 	--		name = 'dartrix',
 	-- 		method = evo.methods.LEVEL,
 	-- 		[evo.methods.LEVEL] = 17,
 	--
 	-- 		evos = {
 	-- 			{
-	-- 				ndex = 724,
+	-- 				ndex = 812,
 	--				name = 'decidueye',
 	-- 				method = evo.methods.LEVEL,
 	-- 				[evo.methods.LEVEL] = 34,
@@ -6007,21 +6007,23 @@ evo.grookey = {
 	-- 	}
 	-- }
 }
+evo[810] = evo.grookey
+-- evo[810], evo[811], evo[812] = evo.grookey, evo.grookey, evo.grookey
 
 evo.scorbunny = {
-	ndex = nil,
+	ndex = 813,
 	name = 'scorbunny',
 
 	-- evos = {
 	-- 	{
-	-- 		ndex = 723,
+	-- 		ndex = 814,
 	--		name = 'dartrix',
 	-- 		method = evo.methods.LEVEL,
 	-- 		[evo.methods.LEVEL] = 17,
 	--
 	-- 		evos = {
 	-- 			{
-	-- 				ndex = 724,
+	-- 				ndex = 815,
 	--				name = 'decidueye',
 	-- 				method = evo.methods.LEVEL,
 	-- 				[evo.methods.LEVEL] = 34,
@@ -6030,21 +6032,23 @@ evo.scorbunny = {
 	-- 	}
 	-- }
 }
+evo[813] = evo.scorbunny
+-- evo[813], evo[814], evo[815] = evo.scorbunny, evo.scorbunny, evo.scorbunny
 
 evo.sobble = {
-	ndex = nil,
+	ndex = 816,
 	name = 'sobble',
 
 	-- evos = {
 	-- 	{
-	-- 		ndex = 723,
+	-- 		ndex = 817,
 	--		name = 'dartrix',
 	-- 		method = evo.methods.LEVEL,
 	-- 		[evo.methods.LEVEL] = 17,
 	--
 	-- 		evos = {
 	-- 			{
-	-- 				ndex = 724,
+	-- 				ndex = 818,
 	--				name = 'decidueye',
 	-- 				method = evo.methods.LEVEL,
 	-- 				[evo.methods.LEVEL] = 34,
@@ -6053,6 +6057,8 @@ evo.sobble = {
 	-- 	}
 	-- }
 }
+evo[816] = evo.sobble
+-- evo[816], evo[817], evo[818] = evo.sobble, evo.sobble, evo.sobble
 
 evo.gossifleur = {
 	ndex = nil,

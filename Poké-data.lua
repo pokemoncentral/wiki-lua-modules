@@ -1624,8 +1624,11 @@ t[808] = t.meltan
 t.melmetal = {name = 'Melmetal', ndex = 809, type1 = 'acciaio', type2 = 'acciaio'}
 t[809] = t.melmetal
 t.grookey = {name = 'Grookey', ndex = nil, type1 = 'erba', type2 = 'erba'}
+t[810] = t.grookey
 t.scorbunny = {name = 'Scorbunny', ndex = nil, type1 = 'fuoco', type2 = 'fuoco'}
+t[813] = t.scorbunny
 t.sobble = {name = 'Sobble', ndex = nil, type1 = 'acqua', type2 = 'acqua'}
+t[816] = t.sobble
 t.gossifleur = {name = 'Gossifleur', ndex = nil, type1 = 'erba', type2 = 'erba'}
 t.eldegoss = {name = 'Eldegoss', ndex = nil, type1 = 'erba', type2 = 'erba'}
 t.wooloo = {name = 'Wooloo', ndex = nil, type1 = 'normale', type2 = 'normale'}
