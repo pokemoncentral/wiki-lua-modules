@@ -1,7 +1,7 @@
 local render = require('Render')
 local header = require('Learnlist-hf')
 local ll = require('Learnlist')
-local pokemoves = require('PokéMoves-data')
+local learnlib = require('Wikilib-learnlists')
 
 -- Compare the structure of two tables, that is the equality of the two tables
 -- up to non-table values
@@ -33,7 +33,7 @@ end
 
 -- Check that ll.nogameText and pokemoves.games.leve have the same structure
 -- because correctness of the output depends on this.
-assert(same_structure(ll.nogameText, pokemoves.games.level),
+assert(same_structure(ll.nogameText, learnlib.games.level),
         "ll.nogameText and pokemoves.games.level doesn't have the same structure")
 
 -- ========================== Standard test (prints) ==========================

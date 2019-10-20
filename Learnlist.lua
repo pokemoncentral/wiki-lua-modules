@@ -61,6 +61,9 @@ local STRINGS = {
 
 --[[
 
+TODO: select entry building function depending on gen (eg: gen 1 -> no category,
+gen 4 -> contest entry)
+
 Build the string corresponding to the last part of an entry, that is the part
 without the learning method (levels for level entry, parents for breed entry,
 etc.).
@@ -532,7 +535,7 @@ l.dicts.event = {
     lt = function(a, b)
         return a[1] < b[1]
     end,
-    makeEntry = function(poke, _, val)
+    makeEntry = function(poke, gen, val)
         local firstcell = string.interp(STRINGS.breedcell, {
             p = val[2],
         })

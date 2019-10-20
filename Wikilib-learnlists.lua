@@ -508,8 +508,8 @@ lib.computeSTAB = function(ndex, movename, form, gen)
 		return ""
 	elseif (movetype == pokedata.type1 or movetype == pokedata.type2) then
 		return "'''"
-	elseif table.search(evolib.evoTypesList(iname), movetype) then
-		-- TODO: add something to take alternative forms into account
+	elseif table.search(evolib.evoTypesList(iname, gen), movetype)
+	       or table.search(evolib.formTypesList(iname, gen), movetype) then
 		return "''"
 	else
 		return ""

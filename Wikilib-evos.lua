@@ -8,6 +8,7 @@ local ev = {}
 
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local forms = require('Wikilib-forms')
+local multigen = require('Wikilib-multigen')
 local evodata = require("Evo-data")
 local pokes = require("Poké-data")
 
@@ -164,16 +165,42 @@ end
 
 Given a Pokémon name od ndex, returns the list of types of its evolutions that
 it doesn't have.
+The optional argument gen specifies in which gen this should be computed,
+defaults to the latest.
 
 --]]
-ev.evoTypesList = function(name)
+ev.evoTypesList = function(name, gen)
     local thisdata = pokes[name] or pokes[forms.getnameabbr(name)]
     return table.filter(table.unique(table.flatMap(ev.foldEvoTree(ev.preciseEvotable(name), {}, function(acc, v)
         table.insert(acc, v.ndex)
         return acc
     end), function(ndex)
         local pokedata = pokes[ndex] or pokes[forms.getnameabbr(name)]
-        return { pokedata.type1, pokedata.type2 }
+        return multigen.getGen({ pokedata.type1, pokedata.type2 }, gen)
+    end)), function(type)
+        return not (type == thisdata.type1 or type == thisdata.type2)
+    end)
+end
+
+--[[
+
+Given a Pokémon name od ndex, returns the list of types of its alternative
+forms (only those in which it can change) that it doesn't have.
+The optional argument gen specifies in which gen this should be computed,
+defaults to the latest.
+
+--]]
+ev.formTypesList = function(name, gen)
+    local formstab = evodata.forms[name]
+    if not formstab then
+        return {}
+    end
+    local thisdata = pokes[name] or pokes[forms.getnameabbr(name)]
+    return table.filter(table.unique(table.flatMap(formstab, function(tt)
+        return table.flatMap(tt, function(formtab)
+            local pokedata = pokes[formtab.ndex]
+            return multigen.getGen({ pokedata.type1, pokedata.type2 }, gen)
+        end)
     end)), function(type)
         return not (type == thisdata.type1 or type == thisdata.type2)
     end)

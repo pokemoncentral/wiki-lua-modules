@@ -517,7 +517,7 @@ ml.entrytail = function(move, kind, ndex, args)
 	-- ml.printtail
     local cells = {}
     if kind == "event" then
-        cells[1] = { { str = table.concat{ "<div>", args[1], "</div>" }, bg = "fff" } }
+        cells[1] = { { str = table.concat{ "<div>", args[2], "</div>" }, bg = "fff" } }
     elseif kind == "tutor" then
 		cells[1] = table.map(movepokes.movetutorindexes[move], function(idx)
 			local g, num = table.deepSearch(lib.games.tutor,
@@ -623,6 +623,11 @@ ml.sinceuntilstr = function(gen, su)
 	})
 end
 
+-- Maps "''" to "" to compare STAB values easily (I want to consider "''" as "")
+ml.flattenSTAB = function(stab)
+	return stab == "''" and "" or stab
+end
+
 --[[
 
 Compute notes for an entry.
@@ -649,9 +654,9 @@ ml.computenotes = function(move, kind, ndex, args)
 	-- STAB/no STAB in gen x
 	-- Assumption: fixed Pokémon and move, there is only one switch between yes
 	-- and no STAB
-	local STAB = lib.computeSTAB(ndex, move, args.form, sgen)
+	local STAB = ml.flattenSTAB(lib.computeSTAB(ndex, move, args.form, sgen))
 	for g = sgen + 1, gendata.latest do
-		if STAB ~= lib.computeSTAB(ndex, move, args.form, g) then
+		if STAB ~= ml.flattenSTAB(lib.computeSTAB(ndex, move, args.form, g)) then
 			table.insert(notes, ml.strings.notes.STAB
 			                    .. ml.sinceuntilstr(g, STAB == ""))
 			-- STAB is "'''" or "", not a bool
@@ -684,7 +689,7 @@ ml.computenotes = function(move, kind, ndex, args)
 			end
 		end
 	end
-	return table.concat(notes, "; ")
+	return string.fu(table.concat(notes, "; "))
 end
 
 --[[
@@ -706,12 +711,13 @@ Args:
 		* useless: a true value means that the form of this entry is
 				     useless, and will be searched in the right module
 	some are dependent on kind:
-		* (kind "event") [1]: the string to print
+		* (kind "event") [2]: the string to print
 		* (kind "level" and "tm") LGPE: level at which the Pokémon learn the
 					                    move in LGPE
 
 --]]
 ml.entry = function(move, kind, ndex, args)
+	args = wlib.trimAll(args)
 	ndex = tonumber(ndex) or ndex
 	if args.useless then
 		args.form = args.form or forms.getabbr(ndex)
@@ -725,28 +731,19 @@ ml.entry = function(move, kind, ndex, args)
         .. ml.entrytail(move, kind, ndex, args)
 end
 
--- ============================================================================
--- TODO: temporary test function
-ml.levelTEST = function(frame)
-	local p = frame.args
-	return ml.entry(mw.title.getCurrentTitle().text:lower(), "level", p[1], p)
+-- =========================== WikiCode interfaces ============================
+local function makeentry(kind)
+	ml[kind .. "entry"] = function(frame)
+		local p = frame.args
+		return ml.entry(mw.title.getCurrentTitle().text:lower(), kind, p[1], p)
+	end
+	ml[kind:fu() .. "entry"] = ml[kind .. "entry"]
 end
-ml.breedTEST = function(frame)
-	local p = frame.args
-	return ml.entry(mw.title.getCurrentTitle().text:lower(), "breed", p[1], p)
-end
-ml.tmTEST = function(frame)
-	local p = frame.args
-	return ml.entry(mw.title.getCurrentTitle().text:lower(), "tm", p[1], p)
-end
-ml.tutorTEST = function(frame)
-	local p = frame.args
-	return ml.entry(mw.title.getCurrentTitle().text:lower(), "tutor", p[1], p)
-end
-ml.eventTEST = function(frame)
-	local p = frame.args
-	local ndex = table.remove(p, 1)
-	return ml.entry(mw.title.getCurrentTitle().text:lower(), "event", ndex, p)
-end
+
+makeentry("level")
+makeentry("breed")
+makeentry("tm")
+makeentry("tutor")
+makeentry("event")
 
 return ml

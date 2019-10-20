@@ -6347,4 +6347,611 @@ for k, v in pairs(useless) do
 	end
 end
 
+--[[
+
+Data for Pokémon that can change alternative form: in a subtable to split
+them from evolutions.
+
+For each Pokémon there's an array, whose elements are arrays themselves
+containing forms that should be put at that stage in the evobox. Anyway,
+any form is supposed to be able to change to any other form listed here.
+
+--]]
+evo.forms = {}
+-- Local variable to avoid to write evo.forms
+local efs = evo.forms
+
+--[[
+Methods:
+	- OTHER: just print the value of [evo.forms.methods.OTHER].
+	- NONE: doesn't print anything.
+	- ITEM: [evo.forms.methods.ITEM] should contain the name of the item.
+--]]
+efs.methods = {}
+efs.methods.OTHER = 0
+efs.methods.NONE = 1
+efs.methods.ITEM = 2
+
+efs.castform = {
+	{ { ndex = 351, name = 'castform' } },
+	{ {
+		ndex = '351S',
+		name = 'castformS',
+		notes = 'Sotto il [[Condizione atmosferica#Luce solare intensa|sole]]',
+		method = efs.methods.NONE,
+	} },
+	{ {
+		ndex = '351P',
+		name = 'castformP',
+		notes = 'Sotto la [[Condizione atmosferica#Pioggia battente|pioggia]]',
+		method = efs.methods.NONE,
+	} },
+	{ {
+		ndex = '351N',
+		name = 'castformN',
+		notes = 'Sotto la [[Condizione atmosferica#Grandine|grandine]]',
+		method = efs.methods.NONE,
+	} },
+}
+efs.castformS, efs.castformP, efs.castformN =
+	efs.castform, efs.castform, efs.castform
+efs[351], efs['351S'], efs['351P'], efs['351N'] =
+	efs.castform, efs.castform, efs.castform, efs.castform
+
+efs.deoxys = {
+	{ { ndex = 386, name = 'deoxys' } },
+	{ { ndex = '386A', name = 'deoxysA', method = efs.methods.NONE } },
+	{ { ndex = '386D', name = 'deoxysD', method = efs.methods.NONE } },
+	{ { ndex = '386V', name = 'deoxysV', method = efs.methods.NONE } },
+}
+efs.deoxysA, efs.deoxysD, efs.deoxysV =
+	efs.deoxys, efs.deoxys, efs.deoxys
+efs[386], efs['386A'], efs['386D'], efs['386V'] =
+	efs.deoxys, efs.deoxys, efs.deoxys, efs.deoxys
+
+efs.rotom = {
+	{ { ndex = 479, name = 'rotom' } },
+	{ { ndex = '479C', name = 'rotomC', method = efs.methods.NONE } },
+	{ { ndex = '479L', name = 'rotomL', method = efs.methods.NONE } },
+	{ { ndex = '479G', name = 'rotomG', method = efs.methods.NONE } },
+	{ { ndex = '479V', name = 'rotomV', method = efs.methods.NONE } },
+	{ { ndex = '479T', name = 'rotomT', method = efs.methods.NONE } },
+}
+efs.rotomC, efs.rotomL, efs.rotomG, efs.rotomV, efs.rotomT =
+	efs.rotom, efs.rotom, efs.rotom, efs.rotom, efs.rotom
+efs[479], efs['479C'], efs['479L'], efs['479G'], efs['479V'], efs['479T'] =
+	efs.rotom, efs.rotom, efs.rotom, efs.rotom, efs.rotom, efs.rotom
+
+efs.giratina = {
+	{ {
+		ndex = 487,
+		name = 'giratina',
+		notes = '[[Mondo Distorto]]<br>oppure<br>tenendo la Grigiosfera',
+	} },
+	{ {
+		ndex = '487O',
+		name = 'giratinaO',
+		notes = '[[Mondo Pokémon]],<br>senza tenere la Grigiosfera',
+		method = efs.methods.ITEM,
+		[efs.methods.ITEM] = 'Grigiosfera',
+	} },
+}
+efs.giratinaO = efs.giratina
+efs[487], efs['487O'] = efs.giratina, efs.giratina
+
+efs.shaymin = {
+	{ {
+		ndex = 492,
+		name = 'shaymin',
+		notes = 'Di notte e nel PC',
+	} },
+	{ {
+		ndex = '492C',
+		name = 'shayminC',
+		method = efs.methods.ITEM,
+		[efs.methods.ITEM] = 'Gracidea',
+	} },
+}
+efs.shayminC = efs.shaymin
+efs[492], efs['492C'] = efs.shaymin, efs.shaymin
+
+-- No notes because right now it isn't used to build evobox
+efs.arceus = {
+	{ { ndex = 493, name = 'arceus' } },
+	{ { ndex = '493L', name = 'arceusL', method = efs.methods.NONE } },
+	{ { ndex = '493Vo', name = 'arceusVo', method = efs.methods.NONE } },
+	{ { ndex = '493Ve', name = 'arceusVe', method = efs.methods.NONE } },
+	{ { ndex = '493T', name = 'arceusT', method = efs.methods.NONE } },
+	{ { ndex = '493R', name = 'arceusR', method = efs.methods.NONE } },
+	{ { ndex = '493C', name = 'arceusC', method = efs.methods.NONE } },
+	{ { ndex = '493S', name = 'arceusS', method = efs.methods.NONE } },
+	{ { ndex = '493Ai', name = 'arceusAi', method = efs.methods.NONE } },
+	{ { ndex = '493Fu', name = 'arceusFu', method = efs.methods.NONE } },
+	{ { ndex = '493Aq', name = 'arceusAq', method = efs.methods.NONE } },
+	{ { ndex = '493Er', name = 'arceusEr', method = efs.methods.NONE } },
+	{ { ndex = '493El', name = 'arceusEl', method = efs.methods.NONE } },
+	{ { ndex = '493P', name = 'arceusP', method = efs.methods.NONE } },
+	{ { ndex = '493G', name = 'arceusG', method = efs.methods.NONE } },
+	{ { ndex = '493D', name = 'arceusD', method = efs.methods.NONE } },
+	{ { ndex = '493B', name = 'arceusB', method = efs.methods.NONE } },
+	{ { ndex = '493Fo', name = 'arceusFo', method = efs.methods.NONE } },
+}
+efs[493] = efs.arceus
+
+efs.darmanitan = {
+	{ { ndex = 555, name = 'darmanitan' } },
+	{ { ndex = '555Z', name = 'darmanitanZ', method = efs.methods.NONE } },
+}
+efs.darmanitanZ = efs.darmanitan
+efs[555], efs['555Z'] = efs.darmanitan, efs.darmanitan
+
+efs.tornadus = {
+	{ { ndex = 641, name = 'tornadus' } },
+	{ {
+		ndex = '641T',
+		name = 'tornadusT',
+		method = efs.methods.ITEM,
+		[efs.methods.ITEM] = 'Verispecchio',
+	} },
+}
+efs.tornadusT = efs.tornadus
+efs[641], efs['641T'] = efs.tornadus, efs.tornadus
+
+efs.thundurus = {
+	{ { ndex = 642, name = 'thundurus' } },
+	{ {
+		ndex = '642T',
+		name = 'thundurusT',
+		method = efs.methods.ITEM,
+		[efs.methods.ITEM] = 'Verispecchio',
+	} },
+}
+efs.thundurusT = efs.thundurus
+efs[642], efs['642T'] = efs.thundurus, efs.thundurus
+
+efs.landorus = {
+	{ { ndex = 645, name = 'landorus' } },
+	{ {
+		ndex = '645T',
+		name = 'landorusT',
+		method = efs.methods.ITEM,
+		[efs.methods.ITEM] = 'Verispecchio',
+	} },
+}
+efs.landorusT = efs.landorus
+efs[645], efs['645T'] = efs.landorus, efs.landorus
+
+efs.kyurem = {
+	{ { ndex = '646N', name = 'kyuremN', notes = ms.staticLua(644) .. ' con [[Zekrom]]' } },
+	{ {
+		ndex = 664,
+		name = 'kyurem',
+		method = efs.methods.ITEM,
+		[efs.methods.ITEM] = 'Cuneo DNA',
+	} },
+	{ {
+		ndex = '646B',
+		name = 'kyuremB',
+		notes = ms.staticLua(643) .. ' con [[Reshiram]]',
+		method = efs.methods.ITEM,
+		[efs.methods.ITEM] = 'Cuneo DNA',
+	} },
+}
+efs.kyuremB, efs.kyuremN = efs.kyurem, efs.kyurem
+efs[664], efs['646B'], efs['646N'] = efs.kyurem, efs.kyurem, efs.kyurem
+
+efs.meloetta = {
+	{ { ndex = 648, name = 'meloetta' } },
+	{ {
+		ndex = '648D',
+		name = 'meloettaD',
+		method = efs.methods.OTHER,
+		[efs.methods.OTHER] = links.bag('MT Normale') .. '<br>Usando [[Cantoantico]]',
+	} },
+}
+efs.meloettaD = efs.meloetta
+efs[648], efs['648D'] = efs.meloetta, efs.meloetta
+
+efs.greninja = {
+	{ { ndex = 658, name = 'greninja' } },
+	{ {
+		ndex = '658A',
+		name = 'greninjaA',
+		notes = 'Dopo aver mandato KO un Pokémon',
+		method = efs.methods.NONE,
+	} },
+}
+efs.greninjaA = efs.greninja
+efs[658], efs['658A'] = efs.greninja, efs.greninja
+
+efs.aegislash = {
+	{ {
+		ndex = 681,
+		name = 'aegislash',
+		notes = 'Usando [[Scudo Reale]]',
+	} },
+	{ {
+		ndex = '681S',
+		name = 'aegislashS',
+		notes = 'Usando una mossa non di [[stato]]',
+		method = efs.methods.NONE,
+	} },
+}
+efs.aegislashS = efs.aegislash
+efs[681], efs['681S'] = efs.aegislash, efs.aegislash
+
+efs.zygarde = {
+	{ { ndex = '718D', name = 'zygardeD' } },
+	{ {
+		ndex = 718,
+		name = 'zygarde',
+		method = efs.methods.ITEM,
+		[efs.methods.ITEM] = 'Teca Zygarde',
+	} },
+	{ {
+		ndex = '718P',
+		name = 'zygardeP',
+		method = efs.methods.ITEM,
+		[efs.methods.ITEM] = 'Teca Zygarde',
+	} },
+}
+efs.zygardeD, efs.zygardeP = efs.zygarde, efs.zygarde
+efs[718], efs['718D'], efs['718P'] = efs.zygarde, efs.zygarde, efs.zygarde
+
+efs.hoopa = {
+	{ { ndex = 720, name = 'hoopa', notes = 'Dopo tre giorni o se depositato nel box' } },
+	{ {
+		ndex = '720L',
+		name = 'hoopaL',
+		method = efs.methods.ITEM,
+		[efs.methods.ITEM] = 'Vaso del vincolo',
+	} },
+}
+efs.hoopaL = efs.hoopa
+efs[720], efs['720L'] = efs.hoopa, efs.hoopa
+
+efs.oricorio = {
+	{ {
+		ndex = '741C', name = 'oricorioC',
+		notes = links.bag('Nettare Giallo') .. '[[Nettare Giallo]]',
+	} },
+	{ {
+		ndex = '741H', name = 'oricorioH', method = efs.methods.NONE,
+		notes = links.bag('Nettare Rosa') .. '[[Nettare Rosa]]',
+	} },
+	{ {
+		ndex = 741, name = 'oricorio', method = efs.methods.NONE,
+		notes = links.bag('Nettare Rosso') .. '[[Nettare Rosso]]',
+	} },
+	{ {
+		ndex = '741B', name = 'oricorioB', method = efs.methods.NONE,
+		notes = links.bag('Nettare Viola') .. '[[Nettare Viola]]',
+	} },
+}
+efs.oricorioC, efs.oricorioH, efs.oricorioB =
+	efs.oricorio, efs.oricorio, efs.oricorio
+efs[741], efs['741C'], efs['741H'], efs['741B'] =
+	efs.oricorio, efs.oricorio, efs.oricorio, efs.oricorio
+
+efs.wishiwashi = {
+	{ { ndex = 746, name = 'wishiwashi' } },
+	{ {
+		ndex = '746B',
+		name = 'wishiwashiB',
+		notes = 'Con più di un quarto dei PS a partire dal livello 20',
+		method = efs.methods.NONE,
+	} },
+}
+efs.wishiwashiB = efs.wishiwashi
+efs[746], efs['746B'] = efs.wishiwashi, efs.wishiwashi
+
+efs.silvally = {
+	{ { ndex = 773, name = 'silvally' } },
+	{ { ndex = '773L', name = 'silvallyL', method = efs.methods.NONE } },
+	{ { ndex = '773Vo', name = 'silvallyVo', method = efs.methods.NONE } },
+	{ { ndex = '773Ve', name = 'silvallyVe', method = efs.methods.NONE } },
+	{ { ndex = '773T', name = 'silvallyT', method = efs.methods.NONE } },
+	{ { ndex = '773R', name = 'silvallyR', method = efs.methods.NONE } },
+	{ { ndex = '773C', name = 'silvallyC', method = efs.methods.NONE } },
+	{ { ndex = '773S', name = 'silvallyS', method = efs.methods.NONE } },
+	{ { ndex = '773Ai', name = 'silvallyAi', method = efs.methods.NONE } },
+	{ { ndex = '773Fu', name = 'silvallyFu', method = efs.methods.NONE } },
+	{ { ndex = '773Aq', name = 'silvallyAq', method = efs.methods.NONE } },
+	{ { ndex = '773Er', name = 'silvallyEr', method = efs.methods.NONE } },
+	{ { ndex = '773El', name = 'silvallyEl', method = efs.methods.NONE } },
+	{ { ndex = '773P', name = 'silvallyP', method = efs.methods.NONE } },
+	{ { ndex = '773G', name = 'silvallyG', method = efs.methods.NONE } },
+	{ { ndex = '773D', name = 'silvallyD', method = efs.methods.NONE } },
+	{ { ndex = '773B', name = 'silvallyB', method = efs.methods.NONE } },
+	{ { ndex = '773Fo', name = 'silvallyFo', method = efs.methods.NONE } },
+}
+
+efs.minior = {
+	{ { ndex = 774, name = 'minior' } },
+	{ {
+		ndex = '774R',
+		name = 'miniorR',
+		notes = 'Con meno di metà dei PS',
+		method = efs.methods.NONE,
+	} },
+}
+efs.miniorR = efs.minior
+efs[774], efs['774R'] = efs.minior, efs.minior
+
+efs.necrozma = {
+	{ { ndex = 800, name = 'necrozma' } },
+	{
+		{
+			ndex = '800V',
+			name = 'necrozmaV',
+			notes = ms.staticLua(791) .. ' con [[Solgaleo]]',
+			method = efs.methods.ITEM,
+			[efs.methods.ITEM] = 'Necrosolix',
+		},
+		{
+			ndex = '800A',
+			name = 'necrozmaA',
+			notes = ms.staticLua(792) .. ' con [[Lunala]]',
+			method = efs.methods.ITEM,
+			[efs.methods.ITEM] = 'Necrolunix',
+		},
+	},
+	{ {
+		ndex = '800U',
+		name = 'necrozmaU',
+		method = efs.methods.ITEM,
+		[efs.methods.ITEM] = 'Ultranecrozium Z',
+	} },
+}
+efs.necrozmaV, efs.necrozmaA, efs.necrozmaU =
+	efs.necrozma, efs.necrozma, efs.necrozma
+efs[800], efs['800V'], efs['800A'], efs['800U'] =
+	efs.necrozma, efs.necrozma, efs.necrozma, efs.necrozma
+
+efs.morpeko = {
+	{ { ndex = nil, name = 'morpeko' } },
+	{ {
+		ndex = nil,
+		name = 'morpekoV',
+		method = efs.methods.OTHER,
+		[efs.methods.OTHER] = "Cambia forma ogni turno<br>per l'abilità [[Pancialterna]]",
+	} },
+}
+efs.morpekoV = efs.morpeko
+-- efs[774], efs['774R'] = efs.morpeko, efs.morpeko
+
+efs.burmy = {
+	{ {
+		ndex = 412, name = 'burmy',
+		notes = 'Dopo aver lottato in un altro luogo',
+	} },
+	{ {
+		ndex = '412Sc', name = 'burmySc', method = efs.methods.NONE,
+		notes = 'Dopo aver lottato in un edificio',
+	} },
+	{ {
+		ndex = '412Sa', name = 'burmySa', method = efs.methods.NONE,
+		notes = 'Dopo aver lottato in una grotta o su una spiaggia',
+	} },
+}
+efs.burmySc, efs.Sa = efs.burmy, efs.burmy
+efs[412], efs['412Sc'], efs['412Sa'] = efs.burmy, efs.burmy, efs.burmy
+
+efs.cherrim = {
+	{ { ndex = 421, name = 'cherrim' } },
+	{ {
+		ndex = '421S',
+		name = 'cherrimS',
+		notes = 'Sotto il [[Condizione atmosferica#Luce solare intensa|sole]]',
+		method = efs.methods.NONE,
+	} },
+}
+efs.cherrimS = efs.cherrim
+efs[421], efs['421S'] = efs.cherrim, efs.cherrim
+
+efs.keldeo = {
+	{ { ndex = 647, name = 'keldeo' } },
+	{ {
+		ndex = '647R',
+		name = 'keldeoR',
+		method = efs.methods.OTHER,
+		[efs.methods.OTHER] = links.bag('MT Lotta') .. '<br>Imparando [[Spadamistica]]',
+	} },
+}
+efs.keldeoR = efs.keldeo
+efs[647], efs['647R'] = efs.keldeo, efs.keldeo
+
+efs.genesect = {
+	{ { ndex = 649, name = 'genesect', } },
+	{ {
+		ndex = '649I', name = 'genesectI', method = efs.methods.NONE,
+		notes = 'Tenendo ' .. links.bag('Idromodulo'),
+	} },
+	{ {
+		ndex = '649V', name = 'genesectV', method = efs.methods.NONE,
+		notes = 'Tenendo ' .. links.bag('Voltmodulo'),
+	} },
+	{ {
+		ndex = '649P', name = 'genesectP', method = efs.methods.NONE,
+		notes = 'Tenendo ' .. links.bag('Piromodulo'),
+	} },
+	{ {
+		ndex = '649G', name = 'genesectG', method = efs.methods.NONE,
+		notes = 'Tenendo ' .. links.bag('Gelomodulo'),
+	} },
+}
+efs.genesectI, efs.genesectV, efs.genesectP, efs.genesectG =
+	efs.genesect, efs.genesect, efs.genesect, efs.genesect
+efs[649], efs['649I'], efs['649V'], efs['649P'], efs['649G'] =
+	efs.oricorio, efs.oricorio, efs.oricorio, efs.oricorio, efs.genesect
+
+efs.xerneas = {
+	{ { ndex = 716, name = 'xerneas', notes = 'Fuori dalla lotta' } },
+	{ {
+		ndex = '716A',
+		name = 'xerneasA',
+		notes = 'In lotta',
+		method = efs.methods.NONE,
+	} },
+}
+efs.xerneasA = efs.xerneas
+efs[716], efs['716A'] = efs.xerneas, efs.xerneas
+
+efs.mimikyu = {
+	{ { ndex = 778, name = 'mimikyu' } },
+	{ {
+		ndex = '778S',
+		name = 'mimikyuS',
+		notes = 'Venendo colpito in lotta',
+		method = efs.methods.NONE,
+	} },
+}
+efs.mimikyuS = efs.mimikyu
+efs[778], efs['778S'] = efs.mimikyu, efs.mimikyu
+
+efs.charizard = {
+	{ { ndex = '006MX', name = 'charizardMX' } },
+	{
+		{
+			ndex = 6,
+			name = 'charizard',
+			method = efs.methods.ITEM,
+			[efs.methods.ITEM] = 'Charizardite X',
+		}
+	},
+	{
+		{
+			ndex = '006MY',
+			name = 'charizardMY',
+			method = efs.methods.ITEM,
+			[efs.methods.ITEM] = 'Charizardite Y',
+		}
+	},
+}
+efs.charizardMX, efs.charizardMY = efs.charizard, efs.charizard
+efs[6], efs['006MX'], efs['006MY'] = efs.charizard, efs.charizard, efs.charizard
+
+efs.mewtwo = {
+	{ { ndex = '150MX', name = 'mewtwoMX' } },
+	{
+		{
+			ndex = 150,
+			name = 'mewtwo',
+			method = efs.methods.ITEM,
+			[efs.methods.ITEM] = 'Mewtwoite X',
+		}
+	},
+	{
+		{
+			ndex = '150MY',
+			name = 'mewtwoMY',
+			method = efs.methods.ITEM,
+			[efs.methods.ITEM] = 'Mewtwoite Y',
+		}
+	},
+}
+efs.mewtwoMX, efs.mewtwoMY = efs.mewtwo, efs.mewtwo
+efs[150], efs['150MX'], efs['150MY'] = efs.mewtwo, efs.mewtwo, efs.mewtwo
+
+efs.kyogre = {
+	{ { ndex = 382, name = 'kyogre' } },
+	{
+		{
+			ndex = '382A',
+			name = 'kyogreA',
+			method = efs.methods.ITEM,
+			[efs.methods.ITEM] = 'Gemma blu',
+		}
+	},
+}
+efs.kyogreA = efs.kyogre
+efs[382], efs['382A'] = efs.kyogre, efs.kyogre
+
+efs.groudon = {
+	{ { ndex = 383, name = 'groudon' } },
+	{
+		{
+			ndex = '383A',
+			name = 'groudonA',
+			method = efs.methods.ITEM,
+			[efs.methods.ITEM] = 'Gemma rossa',
+		}
+	},
+}
+efs.groudonA = efs.groudon
+efs[383], efs['383A'] = efs.groudon, efs.groudon
+
+efs.rayquaza = {
+	{ { ndex = 384, name = 'rayquaza' } },
+	{
+		{
+			ndex = '384M',
+			name = 'rayquazaM',
+			method = efs.methods.NONE,
+		}
+	},
+}
+efs.rayquazaM = efs.rayquaza
+efs[384], efs['384M'] = efs.rayquaza, efs.rayquaza
+
+local createMega = function(pkmn, ndex, item)
+	efs[pkmn] = {
+		{ { ndex = ndex, name = pkmn } },
+		{
+			{
+				ndex = string.tf(ndex) .. 'M',
+				name = pkmn .. 'M',
+				method = efs.methods.ITEM,
+				[efs.methods.ITEM] = item,
+			}
+		},
+	}
+	efs[pkmn .. 'M'] = efs[pkmn]
+	efs[ndex], efs[string.tf(ndex) .. 'M'] = efs[pkmn], efs[pkmn]
+end
+
+createMega('venusaur', 3, 'Venusaurite')
+createMega('blastoise', 9, 'Blastoisite')
+createMega('beedrill', 15, 'Beedrillite')
+createMega('pidgeot', 18, 'Pidgeotite')
+createMega('alakazam', 65, 'Alakazamite')
+createMega('slowbro', 80, 'Slowbroite')
+createMega('gengar', 94, 'Gengarite')
+createMega('kangaskhan', 115, 'Kangaskhanite')
+createMega('pinsir', 127, 'Pinsirite')
+createMega('gyarados', 130, 'Gyaradosite')
+createMega('aerodactyl', 142, 'Aerodactylite')
+createMega('ampharos', 181, 'Ampharosite')
+createMega('steelix', 208, 'Steelixite')
+createMega('scizor', 212, 'Scizorite')
+createMega('heracross', 214, 'Heracrossite')
+createMega('houndoom', 229, 'Houndoomite')
+createMega('tyranitar', 248, 'Tyranitarite')
+createMega('sceptile', 254, 'ceptilite')
+createMega('blaziken', 257, 'Blazikenite')
+createMega('swampert', 260, 'Swampertite')
+createMega('gardevoir', 282, 'Gardevoirite')
+createMega('sableye', 302, 'Sableyite')
+createMega('mawile', 303, 'Mawilite')
+createMega('aggron', 306, 'Aggronite')
+createMega('medicham', 308, 'Medichamite')
+createMega('manectric', 310, 'Manectricite')
+createMega('sharpedo', 319, 'Sharpedite')
+createMega('camerupt', 323, 'Cameruptite')
+createMega('altaria', 334, 'Altarite')
+createMega('banette', 354, 'Banettite')
+createMega('absol', 359, 'Absolite')
+createMega('glalie', 362, 'Glalite')
+createMega('salamence', 373, 'Salamencite')
+createMega('metagross', 376, 'Metagrossite')
+createMega('latias', 380, 'Latiasite')
+createMega('latios', 381, 'Latiosite')
+createMega('lopunny', 428, 'Lopunnite')
+createMega('garchomp', 445, 'Garchompite')
+createMega('lucario', 448, 'Lucarite')
+createMega('abomasnow', 460, 'Abomasnowite')
+createMega('gallade', 475, 'Galladite')
+createMega('audino', 531, 'Audinite')
+createMega('diancie', 719, 'Diancite')
+
 return evo

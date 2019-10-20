@@ -4,62 +4,65 @@ local entry = require('Movelist-entry')
 local ml = require('Movelist')
 local mw = require('mw')
 
+if true then
 print(header.Levelh{args={'Elettro', '1'}})
 mw.title.setTitle("Fulmine")
-print(render.entry{args={'Movelist.levelTEST',
+print(render.entry{args={'Movelist.levelentry',
 "[[€025Co|LGPE=10|useless=yes£]]",
 "[[€493|LGPE=10|allforms=yes|STAB=''£]]",
 "[[€738£]]",
 "[[€738|LGPE=10£]]",
 "[[€720£]]",}})
 mw.title.setTitle("Frustata")
-print(render.entry{args={'Movelist.levelTEST',
+print(render.entry{args={'Movelist.levelentry',
 "[[€001|LGPE=5£]]",
 "[[€398£]]",}})
 mw.title.setTitle("Botta")
-print(ml.levelTEST{args={"035"}})
+print(ml.levelentry{args={"035"}})
 mw.title.setTitle("Morso")
-print(render.entry{args={'Movelist.levelTEST',
+print(render.entry{args={'Movelist.levelentry',
 "[[€052|LGPE=5£]]",
 "[[€052A£]]",}})
+print(header.levelf{args={}})
+print(header.Levelh{args={'Ghiaccio', '2'}})
 mw.title.setTitle("Picchiaduro") -- È normale che abbia una colonna in meno
-print(ml.levelTEST{args={"215"}})
+print(ml.levelentry{args={"215"}})
 print(header.levelf{args={'Elettro'}})
 
 print(header.Breedh{args = {'Ghiaccio', '2'}})
 mw.title.setTitle("Palla Gelo")
-print(render.entry{args={'Movelist.breedTEST',
+print(render.entry{args={'Movelist.breedentry',
 "[[€225£]]",}})
 mw.title.setTitle("Bodyguard")
-print(render.entry{args={'Movelist.breedTEST',
+print(render.entry{args={'Movelist.breedentry',
 "[[€075£]]",}})
 mw.title.setTitle("Fango")
-print(render.entry{args={'Movelist.breedTEST',
+print(render.entry{args={'Movelist.breedentry',
 "[[€422E|useless=yes£]]",}})
 mw.title.setTitle("Punizione")
-print(render.entry{args={'Movelist.breedTEST',
+print(render.entry{args={'Movelist.breedentry',
 "[[€198£]]",}})
 print(header.levelf{args={'Ghiaccio'}})
 
 mw.title.setTitle("Cuordileone")
 print(ml.TMh{args = {}})
-print(render.entry{args={'Movelist.tmTEST',
+print(render.entry{args={'Movelist.tmentry',
 "[[€807£]]",
 "[[€019£]]",}})
 mw.title.setTitle("Cascata")
-print(render.entry{args={'Movelist.tmTEST',
+print(render.entry{args={'Movelist.tmentry',
 "[[€007|LGPE=yes£]]",}})
 mw.title.setTitle("Sub")
-print(render.entry{args={'Movelist.tmTEST',
+print(render.entry{args={'Movelist.tmentry',
 "[[€007|LGPE=yes£]]",}})
 mw.title.setTitle("Scacciabruma")
-print(render.entry{args={'Movelist.tmTEST',
+print(render.entry{args={'Movelist.tmentry',
 "[[€398£]]",}})
 print(header.footer{args={}})
 
 print(ml.tutorhlua("gastroacido"))
 mw.title.setTitle("Gastroacido")
-print(render.entry{args={'Movelist.tutorTEST',
+print(render.entry{args={'Movelist.tutorentry',
 [[€023£]],
 [[€088A£]],
 [[€336£]],
@@ -72,10 +75,13 @@ print(header.footer{args={'veleno'}})
 print(header.Eventh{args = {'normale'}})
 print(header.div{args={'4'}})
 mw.title.setTitle("Azione")
-print(render.entry{args={'Movelist.eventTEST',
+print(render.entry{args={'Movelist.evententry',
 [[€493|Evento dodicesimo film<br>Arceus Michina australiano<br>Toys "R" Us Arceus<br>Arceus Michina europeo£]]}})
+mw.title.setTitle("Idropompa")
+print(render.entry{args={'Movelist.evententry',
+[[€479|Cambio di forma£]]}})
 print(header.footer{args={}})
-
+end
 
 if false then
 mw.title.setTitle("Fulmine")
