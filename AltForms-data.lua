@@ -135,7 +135,7 @@ t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'diglett', 'meowth',
 -- Tabella contenente i Pokémon che hanno una forma di Galar:
 -- per efficienza, alcuni sono alla fine del modulo
 
-t.galar = {'weezing', 'zigzagoon'}
+t.galar = {'ponyta', 'weezing', 'zigzagoon'}
 
 --[[
 
@@ -382,6 +382,7 @@ t.vulpix.since = {A = 'sl', base = 'rb'}
 t.diglett.since = {A = 'sl', base = 'rb'}
 t.meowth.since = {A = 'sl', base = 'rb'}
 t.geodude.since = {A = 'sl', base = 'rb'}
+t.ponyta.since = {G = 'spsc', base = 'rb'}
 t.grimer.since = {A = 'sl', base = 'rb'}
 t.exeggutor.since = {A = 'sl', base = 'rb'}
 t.marowak.since = {A = 'sl', base = 'rb'}
@@ -521,6 +522,7 @@ t[53] = t.persian
 t[74] = t.geodude
 t[75] = t.graveler
 t[76] = t.golem
+t[77] = t.ponyta
 t[88] = t.grimer
 t[89] = t.muk
 t[103] = t.exeggutor

@@ -6495,9 +6495,13 @@ d.blacephalon = {}
 d[806] = d.blacephalon
 d.zeraora = {}
 d[807] = d.zeraora
+
 d.grookey = {}
+d[810] = d.grookey
 d.scorbunny = {}
+d[813] = d.scorbunny
 d.sobble = {}
+d[816] = d.sobble
 d.gossifleur = {}
 d.eldegoss = {}
 d.wooloo = {}
@@ -6508,6 +6512,10 @@ d.yamper = {}
 d.alcremie = {}
 d.rolycoly = {}
 d.duraludon = {}
+d.obstagoon = {}
+d.cramorant = {}
+d.polteageist = {}
+d.morpeko = {}
 d.zacian = {}
 d.zamazenta = {}
 

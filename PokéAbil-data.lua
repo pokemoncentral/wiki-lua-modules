@@ -1618,12 +1618,15 @@ t[806] = t.blacephalon
 t.zeraora = {ability1 = 'Assorbivolt'}
 t[807] = t.zeraora
 t.grookey = {ability1 = 'Erbaiuto'}
+t[810] = t.grookey
 t.scorbunny = {ability1 = 'Aiutofuoco'}
+t[813] = t.scorbunny
 t.sobble = {ability1 = 'Acquaiuto'}
+t[816] = t.sobble
 t.gossifleur = {ability1 = 'Lanugine', ability2 = 'Rigenergia'}
 t.eldegoss = {ability1 = 'Lanugine', ability2 = 'Rigenergia'}
 t.wooloo = {ability1 = 'Morbidone', ability2 = 'Fugafacile'}
-t.corviknight = {ability1 = 'Pressione', ability2 = 'Agitazione'}
+t.corviknight = {ability1 = 'Pressione', ability2 = 'Agitazione', abilityd = 'Blindospecchio'}
 t.drednaw = {ability1 = 'Ferromascella', ability2 = 'Guscioscudo'}
 t.impidimp = {ability1 = ''}
 t.yamper = {ability1 = 'Raccattapalle'}
@@ -1631,6 +1634,8 @@ t.alcremie = {ability1 = 'Dolcevelo'}
 t.rolycoly = {ability1 = 'Vapormacchina', ability2 = 'Antifuoco'}
 t.duraludon = {ability1 = 'Metalleggero', ability2 = 'Metalpesante'}
 t.obstagoon = {ability1 = 'Temerarietà', ability2 = 'Dentistretti'}
+t.cramorant = {ability1 = 'Inghiottimissile'}
+t.polteageist = {ability1 = 'Sottilguscio'}
 t.morpeko = {ability1 = 'Pancialterna'}
 t.zacian = {ability1 = ''}
 t.zamazenta = {ability1 = ''}
@@ -1671,6 +1676,8 @@ t.gravelerA = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Pellele
 t['075A'] = t.gravelerA
 t.golemA = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Pellelettro'}
 t['076A'] = t.golemA
+t.ponytaG = {ability1 = 'Fugafacile', ability2 = 'Pastelvelo'}
+t['077G'] = t.ponytaG
 t.grimerA = {ability1 = 'Velentocco', ability2 = 'Voracità', abilityd = 'Forza Chimica'}
 t['088A'] = t.grimerA
 t.mukA = {ability1 = 'Velentocco', ability2 = 'Voracità', abilityd = 'Forza Chimica'}
@@ -1679,7 +1686,7 @@ t.exeggutorA = {ability1 = 'Indagine', abilityd = 'Coglibacche'}
 t['103A'] = t.exeggutorA
 t.marowakA = {ability1 = 'Corpofunesto', ability2 = 'Parafulmine', abilityd = 'Testadura'}
 t['105A'] = t.marowakA
-t.weezingG = {ability1 = 'Levitazione'}
+t.weezingG = {ability1 = 'Levitazione', ability2 = 'Gas Reagente'}
 t['110G'] = t.weezingG
 t.eeveeCm = {ability1 = 'Nessuna'}
 t['133Cm'] = t.eeveeCm

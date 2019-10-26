@@ -1624,8 +1624,11 @@ t[808] = t.meltan
 t.melmetal = {name = 'Melmetal', ndex = 809, type1 = 'acciaio', type2 = 'acciaio'}
 t[809] = t.melmetal
 t.grookey = {name = 'Grookey', ndex = nil, type1 = 'erba', type2 = 'erba'}
+t[810] = t.grookey
 t.scorbunny = {name = 'Scorbunny', ndex = nil, type1 = 'fuoco', type2 = 'fuoco'}
+t[813] = t.scorbunny
 t.sobble = {name = 'Sobble', ndex = nil, type1 = 'acqua', type2 = 'acqua'}
+t[816] = t.sobble
 t.gossifleur = {name = 'Gossifleur', ndex = nil, type1 = 'erba', type2 = 'erba'}
 t.eldegoss = {name = 'Eldegoss', ndex = nil, type1 = 'erba', type2 = 'erba'}
 t.wooloo = {name = 'Wooloo', ndex = nil, type1 = 'normale', type2 = 'normale'}
@@ -1637,6 +1640,8 @@ t.alcremie = {name = 'Alcremie', ndex = nil, type1 = 'folletto', type2 = 'follet
 t.rolycoly = {name = 'Rolycoly', ndex = nil, type1 = 'roccia', type2 = 'roccia'}
 t.duraludon = {name = 'Duraludon', ndex = nil, type1 = 'acciaio', type2 = 'drago'}
 t.obstagoon = {name = 'Obstagoon', ndex = nil, type1 = 'buio', type2 = 'normale'}
+t.cramorant = {name = 'Cramorant', ndex = nil, type1 = 'volante', type2 = 'acqua'}
+t.polteageist = {name = 'Polteageist', ndex = nil, type1 = 'spettro', type2 = 'spettro'}
 t.morpeko = {name = 'Morpeko', ndex = nil, type1 = 'elettro', type2 = 'buio'}
 t.zacian = {name = 'Zacian', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 t.zamazenta = {name = 'Zamazenta', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
@@ -1672,6 +1677,8 @@ t.gravelerA = {name = 'Graveler', ndex = 75, type1 = 'roccia', type2 = 'elettro'
 t['075A'] = t.gravelerA
 t.golemA = {name = 'Golem', ndex = 76, type1 = 'roccia', type2 = 'elettro'}
 t['076A'] = t.golemA
+t.ponytaG = {name = 'Ponyta', ndex = 77, type1 = 'psico', type2 = 'psico'}
+t['077G'] = t.ponytaG
 t.grimerA = {name = 'Grimer', ndex = 88, type1 = 'veleno', type2 = 'buio'}
 t['088A'] = t.grimerA
 t.mukA = {name = 'Muk', ndex = 89, type1 = 'veleno', type2 = 'buio'}

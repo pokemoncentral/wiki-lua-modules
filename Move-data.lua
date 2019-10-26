@@ -682,5 +682,10 @@ t['geyser fotonico'] = {name = 'Geyser Fotonico', type = 'psico', category = 'sp
 t['sbalorditesta'] = {name = 'Sbalorditesta', type = 'fuoco', category = 'speciale', power = 150, accuracy = 100, pp = 5, gen = 7}
 t['pugni plasma'] = {name = 'Pugni Plasma', type = 'elettro', category = 'fisico', power = 100, accuracy = 100, pp = 15, gen = 7}
 t['pugni corazzati'] = {name = 'Pugni Corazzati', type = 'acciaio', category = 'fisico', power = 60, accuracy = 100, pp = 5, gen = 7}
+-- New moves, without all infos
+-- t.sbarramento = {name = 'Sbarramento', type = 'buio', category = nil, power = nil, accuracy = nil, pp = 40, gen = 8}
+-- t["raggio d'acciaio"] = {name = "Raggio d'Acciaio", type = 'acciaio', category = nil, power = nil, accuracy = nil, pp = nil, gen = 8}
+-- t["ruota d'aura"] = {name = "Ruota d'Aura", type = 'elettro', category = nil, power = nil, accuracy = nil, pp = nil, gen = 8}
+-- t.vastoimpatto = {name = 'Vastoimpatto', type = nil, category = nil, power = nil, accuracy = nil, pp = nil, gen = 8}
 
 return t

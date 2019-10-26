@@ -1618,8 +1618,11 @@ t[806] = t.blacephalon
 t.zeraora = {group1 = 'sconosciuto'}
 t[807] = t.zeraora
 -- t.grookey = {group1 = ''}
+-- t[810] = t.grookey
 -- t.scorbunny = {group1 = ''}
+-- t[813] = t.scorbunny
 -- t.sobble = {group1 = ''}
+-- t[816] = t.sobble
 -- t.gossifleur = {group1 = ''}
 -- t.eldegoss = {group1 = ''}
 -- t.wooloo = {group1 = ''}
@@ -1637,46 +1640,80 @@ t[807] = t.zeraora
 -- possono avere un gruppo uova diverso da quello della forma base
 
 t.pikachuCs = {group1 = 'sconosciuto'}
+t["025Cs"] = t.pikachuCs
 t.deoxysA, t.deoxysD, t.deoxysV =
 	t.deoxys, t.deoxys, t.deoxys
-t.wormadamSa, t.wormadamSc =
-	t.wormadam, t.wormadam
+t["386A"], t["386D"], t["386V"] =
+	t.deoxys, t.deoxys, t.deoxys
+t.wormadamSa, t.wormadamSc = t.wormadam, t.wormadam
+t["413Sa"], t["413Sc"] = t.wormadam, t.wormadam
 t.shellosE = t.shellos
+t["422E"] = t.shellos
 t.gastrodonE = t.gastrodon
+t["423E"] = t.gastrodon
 t.giratinaO = t.giratina
+t["487O"] = t.giratina
 t.shayminC = t.shaymin
+t["492C"] = t.shaymin
 t.basculinB = t.basculin
+t["550B"] = t.basculin
 t.tornadusT = t.tornadus
+t["641T"] = t.tornadus
 t.thundurusT = t.thundurus
+t["642T"] = t.thundurus
 t.landorusT = t.landorus
-t.kyuremB, t.kyuremN =
-	t.kyurem, t.kyurem
+t["645T"] = t.landorus
+t.kyuremB, t.kyuremN = t.kyurem, t.kyurem
+t["646B"], t["646N"] = t.kyurem, t.kyurem
 t.keldeoR = t.keldeo
+t["647R"] = t.keldeo
 t.meloettaD = t.meloetta
+t["648D"] = t.meloetta
 t.greninjaD = {group1 = 'sconosciuto'}
+t["658D"] = t.greninjaD
 t.oricorioC, t.oricorioH, t.oricorioB =
 	t.oricorio, t.oricorio, t.oricorio
-t.lycanrocN, t.lycanrocC =
-	t.lycanroc, t.lycanroc
-t.necrozmaV, t.necrozmaA =
-	t.necrozma, t.necrozma
+t["741C"], t["741H"], t["741B"] =
+	t.oricorio, t.oricorio, t.oricorio
+t.lycanrocN, t.lycanrocC = t.lycanroc, t.lycanroc
+t["745N"], t["745C"] = t.lycanroc, t.lycanroc
+t.necrozmaV, t.necrozmaA = t.necrozma, t.necrozma
+t["800V"], t["800A"] = t.necrozma, t.necrozma
 t.rattataA = t.rattata
+t["019A"] = t.rattata
 t.raticateA = t.raticate
+t["020A"] = t.raticate
 t.raichuA = t.raichu
+t["026A"] = t.raichu
 t.sandshrewA = t.sandshrew
+t["027A"] = t.sandshrew
 t.sandslashA = t.sandslash
+t["028A"] = t.sandslash
 t.vulpixA = t.vulpix
+t["037A"] = t.vulpix
 t.ninetalesA = t.ninetales
+t["038A"] = t.ninetales
 t.diglettA = t.diglett
+t["050A"] = t.diglett
 t.dugtrioA = t.dugtrio
+t["051A"] = t.dugtrio
 t.meowthA = t.meowth
+t["052A"] = t.meowth
 t.persianA = t.persian
+t["053A"] = t.persian
 t.geodudeA = t.geodude
+t["074A"] = t.geodude
 t.gravelerA = t.graveler
+t["075A"] = t.graveler
 t.golemA = t.golem
+t["076A"] = t.golem
 t.grimerA = t.grimer
+t["088A"] = t.grimer
 t.mukA = t.muk
+t["089A"] = t.muk
 t.exeggutorA = t.exeggutor
+t["103A"] = t.exeggutor
 t.marowakA = t.marowak
+t["105A"] = t.marowak
 
 return t
