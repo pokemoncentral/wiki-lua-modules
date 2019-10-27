@@ -149,7 +149,5 @@ m.MTGen = function(frame)
 	return MTGen(tonumber(params[1]), params.width) ..
 			"[[Categoria:Mosse Macchina]]"
 end
-arg={'MTCompatto', 'Flash'}
-print(m[arg[1]]{ args={arg[2], width = arg[3]} })
 
 return m

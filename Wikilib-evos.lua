@@ -198,7 +198,7 @@ ev.formTypesList = function(name, gen)
     local thisdata = pokes[name] or pokes[forms.getnameabbr(name)]
     return table.filter(table.unique(table.flatMap(formstab, function(tt)
         return table.flatMap(tt, function(formtab)
-            local pokedata = pokes[formtab.ndex]
+            local pokedata = pokes[forms.uselessToEmpty(formtab.name)]
             return multigen.getGen({ pokedata.type1, pokedata.type2 }, gen)
         end)
     end)), function(type)

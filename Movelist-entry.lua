@@ -341,32 +341,34 @@ end
 Print "head" cells (the ones independent of kind)
 Arguments:
 	- ndex: ndex of the Pokémon
-	- stab: a string with the STAB value (either the empty string, "''" or "'''")
-	- notes: any note that should be added in tt after the Pokémon's name
-	- form (optional): the extended name of the form
-	- allForms (optional): a true value means that this entry is about all the
-			forms of this Pokémon
-	- isUseless (optional): a true value means that the form of this entry is
-			useless, and will be searched in the right module
+	- args: optional parameters, named to avoid lots of nil in the call:
+		* STAB: a string with the STAB value (either the empty string, "''"
+		        or "'''")
+		* notes: any note that should be added in tt after the Pokémon's name
+		* form: the extended name of the form
+		* allforms: a true value means that this entry is about all the
+				    forms of this Pokémon
+		* useless: a true value means that the form of this entry is
+			         useless, and will be searched in the right module
+		* movename: the name of the move, if different from page name
 
 --]]
-entry.head = function(ndex, stab, notes, form, allForms, isUseless)
+entry.head = function(ndex, args)
 	local ndexFigures = ndex:match('^(%d+)')
-	local abbr = forms.getabbr(ndex, form)
+	local abbr = forms.getabbr(ndex, args.form)
 	local pokedata = pokes[forms.nameToDataindex(ndexFigures .. forms.toEmptyAbbr(abbr))]
 					 or {name = 'Missingno.', ndex = '000'}
-	local forml = allForms and '<div class="text-small">Tutte le forme</div>' or
-					(isUseless
+	local forml = args.allforms and '<div class="text-small">Tutte le forme</div>' or
+					(args.useless
 						and useless[tonumber(ndexFigures)].links[abbr]
-						or forms.getlink(ndex, false, form)
+						or forms.getlink(ndex, false, args.form)
 					)
 	pokedata = table.merge(
 		multigen.getGen(pokedata),
 		table.copy(groups[pokedata.ndex] or {group1 = 'sconosciuto'})
 	)
-	stab = stab == ""
-			and lib.computeSTAB(ndex, mw.title.getCurrentTitle().text, form)
-			or stab
+	local movename = args.movename or mw.title.getCurrentTitle().text
+	local stab = args.STAB or lib.computeSTAB(ndex, movename, args.form)
 	pokedata.group1show = pokedata.group1 == 'coleottero'
 							and 'Coleot'
 							or (pokedata.group1 == 'non ancora scoperto'
@@ -393,7 +395,7 @@ entry.head = function(ndex, stab, notes, form, allForms, isUseless)
 	ani = ms.staticLua(ndexFigures .. forms.toEmptyAbbr(abbr)),
 	stab = stab,
 	name = pokedata.name,
-	notes = lib.makeNotes(notes or ''),
+	notes = lib.makeNotes(args.notes or ''),
 	forml = forml,
 	types = resp.twoTypeBoxesLua(pokedata.type1, pokedata.type2, {'tiny'},
         nil, {'vert-center'}),
@@ -452,7 +454,11 @@ entry.entry = function(p, kind)
 	-- now p[1] is the ndex, and may be followed by old params
 	p = entry.removeOldParams(p)
 	local ndex = table.remove(p, 1)
-	return entry.head(ndex, p.STAB or '', p.note or '', string.lower(p.form or ''), p.allforms, p.useless)
+	return entry.head(ndex, { STAB = p.STAB, notes = p.note,
+	                          form = string.lower(p.form or ''),
+							  allforms = p.allforms, useless = p.useless,
+							  movename = p.movename
+					 })
 		.. entry.tail(kind, p)
 end
 

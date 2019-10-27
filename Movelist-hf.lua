@@ -18,7 +18,7 @@ local gendata = require("Gens-data")
 -- Contiene i colspan dell'ultima cella degli headers
 
 local cs = {}
-cs.level = function(gen) return 2 * (gendata.latest + 1) - 2 * gen end
+cs.level = function(gen) return (gendata.latest + 1 - gen) * 3 end
 cs.breed, cs.tm = cs.level, cs.level
 cs.event = function() return 1 end
 cs.tutor = function(gen) return gen end
@@ -39,10 +39,14 @@ local cells = {}
 
 -- Funzioni di supporto
 
+-- TODO: the number of cells of the header is not correct for both movelist and
+-- movelist/entry. Drop support for movelist/entry? Duplicate these functions
+-- to have double colspan?
+
 -- Funzione per generale le celle dei level
 
 cells.level = function(gen)
-	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex;" colspan="${cs}" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
+	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex;" colspan="${cs}" | [[${genl} generazione|${genr}]]\n'
     local row = {}
     for a = gen, gendata.latest do
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
@@ -55,10 +59,10 @@ end
 -- Genera le celle dei tm
 
 cells.tm = function(gen, tms)
-	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex; line-height: 1em;" colspan="${cs}" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]<div class="text-small">${tm}</div>\n'
+	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex; line-height: 1em;" colspan="${cs}" | [[${genl} generazione|${genr}]]<div class="text-small">${tm}</div>\n'
     local row, l = {}, ''
     for a = gen, gendata.latest do
-        l = tms[a] == 'NO' and '<span style="color:#FFF;">Ness.</span>' or string.interp('[[${tm}|<span style="color:#FFF;">${tm}</span>]]', {tm = tms[a]})
+        l = tms[a] == 'NO' and 'Ness.' or string.interp('[[${tm}|${tm}]]', {tm = tms[a]})
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
 			genl = gendata[a].ext, genr = gendata[a].roman, tm = l,
 			cs = mlentry.maxCellsNumber[a]}))
@@ -69,7 +73,7 @@ end
 -- Genera le celle del breed
 
 cells.breed = function(gen)
-	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex" colspan="${cs}" | [[${genl} generazione|<span style="color:#FFF;">${genr}</span>]]\n'
+	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex" colspan="${cs}" | [[${genl} generazione|${genr}]]\n'
     local row = {}
     for a = gen, gendata.latest do
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
@@ -107,7 +111,7 @@ j.levelh = function(frame)
     local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     local tipo, gen = p[1] or 'pcwiki', tonumber(p[2]) or 0
     return string.interp([=[${str}Livello
-|-
+|- class="white-text"
 ${g}]=], {str = headers(tipo, gen, 'level'), g = cells.level(gen)})
 end
 
@@ -134,7 +138,7 @@ j.tmh = function(frame)
         tms[a - 2] = p[a] and string.upper(p[a]) or 'No'
     end
     return string.interp([=[${str}Macchina
-|-
+|- class="white-text"
 ${g}]=], {str = headers(tipo, gen, 'tm'), g = cells.tm(gen, tms)})
 end
 
@@ -147,7 +151,7 @@ j.breedh = function(frame)
     local tipo, gen = p[1] or 'pcwiki', tonumber(p[2]) < 2 and 2 or tonumber(p[2])
     return string.interp([=[
 ${str}Padre
-|-
+|- class="white-text"
 ${g}]=], {str = headers(tipo, gen, 'breed'), g = cells.breed(gen)})
 end
 
