@@ -76,7 +76,7 @@ Arguments:
 
 --]]
 l.entrytail = function(poke, mossa, notes, gen)
-    local data = moves[mossa]
+    local data = multigen.getgen(moves[mossa])
     local stab = lib.computeSTAB(poke, mossa, nil, gen)
     return lib.categoryentry(stab, data.name, notes, string.fu(data.type),
                              string.fu(data.category), data.power,
@@ -145,8 +145,9 @@ l.entryLua = function(poke, gen, kind)
     local funcDict = l.dicts[kind]
 
     local res = {}
-    if pokemoves[poke][kind] and pokemoves[poke][kind][gen] then
-        res = funcDict.dataMap(pokemoves[poke][kind][gen],
+    local pmkind = pokemoves[poke][kind]
+    if pmkind and pmkind[gen] then
+        res = funcDict.dataMap(pmkind[gen],
             function(v, k) return funcDict.processData(poke, gen, v, k) end)
     end
     local resstr

@@ -585,10 +585,11 @@ Arguments:
 
 --]]
 lib.learnKind = function(move, ndex, gen, kind)
-	if not pokemoves[ndex][kind] or not pokemoves[ndex][kind][gen] then
+	local pmkind = pokemoves[ndex][kind]
+	if not pmkind or not pmkind[gen] then
 		return false
 	end
-	local mdata = pokemoves[ndex][kind][gen]
+	local mdata = pmkind[gen]
 	if kind == "tm" then
 		local mlist = mdata.all and tmdata[gen] or mdata
 		-- Extra parentheses to force a single return value

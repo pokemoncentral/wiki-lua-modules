@@ -15,18 +15,7 @@ local mp = {}
 -- local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local lib = require('Wikilib-learnlists')
--- local genlib = require('Wikilib-gens')
--- local multigen = require('Wikilib-multigen')
--- local forms = require('Wikilib-forms')
--- local wlib = require('Wikilib')
--- local hf = require('Movelist-hf')
--- local movelist = require('Movelist')
--- local sig = require("Sigle-data")
--- local pokes = require("Poké-data")
--- local moves = require("Move-data")
 local pokemoves = require("PokéMoves-data")
--- local gendata = require("Gens-data")
--- local mtdata = require("Machines-data")
 
 --[[
 
@@ -50,7 +39,7 @@ for _ = 1, basemovelen do
     table.insert(basemove, false)
 end
 
-for _, poke in pairs(pokemoves) do
+pokemoves.iterate(function(poke)
     for gen, gentutor in ipairs(poke.tutor) do
         local si = startidx[gen]
         for move, tutorarray in pairs(gentutor) do
@@ -63,7 +52,7 @@ for _, poke in pairs(pokemoves) do
             end
         end
     end
-end
+end)
 
 -- mp.movetutorindexes is a table that maps move names to an array of indexes
 -- of games in which that move is a tutor
