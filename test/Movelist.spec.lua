@@ -71,7 +71,7 @@ if true then
     mw.title.setTitle("Sub")
     print(ml.TMh{args = {}})
     print(render.entry{args={'Movelist.tmentry',
-    "[[€007|LGPE=yes£]]",}})
+    "[[€007£]]",}})
     print(header.footer{args={}})
     mw.title.setTitle("Scacciabruma")
     print(ml.TMh{args = {}})

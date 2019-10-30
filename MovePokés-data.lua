@@ -15,7 +15,7 @@ local mp = {}
 -- local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local lib = require('Wikilib-learnlists')
-local pokemoves = require("PokéMoves-data")
+local pokemoves = require('PokéMoves-data')
 
 --[[
 
