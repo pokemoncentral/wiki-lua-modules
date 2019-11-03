@@ -76,7 +76,7 @@ Arguments:
 
 --]]
 l.entrytail = function(poke, mossa, notes, gen)
-    local data = multigen.getgen(moves[mossa])
+    local data = multigen.getgen(moves[mossa], gen)
     local stab = lib.computeSTAB(poke, mossa, nil, gen)
     return lib.categoryentry(stab, data.name, notes, string.fu(data.type),
                              string.fu(data.category), data.power,
@@ -174,7 +174,7 @@ order.
 l.getParams = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     local gen = tonumber(p.gen) or gendata.latest
-    local poke = string.lower(p[1] or mw.title.getCurrentTitle().text)
+    local poke = string.lower(p[1] or mw.title.getCurrentTitle().baseText)
     return poke, gen
 end
 
@@ -194,7 +194,8 @@ local addInterfaces = function(kind)
     end
 
     l[kind] = function(frame)
-        return l.entryLua(l.getParams(frame), kind)
+        local poke, gen = l.getParams(frame)
+        return l.entryLua(poke, gen, kind)
     end
     l[string.fu(kind)] = l[kind]
 end
@@ -354,16 +355,18 @@ Creates an entries of a tm learnlist.
 
 Arguments:
     - poke: Pokémon name or ndex
+    - gen: generation for this entry
     - move: move name, all lowercase
     - tmnum: tm or hm number. Is a pair { "M[TN]", "<number>" }
     - games: (optional) the abbr of a game, that is put as a note in sup
 
 --]]
-l.tmEntry = function(poke, move, tmnum, games)
+l.tmEntry = function(poke, gen, move, tmnum, games)
     local tmcell = string.interp(STRINGS.tmcell, {
         img = tmnum[1],
         p1 = table.concat(tmnum),
-        tipo = string.fu(moves[move].type) or 'Sconosciuto'
+        tipo = string.fu(multigen.getGenValue(moves[move].type, gen))
+               or 'Sconosciuto'
     })
     return table.concat{
         '|-\n',
@@ -404,8 +407,8 @@ l.dicts.tm = {
     lt = function(a, b)
         return l.ltTm(a[2], b[2])
     end,
-    makeEntry = function(poke, _, val)
-        return l.tmEntry(poke, unpack(val))
+    makeEntry = function(poke, gen, val)
+        return l.tmEntry(poke, gen, unpack(val))
     end,
 }
 

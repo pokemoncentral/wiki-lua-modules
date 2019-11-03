@@ -6,13 +6,16 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')			-- luacheck: no unused
 local lib = require('Wikilib-learnlists')
+local multigen = require('Wikilib-multigen')
 local moves = require("Move-data")
 local links = require('Links')
 
 -- stab, mossa, notes, tipo, cat, pw, acc, pp, gara, exib, inib
 local entry = function(stab, mossa, notes)
-	local data = moves[string.lower(mossa)]
-    return lib.categoryentry(stab, mossa, notes, string.fu(data.type), string.fu(data.category), data.power, data.accuracy, data.pp)
+	local data = multigen.getGen(moves[string.lower(mossa)])
+    return lib.categoryentry(stab, mossa, notes, string.fu(data.type),
+	                         string.fu(data.category), data.power,
+							 data.accuracy, data.pp)
 end
 
 --Entry per le mosse apprese aumentando di livello

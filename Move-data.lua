@@ -173,7 +173,7 @@ t.sostituto = {name = 'Sostituto', type = 'normale', category = 'stato', power =
 t.scontro = {name = 'Scontro', type = 'normale', category = 'fisico', power = 50, accuracy = '&mdash;', pp = 1, gen = 1}
 t.schizzo = {name = 'Schizzo', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 1, gen = 2}
 t.triplocalcio = {name = 'Triplocalcio', type = 'lotta', category = 'fisico', power = 10, accuracy = 90, pp = 10, gen = 2}
-t.furto = {name = 'Furto', type = 'buio', category = 'fisico', power = 60, accuracy = 100, pp = 25, gen = 2}
+t.furto = {name = 'Furto', type = 'buio', category = 'fisico', power = { [2] = 40, [6] = 60 }, accuracy = 100, pp = { [2] = 10, [6] = 25 }, gen = 2}
 t.ragnatela = {name = 'Ragnatela', type = 'coleottero', category = 'stato', power = '&mdash;', accuracy = 100, pp = 10, gen = 2}
 t.leggimente = {name = 'Leggimente', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 100, pp = 5, gen = 2}
 t.incubo = {name = 'Incubo', type = 'spettro', category = 'stato', power = '&mdash;', accuracy = 100, pp = 15, gen = 2}
@@ -242,7 +242,7 @@ t.vitaltiro = {name = 'Vitaltiro', type = 'lotta', category = 'fisico', power = 
 t.mattindoro = {name = 'Mattindoro', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 5, gen = 2}
 t.sintesi = {name = 'Sintesi', type = 'erba', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 5, gen = 2}
 t.lucelunare = {name = 'Lucelunare', type = {[2] = 'normale', [6] = 'folletto'}, category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 5, gen = 2}
-t.introforza = {name = 'Introforza', type = 'normale', category = 'speciale', power = 60, accuracy = 100, pp = 15, gen = 2}
+t.introforza = {name = 'Introforza', type = 'normale', category = 'speciale', power = {[2] = "&mdash;", [6] = 60}, accuracy = 100, pp = 15, gen = 2}
 t.incrocolpo = {name = 'Incrocolpo', type = 'lotta', category = 'fisico', power = 100, accuracy = 80, pp = 5, gen = 2}
 t.tornado = {name = 'Tornado', type = 'drago', category = 'speciale', power = 40, accuracy = 100, pp = 20, gen = 2}
 t.pioggiadanza = {name = 'Pioggiadanza', type = 'acqua', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 5, gen = 2}

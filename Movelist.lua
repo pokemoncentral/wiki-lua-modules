@@ -180,7 +180,7 @@ end
 --     ================ First main cancer: tm/tutor header ================
 --         ========================== Tm =============================
 ml.tmhlua = function(move)
-	local tipo = moves[move].type
+	local tipo = multigen.getGenValue(moves[move].type)
 	local startgen = moves[move].gen or 1
 	local gamesdata = ml.gencelldict.tm.games
 	local totcs = table.fold(gamesdata, 0, function(acc, gengames)
@@ -220,7 +220,7 @@ ml.TMh, ml.Tmh = ml.tmh, ml.tmh
 --         ========================= Tutor ===========================
 -- Given a move creates the tutor header for that move
 ml.tutorhlua = function(move)
-	local tipo = moves[move].type
+	local tipo = multigen.getGenValue(moves[move].type)
 	local tutorgames = movepokes.movetutorindexes[move] or {}
 	return table.concat{
 		ml.headers(tipo, 'tutor', #tutorgames),

@@ -182,8 +182,8 @@ eb.boxArrow.img.conditions = {
     [evodata.conditions.LOCATION] = methodsFunctionGenerator(links.bag('Mappa città')),
     [evodata.conditions.MOVE] = function(movename)
         -- Takes move name and gets move type for the MT image
-        local movedata = moves[movename:lower()]
-        return links.bag('MT ' .. string.fu(movedata.type))
+        local movetype = multigen.getGenValue(moves[movename:lower()].type)
+        return links.bag('MT ' .. string.fu(movetype))
     end,
     [evodata.conditions.GENDER] = nilConst,
     [evodata.conditions.TRADED_FOR] = function(ndex)

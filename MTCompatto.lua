@@ -24,6 +24,7 @@ local mw = require('mw')
 local w = require('Wikilib')
 local tab = require('Wikilib-tables')  -- luacheck: no unused
 local txt = require('Wikilib-strings') -- luacheck: no unused
+local multigen = require('Wikilib-multigen')
 local links = require('AbbrLink')
 local css = require('Css')
 local machines = require("Machines-data")
@@ -51,13 +52,13 @@ local makeMachinesList = function(list)
                                 local keyGame = table.remove(games, 1)
 
 								return links[keyGame .. 'Lua']{games = games,
-										moves[move].name}
+										multigen.getGenValue(moves[move].name) }
 							end), ' | ')
 					})
 			else
 				return string.interp("[[${mv}|${num}]]",
 					{
-						mv = moves[move].name,
+						mv = multigen.getGenValue(moves[move].name),
 						num = num
 					})
 			end
@@ -106,8 +107,9 @@ in cui la mossa è un'MT o MN
 
 m.MTCompatto = function(frame)
 	local params = w.trimAndMap(frame.args, string.lower)
-	local gens, color = {}, 'sconosciuto'
-	local move = params[1]:match('^(.+) %(mossa%)$') or params[1]
+	local gens = {}
+	local color
+	local move = params[1] or mw.getCurrentTitle().text
 	local moveData = moves[move]
 
 	if not moveData then
@@ -116,7 +118,7 @@ m.MTCompatto = function(frame)
 	end
 
 	if moveData then
-		color = moveData.type
+		color = multigen.getGenValue(moveData.type)
 		for gen, genMc in ipairs(machines) do
 			if table.deepSearch(genMc, move) then
 				table.insert(gens, MTGen(gen, "auto"))

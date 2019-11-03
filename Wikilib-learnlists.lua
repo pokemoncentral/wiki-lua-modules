@@ -503,7 +503,7 @@ lib.computeSTAB = function(ndex, movename, form, gen)
 	local movedata = moves[movename:lower()]
 	local movetype = multigen.getGenValue(movedata.type, gen)
 	if not pokedata or not movedata
-	   or (movedata.power == '&mdash;'
+	   or (multigen.getGenValue(movedata.power, gen) == '&mdash;'
 	       and not multigen.getGenValue(movedata.stab, gen)) then
 		return ""
 	elseif (movetype == pokedata.type1 or movetype == pokedata.type2) then
