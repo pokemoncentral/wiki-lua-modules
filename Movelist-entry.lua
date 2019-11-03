@@ -96,21 +96,21 @@ entry.levelCellsData = {
 	},
 	[3] = {
 		FRLG = {
-			{bg = 'rubino', abbr = 'RZS', val = 'base'},
+			{bg = 'rubino', abbr = 'RZS', val = 'base', colspan = 2},
 			{bg = 'rossofuoco', abbr = 'RFVF', val = 'FRLG'}
 		},
 		E = {
-			{bg = 'rubino', abbr = 'RZRFVF', val = 'base'},
+			{bg = 'rubino', abbr = 'RZRFVF', val = 'base', colspan = 2},
 			{bg = 'smeraldo', abbr = 'S', val = 'E'}
 		}
 	},
 	[4] = {
 		HGSS = {
-			{bg = 'diamante', abbr = 'DPPt', val = 'base'},
+			{bg = 'diamante', abbr = 'DPPt', val = 'base', colspan = 2},
 			{bg = 'heartgold', abbr = 'HGSS', val = 'HGSS'}
 		},
 		PtHGSS = {
-			{bg = 'diamante', abbr = 'DP', val = 'base'},
+			{bg = 'diamante', abbr = 'DP', val = 'base', colspan = 2},
 			{bg = 'heartgold', abbr = 'PtHGSS', val = 'PtHGSS'}
 		}
 	},
@@ -143,42 +143,11 @@ entry.levelCellsData = {
 	}
 }
 
---[[
-
-Maximum of columns for a generation. Exported because used also in Movelist/hf
-
---]]
+-- Maximum of level columns for a generation. Exported because used also in
+-- Movelist/hf
 m.maxCellsNumber = table.map(ml.levelgames, function(v)
 	return #v
 end)
---
--- --[[
---
--- Prints a cell for a single value.
--- Parameters are:
--- 	- text: text content
--- 	- bgcolor: name of bg color (from colore module)
--- 	- bold: whether the content should be bold or not
--- 	- colspan: the number of colspan (default 1)
--- 	- tt: tt text (optional)
--- 	- abbr: games abbr to add after text (optional)
--- --]]
--- entry.makeBox = function(text, bgcolor, bold, colspan, tt, abbr)
--- 	local bg = bgcolor:lower() == "fff"
--- 				and ""
--- 				or css.horizGradLua{ type = bgcolor }
--- 	text = bold and table.concat{"'''", text, "'''"} or text
--- 	local cnt = tt and links.tt(text, tt) or text
--- 	return string.interp(
--- 		entry.strings.valueCell,
--- 		{
--- 			bg = bg,
--- 			cs = colspan and table.concat{'" colspan="', colspan} or "",
--- 			cnt = abbr and table.concat{"<span>", cnt, blackabbr[abbr] or "",
--- 			                            "</span>"} or cnt,
--- 		}
--- 	)
--- end
 
 --[[
 

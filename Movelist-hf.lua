@@ -39,10 +39,6 @@ local cells = {}
 
 -- Funzioni di supporto
 
--- TODO: the number of cells of the header is not correct for both movelist and
--- movelist/entry. Drop support for movelist/entry? Duplicate these functions
--- to have double colspan?
-
 -- Funzione per generale le celle dei level
 
 cells.level = function(gen)
@@ -60,7 +56,8 @@ end
 
 cells.tm = function(gen, tms)
 	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex; line-height: 1em;" colspan="${cs}" | [[${genl} generazione|${genr}]]<div class="text-small">${tm}</div>\n'
-    local row, l = {}, ''
+    local row = {}
+    local l
     for a = gen, gendata.latest do
         l = tms[a] == 'NO' and 'Ness.' or string.interp('[[${tm}|${tm}]]', {tm = tms[a]})
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
