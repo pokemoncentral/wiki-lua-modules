@@ -8,8 +8,6 @@ Each interface function is documented in its own comment, with examples.
 
 local b = {}
 
-local mw = require('mw')
-
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local multigen = require('Wikilib-multigen')
 local moves = require("Move-data")

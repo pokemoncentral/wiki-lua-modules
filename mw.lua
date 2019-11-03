@@ -115,7 +115,7 @@ return {
 
 	title = {
 		getCurrentTitle = function()
-			return { text = pagetitle }
+			return { text = pagetitle, baseText = pagetitle }
 		end,
 		-- Testing functions: changes the title returned by getCurrentTitle
 		setTitle = function(title) pagetitle = title end,
