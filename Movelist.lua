@@ -3,6 +3,8 @@
 Right now this module is just a convenient library for movelist-entry, used to
 automatically build an entry with few parameters.
 
+WikiCode interfaces are documented at the end of this file.
+
 ===============================================================================
 TODO: all this part is a LIE (like the cake)
 Creates the list of Pokémon that learns a certain move.
@@ -37,9 +39,7 @@ local ms = require('MiniSprite')
 local resp = require('Resp')
 local blackabbr = require("Blackabbrev-data")
 local c = require("Colore-data")
--- local sig = require("Sigle-data")
--- local sup = require("Sup-data")
-local pokemoves = require("PokéMoves-data")
+local pokemoves = lib.pokemoves -- require("PokéMoves-data")
 local pokes = require("Poké-data")
 local moves = require("Move-data")
 local groups = require("PokéEggGroup-data")
@@ -697,7 +697,7 @@ end
 Creates a single entry for a movelist. It isn't fully automated because
 something isn't in data modules (most notably LGPE learnsets)
 
-Args:
+Arguments:
     - move: move name
     - kind: kind of the entry
     - ndex: ndex of the Pokémon of this entry
@@ -732,12 +732,24 @@ ml.entry = function(move, kind, ndex, args)
 end
 
 -- =========================== WikiCode interfaces ============================
+--[[
+
+The WikiCode interface uses two arguments plus any other arguments used by
+ml.entry via args.
+Arguments:
+	- [1]: ndex of the Pokémon of this entry
+	- movename (optional): name of the move of this entry. If not given,
+	                       defaults to the page name
+    - anything documented for argument "args" of ml.entry
+
+--]]
 local function makeentry(kind)
 	ml[kind .. "entry"] = function(frame)
 		local p = frame.args
-		return ml.entry(mw.title.getCurrentTitle().text:lower(), kind, p[1], p)
+		local movename = p.movename or mw.title.getCurrentTitle().text
+		return ml.entry(string.trim(movename:lower()), kind, p[1], p)
 	end
-	ml[kind:fu() .. "entry"] = ml[kind .. "entry"]
+	ml[string.fu(kind) .. "entry"] = ml[kind .. "entry"]
 end
 
 makeentry("level")

@@ -21,6 +21,9 @@ local forms = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
 local evolib = require('Wikilib-evos')
 
+-- Exported to avoid double require for other modules
+lib.pokemoves = pokemoves
+
 -- local trimOnly = {'x v zA'}
 
 -- Wikicode per la cella di un gioco nell'entry level
