@@ -44,7 +44,7 @@ local links = require('Links')
 local ms = require('MiniSprite')
 local hf = require('Learnlist-hf')
 local sup = require("Sup-data")
-local pokemoves = lib.pokemoves -- require("PokéMoves-data")
+-- local pokemoves = require("PokéMoves-data")
 local pokes = require("Poké-data")
 local moves = require("Move-data")
 local gendata = require("Gens-data")
@@ -145,7 +145,7 @@ l.entryLua = function(poke, gen, kind)
     local funcDict = l.dicts[kind]
 
     local res = {}
-    local pmkind = pokemoves[poke][kind]
+    local pmkind = lib.pokemoves[poke][kind]
     if pmkind and pmkind[gen] then
         res = funcDict.dataMap(pmkind[gen],
             function(v, k) return funcDict.processData(poke, gen, v, k) end)
@@ -414,7 +414,7 @@ l.dicts.tm = {
 
 -- Added by hand to handle the special case with all tms
 l.tmLua = function(poke, gen)
-    if pokemoves[poke].tm[gen].all then
+    if lib.pokemoves[poke].tm[gen].all then
         return l.addhf(hf.alltm{args={poke, gen, "tm"}}, poke, gen, "tm")
     end
     return l.entryLua(poke, gen, "tm")

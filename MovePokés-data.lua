@@ -8,6 +8,10 @@ Actually this contains only the code to compute those valuse and relies on
 mw.loaddata to be ran once per page. We'll see whether performances are a
 problem or not.
 
+TODO: this should be computed offline because of memory problems (for how
+counterintuitive it may seem, that's it. You should check something about (what
+I understood of) how MediaWiki handles requires/mw.loadData).
+
 --]]
 
 local mp = {}
@@ -15,7 +19,7 @@ local mp = {}
 -- local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local lib = require('Wikilib-learnlists')
-local pokemoves = lib.pokemoves -- require("PokéMoves-data")
+local pokemoves = require("PokéMoves-data")
 
 --[[
 

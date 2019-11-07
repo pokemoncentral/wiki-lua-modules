@@ -39,13 +39,13 @@ local ms = require('MiniSprite')
 local resp = require('Resp')
 local blackabbr = require("Blackabbrev-data")
 local c = require("Colore-data")
-local pokemoves = lib.pokemoves -- require("PokéMoves-data")
 local pokes = require("Poké-data")
 local moves = require("Move-data")
 local groups = require("PokéEggGroup-data")
 local altforms = require("AltForms-data")
 local useless = require("UselessForms-data")
-local movepokes = require("MovePokés-data")
+-- local pokemoves = require("PokéMoves-data")
+-- local movepokes = require("MovePokés-data")
 local gendata = require("Gens-data")
 local mtdata = require("Machines-data")
 
@@ -318,7 +318,7 @@ There are three keys:
 ml.gencelldict = {
 	level = {
 		getbasedata = function(g, ndex, move, args)
-			local basedata = pokemoves[ndex].level[g][move]
+			local basedata = lib.pokemoves[ndex].level[g][move]
 			if g == 7 and args.LGPE then
 				basedata = table.copy(basedata or  { {}, {} })
 				table.insert(basedata, { args.LGPE })
@@ -342,7 +342,7 @@ ml.gencelldict = {
 	tm = {
 		-- TODO: refactor to be less handcrafted
 		getbasedata = function(g, ndex, move, args)
-			if not table.search(pokemoves[ndex].tm[g], move)
+			if not table.search(lib.pokemoves[ndex].tm[g], move)
 			   and not (g == 7 and args.LGPE) then
 				return false
 			end
@@ -412,7 +412,7 @@ ml.gencelldict = {
 	},
 	breed = {
 		getbasedata = function(g, ndex, move)
-			local basedata = pokemoves[ndex].breed[g][move]
+			local basedata = lib.pokemoves[ndex].breed[g][move]
 			return basedata
 		end,
 		makegencell = function(basedata, g)
@@ -522,9 +522,10 @@ ml.entrytail = function(move, kind, ndex, args)
 		cells[1] = table.map(movepokes.movetutorindexes[move], function(idx)
 			local g, num = table.deepSearch(lib.games.tutor,
 			                                ml.tutorgames[idx].abbr)
-			local find = pokemoves[ndex].tutor[g]
-			             and pokemoves[ndex].tutor[g][move]
-						 and pokemoves[ndex].tutor[g][move][num]
+			local tutordata = lib.pokemoves[ndex].tutor[g]
+			local find = tutordata
+			             and tutordata[move]
+						 and tutordata[move][num]
 			return {
 				str = find and ml.strings.BOOLYES or ml.strings.BOOLNO,
 				bg = find and ml.tutorgames[idx].bg or "fff",
@@ -666,8 +667,8 @@ ml.computenotes = function(move, kind, ndex, args)
 	-- breed notes
 	if kind == "breed" then
 		for g = math.max(sgen, 2), gendata.latest do
-			if pokemoves[ndex][kind][g] and pokemoves[ndex][kind][g][move] then
-				local movegendata = pokemoves[ndex][kind][g][move]
+			if lib.pokemoves[ndex][kind][g] and lib.pokemoves[ndex][kind][g][move] then
+				local movegendata = lib.pokemoves[ndex][kind][g][move]
 				for _, parents in ipairs(movegendata) do
 					local localnotes = lib.breednotes(g, move, parents[1],
 													  movegendata.notes)
