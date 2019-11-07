@@ -45,7 +45,7 @@ local groups = require("PokéEggGroup-data")
 local altforms = require("AltForms-data")
 local useless = require("UselessForms-data")
 -- local pokemoves = require("PokéMoves-data")
--- local movepokes = require("MovePokés-data")
+local movepokes = require("MovePokés-data")
 local gendata = require("Gens-data")
 local mtdata = require("Machines-data")
 
@@ -210,7 +210,8 @@ end
 -- WikiCode interface for tmhlua: the only (optional) argument is the move
 -- name, defaults to {{BASEPAGENAME}}
 ml.tmh = function(frame)
-	local move = frame.args[1] or mw.title.getCurrentTitle().text
+	local move = frame.args[1] and string.trim(frame.args[1])
+	                           or mw.title.getCurrentTitle().text
 	move = move:lower()
 	return ml.tmhlua(move)
 end
@@ -238,7 +239,8 @@ end
 -- WikiCode interface for tutorhlua: the only (optional) argument is the move
 -- name, defaults to {{BASEPAGENAME}}
 ml.tutorh = function(frame)
-	local move = frame.args[1] or mw.title.getCurrentTitle().text
+	local move = frame.args[1] and string.trim(frame.args[1])
+	                           or mw.title.getCurrentTitle().text
 	move = move:lower()
 	return ml.tutorhlua(move)
 end
@@ -319,19 +321,20 @@ ml.gencelldict = {
 	level = {
 		getbasedata = function(g, ndex, move, args)
 			local basedata = lib.pokemoves[ndex].level[g][move]
+			basedata = basedata and table.copy(basedata)
 			if g == 7 and args.LGPE then
-				basedata = table.copy(basedata or  { {}, {} })
+				basedata = basedata or { {}, {} }
 				table.insert(basedata, { args.LGPE })
 			end
 			return basedata
 		end,
 		makegencell = function(basedata, g)
 			local gencell = table.map(basedata, function(t, idx)
-				local empty = #t > 0
+				local noempty = #t > 0
 				return {
-					str = empty and string.fu(table.concat(t, ", "))
-					            or ml.strings.BOOLNO,
-					bg = empty and ml.levelgames[g][idx].bg or "fff",
+					str = noempty and string.fu(table.concat(t, ", "))
+					              or ml.strings.BOOLNO,
+					bg = noempty and ml.levelgames[g][idx].bg or "fff",
 					abbr = { ml.levelgames[g][idx].abbr },
 				}
 			end)
@@ -413,7 +416,7 @@ ml.gencelldict = {
 	breed = {
 		getbasedata = function(g, ndex, move)
 			local basedata = lib.pokemoves[ndex].breed[g][move]
-			return basedata
+			return basedata and table.copy(basedata)
 		end,
 		makegencell = function(basedata, g)
 			local gencell = table.map(basedata, function(t)
