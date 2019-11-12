@@ -1617,24 +1617,46 @@ t.blacephalon = {group1 = 'sconosciuto'}
 t[806] = t.blacephalon
 t.zeraora = {group1 = 'sconosciuto'}
 t[807] = t.zeraora
--- t.grookey = {group1 = ''}
--- t[810] = t.grookey
--- t.scorbunny = {group1 = ''}
--- t[813] = t.scorbunny
--- t.sobble = {group1 = ''}
--- t[816] = t.sobble
--- t.gossifleur = {group1 = ''}
--- t.eldegoss = {group1 = ''}
--- t.wooloo = {group1 = ''}
--- t.corviknight = {group1 = ''}
--- t.drednaw = {group1 = ''}
--- t.impidimp = {group1 = ''}
--- t.yamper = {group1 = ''}
--- t.alcremie = {group1 = ''}
--- t.rolycoly = {group1 = ''}
--- t.duraludon = {group1 = ''}
--- t.zacian = {group1 = 'sconosciuto'}
--- t.zamazenta = {group1 = 'sconosciuto'}
+
+t.grookey = {group1 = 'campo', group2 = 'erba'}
+t[810] = t.grookey
+t.thwackey, t[811] = t.grookey, t.grookey
+t.rillaboom, t[812]= t.grookey, t.grookey
+t.scorbunny = {group1 = 'campo', group2 = 'umanoide'}
+t[813] = t.scorbunny
+t.raboot, t[814] = t.scorbunny, t.scorbunny
+t.cinderace, t[815] = t.scorbunny, t.scorbunny
+t.sobble = {group1 = 'acqua 1', group2 = 'campo'}
+t[816] = t.sobble
+t.drizzile, t[817] = t.sobble, t.sobble
+t.inteleon, t[818] = t.sobble, t.sobble
+
+t.gossifleur = {group1 = ''}
+t.eldegoss = {group1 = ''}
+t.wooloo = {group1 = ''}
+t.corviknight = {group1 = ''}
+t.drednaw = {group1 = ''}
+t.impidimp = {group1 = ''}
+t.yamper = {group1 = ''}
+t.alcremie = {group1 = ''}
+t.rolycoly = {group1 = ''}
+t.duraludon = {group1 = ''}
+t.cramorant = {group1 = 'acqua 1', group2 = 'volante'}
+t[845] = t.cramorant
+t.toxtricity = {group1 = 'umanoide'}
+t[849] = t.toxtricity
+t.eiscue = {group1 = 'acqua 1', group2 = 'campo'}
+t[875] = t.eiscue
+t.indeedee = {group1 = 'magico'}
+t[876] = t.indeedee
+t.morpeko = {group1 = 'campo', group2 = 'magico'}
+t[877] = t.morpeko
+t.zacian = {group1 = 'sconosciuto'}
+t[888] = t.zacian
+t.zamazenta = {group1 = 'sconosciuto'}
+t[889] = t.zamazenta
+t.eternatus = {group1 = 'sconosciuto'}
+t[890] = t.eternatus
 
 -- Forme alternative che esistono fuori dalla lotta e quindi
 -- possono avere un gruppo uova diverso da quello della forma base
@@ -1699,6 +1721,8 @@ t.dugtrioA = t.dugtrio
 t["051A"] = t.dugtrio
 t.meowthA = t.meowth
 t["052A"] = t.meowth
+t.meowthG = t.meowth
+t["052G"] = t.meowth
 t.persianA = t.persian
 t["053A"] = t.persian
 t.geodudeA = t.geodude
@@ -1707,6 +1731,12 @@ t.gravelerA = t.graveler
 t["075A"] = t.graveler
 t.golemA = t.golem
 t["076A"] = t.golem
+t.ponytaG = t.ponyta
+t['077G'] = t.ponyta
+t.rapidashG = t.rapidash
+t['078G'] = t.rapidash
+t["farfetch'dG"] = t["farfetch'd"]
+t['083G'] = t["farfetch'd"]
 t.grimerA = t.grimer
 t["088A"] = t.grimer
 t.mukA = t.muk
@@ -1715,5 +1745,25 @@ t.exeggutorA = t.exeggutor
 t["103A"] = t.exeggutor
 t.marowakA = t.marowak
 t["105A"] = t.marowak
+t.weezingG = t.weezing
+t["110G"] = t.weezing
+t['mr. mimeG'] = t['mr. mime']
+t['122G'] = t['mr. mime']
+t.corsolaG = t.corsola
+t['222G'] = t.corsola
+t.zigzagoonG = t.zigzagoon
+t['263G'] = t.zigzagoon
+t.linooneG = t.linoone
+t['264G'] = t.linoone
+t.darumakaG = t.darumaka
+t['554G'] = t.darumaka
+t.darmanitanG = t.darmanitan
+t['555G'] = t.darmanitan
+t.yamaskG = t.yamask
+t['562G'] = t.yamask
+t.stunfiskG = t.stunfisk
+t['618G'] = t.stunfisk
+t.toxtricityB, t['849B'] = t.toxtricity, t.toxtricity
+t.indeedeeF, t['876F'] = t.indeedee, t.indeedee
 
 return t

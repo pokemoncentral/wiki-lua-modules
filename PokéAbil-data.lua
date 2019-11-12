@@ -1617,12 +1617,26 @@ t.blacephalon = {ability1 = 'Ultraboost'}
 t[806] = t.blacephalon
 t.zeraora = {ability1 = 'Assorbivolt'}
 t[807] = t.zeraora
-t.grookey = {ability1 = 'Erbaiuto'}
+
+t.grookey = {ability1 = 'Erbaiuto', abilityd = 'Elettrogenesi'}
 t[810] = t.grookey
-t.scorbunny = {ability1 = 'Aiutofuoco'}
+t.thwackey = {ability1 = 'Erbaiuto', abilityd = 'Elettrogenesi'}
+t[811] = t.thwackey
+t.rillaboom = {ability1 = 'Erbaiuto', abilityd = 'Elettrogenesi'}
+t[812] = t.rillaboom
+t.scorbunny = {ability1 = 'Aiutofuoco', abilityd = 'Libero'}
 t[813] = t.scorbunny
-t.sobble = {ability1 = 'Acquaiuto'}
+t.raboot = {ability1 = 'Aiutofuoco', abilityd = 'Libero'}
+t[814] = t.raboot
+t.cinderace = {ability1 = 'Aiutofuoco', abilityd = 'Libero'}
+t[815] = t.cinderace
+t.sobble = {ability1 = 'Acquaiuto', abilityd = 'Cecchino'}
 t[816] = t.sobble
+t.drizzile = {ability1 = 'Acquaiuto', abilityd = 'Cecchino'}
+t[817] = t.drizzile
+t.inteleon = {ability1 = 'Acquaiuto', abilityd = 'Cecchino'}
+t[818] = t.inteleon
+
 t.gossifleur = {ability1 = 'Lanugine', ability2 = 'Rigenergia'}
 t.eldegoss = {ability1 = 'Lanugine', ability2 = 'Rigenergia'}
 t.wooloo = {ability1 = 'Morbidone', ability2 = 'Fugafacile'}
@@ -1635,10 +1649,22 @@ t.rolycoly = {ability1 = 'Vapormacchina', ability2 = 'Antifuoco'}
 t.duraludon = {ability1 = 'Metalleggero', ability2 = 'Metalpesante'}
 t.obstagoon = {ability1 = 'Temerarietà', ability2 = 'Dentistretti'}
 t.cramorant = {ability1 = 'Inghiottimissile'}
+t[845] = t.cramorant
+t.toxtricity = {ability1 = 'Punk Rock', ability2 = 'Più', abilityd = 'Tecnico'}
+t[849] = t.toxtricity
 t.polteageist = {ability1 = 'Sottilguscio'}
+t.eiscue = {ability1 = 'Gelofaccia'}
+t[875] = t.eiscue
+t.indeedee = {ability1 = 'Forza Interiore', ability2 = 'Sincronismo', abilityd = 'Psicogenesi'}
+t[876] = t.indeedee
 t.morpeko = {ability1 = 'Pancialterna'}
-t.zacian = {ability1 = ''}
-t.zamazenta = {ability1 = ''}
+t[877] = t.morpeko
+t.zacian = {ability1 = 'Spada Indomita'}
+t[888] = t.zacian
+t.zamazenta = {ability1 = 'Scudo Saldo'}
+t[889] = t.zamazenta
+t.eternatus = {ability1 = 'Pressione'}
+t[890] = t.eternatus
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
@@ -1668,6 +1694,8 @@ t.dugtrioA = {ability1 = 'Sabbiavelo', ability2 = 'Boccolidoro', abilityd = 'Sil
 t['051A'] = t.dugtrioA
 t.meowthA = {ability1 = 'Raccolta', ability2 = 'Tecnico', abilityd = 'Paura'}
 t['052A'] = t.meowthA
+t.meowthG = {ability1 = 'Raccolta', ability2 = 'Unghiedure', abilityd = 'Agitazione'}
+t['052G'] = t.meowthG
 t.persianA = {ability1 = 'Foltopelo', ability2 = 'Tecnico', abilityd = 'Paura'}
 t['053A'] = t.persianA
 t.geodudeA = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Pellelettro'}
@@ -1676,8 +1704,12 @@ t.gravelerA = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Pellele
 t['075A'] = t.gravelerA
 t.golemA = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Pellelettro'}
 t['076A'] = t.golemA
-t.ponytaG = {ability1 = 'Fugafacile', ability2 = 'Pastelvelo'}
+t.ponytaG = {ability1 = 'Fugafacile', ability2 = 'Pastelvelo', abilityd = 'Presagio'}
 t['077G'] = t.ponytaG
+t.rapidashG = {ability1 = 'Fugafacile', ability2 = 'Pastelvelo', abilityd = 'Presagio'}
+t['078G'] = t.rapidashG
+t["farfetch'dG"] = {ability1 = 'Cuordeciso', abilityd = 'Nervisaldi'}
+t['083G'] = t["farfetch'dG"]
 t.grimerA = {ability1 = 'Velentocco', ability2 = 'Voracità', abilityd = 'Forza Chimica'}
 t['088A'] = t.grimerA
 t.mukA = {ability1 = 'Velentocco', ability2 = 'Voracità', abilityd = 'Forza Chimica'}
@@ -1686,13 +1718,17 @@ t.exeggutorA = {ability1 = 'Indagine', abilityd = 'Coglibacche'}
 t['103A'] = t.exeggutorA
 t.marowakA = {ability1 = 'Corpofunesto', ability2 = 'Parafulmine', abilityd = 'Testadura'}
 t['105A'] = t.marowakA
-t.weezingG = {ability1 = 'Levitazione', ability2 = 'Gas Reagente'}
+t.weezingG = {ability1 = 'Levitazione', ability2 = 'Gas Reagente', abilityd = 'Nebbiogenesi'}
 t['110G'] = t.weezingG
+t['mr. mimeG'] = {ability1 = 'Spiritovivo', ability2 = 'Annullabarriere', abilityd = 'Corpogelo'}
+t['122G'] = t['mr. mimeG']
 t.eeveeCm = {ability1 = 'Nessuna'}
 t['133Cm'] = t.eeveeCm
-t.zigzagoonG = {ability1 = 'Raccolta', ability2 = 'Voracità'}
+t.corsolaG = {ability1 = 'Sottilguscio', abilityd = 'Corpofunesto'}
+t['222G'] = t.corsolaG
+t.zigzagoonG = {ability1 = 'Raccolta', ability2 = 'Voracità', abilityd = 'Piedisvelti'}
 t['263G'] = t.zigzagoonG
-t.linooneG = {ability1 = 'Raccolta', ability2 = 'Voracità'}
+t.linooneG = {ability1 = 'Raccolta', ability2 = 'Voracità', abilityd = 'Piedisvelti'}
 t['264G'] = t.linooneG
 t.giratinaO = {ability1 = 'Levitazione'}
 t['487O'] = t.giratinaO
@@ -1702,6 +1738,14 @@ t.basculinB = {ability1 = 'Testadura', ability2 = 'Adattabilità', abilityd = 'R
 t['550B'] = t.basculinB
 t.darmanitanZ = {ability1 = 'Stato Zen'}
 t['555Z'] = t.darmanitanZ
+t.darmanitanG = {ability1 = 'Vigorilla', abilityd = 'Stato Zen'}
+t['555Z'] = t.darmanitanG
+t.darmanitanGZ = {ability1 = 'Vigorilla', abilityd = 'Stato Zen'}
+t['555Z'] = t.darmanitanGZ
+t.yamaskG = {ability1 = 'Anima Errante'}
+t['562G'] = t.yamaskG
+t.stunfiskG = {ability1 = 'Mimetismo'}
+t['618G'] = t.stunfiskG
 t.tornadusT = {ability1 = 'Rigenergia'}
 t['641T'] = t.tornadusT
 t.thundurusT = {ability1 = 'Assorbivolt'}
@@ -1724,6 +1768,13 @@ t.lycanrocC = {ability1 = 'Unghiedure'}
 t['745C'] = t.lycanrocC
 t.necrozmaU = {ability1 = 'Cerebroforza'}
 t['800U'] = t.necrozmaU
+t.cramorantT, t['845T'], t.cramorantI, t['845I'] =
+    t.cramorant, t.cramorant, t.cramorant, t.cramorant
+t.toxtricityB = {ability1 = 'Punk Rock', ability2 = 'Meno', abilityd = 'Tecnico'}
+t['849B'] = t.toxtricityB
+t.indeedeeF = {ability1 = 'Mente Locale', ability2 = 'Sincronismo', abilityd = 'Psicogenesi'}
+t['876F'] = t.indeedeeF
+
 
 -- Alias per le altre forme alternative rilevanti
 
@@ -1753,6 +1804,8 @@ t['493P'], t['493G'], t['493D'] = t.arceus, t.arceus, t.arceus
 t.arceusP, t.arceusG, t.arceusD = t.arceus, t.arceus, t.arceus
 t['493B'], t['493Fo'] = t.arceus, t.arceus
 t.arceusB, t.arceusFo = t.arceus, t.arceus
+t.darumakaG = t.darumaka
+t['554G'] = t.darumaka
 t.meloettaD = t.meloetta
 t['648D'] = t.meloetta
 t.aegislashS = t.aegislash
@@ -1784,7 +1837,11 @@ t['773B'], t['773Fo'] = t.silvally, t.silvally
 t.miniorR, t['774R'] = t.minior, t.minior
 t.necrozmaV, t.necrozmaA = t.necrozma, t.necrozma
 t['800V'], t['800A'] = t.necrozma, t.necrozma
-t.morpekoV = t.morpeko
+t.eiscueL, t['875L'] = t.eiscue, t.eiscue
+t.morpekoV, t['877V'] = t.morpeko, t.morpeko
+t.zacianR, t['888R'] = t.zacian, t.zacian
+t.zamazentaR, t['888R'] = t.zamazenta, t.zamazenta
+t.eternatusD, t['890D'] = t.eternatus, t.eternatus
 
 -- Mega evolutions
 
