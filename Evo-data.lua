@@ -6661,6 +6661,22 @@ evo.geodudeA = {
 evo.gravelerA, evo.golemA = evo.geodudeA, evo.geodudeA
 evo['074A'], evo['075A'], evo['076A'] = evo.geodudeA, evo.geodudeA, evo.geodudeA
 
+evo.ponytaG = {
+	ndex = '077G',
+	name = 'ponytaG',
+
+	evos = {
+		{
+			ndex = '078G',
+			name = 'rapidashG',
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 40,
+		}
+	}
+}
+evo.rapidashG = evo.ponytaG
+evo['077G'], evo['078G'] = evo.ponytaG, evo.ponytaG
+
 evo["farfetch'dG"] = {
 	ndex = '083G',
 	name = "farfetch'dG",
@@ -6750,6 +6766,22 @@ evo.zigzagoonG = {
 }
 evo.linooneG, evo.obstagoon = evo.zigzagoonG, evo.zigzagoonG
 evo['263G'], evo['264G'], evo[862] = evo.zigzagoonG, evo.zigzagoonG, evo.zigzagoonG
+
+evo.darumakaG = {
+	ndex = '554G',
+	name = 'darumakaG',
+
+	evos = {
+		{
+			ndex = '555G',
+			name = 'darmanitanG',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietragelo',
+		}
+	}
+}
+evo.darmanitanG = evo.darumakaG
+evo['554G'], evo['555G'] = evo.darumakaG, evo.darumakaG
 
 evo.yamaskG = {
 	ndex = '562G',
@@ -7036,6 +7068,13 @@ efs.darmanitan = {
 }
 efs.darmanitanZ = efs.darmanitan
 efs[555], efs['555Z'] = efs.darmanitan, efs.darmanitan
+
+efs.darmanitanG = {
+	{ { ndex = '555G', name = 'darmanitanG' } },
+	{ { ndex = '555GZ', name = 'darmanitanGZ', method = efs.methods.NONE } },
+}
+efs.darmanitanGZ = efs.darmanitanG
+efs['555G'], efs['555GZ'] = efs.darmanitanG, efs.darmanitanG
 
 efs.tornadus = {
 	{ { ndex = 641, name = 'tornadus' } },

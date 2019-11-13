@@ -682,10 +682,60 @@ t['geyser fotonico'] = {name = 'Geyser Fotonico', type = 'psico', category = 'sp
 t['sbalorditesta'] = {name = 'Sbalorditesta', type = 'fuoco', category = 'speciale', power = 150, accuracy = 100, pp = 5, gen = 7}
 t['pugni plasma'] = {name = 'Pugni Plasma', type = 'elettro', category = 'fisico', power = 100, accuracy = 100, pp = 15, gen = 7}
 t['pugni corazzati'] = {name = 'Pugni Corazzati', type = 'acciaio', category = 'fisico', power = 60, accuracy = 100, pp = 5, gen = 7}
--- New moves, without all infos
--- t.sbarramento = {name = 'Sbarramento', type = 'buio', category = nil, power = nil, accuracy = nil, pp = 40, gen = 8}
--- t["raggio d'acciaio"] = {name = "Raggio d'Acciaio", type = 'acciaio', category = nil, power = nil, accuracy = nil, pp = nil, gen = 8}
--- t["ruota d'aura"] = {name = "Ruota d'Aura", type = 'elettro', category = nil, power = nil, accuracy = nil, pp = nil, gen = 8}
--- t.vastoimpatto = {name = 'Vastoimpatto', type = nil, category = nil, power = nil, accuracy = nil, pp = nil, gen = 8}
+-- New moves, TODO: check
+t.dynabarriera = {name = 'DynaBarrieraa', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 8 }
+t['cannone dynamax'] = {name = 'Cannone Dynamax', type = 'drago', category = 'speciale', power = 100, accuracy = 100, pp = 5, gen = 8 }
+t.tiromirato = {name = 'Tiromirato', type = 'acqua', category = 'speciale', power = 80, accuracy = 100, pp = 15, gen = 8 }
+t.morsostretto = {name = 'Morsostretto', type = 'buio', category = 'fisico', power = 80, accuracy = 100, pp = 10, gen = 8 }
+t.riempiguance = {name = 'Riempiguance', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 8 }
+t['spalle al muro'] = {name = 'Spalle al Muro', type = 'lotta', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 5, gen = 8 }
+t.colpocatrame = {name = 'Colpocatrame', type = 'roccia', category = 'stato', power = '&mdash;', accuracy = 100, pp = 15, gen = 8 }
+t.magipolvere = {name = 'Magipolvere', type = 'psico', category = 'stato', power = '&mdash;', accuracy = 100, pp = 20, gen = 8 }
+t.dragofrecce = {name = 'Dragofrecce', type = 'drago', category = 'fisico', power = 50, accuracy = 100, pp = 10, gen = 8 }
+t['ora del tè'] = {name = 'Ora del Tè', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 8 }
+t.tentacolock = {name = 'Tentacolock', type = 'lotta', category = 'stato', power = '&mdash;', accuracy = 100, pp = 15, gen = 8 }
+t.beccoshock = {name = 'Beccoshock', type = 'elettro', category = 'fisico', power = 85, accuracy = 100, pp = 10, gen = 8 }
+t.branchiomorso = {name = 'Branchiomorso', type = 'acqua', category = 'fisico', power = 85, accuracy = 100, pp = 10, gen = 8 }
+t.cambiocampo = {name = 'Cambiocampo', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 100, pp = 10, gen = 8 }
+t.dynafiammata = {name = 'Dynafiammata', type = 'fuoco', category = 'fisico', power = 100, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynainsetto = {name = 'Dynainsetto', type = 'coleottero', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynasaetta = {name = 'Dynasaetta', type = 'elettro', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynattacco = {name = 'Dynattacco', type = 'normale', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynapugno = {name = 'Dynapugno', type = 'lotta', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynavuoto = {name = 'Dynavuoto', type = 'spettro', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynagelo = {name = 'Dynagelo', type = 'ghiaccio', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynacorrosione = {name = 'Dynacorrosione', type = 'veleno', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynaflusso = {name = 'Dynaflusso', type = 'acqua', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynajet = {name = 'Dynajet', type = 'volante', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynafata = {name = 'Dynafata', type = 'folletto', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynadragone = {name = 'Dynadragone', type = 'drago', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynapsiche = {name = 'Dynapsiche', type = 'psico', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynamacigno = {name = 'Dynamacigno', type = 'roccia', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynasisma = {name = 'Dynasisma', type = 'terra', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynatenebre = {name = 'Dynatenebre', type = 'buio', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynaflora = {name = 'Dynaflora', type = 'erba', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynametallo = {name = 'Dynametallo', type = 'acciaio', category = 'fisico', power = 10, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dracofonia = {name = 'Dracofonia', type = 'drago', category = 'stato', power = '&mdash;', accuracy = 100, pp = 5, gen = 8 }
+t.schiacciacorpo = {name = 'Schiacciacorpo', type = 'lotta', category = 'fisico', power = 80, accuracy = 100, pp = 10, gen = 8 }
+t.decorazione = {name = 'Decorazione', type = 'folletto', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 15, gen = 8 }
+t.tamburattacco = {name = 'Tamburattacco', type = 'erba', category = 'fisico', power = 80, accuracy = 100, pp = 10, gen = 8 }
+t.tagliola = {name = 'Tagliola', type = 'erba', category = 'fisico', power = 35, accuracy = 100, pp = 15, gen = 8 }
+t['palla infuocata'] = {name = 'Palla Infuocata', type = 'fuoco', category = 'fisico', power = 120, accuracy = 90, pp = 5, gen = 8 }
+t['taglio maestoso'] = {name = 'Taglio Maestoso', type = 'acciaio', category = 'fisico', power = 100, accuracy = 100, pp = 5, gen = 8 }
+t['colpo maestoso'] = {name = 'Colpo Maestoso', type = 'acciaio', category = 'fisico', power = 100, accuracy = 100, pp = 5, gen = 8 }
+t["ruota d'aura"] = {name = "Ruota d'Aura", type = 'elettro', category = 'fisico', power = 110, accuracy = 100, pp = 10, gen = 8 }
+t.vastoimpatto = {name = 'Vastoimpatto', type = 'drago', category = 'fisico', power = 60, accuracy = 100, pp = 15, gen = 8 }
+t.ramostoccata = {name = 'Ramostoccata', type = 'erba', category = 'fisico', power = 40, accuracy = 100, pp = 40, gen = 8 }
+t.overdrive = {name = 'Overdrive', type = 'elettro', category = 'speciale', power = 80, accuracy = 100, pp = 10, gen = 8 }
+t['acido malico'] = {name = 'Acido Malico', type = 'erba', category = 'speciale', power = 80, accuracy = 100, pp = 10, gen = 8 }
+t['forza g'] = {name = 'Forza G', type = 'erba', category = 'fisico', power = 80, accuracy = 100, pp = 10, gen = 8 }
+t.frantumanima = {name = 'Frantumanima', type = 'folletto', category = 'fisico', power = 75, accuracy = 100, pp = 15, gen = 8 }
+t['vapore incantato'] = {name = 'Vapore Incantato', type = 'folletto', category = 'speciale', power = 90, accuracy = 95, pp = 10, gen = 8 }
+t['goccia vitale'] = {name = 'Goccia Vitale', type = 'acqua', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 8 }
+t.sbarramento = {name = 'Sbarramento', type = 'buio', category = 'stato', power = '&mdash;', accuracy = 100, pp = 10, gen = 8 }
+t.supplicolpo = {name = 'Supplicolpo', type = 'buio', category = 'fisico', power = 80, accuracy = '&mdash;', pp = 10, gen = 8 }
+t.sfolgorassalto = {name = 'Sfolgorassalto', type = 'lotta', category = 'fisico', power = 150, accuracy = 100, pp = 5, gen = 8 }
+t['raggio infinito'] = {name = 'Raggio Infinito', type = 'drago', category = 'speciale', power = 160, accuracy = 90, pp = 5, gen = 8 }
+t["raggio d'acciaio"] = {name = "Raggio d'Acciaio", type = 'acciaio', category = 'speciale', power = 140, accuracy = 95, pp = 5, gen = 8 }
 
 return t
