@@ -1642,29 +1642,144 @@ t.drizzile = {name = 'Drizzile', ndex = 817, type1 = 'acqua', type2 = 'acqua'}
 t[817] = t.drizzile
 t.inteleon = {name = 'Inteleon', ndex = 818, type1 = 'acqua', type2 = 'acqua'}
 t[818] = t.inteleon
-
-t.gossifleur = {name = 'Gossifleur', ndex = nil, type1 = 'erba', type2 = 'erba'}
-t.eldegoss = {name = 'Eldegoss', ndex = nil, type1 = 'erba', type2 = 'erba'}
-t.wooloo = {name = 'Wooloo', ndex = nil, type1 = 'normale', type2 = 'normale'}
-t.corviknight = {name = 'Corviknight', ndex = nil, type1 = 'volante', type2 = 'acciaio'}
-t.drednaw = {name = 'Drednaw', ndex = nil, type1 = 'acqua', type2 = 'roccia'}
-t.impidimp = {name = 'Impidimp', ndex = nil, type1 = 'buio', type2 = 'folletto'}
-t.yamper = {name = 'Yamper', ndex = nil, type1 = 'elettro', type2 = 'elettro'}
-t.alcremie = {name = 'Alcremie', ndex = nil, type1 = 'folletto', type2 = 'folletto'}
-t.rolycoly = {name = 'Rolycoly', ndex = nil, type1 = 'roccia', type2 = 'roccia'}
-t.duraludon = {name = 'Duraludon', ndex = nil, type1 = 'acciaio', type2 = 'drago'}
-t.obstagoon = {name = 'Obstagoon', ndex = nil, type1 = 'buio', type2 = 'normale'}
+t.skwovet = {name = 'Skwovet', ndex = 819, type1 = 'normale', type2 = 'normale'}
+t[819] = t.skwovet
+t.greedent = {name = 'Greedent', ndex = 820, type1 = 'normale', type2 = 'normale'}
+t[820] = t.greedent
+t.rookidee = {name = 'Rookidee', ndex = 821, type1 = 'volante', type2 = 'volante'}
+t[821] = t.rookidee
+t.corvisquire = {name = 'Corvisquire', ndex = 822, type1 = 'volante', type2 = 'volante'}
+t[822] = t.corvisquire
+t.corviknight = {name = 'Corviknight', ndex = 823, type1 = 'volante', type2 = 'acciaio'}
+t[823] = t.corviknight
+t.blipbug = {name = 'Blipbug', ndex = 824, type1 = 'coleottero', type2 = 'coleottero'}
+t[824] = t.blipbug
+t.dottler = {name = 'Dottler', ndex = 825, type1 = 'coleottero', type2 = 'psico'}
+t[825] = t.dottler
+t.orbeetle = {name = 'Orbeetle', ndex = 826, type1 = 'coleottero', type2 = 'psico'}
+t[826] = t.orbeetle
+t.nickit = {name = 'Nickit', ndex = 827, type1 = 'buio', type2 = 'buio'}
+t[827] = t.nickit
+t.thievul = {name = 'Thievul', ndex = 828, type1 = 'buio', type2 = 'buio'}
+t[828] = t.thievul
+t.gossifleur = {name = 'Gossifleur', ndex = 829, type1 = 'erba', type2 = 'erba'}
+t[829] = t.gossifleur
+t.eldegoss = {name = 'Eldegoss', ndex = 830, type1 = 'erba', type2 = 'erba'}
+t[830] = t.eldegoss
+t.wooloo = {name = 'Wooloo', ndex = 831, type1 = 'normale', type2 = 'normale'}
+t[831] = t.wooloo
+t.dubwool = {name = 'Dubwool', ndex = 832, type1 = 'normale', type2 = 'normale'}
+t[832] = t.dubwool
+t.chewtle = {name = 'Chewtle', ndex = 833, type1 = 'acqua', type2 = 'acqua'}
+t[833] = t.chewtle
+t.drednaw = {name = 'Drednaw', ndex = 834, type1 = 'acqua', type2 = 'roccia'}
+t[834] = t.drednaw
+t.yamper = {name = 'Yamper', ndex = 835, type1 = 'elettro', type2 = 'elettro'}
+t[835] = t.yamper
+t.boltund = {name = 'Boltund', ndex = 836, type1 = 'elettro', type2 = 'elettro'}
+t[836] = t.boltund
+t.rolycoly = {name = 'Rolycoly', ndex = 837, type1 = 'roccia', type2 = 'roccia'}
+t[837] = t.rolycoly
+t.carkol = {name = 'Carkol', ndex = 838, type1 = 'roccia', type2 = 'fuoco'}
+t[838] = t.carkol
+t.coalossal = {name = 'Coalossal', ndex = 839, type1 = 'roccia', type2 = 'fuoco'}
+t[839] = t.coalossal
+t.applin = {name = 'Applin', ndex = 840, type1 = 'erba', type2 = 'drago'}
+t[840] = t.applin
+t.flapple = {name = 'Flapple', ndex = 841, type1 = 'erba', type2 = 'drago'}
+t[841] = t.flapple
+t.appletun = {name = 'Appletun', ndex = 842, type1 = 'erba', type2 = 'drago'}
+t[842] = t.appletun
+t.silicobra = {name = 'Silicobra', ndex = 843, type1 = 'terra', type2 = 'terra'}
+t[843] = t.silicobra
+t.sandaconda = {name = 'Sandaconda', ndex = 844, type1 = 'terra', type2 = 'terra'}
+t[844] = t.sandaconda
 t.cramorant = {name = 'Cramorant', ndex = 845, type1 = 'volante', type2 = 'acqua'}
 t[845] = t.cramorant
+t.arrokuda = {name = 'Arrokuda', ndex = 846, type1 = 'acqua', type2 = 'acqua'}
+t[846] = t.arrokuda
+t.barraskewda = {name = 'Barraskewda', ndex = 847, type1 = 'acqua', type2 = 'acqua'}
+t[847] = t.barraskewda
+t.toxel = {name = 'Toxel', ndex = 848, type1 = 'elettro', type2 = 'veleno'}
+t[848] = t.toxel
 t.toxtricity = {name = 'Toxtricity', ndex = 849, type1 = 'elettro', type2 = 'veleno'}
 t[849] = t.toxtricity
-t.polteageist = {name = 'Polteageist', ndex = nil, type1 = 'spettro', type2 = 'spettro'}
+t.sizzlipede = {name = 'Sizzlipede', ndex = 850, type1 = 'fuoco', type2 = 'coleot'}
+t[850] = t.sizzlipede
+t.centiskorch = {name = 'Centiskorch', ndex = 851, type1 = 'fuoco', type2 = 'coleot'}
+t[851] = t.centiskorch
+t.clobbopus = {name = 'Clobbopus', ndex = 852, type1 = 'lotta', type2 = 'lotta'}
+t[852] = t.clobbopus
+t.grapploct = {name = 'Grapploct', ndex = 853, type1 = 'lotta', type2 = 'lotta'}
+t[853] = t.grapploct
+t.sinistea = {name = 'Sinistea', ndex = 855, type1 = 'spettro', type2 = 'spettro'}
+t[854] = t.sinistea
+t.polteageist = {name = 'Polteageist', ndex = 855, type1 = 'spettro', type2 = 'spettro'}
+t[855] = t.polteageist
+t.hatenna = {name = 'Hatenna', ndex = 856, type1 = 'psico', type2 = 'psico'}
+t[856] = t.hatenna
+t.hattrem = {name = 'Hattrem', ndex = 857, type1 = 'psico', type2 = 'psico'}
+t[857] = t.hattrem
+t.hatterene = {name = 'Hatterene', ndex = 858, type1 = 'psico', type2 = 'folletto'}
+t[858] = t.hatterene
+t.impidimp = {name = 'Impidimp', ndex = 859, type1 = 'buio', type2 = 'folletto'}
+t[859] = t.impidimp
+t.morgrem = {name = 'Morgrem', ndex = 860, type1 = 'buio', type2 = 'folletto'}
+t[860] = t.morgrem
+t.grimmsnarl = {name = 'Grimmsnarl', ndex = 861, type1 = 'buio', type2 = 'folletto'}
+t[861] = t.grimmsnarl
+t.obstagoon = {name = 'Obstagoon', ndex = 862, type1 = 'buio', type2 = 'normale'}
+t[862] = t.obstagoon
+t.perrserker = {name = 'Perrserker', ndex = 863, type1 = 'acciaio', type2 = 'acciaio'}
+t[863] = t.perrserker
+t.cursola = {name = 'Cursola', ndex = 864, type1 = 'spettro', type2 = 'spettro'}
+t[864] = t.cursola
+t["sirfetch'd"] = {name = "Sirfetch'd", ndex = 865, type1 = 'lotta', type2 = 'lotta'}
+t[865] = t["sirfetch'd"]
+t["mr. rime"] = {name = "Mr. Rime", ndex = 866, type1 = 'ghiaccio', type2 = 'psico'}
+t[866] = t["mr. rime"]
+t.runerigus = {name = 'Runerigus', ndex = 867, type1 = 'terra', type2 = 'spettro'}
+t[867] = t.runerigus
+t.milcery = {name = 'Milcery', ndex = 868, type1 = 'folletto', type2 = 'folletto'}
+t[868] = t.milcery
+t.alcremie = {name = 'Alcremie', ndex = 869, type1 = 'folletto', type2 = 'folletto'}
+t[869] = t.alcremie
+t.falinks = {name = 'Falinks', ndex = 870, type1 = 'lotta', type2 = 'lotta'}
+t[870] = t.falinks
+t.pincurchin = {name = 'Pincurchin', ndex = 871, type1 = 'elettro', type2 = 'elettro'}
+t[871] = t.pincurchin
+t.snom = {name = 'Snom', ndex = 872, type1 = 'ghiaccio', type2 = 'coleot'}
+t[872] = t.snom
+t.frosmoth = {name = 'Frosmoth', ndex = 873, type1 = 'ghiaccio', type2 = 'coleot'}
+t[873] = t.frosmoth
+t.stonjourner = {name = 'Stonjourner', ndex = 874, type1 = 'roccia', type2 = 'roccia'}
+t[874] = t.stonjourner
 t.eiscue = {name = 'Eiscue', ndex = 875, type1 = 'ghiaccio', type2 = 'ghiaccio'}
 t[875] = t.eiscue
 t.indeedee = {name = 'Indeedee', ndex = 876, type1 = 'psico', type2 = 'normale'}
 t[876] = t.indeedee
 t.morpeko = {name = 'Morpeko', ndex = 877, type1 = 'elettro', type2 = 'buio'}
 t[877] = t.morpeko
+t.cufant = {name = 'Cufant', ndex = 878, type1 = 'acciaio', type2 = 'acciaio'}
+t[878] = t.cufant
+t.copperajah = {name = 'Copperajah', ndex = 879, type1 = 'acciaio', type2 = 'acciaio'}
+t[879] = t.copperajah
+t.dracozolt = {name = 'Dracozolt', ndex = 880, type1 = 'elettro', type2 = 'drago'}
+t[880] = t.dracozolt
+t.arctozolt = {name = 'Arctozolt', ndex = 881, type1 = 'elettro', type2 = 'ghiaccio'}
+t[881] = t.arctozolt
+t.dracovish = {name = 'Dracovish', ndex = 882, type1 = 'acqua', type2 = 'drago'}
+t[882] = t.dracovish
+t.arctovish = {name = 'Arctovish', ndex = 883, type1 = 'acqua', type2 = 'ghiaccio'}
+t[883] = t.arctovish
+t.duraludon = {name = 'Duraludon', ndex = 884, type1 = 'acciaio', type2 = 'drago'}
+t[884] = t.duraludon
+t.dreepy = {name = 'Dreepy', ndex = 885, type1 = 'drago', type2 = 'spettro'}
+t[885] = t.dreepy
+t.drakloak = {name = 'Drakloak', ndex = 886, type1 = 'drago', type2 = 'spettro'}
+t[886] = t.drakloak
+t.dragapult = {name = 'Dragapult', ndex = 887, type1 = 'drago', type2 = 'spettro'}
+t[887] = t.dragapult
 t.zacian = {name = 'Zacian', ndex = 888, type1 = 'folletto', type2 = 'folletto'}
 t[888] = t.zacian
 t.zamazenta = {name = 'Zamazenta', ndex = 889, type1 = 'lotta', type2 = 'lotta'}

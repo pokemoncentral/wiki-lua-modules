@@ -415,6 +415,7 @@ t.sandshrew.since = {A = 'sl', base = 'rb'}
 t.vulpix.since = {A = 'sl', base = 'rb'}
 t.diglett.since = {A = 'sl', base = 'rb'}
 t.meowth.since = {A = 'sl', G = 'spsc', base = 'rb'}
+t.persian.since = {A = 'sl', base = 'rb'}
 t.geodude.since = {A = 'sl', base = 'rb'}
 t.ponyta.since = {G = 'spsc', base = 'rb'}
 t["farfetch'd"].since = {G = 'spsc', base = 'rb'}
@@ -438,6 +439,7 @@ t.arceus.since = {base = 'dp', L = 'dp', Vo = 'dp', Ve = 'dp', T = 'dp',
 t.basculin.since = {B = 'nb', base = 'nb'}
 t.darumaka.since = {G = 'spsc', base = 'nb'}
 t.darmanitan.since = {Z = 'nb', G = 'spsc', GZ = 'spsc', base = 'nb'}
+t.yamask.since = {G = 'spsc', base = 'rz'}
 t.stunfisk.since = {G = 'spsc', base = 'nb'}
 t.tornadus.since = {T = 'n2b2', base = 'nb'}
 t.kyurem.since = {N = 'n2b2', B = 'n2b2', base = 'nb'}
@@ -457,13 +459,13 @@ t.silvally.since = {base = 'sl', L = 'sl', Vo = 'sl', Ve = 'sl', T = 'sl',
 t.minior.since = {base = 'sl', R = 'sl'}
 t.necrozma.since = {base = 'sl', V = 'usul', A = 'usul', U = 'usul'}
 t.cramorant.since = {T = 'spsc', I = 'spsc', base = 'spsc'}
-t.toxtricity.names = {B = 'spsc', base = 'spsc'}
-t.eiscue.names = {L = 'spsc', base = 'spsc'}
-t.indeedee.names = {F = 'spsc', base = 'spsc'}
+t.toxtricity.since = {B = 'spsc', base = 'spsc'}
+t.eiscue.since = {L = 'spsc', base = 'spsc'}
+t.indeedee.since = {F = 'spsc', base = 'spsc'}
 t.morpeko.since = {base = 'spsc', V = 'spsc'}
-t.zacian.names = {R = 'spsc', base = 'spsc'}
-t.zamazenta.names = {R = 'spsc', base = 'spsc'}
-t.eternatus.names = {D = 'spsc', base = 'spsc'}
+t.zacian.since = {R = 'spsc', base = 'spsc'}
+t.zamazenta.since = {R = 'spsc', base = 'spsc'}
+t.eternatus.since = {D = 'spsc', base = 'spsc'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
 t.blastoise.since = {M = 'xy', base = 'rb'}
 t.beedrill.since = {M = 'roza', base = 'rb'}

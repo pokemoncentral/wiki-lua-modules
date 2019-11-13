@@ -1630,27 +1630,117 @@ t.sobble = {group1 = 'acqua 1', group2 = 'campo'}
 t[816] = t.sobble
 t.drizzile, t[817] = t.sobble, t.sobble
 t.inteleon, t[818] = t.sobble, t.sobble
-
-t.gossifleur = {group1 = ''}
-t.eldegoss = {group1 = ''}
-t.wooloo = {group1 = ''}
-t.corviknight = {group1 = ''}
-t.drednaw = {group1 = ''}
-t.impidimp = {group1 = ''}
-t.yamper = {group1 = ''}
-t.alcremie = {group1 = ''}
-t.rolycoly = {group1 = ''}
-t.duraludon = {group1 = ''}
+t.skwovet = {group1 = 'campo'}
+t[819] = t.skwovet
+t.greedent, t[820] = t.skwovet, t.greedent
+t.rookidee = {group1 = 'volante'}
+t[821] = t.rookidee
+t.corvisquire, t[822] = t.rookidee, t.rookidee
+t.corviknight, t[823] = t.rookidee, t.rookidee
+t.blipbug = {group1 = 'coleottero'}
+t[824] = t.blipbug
+t.dottler, t[825] = t.blipbug, t.blipbug
+t.orbeetle, t[826] = t.blipbug, t.blipbug
+t.nickit = {group1 = 'campo'}
+t[827] = t.nickit
+t.thievul, t[828] = t.nickit, t.nickit
+t.gossifleur = {group1 = 'erba'}
+t[829] = t.gossifleur
+t.eldegoss, t[830] = t.gossifleur, t.gossifleur
+t.wooloo = {group1 = 'campo'}
+t[831] = t.wooloo
+t.dubwool, t[832] = t.wooloo, t.wooloo
+t.chewtle = {group1 = 'mostro', group2 = 'acqua 2'}
+t[833] = t.chewtle
+t.drednaw, t[834] = t.chewtle, t.chewtle
+t.yamper = {group1 = 'campo'}
+t[835] = t.yamper
+t.boltund, t[836] = t.yamper, t.yamper
+t.rolycoly = {group1 = 'minerale'}
+t[837] = t.rolycoly
+t.carkol, t[838] = t.rolycoly, t.rolycoly
+t.coalossal, t[839] = t.rolycoly, t.rolycoly
+t.applin = {group1 = 'erba', group2 = 'drago'}
+t[840] = t.applin
+t.flapple, t[841] = t.applin, t.applin
+t.appletun, t[842] = t.applin, t.applin
+t.silicobra = {group1 = 'campo', group2 = 'drago'}
+t[843] = t.silicobra
+t.sandaconda, t[844] = t.silicobra, t.silicobra
 t.cramorant = {group1 = 'acqua 1', group2 = 'volante'}
 t[845] = t.cramorant
+t.arrokuda = {group1 = 'acqua 2'}
+t[846] = t.arrokuda
+t.barraskewda, t[847] = t.arrokuda, t.arrokuda
+t.toxel = {group1 = 'sconosciuto'}
+t[848] = t.toxel
 t.toxtricity = {group1 = 'umanoide'}
 t[849] = t.toxtricity
+t.sizzlipede = {group1 = 'coleottero'}
+t[850] = t.sizzlipede
+t.centiskorch, t[851] = t.sizzlipede, t.sizzlipede
+t.clobbopus = {group1 = 'acqua 1', group2 = 'umanoide'}
+t[852] = t.clobbopus
+t.grapploct, t[853] = t.clobbopus, t.clobbopus
+t.sinistea = {group1 = 'minerale', group2 = 'amorfo'}
+t[854] = t.sinistea
+t.polteageist, t[855] = t.sinistea, t.sinistea
+t.hatenna = {group1 = 'magico'}
+t[856] = t.hatenna
+t.hattrem, t[857] = t.hatenna, t.hatenna
+t.hatterene, t[858] = t.hatenna, t.hatenna
+t.impidimp = {group1 = 'magico', group2 = 'umanoide'}
+t[859] = t.impidimp
+t.morgrem, t[860] = t.impidimp, t.impidimp
+t.grimmsnarl, t[861] = t.impidimp, t.impidimp
+t.obstagoon = {group1 = 'campo'}
+t[862] = t.obstagoon
+t.perrserker = {group1 = 'campo'}
+t[863] = t.perrserker
+t.cursola = {group1 = 'acqua 1', group2 = 'acqua 3'}
+t[864] = t.cursola
+t["sirfetch'd"] = {group1 = 'volante', group2 = 'campo'}
+t[865] = t["sirfetch'd"]
+t["mr. rime"] = {group1 = 'umanoide'}
+t[866] = t["mr. rime"]
+t.runerigus = {group1 = 'minerale', group2 = 'amorfo'}
+t[867] = t.runerigus
+t.milcery = {group1 = 'magico', group2 = 'amorfo'}
+t[868] = t.milcery
+t.alcremie, t[869] = t.milcery, t.milcery
+t.falinks = {group1 = 'magico', group2 = 'minerale'}
+t[870] = t.falinks
+t.pincurchin = {group1 = 'acqua 1', group2 = 'amorfo'}
+t[871] = t.pincurchin
+t.snom = {group1 = 'coleottero'}
+t[872] = t.snom
+t.frosmoth, t[873] = t.snom, t.snom
+t.stonjourner = {group1 = 'minerale'}
+t[874] = t.stonjourner
 t.eiscue = {group1 = 'acqua 1', group2 = 'campo'}
 t[875] = t.eiscue
 t.indeedee = {group1 = 'magico'}
 t[876] = t.indeedee
 t.morpeko = {group1 = 'campo', group2 = 'magico'}
 t[877] = t.morpeko
+t.cufant = {group1 = 'campo', group2 = 'minerale'}
+t[878] = t.cufant
+t.copperajah = {group1 = 'campo', group2 = 'minerale'}
+t[879] = t.copperajah
+t.dracozolt = {group1 = 'sconosciuto'}
+t[880] = t.dracozolt
+t.arctozolt = {group1 = 'sconosciuto'}
+t[881] = t.arctozolt
+t.dracovish = {group1 = 'sconosciuto'}
+t[882] = t.dracovish
+t.arctovish = {group1 = 'sconosciuto'}
+t[883] = t.arctovish
+t.duraludon = {group1 = 'minerale', group2 = 'drago'}
+t[884] = t.duraludon
+t.dreepy = {group1 = 'amorfo', group2 = 'drago'}
+t[885] = t.dreepy
+t.drakloak, t[885] = t.dreepy, t.dreepy
+t.dragapult, t[886] = t.dreepy, t.dreepy
 t.zacian = {group1 = 'sconosciuto'}
 t[888] = t.zacian
 t.zamazenta = {group1 = 'sconosciuto'}

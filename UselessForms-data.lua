@@ -223,8 +223,8 @@ t.xerneas.since = {A = 'xy', base = 'xy'}
 t.minior.since = {base = 'sl', R = 'sl', Ar = 'sl', G = 'sl', Ve = 'sl',
 	Az = 'sl', I = 'sl', Vi = 'sl'}
 t.mimikyu.since = {base = 'sl', S = 'sl'}
-t.sinistea.names = {base = 'spsc', A = 'spsc'}
-t.alcremie.names = {base = 'spsc', R = 'spsc', Ma = 'spsc', Me = 'spsc',
+t.sinistea.since = {base = 'spsc', A = 'spsc'}
+t.alcremie.since = {base = 'spsc', R = 'spsc', Ma = 'spsc', Me = 'spsc',
 	L = 'spsc', S = 'spsc', Rm = 'spsc', Cm = 'spsc', Tm = 'spsc'}
 
 --[[
