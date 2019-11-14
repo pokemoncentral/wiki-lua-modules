@@ -683,7 +683,7 @@ t['sbalorditesta'] = {name = 'Sbalorditesta', type = 'fuoco', category = 'specia
 t['pugni plasma'] = {name = 'Pugni Plasma', type = 'elettro', category = 'fisico', power = 100, accuracy = 100, pp = 15, gen = 7}
 t['pugni corazzati'] = {name = 'Pugni Corazzati', type = 'acciaio', category = 'fisico', power = 60, accuracy = 100, pp = 5, gen = 7}
 -- New moves, TODO: check
-t.dynabarriera = {name = 'DynaBarrieraa', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 8 }
+t.dynabarriera = {name = 'DynaBarriera', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 8 }
 t['cannone dynamax'] = {name = 'Cannone Dynamax', type = 'drago', category = 'speciale', power = 100, accuracy = 100, pp = 5, gen = 8 }
 t.tiromirato = {name = 'Tiromirato', type = 'acqua', category = 'speciale', power = 80, accuracy = 100, pp = 15, gen = 8 }
 t.morsostretto = {name = 'Morsostretto', type = 'buio', category = 'fisico', power = 80, accuracy = 100, pp = 10, gen = 8 }

@@ -10,7 +10,7 @@ local gendata = {}
 
 -- Latest generation and too many aliases
 
-gendata.latest = 7
+gendata.latest = 8
 gendata.last = gendata.latest
 gendata.lastGen, gendata.last_gen = gendata.latest, gendata.latest
 gendata.latestGen, gendata.latest_gen = gendata.latest, gendata.latest

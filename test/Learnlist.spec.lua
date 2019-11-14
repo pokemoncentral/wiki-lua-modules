@@ -43,6 +43,7 @@ print(ll.tmLua('staraptor', 6))
 print(ll.preevoLua('venusaur', 4))
 print(ll.breedLua('abra', 5))
 print(ll.tutorLua('abra', 5))
+print(ll.levelLua('grookey', 8))
 
 -- ======================== Old Learnlist-entryn tests ========================
 if false then

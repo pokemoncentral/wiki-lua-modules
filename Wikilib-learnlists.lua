@@ -51,15 +51,15 @@ lib.preevott = {
 lib.games = {
 level = { { "RB", "G" }, { "OA", "C" }, { "RZ", "RFVF", "S" },
     { "DP", "Pt", "HGSS" }, { "NB", "N2B2" }, { "XY", "ROZA" },
-    { "SL", "USUL" },
+    { "SL", "USUL" }, { "SpSc" },
 },
 breed = { {}, { "OA", "C" }, { "RZ", "RFVF", "S" },
     { "DP", "Pt", "HGSS" }, { "NB", "N2B2" }, { "XY", "ROZA" },
-    { "SL", "USUL" },
+    { "SL", "USUL" }, { "SpSc" },
 },
 tutor = { {}, { "C" }, { "RFVF", "S", "XD" },
     { "DP", "Pt", "HGSS" }, { "NB", "N2B2" }, { "XY", "ROZA" },
-    { "SL", "USUL" },
+    { "SL", "USUL" }, { "SpSc" },
 },
 }
 

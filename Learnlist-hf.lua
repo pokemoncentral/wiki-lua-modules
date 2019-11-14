@@ -77,7 +77,7 @@ cells.event = '! colspan = "${c}" | &nbsp;[[Evento Pokémon|Evento]]&nbsp;'
 cells.basic = table.concat{cells.moveandtype, cells.ppp}
 cells.category = table.concat{cells.moveandtype, cells.cat, cells.ppp}
 cells[1], cells[2] = cells.basic, cells.basic
-cells[5], cells[7] = cells.category, cells.category
+cells[5], cells[7], cells[8] = cells.category, cells.category, cells.category
 cells[3] = table.concat{cells.basic, cells.gara, cells.inib}
 cells[4] = table.concat{cells.category, cells.gara}
 cells[6] = table.concat{cells.category, cells.gara, cells.inib}

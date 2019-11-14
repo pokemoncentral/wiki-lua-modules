@@ -4,7 +4,7 @@ local t = {}
 
 -- Numero totale dei Pokémon
 
-t.pokeNum = 809
+t.pokeNum = 890
 t.poke_num = t.pokeNum
 
 --[[
@@ -75,7 +75,7 @@ dal Giappone
 --]]
 
 t.gamesChron = {'rb', 'v', 'g', 'oa', 'c', 'rz', 'rfvf', 's', 'dp', 'pt',
-	'hgss', 'nb', 'n2b2', 'xy', 'roza', 'sl', 'usul'}
+	'hgss', 'nb', 'n2b2', 'xy', 'roza', 'sl', 'usul', 'spsc'}
 
 t.gamesOrder = t.gamesChron
 

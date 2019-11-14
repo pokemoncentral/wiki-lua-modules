@@ -239,6 +239,9 @@ l.nogameText = {
         "Disponibile solo in Ultrasole e Ultraluna",
         "Disponibile solo in Sole e Luna"
     },
+    [8] = {
+        "",
+    }
 }
 
 --[[
