@@ -130,8 +130,8 @@ local interpStrings = {
 table.tableKeysAlias(interpStrings,
 	{'rb'},
 	{{'verde', 'gia', 'or', 'ar', 'oa', 'cr', 'oac', 'rz', 'rfvf', 'sme', 'dp',
-        'pt', 'hgss', 'nb', 'nb2', 'xy', 'roza', 'sl', 'usul', 'lgpe', 'colo',
-        'xd', 'stad', 'stad2'}})
+        'pt', 'hgss', 'nb', 'nb2', 'xy', 'roza', 'sl', 'usul', 'lgpe', 'spsc',
+		'colo', 'xd', 'stad', 'stad2'}})
 
 --[[
 

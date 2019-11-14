@@ -1621,11 +1621,11 @@ t.meltan = {ability1 = 'Magnetismo'}
 t[808] = t.meltan
 t.melmetal = {ability1 = 'Ferropugno'}
 t[809] = t.melmetal
-t.grookey = {ability1 = 'Erbaiuto', abilityd = 'Elettrogenesi'}
+t.grookey = {ability1 = 'Erbaiuto', abilityd = 'Erbogenesi'}
 t[810] = t.grookey
-t.thwackey = {ability1 = 'Erbaiuto', abilityd = 'Elettrogenesi'}
+t.thwackey = {ability1 = 'Erbaiuto', abilityd = 'Erbogenesi'}
 t[811] = t.thwackey
-t.rillaboom = {ability1 = 'Erbaiuto', abilityd = 'Elettrogenesi'}
+t.rillaboom = {ability1 = 'Erbaiuto', abilityd = 'Erbogenesi'}
 t[812] = t.rillaboom
 t.scorbunny = {ability1 = 'Aiutofuoco', abilityd = 'Libero'}
 t[813] = t.scorbunny

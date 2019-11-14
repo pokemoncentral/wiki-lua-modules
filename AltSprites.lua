@@ -348,6 +348,14 @@ local spriteGames = {
 			sprAbbr = 'usul'
 		}
 	},
+
+	[8] = {
+		{
+			games = {'Spada', 'Scudo'},
+			gamesAbbr = 'spsc',
+			sprAbbr = 'spsc'
+		},
+	},
 }
 
 --[[
