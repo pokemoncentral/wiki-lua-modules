@@ -1736,7 +1736,7 @@ d.cursola = {hp = 60, atk = 95, def = 50, spatk = 145, spdef = 130, spe = 30}
 d[864] = d.cursola
 d["sirfetch'd"] = {hp = 62, atk = 135, def = 95, spatk = 68, spdef = 82, spe = 65}
 d[865] = d["sirfetch'd"]
-d.mr. rime = {hp = 80, atk = 85, def = 75, spatk = 110, spdef = 100, spe = 70}
+d["mr. rime"] = {hp = 80, atk = 85, def = 75, spatk = 110, spdef = 100, spe = 70}
 d[866] = d["mr. rime"]
 d.runerigus = {hp = 58, atk = 95, def = 145, spatk = 50, spdef = 105, spe = 30}
 d[867] = d.runerigus
@@ -2020,20 +2020,33 @@ d['105A'] = d.marowakA
 
 -- Galarian forms
 d.meowthG = {hp = 50, atk = 65, def = 55, spatk = 40, spdef = 40, spe = 40}
+d['052G'] = d.meowthG
 d.ponytaG = {hp = 50, atk = 85, def = 55, spatk = 65, spdef = 65, spe = 90}
+d['077G'] = d.ponytaG
 d.rapidashG = {hp = 65, atk = 100, def = 70, spatk = 80, spdef = 80, spe = 105}
-d.farfetchdG = {hp = 52, atk = 95, def = 55, spatk = 58, spdef = 62, spe = 55}
+d['078G'] = d.rapidashG
+d["farfetch'dG"] = {hp = 52, atk = 95, def = 55, spatk = 58, spdef = 62, spe = 55}
+d['083G'] = d["farfetch'dG"]
 d.weezingG = {hp = 65, atk = 90, def = 120, spatk = 85, spdef = 70, spe = 60}
-d.mr. mimeG = {hp = 50, atk = 65, def = 65, spatk = 90, spdef = 90, spe = 100}
+d['110G'] = d.weezingG
+d["mr. mimeG"] = {hp = 50, atk = 65, def = 65, spatk = 90, spdef = 90, spe = 100}
+d['122G'] = d['mr. mimeG']
 d.corsolaG = {hp = 60, atk = 55, def = 100, spatk = 65, spdef = 100, spe = 30}
+d['222G'] = d.corsolaG
 d.zigzagoonG = {hp = 38, atk = 30, def = 41, spatk = 30, spdef = 41, spe = 60}
+d['263G'] = d.zigzagoonG
 d.linooneG = {hp = 78, atk = 70, def = 61, spatk = 50, spdef = 61, spe = 100}
+d['264G'] = d.linooneG
 d.darumakaG = {hp = 70, atk = 90, def = 45, spatk = 15, spdef = 45, spe = 50}
+d['554G'] = d.darumakaG
 d.darmanitanG = {hp = 105, atk = 140, def = 55, spatk = 30, spdef = 55, spe = 95}
+d['555G'] = d.darmanitanG
 d.darmanitanGZ = {hp = 105, atk = 160, def = 55, spatk = 30, spdef = 55, spe = 135}
+d['555GZ'] = d.darmanitanGZ
 d.yamaskG = {hp = 38, atk = 55, def = 85, spatk = 30, spdef = 65, spe = 30}
+d['562G'] = d.yamaskG
 d.stunfiskG = {hp = 109, atk = 81, def = 99, spatk = 66, spdef = 84, spe = 32}
-
+d['618G'] = d.stunfiskG
 
 -- Other non-useless alternative forms aliases
 d['025Cs'], d['025R'], d['025D'] = d.pikachu, d.pikachu, d.pikachu
@@ -2076,10 +2089,6 @@ d.cramorantI = d.cramorant
 d['845I'] = d.cramorantI
 d.toxtricityB = d.toxtricity
 d['849B'] = d.toxtricityB
-d.sinisteaA = d.sinistea
-d['854A'] = d.sinisteaA
-d.polteageistA = d.polteageist
-d['855A'] = d.polteageistA
 d.morpekoV = d.morpeko
 d['877V'] = d.morpekoV
 

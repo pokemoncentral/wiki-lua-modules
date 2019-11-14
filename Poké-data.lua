@@ -1712,7 +1712,7 @@ t.clobbopus = {name = 'Clobbopus', ndex = 852, type1 = 'lotta', type2 = 'lotta'}
 t[852] = t.clobbopus
 t.grapploct = {name = 'Grapploct', ndex = 853, type1 = 'lotta', type2 = 'lotta'}
 t[853] = t.grapploct
-t.sinistea = {name = 'Sinistea', ndex = 855, type1 = 'spettro', type2 = 'spettro'}
+t.sinistea = {name = 'Sinistea', ndex = 854, type1 = 'spettro', type2 = 'spettro'}
 t[854] = t.sinistea
 t.polteageist = {name = 'Polteageist', ndex = 855, type1 = 'spettro', type2 = 'spettro'}
 t[855] = t.polteageist
@@ -2036,7 +2036,7 @@ t.morpekoV, t['877V'] = t.morpeko, t.morpeko
 t.zacianR = {name = 'Zacian', ndex = 888, type1 = 'folletto', type2 = 'acciaio'}
 t['888R'] = t.zacianR
 t.zamazentaR = {name = 'Zamazenta', ndex = 889, type1 = 'lotta', type2 = 'acciaio'}
-t['888R'] = t.zamazentaR
+t['889R'] = t.zamazentaR
 t.eternatusD, t['890D'] = t.eternatus, t.eternatus
 
 t.venusaurM, t['003M'] = t.venusaur, t.venusaur

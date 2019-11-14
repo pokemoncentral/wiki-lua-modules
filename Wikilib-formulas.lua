@@ -54,7 +54,7 @@ f.stats[3].anyother, f.stats[3].any_other
         = f.stats[3].anyOther, f.stats[3].anyOther
 
 -- Stats calculation stays the same since gen III
-f.stats[4], f.stats[5], f.stats[6], f.stats[7]
-        = f.stats[3], f.stats[3], f.stats[3], f.stats[3]
+f.stats[4], f.stats[5], f.stats[6], f.stats[7], f.stats[8]
+        = f.stats[3], f.stats[3], f.stats[3], f.stats[3], f.stats[3]
 
 return f

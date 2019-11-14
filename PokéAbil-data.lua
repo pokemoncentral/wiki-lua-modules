@@ -1617,7 +1617,10 @@ t.blacephalon = {ability1 = 'Ultraboost'}
 t[806] = t.blacephalon
 t.zeraora = {ability1 = 'Assorbivolt'}
 t[807] = t.zeraora
-
+t.meltan = {ability1 = 'Magnetismo'}
+t[808] = t.meltan
+t.melmetal = {ability1 = 'Ferropugno'}
+t[809] = t.melmetal
 t.grookey = {ability1 = 'Erbaiuto', abilityd = 'Elettrogenesi'}
 t[810] = t.grookey
 t.thwackey = {ability1 = 'Erbaiuto', abilityd = 'Elettrogenesi'}
@@ -1854,9 +1857,9 @@ t['550B'] = t.basculinB
 t.darmanitanZ = {ability1 = 'Stato Zen'}
 t['555Z'] = t.darmanitanZ
 t.darmanitanG = {ability1 = 'Vigorilla', abilityd = 'Stato Zen'}
-t['555Z'] = t.darmanitanG
+t['555G'] = t.darmanitanG
 t.darmanitanGZ = {ability1 = 'Vigorilla', abilityd = 'Stato Zen'}
-t['555Z'] = t.darmanitanGZ
+t['555GZ'] = t.darmanitanGZ
 t.yamaskG = {ability1 = 'Anima Errante'}
 t['562G'] = t.yamaskG
 t.stunfiskG = {ability1 = 'Mimetismo'}
