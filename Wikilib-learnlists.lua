@@ -574,7 +574,39 @@ lib.breednotes = function(gen, move, parent, basenotes)
 	return table.concat(notes, ", ")
 end
 
+-- ====================== "Decompress" PokéMoves entries ======================
+-- Decompress a level entry. A level entry is the "table" obtained picking a
+-- pokemon, generation and move from pokemoves-data
+-- (ie: pokemoves[poke].level[gen][move])
+lib.decompressLevelEntry = function(entry, gen)
+	local res
+	if type(entry) == 'table' then
+		res = table.copy(entry)
+	else
+		res = { { entry } }
+	end
+	-- if type(res[1]) ~= 'table' then
+	-- 	res[1] = {res[1]}
+	-- end
+	if #res == 1 then
+		res = table.map(lib.games.level[gen], function()
+			return table.copy(res[1])
+		end)
+	end
+	return res
+end
+
+-- Get a decompressed level entry
+lib.getLevelEntry = function(move, ndex, gen)
+	local pmkind = pokemoves[ndex].level
+	if not pmkind or not pmkind[gen] or not pmkind[gen][move] then
+		return nil
+	end
+	return lib.decompressLevelEntry(pmkind[gen][move], gen)
+end
+
 -- ========================== Check learn functions ==========================
+-- TODO: consider compression of levels here
 --[[
 
 Given a move, an ndex, a gen and a kind check whether that Pokémon can learn

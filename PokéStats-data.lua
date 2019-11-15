@@ -1366,7 +1366,7 @@ d.honedge = {hp = 45, atk = 80, def = 100, spatk = 35, spdef = 37, spe = 28}
 d[679] = d.honedge
 d.doublade = {hp = 59, atk = 110, def = 150, spatk = 45, spdef = 49, spe = 35}
 d[680] = d.doublade
-d.aegislash = {hp = 60, atk = 50, def = 150, spatk = 50, spdef = 150, spe = 60}
+d.aegislash = {hp = 60, atk = 50, def = { [6] = 150, [8] = 140 }, spatk = 50, spdef = { [6] = 150, [8] = 140 }, spe = 60}
 d[681] = d.aegislash
 d.spritzee = {hp = 78, atk = 52, def = 60, spatk = 63, spdef = 65, spe = 23}
 d[682] = d.spritzee
@@ -1832,7 +1832,7 @@ d.meloettaD = {hp = 100, atk = 128, def = 90, spatk = 77, spdef = 77, spe = 128}
 d['648D'] = d.meloettaD
 d.greninjaA = {hp = 72, atk = 145, def = 67, spatk = 153, spdef = 71, spe = 132}
 d['658A'] = d.greninjaA
-d.aegislashS = {hp = 60, atk = 150, def = 50, spatk = 150, spdef = 50, spe = 60}
+d.aegislashS = {hp = 60, atk = { [6] = 150, [8] = 140 }, def = 50, spatk = { [6] = 150, [8] = 140 }, spdef = 50, spe = 60}
 d['681S'] = d.aegislashS
 d.pumpkabooS = {hp = 44, atk = 66, def = 70, spatk = 44, spdef = 55, spe = 56}
 d['710S'] = d.pumpkabooS

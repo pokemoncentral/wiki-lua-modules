@@ -20,6 +20,8 @@ Examples:
 {{#invoke: Movelist | event | oscurotuffo | 4 }}
 ===============================================================================
 
+TODO: decompress level entries before use
+
 --]]
 
 local ml = {}

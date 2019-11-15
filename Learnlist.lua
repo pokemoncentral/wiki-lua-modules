@@ -328,7 +328,8 @@ l.ltLevelarr = function(a, b)
 end
 
 l.dicts.level = {
-    processData = function(_, _, levels, move)
+    processData = function(_, gen, levels, move)
+        levels = lib.decompressLevelEntry(levels, gen)
         -- levels = { {"inizio"}, {"inizio", "evo"} },
         local alllevels = table.unique(table.flatten(levels))
         return table.map(alllevels, function(lvl)
