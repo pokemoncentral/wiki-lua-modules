@@ -104,7 +104,6 @@ t.wishiwashi = {}
 t.silvally = {}
 t.minior = {}
 t.necrozma = {}
-t.cramorant = {}
 t.toxtricity = {}
 t.eiscue = {}
 t.indeedee = {}
@@ -198,7 +197,6 @@ t.silvally.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante'
 t.minior.names = {R = 'Forma Nucleo', base = 'Forma Meteora'}
 t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = "Necrozma Ali dell'Aurora",
 	U = 'UltraNecrozma', base = ''}
-t.cramorant.names = {T = "Forma Inghiottitutto", I = "Forma Inghiottintero", base = ""}
 t.toxtricity.names = {B = 'Forma Basso', base = 'Forma Melodia'}
 t.eiscue.names = {L = "Liquefaccia", base = "Gelofaccia"}
 t.indeedee.names = t.meowstic.names
@@ -290,7 +288,6 @@ t.silvally.ext = mw.clone(t.arceus.ext)
 t.silvally.ext.sconosciuto = nil
 t.minior.ext = {nucleo = 'R', meteora = 'base'}
 t.necrozma.ext = {vespro = 'V', aurora = 'A', ultra = 'U', necrozma = 'base'}
-t.cramorant.ext = {inghiottitutto = 'T', inghiottintero = 'I'}
 t.toxtricity.ext = {basso = 'B', melodia = 'base'}
 t.eiscue.ext = {liquefaccia = 'L', gelofaccia = 'base'}
 t.indeedee.ext = t.meowstic.ext
@@ -349,7 +346,6 @@ t.wishiwashi.gamesOrder = {'base', 'B'}
 t.silvally.gamesOrder = mw.clone(t.arceus.gamesOrder)
 t.minior.gamesOrder = {'base', 'R'}
 t.necrozma.gamesOrder = {'base', 'V', 'A', 'U'}
-t.cramorant.gamesOrder = {'base', 'T', 'I'}
 t.toxtricity.gamesOrder = {'base', 'B'}
 t.eiscue.gamesOrder = {'base', 'L'}
 t.indeedee.gamesOrder = t.meowstic.gamesOrder
@@ -458,7 +454,6 @@ t.silvally.since = {base = 'sl', L = 'sl', Vo = 'sl', Ve = 'sl', T = 'sl',
 	Ai = 'sl', Fu = 'sl', D = 'sl', Fo = 'sl', El = 'sl', G = 'sl'}
 t.minior.since = {base = 'sl', R = 'sl'}
 t.necrozma.since = {base = 'sl', V = 'usul', A = 'usul', U = 'usul'}
-t.cramorant.since = {T = 'spsc', I = 'spsc', base = 'spsc'}
 t.toxtricity.since = {B = 'spsc', base = 'spsc'}
 t.eiscue.since = {L = 'spsc', base = 'spsc'}
 t.indeedee.since = {F = 'spsc', base = 'spsc'}
@@ -614,7 +609,6 @@ t[746] = t.wishiwashi
 t[773] = t.silvally
 t[774] = t.minior
 t[800] = t.necrozma
-t[845] = t.cramorant
 t[849] = t.toxtricity
 t[875] = t.eiscue
 t[876] = t.indeedee

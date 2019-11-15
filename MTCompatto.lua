@@ -31,6 +31,23 @@ local machines = require("Machines-data")
 local gens = require("Gens-data")
 local moves = require("Move-data")
 
+local strings = {
+	MAIN_BOX = [=[
+<div class="roundy pull-center text-center mw-collapsible${collapsed} width-xl-55 width-md-75 width-sm-100" style="${bg} padding: 0.5ex; padding-bottom: 0.01ex;">
+<div class="roundy text-center black-text" style="font-weight: bold; margin-bottom: 0.5ex;">[[MT]] nelle varie generazioni</div>
+<div class="mw-collapsible-content">${mtGens}
+</div></div>
+[[Categoria:Mosse Macchina]]]=],
+	GEN_BOX = [=[
+<div class="roundy text-center pull-center text-small" style="${bg} width: ${wd}; padding: 0.5ex; margin-bottom: 0.5ex;">
+${listmt}${listmn}${listdt}
+</div>]=],
+	LIST_BOX = [=[
+<div class="black-text" style="margin-top: 2px; font-weight: bold;">[[${kind}]] di [[${gen} generazione]]</div>
+<div class="${roundy}" style="background: #eaeaea; margin-bottom: 2px; padding: 0px 2px;">${list}</div>
+]=],
+}
+
 --[[
 
 A partire da una lista di MT/MN del Modulo:Machines/data,
@@ -74,24 +91,33 @@ width è opzionale, default 65%
 --]]
 
 local MTGen = function(gen, width)
-	return string.interp([=[
-<div class="roundy text-center pull-center" style="${bg} width: ${wd}; padding: 0.5ex; margin-bottom: 0.5ex;">
-<div style="font-size: 90%; margin-bottom: 2px; font-weight: bold;">[[MT|<span style="color: #000;">MT</span>]] di [[${gen} generazione|<span style="color: #000;">${gen} generazione</span>]]</div>
-<div ${roundy}style="background: #eaeaea; font-size: 90%; margin-bottom: 2px; padding: 0px 2px;">${listmt}</div>${listmn}
-</div>]=],
+	return string.interp(strings.GEN_BOX,
 	{
 		bg = css.horizGradLua{type = gens[gen].region},
 		wd = width or "65%",
 		gen = gens[gen].ext,
-		roundy = machines[gen].MN and '' or 'class="roundybottom" ',
-		listmt = makeMachinesList(machines[gen].MT),
-		listmn = machines[gen].MN and string.interp([=[
-<div style="font-size: 90%; margin-bottom: 2px; font-weight: bold;">[[MN|<span style="color: #000;">MN</span>]] di [[${gen} generazione|<span style="color: #000;">${gen} generazione</span>]]</div>
-<div class="roundybottom" style="background: #eaeaea; font-size: 88%; padding: 0px 2px;">${mnlist}</div>]=],
+		listmt = string.interp(strings.LIST_BOX,
 			{
-				mnlist = makeMachinesList(machines[gen].MN),
+				kind = "MT",
+				roundy = (machines[gen].MN or machines[gen].DT) and ''
+						or 'roundybottom',
+				list = makeMachinesList(machines[gen].MT),
 				gen = gens[gen].ext,
-			}) or ''
+			}),
+		listmn = machines[gen].MN and string.interp(strings.LIST_BOX,
+			{
+				kind = "MN",
+				roundy = "roundybottom",
+				list = makeMachinesList(machines[gen].MN),
+				gen = gens[gen].ext,
+			}) or '',
+		listdt = machines[gen].DT and string.interp(strings.LIST_BOX,
+			{
+				kind = "DT",
+				roundy = "roundybottom",
+				list = makeMachinesList(machines[gen].DT),
+				gen = gens[gen].ext,
+			}) or '',
 	})
 end
 
@@ -133,12 +159,7 @@ m.MTCompatto = function(frame)
 			end)
 	end
 
-	return string.interp([=[
-<div class="roundy pull-center text-center mw-collapsible${collapsed} width-xl-55 width-md-75 width-sm-100" style="${bg} padding: 0.5ex; padding-bottom: 0.01ex;">
-<div class="roundy text-center" style="color: #000; font-weight: bold; margin-bottom: 0.5ex;">[[MT|<span style="color: #000;">MT</span>]] nelle varie generazioni</div>
-<div class="mw-collapsible-content">${mtGens}
-</div></div>
-[[Categoria:Mosse Macchina]]]=],
+	return string.interp(strings.MAIN_BOX,
 	{
 		bg = css.horizGradLua{type = color},
 		collapsed = #gens > 1 and " mw-collapsed" or "",

@@ -32,6 +32,7 @@ games[4] = {{'DP', 'diamante'}, {'PT', 'platino'}, {'HGSS', 'heartgold'}}
 games[5] = {{'NB', 'nero'}, {'N2B2', 'nero2'}}
 games[6] = {{'XY', 'x'}, {'RΩZα', 'rubinoomega'}}
 games[7] = {{'SL', 'sole'}, {'USUL', 'ultrasole'}, {'LGPE', 'lgpikachu'}}
+games[8] = {{'SpSc', 'spada'}}
 
 -- Contiene le varie funzioni che generano le celle
 

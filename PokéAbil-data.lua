@@ -1858,7 +1858,7 @@ t.darmanitanZ = {ability1 = 'Stato Zen'}
 t['555Z'] = t.darmanitanZ
 t.darmanitanG = {ability1 = 'Vigorilla', abilityd = 'Stato Zen'}
 t['555G'] = t.darmanitanG
-t.darmanitanGZ = {ability1 = 'Vigorilla', abilityd = 'Stato Zen'}
+t.darmanitanGZ = {ability1 = 'Stato Zen'}
 t['555GZ'] = t.darmanitanGZ
 t.yamaskG = {ability1 = 'Anima Errante'}
 t['562G'] = t.yamaskG
@@ -1886,8 +1886,8 @@ t.lycanrocC = {ability1 = 'Unghiedure'}
 t['745C'] = t.lycanrocC
 t.necrozmaU = {ability1 = 'Cerebroforza'}
 t['800U'] = t.necrozmaU
-t.cramorantT, t['845T'], t.cramorantI, t['845I'] =
-    t.cramorant, t.cramorant, t.cramorant, t.cramorant
+-- t.cramorantT, t['845T'], t.cramorantI, t['845I'] =
+--     t.cramorant, t.cramorant, t.cramorant, t.cramorant
 t.toxtricityB = {ability1 = 'Punk Rock', ability2 = 'Meno', abilityd = 'Tecnico'}
 t['849B'] = t.toxtricityB
 t.indeedeeF = {ability1 = 'Mente Locale', ability2 = 'Sincronismo', abilityd = 'Psicogenesi'}

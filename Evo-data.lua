@@ -77,6 +77,9 @@ Conditions:
 				evolution, thus the second phase doesn't need a method and so.
 				Make sense only as a condition with BREED method.
 
+NB: the value false for a condition is reserved for multigen to signal that
+that condition disappeared in a later generation
+
 --]]
 evo.conditions = {}
 evo.conditions.OTHER = 0
@@ -1097,10 +1100,9 @@ evo.koffing = {
 			ndex = '110G',
 			name = 'weezingG',
 			notes = altforms.weezing.names.G,
-			method = evo.methods.UNKNOWN,
-			-- [evo.methods.LEVEL] = 28,
-			-- conditions = { [evo.conditions.TIME] = 'Notte',
-			-- 				[evo.conditions.REGION] = 'Alola' },
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 35,
+			conditions = { [evo.conditions.REGION] = 'Galar' },
 		}
 	}
 }
@@ -1406,12 +1408,22 @@ evo.eevee = {
 			name = 'leafeon',
 			method = evo.methods.LEVEL,
 			conditions = { [evo.conditions.LOCATION] = 'Roccia Muschio' },
+			-- method = { [4] = evo.methods.LEVEL, [8] = evo.methods.STONE },
+			-- [evo.methods.STONE] = 'Pietrafoglia',
+			-- conditions = { [evo.conditions.LOCATION] = {
+			-- 							[4] = 'Roccia Muschio' , [8] = false }
+			-- }
 		},
 		{
 			ndex = 471,
 			name = 'glaceon',
 			method = evo.methods.LEVEL,
 			conditions = { [evo.conditions.LOCATION] = 'Roccia Ghiaccio' },
+			-- method = { [4] = evo.methods.LEVEL, [8] = evo.methods.STONE },
+			-- [evo.methods.STONE] = 'Pietragelo',
+			-- conditions = { [evo.conditions.LOCATION] = {
+			-- 							[4] = 'Roccia Ghiaccio' , [8] = false }
+			-- }
 		},
 		{
 			ndex = 700,
@@ -6310,14 +6322,16 @@ evo.toxel = {
 		{
 			ndex = 849,
 			name = 'toxtricity',
-			method = evo.methods.UNKNOWN,
-			-- [evo.methods.LEVEL] = 30,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 30,
+			conditions = { [evo.conditions.OTHER] = 'A seconda della [[Natura]]' }
 		},
 		{
 			ndex = '849B',
 			name = 'toxtricityB',
-			method = evo.methods.UNKNOWN,
-			-- [evo.methods.LEVEL] = 30,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 30,
+			conditions = { [evo.conditions.OTHER] = 'A seconda della [[Natura]]' }
 		},
 	}
 }
@@ -6430,8 +6444,9 @@ evo.milcery = {
 		{
 			ndex = 869,
 			name = 'alcremie',
-			method = evo.methods.UNKNOWN,
-			-- [evo.methods.STONE] = 'Teiera rotta'
+			method = evo.methods.OTHER,
+			[evo.methods.OTHER] = 'Fai una piroetta mentre tiene un [[Bonbon]]'
+			-- { [evo.conditions.ITEM] = '' }
 		}
 	}
 }
@@ -6544,11 +6559,13 @@ evo[890] = evo.eternatus
 evo.rattataA = {
 	ndex = '019A',
 	name = 'rattataA',
+	notes = altforms.rattata.names.A,
 
 	evos = {
 		{
 			ndex = '020A',
 			name = 'raticateA',
+			notes = altforms.raticate.names.A,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 20,
 			conditions = { [evo.conditions.TIME] = 'Notte' },
@@ -6561,11 +6578,13 @@ evo['019A'], evo['020A'] = evo.rattataA, evo.rattataA
 evo.sandshrewA = {
 	ndex = '027A',
 	name = 'sandshrewA',
+	notes = altforms.sandshrew.names.A,
 
 	evos = {
 		{
 			ndex = '028A',
 			name = 'sandslashA',
+			notes = altforms.sandslash.names.A,
 			method = evo.methods.STONE,
 			[evo.methods.STONE] = 'Pietragelo',
 		}
@@ -6577,11 +6596,13 @@ evo['027A'], evo['028A'] = evo.sandshrewA, evo.sandshrewA
 evo.vulpixA = {
 	ndex = '037A',
 	name = 'vulpixA',
+	notes = altforms.vulpix.names.A,
 
 	evos = {
 		{
 			ndex = '038A',
 			name = 'ninetalesA',
+			notes = altforms.ninetales.names.A,
 			method = evo.methods.STONE,
 			[evo.methods.STONE] = 'Pietragelo',
 		}
@@ -6593,11 +6614,13 @@ evo['037A'], evo['038A'] = evo.vulpixA, evo.vulpixA
 evo.diglettA = {
 	ndex = '050A',
 	name = 'diglettA',
+	notes = altforms.diglett.names.A,
 
 	evos = {
 		{
 			ndex = '051A',
 			name = 'dugtrioA',
+			notes = altforms.dugtrio.names.A,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 26,
 		}
@@ -6609,11 +6632,13 @@ evo['050A'], evo['051A'] = evo.diglettA, evo.diglettA
 evo.meowthA = {
 	ndex = '052A',
 	name = 'meowthA',
+	notes = altforms.meowth.names.A,
 
 	evos = {
 		{
 			ndex = '053A',
 			name = 'persianA',
+			notes = altforms.persian.names.A,
 			method = evo.methods.HAPPINESS,
 		}
 	}
@@ -6624,6 +6649,7 @@ evo['052A'], evo['053A'] = evo.meowthA, evo.meowthA
 evo.meowthG = {
 	ndex = '052G',
 	name = 'meowthG',
+	notes = altforms.meowth.names.G,
 
 	evos = {
 		{
@@ -6640,11 +6666,13 @@ evo['052G'], evo[863] = evo.meowthG, evo.meowthG
 evo.geodudeA = {
 	ndex = '074A',
 	name = 'geodudeA',
+	notes = altforms.geodude.names.A,
 
 	evos = {
 		{
 			ndex = '075A',
 			name = 'gravelerA',
+			notes = altforms.graveler.names.A,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 25,
 
@@ -6652,6 +6680,7 @@ evo.geodudeA = {
 				{
 					ndex = '076A',
 					name = 'golemA',
+					notes = altforms.golem.names.A,
 					method = evo.methods.TRADE,
 				}
 			}
@@ -6664,11 +6693,13 @@ evo['074A'], evo['075A'], evo['076A'] = evo.geodudeA, evo.geodudeA, evo.geodudeA
 evo.ponytaG = {
 	ndex = '077G',
 	name = 'ponytaG',
+	notes = altforms.ponyta.names.G,
 
 	evos = {
 		{
 			ndex = '078G',
 			name = 'rapidashG',
+			notes = altforms.rapidash.names.G,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 40,
 		}
@@ -6680,13 +6711,14 @@ evo['077G'], evo['078G'] = evo.ponytaG, evo.ponytaG
 evo["farfetch'dG"] = {
 	ndex = '083G',
 	name = "farfetch'dG",
+	notes = altforms["farfetch'd"].names.G,
 
 	evos = {
 		{
 			ndex = 865,
 			name = "sirfetch'd",
-			method = evo.methods.UNKNOWN,
-			-- [evo.methods.LEVEL] = 28,
+			method = evo.methods.OTHER,
+			[evo.methods.OTHER] = '<span class="text-small">Ottenendo tre [[brutto colpo|brutti colpi]] nella stessa lotta</span>',
 		}
 	}
 }
@@ -6696,11 +6728,13 @@ evo['083G'], evo[865] = evo["farfetch'dG"], evo["farfetch'dG"]
 evo.grimerA = {
 	ndex = '088A',
 	name = 'grimerA',
+	notes = altforms.grimer.names.A,
 
 	evos = {
 		{
 			ndex = '089A',
 			name = 'mukA',
+			notes = altforms.muk.names.A,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 38,
 		}
@@ -6712,6 +6746,7 @@ evo['088A'], evo['089A'] = evo.grimerA, evo.grimerA
 evo["mr. mimeG"] = {
 	ndex = '122G',
 	name = "mr. mimeG",
+	notes = altforms["mr. mime"].names.G,
 
 	evos = {
 		{
@@ -6728,6 +6763,7 @@ evo['122G'], evo[866] = evo["mr. mimeG"], evo["mr. mimeG"]
 evo.corsolaG = {
 	ndex = '222G',
 	name = 'corsolaG',
+	notes = altforms.corsola.names.G,
 
 	evos = {
 		{
@@ -6744,11 +6780,13 @@ evo['222G'], evo[864] = evo.corsolaG, evo.corsolaG
 evo.zigzagoonG = {
 	ndex = '263G',
 	name = 'zigzagoonG',
+	notes = altforms.zigzagoon.names.G,
 
 	evos = {
 		{
 			ndex = '264G',
 			name = 'linooneG',
+			notes = altforms.linoone.names.G,
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 20,
 
@@ -6770,11 +6808,13 @@ evo['263G'], evo['264G'], evo[862] = evo.zigzagoonG, evo.zigzagoonG, evo.zigzago
 evo.darumakaG = {
 	ndex = '554G',
 	name = 'darumakaG',
+	notes = altforms.darumaka.names.G,
 
 	evos = {
 		{
 			ndex = '555G',
 			name = 'darmanitanG',
+			notes = altforms.darmanitan.names.G,
 			method = evo.methods.STONE,
 			[evo.methods.STONE] = 'Pietragelo',
 		}
@@ -6786,13 +6826,14 @@ evo['554G'], evo['555G'] = evo.darumakaG, evo.darumakaG
 evo.yamaskG = {
 	ndex = '562G',
 	name = 'yamaskG',
+	notes = altforms.yamask.names.G,
 
 	evos = {
 		{
 			ndex = 867,
 			name = 'runerigus',
-			method = evo.methods.UNKNOWN,
-			-- [evo.methods.LEVEL] = 38,
+			method = evo.methods.OTHER,
+			[evo.methods.OTHER] = '<span class="text-small">Avendo subito almeno 49PS di danni, passare sotto l\'arco di pietra nella [[Conca delle Sabbie]]</span>',
 		}
 	}
 }

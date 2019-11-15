@@ -2027,8 +2027,8 @@ t.lycanrocN, t['745N'], t.lycanrocC, t['745C'] =
 	t.lycanroc, t.lycanroc, t.lycanroc, t.lycanroc
 t.wishiwashiB, t['746B'] = t.wishiwashi, t.wishiwashi
 t.miniorR, t['774R'] = t.minior, t.minior
-t.cramorantT, t['845T'], t.cramorantI, t['845I'] =
-    t.cramorant, t.cramorant, t.cramorant, t.cramorant
+-- t.cramorantT, t['845T'], t.cramorantI, t['845I'] =
+--     t.cramorant, t.cramorant, t.cramorant, t.cramorant
 t.toxtricityB, t['849B'] = t.toxtricity, t.toxtricity
 t.eiscueL, t['875L'] = t.eiscue, t.eiscue
 t.indeedeeF, t['876F'] = t.indeedee, t.indeedee

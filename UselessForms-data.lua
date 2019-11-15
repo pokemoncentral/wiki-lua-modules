@@ -53,6 +53,7 @@ t.furfrou = {}
 t.xerneas = {}
 t.minior = {}
 t.mimikyu = {}
+t.cramorant = {}
 t.sinistea = {}
 t.alcremie = {}
 
@@ -101,6 +102,7 @@ t.mimikyu.names = {S = 'Forma Smascherata', base = 'Forma Mascherata'}
 t.minior.names = {R = 'Nucleo Rosso', Ar = 'Nucleo Arancione',
 	G = 'Nucleo Giallo', Ve = 'Nucleo Verde', Az = 'Nucleo Azzurro',
 	I = 'Nucleo Indaco', Vi = 'Nucleo Violetto', base = 'Forma Meteora'}
+t.cramorant.names = {T = "Forma Inghiottitutto", I = "Forma Inghiottintero", base = ""}
 t.sinistea.names = {base = "", A = ""}
 t.alcremie.names = {base = "Lattevaniglia", R = "Latterosa", Ma = "Lattematcha",
 	Me = "Lattementa", L = "Lattelimone", S = "Lattesale", Rm = "Rosamix",
@@ -155,7 +157,7 @@ t.xerneas.ext = {attivo = 'A'}
 t.minior.ext = {rosso = 'R', arancione = 'Ar', giallo = 'G', verde = 'Ve',
 	azzurro = 'Az', indaco = 'I', violetto = 'Vi', meteora = 'base'}
 t.mimikyu.ext = {smascherata = 'S'}
--- TODO
+t.cramorant.ext = {inghiottitutto = 'T', inghiottintero = 'I'}
 t.sinistea.ext = {}
 t.alcremie.ext = {}
 
@@ -187,6 +189,7 @@ t.furfrou.gamesOrder = {'base', 'C', 'St', 'Si', 'Gd', 'D', 'Gu', 'R', 'K', 'F'}
 t.xerneas.gamesOrder = {'base', 'A'}
 t.minior.gamesOrder = {'base', 'R', 'Ar', 'G', 'Ve', 'Az', 'I', 'Vi'}
 t.mimikyu.gamesOrder = {'base', 'S'}
+t.cramorant.gamesOrder = {'base', 'T', 'I'}
 t.sinistea.gamesOrder = {'base', 'A'}
 t.alcremie.gamesOrder = {'base', 'R', 'Ma', 'Me', 'L', 'S', 'Rm', 'Cm', 'Tm'}
 
@@ -223,6 +226,7 @@ t.xerneas.since = {A = 'xy', base = 'xy'}
 t.minior.since = {base = 'sl', R = 'sl', Ar = 'sl', G = 'sl', Ve = 'sl',
 	Az = 'sl', I = 'sl', Vi = 'sl'}
 t.mimikyu.since = {base = 'sl', S = 'sl'}
+t.cramorant.since = {T = 'spsc', I = 'spsc', base = 'spsc'}
 t.sinistea.since = {base = 'spsc', A = 'spsc'}
 t.alcremie.since = {base = 'spsc', R = 'spsc', Ma = 'spsc', Me = 'spsc',
 	L = 'spsc', S = 'spsc', Rm = 'spsc', Cm = 'spsc', Tm = 'spsc'}
@@ -266,6 +270,7 @@ t[676] = t.furfrou
 t[716] = t.xerneas
 t[774] = t.minior
 t[778] = t.mimikyu
+t[845] = t.cramorant
 t[854] = t.sinistea
 t[855] = t.polteageist
 t[869] = t.alcremie

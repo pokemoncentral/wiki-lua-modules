@@ -20,8 +20,6 @@ Examples:
 {{#invoke: Movelist | event | oscurotuffo | 4 }}
 ===============================================================================
 
-TODO: decompress level entries before use
-
 --]]
 
 local ml = {}
@@ -123,6 +121,9 @@ ml.levelgames = {
 		{bg = 'ultrasole', abbr = 'USUL'},
 		{bg = 'lgp', abbr = 'LGPE'},
 	},
+	{ -- 8
+		{bg = 'spada', abbr = 'SpSc'},
+	},
 }
 -- Table of tutor games
 ml.tutorgames = {
@@ -139,6 +140,7 @@ ml.tutorgames = {
 	ml.levelgames[6][2], -- ROZA
 	ml.levelgames[7][1], -- SL
 	ml.levelgames[7][2], -- USUL
+	ml.levelgames[8][1], -- SpSc
 }
 
 --[[
@@ -322,8 +324,9 @@ There are three keys:
 ml.gencelldict = {
 	level = {
 		getbasedata = function(g, ndex, move, args)
-			local basedata = lib.pokemoves[ndex].level[g][move]
-			basedata = basedata and table.copy(basedata)
+			-- local basedata = lib.pokemoves[ndex].level[g][move]
+			local basedata = lib.getLevelEntry(move, ndex, g)
+			-- basedata = basedata and table.copy(basedata)
 			if g == 7 and args.LGPE then
 				basedata = basedata or { {}, {} }
 				table.insert(basedata, { args.LGPE })
@@ -413,6 +416,9 @@ ml.gencelldict = {
 				{ bg = 'sole', abbr = "SLUSUL" },
 				{ bg = 'lgp', abbr = "LGPE" },
 			}, -- 7
+			{
+				{ bg = 'spada', abbr = "SpSc" },
+			}, -- 8
 		},
 	},
 	breed = {
