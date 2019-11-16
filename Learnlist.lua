@@ -174,7 +174,7 @@ order.
 l.getParams = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     local gen = tonumber(p.gen) or gendata.latest
-    local poke = string.lower(p[1] or mw.title.getCurrentTitle().baseText)
+    local poke = mw.text.decode(p[1] or mw.title.getCurrentTitle().baseText):lower()
     return poke, gen
 end
 

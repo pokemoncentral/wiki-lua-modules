@@ -39,7 +39,7 @@ end
 Given a Pokémon's table from Evo/data module, applies a fold on the tree rooted
 at that table.
 The function takes the accumulator as the first argument, then the value.
-The visit is prefix (lowest level before) and branches are visited in the
+The visit is postfix (highest level before) and branches are visited in the
 module's order.
 
 --]]

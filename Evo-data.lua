@@ -1407,23 +1407,27 @@ evo.eevee = {
 			ndex = 470,
 			name = 'leafeon',
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.LOCATION] = 'Roccia Muschio' },
-			-- method = { [4] = evo.methods.LEVEL, [8] = evo.methods.STONE },
-			-- [evo.methods.STONE] = 'Pietrafoglia',
-			-- conditions = { [evo.conditions.LOCATION] = {
-			-- 							[4] = 'Roccia Muschio' , [8] = false }
-			-- }
+			conditions = {
+				[evo.conditions.LOCATION] = 'Roccia Muschio',
+				[evo.conditions.OTHER] = table.concat{
+					"oppure<div>",
+					links.bag("Pietrafoglia"),
+					"</div>usando una [[Pietrafoglia]]",
+				},
+			},
 		},
 		{
 			ndex = 471,
 			name = 'glaceon',
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.LOCATION] = 'Roccia Ghiaccio' },
-			-- method = { [4] = evo.methods.LEVEL, [8] = evo.methods.STONE },
-			-- [evo.methods.STONE] = 'Pietragelo',
-			-- conditions = { [evo.conditions.LOCATION] = {
-			-- 							[4] = 'Roccia Ghiaccio' , [8] = false }
-			-- }
+			conditions = {
+				[evo.conditions.LOCATION] = 'Roccia Ghiaccio',
+				[evo.conditions.OTHER] = table.concat{
+					"oppure<div>",
+					links.bag("Pietrafoglia"),
+					"</div>usando una [[Pietrafoglia]]",
+				},
+			},
 		},
 		{
 			ndex = 700,
