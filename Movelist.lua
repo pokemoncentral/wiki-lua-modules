@@ -681,8 +681,8 @@ ml.computenotes = function(move, kind, ndex, args)
 			if lib.pokemoves[ndex][kind][g] and lib.pokemoves[ndex][kind][g][move] then
 				local movegendata = lib.pokemoves[ndex][kind][g][move]
 				for _, parents in ipairs(movegendata) do
-					local localnotes = lib.breednotes(g, move, parents[1],
-													  movegendata.notes)
+					local localnotes = movegendata.notes
+					                   or lib.breednotes(g, move, parents[1])
 					if localnotes ~= "" then
 						-- Add notes: select game/gen
 						local scope

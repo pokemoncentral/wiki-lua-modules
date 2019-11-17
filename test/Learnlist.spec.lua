@@ -45,6 +45,7 @@ print(ll.breedLua('abra', 5))
 print(ll.tutorLua('abra', 5))
 print(ll.levelLua('grookey', 8))
 print(ll.tmLua('sizzlipede', 8))
+print(ll.breedLua('pichu', 4))
 
 -- ======================== Old Learnlist-entryn tests ========================
 if false then

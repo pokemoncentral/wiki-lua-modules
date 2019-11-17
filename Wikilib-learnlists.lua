@@ -606,7 +606,6 @@ lib.getLevelEntry = function(move, ndex, gen)
 end
 
 -- ========================== Check learn functions ==========================
--- TODO: consider compression of levels here
 --[[
 
 Given a move, an ndex, a gen and a kind check whether that Pokémon can learn
@@ -684,7 +683,7 @@ end
 --[[
 
 Computes the list of moves that a Pokémon can learn in any way, possibly
-excluding breed.
+excluding some kinds.
 Arguments:
 	- ndex: name or ndex of the Pokémon
 	- gen: generation to compute the list for

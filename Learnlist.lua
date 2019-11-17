@@ -437,7 +437,7 @@ l.dicts.breed = {
         local parents = lib.moveParentsGame(movedata,
                         lib.games.breed[gen][#lib.games.breed[gen]])
 
-        local notes = lib.breednotes(gen, move, parents[1], movedata.notes)
+        local notes = movedata.notes or lib.breednotes(gen, move, parents[1])
         local res = { move, parents[1] and parents or { 000 },
                       notes == "" and "" or links.tt("*", string.fu(notes))
                     }
