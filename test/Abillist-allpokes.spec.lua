@@ -4,4 +4,4 @@ local a = require('Abillist-allpokes')
 
 print(a.abillist())
 
-print(a.listgen{args={" 8 "}})
+print(a.listgen{args={" 5 "}})

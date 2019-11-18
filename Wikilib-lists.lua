@@ -101,12 +101,13 @@ Sfrutta la seguente interfaccia:
         la entry si riferisce
 --]]
 l.sortForm = function(a, b)
-
     --[[
         A volte lua confronta un elemento con se stesso,
         e se non si fa così non funziona più niente
+
+        Using rawequal because often entries overwrite the __eq metamethod
     --]]
-    if a == b then
+    if rawequal(a, b) then
         return false
     end
     return table.search(a.formsData.gamesOrder, a.formAbbr)
@@ -135,12 +136,13 @@ Sfrutta la seguente interfaccia:
         la entry si riferisce
 --]]
 l.sortNdex = function(a, b)
-
     --[[
         A volte lua confronta un elemento con se stesso,
         e se non si fa così non funziona più niente
+
+        Using rawequal because often entries overwrite the __eq metamethod
     --]]
-    if a == b then
+    if rawequal(a, b) then
         return false
     end
 
@@ -365,6 +367,8 @@ l.makeCollapsedList = function(args)
         if not table.all(group, equalFirst) then
             return group
         end
+        -- Groups all entries printing the first value
+        table.sort(group)
         group[1]:replaceLabel(args.fullGroupLabel)
         return { group[1] }
     end)
@@ -439,7 +443,7 @@ l.makeFormsLabelledBoxes = function(args)
         ad avere buchi negli indici di boxes, cosa
         difficilmente gestibile
     --]]
-    for k, abbr in ipairs(altData.gamesOrder) do
+    for _, abbr in ipairs(altData.gamesOrder) do
         local formName = altData.names[abbr]
         -- Replaces empty base form name with Pokémon's name
         formName = abbr == 'base' and formName == ''
