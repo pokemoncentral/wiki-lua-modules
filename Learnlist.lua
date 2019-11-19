@@ -5,12 +5,10 @@ Creates the list of moves learned by a certain Pokémon.
 Its main WikiCode interface are "level", "tm", "breed", "tutor", "preevo" and
 "event", used as
 
-{{#invoke: learnlist | level | <pokemon name> | gen = <gen> }}
+{{#invoke: learnlist | level | <pokemon name> | gen = <gen> | form = <abbr> }}
 
-where the "gen" parameter is optional and defaults to the latest generation.
-This parameter doesn't exactly specify the generation, but the set of games
-for the learnlist. For instance, a possible value is "LGPE" because these games
-have a learnlist on their own. It should be an index of l.nogameText
+where "gen" is optional and defaults to the latest generation, and "form" is
+optional and defaults to base form.
 
 Also the Pokémon name is optional and defaults to the page's name.
 A typical usage is
@@ -174,8 +172,9 @@ order.
 l.getParams = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     local gen = tonumber(p.gen) or gendata.latest
+    local form = p.form or ""
     local poke = mw.text.decode(p[1] or mw.title.getCurrentTitle().baseText):lower()
-    return poke, gen
+    return poke .. form, gen
 end
 
 --[[
