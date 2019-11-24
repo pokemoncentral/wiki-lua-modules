@@ -243,9 +243,9 @@ t.lickitung = {ability1 = 'Mente Locale', ability2 = 'Indifferenza', abilityd = 
 t[108] = t.lickitung
 t.lickilicky = {ability1 = 'Mente Locale', ability2 = 'Indifferenza', abilityd = 'Antimeteo'}
 t[463] = t.lickilicky
-t.koffing = {ability1 = 'Levitazione'}
+t.koffing = {ability1 = 'Levitazione', ability2 = {[1] = 'Nessuna', [8] = 'Gas Reagente'}, abilityd = {[1] = 'Nessuna', [8] = 'Tanfo'}}
 t[109] = t.koffing
-t.weezing = {ability1 = 'Levitazione'}
+t.weezing = {ability1 = 'Levitazione', ability2 = {[1] = 'Nessuna', [8] = 'Gas Reagente'}, abilityd = {[1] = 'Nessuna', [8] = 'Tanfo'} }
 t[110] = t.weezing
 t.rhyhorn = {ability1 = 'Parafulmine', ability2 = 'Testadura', abilityd = 'Temerarietà'}
 t[111] = t.rhyhorn
