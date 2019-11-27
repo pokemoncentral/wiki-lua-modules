@@ -92,6 +92,14 @@ if true then
     [[€804£]]}})
     print(header.footer{args={'veleno'}})
 
+    print(ml.tutorhlua("raggio d'acciaio"))
+    mw.title.setTitle("Raggio d'Acciaio")
+    print(render.entry{args={'Movelist.tutorentry',
+    [[€823£]],
+    [[€600£]],
+    [[€052G£]]}})
+    print(header.footer{args={'veleno'}})
+
     -- ================================ Event =================================
     print(header.Eventh{args = {'normale'}})
     print(header.div{args={'4'}})

@@ -1949,6 +1949,8 @@ evo[201] = evo.unown
 evo.wynaut = {
 	ndex = 360,
 	name = 'wynaut',
+	method = evo.methods.BREED,
+	conditions = { [evo.conditions.ITEM] = 'Distraroma' },
 
 	evos = {
 		{

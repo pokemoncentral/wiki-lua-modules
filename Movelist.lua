@@ -216,7 +216,7 @@ end
 ml.tmh = function(frame)
 	local move = frame.args[1] and string.trim(frame.args[1])
 	                           or mw.title.getCurrentTitle().text
-	move = move:lower()
+	move = mw.text.decode(move):lower()
 	return ml.tmhlua(move)
 end
 
@@ -245,7 +245,7 @@ end
 ml.tutorh = function(frame)
 	local move = frame.args[1] and string.trim(frame.args[1])
 	                           or mw.title.getCurrentTitle().text
-	move = move:lower()
+	move = mw.text.decode(move):lower()
 	return ml.tutorhlua(move)
 end
 
@@ -759,7 +759,7 @@ local function makeentry(kind)
 	ml[kind .. "entry"] = function(frame)
 		local p = frame.args
 		local movename = p.movename or mw.title.getCurrentTitle().text
-		return ml.entry(string.trim(movename:lower()), kind, p[1], p)
+		return ml.entry(string.trim(mw.text.decode(movename):lower()), kind, p[1], p)
 	end
 	ml[string.fu(kind) .. "entry"] = ml[kind .. "entry"]
 end

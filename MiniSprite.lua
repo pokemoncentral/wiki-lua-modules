@@ -17,7 +17,7 @@ local pokes = require("Poké-data")
 local genAliases = {}
 genAliases['3'] = '5'
 genAliases['4'] = '5'
-genAliases['6'] = '7'
+genAliases['6'] = '8'
 genAliases['7'] = '8' -- TODO: not really true, remove this and add redirects
 
 -- Generazioni di soli static
