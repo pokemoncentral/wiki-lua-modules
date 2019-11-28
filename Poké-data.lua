@@ -1654,9 +1654,9 @@ t.corviknight = {name = 'Corviknight', ndex = 823, type1 = 'volante', type2 = 'a
 t[823] = t.corviknight
 t.blipbug = {name = 'Blipbug', ndex = 824, type1 = 'coleottero', type2 = 'coleottero'}
 t[824] = t.blipbug
-t.dottler = {name = 'Dottler', ndex = 825, type1 = 'coleottero', type2 = 'psico'}
+t.dottler = {name = 'Dottler', ndex = 825, type1 = 'coleot', type2 = 'psico'}
 t[825] = t.dottler
-t.orbeetle = {name = 'Orbeetle', ndex = 826, type1 = 'coleottero', type2 = 'psico'}
+t.orbeetle = {name = 'Orbeetle', ndex = 826, type1 = 'coleot', type2 = 'psico'}
 t[826] = t.orbeetle
 t.nickit = {name = 'Nickit', ndex = 827, type1 = 'buio', type2 = 'buio'}
 t[827] = t.nickit
