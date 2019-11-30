@@ -1424,8 +1424,8 @@ evo.eevee = {
 				[evo.conditions.LOCATION] = 'Roccia Ghiaccio',
 				[evo.conditions.OTHER] = table.concat{
 					"oppure<div>",
-					links.bag("Pietrafoglia"),
-					"</div>usando una [[Pietrafoglia]]",
+					links.bag("Pietragelo"),
+					"</div>usando una [[Pietragelo]]",
 				},
 			},
 		},
