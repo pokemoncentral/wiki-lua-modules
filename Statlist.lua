@@ -138,7 +138,10 @@ s.Entry.new = function(stats, poke, gen)
         this.statsSum = statsUtil.statsSum(this.stats)
         this.statsAvg = this.statsSum / table.getn(this.stats)
     else
-        local pokeGen = math.max(genUtil.getGen.ndex(this.ndex), 2)
+        local pokeGen = this.formAbbr
+            and genUtil.getGen.game(this.formsData.since[this.formAbbr])
+            or genUtil.getGen.ndex(this.ndex)
+        pokeGen = math.max(pokeGen, 2)
         this.stats = statsUtil.cleanStats(mg.getGenSpans(stats), 2)
         this.statsSum = s.Entry.makeSum(stats, pokeGen)
         local statsCount = table.getn(this.stats)

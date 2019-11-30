@@ -3084,7 +3084,7 @@ evo.snorunt = {
 			ndex = 362,
 			name = 'glalie',
 			method = evo.methods.LEVEL,
-			[evo.methods.LEVEL] = 21,
+			[evo.methods.LEVEL] = 42,
 		},
 		{
 			ndex = 478,
