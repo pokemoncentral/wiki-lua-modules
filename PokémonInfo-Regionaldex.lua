@@ -3,8 +3,8 @@
 
 local rdex = {}
 
-local txt = require('Wikilib-strings')
-local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings') -- luacheck: no unused
+local tab = require('Wikilib-tables')  -- luacheck: no unused
 local dex = require("Dex-data")
 local c = require("Colore-data")
 local sup = require("Sup-data")
@@ -65,7 +65,7 @@ end
 -- funzione così da non essere ricreata ogni volta
 
 local regiongens = {Kanto = 1, Johto = 2, Hoenn = 3, Sinnoh = 4,
-	Unima = 5, Kalos = 6, Alola = 7}
+	Unima = 5, Kalos = 6, Alola = 7, Galar = 8}
 local region_sort = function(c, d)
 	local a, b = c:match('>(%a+)</span>'), d:match('>(%a+)</span>')
 	return regiongens[a] < regiongens[b]

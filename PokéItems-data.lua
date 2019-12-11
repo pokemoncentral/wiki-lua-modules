@@ -2,8 +2,6 @@
 
 Data module for wild Pokémon's held items.
 
-TODO
-
 --]]
 
 local d = {}
@@ -95,6 +93,9 @@ d.butterfree = {
     },
     {
         { item = 'Argenpolvere', perc = 5, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Argenpolvere', perc = 5, games = {'SpSc'} },
     },
 }
 d[12] = d.butterfree
@@ -259,6 +260,9 @@ d.pikachu = {
     {
         { item = 'Elettropalla', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Elettropalla', perc = 5, games = {'SpSc'} },
+    },
 }
 d[25] = d.pikachu
 d.raichu = {
@@ -389,6 +393,9 @@ d.clefairy = {
     {
         { item = 'Pietralunare', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Pietralunare', perc = 5, games = {'SpSc'} },
+    },
 }
 d[35] = d.clefairy
 d.clefable = {
@@ -418,6 +425,9 @@ d.clefable = {
     {
         { item = 'Pietralunare', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Pietralunare', perc = 5, games = {'SpSc'} },
+    },
 }
 d[36] = d.clefable
 d.vulpix = {
@@ -444,6 +454,9 @@ d.vulpix = {
     {
         { item = 'Carbonella', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Carbonella', perc = 5, games = {'SpSc'} },
+    },
 }
 d[37] = d.vulpix
 d.ninetales = {
@@ -469,6 +482,9 @@ d.ninetales = {
     },
     {
         { item = 'Carbonella', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Carbonella', perc = 5, games = {'SpSc'} },
     },
 }
 d[38] = d.ninetales
@@ -523,6 +539,9 @@ d.oddish = {
     {
         { item = 'Bulbo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Bulbo', perc = 5, games = {'SpSc'} },
+    },
 }
 d[43] = d.oddish
 d.gloom = {
@@ -536,6 +555,9 @@ d.gloom = {
     {
         { item = 'Bulbo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Bulbo', perc = 5, games = {'SpSc'} },
+    },
 }
 d[44] = d.gloom
 d.vileplume = {
@@ -548,6 +570,9 @@ d.vileplume = {
     },
     {
         { item = 'Bulbo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Bulbo', perc = 5, games = {'SpSc'} },
     },
 }
 d[45] = d.vileplume
@@ -658,6 +683,9 @@ d.diglett = {
     {
         { item = 'Sabbia Soffice', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Sabbia Soffice', perc = 5, games = {'SpSc'} },
+    },
 }
 d[50] = d.diglett
 d.dugtrio = {
@@ -676,6 +704,9 @@ d.dugtrio = {
     },
     {
         { item = 'Sabbia Soffice', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Sabbia Soffice', perc = 5, games = {'SpSc'} },
     },
 }
 d[51] = d.dugtrio
@@ -699,6 +730,9 @@ d.meowth = {
     {
         { item = 'Rapidartigli', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Rapidartigli', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
+    },
 }
 d[52] = d.meowth
 d.persian = {
@@ -717,6 +751,9 @@ d.persian = {
     },
     {
         { item = 'Rapidartigli', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Rapidartigli', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
     },
 }
 d[53] = d.persian
@@ -931,6 +968,9 @@ d.machop = {
     {
         { item = 'Bandana', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Bandana', perc = 5, games = {'SpSc'} },
+    },
 }
 d[66] = d.machop
 d.machoke = {
@@ -948,6 +988,9 @@ d.machoke = {
     {
         { item = 'Bandana', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Bandana', perc = 5, games = {'SpSc'} },
+    },
 }
 d[67] = d.machoke
 d.machamp = {
@@ -964,6 +1007,9 @@ d.machamp = {
     },
     {
         { item = 'Bandana', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Bandana', perc = 5, games = {'SpSc'} },
     },
 }
 d[68] = d.machamp
@@ -1242,6 +1288,9 @@ d["farfetch'd"] = {
     {
         { item = 'Gambo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Gambo', perc = 5, games = {'SpSc'} },
+    },
 }
 d[83] = d["farfetch'd"]
 d.doduo = {
@@ -1390,6 +1439,10 @@ d.shellder = {
         { item = 'Grande Perla', perc = 5, games = {'SLUSUL'} },
         { item = 'Perla', perc = 50, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Grande Perla', perc = 5, games = {'SpSc'} },
+        { item = 'Perla', perc = 50, games = {'SpSc'} },
+    },
 }
 d[90] = d.shellder
 d.cloyster = {
@@ -1419,6 +1472,10 @@ d.cloyster = {
     {
         { item = 'Grande Perla', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
         { item = 'Perla', perc = 50, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Grande Perla', perc = 5, games = {'SpSc'} },
+        { item = 'Perla', perc = 50, games = {'SpSc'} },
     },
 }
 d[91] = d.cloyster
@@ -1609,6 +1666,9 @@ d.koffing = {
     {
         { item = 'Palla Fumo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Palla Fumo', perc = 5, games = {'SpSc'} },
+    },
 }
 d[109] = d.koffing
 d.weezing = {
@@ -1630,6 +1690,9 @@ d.weezing = {
     },
     {
         { item = 'Palla Fumo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Palla Fumo', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
     },
 }
 d[110] = d.weezing
@@ -1743,6 +1806,9 @@ d.goldeen = {
     {
         { item = 'Acqua Magica', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Acqua Magica', perc = 5, games = {'SpSc'} },
+    },
 }
 d[118] = d.goldeen
 d.seaking = {
@@ -1755,6 +1821,9 @@ d.seaking = {
     },
     {
         { item = 'Acqua Magica', perc = 5, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Acqua Magica', perc = 5, games = {'SpSc'} },
     },
 }
 d[119] = d.seaking
@@ -1938,6 +2007,9 @@ d.lapras = {
     {
         { item = 'Acqua Magica', perc = 100, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Acqua Magica', perc = 100, games = {'SpSc'} },
+    },
 }
 d[131] = d.lapras
 d.ditto = {
@@ -1963,6 +2035,10 @@ d.ditto = {
     {
         { item = 'Metalpolvere', perc = 5, games = {'SLUSUL'} },
         { item = 'Velopolvere', perc = 50, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Metalpolvere', perc = 5, games = {'SpSc'} },
+        { item = 'Velopolvere', perc = 50, games = {'SpSc'} },
     },
 }
 d[132] = d.ditto
@@ -2048,6 +2124,9 @@ d.snorlax = {
     },
     {
         { item = 'Avanzi', perc = 100, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Avanzi', perc = 100, games = {'SpSc'} },
     },
 }
 d[143] = d.snorlax
@@ -2173,6 +2252,9 @@ d.mew = {
     },
     {
         { item = 'Baccaprugna', perc = 100, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Baccaprugna', perc = 100, games = {'SpSc'} },
     },
 }
 d[151] = d.mew
@@ -2323,6 +2405,9 @@ d.cleffa = {
     {
         { item = 'Pietralunare', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Pietralunare', perc = 5, games = {'SpSc'} },
+    },
 }
 d[173] = d.cleffa
 d.igglybuff = {
@@ -2353,6 +2438,9 @@ d.bellossom = {
     },
     {
         { item = 'Bulbo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Bulbo', perc = 5, games = {'SpSc'} },
     },
 }
 d[182] = d.bellossom
@@ -2507,6 +2595,9 @@ d.steelix = {
     {
         { item = 'Metalcoperta', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Metalcoperta', perc = 5, games = {'SpSc'} },
+    },
 }
 d[208] = d.steelix
 d.snubbull = {}
@@ -2526,6 +2617,9 @@ d.qwilfish = {
     },
     {
         { item = 'Velenaculeo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Velenaculeo', perc = 5, games = {'SpSc'} },
     },
 }
 d[211] = d.qwilfish
@@ -2551,6 +2645,9 @@ d.shuckle = {
     },
     {
         { item = 'Succo di Bacca', perc = 100, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Succo di Bacca', perc = 100, games = {'SpSc'} },
     },
 }
 d[213] = d.shuckle
@@ -2578,6 +2675,9 @@ d.sneasel = {
     },
     {
         { item = 'Rapidartigli', perc = 5, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Rapidartigli', perc = 5, games = {'SpSc'} },
     },
 }
 d[215] = d.sneasel
@@ -2633,6 +2733,9 @@ d.corsola = {
     },
     {
         { item = 'Muschioluce', perc = 5, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Muschioluce', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
     },
 }
 d[222] = d.corsola
@@ -2875,6 +2978,9 @@ d.celebi = {
     {
         { item = 'Baccaprugna', perc = 100, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Baccaprugna', perc = 100, games = {'SpSc'} },
+    },
 }
 d[251] = d.celebi
 d.treecko = {}
@@ -2940,6 +3046,10 @@ d.zigzagoon = {
         { item = 'Revitalizzante', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
         { item = 'Pozione', perc = 50, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Revitalizzante', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
+        { item = 'Pozione', perc = 50, games = {'SpSc'}, abbrTypes = {'color'} },
+    },
 }
 d[263] = d.zigzagoon
 d.linoone = {
@@ -2963,6 +3073,10 @@ d.linoone = {
     {
         { item = 'Revitalizzante Max', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
         { item = 'Pozione', perc = 50, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Revitalizzante Max', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
+        { item = 'Pozione', perc = 50, games = {'SpSc'}, abbrTypes = {'color'} },
     },
 }
 d[264] = d.linoone
@@ -3028,6 +3142,9 @@ d.lotad = {
     {
         { item = 'Mentalerba', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Mentalerba', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'color', 'black'} },
+    },
 }
 d[270] = d.lotad
 d.lombre = {
@@ -3037,6 +3154,9 @@ d.lombre = {
     },
     {
         { item = 'Mentalerba', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
+    },
+    {
+        { item = 'Mentalerba', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'color', 'black'} },
     },
 }
 d[271] = d.lombre
@@ -3048,6 +3168,9 @@ d.ludicolo = {
     {
         { item = 'Mentalerba', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Mentalerba', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'color', 'black'} },
+    },
 }
 d[272] = d.ludicolo
 d.seedot = {
@@ -3057,6 +3180,9 @@ d.seedot = {
     },
     {
         { item = 'Vigorerba', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Vigorerba', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
     },
 }
 d[273] = d.seedot
@@ -3068,6 +3194,9 @@ d.nuzleaf = {
     {
         { item = 'Vigorerba', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
     },
+    {
+        { item = 'Vigorerba', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
+    },
 }
 d[274] = d.nuzleaf
 d.shiftry = {
@@ -3077,6 +3206,9 @@ d.shiftry = {
     },
     {
         { item = 'Vigorerba', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Vigorerba', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
     },
 }
 d[275] = d.shiftry
@@ -3108,6 +3240,9 @@ d.wingull = {
     {
         { item = 'Piumabella', perc = 50, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Piumabella', perc = 50, games = {'SpSc'} },
+    },
 }
 d[278] = d.wingull
 d.pelipper = {
@@ -3118,6 +3253,9 @@ d.pelipper = {
     },
     {
         { item = 'Piumabella', perc = 50, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Piumabella', perc = 50, games = {'SpSc'} },
     },
 }
 d[279] = d.pelipper
@@ -3205,6 +3343,9 @@ d.nincada = {
     },
     {
         { item = 'Sabbia Soffice', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Sabbia Soffice', perc = 5, games = {'SpSc'} },
     },
 }
 d[290] = d.nincada
@@ -3334,6 +3475,9 @@ d.sableye = {
     {
         { item = 'Grandelente', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Grandelente', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'color', 'black'} },
+    },
 }
 d[302] = d.sableye
 d.mawile = {
@@ -3349,6 +3493,9 @@ d.mawile = {
     },
     {
         { item = 'Ferropalla', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
+    },
+    {
+        { item = 'Ferropalla', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
     },
 }
 d[303] = d.mawile
@@ -3475,6 +3622,9 @@ d.roselia = {
     {
         { item = 'Velenaculeo', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'black', 'color'} },
     },
+    {
+        { item = 'Velenaculeo', perc = 5, games = {'SpSc'} },
+    },
 }
 d[315] = d.roselia
 d.gulpin = {
@@ -3591,6 +3741,9 @@ d.torkoal = {
     {
         { item = 'Carbonella', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Carbonella', perc = 5, games = {'SpSc'} },
+    },
 }
 d[324] = d.torkoal
 d.spoink = {
@@ -3644,6 +3797,9 @@ d.trapinch = {
     },
     {
         { item = 'Sabbia Soffice', perc = 5, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Sabbia Soffice', perc = 5, games = {'SpSc'} },
     },
 }
 d[328] = d.trapinch
@@ -3740,6 +3896,10 @@ d.lunatone = {
         { item = 'Pietralunare', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
         { item = 'Polvostella', perc = 50, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Pietralunare', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'color', 'black'} },
+        { item = 'Polvostella', perc = 50, games = {'Sp', 'Sc'}, abbrTypes = {'color', 'black'} },
+    },
 }
 d[337] = d.lunatone
 d.solrock = {
@@ -3762,6 +3922,10 @@ d.solrock = {
         { item = 'Pietrasolare', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
         { item = 'Polvostella', perc = 50, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Pietrasolare', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
+        { item = 'Polvostella', perc = 50, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
+    },
 }
 d[338] = d.solrock
 d.barboach = {}
@@ -3780,6 +3944,9 @@ d.baltoy = {
     {
         { item = 'Cretaluce', perc = 5, games = {'SL', 'Us', 'Ul'}, abbrTypes = {'color', 'color', 'black'} },
     },
+    {
+        { item = 'Cretaluce', perc = 5, games = {'SpSc'} },
+    },
 }
 d[343] = d.baltoy
 d.claydol = {
@@ -3789,6 +3956,9 @@ d.claydol = {
     },
     {
         { item = 'Cretaluce', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Cretaluce', perc = 5, games = {'SpSc'} },
     },
 }
 d[344] = d.claydol
@@ -3919,6 +4089,9 @@ d.duskull = {
     {
         { item = 'Spettrotarga', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Spettrotarga', perc = 5, games = {'SpSc'} },
+    },
 }
 d[355] = d.duskull
 d.dusclops = {
@@ -3937,6 +4110,9 @@ d.dusclops = {
     },
     {
         { item = 'Spettrotarga', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Spettrotarga', perc = 5, games = {'SpSc'} },
     },
 }
 d[356] = d.dusclops
@@ -3980,6 +4156,9 @@ d.snorunt = {
     },
     {
         { item = 'Palla di Neve', perc = 5, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Palla di Neve', perc = 5, games = {'SpSc'} },
     },
 }
 d[361] = d.snorunt
@@ -4240,6 +4419,9 @@ d.jirachi = {
     {
         { item = 'Pezzo Stella', perc = 100, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Pezzo Stella', perc = 100, games = {'SpSc'} },
+    },
 }
 d[385] = d.jirachi
 d.deoxys = {}
@@ -4358,6 +4540,9 @@ d.budew = {
     {
         { item = 'Velenaculeo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Velenaculeo', perc = 5, games = {'SpSc'} },
+    },
 }
 d[406] = d.budew
 d.roserade = {
@@ -4374,6 +4559,9 @@ d.roserade = {
     },
     {
         { item = 'Velenaculeo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Velenaculeo', perc = 5, games = {'SpSc'} },
     },
 }
 d[407] = d.roserade
@@ -4434,6 +4622,9 @@ d.combee = {
     {
         { item = 'Miele', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Miele', perc = 5, games = {'SpSc'} },
+    },
 }
 d[415] = d.combee
 d.vespiquen = {
@@ -4449,6 +4640,9 @@ d.vespiquen = {
     },
     {
         { item = 'Velenaculeo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Velenaculeo', perc = 5, games = {'SpSc'} },
     },
 }
 d[416] = d.vespiquen
@@ -4488,6 +4682,9 @@ d.cherubi = {
     {
         { item = 'Miracolseme', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Miracolseme', perc = 5, games = {'SpSc'} },
+    },
 }
 d[420] = d.cherubi
 d.cherrim = {
@@ -4503,6 +4700,9 @@ d.cherrim = {
     },
     {
         { item = 'Miracolseme', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Miracolseme', perc = 5, games = {'SpSc'} },
     },
 }
 d[421] = d.cherrim
@@ -4617,6 +4817,9 @@ d.bronzor = {
     {
         { item = 'Metalcoperta', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Metalcoperta', perc = 5, games = {'SpSc'} },
+    },
 }
 d[436] = d.bronzor
 d.bronzong = {
@@ -4632,6 +4835,9 @@ d.bronzong = {
     },
     {
         { item = 'Metalcoperta', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Metalcoperta', perc = 5, games = {'SpSc'} },
     },
 }
 d[437] = d.bronzong
@@ -4733,6 +4939,9 @@ d.munchlax = {
     {
         { item = 'Avanzi', perc = 100, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Avanzi', perc = 100, games = {'SpSc'} },
+    },
 }
 d[446] = d.munchlax
 d.riolu = {}
@@ -4757,6 +4966,9 @@ d.skorupi = {
     {
         { item = 'Velenaculeo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Velenaculeo', perc = 5, games = {'SpSc'} },
+    },
 }
 d[451] = d.skorupi
 d.drapion = {
@@ -4772,6 +4984,9 @@ d.drapion = {
     },
     {
         { item = 'Velenaculeo', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
+    },
+    {
+        { item = 'Velenaculeo', perc = 5, games = {'SpSc'} },
     },
 }
 d[452] = d.drapion
@@ -4789,6 +5004,9 @@ d.croagunk = {
     {
         { item = 'Fangopece', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Fangopece', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'color', 'black'} },
+    },
 }
 d[453] = d.croagunk
 d.toxicroak = {
@@ -4804,6 +5022,9 @@ d.toxicroak = {
     },
     {
         { item = 'Fangopece', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Fangopece', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'color', 'black'} },
     },
 }
 d[454] = d.toxicroak
@@ -4845,6 +5066,9 @@ d.snover = {
     {
         { item = 'Gelomai', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Gelomai', perc = 5, games = {'SpSc'} },
+    },
 }
 d[459] = d.snover
 d.abomasnow = {
@@ -4860,6 +5084,9 @@ d.abomasnow = {
     },
     {
         { item = 'Gelomai', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
+    },
+    {
+        { item = 'Gelomai', perc = 5, games = {'SpSc'} },
     },
 }
 d[460] = d.abomasnow
@@ -4879,6 +5106,9 @@ d.weavile = {
     },
     {
         { item = 'Rapidartigli', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Rapidartigli', perc = 5, games = {'SpSc'} },
     },
 }
 d[461] = d.weavile
@@ -5007,6 +5237,9 @@ d.dusknoir = {
     },
     {
         { item = 'Spettrotarga', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Spettrotarga', perc = 5, games = {'SpSc'} },
     },
 }
 d[477] = d.dusknoir
@@ -5184,6 +5417,10 @@ d.roggenrola = {
         { item = 'Pietradura', perc = 5, games = {'SLUSUL'} },
         { item = 'Pietrastante', perc = 50, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Pietradura', perc = 5, games = {'SpSc'} },
+        { item = 'Pietrastante', perc = 50, games = {'SpSc'} },
+    },
 }
 d[524] = d.roggenrola
 d.boldore = {
@@ -5200,6 +5437,10 @@ d.boldore = {
         { item = 'Pietradura', perc = 5, games = {'SLUSUL'} },
         { item = 'Pietrastante', perc = 50, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Pietradura', perc = 5, games = {'SpSc'} },
+        { item = 'Pietrastante', perc = 50, games = {'SpSc'} },
+    },
 }
 d[525] = d.boldore
 d.gigalith = {
@@ -5215,6 +5456,10 @@ d.gigalith = {
     {
         { item = 'Pietradura', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
         { item = 'Pietrastante', perc = 50, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Pietradura', perc = 5, games = {'SpSc'} },
+        { item = 'Pietrastante', perc = 50, games = {'SpSc'} },
     },
 }
 d[526] = d.gigalith
@@ -5284,6 +5529,9 @@ d.throh = {
     {
         { item = 'Cinturanera', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Cinturanera', perc = 5, games = {'SpSc'} },
+    },
 }
 d[538] = d.throh
 d.sawk = {
@@ -5297,6 +5545,9 @@ d.sawk = {
     },
     {
         { item = 'Cinturanera', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Cinturanera', perc = 5, games = {'SpSc'} },
     },
 }
 d[539] = d.sawk
@@ -5386,12 +5637,18 @@ d.cottonee = {
     {
         { item = 'Bulbo', perc = 5, games = {'So', 'L', 'Us', 'Ul'}, abbrTypes = {'black', 'color', 'black', 'color'} },
     },
+    {
+        { item = 'Bulbo', perc = 5, games = {'SpSc'} },
+    },
 }
 d[546] = d.cottonee
 d.whimsicott = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Bulbo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Bulbo', perc = 5, games = {'SpSc'} },
     },
 }
 d[547] = d.whimsicott
@@ -5468,6 +5725,9 @@ d.maractus = {
     {
         { item = 'Miracolseme', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Miracolseme', perc = 5, games = {'SpSc'} },
+    },
 }
 d[556] = d.maractus
 d.dwebble = {
@@ -5481,6 +5741,9 @@ d.dwebble = {
     },
     {
         { item = 'Pietradura', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Pietradura', perc = 5, games = {'SpSc'} },
     },
 }
 d[557] = d.dwebble
@@ -5496,6 +5759,9 @@ d.crustle = {
     {
         { item = 'Pietradura', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
     },
+    {
+        { item = 'Pietradura', perc = 5, games = {'SpSc'} },
+    },
 }
 d[558] = d.crustle
 d.scraggy = {
@@ -5509,6 +5775,9 @@ d.scraggy = {
     {
         { item = 'Disfoguscio', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
     },
+    {
+        { item = 'Disfoguscio', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
+    },
 }
 d[559] = d.scraggy
 d.scrafty = {
@@ -5521,6 +5790,9 @@ d.scrafty = {
     },
     {
         { item = 'Disfoguscio', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Disfoguscio', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
     },
 }
 d[560] = d.scrafty
@@ -5537,6 +5809,9 @@ d.yamask = {
     {
         { item = 'Spettrotarga', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Spettrotarga', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
+    },
 }
 d[562] = d.yamask
 d.cofagrigus = {
@@ -5549,6 +5824,9 @@ d.cofagrigus = {
     },
     {
         { item = 'Spettrotarga', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Spettrotarga', perc = 5, games = {'SpSc'} },
     },
 }
 d[563] = d.cofagrigus
@@ -5572,6 +5850,9 @@ d.trubbish = {
     {
         { item = 'Sciarpa Seta', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Sciarpa Seta', perc = 5, games = {'SpSc'} },
+    },
 }
 d[568] = d.trubbish
 d.garbodor = {
@@ -5588,6 +5869,10 @@ d.garbodor = {
     {
         { item = 'Fangopece', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'black', 'color'} },
         { item = 'Sciarpa Seta', perc = 50, games = {'SL', 'UsUl'}, abbrTypes = {'black', 'color'} },
+    },
+    {
+        { item = 'Fangopece', perc = 5, games = {'SpSc'} },
+        { item = 'Sciarpa Seta', perc = 50, games = {'SpSc'} },
     },
 }
 d[569] = d.garbodor
@@ -5660,6 +5945,9 @@ d.vanillite = {
     {
         { item = 'Gelomai', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Gelomai', perc = 5, games = {'SpSc'} },
+    },
 }
 d[582] = d.vanillite
 d.vanillish = {
@@ -5667,12 +5955,18 @@ d.vanillish = {
     {
         { item = 'Gelomai', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Gelomai', perc = 5, games = {'SpSc'} },
+    },
 }
 d[583] = d.vanillish
 d.vanilluxe = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Gelomai', perc = 50, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
+    },
+    {
+        { item = 'Gelomai', perc = 50, games = {'SpSc'} },
     },
 }
 d[584] = d.vanilluxe
@@ -5746,6 +6040,9 @@ d.ferroseed = {
     {
         { item = 'Vischiopunta', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Vischiopunta', perc = 5, games = {'SpSc'} },
+    },
 }
 d[597] = d.ferroseed
 d.ferrothorn = {
@@ -5758,6 +6055,9 @@ d.ferrothorn = {
     },
     {
         { item = 'Vischiopunta', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Vischiopunta', perc = 5, games = {'SpSc'} },
     },
 }
 d[598] = d.ferrothorn
@@ -5831,6 +6131,9 @@ d.stunfisk = {
     {
         { item = 'Sabbia Soffice', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
     },
+    {
+        { item = 'Sabbia Soffice', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
+    },
 }
 d[618] = d.stunfisk
 d.mienfoo = {}
@@ -5861,6 +6164,9 @@ d.golett = {
     {
         { item = 'Cretaluce', perc = 5, games = {'SL', 'Us', 'Ul'}, abbrTypes = {'color', 'black', 'color'} },
     },
+    {
+        { item = 'Cretaluce', perc = 5, games = {'SpSc'} },
+    },
 }
 d[622] = d.golett
 d.golurk = {
@@ -5873,6 +6179,9 @@ d.golurk = {
     },
     {
         { item = 'Cretaluce', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Cretaluce', perc = 5, games = {'SpSc'} },
     },
 }
 d[623] = d.golurk
@@ -6011,6 +6320,9 @@ d.pancham = {
     {
         { item = 'Mentalerba', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Mentalerba', perc = 5, games = {'SpSc'} },
+    },
 }
 d[674] = d.pancham
 d.pangoro = {
@@ -6020,6 +6332,9 @@ d.pangoro = {
     },
     {
         { item = 'Mentalerba', perc = 5, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Mentalerba', perc = 5, games = {'SpSc'} },
     },
 }
 d[675] = d.pangoro
@@ -6081,6 +6396,9 @@ d.hawlucha = {
     {
         { item = 'Roccia di Re', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
     },
+    {
+        { item = 'Roccia di Re', perc = 5, games = {'SpSc'} },
+    },
 }
 d[701] = d.hawlucha
 d.dedenne = {}
@@ -6092,12 +6410,18 @@ d.goomy = {
     {
         { item = 'Disfoguscio', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Disfoguscio', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'color', 'black'} },
+    },
 }
 d[704] = d.goomy
 d.sliggoo = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Disfoguscio', perc = 5, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Disfoguscio', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'color', 'black'} },
     },
 }
 d[705] = d.sliggoo
@@ -6193,6 +6517,9 @@ d.charjabug = {
     {
         { item = 'Ricaripila', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Ricaripila', perc = 5, games = {'SpSc'} },
+    },
 }
 d[737] = d.charjabug
 d.vikavolt = {}
@@ -6223,12 +6550,18 @@ d.cutiefly = {
     {
         { item = 'Miele', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Miele', perc = 5, games = {'SpSc'} },
+    },
 }
 d[742] = d.cutiefly
 d.ribombee = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Miele', perc = 5, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Miele', perc = 5, games = {'SpSc'} },
     },
 }
 d[743] = d.ribombee
@@ -6243,12 +6576,18 @@ d.mareanie = {
     {
         { item = 'Velenaculeo', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Velenaculeo', perc = 5, games = {'SpSc'} },
+    },
 }
 d[747] = d.mareanie
 d.toxapex = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Velenaculeo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Velenaculeo', perc = 5, games = {'SpSc'} },
     },
 }
 d[748] = d.toxapex
@@ -6257,12 +6596,18 @@ d.mudbray = {
     {
         { item = 'Cretaluce', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Cretaluce', perc = 5, games = {'SpSc'} },
+    },
 }
 d[749] = d.mudbray
 d.mudsdale = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Cretaluce', perc = 5, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Cretaluce', perc = 5, games = {'SpSc'} },
     },
 }
 d[750] = d.mudsdale
@@ -6271,12 +6616,18 @@ d.dewpider = {
     {
         { item = 'Acqua Magica', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Acqua Magica', perc = 5, games = {'SpSc'} },
+    },
 }
 d[751] = d.dewpider
 d.araquanid = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Acqua Magica', perc = 5, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Acqua Magica', perc = 5, games = {'SpSc'} },
     },
 }
 d[752] = d.araquanid
@@ -6300,6 +6651,10 @@ d.morelull = {
         { item = 'Grande Fungo', perc = 5, games = {'SLUSUL'} },
         { item = 'Minifungo', perc = 50, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Grande Fungo', perc = 5, games = {'SpSc'} },
+        { item = 'Minifungo', perc = 50, games = {'SpSc'} },
+    },
 }
 d[755] = d.morelull
 d.shiinotic = {
@@ -6308,6 +6663,10 @@ d.shiinotic = {
         { item = 'Grande Fungo', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
         { item = 'Minifungo', perc = 50, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
     },
+    {
+        { item = 'Grande Fungo', perc = 5, games = {'SpSc'} },
+        { item = 'Minifungo', perc = 50, games = {'SpSc'} },
+    },
 }
 d[756] = d.shiinotic
 d.salandit = {
@@ -6315,12 +6674,18 @@ d.salandit = {
     {
         { item = 'Palla Fumo', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Palla Fumo', perc = 5, games = {'SpSc'} },
+    },
 }
 d[757] = d.salandit
 d.salazzle = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Palla Fumo', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
+    },
+    {
+        { item = 'Palla Fumo', perc = 5, games = {'SpSc'} },
     },
 }
 d[758] = d.salazzle
@@ -6333,6 +6698,9 @@ d.bounsweet = {
     {
         { item = 'Erbaseme', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'black', 'color'} },
     },
+    {
+        { item = 'Erbaseme', perc = 5, games = {'SpSc'} },
+    },
 }
 d[761] = d.bounsweet
 d.steenee = {
@@ -6340,12 +6708,18 @@ d.steenee = {
     {
         { item = 'Erbaseme', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
     },
+    {
+        { item = 'Erbaseme', perc = 5, games = {'SpSc'} },
+    },
 }
 d[762] = d.steenee
 d.tsareena = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Erbaseme', perc = 50, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Erbaseme', perc = 50, games = {'SpSc'} },
     },
 }
 d[763] = d.tsareena
@@ -6398,6 +6772,9 @@ d.turtonator = {
     {
         { item = 'Carbonella', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Carbonella', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
+    },
 }
 d[776] = d.turtonator
 d.togedemaru = {
@@ -6405,12 +6782,18 @@ d.togedemaru = {
     {
         { item = 'Elettroseme', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Elettroseme', perc = 5, games = {'SpSc'} },
+    },
 }
 d[777] = d.togedemaru
 d.mimikyu = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Baccastagna', perc = 5, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Baccastagna', perc = 5, games = {'SpSc'} },
     },
 }
 d[778] = d.mimikyu
@@ -6426,6 +6809,9 @@ d.drampa = {
     {
         { item = 'Baccaki', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Baccaki', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'color', 'black'} },
+    },
 }
 d[780] = d.drampa
 d.dhelmise = {}
@@ -6435,6 +6821,9 @@ d["jangmo-o"] = {
     {
         { item = 'Affilartigli', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Affilartigli', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
+    },
 }
 d[782] = d["jangmo-o"]
 d["hakamo-o"] = {
@@ -6442,12 +6831,18 @@ d["hakamo-o"] = {
     {
         { item = 'Affilartigli', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Affilartigli', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
+    },
 }
 d[783] = d["hakamo-o"]
 d["kommo-o"] = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Affilartigli', perc = 50, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Affilartigli', perc = 50, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
     },
 }
 d[784] = d["kommo-o"]
@@ -6497,29 +6892,212 @@ d.blacephalon = {}
 d[806] = d.blacephalon
 d.zeraora = {}
 d[807] = d.zeraora
-
+d.meltan = {}
+d[808] = d.meltan
+d.melmetal = {}
+d[809] = d.melmetal
 d.grookey = {}
 d[810] = d.grookey
+d.thwackey = {}
+d[811] = d.thwackey
+d.rillaboom = {}
+d[812] = d.rillaboom
 d.scorbunny = {}
 d[813] = d.scorbunny
+d.raboot = {}
+d[814] = d.raboot
+d.cinderace = {}
+d[815] = d.cinderace
 d.sobble = {}
 d[816] = d.sobble
-d.gossifleur = {}
-d.eldegoss = {}
-d.wooloo = {}
+d.drizzile = {}
+d[817] = d.drizzile
+d.inteleon = {}
+d[818] = d.inteleon
+d.skwovet = {
+	{}, {}, {}, {}, {}, {}, {},
+    {
+    	{ item = 'Baccarancia', perc = 5, games = {'SpSc'} },
+    },
+}
+d[819] = d.skwovet
+d.greedent = {
+	{}, {}, {}, {}, {}, {}, {},
+    {
+    	{ item = 'Baccacedro', perc = 5, games = {'SpSc'} },
+    },
+}
+d[820] = d.greedent
+d.rookidee = {}
+d[821] = d.rookidee
+d.corvisquire = {}
+d[822] = d.corvisquire
 d.corviknight = {}
+d[823] = d.corviknight
+d.blipbug = {}
+d[824] = d.blipbug
+d.dottler = {
+	{}, {}, {}, {}, {}, {}, {},
+    {
+    	{ item = 'Psicoseme', perc = 5, games = {'SpSc'} },
+    },
+}
+d[825] = d.dottler
+d.orbeetle = {
+	{}, {}, {}, {}, {}, {}, {},
+    {
+    	{ item = 'Psicoseme', perc = 5, games = {'SpSc'} },
+    },
+}
+d[826] = d.orbeetle
+d.nickit = {}
+d[827] = d.nickit
+d.thievul = {}
+d[828] = d.thievul
+d.gossifleur = {}
+d[829] = d.gossifleur
+d.eldegoss = {}
+d[830] = d.eldegoss
+d.wooloo = {}
+d[831] = d.wooloo
+d.dubwool = {}
+d[832] = d.dubwool
+d.chewtle = {}
+d[833] = d.chewtle
 d.drednaw = {}
-d.impidimp = {}
+d[834] = d.drednaw
 d.yamper = {}
-d.alcremie = {}
+d[835] = d.yamper
+d.boltund = {}
+d[836] = d.boltund
 d.rolycoly = {}
-d.duraludon = {}
-d.obstagoon = {}
+d[837] = d.rolycoly
+d.carkol = {}
+d[838] = d.carkol
+d.coalossal = {}
+d[839] = d.coalossal
+d.applin = {}
+d[840] = d.applin
+d.flapple = {}
+d[841] = d.flapple
+d.appletun = {}
+d[842] = d.appletun
+d.silicobra = {}
+d[843] = d.silicobra
+d.sandaconda = {}
+d[844] = d.sandaconda
 d.cramorant = {}
+d[845] = d.cramorant
+d.arrokuda = {}
+d[846] = d.arrokuda
+d.barraskewda = {}
+d[847] = d.barraskewda
+d.toxel = {}
+d[848] = d.toxel
+d.toxtricity = {}
+d[849] = d.toxtricity
+d.sizzlipede = {}
+d[850] = d.sizzlipede
+d.centiskorch = {}
+d[851] = d.centiskorch
+d.clobbopus = {}
+d[852] = d.clobbopus
+d.grapploct = {}
+d[853] = d.grapploct
+d.sinistea = {}
+d[854] = d.sinistea
 d.polteageist = {}
+d[855] = d.polteageist
+d.hatenna = {}
+d[856] = d.hatenna
+d.hattrem = {}
+d[857] = d.hattrem
+d.hatterene = {}
+d[858] = d.hatterene
+d.impidimp = {}
+d[859] = d.impidimp
+d.morgrem = {}
+d[860] = d.morgrem
+d.grimmsnarl = {}
+d[861] = d.grimmsnarl
+d.obstagoon = {}
+d[862] = d.obstagoon
+d.perrserker = {}
+d[863] = d.perrserker
+d.cursola = {}
+d[864] = d.cursola
+d["sirfetch'd"] = {
+	{}, {}, {}, {}, {}, {}, {},
+    {
+    	{ item = 'Gambo', perc = 5, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
+    },
+}
+d[865] = d["sirfetch'd"]
+d["mr. rime"] = {}
+d[866] = d["mr. rime"]
+d.runerigus = {}
+d[867] = d.runerigus
+d.milcery = {}
+d[868] = d.milcery
+d.alcremie = {}
+d[869] = d.alcremie
+d.falinks = {}
+d[870] = d.falinks
+d.pincurchin = {}
+d[871] = d.pincurchin
+d.snom = {
+	{}, {}, {}, {}, {}, {}, {},
+    {
+    	{ item = 'Palla di neve', perc = 5, games = {'SpSc'} },
+    },
+}
+d[872] = d.snom
+d.frosmoth = {}
+d[873] = d.frosmoth
+d.stonjourner = {}
+d[874] = d.stonjourner
+d.eiscue = {}
+d[875] = d.eiscue
+d.indeedee = {}
+d[876] = d.indeedee
 d.morpeko = {}
+d[877] = d.morpeko
+d.cufant = {
+	{}, {}, {}, {}, {}, {}, {},
+    {
+    	{ item = 'Rallentocoda', perc = 5, games = {'SpSc'} },
+    },
+}
+d[878] = d.cufant
+d.copperajah = {
+	{}, {}, {}, {}, {}, {}, {},
+    {
+    	{ item = 'Rallentocoda', perc = 5, games = {'SpSc'} },
+    },
+}
+d[879] = d.copperajah
+d.dracozolt = {}
+d[880] = d.dracozolt
+d.arctozolt = {}
+d[881] = d.arctozolt
+d.dracovish = {}
+d[882] = d.dracovish
+d.arctovish = {}
+d[883] = d.arctovish
+d.duraludon = {}
+d[884] = d.duraludon
+d.dreepy = {}
+d[885] = d.dreepy
+d.drakloak = {}
+d[886] = d.drakloak
+d.dragapult = {}
+d[887] = d.dragapult
 d.zacian = {}
+d[888] = d.zacian
 d.zamazenta = {}
+d[889] = d.zamazenta
+d.eternatus = {}
+d[890] = d.eternatus
 
 -- Alternative forms
 d.rattataA = {
@@ -6557,12 +7135,18 @@ d.vulpixA = {
     {
         { item = 'Palla di Neve', perc = 5, games = {'So', 'L', 'Us', 'Ul'}, abbrTypes = {'black', 'color', 'black', 'color'} },
     },
+    {
+        { item = 'Palla di Neve', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
+    },
 }
 d['037A'] = d.vulpixA
 d.ninetalesA = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Palla di Neve', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Palla di Neve', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
     },
 }
 d['038A'] = d.ninetalesA
@@ -6571,12 +7155,18 @@ d.diglettA = {
     {
         { item = 'Sabbia Soffice', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Sabbia Soffice', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
+    },
 }
 d['050A'] = d.diglettA
 d.dugtrioA = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Sabbia Soffice', perc = 5, games = {'SLUSUL'} },
+    },
+    {
+        { item = 'Sabbia Soffice', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
     },
 }
 d['051A'] = d.dugtrioA
@@ -6585,12 +7175,18 @@ d.meowthA = {
     {
         { item = 'Rapidartigli', perc = 5, games = {'SLUSUL'} },
     },
+    {
+        { item = 'Rapidartigli', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
+    },
 }
 d['052A'] = d.meowthA
 d.persianA = {
     {}, {}, {}, {}, {}, {},
     {
         { item = 'Rapidartigli', perc = 5, games = {'SL', 'UsUl'}, abbrTypes = {'color', 'black'} },
+    },
+    {
+        { item = 'Rapidartigli', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
     },
 }
 d['053A'] = d.persianA
@@ -6615,6 +7211,13 @@ d.golemA = {
     },
 }
 d['076A'] = d.golemA
+d["farfetch'dG"] = {
+    {}, {}, {}, {}, {}, {},
+    {
+        { item = 'Gambo', perc = 50, games = {'Sp', 'Sc'}, abbrTypes = {'black', 'color'} },
+    },
+}
+d['083G'] = d["farfetch'dG"]
 d.grimerA = {
     {}, {}, {}, {}, {}, {},
     {
@@ -6638,6 +7241,13 @@ d.marowakA = {
     },
 }
 d['105A'] = d.marowakA
+d.weezingG = {
+    {}, {}, {}, {}, {}, {},
+    {
+        { item = 'Nebbiaseme', perc = 5, games = {'SpSc'} },
+    },
+}
+d['110G'] = d.weezingG
 d.basculinB = {
     {}, {}, {}, {},
     {
@@ -6663,6 +7273,9 @@ d.pumpkabooXL = {
     {
         { item = 'Miracolseme', perc = 100, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
+    {
+        { item = 'Miracolseme', perc = 100, games = {'SpSc'} },
+    },
 }
 d['710XL'] = d.pumpkabooXL
 d.gourgeistS = {}
@@ -6676,6 +7289,9 @@ d.gourgeistXL = {
     },
     {
         { item = 'Miracolseme', perc = 100, games = {'SLUSUL'}, abbrTypes = {'color'} },
+    },
+    {
+        { item = 'Miracolseme', perc = 100, games = {'SpSc'} },
     },
 }
 d['711XL'] = d.gourgeistXL
