@@ -86,7 +86,7 @@ t.gigamax = {'charizard', 'butterfree', 'meowth', 'machamp', 'gengar',
 	'kingler', 'lapras', 'eevee', 'snorlax', 'garbodor', 'melmetal',
 	'corviknight', 'orbeetle', 'drednaw', 'coalossal', 'flapple', 'appletun',
 	'sandaconda', 'toxtricity', 'centiskorch', 'hatterene', 'grimmsnarl',
-	'copperajah', 'duraldon'}
+	'copperajah', 'duraludon'}
 
 --[[
 
@@ -294,7 +294,7 @@ t.grimmsnarl.since = {base = 'spsc', Gi = 'spsc'}
 t.alcremie.since = {base = 'spsc', R = 'spsc', Ma = 'spsc', Me = 'spsc',
 	L = 'spsc', S = 'spsc', Rm = 'spsc', Cm = 'spsc', Tm = 'spsc', Gi = 'spsc'}
 t.copperajah.since = {base = 'spsc', Gi = 'spsc'}
-t.duraldon.since = {base = 'spsc', Gi = 'spsc'}
+t.duraludon.since = {base = 'spsc', Gi = 'spsc'}
 
 --[[
 
