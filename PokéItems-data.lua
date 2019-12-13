@@ -1289,7 +1289,7 @@ d["farfetch'd"] = {
         { item = 'Gambo', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
     {
-        { item = 'Gambo', perc = 5, games = {'SpSc'} },
+        { item = 'Gambo', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
     },
 }
 d[83] = d["farfetch'd"]
@@ -2254,7 +2254,7 @@ d.mew = {
         { item = 'Baccaprugna', perc = 100, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
     {
-        { item = 'Baccaprugna', perc = 100, games = {'SpSc'} },
+        { item = 'Baccaprugna', perc = 100, games = {'SpSc'}, abbrTypes = {'color'} },
     },
 }
 d[151] = d.mew
@@ -2979,7 +2979,7 @@ d.celebi = {
         { item = 'Baccaprugna', perc = 100, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
     {
-        { item = 'Baccaprugna', perc = 100, games = {'SpSc'} },
+        { item = 'Baccaprugna', perc = 100, games = {'SpSc'}, abbrTypes = {'color'} },
     },
 }
 d[251] = d.celebi
@@ -4420,7 +4420,7 @@ d.jirachi = {
         { item = 'Pezzo Stella', perc = 100, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
     {
-        { item = 'Pezzo Stella', perc = 100, games = {'SpSc'} },
+        { item = 'Pezzo Stella', perc = 100, games = {'SpSc'}, abbrTypes = {'color'} },
     },
 }
 d[385] = d.jirachi
@@ -5826,7 +5826,7 @@ d.cofagrigus = {
         { item = 'Spettrotarga', perc = 5, games = {'SLUSUL'}, abbrTypes = {'color'} },
     },
     {
-        { item = 'Spettrotarga', perc = 5, games = {'SpSc'} },
+        { item = 'Spettrotarga', perc = 5, games = {'SpSc'}, abbrTypes = {'color'} },
     },
 }
 d[563] = d.cofagrigus

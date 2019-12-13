@@ -6966,7 +6966,7 @@ end
 
 -- Given that emptyAlternativeForms can't overwrite an existing table, simply
 -- maps over altforms and useless
-local nopokes = { 'mega', 'megaxy', 'archeo', 'alola', 'galar' }
+local nopokes = { 'mega', 'megaxy', 'archeo', 'alola', 'galar', 'gigamax' }
 for k, v in pairs(altforms) do
 	if type(k) == 'string' and not table.search(nopokes, k) then
 		emptyAlternativeForms(v, k)
