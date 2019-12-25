@@ -58,6 +58,8 @@ if true then
 	print(evobox.Evobox{args={'Lycanroc', prune = 'no'}})
 	-- Guy without ndex nor types
 	print(evobox.Evobox{args={'SnorloBello', prune = 'yes'}})
+	-- Branched evo with different size, 3 arrows in one line
+	print(evobox.Evobox{args={'Mime Jr.'}})
 	-- Feebas
 	print(evobox.Evobox{args={'Feebas'}})
 	-- Nincada

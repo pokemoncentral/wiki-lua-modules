@@ -1249,11 +1249,30 @@ evo["mime jr."] = {
 			name = 'mr. mime',
 			method = evo.methods.LEVEL,
 			conditions = { [evo.conditions.MOVE] = 'Mimica' },
-		}
+		},
+		{
+			ndex = '122G',
+			name = "mr. mimeG",
+			notes = altforms["mr. mime"].names.G,
+			method = evo.methods.LEVEL,
+			conditions = { [evo.conditions.MOVE] = 'Mimica',
+				[evo.conditions.REGION] = 'Galar' },
+
+			evos = {
+				{
+					ndex = 866,
+					name = "mr. rime",
+					method = evo.methods.LEVEL,
+					[evo.methods.LEVEL] = 42,
+				}
+			}
+		},
 	}
 }
-evo["mr. mime"] = evo["mime jr."]
+evo["mr. mime"] = evo["mime jr."], evo["mime jr."]
 evo[439], evo[122] = evo["mime jr."], evo["mime jr."]
+evo["mr. rime"], evo["mr. mimeG"] = evo["mime jr."], evo["mime jr."]
+evo['122G'], evo[866] = evo["mr. mimeG"], evo["mr. mimeG"]
 
 evo.scyther = {
 	ndex = 123,
@@ -6748,23 +6767,6 @@ evo.grimerA = {
 }
 evo.mukA = evo.grimerA
 evo['088A'], evo['089A'] = evo.grimerA, evo.grimerA
-
-evo["mr. mimeG"] = {
-	ndex = '122G',
-	name = "mr. mimeG",
-	notes = altforms["mr. mime"].names.G,
-
-	evos = {
-		{
-			ndex = 866,
-			name = "mr. rime",
-			method = evo.methods.LEVEL,
-			[evo.methods.LEVEL] = 42,
-		}
-	}
-}
-evo["mr. rime"] = evo["mr. mimeG"]
-evo['122G'], evo[866] = evo["mr. mimeG"], evo["mr. mimeG"]
 
 evo.corsolaG = {
 	ndex = '222G',
