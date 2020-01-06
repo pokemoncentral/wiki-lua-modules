@@ -234,7 +234,7 @@ t.dragospiro = {name = 'Dragospiro', type = 'drago', category = 'speciale', powe
 t.staffetta = {name = 'Staffetta', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 40, gen = 2}
 t.ripeti = {name = 'Ripeti', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 100, pp = 5, gen = 2}
 t.inseguimento = {name = 'Inseguimento', type = 'buio', category = 'fisico', power = 40, accuracy = 100, pp = 20, gen = 2}
-t.rapigiro = {name = 'Rapigiro', type = 'normale', category = 'fisico', power = 20, accuracy = 100, pp = 40, gen = 2}
+t.rapigiro = {name = 'Rapigiro', type = 'normale', category = 'fisico', power = {[2] = 20, [8] = 50}, accuracy = 100, pp = 40, gen = 2}
 t.profumino = {name = 'Profumino', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 100, pp = 20, gen = 2}
 t.codacciaio = {name = 'Codacciaio', type = 'acciaio', category = 'fisico', power = 100, accuracy = 75, pp = 15, gen = 2}
 t.ferrartigli = {name = 'Ferrartigli', type = 'acciaio', category = 'fisico', power = 50, accuracy = 95, pp = 35, gen = 2}
@@ -677,7 +677,7 @@ t["raggio d'ombra"] = {name = "Raggio d'Ombra", type = 'spettro', category = 'sp
 t.occhionilucidi = {name = 'Occhionilucidi', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 20, gen = 7}
 t.elettropizzico = {name = 'Elettropizzico', type = 'elettro', category = 'fisico', power = 80, accuracy = 100, pp = 10, gen = 7}
 t['ira della natura'] = {name = "Ira della Natura", type = 'folletto', category = 'speciale', power = '&mdash;', accuracy = 90, pp = 10, gen = 7}
-t.multiattacco = {name = 'Multiattacco', type = 'normale', category = 'fisico', power = 90, accuracy = 100, pp = 10, gen = 7}
+t.multiattacco = {name = 'Multiattacco', type = 'normale', category = 'fisico', power = {[7] = 90, [8] = 120}, accuracy = 100, pp = 10, gen = 7}
 t['geyser fotonico'] = {name = 'Geyser Fotonico', type = 'psico', category = 'speciale', power = 100, accuracy = 100, pp = 5, gen = 7}
 t['sbalorditesta'] = {name = 'Sbalorditesta', type = 'fuoco', category = 'speciale', power = 150, accuracy = 100, pp = 5, gen = 7}
 t['pugni plasma'] = {name = 'Pugni Plasma', type = 'elettro', category = 'fisico', power = 100, accuracy = 100, pp = 15, gen = 7}
