@@ -55,7 +55,7 @@ eb.strings = {
     GRID_ROW = [=[<div><div class="align-middle">${arrow}</div><div class="align-middle">${box}</div></div>]=],
 
     BOX_POKEMON = [=[<div class="text-center" style="margin: 0.5ex;">${notes}
-<div class="roundy-full inline-block img-fluid" style="padding: 1ex; background: #fff;"><div class="roundy-full" style="padding: 0.5ex; ${background}">${spr}</div></div>
+<div class="roundy-full inline-block img-fluid white-bg" style="padding: 1ex;"><div class="roundy-full" style="padding: 0.5ex; ${background}">${spr}</div></div>
 <div class="small-text" style="padding-top: 0.5ex;">${phase}</div>
 <div>
 <div class="black-text">[[${name}|${shownName}]]</div>
@@ -487,7 +487,7 @@ eb.makeBreedRow = function(data)
                                          data.evos[1].notes)
             }),
         }
-    elseif #data.evos > 1 then
+    elseif table.getn(data.evos) > 1 then
         -- More than one phase one, even with breed
         return table.concat{
             eb.TripleArrow(data),
