@@ -54,7 +54,9 @@ to others, thus there's aliasing at the end of the module.
 
 --]]
 
+t.venusaur = mergeByName("venusaur")
 t.charizard = mergeByName("charizard")
+t.blastoise = mergeByName("blastoise")
 t.pikachu = mergeByName("pikachu")
 t.meowth = mergeByName("meowth")
 t.gengar = mergeByName("gengar")
@@ -66,7 +68,9 @@ t.toxtricity = mergeByName("toxtricity")
 -- gamesOrder can't be merged automatically because there's no way to sort
 -- abbrs
 
+t.venusaur.gamesOrder = {'base', 'M', 'Gi'}
 t.charizard.gamesOrder = {'base', 'MX', 'MY', 'Gi'}
+t.blastoise.gamesOrder = {'base', 'M', 'Gi'}
 t.pikachu.gamesOrder = {'base', 'Cs', 'R', 'D', 'Cn', 'S', 'W',
     'O', 'H', 'Si', 'U', 'K', 'A', 'Co', 'Cm', 'Gi'}
 t.meowth.gamesOrder = {'base', 'A', 'G', 'Gi'}
@@ -76,7 +80,9 @@ t.toxtricity.gamesOrder = {'base', 'B', 'Gi'}
 
 -- Aliasing, put here to avoid needless repetitions of previous cycles.
 
+t[3] = t.venusaur
 t[6] = t.charizard
+t[9] = t.blastoise
 t[25] = t.pikachu
 t[52] = t.meowth
 t[94] = t.gengar

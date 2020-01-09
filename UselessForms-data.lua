@@ -82,11 +82,11 @@ t.alcremie = {}
 
 -- Table with Pokémon with a Gigamax
 
-t.gigamax = {'charizard', 'butterfree', 'meowth', 'machamp', 'gengar',
-	'kingler', 'lapras', 'eevee', 'snorlax', 'garbodor', 'melmetal',
-	'corviknight', 'orbeetle', 'drednaw', 'coalossal', 'flapple', 'appletun',
-	'sandaconda', 'toxtricity', 'centiskorch', 'hatterene', 'grimmsnarl',
-	'copperajah', 'duraludon'}
+t.gigamax = {'venusaur', 'charizard', 'blastoise', 'butterfree', 'meowth',
+	'machamp', 'gengar', 'kingler', 'lapras', 'eevee', 'snorlax', 'garbodor',
+	'melmetal', 'rillaboom', 'cinderace', 'inteleon', 'corviknight', 'orbeetle',
+	'drednaw', 'coalossal', 'flapple', 'appletun', 'sandaconda', 'toxtricity',
+	'centiskorch', 'hatterene', 'grimmsnarl', 'copperajah', 'duraludon'}
 
 --[[
 
@@ -240,7 +240,9 @@ Oldest game in which each form, included base form, appears.
 
 --]]
 
+t.venusaur.since = {base = 'rb', Gi = 'spsc'}
 t.charizard.since = {base = 'rb', Gi = 'spsc'}
+t.blastoise.since = {base = 'rb', Gi = 'spsc'}
 t.butterfree.since = {base = 'rb', Gi = 'spsc'}
 t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
 	K = 'sl', A = 'sl', Co = 'usul', Gi = 'spsc', base = 'rb'}
@@ -278,6 +280,9 @@ t.minior.since = {base = 'sl', R = 'sl', Ar = 'sl', G = 'sl', Ve = 'sl',
 	Az = 'sl', I = 'sl', Vi = 'sl'}
 t.mimikyu.since = {base = 'sl', S = 'sl'}
 t.melmetal.since = {base = 'lgpe', Gi = 'spsc'}
+t.rillaboom.since = {base = 'spsc', Gi = 'spsc'}
+t.cinderace.since = {base = 'spsc', Gi = 'spsc'}
+t.inteleon.since = {base = 'spsc', Gi = 'spsc'}
 t.corviknight.since = {base = 'spsc', Gi = 'spsc'}
 t.orbeetle.since = {base = 'spsc', Gi = 'spsc'}
 t.drednaw.since = {base = 'spsc', Gi = 'spsc'}
@@ -316,7 +321,9 @@ t.sawsbuck = t.deerling
 t.jellicent = t.frillish
 t['flabébé'], t.florges = t.floette, t.floette
 t.polteageist = t.sinistea
+t[3] = t.venusaur
 t[6] = t.charizard
+t[9] = t.blastoise
 t[12] = t.butterfree
 t[25] = t.pikachu
 t[52] = t.meowth
@@ -350,6 +357,9 @@ t[716] = t.xerneas
 t[774] = t.minior
 t[778] = t.mimikyu
 t[809] = t.melmetal
+t[812] = t.rillaboom
+t[815] = t.cinderace
+t[818] = t.inteleon
 t[823] = t.corviknight
 t[826] = t.orbeetle
 t[834] = t.drednaw

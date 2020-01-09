@@ -1826,6 +1826,10 @@ t.ponytaG = {ability1 = 'Fugafacile', ability2 = 'Pastelvelo', abilityd = 'Presa
 t['077G'] = t.ponytaG
 t.rapidashG = {ability1 = 'Fugafacile', ability2 = 'Pastelvelo', abilityd = 'Presagio'}
 t['078G'] = t.rapidashG
+t.slowpokeG = {ability1 = 'Voracità', ability2 = 'Mente Locale'}
+t['079G'] = t.slowpokeG
+t.slowbroG = {ability1 = 'Sconosciuta'}
+t['080G'] = t.slowbroG
 t["farfetch'dG"] = {ability1 = 'Cuordeciso', abilityd = 'Nervisaldi'}
 t['083G'] = t["farfetch'dG"]
 t.grimerA = {ability1 = 'Velentocco', ability2 = 'Voracità', abilityd = 'Forza Chimica'}
@@ -1842,6 +1846,8 @@ t['mr. mimeG'] = {ability1 = 'Spiritovivo', ability2 = 'Annullabarriere', abilit
 t['122G'] = t['mr. mimeG']
 t.eeveeCm = {ability1 = 'Nessuna'}
 t['133Cm'] = t.eeveeCm
+t.slowkingG = {ability1 = 'Sconosciuta'}
+t['199G'] = t.slowkingG
 t.corsolaG = {ability1 = 'Sottilguscio', abilityd = 'Corpofunesto'}
 t['222G'] = t.corsolaG
 t.zigzagoonG = {ability1 = 'Raccolta', ability2 = 'Voracità', abilityd = 'Piedisvelti'}
