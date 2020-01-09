@@ -46,8 +46,8 @@ n.Entry.strings = {
 <div class="inline-block width-xl-33 width-md-50 width-sm-100" style="padding: 0.2em 0.3em;">
 <div class="roundy white-bg height-100 vert-middle" style="padding-right: 0.2em; padding-top: 0.1em;"><!--
 --><div class="width-xl-15" style="padding: 0.3ex;">#${ndex}</div><!--
---><div class="width-xl-15" style="padding: 0.3ex;">${ms}</div><!--
---><div class="text-center width-xl-40" style="padding: 0.3ex;">[[${name}]]${form}</div><!--
+--><div class="width-xl-20" style="padding: 0.3ex;">${ms}</div><!--
+--><div class="text-center width-xl-35" style="padding: 0.3ex;">[[${name}]]${form}</div><!--
 --><div class="width-xl-30" style="padding: 0.3ex;">${types}</div>
 </div></div>]=], "<!%-%-\n%-%->", ""),
 
@@ -85,16 +85,15 @@ n.Entry.__tostring = function(this)
     local types = type2 == type1 and { type1 }
                   or { type1, type2 }
 
-    return string.interp(n.Entry.strings.ENTRY,
-{
-    ndex = this.ndex and string.tf(this.ndex) or '???',
-    ms = ms.staticLua(string.tf(this.ndex or 0)
-                      .. form.toEmptyAbbr(this.formAbbr or '')),
-    name = this.name,
-    form = formtag,
-    types = box.listTipoLua(table.concat(types, ", "), "thin", "width-xl-100",
-                            "margin: 0 0.2ex 0.2ex 0;"),
-})
+    return string.interp(n.Entry.strings.ENTRY, {
+        ndex = this.ndex and string.tf(this.ndex) or '???',
+        ms = ms.staticLua(string.tf(this.ndex or 0)
+                          .. form.toEmptyAbbr(this.formAbbr or '')),
+        name = this.name,
+        form = formtag,
+        types = box.listTipoLua(table.concat(types, ", "), "thin",
+                                "width-xl-100", "margin: 0 0.2ex 0.2ex 0;"),
+    })
 end
 
 -- ================================== Header ==================================
