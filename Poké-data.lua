@@ -1824,9 +1824,9 @@ t.ponytaG = {name = 'Ponyta', ndex = 77, type1 = 'psico', type2 = 'psico'}
 t['077G'] = t.ponytaG
 t.rapidashG = {name = 'Rapidash', ndex = 78, type1 = 'psico', type2 = 'folletto'}
 t['078G'] = t.rapidashG
-t.slowpokeG = {name = 'Slowpoke', ndex = 79, type1 = 'psico'}
+t.slowpokeG = {name = 'Slowpoke', ndex = 79, type1 = 'psico', type2 = 'psico'}
 t['079G'] = t.slowpokeG
-t.slowbroG = {name = 'Slowbro', ndex = 80, type1 = 'sconosciuto'}
+t.slowbroG = {name = 'Slowbro', ndex = 80, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 t['080G'] = t.slowbroG
 t["farfetch'dG"] = {name = "Farfetch'd", ndex = 83, type1 = 'lotta', type2 = 'lotta'}
 t['083G'] = t["farfetch'dG"]
@@ -1842,7 +1842,7 @@ t.weezingG = {name = 'Weezing', ndex = 110, type1 = 'veleno', type2 = 'folletto'
 t['110G'] = t.weezingG
 t['mr. mimeG'] = {name = 'Mr. Mime', ndex = 122, type1 = 'ghiaccio', type2 = 'psico'}
 t['122G'] = t['mr. mimeG']
-t.slowkingG = {name = 'Slowking', ndex = 199, type1 = 'sconosciuto'}
+t.slowkingG = {name = 'Slowking', ndex = 199, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 t['199G'] = t.slowkingG
 t.corsolaG = {name = 'Corsola', ndex = 222, type1 = 'spettro', type2 = 'spettro'}
 t['222G'] = t.corsolaG
