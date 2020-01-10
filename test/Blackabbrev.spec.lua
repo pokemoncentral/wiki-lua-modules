@@ -19,11 +19,11 @@ assert(solid == split, 'syntax mismatch')
 local noColor = ba.LGPE{args={}}
 print(noColor)
 
-<<<<<<< HEAD
 -- _abbr function
+
 local abbr = ba._abbr{args={'RBG RFVF LGPE'}}
 print(abbr)
-=======
+
 -- Test Ranger
 
 local ranger1 = ba.Ra{args={}}
@@ -34,4 +34,3 @@ print(ranger2)
 
 local ranger3 = ba.TDL{args={}}
 print(ranger3)
->>>>>>> Testing Ranger games
