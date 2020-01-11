@@ -22,13 +22,13 @@ local mw = require('mw')
 local txt = require('Wikilib-strings') -- luacheck: no unused
 local tab = require('Wikilib-tables') -- luacheck: no unused
 local formlib = require('Wikilib-forms')
--- local multigen = require('Wikilib-multigen')
+local multigen = require('Wikilib-multigen')
 local w = require('Wikilib')
--- local css = require('Css')
+local css = require('Css')
 local ms = require('MiniSprite')
 local blackabbr = require("Blackabbrev-data")
 local colorabbr = require("Colorabbrev-data")
--- local pokes = require("Poké-data")
+local pokes = require("Poké-data")
 
 --[[
 
@@ -71,16 +71,18 @@ v.VexEntry = function(args)
 	local p = w.trimAll(args)
     formlib.loadUseless(true)
 	local form = formlib.getLink(p.ndex, true) or ""
-	-- local pokedata = multigen.getGen(pokes[tonumber(p.ndex)] or pokes[p.ndex])
+	local baseName, _ = formlib.getNameAbbr(p.ndex)
+	local pokedata = pokes[p.ndex] or pokes[baseName]
+	pokedata = multigen.getGen(pokedata, args.gen)
 	return string.interp([=[
 |-
 | style="padding: 0.5em;" | <div class="flex flex-row flex-nowrap flex-items-center"><div class="inline-block roundy-full" style="${radialGrad}">${ms}</div>
 <span class="flex-item-fill" style="padding-left: 0.3em;">[[${pkmn}]]${formLink}</span></div>
 | style="padding: 0.5em;" | ${abbr1}${abbr2}${abbr3}${abbr4}
 ]=], {
-	radialGrad = "", --css.radialGradLua{"circle closest-side",
-	                               -- type1 = pokedata.type1,
-								   -- type2 = pokedata.type2 },
+	radialGrad = css.radialGradLua{"circle closest-side",
+	                               type1 = pokedata.type1,
+	                               type2 = pokedata.type2 },
 	ms = ms.staticLua(p.ndex),
 	pkmn = p.pkmn,
 	formLink = form ~= "" and string.interp(
@@ -107,22 +109,22 @@ interface is enough to add such a table.
 --]]
 local baseParamMap = { "ndex", "pkmn", "disp1", "disp2", "disp3", "disp4" }
 local fixedParams = {
-	['1'] = { abbr1 = "R", abbr2 = "V", abbr3 = "B", abbr4 = "G" },
-	['2'] = { abbr1 = "O", abbr2 = "A", abbr3 = "C" },
-	['3'] = { abbr1 = "Ru", abbr2 = "Z", abbr3 = "S" },
-	fl = { abbr1 = "RF", abbr2 = "VF" },
-	['4'] = { abbr1 = "D", abbr2 = "P", abbr3 = "Pt" },
-	hs = { abbr1 = "HG", abbr2 = "SS" },
-	['5'] = { abbr1 = "N", abbr2 = "Bi" },
-	n2b2 = { abbr1 = "N2", abbr2 = "B2" },
-	['6'] = { abbr1 = "X", abbr2 = "Y" },
-	roza = { abbr1 = "RO", abbr2 = "ZA" },
-	['7'] = { abbr1 = "So", abbr2 = "L" },
-	usul = { abbr1 = "US", abbr2 = "UL" },
-	['8'] = { abbr1 = "Sp", abbr2 = "Sc" },
-	LGPE = { abbr1 = "LGP", abbr2 = "LGE" },
-	md1 = { abbr1 = "PMDR", abbr2 = "PMDB" },
-	md2 = { abbr1 = "PMDT", abbr2 = "PMDO", abbr3 = "PMDC" },
+	['1'] = { abbr1 = "R", abbr2 = "V", abbr3 = "B", abbr4 = "G", gen = 1 },
+	['2'] = { abbr1 = "O", abbr2 = "A", abbr3 = "C", gen = 2 },
+	['3'] = { abbr1 = "Ru", abbr2 = "Z", abbr3 = "S", gen = 3 },
+	fl = { abbr1 = "RF", abbr2 = "VF", gen = 3 },
+	['4'] = { abbr1 = "D", abbr2 = "P", abbr3 = "Pt", gen = 4 },
+	hs = { abbr1 = "HG", abbr2 = "SS", gen = 4 },
+	['5'] = { abbr1 = "N", abbr2 = "Bi", gen = 5 },
+	n2b2 = { abbr1 = "N2", abbr2 = "B2", gen = 5 },
+	['6'] = { abbr1 = "X", abbr2 = "Y", gen = 6 },
+	roza = { abbr1 = "RO", abbr2 = "ZA", gen = 6 },
+	['7'] = { abbr1 = "So", abbr2 = "L", gen = 7 },
+	usul = { abbr1 = "US", abbr2 = "UL", gen = 7 },
+	['8'] = { abbr1 = "Sp", abbr2 = "Sc", gen = 8 },
+	LGPE = { abbr1 = "LGP", abbr2 = "LGE", gen = 7 },
+	md1 = { abbr1 = "PMDR", abbr2 = "PMDB", gen = 3 },
+	md2 = { abbr1 = "PMDT", abbr2 = "PMDO", abbr3 = "PMDC", gen = 4 },
 }
 
 for funcName, params in pairs(fixedParams) do
