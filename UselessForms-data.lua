@@ -140,7 +140,7 @@ t.alcremie.names = {base = "Lattevaniglia", R = "Latterosa", Ma = "Lattematcha",
 	Cm = "Caramelmix", Tm = "Triplomix", Gi = "Gigamax"}
 for _, v in pairs(t.gigamax) do
 	t[v] = {}
-	t[v].names = {Gi = "Gigamax", base = ""}
+	t[v].names = {Gi = string.fu(v) .. " Gigamax", base = ""}
 end
 
 -- Anchor per i link alle forme alternative,
