@@ -1783,6 +1783,9 @@ t.zamazenta = {ability1 = 'Scudo Saldo'}
 t[889] = t.zamazenta
 t.eternatus = {ability1 = 'Pressione'}
 t[890] = t.eternatus
+t.kubfu = {ability1 = 'Forza Interiore'}
+t.urshifu = {ability1 = 'Pugni Invisibili'}
+t.calyrex = {ability1 = 'Agitazione'}
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
@@ -1899,7 +1902,6 @@ t['849B'] = t.toxtricityB
 t.indeedeeF = {ability1 = 'Mente Locale', ability2 = 'Sincronismo', abilityd = 'Psicogenesi'}
 t['876F'] = t.indeedeeF
 
-
 -- Alias per le altre forme alternative rilevanti
 
 t.pikachuR, t['025R'], t.pikachuD, t['025D'], t.pikachuCn,
@@ -1966,6 +1968,7 @@ t.morpekoV, t['877V'] = t.morpeko, t.morpeko
 t.zacianR, t['888R'] = t.zacian, t.zacian
 t.zamazentaR, t['888R'] = t.zamazenta, t.zamazenta
 t.eternatusD, t['890D'] = t.eternatus, t.eternatus
+t.urshifuP = t.urshifu
 
 -- Mega evolutions
 

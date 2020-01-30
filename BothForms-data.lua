@@ -64,6 +64,7 @@ t.eevee = mergeByName("eevee")
 -- The copy is needed to remove metatable that mw.loadData doesn't like
 t.minior = table.copy(useless.minior)
 t.toxtricity = mergeByName("toxtricity")
+t.urshifu = mergeByName("urshifu")
 
 -- gamesOrder can't be merged automatically because there's no way to sort
 -- abbrs
@@ -77,6 +78,7 @@ t.meowth.gamesOrder = {'base', 'A', 'G', 'Gi'}
 t.gengar.gamesOrder = {'base', 'M', 'Gi'}
 t.eevee.gamesOrder = {'base', 'Cm', 'Gi'}
 t.toxtricity.gamesOrder = {'base', 'B', 'Gi'}
+t.urshifu.gamesOrder = {'base', 'Gi', 'P', 'PGi'}
 
 -- Aliasing, put here to avoid needless repetitions of previous cycles.
 

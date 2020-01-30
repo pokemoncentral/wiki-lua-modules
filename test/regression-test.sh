@@ -11,7 +11,7 @@ while getopts "hpc:" OPTION; do
 regression-test [-hp] [-c HASH] FILES...
 
 Runs regression tests against one or more test file.
-This script runs simply compare the current output of the test file with
+This script simply compare the current output of the test file with
 that of an older (git) version, printing differences.
 Should be run from the wiki-lua-modules directory or one of its subdirs.
 
@@ -39,6 +39,8 @@ shift $((OPTIND-1))
 if ! [[ $(basename $(pwd)) == "wiki-lua-modules" ]]; then
     cd ..
     BASEDIR="test"
+else
+    BASEDIR='.'
 fi
 
 # Go to the older version

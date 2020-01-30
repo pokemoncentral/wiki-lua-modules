@@ -112,6 +112,7 @@ t.morpeko = {}
 t.zacian = {}
 t.zamazenta = {}
 t.eternatus = {}
+t.urshifu = {}
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
 
@@ -206,6 +207,7 @@ t.morpeko.names = {V = 'Motivo Panciavuota', base = 'Motivo Panciapiena'}
 t.zacian.names = {R = 'Re delle Spade', base = 'Eroe di Mille Lotte'}
 t.zamazenta.names = {R = 'Re degli Scudi', base = 'Eroe di Mille Lotte'}
 t.eternatus.names = {D = 'Dynamax Infinito', base = ''}
+t.urshifu.names = {P = 'Stile Pluricolpo', base = 'Stile Singolcolpo'}
 for _, v in pairs(t.mega) do
 	local fu = string.fu(v)
 	t[v] = {}
@@ -298,6 +300,7 @@ t.morpeko.ext = {panciavuota = 'V', panciapiena = 'base'}
 t.zacian.ext = {eroe = 'base', re = 'R'}
 t.zamazenta.ext = t.zacian.ext
 t.eternatus.ext = {dynamax = 'D'}
+t.urshifu.ext = {pluricolpo = 'P', singolcolpo = 'base'}
 for _, v in pairs(t.mega) do
 	t[v].ext = {mega = 'M'}
 end
@@ -357,6 +360,7 @@ t.morpeko.gamesOrder = {'base', 'V'}
 t.zacian.gamesOrder = {'base', 'R'}
 t.zamazenta.gamesOrder = t.zacian.gamesOrder
 t.eternatus.gamesOrder = {'base', 'D'}
+t.urshifu.gamesOrder = {'base', 'P'}
 table.remove(t.silvally.gamesOrder)
 for _, v in pairs(t.mega) do
 	t[v].gamesOrder = {'base', 'M'}
@@ -469,6 +473,7 @@ t.morpeko.since = {base = 'spsc', V = 'spsc'}
 t.zacian.since = {R = 'spsc', base = 'spsc'}
 t.zamazenta.since = {R = 'spsc', base = 'spsc'}
 t.eternatus.since = {D = 'spsc', base = 'spsc'}
+t.urshifu.since = {P = 'spsc', base = 'spsc'}
 t.venusaur.since = {M = 'xy', base = 'rb'}
 t.blastoise.since = {M = 'xy', base = 'rb'}
 t.beedrill.since = {M = 'roza', base = 'rb'}

@@ -1786,6 +1786,12 @@ t.zamazenta = {name = 'Zamazenta', ndex = 889, type1 = 'lotta', type2 = 'lotta'}
 t[889] = t.zamazenta
 t.eternatus = {name = 'Eternatus', ndex = 890, type1 = 'veleno', type2 = 'drago'}
 t[890] = t.eternatus
+t.kubfu = {name = 'Kubfu', ndex = nil, type1 = 'lotta', type2 = 'lotta'}
+-- t[] = kubfu
+t.urshifu = {name = 'Urshifu', ndex = nil, type1 = 'lotta', type2 = 'buio'}
+-- t[] = kubfu
+t.calyrex = {name = 'Calyrex', ndex = nil, type1 = 'psico', type2 = 'erba'}
+-- t[] = kubfu
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
@@ -1973,6 +1979,8 @@ t.necrozmaA = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'spettro'
 t['800A'] = t.necrozmaA
 t.necrozmaU = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'drago'}
 t['800U'] = t.necrozmaU
+t.urshifuP = {name = 'Urshifu', ndex = nil, type1 = 'lotta', type2 = 'acqua'}
+-- t[] = urshifuP
 
 t.charizardMX = {name = 'Charizard', ndex = 6, type1 = 'fuoco', type2 = 'drago'}
 t['006MX'] = t.charizardMX

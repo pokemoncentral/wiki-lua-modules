@@ -79,6 +79,7 @@ t.mimikyu = {}
 t.cramorant = {}
 t.sinistea = {}
 t.alcremie = {}
+t.urshifu = {}
 
 -- Table with Pokémon with a Gigamax
 
@@ -138,6 +139,7 @@ t.sinistea.names = {base = "", A = ""}
 t.alcremie.names = {base = "Lattevaniglia", R = "Latterosa", Ma = "Lattematcha",
 	Me = "Lattementa", L = "Lattelimone", S = "Lattesale", Rm = "Rosamix",
 	Cm = "Caramelmix", Tm = "Triplomix", Gi = "Gigamax"}
+t.urshifu.names = {Gi = "Urshifu Gigamax", PGi = "Urshifu Gigamax", base = "Stile Singolcolpo"}
 for _, v in pairs(t.gigamax) do
 	t[v] = {}
 	t[v].names = {Gi = string.fu(v) .. " Gigamax", base = ""}
@@ -194,7 +196,10 @@ t.minior.ext = {rosso = 'R', arancione = 'Ar', giallo = 'G', verde = 'Ve',
 t.mimikyu.ext = {smascherata = 'S'}
 t.cramorant.ext = {inghiottitutto = 'T', inghiottintero = 'I'}
 t.sinistea.ext = {}
-t.alcremie.ext = {}
+t.alcremie.ext = {lattevaniglia = 'base', latterosa = 'R', lattematcha = 'Ma',
+	lattementa = 'Me', lattelimone = 'L', lattesale = 'S', rosamix = 'Rm',
+	caramelmix = 'Cm', triplomix = 'Tm', gigamax = 'Gi'}
+t.urshifu.ext = {gigamax = "Gi"}
 for _, v in pairs(t.gigamax) do
 	t[v].ext = {gigamax = "Gi"}
 end
@@ -230,6 +235,7 @@ t.mimikyu.gamesOrder = {'base', 'S'}
 t.cramorant.gamesOrder = {'base', 'T', 'I'}
 t.sinistea.gamesOrder = {'base', 'A'}
 t.alcremie.gamesOrder = {'base', 'R', 'Ma', 'Me', 'L', 'S', 'Rm', 'Cm', 'Tm'}
+t.urshifu.gamesOrder = {"base", "Gi", "GiP"}
 for _, v in pairs(t.gigamax) do
 	t[v].gamesOrder = {"base", "Gi"}
 end
@@ -300,6 +306,7 @@ t.alcremie.since = {base = 'spsc', R = 'spsc', Ma = 'spsc', Me = 'spsc',
 	L = 'spsc', S = 'spsc', Rm = 'spsc', Cm = 'spsc', Tm = 'spsc', Gi = 'spsc'}
 t.copperajah.since = {base = 'spsc', Gi = 'spsc'}
 t.duraludon.since = {base = 'spsc', Gi = 'spsc'}
+t.urshifu.since = {base = 'spsc', Gi = 'spsc', PGi = 'spsc'}
 
 --[[
 
@@ -313,7 +320,9 @@ t.pichu['until'] = {S = 'hgss'}
 
 -- Other Gigamax forms
 table.insert(t.gigamax, 'pikachu')
+table.insert(t.gigamax, 'toxtricity')
 table.insert(t.gigamax, 'alcremie')
+table.insert(t.gigamax, 'urshifu')
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 t.gastrodon = t.shellos

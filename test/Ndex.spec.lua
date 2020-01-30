@@ -12,6 +12,7 @@ nondex{ types = false }
 --      Alternative form
 --      Useless form
 print(ndex.list{args={'067 398 487 487O 569Gi', color = 'alola'}})
+print(ndex.list{args={'kubfu giratina aegislashS', color = 'unima'}})
 
 -- Pokémon without ndex nor types
 print(ndex.list{args={'snorlobello', color = 'hoenn'}})

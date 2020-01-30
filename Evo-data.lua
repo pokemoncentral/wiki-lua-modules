@@ -6349,14 +6349,14 @@ evo.toxel = {
 			name = 'toxtricity',
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 30,
-			conditions = { [evo.conditions.OTHER] = 'A seconda della [[Natura]]' }
+			conditions = { [evo.conditions.OTHER] = 'A seconda della [[natura]]' }
 		},
 		{
 			ndex = '849B',
 			name = 'toxtricityB',
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 30,
-			conditions = { [evo.conditions.OTHER] = 'A seconda della [[Natura]]' }
+			conditions = { [evo.conditions.OTHER] = 'A seconda della [[natura]]' }
 		},
 	}
 }
