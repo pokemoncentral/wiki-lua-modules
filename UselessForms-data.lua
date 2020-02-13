@@ -139,11 +139,13 @@ t.sinistea.names = {base = "", A = ""}
 t.alcremie.names = {base = "Lattevaniglia", R = "Latterosa", Ma = "Lattematcha",
 	Me = "Lattementa", L = "Lattelimone", S = "Lattesale", Rm = "Rosamix",
 	Cm = "Caramelmix", Tm = "Triplomix", Gi = "Gigamax"}
-t.urshifu.names = {Gi = "Urshifu Gigamax", PGi = "Urshifu Gigamax", base = "Stile Singolcolpo"}
+t.urshifu.names = {Gi = "Urshifu Gigamax (Stile Singolcolpo)", PGi = "Urshifu Gigamax (Stile Pluricolpo)", base = "Stile Singolcolpo"}
 for _, v in pairs(t.gigamax) do
 	t[v] = {}
 	t[v].names = {Gi = string.fu(v) .. " Gigamax", base = ""}
 end
+-- Here to overwirte the loop
+t.toxtricity.names.base = "Forma Melodia"
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
@@ -211,7 +213,7 @@ game.
 
 --]]
 
-t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'Co'}
+t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'Co', 'Gi'}
 t.pichu.gamesOrder = {'base', 'S'}
 t.unown.gamesOrder = {'base', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
 	'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',

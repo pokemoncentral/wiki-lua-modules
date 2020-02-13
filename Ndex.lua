@@ -20,6 +20,7 @@ local n = {}
 
 local txt = require('Wikilib-strings') -- luacheck: no unused
 local tab = require('Wikilib-tables') -- luacheck: no unused
+local w = require('Wikilib')
 local form = require('Wikilib-forms')
 local oop = require('Wikilib-oop')
 local lists = require('Wikilib-lists')
@@ -28,6 +29,7 @@ local box = require('Box')
 local ms = require('MiniSprite')
 local css = require('Css')
 local pokes = require('Poké-data')
+local formsData = form.allFormsData()
 
 -- Loads also useless forms because there can be entries for useless forms
 form.loadUseless(true)
@@ -124,5 +126,33 @@ n.list = function(frame)
     return table.concat(res)
 end
 n.List = n.list
+
+-- =============================== Manual entry ===============================
+n.manualEntry = function(frame)
+    local p = w.trimAll(frame.args)
+    local ndex, abbr = form.getNameAbbr(p[1])
+    -- print(ndex, abbr)
+    local name = string.fu(p[2])
+    -- print(formsData[ndex])
+    local formtag = formsData[ndex] and formsData[ndex].links[abbr] or ''
+    local types = { p.type1, p.type2 }
+
+    local msidx
+    if not tonumber(ndex) then
+        ndex = '???'
+        msidx = ndex
+    else
+        msidx = ndex .. abbr
+    end
+
+    return string.interp(n.Entry.strings.ENTRY, {
+        ndex = ndex,
+        ms = ms.staticLua(msidx),
+        name = name,
+        form = formtag,
+        types = box.listTipoLua(table.concat(types, ", "), "thin",
+                                "width-xl-100", "margin: 0 0.2ex 0.2ex 0;"),
+    })
+end
 
 return n
