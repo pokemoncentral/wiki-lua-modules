@@ -236,7 +236,7 @@ t.minior.gamesOrder = {'base', 'R', 'Ar', 'G', 'Ve', 'Az', 'I', 'Vi'}
 t.mimikyu.gamesOrder = {'base', 'S'}
 t.cramorant.gamesOrder = {'base', 'T', 'I'}
 t.sinistea.gamesOrder = {'base', 'A'}
-t.alcremie.gamesOrder = {'base', 'R', 'Ma', 'Me', 'L', 'S', 'Rm', 'Cm', 'Tm'}
+t.alcremie.gamesOrder = {'base', 'R', 'Ma', 'Me', 'L', 'S', 'Rm', 'Cm', 'Tm' , 'Gi'}
 t.urshifu.gamesOrder = {"base", "Gi", "GiP"}
 for _, v in pairs(t.gigamax) do
 	t[v].gamesOrder = {"base", "Gi"}
