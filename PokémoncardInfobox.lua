@@ -24,7 +24,9 @@ local nameImages = {
 	GX = '[[File:Icona Pokémon GX.svg|x18px|GX]]',
  	RedGX = '[[File:Pokémon Red GX.png|x18px|GX]]',
  	TTGX = '[[File:Pokémon TT GX.png|x18px|GX ALLEATI]]',
- 	RedTTGX = '[[File:Pokémon Red TT GX.png|x18px|GX ALLEATI]]'
+ 	RedTTGX = '[[File:Pokémon Red TT GX.png|x18px|GX ALLEATI]]',
+	V = '[[File:Pokémon V.png|x18px|V]]',
+	VMAX = '[[File:Pokémon VMAX.png|x18px|VMAX]]'
 }
 t.tableKeysAlias(nameImages,  {'PlasmaEX', 'Leggenda', 'Galassia'}, {{'EX', 'MegaEX'}, {'Legend'}, {'Galactic'}})
 
