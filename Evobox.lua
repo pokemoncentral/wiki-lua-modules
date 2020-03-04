@@ -30,11 +30,11 @@ local ms = require('MiniSprite')
 local css = require('Css')
 local spr = require('Spr')
 local c = require("Colore-data")
-local altforms = require("AltForms-data")
-local useless = require("UselessForms-data")
 local pokes = require("Poké-data")
 local moves = require("Move-data")
 local evodata = require("Evo-data")
+form.loadUseless(true)
+local bothforms = form.allFormsData()
 
 -- ============================= General functions =============================
 
@@ -831,14 +831,14 @@ eb.glitchEvobox, eb.glitchevobox, eb.Glitchevobox =
 --[[
 
 Returns the box of a single Pokémon form given its ndex with abbr. Notes may be
-added using the second parameter.
+added using the second parameter. The shown name can also be specified with the
+third, defaulting to the data modules value.
 
 --]]
-eb.BoxForm = function(ndex, notes)
+eb.BoxForm = function(ndex, notes, shownname)
     local name, abbr = form.getnameabbr(ndex)
-    local altdata = altforms[name] or useless[name]
-    local shownname = altdata.names[abbr]
-    shownname = shownname == "" and string.fu(pokes[name].name) or shownname
+    local altdata = bothforms[name]
+    shownname = shownname or altdata.names[abbr] == "" and string.fu(pokes[name].name)
     return eb.boxPokemonAuto(ndex, '', notes, shownname)
 end
 
@@ -913,11 +913,13 @@ eb.makeFormRows = function(p, index)
             table.insert(result, string.interp(eb.strings.ROW_TWO, {
                 box1 = eb.BoxForm(
                         p['sprite' .. tostring(index)],
-                        p['loc' .. tostring(index)]
+                        p['loc' .. tostring(index)],
+                        p['name' .. tostring(index)]
                     ),
                 box2 = eb.BoxForm(
                         p['sprite' .. tostring(index) .. 'a'],
-                        p['loc' .. tostring(index) .. 'a']
+                        p['loc' .. tostring(index) .. 'a'],
+                        p['name' .. tostring(index) .. 'a']
                     ),
             }))
         else
@@ -928,7 +930,8 @@ eb.makeFormRows = function(p, index)
             table.insert(result, string.interp(eb.strings.ROW_ONE, {
                 box1 = eb.BoxForm(
                         p['sprite' .. tostring(index)],
-                        p['loc' .. tostring(index)]
+                        p['loc' .. tostring(index)],
+                        p['name' .. tostring(index)]
                     )
             }))
         end
@@ -946,6 +949,8 @@ Parameters are named because of their number:
     - 1: the page name, as returned by {{PAGENAME}}. This parameter is used
          only to determine the colors of the background gradient.
     - spriteN: the ndex of the N-th form
+    - nameN: the name of the N-th form (printed instead of the default got
+         from data modules)
     - locN: any additional note for the N-th form
     - itemN: the item needed to change from N-th to (N+1)-th form
     - evoinfoN: any additional info for form change from N-th to (N+1)-th
@@ -966,7 +971,7 @@ eb.Formbox = function(frame)
 
     -- Insert the first phase Pokémon box
     table.insert(formboxcontent, string.interp(eb.strings.ROW_ONE, {
-        box1 = eb.BoxForm(p.sprite1, p.loc1)
+        box1 = eb.BoxForm(p.sprite1, p.loc1, p.name1)
     }))
 
     -- Adds any form passed as argument

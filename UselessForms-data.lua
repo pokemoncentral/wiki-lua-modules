@@ -98,7 +98,7 @@ Alternative forms names. Keys are the abbr.
 t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
 	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
 	K = 'Berretto Kalos', A = 'Berretto Alola',
-	Co = 'Berretto Compagni', Gi = 'Gigamax', base = ''}
+	Co = 'Berretto Compagni', Gi = 'Pikachu Gigamax', base = ''}
 t.pichu.names = {S = 'Pichu Spunzorek', base = ''}
 t.unown.names = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
@@ -135,10 +135,10 @@ t.minior.names = {R = 'Nucleo Rosso', Ar = 'Nucleo Arancione',
 	G = 'Nucleo Giallo', Ve = 'Nucleo Verde', Az = 'Nucleo Azzurro',
 	I = 'Nucleo Indaco', Vi = 'Nucleo Violetto', base = 'Forma Meteora'}
 t.cramorant.names = {T = "Forma Inghiottitutto", I = "Forma Inghiottintero", base = ""}
-t.sinistea.names = {base = "", A = ""}
+t.sinistea.names = {base = "Forma Contraffatta", A = "Forma Autentica"}
 t.alcremie.names = {base = "Lattevaniglia", R = "Latterosa", Ma = "Lattematcha",
 	Me = "Lattementa", L = "Lattelimone", S = "Lattesale", Rm = "Rosamix",
-	Cm = "Caramelmix", Tm = "Triplomix", Gi = "Gigamax"}
+	Cm = "Caramelmix", Tm = "Triplomix", Gi = "Alcremie Gigamax"}
 t.urshifu.names = {Gi = "Urshifu Gigamax (Stile Singolcolpo)", PGi = "Urshifu Gigamax (Stile Pluricolpo)", base = "Stile Singolcolpo"}
 for _, v in pairs(t.gigamax) do
 	t[v] = {}

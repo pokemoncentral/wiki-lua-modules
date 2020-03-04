@@ -5947,14 +5947,14 @@ evo.cosmog = {
 					name = 'solgaleo',
 					method = evo.methods.LEVEL,
 					[evo.methods.LEVEL] = 53,
-					conditions = { [evo.conditions.OTHER] = 'In [[Pokémon Sole e Luna|Sole]] e [[Pokémon Ultrasole e Ultraluna|Ultrasole]]' }
+					conditions = { [evo.conditions.OTHER] = 'In [[Pokémon Sole e Luna|Sole]], [[Pokémon Ultrasole e Ultraluna|Ultrasole]] e [[Pokémon Spada e Scudo|Spada]]' }
 				},
 				{
 					ndex = 792,
 					name = 'lunala',
 					method = evo.methods.LEVEL,
 					[evo.methods.LEVEL] = 53,
-					conditions = { [evo.conditions.OTHER] = 'In [[Pokémon Sole e Luna|Luna]] e [[Pokémon Ultrasole e Ultraluna|Ultraluna]]' }
+					conditions = { [evo.conditions.OTHER] = 'In [[Pokémon Sole e Luna|Luna]], [[Pokémon Ultrasole e Ultraluna|Ultraluna]] e [[Pokémon Spada e Scudo|Scudo]]' }
 				}
 			}
 		}
@@ -6398,11 +6398,13 @@ evo[852], evo[853] = evo.clobbopus, evo.clobbopus
 evo.sinistea = {
 	ndex = 854,
 	name = 'sinistea',
+	notes = useless.sinistea.names.base,
 
 	evos = {
 		{
 			ndex = 855,
 			name = 'polteageist',
+			notes = useless.polteageist.names.base,
 			method = evo.methods.STONE,
 			[evo.methods.STONE] = 'Teiera rotta'
 		}
@@ -6470,7 +6472,9 @@ evo.milcery = {
 			ndex = 869,
 			name = 'alcremie',
 			method = evo.methods.OTHER,
-			[evo.methods.OTHER] = 'Fai una piroetta mentre tiene un [[Bonbon]]'
+			[evo.methods.OTHER] = [=[
+<div>{{bag|Bonbonfragola}}{{bag|Bonboncuore}}{{bag|Bonbonbosco}}{{bag|Bonbonfoglio}}{{bag|Bonbonfiore}}{{bag|Bonbonstella}}{{bag|Bonbonfiocco}}</div>
+Facendo una piroetta mentre tiene un [[Bonbon]]]=],
 			-- { [evo.conditions.ITEM] = '' }
 		}
 	}
@@ -6841,7 +6845,9 @@ evo.yamaskG = {
 			ndex = 867,
 			name = 'runerigus',
 			method = evo.methods.OTHER,
-			[evo.methods.OTHER] = '<span class="text-small">Avendo subito almeno 49PS di danni, passare sotto l\'arco di pietra nella [[Conca delle Sabbie]]</span>',
+			[evo.methods.OTHER] = [=[
+<span class="text-small"><div>Avendo subito almeno 49PS di danni,</div>
+<div>passare sotto l'arco di pietra nella [[Conca delle Sabbie]]</div></span>]=],
 		}
 	}
 }
@@ -6914,11 +6920,13 @@ evo["678F"] = evo.meowsticF
 evo.sinisteaA = {
 	ndex = '854A',
 	name = 'sinisteaA',
+	notes = useless.sinistea.names["A"],
 
 	evos = {
 		{
 			ndex = '855A',
 			name = 'polteageistA',
+			notes = useless.polteageist.names["A"],
 			method = evo.methods.STONE,
 			[evo.methods.STONE] = 'Teiera crepata'
 		}
