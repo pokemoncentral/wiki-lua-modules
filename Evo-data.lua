@@ -6472,10 +6472,17 @@ evo.milcery = {
 			ndex = 869,
 			name = 'alcremie',
 			method = evo.methods.OTHER,
-			[evo.methods.OTHER] = [=[
-<div>{{bag|Bonbonfragola}}{{bag|Bonboncuore}}{{bag|Bonbonbosco}}{{bag|Bonbonfoglio}}{{bag|Bonbonfiore}}{{bag|Bonbonstella}}{{bag|Bonbonfiocco}}</div>
-Facendo una piroetta mentre tiene un [[Bonbon]]]=],
-			-- { [evo.conditions.ITEM] = '' }
+			[evo.methods.OTHER] = table.concat{
+				"<div>",
+				links.bag("Bonbonfragola"),
+				links.bag("Bonboncuore"),
+				links.bag("Bonbonbosco"),
+				links.bag("Bonbonfoglio"),
+				links.bag("Bonbonfiore"),
+				links.bag("Bonbonstella"),
+				links.bag("Bonbonfiocco"),
+				"</div>Facendo una piroetta mentre tiene un [[Bonbon]]",
+			},
 		}
 	}
 }
