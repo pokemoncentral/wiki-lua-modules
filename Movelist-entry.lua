@@ -46,7 +46,8 @@ entry.boolDisplay = {no = '×', yes = '✔'}
 -- Map from gen to list of game abbrs (that are parameters) of that gen
 entry.genGames = {
 	[1] = {"Y"}, [2] = {"C"}, [3] = {"FRLG", "E"}, [4] = {"HGSS", "PtHGSS"},
-	[5] = {"B2W2"}, [6] = {"ORAS"}, [7] = {"USUM", "LGPE"}
+	[5] = {"B2W2"}, [6] = {"ORAS"}, [7] = {"USUM", "LGPE"},
+	[8] = {"SpSc"},
 }
 
 -- Reverse of the previous table
@@ -66,8 +67,9 @@ entry.strings = {
 entry.tutorCellsColors = {
 	'cristallo', 'rossofuoco', 'smeraldo', 'xd', 'diamante', 'platino',
 	'heartgold', 'nero', 'nero2', 'x', 'rubinoomega', 'sole', 'ultrasole',
-	'lgpikachu'
+	'lgpikachu', 'spada',
 }
+
 --[[
 
 Data to split parameters of games of the same generation.
@@ -140,7 +142,9 @@ entry.levelCellsData = {
 			{bg = 'ultrasole', abbr = 'USUL', val = 'USUM'},
 			{bg = 'lgp', abbr = 'LGPE', val = 'LGPE'}
 		}
-	}
+	},
+	[8] = {
+	},
 }
 
 -- Maximum of level columns for a generation. Exported because used also in
@@ -164,7 +168,7 @@ Parameters are named because of many possible nil:
 --]]
 entry.printValue = {
 	level = function(args)
-		local text = args.data
+		local text = args.data or "N/D"
 		local bg = args.bg
 		if text:lower() == 'no' then
 			text = entry.boolDisplay.no
@@ -173,7 +177,7 @@ entry.printValue = {
 		return ml.makeBox(text, bg, true, args.colspan, args.abbr)
 	end,
 	tm = function(args)
-		local text = entry.boolDisplay[args.data:lower()]
+		local text = args.data and entry.boolDisplay[args.data:lower()] or "N/D"
 		local bg = args.bg
 		if text == entry.boolDisplay.no then
 			bg = "fff"
@@ -181,11 +185,12 @@ entry.printValue = {
 		return ml.makeBox(text, bg, true, args.colspan, args.abbr)
 	end,
 	breed = function(args)
-		local text = args.data:match('%#')
-				and lib.mslistToModal(args.data, nil, entry.boolDisplay.yes)
-				or args.data
-			local bg = args.bg
-		if args.data:lower() == 'no' then
+		local text = args.data or "N/D"
+		text = text:match('%#')
+				and lib.mslistToModal(text, nil, entry.boolDisplay.yes)
+				or text
+		local bg = args.bg
+		if text:lower() == 'no' then
 			text = entry.boolDisplay.no
 			bg = "fff"
 		end
@@ -249,7 +254,6 @@ entry.valueMapper = {
 			end)
 			return table.concat(boxes, "\n")
 		end
-
 	end,
 	tutor = function(source, args, valPrinter, key)
 		return valPrinter{ data = args[key], bg = source }
@@ -295,6 +299,7 @@ entry.tail = function(kind, args)
 		-- kind == "event" or any other value (shouldn't happen)
 		dataSource = { "" }
 	end
+	-- Fixing absence of gen 8
 	local cells = table.map(dataSource, function(v, k)
 		-- Simply applies the right function, depending on kind
 		return entry.valueMapper[kind](v, args, entry.printValue[kind], k) .. "\n"
