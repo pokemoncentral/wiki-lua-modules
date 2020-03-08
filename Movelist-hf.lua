@@ -193,53 +193,14 @@ end
 
 j.Tutorh = j.tutorh
 
--- Celle tutor seconda generazione
+-- Celle tutor nelle varie gen
+for g = 2,8 do
+	j["tutor" .. tostring(g)] = function(frame)
+		return cells.tutor(g, w.trimAndMap(mw.clone(frame.args), string.lower))
+	end
 
-j.tutor2 = function(frame)
-	return cells.tutor(2, w.trimAndMap(mw.clone(frame.args), string.lower))
+	j["Tutor" .. tostring(g)] = j["tutor" .. tostring(g)]
 end
-
-j.Tutor2 = j.tutor2
-
--- Celle tutor terza generazione
-
-j.tutor3 = function(frame)
-	return cells.tutor(3, w.trimAndMap(mw.clone(frame.args), string.lower))
-end
-
-j.Tutor3 = j.tutor3
-
--- Celle tutor quarta generazione
-
-j.tutor4 = function(frame)
-	return cells.tutor(4, w.trimAndMap(mw.clone(frame.args), string.lower))
-end
-
-j.Tutor4 = j.tutor4
-
--- Celle tutor quinta generazione
-
-j.tutor5 = function(frame)
-	return cells.tutor(5, w.trimAndMap(mw.clone(frame.args), string.lower))
-end
-
-j.Tutor5 = j.tutor5
-
--- Celle tutor sesta generazione
-
-j.tutor6 = function(frame)
-	return cells.tutor(6, w.trimAndMap(mw.clone(frame.args), string.lower))
-end
-
-j.Tutor6 = j.tutor6
-
--- Celle tutor settima generazione
-
-j.tutor7 = function(frame)
-	return cells.tutor(7, w.trimAndMap(mw.clone(frame.args), string.lower))
-end
-
-j.Tutor7 = j.tutor7
 
 -- Mosse ombra
 

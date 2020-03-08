@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COMMIT="HEAD~1"
+COMMIT="HEAD"
 PFLAG=false
 BASEDIR=""
 
@@ -17,7 +17,7 @@ Should be run from the wiki-lua-modules directory or one of its subdirs.
 
 Arguments:
     - h: Show this help
-    - c: Commit to compare with. Default to HEAD~1
+    - c: Commit to compare with. Default to HEAD
     - p: Preserve old outputs. If not specified, those are removed"
             exit 0
             ;;
