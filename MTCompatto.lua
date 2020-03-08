@@ -57,29 +57,32 @@ tutte le mosse in essa contenuta
 --]]
 
 local makeMachinesList = function(list)
-	return table.concat(table.map(list, function(move, num)
+	local mapped = table.map(list, function(move, num)
 			num = string.format('%02d', num)
 			if type(move) == 'table' then
-				return string.interp('${num} (${games})',
-					{
+				return string.interp('${num} (${games})', {
 						num = num,
 						games = table.concat(table.map(move, function(movegame)
-                                local games, move = movegame[1], movegame[2]
+                                local games, locmove = movegame[1], movegame[2]
                                 games = mw.text.split(games:upper(), ' ')
                                 local keyGame = table.remove(games, 1)
 
 								return links[keyGame .. 'Lua']{games = games,
-										multigen.getGenValue(moves[move].name) }
+										multigen.getGenValue(moves[locmove].name) }
 							end), ' | ')
 					})
 			else
-				return string.interp("[[${mv}|${num}]]",
-					{
+				return string.interp("[[${mv}|${num}]]", {
 						mv = multigen.getGenValue(moves[move].name),
 						num = num
 					})
 			end
-		end), " | ")
+		end)
+	if mapped[0] then
+		return mapped[0] .. " | " .. table.concat(mapped, " | ")
+	else
+		return table.concat(mapped, " | ")
+	end
 end
 
 --[[
