@@ -5591,7 +5591,14 @@ evo.grubbin = {
 					ndex = 738,
 					name = 'vikavolt',
 					method = evo.methods.LEVEL,
-					conditions = { [evo.conditions.LOCATION] = 'Campo magnetico speciale' },
+					conditions = {
+						   [evo.conditions.LOCATION] = 'Campo magnetico speciale',
+						   [evo.conditions.OTHER] = table.concat{
+							"oppure<div>",
+							links.bag("Pietratuono"),
+							"</div>usando una [[Pietratuono]]",
+						},
+					},
 				}
 			}
 		}
