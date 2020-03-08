@@ -140,7 +140,8 @@ if true then
 
     mw.title.setTitle("Geloraggio")
     -- print(ml.tmh{args = {}})
-    print(header.TMh{args = {'Ghiaccio', '1', 'MT13', 'no', 'MT13', 'MT13', 'MT13', 'MT13', 'MT13'}})
+    -- print(header.TMh{args = {'Ghiaccio', '1', 'MT13', 'no', 'MT13', 'MT13', 'MT13', 'MT13', 'MT13'}})
+    print(header.autoTMh{args = {'Geloraggio'}})
     print(render.entry{args={'Movelist-entry.TM',
     "[[€1|116|yes|no|yes|yes|yes|yes|yes£]]",
     "[[€1|117|yes|no|yes|yes|yes|yes|yes£]]",

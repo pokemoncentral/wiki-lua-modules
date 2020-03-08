@@ -11,10 +11,12 @@ local w = require('Wikilib')
 local multigen = require('Wikilib-multigen')
 local lib = require('Wikilib-learnlists')
 local libdata = require("Wikilib-data")
-local ml = require('Movelist')
 local ms = require('MiniSprite')
+local links = require('Links')
+local css = require('Css')
 local resp = require('Resp')
 local gendata = require("Gens-data")
+local blackabbr = require("Blackabbrev-data")
 local pokes = require("Poké-data")
 local groups = require("PokéEggGroup-data")
 local useless = require("UselessForms-data")
@@ -60,7 +62,8 @@ end)
 
 -- Strings for printing
 entry.strings = {
-	valueCell = [[| class="black-text height-100" style="padding: 0.8ex 0.3ex;${cs}" | <div class="text-center height-100 roundy-5 vert-middle" style="${bg}; padding: 0 0.3ex;">${cnt}</div>]]
+	CELLBOX = [[
+| class="black-text height-100" style="padding: 0.8ex 0.3ex;${cs}" | <div class="text-center height-100 roundy-5 vert-middle" style="${bg}; padding: 0 0.3ex;">${cnt}</div>]],
 }
 
 -- Sorted background colors of tutor cells
@@ -147,11 +150,75 @@ entry.levelCellsData = {
 	},
 }
 
+-- Table of level games for generation
+entry.levelgames = {
+	{ -- 1
+		{bg = 'rosso', abbr = 'RVB'},
+		{bg = 'giallo', abbr = 'G'},
+	},
+	{ -- 2
+		{bg = 'oro', abbr = 'OA'},
+		{bg = 'cristallo', abbr = 'C'},
+	},
+	{ -- 3
+		{bg = 'rubino', abbr = 'RZ'},
+		{bg = 'rossofuoco', abbr = 'RFVF'},
+		{bg = 'smeraldo', abbr = 'S'},
+	},
+	{ -- 4
+		{bg = 'diamante', abbr = 'DP'},
+		{bg = 'platino', abbr = 'Pt'},
+		{bg = 'heartgold', abbr = 'HGSS'},
+	},
+	{ -- 5
+		{bg = 'bianco', abbr = 'NB'},
+		{bg = 'bianco2', abbr = 'N2B2'},
+	},
+	{ -- 6
+		{bg = 'x', abbr = 'XY'},
+		{bg = 'rubinoomega', abbr = 'ROZA'},
+	},
+	{ -- 7
+		{bg = 'sole', abbr = 'SL'},
+		{bg = 'ultrasole', abbr = 'USUL'},
+		{bg = 'lgp', abbr = 'LGPE'},
+	},
+	{ -- 8
+		{bg = 'spada', abbr = 'SpSc'},
+	},
+}
+
 -- Maximum of level columns for a generation. Exported because used also in
 -- Movelist/hf
-m.maxCellsNumber = table.map(ml.levelgames, function(v)
+m.maxCellsNumber = table.map(entry.levelgames, function(v)
 	return #v
 end)
+
+--[[
+
+Prints a (real) cell for a single value.
+Arguments:
+	- text: text content
+	- bgcolor: name of bg color (from modulo colore)
+	- bold: whether the content should be bold or not
+	- colspan: the number of colspan (default 1)
+	- tt: tt text (optional)
+	- abbr: games abbr to add after text (optional)
+--]]
+entry.makeBox = function(text, bgcolor, bold, colspan, tt, abbr)
+	local bg = bgcolor:lower() == "fff"
+				and ""
+				or css.horizGradLua{ type = bgcolor }
+	text = bold and table.concat{"'''", text, "'''"} or text
+	local cnt = tt and tt ~= "" and links.tt(text, tt) or text
+	return string.interp(entry.strings.CELLBOX, {
+		bg = bg,
+		cs = colspan and colspan ~= 1
+		     and ('" colspan="' .. colspan) or "",
+		cnt = abbr and table.concat{"<span>", cnt, blackabbr[abbr] or "",
+		                            "</span>"} or cnt,
+	})
+end
 
 --[[
 
@@ -174,7 +241,7 @@ entry.printValue = {
 			text = entry.boolDisplay.no
 			bg = "fff"
 		end
-		return ml.makeBox(text, bg, true, args.colspan, args.abbr)
+		return entry.makeBox(text, bg, true, args.colspan, args.abbr)
 	end,
 	tm = function(args)
 		local text = args.data and entry.boolDisplay[args.data:lower()] or "N/D"
@@ -182,7 +249,7 @@ entry.printValue = {
 		if text == entry.boolDisplay.no then
 			bg = "fff"
 		end
-		return ml.makeBox(text, bg, true, args.colspan, args.abbr)
+		return entry.makeBox(text, bg, true, args.colspan, args.abbr)
 	end,
 	breed = function(args)
 		local text = args.data or "N/D"
@@ -194,22 +261,22 @@ entry.printValue = {
 			text = entry.boolDisplay.no
 			bg = "fff"
 		end
-		return ml.makeBox(text, bg, true, args.colspan, nil, args.abbr)
+		return entry.makeBox(text, bg, true, args.colspan, nil, args.abbr)
 	end,
 	tutor = function(args)
 		if not args.data or args.data:lower() == 'x' then
 			return ""
 		elseif args.data:lower() == "no" then
-			return ml.makeBox(entry.boolDisplay.no, "fff", true)
+			return entry.makeBox(entry.boolDisplay.no, "fff", true)
 		elseif args.data:lower() == "yes" then
-			return ml.makeBox(entry.boolDisplay.yes, args.bg, true)
+			return entry.makeBox(entry.boolDisplay.yes, args.bg, true)
 		end
 	end,
 	event = function(args)
 		-- Should be wrapped in a div because this text may go to multiple lines
 		-- and this breaks vert-middle
 		local text = table.concat{"<div>", args.data, "</div>"}
-		return ml.makeBox(text, args.bg, false)
+		return entry.makeBox(text, args.bg, false)
 	end,
 }
 
