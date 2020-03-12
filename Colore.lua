@@ -171,6 +171,8 @@ c.Md_super, c.mdsuper, c.Mdsuper, c['md super'], c['Md super'] =
     c.md_super, c.md_super, c.md_super, c.md_super, c.md_super
 c.super_md, c.Super_md, c.supermd, c.Supermd, c['super md'], c['Super md'] =
     c.md_super, c.md_super, c.md_super, c.md_super, c.md_super, c.md_super
+c.mddx = function(frame) return _colore(frame.args[1] or 'normale', '004C65', '009D88', '00112E') end
+c.Mddx, c.md_dx, c.Md_dx, c.MDDX = c.mddx, c.mddx, c.mddx, c.mddx
 c.nero = function(frame) return _colore(frame.args[1] or 'normale', '444444', '858585', '2C2C2C') end
 c.Nero = c.nero
 c.nero_2 = function(frame) return _colore(frame.args[1] or 'normale', '424B50', '848A8D', '2B3134') end
@@ -237,6 +239,10 @@ c.spada = function(frame) return _colore(frame.args[1] or 'normale', '00AEEF', '
 c.Spada = c.spada
 c.scudo = function(frame) return _colore(frame.args[1] or 'normale', 'ED1165', 'FA89AB', '851042') end
 c.Scudo = c.scudo
+c.isolaarmatura = c.spada
+c.Isolaarmatura = c.isolaarmatura
+c.tundracorona = c.scudo
+c.Tundracorona = c.tundracorona
 
 -- Colori regioni
 

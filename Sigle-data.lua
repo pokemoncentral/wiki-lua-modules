@@ -620,6 +620,12 @@ x.PSMD = {{
 	}
 }}
 x.Super, x.super = x.PSMD, x.PSMD
+x.PMDDX = {{
+	link = "Pokémon Mystery Dungeon: Squadra di Soccorso DX",
+	display = {
+		{'MDDX', 'mddx'}
+	}
+}}
 x.Ra = {{
 	link = "Pokémon Ranger (gioco)",
 	display = {
