@@ -587,7 +587,7 @@ ml.entryhead = function(move, ndex, args)
 					)
 	pokedata = table.merge(
 		multigen.getGen(pokedata),
-		table.copy(groups[pokedata.ndex] or {group1 = 'sconosciuto'})
+		multigen.getGen(groups[pokedata.ndex] or {group1 = 'sconosciuto'})
 	)
 	local stab = args.STAB or lib.computeSTAB(ndex, move, args.form)
 	local ndextf = string.tf(pokedata.ndex)

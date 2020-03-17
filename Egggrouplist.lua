@@ -46,7 +46,7 @@ by makeList in Wikilib/lists.
 --]]
 g.Entry.new = function(eggData, name, group)
     local baseName, abbr = form.getnameabbr(name)
-    local pokeData = table.merge(eggData, pokes[name] or pokes[baseName])
+    local pokeData = table.merge(multigen.getGen(eggData), pokes[name] or pokes[baseName])
     pokeData = multigen.getGen(pokeData)
     local this = g.Entry.super.new(name, pokeData.ndex)
 
@@ -195,7 +195,7 @@ single-grouped or it hasn't the passed one.
 --]]
 g.DoubleGroupEntry.new = function(eggData, name, group)
     if not eggData.group2
-            or not table.search(eggData, group) then
+            or not table.search(multigen.getGen(eggData), group) then
         return nil
     end
 

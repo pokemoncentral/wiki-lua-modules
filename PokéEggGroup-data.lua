@@ -1425,9 +1425,9 @@ t.pumpkaboo = {group1 = 'amorfo'}
 t[710] = t.pumpkaboo
 t.gourgeist = {group1 = 'amorfo'}
 t[711] = t.gourgeist
-t.bergmite = {group1 = 'mostro'}
+t.bergmite = {group1 = 'mostro', group2 = {[6] = nil, [8] = 'minerale'}}
 t[712] = t.bergmite
-t.avalugg = {group1 = 'mostro'}
+t.avalugg = {group1 = 'mostro', group2 = {[6] = nil, [8] = 'minerale'}}
 t[713] = t.avalugg
 t.noibat = {group1 = 'volante'}
 t[714] = t.noibat

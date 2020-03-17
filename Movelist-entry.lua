@@ -406,7 +406,7 @@ entry.head = function(ndex, args)
 					)
 	pokedata = table.merge(
 		multigen.getGen(pokedata),
-		table.copy(groups[pokedata.ndex] or {group1 = 'sconosciuto'})
+		multigen.getGen(groups[pokedata.ndex] or {group1 = 'sconosciuto'})
 	)
 	local movename = args.movename or mw.title.getCurrentTitle().text
 	local stab = args.STAB or lib.computeSTAB(ndex, movename, args.form)
