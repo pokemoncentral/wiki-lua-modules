@@ -561,11 +561,11 @@ t.wingull = {group1 = 'acqua 1', group2 = 'volante'}
 t[278] = t.wingull
 t.pelipper = {group1 = 'acqua 1', group2 = 'volante'}
 t[279] = t.pelipper
-t.ralts = {group1 = 'amorfo'}
+t.ralts = {group1 = 'amorfo', group2 = {[3] = nil, [8] = 'umanoide'}}
 t[280] = t.ralts
-t.kirlia = {group1 = 'amorfo'}
+t.kirlia = {group1 = 'amorfo', group2 = {[3] = nil, [8] = 'umanoide'}}
 t[281] = t.kirlia
-t.gardevoir = {group1 = 'amorfo'}
+t.gardevoir = {group1 = 'amorfo', group2 = {[3] = nil, [8] = 'umanoide'}}
 t[282] = t.gardevoir
 t.surskit = {group1 = 'acqua 1', group2 = 'coleottero'}
 t[283] = t.surskit
@@ -657,11 +657,11 @@ t.grumpig = {group1 = 'campo'}
 t[326] = t.grumpig
 t.spinda = {group1 = 'campo', group2 = 'umanoide'}
 t[327] = t.spinda
-t.trapinch = {group1 = 'coleottero'}
+t.trapinch = {group1 = 'coleottero', group2 = {[3] = nil, [8] = 'drago'}}
 t[328] = t.trapinch
-t.vibrava = {group1 = 'coleottero'}
+t.vibrava = {group1 = 'coleottero', group2 = {[3] = nil, [8] = 'drago'}}
 t[329] = t.vibrava
-t.flygon = {group1 = 'coleottero'}
+t.flygon = {group1 = 'coleottero', group2 = {[3] = nil, [8] = 'drago'}}
 t[330] = t.flygon
 t.cacnea = {group1 = 'erba', group2 = 'umanoide'}
 t[331] = t.cacnea
@@ -951,7 +951,7 @@ t.mamoswine = {group1 = 'campo'}
 t[473] = t.mamoswine
 t["porygon-z"] = {group1 = 'minerale'}
 t[474] = t["porygon-z"]
-t.gallade = {group1 = 'amorfo'}
+t.gallade = {group1 = 'amorfo', group2 = {[4] = nil, [8] = 'umanoide'}}
 t[475] = t.gallade
 t.probopass = {group1 = 'minerale'}
 t[476] = t.probopass
@@ -1403,7 +1403,7 @@ t.aurorus = {group1 = 'mostro'}
 t[699] = t.aurorus
 t.sylveon = {group1 = 'campo'}
 t[700] = t.sylveon
-t.hawlucha = {group1 = 'umanoide'}
+t.hawlucha = {group1 = 'umanoide', group2 = {[6] = nil, [8] = 'volante'}}
 t[701] = t.hawlucha
 t.dedenne = {group1 = 'campo', group2 = 'magico'}
 t[702] = t.dedenne
@@ -1429,9 +1429,9 @@ t.bergmite = {group1 = 'mostro', group2 = {[6] = nil, [8] = 'minerale'}}
 t[712] = t.bergmite
 t.avalugg = {group1 = 'mostro', group2 = {[6] = nil, [8] = 'minerale'}}
 t[713] = t.avalugg
-t.noibat = {group1 = 'volante'}
+t.noibat = {group1 = 'volante', group2 = {[6] = nil, [8] = 'drago'}}
 t[714] = t.noibat
-t.noivern = {group1 = 'volante'}
+t.noivern = {group1 = 'volante', group2 = {[6] = nil, [8] = 'drago'}}
 t[715] = t.noivern
 t.xerneas = {group1 = 'sconosciuto'}
 t[716] = t.xerneas

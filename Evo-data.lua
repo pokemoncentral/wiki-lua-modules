@@ -6528,7 +6528,7 @@ evo.indeedee = { ndex = 876, name = 'indeedee' }
 evo[876] = evo.indeedee
 
 evo.indeedeeF = { ndex = '876F', name = 'indeedeeF' }
-evo['876F'] = evo.indeedee
+evo['876F'] = evo.indeedeeF
 
 evo.morpeko = { ndex = 877, name = 'morpeko' }
 evo[877] = evo.morpeko

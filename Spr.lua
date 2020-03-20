@@ -34,6 +34,7 @@ local gamesAbbr = {
 	['sole e luna'] = 'sl',
 	['ultrasole e ultraluna'] = 'usul',
     ["let's go pikachu e let's go eevee"] = 'lgpe',
+	['spada e scudo'] = 'spsc',
 	colosseum = 'colo',
 	-- XD is not necessary
 	stadium = 'stad',
@@ -47,7 +48,7 @@ table.tableKeysAlias(gamesAbbr,
         'heartgold e soulsilver', 'nero e bianco', 'nero 2 e bianco 2',
         'x e y', 'rubino omega e zaffiro alpha', 'sole e luna',
         'ultrasole e ultraluna', "let's go pikachu e let's go eevee",
-        'stadium 2'},
+		'spada e scudo', 'stadium 2'},
 	{{'rosso e verde', 'rv', 'v'}, {'rosso', 'blu', 'r', 'b'},
     {'oro e argento', 'oa'}, {'c'}, {'rubino', 'zaffiro', 'ru', 'za', 'z'},
 	{'rosso fuoco', 'verde foglia', 'rf', 'vf'}, {'s'},
@@ -60,6 +61,7 @@ table.tableKeysAlias(gamesAbbr,
     {"let's go", "let's go pikachu", "let's go eevee",
         "let's go pikachu e eevee", 'pikachu', 'eevee', 'pikachu e eevee',
         'lgpe', 'pe'},
+	{'spada', 'scudo', 'sp', 'sc'},
 	{'stad 2'}})
 
 --[[
@@ -106,7 +108,7 @@ local variants = {
 }
 
 -- Table per i giochi che hanno gli sprite in .gif
-local gifs = {'cr', 'sme', 'xy', 'roza', 'sl', 'usul', 'lgpe'}
+local gifs = {'cr', 'sme', 'xy', 'roza', 'sl', 'usul', 'lgpe', 'spsc'}
 
 -- Table per le dimensioni degli sprite
 local sizes = {
@@ -116,7 +118,8 @@ local sizes = {
 	roza = '|150px',
 	sl = '|150px',
 	usul = '|150px',
-	lgpe = '|150px'
+	lgpe = '|150px',
+	spsc = '|150px',
 }
 
 -- Table per le stringhe da interpolare a seconda del gioco
