@@ -5396,11 +5396,13 @@ evo[708], evo[709] = evo.phantump, evo.phantump
 evo.pumpkaboo = {
 	ndex = 710,
 	name = 'pumpkaboo',
+	notes = altforms.pumpkaboo.names.base,
 
 	evos = {
 		{
 			ndex = 711,
 			name = 'gourgeist',
+			notes = altforms.gourgeist.names.base,
 			method = evo.methods.TRADE,
 		}
 	}
@@ -6954,6 +6956,8 @@ createAlternativeForm(useless.burmy, evo.burmy)
 createAlternativeForm(useless.shellos, evo.shellos)
 
 createAlternativeForm(altforms.basculin, evo.basculin)
+
+createAlternativeForm(altforms.pumpkaboo, evo.pumpkaboo)
 
 createAlternativeForm(useless.deerling, evo.deerling)
 

@@ -61,7 +61,7 @@ Example:
 s.statlist = function(frame)        -- luacheck: no unused
     return table.concat({
         [[===Dalla seconda generazione in poi===]],
-        list.makeGroupedList({
+        list.makeCollapsedList({
             source = stats,
             makeEntry = Entry.new,
             iterator = list.pokeNames,
@@ -70,7 +70,7 @@ s.statlist = function(frame)        -- luacheck: no unused
             noEmptyLabel = true
         }),
         [[===Nella prima generazione===]],
-        list.makeGroupedList({
+        list.makeCollapsedList({
             source = stats,
             makeEntry = Entry.new,
             entryArgs = 1,

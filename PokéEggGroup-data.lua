@@ -1739,8 +1739,8 @@ t.duraludon = {group1 = 'minerale', group2 = 'drago'}
 t[884] = t.duraludon
 t.dreepy = {group1 = 'amorfo', group2 = 'drago'}
 t[885] = t.dreepy
-t.drakloak, t[885] = t.dreepy, t.dreepy
-t.dragapult, t[886] = t.dreepy, t.dreepy
+t.drakloak, t[886] = t.dreepy, t.dreepy
+t.dragapult, t[887] = t.dreepy, t.dreepy
 t.zacian = {group1 = 'sconosciuto'}
 t[888] = t.zacian
 t.zamazenta = {group1 = 'sconosciuto'}
