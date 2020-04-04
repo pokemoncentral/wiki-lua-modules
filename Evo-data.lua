@@ -2148,6 +2148,8 @@ evo[225] = evo.delibird
 evo.mantyke = {
 	ndex = 458,
 	name = 'mantyke',
+	method = evo.methods.BREED,
+	conditions = { [evo.conditions.ITEM] = 'Ondaroma' },
 
 	evos = {
 		{
