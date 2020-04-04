@@ -5,6 +5,7 @@ local s = {}
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local w = require('Wikilib')
 local gens = require('Wikilib-gens')
+local wdata = require('Wikilib-data')
 
 local mw = require('mw')
 
@@ -184,25 +185,30 @@ s.sprLua = function(ndex, game, variant, size)
 			return table.search(variantPiecesOrder, a)
 					< table.search(variantPiecesOrder, b)
 		end)
-	variant = table.concat(variant, ' ')
 
 	--[[
-		Prima della quarta generazione non c'erano differenze di genere negli
-        sprite.
+	Prima della quarta generazione non c'erano differenze di genere negli
+	sprite.
 
-		NB: la stringa 'male' è trovata sia in 'male' che in 'female'.
+	NB: la stringa 'male' è trovata sia in 'male' che in 'female'.
 	--]]
-	if gen and gen < 4 and variant:find('male') then
-
+	if gen and gen < 4 and variant[1]:find('male') then
 		-- Elimina il genere dalla variante
-		variant = variant:match('male%s+([%w%s]+)')
+		table.remove(variant, 1)
 	end
-	variant = variants[variant] or ''
+	-- If the Pokémon is female only and the gen recent enough, add female
+	if gen and gen > 4
+	   and table.search(wdata.onlyFemales, tonumber(ndex))
+	   and variant[1] == 'male' then
+		variant[1] = 'female'
+	end
+
+	variant = table.concat(variant, ' ')
 
 	return w.interp(interpStrings[game],
 	{
 		game = game,
-		variant = variant,
+		variant = variants[variant] or '',
 		ndex = ndex or '001',
 		ext = getExtension(game, variant),
 		size = size and '|' .. size or sizes[game] or ''
