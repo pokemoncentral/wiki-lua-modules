@@ -1828,6 +1828,8 @@ evo[298], evo[183], evo[184] = evo.azurill, evo.azurill, evo.azurill
 evo.bonsly = {
 	ndex = 438,
 	name = 'bonsly',
+	method = evo.methods.BREED,
+	conditions = { [evo.conditions.ITEM] = 'Roccioaroma' },
 
 	evos = {
 		{
