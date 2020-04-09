@@ -12,16 +12,22 @@ local mw = require('mw')
 
 -- Creates link to alternative forms in list pointing to target instead of
 -- "Differenze di forma"
-local makeTargetedLink = function(linkstr, index, target, list)
+-- abbrs is an optional parameter, if specified this function modifies only the
+-- link for base and the specified abbrs
+local makeTargetedLink = function(linkstr, index, target, list, abbrs)
 	linkstr = linkstr:gsub('Differenze di forma', target)
 	for _, poke in pairs(list) do
-		t[poke][index] = table.map(t[poke].names, function(formName)
-			return formName == ''
-				   and ''
-				   or string.interp(linkstr, {
-					anchor = t[poke].anchor or string.fu(poke),
-					formName = formName
-			})
+		t[poke][index] = table.map(t[poke].names, function(formName, formAbbr)
+			if abbrs and (formAbbr == 'base' or table.search(abbrs, formAbbr)) then
+				return formName == ''
+					   and ''
+					   or string.interp(linkstr, {
+						anchor = t[poke].anchor or string.fu(poke),
+						formName = formName
+				})
+			else
+				return t[poke][index] and t[poke][index][formAbbr]
+			end
 		end)
 	end
 end
@@ -38,17 +44,13 @@ local makeLinks = function(black)
 	local stdLinks = table.filter(t, function(_, key)
 		return
 				not table.search({'mega', 'megaxy',
-						'archeo', 'alola', 'galar'}, key)
-			and
-				not table.search(t.mega, key)
-			and
-				not table.search(t.megaxy, key)
-			and
-				not table.search(t.archeo, key)
-			and
-				not table.search(t.alola, key)
-			and
-				not table.search(t.galar, key)
+						'archeo', 'alola', 'galar', 'gigamax'}, key)
+			and not table.search(t.mega, key)
+			and not table.search(t.megaxy, key)
+			and not table.search(t.archeo, key)
+			and not table.search(t.alola, key)
+			and not table.search(t.galar, key)
+			and not table.search(t.gigamax, key)
 	end)
 
 	-- Links standard
@@ -64,10 +66,11 @@ local makeLinks = function(black)
 	end
 
 	-- Link of forms with a dedicated page instead of "Differenze di forma"
-	makeTargetedLink(link, index, 'Megaevoluzione', table.merge(t.mega, t.megaxy))
-	makeTargetedLink(link, index, 'Archeorisveglio', t.archeo)
-	makeTargetedLink(link, index, 'Forma di Alola', t.alola)
-	makeTargetedLink(link, index, 'Forma di Galar', t.galar)
+	makeTargetedLink(link, index, 'Megaevoluzione', table.merge(t.mega, t.megaxy), {"M", "MX", "MY"})
+	makeTargetedLink(link, index, 'Archeorisveglio', t.archeo, {"A"})
+	makeTargetedLink(link, index, 'Forma di Alola', t.alola, {"A"})
+	makeTargetedLink(link, index, 'Forma di Galar', t.galar, {"G"})
+	makeTargetedLink(link, index, 'Gigamax', t.gigamax, {"Gi"})
 end
 
 --[[
@@ -78,7 +81,6 @@ to others, thus there's aliasing at the end of the module.
 --]]
 
 t.pikachu = {}
-t.meowth = {}
 t.slowbro = {}
 t.eevee = {}
 t.castform = {}
@@ -106,6 +108,7 @@ t.silvally = {}
 t.minior = {}
 t.necrozma = {}
 t.toxtricity = {}
+t.alcremie = {}
 t.eiscue = {}
 t.indeedee = {}
 t.morpeko = {}
@@ -119,7 +122,8 @@ t.urshifu = {}
 -- Tabella con i Pokémon che hanno una sola megaevoluzione
 
 t.mega = {'venusaur', 'blastoise', 'beedrill', 'pidgeot', 'alakazam',
-	'gengar', 'kangaskhan', 'pinsir', 'gyarados', 'aerodactyl', 'ampharos',
+	'gengar', 'slowbro', 'kangaskhan', 'pinsir', 'gyarados', 'aerodactyl',
+	'ampharos',
 	'steelix', 'scizor', 'heracross', 'houndoom', 'tyranitar', 'sceptile',
 	'blaziken', 'swampert', 'gardevoir', 'sableye', 'mawile', 'aggron',
 	'medicham', 'manectric', 'sharpedo', 'camerupt', 'altaria', 'banette',
@@ -138,14 +142,23 @@ t.archeo = {'kyogre', 'groudon'}
 -- Tabella contenente i Pokémon che hanno una forma di Alola:
 -- per efficienza, alcuni sono alla fine del modulo
 
-t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'diglett', 'persian',
-	'geodude', 'grimer', 'exeggutor', 'marowak'}
+t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'diglett', 'meowth',
+	'persian', 'geodude', 'grimer', 'exeggutor', 'marowak'}
 
 -- Tabella contenente i Pokémon che hanno una forma di Galar:
 -- per efficienza, alcuni sono alla fine del modulo
 
-t.galar = {'ponyta', 'slowpoke', "farfetch'd", 'weezing', 'mr. mime',
+t.galar = {'meowth', 'ponyta', 'slowpoke', "farfetch'd", 'weezing', 'mr. mime',
 	'slowking', 'corsola', 'zigzagoon', 'darumaka', 'yamask', 'stunfisk'}
+
+-- Table with Pokémon with a Gigamax
+
+t.gigamax = {'venusaur', 'charizard', 'blastoise', 'butterfree', 'meowth',
+	'machamp', 'gengar', 'kingler', 'lapras', 'eevee', 'snorlax', 'garbodor',
+	'melmetal', 'rillaboom', 'cinderace', 'inteleon', 'corviknight', 'orbeetle',
+	'drednaw', 'coalossal', 'flapple', 'appletun', 'sandaconda', 'centiskorch',
+	'hatterene', 'grimmsnarl', 'alcremie', 'copperajah', 'duraludon'}
+
 
 --[[
 
@@ -156,9 +169,8 @@ Alternative forms names. Keys are the abbr.
 t.pikachu.names = {Cs = 'Pikachu Cosplay', R = 'Pikachu rockstar',
 	D = 'Pikachu damigella', Cn = 'Pikachu confetto',
 	S = 'Pikachu scienziata', W = 'Pikachu wrestler', Cm = 'Compagno',
-	base = ''}
-t.meowth.names = {A = 'Forma di Alola', G = 'Forma di Galar', base = ''}
-t.slowbro.names = {M = 'MegaSlowbro', G = 'Forma di Galar', base = ''}
+	Gi = 'Pikachu Gigamax', base = ''}
+t.slowbro.names = {G = 'Forma di Galar', base = ''}
 t.eevee.names = {Cm = 'Compagno', base = ''}
 t.castform.names = {S = 'Forma Sole', P = 'Forma Pioggia',
 	N = 'Forma Nuvola di Neve', base = 'Forma Castform'}
@@ -200,36 +212,53 @@ t.silvally.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante'
 t.minior.names = {R = 'Forma Nucleo', base = 'Forma Meteora'}
 t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = "Necrozma Ali dell'Aurora",
 	U = 'UltraNecrozma', base = ''}
-t.toxtricity.names = {B = 'Forma Basso', base = 'Forma Melodia'}
+t.toxtricity.names = {B = 'Forma Basso', Gi = "Toxtricity Gigamax", base = 'Forma Melodia'}
+t.alcremie.names = {base = "Lattevaniglia Bonbonfragola"}
 t.eiscue.names = {L = "Liquefaccia", base = "Gelofaccia"}
 t.indeedee.names = t.meowstic.names
 t.morpeko.names = {V = 'Motivo Panciavuota', base = 'Motivo Panciapiena'}
 t.zacian.names = {R = 'Re delle Spade', base = 'Eroe di Mille Lotte'}
 t.zamazenta.names = {R = 'Re degli Scudi', base = 'Eroe di Mille Lotte'}
 t.eternatus.names = {D = 'Dynamax Infinito', base = ''}
-t.urshifu.names = {P = 'Stile Pluricolpo', base = 'Stile Singolcolpo'}
+t.urshifu.names = {P = 'Stile Pluricolpo', Gi = 'Urshifu Gigamax (Stile Singolcolpo)',
+	PGi = 'Urshifu Gigamax (Stile Pluricolpo)', base = 'Stile Singolcolpo'}
 for _, v in pairs(t.mega) do
-	local fu = string.fu(v)
-	t[v] = {}
-	t[v].names = {M = 'Mega' .. fu, base = ''}
+	if not t[v] then
+		t[v] = { names = {base = ''} }
+	end
+	t[v].names.M = 'Mega' .. string.fu(v)
 end
 for _, v in pairs(t.megaxy) do
+	if not t[v] then
+		t[v] = { names = {base = ''} }
+	end
 	local fu = string.fu(v)
-	t[v] = {}
-	t[v].names = {MX = table.concat{'Mega', fu, ' X'},
-		MY = table.concat{'Mega', fu, ' Y'}, base = ''}
+	t[v].names.MX = table.concat{'Mega', fu, ' X'}
+	t[v].names.MY = table.concat{'Mega', fu, ' Y'}
 end
 for _, v in pairs(t.archeo) do
-	t[v] = {}
-	t[v].names = {A = 'Archeorisveglio', base = ''}
+	if not t[v] then
+		t[v] = { names = {base = ''} }
+	end
+	t[v].names.A = 'Archeorisveglio'
 end
 for _, v in pairs(t.alola) do
-	t[v] = {}
-	t[v].names = {A = 'Forma di Alola', base = ''}
+	if not t[v] then
+		t[v] = { names = {base = ''} }
+	end
+	t[v].names.A = 'Forma di Alola'
 end
 for _, v in pairs(t.galar) do
-	t[v] = {}
-	t[v].names = {G = 'Forma di Galar', base = ''}
+	if not t[v] then
+		t[v] = { names = {base = ''} }
+	end
+	t[v].names.G = 'Forma di Galar'
+end
+for _, v in pairs(t.gigamax) do
+	if not t[v] then
+		t[v] = { names = {base = ''} }
+	end
+	t[v].names.Gi = string.fu(v) .. " Gigamax"
 end
 
 -- Anchor per i link alle forme alternative,
@@ -258,9 +287,10 @@ makeLinks(true)
 -- Table to map extended names to abbrs
 
 t.pikachu.ext = {cosplay = 'Cs', rockstar = 'R', damigella = 'D',
-	confetto = 'Cn', scienziata = 'S', wrestler = 'W', compagno = 'Cm'}
-t.meowth.ext = {alola = 'A', galar = 'G'}
-t.slowbro.ext = {galar = 'G', mega = 'M'}
+	confetto = 'Cn', scienziata = 'S', wrestler = 'W', compagno = 'Cm',
+	gigamax = 'Gi'}
+-- t.meowth.ext = {alola = 'A', galar = 'G'}
+-- t.slowbro.ext = {galar = 'G', mega = 'M'}
 t.eevee.ext = {compagno = 'Cm'}
 t.castform.ext = {sole = 'S', pioggia = 'P', neve = 'N'}
 t.deoxys.ext = {attacco = 'A', difesa = 'D', ['velocità'] = 'V'}
@@ -293,28 +323,39 @@ t.silvally.ext = mw.clone(t.arceus.ext)
 t.silvally.ext.sconosciuto = nil
 t.minior.ext = {nucleo = 'R', meteora = 'base'}
 t.necrozma.ext = {vespro = 'V', aurora = 'A', ultra = 'U', necrozma = 'base'}
-t.toxtricity.ext = {basso = 'B', melodia = 'base'}
+t.toxtricity.ext = {basso = 'B', gigamax = 'Gi', melodia = 'base'}
+t.alcremie.ext = {lattevaniglia = 'base'}
 t.eiscue.ext = {liquefaccia = 'L', gelofaccia = 'base'}
 t.indeedee.ext = t.meowstic.ext
 t.morpeko.ext = {panciavuota = 'V', panciapiena = 'base'}
 t.zacian.ext = {eroe = 'base', re = 'R'}
 t.zamazenta.ext = t.zacian.ext
 t.eternatus.ext = {dynamax = 'D'}
-t.urshifu.ext = {pluricolpo = 'P', singolcolpo = 'base'}
+t.urshifu.ext = {pluricolpo = 'P', gigamax = "Gi", singolcolpo = 'base'}
 for _, v in pairs(t.mega) do
-	t[v].ext = {mega = 'M'}
+	t[v].ext = t[v].ext or {}
+	t[v].ext.mega = 'M'
 end
 for _, v in pairs(t.megaxy) do
-	t[v].ext = {megax = 'MX', megay = 'MY'}
+	t[v].ext = t[v].ext or {}
+	t[v].ext.megax = 'MX'
+	t[v].ext.megay = 'MY'
 end
 for _, v in pairs(t.archeo) do
-	t[v].ext = {archeo = 'A'}
+	t[v].ext = t[v].ext or {}
+	t[v].ext.archeo = 'A'
 end
 for _, v in pairs(t.alola) do
-	t[v].ext = {alola = 'A'}
+	t[v].ext = t[v].ext or {}
+	t[v].ext.alola = 'A'
 end
 for _, v in pairs(t.galar) do
-	t[v].ext = {galar = 'G'}
+	t[v].ext = t[v].ext or {}
+	t[v].ext.galar = 'G'
+end
+for _, v in pairs(t.gigamax) do
+	t[v].ext = t[v].ext or {}
+	t[v].ext.gigamax = "Gi"
 end
 
 --[[
@@ -324,10 +365,14 @@ game.
 
 --]]
 
-t.pikachu.gamesOrder = {'base', 'Cs', 'R', 'D', 'Cn', 'S', 'W', 'Cm'}
-t.meowth.gamesOrder = {'base', 'A', 'G'}
+t.venusaur.gamesOrder = {'base', 'M', 'Gi'}
+t.charizard.gamesOrder = {'base', 'MX', 'MY', 'Gi'}
+t.blastoise.gamesOrder = {'base', 'M', 'Gi'}
+t.pikachu.gamesOrder = {'base', 'Cs', 'R', 'D', 'Cn', 'S', 'W', 'Cm', 'Gi'}
+t.meowth.gamesOrder = {'base', 'A', 'G', 'Gi'}
+t.gengar.gamesOrder = {'base', 'M', 'Gi'}
 t.slowbro.gamesOrder = {'base', 'M', 'G'}
-t.eevee.gamesOrder = {'base', 'Cm'}
+t.eevee.gamesOrder = {'base', 'Cm', 'Gi'}
 t.castform.gamesOrder = {'base', 'S', 'P', 'N'}
 t.deoxys.gamesOrder = {'base', 'A', 'D', 'V'}
 t.wormadam.gamesOrder = {'base', 'Sa', 'Sc'}
@@ -353,29 +398,32 @@ t.wishiwashi.gamesOrder = {'base', 'B'}
 t.silvally.gamesOrder = mw.clone(t.arceus.gamesOrder)
 t.minior.gamesOrder = {'base', 'R'}
 t.necrozma.gamesOrder = {'base', 'V', 'A', 'U'}
-t.toxtricity.gamesOrder = {'base', 'B'}
+t.toxtricity.gamesOrder = {'base', 'B', 'Gi'}
 t.eiscue.gamesOrder = {'base', 'L'}
 t.indeedee.gamesOrder = t.meowstic.gamesOrder
 t.morpeko.gamesOrder = {'base', 'V'}
 t.zacian.gamesOrder = {'base', 'R'}
 t.zamazenta.gamesOrder = t.zacian.gamesOrder
 t.eternatus.gamesOrder = {'base', 'D'}
-t.urshifu.gamesOrder = {'base', 'P'}
+t.urshifu.gamesOrder = {'base', 'Gi', 'P', 'PGi'}
 table.remove(t.silvally.gamesOrder)
 for _, v in pairs(t.mega) do
-	t[v].gamesOrder = {'base', 'M'}
+	t[v].gamesOrder = t[v].gamesOrder or {'base', 'M'}
 end
 for _, v in pairs(t.megaxy) do
-	t[v].gamesOrder = {'base', 'MX', 'MY'}
+	t[v].gamesOrder = t[v].gamesOrder or {'base', 'MX', 'MY'}
 end
 for _, v in pairs(t.archeo) do
-	t[v].gamesOrder = {'base', 'A'}
+	t[v].gamesOrder = t[v].gamesOrder or {'base', 'A'}
 end
 for _, v in pairs(t.alola) do
-	t[v].gamesOrder = {'base', 'A'}
+	t[v].gamesOrder = t[v].gamesOrder or {'base', 'A'}
 end
 for _, v in pairs(t.galar) do
-	t[v].gamesOrder = {'base', 'G'}
+	t[v].gamesOrder = t[v].gamesOrder or {'base', 'G'}
+end
+for _, v in pairs(t.gigamax) do
+	t[v].gamesOrder = t[v].gamesOrder or {"base", "Gi"}
 end
 
 --[[
@@ -414,12 +462,13 @@ Oldest game in which each form, included base form, appears.
 
 t.rattata.since = {A = 'sl', base = 'rb'}
 t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
-	Cn = 'roza', S = 'roza', W = 'roza', Cm = 'lgpe', base = 'rb'}
+	Cn = 'roza', S = 'roza', W = 'roza', Cm = 'lgpe',
+	Gi = 'spsc', base = 'rb'}
 t.raichu.since = {A = 'sl', base = 'rb'}
 t.sandshrew.since = {A = 'sl', base = 'rb'}
 t.vulpix.since = {A = 'sl', base = 'rb'}
 t.diglett.since = {A = 'sl', base = 'rb'}
-t.meowth.since = {A = 'sl', G = 'spsc', base = 'rb'}
+t.meowth.since = {A = 'sl', G = 'spsc', Gi = 'spsc', base = 'rb'}
 t.persian.since = {A = 'sl', base = 'rb'}
 t.geodude.since = {A = 'sl', base = 'rb'}
 t.ponyta.since = {G = 'spsc', base = 'rb'}
@@ -431,7 +480,7 @@ t.exeggutor.since = {A = 'sl', base = 'rb'}
 t.marowak.since = {A = 'sl', base = 'rb'}
 t.weezing.since = {G = 'spsc', base = 'rb'}
 t['mr. mime'].since = {G = 'spsc', base = 'rb'}
-t.eevee.since = {Cm = 'lgpe', base = 'rb'}
+t.eevee.since = {Cm = 'lgpe', Gi = 'spsc', base = 'rb'}
 t.slowking.since = {G = 'spsc', base = 'oa'}
 t.corsola.since = {G = 'spsc', base = 'rz'}
 t.zigzagoon.since = {G = 'spsc', base = 'rz'}
@@ -466,20 +515,20 @@ t.silvally.since = {base = 'sl', L = 'sl', Vo = 'sl', Ve = 'sl', T = 'sl',
 	Ai = 'sl', Fu = 'sl', D = 'sl', Fo = 'sl', El = 'sl', G = 'sl'}
 t.minior.since = {base = 'sl', R = 'sl'}
 t.necrozma.since = {base = 'sl', V = 'usul', A = 'usul', U = 'usul'}
-t.toxtricity.since = {B = 'spsc', base = 'spsc'}
+t.toxtricity.since = {B = 'spsc', Gi = 'spsc', base = 'spsc'}
 t.eiscue.since = {L = 'spsc', base = 'spsc'}
 t.indeedee.since = {F = 'spsc', base = 'spsc'}
 t.morpeko.since = {base = 'spsc', V = 'spsc'}
 t.zacian.since = {R = 'spsc', base = 'spsc'}
 t.zamazenta.since = {R = 'spsc', base = 'spsc'}
 t.eternatus.since = {D = 'spsc', base = 'spsc'}
-t.urshifu.since = {P = 'spsc', base = 'spsc'}
-t.venusaur.since = {M = 'xy', base = 'rb'}
-t.blastoise.since = {M = 'xy', base = 'rb'}
+t.urshifu.since = {P = 'spsc', Gi = 'spsc', PGi = 'spsc', base = 'spsc'}
+t.venusaur.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
+t.blastoise.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
 t.beedrill.since = {M = 'roza', base = 'rb'}
 t.pidgeot.since = {M = 'roza', base = 'rb'}
 t.alakazam.since = {M = 'xy', base = 'rb'}
-t.gengar.since = {M = 'xy', base = 'rb'}
+t.gengar.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
 t.kangaskhan.since = {M = 'xy', base = 'rb'}
 t.pinsir.since = {M = 'xy', base = 'rb'}
 t.gyarados.since = {M = 'xy', base = 'rb'}
@@ -517,10 +566,33 @@ t.abomasnow.since = {M = 'xy', base = 'dp'}
 t.gallade.since = {M = 'roza', base = 'rz'}
 t.audino.since = {M = 'roza', base = 'nb'}
 t.diancie.since = {M = 'roza', base = 'xy'}
-t.charizard.since = {MX = 'xy', MY = 'xy', base = 'rb'}
+t.charizard.since = {MX = 'xy', MY = 'xy', Gi = 'spsc', base = 'rb'}
 t.mewtwo.since = {MX = 'xy', MY = 'xy', base = 'rb'}
 t.groudon.since = {A = 'roza', base = 'rz'}
 t.kyogre.since = {A = 'roza', base = 'rz'}
+t.butterfree.since = {base = 'rb', Gi = 'spsc'}
+t.machamp.since = {base = 'rb', Gi = 'spsc'}
+t.kingler.since = {base = 'rb', Gi = 'spsc'}
+t.lapras.since = {base = 'rb', Gi = 'spsc'}
+t.snorlax.since = {base = 'rb', Gi = 'spsc'}
+t.garbodor.since = {base = 'nb', Gi = 'spsc'}
+t.melmetal.since = {base = 'lgpe', Gi = 'spsc'}
+t.rillaboom.since = {base = 'spsc', Gi = 'spsc'}
+t.cinderace.since = {base = 'spsc', Gi = 'spsc'}
+t.inteleon.since = {base = 'spsc', Gi = 'spsc'}
+t.corviknight.since = {base = 'spsc', Gi = 'spsc'}
+t.orbeetle.since = {base = 'spsc', Gi = 'spsc'}
+t.drednaw.since = {base = 'spsc', Gi = 'spsc'}
+t.coalossal.since = {base = 'spsc', Gi = 'spsc'}
+t.flapple.since = {base = 'spsc', Gi = 'spsc'}
+t.appletun.since = {base = 'spsc', Gi = 'spsc'}
+t.sandaconda.since = {base = 'spsc', Gi = 'spsc'}
+t.centiskorch.since = {base = 'spsc', Gi = 'spsc'}
+t.hatterene.since = {base = 'spsc', Gi = 'spsc'}
+t.grimmsnarl.since = {base = 'spsc', Gi = 'spsc'}
+t.alcremie.since = {base = 'spsc', Gi = 'spsc'}
+t.copperajah.since = {base = 'spsc', Gi = 'spsc'}
+t.duraludon.since = {base = 'spsc', Gi = 'spsc'}
 
 --[[
 
@@ -546,13 +618,17 @@ table.insert(t.alola, 'golem')
 table.insert(t.alola, 'muk')
 
 -- Other Galar forms
-table.insert(t.galar, 'meowth')
 table.insert(t.galar, 'rapidash')
 table.insert(t.galar, 'slowbro')
 table.insert(t.galar, 'linoone')
 
 -- Insert Slowbro between megas
-table.insert(t.mega, 'slowbro')
+-- table.insert(t.mega, 'slowbro')
+
+-- Other Gigamax forms
+table.insert(t.gigamax, 'pikachu')
+table.insert(t.gigamax, 'toxtricity')
+table.insert(t.gigamax, 'urshifu')
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 t.raticate = t.rattata
@@ -628,6 +704,7 @@ t[773] = t.silvally
 t[774] = t.minior
 t[800] = t.necrozma
 t[849] = t.toxtricity
+t[869] = t.alcremie
 t[875] = t.eiscue
 t[876] = t.indeedee
 t[877] = t.morpeko
@@ -681,5 +758,29 @@ t[6] = t.charizard
 t[150] = t.mewtwo
 t[382] = t.kyogre
 t[383] = t.groudon
+t[12] = t.butterfree
+t[68] = t.machamp
+t[99] = t.kingler
+t[131] = t.lapras
+t[143] = t.snorlax
+t[569] = t.garbodor
+t[809] = t.melmetal
+t[812] = t.rillaboom
+t[815] = t.cinderace
+t[818] = t.inteleon
+t[823] = t.corviknight
+t[826] = t.orbeetle
+t[834] = t.drednaw
+t[839] = t.coalossal
+t[841] = t.flapple
+t[842] = t.appletun
+t[844] = t.sandaconda
+t[849] = t.toxtricity
+t[851] = t.centiskorch
+t[858] = t.hatterene
+t[861] = t.grimmsnarl
+t[869] = t.alcremie
+t[879] = t.copperajah
+t[884] = t.duraludon
 
 return t

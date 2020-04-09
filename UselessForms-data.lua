@@ -8,22 +8,6 @@ local t = {}
 local txt = require('Wikilib-strings') -- luacheck: no unused
 local tab = require('Wikilib-tables') -- luacheck: no unused
 
--- Creates link to alternative forms in list pointing to target instead of
--- "Differenze di forma"
-local makeTargetedLink = function(linkstr, index, target, list)
-	linkstr = linkstr:gsub('Differenze di forma', target)
-	for _, poke in pairs(list) do
-		t[poke][index] = table.map(t[poke].names, function(formName)
-			return formName == ''
-				   and ''
-				   or string.interp(linkstr, {
-					anchor = t[poke].anchor or string.fu(poke),
-					formName = formName
-			})
-		end)
-	end
-end
-
 -- Creates links to alternative forms
 local makeLinks = function(black)
 	local link = black
@@ -31,12 +15,7 @@ local makeLinks = function(black)
 			or '<div class="small-text">[[Differenze di forma#${anchor}|${formName}]]</div>'
 	local index = black and 'blacklinks' or 'links'
 
-	local stdLinks = table.filter(t, function(_, key)
-		return not table.search({'gigamax'}, key)
-				and not table.search(t.gigamax, key)
-	end)
-
-	for name, poke in pairs(stdLinks) do
+	for name, poke in pairs(t) do
 		poke[index] = table.map(poke.names, function(formName)
 			return formName == ''
 				   and ''
@@ -46,9 +25,6 @@ local makeLinks = function(black)
 			})
 		end)
 	end
-
-	-- Link of forms with a dedicated page instead of "Differenze di forma"
-	makeTargetedLink(link, index, 'Gigamax', t.gigamax)
 end
 
 --[[
@@ -79,15 +55,6 @@ t.mimikyu = {}
 t.cramorant = {}
 t.sinistea = {}
 t.alcremie = {}
-t.urshifu = {}
-
--- Table with Pokémon with a Gigamax
-
-t.gigamax = {'venusaur', 'charizard', 'blastoise', 'butterfree', 'meowth',
-	'machamp', 'gengar', 'kingler', 'lapras', 'eevee', 'snorlax', 'garbodor',
-	'melmetal', 'rillaboom', 'cinderace', 'inteleon', 'corviknight', 'orbeetle',
-	'drednaw', 'coalossal', 'flapple', 'appletun', 'sandaconda', 'toxtricity',
-	'centiskorch', 'hatterene', 'grimmsnarl', 'copperajah', 'duraludon'}
 
 --[[
 
@@ -98,7 +65,7 @@ Alternative forms names. Keys are the abbr.
 t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
 	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
 	K = 'Berretto Kalos', A = 'Berretto Alola',
-	Co = 'Berretto Compagni', Gi = 'Pikachu Gigamax', base = ''}
+	Co = 'Berretto Compagni', base = ''}
 t.pichu.names = {S = 'Pichu Spunzorek', base = ''}
 t.unown.names = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
@@ -136,16 +103,23 @@ t.minior.names = {R = 'Nucleo Rosso', Ar = 'Nucleo Arancione',
 	I = 'Nucleo Indaco', Vi = 'Nucleo Violetto', base = 'Forma Meteora'}
 t.cramorant.names = {T = "Forma Inghiottitutto", I = "Forma Inghiottintero", base = ""}
 t.sinistea.names = {base = "Forma Contraffatta", A = "Forma Autentica"}
-t.alcremie.names = {base = "Lattevaniglia", R = "Latterosa", Ma = "Lattematcha",
-	Me = "Lattementa", L = "Lattelimone", S = "Lattesale", Rm = "Rosamix",
-	Cm = "Caramelmix", Tm = "Triplomix", Gi = "Alcremie Gigamax"}
-t.urshifu.names = {Gi = "Urshifu Gigamax (Stile Singolcolpo)", PGi = "Urshifu Gigamax (Stile Pluricolpo)", base = "Stile Singolcolpo"}
-for _, v in pairs(t.gigamax) do
-	t[v] = {}
-	t[v].names = {Gi = string.fu(v) .. " Gigamax", base = ""}
+-- Alcremie is quite molesto in **** (censored for the sake of poor childen who browse our site)
+do
+	local flavours = {Lv = "Lattevaniglia", R = "Latterosa", Ma = "Lattematcha",
+		Me = "Lattementa", L = "Lattelimone", S = "Lattesale", Rm = "Rosamix",
+		Cm = "Caramelmix", Tm = "Triplomix"}
+	local decorations = {Fa = "Bonbonfragola", C = "Bonboncuore",
+		B = "Bonbonbosco", Fo = "Bonbonfoglio", Fe = "Bonbonfiore",
+		S = "Bonbonstella", Fc = "Bonbonfiocco"}
+
+	t.alcremie.names = {base = "Lattevaniglia Bonbonfragola"}
+	for flav, flavname in pairs(flavours) do
+		for dec, decname in pairs(decorations) do
+			t.alcremie.names[flav .. dec] = table.concat{flavname, " ", decname}
+		end
+	end
+	t.alcremie.names["LvFa"] = nil
 end
--- Here to overwirte the loop
-t.toxtricity.names.base = "Forma Melodia"
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
@@ -166,7 +140,7 @@ makeLinks(true)
 -- Table to map extended names to abbrs
 
 t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
-	unima = 'U', kalos = 'K', alola = 'A', compagni = 'Co', gigamax = 'Gi'}
+	unima = 'U', kalos = 'K', alola = 'A', compagni = 'Co'}
 t.pichu.ext = {spunzorek = 'S'}
 t.unown.ext = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
@@ -200,11 +174,7 @@ t.cramorant.ext = {inghiottitutto = 'T', inghiottintero = 'I'}
 t.sinistea.ext = {}
 t.alcremie.ext = {lattevaniglia = 'base', latterosa = 'R', lattematcha = 'Ma',
 	lattementa = 'Me', lattelimone = 'L', lattesale = 'S', rosamix = 'Rm',
-	caramelmix = 'Cm', triplomix = 'Tm', gigamax = 'Gi'}
-t.urshifu.ext = {gigamax = "Gi"}
-for _, v in pairs(t.gigamax) do
-	t[v].ext = {gigamax = "Gi"}
-end
+	caramelmix = 'Cm', triplomix = 'Tm'}
 
 --[[
 
@@ -236,11 +206,7 @@ t.minior.gamesOrder = {'base', 'R', 'Ar', 'G', 'Ve', 'Az', 'I', 'Vi'}
 t.mimikyu.gamesOrder = {'base', 'S'}
 t.cramorant.gamesOrder = {'base', 'T', 'I'}
 t.sinistea.gamesOrder = {'base', 'A'}
-t.alcremie.gamesOrder = {'base', 'R', 'Ma', 'Me', 'L', 'S', 'Rm', 'Cm', 'Tm' , 'Gi'}
-t.urshifu.gamesOrder = {"base", "Gi", "GiP"}
-for _, v in pairs(t.gigamax) do
-	t[v].gamesOrder = {"base", "Gi"}
-end
+-- Alcremie's gamesOrder is filled below, with since
 
 --[[
 
@@ -248,19 +214,8 @@ Oldest game in which each form, included base form, appears.
 
 --]]
 
-t.venusaur.since = {base = 'rb', Gi = 'spsc'}
-t.charizard.since = {base = 'rb', Gi = 'spsc'}
-t.blastoise.since = {base = 'rb', Gi = 'spsc'}
-t.butterfree.since = {base = 'rb', Gi = 'spsc'}
 t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
-	K = 'sl', A = 'sl', Co = 'usul', Gi = 'spsc', base = 'rb'}
-t.meowth.since = {base = 'rb', Gi = 'spsc'}
-t.machamp.since = {base = 'rb', Gi = 'spsc'}
-t.gengar.since = {base = 'rb', Gi = 'spsc'}
-t.kingler.since = {base = 'rb', Gi = 'spsc'}
-t.lapras.since = {base = 'rb', Gi = 'spsc'}
-t.eevee.since = {base = 'rb', Gi = 'spsc'}
-t.snorlax.since = {base = 'rb', Gi = 'spsc'}
+	K = 'sl', A = 'sl', Co = 'usul', base = 'rb'}
 t.pichu.since = {S = 'hgss', base = 'oa'}
 t.unown.since = {base = 'oa', B = 'oa', C = 'oa', D = 'oa', E = 'oa', F = 'oa',
 	G = 'oa', H = 'oa', I = 'oa', J = 'oa', K = 'oa', L = 'oa', M = 'oa', N = 'oa',
@@ -270,7 +225,6 @@ t.burmy.since = {Sa = 'dp', Sc = 'dp', base = 'dp'}
 t.cherrim.since = {S = 'dp', base = 'dp'}
 t.shellos.since = {E = 'dp', base = 'dp'}
 t.unfezant.since = {F = 'nb', base = 'nb'}
-t.garbodor.since = {base = 'nb', Gi = 'spsc'}
 t.deerling.since = {E = 'nb', A = 'nb', I = 'nb', base = 'nb'}
 t.frillish.since = t.unfezant.since
 t.keldeo.since = {R = 'n2b2', base = 'nb'}
@@ -287,28 +241,25 @@ t.xerneas.since = {A = 'xy', base = 'xy'}
 t.minior.since = {base = 'sl', R = 'sl', Ar = 'sl', G = 'sl', Ve = 'sl',
 	Az = 'sl', I = 'sl', Vi = 'sl'}
 t.mimikyu.since = {base = 'sl', S = 'sl'}
-t.melmetal.since = {base = 'lgpe', Gi = 'spsc'}
-t.rillaboom.since = {base = 'spsc', Gi = 'spsc'}
-t.cinderace.since = {base = 'spsc', Gi = 'spsc'}
-t.inteleon.since = {base = 'spsc', Gi = 'spsc'}
-t.corviknight.since = {base = 'spsc', Gi = 'spsc'}
-t.orbeetle.since = {base = 'spsc', Gi = 'spsc'}
-t.drednaw.since = {base = 'spsc', Gi = 'spsc'}
-t.coalossal.since = {base = 'spsc', Gi = 'spsc'}
-t.flapple.since = {base = 'spsc', Gi = 'spsc'}
-t.appletun.since = {base = 'spsc', Gi = 'spsc'}
-t.sandaconda.since = {base = 'spsc', Gi = 'spsc'}
 t.cramorant.since = {T = 'spsc', I = 'spsc', base = 'spsc'}
-t.toxtricity.since = {base = 'spsc', Gi = 'spsc'}
-t.centiskorch.since = {base = 'spsc', Gi = 'spsc'}
 t.sinistea.since = {base = 'spsc', A = 'spsc'}
-t.hatterene.since = {base = 'spsc', Gi = 'spsc'}
-t.grimmsnarl.since = {base = 'spsc', Gi = 'spsc'}
-t.alcremie.since = {base = 'spsc', R = 'spsc', Ma = 'spsc', Me = 'spsc',
-	L = 'spsc', S = 'spsc', Rm = 'spsc', Cm = 'spsc', Tm = 'spsc', Gi = 'spsc'}
-t.copperajah.since = {base = 'spsc', Gi = 'spsc'}
-t.duraludon.since = {base = 'spsc', Gi = 'spsc'}
-t.urshifu.since = {base = 'spsc', Gi = 'spsc', PGi = 'spsc'}
+-- Alcremie is quite molesto in **** pt. 2
+do
+	local flavours = {'Lv', 'R', 'Ma', 'Me', 'L', 'S', 'Rm', 'Cm', 'Tm'}
+	local decorations = {"Fa", "C", "B", "Fo", "Fe", "S", "Fc"}
+
+	t.alcremie.gamesOrder = {}
+	t.alcremie.since = {base = "spsc"}
+	for _, flav in ipairs(flavours) do
+		for _, dec in ipairs(decorations) do
+			local abbr = table.concat{flav, dec}
+			table.insert(t.alcremie.gamesOrder, abbr)
+			t.alcremie.since[abbr] = "spsc"
+		end
+	end
+	t.alcremie.gamesOrder[1] = "base"
+	t.alcremie.since["LvFa"] = nil
+end
 
 --[[
 
@@ -320,30 +271,13 @@ not present defaults to latest games.
 
 t.pichu['until'] = {S = 'hgss'}
 
--- Other Gigamax forms
-table.insert(t.gigamax, 'pikachu')
-table.insert(t.gigamax, 'toxtricity')
-table.insert(t.gigamax, 'alcremie')
-table.insert(t.gigamax, 'urshifu')
-
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 t.gastrodon = t.shellos
 t.sawsbuck = t.deerling
 t.jellicent = t.frillish
 t['flabébé'], t.florges = t.floette, t.floette
 t.polteageist = t.sinistea
-t[3] = t.venusaur
-t[6] = t.charizard
-t[9] = t.blastoise
-t[12] = t.butterfree
 t[25] = t.pikachu
-t[52] = t.meowth
-t[68] = t.machamp
-t[94] = t.gengar
-t[99] = t.kingler
-t[131] = t.lapras
-t[133] = t.eevee
-t[143] = t.snorlax
 t[172] = t.pichu
 t[201] = t.unown
 t[412] = t.burmy
@@ -351,7 +285,6 @@ t[421] = t.cherrim
 t[422] = t.shellos
 t[423] = t.gastrodon
 t[521] = t.unfezant
-t[569] = t.garbodor
 t[585] = t.deerling
 t[586] = t.sawsbuck
 t[592] = t.frillish
@@ -367,26 +300,9 @@ t[676] = t.furfrou
 t[716] = t.xerneas
 t[774] = t.minior
 t[778] = t.mimikyu
-t[809] = t.melmetal
-t[812] = t.rillaboom
-t[815] = t.cinderace
-t[818] = t.inteleon
-t[823] = t.corviknight
-t[826] = t.orbeetle
-t[834] = t.drednaw
-t[839] = t.coalossal
-t[841] = t.flapple
-t[842] = t.appletun
-t[844] = t.sandaconda
 t[845] = t.cramorant
-t[849] = t.toxtricity
-t[851] = t.centiskorch
 t[854] = t.sinistea
 t[855] = t.polteageist
-t[858] = t.hatterene
-t[861] = t.grimmsnarl
 t[869] = t.alcremie
-t[879] = t.copperajah
-t[884] = t.duraludon
 
 return t

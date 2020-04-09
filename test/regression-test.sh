@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COMMIT="HEAD"
+COMMIT="HEAD~1"
 PFLAG=false
 BASEDIR=""
 

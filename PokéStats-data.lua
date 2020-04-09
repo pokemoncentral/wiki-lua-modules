@@ -2092,5 +2092,39 @@ d['849B'] = d.toxtricityB
 d.morpekoV = d.morpeko
 d['877V'] = d.morpekoV
 
+-- Gigamax
+d.venusaurGi, d['003Gi'] = d.venusaur, d.venusaur
+d.charizardGi, d['006Gi'] = d.charizard, d.charizard
+d.blastoiseGi, d['009Gi'] = d.blastoise, d.blastoise
+d.butterfreeGi, d['012Gi'] = d.butterfree, d.butterfree
+d.pikachuGi, d['025Gi'] = d.pikachu, d.pikachu
+d.meowthGi, d['052Gi'] = d.meowth, d.meowth
+d.machampGi, d['068Gi'] = d.machamp, d.machamp
+d.gengarGi, d['094Gi'] = d.gengar, d.gengar
+d.kinglerGi, d['099Gi'] = d.kingler, d.kingler
+d.laprasGi, d['131Gi'] = d.lapras, d.lapras
+d.eeveeGi, d['133Gi'] = d.eevee, d.eevee
+d.snorlaxGi, d['143Gi'] = d.snorlax, d.snorlax
+d.garbodorGi, d['569Gi'] = d.garbodor, d.garbodor
+d.melmetalGi, d['809Gi'] = d.melmetal, d.melmetal
+d.rillaboomGi, d['812Gi'] = d.rillaboom, d.rillaboom
+d.cinderaceGi, d['815Gi'] = d.cinderace, d.cinderace
+d.inteleonGi, d['818Gi'] = d.inteleon, d.inteleon
+d.corviknightGi, d['823Gi'] = d.corviknight, d.corviknight
+d.orbeetleGi, d['826Gi'] = d.orbeetle, d.orbeetle
+d.drednawGi, d['834Gi'] = d.drednaw, d.drednaw
+d.coalossalGi, d['839Gi'] = d.coalossal, d.coalossal
+d.flappleGi, d['841Gi'] = d.flapple, d.flapple
+d.appletunGi, d['842Gi'] = d.appletun, d.appletun
+d.sandacondaGi, d['844Gi'] = d.sandaconda, d.sandaconda
+d.toxtricityGi, d['849Gi'] = d.toxtricity, d.toxtricity
+d.centiskorchGi, d['851Gi'] = d.centiskorch, d.centiskorch
+d.hattereneGi, d['858Gi'] = d.hatterene, d.hatterene
+d.grimmsnarlGi, d['861Gi'] = d.grimmsnarl, d.grimmsnarl
+d.alcremieGi, d['869Gi'] = d.alcremie, d.alcremie
+d.copperajahGi, d['879Gi'] = d.copperajah, d.copperajah
+d.duraludonGi, d['884Gi'] = d.duraludon, d.duraludon
+-- d.urshifuGi = d.urshifu
+-- d.urshifuPGi = d.urshifuP
 
 return d

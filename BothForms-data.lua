@@ -54,42 +54,23 @@ to others, thus there's aliasing at the end of the module.
 
 --]]
 
-t.venusaur = mergeByName("venusaur")
-t.charizard = mergeByName("charizard")
-t.blastoise = mergeByName("blastoise")
 t.pikachu = mergeByName("pikachu")
-t.meowth = mergeByName("meowth")
-t.gengar = mergeByName("gengar")
-t.eevee = mergeByName("eevee")
+t.alcremie = mergeByName("alcremie")
 -- The copy is needed to remove metatable that mw.loadData doesn't like
 t.minior = table.copy(useless.minior)
-t.toxtricity = mergeByName("toxtricity")
-t.urshifu = mergeByName("urshifu")
 
 -- gamesOrder can't be merged automatically because there's no way to sort
 -- abbrs
+-- Minor isn't here because the AltForms is a subset of UselesForms
 
-t.venusaur.gamesOrder = {'base', 'M', 'Gi'}
-t.charizard.gamesOrder = {'base', 'MX', 'MY', 'Gi'}
-t.blastoise.gamesOrder = {'base', 'M', 'Gi'}
 t.pikachu.gamesOrder = {'base', 'Cs', 'R', 'D', 'Cn', 'S', 'W',
     'O', 'H', 'Si', 'U', 'K', 'A', 'Co', 'Cm', 'Gi'}
-t.meowth.gamesOrder = {'base', 'A', 'G', 'Gi'}
-t.gengar.gamesOrder = {'base', 'M', 'Gi'}
-t.eevee.gamesOrder = {'base', 'Cm', 'Gi'}
-t.toxtricity.gamesOrder = {'base', 'B', 'Gi'}
-t.urshifu.gamesOrder = {'base', 'Gi', 'P', 'PGi'}
+t.alcremie.gamesOrder = table.copy(useless.alcremie.gamesOrder)
+table.insert(t.alcremie.gamesOrder, "Gi")
 
 -- Aliasing, put here to avoid needless repetitions of previous cycles.
 
-t[3] = t.venusaur
-t[6] = t.charizard
-t[9] = t.blastoise
 t[25] = t.pikachu
-t[52] = t.meowth
-t[94] = t.gengar
-t[133] = t.eevee
 t[774] = t.minior
-t[849] = t.toxtricity
 
 return t
