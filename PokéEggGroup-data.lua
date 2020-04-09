@@ -1650,7 +1650,7 @@ t.eldegoss, t[830] = t.gossifleur, t.gossifleur
 t.wooloo = {group1 = 'campo'}
 t[831] = t.wooloo
 t.dubwool, t[832] = t.wooloo, t.wooloo
-t.chewtle = {group1 = 'mostro', group2 = 'acqua 2'}
+t.chewtle = {group1 = 'mostro', group2 = 'acqua 1'}
 t[833] = t.chewtle
 t.drednaw, t[834] = t.chewtle, t.chewtle
 t.yamper = {group1 = 'campo'}
