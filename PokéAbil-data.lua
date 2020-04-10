@@ -1786,6 +1786,7 @@ t[890] = t.eternatus
 t.kubfu = {ability1 = 'Forza Interiore'}
 t.urshifu = {ability1 = 'Pugni Invisibili'}
 t.calyrex = {ability1 = 'Agitazione'}
+t.zarude = {ability1 = 'Fogliamanto'}
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio

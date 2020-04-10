@@ -737,5 +737,6 @@ t.supplicolpo = {name = 'Supplicolpo', type = 'buio', category = 'fisico', power
 t.sfolgorassalto = {name = 'Sfolgorassalto', type = 'lotta', category = 'fisico', power = 150, accuracy = 100, pp = 5, gen = 8}
 t['raggio infinito'] = {name = 'Raggio Infinito', type = 'drago', category = 'speciale', power = 160, accuracy = 90, pp = 5, gen = 8}
 t["raggio d'acciaio"] = {name = "Raggio d'Acciaio", type = 'acciaio', category = 'speciale', power = 140, accuracy = 95, pp = 5, gen = 8}
+t.giunglacura = {name = "Giunglacura", type = "erba", category = 'stato', power = '&mdash;', accuracy = "?", pp = "?", gen = 8}
 
 return t

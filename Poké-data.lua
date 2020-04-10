@@ -1792,6 +1792,8 @@ t.urshifu = {name = 'Urshifu', ndex = nil, type1 = 'lotta', type2 = 'buio'}
 -- t[] = kubfu
 t.calyrex = {name = 'Calyrex', ndex = nil, type1 = 'psico', type2 = 'erba'}
 -- t[] = kubfu
+t.zarude = {name = 'Zarude', ndex = nil, type1 = 'Buio', type2 = 'Erba'}
+-- t[] = t.zarude
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
