@@ -72,5 +72,6 @@ table.insert(t.alcremie.gamesOrder, "Gi")
 
 t[25] = t.pikachu
 t[774] = t.minior
+t[869] = t.alcremie
 
 return t
