@@ -42,11 +42,161 @@ local links = require('Links')
 local ms = require('MiniSprite')
 local hf = require('Learnlist-hf')
 local sup = require("Sup-data")
--- local pokemoves = require("PokéMoves-data")
 local pokes = require("Poké-data")
 local moves = require("Move-data")
 local gendata = require("Gens-data")
 local mtdata = require("Machines-data")
+
+-- ============================ Wikilib-learnlists ============================
+-- Here are functions previously in Wikilib-learnlists that uses PokéMoves-data
+-- Moved here to remove dependency on the data module of pages that doesn't use
+-- it specifically
+local pokemoves = require("PokéMoves-data")
+
+--[[
+
+Given something, compute breed notes, ie. "breed chain", "the parent should
+have learned the move in a previous gen" or "no parent can learn the move".
+Arguments:
+	- gen: the generation of this entry
+	- move: the name of the move
+	- parent: any parent listed in the data module
+	- basenotes (optional): notes from the data module
+	                        (ie. pokemoves[poke][kind][gen][move].notes)
+
+--]]
+l.breednotes = function(gen, move, parent, basenotes)
+	local notes = { basenotes }
+	-- To compute notes it checks only one parent because they should all be
+	-- the same for this. Otherwise the different one would be the only one
+	-- (for instance: parents that need a chain aren't listed if there are
+	-- some that doesn't)
+
+	if parent and not l.canLearn(move, parent, gen, {"breed"}) then
+		if l.learnKind(move, parent, gen, "breed") then
+			-- Parent can learn by breed but not in any other way: chain
+			table.insert(notes, 1, "catena di accoppiamenti")
+		-- In theory this second check is useless because a parent wouldn't
+		-- be listed if it doesn't learn the move, so if it doesn't in this
+		-- gen it should in a past one
+		-- elseif l.learnPreviousGen(move, parent1, gen) then
+		else
+			table.insert(notes, 1, "il padre deve aver imparato la mossa in una generazione precedente")
+		end
+	elseif not parent then
+		table.insert(notes, 1, "nessun genitore può apprendere la mossa")
+	end
+
+	return table.concat(notes, ", ")
+end
+
+-- ====================== "Decompress" PokéMoves entries ======================
+-- Decompress a level entry. A level entry is the "table" obtained picking a
+-- pokemon, generation and move from pokemoves-data
+-- (ie: pokemoves[poke].level[gen][move])
+l.decompressLevelEntry = function(entry, gen)
+	local res
+	if type(entry) == 'table' then
+		res = table.copy(entry)
+	else
+		res = { { entry } }
+	end
+	-- if type(res[1]) ~= 'table' then
+	-- 	res[1] = {res[1]}
+	-- end
+	if #res == 1 then
+		res = table.map(lib.games.level[gen], function()
+			return table.copy(res[1])
+		end)
+	end
+	return res
+end
+
+-- Get a decompressed level entry
+l.getLevelEntry = function(move, ndex, gen)
+	local pmkind = pokemoves[ndex].level
+	if not pmkind or not pmkind[gen] or not pmkind[gen][move] then
+		return nil
+	end
+	return l.decompressLevelEntry(pmkind[gen][move], gen)
+end
+
+-- ========================== Check learn functions ==========================
+--[[
+
+Given a move, an ndex, a gen and a kind check whether that Pokémon can learn
+that move in that generation in that kind. Return a true value if it can, a
+false otherwise.
+Arguments:
+	- move: name of the move
+	- ndex: name or ndex of the Pokémon
+	- gen: generation (a string)
+	- kind: kind of learnlist ("level", "tm", ...)
+
+--]]
+l.learnKind = function(move, ndex, gen, kind)
+	local pmkind = pokemoves[ndex][kind]
+	if not pmkind or not pmkind[gen] then
+		return false
+	end
+	local mdata = pmkind[gen]
+	if kind == "tm" then
+		local mlist = mdata.all and tmdata[gen] or mdata
+		-- Extra parentheses to force a single return value
+		return (table.deepSearch(mlist, move))
+	else
+		return mdata[move]
+	end
+end
+
+--[[
+
+Given a move and an ndex check whether that Pokémon can learn the given move
+in a given generation. Return a true value if it can, a false otherwise. It is
+also possible to give an array of kind that aren't considered when determining
+whether it can learn the move or not.
+Arguments:
+	- move: name of the move
+	- ndex: name or ndex of the Pokémon
+	- gen: generation
+	- excludekinds: (optional) array of kinds to exclude
+
+--]]
+l.canLearn = function(move, ndex, gen, excludekinds)
+	excludekinds = excludekinds or {}
+	return table.any(pokemoves[ndex], function(_, kind)
+		if table.search(excludekinds, kind) then
+			return false
+		end
+		return l.learnKind(move, ndex, gen, kind)
+	end)
+end
+
+--[[
+
+Check whether a a Pokémon can learn a move in a generation previous than the
+given one. If it can't returns false, otherwise the highest generation in which
+it can  learn it.
+Arguments:
+	- move: name of the move
+	- ndex: name or ndex of the Pokémon
+	- gen: the gen considered: the function controls any generation strictly
+	       lower than this.
+	- firstgen: (optional) the lowest gen to check. Defaults to 1
+
+--]]
+l.learnPreviousGen = function(move, ndex, gen, firstgen)
+	for g = gen - 1, firstgen or 1, -1 do
+		if table.any(pokemoves[ndex], function(_, kind)
+			return l.learnKind(move, ndex, g, kind)
+		end) then
+			return g
+		end
+	end
+	return false
+end
+
+-- ========================== End Wikilib-learnlists ==========================
 
 
 local STRINGS = {
@@ -143,7 +293,7 @@ l.entryLua = function(poke, gen, kind)
     local funcDict = l.dicts[kind]
 
     local res = {}
-    local pmkind = lib.pokemoves[poke][kind]
+    local pmkind = pokemoves[poke][kind]
     if pmkind and pmkind[gen] then
         res = funcDict.dataMap(pmkind[gen],
             function(v, k) return funcDict.processData(poke, gen, v, k) end)
@@ -328,7 +478,7 @@ end
 
 l.dicts.level = {
     processData = function(_, gen, levels, move)
-        levels = lib.decompressLevelEntry(levels, gen)
+        levels = l.decompressLevelEntry(levels, gen)
         -- levels = { {"inizio"}, {"inizio", "evo"} },
         local alllevels = table.unique(table.flatten(levels))
         return table.map(alllevels, function(lvl)
@@ -417,7 +567,7 @@ l.dicts.tm = {
 
 -- Added by hand to handle the special case with all tms
 l.tmLua = function(poke, gen)
-    if lib.pokemoves[poke].tm[gen].all then
+    if pokemoves[poke].tm[gen].all then
         return l.addhf(hf.alltm{args={poke, gen, "tm"}}, poke, gen, "tm")
     end
     return l.entryLua(poke, gen, "tm")
@@ -436,7 +586,7 @@ l.dicts.breed = {
         local parents = lib.moveParentsGame(movedata,
                         lib.games.breed[gen][#lib.games.breed[gen]])
 
-        local notes = movedata.notes or lib.breednotes(gen, move, parents[1])
+        local notes = movedata.notes or l.breednotes(gen, move, parents[1])
         local res = { move, parents[1] and parents or { 000 },
                       notes == "" and "" or links.tt("*", string.fu(notes))
                     }
