@@ -62,14 +62,14 @@ e.sandshrew = {hp = 0, atk = 0, def = 1, spatk = 0, spdef = 0, spe = 0}
 e[027] = e.sandshrew
 e.sandslash = {hp = 0, atk = 0, def = 2, spatk = 0, spdef = 0, spe = 0}
 e[028] = e.sandslash
-e.['nidoran♀'] = {hp = 1, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 0}
-e[029] = e.['nidoran♀']
+e['nidoran♀'] = {hp = 1, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 0}
+e[029] = e['nidoran♀']
 e.nidorina = {hp = 2, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 0}
 e[030] = e.nidorina
 e.nidoqueen = {hp = 3, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 0}
 e[031] = e.nidoqueen
-e.['nidoran♂'] = {hp = 0, atk = 1, def = 0, spatk = 0, spdef = 0, spe = 0}
-e[032] = e.['nidoran♂']
+e['nidoran♂'] = {hp = 0, atk = 1, def = 0, spatk = 0, spdef = 0, spe = 0}
+e[032] = e['nidoran♂']
 e.nidorino = {hp = 0, atk = 2, def = 0, spatk = 0, spdef = 0, spe = 0}
 e[033] = e.nidorino
 e.nidoking = {hp = 0, atk = 3, def = 0, spatk = 0, spdef = 0, spe = 0}
@@ -174,8 +174,8 @@ e.magnemite = {hp = 0, atk = 0, def = 0, spatk = 1, spdef = 0, spe = 0}
 e[081] = e.magnemite
 e.magneton = {hp = 0, atk = 0, def = 0, spatk = 2, spdef = 0, spe = 0}
 e[082] = e.magneton
-e.["farfetch'd"] = {hp = 0, atk = 1, def = 0, spatk = 0, spdef = 0, spe = 0}
-e[083] = e.["farfetch'd"]
+e["farfetch'd"] = {hp = 0, atk = 1, def = 0, spatk = 0, spdef = 0, spe = 0}
+e[083] = e["farfetch'd"]
 e.doduo = {hp = 0, atk = 1, def = 0, spatk = 0, spdef = 0, spe = 0}
 e[084] = e.doduo
 e.dodrio = {hp = 0, atk = 2, def = 0, spatk = 0, spdef = 0, spe = 0}
@@ -252,8 +252,8 @@ e.staryu = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 1}
 e[120] = e.staryu
 e.starmie = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 2}
 e[121] = e.starmie
-e.['mr. mime'] = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 2, spe = 0}
-e[122] = e.['mr. mime']
+e['mr. mime'] = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 2, spe = 0}
+e[122] = e['mr. mime']
 e.scyther = {hp = 0, atk = 1, def = 0, spatk = 0, spdef = 0, spe = 0}
 e[123] = e.scyther
 e.jynx = {hp = 0, atk = 0, def = 0, spatk = 2, spdef = 0, spe = 0}
@@ -508,8 +508,8 @@ e.tyranitar = {hp = 0, atk = 3, def = 0, spatk = 0, spdef = 0, spe = 0}
 e[248] = e.tyranitar
 e.lugia = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 3, spe = 0}
 e[249] = e.lugia
-e.['ho-oh'] = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 3, spe = 0}
-e[250] = e.['ho-oh']
+e['ho-oh'] = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 3, spe = 0}
+e[250] = e['ho-oh']
 e.celebi = {hp = 3, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 0}
 e[251] = e.celebi
 e.treecko = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 1}
@@ -896,8 +896,8 @@ e.bronzong = {hp = 0, atk = 0, def = 1, spatk = 0, spdef = 1, spe = 0}
 e[437] = e.bronzong
 e.bonsly = {hp = 0, atk = 0, def = 1, spatk = 0, spdef = 0, spe = 0}
 e[438] = e.bonsly
-e.['mime jr.'] = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 1, spe = 0}
-e[439] = e.['mime jr.']
+e['mime jr.'] = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 1, spe = 0}
+e[439] = e['mime jr.']
 e.happiny = {hp = 1, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 0}
 e[440] = e.happiny
 e.chatot = {hp = 0, atk = 1, def = 0, spatk = 0, spdef = 0, spe = 0}
@@ -966,8 +966,8 @@ e.gliscor = {hp = 0, atk = 0, def = 2, spatk = 0, spdef = 0, spe = 0}
 e[472] = e.gliscor
 e.mamoswine = {hp = 0, atk = 3, def = 0, spatk = 0, spdef = 0, spe = 0}
 e[473] = e.mamoswine
-e.['porygon-z'] = {hp = 0, atk = 0, def = 0, spatk = 3, spdef = 0, spe = 0}
-e[474] = e.['porygon-z']
+e['porygon-z'] = {hp = 0, atk = 0, def = 0, spatk = 3, spdef = 0, spe = 0}
+e[474] = e['porygon-z']
 e.gallade = {hp = 0, atk = 3, def = 0, spatk = 0, spdef = 0, spe = 0}
 e[475] = e.gallade
 e.probopass = {hp = 0, atk = 0, def = 1, spatk = 0, spdef = 2, spe = 0}
@@ -1372,8 +1372,8 @@ e.litleo = {hp = 0, atk = 0, def = 0, spatk = 1, spdef = 0, spe = 0}
 e[667] = e.litleo
 e.pyroar = {hp = 0, atk = 0, def = 0, spatk = 2, spdef = 0, spe = 0}
 e[668] = e.pyroar
-e.['flabébé'] = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 1, spe = 0}
-e[669] = e.['flabébé']
+e['flabébé'] = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 1, spe = 0}
+e[669] = e['flabébé']
 e.floette = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 2, spe = 0}
 e[670] = e.floette
 e.florges = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 3, spe = 0}
@@ -1584,8 +1584,8 @@ e.palossand = {hp = 0, atk = 0, def = 2, spatk = 0, spdef = 0, spe = 0}
 e[770] = e.palossand
 e.pyukumuku = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 2, spe = 0}
 e[771] = e.pyukumuku
-e.['tipo zero'] = {hp = 2, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 0}
-e[772] = e.['tipo zero']
+e['tipo zero'] = {hp = 2, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 0}
+e[772] = e['tipo zero']
 e.silvally = {hp = 3, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 0}
 e[773] = e.silvally
 e.minior = {hp = 0, atk = 0, def = 1, spatk = 0, spdef = 1, spe = 0}
@@ -1606,20 +1606,20 @@ e.drampa = {hp = 0, atk = 0, def = 0, spatk = 2, spdef = 0, spe = 0}
 e[780] = e.drampa
 e.dhelmise = {hp = 0, atk = 2, def = 0, spatk = 0, spdef = 0, spe = 0}
 e[781] = e.dhelmise
-e.['jangmo-o'] = {hp = 0, atk = 0, def = 1, spatk = 0, spdef = 0, spe = 0}
-e[782] = e.['jangmo-o']
-e.['hakamo-o'] = {hp = 0, atk = 0, def = 2, spatk = 0, spdef = 0, spe = 0}
-e[783] = e.['hakamo-o']
-e.['kommo-o'] = {hp = 0, atk = 0, def = 3, spatk = 0, spdef = 0, spe = 0}
-e[784] = e.['kommo-o']
-e.['tapu koko'] = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 3}
-e[785] = e.['tapu koko']
-e.['tapu lele'] = {hp = 0, atk = 0, def = 0, spatk = 3, spdef = 0, spe = 0}
-e[786] = e.['tapu lele']
-e.['tapu bulu'] = {hp = 0, atk = 3, def = 0, spatk = 0, spdef = 0, spe = 0}
-e[787] = e.['tapu bulu']
-e.['tapu fini'] = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 3, spe = 0}
-e[788] = e.['tapu fini']
+e['jangmo-o'] = {hp = 0, atk = 0, def = 1, spatk = 0, spdef = 0, spe = 0}
+e[782] = e['jangmo-o']
+e['hakamo-o'] = {hp = 0, atk = 0, def = 2, spatk = 0, spdef = 0, spe = 0}
+e[783] = e['hakamo-o']
+e['kommo-o'] = {hp = 0, atk = 0, def = 3, spatk = 0, spdef = 0, spe = 0}
+e[784] = e['kommo-o']
+e['tapu koko'] = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 3}
+e[785] = e['tapu koko']
+e['tapu lele'] = {hp = 0, atk = 0, def = 0, spatk = 3, spdef = 0, spe = 0}
+e[786] = e['tapu lele']
+e['tapu bulu'] = {hp = 0, atk = 3, def = 0, spatk = 0, spdef = 0, spe = 0}
+e[787] = e['tapu bulu']
+e['tapu fini'] = {hp = 0, atk = 0, def = 0, spatk = 0, spdef = 3, spe = 0}
+e[788] = e['tapu fini']
 e.cosmog = {hp = 1, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 0}
 e[789] = e.cosmog
 e.cosmoem = {hp = 0, atk = 0, def = 1, spatk = 0, spdef = 1, spe = 0}
@@ -1848,10 +1848,10 @@ e.vivillonGu, e['666Gu'] = e.vivillon, e.vivillon
 e.vivillonPo, e['666Po'] = e.vivillon, e.vivillon
 e.vivillonSr, e['666Sr'] = e.vivillon, e.vivillon
 e.pyroarF, e['668F'] = e.pyroar, e.pyroar
-e['flabébé']G, e['670G'] = e['flabébé'], e['flabébé']
-e['flabébé']A, e['670A'] = e['flabébé'], e['flabébé']
-e['flabébé']Bi, e['670Bi'] = e['flabébé'], e['flabébé']
-e['flabébé']Bl, e['670Bl'] = e['flabébé'], e['flabébé']
+e['flabébéG'], e['670G'] = e['flabébé'], e['flabébé']
+e['flabébéA'], e['670A'] = e['flabébé'], e['flabébé']
+e['flabébéBi'], e['670Bi'] = e['flabébé'], e['flabébé']
+e['flabébéBl'], e['670Bl'] = e['flabébé'], e['flabébé']
 e.floetteG, e['670G'] = e.floette, e.floette
 e.floetteA, e['670A'] = e.floette, e.floette
 e.floetteBi, e['670Bi'] = e.floette, e.floette
@@ -1878,11 +1878,11 @@ e.gourgeistL, e['710L'] = e.gourgeist, e.gourgeist
 e.gourgeistXL, e['710XL'] = e.gourgeist, e.gourgeist
 e.xerneasA, e['716A'] = e.xerneas, e.xerneas
 e.hoopaL, e['720L'] = e.hoopa, e.hoopa
-e.oricorioC, e.['741C'] = e.oricorio, e.oricorio
-e.oricorioH, e.['741H'] = e.oricorio, e.oricorio
-e.oricorioB, e.['741B'] = e.oricorio, e.oricorio
-e.lycanrocN, e.['745N'] = e.lycanroc, e.lycanroc
-e.lycanrocC, e.['745C'] = e.lycanroc, e.lycanroc
+e.oricorioC, e['741C'] = e.oricorio, e.oricorio
+e.oricorioH, e['741H'] = e.oricorio, e.oricorio
+e.oricorioB, e['741B'] = e.oricorio, e.oricorio
+e.lycanrocN, e['745N'] = e.lycanroc, e.lycanroc
+e.lycanrocC, e['745C'] = e.lycanroc, e.lycanroc
 e.wishiwashiB, e['746B'] = e.wishiwashi, e.wishiwashi
 e.silvallyL, e['773L'] = e.silvally, e.silvally
 e.silvallyVo, e['773Vo'] = e.silvally, e.silvally

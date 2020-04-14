@@ -40,5 +40,5 @@ p.artwork = function(frame)
 		{num = num, nome = nome, dimensione = dimensione})
 end
 
-print(p[table.remove(arg, 1)]{args=arg})
--- return p
+-- print(p[table.remove(arg, 1)]{args=arg})
+return p
