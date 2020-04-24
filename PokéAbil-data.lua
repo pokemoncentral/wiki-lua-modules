@@ -1967,7 +1967,7 @@ t['800V'], t['800A'] = t.necrozma, t.necrozma
 t.eiscueL, t['875L'] = t.eiscue, t.eiscue
 t.morpekoV, t['877V'] = t.morpeko, t.morpeko
 t.zacianR, t['888R'] = t.zacian, t.zacian
-t.zamazentaR, t['888R'] = t.zamazenta, t.zamazenta
+t.zamazentaR, t['889R'] = t.zamazenta, t.zamazenta
 t.eternatusD, t['890D'] = t.eternatus, t.eternatus
 t.urshifuP = t.urshifu
 
