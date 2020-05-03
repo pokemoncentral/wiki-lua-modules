@@ -20,45 +20,45 @@ end
 
 -- Colori tipi
 
-c.acciaio = function(frame) return _colore(frame.args[1] or 'normale', 'AAAABB', 'DFDFE1', '74747B') end
+c.acciaio = function(frame) return _colore(frame.args[1] or 'normale', '5A8DA1', 'BDD1D9', '1D4C5E') end
 c.Acciaio = c.acciaio
-c.acqua = function(frame) return _colore(frame.args[1] or 'normale', '3399FF', '9FCEFF', '0D6AC8') end
+c.acqua = function(frame) return _colore(frame.args[1] or 'normale', '4F90D5', 'B4D0EC', '114983') end
 c.Acqua = c.acqua
-c.buio = function(frame) return _colore(frame.args[1] or 'normale', '775544', 'BDA396', '442C21') end
+c.buio = function(frame) return _colore(frame.args[1] or 'normale', '5A5365', 'A29EA7', '1E1A25') end
 c.Buio = c.buio
-c.coleottero = function(frame) return _colore(frame.args[1] or 'normale', 'AABB22', 'DAEC44', '849400') end
+c.coleottero = function(frame) return _colore(frame.args[1] or 'normale', '91C02E', 'D8F895', '547904') end
 c.Coleottero, c.coleot, c.Coleot = c.coleottero, c.coleottero, c.coleottero
-c.drago = function(frame) return _colore(frame.args[1] or 'normale', '7766EE', 'A194FF', '31229D') end
+c.drago = function(frame) return _colore(frame.args[1] or 'normale', '0A6DC2', '7DB0DC', '002B50') end
 c.Drago = c.drago
-c.elettro = function(frame) return _colore(frame.args[1] or 'normale', 'FFCC33', 'FFEEBC', 'BD8E00') end
+c.elettro = function(frame) return _colore(frame.args[1] or 'normale', 'F4D23C', 'FAF5AF', '917908') end
 c.Elettro = c.elettro
-c.erba = function(frame) return _colore(frame.args[1] or 'normale', '77CC55', 'BDFFA3', '299100') end
+c.erba = function(frame) return _colore(frame.args[1] or 'normale', '62BB5A', 'B1FFA9', '11500A') end
 c.Erba = c.erba
-c.folletto = function(frame) return _colore(frame.args[1] or 'normale', 'FFAAFF', 'FFDDFF', 'EC67EA') end
+c.folletto = function(frame) return _colore(frame.args[1] or 'normale', 'EB8FE6', 'FFD3FC', 'A940A3') end
 c.Folletto = c.folletto
-c.fuoco = function(frame) return _colore(frame.args[1] or 'normale', 'FF4422', 'FF927D', 'BA1F00') end
+c.fuoco = function(frame) return _colore(frame.args[1] or 'normale', 'FE9C54', 'FFD2A1', 'A74700') end
 c.Fuoco = c.fuoco
-c.ghiaccio = function(frame) return _colore(frame.args[1] or 'normale', '77DDFF', 'DBF6FF', '13A8D9') end
+c.ghiaccio = function(frame) return _colore(frame.args[1] or 'normale', '73CEBF', 'CCFFF6', '187C6A') end
 c.Ghiaccio = c.ghiaccio
-c.lotta = function(frame) return _colore(frame.args[1] or 'normale', 'BB5544', 'EA9A8D', '912E1E') end
+c.lotta = function(frame) return _colore(frame.args[1] or 'normale', 'CD406A', 'F488A9', '801334') end
 c.Lotta = c.lotta
-c.normale = function(frame) return _colore(frame.args[1] or 'normale', 'BBBBAA', 'E7E7D8', '8A8A7B') end
+c.normale = function(frame) return _colore(frame.args[1] or 'normale', '9199A1', 'DADDE0', '444B53') end
 c.Normale = c.normale
 c.ombra = function(frame) return _colore(frame.args[1] or 'normale', '604E82', '8674A8', '3E3355') end
 c.Ombra = c.ombra
-c.psico = function(frame) return _colore(frame.args[1] or 'normale', 'FF5599', 'FF9CC4', 'D00053') end
+c.psico = function(frame) return _colore(frame.args[1] or 'normale', 'F67177', 'FFBBBE', 'A20D14') end
 c.Psico = c.psico
-c.roccia = function(frame) return _colore(frame.args[1] or 'normale', 'BBAA66', 'E1D08C', '88762C') end
+c.roccia = function(frame) return _colore(frame.args[1] or 'normale', 'C5B78B', 'F1E7C7', '7E6E3F') end
 c.Roccia = c.roccia
 c.sconosciuto = function(frame) return _colore(frame.args[1] or 'normale', '68A090', '9DC1B7', '44685E') end
 c.Sconosciuto, c['???'] = c.sconosciuto, c.sconosciuto
-c.spettro = function(frame) return _colore(frame.args[1] or 'normale', '6666BB', '9F9FEC', '42428E') end
+c.spettro = function(frame) return _colore(frame.args[1] or 'normale', '5269AC', 'A5B6E7', '193177') end
 c.Spettro = c.spettro
-c.terra = function(frame) return _colore(frame.args[1] or 'normale', 'DDBB55', 'F1DDA0', 'B59226') end
+c.terra = function(frame) return _colore(frame.args[1] or 'normale', 'D87844', 'FFBB96', '9A3E0B') end
 c.Terra = c.terra
-c.veleno = function(frame) return _colore(frame.args[1] or 'normale', 'AA5599', 'C689BA', '792F6A') end
+c.veleno = function(frame) return _colore(frame.args[1] or 'normale', 'A96AC8', 'E0B0F9', '79339D') end
 c.Veleno = c.veleno
-c.volante = function(frame) return _colore(frame.args[1] or 'normale', '6699FF', '9CBDFF', '3678FF') end
+c.volante = function(frame) return _colore(frame.args[1] or 'normale', '8EA8DE', 'D6E4FF', '3B5DA2') end
 c.Volante = c.volante
 
 -- Alias glitch
@@ -171,7 +171,7 @@ c.Md_super, c.mdsuper, c.Mdsuper, c['md super'], c['Md super'] =
     c.md_super, c.md_super, c.md_super, c.md_super, c.md_super
 c.super_md, c.Super_md, c.supermd, c.Supermd, c['super md'], c['Super md'] =
     c.md_super, c.md_super, c.md_super, c.md_super, c.md_super, c.md_super
-c.mddx = function(frame) return _colore(frame.args[1] or 'normale', '004C65', '009D88', '00112E') end
+c.mddx = function(frame) return _colore(frame.args[1] or 'normale', 'FFC809', 'FFEBA6', 'A68100') end
 c.Mddx, c.md_dx, c.Md_dx, c.MDDX = c.mddx, c.mddx, c.mddx, c.mddx
 c.nero = function(frame) return _colore(frame.args[1] or 'normale', '444444', '858585', '2C2C2C') end
 c.Nero = c.nero
@@ -239,9 +239,9 @@ c.spada = function(frame) return _colore(frame.args[1] or 'normale', '00AEEF', '
 c.Spada = c.spada
 c.scudo = function(frame) return _colore(frame.args[1] or 'normale', 'ED1165', 'FA89AB', '851042') end
 c.Scudo = c.scudo
-c.isolaarmatura = c.spada
+c.isolaarmatura = function(frame) return _colore(frame.args[1] or 'normale', 'F5E036', 'FFFAA9', 'F7AF00') end
 c.Isolaarmatura = c.isolaarmatura
-c.tundracorona = c.scudo
+c.tundracorona = function(frame) return _colore(frame.args[1] or 'normale', '009D88', '00D668', '004C65') end
 c.Tundracorona = c.tundracorona
 
 -- Colori regioni

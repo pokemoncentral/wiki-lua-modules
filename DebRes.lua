@@ -330,7 +330,7 @@ dr.EffTable.__tostring = function(this)
 
     local interpData = {
         bg = css.horizGradLua(this.colors),
-        foot = #this.footer < 1 and '' or string.interp([=[<div class="roundy text-left text-small" style="padding: 0.5em 0; margin: 0;">${lines}</div>]=],
+        foot = #this.footer < 1 and '' or string.interp([=[<div class="black-text text-left text-small" style="padding: 0.5em 0; margin: 0;">${lines}</div>]=],
                 {
                     lines = w.mapAndConcat(this.footer, tostring)
                 })

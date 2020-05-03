@@ -42,15 +42,14 @@ local makeLinks = function(black)
 	-- Si eliminano le table di supporto e i
 	-- Pokémon che non hanno i link standard
 	local stdLinks = table.filter(t, function(_, key)
-		return
-				not table.search({'mega', 'megaxy',
-						'archeo', 'alola', 'galar', 'gigamax'}, key)
-			and not table.search(t.mega, key)
-			and not table.search(t.megaxy, key)
-			and not table.search(t.archeo, key)
-			and not table.search(t.alola, key)
-			and not table.search(t.galar, key)
-			and not table.search(t.gigamax, key)
+		return not table.search({'mega', 'megaxy',
+								 'archeo', 'alola', 'galar', 'gigamax'}, key)
+			-- and not table.search(t.mega, key)
+			-- and not table.search(t.megaxy, key)
+			-- and not table.search(t.archeo, key)
+			-- and not table.search(t.alola, key)
+			-- and not table.search(t.galar, key)
+			-- and not table.search(t.gigamax, key)
 	end)
 
 	-- Links standard
