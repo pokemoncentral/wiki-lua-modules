@@ -15,7 +15,7 @@ local abbrLib = require('Wikilib-sigle')
 local links = require('Links')
 local pokes = require("Poké-data")
 local moves = require("Move-data")
-local tmdata = require("Machines-data")
+-- local tmdata = require("Machines-data")
 local forms = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
 local evolib = require('Wikilib-evos')
@@ -26,7 +26,7 @@ local evolib = require('Wikilib-evos')
 local gameLevelCell = '| '
 
 -- Wikicode per la cella di un gioco nell'entry tutor
-local gameTutorCell = [=[| style="background:#${bg};" | [[${gameLink}|<span style="padding: 0.3em 0; color:#${txtColor};">'''${gameAbbr}'''</span>]]]=]
+-- local gameTutorCell = [=[| style="background:#${bg};" | [[${gameLink}|<span style="padding: 0.3em 0; color:#${txtColor};">'''${gameAbbr}'''</span>]]]=]
 
 -- Wikicode per gli entrynull
 local entryNull = [[|-
@@ -408,7 +408,7 @@ lib.tutorgames = function(games)
 			if game[2] == 'Yes' then
 				if gameData.display[2] then
 					table.insert(cell, string.interp([=[
-<div class="text-center roundy-5" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[${gamesLink}|<span style="padding: 0.3em 0; color: #fff;">'''${game1sig}'''</span><span style="padding: 0.3em 0; color: #fff;">'''${game2sig}'''</span>]]</div>]=],
+<div class="text-center roundy-5 white-text" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[${gamesLink}|<span style="padding: 0.3em 0;">'''${game1sig}'''</span><span style="padding: 0.3em 0;">'''${game2sig}'''</span>]]</div>]=],
 					{
 						bg = css.horizGradLua{gameData.display[1][2], 'dark', gameData.display[2][2], 'dark'},
 						gamesLink = gameData.link,
@@ -417,7 +417,7 @@ lib.tutorgames = function(games)
 					}))
 				else
 					table.insert(cell, string.interp([=[
-<div class="text-center roundy-5" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[${gamesLink}|<span style="padding: 0.3em 0; color: #fff;">'''${gamesig}'''</span>]]</div>]=],
+<div class="text-center roundy-5 white-text" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[${gamesLink}|<span style="padding: 0.3em 0;">'''${gamesig}'''</span>]]</div>]=],
 					{
 						bg = css.horizGradLua{gameData.display[1][2], 'dark', gameData.display[1][2], 'normale'},
 						gamesLink = gameData.link,
@@ -480,6 +480,34 @@ lib.entrynull = function(entry, cs)
 	})
 end
 
+
+--[[
+
+Normalize the type "coleot" to "coleottero",
+the only form that (in my dreams) should be
+used within modules but for printing
+
+I do know this REALLY seems a function I should
+put in a shared library (Wikilib-something), but
+it's here because my hope is for it to be a
+temporary workaround until I normalize data
+modules with "coleottero", confining "coleot"
+to outputs and banishing it forever from internal
+representations.
+Heed my words, future mantainer of this code (that
+is, whp, just myself), for I hereby task you with
+such a burden.
+Flavio -- 02/05/20
+
+Pls sign yourself here with the date whenever you
+use this function, so we can witness the failure
+of my proposal.
+
+--]]
+local normalizeColeot = function(type)
+	return type == "coleot" and "coleottero" or type
+end
+
 --[[
 
 Computes the STAB value given the ndex and move name. If ndex or movename
@@ -505,10 +533,11 @@ lib.computeSTAB = function(ndex, movename, form, gen)
 	   or (multigen.getGenValue(movedata.power, gen) == '&mdash;'
 	       and not multigen.getGenValue(movedata.stab, gen)) then
 		return ""
-	elseif (movetype == pokedata.type1 or movetype == pokedata.type2) then
+	elseif (movetype == normalizeColeot(pokedata.type1)
+	        or movetype == normalizeColeot(pokedata.type2)) then
 		return "'''"
-	elseif table.search(evolib.evoTypesList(iname, gen), movetype)
-	       or table.search(evolib.formTypesList(iname, gen), movetype) then
+	elseif table.search(table.map(evolib.evoTypesList(iname, gen), normalizeColeot), movetype)
+	       or table.search(table.map(evolib.formTypesList(iname, gen), normalizeColeot), movetype) then
 		return "''"
 	else
 		return ""
@@ -531,6 +560,19 @@ lib.moveParentsGame = function(movedata, game)
 		end
 	end
 	return movedata[1]
+end
+
+--[[
+
+Make the text to signal that a move is
+learned upon evolution (ie: "Evoluzione"
+on desktop, "Evo" on mobile)
+
+--]]
+lib.makeEvoText = function(t)
+	return (t == "Evo" or t == "Evoluzione")
+			and 'Evo<span class="hidden-xs">luzione</span>'
+			or t
 end
 
 return lib

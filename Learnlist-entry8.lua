@@ -1,4 +1,34 @@
 -- Gli entry dei learnlist di ottava generazione
+--[[
+
+Learnlist entries for 8th gen.
+Below parameters of each kind of entry are described.
+
+Level entry:
+1 is the move name. 2 is the STAB (if empty is autocomputed),
+3 are optional notes, 4 is the level
+
+Tm entry:
+1 is the move name, 2 is the STAB (if empty is autocomputed),
+3 are optional notes, 4 is the MT of the move (if empty is
+autocomputed)
+
+Breed entry:
+1 is the list of parents, 2 is the move name, 3 is the STAB
+(if empty is autocomputed), 4 to 6 are optional notes
+
+Tutor entry:
+1 is the move name. 2 is the STAB (if empty is autocomputed),
+3 are optional notes, 4 is yes/no for SpSc
+
+Preevo entry:
+like previous gen (aka I don't feel like looking it up)
+
+Event entry:
+1 is move name, 2 is the STAB (if empty is autocomputed),
+3 are optional notes, 4 is the event
+
+--]]
 
 local z = {}
 
@@ -8,7 +38,14 @@ local txt = require('Wikilib-strings')			-- luacheck: no unused
 local lib = require('Wikilib-learnlists')
 local multigen = require('Wikilib-multigen')
 local moves = require("Move-data")
-local links = require('Links')
+local mtdata = require("Machines-data")
+
+local strings = {
+	TMENTRY = [=[|-
+| class="black-text" style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:${img} ${tipo} VIII Sprite Zaino.png]]</span>[[${p1}]]]=],
+	BREEDENTRY = '|-\n| style="padding: 0.1em 0.3em;" | ${p1}',
+	-- EVENTENTRY = '|-\n| style="padding: 0.1em 0.3em;" | ${p1}${p10}',
+}
 
 -- stab, mossa, notes, tipo, cat, pw, acc, pp
 local entry = function(stab, mossa, notes)
@@ -18,43 +55,53 @@ local entry = function(stab, mossa, notes)
 							 data.accuracy, data.pp)
 end
 
---Entry per le mosse apprese aumentando di livello
+-- Level entry
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-	if p[1] == 'Evo' or p[1] == 'Evoluzione' then
-		p[1] = 'Evo<span class="hidden-xs">luzione</span>'
-	end
     return table.concat{
 		'|-\n',
-		lib.gameslevel(p[1]),
-		entry(p[5] or '', p[3] or 'Geloraggio', lib.makeNotes(p[4] or ''))
+		lib.gameslevel(lib.makeEvoText(p[4])),
+		entry(p[2] or '', p[1] or 'Geloraggio', lib.makeNotes(p[3] or ''))
 	}
 end
 z.Level = z.level
 
--- Entry per le mosse appprese tramite MT/MN
+-- MT/DT moves entry
 z.tm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[=[|-
-| class="black-text" style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:${img} ${tipo} VI Sprite Zaino.png]]</span>[[${p1}]]]=],
-		entry(p[4] or '', p[2] or 'Purogelo', lib.makeNotes(p[3] or ''))},
-{
-	img = string.match(p[1] or 'MT55', '^([DM][TN])%d'),
-	p1 = p[1] or 'MT55',
-	tipo = string.fu(moves[string.lower(p[2] or 'Purogelo')].type) or 'Sconosciuto'
-})
+	local movename = p[1] or "geloraggio"
+	-- Autocompute the MT/DT number
+	local tmkind, tmnum
+	if p[4] then
+		tmkind, tmnum = string.match(p[4], '^([MD][TN])(%d+)')
+	else
+		tmkind, tmnum = table.deepSearch(mtdata[8], string.lower(movename))
+	end
+    return table.concat{
+		string.interp(strings.TMENTRY, {
+			img = tmkind,
+			p1 = tmkind .. tostring(tmnum),
+			tipo = string.fu(moves[string.lower(movename)].type or 'Sconosciuto')
+		}),
+		entry(p[2] or '', movename, lib.makeNotes(p[3] or '')),
+	}
 end
 z.Tm = z.tm
 
 -- Entry per le mosse apprese tramite accoppiamento
 z.breed = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[[|-
-| style="padding: 0.1em 0.3em;" | ${p1}]],
-		entry(p[4] or '', p[2] or 'Lanciafiamme', lib.makeNotes(p[3] or '', lib.makeNotes(p[5] or '', lib.makeNotes(p[6] or ''))))},
-{
-	p1 = lib.mslistToModal(p[1] or '', '8', nil, 6)
-})
+    return table.concat{
+		string.interp(strings.BREEDENTRY, {
+			p1 = lib.mslistToModal(p[1] or '', '8', nil, 6)
+		}),
+		entry(p[3] or '',
+			  p[2] or 'Lanciafiamme',
+			  lib.makeNotes(p[4] or '',
+			                lib.makeNotes(p[5] or '',
+							lib.makeNotes(p[6] or '')))
+		),
+	}
 end
 z.Breed = z.breed
 
@@ -62,8 +109,8 @@ z.Breed = z.breed
 z.tutor = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return table.concat{lib.tutorgames{ {'SpSc', p[4]} },
-			' ', entry(p[3] or '',
-			p[1] or 'Tuono', lib.makeNotes(p[2] or ''))}
+			' ', entry(p[2] or '',
+			p[1] or 'Tuono', lib.makeNotes(p[3] or ''))}
 end
 z.Tutor = z.tutor
 
@@ -78,13 +125,14 @@ z.Preevo, z.prevo, z.Prevo = z.preevo, z.preevo, z.preevo
 -- Entry per le mosse apprese tramite eventi
 z.event = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[[|-
-| style="padding: 0.1em 0.3em;" | ${p1}${p10}]],
-		entry(p[4] or '', p[2] or 'Bora', lib.makeNotes(p[3] or ''))},
-{
-	p1 = p[1] or 'Evento',
-	p10 = lib.makeLevel(p[5])
-})
+    return table.concat{
+		string.interp(strings.BREEDENTRY, {
+				p1 = p[4] or 'Evento',
+				-- p10 = lib.makeLevel(p[5]),
+			}
+		),
+		entry(p[2] or '', p[1] or 'Bora', lib.makeNotes(p[3] or ''))
+	}
 end
 z.Event = z.event
 

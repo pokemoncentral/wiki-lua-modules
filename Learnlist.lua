@@ -202,7 +202,7 @@ end
 local STRINGS = {
     evolevelstr = 'Evo<span class="hidden-xs">luzione</span>',
     tmcell = [=[
-| class="black-text" style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:${img} ${tipo} VI Sprite Zaino.png]]</span>[[${p1}]]]=],
+| class="black-text" style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:${img} ${tipo} VIII Sprite Zaino.png]]</span>[[${p1}]]]=],
     breedcell = [=[
 | style="padding: 0.1em 0.3em;" | ${p}]=],
 }

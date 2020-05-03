@@ -22,15 +22,9 @@ end
 
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-	if p[1] == 'Evo' or p[1] == 'Evoluzione' then
-		p[1] = 'Evo<span class="hidden-xs">luzione</span>'
-	end
-	if p[2] == 'Evo' or p[2] == 'Evoluzione' then
-		p[2] = 'Evo<span class="hidden-xs">luzione</span>'
-	end
     return table.concat{'|-\n', lib.gameslevel(
-			p[1] or links.tt('&mdash;', 'Disponibile solo in Ultrasole e Ultraluna'),
-			p[2] or links.tt('&mdash;', 'Disponibile solo in Sole e Luna')
+			lib.makeEvoText(p[1]) or links.tt('&mdash;', 'Disponibile solo in Ultrasole e Ultraluna'),
+			lib.makeEvoText(p[2]) or links.tt('&mdash;', 'Disponibile solo in Sole e Luna')
 		),
 		entry(p[5] or '', p[3] or 'Geloraggio', lib.makeNotes(p[4] or ''))}
 end
