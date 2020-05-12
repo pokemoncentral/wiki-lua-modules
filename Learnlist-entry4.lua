@@ -4,7 +4,7 @@ local z = {}
 
 local mw = require('mw')
 
-local txt = require('Wikilib-strings')
+local txt = require('Wikilib-strings')  -- luacheck: no unused
 local lib = require('Wikilib-learnlists')
 local s = require("Sup-data")
 local abbrLib = require('Wikilib-sigle')

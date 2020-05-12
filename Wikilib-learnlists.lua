@@ -19,18 +19,22 @@ local moves = require("Move-data")
 local forms = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
 local evolib = require('Wikilib-evos')
+local wdata = require("Wikilib-data")
+
+
+local strings = {
+	-- Wikicode per la cella di un gioco nell'entry level
+	GAMELEVELCELL = '| ',
+	-- Wikicode per la cella di un gioco nell'entry tutor
+	-- GAMETUTORCELL = [=[
+-- | style="background:#${bg};" | [[${gameLink}|<span style="padding: 0.3em 0; color:#${txtColor};">'''${gameAbbr}'''</span>]]]=]
+	-- Wikicode per gli entrynull
+	ENTRYNULL = [[|-
+! class="white-bg" style="padding: 0.1em 0.3em;" colspan="${cs}" | Questo Pokémon non impara nessuna mossa ${ending}.]],
+
+}
 
 -- local trimOnly = {'x v zA'}
-
--- Wikicode per la cella di un gioco nell'entry level
-local gameLevelCell = '| '
-
--- Wikicode per la cella di un gioco nell'entry tutor
--- local gameTutorCell = [=[| style="background:#${bg};" | [[${gameLink}|<span style="padding: 0.3em 0; color:#${txtColor};">'''${gameAbbr}'''</span>]]]=]
-
--- Wikicode per gli entrynull
-local entryNull = [[|-
-! class="white-bg" style="padding: 0.1em 0.3em;" colspan="${cs}" | Questo Pokémon non impara nessuna mossa ${ending}.]]
 
 local entryNullEnd = { level = 'aumentando di livello', tm = 'tramite MT',
 	breed = 'tramite accoppiamento', tutor = "dall'Insegnamosse",
@@ -58,6 +62,36 @@ tutor = { {}, { "C" }, { "RFVF", "S", "XD" },
     { "SL", "USUL" }, { "SpSc" },
 },
 }
+
+
+--[[
+
+Normalize the type "coleot" to "coleottero",
+the only form that (in my dreams) should be
+used within modules but for printing
+
+I do know this REALLY seems a function I should
+put in a shared library (Wikilib-something), but
+it's here because my hope is for it to be a
+temporary workaround until I normalize data
+modules with "coleottero", confining "coleot"
+to outputs and banishing it forever from internal
+representations.
+Heed my words, future mantainer of this code (that
+is, whp, just myself), for I hereby task you with
+such a burden.
+-- Flavio, 02/05/20
+
+Pls sign yourself here with the date whenever you
+use this function, so we can witness the failure
+of my proposal.
+
+Used again (I hoped it would take longer) -- Flavio, 07/05/2020
+
+--]]
+local normalizeColeot = function(type)
+	return type == "coleot" and "coleottero" or type
+end
 
 --[[
 
@@ -263,24 +297,30 @@ lib.hearts = function(frame)
 			string.trim(frame.args[2] or ''):lower() == 'black')
 end
 
+-- ========================= Entry building functions =========================
 --[[
 
 Le celle comuni a tutti gli entry nelle generazioni
 precedenti l'introduzione delle categorie danno.
 
 --]]
-
 lib.basicentry = function(stab, mossa, notes, tipo, pw, acc, pp)
-    return string.interp([=[|| style="padding: 0.3em;" | ${stab}[[${mossa}|<span style="color:#000;">${mossa}</span>]]${stab}${notes}
+	local tipobox
+	if table.search(wdata.allTypes, tipo:lower()) then
+		tipobox = box.boxTipoLua(tipo, {'thick'})
+	else
+		tipobox = box.boxLua(tipo, tipo, nil, "thick", "box-sconosciuto")
+	end
+    return string.interp([=[|| style="padding: 0.3em;" class="black-text" | ${stab}${mossa}${stab}${notes}
 | style="padding: 0.8ex 0.3ex; height: 100%;" | ${tipo}
 | style="padding: 0.1em 0.3em;" | ${pw}
 | style="padding: 0.1em 0.3em;" | ${acc}%
 | style="padding: 0.1em 0.3em;" | ${pp}]=],
 {
-    mossa = mossa,
+    mossa = mossa == "&nbsp;" and mossa or table.concat{"[[", mossa, "]]"},
     stab = stab,
     notes = notes,
-    tipo = box.boxTipoLua(tipo, {'thick'}),
+    tipo = tipobox,
     pw = pw,
     acc = acc,
     pp = pp
@@ -294,17 +334,24 @@ successive l'introduzione delle categorie danno.
 
 --]]
 lib.categoryentry = function(stab, mossa, notes, tipo, cat, pw, acc, pp)
-	return string.interp([=[|| class="black-text" style="padding: 0.1em 0.3em;" | ${stab}[[${mossa}]]${stab}${notes}
+	local tipobox
+	-- This thing is ineficient af, but anyway
+	if table.search(table.map(wdata.allTypes, normalizeColeot), tipo:lower()) then
+		tipobox = box.boxTipoLua(tipo, {'thick'})
+	else
+		tipobox = box.boxLua(tipo, tipo, nil, "thick", "box-sconosciuto")
+	end
+	return string.interp([=[|| class="black-text" style="padding: 0.1em 0.3em;" | ${stab}${mossa}${stab}${notes}
 | class="height-100" style="padding: 0.8ex 0.3ex;" | ${tipo}
 | class="height-100" style="padding: 0.8ex 0.3ex;" | ${cat}
 | style="padding: 0.1em 0.3em;" | ${pw}
 | style="padding: 0.1em 0.3em;" | ${acc}%
 | style="padding: 0.1em 0.3em;" | ${pp}]=],
 {
-	mossa = mossa,
+	mossa = mossa == "&nbsp;" and mossa or table.concat{"[[", mossa, "]]"},
     stab = stab,
     notes = notes,
-    tipo = box.boxTipoLua(tipo, {'thick'}),
+    tipo = tipobox,
     cat = box.boxLua(cat, 'Categoria danno#' .. cat, cat, {'thick'},
             nil, nil, c[cat .. '_text']),
 	pw = pw,
@@ -342,42 +389,42 @@ lib.gameslevel = function(first, second, third)
 	if not third then
 		--Only one of them
 		if not second then
-			return table.concat{gameLevelCell, ' | ',
+			return table.concat{strings.GAMELEVELCELL, ' | ',
 					first}
 		elseif first == second then -- Only two of them
-			return table.concat{gameLevelCell, ' colspan = "2" | ',
+			return table.concat{strings.GAMELEVELCELL, ' colspan = "2" | ',
 				first}
 		else
-			return table.concat{gameLevelCell, ' | ', first, ' |',
-				gameLevelCell, ' | ', second}
+			return table.concat{strings.GAMELEVELCELL, ' | ', first, ' |',
+				strings.GAMELEVELCELL, ' | ', second}
 		end
 	end
 
 	-- All three are the same
 	if first == second and second == third then
-		return table.concat{gameLevelCell, ' colspan = "3" | ',
+		return table.concat{strings.GAMELEVELCELL, ' colspan = "3" | ',
 				first}
 
 	-- First and second are the same but third is different
 	elseif first == second then
-		return table.concat{gameLevelCell, ' colspan = "2" | ',
-				first, ' |', gameLevelCell, ' | ', third}
+		return table.concat{strings.GAMELEVELCELL, ' colspan = "2" | ',
+				first, ' |', strings.GAMELEVELCELL, ' | ', third}
 
 	-- First and third are the same, but second is different
 	elseif first == third then
-		return table.concat{gameLevelCell, ' colspan = "2" | ',
-				first, ' |', gameLevelCell, ' | ', second}
+		return table.concat{strings.GAMELEVELCELL, ' colspan = "2" | ',
+				first, ' |', strings.GAMELEVELCELL, ' | ', second}
 
 	-- Second and third are the same, but first is different
 	elseif second == third then
-		return table.concat{gameLevelCell, ' | ', first, ' |',
-				gameLevelCell, ' colspan = "2" | ', second}
+		return table.concat{strings.GAMELEVELCELL, ' | ', first, ' |',
+				strings.GAMELEVELCELL, ' colspan = "2" | ', second}
 
 	-- All of them are different
 	else
-		return table.concat{gameLevelCell, ' | ', first, ' |',
-				gameLevelCell, ' | ', second, ' |',
-				gameLevelCell, ' | ', third}
+		return table.concat{strings.GAMELEVELCELL, ' | ', first, ' |',
+				strings.GAMELEVELCELL, ' | ', second, ' |',
+				strings.GAMELEVELCELL, ' | ', third}
 	end
 end
 
@@ -474,38 +521,10 @@ end
 -- La cella dell'entry null, utilizzata per i Pokémon che non imparano
 -- mosse in un certo modo
 lib.entrynull = function(entry, cs)
-	return string.interp(entryNull, {
+	return string.interp(strings.ENTRYNULL, {
 		ending = entryNullEnd[entry],
 		cs = cs
 	})
-end
-
-
---[[
-
-Normalize the type "coleot" to "coleottero",
-the only form that (in my dreams) should be
-used within modules but for printing
-
-I do know this REALLY seems a function I should
-put in a shared library (Wikilib-something), but
-it's here because my hope is for it to be a
-temporary workaround until I normalize data
-modules with "coleottero", confining "coleot"
-to outputs and banishing it forever from internal
-representations.
-Heed my words, future mantainer of this code (that
-is, whp, just myself), for I hereby task you with
-such a burden.
-Flavio -- 02/05/20
-
-Pls sign yourself here with the date whenever you
-use this function, so we can witness the failure
-of my proposal.
-
---]]
-local normalizeColeot = function(type)
-	return type == "coleot" and "coleottero" or type
 end
 
 --[[

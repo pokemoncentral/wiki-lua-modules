@@ -159,8 +159,22 @@ local genlink = function(gen, method, poke)
     end
 end
 
+--[[
+
+Builds the box with links to learnlist subpages of older gens
+in learnlist headers.
+Arguments:
+	- genh: gen to which the list refers
+	- genp: gen in which the Pokémon was introduced. The special
+			value 0 indicates that there should be no box (eg: for
+			glitch Pokémon)
+	- method: the kind of the learnlist this box refers to (eg: level,
+			tm, ...)
+	- poke: name of the Pokémon the learnlist refers to
+
+--]]
 local oldgenslinks = function(genh, genp, method, poke)
-    if genp == gendata.latest then
+    if genp == gendata.latest or genp == 0 then
         return 'Nessuna'
     end
     local str = {}
