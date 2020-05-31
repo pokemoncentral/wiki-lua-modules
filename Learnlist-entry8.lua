@@ -1,8 +1,11 @@
--- Gli entry dei learnlist di ottava generazione
 --[[
+
+TODO: write "tests"
 
 Learnlist entries for 8th gen.
 Below parameters of each kind of entry are described.
+NOTE: STAB is autocomputed if empty. If you want to force an empty value (ie:
+because autocompting is wrong) you should use the special value "no"
 
 Level entry:
 1 is the move name. 2 is the STAB (if empty is autocomputed),
@@ -22,7 +25,9 @@ Tutor entry:
 3 are optional notes, 4 is yes/no for SpSc
 
 Preevo entry:
-like previous gen (aka I don't feel like looking it up)
+1 is the move name. 2 is the STAB (if empty is autocomputed),
+2 is ndex, 3 (optional) notes of the first evolution that learn the move,
+4 and 5 are the same for the second
 
 Event entry:
 1 is move name, 2 is the STAB (if empty is autocomputed),
@@ -47,12 +52,24 @@ local strings = {
 	-- EVENTENTRY = '|-\n| style="padding: 0.1em 0.3em;" | ${p1}${p10}',
 }
 
--- stab, mossa, notes, tipo, cat, pw, acc, pp
-local entry = function(stab, mossa, notes)
+-- Compute the displayed STAB from the input.
+-- "move" is the move name, "stabval" is the value of stab passed to the call
+local getSTAB = function(move, stabval)
+	if stabval == "no" then
+		return ""
+	elseif stabval ~= "" then
+		return stabval
+	else
+		return lib.computeSTAB(mw.title.getCurrentTitle().text:lower(), move, nil, 8)
+	end
+end
+
+local entry = function(mossa, stab, notes)
 	local data = multigen.getGen(moves[string.lower(mossa)])
-    return lib.categoryentry(stab, mossa, notes, string.fu(data.type),
-	                         string.fu(data.category), data.power,
-							 data.accuracy, data.pp)
+    return lib.categoryentry(getSTAB(mossa, stab),
+							 mossa, notes,
+							 string.fu(data.type), string.fu(data.category),
+							 data.power, data.accuracy, data.pp)
 end
 
 -- Level entry
@@ -61,7 +78,7 @@ z.level = function(frame)
     return table.concat{
 		'|-\n',
 		lib.gameslevel(lib.makeEvoText(p[4])),
-		entry(p[2] or '', p[1] or 'Geloraggio', lib.makeNotes(p[3] or ''))
+		entry(p[1] or 'Geloraggio', p[2] or '', lib.makeNotes(p[3] or ''))
 	}
 end
 z.Level = z.level
@@ -83,7 +100,7 @@ z.tm = function(frame)
 			p1 = tmkind .. tostring(tmnum),
 			tipo = string.fu(moves[string.lower(movename)].type or 'Sconosciuto')
 		}),
-		entry(p[2] or '', movename, lib.makeNotes(p[3] or '')),
+		entry(movename, p[2] or '', lib.makeNotes(p[3] or '')),
 	}
 end
 z.Tm = z.tm
@@ -95,8 +112,8 @@ z.breed = function(frame)
 		string.interp(strings.BREEDENTRY, {
 			p1 = lib.mslistToModal(p[1] or '', '8', nil, 6)
 		}),
-		entry(p[3] or '',
-			  p[2] or 'Lanciafiamme',
+		entry(p[2] or 'Lanciafiamme',
+			  p[3] or '',
 			  lib.makeNotes(p[4] or '',
 			                lib.makeNotes(p[5] or '',
 							lib.makeNotes(p[6] or '')))
@@ -108,17 +125,27 @@ z.Breed = z.breed
 -- Entry per le mosse apprese tramite esperto mosse
 z.tutor = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{lib.tutorgames{ {'SpSc', p[4]} },
-			' ', entry(p[2] or '',
-			p[1] or 'Tuono', lib.makeNotes(p[3] or ''))}
+    return table.concat{
+		lib.tutorgames{ {'SpSc', p[4]} },
+		' ',
+		entry(p[1] or 'Tuono',
+			  p[2] or '',
+			  lib.makeNotes(p[3] or '')
+		)
+	}
 end
 z.Tutor = z.tutor
 
 -- Entry per le mosse apprese tramite evoluzioni precedenti
 z.preevo = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{lib.preevodata(p, '8'), ' ', entry(p[8] or '',
-		p[7] or 'Scontro', '')}
+	local move = table.remove(p, 1)
+	local stab = table.remove(p, 1)
+    return table.concat{
+		lib.preevodata(p, '8'),
+		' ',
+		entry(move or 'Bora', stab, '')
+	}
 end
 z.Preevo, z.prevo, z.Prevo = z.preevo, z.preevo, z.preevo
 
@@ -131,7 +158,7 @@ z.event = function(frame)
 				-- p10 = lib.makeLevel(p[5]),
 			}
 		),
-		entry(p[2] or '', p[1] or 'Bora', lib.makeNotes(p[3] or ''))
+		entry(p[1] or 'Bora', p[2] or '', lib.makeNotes(p[3] or ''))
 	}
 end
 z.Event = z.event
