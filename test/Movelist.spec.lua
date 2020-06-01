@@ -3,21 +3,38 @@ local header = require('Movelist-hf')
 local entry = require('Movelist-entry')
 local mw = require('mw')
 
+-- New render
 mw.title.setTitle("Fulmine")
 print(header.Levelh{args={'Elettro', '1'}})
-print(render.entry{args={'Movelist-entry.Level',
-"[[€1|025Co|no|no|no|26|22|20|B2W2=10|12|USUM=40|STAB='''|useless=yes£]]",
-"[[€1|361|no|no|no|26|22|20|9000|forse|STAB='''£]]",
-"[[€1|598|no|no|no|26|22|20|213|no|STAB='''£]]",
-"[[€1|125|no|no|no|50|49|48|no|cose£]]",
-"[[€1|376|1|Y=2|3|C=4|no|50|49|48|2|LGPE=123|100£]]",
-"[[€1|466|no|no|no|50|49|48|no|no£]]",
-"[[€1|065|no|no|no|50|49|48|no|54£]]",
--- "[[€1|065M|no|no|no|50|49|48|no£]]",
-"[[€1|720L|no|no|no|50|49|48|no|12£]]",
-"[[€1|720|no|no|no|50|49|48|no|12£]]",
-"[[€1|398|no|no||50|49|48|no|no£]]",}})
+print(render.render{args={'Movelist-entry', 'Level', '//',
+"1", "025Co", "no", "no", "no", "26", "22", "20", "B2W2 <- 10", "12", "USUM <- 40", "STAB<-'''", "useless<-yes", "//",
+"1", "361", "no", "no", "no", "26", "22", "20", "9000", "forse", "STAB<-'''", "//",
+"1", "598", "no", "no", "no", "26", "22", "20", "213", "no", "STAB<-'''", "//",
+"1", "125", "no", "no", "no", "50", "49", "48", "no", "cose", "//",
+"1", "376", "1", "Y<-2", "3", "C<-4", "no", "50", "49", "48", "2", "LGPE<-123", "100", "//",
+"1", "466", "no", "no", "no", "50", "49", "48", "no", "no", "//",
+-- "1", "065M", "no", "no", "no", "50", "49", "48", "no", "//",
+"1", "065", "no", "no", "no", "50", "49", "48", "no", "54", "//",
+"1", "720L", "no", "no", "no", "50", "49", "48", "no", "12", "//",
+"1", "720", "no", "no", "no", "50", "49", "48", "no", "12", "//",
+"1", "398", "no", "no", "", "50", "49", "48", "no", "no", "//",
+}})
 print(header.levelf{args={}})
+
+-- mw.title.setTitle("Fulmine")
+-- print(header.Levelh{args={'Elettro', '1'}})
+-- print(render.entry{args={'Movelist-entry.Level',
+-- "[[€1|025Co|no|no|no|26|22|20|B2W2=10|12|USUM=40|STAB='''|useless=yes£]]",
+-- "[[€1|361|no|no|no|26|22|20|9000|forse|STAB='''£]]",
+-- "[[€1|598|no|no|no|26|22|20|213|no|STAB='''£]]",
+-- "[[€1|125|no|no|no|50|49|48|no|cose£]]",
+-- "[[€1|376|1|Y=2|3|C=4|no|50|49|48|2|LGPE=123|100£]]",
+-- "[[€1|466|no|no|no|50|49|48|no|no£]]",
+-- "[[€1|065|no|no|no|50|49|48|no|54£]]",
+-- "[[€1|720L|no|no|no|50|49|48|no|12£]]",
+-- "[[€1|720|no|no|no|50|49|48|no|12£]]",
+-- "[[€1|398|no|no||50|49|48|no|no£]]",}})
+-- print(header.levelf{args={}})
 
 mw.title.setTitle("Punizione")
 print(header.Breedh{args = {'Buio', '3'}})

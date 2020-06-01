@@ -1,5 +1,10 @@
 local render = require('Render')
 local header = require('Learnlist-hf')
+local mw = require('mw')
+
+-- =================== Deprecated automatic learnlist module ===================
+if false then
+
 local ll = require('Learnlist')
 local learnlib = require('Wikilib-learnlists')
 
@@ -48,8 +53,31 @@ print(ll.tmLua('sizzlipede', 8))
 print(ll.breedLua('pichu', 4))
 print(ll.level{args = {" raichu ", gen = "8", form = "A"}})
 
+end
+
 -- ======================== Old Learnlist-entryn tests ========================
-if false then
+if true then
+
+mw.title.setTitle("Zacian")
+print(header.levelh{args={"Zacian", "folletto", "folletto", "8", "8" }})
+print(render.render{args={"Learnlist-entry8", "level", "//",
+"Anticipo", "", "", "Inizio", "//",
+"Attacco Rapido", "", "", "Inizio", "//",
+"Ferrartigli", "''", "", "Inizio", "//",
+"Gridodilotta", "", "", "Inizio", "//",
+"Morso", "", "", "Inizio", "//",
+"Spadasolenne", "", "", "Inizio", "//",
+"Lacerazione", "", "", "11", "//",
+"Danzaspada", "", "", "22", "//",
+"Metaltestata", "''", "", "33", "//",
+"Concentrazione", "", "", "44", "//",
+"Sgranocchio", "", "", "55", "//",
+"Forza Lunare", "'''", "", "66", "//",
+"Zuffa", "", "", "77", "//",
+"Gigaimpatto", "", "", "88", "//"}})
+print(header.levelf{args={"Zacian", "folletto", "folletto", "8", "8" }})
+--
+-- else
 
 print(header.levelh{args={'Necrozma', 'Psico', 'Psico', '7', '7'}})
 print(render.entry{args={'Learnlist-entry7.level',
