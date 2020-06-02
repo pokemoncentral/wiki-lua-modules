@@ -737,6 +737,15 @@ t.supplicolpo = {name = 'Supplicolpo', type = 'buio', category = 'fisico', power
 t.sfolgorassalto = {name = 'Sfolgorassalto', type = 'lotta', category = 'fisico', power = 150, accuracy = 100, pp = 5, gen = 8}
 t['raggio infinito'] = {name = 'Raggio Infinito', type = 'drago', category = 'speciale', power = 160, accuracy = 90, pp = 5, gen = 8}
 t["raggio d'acciaio"] = {name = "Raggio d'Acciaio", type = 'acciaio', category = 'speciale', power = 140, accuracy = 95, pp = 5, gen = 8}
+-- Incomplete moves
 t.giunglacura = {name = "Giunglacura", type = "erba", category = 'stato', power = '&mdash;', accuracy = "?", pp = "?", gen = 8}
+t.pugnotenebra = {name = "Pugnotenebra", type = nil, category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
+t.idroraffica = {name = "Idroraffica", type = nil, category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
+t.armaguscio = {name = "Armaguscio", type = "veleno", category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
+t.elettrogabbia = {name = "Elettrogabbia", type = "elettro", category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
+t.dragoenergia = {name = "Dragoenergia", type = "drago", category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
+t["calcio tonante"] = {name = "Calcio Tonante", type = "lotta", category = "fisico", power = "?", accuracy = "?", pp = "?", gen = 8}
+t["furia ardente"] = {name = "Furia Ardente", type = "buio", category = "speciale", power = "?", accuracy = "?", pp = "?", gen = 8}
+t["sguardo gelido"] = {name = "Sguardo Gelido", type = "psico", category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
 
 return t

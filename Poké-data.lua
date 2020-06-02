@@ -1787,13 +1787,17 @@ t[889] = t.zamazenta
 t.eternatus = {name = 'Eternatus', ndex = 890, type1 = 'veleno', type2 = 'drago'}
 t[890] = t.eternatus
 t.kubfu = {name = 'Kubfu', ndex = nil, type1 = 'lotta', type2 = 'lotta'}
--- t[] = kubfu
+-- t[] = t.kubfu
 t.urshifu = {name = 'Urshifu', ndex = nil, type1 = 'lotta', type2 = 'buio'}
--- t[] = kubfu
+-- t[] = t.urshifu
 t.calyrex = {name = 'Calyrex', ndex = nil, type1 = 'psico', type2 = 'erba'}
--- t[] = kubfu
+-- t[] = t.calyrex
 t.zarude = {name = 'Zarude', ndex = nil, type1 = 'Buio', type2 = 'Erba'}
 -- t[] = t.zarude
+t.regieleki = {name = 'Regieleki', ndex = nil, type1 = 'elettro', type2 = 'elettro'}
+-- t[] = t.regieleki
+t.regidrago = {name = 'Regidrago', ndex = nil, type1 = 'drago', type2 = 'drago'}
+-- t[] = t.regidrago
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
@@ -1834,7 +1838,7 @@ t.rapidashG = {name = 'Rapidash', ndex = 78, type1 = 'psico', type2 = 'folletto'
 t['078G'] = t.rapidashG
 t.slowpokeG = {name = 'Slowpoke', ndex = 79, type1 = 'psico', type2 = 'psico'}
 t['079G'] = t.slowpokeG
-t.slowbroG = {name = 'Slowbro', ndex = 80, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+t.slowbroG = {name = 'Slowbro', ndex = 80, type1 = 'veleno', type2 = 'psico'}
 t['080G'] = t.slowbroG
 t["farfetch'dG"] = {name = "Farfetch'd", ndex = 83, type1 = 'lotta', type2 = 'lotta'}
 t['083G'] = t["farfetch'dG"]
@@ -1850,6 +1854,12 @@ t.weezingG = {name = 'Weezing', ndex = 110, type1 = 'veleno', type2 = 'folletto'
 t['110G'] = t.weezingG
 t['mr. mimeG'] = {name = 'Mr. Mime', ndex = 122, type1 = 'ghiaccio', type2 = 'psico'}
 t['122G'] = t['mr. mimeG']
+t.articunoG = {name = 'Articuno', ndex = 144, type1 = 'psico', type2 = 'volante'}
+t['144G'] = t.articunoG
+t.zapdosG = {name = 'Zapdos', ndex = 145, type1 = 'lotta', type2 = 'volante'}
+t['145G'] = t.zapdosG
+t.moltresG = {name = 'Moltres', ndex = 146, type1 = 'buio', type2 = 'volante'}
+t['146G'] = t.moltresG
 t.slowkingG = {name = 'Slowking', ndex = 199, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 t['199G'] = t.slowkingG
 t.corsolaG = {name = 'Corsola', ndex = 222, type1 = 'spettro', type2 = 'spettro'}

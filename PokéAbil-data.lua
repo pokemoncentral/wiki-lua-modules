@@ -1787,6 +1787,8 @@ t.kubfu = {ability1 = 'Forza Interiore'}
 t.urshifu = {ability1 = 'Pugni Invisibili'}
 t.calyrex = {ability1 = 'Agitazione'}
 t.zarude = {ability1 = 'Fogliamanto'}
+t.regieleki = {ability1 = 'Transistor'}
+t.regidrago = {ability1 = 'Dragomascelle'}
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
@@ -1832,7 +1834,7 @@ t.rapidashG = {ability1 = 'Fugafacile', ability2 = 'Pastelvelo', abilityd = 'Pre
 t['078G'] = t.rapidashG
 t.slowpokeG = {ability1 = 'Voracità', ability2 = 'Mente Locale'}
 t['079G'] = t.slowpokeG
-t.slowbroG = {ability1 = 'Sconosciuta'}
+t.slowbroG = {ability1 = 'Colpolesto'}
 t['080G'] = t.slowbroG
 t["farfetch'dG"] = {ability1 = 'Cuordeciso', abilityd = 'Nervisaldi'}
 t['083G'] = t["farfetch'dG"]
@@ -1850,6 +1852,12 @@ t['mr. mimeG'] = {ability1 = 'Spiritovivo', ability2 = 'Annullabarriere', abilit
 t['122G'] = t['mr. mimeG']
 t.eeveeCm = {ability1 = 'Nessuna'}
 t['133Cm'] = t.eeveeCm
+t.articunoG = {ability1 = 'Tenacia'}
+t['144G'] = t.articunoG
+t.zapdosG = {ability1 = 'Agonismo'}
+t['145G'] = t.zapdosG
+t.moltresG = {ability1 = 'Furore'}
+t['146G'] = t.moltresG
 t.slowkingG = {ability1 = 'Sconosciuta'}
 t['199G'] = t.slowkingG
 t.corsolaG = {ability1 = 'Sottilguscio', abilityd = 'Corpofunesto'}

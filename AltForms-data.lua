@@ -80,7 +80,6 @@ to others, thus there's aliasing at the end of the module.
 --]]
 
 t.pikachu = {}
-t.slowbro = {}
 t.eevee = {}
 t.castform = {}
 t.deoxys = {}
@@ -122,11 +121,10 @@ t.urshifu = {}
 
 t.mega = {'venusaur', 'blastoise', 'beedrill', 'pidgeot', 'alakazam',
 	'gengar', 'slowbro', 'kangaskhan', 'pinsir', 'gyarados', 'aerodactyl',
-	'ampharos',
-	'steelix', 'scizor', 'heracross', 'houndoom', 'tyranitar', 'sceptile',
-	'blaziken', 'swampert', 'gardevoir', 'sableye', 'mawile', 'aggron',
-	'medicham', 'manectric', 'sharpedo', 'camerupt', 'altaria', 'banette',
-	'absol', 'glalie', 'salamence', 'metagross', 'latias', 'latios',
+	'ampharos', 'steelix', 'scizor', 'heracross', 'houndoom', 'tyranitar',
+	'sceptile', 'blaziken', 'swampert', 'gardevoir', 'sableye', 'mawile',
+	'aggron', 'medicham', 'manectric', 'sharpedo', 'camerupt', 'altaria',
+	'banette', 'absol', 'glalie', 'salamence', 'metagross', 'latias', 'latios',
 	'rayquaza', 'lopunny', 'garchomp', 'lucario', 'abomasnow', 'gallade',
 	'audino', 'diancie'}
 
@@ -147,8 +145,9 @@ t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'diglett', 'meowth',
 -- Tabella contenente i Pokémon che hanno una forma di Galar:
 -- per efficienza, alcuni sono alla fine del modulo
 
-t.galar = {'meowth', 'ponyta', 'slowpoke', "farfetch'd", 'weezing', 'mr. mime',
-	'slowking', 'corsola', 'zigzagoon', 'darumaka', 'yamask', 'stunfisk'}
+t.galar = {'meowth', 'ponyta', 'slowpoke', 'slowbro', "farfetch'd", 'weezing',
+	'mr. mime', 'articuno', 'zapdos', 'moltres', 'slowking', 'corsola',
+	'zigzagoon', 'darumaka', 'yamask', 'stunfisk'}
 
 -- Table with Pokémon with a Gigamax
 
@@ -169,7 +168,6 @@ t.pikachu.names = {Cs = 'Pikachu Cosplay', R = 'Pikachu rockstar',
 	D = 'Pikachu damigella', Cn = 'Pikachu confetto',
 	S = 'Pikachu scienziata', W = 'Pikachu wrestler', Cm = 'Compagno',
 	Gi = 'Pikachu Gigamax', base = ''}
-t.slowbro.names = {G = 'Forma di Galar', base = ''}
 t.eevee.names = {Cm = 'Compagno', base = ''}
 t.castform.names = {S = 'Forma Sole', P = 'Forma Pioggia',
 	N = 'Forma Nuvola di Neve', base = 'Forma Castform'}
@@ -288,8 +286,6 @@ makeLinks(true)
 t.pikachu.ext = {cosplay = 'Cs', rockstar = 'R', damigella = 'D',
 	confetto = 'Cn', scienziata = 'S', wrestler = 'W', compagno = 'Cm',
 	gigamax = 'Gi'}
--- t.meowth.ext = {alola = 'A', galar = 'G'}
--- t.slowbro.ext = {galar = 'G', mega = 'M'}
 t.eevee.ext = {compagno = 'Cm'}
 t.castform.ext = {sole = 'S', pioggia = 'P', neve = 'N'}
 t.deoxys.ext = {attacco = 'A', difesa = 'D', ['velocità'] = 'V'}
@@ -480,6 +476,9 @@ t.marowak.since = {A = 'sl', base = 'rb'}
 t.weezing.since = {G = 'spsc', base = 'rb'}
 t['mr. mime'].since = {G = 'spsc', base = 'rb'}
 t.eevee.since = {Cm = 'lgpe', Gi = 'spsc', base = 'rb'}
+t.articuno.since = {G = 'spsc', base = 'rb'}
+t.zapdos.since = {G = 'spsc', base = 'rb'}
+t.moltres.since = {G = 'spsc', base = 'rb'}
 t.slowking.since = {G = 'spsc', base = 'oa'}
 t.corsola.since = {G = 'spsc', base = 'rz'}
 t.zigzagoon.since = {G = 'spsc', base = 'rz'}
@@ -618,11 +617,7 @@ table.insert(t.alola, 'muk')
 
 -- Other Galar forms
 table.insert(t.galar, 'rapidash')
-table.insert(t.galar, 'slowbro')
 table.insert(t.galar, 'linoone')
-
--- Insert Slowbro between megas
--- table.insert(t.mega, 'slowbro')
 
 -- Other Gigamax forms
 table.insert(t.gigamax, 'pikachu')
