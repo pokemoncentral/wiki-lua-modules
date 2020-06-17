@@ -1425,34 +1425,38 @@ evo.eevee = {
 		{
 			ndex = 470,
 			name = 'leafeon',
-			method = evo.methods.LEVEL,
-			conditions = {
-				[evo.conditions.LOCATION] = 'Roccia Muschio',
-				[evo.conditions.OTHER] = table.concat{
-					"oppure<div>",
-					links.bag("Pietrafoglia"),
-					"</div>usando una [[Pietrafoglia]]",
-				},
-			},
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietrafoglia',
+			-- method = evo.methods.LEVEL,
+			-- conditions = {
+			-- 	[evo.conditions.LOCATION] = 'Roccia Muschio',
+			-- 	[evo.conditions.OTHER] = table.concat{
+			-- 		"oppure<div>",
+			-- 		links.bag("Pietrafoglia"),
+			-- 		"</div>usando una [[Pietrafoglia]]",
+			-- 	},
+			-- },
 		},
 		{
 			ndex = 471,
 			name = 'glaceon',
-			method = evo.methods.LEVEL,
-			conditions = {
-				[evo.conditions.LOCATION] = 'Roccia Ghiaccio',
-				[evo.conditions.OTHER] = table.concat{
-					"oppure<div>",
-					links.bag("Pietragelo"),
-					"</div>usando una [[Pietragelo]]",
-				},
-			},
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietragelo',
+			-- method = evo.methods.LEVEL,
+			-- conditions = {
+			-- 	[evo.conditions.LOCATION] = 'Roccia Ghiaccio',
+			-- 	[evo.conditions.OTHER] = table.concat{
+			-- 		"oppure<div>",
+			-- 		links.bag("Pietragelo"),
+			-- 		"</div>usando una [[Pietragelo]]",
+			-- 	},
+			-- },
 		},
 		{
 			ndex = 700,
 			name = 'sylveon',
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.OTHER] = 'Con due cuori di [[Amicizia]]<div>avendo appreso una mossa di tipo [[Folletto]]</div>' },
+			conditions = { [evo.conditions.OTHER] = "Con l'[[affetto]] moderatamente alto<div>avendo appreso una mossa di tipo [[Folletto]]</div>" },
 		}
 	}
 }

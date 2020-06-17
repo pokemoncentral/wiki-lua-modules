@@ -1784,9 +1784,12 @@ t[889] = t.zamazenta
 t.eternatus = {ability1 = 'Pressione'}
 t[890] = t.eternatus
 t.kubfu = {ability1 = 'Forza Interiore'}
+t[891] = t.kubfu
 t.urshifu = {ability1 = 'Pugni Invisibili'}
-t.calyrex = {ability1 = 'Agitazione'}
+t[892] = t.urshifu
 t.zarude = {ability1 = 'Fogliamanto'}
+t[893] = t.zarude
+t.calyrex = {ability1 = 'Agitazione'}
 t.regieleki = {ability1 = 'Transistor'}
 t.regidrago = {ability1 = 'Dragomascelle'}
 
@@ -1977,7 +1980,7 @@ t.morpekoV, t['877V'] = t.morpeko, t.morpeko
 t.zacianR, t['888R'] = t.zacian, t.zacian
 t.zamazentaR, t['889R'] = t.zamazenta, t.zamazenta
 t.eternatusD, t['890D'] = t.eternatus, t.eternatus
-t.urshifuP = t.urshifu
+t.urshifuP, t['892P'] = t.urshifu, t.urshifu
 
 -- Gigamax
 t.venusaurGi, t['003Gi'] = t.venusaur, t.venusaur

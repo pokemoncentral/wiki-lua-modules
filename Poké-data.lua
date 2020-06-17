@@ -1786,14 +1786,14 @@ t.zamazenta = {name = 'Zamazenta', ndex = 889, type1 = 'lotta', type2 = 'lotta'}
 t[889] = t.zamazenta
 t.eternatus = {name = 'Eternatus', ndex = 890, type1 = 'veleno', type2 = 'drago'}
 t[890] = t.eternatus
-t.kubfu = {name = 'Kubfu', ndex = nil, type1 = 'lotta', type2 = 'lotta'}
--- t[] = t.kubfu
-t.urshifu = {name = 'Urshifu', ndex = nil, type1 = 'lotta', type2 = 'buio'}
--- t[] = t.urshifu
+t.kubfu = {name = 'Kubfu', ndex = 891, type1 = 'lotta', type2 = 'lotta'}
+t[891] = t.kubfu
+t.urshifu = {name = 'Urshifu', ndex = 892, type1 = 'lotta', type2 = 'buio'}
+t[892] = t.urshifu
+t.zarude = {name = 'Zarude', ndex = 893, type1 = 'Buio', type2 = 'Erba'}
+t[893] = t.zarude
 t.calyrex = {name = 'Calyrex', ndex = nil, type1 = 'psico', type2 = 'erba'}
 -- t[] = t.calyrex
-t.zarude = {name = 'Zarude', ndex = nil, type1 = 'Buio', type2 = 'Erba'}
--- t[] = t.zarude
 t.regieleki = {name = 'Regieleki', ndex = nil, type1 = 'elettro', type2 = 'elettro'}
 -- t[] = t.regieleki
 t.regidrago = {name = 'Regidrago', ndex = nil, type1 = 'drago', type2 = 'drago'}
@@ -1991,8 +1991,8 @@ t.necrozmaA = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'spettro'
 t['800A'] = t.necrozmaA
 t.necrozmaU = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'drago'}
 t['800U'] = t.necrozmaU
-t.urshifuP = {name = 'Urshifu', ndex = nil, type1 = 'lotta', type2 = 'acqua'}
--- t[] = urshifuP
+t.urshifuP = {name = 'Urshifu', ndex = 892, type1 = 'lotta', type2 = 'acqua'}
+t['892P'] = urshifuP
 
 t.charizardMX = {name = 'Charizard', ndex = 6, type1 = 'fuoco', type2 = 'drago'}
 t['006MX'] = t.charizardMX
@@ -2133,7 +2133,7 @@ t.grimmsnarlGi, t['861Gi'] = t.grimmsnarl, t.grimmsnarl
 t.alcremieGi, t['869Gi'] = t.alcremie, t.alcremie
 t.copperajahGi, t['879Gi'] = t.copperajah, t.copperajah
 t.duraludonGi, t['884Gi'] = t.duraludon, t.duraludon
-t.urshifuGi = t.urshifu
-t.urshifuPGi = t.urshifuP
+t.urshifuGi, t['892Gi'] = t.urshifu, t.urshifu
+t.urshifuPGi, t['892PGi'] = t.urshifuP, t.urshifuP
 
 return t

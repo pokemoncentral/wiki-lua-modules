@@ -705,6 +705,7 @@ t[877] = t.morpeko
 t[888] = t.zacian
 t[889] = t.zamazenta
 t[890] = t.eternatus
+t[892] = t.urshifu
 t[3] = t.venusaur
 t[9] = t.blastoise
 t[15] = t.beedrill
