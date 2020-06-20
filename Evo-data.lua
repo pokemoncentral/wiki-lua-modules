@@ -824,7 +824,15 @@ evo.magnemite = {
 					ndex = 462,
 					name = 'magnezone',
 					method = evo.methods.LEVEL,
-					conditions = { [evo.conditions.LOCATION] = 'Campo magnetico speciale' },
+					-- conditions = { [evo.conditions.LOCATION] = 'Campo magnetico speciale' },
+					conditions = {
+						   [evo.conditions.LOCATION] = 'Campo magnetico speciale',
+						   [evo.conditions.OTHER] = table.concat{
+							"oppure<div>",
+							links.bag("Pietratuono"),
+							"</div>usando una [[Pietratuono]]",
+						},
+					}
 				}
 			}
 		}
@@ -6607,6 +6615,45 @@ evo[889] = evo.zamazenta
 
 evo.eternatus = { ndex = 890, name = 'eternatus' }
 evo[890] = evo.eternatus
+
+evo.kubfu = {
+	ndex = 891,
+	name = 'kubfu',
+
+	evos = {
+		{
+			ndex = 892,
+			name = 'urshifu',
+            notes = altforms.urshifu.names.base,
+
+			method = evo.methods.UNKNOWN,
+			-- [evo.methods.LEVEL] = 50,
+		},
+		{
+			ndex = '892P',
+			name = 'urshifuP',
+            notes = altforms.urshifu.names.P,
+
+			method = evo.methods.UNKNOWN,
+			-- [evo.methods.LEVEL] = 50,
+		},
+	}
+}
+evo.urshifu = evo.kubfu
+evo[891], evo[892], evo['892P'] = evo.kubfu, evo.kubfu, evo.kubfu
+
+evo.zarude =  { ndex = 893, name = 'zarude' }
+evo[893] = evo.zarude
+
+evo.calyrex =  { ndex = nil, name = 'calyrex' }
+-- evo[893] = evo.calyrex
+
+evo.regieleki =  { ndex = nil, name = 'regieleki' }
+-- evo[893] = evo.regieleki
+
+evo.regidrago =  { ndex = nil, name = 'regidrago' }
+-- evo[893] = evo.regidrago
+
 
 -- Alternative forms with evolutions
 evo.rattataA = {

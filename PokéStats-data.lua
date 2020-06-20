@@ -1786,6 +1786,12 @@ d.zamazenta = {hp = 92, atk = 130, def = 115, spatk = 80, spdef = 115, spe = 138
 d[889] = d.zamazenta
 d.eternatus = {hp = 140, atk = 85, def = 95, spatk = 145, spdef = 95, spe = 130}
 d[890] = d.eternatus
+d.kubfu = {hp = 60, atk = 90, def = 60, spatk = 53, spdef = 50, spe = 72}
+d[891] = d.kubfu
+d.urshifu = {hp = 100, atk = 130, def = 100, spatk = 63, spdef = 60, spe = 97}
+d[892] = d.urshifu
+d.zarude = {hp = 105, atk = 120, def = 105, spatk = 70, spdef = 95, spe = 105}
+d[893] = d.zarude
 
 -- Alternative forms which actually change stats
 d.pikachuCm = {hp = 45, atk = 80, def = 50, spatk = 75, spdef = 60, spe = 120}
@@ -2091,6 +2097,7 @@ d.toxtricityB = d.toxtricity
 d['849B'] = d.toxtricityB
 d.morpekoV = d.morpeko
 d['877V'] = d.morpekoV
+d.urshifuP, d['892P'] = d.urshifu, d.urshifu
 
 -- Gigamax
 d.venusaurGi, d['003Gi'] = d.venusaur, d.venusaur
@@ -2124,7 +2131,7 @@ d.grimmsnarlGi, d['861Gi'] = d.grimmsnarl, d.grimmsnarl
 d.alcremieGi, d['869Gi'] = d.alcremie, d.alcremie
 d.copperajahGi, d['879Gi'] = d.copperajah, d.copperajah
 d.duraludonGi, d['884Gi'] = d.duraludon, d.duraludon
--- d.urshifuGi = d.urshifu
--- d.urshifuPGi = d.urshifuP
+d.urshifuGi, d['892Gi'] = d.urshifu, d.urshifu
+d.urshifuPGi, d['892PGi'] = d.urshifuP, d.urshifuP
 
 return d

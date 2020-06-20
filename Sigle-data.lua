@@ -501,6 +501,25 @@ x.SpSc = {{
         {'Sc', 'scudo'}
     }
 }}
+x.IATC = {{
+    link = 'Pokémon Spada e Scudo - Pass di espansione',
+    display = {
+        {'IA', 'isolaarmatura'},
+        {'TC', 'tundracorona'}
+    }
+}}
+x.IA = {{
+    link = 'Pokémon Spada e Scudo - Pass di espansione',
+    display = {
+        {'IA', 'isolaarmatura'}
+    }
+}}
+x.TC = {{
+    link = 'Pokémon Spada e Scudo - Pass di espansione',
+    display = {
+        {'TC', 'tundracorona'}
+    }
+}}
 x.SJ = {{
     link = 'Pokémon Stadium (Giappone)',
     text = 'Stadium',

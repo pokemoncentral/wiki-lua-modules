@@ -737,11 +737,29 @@ t.supplicolpo = {name = 'Supplicolpo', type = 'buio', category = 'fisico', power
 t.sfolgorassalto = {name = 'Sfolgorassalto', type = 'lotta', category = 'fisico', power = 150, accuracy = 100, pp = 5, gen = 8}
 t['raggio infinito'] = {name = 'Raggio Infinito', type = 'drago', category = 'speciale', power = 160, accuracy = 90, pp = 5, gen = 8}
 t["raggio d'acciaio"] = {name = "Raggio d'Acciaio", type = 'acciaio', category = 'speciale', power = 140, accuracy = 95, pp = 5, gen = 8}
+t.vastenergia = {name = "Vastenergia", type = 'psico', category = 'speciale', power = 80, accuracy = 100, pp = 10, gen = 8}
+t.ferrorullo = {name = "Ferrorullo", type = "acciaio", category = 'fisico', power = 130, accuracy = 100, pp = 5, gen = 8}
+t.squamacolpo = {name = "Squamacolpo", type = "drago", category = 'fisico', power = 25, accuracy = 90, pp = 20, gen = 8}
+t.raggiometeora = {name = "Raggiometeora", type = "roccia", category = 'speciale', power = 120, accuracy = 90, pp = 10, gen = 8}
+t.armaguscio = {name = "Armaguscio", type = "veleno", category = 'speciale', power = 90, accuracy = 100, pp = 10, gen = 8}
+t.nebbioscoppio = {name = "Nebbioscoppio", type = "folletto", category = 'speciale', power = 100, accuracy = 100, pp = 5, gen = 8}
+t.erboscivolata = {name = "Erboscivolata", type = "erba", category = 'fisico', power = 70, accuracy = 100, pp = 20, gen = 8}
+t.elettroimpennata = {name = "Elettroimpennata", type = "elettro", category = 'speciale', power = 70, accuracy = 100, pp = 20, gen = 8}
+t.campopulsar = {name = "Campopulsar", type = "normale", category = 'speciale', power = 50, accuracy = 100, pp = 10, gen = 8}
+t.strisciacolpo = {name = "Strisciacolpo", type = "coleottero", category = 'fisico', power = 70, accuracy = 90, pp = 10, gen = 8}
+t.fiamminvidia = {name = "Fiamminvidia", type = "fuoco", category = 'speciale', power = 70, accuracy = 100, pp = 5, gen = 8}
+t.sfogarabbia = {name = "Sfogarabbia", type = "buio", category = 'fisico', power = 75, accuracy = 100, pp = 5, gen = 8}
+t.poltergeist = {name = "Poltergeist", type = "spettro", category = 'fisico', power = 110, accuracy = 90, pp = 5, gen = 8}
+t['gas corrosivo'] = {name = "Gas Corrosivo", type = "veleno", category = 'stato', power = '&mdash;', accuracy = 100, pp = 40, gen = 8}
+t.coaching = {name = "Coaching", type = "lotta", category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 8}
+t.virata = {name = "Virata", type = "acqua", category = 'fisico', power = 60, accuracy = 100, pp = 20, gen = 8}
+t['triplo axel'] = {name = "Triplo Axel", type = "ghiaccio", category = 'fisico', power = 20, accuracy = 90, pp = 10, gen = 8}
+t['doppia ala'] = {name = "Doppia Ala", type = "volante", category = 'fisico', power = 40, accuracy = 90, pp = 10, gen = 8}
+t.sabbiardente = {name = "Sabbiardente", type = "terra", category = 'speciale', power = 70, accuracy = 100, pp = 10, gen = 8}
+t.giunglacura = {name = "Giunglacura", type = "erba", category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 8}
+t.pugnotenebra = {name = "Pugnotenebra", type = "buio", category = 'fisico', power = 80, accuracy = 100, pp = 5, gen = 8}
+t.idroraffica = {name = "Idroraffica", type = "acqua", category = 'fisico', power = 25, accuracy = 100, pp = 5, gen = 8}
 -- Incomplete moves
-t.giunglacura = {name = "Giunglacura", type = "erba", category = 'stato', power = '&mdash;', accuracy = "?", pp = "?", gen = 8}
-t.pugnotenebra = {name = "Pugnotenebra", type = nil, category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
-t.idroraffica = {name = "Idroraffica", type = nil, category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
-t.armaguscio = {name = "Armaguscio", type = "veleno", category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
 t.elettrogabbia = {name = "Elettrogabbia", type = "elettro", category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
 t.dragoenergia = {name = "Dragoenergia", type = "drago", category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
 t["calcio tonante"] = {name = "Calcio Tonante", type = "lotta", category = "fisico", power = "?", accuracy = "?", pp = "?", gen = 8}
