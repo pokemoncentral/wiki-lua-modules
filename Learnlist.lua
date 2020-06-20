@@ -530,7 +530,7 @@ end
 
 --[[
 
-Comparator for two tm/hm pairs.
+Comparator for two tm/hm/td pairs.
 
 --]]
 l.ltTm = function(a, b)
@@ -639,7 +639,7 @@ l.dicts.tutor = {
         end
         return a[1] < b[1]
     end,
-    makeEntry = function(poke, _, val)
+    makeEntry = function(poke, gen, val)
         return table.concat{
             '|-\n',
             lib.tutorgames(val[2]),

@@ -25,14 +25,18 @@ a slightly different syntax:
 again separated by a |
 
 So for instance a pair of invocations like
+
 {{#invoke: somemodule | somefunction | arg11 | arg12 | arg13 | key1 = val11 | key2 = val12 }}
 {{#invoke: somemodule | somefunction | arg21 | arg22 | arg23 | key1 = val21 }}
+
 becomes
+
 {{#invoke: render | render | somemodule | somefunction | //
 | arg11 | arg12 | arg13 | key1 <- val11 | key2 <- val12 | //
 | arg21 | arg22 | arg23 | key1 <- val21 | //
 }}
-(note: the last separator SEP is optional)
+
+(note: the last separator // is optional, but my suggestion is to add it)
 
 --]]
 
