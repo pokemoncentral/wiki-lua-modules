@@ -34,7 +34,7 @@ local firstcell = {cs = {}, rs = {}}
 firstcell.cs.level = {1, 1, 1, 1, 2, 2, 2}
 firstcell.cs.tm = {1, 1, 1, 1, 1, 1, 1}
 firstcell.cs.breed = {1, 1, 1, 1, 1, 1, 1}
-firstcell.cs.tutor = {1, 1, 3, 3, 2, 2, 2}
+firstcell.cs.tutor = {1, 1, 3, 3, 2, 2, 2, 2}
 firstcell.cs.preevo = firstcell.cs.breed
 firstcell.cs.event = firstcell.cs.breed
 

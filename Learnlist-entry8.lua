@@ -4,7 +4,7 @@ TODO: write "tests"
 
 Learnlist entries for 8th gen.
 Below parameters of each kind of entry are described.
-NOTE: STAB is autocomputed if empty. If you want to force an empty value (ie:
+NOTE: STAB is autocomputed if empty. If you want to force an empty value (eg.
 because autocompting is wrong) you should use the special value "no"
 
 Level entry:
@@ -22,7 +22,7 @@ Breed entry:
 
 Tutor entry:
 1 is the move name. 2 is the STAB (if empty is autocomputed),
-3 are optional notes, 4 is yes/no for SpSc
+3 are optional notes, 4 is yes/no for SpSc, 5 is yes/no for IA
 
 Preevo entry:
 1 is the move name. 2 is the STAB (if empty is autocomputed),
@@ -126,7 +126,7 @@ z.Breed = z.breed
 z.tutor = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return table.concat{
-		lib.tutorgames{ {'SpSc', p[4]} },
+		lib.tutorgames{ {'SpSc', p[4]}, {'IA', p[5]} },
 		' ',
 		entry(p[1] or 'Tuono',
 			  p[2] or '',

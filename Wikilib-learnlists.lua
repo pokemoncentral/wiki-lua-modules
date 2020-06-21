@@ -59,7 +59,7 @@ breed = { {}, { "OA", "C" }, { "RZ", "RFVF", "S" },
 },
 tutor = { {}, { "C" }, { "RFVF", "S", "XD" },
     { "DP", "Pt", "HGSS" }, { "NB", "N2B2" }, { "XY", "ROZA" },
-    { "SL", "USUL" }, { "SpSc" },
+    { "SL", "USUL" }, { "SpSc", "IA" },
 },
 }
 
