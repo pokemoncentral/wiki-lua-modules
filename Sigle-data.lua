@@ -505,7 +505,7 @@ x.IATC = {{
     link = 'Pokémon Spada e Scudo - Pass di espansione',
     display = {
         {'IA', 'isolaarmatura'},
-        {'TC', 'tundracorona'}
+        {'TC', 'landacorona'}
     }
 }}
 x.IA = {{
@@ -517,7 +517,7 @@ x.IA = {{
 x.TC = {{
     link = 'Pokémon Spada e Scudo - Pass di espansione',
     display = {
-        {'TC', 'tundracorona'}
+        {'TC', 'landacorona'}
     }
 }}
 x.SJ = {{

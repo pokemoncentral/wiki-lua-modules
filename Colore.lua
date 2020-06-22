@@ -241,8 +241,8 @@ c.scudo = function(frame) return _colore(frame.args[1] or 'normale', 'ED1165', '
 c.Scudo = c.scudo
 c.isolaarmatura = function(frame) return _colore(frame.args[1] or 'normale', 'F5E036', 'FFFAA9', 'F7AF00') end
 c.Isolaarmatura = c.isolaarmatura
-c.tundracorona = function(frame) return _colore(frame.args[1] or 'normale', '009D88', '00D668', '004C65') end
-c.Tundracorona = c.tundracorona
+c.landacorona = function(frame) return _colore(frame.args[1] or 'normale', '009D88', '00D668', '004C65') end
+c.Landacorona = c.landacorona
 
 -- Colori regioni
 
