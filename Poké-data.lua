@@ -1992,7 +1992,7 @@ t['800A'] = t.necrozmaA
 t.necrozmaU = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'drago'}
 t['800U'] = t.necrozmaU
 t.urshifuP = {name = 'Urshifu', ndex = 892, type1 = 'lotta', type2 = 'acqua'}
-t['892P'] = urshifuP
+t['892P'] = t.urshifuP
 
 t.charizardMX = {name = 'Charizard', ndex = 6, type1 = 'fuoco', type2 = 'drago'}
 t['006MX'] = t.charizardMX

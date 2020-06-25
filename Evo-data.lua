@@ -5670,21 +5670,31 @@ evo.rockruff = {
 			name = 'lycanroc',
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 25,
-			conditions = { [evo.conditions.OTHER] = 'Di [[Tempo|giorno]] in [[Pokémon Sole e Luna|Sole]] e [[Pokémon Ultrasole e Ultraluna|Ultrasole]]' }
+			conditions = {
+                -- [evo.conditions.OTHER] = 'Di [[Tempo|giorno]]',
+                [evo.conditions.TIME] = 'Giorno',
+            }
 		},
 		{
 			ndex = '745N',
 			name = 'lycanrocN',
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 25,
-			conditions = { [evo.conditions.OTHER] = 'Di [[Tempo|notte]] in [[Pokémon Sole e Luna|Luna]] e [[Pokémon Ultrasole e Ultraluna|Ultraluna]]' }
+			conditions = {
+                -- [evo.conditions.OTHER] = 'Di [[Tempo|notte]]',
+                [evo.conditions.TIME] = 'Notte',
+            }
 		},
 		{
 			ndex = '745C',
 			name = 'lycanrocC',
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 25,
-			conditions = { [evo.conditions.OTHER] = 'Al tramonto se ha [[Mente Locale]] in [[Pokémon Ultrasole e Ultraluna|Ultrasole e Ultraluna]]' }
+			conditions = {
+                -- [evo.conditions.OTHER] = 'Al tramonto se ha [[Mente Locale]]{{#invoke: sup | UsUl}}{{gensup|8|plus=yes}}',
+                [evo.conditions.TIME] = 'Tramonto',
+                [evo.conditions.OTHER] = 'con [[Mente Locale]]',
+            }
 		}
 	}
 }
@@ -6626,16 +6636,16 @@ evo.kubfu = {
 			name = 'urshifu',
             notes = altforms.urshifu.names.base,
 
-			method = evo.methods.UNKNOWN,
-			-- [evo.methods.LEVEL] = 50,
+			method = evo.methods.OTHER,
+			[evo.methods.OTHER] = "Vedendo il [[Torre Buio|Rotolo del Buio]]",
 		},
 		{
 			ndex = '892P',
 			name = 'urshifuP',
             notes = altforms.urshifu.names.P,
 
-			method = evo.methods.UNKNOWN,
-			-- [evo.methods.LEVEL] = 50,
+			method = evo.methods.OTHER,
+			[evo.methods.OTHER] = "Vedendo il [[Torre Acqua|Rotolo dell'Acqua]]",
 		},
 	}
 }
@@ -6807,6 +6817,29 @@ evo.ponytaG = {
 }
 evo.rapidashG = evo.ponytaG
 evo['077G'], evo['078G'] = evo.ponytaG, evo.ponytaG
+
+evo.slowpokeG = {
+	ndex = '079G',
+	name = 'slowpokeG',
+
+	evos = {
+		{
+			ndex = '080G',
+			name = 'slowbroG',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Fascia Galarnoce',
+
+		},
+		{
+			ndex = '199G',
+			name = 'slowkingG',
+			method = evo.methods.UNKNOWN,
+			-- conditions = { [evo.conditions.ITEM] = 'Roccia di Re' }
+		}
+	}
+}
+evo.slowbroG, evo.slowkingG = evo.slowpokeG, evo.slowpokeG
+evo['079G'], evo['080G'], evo['199G'] = evo.slowpokeG, evo.slowpokeG, evo.slowpokeG
 
 evo["farfetch'dG"] = {
 	ndex = '083G',

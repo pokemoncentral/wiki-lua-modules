@@ -55,7 +55,7 @@ local strings = {
 -- Compute the displayed STAB from the input.
 -- "move" is the move name, "stabval" is the value of stab passed to the call
 local getSTAB = function(move, stabval)
-	if stabval == "no" then
+	if stabval == "No" then
 		return ""
 	elseif stabval ~= "" then
 		return stabval
@@ -98,7 +98,7 @@ z.tm = function(frame)
 		string.interp(strings.TMENTRY, {
 			img = tmkind,
 			p1 = tmkind .. tostring(tmnum),
-			tipo = string.fu(moves[string.lower(movename)].type or 'Sconosciuto')
+			tipo = string.fu(multigen.getGenValue(moves[string.lower(movename)].type, 8))
 		}),
 		entry(movename, p[2] or '', lib.makeNotes(p[3] or '')),
 	}
