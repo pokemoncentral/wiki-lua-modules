@@ -8,21 +8,52 @@ local t = {}
 local txt = require('Wikilib-strings') -- luacheck: no unused
 local tab = require('Wikilib-tables') -- luacheck: no unused
 
+
+--[[
+
+Creates the link for an alternative form. There are two general
+kinds of link: those pointing to the specific subpage of the Pokémon,
+and those pointing to general pages (eg: "Forma di Alola").
+This function handles boths, depending on the arguments.
+This function also handles empty form name, yielding no link at all
+(an empty string).
+
+Arguments:
+	- black: a boolean value. If true returns black links, otherwise normal
+	- formName: name of the specific form
+	- poke: base name of the Pokémon
+	- general: an optional string argument. If given, the function assumes
+			the link target should be the general page whose title is given by
+			the value of this parameter (eg: for a Megaevoluzione, this
+			parameter should be "Megaevoluzione")
+
+--]]
+local function makeSingleLink(black, formName, poke, general)
+	if formName == "" then
+		return ""
+	end
+
+	local target
+	if general then
+		target = table.concat{general, "#", t[poke].anchor or string.fu(poke)}
+	else
+		target = table.concat{string.fu(poke), "/Forme"}
+	end
+	return string.interp('<div class="small-text${black}">[[${target}|${formName}]]</div>', {
+		black = black and " black-text" or "",
+		formName = formName,
+		target = target
+	})
+end
+
 -- Creates links to alternative forms
-local makeLinks = function(black)
-	local link = black
-			and '<div class="small-text black-text">[[Differenze di forma#${anchor}|${formName}]]</div>'
-			or '<div class="small-text">[[Differenze di forma#${anchor}|${formName}]]</div>'
+local function makeLinks(black)
 	local index = black and 'blacklinks' or 'links'
 
+	-- Adds standard links
 	for name, poke in pairs(t) do
 		poke[index] = table.map(poke.names, function(formName)
-			return formName == ''
-				   and ''
-				   or string.interp(link, {
-					anchor = poke.anchor or string.fu(name),
-					formName = formName
-			})
+			return makeSingleLink(black, formName, name)
 		end)
 	end
 end

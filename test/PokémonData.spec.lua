@@ -118,15 +118,15 @@ table.insert(tests, {
 
 -- ================================ getLink ================================
 -- Those should be last because loads useless in Wikilib-forms
--- Tests 36, 41
+-- Tests 36, 45
 -- Standard case
 table.insert(tests, {
     pokeData.getLink{args={'487'}},
-    '<div class="small-text">[[Differenze di forma#Giratina|Forma Alterata]]</div>'
+    '<div class="small-text">[[Giratina/Forme|Forma Alterata]]</div>'
 })
 table.insert(tests, {
     pokeData.getLink{args={'487O'}},
-    '<div class="small-text">[[Differenze di forma#Giratina|Forma Originale]]</div>'
+    '<div class="small-text">[[Giratina/Forme|Forma Originale]]</div>'
 })
 
 -- Empty base form link
@@ -139,12 +139,30 @@ table.insert(tests, { pokeData.getLink{args={'028'}}, '' })
 -- BothForms
 table.insert(tests, {
     pokeData.getLink{args={'774R'}},
-    '<div class="small-text">[[Differenze di forma#Minior|Nucleo Rosso]]</div>'
+    '<div class="small-text">[[Minior/Forme|Nucleo Rosso]]</div>'
+})
+
+-- Two kinds of "generic" links (ie: Mega and Galar)
+table.insert(tests, {
+    pokeData.getLink{args={'080'}}, ''
+})
+table.insert(tests, {
+    pokeData.getLink{args={'080M'}},
+    '<div class="small-text">[[Megaevoluzione#Slowbro|MegaSlowbro]]</div>'
+})
+table.insert(tests, {
+    pokeData.getLink{args={'080G'}},
+    '<div class="small-text">[[Forma di Galar#Slowbro|Forma di Galar]]</div>'
+})
+
+-- Urshifu (strange Gigamax)
+table.insert(tests, {
+    pokeData.getLink{args={'892PGi', "black"}},
+    '<div class="small-text black-text">[[Urshifu/Forme|Urshifu Gigamax (Stile Pluricolpo)]]</div>'
 })
 
 -- Pokémon without alternative forms
 table.insert(tests, { pokeData.getLink{args={'398'}}, '' })
-
 
 -- ==================== Actual execution ======================
 for n, v in ipairs(tests) do

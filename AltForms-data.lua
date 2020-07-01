@@ -10,66 +10,98 @@ local tab = require('Wikilib-tables') -- luacheck: no unused
 
 local mw = require('mw')
 
--- Creates link to alternative forms in list pointing to target instead of
--- "Differenze di forma"
--- abbrs is an optional parameter, if specified this function modifies only the
--- link for base and the specified abbrs
-local makeTargetedLink = function(linkstr, index, target, list, abbrs)
-	linkstr = linkstr:gsub('Differenze di forma', target)
-	for _, poke in pairs(list) do
-		t[poke][index] = table.map(t[poke].names, function(formName, formAbbr)
-			if abbrs and (formAbbr == 'base' or table.search(abbrs, formAbbr)) then
-				return formName == ''
-					   and ''
-					   or string.interp(linkstr, {
-						anchor = t[poke].anchor or string.fu(poke),
-						formName = formName
-				})
+--[[
+
+Creates the link for an alternative form. There are two general
+kinds of link: those pointing to the specific subpage of the Pokémon,
+and those pointing to general pages (eg: "Forma di Alola").
+This function handles boths, depending on the arguments.
+This function also handles empty form name, yielding no link at all
+(an empty string).
+
+Arguments:
+	- black: a boolean value. If true returns black links, otherwise normal
+	- formName: name of the specific form
+	- poke: base name of the Pokémon
+	- general: an optional string argument. If given, the function assumes
+			the link target should be the general page whose title is given by
+			the value of this parameter (eg: for a Megaevoluzione, this
+			parameter should be "Megaevoluzione")
+
+--]]
+local function makeSingleLink(black, formName, poke, general)
+	if formName == "" then
+		return ""
+	end
+
+	local target
+	if general then
+		target = table.concat{general, "#", t[poke].anchor or string.fu(poke)}
+	else
+		target = table.concat{string.fu(poke), "/Forme"}
+	end
+	return string.interp('<div class="small-text${black}">[[${target}|${formName}]]</div>', {
+		black = black and " black-text" or "",
+		formName = formName,
+		target = target
+	})
+end
+
+--[[
+
+Adds links to alternative forms pointing to a generic page instead of
+the specific subpage of the Pokémon. This function modifies links only
+for a given list of abbrs, and doesn't change other links.
+Arguments:
+	- black: a boolean value. Is true adds blacklinks, otherwise normal
+	- target: the target page name
+	- list: a list of keys to which add the links for this target
+	- abbrs: the list of abbrs to modify
+
+--]]
+local function makeTargetedLink(black, target, list, abbrs)
+	local index = black and 'blacklinks' or 'links'
+
+	for _, name in pairs(list) do
+		t[name][index] = table.map(t[name].names, function(formName, formAbbr)
+			if table.search(abbrs, formAbbr) then
+				return makeSingleLink(black, formName, name, target)
 			else
-				return t[poke][index] and t[poke][index][formAbbr]
+				return t[name][index] and t[name][index][formAbbr]
 			end
 		end)
 	end
 end
 
 -- Creates links to alternative forms
-local makeLinks = function(black)
-	local link = black
-			and '<div class="small-text black-text">[[Differenze di forma#${anchor}|${formName}]]</div>'
-			or '<div class="small-text">[[Differenze di forma#${anchor}|${formName}]]</div>'
+local function makeLinks(black)
 	local index = black and 'blacklinks' or 'links'
 
-	-- Si eliminano le table di supporto e i
-	-- Pokémon che non hanno i link standard
+	-- Removing support tables since we don't want to operate on them
 	local stdLinks = table.filter(t, function(_, key)
-		return not table.search({'mega', 'megaxy',
-								 'archeo', 'alola', 'galar', 'gigamax'}, key)
-			-- and not table.search(t.mega, key)
-			-- and not table.search(t.megaxy, key)
-			-- and not table.search(t.archeo, key)
-			-- and not table.search(t.alola, key)
-			-- and not table.search(t.galar, key)
-			-- and not table.search(t.gigamax, key)
+		return not table.search({'mega', 'megaxy', 'archeo', 'alola', 'galar',
+		                         'gigamax'}, key)
 	end)
 
-	-- Links standard
+	-- Adds standard links
 	for name, poke in pairs(stdLinks) do
 		poke[index] = table.map(poke.names, function(formName)
-			return formName == ''
-				   and ''
-				   or string.interp(link, {
-					anchor = poke.anchor or string.fu(name),
-					formName = formName
-			})
+			return makeSingleLink(black, formName, name)
+			-- return formName == ''
+			-- 	   and ''
+			-- 	   or string.interp(link, {
+			-- 		anchor = poke.anchor or string.fu(name),
+			-- 		formName = formName
+			-- })
 		end)
 	end
 
-	-- Link of forms with a dedicated page instead of "Differenze di forma"
-	makeTargetedLink(link, index, 'Megaevoluzione', table.merge(t.mega, t.megaxy), {"M", "MX", "MY"})
-	makeTargetedLink(link, index, 'Archeorisveglio', t.archeo, {"A"})
-	makeTargetedLink(link, index, 'Forma di Alola', t.alola, {"A"})
-	makeTargetedLink(link, index, 'Forma di Galar', t.galar, {"G"})
-	makeTargetedLink(link, index, 'Gigamax', t.gigamax, {"Gi"})
+	-- Adds links of forms with a dedicated page
+	makeTargetedLink(black, 'Megaevoluzione', table.merge(t.mega, t.megaxy), {"base", "M", "MX", "MY"})
+	makeTargetedLink(black, 'Archeorisveglio', t.archeo, {"base", "A"})
+	makeTargetedLink(black, 'Forma di Alola', t.alola, {"base", "A"})
+	makeTargetedLink(black, 'Forma di Galar', t.galar, {"base", "G"})
+	makeTargetedLink(black, 'Gigamax', t.gigamax, {"base", "Gi"})
 end
 
 --[[
@@ -269,9 +301,9 @@ t.persian.anchor = 'Meowth e Persian'
 t.geodude.anchor = 'Geodude, Graveler e Golem'
 t.grimer.anchor = 'Grimer e Muk'
 t.zigzagoon.anchor = 'Zigzagoon e Linoone'
-t.wormadam.anchor = 'Burmy e Wormadam'
-t.tornadus.anchor = 'Forze della Natura'
-t.pumpkaboo.anchor = 'Pumpkaboo e Gourgeist'
+-- t.wormadam.anchor = 'Burmy e Wormadam'
+-- t.tornadus.anchor = 'Forze della Natura'
+-- t.pumpkaboo.anchor = 'Pumpkaboo e Gourgeist'
 
 -- Alternative forms' links
 
