@@ -1617,7 +1617,6 @@ t.blacephalon = {group1 = 'sconosciuto'}
 t[806] = t.blacephalon
 t.zeraora = {group1 = 'sconosciuto'}
 t[807] = t.zeraora
-
 t.grookey = {group1 = 'campo', group2 = 'erba'}
 t[810] = t.grookey
 t.thwackey, t[811] = t.grookey, t.grookey
@@ -1747,6 +1746,19 @@ t.zamazenta = {group1 = 'sconosciuto'}
 t[889] = t.zamazenta
 t.eternatus = {group1 = 'sconosciuto'}
 t[890] = t.eternatus
+t.kubfu = {group1 = 'sconosciuto'}
+t[891] = t.kubfu
+t.urshifu = {group1 = 'sconosciuto'}
+t[892] = t.urshifu
+t.zarude = {group1 = 'sconosciuto'}
+t[893] = t.zarude
+-- t.calyrex = {group1 = 'sconosciuto'}
+-- t[] = t.calyrex
+-- t.regieleki = {group1 = 'sconosciuto'}
+-- t[] = t.regieleki
+-- t.regidrago = {group1 = 'sconosciuto'}
+-- t[] = t.regidrago
+
 
 -- Forme alternative che esistono fuori dalla lotta e quindi
 -- possono avere un gruppo uova diverso da quello della forma base
@@ -1825,6 +1837,12 @@ t.ponytaG = t.ponyta
 t['077G'] = t.ponyta
 t.rapidashG = t.rapidash
 t['078G'] = t.rapidash
+
+t.slowpokeG = t.slowpoke
+t['079G'] = t.slowpokeG
+t.slowbroG = t.slowbro
+t['080G'] = t.slowbroG
+
 t["farfetch'dG"] = t["farfetch'd"]
 t['083G'] = t["farfetch'd"]
 t.grimerA = t.grimer

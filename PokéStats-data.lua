@@ -2031,6 +2031,10 @@ d.ponytaG = {hp = 50, atk = 85, def = 55, spatk = 65, spdef = 65, spe = 90}
 d['077G'] = d.ponytaG
 d.rapidashG = {hp = 65, atk = 100, def = 70, spatk = 80, spdef = 80, spe = 105}
 d['078G'] = d.rapidashG
+d.slowpokeG = {hp = 90, atk = 65, def = 65, spatk = 40, spdef = 40, spe = 15}
+d['079G'] = d.slowpokeG
+d.slowbroG = {hp = 95, atk = 100, def = 95, spatk = 100, spdef = 70, spe = 30}
+d['080G'] = d.slowbroG
 d["farfetch'dG"] = {hp = 52, atk = 95, def = 55, spatk = 58, spdef = 62, spe = 55}
 d['083G'] = d["farfetch'dG"]
 d.weezingG = {hp = 65, atk = 90, def = 120, spatk = 85, spdef = 70, spe = 60}
