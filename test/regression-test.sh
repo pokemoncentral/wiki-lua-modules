@@ -25,6 +25,39 @@ Arguments:
 SCRIPTS_DIR="$(dirname "${BASH_SOURCE[0]}" | xargs readlink -f)"
 
 #######################################
+# Functions
+#######################################
+
+# This function runs the provided test scripts, saving the output to a new file
+# in the given output directory.
+#
+# Arguments:
+#   - $1: The output directory to which the test output are saved
+#   - $2: The directory where the test scripts are located
+#   - $4+: The test scripts
+run_tests() {
+    local OUTPUT_DIR="$1"
+    local SCRIPTS_DIR="$2"
+    shift 2
+
+    # This includes also shell color escaping, as it's only used for logging
+    local COMMIT
+    COMMIT="\e[94m$(git rev-parse --abbrev-ref HEAD)\e[0m"
+
+    basename -a "$@" | while read TEST_SCRIPT; do
+        TEST_SCRIPT_PATH="$SCRIPTS_DIR/$TEST_SCRIPT"
+        [[ ! -e "$TEST_SCRIPT_PATH" ]] && {
+            echo -ne >&2 '\e[91m[TEST]\e[0m '
+            echo -e >&2 "\e[91m$TEST_SCRIPT\e[0m@$COMMIT not found"
+            continue
+        }
+
+        echo -e "\e[92m[TEST]\e[0m Running \e[92m$TEST_SCRIPT\e[0m@$COMMIT"
+        lua "$TEST_SCRIPT_PATH" > "$OUTPUT_DIR/$TEST_SCRIPT.out"
+    done
+}
+
+#######################################
 # Input processing
 #######################################
 
@@ -77,16 +110,7 @@ git -C "$SCRIPTS_DIR" checkout -q "$COMMIT"
 #######################################
 
 OLD_OUTPUT_DIR="$(mktemp --tmpdir="$SCRIPTS_DIR" -d "output-$COMMIT.XXX")"
-basename -a "$@" | while read TEST_SCRIPT; do
-    TEST_SCRIPT_PATH="$SCRIPTS_DIR/$TEST_SCRIPT"
-    [[ ! -e "$TEST_SCRIPT_PATH" ]] && {
-        echo -e >&2 "\e[91m[TEST]\e[0m $TEST_SCRIPT test not found in $COMMIT"
-        continue
-    }
-
-    echo -e "\e[92m[TEST]\e[0m Running $TEST_SCRIPT in $COMMIT"
-    lua "$TEST_SCRIPT_PATH" > "$OLD_OUTPUT_DIR/$TEST_SCRIPT.out"
-done
+run_tests "$OLD_OUTPUT_DIR" "$SCRIPTS_DIR" "$@"
 
 #######################################
 # Going back to current HEAD
@@ -97,12 +121,13 @@ git -C "$SCRIPTS_DIR" checkout -q "$CURRENT_HEAD"
 echo -e '\e[94m[GIT]\e[0m Stashing changes back'
 git -C "$SCRIPTS_DIR" stash pop -q
 
+#######################################
+# Running current test scripts
+#######################################
+
 CURRENT_OUTPUT_DIR="$(mktemp --tmpdir="$SCRIPTS_DIR" \
     -d "output-$CURRENT_HEAD.XXX")"
-for TEST_SCRIPT in "$@"; do
-    TEST_SCRIPT="$(basename "$TEST_SCRIPT")"
-    lua "$SCRIPTS_DIR/$TEST_SCRIPT" > "$CURRENT_OUTPUT_DIR/$TEST_SCRIPT.out"
-done
+run_tests "$CURRENT_OUTPUT_DIR" "$SCRIPTS_DIR" "$@"
 
 #######################################
 # Diffing
