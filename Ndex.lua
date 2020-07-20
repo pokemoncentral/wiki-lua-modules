@@ -93,8 +93,8 @@ n.Entry.__tostring = function(this)
                           .. form.toEmptyAbbr(this.formAbbr or '')),
         name = this.name,
         form = formtag,
-        types = box.listTipoLua(table.concat(types, ", "), "thin",
-                                "width-xl-100", "margin: 0 0.2ex 0.2ex 0;"),
+        types = box.typeListLua{types = types, configs = 'thin',
+            classes = 'width-xl-100', styles = 'margin: 0 0.2ex 0.2ex 0;'},
     })
 end
 
@@ -150,8 +150,8 @@ n.manualEntry = function(frame)
         ms = ms.staticLua(msidx),
         name = name,
         form = formtag,
-        types = box.listTipoLua(table.concat(types, ", "), "thin",
-                                "width-xl-100", "margin: 0 0.2ex 0.2ex 0;"),
+        types = box.typeListLua{types = types, configs = 'thin',
+            classes = 'width-xl-100', styles = 'margin: 0 0.2ex 0.2ex 0;'},
     })
 end
 

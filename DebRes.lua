@@ -96,8 +96,8 @@ dr.EffTable.effStrings = {
 
 -- Classes and styles for type boxes
 dr.EffTable.typeBoxStyles = {
-    classes = {'roundy', 'text-center', 'inline-block', 'width-xl-15',
-        'width-md-20', 'width-sm-35', 'width-xs-45'},
+    classes = {'inline-block', 'width-xl-15', 'width-md-20', 'width-sm-35',
+        'width-xs-45'},
     styles = {['margin'] = '0.3ex', ['padding'] = '0.3ex 0',
         ['line-height'] = '3ex', ['font-weight'] = 'bold'}
 }
@@ -144,8 +144,11 @@ end
 
 -- Prints a list of types as Boxes
 dr.EffTable.printTypes = function(types)
-    return box.listTipoLua(types, nil, dr.EffTable.typeBoxStyles.classes,
-        dr.EffTable.typeBoxStyles.styles)
+    return box.listTipoLua{
+        types = types,
+        classes = dr.EffTable.typeBoxStyles.classes,
+        styles = dr.EffTable.typeBoxStyles.styles
+    }
 end
 
 -- Prints a single lines of types having the same effectiveness

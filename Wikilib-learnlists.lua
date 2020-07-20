@@ -305,12 +305,12 @@ precedenti l'introduzione delle categorie danno.
 
 --]]
 lib.basicentry = function(stab, mossa, notes, tipo, pw, acc, pp)
-	local tipobox
-	if table.search(wdata.allTypes, tipo:lower()) then
-		tipobox = box.boxTipoLua(tipo, {'thick'})
-	else
-		tipobox = box.boxLua(tipo, tipo, nil, "thick", "box-sconosciuto")
-	end
+    local tipobox
+    if table.search(wdata.allTypes, tipo:lower()) then
+        tipobox = box.boxTipoLua{type = tipo, confs = {'thick'}}
+    else
+        tipobox = box.boxLua{text = tipo, confs = {'thick'}, classes = {'box-sconosciuto'}}
+    end
     return string.interp([=[|| style="padding: 0.3em;" class="black-text" | ${stab}${mossa}${stab}${notes}
 | style="padding: 0.8ex 0.3ex; height: 100%;" | ${tipo}
 | style="padding: 0.1em 0.3em;" | ${pw}
@@ -334,14 +334,14 @@ successive l'introduzione delle categorie danno.
 
 --]]
 lib.categoryentry = function(stab, mossa, notes, tipo, cat, pw, acc, pp)
-	local tipobox
-	-- This thing is ineficient af, but anyway
-	if table.search(table.map(wdata.allTypes, normalizeColeot), tipo:lower()) then
-		tipobox = box.boxTipoLua(tipo, {'thick'})
-	else
-		tipobox = box.boxLua(tipo, tipo, nil, "thick", "box-sconosciuto")
-	end
-	return string.interp([=[|| class="black-text" style="padding: 0.1em 0.3em;" | ${stab}${mossa}${stab}${notes}
+    local tipobox
+    -- This thing is ineficient af, but anyway
+    if table.search(table.map(wdata.allTypes, normalizeColeot), tipo:lower()) then
+        tipobox = box.boxTipoLua{type = tipo, confs = {'thick'}}
+    else
+        tipobox = box.boxLua{text = tipo, confs = {'thick'}, classes = {'box-sconosciuto'}}
+    end
+    return string.interp([=[|| class="black-text" style="padding: 0.1em 0.3em;" | ${stab}${mossa}${stab}${notes}
 | class="height-100" style="padding: 0.8ex 0.3ex;" | ${tipo}
 | class="height-100" style="padding: 0.8ex 0.3ex;" | ${cat}
 | style="padding: 0.1em 0.3em;" | ${pw}
@@ -352,9 +352,9 @@ lib.categoryentry = function(stab, mossa, notes, tipo, cat, pw, acc, pp)
     stab = stab,
     notes = notes,
     tipo = tipobox,
-    cat = box.boxLua(cat, 'Categoria danno#' .. cat, cat, {'thick'},
-            nil, nil, c[cat .. '_text']),
-	pw = pw,
+    cat = box.boxLua{text = cat, link = 'Categoria danno#' .. cat,
+        confs = {'thick'}, classes = {'box-' .. cat:lower()}},
+    pw = pw,
     acc = acc,
     pp = pp
 })
@@ -372,7 +372,8 @@ lib.contestentry = function(gara, fash, intr)
 	return string.interp([=[|| style="padding: 0.8ex 0.3ex; height: 100%;" | ${gara}
 | style="padding: 0.1em 0.3em;" | ${fash}${intr}]=],
 {
-    gara = box.boxLua(gara, gara .. ' (gara)', gara, {'thick'}),
+    gara = box.boxLua{text = gara, link = gara .. ' (gara)', color = gara,
+        confs = {'thick'}},
     fash = lib.concathearts(fash, false),
     intr = intr and table.concat{' || style="padding: 0.3em;" | ', lib.concathearts(intr, true)} or ''
 })
