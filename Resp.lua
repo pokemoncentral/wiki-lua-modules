@@ -7,6 +7,7 @@ This module contains responsive utility code
 local box = require('Box')
 local css = require('Css')
 local tab = require('Wikilib-tables')       -- luacheck: no unused
+local w = require('Wikilib')
 
 local r = {}
 
@@ -129,6 +130,41 @@ end
 
 --[[
 
+This function returns the wikicode interface for a given lua one.
+
+Unlike Wikilib.stdWikicodeInterface, it does not map the empty string to nil:
+in fact, the predefinite styles list of the Box module can be empty, and it is
+in such cases that classes and styles are more important. However, with empty
+string mapped to nil, classes and styles wouldn't be unpacked and passed to
+the lua function, meaning that the box would basically be unstyled.
+
+--]]
+local makeWikicodeInterface = function(name, luaFunction)
+    return function(frame)
+        local p = w.trimAll(table.copy(frame.args), false)
+
+        local name1, name2 = name .. '1', name .. '2'
+        local first = table.remove(p, 1) or p[name1]
+        local second = table.remove(p, 1) or p[name2]
+        local bp, concat = p.bp, (p.concat or ''):lower() == 'yes'
+
+        p[name1], p[name2], p.bp, p.concat = nil, nil, nil, nil
+
+        local firstArgs = table.merge({name = first, first}, p)
+        local secondArgs = table.merge({name = second, first}, p)
+
+        return luaFunction(firstArgs, secondArgs, bp, concat)
+    end
+end
+
+local export = function(name, luaFunction)
+    local wikicodeFunction = makeWikicodeInterface(luaFunction)
+
+    r[table.concat{'two', string.fu(name), 'BoxesLua'}] = twoBoxesLua
+    r[table.concat{'two', string.fu(name), 'Boxes'}] = twoBoxes
+
+--[[
+
 This function returns the HTML code for two responsive boxe, given their
 respective arguments passed as tables. For more information about responsive
 boxes, read the comment to responsive.twoBoxes above.
@@ -193,6 +229,15 @@ r.twoCellsLua = function(cell1, cell2, pdfs, bp, classes, styles)
 end
 r.two_cells_lua = r.twoCellsLua
 
+for name, makeBoxArgs in pairs(box.shortHands) do
+    local twoBoxesLua = function(box1, box2, bp, concat, ...)
+        box1 = {makeBoxArgs(box1, ...)}
+        box2 = {makeBoxArgs(box2, ...)}
+        return r.twoBoxesLua(box1, box2, bp, concat)
+    end
+
+end
+
 --[[
 
 Shortcut to return two responsive type boxes. For more information about
@@ -220,12 +265,10 @@ Arguments:
 --]]
 r.twoTypeBoxesLua = function(type1, type2, pdfs, bp, classes, styles, concat)
     local hasTwoTypes = type2 and type1 ~= type2
-    type1 = string.fu(string.trim(type1 or 'Sconosciuto'))
-    type2 = hasTwoTypes and string.fu(string.trim(type2))
 
-    local box1 = {type1, type1, type1, pdfs, classes, styles, 'FFF'}
-    local box2 = hasTwoTypes and {type2, type2, type2, pdfs, classes, styles,
-        'FFF'}
+    local box1 = {box.shortHand.type(type1, pdfs, classes, styles)}
+    local box2 = hasTwoTypes and
+            {box.shortHand.type(type2, pdfs, classes, styles)}
 	return r.twoBoxesLua(box1, box2, bp, concat)
 end
 r.two_type_boxes_lua = r.twoTypeBoxesLua
@@ -261,10 +304,8 @@ r.twoEggBoxesLua = function(egg1, egg2, pdfs, bp, classes, styles, concat)
     egg1 = string.fu(string.trim(egg1))
     egg2 = hasTwoEggs and string.fu(string.trim(egg2))
 
-    local box1 = {egg1, egg1 .. ' (gruppo uova)', egg1 .. '_uova', pdfs,
-        classes, styles, 'FFF'}
-    local box2 = hasTwoEggs and {egg2, egg2 .. ' (gruppo uova)',
-        egg2 .. '_uova', pdfs, classes, styles, 'FFF'}
+    local box1 = box.shortHands.egg{egg1, pdfs, classes, styles}
+    local box2 = hasTwoEggs and box.shortHands.egg{egg2, pdfs, classes, styles}
 	return r.twoBoxesLua(box1, box2, bp, concat)
 end
 r.two_egg_boxes_lua = r.twoEggBoxesLua
