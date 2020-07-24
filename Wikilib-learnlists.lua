@@ -518,6 +518,39 @@ lib.preevodata = function(pars, gen)
 })
 end
 
+--[[
+
+Build the first cell of a preevo entry, autocomputing the name of the
+poke from the ndex.
+Right now is an interface to the previous function, ideally someone will
+TODO refactor this
+
+Arguments:
+    - pars: a table that, from a certain index onward, contains an alternating
+             sequence of ndex and notes, representing each an ndex of a preevo
+             and the relative notes (optional)
+    - idx: the index at which the required sequence of values starts in pars
+    - gen: the generation of the entry
+
+--]]
+lib.autopreevo = function(pars, idx, gen)
+    local fakep = { }
+    local i = 1
+	local j = idx
+	-- I don't like an indexed iteration, but it seems for the best here
+	-- Can't use #pars because there are nils if some parameter is not given
+	while pars[j] do
+		fakep[i] = pars[j]
+		fakep[i + 2] = pars[j + 1]
+
+		fakep[i + 1] = (pokes[fakep[i]] or pokes[tonumber(fakep[i])]).name
+		i = i + 3
+		j = j + 2
+	end
+    return lib.preevodata(fakep, tostring(gen))
+end
+
+
 -- La cella dell'entry null, utilizzata per i Pokémon che non imparano
 -- mosse in un certo modo
 lib.entrynull = function(entry, cs)

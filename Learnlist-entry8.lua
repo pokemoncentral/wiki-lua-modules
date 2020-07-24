@@ -57,7 +57,7 @@ local strings = {
 local getSTAB = function(move, stabval)
 	if stabval == "No" then
 		return ""
-	elseif stabval ~= "" then
+	elseif stabval and stabval ~= "" then
 		return stabval
 	else
 		return lib.computeSTAB(mw.title.getCurrentTitle().text:lower(), move, nil, 8)
@@ -78,7 +78,7 @@ z.level = function(frame)
     return table.concat{
 		'|-\n',
 		lib.gameslevel(lib.makeEvoText(p[4])),
-		entry(p[1] or 'Geloraggio', p[2] or '', lib.makeNotes(p[3] or ''))
+		entry(p[1] or 'Geloraggio', p[2], lib.makeNotes(p[3] or ''))
 	}
 end
 z.Level = z.level
@@ -100,7 +100,7 @@ z.tm = function(frame)
 			p1 = tmkind .. tostring(tmnum),
 			tipo = string.fu(multigen.getGenValue(moves[string.lower(movename)].type, 8))
 		}),
-		entry(movename, p[2] or '', lib.makeNotes(p[3] or '')),
+		entry(movename, p[2], lib.makeNotes(p[3] or '')),
 	}
 end
 z.Tm = z.tm
@@ -113,7 +113,7 @@ z.breed = function(frame)
 			p1 = lib.mslistToModal(p[1] or '', '8', nil, 6)
 		}),
 		entry(p[2] or 'Lanciafiamme',
-			  p[3] or '',
+			  p[3],
 			  lib.makeNotes(p[4] or '',
 			                lib.makeNotes(p[5] or '',
 							lib.makeNotes(p[6] or '')))
@@ -129,7 +129,7 @@ z.tutor = function(frame)
 		lib.tutorgames{ {'SpSc', p[4]}, {'IA', p[5]} },
 		' ',
 		entry(p[1] or 'Tuono',
-			  p[2] or '',
+			  p[2],
 			  lib.makeNotes(p[3] or '')
 		)
 	}
@@ -139,12 +139,10 @@ z.Tutor = z.tutor
 -- Entry per le mosse apprese tramite evoluzioni precedenti
 z.preevo = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-	local move = table.remove(p, 1)
-	local stab = table.remove(p, 1)
     return table.concat{
-		lib.preevodata(p, '8'),
+		lib.autopreevo(p, 3, '8'),
 		' ',
-		entry(move or 'Bora', stab, '')
+		entry(p[1] or 'Bora', p[2], '')
 	}
 end
 z.Preevo, z.prevo, z.Prevo = z.preevo, z.preevo, z.preevo
@@ -158,7 +156,7 @@ z.event = function(frame)
 				-- p10 = lib.makeLevel(p[5]),
 			}
 		),
-		entry(p[1] or 'Bora', p[2] or '', lib.makeNotes(p[3] or ''))
+		entry(p[1] or 'Bora', p[2], lib.makeNotes(p[3] or ''))
 	}
 end
 z.Event = z.event
