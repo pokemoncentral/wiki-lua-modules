@@ -91,7 +91,152 @@ local b = {}
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local css = require('Css')
+local oop = require('Wikilib-oop')
 local w = require('Wikilib')
+
+--[[
+
+A class representing a box. A box has:
+
+- text: The text displayed within the link inside the box.
+- target: The box link target. If not defined, it's equal to text.
+- color: The background gradient color, from dark to normal, right-to-left.
+    Can be undefined.
+- confs: A list of predefined configuration. Can be empty.
+- classes: A list of CSS classes. Can be empty.
+- styles: Some CSS styles. Can be none.
+- textcolor: The text color. If not defined, defaults to #FFFFFF
+
+--]]
+b.BoxClass = oop.makeClass()
+
+--[[
+
+Constructor for the BoxClass class. The arguments can be passed:
+- positionally as individual parameters
+- positionally in a single table (as the first and only argument)
+- named in a single table (as the first and only argument)
+Arguments names for named calls are the ones listed below, while the order for
+positional calls is the one they are listed in.
+
+Arguments:
+- text: displayed text.
+- target, link: link target, Defaults to text.
+- color: gradient color, from dark to normal, right-to-left.
+- confs, pdfs: Table or space-spearated string of predefined configuration
+    names. Optional, defaults to {}.
+- classes: Table/string of CSS classes, in any of the formats parseClasses
+    takes in. Optional, defaults to {}.
+- styles: Table/string of CSS styles, in any of the formats parseStyles takes
+    in. Optional, defaults to {}.
+- textcolor: Text color, defaults to #FFFFFF
+
+--]]
+b.BoxClass.new = function(text, link, color, confs, classes, styles, textcolor)
+    local argsCount = 1 + (link and 1 or 0) + (color and 1 or 0)
+        + (confs and 1 or 0) + (classes and 1 or 0) + (styles and 1 or 0)
+    local args = (type(text) == 'table' and argsCount == 1)
+        and text or {text, link, color, confs, classes, styles, textcolor}
+
+    local fields = {
+        text = args.text or args[1],
+        target = args.target or args.link or args[2],
+        color = args.color or args[3],
+        confs = args.confs or args.pdfs or args[4] or {},
+        classes = css.parseClasses(args.classes or args[5] or {}),
+        styles = css.parseStyles(args.styles or args[6] or {}),
+        textcolor = args.textcolor or args[7] or 'FFF'
+    }
+
+    local this = setmetatable(fields, b.BoxClass)
+    return this
+end
+
+--[[
+
+Adds one or more predefined configurations to the box.
+
+Arguments:
+- confs: The predefined configurations to be added
+
+--]]
+b.BoxClass.addConfs = function(this, confs)
+    this.confs = table.merge(this.confs, confs)
+    return this
+end
+
+--[[
+
+Adds one or more CSS classes to the box.
+
+Arguments:
+- classes: The CSS classes to be added to the box, in any of the formats
+    parseClasses takes in.
+
+--]]
+b.BoxClass.addClasses = function(this, classes)
+    this.classes = table.merge(this.classes, css.parseClasses(classes))
+    return this
+end
+
+--[[
+
+Adds one or more CSS styles to the box.
+
+Arguments:
+- styles: The CSS styles to be added to the box, in any of the formats
+    parseStyles takes in.
+
+--]]
+b.BoxClass.addStyles = function(this, styles)
+    this.styles = table.merge(this.styles, css.parseClasses(styles))
+    return this
+end
+
+--[[
+
+Returns the HTML representation of a Box.
+
+This method optimizes the representation. For example, it uses specific CSS
+classes to make the text white even if 'FFF' is set explicitly as textcolor,
+and it doesn't produce the link target explicitly if it's computed equal to the
+link text.
+
+--]]
+b.BoxClass.__tostring = function(this)
+    if this.color then
+        this:addStyles({background = css.horizGradLua{this.color, 'dark',
+            this.color, 'normale'}})
+    end
+
+    local text = this.text
+    -- Only adding a `span` to set the color if really necessary
+    if table.search({'FFF', 'FFFFFF'}, this.textcolor:upper()) then
+        this:addClasses('white-text')
+    else
+        text = string.interp('<span style="color:#${tc}">${text}</span>', {
+            tc = this.textcolor,
+            text = this.text
+        })
+    end
+
+    local target = this.target or this.text
+    --[[
+        Whatever happened before, the link target is only added if different
+        than the link text
+    --]]
+    local link = target ~= text and table.concat{target, '|', text} or text
+
+    local classes, styles = css.classesStyles(this.config, this.classes,
+        this.styles)
+    styles = css.printStyles(styles)
+    return string.interp([=[<div class="box ${class}"${style}>[[${link}]]</div>]=], {
+        class = css.printClasses(classes),
+        style = styles == '' and styles
+            or table.concat{' style="', styles, '"'},
+        link = link
+    })
+end
 
 --[[
 
@@ -197,24 +342,14 @@ b.shortHands = {
                 printStyles produce respectively. Optional, defaults to {}.
     --]]
     type = function(p)
-        local type = p.type or p[1] or 'Sconosciuto'
-        local pdfs = p.confs or p[2] or {}
-        local classes, styles = p.classes or p[3] or {}, p.styles or p[4] or {}
+        local boxType = p.type or p[1] or 'Sconosciuto'
+        local boxArgs = table.copy(p)
+        boxArgs.text = string.fu(boxType)
 
-        --[[
-            Need table.copy for Box list functions: they pass the same table
-            along to every item, and as tables are passed by reference we need
-            a local copy for every item.
-        --]]
-        classes = table.copy(css.parseClasses(classes))
-        table.insert(classes, 1, 'box-' .. type:lower())
+        local box = b.BoxClass.new(boxArgs)
+        box:addClasses('box-' .. boxType:lower())
 
-        return {
-            text = string.fu(type),
-            confs = pdfs,
-            classes = classes,
-            styles = styles
-        }
+        return box
     end,
 
     --[[
@@ -232,27 +367,25 @@ b.shortHands = {
     --]]
     egg = function(p)
         local egg = p.egg or p[1] or 'Sconosciuto (gruppo uova)'
-        local pdfs, classes = p.confs or p[2] or {}, p.classes or p[3] or {}
-        local styles = p.styles or p[4] or {}
-
         egg = string.fu(string.trim(egg))
 
-        return {
-            text = egg,
-            link = egg .. ' (gruppo uova)',
-            color = egg .. '_uova',
-            confs = pdfs,
-            classes = classes,
-            styles = styles
-        }
+        local boxArgs = table.copy(p)
+        boxArgs.text = egg
+        boxArgs.link = egg .. ' (gruppo uova)'
+        boxArgs.color = egg .. '_uova'
+
+        return b.BoxClass.new(boxArgs)
     end
 }
 
 --[[
 
-Main function creating a box. Lua interface. Arguments are both named and
-positional. The names are the ones listed below, while the order of the
-positional parameters is the one they are listed in.
+Main function creating a box. Lua interface. Arguments can be:
+- An instance of BoxClass. In such case, the function simply returns its string
+    representation.
+- An actual table with the arguments. These can be both named and positional.
+Arguments names for named calls are the ones listed below, while the order for
+positional calls is the one they are listed in.
 
 - text: displayed text.
 - link: link target, Defaults to text.
@@ -267,41 +400,7 @@ positional parameters is the one they are listed in.
 
 --]]
 b.boxLua = function(p)
-    local text, color = p.text or p[1], p.color or p[3]
-    local link = p.link or p[2] or text
-    local pdfs, classes = p.confs or p[4] or {}, p.classes or p[5] or {}
-    local styles, textcolor = p.styles or p[6], p.textcolor or p[7]
-
-    classes, styles = css.classesStyles(pdfs, classes, styles)
-
-    if color or not table.empty(styles) then
-        local bg = color
-            and css.horizGradLua{color, 'dark', color, 'normale'}
-            or ''
-
-        styles = string.interp(' style="${bg}${style}"', {
-            bg = bg,
-            style = css.printStyles(styles)
-        })
-    else
-        styles = ''
-    end
-
-    if textcolor and textcolor ~= 'FFF' then
-        link = string.interp('${link}|<span style="color:#${tc}">${text}</span>', {
-            link = link,
-            tc = textcolor,
-            text = text
-        })
-    elseif link ~= text then
-        link = table.concat{link, '|', text}
-    end
-
-    return string.interp([=[<div class="box ${class}"${style}>[[${link}]]</div>]=], {
-        class = css.printClasses(classes),
-        style = styles,
-        link = link
-    })
+    return tostring(oop.instanceof(p, b.BoxClass) and p or b.BoxClass.new(p))
 end
 b.box_lua = b.boxLua
 
@@ -318,14 +417,15 @@ b.Box = b.box
     Generating exports for the shorthands: both lua and wikicode interfaces,
     both for list and single boxes.
 --]]
-for name, makeBoxArgs in pairs(b.shortHands) do
+for name, makeBoxInstance in pairs(b.shortHands) do
 
     --[[
-        Lua interface: just calls b.boxLua with wathever the shorthand returns,
-        given a single table containing all the (named) arguments.
+        Lua interface: just converts to a string the BoxClass instance returned
+        by the shorthand, given a single table containing all the (named)
+        arguments.
     --]]
     local luaFunction = function(args)
-        return b.boxLua(makeBoxArgs(args))
+        return tostring(makeBoxInstance(args))
     end
     local wikicodeFunction = makeWikicodeInterface(luaFunction)
 
