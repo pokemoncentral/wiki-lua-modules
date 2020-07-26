@@ -71,7 +71,7 @@ return {
 		end,
 
 		encode = function(s)
-			charset = table.keys(htmlencode_map)
+			local charset = table.keys(htmlencode_map)
 			table.insert(charset, 1, '[')
 			table.insert(charset, ']')
 			return (s:gsub(table.concat(charset), function(decoded)

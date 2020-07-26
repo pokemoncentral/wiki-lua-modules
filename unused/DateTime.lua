@@ -15,6 +15,8 @@ local txt = require('Wikilib-strings')
 
 local q = {}
 
+local mw = require('mw')
+
 --[[
 
 Necessario per usare le funzioni #time
@@ -70,5 +72,3 @@ q.wpAstrSignLink = function(frame)
 end
 
 return q
-
-

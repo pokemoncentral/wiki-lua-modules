@@ -1,13 +1,14 @@
 -- Da usarsi in ((Elenco Pokémon con abilità nascosta disponibile))
 
+local txt = require('Wikilib-strings')
+local multigen = require('Wikilib-multigen')
+local gens = require('Wikilib-gens')
+local ms = require('MiniSprite')
+local sup = require("Sup-data")
+local pokes = require("Poké-data")
+local abils = require("PokéAbil-data")
+
 local m = {}
-local txt = require('Modulo:Wikilib/strings')
-local multigen = require('Modulo:Wikilib/multigen')
-local gens = require('Modulo:Wikilib/gens')
-local ms = require('Modulo:MiniSprite')
-local sup = mw.loadData('Modulo:Sup/data')
-local pokes = mw.loadData('Modulo:Poké/data')
-local abils = mw.loadData('Modulo:PokéAbil/data')
 
 -- accessoria (non esportata) per i link alle aree
 local function splitareas(text,gen)
@@ -170,7 +171,7 @@ m.haentry = function(frame)
 			disp6="[[Pokétrasferitore]]"
 			else disp6 = table.concat(disp6,"<br />")
 		end
-		
+
 		table.insert(final, '<span class="visible-sm">Nella [[sesta generazione]]: </span>'..disp6..'\n| class="width-sm-100" style="padding: 0.5em;" |')
 	end
 
@@ -195,7 +196,7 @@ m.haentry = function(frame)
 		else
 			disp7 = table.concat(disp7,"<br />")
 		end
-		
+
 		table.insert(final, '<span class="visible-sm">Nella [[settima generazione]]: </span>' .. disp7 .. "\n")
 	end
 

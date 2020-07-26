@@ -82,8 +82,8 @@ dr.EffTable.new = function(name, formName)
 		con i loro nomi all'indice dell'efficacia
 		stessa
 	--]]
-	for k, eff in ipairs(dr.EffTable.allEff) do
-		local types = et.difesa(eff, types.type1, types.type2, abil)
+	for _, eff in ipairs(dr.EffTable.allEff) do
+		local types = et.difesa(eff, types.type1, types.type2, 'Tanfo')
 		if #types > 0 then
 
 			--[[

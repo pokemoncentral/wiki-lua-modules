@@ -141,7 +141,7 @@ l.learnKind = function(move, ndex, gen, kind)
 	end
 	local mdata = pmkind[gen]
 	if kind == "tm" then
-		local mlist = mdata.all and tmdata[gen] or mdata
+		local mlist = mdata.all and mtdata[gen] or mdata
 		-- Extra parentheses to force a single return value
 		return (table.deepSearch(mlist, move))
 	else
