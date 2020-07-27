@@ -16,7 +16,7 @@ local r = {}
 This table holds predefined styles configurations. Names of such
 configurations are the keys, while values are tables with 'classes' and
 'styles' keys. These hold classes and styles respectively, and have as values
-the same structures as arseClasses and parseStyles return.
+the same structures as parseClasses and parseStyles return.
 
 --]]
 local predefs = {
@@ -46,9 +46,9 @@ on mobiles. As counter-intuitive as it might sound, it is assumed that the
 boxes container is widened to full width on mobiles.
 
 Arguments:
-    - box1: A table containing the arguments to boxLua in Box modules.
-    - box2: A table containing the arguments to boxLua in Box modules. Any
-        value evaluating to false will trigger the single-box styles for box1.
+    - box1: A BoxClass instance, as defined in the Box module.
+    - box2: A BoxClass instance, as defined in the Box module. Any value
+        evaluating to false will trigger the single-box styles for box1.
     - bp: The breakpont the responsive design is triggered at. Defaults to xs.
 
 Return:
@@ -66,13 +66,11 @@ responsive.twoBoxes = function(box1, box2, bp)
         ['height'] = 100 / boxesCount .. '%'}
 
     -- Adding classes and styles to box1.
-    box1[5] = table.merge(css.parseClasses(box1[5] or {}), classes)
-    box1[6] = table.merge(css.parseStyles(box1[6] or {}), styles)
+    box1:addClasses(classes):addStyles(styles)
 
     -- Adding classes and styles to box2, if defined.
     if box2 then
-        box2[5] = table.merge(css.parseClasses(box2[5] or {}), classes)
-        box2[6] = table.merge(css.parseStyles(box2[6] or {}), styles)
+        box2:addClasses(classes):addStyles(styles)
     end
 
     return box1, box2
@@ -186,19 +184,20 @@ r.twoBoxesLua = function(box1, box2, bp, concat)
     concat = concat or concat == nil
 
     box1, box2 = responsive.twoBoxes(box1, box2, bp)
-    box1 = box.boxLua(table.unpack(box1))
 
     if not box2 then
-        return box1
+        return tostring(box1)
     end
 
-    box2 = box.boxLua(table.unpack(box2))
     if concat then
-        return box1 .. box2
+        return tostring(box1) .. tostring(box2)
     end
     return box1, box2
 end
 r.two_boxes_lua = r.twoBoxesLua
+
+-- NOTE: no intentional wikicode interface. Really too complex to be worth it,
+-- there's no way to group parameters for a single box.
 
 --[[
 
