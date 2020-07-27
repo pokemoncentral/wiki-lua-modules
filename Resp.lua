@@ -108,20 +108,29 @@ Return:
         responsive, if passed. Otherwise, cell2 as it is given.
 
 --]]
-responsive.twoCells = function(cell1, cell2, pdfs, bp, classes, styles)
-    local cellsCount = cell2 and 2 or 1
-    classes, styles = css.classesStyles(predefs, pdfs, classes, styles)
+responsive.twoCells = function(args)
+    args.cell1 = args.cell1 or args[1]
+    args.cell2 = args.cell2 or args[2]
+    args.confs = args.confs or args.pdfs or args[3]
+    args.classes = css.parseClasses(args.classes or args[4] or {})
+    args.styles = css.parseStyles(args.styles or args[5] or {})
+    args.bp = args.bp or args[6]
+
+    local cellsCount = (args.cell2 and args.cell1 ~= args.cell2) and 2 or 1
+    local classes, styles = css.classesStyles(args.confs, args.classes,
+        args.styles)
+
     local cell = string.interp('| class="${cls} min-width-${bp}-${wd}" style="${sty}" | ',
         {
             cls = css.printClasses(classes),
-            bp = bp or 'xs',
+            bp = args.bp or 'xs',
             wd = 70 / cellsCount,
             sty = css.printStyles(styles)
         })
 
-    cell1 = cell .. cell1
-    if cell2 then
-        return cell1, cell .. cell2
+    local cell1 = cell .. args.cell1
+    if args.cell2 then
+        return cell1, cell .. args.cell2
     end
     return cell1
 end
@@ -215,10 +224,8 @@ Arguments:
         defaults to {}.
 
 --]]
-r.twoCellsLua = function(cell1, cell2, pdfs, bp, classes, styles)
-    local cells = {responsive.twoCells(cell1, cell2, pdfs, bp,
-        classes, styles)}
-    return table.concat(cells, ' |')
+r.twoCellsLua = function(args)
+    return table.concat(responsive.twoCells(args), ' |')
 end
 r.two_cells_lua = r.twoCellsLua
 
@@ -261,7 +268,7 @@ r.twoTypeBoxesLua = function(args)
         box2 = box.shortHand.type(table.merge({type2}, args))
     end
 
-	return responsive.twoBoxesLua(box1, box2, bp, concat)
+	return responsive.twoCellsLua(box1, box2, bp, concat)
 end
 r.two_type_boxes_lua = r.twoTypeBoxesLua
 
@@ -326,7 +333,10 @@ r.twoTypeCells = function(frame)
         cellArgs = cellArgs
     }
 end
+<<<<<<< HEAD
 
+=======
+>>>>>>> d7f189c... Sketching twoTypeCells
 --[[
 
 Shortcut to return two responsive egg group boxes. For more information about
