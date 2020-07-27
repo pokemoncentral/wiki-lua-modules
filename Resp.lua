@@ -155,12 +155,6 @@ local makeWikicodeInterface = function(name, luaFunction)
     end
 end
 
-local export = function(name, luaFunction)
-    local wikicodeFunction = makeWikicodeInterface(luaFunction)
-
-    r[table.concat{'two', string.fu(name), 'BoxesLua'}] = twoBoxesLua
-    r[table.concat{'two', string.fu(name), 'Boxes'}] = twoBoxes
-
 --[[
 
 This function returns the HTML code for two responsive boxe, given their
@@ -228,15 +222,6 @@ r.twoCellsLua = function(cell1, cell2, pdfs, bp, classes, styles)
 end
 r.two_cells_lua = r.twoCellsLua
 
-for name, makeBoxArgs in pairs(box.shortHands) do
-    local twoBoxesLua = function(box1, box2, bp, concat, ...)
-        box1 = {makeBoxArgs(box1, ...)}
-        box2 = {makeBoxArgs(box2, ...)}
-        return r.twoBoxesLua(box1, box2, bp, concat)
-    end
-
-end
-
 --[[
 
 Shortcut to return two responsive type boxes. For more information about
@@ -262,15 +247,85 @@ Arguments:
         returned as two seaprate strings. Defaults to true.
 
 --]]
-r.twoTypeBoxesLua = function(type1, type2, pdfs, bp, classes, styles, concat)
+r.twoTypeBoxesLua = function(args)
+    local type1 = args.type1 or table.remove(args, 1)
+    local type2 = args.type2 or table.remove(args, 1)
+    local bp = args.bp or args[6]
+    local concat = args.concat or args[7]
+
     local hasTwoTypes = type2 and type1 ~= type2
 
-    local box1 = {box.shortHand.type(type1, pdfs, classes, styles)}
-    local box2 = hasTwoTypes and
-            {box.shortHand.type(type2, pdfs, classes, styles)}
-	return r.twoBoxesLua(box1, box2, bp, concat)
+    local box1 = box.shortHand.type(table.merge({type1}, args))
+    local box2 = type2
+    if hasTwoTypes then
+        box2 = box.shortHand.type(table.merge({type2}, args))
+    end
+
+	return responsive.twoBoxesLua(box1, box2, bp, concat)
 end
 r.two_type_boxes_lua = r.twoTypeBoxesLua
+
+
+r.twoTypeBoxes = function(frame)
+    local p = w.trimAll(frame.args, false)
+    p.concat = true
+    return r.twoTypeBoxes(p)
+end
+
+r.twoTypeCellsLua = function(args)
+    local type1 = args.type1 or args[1]
+    local type2 = args.type2 or args[2]
+    local boxArgs = args.boxArgs or args[3]
+    local cellArgs = args.cellArgs or args[4]
+    local bp = args.bp or args[5]
+
+    local hasTwoTypes = type2 and type1 ~= type2
+
+    local box1 = box.shortHand.type(table.merge({type1}, boxArgs))
+    local box2 = type2
+    if hasTwoTypes then
+        box2 = box.shortHand.type(table.merge({type2}, boxArgs))
+    end
+
+    local twoCellArgs = table.merge({
+        cell1 = tostring(box1),
+        cell2 = tostring(box2),
+        bp = bp
+    }, cellArgs)
+	return responsive.twoBoxesLua(twoCellArgs)
+end
+
+local pairsWithPrefixStripped = function(items, prefix)
+    local filtered = table.filter(items, function(_, key)
+        return key:find('^' .. prefix) end)
+    local pairsWithStrippedKeys = table.map(filtered, function(item, key)
+        local strippedKey = string.firstLowercase(key:sub(prefix:len()))
+        return {[strippedKey] = item}
+    end)
+
+    local res = {}
+    for key, value in pairs(pairsWithStrippedKeys) do
+        res[key] = value
+    end
+    return res
+end
+
+r.twoTypeCells = function(frame)
+    local type1 = frame.args.type1
+    local type2 = frame.args.type2
+    local bp = frame.args.bp
+
+    local boxArgs = pairsWithPrefixStripped(frame.args, 'box')
+    local cellArgs = pairsWithPrefixStripped(frame.args, 'cell')
+
+    return r.twoTypeCellsLua{
+        type1 = type1,
+        type2 = type2,
+        bp = bp,
+        boxArgs = boxArgs,
+        cellArgs = cellArgs
+    }
+end
 
 --[[
 
