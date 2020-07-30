@@ -64,6 +64,10 @@ Arguments:
 	- basenotes (optional): notes from the data module
 	                        (ie. pokemoves[poke][kind][gen][move].notes)
 
+BUG: notes are wrong if the Pokémon can learn the move from itself that
+learned it in a previous generation, and it is chosen as the parent given
+here. Right now, this issue isn't happening because those notes are precomputed
+
 --]]
 l.breednotes = function(gen, move, parent, basenotes)
 	local notes = { basenotes }

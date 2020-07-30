@@ -2,62 +2,7 @@ local render = require('Render')
 local header = require('Learnlist-hf')
 local mw = require('mw')
 
--- =================== Deprecated automatic learnlist module ===================
-if false then
-
-local ll = require('Learnlist')
-local learnlib = require('Wikilib-learnlists')
-
--- Compare the structure of two tables, that is the equality of the two tables
--- up to non-table values
--- This means that if a chain of indexing can be done on one of the tables it
--- can be done on the other without errors
-local function same_structure(tab1, tab2)
-    if type(tab1) ~= 'table' and type(tab2) ~= 'table' then
-        -- Both non tables
-        return true
-    elseif type(tab1) ~= 'table' or type(tab2) ~= 'table' then
-        -- One table and one not
-        return false
-    end
-
-    -- Both tables
-    for key, value in pairs(tab1) do
-        if not same_structure(value, tab2[key]) then
-            return false
-        end
-    end
-    for key, _ in pairs(tab2) do
-        if not tab1[key] then
-            return false
-        end
-    end
-
-    return true
-end
-
--- Check that ll.nogameText and pokemoves.games.leve have the same structure
--- because correctness of the output depends on this.
-assert(same_structure(ll.nogameText, learnlib.games.level),
-        "ll.nogameText and pokemoves.games.level doesn't have the same structure")
-
--- ========================== Standard test (prints) ==========================
-print(ll.levelLua('poipole', 7))
-print(ll.breedLua('poipole', 7))
-print(ll.tmLua('staraptor', 6))
-print(ll.preevoLua('venusaur', 4))
-print(ll.breedLua('abra', 5))
-print(ll.tutorLua('abra', 5))
-print(ll.levelLua('grookey', 8))
-print(ll.tmLua('sizzlipede', 8))
-print(ll.breedLua('pichu', 4))
-print(ll.level{args = {" raichu ", gen = "8", form = "A"}})
-
-end
-
--- ======================== Old Learnlist-entryn tests ========================
-if true then
-
+-- ============================ Gen 8 ============================
 mw.title.setTitle("Zacian")
 print(header.levelh{args={"Zacian", "folletto", "folletto", "8", "8" }})
 print(render.render{args={"Learnlist-entry8", "level", "//",
@@ -76,9 +21,34 @@ print(render.render{args={"Learnlist-entry8", "level", "//",
 "Zuffa", "", "", "77", "//",
 "Gigaimpatto", "", "", "88", "//"}})
 print(header.levelf{args={"Zacian", "folletto", "folletto", "8", "8" }})
---
--- else
 
+
+print(header.tmh{args={"Marshadow", "spettro", "lotta", "8", "7" }})
+print(render.entry{args={"Learnlist-entry8.tm",
+"[[€Fascino|||MT29£]]"
+}})
+print(header.tmf{args={"Marshadow", "spettro", "lotta", "8", "7" }})
+
+
+print(header.tutorh{args={"Marshadow", "spettro", "lotta", "8", "7" }})
+print(render.entry{args={"Learnlist-entry8.tutor",
+"[[€Coaching|||yes|yes£]]",
+"[[€Strisciacolpo|||no|yes£]]",
+"[[€Poltergeist|no||no|yes£]]",
+}})
+print(header.tutorf{args={"Marshadow", "spettro", "lotta", "8", "7" }})
+
+
+mw.title.setTitle("Marshadow")
+print(header.preevoh{args={"Marshadow", "spettro", "lotta", "8", "7" }})
+print(render.entry{args={"Learnlist-entry8.preevo",
+"[[€Auguri||001|E£]]",
+}})
+print(header.preevof{args={"Marshadow", "spettro", "lotta", "8", "7" }})
+
+
+if false then
+-- ============================ Gen 7- ============================
 print(header.levelh{args={'Necrozma', 'Psico', 'Psico', '7', '7'}})
 print(render.entry{args={'Learnlist-entry7.level',
 "[[€Inizio|Inizio|Confusione||'''£]]",

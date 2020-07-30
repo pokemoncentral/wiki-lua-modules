@@ -2,8 +2,6 @@
 
 Script to build learnlist-entry calls from PokéMoves-data
 
-TODO: update render and (as a consequence) this script
-
 --]]
 
 package.path = "../?.lua;" .. package.path
@@ -190,6 +188,32 @@ p.dicts.tutor.makeEntry = function(poke, gen, val)
     })
 end
 
+p.dicts.breed.makeEntry = function(poke, gen, val)
+    -- val :: { <movename>, { <array of parents> }, <notes> }
+    local move = val[1]
+    local parents = val[2]
+
+    -- Removes the tt from notes
+    local notes = val[3]:gsub('<span class="explain tooltips" title="([%w%s]*)">%*</span>', "%1")
+
+    if #parents == 0 then
+        print("-------------> ERROR")
+        return "-------------> ERROR"
+    end
+    parents = wlib.mapAndConcat(parents, function(ndex)
+        ndex = type(ndex) == "number" and string.tf(ndex) or ndex
+        return table.concat{ "#", ndex, "#" }
+    end)
+
+    return string.interp(p.strings.ENTRIES.breed, {
+    -- "|${parents}|${move}|${STAB}|${notes}| //",
+        move = multigen.getGenValue(moves[move].name, gen),
+        STAB = learnlib.computeSTAB(poke, move, nil, gen),
+        notes = notes,
+        parents = parents,
+    })
+end
+
 local function makePreevoPoke(pair)
     local t = { string.tf(pair[1]), "|" }
     if pair[2] then
@@ -218,16 +242,19 @@ end
 
 
 p.level = function(poke)
-    return p.entryGeneric(string.lower(poke), 8, "level")
+    return p.entryGeneric(poke, 8, "level")
 end
 p.tm = function(poke)
-    return p.entryGeneric(string.lower(poke), 8, "tm")
+    return p.entryGeneric(poke, 8, "tm")
+end
+p.breed = function(poke)
+    return p.entryGeneric(poke, 8, "breed")
 end
 p.tutor = function(poke)
-    return p.entryGeneric(string.lower(poke), 8, "tutor")
+    return p.entryGeneric(poke, 8, "tutor")
 end
 p.preevo = function(poke)
-    return p.entryGeneric(string.lower(poke), 8, "preevo")
+    return p.entryGeneric(poke, 8, "preevo")
 end
 
 return p
