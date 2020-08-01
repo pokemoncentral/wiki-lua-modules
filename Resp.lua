@@ -36,48 +36,6 @@ local responsive = {}
 
 --[[
 
-This function transforms up to two boxes in responsive boxes. If only one box
-is passed, some styles will be different. In particular, the maximum width is
-set ot 70 on mobile, while when both boxes are present their maximum mobile
-width is set to 35.
-
-"Responsive boxes" means that they stack on desktops but they are side-by-side
-on mobiles. As counter-intuitive as it might sound, it is assumed that the
-boxes container is widened to full width on mobiles.
-
-Arguments:
-    - box1: A BoxClass instance, as defined in the Box module.
-    - box2: A BoxClass instance, as defined in the Box module. Any value
-        evaluating to false will trigger the single-box styles for box1.
-    - bp: The breakpont the responsive design is triggered at. Defaults to xs.
-
-Return:
-    - 1: box1 adjusted to be responsive.
-    - 2: box2 adjusted to be responsive, if passed. Otherwise, box2 as it is
-        given.
-
---]]
-responsive.twoBoxes = function(box1, box2, bp)
-    local boxesCount = box2 and 2 or 1
-
-    local classes = {'inline-block-xs', string.interp('min-width-${bp}-${wd}',
-        {bp = bp or 'xs', wd = 70 / boxesCount})}
-    local styles = {['margin-bottom'] = '0.2ex', ['margin-left'] = '0.2ex',
-        ['height'] = 100 / boxesCount .. '%'}
-
-    -- Adding classes and styles to box1.
-    box1:addClasses(classes):addStyles(styles)
-
-    -- Adding classes and styles to box2, if defined.
-    if box2 then
-        box2:addClasses(classes):addStyles(styles)
-    end
-
-    return box1, box2
-end
-
---[[
-
 This function transforms up to two table cells in responsive cells. If only
 one cell is passed, some styles will be different. In particular, the maximum
 width is set ot 70 on mobile, while when both boxes are present their maximum
@@ -171,34 +129,39 @@ end
 
 --[[
 
-This function returns the HTML code for two responsive boxes, given two
-BoxClass instances. For more information about responsive boxes, read the
-comment to responsive.twoBoxes above.
+This function transforms in-place up to two boxes in responsive boxes, and
+returns them after the transformation.
 
-The two boxes can be returned as two separate stirngs or be concatenated
-together. If the second box is not passed, only the first one is returned.
+"Responsive boxes" means that they stack on desktops but they are side-by-side
+on mobiles. As counter-intuitive as it might sound, it is assumed that the
+boxes container is widened to full width on mobiles. On mobile, if only one box
+is passed its maximum width is set ot 70, while when both boxes are present
+their maximum width is set to 35.
 
 Arguments:
     - box1: A BoxClass instance, as defined in the Box module.
     - box2: A BoxClass instance, as defined in the Box module. Any value
         evaluating to false will trigger the single-box styles for box1.
     - bp: The breakpont the responsive design is triggered at. Defaults to xs.
-    - concat: whether the two boxes should be concatenated or they should be
-        returned as two seaprate strings. Defaults to true.
 
 --]]
-r.twoBoxesLua = function(box1, box2, bp, concat)
-    concat = concat or concat == nil
+r.twoBoxesLua = function(box1, box2, bp)
+    local boxesCount = box2 and 2 or 1
+    local classes = {'inline-block-xs', string.interp('min-width-${bp}-${wd}',
+        {bp = bp or 'xs', wd = 70 / boxesCount})}
+    local styles = {['margin-bottom'] = '0.2ex', ['margin-left'] = '0.2ex',
+        ['height'] = 100 / boxesCount .. '%'}
 
-    box1, box2 = responsive.twoBoxes(box1, box2, bp)
+    -- Adding classes and styles to box1.
+    box1:addClasses(classes):addStyles(styles)
 
     if not box2 then
-        return tostring(box1)
+        return box1
     end
 
-    if concat then
-        return tostring(box1) .. tostring(box2)
-    end
+    -- Adding classes and styles to box2, if defined.
+    box2:addClasses(classes):addStyles(styles)
+
     return box1, box2
 end
 r.two_boxes_lua = r.twoBoxesLua
@@ -254,10 +217,9 @@ NOTE: Don't worry, the wikicode version is coming. I just forgot about it -_-"
 --[[
 
 Shortcut to return two responsive type boxes. For more information about
-responsive boxes, read the comment to responsive.twoBoxes above. The first
-type will have single-box styles if the second one is not passed, or it is
-equal to the first type. The two boxes can be concatenated or returned as two
-strings.
+responsive boxes, read the comment to r.twoBoxesLua above. The first type will
+have single-box styles if the second one is not passed, or it is equal to the
+first type.
 
 Arguments are only named, that means they're passed as a single table by using
 string keys. The table is modified in-place, so be sure to copy it before
@@ -275,8 +237,6 @@ Arguments:
     - styles: Some CSS styles to be used for both boxes. Any format
         parseStyles takes in is accepted. Optional, defaults to {}.
     - bp: The breakpont the responsive design is triggered at. Defaults to xs.
-    - concat: whether the two boxes should be concatenated or they should be
-        returned as two seaprate strings. Defaults to true.
 
 --]]
 r.twoTypeBoxesLua = function(args)
@@ -297,16 +257,16 @@ r.twoTypeBoxesLua = function(args)
         box2 = box.shortHands.type(table.merge({type = args.type2}, args))
     end
 
-	return r.twoBoxesLua(box1, box2, args.bp, args.concat)
+	return r.twoBoxesLua(box1, box2, args.bp)
 end
 r.two_type_boxes_lua = r.twoTypeBoxesLua
 
 --[[
 
 Shortcut to return two responsive type boxes. For more information about
-responsive boxes, read the comment to responsive.twoBoxes above. The first
-type will have single-box styles if the second one is not passed, or it is
-equal to the first type.
+responsive boxes, read the comment to r.twoBoxesLua above. The first type will
+have single-box styles if the second one is not passed, or it is equal to the
+first type.
 
 Arguments are only named. The names are the ones listed below.
 
@@ -331,8 +291,7 @@ Example invocations:
 --]]
 r.twoTypeBoxes = function(frame)
     local p = w.trimAll(frame.args, false)
-    p.concat = true
-    return r.twoTypeBoxes(p)
+    return table.concat(r.twoTypeBoxes(p))
 end
 
 --[[
