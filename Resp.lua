@@ -90,10 +90,10 @@ passing cell2
 on mobiles. As counter-intuitive as it might sound, it is assumed that the two
 cells should be on a line on their own on mobiles.
 
-Arguments are passed as a single table, both positionally, by using numeric
-keys, and named, by using string keys. Arguments names for named calls are the
-ones listed below, while the order for positional calls is the one they are
-listed in.
+Arguments are only named, that means they're passed as a single table by using
+string keys. The table is modified in-place, so be sure to copy it before
+calling this function if you need it unaltered afterwards. Arguments names are
+the ones listed below.
 
 Arguments:
     - cell1: The content of the first cell, as a string.
@@ -116,12 +116,10 @@ Return:
 
 --]]
 responsive.twoCells = function(args)
-    args.cell1 = args.cell1 or args[1]
-    args.cell2 = args.cell2 or args[2]
-    args.confs = args.confs or args.pdfs or args[3]
-    args.classes = css.parseClasses(args.classes or args[4] or {})
-    args.styles = css.parseStyles(args.styles or args[5] or {})
-    args.bp = args.bp or args[6]
+    args.confs = args.confs or args.pdfs
+    args.classes = css.parseClasses(args.classes or {})
+    args.styles = css.parseStyles(args.styles or {})
+    args.bp = args.bp or 'xs'
 
     local cellsCount = (args.cell2 and args.cell1 ~= args.cell2) and 2 or 1
     local classes, styles = css.classesStyles(args.confs, args.classes,
@@ -130,7 +128,7 @@ responsive.twoCells = function(args)
     local cell = string.interp('| class="${cls} min-width-${bp}-${wd}" style="${sty}" | ',
         {
             cls = css.printClasses(classes),
-            bp = args.bp or 'xs',
+            bp = args.bp,
             wd = 70 / cellsCount,
             sty = css.printStyles(styles)
         })
@@ -224,10 +222,10 @@ Wikicode string.
 TODO: document that if cell1 and cell2 are equal then it's the same as not
 passing cell2
 
-Arguments are passed as a single table, both positionally, by using numeric
-keys, and named, by using string keys. Arguments names for named calls are the
-ones listed below, while the order for positional calls is the one they are
-listed in.
+Arguments are only named, that means they're passed as a single table by using
+string keys. The table is modified in-place, so be sure to copy it before
+calling this function if you need it unaltered afterwards. Arguments names are
+the ones listed below.
 
 Arguments:
     - cell1: The content of the first cell, as a string.
@@ -243,7 +241,7 @@ Arguments:
 
 --]]
 r.twoCellsLua = function(args)
-    return table.concat(responsive.twoCells(args), ' |')
+    return table.concat({responsive.twoCells(args)}, ' |')
 end
 r.two_cells_lua = r.twoCellsLua
 
@@ -261,10 +259,10 @@ type will have single-box styles if the second one is not passed, or it is
 equal to the first type. The two boxes can be concatenated or returned as two
 strings.
 
-Arguments are passed as a single table, both positionally, by using numeric
-keys, and named, by using string keys. Arguments names for named calls are the
-ones listed below, while the order for positional calls is the one they are
-listed in.
+Arguments are only named, that means they're passed as a single table by using
+string keys. The table is modified in-place, so be sure to copy it before
+calling this function if you need it unaltered afterwards. Arguments names are
+the ones listed below.
 
 Arguments:
     - type1: First type.
@@ -282,17 +280,7 @@ Arguments:
 
 --]]
 r.twoTypeBoxesLua = function(args)
-    --[[
-        Table.remove is called twice with index 1 because it is now the
-        original second argument. This is due to the first original argument
-        being removed by the first call to table.remove
-    --]]
-    local type1 = args.type1 or table.remove(args, 1)
-    local type2 = args.type2 or table.remove(args, 1)
-    local bp = args.bp or args[6]
-    local concat = args.concat or args[7]
-
-    local hasTwoTypes = type2 and type1 ~= type2
+    local hasTwoTypes = args.type2 and args.type1 ~= args.type2
 
     --[[
         We need to pass in the type as the first argument, rather than as a
@@ -303,13 +291,13 @@ r.twoTypeBoxesLua = function(args)
         positional parameter back, we break the positional argument passing
         altogether.
     --]]
-    local box1 = box.shortHand.type(table.merge({type1}, args))
-    local box2 = type2
+    local box1 = box.shortHands.type(table.merge({type = args.type1}, args))
+    local box2 = args.type2
     if hasTwoTypes then
-        box2 = box.shortHand.type(table.merge({type2}, args))
+        box2 = box.shortHands.type(table.merge({type = args.type2}, args))
     end
 
-	return responsive.twoCellsLua(box1, box2, bp, concat)
+	return r.twoBoxesLua(box1, box2, args.bp, args.concat)
 end
 r.two_type_boxes_lua = r.twoTypeBoxesLua
 
@@ -320,9 +308,7 @@ responsive boxes, read the comment to responsive.twoBoxes above. The first
 type will have single-box styles if the second one is not passed, or it is
 equal to the first type.
 
-Arguments can be both named or positional (unnamed) Arguments names for named
-calls are the ones listed below, while the order for positional calls is the
-one they are listed in.
+Arguments are only named. The names are the ones listed below.
 
 Arguments:
     - type1: First type.
@@ -356,10 +342,10 @@ more information about responsive cells, read the comment to
 responsive.twoCells above. The first cell will have single-cell styles if the
 second type is not passed, or it is equal to the first one.
 
-Arguments are passed as a single table, both positionally, by using numeric
-keys, and named, by using string keys. Arguments names for named calls are the
-ones listed below, while the order for positional calls is the one they are
-listed in.
+Arguments are only named, that means they're passed as a single table by using
+string keys. The table is modified in-place, so be sure to copy it before
+calling this function if you need it unaltered afterwards. Arguments names are
+the ones listed below.
 
 Arguments:
     - type1: First type.
@@ -372,35 +358,25 @@ Arguments:
 
 --]]
 r.twoTypeCellsLua = function(args)
-    local type1 = args.type1 or args[1]
-    local type2 = args.type2 or args[2]
-    local boxArgs = args.boxArgs or args[3]
-    local cellArgs = args.cellArgs or args[4]
-    local bp = args.bp or args[5]
+    args.boxArgs = args.boxArgs or {}
+    args.cellArgs = args.cellArgs or {}
 
-    local hasTwoTypes = type2 and type1 ~= type2
+    local hasTwoTypes = args.type2 and args.type1 ~= args.type2
 
-    --[[
-        We need to pass in the type as the first argument, rather than as a
-        named parameter, because it was removed from `args` a few lines above.
-        This shifted all the other possible positional parameters in `args`
-        by one position up, which creates an off-by-one offset in the
-        positional arguments list. Therefore if we don't add the first
-        positional parameter back, we break the positional argument passing
-        altogether.
-    --]]
-    local box1 = box.shortHand.type(table.merge({type1}, boxArgs))
-    local box2 = type2
+    local box1 = box.shortHand.type(table.merge({type = args.type1},
+        args.boxArgs))
+    local box2 = args.type2
     if hasTwoTypes then
-        box2 = box.shortHand.type(table.merge({type2}, boxArgs))
+        box2 = box.shortHand.type(table.merge({type = args.type2},
+            args.boxArgs))
     end
 
-    local twoCellArgs = table.merge({
+    local twoCellsArgs = table.merge({
         cell1 = tostring(box1),
         cell2 = tostring(box2),
-        bp = bp
-    }, cellArgs)
-	return responsive.twoBoxesLua(twoCellArgs)
+        bp = args.bp
+    }, args.cellArgs)
+	return responsive.twoCells(twoCellsArgs)
 end
 
 --[[
@@ -455,25 +431,20 @@ Examples:
 
 --]]
 r.twoTypeCells = function(frame)
-    local type1 = frame.args.type1
-    local type2 = frame.args.type2
-    local bp = frame.args.bp
+    local p = w.trimAll(frame.args, false)
 
-    local boxArgs = pairsWithPrefixStripped(frame.args, 'box')
-    local cellArgs = pairsWithPrefixStripped(frame.args, 'cell')
+    local boxArgs = pairsWithPrefixStripped(p, 'box')
+    local cellArgs = pairsWithPrefixStripped(p, 'cell')
 
     return r.twoTypeCellsLua{
-        type1 = type1,
-        type2 = type2,
-        bp = bp,
+        type1 = p.type1,
+        type2 = p.type2,
+        bp = p.bp,
         boxArgs = boxArgs,
         cellArgs = cellArgs
     }
 end
-<<<<<<< HEAD
 
-=======
->>>>>>> d7f189c... Sketching twoTypeCells
 --[[
 
 Shortcut to return two responsive egg group boxes. For more information about
