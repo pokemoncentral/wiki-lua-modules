@@ -6649,7 +6649,7 @@ evo.kubfu = {
 		},
 	}
 }
-evo.urshifu = evo.kubfu
+evo.urshifu, evo.urshifuP = evo.kubfu, evo.kubfu
 evo[891], evo[892], evo['892P'] = evo.kubfu, evo.kubfu, evo.kubfu
 
 evo.zarude =  { ndex = 893, name = 'zarude' }
