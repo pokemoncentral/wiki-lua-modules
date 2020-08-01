@@ -26,6 +26,9 @@ Some useful informations for developers:
       A move can be learned at multiple levels, and a tm or hm with a move can
       change within a generation (es: spaccaroccia)
 
+TODO: probably some functions can be removed (for instance, WikiCode interfaces)
+since this will only be used for static printing via print-learnlistn scripts.
+
 --]]
 
 local l = {}
@@ -48,10 +51,10 @@ local gendata = require("Gens-data")
 local mtdata = require("Machines-data")
 
 -- ============================ Wikilib-learnlists ============================
--- Here are functions previously in Wikilib-learnlists that uses PokéMoves-data
+-- Here are functions previously in Wikilib-learnlists that uses pokemoves-data
 -- Moved here to remove dependency on the data module of pages that doesn't use
 -- it specifically
-local pokemoves = require("PokéMoves-data")
+local pokemoves = require("static.pokemoves-data")
 
 --[[
 

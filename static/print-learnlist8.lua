@@ -1,10 +1,10 @@
 --[[
 
-Script to build learnlist-entry calls from PokéMoves-data
+Script to build learnlist-entry calls from pokemoves-data
 
 --]]
 
-package.path = "../?.lua;" .. package.path
+-- package.path = "../?.lua;" .. package.path
 
 local p = {}
 
@@ -15,11 +15,11 @@ local wlib = require('Wikilib')
 local genlib = require('Wikilib-gens')
 local multigen = require('Wikilib-multigen')
 local formlib = require('Wikilib-forms')
-local learnlist = require('Learnlist')
+local learnlist = require('static.learnlist')
 local moves = require("Move-data")
 local pokes = require("Poké-data")
 local altdata = require("AltForms-data")
-local pokemoves = require("PokéMoves-data")
+local pokemoves = require("static.pokemoves-data")
 
 p.strings = {
     HF = "{{#invoke: Learnlist/hf | ${kind}${hf} | ${poke} | ${type1} | ${type2} | ${genh} | ${genp} }}",
@@ -81,8 +81,6 @@ Arguments:
     - kind: kind of entry. Either "level", "tm", "breed", "tutor", "preevo" and
             "event". Also used to select functions (picks the funcDict)
     - pmkind: the (possibly fake) entry of the data module
-
---]]
 
 --]]
 p._entryGeneric = function(poke, gen, kind, pmkind)

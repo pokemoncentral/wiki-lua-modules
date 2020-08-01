@@ -9,7 +9,7 @@ this creates the module in the right place for local testing, and of course
 the result can be uploaded by standard means.
 
 This module is intended to contain any information computable from
-PokéMoves-data but that is (supposed to be) too heavy for an online
+pokemoves-data but that is (supposed to be) too heavy for an online
 computation, so it's precomputed.
 
 Right now the biggest issue is memory, but that doesn't really matter, the
@@ -24,7 +24,7 @@ local mp = {}
 local DataDumper = require('dumper')
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local lib = require('Wikilib-learnlists')
-local pokemoves = require("PokéMoves-data")
+local pokemoves = require("static.pokemoves-data")
 
 --[[
 
@@ -79,7 +79,7 @@ local comment = [=[
 --[[
 
 This module is intended to contain any information computable from
-PokéMoves-data but that is (supposed to be) too heavy for an online
+pokemoves-data but that is (supposed to be) too heavy for an online
 computation, so it's precomputed.
 
 This module is computed from a script, so
