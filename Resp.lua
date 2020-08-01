@@ -31,73 +31,6 @@ local predefs = {
     }
 }
 
--- This table contains utility functions dealing with responsive design.
-local responsive = {}
-
---[[
-
-This function transforms up to two table cells in responsive cells. If only
-one cell is passed, some styles will be different. In particular, the maximum
-width is set ot 70 on mobile, while when both boxes are present their maximum
-mobile width is set to 35.
-
-TODO: document that if cell1 and cell2 are equal then it's the same as not
-passing cell2
-
-"Responsive cells" means that they stack on desktops but they are side-by-side
-on mobiles. As counter-intuitive as it might sound, it is assumed that the two
-cells should be on a line on their own on mobiles.
-
-Arguments are only named, that means they're passed as a single table by using
-string keys. The table is modified in-place, so be sure to copy it before
-calling this function if you need it unaltered afterwards. Arguments names are
-the ones listed below.
-
-Arguments:
-    - cell1: The content of the first cell, as a string.
-    - cell2: The content of the second cell, as a string. Any value evaluating
-        to false will trigger the single-cell styles for cell1.
-    - confs, pdfs: Table or space-spearated string of predefined configurations
-    names, to be used for both cells. Optional, defaults to {}.
-    - classes: A list of CSS classes to be used for both cells. Any format
-        parseClasses takes in is accepted. Optional, defaults to {}.
-    - styles: Some CSS styles to be used for both cells. Any format
-        parseStyles takes in is accepted. Optional, defaults to {}.
-    - bp: The breakpont the responsive design is triggered at. Defaults to
-        'xs'.
-
-Return:
-    - 1: Complete wikicode table-cell containing cell1 adjusted to be
-        responsive.
-    - 2: Complete wikicode table-cell containing cell2 adjusted to be
-        responsive, if passed. Otherwise, cell2 as it is given.
-
---]]
-responsive.twoCells = function(args)
-    args.confs = args.confs or args.pdfs
-    args.classes = css.parseClasses(args.classes or {})
-    args.styles = css.parseStyles(args.styles or {})
-    args.bp = args.bp or 'xs'
-
-    local cellsCount = (args.cell2 and args.cell1 ~= args.cell2) and 2 or 1
-    local classes, styles = css.classesStyles(args.confs, args.classes,
-        args.styles)
-
-    local cell = string.interp('| class="${cls} min-width-${bp}-${wd}" style="${sty}" | ',
-        {
-            cls = css.printClasses(classes),
-            bp = args.bp,
-            wd = 70 / cellsCount,
-            sty = css.printStyles(styles)
-        })
-
-    local cell1 = cell .. args.cell1
-    if args.cell2 then
-        return cell1, cell .. args.cell2
-    end
-    return cell1
-end
-
 --[[
 
 This function returns the wikicode interface for a given lua one.
@@ -177,13 +110,14 @@ a nice-to-have that is also convenient to implement than an actual necessity.
 
 --[[
 
-This function returns the Wikicode for two responsive cells, given their
-content. For more information about responsive cells, read the comment to
-responsive.twoCells above. The two cells are concatenated together in one
-Wikicode string.
+This function returns up to responsive table cells as WikiCode strings, given
+their content. If only one cell content is passed, or the two contents are
+equal, then only one cell is returned.
 
-TODO: document that if cell1 and cell2 are equal then it's the same as not
-passing cell2
+"Responsive cells" only has effect on mobile contexts. If only one cell content
+is passed, or the two contents are equal, the returned cell's maximum width is
+set ot 70. On the other hand, when both contents are present, then the cells'
+maximum width is set to 35.
 
 Arguments are only named, that means they're passed as a single table by using
 string keys. The table is modified in-place, so be sure to copy it before
@@ -204,7 +138,28 @@ Arguments:
 
 --]]
 r.twoCellsLua = function(args)
-    return table.concat({responsive.twoCells(args)}, ' |')
+    args.confs = args.confs or args.pdfs
+    args.classes = css.parseClasses(args.classes or {})
+    args.styles = css.parseStyles(args.styles or {})
+    args.bp = args.bp or 'xs'
+
+    local cellsCount = (args.cell2 and args.cell1 ~= args.cell2) and 2 or 1
+    local classes, styles = css.classesStyles(args.confs, args.classes,
+        args.styles)
+
+    local cell = string.interp('| class="${cls} min-width-${bp}-${wd}" style="${sty}" | ',
+        {
+            cls = css.printClasses(classes),
+            bp = args.bp,
+            wd = 70 / cellsCount,
+            sty = css.printStyles(styles)
+        })
+
+    local cell1 = cell .. args.cell1
+    if args.cell2 then
+        return cell1, cell .. args.cell2
+    end
+    return cell1
 end
 r.two_cells_lua = r.twoCellsLua
 
@@ -297,9 +252,9 @@ end
 --[[
 
 Shortcut method returning two responsive cells containing two type boxes. For
-more information about responsive cells, read the comment to
-responsive.twoCells above. The first cell will have single-cell styles if the
-second type is not passed, or it is equal to the first one.
+more information about responsive cells, read the comment to r.twoCellsLua
+above. The first cell will have single-cell styles if the second type is not
+passed, or it is equal to the first one.
 
 Arguments are only named, that means they're passed as a single table by using
 string keys. The table is modified in-place, so be sure to copy it before
@@ -335,7 +290,7 @@ r.twoTypeCellsLua = function(args)
         cell2 = tostring(box2),
         bp = args.bp
     }, args.cellArgs)
-	return responsive.twoCells(twoCellsArgs)
+	return r.twoCellsLua(twoCellsArgs)
 end
 
 --[[
@@ -364,9 +319,9 @@ end
 --[[
 
 Shortcut method returning two responsive cells containing two type boxes. For
-more information about responsive cells, read the comment to
-responsive.twoCells above. The first cell will have single-cell styles if the
-second type is not passed, or it is equal to the first one.
+more information about responsive cells, read the comment to r.twoCellsLua
+above. The first cell will have single-cell styles if the second type is not
+passed, or it is equal to the first one.
 
 Arguments are only named. Some of the argument names follow a specific scheme:
 - Argument names starting with 'box' are used to configure the two boxes. They
