@@ -2,6 +2,8 @@
 
 Script to build learnlist-entry calls from pokemoves-data
 
+TODO: support alltm
+
 --]]
 
 -- package.path = "../?.lua;" .. package.path

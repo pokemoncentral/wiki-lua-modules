@@ -370,7 +370,14 @@ l.dicts.tm = {
 
 -- ================================== Breed ==================================
 l.dicts.breed = {
-    processData = function(_, gen, movedata, move)
+    processData = function(poke, gen, movedata, move)
+		-- If the Pokémon can learn the move via level, drops it since it
+		-- means the breed is a remnant of the previous evolution.
+		-- For instance, Abra has Confusione listed via breed, but its evos
+		-- learn it via level
+		if l.learnKind(move, poke, gen, "level") then
+			return nil
+		end
         -- Bulba style: in a Pokémon page it prints parents for the latest game
         local parents = lib.moveParentsGame(movedata,
                         lib.games.breed[gen][#lib.games.breed[gen]])
