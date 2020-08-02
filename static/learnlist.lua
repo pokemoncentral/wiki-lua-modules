@@ -1,22 +1,12 @@
 --[[
 
-Creates the list of moves learned by a certain Pokémon.
+This file is a library for scripts that prints learnlists for a given Pokémon
+in a certain gen. The processing to print such content is always the same, and
+only the actual string (the call to that gen module) changes between gen, hence
+all the logic can be factored here, leaving only to specify the printing in the
+specific file.
 
-Its main WikiCode interface are "level", "tm", "breed", "tutor", "preevo" and
-"event", used as
-
-{{#invoke: learnlist | level | <pokemon name> | gen = <gen> | form = <abbr> }}
-
-where "gen" is optional and defaults to the latest generation, and "form" is
-optional and defaults to base form.
-
-Also the Pokémon name is optional and defaults to the page's name.
-A typical usage is
-
-{{#invoke: learnlist | level }}
-
-in a Pokémon's page in order to build the list of moves it learns in the latest
-generation.
+TODO: refactor to use oop?
 
 -- ============================================================================
 
@@ -26,14 +16,9 @@ Some useful informations for developers:
       A move can be learned at multiple levels, and a tm or hm with a move can
       change within a generation (es: spaccaroccia)
 
-TODO: probably some functions can be removed (for instance, WikiCode interfaces)
-since this will only be used for static printing via print-learnlistn scripts.
-
 --]]
 
 local l = {}
-
-local mw = require('mw')
 
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
@@ -42,12 +27,9 @@ local genlib = require('Wikilib-gens')
 local multigen = require('Wikilib-multigen')
 local wlib = require('Wikilib')
 local links = require('Links')
-local ms = require('MiniSprite')
 local hf = require('Learnlist-hf')
 local sup = require("Sup-data")
 local pokes = require("Poké-data")
-local moves = require("Move-data")
-local gendata = require("Gens-data")
 local mtdata = require("Machines-data")
 
 -- ============================ Wikilib-learnlists ============================
@@ -204,40 +186,6 @@ l.learnPreviousGen = function(move, ndex, gen, firstgen)
 end
 
 -- ========================== End Wikilib-learnlists ==========================
-
-
-local STRINGS = {
-    evolevelstr = 'Evo<span class="hidden-xs">luzione</span>',
-    tmcell = [=[
-| class="black-text" style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:${img} ${tipo} VIII Sprite Zaino.png]]</span>[[${p1}]]]=],
-    breedcell = [=[
-| style="padding: 0.1em 0.3em;" | ${p}]=],
-}
-
---[[
-
-TODO: select entry building function depending on gen (eg: gen 1 -> no category,
-gen 4 -> contest entry)
-
-Build the string corresponding to the last part of an entry, that is the part
-without the learning method (levels for level entry, parents for breed entry,
-etc.).
-
-Arguments:
-    - poke: Pokémon name or ndex
-    - mossa: move name
-    - notes: any note that should be added to this entry
-    - gen: (optional) gen of the entry. Defaults to latest
-
---]]
-l.entrytail = function(poke, mossa, notes, gen)
-    local data = multigen.getgen(moves[mossa], gen)
-    local stab = lib.computeSTAB(poke, mossa, nil, gen)
-    return lib.categoryentry(stab, data.name, notes, string.fu(data.type),
-                             string.fu(data.category), data.power,
-                             data.accuracy, data.pp)
-end
-
 --[[
 
 Add header and footer for a learnlist table.
@@ -320,119 +268,7 @@ end
 
 l.dicts = {}
 
---[[
-
-Given a frame for learnlist returns the two parameters poke and gen, in this
-order.
-
---]]
-l.getParams = function(frame)
-    local p = lib.sanitize(mw.clone(frame.args))
-    local gen = tonumber(p.gen) or gendata.latest
-    local form = p.form or ""
-    local poke = mw.text.decode(p[1] or mw.title.getCurrentTitle().baseText):lower()
-    return poke .. form, gen
-end
-
---[[
-
-Adds main lua and WikiCode interfaces for a kind of entries.
-Arguments:
-    - kind: the kind of entry
-
-Lua interfaces take two arguments, poke and gen.
-WikiCode interfaces are described in the initial comment.
-
---]]
-local addInterfaces = function(kind)
-    l[kind .. "Lua"] = function(poke, gen)
-        return l.entryLua(poke, gen, kind)
-    end
-
-    l[kind] = function(frame)
-        local poke, gen = l.getParams(frame)
-        return l.entryLua(poke, gen, kind)
-    end
-    l[string.fu(kind)] = l[kind]
-end
-
-
 -- ================================== Level ==================================
---[[
-
-This table hold texts used when a Pokémon can't learn a move in a game. It is
-guaranteed to have the very same structure as pokemoves.games.level
-
---]]
-l.nogameText = {
-    [1] = {
-        "Disponibile solo in Giallo",
-        "Disponibile solo in Rosso e Blu"
-    },
-    [2] = {
-        "Disponibile solo in Cristallo",
-        "Disponibile solo in Oro e Argento"
-    },
-    [3] = {
-        "Non disponibile in Rubino e Zaffiro",
-        "Non disponibile in Rosso Fuoco e Verde Foglia",
-        "Non disponibile in Smeraldo"
-    },
-    [4] = {
-        "Non disponibile in Diamante e Perla",
-        "Non disponibile in Platino",
-        "Non disponibile in Oro HeartGold e Argento SoulSilver"
-    },
-    [5] = {
-        "Disponibile solo in Nero 2 e Bianco 2",
-        "Disponibile solo in Nero e Bianco"
-    },
-    [6] = {
-        "Disponibile solo in Rubino Omega e Zaffiro Alpha",
-        "Disponibile solo in X e Y"
-    },
-    [7] = {
-        "Disponibile solo in Ultrasole e Ultraluna",
-        "Disponibile solo in Sole e Luna"
-    },
-    [8] = {
-        "",
-    }
-}
-
---[[
-
-Creates and entry of a level learnlist.
-
-Arguments:
-    - poke: Pokémon name or ndex
-    - gen: set of game for this entry. Should be an index of
-           pokemoves.games.level
-    - move: move name
-    - levels: the set of levels to print. It should be in the following format:
-        an array, of the same length ad pokemoves.games.level[gen], with each
-        element being either a level (a number, "inizio" or "evo") or false,
-        meaning that the Pokémon can't learn the move in that game
-
---]]
-l.levelEntry = function(poke, gen, move, levels)
-    levels = table.map(l.nogameText[gen], function(text, idx)
-        local lvl = levels[idx]
-        if not lvl then
-            return links.tt('&mdash;', text)
-        elseif lvl == "evo" then
-            return STRINGS.evolevelstr
-        else
-            return string.fu(lvl)
-        end
-    end)
-    return table.concat{
-        '|-\n',
-        lib.gameslevel(unpack(levels)),
-        l.entrytail(poke, move, '', gen),
-    }
-end
-
 -- Compares two levels (a number, "inizio", "evo" or nil). The order is
 -- "inizio" < "evo" < numbers < nil
 l.ltLevel = function(a, b)
@@ -501,49 +337,9 @@ l.dicts.level = {
     --    { <level of first game or false>, <level of second game or false>, ... },
     -- }
     lt = l.ltLevelarr,
-    makeEntry = function(poke, gen, val)
-        return l.levelEntry(poke, gen, unpack(val))
-    end,
 }
 
-addInterfaces("level")
-
 -- ==================================== Tm ====================================
---[[
-
-Creates an entries of a tm learnlist.
-
-Arguments:
-    - poke: Pokémon name or ndex
-    - gen: generation for this entry
-    - move: move name, all lowercase
-    - tmnum: tm or hm number. Is a pair { "M[TN]", "<number>" }
-    - games: (optional) the abbr of a game, that is put as a note in sup
-
---]]
-l.tmEntry = function(poke, gen, move, tmnum, games)
-    local tmcell = string.interp(STRINGS.tmcell, {
-        img = tmnum[1],
-        p1 = table.concat(tmnum),
-        tipo = string.fu(multigen.getGenValue(moves[move].type, gen))
-               or 'Sconosciuto'
-    })
-    return table.concat{
-        '|-\n',
-        tmcell,
-        l.entrytail(poke, move, sup[games:upper()] or "", gen),
-    }
-end
-
---[[
-
-Comparator for two tm/hm/td pairs.
-
---]]
-l.ltTm = function(a, b)
-    return a[1] > b[1] or (a[1] == b[1] and tonumber(a[2]) < tonumber(b[2]))
-end
-
 l.dicts.tm = {
     processData = function(_, gen, move)
         return table.mapToNum(mtdata[gen], function(tmdata, tmkind)
@@ -565,31 +361,17 @@ l.dicts.tm = {
     -- elements of res are like
     -- { <movename>, { "M[TN]", "12"}, <games abbr> }
     lt = function(a, b)
-        return l.ltTm(a[2], b[2])
-    end,
-    makeEntry = function(poke, gen, val)
-        return l.tmEntry(poke, gen, unpack(val))
+		local a2 = a[2]
+		local b2 = b[2]
+		return a2[1] > b2[1]
+		       or (a2[1] == b2[1] and tonumber(a2[2]) < tonumber(b2[2]))
     end,
 }
-
--- Added by hand to handle the special case with all tms
-l.tmLua = function(poke, gen)
-    if pokemoves[poke].tm[gen].all then
-        return l.addhf(hf.alltm{args={poke, gen, "tm"}}, poke, gen, "tm")
-    end
-    return l.entryLua(poke, gen, "tm")
-end
-
-l.tm = function(frame)
-    return l.tmLua(l.getParams(frame))
-end
-l.Tm = l.tm
--- addInterfaces("tm")
 
 -- ================================== Breed ==================================
 l.dicts.breed = {
     processData = function(_, gen, movedata, move)
-        --Bulba style: in a Pokémon page it prints parents for the latest game
+        -- Bulba style: in a Pokémon page it prints parents for the latest game
         local parents = lib.moveParentsGame(movedata,
                         lib.games.breed[gen][#lib.games.breed[gen]])
 
@@ -610,19 +392,7 @@ l.dicts.breed = {
     lt = function(a, b)
         return a[1] < b[1]
     end,
-    makeEntry = function(poke, gen, val)
-        local firstcell = string.interp(STRINGS.breedcell, {
-            p = lib.msarrayToModal(val[2], gen, nil, 6),
-        })
-        return table.concat{
-            '|-\n',
-            firstcell,
-            l.entrytail(poke, val[1], val[3], gen),
-        }
-    end,
 }
-
-addInterfaces("breed")
 
 -- ================================== Tutor ==================================
 l.dicts.tutor = {
@@ -646,16 +416,7 @@ l.dicts.tutor = {
         end
         return a[1] < b[1]
     end,
-    makeEntry = function(poke, gen, val)
-        return table.concat{
-            '|-\n',
-            lib.tutorgames(val[2]),
-            l.entrytail(poke, val[1], "", gen),
-        }
-    end,
 }
-
-addInterfaces("tutor")
 
 -- ================================== Preevo ==================================
 l.dicts.preevo = {
@@ -670,23 +431,7 @@ l.dicts.preevo = {
     lt = function(a, b)
         return a[1] < b[1]
     end,
-    makeEntry = function(poke, gen, val)
-        local firstcell = wlib.mapAndConcat(val[2], function(pair)
-            return ms.staticLua(string.tf(pair[1] or "000"), gen or "")
-                   .. (lib.preevott[pair[2]] or "")
-        end)
-        local notes = val.games
-                      and wlib.mapAndConcat(val.games, function(s) return sup[s] end)
-                      or ""
-        return table.concat{
-            "|-\n| ",
-            firstcell,
-            l.entrytail(poke, val[1], notes, gen),
-        }
-    end,
 }
-
-addInterfaces("preevo")
 
 -- ================================== Event ==================================
 l.dicts.event = {
@@ -699,19 +444,7 @@ l.dicts.event = {
     lt = function(a, b)
         return a[1] < b[1]
     end,
-    makeEntry = function(poke, gen, val)
-        local firstcell = string.interp(STRINGS.breedcell, {
-            p = val[2],
-        })
-        return table.concat{
-            '|-\n',
-            firstcell,
-            l.entrytail(poke, val[1], "", gen),
-        }
-    end,
 }
-
-addInterfaces("event")
 
 -- ============================================================================
 return l
