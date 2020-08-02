@@ -43,21 +43,7 @@ the lua function, meaning that the box would basically be unstyled.
 
 --]]
 local makeWikicodeInterface = function(name, luaFunction)
-    return function(frame)
-        local p = w.trimAll(table.copy(frame.args), false)
-
-        local name1, name2 = name .. '1', name .. '2'
-        local first = table.remove(p, 1) or p[name1]
-        local second = table.remove(p, 1) or p[name2]
-        local bp, concat = p.bp, (p.concat or ''):lower() == 'yes'
-
-        p[name1], p[name2], p.bp, p.concat = nil, nil, nil, nil
-
-        local firstArgs = table.merge({name = first, first}, p)
-        local secondArgs = table.merge({name = second, first}, p)
-
-        return luaFunction(firstArgs, secondArgs, bp, concat)
-    end
+    -- Will need to integrate the comment somewhere in the for loop
 end
 
 --[[
@@ -169,6 +155,75 @@ NOTE: Don't worry, the wikicode version is coming. I just forgot about it -_-"
 
 --]]
 
+for name, makeBoxInstance in pairs(box.shortHands) do
+    local luaBoxesFunction = function(args)
+        --[[
+            It's safe not to remove args[name .. '1'] and args[name .. '2'],
+            since both the box shorthands and the BoxClass constructor only
+            use their own keys that they know about
+        --]]
+        local name1, name2 = args[name .. '1'], args[name .. '2']
+        local hasTwoNames = name2 and name1 ~= name2
+
+        local box1 = makeBoxInstance(table.merge({[name] = name1}, args))
+        local box2 = name2
+        if hasTwoNames then
+            box2 = makeBoxInstance(table.merge({[name] = name2}, args))
+        end
+
+        return r.twoBoxesLua(box1, box2, args.bp)
+    end
+    local wikicodeBoxesFunction = function(frame)
+        return table.concat({luaBoxesFunction(w.trimAll(frame.args, false))})
+    end
+    export(name, luaBoxesFunction, wikicodeBoxesFunction)
+
+    local luaCellsFunction = function(args)
+        args.boxArgs = args.boxArgs or {}
+        args.cellArgs = args.cellArgs or {}
+
+        --[[
+            It's safe not to remove args[name .. '1'] and args[name .. '2'],
+            since both the box shorthands and the BoxClass constructor only
+            use their own keys that they know about
+        --]]
+        local name1, name2 = args[name .. '1'], args[name .. '2']
+        local hasTwoNames = name2 and name1 ~= name2
+
+        local box1 = makeBoxInstance(table.merge({[name] = name1},
+            args.boxArgs))
+        local box2 = name2
+        if hasTwoNames then
+            box2 = makeBoxInstance(table.merge({[name] = name2}, args.boxArgs))
+        end
+
+        local twoCellsArgs = table.merge({
+            cell1 = tostring(box1),
+            cell2 = tostring(box2),
+            bp = args.bp
+        }, args.cellArgs)
+        return r.twoCellsLua(twoCellsArgs)
+    end
+    local wikicodeCellsFunction = function(frame)
+        local p = w.trimAll(frame.args, false)
+        local name1, name2 = p[name .. '1'], p[name .. '2']
+
+
+        local boxArgs = pairsWithPrefixStripped(p, 'box')
+        local cellArgs = pairsWithPrefixStripped(p, 'cell')
+
+        return luaCellsFunction{
+            [name .. '1'] = p[name .. '1'],
+            [name .. '2'] = p[name .. '2'],
+            bp = p.bp,
+            boxArgs = boxArgs,
+            cellArgs = cellArgs
+        }
+    end
+
+    export(name, luaCellsFunction, wikicodeCellsFunction)
+end
+
 --[[
 
 Shortcut to return two responsive type boxes. For more information about
@@ -195,24 +250,8 @@ Arguments:
 
 --]]
 r.twoTypeBoxesLua = function(args)
-    local hasTwoTypes = args.type2 and args.type1 ~= args.type2
-
-    --[[
-        We need to pass in the type as the first argument, rather than as a
-        named parameter, because it was removed from `args` a few lines above.
-        This shifted all the other possible positional parameters in `args`
-        by one position up, which creates an off-by-one offset in the
-        positional arguments list. Therefore if we don't add the first
-        positional parameter back, we break the positional argument passing
-        altogether.
-    --]]
-    local box1 = box.shortHands.type(table.merge({type = args.type1}, args))
-    local box2 = args.type2
-    if hasTwoTypes then
-        box2 = box.shortHands.type(table.merge({type = args.type2}, args))
-    end
-
-	return r.twoBoxesLua(box1, box2, args.bp)
+    -- Will need to integrate these comments in the top, maybe with some 'type'
+    -- replaced by 'egg' or the like
 end
 r.two_type_boxes_lua = r.twoTypeBoxesLua
 
@@ -245,8 +284,8 @@ Example invocations:
 
 --]]
 r.twoTypeBoxes = function(frame)
-    local p = w.trimAll(frame.args, false)
-    return table.concat(r.twoTypeBoxes(p))
+    -- Will need to integrate these comments in the top, maybe with some 'type'
+    -- replaced by 'egg' or the like
 end
 
 --[[
@@ -272,25 +311,8 @@ Arguments:
 
 --]]
 r.twoTypeCellsLua = function(args)
-    args.boxArgs = args.boxArgs or {}
-    args.cellArgs = args.cellArgs or {}
-
-    local hasTwoTypes = args.type2 and args.type1 ~= args.type2
-
-    local box1 = box.shortHand.type(table.merge({type = args.type1},
-        args.boxArgs))
-    local box2 = args.type2
-    if hasTwoTypes then
-        box2 = box.shortHand.type(table.merge({type = args.type2},
-            args.boxArgs))
-    end
-
-    local twoCellsArgs = table.merge({
-        cell1 = tostring(box1),
-        cell2 = tostring(box2),
-        bp = args.bp
-    }, args.cellArgs)
-	return r.twoCellsLua(twoCellsArgs)
+    -- Will need to integrate these comments in the top, maybe with some 'type'
+    -- replaced by 'egg' or the like
 end
 
 --[[
@@ -345,80 +367,8 @@ Examples:
 
 --]]
 r.twoTypeCells = function(frame)
-    local p = w.trimAll(frame.args, false)
-
-    local boxArgs = pairsWithPrefixStripped(p, 'box')
-    local cellArgs = pairsWithPrefixStripped(p, 'cell')
-
-    return r.twoTypeCellsLua{
-        type1 = p.type1,
-        type2 = p.type2,
-        bp = p.bp,
-        boxArgs = boxArgs,
-        cellArgs = cellArgs
-    }
+    -- Will need to integrate these comments in the top, maybe with some 'type'
+    -- replaced by 'egg' or the like
 end
-
---[[
-
-Shortcut to return two responsive egg group boxes. For more information about
-responsive boxes, read the comment to responsive.twoBoxes above. The first egg
-group will have single-box styles if the second one is not passed, or it is
-equal to the first one. The two boxes can be concatenated or returned as two
-strings.
-
-Arguments:
-    - egg1: First egg group. No '(gruppo uova)' suffix is required.
-    - type2: Second egg group. No '(gruppo uova)' suffix is required. Any
-        value evaluating to false or equal to egg will trigger the single-box
-        styles for egg1.
-    - pdfs: Table or space-spearated string of predefined configurations names,
-        to be used for both cells. Optional, defaults to {}.
-    - bp: The breakpont the responsive design is triggered at. Defaults to xs.
-    - classes: Table/string of CSS classes, in the format parseClasses and
-        printClasses produce respectively. Used for both cells. Optional,
-        defaults to {}.
-    - styles: Table/string of CSS styles, in the format parseStyles and
-        printStyles produce respectively. Used for both cells. Optional,
-        defaults to {}.
-    - concat: whether the two boxes should be concatenated or they should be
-        returned as two seaprate strings. Defaults to true.
-
---]]
-r.twoEggBoxesLua = function(egg1, egg2, pdfs, bp, classes, styles, concat)
-    local hasTwoEggs = egg2 and egg1 ~= egg2
-    egg1 = string.fu(string.trim(egg1))
-    egg2 = hasTwoEggs and string.fu(string.trim(egg2))
-
-    local box1 = box.shortHands.egg{egg1, pdfs, classes, styles}
-    local box2 = hasTwoEggs and box.shortHands.egg{egg2, pdfs, classes, styles}
-	return r.twoBoxesLua(box1, box2, bp, concat)
-end
-r.two_egg_boxes_lua = r.twoEggBoxesLua
-
---[[
-
-Shortcut method returning two responsive cells containing two egg group boxes.
-For more information about responsive cells, read the comment to
-responsive.twoCells above. The first cell will have single-cell styles if the
-second type is not passed, or it is equal to the first one.
-
-Arguments:
-    - type1: First egg group.
-    - type2: Second egg group. Any value evaluating to false or equal to egg1
-        will trigger the single-cell styles for the first cell.
-    - eggs: Table containing the arguments for eggBoxLua in the Box module,
-        other than the egg group. Used for both type1 and type2.
-    - cells: Table containing the arguments for twoCellsLua.
-
---]]
-r.eggsTwoCellsLua = function(egg1, egg2, eggs, cells)
-    local box1 = box.eggBoxLua(egg1, table.unpack(eggs))
-    local box2 = egg2
-                 and egg1 ~= egg2
-                 and box.eggBoxLua(egg2, table.unpack(eggs))
-    return r.twoCellsLua(box1, box2, table.unpack(cells))
-end
-r.eggs_two_cells_lua = r.eggsTwoCellsLua
 
 return r
