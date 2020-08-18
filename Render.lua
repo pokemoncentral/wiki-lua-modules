@@ -9,14 +9,14 @@ of a list). The goal of this module is to squash all calls in a single
 
 The syntax is as follows
 
-{{#invoke: render | newrender | <module> | <function> | <separator>
+{{#invoke: render | render | <module> | <function> | <separator>
 | <parameters of the first  entry> | <separator>
 | <parameters of the second entry> | <separator>
 ...
 }}
 
-The separator should be a (nonempty) sequence of "-" of any length enclosed
-between "/". For instance "/-/" or "/--/". Also "//" is fine.
+The separator should be a (possibly empty) sequence of "-" enclosed
+between "/". For instance "/-/" or "/--/"; also "//" is fine.
 
 Unnamed parameters for a single entry are put as you would in a normal
 invocation, so values separated by |. For named parameter you have to use
@@ -106,15 +106,14 @@ r.render = function(frame)
             return
         end
         if param == separator then
-            -- print(require("static.dumper")(mockArgs))
             table.insert(res, modulefunc{args = mockArgs})
             -- Prepare for the next call
             mockArgs = {}
         else
             local beg = param:find("<%-")
             if beg then
-                local key = param:sub(1, beg - 1):trim()
-                mockArgs[key] = param:sub(beg + 2):trim()
+                local key = string.trim(param:sub(1, beg - 1))
+                mockArgs[key] = string.trim(param:sub(beg + 2))
             else
                 table.insert(mockArgs, p[i])
             end
