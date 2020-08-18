@@ -512,7 +512,7 @@ t.articuno.since = {G = 'spsc', base = 'rb'}
 t.zapdos.since = {G = 'spsc', base = 'rb'}
 t.moltres.since = {G = 'spsc', base = 'rb'}
 t.slowking.since = {G = 'spsc', base = 'oa'}
-t.corsola.since = {G = 'spsc', base = 'rz'}
+t.corsola.since = {G = 'spsc', base = 'oa'}
 t.zigzagoon.since = {G = 'spsc', base = 'rz'}
 t.castform.since = {S = 'rz', P = 'rz', N = 'rz', base = 'rz'}
 t.deoxys.since = {A = 'rfvf', D = 'rfvf', V = 's', base = 'rz'}
