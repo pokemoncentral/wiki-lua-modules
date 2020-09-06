@@ -49,7 +49,7 @@ print(ll.breedLua('pichu', 4))
 print(ll.level{args = {" raichu ", gen = "8", form = "A"}})
 
 -- ======================== Old Learnlist-entryn tests ========================
-if false then
+if true then
 
 print(header.levelh{args={'Necrozma', 'Psico', 'Psico', '7', '7'}})
 print(render.entry{args={'Learnlist-entry7.level',
@@ -200,20 +200,20 @@ print(header.levelf{args={'Bulbasaur', 'Erba', 'Veleno', '5', '1'}})
 
 print(header.levelh{args={'Bulbasaur', 'Erba', 'Veleno', '4', '1'}})
 print(render.entry{args={ 'Learnlist-entry4.level',
-[[€Inizio|Azione|Normale|Fisico|35|95|35|Grinta|3£]],
-[[€3|Ruggito|Normale|Stato|&mdash;|100|40|Grazia|2£]],
-[[€7|Parassiseme|Erba|Stato|&mdash;|90|10|Acume|0£]],
-[[€9|Frustata|Erba|Fisico|35|100|15|Classe|3||'''£]],
-[[€13|Velenpolvere|Veleno|Stato|&mdash;|75|35|Acume|2£]],
-[[€13|Sonnifero|Erba|Stato|&mdash;|75|15|Acume|2£]],
-[[€15|Riduttore|Normale|Fisico|90|85|20|Grinta|3£]],
-[[€19|Foglielama|Erba|Fisico|55|95|25|Classe|3||'''£]],
-[[€21|Profumino|Normale|Stato|&mdash;|100|20|Grazia|2£]],
-[[€25|Crescita|Normale|Stato|&mdash;|&mdash;|40|Bellezza|0£]],
-[[€27|Sdoppiatore|Normale|Fisico|120|100|15|Grinta|0£]],
-[[€31|Affannoseme|Erba|Stato|&mdash;|100|10|Bellezza|2£]],
-[[€33|Sintesi|Erba|Stato|&mdash;|&mdash;|5|Acume|0£]],
-[[€37|Semebomba|Erba|Fisico|80|100|15|Acume|3||'''£]]}})
+[[€Inizio|Inizio|Inizio|Azione|Normale|Fisico|35|95|35|Grinta|3£]],
+[[€3|3|4|Ruggito|Normale|Stato|&mdash;|100|40|Grazia|2£]],
+[[€7|8|8|Parassiseme|Erba|Stato|&mdash;|90|10|Acume|0£]],
+[[€9|10|11|Frustata|Erba|Fisico|35|100|15|Classe|3||'''£]],
+[[€13|12|13|Velenpolvere|Veleno|Stato|&mdash;|75|35|Acume|2£]],
+[[€13|13|13|Sonnifero|Erba|Stato|&mdash;|75|15|Acume|2£]],
+[[€15|15|15|Riduttore|Normale|Fisico|90|85|20|Grinta|3£]],
+[[€19|19|19|Foglielama|Erba|Fisico|55|95|25|Classe|3||'''£]],
+[[€21|21|21|Profumino|Normale|Stato|&mdash;|100|20|Grazia|2£]],
+[[€25|25|25|Crescita|Normale|Stato|&mdash;|&mdash;|40|Bellezza|0£]],
+[[€27|27|27|Sdoppiatore|Normale|Fisico|120|100|15|Grinta|0£]],
+[[€31|31|31|Affannoseme|Erba|Stato|&mdash;|100|10|Bellezza|2£]],
+[[€33|33|33|Sintesi|Erba|Stato|&mdash;|&mdash;|5|Acume|0£]],
+[[€37|37|37|Semebomba|Erba|Fisico|80|100|15|Acume|3||'''£]]}})
 print(header.levelf{args={'Bulbasaur', 'Erba', 'Veleno', '4', '1'}})
 
 
