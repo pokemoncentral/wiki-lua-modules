@@ -583,17 +583,20 @@ eb.Evobox = function(frame)
     }
 
     -- Adds categories
+    phase3evos = phase3evos
+                 and table.filter(phase3evos, function(v) return v ~= eb.emptybox end)
+                 or {}
     if p.cat ~= "no"
        and not (data.conditions
                 and data.conditions[evodata.conditions.BREEDONLY]) then
-        if phase3evos and table.getn(phase3evos, "num") > 0 then
+        if table.getn(phase3evos, "num") > 0 then
             table.insert(evobox, eb.strings.CAT_TRE_PHASES)
         elseif data.evos then
             table.insert(evobox, eb.strings.CAT_TWO_PHASES)
         else
             table.insert(evobox, eb.strings.CAT_ONE_PHASE)
         end
-        if phase3evos and table.getn(phase3evos, "num") > 1
+        if table.getn(phase3evos, "num") > 1
            or (data.evos and table.getn(data.evos, "num") > 1) then
             table.insert(evobox, eb.strings.CAT_BRANCHED_PHASES)
         end
