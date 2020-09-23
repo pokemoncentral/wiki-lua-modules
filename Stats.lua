@@ -77,6 +77,8 @@ ${stats}
 
     catTotal = '[[Categoria:Pokémon con statistiche base totali di ${tot}|${display}]]',
 
+    catStatsEqual = '[[Categoria:Pokémon con lo stesso valore in tutte le statistiche base|${display}]]',
+
     footer = [=[
 
 | colspan="3" class="hidden-xs" | &nbsp;
@@ -177,6 +179,17 @@ local makeCategories = function(poke, tot)
         if changedInGen then
             table.insert(categories, interpCat(
                 strings.catStatsChanged, {gen = gendata[gen].ext}))
+        end
+    end
+
+    -- Category for Pokémon with all the base stats equal
+    do
+        local firstStat = mg.getGenValue(stats[poke].atk)
+        local equalFirst = function(val)
+            return mg.getGenValue(val) == firstStat
+        end
+        if table.all(stats[poke], equalFirst) then
+            table.insert(categories, interpCat(strings.catStatsEqual))
         end
     end
 
