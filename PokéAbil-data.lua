@@ -1861,7 +1861,7 @@ t.zapdosG = {ability1 = 'Agonismo'}
 t['145G'] = t.zapdosG
 t.moltresG = {ability1 = 'Furore'}
 t['146G'] = t.moltresG
-t.slowkingG = {ability1 = 'Sconosciuta'}
+t.slowkingG = {ability1 = 'Stranofarmaco'}
 t['199G'] = t.slowkingG
 t.corsolaG = {ability1 = 'Sottilguscio', abilityd = 'Corpofunesto'}
 t['222G'] = t.corsolaG

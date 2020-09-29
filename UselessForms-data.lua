@@ -96,7 +96,8 @@ Alternative forms names. Keys are the abbr.
 t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
 	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
 	K = 'Berretto Kalos', A = 'Berretto Alola',
-	Co = 'Berretto Compagni', base = ''}
+	Co = 'Berretto Compagni', G = 'Berretto Giramondo',
+	base = ''}
 t.pichu.names = {S = 'Pichu Spunzorek', base = ''}
 t.unown.names = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
@@ -171,7 +172,7 @@ makeLinks(true)
 -- Table to map extended names to abbrs
 
 t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
-	unima = 'U', kalos = 'K', alola = 'A', compagni = 'Co'}
+	unima = 'U', kalos = 'K', alola = 'A', compagni = 'Co', giramondo = 'G'}
 t.pichu.ext = {spunzorek = 'S'}
 t.unown.ext = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
@@ -214,7 +215,7 @@ game.
 
 --]]
 
-t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'Co', 'Gi'}
+t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'Co', 'G'}
 t.pichu.gamesOrder = {'base', 'S'}
 t.unown.gamesOrder = {'base', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
 	'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -246,7 +247,7 @@ Oldest game in which each form, included base form, appears.
 --]]
 
 t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
-	K = 'sl', A = 'sl', Co = 'usul', base = 'rb'}
+	K = 'sl', A = 'sl', Co = 'usul', G = 'spsc', base = 'rb'}
 t.pichu.since = {S = 'hgss', base = 'oa'}
 t.unown.since = {base = 'oa', B = 'oa', C = 'oa', D = 'oa', E = 'oa', F = 'oa',
 	G = 'oa', H = 'oa', I = 'oa', J = 'oa', K = 'oa', L = 'oa', M = 'oa', N = 'oa',

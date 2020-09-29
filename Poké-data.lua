@@ -1860,7 +1860,7 @@ t.zapdosG = {name = 'Zapdos', ndex = 145, type1 = 'lotta', type2 = 'volante'}
 t['145G'] = t.zapdosG
 t.moltresG = {name = 'Moltres', ndex = 146, type1 = 'buio', type2 = 'volante'}
 t['146G'] = t.moltresG
-t.slowkingG = {name = 'Slowking', ndex = 199, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+t.slowkingG = {name = 'Slowking', ndex = 199, type1 = 'veleno', type2 = 'psico'}
 t['199G'] = t.slowkingG
 t.corsolaG = {name = 'Corsola', ndex = 222, type1 = 'spettro', type2 = 'spettro'}
 t['222G'] = t.corsolaG
