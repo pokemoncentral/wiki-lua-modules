@@ -755,5 +755,11 @@ x.PA = {{
         {'PA', 'parco_amici'}
     }
 }}
+x.HOME = {{
+    link = 'Pokémon HOME',
+    display = {
+        {'HOME', 'home'}
+    }
+}}
 
 return x
