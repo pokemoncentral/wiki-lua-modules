@@ -218,7 +218,7 @@ t.arceus.names = {base = 'Normale', L = 'Lotta', Vo = 'Volante', Ve = 'Veleno',
 	Sc = 'Sconosciuto'}
 t.basculin.names = {B = 'Forma Lineablu', base = 'Forma Linearossa'}
 t.darmanitan.names = {Z = 'Stato Zen', G = 'Forma di Galar',
-	GZ = "Stato Zen", base = 'Stato Normale'}
+	GZ = "Stato Zen (Galar)", base = 'Stato Normale'}
 t.tornadus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
 t.kyurem.names = {N = 'Kyurem Nero', B = 'Kyurem Bianco', base = 'Forma di Kyurem'}
 t.meloetta.names = {D = 'Forma Danza', base = 'Forma Canto'}
@@ -242,7 +242,7 @@ t.minior.names = {R = 'Forma Nucleo', base = 'Forma Meteora'}
 t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = "Necrozma Ali dell'Aurora",
 	U = 'UltraNecrozma', base = ''}
 t.toxtricity.names = {B = 'Forma Basso', Gi = "Toxtricity Gigamax", base = 'Forma Melodia'}
-t.alcremie.names = {base = "Lattevaniglia Bonbonfragola"}
+t.alcremie.names = {base = ""}
 t.eiscue.names = {L = "Liquefaccia", base = "Gelofaccia"}
 t.indeedee.names = t.meowstic.names
 t.morpeko.names = {V = 'Motivo Panciavuota', base = 'Motivo Panciapiena'}
@@ -299,19 +299,13 @@ t.vulpix.anchor = 'Vulpix e Ninetales'
 t.diglett.anchor = 'Diglett e Dugtrio'
 t.persian.anchor = 'Meowth e Persian'
 t.geodude.anchor = 'Geodude, Graveler e Golem'
+t.ponyta.anchor = 'Ponyta e Rapidash'
 t.grimer.anchor = 'Grimer e Muk'
 t.zigzagoon.anchor = 'Zigzagoon e Linoone'
 -- t.wormadam.anchor = 'Burmy e Wormadam'
 -- t.tornadus.anchor = 'Forze della Natura'
 -- t.pumpkaboo.anchor = 'Pumpkaboo e Gourgeist'
 
--- Alternative forms' links
-
-makeLinks()
-
--- Alternative forms' black links
-
-makeLinks(true)
 
 -- Table to map extended names to abbrs
 
@@ -637,7 +631,23 @@ t.pikachu['until'] = {Cs = 'roza', R = 'roza', D = 'roza',
 t.eevee['until'] = {Cm = 'lgpe'}
 t.arceus['until'] = {Sc = 'hgss'}
 
--- Altre forme di Alola, messe qui per evitare inutili iterazioni dei cicli precedenti
+-- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
+-- Tables are copied since links should be changed
+t.raticate = table.copy(t.rattata)
+t.sandslash = table.copy(t.sandshrew)
+t.ninetales = table.copy(t.vulpix)
+t.dugtrio = table.copy(t.diglett)
+t.graveler = table.copy(t.geodude)
+t.golem = table.copy(t.geodude)
+t.rapidash = table.copy(t.ponyta)
+t.muk = table.copy(t.grimer)
+t.linoone = table.copy(t.zigzagoon)
+t.thundurus, t.landorus = table.copy(t.tornadus), table.copy(t.tornadus)
+t.gourgeist = table.copy(t.pumpkaboo)
+
+-- Adding missing Pokémon to set with a certain kind of forms. Added here
+-- to avoid useless repetitions of cycles
+-- Otehr Alola forms
 table.insert(t.alola, 'raticate')
 table.insert(t.alola, 'sandslash')
 table.insert(t.alola, 'ninetales')
@@ -646,28 +656,19 @@ table.insert(t.alola, 'meowth')
 table.insert(t.alola, 'graveler')
 table.insert(t.alola, 'golem')
 table.insert(t.alola, 'muk')
-
 -- Other Galar forms
 table.insert(t.galar, 'rapidash')
 table.insert(t.galar, 'linoone')
-
 -- Other Gigamax forms
 table.insert(t.gigamax, 'pikachu')
 table.insert(t.gigamax, 'toxtricity')
 table.insert(t.gigamax, 'urshifu')
 
--- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
-t.raticate = t.rattata
-t.sandslash = t.sandshrew
-t.ninetales = t.vulpix
-t.dugtrio = t.diglett
-t.graveler = t.geodude
-t.golem = t.geodude
-t.rapidash = t.ponyta
-t.muk = t.grimer
-t.linoone = t.zigzagoon
-t.thundurus, t.landorus = t.tornadus, t.tornadus
-t.gourgeist = t.pumpkaboo
+-- Link creation should be done AFTER copying Pokémon with same forms, in order
+-- to use the right name for the link
+makeLinks()      -- normal links
+makeLinks(true)  -- black links
+
 t[19] = t.rattata
 t[20] = t.raticate
 t[25] = t.pikachu

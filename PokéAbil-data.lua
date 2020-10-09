@@ -1990,7 +1990,8 @@ t.butterfreeGi, t['012Gi'] = t.butterfree, t.butterfree
 t.pikachuGi, t['025Gi'] = t.pikachu, t.pikachu
 t.meowthGi, t['052Gi'] = t.meowth, t.meowth
 t.machampGi, t['068Gi'] = t.machamp, t.machamp
-t.gengarGi, t['094Gi'] = t.gengar, t.gengar
+t.gengarGi = {ability1 = 'Corpofunesto'}
+t['094Gi'] = t.gengarGi
 t.kinglerGi, t['099Gi'] = t.kingler, t.kingler
 t.laprasGi, t['131Gi'] = t.lapras, t.lapras
 t.eeveeGi, t['133Gi'] = t.eevee, t.eevee
