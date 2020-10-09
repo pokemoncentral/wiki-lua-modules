@@ -501,23 +501,23 @@ x.SpSc = {{
         {'Sc', 'scudo'}
     }
 }}
-x.IALC = {{
+x.IATC = {{
     link = 'Pokémon Spada e Scudo - Pass di espansione',
     display = {
         {'IA', 'isolaarmatura'},
-        {'LC', 'landacorona'}
+        {'TC', 'landacorona'}
     }
 }}
 x.IA = {{
-    link = 'Pokémon Spada e Scudo - Pass di espansione',
+    link = "L'isola solitaria dell'armatura",
     display = {
         {'IA', 'isolaarmatura'}
     }
 }}
-x.LC = {{
-    link = 'Pokémon Spada e Scudo - Pass di espansione',
+x.TC = {{
+    link = 'Le terre innevate della corona',
     display = {
-        {'LC', 'landacorona'}
+        {'TC', 'landacorona'}
     }
 }}
 x.SJ = {{
