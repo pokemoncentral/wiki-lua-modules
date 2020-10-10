@@ -9,8 +9,8 @@ local abillist = require('Abillist').abillist
 --      Lack second, ability in hidden
 print(abillist{args={'buio', 'Prepotenza'}})
 
--- Multi-gen
-print(abillist{args={'spettro', 'Pedinombra'}})
+-- Multi-gen, form labels
+print(abillist{args={'volante', 'Levitazione'}})
 
 -- Event ability in other page
 print(abillist{args={'terra', 'Frangiaura'}})

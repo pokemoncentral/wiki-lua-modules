@@ -306,8 +306,8 @@ end
 
 Creates a list where every entry is a row in an HTML table, grouping entries by
 a property and merging together all the entries in a group only if they are all
-equal, with a specific label. Groups of one element are printed without the
-label.
+equal, with a specific label. If not otherwise specified, groups of one
+element are printed without the label.
 
 Arguments (names because they are many):
 	- source: table to scan to retrieve the data.
@@ -324,6 +324,8 @@ Arguments (names because they are many):
         to it, but not the separator. Defaults to '|}'.
 	- fullGroupLabel: optional, the label to use when a whole group generates a
 		single entry. Defaults to 'Tutte le forme'
+    - noEmptyLabel: flag, specifies if a group with one element should use the
+        label of the element instead of an empty one. Defaults to false
 
 The class representing the entries must implement the following interface:
     - constructor(): Takes as parameters an element of source, its key and
@@ -356,7 +358,9 @@ l.makeCollapsedList = function(args)
     end)
     entries = table.flatMapToNum(groups, function(group)
         if #group == 1 then
-            group[1]:emptyLabel()
+            if not args.noEmptyLabel then
+                group[1]:emptyLabel()
+            end
             return group
         end
 
