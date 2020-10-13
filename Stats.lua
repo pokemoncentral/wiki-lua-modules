@@ -91,7 +91,7 @@ ${stats}
 |-
 ! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
 ! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
-! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv.100]=],
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100]=],
 
     oldValueFooter = [=[
 
@@ -110,8 +110,8 @@ ${stats}
     statBounds = [=[
 
 | class="hidden-xs" | &nbsp;
-| class="${rleft}text-small hidden-xs" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min50} - ${max50}
-| class="${rright}text-small hidden-xs" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min100} - ${max100}]=],
+| class="${rleft}text-small hidden-xs" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min50}—${max50}
+| class="${rright}text-small hidden-xs" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min100}—${max100}]=],
 
     statRow = [=[|-
 | ${rleft}style="width: 5.5em; padding: 0.3ex 0.8ex; background: #${light};" | [[Statistiche#${link}|<span style="color: #${normale};">${stat}</span>]]
