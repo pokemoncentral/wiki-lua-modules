@@ -1789,9 +1789,16 @@ t.urshifu = {ability1 = 'Pugni Invisibili'}
 t[892] = t.urshifu
 t.zarude = {ability1 = 'Fogliamanto'}
 t[893] = t.zarude
-t.calyrex = {ability1 = 'Agitazione'}
 t.regieleki = {ability1 = 'Transistor'}
+t[894] = t.regieleki
 t.regidrago = {ability1 = 'Dragomascelle'}
+t[895] = t.regidrago
+t.glastrier = {ability1 = 'Nitrito Bianco'}
+t[896] = t.glastrier
+t.spectrier = {ability1 = 'Nitrito Nero'}
+t[897] = t.spectrier
+t.calyrex = {ability1 = 'Agitazione'}
+t[898] = t.calyrex
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
@@ -1913,6 +1920,10 @@ t.toxtricityB = {ability1 = 'Punk Rock', ability2 = 'Meno', abilityd = 'Tecnico'
 t['849B'] = t.toxtricityB
 t.indeedeeF = {ability1 = 'Mente Locale', ability2 = 'Sincronismo', abilityd = 'Psicogenesi'}
 t['876F'] = t.indeedeeF
+t.calyrexG = {ability1 = 'Sintonia Equina'}
+t['898G'] = t.calyrexG
+t.calyrexS = {ability1 = 'Sintonia Equina'}
+t['898S'] = t.calyrexS
 
 -- Alias per le altre forme alternative rilevanti
 

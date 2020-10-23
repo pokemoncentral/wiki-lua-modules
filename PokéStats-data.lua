@@ -1792,12 +1792,28 @@ d.urshifu = {hp = 100, atk = 130, def = 100, spatk = 63, spdef = 60, spe = 97}
 d[892] = d.urshifu
 d.zarude = {hp = 105, atk = 120, def = 105, spatk = 70, spdef = 95, spe = 105}
 d[893] = d.zarude
+d.regieleki = {hp = 80, atk = 100, def = 50, spatk = 100, spdef = 50, spe = 200}
+d[894] = d.regieleki
+d.regidrago = {hp = 200, atk = 100, def = 50, spatk = 100, spdef = 50, spe = 80}
+d[895] = d.regidrago
+d.glastrier = {hp = 100, atk = 145, def = 130, spatk = 65, spdef = 110, spe = 30}
+d[896] = d.glastrier
+d.spectrier = {hp = 100, atk = 65, def = 60, spatk = 145, spdef = 80, spe = 130}
+d[897] = d.spectrier
+d.calyrex = {hp = 100, atk = 80, def = 80, spatk = 80, spdef = 80, spe = 80}
+d[898] = d.calyrex
 
 -- Alternative forms which actually change stats
 d.pikachuCm = {hp = 45, atk = 80, def = 50, spatk = 75, spdef = 60, spe = 120}
 d['025Cm'] = d.pikachuCm
 d.eeveeCm = {hp = 65, atk = 75, def = 70, spatk = 65, spdef = 85, spe = 75}
 d['133Cm'] = d.eeveeCm
+d.articunoG = {hp = 90, atk = 85, def = 85, spatk = 125, spdef = 100, spe = 95}
+d['144G'] = d.articunoG
+d.zapdosG = {hp = 90, atk = 125, def = 90, spatk = 85, spdef = 90, spe = 100}
+d['145G'] = d.zapdosG
+d.moltresG = {hp = 90, atk = 85, def = 90, spatk = 100, spdef = 125, spe = 90}
+d['146G'] = d.moltresG
 d.deoxysA = {hp = 50, atk = 180, def = 20, spatk = 180, spdef = 20, spe = 150}
 d['386A'] = d.deoxysA
 d.deoxysD = {hp = 50, atk = 70, def = 160, spatk = 70, spdef = 160, spe = 90}
@@ -1882,7 +1898,10 @@ d.zamazentaR = {hp = 92, atk = 130, def = 145, spatk = 80, spdef = 145, spe = 12
 d['889R'] = d.zamazentaR
 d.eternatusD = {hp = 255, atk = 115, def = 250, spatk = 125, spdef = 250, spe = 130}
 d['890D'] = d.eternatusD
-
+d.calyrexG = {hp = 100, atk = 165, def = 150, spatk = 85, spdef = 130, spe = 50}
+d['898G'] = d.calyrexG
+d.calyrexS = {hp = 100, atk = 85, def = 80, spatk = 165, spdef = 100, spe = 150}
+d['898S'] = d.calyrexS
 
 -- Mega evolutions and Primal reversions
 d.venusaurM = {hp = 80, atk = 100, def = 123, spatk = 122, spdef = 120, spe = 80}

@@ -146,6 +146,7 @@ t.zacian = {}
 t.zamazenta = {}
 t.eternatus = {}
 t.urshifu = {}
+t.calyrex = {}
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
 
@@ -251,6 +252,7 @@ t.zamazenta.names = {R = 'Re degli Scudi', base = 'Eroe di Mille Lotte'}
 t.eternatus.names = {D = 'Dynamax Infinito', base = ''}
 t.urshifu.names = {P = 'Stile Pluricolpo', Gi = 'Urshifu Gigamax (Stile Singolcolpo)',
 	PGi = 'Urshifu Gigamax (Stile Pluricolpo)', base = 'Stile Singolcolpo'}
+t.calyrex.names = {G = "Cavaliere Glaciale", S = "Cavaliere Spettrale", base = ""}
 for _, v in pairs(t.mega) do
 	if not t[v] then
 		t[v] = { names = {base = ''} }
@@ -353,6 +355,7 @@ t.zacian.ext = {eroe = 'base', re = 'R'}
 t.zamazenta.ext = t.zacian.ext
 t.eternatus.ext = {dynamax = 'D'}
 t.urshifu.ext = {pluricolpo = 'P', gigamax = "Gi", singolcolpo = 'base'}
+t.calyrex.ext = {} -- TODO
 for _, v in pairs(t.mega) do
 	t[v].ext = t[v].ext or {}
 	t[v].ext.mega = 'M'
@@ -427,6 +430,7 @@ t.zacian.gamesOrder = {'base', 'R'}
 t.zamazenta.gamesOrder = t.zacian.gamesOrder
 t.eternatus.gamesOrder = {'base', 'D'}
 t.urshifu.gamesOrder = {'base', 'Gi', 'P', 'PGi'}
+t.calyrex.gamesOrder = {'base', 'G', 'S'}
 table.remove(t.silvally.gamesOrder)
 for _, v in pairs(t.mega) do
 	t[v].gamesOrder = t[v].gamesOrder or {'base', 'M'}
@@ -547,6 +551,7 @@ t.zacian.since = {R = 'spsc', base = 'spsc'}
 t.zamazenta.since = {R = 'spsc', base = 'spsc'}
 t.eternatus.since = {D = 'spsc', base = 'spsc'}
 t.urshifu.since = {P = 'spsc', Gi = 'spsc', PGi = 'spsc', base = 'spsc'}
+t.calyrex.since = {G = 'spsc', S = 'spsc', base = 'spsc'}
 t.venusaur.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
 t.blastoise.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
 t.beedrill.since = {M = 'roza', base = 'rb'}
@@ -739,6 +744,7 @@ t[888] = t.zacian
 t[889] = t.zamazenta
 t[890] = t.eternatus
 t[892] = t.urshifu
+t[898] = t.calyrex
 t[3] = t.venusaur
 t[9] = t.blastoise
 t[15] = t.beedrill

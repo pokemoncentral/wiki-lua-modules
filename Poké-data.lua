@@ -1792,12 +1792,16 @@ t.urshifu = {name = 'Urshifu', ndex = 892, type1 = 'lotta', type2 = 'buio'}
 t[892] = t.urshifu
 t.zarude = {name = 'Zarude', ndex = 893, type1 = 'Buio', type2 = 'Erba'}
 t[893] = t.zarude
-t.calyrex = {name = 'Calyrex', ndex = nil, type1 = 'psico', type2 = 'erba'}
--- t[] = t.calyrex
-t.regieleki = {name = 'Regieleki', ndex = nil, type1 = 'elettro', type2 = 'elettro'}
--- t[] = t.regieleki
-t.regidrago = {name = 'Regidrago', ndex = nil, type1 = 'drago', type2 = 'drago'}
--- t[] = t.regidrago
+t.regieleki = {name = 'Regieleki', ndex = 894, type1 = 'elettro', type2 = 'elettro'}
+t[894] = t.regieleki
+t.regidrago = {name = 'Regidrago', ndex = 895, type1 = 'drago', type2 = 'drago'}
+t[895] = t.regidrago
+t.glastrier = {name = 'Glastrier', ndex = 896, type1 = 'ghiaccio', type2 = 'ghiaccio'}
+t[896] = t.glastrier
+t.spectrier = {name = 'Spectrier', ndex = 897, type1 = 'spettro', type2 = 'spettro'}
+t[897] = t.spectrier
+t.calyrex = {name = 'Calyrex', ndex = 898, type1 = 'psico', type2 = 'erba'}
+t[898] = t.calyrex
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
@@ -1993,6 +1997,10 @@ t.necrozmaU = {name = 'Necrozma', ndex = 800, type1 = 'psico', type2 = 'drago'}
 t['800U'] = t.necrozmaU
 t.urshifuP = {name = 'Urshifu', ndex = 892, type1 = 'lotta', type2 = 'acqua'}
 t['892P'] = t.urshifuP
+t.calyrexG = {name = 'Calyrex', ndex = 898, type1 = 'psico', type2 = 'ghiaccio'}
+t['898G'] = t.calyrexG
+t.calyrexS = {name = 'Calyrex', ndex = 898, type1 = 'psico', type2 = 'spettro'}
+t['898S'] = t.calyrexS
 
 t.charizardMX = {name = 'Charizard', ndex = 6, type1 = 'fuoco', type2 = 'drago'}
 t['006MX'] = t.charizardMX

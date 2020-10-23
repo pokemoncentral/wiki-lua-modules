@@ -6655,15 +6655,20 @@ evo[891], evo[892], evo['892P'] = evo.kubfu, evo.kubfu, evo.kubfu
 evo.zarude =  { ndex = 893, name = 'zarude' }
 evo[893] = evo.zarude
 
-evo.calyrex =  { ndex = nil, name = 'calyrex' }
--- evo[893] = evo.calyrex
+evo.regieleki =  { ndex = 894, name = 'regieleki' }
+evo[894] = evo.regieleki
 
-evo.regieleki =  { ndex = nil, name = 'regieleki' }
--- evo[893] = evo.regieleki
+evo.regidrago =  { ndex = 895, name = 'regidrago' }
+evo[895] = evo.regidrago
 
-evo.regidrago =  { ndex = nil, name = 'regidrago' }
--- evo[893] = evo.regidrago
+evo.glastrier =  { ndex = 896, name = 'glastrier' }
+evo[896] = evo.glastrier
 
+evo.spectrier =  { ndex = 897, name = 'spectrier' }
+evo[897] = evo.spectrier
+
+evo.calyrex =  { ndex = 898, name = 'calyrex' }
+evo[898] = evo.calyrex
 
 -- Alternative forms with evolutions
 evo.rattataA = {
