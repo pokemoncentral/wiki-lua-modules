@@ -5349,7 +5349,7 @@ evo.amaura = {
 			name = 'aurorus',
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 39,
-			conditions = { [evo.conditions.TIME] = 'Giorno' },
+			conditions = { [evo.conditions.TIME] = 'Notte' },
 		}
 	}
 }
