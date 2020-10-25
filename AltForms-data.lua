@@ -146,6 +146,7 @@ t.zacian = {}
 t.zamazenta = {}
 t.eternatus = {}
 t.urshifu = {}
+t.calyrex = {}
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
 
@@ -218,7 +219,7 @@ t.arceus.names = {base = 'Normale', L = 'Lotta', Vo = 'Volante', Ve = 'Veleno',
 	Sc = 'Sconosciuto'}
 t.basculin.names = {B = 'Forma Lineablu', base = 'Forma Linearossa'}
 t.darmanitan.names = {Z = 'Stato Zen', G = 'Forma di Galar',
-	GZ = "Stato Zen", base = 'Stato Normale'}
+	GZ = "Stato Zen (Galar)", base = 'Stato Normale'}
 t.tornadus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
 t.kyurem.names = {N = 'Kyurem Nero', B = 'Kyurem Bianco', base = 'Forma di Kyurem'}
 t.meloetta.names = {D = 'Forma Danza', base = 'Forma Canto'}
@@ -242,7 +243,7 @@ t.minior.names = {R = 'Forma Nucleo', base = 'Forma Meteora'}
 t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = "Necrozma Ali dell'Aurora",
 	U = 'UltraNecrozma', base = ''}
 t.toxtricity.names = {B = 'Forma Basso', Gi = "Toxtricity Gigamax", base = 'Forma Melodia'}
-t.alcremie.names = {base = "Lattevaniglia Bonbonfragola"}
+t.alcremie.names = {base = ""}
 t.eiscue.names = {L = "Liquefaccia", base = "Gelofaccia"}
 t.indeedee.names = t.meowstic.names
 t.morpeko.names = {V = 'Motivo Panciavuota', base = 'Motivo Panciapiena'}
@@ -251,6 +252,7 @@ t.zamazenta.names = {R = 'Re degli Scudi', base = 'Eroe di Mille Lotte'}
 t.eternatus.names = {D = 'Dynamax Infinito', base = ''}
 t.urshifu.names = {P = 'Stile Pluricolpo', Gi = 'Urshifu Gigamax (Stile Singolcolpo)',
 	PGi = 'Urshifu Gigamax (Stile Pluricolpo)', base = 'Stile Singolcolpo'}
+t.calyrex.names = {G = "Cavaliere Glaciale", S = "Cavaliere Spettrale", base = ""}
 for _, v in pairs(t.mega) do
 	if not t[v] then
 		t[v] = { names = {base = ''} }
@@ -299,19 +301,13 @@ t.vulpix.anchor = 'Vulpix e Ninetales'
 t.diglett.anchor = 'Diglett e Dugtrio'
 t.persian.anchor = 'Meowth e Persian'
 t.geodude.anchor = 'Geodude, Graveler e Golem'
+t.ponyta.anchor = 'Ponyta e Rapidash'
 t.grimer.anchor = 'Grimer e Muk'
 t.zigzagoon.anchor = 'Zigzagoon e Linoone'
 -- t.wormadam.anchor = 'Burmy e Wormadam'
 -- t.tornadus.anchor = 'Forze della Natura'
 -- t.pumpkaboo.anchor = 'Pumpkaboo e Gourgeist'
 
--- Alternative forms' links
-
-makeLinks()
-
--- Alternative forms' black links
-
-makeLinks(true)
 
 -- Table to map extended names to abbrs
 
@@ -359,6 +355,7 @@ t.zacian.ext = {eroe = 'base', re = 'R'}
 t.zamazenta.ext = t.zacian.ext
 t.eternatus.ext = {dynamax = 'D'}
 t.urshifu.ext = {pluricolpo = 'P', gigamax = "Gi", singolcolpo = 'base'}
+t.calyrex.ext = {} -- TODO
 for _, v in pairs(t.mega) do
 	t[v].ext = t[v].ext or {}
 	t[v].ext.mega = 'M'
@@ -433,6 +430,7 @@ t.zacian.gamesOrder = {'base', 'R'}
 t.zamazenta.gamesOrder = t.zacian.gamesOrder
 t.eternatus.gamesOrder = {'base', 'D'}
 t.urshifu.gamesOrder = {'base', 'Gi', 'P', 'PGi'}
+t.calyrex.gamesOrder = {'base', 'G', 'S'}
 table.remove(t.silvally.gamesOrder)
 for _, v in pairs(t.mega) do
 	t[v].gamesOrder = t[v].gamesOrder or {'base', 'M'}
@@ -512,7 +510,7 @@ t.articuno.since = {G = 'spsc', base = 'rb'}
 t.zapdos.since = {G = 'spsc', base = 'rb'}
 t.moltres.since = {G = 'spsc', base = 'rb'}
 t.slowking.since = {G = 'spsc', base = 'oa'}
-t.corsola.since = {G = 'spsc', base = 'rz'}
+t.corsola.since = {G = 'spsc', base = 'oa'}
 t.zigzagoon.since = {G = 'spsc', base = 'rz'}
 t.castform.since = {S = 'rz', P = 'rz', N = 'rz', base = 'rz'}
 t.deoxys.since = {A = 'rfvf', D = 'rfvf', V = 's', base = 'rz'}
@@ -553,6 +551,7 @@ t.zacian.since = {R = 'spsc', base = 'spsc'}
 t.zamazenta.since = {R = 'spsc', base = 'spsc'}
 t.eternatus.since = {D = 'spsc', base = 'spsc'}
 t.urshifu.since = {P = 'spsc', Gi = 'spsc', PGi = 'spsc', base = 'spsc'}
+t.calyrex.since = {G = 'spsc', S = 'spsc', base = 'spsc'}
 t.venusaur.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
 t.blastoise.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
 t.beedrill.since = {M = 'roza', base = 'rb'}
@@ -637,7 +636,23 @@ t.pikachu['until'] = {Cs = 'roza', R = 'roza', D = 'roza',
 t.eevee['until'] = {Cm = 'lgpe'}
 t.arceus['until'] = {Sc = 'hgss'}
 
--- Altre forme di Alola, messe qui per evitare inutili iterazioni dei cicli precedenti
+-- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
+-- Tables are copied since links should be changed
+t.raticate = table.copy(t.rattata)
+t.sandslash = table.copy(t.sandshrew)
+t.ninetales = table.copy(t.vulpix)
+t.dugtrio = table.copy(t.diglett)
+t.graveler = table.copy(t.geodude)
+t.golem = table.copy(t.geodude)
+t.rapidash = table.copy(t.ponyta)
+t.muk = table.copy(t.grimer)
+t.linoone = table.copy(t.zigzagoon)
+t.thundurus, t.landorus = table.copy(t.tornadus), table.copy(t.tornadus)
+t.gourgeist = table.copy(t.pumpkaboo)
+
+-- Adding missing Pokémon to set with a certain kind of forms. Added here
+-- to avoid useless repetitions of cycles
+-- Otehr Alola forms
 table.insert(t.alola, 'raticate')
 table.insert(t.alola, 'sandslash')
 table.insert(t.alola, 'ninetales')
@@ -646,28 +661,19 @@ table.insert(t.alola, 'meowth')
 table.insert(t.alola, 'graveler')
 table.insert(t.alola, 'golem')
 table.insert(t.alola, 'muk')
-
 -- Other Galar forms
 table.insert(t.galar, 'rapidash')
 table.insert(t.galar, 'linoone')
-
 -- Other Gigamax forms
 table.insert(t.gigamax, 'pikachu')
 table.insert(t.gigamax, 'toxtricity')
 table.insert(t.gigamax, 'urshifu')
 
--- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
-t.raticate = t.rattata
-t.sandslash = t.sandshrew
-t.ninetales = t.vulpix
-t.dugtrio = t.diglett
-t.graveler = t.geodude
-t.golem = t.geodude
-t.rapidash = t.ponyta
-t.muk = t.grimer
-t.linoone = t.zigzagoon
-t.thundurus, t.landorus = t.tornadus, t.tornadus
-t.gourgeist = t.pumpkaboo
+-- Link creation should be done AFTER copying Pokémon with same forms, in order
+-- to use the right name for the link
+makeLinks()      -- normal links
+makeLinks(true)  -- black links
+
 t[19] = t.rattata
 t[20] = t.raticate
 t[25] = t.pikachu
@@ -738,6 +744,7 @@ t[888] = t.zacian
 t[889] = t.zamazenta
 t[890] = t.eternatus
 t[892] = t.urshifu
+t[898] = t.calyrex
 t[3] = t.venusaur
 t[9] = t.blastoise
 t[15] = t.beedrill

@@ -77,6 +77,8 @@ ${stats}
 
     catTotal = '[[Categoria:Pokémon con statistiche base totali di ${tot}|${display}]]',
 
+    catStatsEqual = '[[Categoria:Pokémon con lo stesso valore in tutte le statistiche base|${display}]]',
+
     footer = [=[
 
 | colspan="3" class="hidden-xs" | &nbsp;
@@ -89,7 +91,7 @@ ${stats}
 |-
 ! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
 ! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
-! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv.100]=],
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100]=],
 
     oldValueFooter = [=[
 
@@ -108,8 +110,8 @@ ${stats}
     statBounds = [=[
 
 | class="hidden-xs" | &nbsp;
-| class="${rleft}text-small hidden-xs" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min50} - ${max50}
-| class="${rright}text-small hidden-xs" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min100} - ${max100}]=],
+| class="${rleft}text-small hidden-xs" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min50}—${max50}
+| class="${rright}text-small hidden-xs" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min100}—${max100}]=],
 
     statRow = [=[|-
 | ${rleft}style="width: 5.5em; padding: 0.3ex 0.8ex; background: #${light};" | [[Statistiche#${link}|<span style="color: #${normale};">${stat}</span>]]
@@ -177,6 +179,17 @@ local makeCategories = function(poke, tot)
         if changedInGen then
             table.insert(categories, interpCat(
                 strings.catStatsChanged, {gen = gendata[gen].ext}))
+        end
+    end
+
+    -- Category for Pokémon with all the base stats equal
+    do
+        local firstStat = mg.getGenValue(stats[poke].atk)
+        local equalFirst = function(val)
+            return mg.getGenValue(val) == firstStat
+        end
+        if table.all(stats[poke], equalFirst) then
+            table.insert(categories, interpCat(strings.catStatsEqual))
         end
     end
 

@@ -4,7 +4,7 @@ local z = {}
 
 local mw = require('mw')
 
-local txt = require('Wikilib-strings')
+local txt = require('Wikilib-strings')  -- luachek: no unused
 local lib = require('Wikilib-learnlists')
 local links = require('Links')
 

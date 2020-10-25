@@ -509,13 +509,13 @@ x.IATC = {{
     }
 }}
 x.IA = {{
-    link = 'Pokémon Spada e Scudo - Pass di espansione',
+    link = "L'isola solitaria dell'armatura",
     display = {
         {'IA', 'isolaarmatura'}
     }
 }}
 x.TC = {{
-    link = 'Pokémon Spada e Scudo - Pass di espansione',
+    link = 'Le terre innevate della corona',
     display = {
         {'TC', 'landacorona'}
     }
@@ -753,6 +753,12 @@ x.PA = {{
     link = 'Parco Amici',
     display = {
         {'PA', 'parco_amici'}
+    }
+}}
+x.HOME = {{
+    link = 'Pokémon HOME',
+    display = {
+        {'HOME', 'home'}
     }
 }}
 

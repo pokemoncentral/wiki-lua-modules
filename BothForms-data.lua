@@ -56,6 +56,7 @@ to others, thus there's aliasing at the end of the module.
 
 t.pikachu = mergeByName("pikachu")
 t.alcremie = mergeByName("alcremie")
+t.alcremie.names.base = useless.alcremie.names.base
 -- The copy is needed to remove metatable that mw.loadData doesn't like
 t.minior = table.copy(useless.minior)
 
@@ -64,7 +65,7 @@ t.minior = table.copy(useless.minior)
 -- Minor isn't here because the AltForms is a subset of UselesForms
 
 t.pikachu.gamesOrder = {'base', 'Cs', 'R', 'D', 'Cn', 'S', 'W',
-    'O', 'H', 'Si', 'U', 'K', 'A', 'Co', 'Cm', 'Gi'}
+    'O', 'H', 'Si', 'U', 'K', 'A', 'Co', 'Cm', 'G', 'Gi'}
 t.alcremie.gamesOrder = table.copy(useless.alcremie.gamesOrder)
 table.insert(t.alcremie.gamesOrder, "Gi")
 

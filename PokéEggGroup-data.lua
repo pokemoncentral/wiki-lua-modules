@@ -1752,13 +1752,16 @@ t.urshifu = {group1 = 'sconosciuto'}
 t[892] = t.urshifu
 t.zarude = {group1 = 'sconosciuto'}
 t[893] = t.zarude
--- t.calyrex = {group1 = 'sconosciuto'}
--- t[] = t.calyrex
--- t.regieleki = {group1 = 'sconosciuto'}
--- t[] = t.regieleki
--- t.regidrago = {group1 = 'sconosciuto'}
--- t[] = t.regidrago
-
+t.regieleki = {group1 = 'sconosciuto'}
+t[894] = t.regieleki
+t.regidrago = {group1 = 'sconosciuto'}
+t[895] = t.regidrago
+t.glastrier = {ability1 = 'sconosciuto'}
+t[896] = t.glastrier
+t.spectrier = {ability1 = 'sconosciuto'}
+t[897] = t.spectrier
+t.calyrex = {group1 = 'sconosciuto'}
+t[898] = t.calyrex
 
 -- Forme alternative che esistono fuori dalla lotta e quindi
 -- possono avere un gruppo uova diverso da quello della forma base

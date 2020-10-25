@@ -45,7 +45,7 @@ cs.tutor = function(gen) return gen end
 -- 	end, ipairs)
 -- end
 
--- Contiene le sigle e i nomi interi dei giochi delle celle del tutor
+-- Contiene le sigle e i colori dei giochi delle celle del tutor
 
 local games = {}
 games[2] = {{'C', 'cristallo'}}
@@ -54,7 +54,7 @@ games[4] = {{'DP', 'diamante'}, {'Pt', 'platino'}, {'HGSS', 'heartgold'}}
 games[5] = {{'NB', 'nero'}, {'N2B2', 'nero2'}}
 games[6] = {{'XY', 'x'}, {'RΩZα', 'rubinoomega'}}
 games[7] = {{'SL', 'sole'}, {'USUL', 'ultrasole'}, {'LGPE', 'lgpikachu'}}
-games[8] = {{'SpSc', 'spada'}}
+games[8] = {{'SpSc', 'spada'}, {'IA', 'isolaarmatura'}, {'TC', 'landacorona'}}
 
 -- Contiene le varie funzioni che generano le celle
 

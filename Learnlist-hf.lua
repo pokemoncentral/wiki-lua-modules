@@ -31,14 +31,14 @@ cs.preevo, cs.event = cs.breed, cs.breed
 local firstcell = {cs = {}, rs = {}}
 
 -- In futuro dovranno essere tutti > 1
-firstcell.cs.level = {1, 1, 1, 1, 2, 2, 2}
+firstcell.cs.level = {1, 1, 1, 3, 2, 2, 2}
 firstcell.cs.tm = {1, 1, 1, 1, 1, 1, 1}
 firstcell.cs.breed = {1, 1, 1, 1, 1, 1, 1}
 firstcell.cs.tutor = {1, 1, 3, 3, 2, 2, 2, 2}
 firstcell.cs.preevo = firstcell.cs.breed
 firstcell.cs.event = firstcell.cs.breed
 
-firstcell.rs.level = {1, 1, 1, 1, 2, 2, 2}
+firstcell.rs.level = {1, 1, 1, 2, 2, 2, 2}
 firstcell.rs.breed = {1, 1, 1, 1, 1, 1, 1}
 firstcell.rs.tm = firstcell.rs.breed
 firstcell.rs.tutor = firstcell.rs.breed
@@ -86,6 +86,12 @@ cells[6] = table.concat{cells.category, cells.gara, cells.inib}
 -- incompleta causa mancata implementazione del sistema a due celle
 
 local games = {}
+games[4] = [=[
+
+|- class="black-text"
+! style="min-width: 2.2em;" | [[Pokémon Diamante e Perla|DP]]
+! style="min-width: 2em;" | [[Pokémon Platino|Pt]]
+! style="min-width: 3em;" | [[Pokémon Oro Heartgold e Argento Soulsilver|HGSS]]]=]
 games[5] = [=[
 
 |- class="black-text"
@@ -196,7 +202,7 @@ local lowrow = function(gen, kind)
 	kind = (kind == 'tm' and gen < 7) and 'tmhm' or kind
 
 	local baseStr = table.concat{cells[kind], cells[gen],
-		(kind == 'level' and gen > 4) and games[gen] or ''}
+		kind == 'level' and games[gen] or ''}
 	return txt.interp(baseStr, values)
 end
 

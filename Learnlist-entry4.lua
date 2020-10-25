@@ -7,6 +7,7 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')  -- luacheck: no unused
 local lib = require('Wikilib-learnlists')
 local s = require("Sup-data")
+local links = require('Links')
 local abbrLib = require('Wikilib-sigle')
 
 -- Funzione chiamata da tutti gli entry per generare le celle dalla seconda in poi
@@ -20,15 +21,17 @@ end
 
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return string.interp(table.concat{[=[|-
-| style="padding: 0.1em 0.3em;" | ${p1}${games}]=],
-	entry(p[11] or '', p[2] or 'Scontro', lib.makeNotes(p[10] or ''),
-		p[3] or 'Sconosciuto', p[4] or 'Stato', p[5] or '0', p[6] or '0',
-		p[7] or '0', p[8] or 'Bellezza', p[9] or '0')},
-	{
-		p1 = p[1] or 'Inizio',
-		games = abbrLib.concatAbbrs(p[12] or '', s)
-	})
+    return table.concat{"|-\n",
+        lib.gameslevel(
+                p[1] or links.tt('&mdash;', 'Non disponibile in Diamante e Perla'),
+                p[2] or links.tt('&mdash;', 'Non disponibile in Platino'),
+                p[3] or links.tt('&mdash;', 'Non disponibile in Oro Heartgold e Argento Soulsilver')
+        ),
+        abbrLib.concatAbbrs(p[14] or '', s),
+        entry(p[13] or '', p[4] or 'Scontro', lib.makeNotes(p[12] or ''),
+		      p[5] or 'Sconosciuto', p[6] or 'Stato', p[7] or '0', p[8] or '0',
+		      p[9] or '0', p[10] or 'Bellezza', p[11] or '0'),
+	}
 end
 
 z.Level = z.level

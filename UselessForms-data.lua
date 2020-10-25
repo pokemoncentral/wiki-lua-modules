@@ -79,10 +79,12 @@ t.genesect = {}
 t.vivillon = {}
 t.pyroar = {}
 t.floette = {}
+t.florges = {}
 t.furfrou = {}
 t.xerneas = {}
 t.minior = {}
 t.mimikyu = {}
+t.magearna = {}
 t.cramorant = {}
 t.sinistea = {}
 t.alcremie = {}
@@ -96,7 +98,8 @@ Alternative forms names. Keys are the abbr.
 t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
 	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
 	K = 'Berretto Kalos', A = 'Berretto Alola',
-	Co = 'Berretto Compagni', base = ''}
+	Co = 'Berretto Compagni', G = 'Berretto Giramondo',
+	base = ''}
 t.pichu.names = {S = 'Pichu Spunzorek', base = ''}
 t.unown.names = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
@@ -122,6 +125,9 @@ t.vivillon.names = {base = 'Motivo Nevi Perenni', No = 'Motivo Nordico',
 	Gu =  'Motivo Giungla', Po = 'Motivo Poké Ball', Sr = 'Motivo Sbarazzino'}
 t.pyroar.names = t.unfezant.names
 t.floette.names = {G = 'Fiore Giallo', A = 'Fiore Arancione',
+	Bi = 'Fiore Bianco', Bl = 'Fiore Blu', base = 'Fiore Rosso',
+	E = "Fiore Eterno"}
+t.florges.names = {G = 'Fiore Giallo', A = 'Fiore Arancione',
 	Bi = 'Fiore Bianco', Bl = 'Fiore Blu', base = 'Fiore Rosso'}
 t.furfrou.names = {C = 'Taglio Cuore', St = 'Taglio Stella',
 	D = 'Taglio Diamante', Si = 'Taglio Signorina', Gd = 'Taglio Gentildonna',
@@ -129,6 +135,7 @@ t.furfrou.names = {C = 'Taglio Cuore', St = 'Taglio Stella',
 	F = 'Taglio Faraone', base = 'Forma Selvatica'}
 t.xerneas.names = {A = 'Modo Attivo', base = 'Modo Relax'}
 t.mimikyu.names = {S = 'Forma Smascherata', base = 'Forma Mascherata'}
+t.magearna.names = {A = 'Colore Antico', base = ''}
 t.minior.names = {R = 'Nucleo Rosso', Ar = 'Nucleo Arancione',
 	G = 'Nucleo Giallo', Ve = 'Nucleo Verde', Az = 'Nucleo Azzurro',
 	I = 'Nucleo Indaco', Vi = 'Nucleo Violetto', base = 'Forma Meteora'}
@@ -159,19 +166,12 @@ t.shellos.anchor = 'Shellos e Gastrodon'
 t.burmy.anchor = 'Burmy e Wormadam'
 t.deerling.anchor = 'Deerling e Sawsbuck'
 t.floette.anchor = 'Flabébé, Floette e Florges'
-
--- Alternative forms' links
-
-makeLinks()
-
--- Alternative forms' black links
-
-makeLinks(true)
+t.florges.anchor = 'Flabébé, Floette e Florges'
 
 -- Table to map extended names to abbrs
 
 t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
-	unima = 'U', kalos = 'K', alola = 'A', compagni = 'Co'}
+	unima = 'U', kalos = 'K', alola = 'A', compagni = 'Co', giramondo = 'G'}
 t.pichu.ext = {spunzorek = 'S'}
 t.unown.ext = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	G = 'G', H = 'H', I = 'I', J = 'J', K = 'K', L = 'L', M = 'M', N = 'N',
@@ -193,7 +193,8 @@ t.vivillon.ext = {nordico = 'No', ['manto di neve'] = 'Mn',
 	savana = 'Sv', solare = 'So', oceanico = 'O', giungla = 'Gu',
 	['poké ball'] = 'Po', sbarazzino = 'Sr', ball = 'Po'}
 t.pyroar.ext = t.unfezant.ext
-t.floette.ext = {giallo = 'G', arancione = 'A', bianco = 'Bi', blu = 'Bl'}
+t.floette.ext = {giallo = 'G', arancione = 'A', bianco = 'Bi', blu = 'Bl', eterno = 'E'}
+t.florges.ext = {giallo = 'G', arancione = 'A', bianco = 'Bi', blu = 'Bl'}
 t.furfrou.ext = {cuore = 'C', stella = 'St', diamante = 'D', dignorina = 'Si',
 	gentildonna = 'Gd', gentiluomo = 'Gu', regina = 'R', kabuki = 'K',
 	faraone = 'F'}
@@ -201,6 +202,7 @@ t.xerneas.ext = {attivo = 'A'}
 t.minior.ext = {rosso = 'R', arancione = 'Ar', giallo = 'G', verde = 'Ve',
 	azzurro = 'Az', indaco = 'I', violetto = 'Vi', meteora = 'base'}
 t.mimikyu.ext = {smascherata = 'S'}
+t.magearna.ext = {antico = 'A'}
 t.cramorant.ext = {inghiottitutto = 'T', inghiottintero = 'I'}
 t.sinistea.ext = {}
 t.alcremie.ext = {lattevaniglia = 'base', latterosa = 'R', lattematcha = 'Ma',
@@ -214,7 +216,7 @@ game.
 
 --]]
 
-t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'Co', 'Gi'}
+t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'Co', 'G'}
 t.pichu.gamesOrder = {'base', 'S'}
 t.unown.gamesOrder = {'base', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
 	'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -230,11 +232,13 @@ t.genesect.gamesOrder = {'base', 'I', 'V', 'P', 'G'}
 t.vivillon.gamesOrder = {'base', 'No', 'Mn', 'C', 'Pr', 'E', 'Ga', 'T', 'Mr', 'A',
 	'D', 'Sb', 'F', 'Pl', 'Sv', 'So', 'O', 'Gu', 'Sr', 'Po'}
 t.pyroar.gamesOrder = t.unfezant.gamesOrder
-t.floette.gamesOrder = {'base', 'G', 'A', 'Bl', 'Bi'}
+t.floette.gamesOrder = {'base', 'G', 'A', 'Bl', 'Bi', 'E'}
+t.florges.gamesOrder = {'base', 'G', 'A', 'Bl', 'Bi'}
 t.furfrou.gamesOrder = {'base', 'C', 'St', 'Si', 'Gd', 'D', 'Gu', 'R', 'K', 'F'}
 t.xerneas.gamesOrder = {'base', 'A'}
 t.minior.gamesOrder = {'base', 'R', 'Ar', 'G', 'Ve', 'Az', 'I', 'Vi'}
 t.mimikyu.gamesOrder = {'base', 'S'}
+t.magearna.gamesOrder = {'base', 'A'}
 t.cramorant.gamesOrder = {'base', 'T', 'I'}
 t.sinistea.gamesOrder = {'base', 'A'}
 -- Alcremie's gamesOrder is filled below, with since
@@ -246,7 +250,7 @@ Oldest game in which each form, included base form, appears.
 --]]
 
 t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
-	K = 'sl', A = 'sl', Co = 'usul', base = 'rb'}
+	K = 'sl', A = 'sl', Co = 'usul', G = 'spsc', base = 'rb'}
 t.pichu.since = {S = 'hgss', base = 'oa'}
 t.unown.since = {base = 'oa', B = 'oa', C = 'oa', D = 'oa', E = 'oa', F = 'oa',
 	G = 'oa', H = 'oa', I = 'oa', J = 'oa', K = 'oa', L = 'oa', M = 'oa', N = 'oa',
@@ -265,13 +269,15 @@ t.vivillon.since = {base = 'xy', No = 'xy', Mn = 'xy', C = 'xy', Pr = 'xy',
 	F = 'xy', Pl = 'xy', Sv = 'xy', So = 'xy', O = 'xy', Gu =  'xy',
 	Po = 'xy', Sr = 'xy'}
 t.pyroar.since = {F = 'xy', base = 'xy'}
-t.floette.since = {G = 'xy', A = 'xy', Bi = 'xy', Bl = 'xy', base = 'xy'}
+t.floette.since = {G = 'xy', A = 'xy', Bi = 'xy', Bl = 'xy', E = 'xy', base = 'xy'}
+t.florges.since = {G = 'xy', A = 'xy', Bi = 'xy', Bl = 'xy', base = 'xy'}
 t.furfrou.since = {C = 'xy', St = 'xy', D = 'xy', Si = 'xy', Gd = 'xy',
 	Gu = 'xy', R = 'xy', K = 'xy', F = 'xy', base = 'xy'}
 t.xerneas.since = {A = 'xy', base = 'xy'}
 t.minior.since = {base = 'sl', R = 'sl', Ar = 'sl', G = 'sl', Ve = 'sl',
 	Az = 'sl', I = 'sl', Vi = 'sl'}
 t.mimikyu.since = {base = 'sl', S = 'sl'}
+t.magearna.since = {base = 'sl', A = 'sl'}
 t.cramorant.since = {T = 'spsc', I = 'spsc', base = 'spsc'}
 t.sinistea.since = {base = 'spsc', A = 'spsc'}
 -- Alcremie is quite molesto in **** pt. 2
@@ -301,13 +307,20 @@ not present defaults to latest games.
 --]]
 
 t.pichu['until'] = {S = 'hgss'}
+t.floette['until'] = {E = 'xy'}
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
-t.gastrodon = t.shellos
-t.sawsbuck = t.deerling
-t.jellicent = t.frillish
-t['flabébé'], t.florges = t.floette, t.floette
-t.polteageist = t.sinistea
+t.gastrodon = table.copy(t.shellos)
+t.sawsbuck = table.copy(t.deerling)
+t.jellicent = table.copy(t.frillish)
+t['flabébé'] = table.copy(t.florges)
+t.polteageist = table.copy(t.sinistea)
+
+-- Link creation should be done AFTER copying Pokémon with same forms, in order
+-- to use the right name for the link
+makeLinks()      -- normal links
+makeLinks(true)  -- black links
+
 t[25] = t.pikachu
 t[172] = t.pichu
 t[201] = t.unown
@@ -331,6 +344,7 @@ t[676] = t.furfrou
 t[716] = t.xerneas
 t[774] = t.minior
 t[778] = t.mimikyu
+t[801] = t.magearna
 t[845] = t.cramorant
 t[854] = t.sinistea
 t[855] = t.polteageist

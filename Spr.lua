@@ -109,7 +109,7 @@ local variants = {
 }
 
 -- Table per i giochi che hanno gli sprite in .gif
-local gifs = {'cr', 'sme', 'xy', 'roza', 'sl', 'usul', 'lgpe', 'spsc'}
+local gifs = {'cr', 'sme', 'nb', 'nb2', 'xy', 'roza', 'sl', 'usul', 'lgpe', 'spsc'}
 
 -- Table per le dimensioni degli sprite
 local sizes = {

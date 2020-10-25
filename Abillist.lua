@@ -24,8 +24,8 @@ local mw = require('mw')
 
 --[[
 
-Class representing a list entry. Fulfills requirements of makeList, sortNdex
-and sortForms of Wikilib/lists
+Class representing a list entry. Fulfills requirements of makeCollapsedList,
+sortNdex and sortForms of Wikilib/lists
 
 --]]
 k.Entry = oop.makeClass(list.PokeLabelledEntry)
@@ -87,6 +87,16 @@ k.Entry.new = function(pokeAbil, name)
         this.labels[1] = nil
     end
     return setmetatable(table.merge(this, pokedata), k.Entry)
+end
+
+--[[
+
+Equality operator for entries' merging.
+
+--]]
+k.Entry.__eq = function(a, b)
+    -- The two entries are equals iff their name and abilities are the same
+    return a.name == b.name and table.equal(a.abils, b.abils)
 end
 
 -- Wikicode for a list entry: Pokémon mini sprite, name, types and abilities.
@@ -178,7 +188,7 @@ k.abillist = function(frame)
     local abil = string.trim(mw.text.decode(frame.args[2]))
     abil = abil or 'Cacofonia'
 
-    return list.makeList({
+    return list.makeCollapsedList({
         source = abils,
         iterator = list.pokeNames,
         entryArgs = abil,
@@ -186,6 +196,7 @@ k.abillist = function(frame)
         header = k.headers.makeHeader(type),
         separator = k.headers.separator,
         footer = k.headers.footer,
+        noEmptyLabel = true,
     })
 end
 

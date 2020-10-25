@@ -1789,9 +1789,16 @@ t.urshifu = {ability1 = 'Pugni Invisibili'}
 t[892] = t.urshifu
 t.zarude = {ability1 = 'Fogliamanto'}
 t[893] = t.zarude
-t.calyrex = {ability1 = 'Agitazione'}
 t.regieleki = {ability1 = 'Transistor'}
+t[894] = t.regieleki
 t.regidrago = {ability1 = 'Dragomascelle'}
+t[895] = t.regidrago
+t.glastrier = {ability1 = 'Nitrito Bianco'}
+t[896] = t.glastrier
+t.spectrier = {ability1 = 'Nitrito Nero'}
+t[897] = t.spectrier
+t.calyrex = {ability1 = 'Agitazione'}
+t[898] = t.calyrex
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
@@ -1861,7 +1868,7 @@ t.zapdosG = {ability1 = 'Agonismo'}
 t['145G'] = t.zapdosG
 t.moltresG = {ability1 = 'Furore'}
 t['146G'] = t.moltresG
-t.slowkingG = {ability1 = 'Sconosciuta'}
+t.slowkingG = {ability1 = 'Stranofarmaco'}
 t['199G'] = t.slowkingG
 t.corsolaG = {ability1 = 'Sottilguscio', abilityd = 'Corpofunesto'}
 t['222G'] = t.corsolaG
@@ -1913,6 +1920,10 @@ t.toxtricityB = {ability1 = 'Punk Rock', ability2 = 'Meno', abilityd = 'Tecnico'
 t['849B'] = t.toxtricityB
 t.indeedeeF = {ability1 = 'Mente Locale', ability2 = 'Sincronismo', abilityd = 'Psicogenesi'}
 t['876F'] = t.indeedeeF
+t.calyrexG = {ability1 = 'Sintonia Equina'}
+t['898G'] = t.calyrexG
+t.calyrexS = {ability1 = 'Sintonia Equina'}
+t['898S'] = t.calyrexS
 
 -- Alias per le altre forme alternative rilevanti
 
@@ -1990,7 +2001,8 @@ t.butterfreeGi, t['012Gi'] = t.butterfree, t.butterfree
 t.pikachuGi, t['025Gi'] = t.pikachu, t.pikachu
 t.meowthGi, t['052Gi'] = t.meowth, t.meowth
 t.machampGi, t['068Gi'] = t.machamp, t.machamp
-t.gengarGi, t['094Gi'] = t.gengar, t.gengar
+t.gengarGi = {ability1 = 'Corpofunesto'}
+t['094Gi'] = t.gengarGi
 t.kinglerGi, t['099Gi'] = t.kingler, t.kingler
 t.laprasGi, t['131Gi'] = t.lapras, t.lapras
 t.eeveeGi, t['133Gi'] = t.eevee, t.eevee

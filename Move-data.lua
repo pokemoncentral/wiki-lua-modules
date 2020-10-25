@@ -760,10 +760,13 @@ t.giunglacura = {name = "Giunglacura", type = "erba", category = 'stato', power 
 t.pugnotenebra = {name = "Pugnotenebra", type = "buio", category = 'fisico', power = 80, accuracy = 100, pp = 5, gen = 8}
 t.idroraffica = {name = "Idroraffica", type = "acqua", category = 'fisico', power = 25, accuracy = 100, pp = 5, gen = 8}
 -- Incomplete moves
-t.elettrogabbia = {name = "Elettrogabbia", type = "elettro", category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
-t.dragoenergia = {name = "Dragoenergia", type = "drago", category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
-t["calcio tonante"] = {name = "Calcio Tonante", type = "lotta", category = "fisico", power = "?", accuracy = "?", pp = "?", gen = 8}
-t["furia ardente"] = {name = "Furia Ardente", type = "buio", category = "speciale", power = "?", accuracy = "?", pp = "?", gen = 8}
-t["sguardo gelido"] = {name = "Sguardo Gelido", type = "psico", category = nil, power = "?", accuracy = "?", pp = "?", gen = 8}
+t.elettrogabbia = {name = "Elettrogabbia", type = "elettro", category = "speciale", power = "80", accuracy = "90", pp = "15", gen = 8}
+t.dragoenergia = {name = "Dragoenergia", type = "drago", category = "speciale", power = "&mdash;", accuracy = "100", pp = "5", gen = 8}
+t["sguardo gelido"] = {name = "Sguardo Gelido", type = "psico", category = "speciale", power = "90", accuracy = "100", pp = "10", gen = 8}
+t["calcio tonante"] = {name = "Calcio Tonante", type = "lotta", category = "fisico", power = "90", accuracy = "100", pp = "10", gen = 8}
+t["furia ardente"] = {name = "Furia Ardente", type = "buio", category = "speciale", power = "90", accuracy = "100", pp = "10", gen = 8}
+t.inquietantesimo = {name = "Inquietantesimo", type = "psico", category = "speciale", power = "80", accuracy = "100", pp = "5", gen = 8}
+t["lancia glaciale"] = {name = "Lancia Glaciale", type = "ghiaccio", category = "fisico", power = "130", accuracy = "100", pp = "5", gen = 8}
+t["schegge astrali"] = {name = "Schegge Astrali", type = "spettro", category = "speciale", power = "120", accuracy = "100", pp = "5", gen = 8}
 
 return t

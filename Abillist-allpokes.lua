@@ -44,16 +44,6 @@ end
 
 --[[
 
-Equality operator for entries' merging.
-
---]]
-k.GenEntry.__eq = function(a, b)
-    -- The two entries are equals iff their name and abilities are the same
-    return a.name == b.name and table.equal(a.abils, b.abils)
-end
-
---[[
-
 Print the list of Pokémon from the given generation.
 
 --]]
