@@ -2062,6 +2062,8 @@ d["mr. mimeG"] = {hp = 50, atk = 65, def = 65, spatk = 90, spdef = 90, spe = 100
 d['122G'] = d['mr. mimeG']
 d.corsolaG = {hp = 60, atk = 55, def = 100, spatk = 65, spdef = 100, spe = 30}
 d['222G'] = d.corsolaG
+d.slowkingG = {hp = 95, atk = 65, def = 80, spatk = 110, spdef = 110, spe = 30}
+d['199G'] = d.slowkingG
 d.zigzagoonG = {hp = 38, atk = 30, def = 41, spatk = 30, spdef = 41, spe = 60}
 d['263G'] = d.zigzagoonG
 d.linooneG = {hp = 78, atk = 70, def = 61, spatk = 50, spdef = 61, spe = 100}

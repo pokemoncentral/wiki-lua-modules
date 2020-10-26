@@ -6838,8 +6838,8 @@ evo.slowpokeG = {
 		{
 			ndex = '199G',
 			name = 'slowkingG',
-			method = evo.methods.UNKNOWN,
-			-- conditions = { [evo.conditions.ITEM] = 'Roccia di Re' }
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Corona Galarnoce',
 		}
 	}
 }
