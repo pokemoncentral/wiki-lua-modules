@@ -1,7 +1,5 @@
 --[[
 
-TODO: write "tests"
-
 Learnlist entries for 8th gen.
 Below parameters of each kind of entry are described.
 NOTE: STAB is autocomputed if empty. If you want to force an empty value (eg.

@@ -10,7 +10,7 @@ local abillist = require('Abillist').abillist
 print(abillist{args={'buio', 'Prepotenza'}})
 
 -- Multi-gen, form labels
-print(abillist{args={'volante', 'Levitazione'}})
+print(abillist{args={'spettro', 'Pedinombra'}})
 
 -- Event ability in other page
 print(abillist{args={'terra', 'Frangiaura'}})

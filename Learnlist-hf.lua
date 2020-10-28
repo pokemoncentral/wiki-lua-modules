@@ -128,12 +128,12 @@ baby.Mantine = 'Mantyke'
 local rowsf = {}
 rowsf.level = [=[*Il livello "Inizio" indica una mossa conosciuta da ${poke} ottenuto a livello 1 in ${genl} generazione.
 *Le mosse segnate al livello "Evo" possono essere apprese al momento dell'evoluzione.]=]
-rowsf.breed1 = [=[*Le mosse segnate con un asterisco (*) si ottengono solo con una [[catena di accoppiamenti|<span class="black-text">catena di accoppiamenti</span>]] su ${poke} in ${genl} generazione.
+rowsf.breed1 = [=[*Le mosse segnate con un asterisco (*) si ottengono solo con una [[catena di accoppiamenti]] su ${poke} in ${genl} generazione.
 *Le mosse segnate con una doppia croce (‡) possono essere ottenute solo da un Pokémon che le abbia apprese in una generazione precedente.
 *Le mosse segnate con un'abbreviazione di un gioco in apice si possono ottenere su ${poke} solo in quel gioco.]=]
 rowsf.breed2 = [=[
 
-*Le mosse segnate con una croce (†) si possono ottenere su ${poke} solo se ad uscire dall'uovo è [[${baby}|<span class="black-text">${baby}</span>]], e non altrimenti.]=]
+*Le mosse segnate con una croce (†) si possono ottenere su ${poke} solo se ad uscire dall'uovo è [[${baby}]], e non altrimenti.]=]
 rowsf.tutor = [=[*Un'abbreviazione bianca in una casella colorata indica che ${poke} può imparare la mossa dall'Insegnamosse in quel gioco.
 *Un'abbreviazione colorata su sfondo bianco indica che ${poke} non può imparare la mossa dall'Insegnamosse in quel gioco.]=]
 rowsf.event = '*Un livello in apice indica che ${poke} può imparare questa mossa normalmente in ${genl} generazione a quel livello.'
@@ -145,8 +145,8 @@ rowsf.last = [[
 
 rowsf.forms = {}
 rowsf.forms.none = "'evoluzione"
-rowsf.forms.yes = '\'evoluzione o una [[Differenze di forma#${poke}|<span class="black-text">forma alternativa</span>]]'
-rowsf.forms.mega = 'a [[Megaevoluzione|<span class="black-text">Megaevoluzione</span>]]'
+rowsf.forms.yes = '\'evoluzione o una [[Differenze di forma#${poke}|forma alternativa]]'
+rowsf.forms.mega = 'a [[Megaevoluzione]]'
 
 -- Funzioni di supporto
 
@@ -252,9 +252,9 @@ local footer = function(pars, kind)
 	local poke = pars[1] or ''
     return txt.interp([=[
 |}</div>
-<div class="text-left small-font" style="line-height: 1em; padding: 0 0.5ex 1ex;">
+<div class="text-left small-font black-text" style="line-height: 1em; padding: 0 0.5ex 1ex;">
 ${kindrows}
-*Il '''grassetto''' indica una mossa che ha il [[Bonus di tipo|<span class="black-text">bonus di tipo</span>]] quando viene usata da un ${poke}.
+*Il '''grassetto''' indica una mossa che ha il [[bonus di tipo]] quando viene usata da un ${poke}.
 *Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un${form} di ${poke}.${last}
 </div>
 </div>

@@ -46,17 +46,16 @@ k.Entry.printAbil = function(abil, marked)
     local toHTML
     if marked then
         toHTML = function(ability)
-            return string.interp([=[<div>''${abil}''</div>]=],
-                {
-                    abil = links.aColor(ability, '000'),
-                })
+            return table.concat{"<div>''[[", ability, "]]''</div>"}
         end
     else
-        toHTML = links.aColor
+        toHTML = function(ability)
+            return table.concat{"[[", ability, "]]"}
+        end
     end
 
     if type(abil) == 'string' then
-        return toHTML(abil, '000')
+        return toHTML(abil)
     end
 
     -- Adding generations superscripts
@@ -66,7 +65,7 @@ k.Entry.printAbil = function(abil, marked)
             '<div>${abil}<sup>${gen}</sup></div>',
             {
                 abil = v.val == 'Nessuna' and v.val
-                        or toHTML(v.val, '000'),
+                        or toHTML(v.val),
                 gen = v.first == v.last and first
                         or table.concat{first, '-', last}
             })
@@ -101,11 +100,11 @@ k.Entry.__tostring = function(this)
     end
 
     return string.interp([=[| class="min-width-sm-20" data-sort-value="${ndex}" | ${static}
-| class="min-width-sm-40 min-width-xs-80" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
+| class="black-text min-width-sm-40 min-width-xs-80" | [[${name}]]${form}
 | class="min-width-xl-20 width-sm-40 width-xs-100" style="padding: 1ex 0.8ex;" | ${types}
-| class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Prima abilit&agrave;</div>${abil1}${abilEv}
-| class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Seconda abilit&agrave;</div>${abil2}
-| class="min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Abilit&agrave; speciali</div>${abild}]=],
+| class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Prima abilit&agrave;</div>${abil1}${abilEv}
+| class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Seconda abilit&agrave;</div>${abil2}
+| class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Abilit&agrave; speciali</div>${abild}]=],
 {
     ndex = this.ndex and string.tf(this.ndex) or '???',
     static = ms.staticLua(string.tf(this.ndex or 0) ..
@@ -126,10 +125,10 @@ k.headers = {}
 -- Wikicode for list header: it takes the color name
 k.headers.makeHeader = function(color)
     return string.interp([=[{| class="sortable roundy text-center pull-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
-|- class="hidden-sm"
-! style="padding-top: 0.5ex; padding-bottom: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000;">#</span>]]
+|- class="hidden-sm black-text"
+! style="padding-top: 0.5ex; padding-bottom: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
 ! Pok&eacute;mon
-! [[Tipo|<span style="color:#000;">Tipi</span>]]
+! [[Tipo|Tipi]]
 ! Prima abilit&agrave;
 ! Seconda abilit&agrave;
 ! Abilit&agrave; speciale]=],

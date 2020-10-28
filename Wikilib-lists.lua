@@ -268,7 +268,7 @@ l.makeGroupedList = function(args)
 
     -- "height: 100%" is just CSS making fun of us, can't really hurt anything
     args.separator = table.concat{'\n',
-            args.separator or '|- style="height: 100%;"', '\n'}
+            args.separator or '|- class="height-100"', '\n'}
 
     local makeEntry = function(sourceData, sourceKey)
         return args.makeEntry(sourceData, sourceKey, args.entryArgs)
