@@ -50,6 +50,9 @@ dex.kanto = {}
 for a = 1, 151 do
 	dex.kanto[a] = txt.three_figures(a)
 end
+-- Meltan and Melmetal
+dex.kanto[152] = '808'
+dex.kanto[153] = '809'
 
 -- Dex regionale di Johto, versione HGSS
 
