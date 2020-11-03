@@ -441,7 +441,7 @@ c.mattina_text = c.Mattina_text
 c.Notte_text = function(frame) return 'FFFF99' end
 c.notte_text = c.Notte_text
 c.sera_text = function(frame) return '000000' end
-c.Sera_text = c.Sera_text
+c.Sera_text = c.sera_text
 
 -- Colori stagioni
 
