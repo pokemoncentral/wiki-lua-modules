@@ -115,9 +115,17 @@ return {
 
 	title = {
 		getCurrentTitle = function()
-			return { text = pagetitle, baseText = pagetitle }
+			return {
+				text = pagetitle,
+				rootText = pagetitle:gsub("^([^/]*)/.*$","%1"),
+				baseText = pagetitle:gsub("^(.*)/[^/]*$","%1"),
+				subpageText = pagetitle:gsub("^.*/([^/]*)$","%1"),
+				isSubpage = pagetitle:find("/") and true or false,
+			}
 		end,
 		-- Testing functions: changes the title returned by getCurrentTitle
-		setTitle = function(title) pagetitle = title end,
+		setTitle = function(title)
+			pagetitle = title
+		end,
 	},
 }

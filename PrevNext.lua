@@ -1,5 +1,7 @@
 --[=[
 
+TODO: refator this because it's a mess
+
 Base module to build a PrevNext, the navigation bar at the top of a page
 linking previous and next elements (whatever this means in a specific context).
 
