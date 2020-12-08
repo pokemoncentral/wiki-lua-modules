@@ -1,9 +1,13 @@
 --[[
 
 Learnlist entries for 8th gen.
-Below parameters of each kind of entry are described.
+Below are described parameters of each kind of entry.
+
 NOTE: STAB is autocomputed if empty. If you want to force an empty value (eg.
-because autocompting is wrong) you should use the special value "no"
+because autocompting is wrong) you should use the special value "no". To
+autocopmute the stab the Pokémon name is taken as ROOTPAGENAME, so outside of
+Pokémon (sub)pages this will result in a script error. To fix this, just force
+a value for the stab in every entry.
 
 Level entry:
 1 is the move name. 2 is the STAB (if empty is autocomputed),
@@ -58,7 +62,7 @@ local getSTAB = function(move, stabval)
 	elseif stabval and stabval ~= "" then
 		return stabval
 	else
-		return lib.computeSTAB(mw.title.getCurrentTitle().text:lower(), move, nil, 8)
+		return lib.computeSTAB(mw.title.getCurrentTitle().rootText:lower(), move, nil, 8)
 	end
 end
 
