@@ -45,7 +45,6 @@ local box = require('Box')
 local et = require('EffTipi')
 local link = require('Links')
 local w = require('Wikilib')
-local abillib = require('Wikilib-abils')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local txt = require('Wikilib-strings')  -- luacheck: no unused
@@ -193,7 +192,7 @@ dr.EffTable.new = function(name, formName)
         abils = table.map(formName, string.lower)
     else
         types = multigen.getGen(pokes[name])
-        abils = table.map(abillib.lastAbils(abilData[name]), string.lower)
+        abils = table.map(multigen.getGen(abilData[name]), string.lower)
     end
 
     local this = setmetatable(dr.EffTable.super.new(formName),

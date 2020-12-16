@@ -4,13 +4,13 @@ local j = {}
 
 local mw = require('mw')
 
-local l = require('Links')
-local abillib = require('Wikilib-abils')
-local oop = require('Wikilib-oop')
-local list = require('Wikilib-lists')
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
-local abils = require('PokéAbil-data')
+local l = require('Links')
+local oop = require('Wikilib-oop')
+local multigen = require('Wikilib-multigen')
+local list = require('Wikilib-lists')
+local abils = require("PokéAbil-data")
 
 -- Table holding (Pikachu) forms to be ignored
 local ignorableForms = {'pikachuR', 'pikachuD', 'pikachuCn', 'pikachuS',
@@ -31,7 +31,6 @@ the form. The name is given in the form name/ndex + abbreviation,
 
 --]]
 AbilsBox.new = function(name, formName)
-
     -- Pokémon whose ability is yet unknown
     if abils[name].ability1 == '' then
         return nil
@@ -44,7 +43,7 @@ AbilsBox.new = function(name, formName)
 
     local this = AbilsBox.super.new(formName)
 
-    this = table.merge(abillib.lastAbils(abils[name]), this)
+    this = table.merge(multigen.getGen(abils[name]), this)
 
     return setmetatable(this, AbilsBox)
 end

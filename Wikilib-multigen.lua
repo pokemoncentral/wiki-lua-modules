@@ -173,11 +173,11 @@ mg.printSpans = function(spans, printVal)
 
     return w.mapAndConcat(spans,
         function(data)
+            local first, last = gendata[data.first].roman, gendata[data.last].roman
             return string.interp('<div>${val}<sup style="padding-left: 0.3em;">${bounds}</sup></div>',
                 {
                     val = printVal(data.val),
-                    bounds = table.concat(table.unique
-                        {data.first, data.last}, '-')
+                    bounds = table.concat(table.unique{first, last}, '-'),
                 })
         end)
 end
