@@ -5,8 +5,11 @@ local b = require('PokémonInfo-BoxAbil').boxAbil
 -- Standard Pokémon
 print(b{args={"Staraptor"}})
 
+-- Multigen with "nessuna"
+print(b{args={"Sableye"}})
+
 -- Multigen and alternative forms
-print(b{args={"Giratina"}})
+print(b{args={"Gengar"}})
 
 -- Grouped alternative forms
 print(b{args={"Pikachu"}})

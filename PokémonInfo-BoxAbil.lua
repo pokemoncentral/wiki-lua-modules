@@ -12,10 +12,6 @@ local multigen = require('Wikilib-multigen')
 local list = require('Wikilib-lists')
 local abils = require("PokéAbil-data")
 
--- Table holding (Pikachu) forms to be ignored
-local ignorableForms = {'pikachuR', 'pikachuD', 'pikachuCn', 'pikachuS',
-    'pikachuW', 'pikachuCm', 'eeveeCm'}
-
 --[[
 
 This class represents a cell of the abilities box and contains information
@@ -23,6 +19,30 @@ about the abilities and the forms that share the same abilities combination.
 
 --]]
 local AbilsBox = oop.makeClass(list.Labelled)
+
+--[[
+
+Static fields and methods
+
+--]]
+AbilsBox.STRINGS = {
+    singleAbilBox = '<div class="width-xl-33 width-xs-50" style="padding: 0.2em;">${abil}<div class="small-text">${desc}</div></div>',
+    singleAbilNoLabel = '<div class="width-xl-33 width-xs-50" style="padding: 0.2em;">${abil}</div>',
+    formAbilsBox = '<div>${forms}</div><div class="flex flex-row flex-wrap flex-items-end flex-main-stretch" style="padding: 0.2em;">${abils}</div>',
+    formLabel = "<div class=\"width-xl-100\" style=\"padding-bottom: 0.2em;\">'''${label}'''</div>",
+    LABELS = {
+        ability1 = "Prima abilit&agrave;",
+        ability2 = "Seconda abilit&agrave;",
+        abilityd = "Abilit&agrave; speciale",
+        abilitye = "Abilit&agrave; evento",
+    },
+}
+
+-- Table holding forms to be ignored
+AbilsBox.ignorableForms = {
+    'pikachuR', 'pikachuD', 'pikachuCn', 'pikachuS', 'pikachuW',
+    'pikachuCm', 'eeveeCm',
+}
 
 --[[
 
@@ -36,23 +56,45 @@ AbilsBox.new = function(name, formName)
         return nil
     end
 
-    -- Pikachu (@Stygian visto che questo Pokémon fa danni?) e EeveeCm
-    if table.search(ignorableForms, name) then
+    -- Ignored forms
+    if table.search(AbilsBox.ignorableForms, name) then
         return nil
     end
 
     local this = AbilsBox.super.new(formName)
 
-    this = table.merge(multigen.getGen(abils[name]), this)
+    this.abils = abils[name]
 
     return setmetatable(this, AbilsBox)
 end
 
 AbilsBox.__eq = function(a, b)
-    return a.ability1 == b.ability1
-            and a.ability2 == b.ability2
-            and a.abilityd == b.abilityd
-            and a.abilitye == b.abilitye
+    return table.equal(a.abils, b.abils)
+end
+
+-- Prints a single ability. If it's "Nessuna", it returns a "-" without link
+local toStringAbil = function(abil)
+    if abil == "Nessuna" then
+        return "&mdash;"
+    end
+    return l.aColor(abil)
+end
+
+--[[
+
+Get the function to print a single ability.
+
+--]]
+AbilsBox.getAbilityPrinter = function(this)
+    local str = table.getn(this.abils) == 1
+                and AbilsBox.STRINGS.singleAbilNoLabel
+                or AbilsBox.STRINGS.singleAbilBox
+    return function(ability, key)
+        return string.interp(str, {
+            abil = multigen.printSpans(multigen.getGenSpan(ability), toStringAbil),
+            desc = AbilsBox.STRINGS.LABELS[key],
+        })
+    end
 end
 
 --[[
@@ -64,46 +106,31 @@ are added at the top, if present.
 
 --]]
 AbilsBox.__tostring = function(this)
-    local stdAbils = l.aColor(this.ability1)
-    if this.ability2 then
-        stdAbils = table.concat({stdAbils, 'o',
-            l.aColor(this.ability2)}, ' ')
-    end
+    local abilBoxes = table.map(this.abils, this:getAbilityPrinter())
 
-    local hiddenAbil = ''
-    if this.abilityd then
-        hiddenAbil = table.concat{'<div class="width-xl-50">',
-            l.aColor(this.abilityd), '<div class="small-text">Abilit&agrave; speciale</div></div>'}
-    end
+    local temp = {}
+    -- Inserting ensures to avoid holes for concat
+    table.insert(temp, abilBoxes.ability1)
+    table.insert(temp, abilBoxes.ability2)
+    table.insert(temp, abilBoxes.abilityd)
+    table.insert(temp, abilBoxes.abilitye)
+    local abilstring = table.concat(temp)
 
-    local eventAbil = ''
-    if this.abilitye then
-        eventAbil = string.interp('<div class="width-xl-${width}">${abil}<div class="small-text">Abilit&agrave; evento</div></div>',
-                {
-                    width = this.abilityd and '100' or '50',
-                    abil = l.aColor(this.abilitye)
-                })
-    end
+    local forms = #this.labels < 1
+                  and ''
+                  or string.interp(AbilsBox.STRINGS.formLabel, {
+                      label = mw.text.listToText(this.labels, ', ', ' e '),
+                  })
 
-    return string.interp('<div class="flex flex-row flex-wrap flex-main-stretch flex-items-center width-xl-100" style="padding: 0.2em;">${forms}<div class="width-xl-${stdWidth}">${stdAbils}</div>${hiddenAbil}${eventAbil}</div>',
-    {
-        stdWidth = (this.abilityd or this.abilitye) and '50' or '100',
-        forms = #this.labels < 1 and '' or table.concat{
-            '<div class="small-text width-xl-100" style="padding-bottom: 0.2em;">',
-            mw.text.listToText(this.labels, ', ', ' e '),
-            '</div>'
-        },
-        stdAbils = stdAbils,
-        hiddenAbil = hiddenAbil,
-        eventAbil = eventAbil
+    return string.interp(AbilsBox.STRINGS.formAbilsBox, {
+        abils = abilstring,
+        forms = forms,
     })
 end
 
 -- HTML code for the forms cells
 local printBoxes = function(boxes)
     local acc = table.map(boxes, tostring)
-    table.insert(acc, 1, '<div class="roundy text-center" style="background: #FFF; padding: 0.2em;">')
-    table.insert(acc, '</div>')
     return table.concat(acc)
 end
 
