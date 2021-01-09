@@ -592,7 +592,7 @@ t.lopunny.since = {M = 'roza', base = 'dp'}
 t.garchomp.since = {M = 'xy', base = 'dp'}
 t.lucario.since = {M = 'xy', base = 'dp'}
 t.abomasnow.since = {M = 'xy', base = 'dp'}
-t.gallade.since = {M = 'roza', base = 'rz'}
+t.gallade.since = {M = 'roza', base = 'dp'}
 t.audino.since = {M = 'roza', base = 'nb'}
 t.diancie.since = {M = 'roza', base = 'xy'}
 t.charizard.since = {MX = 'xy', MY = 'xy', Gi = 'spsc', base = 'rb'}
