@@ -702,7 +702,7 @@ x['3DS/Wii U'] = {{
 	{'Wii U', 'TL'}
     }
 }}
-x['4'], x['3DSWiiU'], x['3DS/WiiU'] = x['3DS/Wii U'], x['3DS/Wii U'], x['3DS/Wii U']
+x['4'], x['3DSWiiU'], x['3DS/WiiU'], x['3DS-WiiU'] = x['3DS/Wii U'], x['3DS/Wii U'], x['3DS/Wii U'], x['3DS/Wii U']
 x['3DS'] = {{
     link = 'Super Smash Bros. for Nintendo 3DS/Wii U',
     display = {
