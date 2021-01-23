@@ -2072,6 +2072,7 @@ t['888R'] = t.zacianR
 t.zamazentaR = {name = 'Zamazenta', ndex = 889, type1 = 'lotta', type2 = 'acciaio'}
 t['889R'] = t.zamazentaR
 t.eternatusD, t['890D'] = t.eternatus, t.eternatus
+t.zarudeP, t['893P'] = t.zarude, t.zarude
 
 t.venusaurM, t['003M'] = t.venusaur, t.venusaur
 t.charizardMY, t['006MY'] = t.charizard, t.charizard

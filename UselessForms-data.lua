@@ -88,6 +88,7 @@ t.magearna = {}
 t.cramorant = {}
 t.sinistea = {}
 t.alcremie = {}
+t.zarude = {}
 
 --[[
 
@@ -158,6 +159,7 @@ do
 	end
 	t.alcremie.names["LvFa"] = nil
 end
+t.zarude.names = {P = 'Zarude Papà', base = ''}
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
@@ -208,6 +210,7 @@ t.sinistea.ext = {}
 t.alcremie.ext = {lattevaniglia = 'base', latterosa = 'R', lattematcha = 'Ma',
 	lattementa = 'Me', lattelimone = 'L', lattesale = 'S', rosamix = 'Rm',
 	caramelmix = 'Cm', triplomix = 'Tm'}
+t.zarude.ext = {papà = 'P'}
 
 --[[
 
@@ -242,6 +245,7 @@ t.magearna.gamesOrder = {'base', 'A'}
 t.cramorant.gamesOrder = {'base', 'T', 'I'}
 t.sinistea.gamesOrder = {'base', 'A'}
 -- Alcremie's gamesOrder is filled below, with since
+t.zarude.gamesOrder = {'base', 'P'}
 
 --[[
 
@@ -297,6 +301,7 @@ do
 	t.alcremie.gamesOrder[1] = "base"
 	t.alcremie.since["LvFa"] = nil
 end
+t.zarude.since = {base = 'spsc', P = 'spsc'}
 
 --[[
 
@@ -349,5 +354,6 @@ t[845] = t.cramorant
 t[854] = t.sinistea
 t[855] = t.polteageist
 t[869] = t.alcremie
+t[893] = t.zarude
 
 return t
