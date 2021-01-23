@@ -210,7 +210,7 @@ t.sinistea.ext = {}
 t.alcremie.ext = {lattevaniglia = 'base', latterosa = 'R', lattematcha = 'Ma',
 	lattementa = 'Me', lattelimone = 'L', lattesale = 'S', rosamix = 'Rm',
 	caramelmix = 'Cm', triplomix = 'Tm'}
-t.zarude.ext = {papà = 'P'}
+t.zarude.ext = {['papà'] = 'P'}
 
 --[[
 
