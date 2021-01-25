@@ -1992,7 +1992,6 @@ t.zacianR, t['888R'] = t.zacian, t.zacian
 t.zamazentaR, t['889R'] = t.zamazenta, t.zamazenta
 t.eternatusD, t['890D'] = t.eternatus, t.eternatus
 t.urshifuP, t['892P'] = t.urshifu, t.urshifu
-t.zarudeP, t['893P'] = t.zarude, t.zarude
 
 -- Gigamax
 t.venusaurGi, t['003Gi'] = t.venusaur, t.venusaur
