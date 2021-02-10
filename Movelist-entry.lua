@@ -70,7 +70,7 @@ entry.strings = {
 entry.tutorCellsColors = {
 	'cristallo', 'rossofuoco', 'smeraldo', 'xd', 'diamante', 'platino',
 	'heartgold', 'nero', 'nero2', 'x', 'rubinoomega', 'sole', 'ultrasole',
-	'lgpikachu', 'spada', 'isolaarmatura', 'landacorona'
+	'lgpikachu', 'spada', 'isolaarmatura'
 }
 
 --[[
