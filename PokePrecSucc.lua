@@ -86,10 +86,8 @@ m.subpage = function(frame)
             subpageSuffix = "/" .. mw.title.getCurrentTitle().subpageText
         end
     end
-    local list = frame.args.list and string.trim(frame.args.list)
-                    or "Elenco Pokémon secondo il Pokédex Nazionale"
 
-    return basePokePrecSucc(poke, subpageSuffix, list)
+    return basePokePrecSucc(poke, subpageSuffix, poke)
 end
 
 --[[
