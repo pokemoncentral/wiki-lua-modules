@@ -164,6 +164,17 @@ table.insert(tests, {
 -- Pokémon without alternative forms
 table.insert(tests, { pokeData.getLink{args={'398'}}, '' })
 
+-- ============================== getPlainLink ==============================
+-- Tests 46, 47
+-- Standard case
+table.insert(tests, {
+    pokeData.getPlainLink{args={'487'}},
+    '[[Giratina/Forme|Forma Alterata]]'
+})
+
+-- Pokémon without alternative forms
+table.insert(tests, { pokeData.getPlainLink{args={'398'}}, '' })
+
 -- ==================== Actual execution ======================
 for n, v in ipairs(tests) do
     if v[1] ~= v[2] then

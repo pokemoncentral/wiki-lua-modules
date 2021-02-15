@@ -323,6 +323,33 @@ b.getlink = b.getLink
 
 --[[
 
+Returns the link to an alternative form, without the surrounding div.
+The Pokémon name (first parameter) can be both a name or a ndex followed
+by the abbr.
+The ndex may be the base form's one. If the ndex doesn't correspond to a
+Pokémon with alternative forms, it returns an empty string.
+
+Ex:
+{{#invoke: PokémonData | getPlainLink | 487 }}
+{{#invoke: PokémonData | getPlainLink | 487O }}
+{{#invoke: PokémonData | getPlainLink | 028A }}
+{{#invoke: PokémonData | getPlainLink | 028 }}
+{{#invoke: PokémonData | getPlainLink | 774R }}
+{{#invoke: PokémonData | getPlainLink | 398 }}
+
+--]]
+b.getPlainLink = function(frame)
+    local name, black = string.trim(frame.args[1]), frame.args[2]
+    -- Links also to UselessForms
+    formlib.loadUseless(true)
+    local divlink = formlib.getLink(name, black)
+    return divlink:match("%[%[[^]]+%]%]") or ""
+end
+
+b.getplainlink = b.getPlainLink
+
+--[[
+
 Returns a list of pairs (abbr, name) of alternative forms with different cry.
 The list is comma-separated, with elements in a pair a separated by a dash.
 If a Pokémon has no alternative form returns an empty string. If all forms have
