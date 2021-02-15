@@ -39,21 +39,21 @@ local function basePokePrecSucc(poke, linksuffix, list)
     list = list or "Elenco Pokémon secondo il Pokédex Nazionale"
     local pokeData = multigen.getGen(pokes[poke] or pokes[mw.text.decode(poke)])
     local type1, type2 = pokeData.type1, pokeData.type2
-    local prev = (pokeData.ndex - 2 + data.pokeNum) % data.pokeNum + 1
-    local next = pokeData.ndex % data.pokeNum + 1
-    local prevTf, nextTf = string.tf(prev), string.tf(next)
-    local prevname, nextname = pokes[prev].name, pokes[next].name
+    local pred = (pokeData.ndex - 2 + data.pokeNum) % data.pokeNum + 1
+    local succ = pokeData.ndex % data.pokeNum + 1
+    local predTf, succTf = string.tf(pred), string.tf(succ)
+    local predname, succname = pokes[pred].name, pokes[succ].name
     return prevnext.PrevNextLua{
         color = type1,
         color2 = type2,
         series = pokeData.name,
         list = list,
-        prev = table.concat{"#", prevTf, ": ", prevname},
-        prevlink = prevname .. linksuffix,
-        prevspr = prevTf,
-        next = table.concat{"#", nextTf, ": ", nextname},
-        nextlink = nextname .. linksuffix,
-        nextspr = nextTf,
+        prev = table.concat{"#", predTf, ": ", predname},
+        prevlink = predname .. linksuffix,
+        prevspr = predTf,
+        next = table.concat{"#", succTf, ": ", succname},
+        nextlink = succname .. linksuffix,
+        nextspr = succTf,
     }
 end
 
@@ -76,7 +76,7 @@ Usage:
 --]]
 m.subpage = function(frame)
     local poke = string.trim(frame.args[1]
-                             or mw.title.getCurrentTitle().rootText):lower()
+                             or mw.title.getCurrentTitle().rootText)
     local subpageSuffix = ""
     if frame.args[2] then
         subpageSuffix = "/" .. string.trim(frame.args[2])
@@ -87,7 +87,7 @@ m.subpage = function(frame)
         end
     end
 
-    return basePokePrecSucc(poke, subpageSuffix, poke)
+    return basePokePrecSucc(poke:lower(), subpageSuffix, poke)
 end
 
 --[[
