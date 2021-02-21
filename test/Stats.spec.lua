@@ -71,7 +71,7 @@ print(stats.PokeStats{args = {'Giratina'}})
 print(stats.PokeStats{args = {'Magikarp'}})
 
 -- Multigen
-print(stats.PokeStats{args = {'Staraptor'}})
+print(stats.PokeStats{args = {'Aegislash'}})
 
 -- Both form multigen
 print(stats.PokeStats{args = {'Alakazam'}})

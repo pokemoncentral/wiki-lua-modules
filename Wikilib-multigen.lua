@@ -155,6 +155,25 @@ mg.hasmultigen, mg.has_multi_gen = mg.hasMultiGen, mg.hasMultiGen
 
 --[[
 
+Returns the first generation of a multigen property. If the given
+property isn't multigen, returns nil.
+
+--]]
+mg.getFirstGen = function(data)
+    if type(data) ~= 'table' then
+        return nil
+    end
+
+    local g = 1
+    while not data[g] do
+        g = g + 1
+    end
+    return g
+end
+mg.getfirstgen = mg.getFirstGen
+
+--[[
+
 Prints a table of generation spans in the most
 common way, that is every value on one line, with
 relative first and last generation as superscripts.

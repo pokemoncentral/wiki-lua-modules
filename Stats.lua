@@ -73,7 +73,7 @@ ${stats}
 
     catSpecToSpdef = '[[Categoria:Pokémon la cui statistica Speciali è diventata Difesa Speciale|${display}]]',
 
-    catStatsChanged = '[[Categoria:Pokémon le cui statistiche base sono cambiate nella ${gen} generazione|${display}]]',
+    catStatsChanged = '[[Categoria:Pokémon le cui statistiche base sono cambiate in ${gen} generazione|${display}]]',
 
     catTotal = '[[Categoria:Pokémon con statistiche base totali di ${tot}|${display}]]',
 
@@ -174,7 +174,9 @@ local makeCategories = function(poke, tot)
     for gen = 6, gendata.latest do
         local changedInGen = table.any(stats[poke],
             function(val)
-                return type(val) == 'table' and val[gen]
+                return type(val) == 'table'
+                       and multigen.getfirstgen(val) ~= gen
+                       and val[gen]
             end)
         if changedInGen then
             table.insert(categories, interpCat(
