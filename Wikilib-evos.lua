@@ -212,8 +212,14 @@ Given a Pokémon name or ndex return true iff that Pokémon can't evolve further
 
 --]]
 ev.isFullyEvolved = function(name)
-    return ev.preciseEvotable(name).evos == nil
-    -- return table.empty(ev.preciseEvotable(name).evos)
+    -- BREEDONLY means that a Pokémon breeds from the evos table, but doesn't
+    -- evolve into it, hence it's fully evolved (cfr. Phione).
+    local precEvotable = ev.preciseEvotable(name)
+    local BREEDONLY = evodata.conditions.BREEDONLY
+    if precEvotable.conditions and precEvotable.conditions[BREEDONLY] then
+        return true
+    end
+    return precEvotable.evos == nil
 end
 
 --[[
