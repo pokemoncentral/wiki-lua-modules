@@ -188,7 +188,7 @@ s.Entry.__tostring = function(this)
 
     return string.interp([=[| style="padding: 0.3ex 0.8ex;" data-sort-value="${sortDex}" | ${ndex}
 | style="padding: 0.3ex 0.8ex;" data-sort-value="${sortName}" | ${ms}
-| style="padding: 0.3ex 0.8ex;" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
+| class="black-text" style="padding: 0.3ex 0.8ex;" | [[${name}]]${form}
 ${statsCells}]=],
         {
             sortDex = this.ndex or '???',
@@ -208,16 +208,16 @@ s.headers = {}
 -- List header
 s.headers.header = string.interp([=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
 |-
-! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]
+! class="black-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
 ! colspan="2" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${hp};" | [[Statistiche#PS|<span style="color: #FFF;">PS</span>]]
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${atk};" | [[Statistiche#Attacco|<span style="color: #FFF;">Attacco</span>]]
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${def};" | [[Statistiche#Difesa|<span style="color: #FFF;">Difesa</span>]]
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spatk};" | [[Statistiche#Attacco Speciale|<span style="color: #FFF;">Attacco sp.</span>]]
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spdef};" | [[Statistiche#Difesa Speciale|<span style="color: #FFF;">Difesa sp.</span>]]
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spe};" | [[Statistiche#Velocità|<span style="color: #FFF;">Velocità</span>]]
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; color: #FFF; background-color: #${pcw};" | Totale
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; color: #FFF; background-color: #${pcw};" | Media]=],
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${hp};" | [[Statistiche#PS|PS]]
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${atk};" | [[Statistiche#Attacco|Attacco]]
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${def};" | [[Statistiche#Difesa|Difesa]]
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spatk};" | [[Statistiche#Attacco Speciale|Attacco sp.]]
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spdef};" | [[Statistiche#Difesa Speciale|Difesa sp.]]
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spe};" | [[Statistiche#Velocità|Velocità]]
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Totale
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Media]=],
     {
         bg = css.horizGradLua{type = 'pcwiki'},
         hp = c.ps.normale,
@@ -233,15 +233,15 @@ s.headers.header = string.interp([=[{| class="roundy-corners text-center pull-ce
 -- List header
 s.headers.firstGenHeader = string.interp([=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
 |-
-! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color: #000;">#</span>]]
+! class="black-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
 ! colspan="2" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${hp};" | [[Statistiche#PS|<span style="color: #FFF;">PS</span>]]
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${atk};" | [[Statistiche#Attacco|<span style="color: #FFF;">Attacco</span>]]
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${def};" | [[Statistiche#Difesa|<span style="color: #FFF;">Difesa</span>]]
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spec};" | [[Statistiche#Speciali|<span style="color: #FFF;">Speciali</span>]]
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spe};" | [[Statistiche#Velocità|<span style="color: #FFF;">Velocità</span>]]
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; color: #FFF; background-color: #${pcw};" | Totale
-! class="roundytop text-small" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; color: #FFF; background-color: #${pcw};" | Media]=],
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${hp};" | [[Statistiche#PS|PS]]
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${atk};" | [[Statistiche#Attacco|Attacco]]
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${def};" | [[Statistiche#Difesa|Difesa]]
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spec};" | [[Statistiche#Speciali|Speciali]]
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spe};" | [[Statistiche#Velocità|Velocità]]
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Totale
+! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Media]=],
     {
         bg = css.horizGradLua{type = 'pcwiki'},
         hp = c.ps.normale,
