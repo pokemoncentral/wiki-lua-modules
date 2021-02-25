@@ -494,12 +494,12 @@ eb.makeBreedRow = function(data)
             string.interp(eb.strings.ROW_TWO, {
                 box1 = eb.boxPokemonAuto(
                         data.evos[1].ndex or data.evos[1].name,
-                        eb.phaseName(1, data),
+                        eb.phaseName(2, data),
                         data.evos[1].notes
                     ),
                 box2 = eb.boxPokemonAuto(
                         data.evos[2].ndex or data.evos[2].name,
-                        eb.phaseName(1, data),
+                        eb.phaseName(2, data),
                         data.evos[2].notes
                     ),
             })
