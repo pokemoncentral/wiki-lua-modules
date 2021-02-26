@@ -520,6 +520,28 @@ x.TC = {{
         {'TC', 'landacorona'}
     }
 }}
+x.DL = {{
+	link = 'Pokémon Diamante Lucente e Perla Splendente',
+	text = 'Diamante Lucente',
+	display = {
+		{'DL', 'diamantelucente'}
+	}
+}}
+x.PS = {{
+	link = 'Pokémon Diamante Lucente e Perla Splendente',
+	text = 'Perla Splendente',
+	display = {
+		{'PS', 'perlasplendente'}
+	}
+}}
+x.DLPS = {{
+	link = 'Pokémon Diamante Lucente e Perla Splendente',
+	display = {
+		{'DL', 'diamantelucente'},
+        {'PS', 'perlasplendente'}
+	}
+}}
+
 x.SJ = {{
     link = 'Pokémon Stadium (Giappone)',
     text = 'Stadium',

@@ -243,6 +243,10 @@ c.isolaarmatura = function(frame) return _colore(frame.args[1] or 'normale', 'F5
 c.Isolaarmatura = c.isolaarmatura
 c.landacorona = function(frame) return _colore(frame.args[1] or 'normale', '009D88', '00D668', '004C65') end
 c.Landacorona = c.landacorona
+c.diamantelucente = c.diamante -- temporaneo (in attesa di metterci quello vero)
+c['Diamante Lucente'], c['diamante lucente'] = c.diamantelucente, c.diamantelucente
+c.perlasplendente = c.perla -- temporaneo (come sopra)
+c['Perla Splendente'], c['perla splendente'] = c.perlasplendente, c.perlasplendente
 
 -- Colori regioni
 
