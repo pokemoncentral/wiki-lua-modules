@@ -541,6 +541,12 @@ x.DLPS = {{
         {'PS', 'perlasplendente'}
 	}
 }}
+x.LPA = {{
+    link = 'Leggende Pokémon: Arceus',
+    display = {
+		{'LPA', 'leggendearceus'}
+    }
+}}
 
 x.SJ = {{
     link = 'Pokémon Stadium (Giappone)',
