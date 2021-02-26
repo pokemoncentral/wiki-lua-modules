@@ -243,10 +243,12 @@ c.isolaarmatura = function(frame) return _colore(frame.args[1] or 'normale', 'F5
 c.Isolaarmatura = c.isolaarmatura
 c.landacorona = function(frame) return _colore(frame.args[1] or 'normale', '009D88', '00D668', '004C65') end
 c.Landacorona = c.landacorona
-c.diamantelucente = c.diamante -- temporaneo (in attesa di metterci quello vero)
+c.diamantelucente = function(frame) return _colore(frame.args[1] or 'normale', '01A4E7', 'BFE4F6', '0154A4') end
 c['Diamante Lucente'], c['diamante lucente'] = c.diamantelucente, c.diamantelucente
-c.perlasplendente = c.perla -- temporaneo (come sopra)
+c.perlasplendente = function(frame) return _colore(frame.args[1] or 'normale', 'C584DD', 'DBC1E4', '875D96') end
 c['Perla Splendente'], c['perla splendente'] = c.perlasplendente, c.perlasplendente
+c.leggendearceus = function(frame) return _colore(frame.args[1] or 'normale', 'CECDBE', 'EFEEE1', '9B9A8F') end
+c['Leggende Pokémon: Arceus'], c['Leggende Arceus'], c['leggende arceus'] = c.leggendearceus, c.leggendearceus, c.leggendearceus
 
 -- Colori regioni
 
