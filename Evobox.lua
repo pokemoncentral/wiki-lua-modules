@@ -205,7 +205,7 @@ eb.boxArrow.desc.methods = {
         end
         return table.concat{ '[[Livello|Livello ', level, ']]' }
     end,
-    [evodata.methods.HAPPINESS] = methodsFunctionGenerator('[[Legame]]'),
+    [evodata.methods.HAPPINESS] = methodsFunctionGenerator('[[Affetto|Legame]]'),
     [evodata.methods.STONE] = methodsFunctionGenerator('${param}'),
     [evodata.methods.TRADE] = methodsFunctionGenerator('[[Scambio]]'),
     [evodata.methods.BREED] = methodsFunctionGenerator('[[Accoppiamento Pokémon|Accoppiamento]]'),

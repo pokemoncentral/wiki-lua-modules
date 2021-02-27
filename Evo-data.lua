@@ -1464,7 +1464,7 @@ evo.eevee = {
 			ndex = 700,
 			name = 'sylveon',
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.OTHER] = "Con l'[[affetto]] moderatamente alto<div>avendo appreso una mossa di tipo [[Folletto]]</div>" },
+			conditions = { [evo.conditions.OTHER] = "Con il [[affetto|legame]] moderatamente alto<div>avendo appreso una mossa di tipo [[Folletto]]</div>" },
 		}
 	}
 }
