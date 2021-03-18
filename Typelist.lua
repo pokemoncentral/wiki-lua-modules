@@ -54,9 +54,9 @@ Mono-typed Pokémon display the type only once.
 
 --]]
 g.Entry.__tostring = function(this)
-    return string.interp([=[| class="min-width-xs-20" | ${ndex}
-| class="min-width-xs-20" | ${static}
-| class="min-width-xs-60" style="padding: 0.5ex 0.5em;" | [[${name}]]${form}
+    return string.interp([=[| class="width-xs-20" | ${ndex}
+| class="width-xs-20" | ${static}
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[${name}]]${form}
 ${types}]=],
     {
         ndex = this.ndex and string.tf(this.ndex) or '???',
@@ -159,15 +159,15 @@ types, to print the correct amount of type columns.
 local makeHeader = function(type, typesCount)
     return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
 |- class="hidden-xs"
-! style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
+! class="black-text" style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
 ! class="unsortable" | &nbsp;
-! [[Pokémon|<span style="color:#000">Pokémon</span>]]
+! class="black-text" | [[Pokémon]]
 ${types}]=],
 {
     bg = css.horizGradLua{type = type},
-    types = typesCount < 2 and '! [[Tipo|<span style="color:#000">Tipo</span>]]'
-        or [=[! [[Tipo|<span style="color:#000">Tipo 1</span>]]
-! [[Tipo|<span style="color:#000">Tipo 2</span>]]]=]
+    types = typesCount < 2 and '! class="black-text" | [[Tipo]]'
+        or [=[! class="black-text" | [[Tipo|Tipo 1]]
+! class="black-text" | [[Tipo|Tipo 2]]]=]
 })
 end
 
