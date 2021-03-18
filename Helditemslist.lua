@@ -70,7 +70,8 @@ h.Entry.makeGameBox = function(this, itemsList, gen)
 			img = gen < 3
 					and string.interp(
 						'<span class="black-text">[[${item}]]</span>',
-						{ item = v.item }
+						{ item = v.item == 'Perla' and 'Perla (strumento)|Perla'
+						                           or v.item }
 					)
 					or links.bag(v.item),
 			percentage = v.perc,
