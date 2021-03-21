@@ -589,6 +589,7 @@ c['cristalli z'], c['Cristalli z'], c['cristalli Z'], c['Cristalli Z'] =
 	c.cristalliz, c.cristalliz, c.cristalliz, c.cristalliz
 c.cristalli_z, c.Cristalli_z, c.cristalli_Z, c.Cristalli_Z =
 	c.cristalliz, c.cristalliz, c.cristalliz, c.cristalliz
+c.Tesori, c.tesori = c.oro, c.oro
 
 -- Colori gruppi uova
 
