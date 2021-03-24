@@ -181,6 +181,10 @@ local makeCategories = function(poke, tot)
         if changedInGen then
             table.insert(categories, interpCat(
                 strings.catStatsChanged, {gen = gendata[gen].ext}))
+            local genTotal = statsUtil.statsSum(
+                statsUtil.getStatsGen(stats[poke], gen - 1))
+            table.insert(categories, interpCat(
+                strings.catTotal, { tot = genTotal }))
         end
     end
 

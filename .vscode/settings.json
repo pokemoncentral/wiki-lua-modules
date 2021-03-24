@@ -3,5 +3,8 @@
     "Lua.workspace.ignoreDir": [
         ".vscode",
         "*-data.lua"
+    ],
+    "editor.rulers": [
+        79
     ]
 }
