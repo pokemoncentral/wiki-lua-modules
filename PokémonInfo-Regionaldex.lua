@@ -64,8 +64,9 @@ end
 -- Ordina la tabella store: la table è esterna alla
 -- funzione così da non essere ricreata ogni volta
 
-local regiongens = {Kanto = 1, Johto = 2, Hoenn = 3, Sinnoh = 4,
-	Unima = 5, Kalos = 6, Alola = 7, Galar = 8}
+local regiongens = {
+	Kanto = 1, Johto = 2, Hoenn = 3, Sinnoh = 4, Unima = 5, Kalos = 6,
+	Alola = 7, Galar = 8, Armatura = 9, Corona = 10 }
 local region_sort = function(c, d)
 	local a, b = c:match('>(%a+)</span>'), d:match('>(%a+)</span>')
 	return regiongens[a] < regiongens[b]
@@ -143,6 +144,4 @@ end
 
 rdex.Regionaldex, rdex.RegionalDex = rdex.regionaldex, rdex.regionaldex
 
--- return rdex
-arg = {'064'}
-print(rdex.regionaldex{args={arg[1]}})
+return rdex
