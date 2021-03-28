@@ -1756,9 +1756,9 @@ t.regieleki = {group1 = 'sconosciuto'}
 t[894] = t.regieleki
 t.regidrago = {group1 = 'sconosciuto'}
 t[895] = t.regidrago
-t.glastrier = {ability1 = 'sconosciuto'}
+t.glastrier = {group1 = 'sconosciuto'}
 t[896] = t.glastrier
-t.spectrier = {ability1 = 'sconosciuto'}
+t.spectrier = {group1 = 'sconosciuto'}
 t[897] = t.spectrier
 t.calyrex = {group1 = 'sconosciuto'}
 t[898] = t.calyrex

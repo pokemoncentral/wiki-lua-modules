@@ -409,7 +409,9 @@ entry.head = function(ndex, args)
 		multigen.getGen(groups[pokedata.ndex] or {group1 = 'sconosciuto'})
 	)
 	local movename = args.movename or mw.title.getCurrentTitle().text
-	local stab = args.STAB or lib.computeSTAB(ndex, movename, args.form)
+	local stab = args.STAB == "no" and ""
+	             or args.STAB
+				 or lib.computeSTAB(ndex, movename, args.form)
 	pokedata.group1show = pokedata.group1 == 'coleottero'
 							and 'Coleot'
 							or (pokedata.group1 == 'non ancora scoperto'
