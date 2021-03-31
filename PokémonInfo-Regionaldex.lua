@@ -63,29 +63,40 @@ end
 
 -- Ordina la tabella store: la table è esterna alla
 -- funzione così da non essere ricreata ogni volta
-
 local regiongens = {
-	Kanto = 1, Johto = 2, Hoenn = 3, Sinnoh = 4, Unima = 5, Kalos = 6,
-	Alola = 7, Galar = 8, Armatura = 9, Corona = 10 }
+	Kanto = { ord = 1 },
+	Johto = { ord = 2 },
+	Hoenn = { ord = 3 },
+	Sinnoh = { ord = 4 },
+	Unima = { ord = 5 },
+	Kalos = { ord = 6 },
+	Alola = { ord = 7 },
+	Galar = { ord = 8 },
+	Armatura = { ord = 9, pref = ""  },
+	Corona = { ord = 10, pref = ""  },
+}
+
 local region_sort = function(c, d)
 	local a, b = c:match('>(%a+)</span>'), d:match('>(%a+)</span>')
-	return regiongens[a] < regiongens[b]
+	return regiongens[a].ord < regiongens[b].ord
 end
 
--- La funzione che genera le celle per i dex regionali:
--- nello scorrere la tabella fornita dalla search,
--- controlla che il dex non sia tra quelli aggiornati in seguito
--- ed effettua l'inserimento; se ciò non accade, concatena all'ultimo
--- elemento l'asterisco giusto chiamando la funzione olddex.
+--[[
 
+La funzione che genera le celle per i dex regionali:
+nello scorrere la tabella fornita dalla search,
+controlla che il dex non sia tra quelli aggiornati in seguito
+ed effettua l'inserimento; se ciò non accade, concatena all'ultimo
+elemento l'asterisco giusto chiamando la funzione olddex.
+
+--]]
 local dexlist = function(dexes)
 	if table.getn(dexes) == 0 then
 		return nil
 	end
 	local store = {}
-	local str = [=[<span><div class="small-font">'''[[Elenco Pokémon secondo il Pokédex di ${reg}|<span style="color:#000">${reg}</span>]]'''</div>#${rdex}</span>]=]
+	local str = [=[<span><div class="small-font">'''[[Elenco Pokémon secondo il Pokédex ${pref}${reg}|<span style="color:#000">${reg}</span>]]'''</div>#${rdex}</span>]=]
 	local kalos = [=[<span><div class="small-font">'''[[Elenco Pokémon secondo i Pokédex di Kalos#Pokédex di Kalos ${reg}|<span style="color:#${c}">Kalos</span>]]'''</div>#${ttdex}</span>]=]
-	local incl = '<includeonly>[[Categoria:Pokémon originari della regione di ${reg}|${rdex}]]</includeonly>'
 	for region, rdex in pairs(dexes) do
 		if region:find('kalos') then
 			local zone = region:match('kalos(%a+)$')
@@ -99,7 +110,11 @@ local dexlist = function(dexes)
 					rdex = insOld[region](rdex, oldDex or 'Non disponibile')
 				end
 			end
-			table.insert(store, string.interp(str, {reg = string.fu(region), rdex = rdex}))
+			local regionName = string.fu(region)
+			table.insert(store, string.interp(str,
+				{reg = regionName,
+				 pref = regiongens[regionName].pref or "di ",
+				 rdex = rdex}))
 		end
 	end
 	table.sort(store, region_sort)
