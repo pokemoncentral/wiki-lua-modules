@@ -134,15 +134,15 @@ entry.levelCellsData = {
 	[7] = {
 		USUM = {
 			{bg = 'sole', abbr = 'SL', val = 'base', colspan = 2},
-			{bg = 'ultrasole', abbr = 'USUL', val = 'USUM'}
+			{bg = 'ultrasole', abbr = 'UsUl', val = 'USUM'}
 		},
 		LGPE = {
-			{bg = 'sole', abbr = 'SLUSUL', val = 'base', colspan = 2},
+			{bg = 'sole', abbr = 'SLUsUl', val = 'base', colspan = 2},
 			{bg = 'lgp', abbr = 'LGPE', val = 'LGPE'}
 		},
 		USUMLGPE = {
 			{bg = 'sole', abbr = 'SL', val = 'base'},
-			{bg = 'ultrasole', abbr = 'USUL', val = 'USUM'},
+			{bg = 'ultrasole', abbr = 'UsUl', val = 'USUM'},
 			{bg = 'lgp', abbr = 'LGPE', val = 'LGPE'}
 		}
 	},
@@ -180,7 +180,7 @@ entry.levelgames = {
 	},
 	{ -- 7
 		{bg = 'sole', abbr = 'SL'},
-		{bg = 'ultrasole', abbr = 'USUL'},
+		{bg = 'ultrasole', abbr = 'UsUl'},
 		{bg = 'lgp', abbr = 'LGPE'},
 	},
 	{ -- 8
