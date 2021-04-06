@@ -115,7 +115,7 @@ ${stats}
 
     statRow = [=[|-
 | ${rleft}style="width: 5.5em; padding: 0.3ex 0.8ex; background: #${light};" | [[Statistiche#${link}|<span style="color: #${normale};">${stat}</span>]]
-| ${rright}style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; background: #${light};" | ${statBar}${bounds}]=],
+| ${rright}style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #${light};" | ${statBar}${bounds}]=],
 
     totalLink = [=[<div class="flex flex-nowrap flex-row flex-main-start flex-items-center">${tot}<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di ${tot}|<span style="color: initial;">Altri Pokémon con questo totale</span>]]</span></div>]=]
 }
