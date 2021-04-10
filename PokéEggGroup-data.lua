@@ -1631,7 +1631,7 @@ t.drizzile, t[817] = t.sobble, t.sobble
 t.inteleon, t[818] = t.sobble, t.sobble
 t.skwovet = {group1 = 'campo'}
 t[819] = t.skwovet
-t.greedent, t[820] = t.skwovet, t.greedent
+t.greedent, t[820] = t.skwovet, t.skwovet
 t.rookidee = {group1 = 'volante'}
 t[821] = t.rookidee
 t.corvisquire, t[822] = t.rookidee, t.rookidee
