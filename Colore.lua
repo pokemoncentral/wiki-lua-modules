@@ -460,6 +460,22 @@ c.Estate = c.estate
 c.primavera = function(frame) return _colore(frame.args[1] or 'normale', 'B0F858', 'C7FA89', '7BAE3D') end
 c.Primavera = c.primavera
 
+-- Colori giorni della settimana (NOTA: questi colori non hanno shade)
+c.lunedi = function(_) return 'FF0000' end
+c.Lunedi, c['lunedì'], c['Lunedì'] = c.lunedi, c.lunedi, c.lunedi
+c.martedi = function(_) return 'FF7F00' end
+c.Martedi, c['martedì'], c['Martedì'] = c.martedi, c.martedi, c.martedi
+c.mercoledi = function(_) return 'F9CB00' end
+c.Mercoledi, c['mercoledì'], c['Mercoledì'] = c.mercoledi, c.mercoledi, c.mercoledi
+c.giovedi = function(_) return '00CE00' end
+c.Giovedi, c['giovedì'], c['Giovedì'] = c.giovedi, c.giovedi, c.giovedi
+c.venerdi = function(_) return '0000FF' end
+c.Venerdi, c['venerdì'], c['Venerdì'] = c.venerdi, c.venerdi, c.venerdi
+c.sabato = function(_) return '4B0082' end
+c.Sabato = c.sabato
+c.domenica = function(_) return '9400D3' end
+c.Domenica = c.domenica
+
 -- Colori gare
 
 c.acume = function(frame) return _colore(frame.args[1] or 'normale', '78C850', 'A7DB8D', '4E8234') end
