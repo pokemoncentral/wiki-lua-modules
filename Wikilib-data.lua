@@ -9,16 +9,21 @@ t.poke_num = t.pokeNum
 
 --[[
 
-Table containig the list of colors so dark that requires white text when used
+Table containig the list of colors so dark that require white text when used
 as background.
 The variant taken into account is normale
 
 --]]
 
-t.whitetext = {'blu', 'rubino', 'zaffiro', 'nero', 'nero_2', 'nero2',
-	'nero 2', 'x', 'rubino omega', 'rubino_omega', 'rubinoomega',
-	'zaffiro alpha', 'zaffiro_alpha', 'zaffiroalpha', 'ultraluna',
-	'osa', 'xd', 'b', 'ru', 'za', 'n', 'n2', 'ro', 'ul', '000', '000000'}
+t.whitetext = {'b', 'blu', 'pmdb', 'mdblu', 'md_blu', 'pmdo', 'mdoscurita',
+	'md_oscurita', 'pmdpsi', 'mdportali', 'md_portali', 'pmdr', 'mdrosso',
+	'md_rosso', 'pmdt', 'mdtempo', 'md_tempo', 'n', 'nero', 'n2', 'nero 2',
+	'nero2', 'nero_2', 'osa', 'ra', 'ranger', 'r', 'rosso', 'ru', 'rubino',
+	'ro', 'rubino omega', 'rubinoomega', 'rubino_omega', 's', 'smeraldo', 'x',
+	'y', 'xd', 'z', 'zaffiro', 'za', 'zaffiro alpha', 'zaffiroalpha',
+	'zaffiro_alpha', 'l', 'luna', 'ul', 'ultraluna', 'lge', 'lgeevee',
+	'lg_eevee', 'sc', 'scudo', 'lc', 'landacorona', 'cpm', 'club pokémiglia',
+	'club_pokémiglia', 'pw', 'pokewalker', 'pokéwalker', '000', '000000'}
 
 -- Ndex e nomi dei Pokémon esclusivamente femmina
 
