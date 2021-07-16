@@ -1,7 +1,7 @@
 --[[
 
 This module displays wikicode for anything
-related to a set of values for al six statistics.
+related to a set of values for all six statistics.
 So far, it can display stats for a single
 Pokémon, the average for a single type and
 user-supplied values
@@ -28,6 +28,7 @@ local c = require("Colore-data")
 local gendata = require("Gens-data")
 local pokes = require('Poké-data')
 local stats = require("PokéStats-data")
+local cc = require('ChooseColor')
 
 local mw = require('mw')
 
@@ -59,7 +60,7 @@ local strings = {
 ${box}
 </div>]],
 
-    boxStats = [=[{| class="roundy text-center${align}${width}" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; ${bg};"
+    boxStats = [=[{| class="roundy text-center${align}${width} ${textcolor}" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; ${bg};"
 ! colspan="2" ${rs}style="padding: 0.3ex 0.8ex;" | Statistiche base${values}
 ${stats}
 |-
@@ -110,14 +111,14 @@ ${stats}
     statBounds = [=[
 
 | class="hidden-xs" | &nbsp;
-| class="${rleft}text-small hidden-xs" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min50}—${max50}
-| class="${rright}text-small hidden-xs" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min100}—${max100}]=],
+| class="${rleft}text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min50}—${max50}
+| class="${rright}text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #${bg};" | ${min100}—${max100}]=],
 
     statRow = [=[|-
 | ${rleft}style="width: 5.5em; padding: 0.3ex 0.8ex; background: #${light};" | [[Statistiche#${link}|<span style="color: #${normale};">${stat}</span>]]
 | ${rright}style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #${light};" | ${statBar}${bounds}]=],
 
-    totalLink = [=[<div class="flex flex-nowrap flex-row flex-main-start flex-items-center">${tot}<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di ${tot}|<span style="color: initial;">Altri Pokémon con questo totale</span>]]</span></div>]=]
+    totalLink = [=[<div class="flex flex-nowrap flex-row flex-main-start flex-items-center">${tot}<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di ${tot}|Altri Pokémon con questo totale]]</span></div>]=]
 }
 
 --[[
@@ -541,6 +542,7 @@ s.boxStats = function(args)
     local interpVal = {
         align = align == 'left' and '' or ' pull-' .. align,
         width = ' width-xl-30 width-md-50 width-sm-60 width-xs-100',
+        textcolor = cc.forModGradBg{args={types['type1'] or 'pcwiki',types['type2'] or t1}},
         bg = css.horizGradLua(types),
         rs = '',
         values = '',
@@ -766,7 +768,7 @@ s.typeAvg = function(frame)
 
     return s.boxStats{
         stats = statsAvg(typedPokes, gen),
-        types = {type = type},
+        types = {type1 = type},
         align = 'left',
     }
 end
