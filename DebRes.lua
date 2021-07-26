@@ -53,6 +53,7 @@ local multigen = require('Wikilib-multigen')
 local css = require('Css')
 local abilData = require("PokéAbil-data")
 local pokes = require("Poké-data")
+local cc = require('ChooseColor')
 
 --[[
 
@@ -72,7 +73,7 @@ dr.EffTable.strings = {
     BOX_INIT = [=[<div style="padding: 0.5em 0;"><span class="inline-block align-middle text-center width-xl-30 width-xs-100" style="padding: 0.3em;">'''${text}'''</span><div class="inline-block align-middle width-xl-70 width-xs-100" style="padding: 0;">]=],
 
     -- Wikicode for an effextiveness line
-    BOX_LINE = [=[<div class="flex flex-row flex-wrap flex-items-stretch width-xl-100" style="padding: 0.1em;"><div class="roundy vert-middle width-xl-5 width-md-10 width-xs-100" style="padding: 0 0.2em; background: #FFF;"><span>${eff}&times;</span></div><div class="text-left text-center-xs width-xl-95 width-md-90 width-xs-100" style="padding-left: 0.2em;">${types}</div></div>]=],
+    BOX_LINE = [=[<div class="flex flex-row flex-wrap flex-items-stretch width-xl-100" style="padding: 0.1em;"><div class="roundy vert-middle width-xl-5 width-md-10 width-xs-100 black-text" style="padding: 0 0.2em; background: #FFF;"><span>${eff}&times;</span></div><div class="text-left text-center-xs width-xl-95 width-md-90 width-xs-100" style="padding-left: 0.2em;">${types}</div></div>]=],
 }
 
 --[[
@@ -329,7 +330,7 @@ dr.EffTable.__tostring = function(this)
 
     local interpData = {
         bg = css.horizGradLua(this.colors),
-        foot = #this.footer < 1 and '' or string.interp([=[<div class="black-text text-left text-small" style="padding: 0.5em 0; margin: 0;">${lines}</div>]=],
+        foot = #this.footer < 1 and '' or string.interp([=[<div class="text-left text-small" style="padding: 0.5em 0; margin: 0;">${lines}</div>]=],
                 {
                     lines = w.mapAndConcat(this.footer, tostring)
                 })
@@ -361,7 +362,9 @@ dr.EffTable.__tostring = function(this)
     interpData.effBoxes = dr.EffTable.printEffBoxes({weak, std, res, imm},
             this.colors)
 
-    local effTab = string.interp([[<div class="roundy pull-center text-center overflow-auto width-xl-80 width-md-100" style="padding: 0.5ex; padding-bottom: 0.01ex; ${bg}">${effBoxes}${foot}</div>]], interpData)
+    interpData.textcolor = cc.forModGradBg{args={this.colors.type1, this.colors.type2}}
+
+    local effTab = string.interp([[<div class="roundy pull-center text-center overflow-auto width-xl-80 width-md-100 ${textcolor}" style="padding: 0.5ex; padding-bottom: 0.01ex; ${bg}">${effBoxes}${foot}</div>]], interpData)
 
     if #this.labels > 0 then
         return string.interp([[==== ${title} ====
