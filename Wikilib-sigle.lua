@@ -11,6 +11,7 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local tab = require('Wikilib-tables')       -- luacheck: no unused
 local w = require('Wikilib')
+local cc = require('ChooseColor')
 local c = require("Colore-data")
 local sig = require("Sigle-data")
 local wData = require("Wikilib-data")
@@ -184,9 +185,9 @@ q.colorAndText = function(color)
 
     -- This is ok also for when c[color].normale evaluates to false
     local background = c[color] and c[color].normale or color
-    local text = table.search(wData.whitetext, color:lower())
-            and c.background
-            or '000'
+    local text = cc.forBg{args={background}} == 'white-text'
+                   and c.background
+                   or '000'
 
     return background, text
 end
