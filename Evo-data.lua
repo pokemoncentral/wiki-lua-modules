@@ -294,6 +294,7 @@ evo[23], evo[24] = evo.ekans, evo.ekans
 evo.pichu = {
 	ndex = 172,
 	name = 'pichu',
+	method = evo.methods.BREED,
 
 	evos = {
 		{
@@ -393,7 +394,7 @@ evo[32], evo[33], evo[34] = evo["nidoran♂"], evo["nidoran♂"], evo["nidoran�
 evo.cleffa = {
 	ndex = 173,
 	name = 'cleffa',
-	methods = evo.methods.BREED,
+	method = evo.methods.BREED,
 
 	evos = {
 		{
@@ -3664,6 +3665,7 @@ evo[443], evo[444], evo[445] = evo.gible, evo.gible, evo.gible
 evo.riolu = {
 	ndex = 447,
 	name = 'riolu',
+	method = evo.methods.BREED,
 
 	evos = {
 		{
@@ -6377,6 +6379,7 @@ evo[846], evo[847] = evo.arrokuda, evo.arrokuda
 evo.toxel = {
 	ndex = 848,
 	name = 'toxel',
+	method = evo.methods.BREED,
 
 	evos = {
 		{
