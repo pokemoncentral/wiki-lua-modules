@@ -2,7 +2,8 @@
     "Lua.runtime.version": "Lua 5.1",
     "Lua.workspace.ignoreDir": [
         ".vscode",
-        "*-data.lua"
+        "*-data.lua",
+        "unused"
     ],
     "editor.rulers": [
         79

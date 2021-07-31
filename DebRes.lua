@@ -41,19 +41,19 @@ local dr = {}
 
 local mw = require('mw')
 
+local txt = require('Wikilib-strings')  -- luacheck: no unused
+local tab = require('Wikilib-tables')   -- luacheck: no unused
+local list = require('Wikilib-lists')
+local oop = require('Wikilib-oop')
+local multigen = require('Wikilib-multigen')
+local w = require('Wikilib')
 local box = require('Box')
 local et = require('EffTipi')
 local link = require('Links')
-local w = require('Wikilib')
-local list = require('Wikilib-lists')
-local oop = require('Wikilib-oop')
-local txt = require('Wikilib-strings')  -- luacheck: no unused
-local tab = require('Wikilib-tables')   -- luacheck: no unused
-local multigen = require('Wikilib-multigen')
 local css = require('Css')
+local cc = require('ChooseColor')
 local abilData = require("PokéAbil-data")
 local pokes = require("Poké-data")
-local cc = require('ChooseColor')
 
 --[[
 

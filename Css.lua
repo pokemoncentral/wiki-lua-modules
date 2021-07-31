@@ -118,7 +118,7 @@ parser.gradientArgs = function(args)
 	end
 
 	-- Standard behavior
-	local gradArgs, currColor = {}
+	local gradArgs, currColor = {}, nil
 	for _, param in ipairs(p) do
 		param = param == '' and 'normale' or param
 

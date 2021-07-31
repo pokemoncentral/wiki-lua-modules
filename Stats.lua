@@ -12,7 +12,6 @@ local s = {}
 
 local txt = require('Wikilib-strings') -- luacheck: no unused
 local tab = require('Wikilib-tables') -- luacheck: no unused
-local css = require('Css')
 local formUtil = require('Wikilib-forms')
 local formulas = require('Wikilib-formulas')
 local gamesUtil = require('Wikilib-games')
@@ -23,12 +22,13 @@ local oop = require('Wikilib-oop')
 local statsUtil = require('Wikilib-stats')
 local multigen = require('Wikilib-multigen')
 local w = require('Wikilib')
+local css = require('Css')
+local cc = require('ChooseColor')
 local alt = require("AltForms-data")
 local c = require("Colore-data")
 local gendata = require("Gens-data")
 local pokes = require('Poké-data')
 local stats = require("PokéStats-data")
-local cc = require('ChooseColor')
 
 local mw = require('mw')
 
