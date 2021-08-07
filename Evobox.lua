@@ -35,6 +35,7 @@ local moves = require("Move-data")
 local evodata = require("Evo-data")
 form.loadUseless(true)
 local bothforms = form.allFormsData()
+local cc = require('ChooseColor')
 
 -- ============================= General functions =============================
 
@@ -45,8 +46,8 @@ Utility strings
 --]]
 
 eb.strings = {
-    BOX_CONTAINER = [=[<div class="text-center"><div class="roundy inline-flex flex-row flex-nowrap flex-items-stretch inline-block-md width-sm-100" style="padding: 0.5em; ${background}">${content}</div></div><br style="clear: both;">]=],
-    BOX_CONTAINER_UNRESPONSIVE = [=[<div class="text-center"><div class="roundy inline-flex flex-row flex-nowrap flex-items-center width-sm-100" style="padding: 0.5em; ${background}">${content}</div></div><br style="clear: both;">]=],
+    BOX_CONTAINER = [=[<div class="text-center"><div class="roundy inline-flex flex-row flex-nowrap flex-items-stretch inline-block-md width-sm-100 ${textcolor}" style="padding: 0.5em; ${background}">${content}</div></div><br style="clear: both;">]=],
+    BOX_CONTAINER_UNRESPONSIVE = [=[<div class="text-center"><div class="roundy inline-flex flex-row flex-nowrap flex-items-center width-sm-100 ${textcolor}" style="padding: 0.5em; ${background}">${content}</div></div><br style="clear: both;">]=],
 
     ROW_ONE = [=[<div class="vert-middle">${box1}</div>]=],
     ROW_TWO = [=[<div class="flex-md flex-row flex-nowrap flex-items-center"><div class="width-md-50 vert-middle" style="margin: 0 0.5ex; height: 50%;">${box1}</div><div class="width-md-50 vert-middle" style="margin: 0 0.5ex; height: 50%;">${box2}</div></div>]=],
@@ -58,14 +59,14 @@ eb.strings = {
 <div class="roundy-full inline-block img-fluid white-bg" style="padding: 1ex;"><div class="roundy-full" style="padding: 0.5ex; ${background}">${spr}</div></div>
 <div class="small-text" style="padding-top: 0.5ex;">${phase}</div>
 <div>
-<div class="black-text">[[${name}|${shownName}]]</div>
+<div>[[${name}|${shownName}]]</div>
 <div class="small-text hidden-sm">${type1rect}${type2rect}</div>
 </div>
 </div>]=],
 
     BOX_ARROW_INFOLESS = [=[${img}<div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
-    BOX_ARROW_UNRESPONSIVE = [=[${img}<div class="inline-block width-xl-100 black-text">${evodesc}${info}</div><div>${desktoparrow}</div>]=],
-    BOX_ARROW = [=[${img}<div class="inline-block width-xl-100 black-text">${evodesc}${info}</div><div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
+    BOX_ARROW_UNRESPONSIVE = [=[${img}<div class="inline-block width-xl-100">${evodesc}${info}</div><div>${desktoparrow}</div>]=],
+    BOX_ARROW = [=[${img}<div class="inline-block width-xl-100">${evodesc}${info}</div><div><span class="hidden-md">${desktoparrow}</span><span class="visible-md">${mobilearrow}</span></div>]=],
 
     SINGLE_ARROW = [=[<div style="margin: 1em 0.5em;">${boxarrow}</div>]=],
     DOUBLE_ARROW = [=[<div class="inline-block-md"><div class="flex-md flex-row flex-nowrap flex-items-center" style="margin: 1em 0;"><div class="width-md-50" style="padding: 1em;">${boxarrow1}</div><div class="width-md-50" style="padding: 1em;">${boxarrow2}</div></div></div>]=],
@@ -574,6 +575,8 @@ eb.Evobox = function(frame)
 
     local evobox = {
         string.interp(boxContainer, {
+        	textcolor = cc.forModGradBg{args={pokeData.type1 or 'sconosciuto',
+        		pokeData.type2 or 'sconosciuto'}},
             background = css.horizGradLua{
                 type1 = pokeData.type1 or 'sconosciuto',
                 type2 = pokeData.type2 or 'sconosciuto'
@@ -820,6 +823,7 @@ eb.GlitchEvobox = function(frame)
     table.insert(evoboxcontent, eb.makeGlitchPhaseRows(p, 4))
 
     return string.interp(eb.strings.BOX_CONTAINER, {
+    		textcolor = cc.forModGradBg{args={p[1], p[2]}},
             background = css.horizGradLua{ type1 = p[1], type2 = p[2] or p[2] },
             content = table.concat(evoboxcontent)
         })
@@ -985,6 +989,7 @@ eb.Formbox = function(frame)
     end
 
     return string.interp(eb.strings.BOX_CONTAINER, {
+    	textcolor = cc.forModGradBg{args={pagepoke.type1, pagepoke.type2}},
         background = css.horizGradLua{ type1 = pagepoke.type1, type2 = pagepoke.type2 },
         content = table.concat(formboxcontent)
     })
