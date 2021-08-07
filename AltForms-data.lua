@@ -10,6 +10,7 @@ local tab = require('Wikilib-tables') -- luacheck: no unused
 
 local mw = require('mw')
 
+-- TODO: refactor link creations
 --[[
 
 Creates the link for an alternative form. There are two general
@@ -20,7 +21,8 @@ This function also handles empty form name, yielding no link at all
 (an empty string).
 
 Arguments:
-	- black: a boolean value. If true returns black links, otherwise normal
+	- context: a string containing a ${link} replacement. The string is a
+			context in which ${link} is replaced with the actual link
 	- formName: name of the specific form
 	- poke: base name of the Pokémon
 	- general: an optional string argument. If given, the function assumes
@@ -29,7 +31,7 @@ Arguments:
 			parameter should be "Megaevoluzione")
 
 --]]
-local function makeSingleLink(black, formName, poke, general)
+local function makeSingleLink(context, formName, poke, general)
 	if formName == "" then
 		return ""
 	end
@@ -40,10 +42,8 @@ local function makeSingleLink(black, formName, poke, general)
 	else
 		target = table.concat{string.fu(poke), "/Forme"}
 	end
-	return string.interp('<div class="small-text${black}">[[${target}|${formName}]]</div>', {
-		black = black and " black-text" or "",
-		formName = formName,
-		target = target
+	return string.interp(context, {
+		link = table.concat{"[[", target, "|", formName, "]]"}
 	})
 end
 
@@ -53,19 +53,18 @@ Adds links to alternative forms pointing to a generic page instead of
 the specific subpage of the Pokémon. This function modifies links only
 for a given list of abbrs, and doesn't change other links.
 Arguments:
-	- black: a boolean value. Is true adds blacklinks, otherwise normal
+	- index: the index in the Pokémon's table at which store the link
+	- context: a context for the link, containin a ${link} replacement
 	- target: the target page name
 	- list: a list of keys to which add the links for this target
 	- abbrs: the list of abbrs to modify
 
 --]]
-local function makeTargetedLink(black, target, list, abbrs)
-	local index = black and 'blacklinks' or 'links'
-
+local function makeTargetedLink(index, context, target, list, abbrs)
 	for _, name in pairs(list) do
 		t[name][index] = table.map(t[name].names, function(formName, formAbbr)
 			if table.search(abbrs, formAbbr) then
-				return makeSingleLink(black, formName, name, target)
+				return makeSingleLink(context, formName, name, target)
 			else
 				return t[name][index] and t[name][index][formAbbr]
 			end
@@ -74,9 +73,7 @@ local function makeTargetedLink(black, target, list, abbrs)
 end
 
 -- Creates links to alternative forms
-local function makeLinks(black)
-	local index = black and 'blacklinks' or 'links'
-
+local function makeIndexLinks(index, context)
 	-- Removing support tables since we don't want to operate on them
 	local stdLinks = table.filter(t, function(_, key)
 		return not table.search({'mega', 'megaxy', 'archeo', 'alola', 'galar',
@@ -86,22 +83,28 @@ local function makeLinks(black)
 	-- Adds standard links
 	for name, poke in pairs(stdLinks) do
 		poke[index] = table.map(poke.names, function(formName)
-			return makeSingleLink(black, formName, name)
-			-- return formName == ''
-			-- 	   and ''
-			-- 	   or string.interp(link, {
-			-- 		anchor = poke.anchor or string.fu(name),
-			-- 		formName = formName
-			-- })
+			return makeSingleLink(context, formName, name)
 		end)
 	end
 
 	-- Adds links of forms with a dedicated page
-	makeTargetedLink(black, 'Megaevoluzione', table.merge(t.mega, t.megaxy), {"base", "M", "MX", "MY"})
-	makeTargetedLink(black, 'Archeorisveglio', t.archeo, {"base", "A"})
-	makeTargetedLink(black, 'Forma di Alola', t.alola, {"base", "A"})
-	makeTargetedLink(black, 'Forma di Galar', t.galar, {"base", "G"})
-	makeTargetedLink(black, 'Gigamax', t.gigamax, {"base", "Gi"})
+	makeTargetedLink(index, context, 'Megaevoluzione', table.merge(t.mega, t.megaxy), {"base", "M", "MX", "MY"})
+	makeTargetedLink(index, context, 'Archeorisveglio', t.archeo, {"base", "A"})
+	makeTargetedLink(index, context, 'Forma di Alola', t.alola, {"base", "A"})
+	makeTargetedLink(index, context, 'Forma di Galar', t.galar, {"base", "G"})
+	makeTargetedLink(index, context, 'Gigamax', t.gigamax, {"base", "Gi"})
+end
+
+-- Create all links for alternative forms (black, blue and plain)
+local function makeLinks()
+	local contexts = {
+		links = '<div class="small-text">${link}</div>',
+		blacklinks = '<div class="small-text black-text">${link}</div>',
+		plainlinks = '${link}',
+	}
+	for index, context in pairs(contexts) do
+		makeIndexLinks(index, context)
+	end
 end
 
 --[[
@@ -671,8 +674,7 @@ table.insert(t.gigamax, 'urshifu')
 
 -- Link creation should be done AFTER copying Pokémon with same forms, in order
 -- to use the right name for the link
-makeLinks()      -- normal links
-makeLinks(true)  -- black links
+makeLinks()
 
 t[19] = t.rattata
 t[20] = t.raticate

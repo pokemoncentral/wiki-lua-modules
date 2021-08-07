@@ -116,15 +116,16 @@ f.getNameAbbr, f.get_name_abbr = f.getnameabbr, f.getnameabbr
 
 --[[
 
-Il parametro black è un booleano, mentre ext
-deve essere minuscolo. Recupera il link per
-le forme alternative a partire dal nome del
-Pokémon comprensivo di sigla, oppure dal nome
+Il parametro black è una stringa che indica il
+tipo di link ("black", "" o "plain", default a ""),
+mentre ext deve essere minuscolo. Recupera il
+link per le forme alternative a partire dal nome
+del Pokémon comprensivo di sigla, oppure dal nome
 del Pokémon e quello esteso della forma alternativa.
 
 --]]
 f.getlink = function(poke, black, extform)
-    black = black and 'black' or ''
+    black = black or ''
     poke, extform = f.getnameabbr(poke, extform)
     if extform == '' then
         return ''

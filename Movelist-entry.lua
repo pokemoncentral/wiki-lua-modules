@@ -402,7 +402,7 @@ entry.head = function(ndex, args)
 	local forml = args.allforms and '<div class="text-small">Tutte le forme</div>' or
 					(args.useless
 						and useless[tonumber(ndexFigures)].links[abbr]
-						or forms.getlink(ndex, false, args.form)
+						or forms.getlink(ndex, "", args.form)
 					)
 	pokedata = table.merge(
 		multigen.getGen(pokedata),

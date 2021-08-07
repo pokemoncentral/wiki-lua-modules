@@ -542,7 +542,7 @@ s.boxStats = function(args)
     local interpVal = {
         align = align == 'left' and '' or ' pull-' .. align,
         width = ' width-xl-30 width-md-50 width-sm-60 width-xs-100',
-        textcolor = cc.forModGradBg{args={types['type1'] or 'pcwiki',types['type2'] or t1}},
+        textcolor = cc.forModGradBg{args={types['type1'] or 'pcwiki',types['type2'] or types['type1'] or 'pcwiki'}},
         bg = css.horizGradLua(types),
         rs = '',
         values = '',
@@ -710,7 +710,7 @@ s.pokeStats = function(frame)
                 end
 
                 --[[
-                    All boxes collapsable and all but the
+                    All boxes collapsible and all but the
                     first collapsed by default
                 --]]
                 return w.mapAndConcat(boxes, function(box, key)

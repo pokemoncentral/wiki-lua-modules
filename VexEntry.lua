@@ -70,7 +70,7 @@ Parametri (named):
 v.VexEntry = function(args)
 	local p = w.trimAll(args)
     formlib.loadUseless(true)
-	local form = formlib.getLink(p.ndex, true) or ""
+	local form = formlib.getLink(p.ndex, "black") or ""
 	local baseName, _ = formlib.getNameAbbr(p.ndex)
 	local pokedata = pokes[p.ndex] or pokes[baseName]
 	pokedata = multigen.getGen(pokedata, args.gen)

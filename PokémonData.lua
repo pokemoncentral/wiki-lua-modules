@@ -311,42 +311,22 @@ Ex:
 {{#invoke: PokémonData | getLink | 774R }}
 {{#invoke: PokémonData | getLink | 398 }}
 
+The second, optional paramenter is used to specify the kind of link. Can be
+either "black" (a small, black link), "" (a small, normal link) or "plain"
+(just the link). Default to ""
+
+Ex:
+{{#invoke: PokémonData | getLink | 487 | plain }}
+
 --]]
 b.getLink = function(frame)
-    local name, black = string.trim(frame.args[1]), frame.args[2]
+    local name, black = string.trim(frame.args[1]), string.trim(frame.args[2])
     -- Links also to UselessForms
     formlib.loadUseless(true)
     return formlib.getLink(name, black)
 end
 
 b.getlink = b.getLink
-
---[[
-
-Returns the link to an alternative form, without the surrounding div.
-The Pokémon name (first parameter) can be both a name or a ndex followed
-by the abbr.
-The ndex may be the base form's one. If the ndex doesn't correspond to a
-Pokémon with alternative forms, it returns an empty string.
-
-Ex:
-{{#invoke: PokémonData | getPlainLink | 487 }}
-{{#invoke: PokémonData | getPlainLink | 487O }}
-{{#invoke: PokémonData | getPlainLink | 028A }}
-{{#invoke: PokémonData | getPlainLink | 028 }}
-{{#invoke: PokémonData | getPlainLink | 774R }}
-{{#invoke: PokémonData | getPlainLink | 398 }}
-
---]]
-b.getPlainLink = function(frame)
-    local name, black = string.trim(frame.args[1]), frame.args[2]
-    -- Links also to UselessForms
-    formlib.loadUseless(true)
-    local divlink = formlib.getLink(name, black)
-    return divlink:match("%[%[[^]]+%]%]") or ""
-end
-
-b.getplainlink = b.getPlainLink
 
 --[[
 
