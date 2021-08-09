@@ -394,9 +394,13 @@ PokeStatBox.new = function(poke, formExtName, args)
     --[[
         Aborting entry: no stats data for the Pokémon
         or Pokémon/form not in generation
+
+        Actually we keep out of gen Pokés/forms because
+        they are so few that there isn't really any
+        advantage in skipping them
     --]]
-    if not stats[poke]
-            or not gamesUtil.isInGen(poke, gen) then
+    if not stats[poke] then
+            -- or not gamesUtil.isInGen(poke, gen) then
         return nil
     end
 
