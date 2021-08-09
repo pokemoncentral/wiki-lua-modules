@@ -320,7 +320,8 @@ Ex:
 
 --]]
 b.getLink = function(frame)
-    local name, black = string.trim(frame.args[1]), string.trim(frame.args[2])
+    local name = string.trim(frame.args[1])
+    local black = string.trim(frame.args[2] or "")
     -- Links also to UselessForms
     formlib.loadUseless(true)
     return formlib.getLink(name, black)
