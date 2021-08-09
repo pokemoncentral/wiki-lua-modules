@@ -8,7 +8,7 @@ local t = {}
 local txt = require('Wikilib-strings') -- luacheck: no unused
 local tab = require('Wikilib-tables') -- luacheck: no unused
 
-
+-- TODO: refactor link creations, shamelessly copied from AltForms-data
 --[[
 
 Creates the link for an alternative form. There are two general
@@ -19,7 +19,8 @@ This function also handles empty form name, yielding no link at all
 (an empty string).
 
 Arguments:
-	- black: a boolean value. If true returns black links, otherwise normal
+	- context: a string containing a ${link} replacement. The string is a
+			context in which ${link} is replaced with the actual link
 	- formName: name of the specific form
 	- poke: base name of the Pokémon
 	- general: an optional string argument. If given, the function assumes
@@ -28,7 +29,7 @@ Arguments:
 			parameter should be "Megaevoluzione")
 
 --]]
-local function makeSingleLink(black, formName, poke, general)
+local function makeSingleLink(context, formName, poke, general)
 	if formName == "" then
 		return ""
 	end
@@ -39,22 +40,24 @@ local function makeSingleLink(black, formName, poke, general)
 	else
 		target = table.concat{string.fu(poke), "/Forme"}
 	end
-	return string.interp('<div class="small-text${black}">[[${target}|${formName}]]</div>', {
-		black = black and " black-text" or "",
-		formName = formName,
-		target = target
+	return string.interp(context, {
+		link = table.concat{"[[", target, "|", formName, "]]"}
 	})
 end
 
--- Creates links to alternative forms
-local function makeLinks(black)
-	local index = black and 'blacklinks' or 'links'
-
-	-- Adds standard links
-	for name, poke in pairs(t) do
-		poke[index] = table.map(poke.names, function(formName)
-			return makeSingleLink(black, formName, name)
-		end)
+-- Create all links for alternative forms (black, blue and plain)
+local function makeLinks()
+	local contexts = {
+		links = '<div class="small-text">${link}</div>',
+		blacklinks = '<div class="small-text black-text">${link}</div>',
+		plainlinks = '${link}',
+	}
+	for index, context in pairs(contexts) do
+		for name, poke in pairs(t) do
+			poke[index] = table.map(poke.names, function(formName)
+				return makeSingleLink(context, formName, name)
+			end)
+		end
 	end
 end
 
@@ -323,8 +326,7 @@ t.polteageist = table.copy(t.sinistea)
 
 -- Link creation should be done AFTER copying Pokémon with same forms, in order
 -- to use the right name for the link
-makeLinks()      -- normal links
-makeLinks(true)  -- black links
+makeLinks()
 
 t[25] = t.pikachu
 t[172] = t.pichu
