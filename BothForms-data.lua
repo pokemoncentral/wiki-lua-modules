@@ -32,6 +32,9 @@ local function mergeByName(poke)
     res.blacklinks = table.merge(table.copy(alt[poke].blacklinks),
                                  table.copy(useless[poke].blacklinks))
 
+    res.plainlinks = table.merge(table.copy(alt[poke].plainlinks),
+                                 table.copy(useless[poke].plainlinks))
+
     res.ext = table.merge(table.copy(alt[poke].ext),
                           table.copy(useless[poke].ext))
 
