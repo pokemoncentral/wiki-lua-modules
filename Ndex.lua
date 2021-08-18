@@ -45,16 +45,16 @@ n.Entry = oop.makeClass(lists.PokeLabelledEntry)
 
 n.Entry.strings = {
     ENTRY = string.gsub([=[
-<div class="inline-block width-xl-33 width-md-50 width-sm-100" style="padding: 0.2em 0.3em;">
-<div class="roundy white-bg height-100 vert-middle" style="padding-right: 0.2em; padding-top: 0.1em;"><!--
+<div class="width-xl-33 width-md-50 width-sm-100" style="padding: 0.2em;">
+<div class="flex flex-row flex-wrap flex-items-center flex-main-stretch roundy white-bg height-100 vert-middle" style="padding-right: 0.2em; padding-top: 0.1em;"><!--
 --><div class="width-xl-15" style="padding: 0.3ex;">#${ndex}</div><!--
---><div class="width-xl-20" style="padding: 0.3ex;">${ms}</div><!--
---><div class="text-center width-xl-35" style="padding: 0.3ex;">[[${name}]]${form}</div><!--
+--><div class="width-xl-15">${ms}</div><!--
+--><div class="text-center width-xl-30" style="padding: 0.3ex;">[[${name}]]${form}</div><!--
 --><div class="width-xl-30" style="padding: 0.3ex;">${types}</div>
 </div></div>]=], "<!%-%-\n%-%->", ""),
 
     HEADER = [=[
-<div class="roundy pull-center text-center flex-row-stretch-around flex-wrap width-xl-80 width-lg-100" style="${bg}">]=],
+<div class="roundy pull-center text-center flex flex-row flex-wrap flex-items-stretch flex-main-space-evenly width-xl-100" style="${bg}; padding: 0.2em;">]=],
 }
 
 n.Entry.new = function(pokedata, name)
