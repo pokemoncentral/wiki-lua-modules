@@ -20,6 +20,7 @@ local blackabbr = require("Blackabbrev-data")
 local pokes = require("Poké-data")
 local groups = require("PokéEggGroup-data")
 local useless = require("UselessForms-data")
+local cc = require('Modulo:ChooseColor')
 
 --[[
 
@@ -63,7 +64,7 @@ end)
 -- Strings for printing
 entry.strings = {
 	CELLBOX = [[
-| class="black-text height-100" style="padding: 0.8ex 0.3ex;${cs}" | <div class="text-center height-100 roundy-5 vert-middle" style="${bg}; padding: 0 0.3ex;">${cnt}</div>]],
+| class="${textcolor} height-100" style="padding: 0.8ex 0.3ex;${cs}" | <div class="text-center height-100 roundy-5 vert-middle" style="${bg}; padding: 0 0.3ex;">${cnt}</div>]],
 }
 
 -- Sorted background colors of tutor cells
@@ -211,8 +212,15 @@ entry.makeBox = function(text, bgcolor, bold, colspan, tt, abbr)
 				or css.horizGradLua{ type = bgcolor }
 	text = bold and table.concat{"'''", text, "'''"} or text
 	local cnt = tt and tt ~= "" and links.tt(text, tt) or text
+	local tc
+	if bgcolor:lower() == "fff" then
+		tc = 'black-text'
+	else
+		tc = cc.forModGradBg{args={bgcolor}}
+	end
 	return string.interp(entry.strings.CELLBOX, {
 		bg = bg,
+		textcolor = tc,
 		cs = colspan and colspan ~= 1
 		     and ('" colspan="' .. colspan) or "",
 		cnt = abbr and table.concat{"<span>", cnt, blackabbr[abbr] or "",
@@ -402,7 +410,7 @@ entry.head = function(ndex, args)
 	local forml = args.allforms and '<div class="text-small">Tutte le forme</div>' or
 					(args.useless
 						and useless[tonumber(ndexFigures)].links[abbr]
-						or forms.getlink(ndex, "", args.form)
+						or forms.getlink(ndex, false, args.form)
 					)
 	pokedata = table.merge(
 		multigen.getGen(pokedata),

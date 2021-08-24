@@ -15,19 +15,21 @@ local c = require("Colore-data")
 local gendata = require("Gens-data")
 local moves = require("Move-data")
 local mtdata = require("Machines-data")
+local cc = require('ChooseColor')
 
 -- Tabelle dati
 
 j.strings = {
 	HEADERBASE = [=[
-{| class="roundy text-center white-rows roundy-footer" style="${bg}; border-spacing: 0; padding: 0.3ex;"
+{| class="roundy text-center white-rows roundy-footer no-border-spacing" style="${bg}; padding: 0.3ex;"
+|- class="${textcolor}"
 ! class="roundytl hidden-xs" rowspan="${rs}" | #
 ! rowspan="${rs}" colspan="2" | Pokémon
 ! class="hidden-sm" rowspan="${rs}" | Tipo
-! class="hidden-sm" style="padding: 0 0.7ex;" rowspan="${rs}" | Gruppo uova
+! class="hidden-sm" style="padding: 0 0.7ex;" rowspan="${rs}" | Gruppo Uova
 ! class="roundytr" colspan="${cs}" | ]=],
 	HEADERTM = [=[
-! class="roundytop" style="background: #${bg}; min-width: 4ex; line-height: 1em;" colspan="${cs}" | [[${genl} generazione|${genr}]]<div class="text-small">${tm}</div>
+! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 4ex; line-height: 1em;" colspan="${cs}" | [[${genl} generazione|${genr}]]<div class="text-small">${tm}</div>
 ]=],
 }
 
@@ -65,12 +67,13 @@ local cells = {}
 -- Funzione per generale le celle dei level
 
 cells.level = function(gen)
-	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex;" colspan="${cs}" | [[${genl} generazione|${genr}]]\n'
+	local str = '! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 4ex;" colspan="${cs}" | [[${genl} generazione|${genr}]]\n'
     local row = {}
     for a = gen, gendata.latest do
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
 			genl = gendata[a].ext, genr = gendata[a].roman,
-			cs = mlentry.maxCellsNumber[a]}))
+			cs = mlentry.maxCellsNumber[a],
+			textcolor = cc.forModBg{args={gendata[a].region}}}))
     end
     return table.concat(row)
 end
@@ -78,14 +81,15 @@ end
 -- Genera le celle dei tm
 
 cells.tm = function(gen, tms)
-	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex; line-height: 1em;" colspan="${cs}" | [[${genl} generazione|${genr}]]<div class="text-small">${tm}</div>\n'
+	local str = '! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 4ex; line-height: 1em;" colspan="${cs}" | [[${genl} generazione|${genr}]]<div class="text-small">${tm}</div>\n'
     local row = {}
     local l
     for a = gen, gendata.latest do
         l = tms[a] == 'NO' and 'Ness.' or string.interp('[[${tm}|${tm}]]', {tm = tms[a]})
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
 			genl = gendata[a].ext, genr = gendata[a].roman, tm = l,
-			cs = mlentry.maxCellsNumber[a]}))
+			cs = mlentry.maxCellsNumber[a],
+			textcolor = cc.forModBg{args={gendata[a].region}}}))
     end
     return table.concat(row)
 end
@@ -93,12 +97,13 @@ end
 -- Genera le celle del breed
 
 cells.breed = function(gen)
-	local str = '! class="roundytop" style="background: #${bg}; min-width: 4ex" colspan="${cs}" | [[${genl} generazione|${genr}]]\n'
+	local str = '! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 4ex" colspan="${cs}" | [[${genl} generazione|${genr}]]\n'
     local row = {}
     for a = gen, gendata.latest do
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
 			genl = gendata[a].ext, genr = gendata[a].roman,
-			cs = mlentry.maxCellsNumber[a]}))
+			cs = mlentry.maxCellsNumber[a],
+			textcolor = cc.forModBg{args={gendata[a].region}}}))
     end
     return table.concat(row)
 end
@@ -106,12 +111,13 @@ end
 -- Genera le celle del tutor
 
 cells.tutor = function(gen, gms)
-	local str = '! class="roundytop" style="background: #${bg}; min-width: 6ex;" | ${game}\n'
+	local str = '! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 6ex;" | ${game}\n'
     local row = {}
     for a in ipairs(gms) do
 		if gms[a] == 'yes' then
 			table.insert(row, string.interp(str, {bg = c[games[gen][a][2]].normale,
-				game = games[gen][a][1]}))
+				game = games[gen][a][1],
+				textcolor = cc.forModBg{args={gendata[a].region}}}))
 		end
 	end
     return table.concat(row)
@@ -122,6 +128,7 @@ end
 j.headers = function(tipo, gen, kind)
 	return string.interp(j.strings.HEADERBASE, {
 		bg = css.horizGradLua{type = tipo},
+		textcolor = cc.forModGradBg{args={tipo}},
 	    rs = kind == 'event' and 1 or 2,
 	    cs = cs[kind](gen),
 	})
@@ -135,7 +142,7 @@ j.levelh = function(frame)
     local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     local tipo, gen = p[1] or 'pcwiki', tonumber(p[2]) or 0
     return string.interp([=[${str}Livello
-|- class="white-text"
+|-
 ${g}]=], {str = j.headers(tipo, gen, 'level'), g = cells.level(gen)})
 end
 
@@ -162,7 +169,7 @@ j.tmh = function(frame)
         tms[a - 2] = p[a] and string.upper(p[a]) or 'No'
     end
     return string.interp([=[${str}Macchina
-|- class="white-text"
+|-
 ${g}]=], {str = j.headers(tipo, gen, 'tm'), g = cells.tm(gen, tms)})
 end
 
@@ -175,7 +182,7 @@ j.breedh = function(frame)
     local tipo, gen = p[1] or 'pcwiki', tonumber(p[2]) < 2 and 2 or tonumber(p[2])
     return string.interp([=[
 ${str}Padre
-|- class="white-text"
+|-
 ${g}]=], {str = j.headers(tipo, gen, 'breed'), g = cells.breed(gen)})
 end
 
@@ -187,7 +194,7 @@ j.tutorh = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     local tipo = p[1] or 'pcwiki'
 	return string.interp([=[${str}Gioco
-|- class="white-text"
+|-
 ]=], {str = j.headers(tipo, tonumber(p[2]) or 0, 'tutor')})
 end
 
@@ -208,14 +215,16 @@ j.shadowh = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
 	local game = p[1] or 'xd'
 
-	local colo = string.interp('\n! class="roundytop" style="background: #${bg}; width: 100px;" | [[Pokémon Colosseum|<span style="color:#555">C</span>]]\n', {bg = c.colo.normale})
+	local colo = string.interp('\n! class="roundytop ${textcolor}" style="background: #${bg}; width: 100px;" | [[Pokémon Colosseum|C]]\n',
+	{bg = c.colo.normale, textcolor = cc.forModBg{args={c.colo.normale}}})
 	return string.interp([=[${str}Livello
 |-${colo}
-! class="roundytop" style="background: #${bg}; width: 100px;" | [[Pokémon XD: Tempesta Oscura|<span style="color:#FFF">XD</span>]]]=],
+! class="roundytop ${textcolor}" style="background: #${bg}; width: 100px;" | [[Pokémon XD: Tempesta Oscura|XD]]]=],
 {
     str = j.headers('xd', game == 'colo' and gendata.latest or gendata.latest - 1,
 		'level'),
     bg = c.xd.light,
+	textcolor = cc.forModBg{args={c.xd.light}},
     colo = game == 'colo' and colo or ''
 })
 end
@@ -226,23 +235,27 @@ j.Shadowh = j.shadowh
 
 local foot = function(interpData)
 	return string.interp([=[|-
-! class="text-small text-left" colspan="${cs}" |
-* I Pokémon in '''grassetto''' sono quelli che ricevono il [[Bonus di tipo|<span style="color: #000;">bonus di tipo</span>]] dalla mossa.
-* I Pokémon in ''corsivo'' sono quelli con evoluzioni o [[Differenze di forma|<span style="color:#333">forme alternative</span>]] che ricevono il bonus di tipo.${last}
+! class="text-small text-left ${textcolor}" colspan="${cs}" |
+* I Pokémon in '''grassetto''' sono quelli che ricevono il [[bonus di tipo]] dalla mossa.
+* I Pokémon in ''corsivo'' sono quelli con evoluzioni o [[Differenze di forma|forme alternative]] che ricevono il bonus di tipo.${last}
 |}]=], interpData)
 end
 
-j.footer = function(_)
+j.footer = function(frame)
+	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     return foot({
 		cs = 5 + cs.level(1),
+		textcolor = cc.forModGradBg{args={p[1] or 'Sconosciuto'}},
 		last = ''})
 end
 
 -- Footer per le mosse apprese per livello
 
-j.levelf = function(_)
+j.levelf = function(frame)
+	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     return foot({
 		cs = 5 + cs.level(1),
+		textcolor = cc.forModGradBg{args={p[1] or 'Sconosciuto'}},
 		last = [=[
 
 * Le mosse segnate al livello "Evo" possono essere apprese al momento dell'evoluzione.]=]})
@@ -250,9 +263,11 @@ end
 
 -- Footer per le mosse apprese per accoppiamento
 
-j.breedf = function(_)
+j.breedf = function(frame)
+	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     return foot({
 		cs = 5 + cs.level(1),
+		textcolor = cc.forModGradBg{args={p[1] or 'Sconosciuto'}},
 		last = [=[
 
 * Premendo su ✔ è possibile vedere i genitori da cui il Pokémon può imparare la mossa.]=]})
@@ -309,7 +324,7 @@ j.autotmhlua = function(move)
 	local startgen = moves[move].gen or 1
 	local res = {
 		j.headers(tipo, startgen, 'tm'),
-		'Macchine\n|- class="white-text"\n',
+		'Macchine\n|-\n',
 	}
 	local link
 	for g = startgen, gendata.latest do
@@ -319,6 +334,7 @@ j.autotmhlua = function(move)
 			 or 'Ness.'
 		table.insert(res, string.interp(j.strings.HEADERTM, {
 			bg = c[gendata[g].region].normale,
+			textcolor = cc.forModBg{args={gendata[g].region}},
 			genl = gendata[g].ext,
 			genr = gendata[g].roman,
 			tm = link,
