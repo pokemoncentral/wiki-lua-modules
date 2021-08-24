@@ -11,6 +11,7 @@ local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
 local css = require('Css')
 local gendata = require("Gens-data")
+local cc = require('ChooseColor')
 
 -- Tabelle dati
 
@@ -64,16 +65,16 @@ cells.ppp = [=[!! rowspan = "${r}" | &nbsp;[[Potenza|Pot.]]&nbsp;
 ! rowspan = "${r}" | &nbsp;[[Precisione|Prec.]]&nbsp;
 ! rowspan = "${r}" | &nbsp;[[PP]]&nbsp;]=]
 cells.cat = '!! rowspan = "${r}" | &nbsp;[[Categoria danno|Cat.]]&nbsp;'
-cells.gara = [=[!! rowspan = "${r}" | &nbsp;[[Virtù Gara|Virtù]]&nbsp;
-! rowspan = "${r}" | &nbsp;[[Saggio di recitazione|Fascino]]&nbsp;]=]
+cells.gara = [=[!! rowspan = "${r}" | &nbsp;[[Virtù]]&nbsp;
+! rowspan = "${r}" | &nbsp;[[Saggio di Recitazione|Fascino]]&nbsp;]=]
 cells.inib = '!! rowspan = "${r}" | &nbsp;[[Intralcio]]&nbsp;'
 cells.level = '! colspan = "${c}" | &nbsp;[[Livello|Lv.]]&nbsp;'
 cells.tm = '! colspan = "${c}" | &nbsp;[[MT]]&nbsp;'
 cells.tmhm = '! colspan = "${c}" | &nbsp;[[MT]]/[[MN]]&nbsp;'
-cells.breed = '! colspan = "${c}" | &nbsp;[[Mossa uovo|${parent}]]&nbsp;'
+cells.breed = '! colspan = "${c}" | &nbsp;[[Mossa Uovo|${parent}]]&nbsp;'
 cells.tutor = '! colspan = "${c}" | &nbsp;[[Videogiochi Pokémon|Gioco]]&nbsp;'
 cells.preevo = '! colspan = "${c}" | &nbsp;[[Evoluzione|Stadio]]&nbsp;'
-cells.event = '! colspan = "${c}" | &nbsp;[[Evento Pokémon|Evento]]&nbsp;'
+cells.event = '! colspan = "${c}" | &nbsp;[[Pokémon evento|Evento]]&nbsp;'
 cells.basic = table.concat{cells.moveandtype, cells.ppp}
 cells.category = table.concat{cells.moveandtype, cells.cat, cells.ppp}
 cells[1], cells[2] = cells.basic, cells.basic
@@ -88,28 +89,28 @@ cells[6] = table.concat{cells.category, cells.gara, cells.inib}
 local games = {}
 games[4] = [=[
 
-|- class="black-text"
+|- class="${textcolor}"
 ! style="min-width: 2.2em;" | [[Pokémon Diamante e Perla|DP]]
 ! style="min-width: 2em;" | [[Pokémon Platino|Pt]]
 ! style="min-width: 3em;" | [[Pokémon Oro Heartgold e Argento Soulsilver|HGSS]]]=]
 games[5] = [=[
 
-|- class="black-text"
+|- class="${textcolor}"
 ! style="min-width: 2.2em;" | [[Pokémon Nero e Bianco|NB]]
 ! style="min-width: 3em;" | [[Pokémon Nero 2 e Bianco 2|N2B2]]]=]
 games[6] = [=[
 
-|- class="black-text"
+|- class="${textcolor}"
 ! style="min-width: 2.2em;" | [[Pokémon X e Y|XY]]
 ! style="min-width: 3em;" | [[Pokémon Rubino Omega e Zaffiro Alpha|ROZA]]]=]
 games[7] = [=[
 
-|- class="black-text"
+|- class="${textcolor}"
 ! style="min-width: 2.2em;" | [[Pokémon Sole e Luna|SL]]
 ! style="min-width: 3em;" | [[Pokémon Ultrasole e Ultraluna|USUL]]]=]
 
 -- Tabella con i Pokémon baby ottenibili tramite incensi, necessaria
--- per le righe aggiuntive del footer per le mosse uovo
+-- per le righe aggiuntive del footer per le mosse Uovo
 
 local baby = {}
 baby.Marill, baby.Azumarill = 'Azurill', 'Azurill'
@@ -133,7 +134,7 @@ rowsf.breed1 = [=[*Le mosse segnate con un asterisco (*) si ottengono solo con u
 *Le mosse segnate con un'abbreviazione di un gioco in apice si possono ottenere su ${poke} solo in quel gioco.]=]
 rowsf.breed2 = [=[
 
-*Le mosse segnate con una croce (†) si possono ottenere su ${poke} solo se ad uscire dall'uovo è [[${baby}]], e non altrimenti.]=]
+*Le mosse segnate con una croce (†) si possono ottenere su ${poke} solo se ad uscire dall'Uovo è [[${baby}]], e non altrimenti.]=]
 rowsf.tutor = [=[*Un'abbreviazione bianca in una casella colorata indica che ${poke} può imparare la mossa dall'Insegnamosse in quel gioco.
 *Un'abbreviazione colorata su sfondo bianco indica che ${poke} non può imparare la mossa dall'Insegnamosse in quel gioco.]=]
 rowsf.event = '*Un livello in apice indica che ${poke} può imparare questa mossa normalmente in ${genl} generazione a quel livello.'
@@ -194,10 +195,10 @@ end
 
 -- Crea le celle dell'ultima riga degli headers
 
-local lowrow = function(gen, kind)
+local lowrow = function(gen, kind, tc)
 	local values = {r = firstcell.rs[kind][gen],
 		c = firstcell.cs[kind][gen], parent = gen > 5 and
-		'Genitore' or 'Padre'}
+		'Genitore' or 'Padre', textcolor = tc}
 
 	kind = (kind == 'tm' and gen < 7) and 'tmhm' or kind
 
@@ -226,33 +227,35 @@ local header = function(pars, kind)
 	return txt.interp([=[
 <div class="text-center max-width-xl-100">
 <div class="roundy text-center inline-block max-width-xl-100" style="${bg}">
-<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''${gentitle}&nbsp;generazione'''</span></span></div>
-<div class="text-center black-text" style="font-weight: bold; padding: 0.5ex;">
+<div class="flex-row-center-around flex-wrap ${textcolor}" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''${gentitle}&nbsp;generazione'''</span></span></div>
+<div class="text-center" style="font-weight: bold; padding: 0.5ex;">
 <div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
 <div>${links}</div>
 </div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
 {| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
-|- class="text-center black-text"
+|- class="text-center ${textcolor}"
 ${low_row}]=],
 {
+	textcolor = cc.forModGradBg{args={tipo1, tipo2}},
 	bg = css.horizGradLua{type1 = tipo1, type2 = tipo2},
 	gentitle = string.fu(gendata[genh].ext),
 	links = oldgenslinks(genh, genp, kind, poke),
-	low_row = lowrow(genh, kind)
+	low_row = lowrow(genh, kind, cc.forModGradBg{args={tipo1, tipo2}})
 })
 end
 
 -- Genera i footer, chiamata da tutti i footer
 
 local footer = function(pars, kind)
-	local tipo, form = pars[3] or 'Sconosciuto', string.lower(pars.form or 'none')
+	local tipo1, tipo2 = pars[2] or 'Sconosciuto', pars[3] or 'Sconosciuto'
+	local form = string.lower(pars.form or 'none')
 	local genf, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
 	local poke = pars[1] or ''
     return txt.interp([=[
 |}</div>
-<div class="text-left small-font black-text" style="line-height: 1em; padding: 0 0.5ex 1ex;">
+<div class="text-left small-font ${textcolor}" style="line-height: 1em; padding: 0 0.5ex 1ex;">
 ${kindrows}
 *Il '''grassetto''' indica una mossa che ha il [[bonus di tipo]] quando viene usata da un ${poke}.
 *Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un${form} di ${poke}.${last}
@@ -260,6 +263,7 @@ ${kindrows}
 </div>
 </div>]=],
 {
+	textcolor = cc.forModGradBg{args={tipo1, tipo2}},
 	kindrows = rowf(kind, genf, poke),
 	poke = poke,
 	form = txt.interp(rowsf.forms[form], {poke = poke}) or '',
@@ -281,11 +285,11 @@ d.levelhLGPE = function(frame)
 	return txt.interp([=[
 <div class="text-center max-width-xl-100">
 <div class="roundy text-center inline-block max-width-xl-100" style="${bg}">
-<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font black-text">'''Settima&nbsp;generazione: [[Pokémon: Let's Go, Pikachu! e Let's Go, Eevee!|LGPE]]'''</span></div>
+<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font ${textcolor}">'''Settima&nbsp;generazione: [[Pokémon: Let's Go, Pikachu! e Let's Go, Eevee!|LGPE]]'''</span></div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
 {| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
-|- class="text-center black-text"
+|- class="text-center ${textcolor}"
 ! colspan="2" | [[Livello|Lv.]]
 ! [[Mossa]]
 ! [[Tipo]]
@@ -294,6 +298,7 @@ d.levelhLGPE = function(frame)
 ! [[Statistiche#Precisione|Prec.]]
 ! [[PP]]]=],
 {
+	textcolor = cc.forModGradBg{args={tipo1, tipo2}},
 	bg = css.horizGradLua{type1 = tipo1, type2 = tipo2}
 })
 end
@@ -316,11 +321,11 @@ d.tmhLGPE = function(frame)
 	return txt.interp([=[
 <div class="text-center max-width-xl-100">
 <div class="roundy text-center inline-block max-width-xl-100" style="${bg}">
-<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font black-text">'''Settima&nbsp;generazione: [[Pokémon: Let's Go, Pikachu! e Let's Go, Eevee!|LGPE]]'''</span></div>
+<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font ${textcolor}">'''Settima&nbsp;generazione: [[Pokémon: Let's Go, Pikachu! e Let's Go, Eevee!|LGPE]]'''</span></div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
 {| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
-|- class="text-center black-text"
+|- class="text-center ${textcolor}"
 ! [[MT]]
 ! [[Mossa]]
 ! [[Tipo]]
@@ -329,6 +334,7 @@ d.tmhLGPE = function(frame)
 ! [[Statistiche#Precisione|Prec.]]
 ! [[PP]]]=],
 {
+	textcolor = cc.forModGradBg{args={tipo1, tipo2}},
 	bg = css.horizGradLua{type1 = tipo1, type2 = tipo2}
 })
 end
