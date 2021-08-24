@@ -24,7 +24,7 @@ The basic function is called box, and has the following arguments:
 
 Example call:
 
-{{#invoke: Box | box | erba | erba (gruppo uova) | erba_uova | thin |
+{{#invoke: Box | box | erba | erba (Gruppo Uova) | erba_uova | thin |
     inline-block width-sm-60 | padding: 2ex; margin-top: 0.5ex; | FFFFFF }}
 
 There is also a number of shorthands, with a rather similar call. They are
@@ -44,8 +44,8 @@ listed below:
 
 - EggBox: a box displaying an egg grup, in its color as a background. Arguments:
 
-    - 1: The egg group, without ' (gruppo uova)' suffix. Defaults to
-        'Sconosciuto (gruppo uova)'.
+    - 1: The egg group, without ' (Gruppo Uova)' suffix. Defaults to
+        'Sconosciuto (Gruppo Uova)'.
     - 2: Space-spearated string of predefined configurations names. Optional,
         defaults to no predefined configurations.
     - 3: Space-separated list of CSS classes. Optional, defaults to no CSS
@@ -214,8 +214,8 @@ b.shortHands = {
 
     --[[
         Box displaying anegg group. Arguments:
-            - egg: The egg group, without ' (gruppo uova)' suffix. Defaults to
-                'Sconosciuto (gruppo uova)'
+            - egg: The egg group, without ' (Gruppo Uova)' suffix. Defaults to
+                'Sconosciuto (Gruppo Uova)'
             - pdfs: Table or space-spearated string of predefined
                 configurations names. Optional, defaults to {}.
             - classes: Table/string of CSS classes, in the format parseClasses
@@ -224,8 +224,8 @@ b.shortHands = {
                 printStyles produce respectively. Optional, defaults to {}.
     --]]
     egg = function(egg, pdfs, classes, styles)
-        egg = string.fu(string.trim(egg or 'Sconosciuto (gruppo uova)'))
-        return egg, egg .. ' (gruppo uova)', egg .. '_uova', pdfs,
+        egg = string.fu(string.trim(egg or 'Sconosciuto (Gruppo Uova)'))
+        return egg, egg .. ' (Gruppo Uova)', egg .. '_uova', pdfs,
             classes, styles, 'FFF'
     end
 }
