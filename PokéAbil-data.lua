@@ -1832,6 +1832,8 @@ t.meowthG = {ability1 = 'Raccolta', ability2 = 'Unghiedure', abilityd = 'Agitazi
 t['052G'] = t.meowthG
 t.persianA = {ability1 = 'Foltopelo', ability2 = 'Tecnico', abilityd = 'Paura'}
 t['053A'] = t.persianA
+t.growlitheH = {ability1 = ''}
+t['058H'] = t.growlitheH
 t.geodudeA = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Pellelettro'}
 t['074A'] = t.geodudeA
 t.gravelerA = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Pellelettro'}
@@ -1892,6 +1894,8 @@ t.yamaskG = {ability1 = 'Anima Errante'}
 t['562G'] = t.yamaskG
 t.stunfiskG = {ability1 = 'Mimetismo'}
 t['618G'] = t.stunfiskG
+t.braviaryH = {ability1 = ''}
+t['628H'] = t.braviaryH
 t.tornadusT = {ability1 = 'Rigenergia'}
 t['641T'] = t.tornadusT
 t.thundurusT = {ability1 = 'Assorbivolt'}

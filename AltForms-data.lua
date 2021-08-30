@@ -77,7 +77,7 @@ local function makeIndexLinks(index, context)
 	-- Removing support tables since we don't want to operate on them
 	local stdLinks = table.filter(t, function(_, key)
 		return not table.search({'mega', 'megaxy', 'archeo', 'alola', 'galar',
-		                         'gigamax'}, key)
+		                         'gigamax', 'hisui'}, key)
 	end)
 
 	-- Adds standard links
@@ -93,6 +93,7 @@ local function makeIndexLinks(index, context)
 	makeTargetedLink(index, context, 'Forma di Alola', t.alola, {"base", "A"})
 	makeTargetedLink(index, context, 'Forma di Galar', t.galar, {"base", "G"})
 	makeTargetedLink(index, context, 'Gigamax', t.gigamax, {"base", "Gi"})
+	makeTargetedLink(index, context, 'Forma di Hisui', t.hisui, {"base", "H"})
 end
 
 -- Create all links for alternative forms (black, blue and plain)
@@ -168,7 +169,7 @@ t.mega = {'venusaur', 'blastoise', 'beedrill', 'pidgeot', 'alakazam',
 
 t.megaxy = {'charizard', 'mewtwo'}
 
--- Tabella contenente i Pokémon che hanno una archeorisveglio
+-- Tabella contenente i Pokémon che hanno un archeorisveglio
 
 t.archeo = {'kyogre', 'groudon'}
 
@@ -192,6 +193,11 @@ t.gigamax = {'venusaur', 'charizard', 'blastoise', 'butterfree', 'meowth',
 	'melmetal', 'rillaboom', 'cinderace', 'inteleon', 'corviknight', 'orbeetle',
 	'drednaw', 'coalossal', 'flapple', 'appletun', 'sandaconda', 'centiskorch',
 	'hatterene', 'grimmsnarl', 'alcremie', 'copperajah', 'duraludon'}
+
+-- Tabella contenente i Pokémon che hanno una forma di Hisui:
+-- per efficienza, alcuni sono alla fine del modulo
+
+t.hisui = {'growlithe', 'braviary'}
 
 
 --[[
@@ -294,6 +300,12 @@ for _, v in pairs(t.gigamax) do
 	end
 	t[v].names.Gi = string.fu(v) .. " Gigamax"
 end
+for _, v in pairs(t.hisui) do
+	if not t[v] then
+		t[v] = { names = {base = ''} }
+	end
+	t[v].names.H = 'Forma di Hisui'
+end
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
@@ -384,6 +396,10 @@ for _, v in pairs(t.gigamax) do
 	t[v].ext = t[v].ext or {}
 	t[v].ext.gigamax = "Gi"
 end
+for _, v in pairs(t.hisui) do
+	t[v].ext = t[v].ext or {}
+	t[v].ext.hisui = 'H'
+end
 
 --[[
 
@@ -453,6 +469,9 @@ end
 for _, v in pairs(t.gigamax) do
 	t[v].gamesOrder = t[v].gamesOrder or {"base", "Gi"}
 end
+for _, v in pairs(t.hisui) do
+	t[v].gamesOrder = t[v].gamesOrder or {'base', 'H'}
+end
 
 --[[
 
@@ -498,6 +517,7 @@ t.vulpix.since = {A = 'sl', base = 'rb'}
 t.diglett.since = {A = 'sl', base = 'rb'}
 t.meowth.since = {A = 'sl', G = 'spsc', Gi = 'spsc', base = 'rb'}
 t.persian.since = {A = 'sl', base = 'rb'}
+t.growlithe.since = {H = 'lpa', base = 'rb'}
 t.geodude.since = {A = 'sl', base = 'rb'}
 t.ponyta.since = {G = 'spsc', base = 'rb'}
 t.slowpoke.since = {G = 'spsc', base = 'rb'}
@@ -529,6 +549,7 @@ t.darumaka.since = {G = 'spsc', base = 'nb'}
 t.darmanitan.since = {Z = 'nb', G = 'spsc', GZ = 'spsc', base = 'nb'}
 t.yamask.since = {G = 'spsc', base = 'rz'}
 t.stunfisk.since = {G = 'spsc', base = 'nb'}
+t.braviary.since = {H = 'lpa', base = 'nb'}
 t.tornadus.since = {T = 'n2b2', base = 'nb'}
 t.kyurem.since = {N = 'n2b2', B = 'n2b2', base = 'nb'}
 t.meloetta.since = {D = 'nb', base = 'nb'}
@@ -688,6 +709,7 @@ t[50] = t.diglett
 t[51] = t.dugtrio
 t[52] = t.meowth
 t[53] = t.persian
+t[58] = t.growlithe
 t[74] = t.geodude
 t[75] = t.graveler
 t[76] = t.golem
@@ -722,6 +744,7 @@ t[554] = t.darumaka
 t[555] = t.darmanitan
 t[562] = t.yamask
 t[618] = t.stunfisk
+t[628] = t.braviary
 t[641] = t.tornadus
 t[642] = t.thundurus
 t[645] = t.landorus

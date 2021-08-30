@@ -1802,6 +1802,8 @@ t.spectrier = {name = 'Spectrier', ndex = 897, type1 = 'spettro', type2 = 'spett
 t[897] = t.spectrier
 t.calyrex = {name = 'Calyrex', ndex = 898, type1 = 'psico', type2 = 'erba'}
 t[898] = t.calyrex
+t.wyrdeer = {name = 'Wyrdeer', ndex = nil, type1 = 'normale', type2 = 'psico'}
+t.basculegion = {name = 'Basculegion', ndex = nil, type1 = 'acqua', type2 = 'spettro'}
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
@@ -1830,6 +1832,8 @@ t.meowthG = {name = 'Meowth', ndex = 52, type1 = 'acciaio', type2 = 'acciaio'}
 t['052G'] = t.meowthG
 t.persianA = {name = 'Persian', ndex = 53, type1 = 'buio', type2 = 'buio'}
 t['053A'] = t.persianA
+t.growlitheH = {name = 'Growlithe', ndex = 58, type1 = 'fuoco', type2 = 'roccia'}
+t['058H'] = t.growlitheH
 t.geodudeA = {name = 'Geodude', ndex = 74, type1 = 'roccia', type2 = 'elettro'}
 t['074A'] = t.geodudeA
 t.gravelerA = {name = 'Graveler', ndex = 75, type1 = 'roccia', type2 = 'elettro'}
@@ -1945,6 +1949,8 @@ t.yamaskG = {name = 'Yamask', ndex = 562, type1 = 'terra', type2 = 'spettro'}
 t['562G'] = t.yamaskG
 t.stunfiskG = {name = 'Stunfisk', ndex = 618, type1 = 'terra', type2 = 'acciaio'}
 t['618G'] = t.stunfiskG
+t.braviaryH = {name = 'Braviary', ndex = 628, type1 = 'psico', type2 = 'volante'}
+t['628H'] = t.braviaryH
 t.meloettaD = {name = 'Meloetta', ndex = 648, type1 = 'normale', type2 = 'lotta'}
 t['648D'] = t.meloettaD
 t.hoopaL = {name = 'Hoopa', ndex = 720, type1 = 'psico', type2 = 'buio'}
