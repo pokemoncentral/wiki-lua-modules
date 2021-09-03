@@ -15,7 +15,7 @@ The basic function is called box, and has the following arguments:
 - 1: displayed text.
 - 2: link target, Defaults to text.
 - 3: gradient color, from dark to normal, right-to-left.
-- 4: Space-spearated string of predefined configurations names. Optional,
+- 4: Space-separated string of predefined configurations names. Optional,
     defaults to no predefined configurations.
 - 5: Space-separated list of CSS classes. Optional, defaults to no CSS classes.
 - 6: CSS styles, in the format of an HTML style attribute values. Optional,
@@ -33,7 +33,7 @@ listed below:
 - TypeBox: a box displaying a type, with its color as background. Arguments:
 
     - 1: The type. Defaults to 'Sconosciuto'.
-    - 2: Space-spearated string of predefined configurations names. Optional,
+    - 2: Space-separated string of predefined configurations names. Optional,
         defaults to no predefined configurations.
     - 3: Space-separated list of CSS classes. Optional, defaults to no CSS
         classes.
@@ -42,11 +42,23 @@ listed below:
 
     Example: {{#invoke: Box | typeBox | Elettro | thick | | margin: 3em; }}
 
+- CatBox: a box displaying a move category, with its color as background. Arguments:
+
+    - 1: The category. Defaults to 'Stato'.
+    - 2: Space-separated string of predefined configurations names. Optional,
+        defaults to no predefined configurations.
+    - 3: Space-separated list of CSS classes. Optional, defaults to no CSS
+        classes.
+    - 4: CSS styles, in the format of an HTML style attribute values. Optional,
+        defaults to no CSS styles.
+
+    Example: {{#invoke: Box | catBox | Speciale | thin | | margin: 3em; }}
+
 - EggBox: a box displaying an egg grup, in its color as a background. Arguments:
 
     - 1: The egg group, without ' (Gruppo Uova)' suffix. Defaults to
         'Sconosciuto (Gruppo Uova)'.
-    - 2: Space-spearated string of predefined configurations names. Optional,
+    - 2: Space-separated string of predefined configurations names. Optional,
         defaults to no predefined configurations.
     - 3: Space-separated list of CSS classes. Optional, defaults to no CSS
         classes.
@@ -194,7 +206,7 @@ b.shortHands = {
     --[[
         Box displaying a type. Arguments:
             - tipo: The type, defaults to 'Sconosciuto'
-            - pdfs: Table or space-spearated string of predefined
+            - pdfs: Table or space-separated string of predefined
                 configurations names. Optional, defaults to {}.
             - classes: Table/string of CSS classes, in the format parseClasses
                 and printClasses produce respectively. Optional, defaults to {}.
@@ -213,10 +225,26 @@ b.shortHands = {
     end,
 
     --[[
-        Box displaying anegg group. Arguments:
+        Box displaying a damage category. Arguments:
+            - cat: The category. Defaults to 'Stato'
+            - pdfs: Table or space-separated string of predefined
+                configurations names. Optional, defaults to {}.
+            - classes: Table/string of CSS classes, in the format parseClasses
+                and printClasses produce respectively. Optional, defaults to {}.
+            - styles: Table/string of CSS styles, in the format parseStyles and
+                printStyles produce respectively. Optional, defaults to {}.
+    --]]
+    cat = function(cat, pdfs, classes, styles)
+        cat = string.fu(string.trim(cat or 'Stato'))
+        return cat, 'Categoria danno#' .. cat, cat, pdfs,
+            classes, styles, 'FFF'
+    end,
+
+    --[[
+        Box displaying an egg group. Arguments:
             - egg: The egg group, without ' (Gruppo Uova)' suffix. Defaults to
                 'Sconosciuto (Gruppo Uova)'
-            - pdfs: Table or space-spearated string of predefined
+            - pdfs: Table or space-separated string of predefined
                 configurations names. Optional, defaults to {}.
             - classes: Table/string of CSS classes, in the format parseClasses
                 and printClasses produce respectively. Optional, defaults to {}.
@@ -238,7 +266,7 @@ Main function creating a box. Lua interface. Arguments:
 - link: link target, Defaults to text.
 - color: gradient color, from dark to normal, right-to-left. If nil, doesn't
     apply any background (leaving it to classes).
-- pdfs: Table or space-spearated string of predefined configurations names.
+- pdfs: Table or space-separated string of predefined configurations names.
     Optional, defaults to {}.
 - classes: Table/string of CSS classes, in the format parseClasses and
     printClasses produce respectively. Optional, defaults to {}.
