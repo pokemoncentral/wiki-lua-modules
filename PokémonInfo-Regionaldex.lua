@@ -42,11 +42,11 @@ end
 local insOld = {}
 
 insOld.johto = function(newDex, oldDex)
-	return addtt(newDex, oldDex, ' nella seconda generazione')
+	return addtt(newDex, oldDex, ' in seconda generazione')
 end
 
 insOld.hoenn = function(newDex, oldDex)
-	return addtt(newDex, oldDex, ' nella terza generazione')
+	return addtt(newDex, oldDex, ' in terza generazione')
 end
 
 insOld.sinnoh = function(newDex, oldDex)
@@ -95,7 +95,7 @@ local dexlist = function(dexes)
 		return nil
 	end
 	local store = {}
-	local str = [=[<span><div class="small-font">'''[[Elenco Pokémon secondo il Pokédex ${pref}${reg}|<span style="color:#000">${reg}</span>]]'''</div>#${rdex}</span>]=]
+	local str = [=[<span><div class="small-font">'''[[Elenco Pokémon secondo il Pokédex ${pref}${reg}|<span class="black-text">${reg}</span>]]'''</div>#${rdex}</span>]=]
 	local kalos = [=[<span><div class="small-font">'''[[Elenco Pokémon secondo i Pokédex di Kalos#Pokédex di Kalos ${reg}|<span style="color:#${c}">Kalos</span>]]'''</div>#${ttdex}</span>]=]
 	for region, rdex in pairs(dexes) do
 		if region:find('kalos') then
@@ -149,12 +149,7 @@ end
 
 rdex.regionaldex = function(frame)
 	local ndex = string.trim(frame.args[1]) or '000'
-	return string.interp([=[| colspan="2" | <div>[[Pokédex Regionale|<span style="color:#000;">'''Pokédex Regionali'''</span>]]</div>
-<div class="roundy flex-row-center-around flex-wrap" style="background: #fff; padding-top: 0.5ex; padding-bottom: 0.5ex;">${dexlist}</div>
-]=],
-{
-	dexlist = dexlist(search(ndex)) or 'In nessun Pokédex Regionale'
-})
+	return dexlist(search(ndex)) or 'In nessun Pokédex Regionale'
 end
 
 rdex.Regionaldex, rdex.RegionalDex = rdex.regionaldex, rdex.regionaldex
