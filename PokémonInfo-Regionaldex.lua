@@ -149,7 +149,7 @@ end
 
 rdex.regionaldex = function(frame)
 	local ndex = string.trim(frame.args[1]) or '000'
-	return dexlist(search(ndex)) or 'In nessun Pokédex Regionale'
+	return dexlist(search(ndex)) or 'In nessun Pokédex regionale'
 end
 
 rdex.Regionaldex, rdex.RegionalDex = rdex.regionaldex, rdex.regionaldex
