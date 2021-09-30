@@ -683,5 +683,8 @@ c['Safari amici'], c.safari_amici, c.Safari_amici = c['safari amici'], c['safari
 c['Parco amici'], c['parco amici'], c.Parco_amici, c.parco_amici
     = c['zona_terra'], c['zona_terra'], c['zona_terra'], c['zona_terra']
 c.HOME, c.Home, c.home = c.agilita, c.agilita, c.agilita
+c.teamrocket = function(frame) return _colore(frame.args[1] or 'normale', 'B92C1A', '4F5253', 'EAEAEA') end
+c.TeamRocket, c['team rocket'], c['Team Rocket'], c.team_rocket, c.Team_Rocket
+    = c.teamrocket, c.teamrocket, c.teamrocket, c.teamrocket, c.teamrocket
 
 return c
