@@ -1937,6 +1937,8 @@ t.arceusB = {name = 'Arceus', ndex = 493, type1 = 'buio', type2 = 'buio'}
 t['493B'] = t.arceusB
 t.arceusFo = {name = 'Arceus', ndex = 493, type1 = 'folletto', type2 = 'folletto'}
 t['493Fo'] = t.arceusFo
+t.arceusSc = {name = 'Arceus', ndex = 493, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+t['493Sc'] = t.arceusSc
 t.darumakaG = {name = 'Darumaka', ndex = 554, type1 = 'ghiaccio', type2 = 'ghiaccio'}
 t['554G'] = t.darumakaG
 t.darmanitanZ = {name = 'Darmanitan', ndex = 555, type1 = 'fuoco', type2 = 'psico'}

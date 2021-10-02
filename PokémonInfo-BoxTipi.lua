@@ -73,7 +73,7 @@ raggruppati in due per riga
 
 local printBoxes = function(boxes)
 	local acc = table.map(boxes, tostring)
-	table.insert(acc, 1, '<div class="roundy flex flex-row flex-wrap flex-main-stretch flex-items-center" style="background: #FFF; padding: 0.2em;">')
+	table.insert(acc, 1, '<div class="roundy white-bg flex flex-row flex-wrap flex-main-stretch flex-items-center" style="padding: 0.2em;">')
 	table.insert(acc, '</div>')
 
 	return table.concat(acc)
