@@ -1278,7 +1278,7 @@ evo["mime jr."] = {
 		},
 	}
 }
-evo["mr. mime"] = evo["mime jr."], evo["mime jr."]
+evo["mr. mime"] = evo["mime jr."]
 evo[439], evo[122] = evo["mime jr."], evo["mime jr."]
 evo["mr. rime"], evo["mr. mimeG"] = evo["mime jr."], evo["mime jr."]
 evo['122G'], evo[866] = evo["mr. mimeG"], evo["mr. mimeG"]
