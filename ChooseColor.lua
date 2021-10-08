@@ -4,6 +4,7 @@ local tab = require('Wikilib-tables')  -- luacheck: no unused
 local w = require('Wikilib')
 local colorMod = require("Colore-data")
 local colorschemeMod = require("Colorscheme-data")
+local pd = require('PokémonData')
 
 local function _checkCol(col)
 	if col <= 0.03928 then
@@ -65,7 +66,6 @@ p.forGradBg = function(frame)
 end
 
 -- given two background module colors, return the most appropriate text color
--- calculated on the midpoint
 p.forModGradBg = function(frame)
 	local args = w.trimAll(frame.args)
 	local col1 = args[1]
@@ -88,6 +88,18 @@ p.forModCsGradBg = function(frame)
 	local hex2 = colorschemeMod[col]['dark']
 
 	return p.forGradBg{args={hex1, hex2}}
+end
+
+-- when colors are types of a Pokémon; accepts both ndex and name
+p.forPokeTypes = function(frame)
+	local args = w.trimAll(frame.args)
+	local poke = args[1]
+	local gen = args.gen or ''
+
+	local type1 = pd.getType1{args={poke, gen = gen}}
+	local type2 = pd.getType2{args={poke, gen = gen}}
+
+	return p.forModGradBg{args={type1, type2}}
 end
 
 return p
