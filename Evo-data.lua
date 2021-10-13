@@ -5384,7 +5384,7 @@ evo.goomy = {
 					name = 'goodra',
 					method = evo.methods.LEVEL,
 					[evo.methods.LEVEL] = 50,
-					conditions = { [evo.conditions.OTHER] = "Se [[Condizione atmosferica#Pioggia battente|piove]] o c'è [[Condizione atmosferica#Nebbia|nebbia]] nell'overworld" },
+					conditions = { [evo.conditions.OTHER] = "Se [[Pioggia battente|piove]] o c'è [[Nebbia (condizione atmosferica)|nebbia]] nell'overworld" },
 				}
 			}
 		}
@@ -7133,19 +7133,19 @@ efs.castform = {
 	{ {
 		ndex = '351S',
 		name = 'castformS',
-		notes = 'Sotto il [[Condizione atmosferica#Luce solare intensa|sole]]',
+		notes = 'Sotto il [[Luce solare intensa|sole]]',
 		method = efs.methods.NONE,
 	} },
 	{ {
 		ndex = '351P',
 		name = 'castformP',
-		notes = 'Sotto la [[Condizione atmosferica#Pioggia battente|pioggia]]',
+		notes = 'Sotto la [[Pioggia battente|pioggia]]',
 		method = efs.methods.NONE,
 	} },
 	{ {
 		ndex = '351N',
 		name = 'castformN',
-		notes = 'Sotto la [[Condizione atmosferica#Grandine|grandine]]',
+		notes = 'Sotto la [[Grandine (condizione atmosferica)|grandine]]',
 		method = efs.methods.NONE,
 	} },
 }
@@ -7571,7 +7571,7 @@ efs.cherrim = {
 	{ {
 		ndex = '421S',
 		name = 'cherrimS',
-		notes = 'Sotto il [[Condizione atmosferica#Luce solare intensa|sole]]',
+		notes = 'Sotto il [[Luce solare intensa|sole]]',
 		method = efs.methods.NONE,
 	} },
 }
