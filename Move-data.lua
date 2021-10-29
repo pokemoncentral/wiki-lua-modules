@@ -36,7 +36,7 @@ t.bottintesta = {name = 'Bottintesta', type = 'normale', category = 'fisico', po
 t.incornata = {name = 'Incornata', type = 'normale', category = 'fisico', power = 65, accuracy = 100, pp = 25, gen = 1}
 t.furia = {name = 'Furia', type = 'normale', category = 'fisico', power = 15, accuracy = 85, pp = 20, gen = 1}
 t.perforcorno = {name = 'Perforcorno', type = 'normale', category = 'fisico', power = '&mdash;', accuracy = '&mdash;', pp = 5, gen = 1}
-t.azione = {name = 'Azione', type = 'normale', category = 'fisico', power = 40, accuracy = 100, pp = 35, gen = 1}
+t.azione = {name = 'Azione', type = 'normale', category = 'fisico', power = {[1] = 35, [5] = 50, [7] = 40}, accuracy = {[1] = 95, [5] = 100}, pp = 35, gen = 1}
 t.corposcontro = {name = 'Corposcontro', type = 'normale', category = 'fisico', power = 85, accuracy = 100, pp = 15, gen = 1}
 t.avvolgibotta = {name = 'Avvolgibotta', type = 'normale', category = 'fisico', power = 15, accuracy = 90, pp = 20, gen = 1}
 t.riduttore = {name = 'Riduttore', type = 'normale', category = 'fisico', power = 90, accuracy = 85, pp = 20, gen = 1}
@@ -565,7 +565,7 @@ t.scagliagelo = {name = 'Scagliagelo', type = 'ghiaccio', category = 'fisico', p
 t['generatore v'] = {name = 'Generatore V', type = 'fuoco', category = 'fisico', power = 180, accuracy = 95, pp = 5, gen = 5}
 t.incrofiamma = {name = 'Incrofiamma', type = 'fuoco', category = 'speciale', power = 100, accuracy = 100, pp = 5, gen = 5}
 t.incrotuono = {name = 'Incrotuono', type = 'elettro', category = 'fisico', power = 100, accuracy = 100, pp = 5, gen = 5}
-t.schiacciatuffo = {name = 'Schiacciatuffo', type = 'lotta', category = 'fisico', power = 80, accuracy = 95, pp = 10, gen = 6}
+t.schiacciatuffo = {name = 'Schiacciatuffo', type = 'lotta', category = 'fisico', power = {[6] = 80, [7] = 100}, accuracy = 95, pp = 10, gen = 6}
 t.ribaltappeto = {name = 'Ribaltappeto', type = 'lotta', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 6}
 t.rutto = {name = 'Rutto', type = 'veleno', category = 'speciale', power = 120, accuracy = 90, pp = 10, gen = 6}
 t.aracampo = {name = 'Aracampo', type = 'terra', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 6}

@@ -14,13 +14,13 @@ local libdata = require("Wikilib-data")
 local ms = require('MiniSprite')
 local links = require('Links')
 local css = require('Css')
+local cc = require('ChooseColor')
 local resp = require('Resp')
 local gendata = require("Gens-data")
 local blackabbr = require("Blackabbrev-data")
 local pokes = require("Poké-data")
 local groups = require("PokéEggGroup-data")
 local useless = require("UselessForms-data")
-local cc = require('Modulo:ChooseColor')
 
 --[[
 
