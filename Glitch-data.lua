@@ -51,7 +51,7 @@ g.RB = {
 	{hex = 0xCA, spr = 'AniUccelloMS1.gif', name = 'PC4SH', type1 = 'Normale', type2 = 'Terra'},
 	{hex = 0xCB, spr = 'AniUccelloMS1.gif', name = 'P', type1 = 'Normale', type2 = 'Volante'},
 	{hex = 0xCC, spr = 'AniMostroMS1.gif', name = 'PkMn ◣ n', type1 = 'Lotta'},
-	{hex = 0xCD, spr = 'AniBallMS1.gif', name = 'Trainer (Pokémon Glitch)', type1 = 'Elettro',
+	{hex = 0xCD, spr = 'AniBallMS1.gif', name = 'Trainer (Pokémon glitch)', type1 = 'Elettro',
 			nameDisplay = 'Trainer'},
 
 	{hex = 0xCE, spr = 'AniDragoMS1.gif', name = '▼ W G d', type1 = 'Veleno'},
@@ -200,11 +200,11 @@ g.OA = {
 		type2 = 'Glitch'},
 	{hex = 0xFC, spr = 'AniGlitchMS2.gif', name = '????? (FC)', type1 = 'Psico',
 		type2 = 'Glitch'},
-	{hex = 0xFD, spr = 'AniUovoMS2.gif', name = 'Uovo Glitch', type1 = '???'},
+	{hex = 0xFD, spr = 'AniUovoMS2.gif', name = 'Uovo glitch', type1 = '???'},
 	{hex = 0xFE, spr = 'AniGlitchMS2.gif', name = '????? (FE)', type1 = 'B'},
 	{hex = 0xFF, spr = 'AniGlitchMS2.gif', name = '????? (FF)', type1 = "'l) m) ZM",
 			type2 = 'Normale (glitch)', type2Display = 'Normale'},
-	{hex = '??', spr = 'AniUnownMS2.gif', name = 'Unown Glitch', type1 = '???'}
+	{hex = '??', spr = 'AniUnownMS2.gif', name = 'Unown glitch', type1 = '???'}
 }
 
 --[[
@@ -229,9 +229,9 @@ table.insert(g.C, 5, {hex = 0xFF, spr = 'AniGlitchMS2.gif', name = '????? (FF)',
 g.RZS = {
 	{hex = {0x0000}, spr = 'Ani900MS.png', name = '??????????', type1 = 'Normale'},
 	{hex = 0x019C, spr = 'AniUovoMS.gif', name = '-', type1 = 'Grinta', type2 = 'Grazia',
-			nameDisplay = '- (Pokémon Glitch)'},
+			nameDisplay = '- (Pokémon glitch)'},
 	{hex = {0x00FC}, spr = '000MS5.png', name = '?', type1 = 'Normale',
-			nameDisplay = '? (Pokémon Glitch)'},
+			nameDisplay = '? (Pokémon glitch)'},
 	{hex = '???', spr = 'AniUovoMS.gif', name = 'Uovo Peste', type1 = 'Sconosciuto'}
 }
 
@@ -278,7 +278,7 @@ g[5] = {
 g[6] = {
 	{hex = '???', spr = 'Uovo Peste Sprite Zaino.png', name = 'Uovo Peste',
 			type1 = 'Normale', nameDisplay = 'Uovo Mistero'},
-	{hex = {0x02D4}, spr = 'XYCaricamentoMS.png', name = 'Pokémon Glitch 724+',
+	{hex = {0x02D4}, spr = 'XYCaricamentoMS.png', name = 'Pokémon glitch 724+',
 			type1 = 'Normale'}
 }
 
