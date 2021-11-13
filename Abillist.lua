@@ -18,6 +18,7 @@ local resp = require('Resp')
 local pokes = require("Poké-data")
 local abils = require('PokéAbil-data')
 local gens = require("Gens-data")
+local cc = require('Modulo:ChooseColor')
 
 local mw = require('mw')
 
@@ -124,7 +125,7 @@ k.headers = {}
 -- Wikicode for list header: it takes the color name
 k.headers.makeHeader = function(color)
     return string.interp([=[{| class="sortable roundy text-center pull-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
-|- class="hidden-sm black-text"
+|- class="hidden-sm ${text}"
 ! style="padding-top: 0.5ex; padding-bottom: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
 ! Pok&eacute;mon
 ! [[Tipo|Tipi]]
@@ -132,16 +133,22 @@ k.headers.makeHeader = function(color)
 ! Seconda abilit&agrave;
 ! Abilit&agrave; speciale]=],
         {
-            bg = css.horizGradLua{type = color}
+            bg = css.horizGradLua{type = color},
+            text = cc.forModGradBg{args={color}}
         })
 end
 
 k.headers.separator = '|- class="roundy flex-sm flex-row flex-wrap flex-main-stretch flex-items-center" style="margin-top: 0.5rem;"'
 
-k.headers.footer = [[|-
-! class="text-left font-small" colspan="6" style="padding: 0.3ex 0.3em;" |
+k.headers.footer = function(color)
+    return string.interp([=[|-
+! class="text-left font-small ${text}" colspan="6" style="padding: 0.3ex 0.3em;" |
 * Le abilità in ''corsivo'' sono ottenibili solo in determinate circostanze.
-|}]]
+|}]=],
+        {
+            text = cc.forModGradBg{args={color}}
+        })
+end
 
 -- =============================== AbilEntry ===============================
 -- Class representing an entry of a Pokémon with a certain ability.
@@ -183,7 +190,7 @@ k.abillist = function(frame)
         makeEntry = k.AbilEntry.new,
         header = k.headers.makeHeader(type),
         separator = k.headers.separator,
-        footer = k.headers.footer,
+        footer = k.headers.footer(type),
     })
 end
 
