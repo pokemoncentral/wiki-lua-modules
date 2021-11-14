@@ -15,7 +15,7 @@ local abbrLib = require('Wikilib-sigle')
 local links = require('Links')
 local pokes = require("Poké-data")
 local moves = require("Move-data")
--- local tmdata = require("Machines-data")
+local tmdata = require("Machines-data")
 local forms = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
 local evolib = require('Wikilib-evos')
@@ -625,6 +625,41 @@ lib.makeEvoText = function(t)
 	return (t == "Evo" or t == "Evoluzione")
 			and 'Evo<span class="hidden-xs">luzione</span>'
 			or t
+end
+
+--[[
+
+Autocomputes the kind and number of a TM in a given game. Returns a pair
+<kind, number>, where kind is the kind of machine ("MT", "MN", "DT")
+Arguments:
+	- move: name of the move (lowercase)
+	- gen: generation in which look for the move
+	- game (optional): game in which look for the move. If not given and the
+		move appears as a TM in more than one game in that generation, this
+		function may return the tm kind and number in ANY of the games of that
+		generation
+
+--]]
+lib.getTMNum = function(move, gen, game)
+	local tmgendata = tmdata[gen]
+
+	if game then
+		tmgendata = table.map(tmgendata, function(val)
+			return table.map(val, function(singlemove)
+				if type(singlemove) == "table" then
+					local found = table.find(singlemove, function(g) return g[1] == game end)
+					return found and singlemove[found][2] or nil
+				else
+					return singlemove
+				end
+			end)
+		end)
+	end
+
+	local tmkind, tmnum, _ = table.deepSearch(tmgendata, move)
+	if tmnum then
+		return tmkind, string.nFigures(tmnum, 2)
+	end
 end
 
 return lib

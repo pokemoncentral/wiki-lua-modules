@@ -38,7 +38,8 @@ stds.wiki = {
                 keysAlias = {},
                 groupBy = {},
                 unpack = {},
-                empty = {}
+                empty = {},
+                find = {}
             }
         },
 

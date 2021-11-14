@@ -490,6 +490,20 @@ end
 table.non_int_pairs = t.nonIntPairs
 t.nonIntPairs, t.non_int_pairs = table.nonIntPairs, table.nonIntPairs
 
+-- Predicate search. Returns the index of any value satisfying the predicate,
+-- nil if no such values exists in the table. The last parameter iter is
+-- optional and specifies the iterator to use (pairs is the default). The
+-- predicate takes as arguments the value and the key (the order is reversed
+-- because often the key isn't needed)
+table.find = function(tab, pred, iter)
+    iter = iter or pairs
+    for k, v in iter(tab) do
+        if pred(v, k) then
+            return k
+        end
+    end
+    return nil
+end
 
 -- Linear search. Returns the index of the passed value if found, else nil.
 table.search = function(tab, value)

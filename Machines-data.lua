@@ -111,26 +111,66 @@ m[7].MT = {'cuordileone', 'dragartigli', 'psicoshock', 'calmamente', 'boato', 't
 	'surf', 'urlorabbia', 'naturforza', 'neropulsar', 'cascata', 'magibrillio', 'confidenza'}
 
 m[8] = {}
-m[8].MT = {'megacalcio', 'giornopaga', 'fuocopugno', 'gelopugno',
-	'tuonopugno', 'volo', 'missilspillo', 'iper raggio', 'gigaimpatto',
-	'fogliamagica', 'solarraggio', 'lama solare', 'turbofuoco', 'tuononda',
-	'fossa', 'stridio', 'schermoluce', 'riflesso', 'salvaguardia',
-	'autodistruzione', 'riposo', 'frana', 'furto', 'russare', 'protezione',
-	'visotruce', 'ventogelato', 'gigassorbimento', 'fascino', 'alacciaio',
-	'attrazione', 'terrempesta', 'pioggiadanza', 'giornodisole', 'grandine',
-	'mulinello', 'picchiaduro', 'fuocofatuo', 'facciata', 'comete', 'altruismo',
-	'vendetta', 'breccia', 'esclusiva', 'sub', 'palla clima', 'falselacrime',
-	'rocciotomba', 'sabbiotomba', 'semitraglia', 'gelolancia', 'rimbalzo',
-	'colpodifango', 'cadutamassi', 'acquadisale', 'retromarcia', 'rivincita',
-	'garanzia', 'lancio', 'barattoforza', 'barattoscudo', 'velociscambio',
-	'assorbipugno', 'slavina', 'ombrartigli', 'fulmindenti', 'gelodenti',
-	'rogodenti', 'psicotaglio', 'distortozona', 'mirabilzona', 'magicozona',
-	'velenocroce', 'velenoshock', 'calciobasso', 'coro', 'sciagura',
-	'acrobazia', 'nemesi', 'invertivolt', 'battiterra', 'elettrotela',
-	'conchilama', 'spazzasberla', 'urlorabbia', 'spettrotuffo', 'assorbibacio',
-	'campo erboso', 'campo nebbioso', 'campo elettrico', 'campo psichico',
-	'magifiamma', 'elettromistero', 'falsofinale', 'eterelama', 'sottilcorno',
-	'vorticolpo', 'battipiedi', 'vastoimpatto', [0] = 'megapugno'}
+local mt8spsc = {
+	'megacalcio', 'giornopaga', 'fuocopugno', 'gelopugno', 'tuonopugno',
+	'volo', 'missilspillo', 'iper raggio', 'gigaimpatto', 'fogliamagica',
+	'solarraggio', 'lama solare', 'turbofuoco', 'tuononda', 'fossa',
+	'stridio', 'schermoluce', 'riflesso', 'salvaguardia', 'autodistruzione',
+	'riposo', 'frana', 'furto', 'russare', 'protezione', 'visotruce',
+	'ventogelato', 'gigassorbimento', 'fascino', 'alacciaio', 'attrazione',
+	'terrempesta', 'pioggiadanza', 'giornodisole', 'grandine', 'mulinello',
+	'picchiaduro', 'fuocofatuo', 'facciata', 'comete', 'altruismo',
+	'vendetta', 'breccia', 'esclusiva', 'sub', 'palla clima',
+	'falselacrime', 'rocciotomba', 'sabbiotomba', 'semitraglia',
+	'gelolancia', 'rimbalzo', 'colpodifango', 'cadutamassi', 'acquadisale',
+	'retromarcia', 'rivincita', 'garanzia', 'lancio', 'barattoforza',
+	'barattoscudo', 'velociscambio', 'assorbipugno', 'slavina',
+	'ombrartigli', 'fulmindenti', 'gelodenti', 'rogodenti', 'psicotaglio',
+	'distortozona', 'mirabilzona', 'magicozona', 'velenocroce',
+	'velenoshock', 'calciobasso', 'coro', 'sciagura', 'acrobazia', 'nemesi',
+	'invertivolt', 'battiterra', 'elettrotela', 'conchilama', 'spazzasberla',
+	'urlorabbia', 'spettrotuffo', 'assorbibacio', 'campo erboso',
+	'campo nebbioso', 'campo elettrico', 'campo psichico', 'magifiamma',
+	'elettromistero', 'falsofinale', 'eterelama', 'sottilcorno', 'vorticolpo',
+	'battipiedi', 'vastoimpatto', [0] = 'megapugno'}
+local mt8dlps = {
+	'centripugno', 'dragartigli', 'idropulsar', 'calmamente', 'boato',
+	'tossina', 'grandine', 'granfisico', 'semitraglia', 'cuordileone',
+	'giornodisole', 'provocazione', 'geloraggio', 'bora', 'iper raggio',
+	'schermoluce', 'protezione', 'pioggiadanza', 'gigassorbimento',
+	'salvaguardia', 'magibrillio', 'solarraggio', 'codacciaio', 'fulmine',
+	'tuono', 'terremoto', 'calciobasso', 'fossa', 'psichico', 'palla ombra',
+	'breccia', 'doppioteam', 'riflesso', 'ondashock', 'lanciafiamme',
+	'fangobomba', 'terrempesta', 'fuocobomba', 'rocciotomba', 'aeroassalto',
+	'attaccalite', 'facciata', 'invertivolt', 'riposo', 'attrazione', 'furto',
+	'alacciaio', 'baratto', 'idrovampata', 'vampata', 'trespolo', 'focalcolpo',
+	'energipalla', 'falsofinale', 'acquadisale', 'lancio', 'raggioscossa',
+	'resistenza', 'dragopulsar', 'assorbipugno', 'fuocofatuo', 'ronzio',
+	'congiura', 'esplosione', 'ombrartigli', 'rivincita', 'riciclo',
+	'gigaimpatto', 'lucidatura', 'flash', 'pietrataglio', 'slavina',
+	'tuononda', 'vortexpalla', 'danzaspada', 'levitoroccia', 'psicamisù',
+	'urlorabbia', 'neropulsar', 'frana', 'forbice x', 'sonnolalia',
+	'battiterra', 'velenpuntura', 'mangiasogni', 'laccioerboso', 'bullo',
+	'spennata', 'retromarcia', 'sostituto', 'cannonflash', 'distortozona',
+	'taglio', 'volo', 'surf', 'forza', 'scacciabruma', 'spaccaroccia',
+	'cascata', 'scalaroccia'
+}
+-- The two tables above are merged to make elements of the form
+-- { { "SpSc", <tm> }, { "DLPS", <tm> } }
+m[8].MT = {}
+for idx, tmspsc in pairs(mt8spsc) do
+	local tmdlps = mt8dlps[idx]
+	if tmdlps then
+		m[8].MT[idx] = { { "SpSc", tmspsc }, { "DLPS", tmdlps } }
+	else
+		m[8].MT[idx] = { { "SpSc", tmspsc } }
+	end
+end
+for idx, tmdlps in pairs(mt8dlps) do
+	if not m[8].MT[idx] then
+		m[8].MT[idx] = { { "DLPS", tmdlps } }
+	end
+end
 m[8].DT = {'corposcontro', 'lanciafiamme', 'idropompa', 'surf',
 	'geloraggio', 'bora', 'colpo basso', 'fulmine', 'tuono', 'terremoto',
 	'psichico', 'agilità', 'focalenergia', 'metronomo', 'fuocobomba', 'cascata',
@@ -152,5 +192,8 @@ m[8].DT = {'corposcontro', 'lanciafiamme', 'idropompa', 'surf',
 	'velenotrappola', 'magibrillio', 'braccioteso', 'forza equina',
 	'colpo infernale', 'sferapolline', 'psicozanna', 'idrobreccia',
 	'schiacciacorpo', [0] = 'danzaspada'}
+for k, v in pairs(m[8].DT) do
+	m[8].DT[k] = { { "SpSc", v } }
+end
 
 return m
