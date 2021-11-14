@@ -5,18 +5,20 @@ Below are described parameters of each kind of entry.
 
 NOTE: STAB is autocomputed if empty. If you want to force an empty value (eg.
 because autocompting is wrong) you should use the special value "no". To
-autocopmute the stab the Pokémon name is taken as ROOTPAGENAME, so outside of
+autocompute the stab the Pokémon name is taken as ROOTPAGENAME, so outside of
 Pokémon (sub)pages this will result in a script error. To fix this, just force
 a value for the stab in every entry.
 
 Level entry:
 1 is the move name. 2 is the STAB (if empty is autocomputed),
-3 are optional notes, 4 is the level
+3 are optional notes, 4 is the level in SpSc, 5 is the level
+in BDSP
 
 Tm entry:
 1 is the move name, 2 is the STAB (if empty is autocomputed),
-3 are optional notes, 4 is the MT of the move (if empty is
-autocomputed)
+3 are optional notes, 4 is the MT of the move in SpSc, 5 is
+the MT of the move in DLPS. Both are autocomputed if empty, to
+force empty use the value "no"
 
 Breed entry:
 1 is the list of parents, 2 is the move name, 3 is the STAB
@@ -25,6 +27,7 @@ Breed entry:
 Tutor entry:
 1 is the move name. 2 is the STAB (if empty is autocomputed),
 3 are optional notes, 4 is yes/no for SpSc, 5 is yes/no for IA
+6 is yes/no for DLPS
 
 Preevo entry:
 1 is the move name. 2 is the STAB (if empty is autocomputed),
@@ -45,11 +48,13 @@ local txt = require('Wikilib-strings')			-- luacheck: no unused
 local lib = require('Wikilib-learnlists')
 local multigen = require('Wikilib-multigen')
 local moves = require("Move-data")
-local mtdata = require("Machines-data")
+local sup = require("Sup-data")
 
 local strings = {
-	TMENTRY = [=[|-
-| class="black-text" style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:${img} ${tipo} VIII Sprite Zaino.png]]</span>[[${p1}]]]=],
+	TMENTRYCELL = [=[|-
+| class="black-text" style="padding: 0.1em 0.3em;" | ${content} ]=],
+	TMIMGLINK = [=[<span class="hidden-xs">[[File:${kind} ${tipo} VIII Sprite Zaino.png]]</span>[[${kind}${num}]] ]=],
+	TMSLASH = [[&nbsp;/&nbsp;]],
 	BREEDENTRY = '|-\n| style="padding: 0.1em 0.3em;" | ${p1}',
 	-- EVENTENTRY = '|-\n| style="padding: 0.1em 0.3em;" | ${p1}${p10}',
 }
@@ -79,7 +84,7 @@ z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return table.concat{
 		'|-\n',
-		lib.gameslevel(lib.makeEvoText(p[4])),
+		lib.gameslevel(lib.makeEvoText(p[4]), lib.makeEvoText(p[5])),
 		entry(p[1] or 'Geloraggio', p[2], lib.makeNotes(p[3] or ''))
 	}
 end
@@ -89,20 +94,60 @@ z.Level = z.level
 z.tm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
 	local movename = p[1] or "geloraggio"
-	-- Autocompute the MT/DT number
-	local tmkind, tmnum
-	if p[4] then
-		tmkind, tmnum = string.match(p[4], '^([MD][TN])(%d+)')
-	else
-		tmkind, tmnum = table.deepSearch(mtdata[8], string.lower(movename))
+
+	-- Autocompute the MT/DT number for both SpSc and DLPS
+	local tmkind1, tmnum1
+	if p[4] and p[4] ~= "no" then
+		tmkind1, tmnum1 = string.match(p[4], '^([MD][TN])(%d+)')
+	elseif not p[4] then
+		tmkind1, tmnum1 = lib.getTMNum(movename:lower(), 8, "SpSc")
 	end
-    return table.concat{
-		string.interp(strings.TMENTRY, {
-			img = tmkind,
-			p1 = tmkind .. tostring(tmnum),
-			tipo = string.fu(multigen.getGenValue(moves[string.lower(movename)].type, 8))
-		}),
-		entry(movename, p[2], lib.makeNotes(p[3] or '')),
+	local tmkind2, tmnum2
+	if p[5] and p[5] ~= "no" then
+		tmkind2, tmnum2 = string.match(p[5], '^([MD][TN])(%d+)')
+	elseif not p[5] then
+		tmkind2, tmnum2 = lib.getTMNum(movename:lower(), 8, "DLPS")
+	end
+
+	local movetype = string.fu(multigen.getGenValue(moves[string.lower(movename)].type, 8))
+	local cellcnt, notes
+	if tmkind1 == tmkind2 and tmnum1 == tmnum2 then
+		-- Same MT in both games
+		print(movename)
+		cellcnt = string.interp(strings.TMIMGLINK, {
+			kind = tmkind1,
+			num = tostring(tmnum1),
+			tipo = movetype,
+		})
+		notes = ""
+	elseif not tmkind1 or not tmkind2 then
+		-- MT only in one game
+		notes = tmkind1 and "SpSc" or "DLPS"
+		local tmkind = tmkind1 or tmkind2
+		local tmnum = tmnum1 or tmnum2
+		cellcnt = string.interp(strings.TMIMGLINK, {
+			kind = tmkind,
+			num = tostring(tmnum),
+			tipo = movetype,
+		}) .. sup[notes]
+	else
+		-- MT in both games, but different numbers
+		local tm1str = string.interp(strings.TMIMGLINK, {
+			kind = tmkind1,
+			num = tostring(tmnum1),
+			tipo = movetype,
+		}) .. sup.SpSc
+		local tm2str = string.interp(strings.TMIMGLINK, {
+			kind = tmkind2,
+			num = tostring(tmnum2),
+			tipo = movetype,
+		}) .. sup.DLPS
+		cellcnt = table.concat({tm1str, strings.TMSLASH, tm2str})
+	end
+
+	return table.concat{
+		string.interp(strings.TMENTRYCELL, { content = cellcnt }),
+		entry(movename, p[2], lib.makeNotes(p[3] or notes or '')),
 	}
 end
 z.Tm = z.tm
@@ -128,7 +173,7 @@ z.Breed = z.breed
 z.tutor = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return table.concat{
-		lib.tutorgames{ {'SpSc', p[4]}, {'IA', p[5]} },
+		lib.tutorgames{ {'SpSc', p[4]}, {'IA', p[5]}, {'DLPS', p[6]} },
 		' ',
 		entry(p[1] or 'Tuono',
 			  p[2],

@@ -6,27 +6,30 @@ local mw = require('mw')
 mw.title.setTitle("Zacian")
 print(header.levelh{args={"Zacian", "folletto", "folletto", "8", "8" }})
 print(render.render{args={"Learnlist-entry8", "level", "//",
-"Anticipo", "", "", "Inizio", "//",
-"Attacco Rapido", "", "", "Inizio", "//",
-"Ferrartigli", "''", "", "Inizio", "//",
-"Gridodilotta", "", "", "Inizio", "//",
-"Morso", "", "", "Inizio", "//",
-"Spadasolenne", "", "", "Inizio", "//",
-"Lacerazione", "", "", "11", "//",
-"Danzaspada", "", "", "22", "//",
-"Metaltestata", "''", "", "33", "//",
-"Concentrazione", "", "", "44", "//",
-"Sgranocchio", "", "", "55", "//",
-"Forza Lunare", "'''", "", "66", "//",
-"Zuffa", "", "", "77", "//",
-"Gigaimpatto", "", "", "88", "//"}})
+"Anticipo", "", "", "Inizio", "Inizio", "//",
+"Attacco Rapido", "", "", "Inizio", "Inizio", "//",
+"Ferrartigli", "''", "", "Inizio", "Inizio", "//",
+"Gridodilotta", "", "", "Inizio", "Inizio", "//",
+"Morso", "", "", "Inizio", "4", "//",
+"Spadasolenne", "", "", "Inizio", "5", "//",
+"Lacerazione", "", "", "11", "11", "//",
+"Danzaspada", "", "", "22", "33", "//",
+"Metaltestata", "''", "", "33", "34", "//",
+"Concentrazione", "", "", "44", "5", "//",
+"Sgranocchio", "", "", "55", "6", "//",
+"Forza Lunare", "'''", "", "66", "7", "//",
+"Zuffa", "", "", "77", "8", "//",
+"Gigaimpatto", "", "", "88", "88", "//",
+"Surf", "", "", "2", "88", "//"}})
 print(header.levelf{args={"Zacian", "folletto", "folletto", "8", "8" }})
 
-
+mw.title.setTitle("Marshadow")
 print(header.tmh{args={"Marshadow", "spettro", "lotta", "8", "7" }})
-print(render.entry{args={"Learnlist-entry8.tm",
-"[[€Fascino|||MT29£]]"
-}})
+print(render.render{args={"Learnlist-entry8", "tm", "//",
+"Fascino", "", "", "MT29", "", "//",
+"Velociscambio", "", "", "no", "MT123", "//",
+"Scalaroccia", "", "", "", "", "//",
+"Lanciafiamme", "", "", "", "", "//"}})
 print(header.tmf{args={"Marshadow", "spettro", "lotta", "8", "7" }})
 
 

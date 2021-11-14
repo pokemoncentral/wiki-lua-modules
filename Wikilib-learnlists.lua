@@ -51,15 +51,15 @@ lib.preevott = {
 lib.games = {
 level = { { "RB", "G" }, { "OA", "C" }, { "RZ", "RFVF", "S" },
     { "DP", "Pt", "HGSS" }, { "NB", "N2B2" }, { "XY", "ROZA" },
-    { "SL", "USUL" }, { "SpSc" },
+    { "SL", "USUL" }, { "SpSc", "DLPS" },
 },
 breed = { {}, { "OA", "C" }, { "RZ", "RFVF", "S" },
     { "DP", "Pt", "HGSS" }, { "NB", "N2B2" }, { "XY", "ROZA" },
-    { "SL", "USUL" }, { "SpSc" },
+    { "SL", "USUL" }, { "SpSc", "DLPS" },
 },
 tutor = { {}, { "C" }, { "RFVF", "S", "XD" },
     { "DP", "Pt", "HGSS" }, { "NB", "N2B2" }, { "XY", "ROZA" },
-    { "SL", "USUL" }, { "SpSc", "IA" },
+    { "SL", "USUL" }, { "SpSc", "IA", "DLPS" },
 },
 }
 
@@ -385,7 +385,6 @@ pari ai livelli diversi inseriti.
 
 --]]
 lib.gameslevel = function(first, second, third)
-
 	if not third then
 		--Only one of them
 		if not second then

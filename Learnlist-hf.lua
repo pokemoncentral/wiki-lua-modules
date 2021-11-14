@@ -32,14 +32,14 @@ cs.preevo, cs.event = cs.breed, cs.breed
 local firstcell = {cs = {}, rs = {}}
 
 -- In futuro dovranno essere tutti > 1
-firstcell.cs.level = {1, 1, 1, 3, 2, 2, 2}
+firstcell.cs.level = {1, 1, 1, 3, 2, 2, 2, 2}
 firstcell.cs.tm = {1, 1, 1, 1, 1, 1, 1}
-firstcell.cs.breed = {1, 1, 1, 1, 1, 1, 1}
-firstcell.cs.tutor = {1, 1, 3, 3, 2, 2, 2, 2}
+firstcell.cs.breed = firstcell.cs.tm
+firstcell.cs.tutor = {1, 1, 3, 3, 2, 2, 2, 3}
 firstcell.cs.preevo = firstcell.cs.breed
 firstcell.cs.event = firstcell.cs.breed
 
-firstcell.rs.level = {1, 1, 1, 2, 2, 2, 2}
+firstcell.rs.level = {1, 1, 1, 2, 2, 2, 2, 2}
 firstcell.rs.breed = {1, 1, 1, 1, 1, 1, 1}
 firstcell.rs.tm = firstcell.rs.breed
 firstcell.rs.tutor = firstcell.rs.breed
@@ -108,6 +108,11 @@ games[7] = [=[
 |- class="${textcolor}"
 ! style="min-width: 2.2em;" | [[Pokémon Sole e Luna|SL]]
 ! style="min-width: 3em;" | [[Pokémon Ultrasole e Ultraluna|USUL]]]=]
+games[8] = [=[
+
+|- class="${textcolor}"
+! style="min-width: 2.2em;" | [[Pokémon Spada e Scudp|SpSc]]
+! style="min-width: 3em;" | [[Pokémon Diamante Lucente e Perla Splendente|DLPS]]]=]
 
 -- Tabella con i Pokémon baby ottenibili tramite incensi, necessaria
 -- per le righe aggiuntive del footer per le mosse Uovo
