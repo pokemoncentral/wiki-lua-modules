@@ -34,10 +34,11 @@ print(header.tmf{args={"Marshadow", "spettro", "lotta", "8", "7" }})
 
 
 print(header.tutorh{args={"Marshadow", "spettro", "lotta", "8", "7" }})
-print(render.entry{args={"Learnlist-entry8.tutor",
-"[[€Coaching|||yes|yes£]]",
-"[[€Strisciacolpo|||no|yes£]]",
-"[[€Poltergeist|no||no|yes£]]",
+print(render.render{args={"Learnlist-entry8", "tutor", "//",
+"Coaching", "", "", "yes", "yes", "no", "//",
+"Strisciacolpo", "", "", "no", "yes", "yes", "//",
+"Poltergeist", "no", "", "no", "yes", "no", "//",
+"Radicalbero", "no", "", "no", "no", "yes", "//",
 }})
 print(header.tutorf{args={"Marshadow", "spettro", "lotta", "8", "7" }})
 

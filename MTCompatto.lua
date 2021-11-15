@@ -64,7 +64,7 @@ local makeMachinesList = function(list)
 						num = num,
 						games = table.concat(table.map(move, function(movegame)
                                 local games, locmove = movegame[1], movegame[2]
-                                games = mw.text.split(games:upper(), ' ')
+                                games = mw.text.split(games, ' ')
                                 local keyGame = table.remove(games, 1)
 
 								return links[keyGame .. 'Lua']{games = games,

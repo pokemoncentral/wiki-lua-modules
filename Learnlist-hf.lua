@@ -33,14 +33,14 @@ local firstcell = {cs = {}, rs = {}}
 
 -- In futuro dovranno essere tutti > 1
 firstcell.cs.level = {1, 1, 1, 3, 2, 2, 2, 2}
-firstcell.cs.tm = {1, 1, 1, 1, 1, 1, 1}
+firstcell.cs.tm = {1, 1, 1, 1, 1, 1, 1, 1}
 firstcell.cs.breed = firstcell.cs.tm
 firstcell.cs.tutor = {1, 1, 3, 3, 2, 2, 2, 3}
 firstcell.cs.preevo = firstcell.cs.breed
 firstcell.cs.event = firstcell.cs.breed
 
 firstcell.rs.level = {1, 1, 1, 2, 2, 2, 2, 2}
-firstcell.rs.breed = {1, 1, 1, 1, 1, 1, 1}
+firstcell.rs.breed = {1, 1, 1, 1, 1, 1, 1, 1}
 firstcell.rs.tm = firstcell.rs.breed
 firstcell.rs.tutor = firstcell.rs.breed
 firstcell.rs.preevo = firstcell.rs.breed
