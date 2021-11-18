@@ -36,6 +36,7 @@ local gamesAbbr = {
 	['ultrasole e ultraluna'] = 'usul',
     ["let's go pikachu e let's go eevee"] = 'lgpe',
 	['spada e scudo'] = 'spsc',
+	['diamante lucente e perla splendente'] = 'dlps',
 	colosseum = 'colo',
 	-- XD is not necessary
 	stadium = 'stad',
@@ -49,7 +50,7 @@ table.tableKeysAlias(gamesAbbr,
         'heartgold e soulsilver', 'nero e bianco', 'nero 2 e bianco 2',
         'x e y', 'rubino omega e zaffiro alpha', 'sole e luna',
         'ultrasole e ultraluna', "let's go pikachu e let's go eevee",
-		'spada e scudo', 'stadium 2'},
+		'spada e scudo', 'diamante lucente e perla splendente', 'stadium 2'},
 	{{'rosso e verde', 'rv', 'v'}, {'rosso', 'blu', 'r', 'b'},
     {'oro e argento', 'oa'}, {'c'}, {'rubino', 'zaffiro', 'ru', 'za', 'z'},
 	{'rosso fuoco', 'verde foglia', 'rf', 'vf'}, {'s'},
@@ -63,6 +64,7 @@ table.tableKeysAlias(gamesAbbr,
         "let's go pikachu e eevee", 'pikachu', 'eevee', 'pikachu e eevee',
         'lgpe', 'pe'},
 	{'spada', 'scudo', 'sp', 'sc'},
+	{'diamante lucente', 'perla splendente', 'dl', 'ps'},
 	{'stad 2'}})
 
 --[[
@@ -135,7 +137,7 @@ table.tableKeysAlias(interpStrings,
 	{'rb'},
 	{{'verde', 'gia', 'or', 'ar', 'oa', 'cr', 'oac', 'rz', 'rfvf', 'sme', 'dp',
         'pt', 'hgss', 'nb', 'nb2', 'xy', 'roza', 'sl', 'usul', 'lgpe', 'spsc',
-		'colo', 'xd', 'stad', 'stad2'}})
+		'dlps', 'colo', 'xd', 'stad', 'stad2'}})
 
 --[[
 

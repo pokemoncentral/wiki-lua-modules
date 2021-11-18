@@ -53,7 +53,7 @@ local sup = require("Sup-data")
 local strings = {
 	TMENTRYCELL = [=[|-
 | class="black-text" style="padding: 0.1em 0.3em;" | ${content} ]=],
-	TMIMGLINK = [=[<span class="hidden-xs">[[File:${kind} ${tipo} VIII Sprite Zaino.png]]</span>[[${kind}${num}]] ]=],
+	TMIMGLINK = [=[<span class="hidden-xs">[[File:${kind} ${tipo} VIII Sprite Zaino.png]]</span>[[${kind}${num}]]]=],
 	TMSLASH = [[&nbsp;/&nbsp;]],
 	BREEDENTRY = '|-\n| style="padding: 0.1em 0.3em;" | ${p1}',
 	-- EVENTENTRY = '|-\n| style="padding: 0.1em 0.3em;" | ${p1}${p10}',
@@ -113,7 +113,6 @@ z.tm = function(frame)
 	local cellcnt, notes
 	if tmkind1 == tmkind2 and tmnum1 == tmnum2 then
 		-- Same MT in both games
-		print(movename)
 		cellcnt = string.interp(strings.TMIMGLINK, {
 			kind = tmkind1,
 			num = tostring(tmnum1),
