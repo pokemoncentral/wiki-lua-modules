@@ -27,6 +27,7 @@ local txt = require('Wikilib-strings') -- luacheck: no unused
 local multigen = require('Wikilib-multigen')
 local links = require('AbbrLink')
 local css = require('Css')
+local cc = require('ChooseColor')
 local machines = require("Machines-data")
 local gens = require("Gens-data")
 local moves = require("Move-data")
@@ -34,7 +35,7 @@ local moves = require("Move-data")
 local strings = {
 	MAIN_BOX = [=[
 <div class="roundy pull-center text-center mw-collapsible${collapsed} width-xl-55 width-md-75 width-sm-100" style="${bg} padding: 0.5ex; padding-bottom: 0.01ex;">
-<div class="roundy text-center black-text" style="font-weight: bold; margin-bottom: 0.5ex;">[[MT]] nelle varie generazioni</div>
+<div class="roundy text-center ${text}" style="font-weight: bold; margin-bottom: 0.5ex;">[[MT]] nelle varie generazioni</div>
 <div class="mw-collapsible-content">${mtGens}
 </div></div>
 [[Categoria:Mosse Macchina]]]=],
@@ -96,7 +97,10 @@ width è opzionale, default 65%
 local MTGen = function(gen, width)
 	return string.interp(strings.GEN_BOX,
 	{
-		bg = css.horizGradLua{type = gens[gen].region},
+		--bg = css.horizGradLua{type = gens[gen].region},
+		bg = string.interp("background: #{{#invoke: colore | ${color} | light}};", {
+				color = gens[gen].region
+			}),
 		wd = width or "65%",
 		gen = gens[gen].ext,
 		listmt = string.interp(strings.LIST_BOX,
@@ -166,7 +170,8 @@ m.MTCompatto = function(frame)
 	{
 		bg = css.horizGradLua{type = color},
 		collapsed = #gens > 1 and " mw-collapsed" or "",
-		mtGens = table.concat(gens)
+		mtGens = table.concat(gens),
+		text = cc.forModGradBg{args={color}}
 	})
 end
 
