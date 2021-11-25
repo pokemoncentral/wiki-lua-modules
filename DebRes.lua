@@ -362,7 +362,7 @@ dr.EffTable.__tostring = function(this)
     interpData.effBoxes = dr.EffTable.printEffBoxes({weak, std, res, imm},
             this.colors)
 
-    interpData.textcolor = cc.forModGradBg{args={this.colors.type1, this.colors.type2}}
+    interpData.textcolor = cc.forModGradBgLua(this.colors.type1, this.colors.type2)
 
     local effTab = string.interp([[<div class="roundy pull-center text-center overflow-auto width-xl-80 width-md-100 ${textcolor}" style="padding: 0.5ex; padding-bottom: 0.01ex; ${bg}">${effBoxes}${foot}</div>]], interpData)
 

@@ -73,7 +73,7 @@ cells.level = function(gen)
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
 			genl = gendata[a].ext, genr = gendata[a].roman,
 			cs = mlentry.maxCellsNumber[a],
-			textcolor = cc.forModBg{args={gendata[a].region}}}))
+			textcolor = cc.forModBgLua(gendata[a].region)}))
     end
     return table.concat(row)
 end
@@ -89,7 +89,7 @@ cells.tm = function(gen, tms)
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
 			genl = gendata[a].ext, genr = gendata[a].roman, tm = l,
 			cs = mlentry.maxCellsNumber[a],
-			textcolor = cc.forModBg{args={gendata[a].region}}}))
+			textcolor = cc.forModBgLua(gendata[a].region)}))
     end
     return table.concat(row)
 end
@@ -103,7 +103,7 @@ cells.breed = function(gen)
         table.insert(row, string.interp(str, {bg = c[gendata[a].region].normale,
 			genl = gendata[a].ext, genr = gendata[a].roman,
 			cs = mlentry.maxCellsNumber[a],
-			textcolor = cc.forModBg{args={gendata[a].region}}}))
+			textcolor = cc.forModBgLua(gendata[a].region)}))
     end
     return table.concat(row)
 end
@@ -117,7 +117,7 @@ cells.tutor = function(gen, gms)
 		if gms[a] == 'yes' then
 			table.insert(row, string.interp(str, {bg = c[games[gen][a][2]].normale,
 				game = games[gen][a][1],
-				textcolor = cc.forModBg{args={gendata[a].region}}}))
+				textcolor = cc.forModBgLua(gendata[a].region)}))
 		end
 	end
     return table.concat(row)
@@ -128,7 +128,7 @@ end
 j.headers = function(tipo, gen, kind)
 	return string.interp(j.strings.HEADERBASE, {
 		bg = css.horizGradLua{type = tipo},
-		textcolor = cc.forModGradBg{args={tipo}},
+		textcolor = cc.forModGradBgLua(tipo),
 	    rs = kind == 'event' and 1 or 2,
 	    cs = cs[kind](gen),
 	})
@@ -216,7 +216,7 @@ j.shadowh = function(frame)
 	local game = p[1] or 'xd'
 
 	local colo = string.interp('\n! class="roundytop ${textcolor}" style="background: #${bg}; width: 100px;" | [[Pokémon Colosseum|C]]\n',
-	{bg = c.colo.normale, textcolor = cc.forModBg{args={c.colo.normale}}})
+	{ bg = c.colo.normale, textcolor = cc.forModBgLua(c.colo.normale) })
 	return string.interp([=[${str}Livello
 |-${colo}
 ! class="roundytop ${textcolor}" style="background: #${bg}; width: 100px;" | [[Pokémon XD: Tempesta Oscura|XD]]]=],
@@ -224,7 +224,7 @@ j.shadowh = function(frame)
     str = j.headers('xd', game == 'colo' and gendata.latest or gendata.latest - 1,
 		'level'),
     bg = c.xd.light,
-	textcolor = cc.forModBg{args={c.xd.light}},
+	textcolor = cc.forModBgLua(c.xd.light),
     colo = game == 'colo' and colo or ''
 })
 end
@@ -245,7 +245,7 @@ j.footer = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     return foot({
 		cs = 5 + cs.level(1),
-		textcolor = cc.forModGradBg{args={p[1] or 'Sconosciuto'}},
+		textcolor = cc.forModGradBgLua(p[1] or 'Sconosciuto'),
 		last = ''})
 end
 
@@ -255,7 +255,7 @@ j.levelf = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     return foot({
 		cs = 5 + cs.level(1),
-		textcolor = cc.forModGradBg{args={p[1] or 'Sconosciuto'}},
+		textcolor = cc.forModGradBgLua(p[1] or 'Sconosciuto'),
 		last = [=[
 
 * Le mosse segnate al livello "Evo" possono essere apprese al momento dell'evoluzione.]=]})
@@ -267,7 +267,7 @@ j.breedf = function(frame)
 	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
     return foot({
 		cs = 5 + cs.level(1),
-		textcolor = cc.forModGradBg{args={p[1] or 'Sconosciuto'}},
+		textcolor = cc.forModGradBgLua(p[1] or 'Sconosciuto'),
 		last = [=[
 
 * Premendo su ✔ è possibile vedere i genitori da cui il Pokémon può imparare la mossa.]=]})
@@ -334,7 +334,7 @@ j.autotmhlua = function(move)
 			 or 'Ness.'
 		table.insert(res, string.interp(j.strings.HEADERTM, {
 			bg = c[gendata[g].region].normale,
-			textcolor = cc.forModBg{args={gendata[g].region}},
+			textcolor = cc.forModBgLua(gendata[g].region),
 			genl = gendata[g].ext,
 			genr = gendata[g].roman,
 			tm = link,

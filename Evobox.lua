@@ -28,6 +28,7 @@ local w = require('Wikilib')
 local links = require('Links')
 local ms = require('MiniSprite')
 local css = require('Css')
+local cc = require('ChooseColor')
 local spr = require('Spr')
 local c = require("Colore-data")
 local pokes = require("Poké-data")
@@ -35,7 +36,6 @@ local moves = require("Move-data")
 local evodata = require("Evo-data")
 form.loadUseless(true)
 local bothforms = form.allFormsData()
-local cc = require('ChooseColor')
 
 -- ============================= General functions =============================
 
@@ -575,8 +575,10 @@ eb.Evobox = function(frame)
 
     local evobox = {
         string.interp(boxContainer, {
-            textcolor = cc.forModGradBg{args={pokeData.type1 or 'sconosciuto',
-        		pokeData.type2 or 'sconosciuto'}},
+            textcolor = cc.forModGradBgLua(
+                pokeData.type1 or 'sconosciuto',
+                pokeData.type2 or 'sconosciuto'
+            ),
             background = css.horizGradLua{
                 type1 = pokeData.type1 or 'sconosciuto',
                 type2 = pokeData.type2 or 'sconosciuto'
@@ -823,7 +825,7 @@ eb.GlitchEvobox = function(frame)
     table.insert(evoboxcontent, eb.makeGlitchPhaseRows(p, 4))
 
     return string.interp(eb.strings.BOX_CONTAINER, {
-            textcolor = cc.forModGradBg{args={p[1], p[2]}},
+            textcolor = cc.forModGradBgLua(p[1], p[2]),
             background = css.horizGradLua{ type1 = p[1], type2 = p[2] or p[2] },
             content = table.concat(evoboxcontent)
         })
@@ -989,7 +991,7 @@ eb.Formbox = function(frame)
     end
 
     return string.interp(eb.strings.BOX_CONTAINER, {
-        textcolor = cc.forModGradBg{args={pagepoke.type1, pagepoke.type2}},
+        textcolor = cc.forModGradBgLua(pagepoke.type1, pagepoke.type2),
         background = css.horizGradLua{ type1 = pagepoke.type1, type2 = pagepoke.type2 },
         content = table.concat(formboxcontent)
     })

@@ -216,7 +216,7 @@ entry.makeBox = function(text, bgcolor, bold, colspan, tt, abbr)
 	if bgcolor:lower() == "fff" then
 		tc = 'black-text'
 	else
-		tc = cc.forModGradBg{args={bgcolor}}
+		tc = cc.forModGradBgLua(bgcolor)
 	end
 	return string.interp(entry.strings.CELLBOX, {
 		bg = bg,

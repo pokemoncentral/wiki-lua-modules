@@ -2,9 +2,10 @@ local p = {}
 
 local tab = require('Wikilib-tables')  -- luacheck: no unused
 local w = require('Wikilib')
+local multigen = require('Wikilib-multigen')
 local colorMod = require("Colore-data")
 local colorschemeMod = require("Colorscheme-data")
-local pd = require('PokémonData')
+local pokes = require("Poké-data")
 
 local function _checkCol(col)
 	if col <= 0.03928 then
@@ -13,10 +14,9 @@ local function _checkCol(col)
     return ((col + 0.055) / 1.055) ^ 2.4
 end
 
--- given a background hex color, return the most appropriate text color
-p.forBg = function(frame)
-	local bgColor = frame.args[1]
-
+-- Given a background hex color, return the most appropriate text color. Lua
+-- interface
+p.forBgLua = function(bgColor)
 	local bgR = _checkCol(tonumber(bgColor:sub(1, 2), 16) / 255)
 	local bgG = _checkCol(tonumber(bgColor:sub(3, 4), 16) / 255)
 	local bgB = _checkCol(tonumber(bgColor:sub(5, 6), 16) / 255)
@@ -29,25 +29,29 @@ p.forBg = function(frame)
 		return 'white-text'
 	end
 end
+-- Given a background hex color, return the most appropriate text color
+p.forBg = function(frame)
+	return p.forBgLua(frame.args[1])
+end
 
--- given a background module color, return the most appropriate text color
-p.forModBg = function(frame)
-	local args = w.trimAll(frame.args)
-	local color = args[1]
-	local shade = args[2] or 'normale'
+-- Given a background module color, return the most appropriate text color. Lua
+-- interface
+p.forModBgLua = function(color, shade)
+	shade = shade or 'normale'
 
 	local colorHex = colorMod[color][shade]
 
-	return p.forBg{args={colorHex}}
+	return p.forBgLua(colorHex)
+end
+-- Given a background module color, return the most appropriate text color
+p.forModBg = function(frame)
+	local args = w.trimAll(frame.args)
+	return p.forModBgLua(args[1], args[2])
 end
 
--- given two background hex colors, return the most appropriate text color
+-- Given two background hex colors, return the most appropriate text color
 -- calculated on the midpoint
-p.forGradBg = function(frame)
-	local args = w.trimAll(frame.args)
-	local c1 = args[1]
-	local c2 = args[2]
-
+p.forGradBgLua = function(c1, c2)
 	local c1R = tonumber(c1:sub(1, 2), 16)
 	local c1G = tonumber(c1:sub(3, 4), 16)
 	local c1B = tonumber(c1:sub(5, 6), 16)
@@ -62,24 +66,32 @@ p.forGradBg = function(frame)
 
 	local midpointHex = string.format('%x%x%x', R, G, B)
 
-	return p.forBg{args={midpointHex}}
+	return p.forBgLua(midpointHex)
+end
+-- Given two background hex colors, return the most appropriate text color
+-- calculated on the midpoint
+p.forGradBg = function(frame)
+	local args = w.trimAll(frame.args)
+	return p.forGradBgLua(args[1], args[2])
 end
 
--- given two background module colors, return the most appropriate text color
-p.forModGradBg = function(frame)
-	local args = w.trimAll(frame.args)
-	local col1 = args[1]
-	local col2 = args[2] or args[1]
-
-	if col1 == col2 then
-		return p.forModBg{args={col1}}
-		-- return p.forGradBg{args={colorMod[col1]['light'], colorMod[col2]['normale']}}
+-- Given two background module colors, return the most appropriate text color.
+-- Lua interface
+p.forModGradBgLua = function(col1, col2)
+	if (not col2) or (col1 == col2) then
+		return p.forModBgLua(col1)
 	else
-		return p.forGradBg{args={colorMod[col1]['normale'], colorMod[col2]['normale']}}
+		return p.forGradBgLua(colorMod[col1].normale, colorMod[col2].normale)
 	end
 end
+-- Given two background module colors, return the most appropriate text color
+p.forModGradBg = function(frame)
+	local args = w.trimAll(frame.args)
+	return p.forModGradBgLua(args[1], args[2] or args[1])
+end
 
--- same as above but with colorscheme
+-- Given two background colorscheme names, return the most appropriate text
+-- color
 p.forModCsGradBg = function(frame)
 	local args = w.trimAll(frame.args)
 	local col = args[1]
@@ -87,7 +99,7 @@ p.forModCsGradBg = function(frame)
 	local hex1 = colorschemeMod[col]['light']
 	local hex2 = colorschemeMod[col]['dark']
 
-	return p.forGradBg{args={hex1, hex2}}
+	return p.forGradBgLua(hex1, hex2)
 end
 
 -- when colors are types of a Pokémon; accepts both ndex and name
@@ -96,10 +108,10 @@ p.forPokeTypes = function(frame)
 	local poke = args[1]
 	local gen = args.gen or ''
 
-	local type1 = pd.getType1{args={poke, gen = gen}}
-	local type2 = pd.getType2{args={poke, gen = gen}}
+	local type1 = multigen.getGenValue(pokes[poke].type1, gen)
+	local type2 = multigen.getGenValue(pokes[poke].type2, gen)
 
-	return p.forModGradBg{args={type1, type2}}
+	return p.forModGradBgLua(type1, type2)
 end
 
 return p

@@ -10,8 +10,8 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
 local css = require('Css')
-local gendata = require("Gens-data")
 local cc = require('ChooseColor')
+local gendata = require("Gens-data")
 
 -- Tabelle dati
 
@@ -243,11 +243,11 @@ local header = function(pars, kind)
 |- class="text-center ${textcolor}"
 ${low_row}]=],
 {
-	textcolor = cc.forModGradBg{args={tipo1, tipo2}},
+	textcolor = cc.forModGradBgLua(tipo1, tipo2),
 	bg = css.horizGradLua{type1 = tipo1, type2 = tipo2},
 	gentitle = string.fu(gendata[genh].ext),
 	links = oldgenslinks(genh, genp, kind, poke),
-	low_row = lowrow(genh, kind, cc.forModGradBg{args={tipo1, tipo2}})
+	low_row = lowrow(genh, kind, cc.forModGradBgLua(tipo1, tipo2))
 })
 end
 
@@ -268,7 +268,7 @@ ${kindrows}
 </div>
 </div>]=],
 {
-	textcolor = cc.forModGradBg{args={tipo1, tipo2}},
+	textcolor = cc.forModGradBgLua(tipo1, tipo2),
 	kindrows = rowf(kind, genf, poke),
 	poke = poke,
 	form = txt.interp(rowsf.forms[form], {poke = poke}) or '',
@@ -303,7 +303,7 @@ d.levelhLGPE = function(frame)
 ! [[Statistiche#Precisione|Prec.]]
 ! [[PP]]]=],
 {
-	textcolor = cc.forModGradBg{args={tipo1, tipo2}},
+	textcolor = cc.forModGradBgLua(tipo1, tipo2),
 	bg = css.horizGradLua{type1 = tipo1, type2 = tipo2}
 })
 end
@@ -339,7 +339,7 @@ d.tmhLGPE = function(frame)
 ! [[Statistiche#Precisione|Prec.]]
 ! [[PP]]]=],
 {
-	textcolor = cc.forModGradBg{args={tipo1, tipo2}},
+	textcolor = cc.forModGradBgLua(tipo1, tipo2),
 	bg = css.horizGradLua{type1 = tipo1, type2 = tipo2}
 })
 end

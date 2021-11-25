@@ -14,7 +14,6 @@ local w = require('Wikilib')
 local cc = require('ChooseColor')
 local c = require("Colore-data")
 local sig = require("Sigle-data")
-local wData = require("Wikilib-data")
 
 --[[
 
@@ -185,7 +184,7 @@ q.colorAndText = function(color)
 
     -- This is ok also for when c[color].normale evaluates to false
     local background = c[color] and c[color].normale or color
-    local text = cc.forBg{args={background}} == 'white-text'
+    local text = cc.forBgLua(background) == 'white-text'
                    and c.background
                    or '000'
 

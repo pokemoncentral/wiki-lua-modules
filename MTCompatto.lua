@@ -171,7 +171,7 @@ m.MTCompatto = function(frame)
 		bg = css.horizGradLua{type = color},
 		collapsed = #gens > 1 and " mw-collapsed" or "",
 		mtGens = table.concat(gens),
-		text = cc.forModGradBg{args={color}}
+		text = cc.forModGradBgLua(color),
 	})
 end
 

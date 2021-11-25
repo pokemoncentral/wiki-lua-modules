@@ -546,7 +546,9 @@ s.boxStats = function(args)
     local interpVal = {
         align = align == 'left' and '' or ' pull-' .. align,
         width = ' width-xl-30 width-md-50 width-sm-60 width-xs-100',
-        textcolor = cc.forModGradBg{args={types['type1'] or 'pcwiki',types['type2'] or types['type1'] or 'pcwiki'}},
+        textcolor = cc.forModGradBgLua(
+                            types['type1'] or 'pcwiki',
+                            types['type2'] or types['type1'] or 'pcwiki'),
         bg = css.horizGradLua(types),
         rs = '',
         values = '',

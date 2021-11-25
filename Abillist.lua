@@ -13,12 +13,12 @@ local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local genlib = require('Wikilib-multigen')
 local css = require('Css')
+local cc = require('ChooseColor')
 local ms = require('MiniSprite')
 local resp = require('Resp')
 local pokes = require("Poké-data")
 local abils = require('PokéAbil-data')
 local gens = require("Gens-data")
-local cc = require('ChooseColor')
 
 local mw = require('mw')
 
@@ -134,7 +134,7 @@ k.headers.makeHeader = function(color)
 ! Abilit&agrave; speciale]=],
         {
             bg = css.horizGradLua{type = color},
-            text = cc.forModGradBg{args={color}},
+            text = cc.forModGradBgLua(color),
         })
 end
 
@@ -146,7 +146,7 @@ k.headers.makeFooter = function(color)
 * Le abilità in ''corsivo'' sono ottenibili solo in determinate circostanze.
 |}]=],
         {
-            text = cc.forModGradBg{args={color}},
+            text = cc.forModGradBgLua(color),
         })
 end
 
