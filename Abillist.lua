@@ -18,7 +18,7 @@ local resp = require('Resp')
 local pokes = require("Poké-data")
 local abils = require('PokéAbil-data')
 local gens = require("Gens-data")
-local cc = require('Modulo:ChooseColor')
+local cc = require('ChooseColor')
 
 local mw = require('mw')
 
@@ -134,19 +134,19 @@ k.headers.makeHeader = function(color)
 ! Abilit&agrave; speciale]=],
         {
             bg = css.horizGradLua{type = color},
-            text = cc.forModGradBg{args={color}}
+            text = cc.forModGradBg{args={color}},
         })
 end
 
 k.headers.separator = '|- class="roundy flex-sm flex-row flex-wrap flex-main-stretch flex-items-center" style="margin-top: 0.5rem;"'
 
-k.headers.footer = function(color)
+k.headers.makeFooter = function(color)
     return string.interp([=[|-
 ! class="text-left font-small ${text}" colspan="6" style="padding: 0.3ex 0.3em;" |
 * Le abilità in ''corsivo'' sono ottenibili solo in determinate circostanze.
 |}]=],
         {
-            text = cc.forModGradBg{args={color}}
+            text = cc.forModGradBg{args={color}},
         })
 end
 
@@ -190,7 +190,7 @@ k.abillist = function(frame)
         makeEntry = k.AbilEntry.new,
         header = k.headers.makeHeader(type),
         separator = k.headers.separator,
-        footer = k.headers.footer(type),
+        footer = k.headers.makeFooter(type),
     })
 end
 

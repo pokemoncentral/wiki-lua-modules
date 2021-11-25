@@ -65,7 +65,7 @@ local listgen = function(gen)
         entryArgs = gen,
         header = abl.headers.makeHeader(gendata[gen].region),
         separator = abl.headers.separator,
-        footer = abl.headers.footer,
+        footer = abl.headers.makeFooter(gendata[gen].region),
         fullGroupLabel = 'Tutte le forme',
     })
 end
