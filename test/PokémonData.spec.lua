@@ -174,6 +174,23 @@ table.insert(tests, {
 -- Pokémon without alternative forms
 table.insert(tests, { pokeData.getLink{args={'398', 'black'}}, '' })
 
+-- ===================
+-- Standard cases
+table.insert(tests, { pokeData.getPokeTextColor{args={" Luxray "}}, "black-text" })
+table.insert(tests, { pokeData.getPokeTextColor{args={" Gengar "}}, "white-text" })
+table.insert(tests, { pokeData.getPokeTextColor{args={" 065"}}, "black-text" })
+table.insert(tests, { pokeData.getPokeTextColor{args={ "249" }}, "white-text" })
+
+-- Alt forms
+table.insert(tests, { pokeData.getPokeTextColor{args={" alakazamM "}}, "black-text" })
+table.insert(tests, { pokeData.getPokeTextColor{args={"487O"}}, "white-text" })
+
+-- Useless forms (probably they shouldn't even work, but here we go)
+table.insert(tests, { pokeData.getPokeTextColor{args={" shellosE "}}, "white-text" })
+
+-- Gen parameter
+table.insert(tests, { pokeData.getPokeTextColor{args={" 082 ", gen = " 1 "}}, "black-text" })
+
 -- ==================== Actual execution ======================
 for n, v in ipairs(tests) do
     if v[1] ~= v[2] then

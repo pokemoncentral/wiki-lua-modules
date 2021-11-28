@@ -16,6 +16,7 @@ mw.loadData = require
 local txt = require('Wikilib-strings')      -- luacheck: no unused
 local formlib = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
+local cc = require('ChooseColor')
 local pokes
 local abils
 local stats
@@ -361,5 +362,24 @@ b.getCriesList = function(frame)
     return table.concat(result, ',')
 end
 
+--[[
+
+Return the text color to use on a gradient made of a Pokémon's types. An
+optional 'gen' parameter specifies the generation. The result is one of the two
+css classes "white-text" and "black-text".
+
+Ex:
+{{#invoke: PokémonData | getPokeTextColor | 398 }}            --> black-text
+{{#invoke: PokémonData | getPokeTextColor | Staraptor }}      --> black-text
+{{#invoke: PokémonData | getPokeTextColor | 498O }}           --> white-text
+{{#invoke: PokémonData | getPokeTextColor | 082 | gen = 1 }}  --> black-text
+
+--]]
+b.getPokeTextColor = function(frame)
+    local type1 = getType(frame.args[1], '1', frame.args.gen):lower()
+    local type2 = getType(frame.args[1], '2', frame.args.gen):lower()
+
+	return cc.forModGradBgLua(type1, type2)
+end
 
 return b

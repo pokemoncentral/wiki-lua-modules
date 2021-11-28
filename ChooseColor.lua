@@ -1,11 +1,9 @@
 local p = {}
 
-local tab = require('Wikilib-tables')  -- luacheck: no unused
+local str = require('Wikilib-strings') -- luacheck: no unused
 local w = require('Wikilib')
-local multigen = require('Wikilib-multigen')
 local colorMod = require("Colore-data")
 local colorschemeMod = require("Colorscheme-data")
-local pokes = require("Poké-data")
 
 local function _checkCol(col)
 	if col <= 0.03928 then
@@ -31,7 +29,7 @@ p.forBgLua = function(bgColor)
 end
 -- Given a background hex color, return the most appropriate text color
 p.forBg = function(frame)
-	return p.forBgLua(frame.args[1])
+	return p.forBgLua(string.trim(frame.args[1]))
 end
 
 -- Given a background module color, return the most appropriate text color. Lua
@@ -100,18 +98,6 @@ p.forModCsGradBg = function(frame)
 	local hex2 = colorschemeMod[col]['dark']
 
 	return p.forGradBgLua(hex1, hex2)
-end
-
--- when colors are types of a Pokémon; accepts both ndex and name
-p.forPokeTypes = function(frame)
-	local args = w.trimAll(frame.args)
-	local poke = args[1]
-	local gen = args.gen or ''
-
-	local type1 = multigen.getGenValue(pokes[poke].type1, gen)
-	local type2 = multigen.getGenValue(pokes[poke].type2, gen)
-
-	return p.forModGradBgLua(type1, type2)
 end
 
 return p
