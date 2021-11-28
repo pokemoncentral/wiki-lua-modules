@@ -589,7 +589,8 @@ c.Bacche = c.bacche
 c.macchine = function(frame) return _colore(frame.args[1] or 'normale', '9248E5', 'D4ABFD', '1F0042') end
 c.Macchine, c['MT e MN'] = c.macchine, c.macchine
 c['pokéball'] = function(frame) return _colore(frame.args[1] or 'normale', 'C88820', 'E0A038', 'B87008') end
-c['Pokéball'], c['poké Ball'], c['Poké Ball'] = c['pokéball'], c['pokéball'], c['pokéball']
+c['Pokéball'], c['poké Ball'], c['Poké Ball'], c['PokéBall'] =
+	c['pokéball'], c['pokéball'], c['pokéball'], c['pokéball']
 c.rimedi = function(frame) return _colore(frame.args[1] or 'normale', '00BE00', '99FF99', '006100') end
 c.Rimedi = c.rimedi
 c.strumenti = function(frame) return _colore(frame.args[1] or 'normale', '0296C8', '6DE0FF', '00384B') end
@@ -683,7 +684,7 @@ c['Safari amici'], c.safari_amici, c.Safari_amici = c['safari amici'], c['safari
 c['Parco amici'], c['parco amici'], c.Parco_amici, c.parco_amici
     = c['zona_terra'], c['zona_terra'], c['zona_terra'], c['zona_terra']
 c.HOME, c.Home, c.home = c.agilita, c.agilita, c.agilita
-c.teamrocket = function(frame) return _colore(frame.args[1] or 'normale', 'B92C1A', '4F5253', 'EAEAEA') end
+c.teamrocket = function(frame) return _colore(frame.args[1] or 'normale', '4F5253', 'B92C1A', 'EAEAEA') end
 c.TeamRocket, c['team rocket'], c['Team Rocket'], c.team_rocket, c.Team_Rocket
     = c.teamrocket, c.teamrocket, c.teamrocket, c.teamrocket, c.teamrocket
 
