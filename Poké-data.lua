@@ -1854,6 +1854,8 @@ t.grimerA = {name = 'Grimer', ndex = 88, type1 = 'veleno', type2 = 'buio'}
 t['088A'] = t.grimerA
 t.mukA = {name = 'Muk', ndex = 89, type1 = 'veleno', type2 = 'buio'}
 t['089A'] = t.mukA
+t.voltorbH = {name = 'Voltorb', ndex = 100, type1 = 'elettro', type2 = 'erba'}
+t['100H'] = t.voltorbH
 t.exeggutorA = {name = 'Exeggutor', ndex = 103, type1 = 'erba', type2 = 'drago'}
 t['103A'] = t.exeggutorA
 t.marowakA = {name = 'Marowak', ndex = 105, type1 = 'fuoco', type2 = 'spettro'}
@@ -1949,6 +1951,10 @@ t.darmanitanGZ = {name = 'Darmanitan', ndex = 555, type1 = 'ghiaccio', type2 = '
 t['555GZ'] = t.darmanitanGZ
 t.yamaskG = {name = 'Yamask', ndex = 562, type1 = 'terra', type2 = 'spettro'}
 t['562G'] = t.yamaskG
+t.zoruaH = {name = 'Zorua', ndex = 570, type1 = 'normale', type2 = 'spettro'}
+t['570H'] = t.zoruaH
+t.zoroarkH = {name = 'Zoroark', ndex = 571, type1 = 'normale', type2 = 'spettro'}
+t['571H'] = t.zoroarkH
 t.stunfiskG = {name = 'Stunfisk', ndex = 618, type1 = 'terra', type2 = 'acciaio'}
 t['618G'] = t.stunfiskG
 t.braviaryH = {name = 'Braviary', ndex = 628, type1 = 'psico', type2 = 'volante'}

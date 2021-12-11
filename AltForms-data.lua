@@ -197,7 +197,7 @@ t.gigamax = {'venusaur', 'charizard', 'blastoise', 'butterfree', 'meowth',
 -- Tabella contenente i Pokémon che hanno una forma di Hisui:
 -- per efficienza, alcuni sono alla fine del modulo
 
-t.hisui = {'growlithe', 'braviary'}
+t.hisui = {'growlithe', 'voltorb', 'zorua', 'braviary'}
 
 
 --[[
@@ -524,6 +524,7 @@ t.slowpoke.since = {G = 'spsc', base = 'rb'}
 t.slowbro.since = {M = 'roza', G = 'spsc', base = 'rb'}
 t["farfetch'd"].since = {G = 'spsc', base = 'rb'}
 t.grimer.since = {A = 'sl', base = 'rb'}
+t.voltorb.since = {H = 'lpa', base = 'rb'}
 t.exeggutor.since = {A = 'sl', base = 'rb'}
 t.marowak.since = {A = 'sl', base = 'rb'}
 t.weezing.since = {G = 'spsc', base = 'rb'}
@@ -548,6 +549,7 @@ t.basculin.since = {B = 'nb', base = 'nb'}
 t.darumaka.since = {G = 'spsc', base = 'nb'}
 t.darmanitan.since = {Z = 'nb', G = 'spsc', GZ = 'spsc', base = 'nb'}
 t.yamask.since = {G = 'spsc', base = 'rz'}
+t.zorua.since = {H = 'lpa', base = 'nb'}
 t.stunfisk.since = {G = 'spsc', base = 'nb'}
 t.braviary.since = {H = 'lpa', base = 'nb'}
 t.tornadus.since = {T = 'n2b2', base = 'nb'}
@@ -671,6 +673,7 @@ t.golem = table.copy(t.geodude)
 t.rapidash = table.copy(t.ponyta)
 t.muk = table.copy(t.grimer)
 t.linoone = table.copy(t.zigzagoon)
+t.zoroark = table.copy(t.zorua)
 t.thundurus, t.landorus = table.copy(t.tornadus), table.copy(t.tornadus)
 t.gourgeist = table.copy(t.pumpkaboo)
 
@@ -688,6 +691,8 @@ table.insert(t.alola, 'muk')
 -- Other Galar forms
 table.insert(t.galar, 'rapidash')
 table.insert(t.galar, 'linoone')
+-- Other Hisuian forms
+table.insert(t.hisui, 'zoroark')
 -- Other Gigamax forms
 table.insert(t.gigamax, 'pikachu')
 table.insert(t.gigamax, 'toxtricity')
@@ -720,6 +725,7 @@ t[80] = t.slowbro
 t[83] = t["farfetch'd"]
 t[88] = t.grimer
 t[89] = t.muk
+t[100] = t.voltorb
 t[103] = t.exeggutor
 t[105] = t.marowak
 t[110] = t.weezing
@@ -743,6 +749,8 @@ t[550] = t.basculin
 t[554] = t.darumaka
 t[555] = t.darmanitan
 t[562] = t.yamask
+t[570] = t.zorua
+t[571] = t.zoroark
 t[618] = t.stunfisk
 t[628] = t.braviary
 t[641] = t.tornadus
