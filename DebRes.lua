@@ -359,8 +359,7 @@ dr.EffTable.__tostring = function(this)
     table.sort(res, dr.EffTable.greatestEffFirst)
     table.sort(weak, dr.EffTable.greatestEffFirst)
 
-    interpData.effBoxes = dr.EffTable.printEffBoxes({weak, std, res, imm},
-            this.colors)
+    interpData.effBoxes = dr.EffTable.printEffBoxes({weak, std, res, imm})
 
     interpData.textcolor = cc.forModGradBgLua(this.colors.type1, this.colors.type2)
 

@@ -63,8 +63,7 @@ end)
 
 -- Strings for printing
 entry.strings = {
-	CELLBOX = [[
-| class="${textcolor} height-100" style="padding: 0.8ex 0.3ex;${cs}" | <div class="text-center height-100 roundy-5 vert-middle" style="${bg}; padding: 0 0.3ex;">${cnt}</div>]],
+	CELLBOX = [[| class="${textcolor} height-100" style="padding: 0.8ex 0.3ex;${cs}" | <div class="text-center height-100 roundy-5 vert-middle" style="${bg}; padding: 0 0.3ex;">${cnt}</div>]],
 }
 
 -- Sorted background colors of tutor cells
@@ -382,7 +381,7 @@ entry.tail = function(kind, args)
 
 	return table.concat(table.filter(cells, function(v)
 		return string.trim(v) ~= ""
-	end, "\n"))
+	end))
 end
 
 --[[

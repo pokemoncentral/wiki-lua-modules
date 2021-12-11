@@ -23,7 +23,7 @@ tl.FirstTypeEntry.__lt = function(a, b)
 	if a.type2 == b.type2 then
 		return tl.FirstTypeEntry.super.__lt(a, b)
 	end
-	
+
 	return a.type2 < b.type2
 end
 

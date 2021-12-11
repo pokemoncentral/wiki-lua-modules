@@ -825,8 +825,8 @@ eb.GlitchEvobox = function(frame)
     table.insert(evoboxcontent, eb.makeGlitchPhaseRows(p, 4))
 
     return string.interp(eb.strings.BOX_CONTAINER, {
-            textcolor = cc.forModGradBgLua(p[1], p[2]),
-            background = css.horizGradLua{ type1 = p[1], type2 = p[2] or p[2] },
+            textcolor = cc.forModGradBgLua(p[1], p[2] or p[1]),
+            background = css.horizGradLua{ type1 = p[1], type2 = p[2] or p[1] },
             content = table.concat(evoboxcontent)
         })
 end

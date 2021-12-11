@@ -80,7 +80,7 @@ end
 o.aniLua = function(n, gen, link)
 	local ani = staticOnly[tonumber(gen)] and '' or 'Ani'
 	local ext = staticOnly[tonumber(gen)] and 'png' or 'gif'
-	local n, gen, link = getData(n, gen, link)
+	n, gen, link = getData(n, gen, link)
 	return string.interp("[[File:${ani}${num}MS${gen}.${ext}|${name}|link=${name}]]",
 		{num = n, gen = gen, name = link, ani = ani, ext = ext})
 end
@@ -102,7 +102,7 @@ o.Ani, o.AniP, o.aniP = o.ani, o.ani, o.ani
 o.staticLua = function(n, gen, link)
 	local ani = aniOnly[tonumber(gen)] and 'Ani' or ''
 	local ext = aniOnly[tonumber(gen)] and 'gif' or 'png'
-	local n, gen, link = getData(n, gen, link)
+	n, gen, link = getData(n, gen, link)
     return string.interp("[[File:${ani}${num}MS${gen}.${ext}|${name}|link=${name}]]",
         {num = n, gen = gen, name = link, ani = ani, ext = ext})
 end
