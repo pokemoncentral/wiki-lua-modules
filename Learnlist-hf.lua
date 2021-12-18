@@ -111,7 +111,7 @@ games[7] = [=[
 games[8] = [=[
 
 |- class="${textcolor}"
-! style="min-width: 2.2em;" | [[Pokémon Spada e Scudp|SpSc]]
+! style="min-width: 2.2em;" | [[Pokémon Spada e Scudo|SpSc]]
 ! style="min-width: 3em;" | [[Pokémon Diamante Lucente e Perla Splendente|DLPS]]]=]
 
 -- Tabella con i Pokémon baby ottenibili tramite incensi, necessaria

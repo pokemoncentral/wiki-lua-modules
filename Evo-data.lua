@@ -795,7 +795,7 @@ evo.slowpoke = {
 			ndex = 80,
 			name = 'slowbro',
 			method = evo.methods.LEVEL,
-			[evo.methods.LEVEL] = 25,
+			[evo.methods.LEVEL] = 37,
 
 		},
 		{
