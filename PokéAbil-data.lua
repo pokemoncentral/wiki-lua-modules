@@ -1854,6 +1854,8 @@ t.grimerA = {ability1 = 'Velentocco', ability2 = 'Voracità', abilityd = 'Forza 
 t['088A'] = t.grimerA
 t.mukA = {ability1 = 'Velentocco', ability2 = 'Voracità', abilityd = 'Forza Chimica'}
 t['089A'] = t.mukA
+t.voltorbH = {ability1 = ''}
+t['100H'] = t.voltorbH
 t.exeggutorA = {ability1 = 'Indagine', abilityd = 'Coglibacche'}
 t['103A'] = t.exeggutorA
 t.marowakA = {ability1 = 'Corpofunesto', ability2 = 'Parafulmine', abilityd = 'Testadura'}
@@ -1892,6 +1894,10 @@ t.darmanitanGZ = {ability1 = 'Stato Zen'}
 t['555GZ'] = t.darmanitanGZ
 t.yamaskG = {ability1 = 'Anima Errante'}
 t['562G'] = t.yamaskG
+t.zoruaH = {ability1 = ''}
+t['570H'] = t.zoruaH
+t.zoroarkH = {ability1 = ''}
+t['571H'] = t.zoroarkH
 t.stunfiskG = {ability1 = 'Mimetismo'}
 t['618G'] = t.stunfiskG
 t.braviaryH = {ability1 = ''}
