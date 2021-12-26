@@ -83,7 +83,7 @@ v.VexEntry = function(args)
 	radialGrad = css.radialGradLua{"circle closest-side",
 	                               type1 = pokedata.type1,
 	                               type2 = pokedata.type2 },
-	ms = ms.staticLua(p.ndex),
+	ms = ms.staticLua(p.ndex, args.gen),
 	pkmn = p.pkmn,
 	formLink = form ~= "" and string.interp(
 	        '<div class="small-text">${form}</div>', { form = form }) or "",
@@ -123,6 +123,7 @@ local fixedParams = {
 	usul = { abbr1 = "US", abbr2 = "UL", gen = 7 },
 	['8'] = { abbr1 = "Sp", abbr2 = "Sc", gen = 8 },
 	LGPE = { abbr1 = "LGP", abbr2 = "LGE", gen = 7 },
+	DLPS = { abbr1 = "DL", abbr2 = "PS", gen = 8 },
 	md1 = { abbr1 = "PMDR", abbr2 = "PMDB", gen = 3 },
 	md2 = { abbr1 = "PMDT", abbr2 = "PMDO", abbr3 = "PMDC", gen = 4 },
 }
