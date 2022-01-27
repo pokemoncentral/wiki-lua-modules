@@ -557,6 +557,8 @@ t.castform.since = {S = 'rz', P = 'rz', N = 'rz', base = 'rz'}
 t.deoxys.since = {A = 'rfvf', D = 'rfvf', V = 's', base = 'rz'}
 t.wormadam.since = {Sa = 'dp', Sc = 'dp', base = 'dp'}
 t.rotom.since = {C = 'pt', L = 'pt', G = 'pt', V = 'pt', T = 'pt', base = 'dp'}
+t.dialga.since = {O = 'lpa', base = 'dp'}
+t.palkia.since = {O = 'lpa', base = 'dp'}
 t.giratina.since = {O = 'pt', base = 'dp'}
 t.shaymin.since = {C = 'pt', base = 'dp'}
 t.arceus.since = {base = 'dp', L = 'dp', Vo = 'dp', Ve = 'dp', T = 'dp',

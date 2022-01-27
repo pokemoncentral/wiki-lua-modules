@@ -9,9 +9,11 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
+local multigen = require('Wikilib-multigen')
 local css = require('Css')
 local cc = require('ChooseColor')
 local gendata = require("Gens-data")
+local pokes = require("Poké-data")
 
 -- Tabelle dati
 
@@ -307,15 +309,39 @@ d.levelhLGPE = function(frame)
 	bg = css.horizGradLua{type1 = tipo1, type2 = tipo2}
 })
 end
-
 d.LevelhLGPE = d.levelhLGPE
+
+d.levelhLPA = function(frame)
+	local pars = lib.sanitize(mw.clone(frame.args))
+	local poke = pars[1] or ''
+	local types = multigen.getGen(pokes[poke:lower()] or { type1 = 'Sconosciuto', type2 = 'Sconosciuto' }, 8)
+	local genh = tonumber(pars[2]) or 0
+	return txt.interp([=[
+<div class="text-center max-width-xl-100">
+<div class="roundy text-center inline-block max-width-xl-100" style="${bg}">
+<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font ${textcolor}">'''Ottava&nbsp;generazione: [[Leggende Pokémon: Arceus|LPA]]'''</span></div>
+</div>
+<div style="overflow-x: auto; margin: 0 0.3ex;">
+{| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
+|- class="text-center ${textcolor}"
+! colspan="2" | [[Livello|Lv.]]
+! rowspan="2" | [[Mossa]]
+! rowspan="2" | [[Tipo]]
+|-
+! Imp
+! Master ]=],
+{
+	textcolor = cc.forModGradBgLua(types.type1, types.type2),
+	bg = css.horizGradLua(types)
+})
+end
+d.LevelhLPA = d.levelhLPA
 
 -- Header per le mosse imparate tramite MT/MN
 
 d.tmh = function(frame)
 	return header(lib.sanitize(mw.clone(frame.args)), 'tm')
 end
-
 d.Tmh = d.tmh
 
 d.tmhLGPE = function(frame)
@@ -343,7 +369,6 @@ d.tmhLGPE = function(frame)
 	bg = css.horizGradLua{type1 = tipo1, type2 = tipo2}
 })
 end
-
 d.TmhLGPE = d.tmhLGPE
 
 -- Header per le mosse imparate aumentando di livello
@@ -359,8 +384,30 @@ d.Breedh = d.breedh
 d.tutorh = function(frame)
 	return header(lib.sanitize(mw.clone(frame.args)), 'tutor')
 end
-
 d.Tutorh = d.tutorh
+
+d.tutorhLPA = function(frame)
+	local pars = lib.sanitize(mw.clone(frame.args))
+	local poke = pars[1] or ''
+	local types = multigen.getGen(pokes[poke:lower()] or { type1 = 'Sconosciuto', type2 = 'Sconosciuto' }, 8)
+	local genh = tonumber(pars[2]) or 0
+	return txt.interp([=[
+<div class="text-center max-width-xl-100">
+<div class="roundy text-center inline-block max-width-xl-100" style="${bg}">
+<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font ${textcolor}">'''Ottava&nbsp;generazione: [[Leggende Pokémon: Arceus|LPA]]'''</span></div>
+</div>
+<div style="overflow-x: auto; margin: 0 0.3ex;">
+{| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
+|- class="text-center ${textcolor}"
+! colspan = "1" | &nbsp;[[Videogiochi Pokémon|Gioco]]&nbsp;
+! [[Mossa]]
+! [[Tipo]]]=],
+{
+	textcolor = cc.forModGradBgLua(types.type1, types.type2),
+	bg = css.horizGradLua(types)
+})
+end
+d.tutorhLPA = d.tutorhLPA
 
 -- Header per le mosse imparate tramite evoluzioni precedenti
 
@@ -389,6 +436,30 @@ d.Levelf = d.levelf
 -- hurry
 d.levelfLGPE = d.levelf
 
+d.levelfLPA = function(frame)
+	local pars = lib.sanitize(mw.clone(frame.args))
+	local poke = pars[1] or ''
+	local types = multigen.getGen(pokes[poke:lower()] or { type1 = 'Sconosciuto', type2 = 'Sconosciuto' }, 8)
+	local genf = tonumber(pars[2]) or 0
+	local form = string.lower(pars.form or 'none')
+    return txt.interp([=[
+|}</div>
+<div class="text-left small-font ${textcolor}" style="line-height: 1em; padding: 0 0.5ex 1ex;">
+${kindrows}
+*Il '''grassetto''' indica una mossa che ha il [[bonus di tipo]] quando viene usata da un ${poke}.
+*Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un${form} di ${poke}.${last}
+</div>
+</div>
+</div>]=],
+{
+	textcolor = cc.forModGradBgLua(types.type1, types.type2),
+	kindrows = rowf('level', genf, poke),
+	poke = poke,
+	form = txt.interp(rowsf.forms[form], {poke = poke}) or '',
+	last = txt.interp(rowsf.last, {way = ways['level']})
+})
+end
+
 -- Footer per le mosse imparate tramite MT/MN
 
 d.tmf = function(frame)
@@ -413,9 +484,32 @@ d.Breedf = d.breedf
 d.tutorf = function(frame)
     return footer(lib.sanitize(mw.clone(frame.args)), 'tutor')
 end
-
 d.Tutorf = d.tutorf
 
+
+d.tutorfLPA = function(frame)
+	local pars = lib.sanitize(mw.clone(frame.args))
+	local poke = pars[1] or ''
+	local types = multigen.getGen(pokes[poke:lower()] or { type1 = 'Sconosciuto', type2 = 'Sconosciuto' }, 8)
+	local genf = tonumber(pars[2]) or 0
+	local form = string.lower(pars.form or 'none')
+    return txt.interp([=[
+|}</div>
+<div class="text-left small-font ${textcolor}" style="line-height: 1em; padding: 0 0.5ex 1ex;">
+${kindrows}
+*Il '''grassetto''' indica una mossa che ha il [[bonus di tipo]] quando viene usata da un ${poke}.
+*Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un${form} di ${poke}.${last}
+</div>
+</div>
+</div>]=],
+{
+	textcolor = cc.forModGradBgLua(types.type1, types.type2),
+	kindrows = rowf('tutor', genf, poke),
+	poke = poke,
+	form = txt.interp(rowsf.forms[form], {poke = poke}) or '',
+	last = txt.interp(rowsf.last, {way = ways['tutor']})
+})
+end
 -- Footer per le mosse imparate tramite accoppiamento
 
 d.prevof = function(frame)

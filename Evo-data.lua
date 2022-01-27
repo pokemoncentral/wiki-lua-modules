@@ -1303,8 +1303,8 @@ evo.scyther = {
 		},
 	}
 }
-evo.scizor = evo.scyther
-evo[123], evo[212] = evo.scyther, evo.scyther
+evo.scizor, evo.kleavor = evo.scyther, evo.scyther
+evo[123], evo[212], evo[900] = evo.scyther, evo.scyther, evo.scyther
 
 evo.smoochum = {
 	ndex = 238,
