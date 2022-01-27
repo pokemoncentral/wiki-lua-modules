@@ -121,6 +121,8 @@ t.castform = {}
 t.deoxys = {}
 t.wormadam = {}
 t.rotom = {}
+t.dialga = {}
+t.palkia = {}
 t.giratina = {}
 t.shaymin = {}
 t.arceus = {}
@@ -151,6 +153,7 @@ t.zamazenta = {}
 t.eternatus = {}
 t.urshifu = {}
 t.calyrex = {}
+t.enamorus = {}
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
 
@@ -197,7 +200,9 @@ t.gigamax = {'venusaur', 'charizard', 'blastoise', 'butterfree', 'meowth',
 -- Tabella contenente i Pokémon che hanno una forma di Hisui:
 -- per efficienza, alcuni sono alla fine del modulo
 
-t.hisui = {'growlithe', 'voltorb', 'zorua', 'braviary'}
+t.hisui = {'growlithe', 'voltorb', 'typhlosion', 'qwilfish', 'sneasel',
+	'samurott', 'lilligant', 'basculin', 'zorua', 'braviary', 'sliggoo',
+	'avalugg', 'decidueye'}
 
 
 --[[
@@ -219,6 +224,8 @@ t.wormadam.names = {Sa = 'Manto Sabbia', Sc = 'Manto Scarti',
 	base = 'Manto Pianta'}
 t.rotom.names = {C = 'Rotom Calore', L = 'Rotom Lavaggio', G = 'Rotom Gelo',
 	V = 'Rotom Vortice', T = 'Rotom Taglio', base = 'Forma Rotom'}
+t.dialga.names = {O = 'Forma Originale', base = ''}
+t.palkia.names = {O = 'Forma Originale', base = ''}
 t.giratina.names = {O = 'Forma Originale', base = 'Forma Alterata'}
 t.shaymin.names = {C = 'Forma Cielo', base = 'Forma Terra'}
 t.arceus.names = {base = 'Normale', L = 'Lotta', Vo = 'Volante', Ve = 'Veleno',
@@ -262,6 +269,7 @@ t.eternatus.names = {D = 'Dynamax Infinito', base = ''}
 t.urshifu.names = {P = 'Stile Pluricolpo', Gi = 'Urshifu Gigamax (Stile Singolcolpo)',
 	PGi = 'Urshifu Gigamax (Stile Pluricolpo)', base = 'Stile Singolcolpo'}
 t.calyrex.names = {G = "Cavaliere Glaciale", S = "Cavaliere Spettrale", base = ""}
+t.enamorus.names = {T = 'Forma Totem', base = ''}
 for _, v in pairs(t.mega) do
 	if not t[v] then
 		t[v] = { names = {base = ''} }
@@ -335,6 +343,8 @@ t.deoxys.ext = {attacco = 'A', difesa = 'D', ['velocità'] = 'V'}
 t.wormadam.ext = {sabbia = 'Sa', scarti = 'Sc'}
 t.rotom.ext = {calore = 'C', lavaggio = 'L', gelo = 'G', vortice = 'V',
 	taglio = 'T'}
+t.dialga.ext = {originale = 'O', origine = 'O'}
+t.palkia.ext = {originale = 'O', origine = 'O'}
 t.giratina.ext = {originale = 'O', origine = 'O'}
 t.shaymin.ext = {cielo = 'C'}
     t.arceus.ext = {lotta = 'L', volante = 'Vo', veleno = 'Ve', terra = 'T',
@@ -355,7 +365,7 @@ t.zygarde.ext = {dieci = 'D', perfetto = 'P'}
 t.hoopa.ext = {libero = 'L'}
 t.lycanroc.ext = {notte = 'N', crepuscolo = 'C', giorno = 'base'}
 t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
-	flamenco = 'base'}
+flamenco = 'base'}
 t.wishiwashi.ext = {banco = 'B', individuale = 'base'}
 t.silvally.ext = mw.clone(t.arceus.ext)
 t.silvally.ext.sconosciuto = nil
@@ -371,6 +381,7 @@ t.zamazenta.ext = t.zacian.ext
 t.eternatus.ext = {dynamax = 'D'}
 t.urshifu.ext = {pluricolpo = 'P', gigamax = "Gi", singolcolpo = 'base'}
 t.calyrex.ext = {} -- TODO
+t.enamorus.ext = {totem = 'T'}
 for _, v in pairs(t.mega) do
 	t[v].ext = t[v].ext or {}
 	t[v].ext.mega = 'M'
@@ -420,11 +431,13 @@ t.castform.gamesOrder = {'base', 'S', 'P', 'N'}
 t.deoxys.gamesOrder = {'base', 'A', 'D', 'V'}
 t.wormadam.gamesOrder = {'base', 'Sa', 'Sc'}
 t.rotom.gamesOrder = {'base', 'C', 'L', 'G', 'V', 'T'}
+t.dialga.gamesOrder = {'base', 'O'}
+t.palkia.gamesOrder = {'base', 'O'}
 t.giratina.gamesOrder = {'base', 'O'}
 t.shaymin.gamesOrder = {'base', 'C'}
 t.arceus.gamesOrder = {'base', 'L', 'Vo', 'Ve', 'T', 'R', 'C', 'S', 'Ai', 'Fu',
 	'Aq', 'Er', 'El', 'P', 'G', 'D', 'B', 'Fo', 'Sc'}
-t.basculin.gamesOrder = {'base', 'B'}
+t.basculin.gamesOrder = {'base', 'B', 'H'}
 t.darmanitan.gamesOrder = {'base', 'Z', 'G', 'GZ'}
 t.tornadus.gamesOrder = {'base', 'T'}
 t.kyurem.gamesOrder = {'base', 'B', 'N'}
@@ -439,6 +452,7 @@ t.lycanroc.gamesOrder = {'base', 'N', 'C'}
 t.oricorio.gamesOrder = {'base', 'C', 'H', 'B'}
 t.wishiwashi.gamesOrder = {'base', 'B'}
 t.silvally.gamesOrder = mw.clone(t.arceus.gamesOrder)
+table.remove(t.silvally.gamesOrder)
 t.minior.gamesOrder = {'base', 'R'}
 t.necrozma.gamesOrder = {'base', 'V', 'A', 'U'}
 t.toxtricity.gamesOrder = {'base', 'B', 'Gi'}
@@ -450,7 +464,7 @@ t.zamazenta.gamesOrder = t.zacian.gamesOrder
 t.eternatus.gamesOrder = {'base', 'D'}
 t.urshifu.gamesOrder = {'base', 'Gi', 'P', 'PGi'}
 t.calyrex.gamesOrder = {'base', 'G', 'S'}
-table.remove(t.silvally.gamesOrder)
+t.enamorus.gamesOrder = {'base', 'T'}
 for _, v in pairs(t.mega) do
 	t[v].gamesOrder = t[v].gamesOrder or {'base', 'M'}
 end
@@ -534,6 +548,9 @@ t.articuno.since = {G = 'spsc', base = 'rb'}
 t.zapdos.since = {G = 'spsc', base = 'rb'}
 t.moltres.since = {G = 'spsc', base = 'rb'}
 t.slowking.since = {G = 'spsc', base = 'oa'}
+t.typhlosion.since = {H = 'lpa', base = 'oa'}
+t.qwilfish.since = {H = 'lpa', base = 'oa'}
+t.sneasel.since = {H = 'lpa', base = 'oa'}
 t.corsola.since = {G = 'spsc', base = 'oa'}
 t.zigzagoon.since = {G = 'spsc', base = 'rz'}
 t.castform.since = {S = 'rz', P = 'rz', N = 'rz', base = 'rz'}
@@ -545,7 +562,9 @@ t.shaymin.since = {C = 'pt', base = 'dp'}
 t.arceus.since = {base = 'dp', L = 'dp', Vo = 'dp', Ve = 'dp', T = 'dp',
 	R = 'dp', Aq = 'dp', C = 'dp', Er = 'dp', P = 'dp', B = 'dp', S = 'dp',
 	Ai = 'dp', Fu = 'dp', D = 'dp', Fo = 'xy', El = 'dp', G = 'dp', Sc = 'dp'}
-t.basculin.since = {B = 'nb', base = 'nb'}
+t.samurott.since = {H = 'lpa', base = 'nb'}
+t.lilligant.since = {H = 'lpa', base = 'nb'}
+t.basculin.since = {B = 'nb', H = 'lpa', base = 'nb'}
 t.darumaka.since = {G = 'spsc', base = 'nb'}
 t.darmanitan.since = {Z = 'nb', G = 'spsc', GZ = 'spsc', base = 'nb'}
 t.yamask.since = {G = 'spsc', base = 'rz'}
@@ -558,9 +577,12 @@ t.meloetta.since = {D = 'nb', base = 'nb'}
 t.greninja.since = {A = 'sl', base = 'xy'}
 t.meowstic.since = {F = 'xy', base = 'xy'}
 t.aegislash.since = {S = 'xy', base = 'xy'}
+t.sliggoo.since = {H = 'lpa', base = 'xy'}
 t.pumpkaboo.since = {S = 'xy', L = 'xy', XL = 'xy', base = 'xy'}
+t.avalugg.since = {H = 'lpa', base = 'xy'}
 t.zygarde.since = {D = 'sl', P = 'sl', base = 'xy'}
 t.hoopa.since = {L = 'roza', base = 'xy'}
+t.decidueye.since = {H = 'lpa', base = 'sl'}
 t.lycanroc.since = {N = 'sl', base = 'sl', C = 'usul'}
 t.oricorio.since = {C = 'sl', H = 'sl', B = 'sl', base = 'sl'}
 t.wishiwashi.since = {B = 'sl', base = 'sl'}
@@ -578,6 +600,7 @@ t.zamazenta.since = {R = 'spsc', base = 'spsc'}
 t.eternatus.since = {D = 'spsc', base = 'spsc'}
 t.urshifu.since = {P = 'spsc', Gi = 'spsc', PGi = 'spsc', base = 'spsc'}
 t.calyrex.since = {G = 'spsc', S = 'spsc', base = 'spsc'}
+t.enamorus.since = {T = 'lpa', base = 'lpa'}
 t.venusaur.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
 t.blastoise.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
 t.beedrill.since = {M = 'roza', base = 'rb'}
@@ -667,6 +690,8 @@ t.arceus['until'] = {Sc = 'hgss'}
 t.raticate = table.copy(t.rattata)
 t.sandslash = table.copy(t.sandshrew)
 t.ninetales = table.copy(t.vulpix)
+t.arcanine = table.copy(t.growlithe)
+t.electrode = table.copy(t.voltorb)
 t.dugtrio = table.copy(t.diglett)
 t.graveler = table.copy(t.geodude)
 t.golem = table.copy(t.geodude)
@@ -675,6 +700,7 @@ t.muk = table.copy(t.grimer)
 t.linoone = table.copy(t.zigzagoon)
 t.zoroark = table.copy(t.zorua)
 t.thundurus, t.landorus = table.copy(t.tornadus), table.copy(t.tornadus)
+t.goodra = table.copy(t.sliggoo)
 t.gourgeist = table.copy(t.pumpkaboo)
 
 -- Adding missing Pokémon to set with a certain kind of forms. Added here
@@ -692,7 +718,10 @@ table.insert(t.alola, 'muk')
 table.insert(t.galar, 'rapidash')
 table.insert(t.galar, 'linoone')
 -- Other Hisuian forms
+table.insert(t.hisui, 'arcanine')
+table.insert(t.hisui, 'electrode')
 table.insert(t.hisui, 'zoroark')
+table.insert(t.hisui, 'goodra')
 -- Other Gigamax forms
 table.insert(t.gigamax, 'pikachu')
 table.insert(t.gigamax, 'toxtricity')
@@ -715,6 +744,7 @@ t[51] = t.dugtrio
 t[52] = t.meowth
 t[53] = t.persian
 t[58] = t.growlithe
+t[59] = t.arcanine
 t[74] = t.geodude
 t[75] = t.graveler
 t[76] = t.golem
@@ -726,6 +756,7 @@ t[83] = t["farfetch'd"]
 t[88] = t.grimer
 t[89] = t.muk
 t[100] = t.voltorb
+t[101] = t.electrode
 t[103] = t.exeggutor
 t[105] = t.marowak
 t[110] = t.weezing
@@ -734,7 +765,10 @@ t[133] = t.eevee
 t[144] = t.articuno
 t[145] = t.zapdos
 t[146] = t.moltres
+t[157] = t.typhlosion
 t[199] = t.slowking
+t[211] = t.qwilfish
+t[215] = t.sneasel
 t[222] = t.corsola
 t[263] = t.zigzagoon
 t[264] = t.linoone
@@ -742,9 +776,13 @@ t[351] = t.castform
 t[386] = t.deoxys
 t[413] = t.wormadam
 t[479] = t.rotom
+t[483] = t.dialga
+t[484] = t.palkia
 t[487] = t.giratina
 t[492] = t.shaymin
 t[493] = t.arceus
+t[503] = t.samurott
+t[549] = t.lilligant
 t[550] = t.basculin
 t[554] = t.darumaka
 t[555] = t.darmanitan
@@ -761,10 +799,14 @@ t[648] = t.meloetta
 t[658] = t.greninja
 t[678] = t.meowstic
 t[681] = t.aegislash
+t[705] = t.sliggoo
+t[706] = t.goodra
 t[710] = t.pumpkaboo
 t[711] = t.gourgeist
+t[713] = t.avalugg
 t[718] = t.zygarde
 t[720] = t.hoopa
+t[724] = t.decidueye
 t[741] = t.oricorio
 t[745] = t.lycanroc
 t[746] = t.wishiwashi
@@ -781,6 +823,7 @@ t[889] = t.zamazenta
 t[890] = t.eternatus
 t[892] = t.urshifu
 t[898] = t.calyrex
+t[905] = t.enamorus
 t[3] = t.venusaur
 t[9] = t.blastoise
 t[15] = t.beedrill

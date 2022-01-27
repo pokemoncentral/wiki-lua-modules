@@ -1790,7 +1790,7 @@ t.kubfu = {name = 'Kubfu', ndex = 891, type1 = 'lotta', type2 = 'lotta'}
 t[891] = t.kubfu
 t.urshifu = {name = 'Urshifu', ndex = 892, type1 = 'lotta', type2 = 'buio'}
 t[892] = t.urshifu
-t.zarude = {name = 'Zarude', ndex = 893, type1 = 'Buio', type2 = 'Erba'}
+t.zarude = {name = 'Zarude', ndex = 893, type1 = 'buio', type2 = 'erba'}
 t[893] = t.zarude
 t.regieleki = {name = 'Regieleki', ndex = 894, type1 = 'elettro', type2 = 'elettro'}
 t[894] = t.regieleki
@@ -1802,8 +1802,20 @@ t.spectrier = {name = 'Spectrier', ndex = 897, type1 = 'spettro', type2 = 'spett
 t[897] = t.spectrier
 t.calyrex = {name = 'Calyrex', ndex = 898, type1 = 'psico', type2 = 'erba'}
 t[898] = t.calyrex
-t.wyrdeer = {name = 'Wyrdeer', ndex = nil, type1 = 'normale', type2 = 'psico'}
-t.basculegion = {name = 'Basculegion', ndex = nil, type1 = 'acqua', type2 = 'spettro'}
+t.wyrdeer = {name = 'Wyrdeer', ndex = 899, type1 = 'normale', type2 = 'psico'}
+t[899] = t.wyrdeer
+t.kleavor = {name = 'Kleavor', ndex = 900, type1 = 'coleot', type2 = 'roccia'}
+t[900] = t.kleavor
+t.ursaluna = {name = 'Ursaluna', ndex = 901, type1 = 'terra', type2 = 'normale'}
+t[901] = t.ursaluna
+t.basculegion = {name = 'Basculegion', ndex = 902, type1 = 'acqua', type2 = 'spettro'}
+t[902] = t.basculegion
+t.sneasler = {name = 'Sneasler', ndex = 903, type1 = 'lotta', type2 = 'veleno'}
+t[903] = t.sneasler
+t.overqwil = {name = 'Overqwil', ndex = 904, type1 = 'buio', type2 = 'veleno'}
+t[904] = t.overqwil
+t.enamorus = {name = 'Enamorus', ndex = 905, type1 = 'folletto', type2 = 'volante'}
+t[905] = t.enamorus
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
@@ -1834,6 +1846,8 @@ t.persianA = {name = 'Persian', ndex = 53, type1 = 'buio', type2 = 'buio'}
 t['053A'] = t.persianA
 t.growlitheH = {name = 'Growlithe', ndex = 58, type1 = 'fuoco', type2 = 'roccia'}
 t['058H'] = t.growlitheH
+t.arcanineH = {name = 'Arcanine', ndex = 59, type1 = 'fuoco', type2 = 'roccia'}
+t['059H'] = t.arcanineH
 t.geodudeA = {name = 'Geodude', ndex = 74, type1 = 'roccia', type2 = 'elettro'}
 t['074A'] = t.geodudeA
 t.gravelerA = {name = 'Graveler', ndex = 75, type1 = 'roccia', type2 = 'elettro'}
@@ -1856,6 +1870,8 @@ t.mukA = {name = 'Muk', ndex = 89, type1 = 'veleno', type2 = 'buio'}
 t['089A'] = t.mukA
 t.voltorbH = {name = 'Voltorb', ndex = 100, type1 = 'elettro', type2 = 'erba'}
 t['100H'] = t.voltorbH
+t.electrodeH = {name = 'Electrode', ndex = 101, type1 = 'elettro', type2 = 'erba'}
+t['101H'] = t.electrodeH
 t.exeggutorA = {name = 'Exeggutor', ndex = 103, type1 = 'erba', type2 = 'drago'}
 t['103A'] = t.exeggutorA
 t.marowakA = {name = 'Marowak', ndex = 105, type1 = 'fuoco', type2 = 'spettro'}
@@ -1870,8 +1886,14 @@ t.zapdosG = {name = 'Zapdos', ndex = 145, type1 = 'lotta', type2 = 'volante'}
 t['145G'] = t.zapdosG
 t.moltresG = {name = 'Moltres', ndex = 146, type1 = 'buio', type2 = 'volante'}
 t['146G'] = t.moltresG
+t.typhlosionH = {name = 'Typhlosion', ndex = 157, type1 = 'fuoco', type2 = 'spettro'}
+t['157H'] = t.typhlosionH
 t.slowkingG = {name = 'Slowking', ndex = 199, type1 = 'veleno', type2 = 'psico'}
 t['199G'] = t.slowkingG
+t.qwilfishH = {name = 'Qwilfish', ndex = 211, type1 = 'buio', type2 = 'veleno'}
+t['211H'] = t.qwilfishH
+t.sneaselH = {name = 'Sneasel', ndex = 215, type1 = 'lotta', type2 = 'veleno'}
+t['215H'] = t.sneaselH
 t.corsolaG = {name = 'Corsola', ndex = 222, type1 = 'spettro', type2 = 'spettro'}
 t['222G'] = t.corsolaG
 t.zigzagoonG = {name = 'Zigzagoon', ndex = 263, type1 = 'buio', type2 = 'normale'}
@@ -1941,6 +1963,10 @@ t.arceusFo = {name = 'Arceus', ndex = 493, type1 = 'folletto', type2 = 'folletto
 t['493Fo'] = t.arceusFo
 t.arceusSc = {name = 'Arceus', ndex = 493, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 t['493Sc'] = t.arceusSc
+t.samurottH = {name = 'Samurott', ndex = 503, type1 = 'acqua', type2 = 'buio'}
+t['503H'] = t.samurottH
+t.lilligantH = {name = 'Lilligant', ndex = 549, type1 = 'erba', type2 = 'lotta'}
+t['549H'] = t.lilligantH
 t.darumakaG = {name = 'Darumaka', ndex = 554, type1 = 'ghiaccio', type2 = 'ghiaccio'}
 t['554G'] = t.darumakaG
 t.darmanitanZ = {name = 'Darmanitan', ndex = 555, type1 = 'fuoco', type2 = 'psico'}
@@ -1961,8 +1987,16 @@ t.braviaryH = {name = 'Braviary', ndex = 628, type1 = 'psico', type2 = 'volante'
 t['628H'] = t.braviaryH
 t.meloettaD = {name = 'Meloetta', ndex = 648, type1 = 'normale', type2 = 'lotta'}
 t['648D'] = t.meloettaD
+t.sliggooH = {name = 'Sliggoo', ndex = 705, type1 = 'acciaio', type2 = 'drago'}
+t['705H'] = t.sliggooH
+t.goodraH = {name = 'Goodra', ndex = 706, type1 = 'acciaio', type2 = 'drago'}
+t['706H'] = t.goodraH
+t.avaluggH = {name = 'Avalugg', ndex = 713, type1 = 'ghiaccio', type2 = 'roccia'}
+t['713H'] = t.avaluggH
 t.hoopaL = {name = 'Hoopa', ndex = 720, type1 = 'psico', type2 = 'buio'}
 t['720L'] = t.hoopaL
+t.decidueyeH = {name = 'Decidueye', ndex = 724, type1 = 'erba', type2 = 'lotta'}
+t['724H'] = t.decidueyeH
 t.oricorioC = {name = 'Oricorio', ndex = 741, type1 = 'elettro', type2 = 'volante'}
 t['741C'] = t.oricorioC
 t.oricorioH = {name = 'Oricorio', ndex = 741, type1 = 'psico', type2 = 'volante'}
@@ -2055,8 +2089,11 @@ t.pikachuCs, t['025Cs'], t.pikachuR, t['025R'], t.pikachuD, t['025D'],
 t.eeveeCm, t['133Cm'] = t.eevee, t.eevee
 t.deoxysA, t['386A'], t.deoxysD, t['386D'], t.deoxysV, t['386V'] =
 	t.deoxys, t.deoxys, t.deoxys, t.deoxys, t.deoxys, t.deoxys
+t.dialgaO, t['483O'] = t.dialga, t.dialga
+t.palkiaO, t['484O'] = t.palkia, t.palkia
 t.giratinaO, t['487O'] = t.giratina, t.giratina
 t.basculinB, t['550B'] = t.basculin, t.basculin
+t.basculinH, t['550H'] = t.basculin, t.basculin
 t.tornadusT, t['641T'] = t.tornadus, t.tornadus
 t.thundurusT, t['642T'] = t.thundurus, t.thundurus
 t.landorusT, t['645T'] = t.landorus, t.landorus
@@ -2086,6 +2123,7 @@ t['888R'] = t.zacianR
 t.zamazentaR = {name = 'Zamazenta', ndex = 889, type1 = 'lotta', type2 = 'acciaio'}
 t['889R'] = t.zamazentaR
 t.eternatusD, t['890D'] = t.eternatus, t.eternatus
+t.enamorusT, t['905T'] = t.enamorus, t.enamorus
 
 t.venusaurM, t['003M'] = t.venusaur, t.venusaur
 t.charizardMY, t['006MY'] = t.charizard, t.charizard

@@ -1293,7 +1293,14 @@ evo.scyther = {
 			name = 'scizor',
 			method = evo.methods.TRADE,
 			conditions = { [evo.conditions.ITEM] = 'Metalcoperta' },
-		}
+		},
+		{
+			ndex = 900,
+			name = 'kleavor',
+			method = evo.methods.UNKNOWN,
+			-- method = evo.methods.TRADE,
+			-- conditions = { [evo.conditions.ITEM] = 'Metalcoperta' },
+		},
 	}
 }
 evo.scizor = evo.scyther
@@ -1633,13 +1640,20 @@ evo.cyndaquil = {
 					name = 'typhlosion',
 					method = evo.methods.LEVEL,
 					[evo.methods.LEVEL] = 36,
+				},
+				{
+					ndex = '157H',
+					name = 'typhlosionH',
+					method = evo.methods.UNKNOWN,
+					-- method = evo.methods.LEVEL,
+					-- [evo.methods.LEVEL] = 36,
 				}
 			}
 		}
 	}
 }
-evo.quilava, evo.typhlosion = evo.cyndaquil, evo.cyndaquil
-evo[155], evo[156], evo[157] = evo.cyndaquil, evo.cyndaquil, evo.cyndaquil
+evo.quilava, evo.typhlosion, evo.typhlosionH = evo.cyndaquil, evo.cyndaquil, evo.cyndaquil
+evo[155], evo[156], evo[157], evo['157H'] = evo.cyndaquil, evo.cyndaquil, evo.cyndaquil, evo.cyndaquil
 
 evo.totodile = {
 	ndex = 158,
@@ -2089,6 +2103,14 @@ evo.teddiursa = {
 			name = 'ursaring',
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 30,
+
+			evos = {
+				{
+					ndex = 901,
+					name = 'ursaluna',
+					method = evo.methods.UNKNOWN,
+				}
+			}
 		}
 	}
 }
@@ -2211,8 +2233,20 @@ evo.phanpy = {
 evo.donphan = evo.phanpy
 evo[231], evo[232] = evo.phanpy, evo.phanpy
 
-evo.stantler = { ndex = 234, name = 'stantler' }
-evo[234] = evo.stantler
+evo.stantler = {
+	ndex = 234,
+	name = 'stantler',
+
+	evos = {
+		{
+			ndex = 899,
+			name = 'wyrdeer',
+			method = evo.methods.UNKNOWN,
+		}
+	}
+}
+evo.wyrdeer = evo.stantler
+evo[234], evo[899] = evo.stantler, evo.stantler
 
 evo.smeargle = { ndex = 235, name = 'smeargle' }
 evo[235] = evo.smeargle
@@ -3887,13 +3921,20 @@ evo.oshawott = {
 					name = 'samurott',
 					method = evo.methods.LEVEL,
 					[evo.methods.LEVEL] = 36,
+				},
+				{
+					ndex = '503H',
+					name = 'samurottH',
+					method = evo.methods.UNKNOWN,
+					-- method = evo.methods.LEVEL,
+					-- [evo.methods.LEVEL] = 36,
 				}
 			}
 		}
 	}
 }
-evo.dewott, evo.samurott = evo.oshawott, evo.oshawott
-evo[501], evo[502], evo[503] = evo.oshawott, evo.oshawott, evo.oshawott
+evo.dewott, evo.samurott, evo.samurottH = evo.oshawott, evo.oshawott, evo.oshawott
+evo[501], evo[502], evo[503], evo['503H'] = evo.oshawott, evo.oshawott, evo.oshawott, evo.oshawott
 
 evo.patrat = {
 	ndex = 504,
@@ -4245,11 +4286,18 @@ evo.petilil = {
 			name = 'lilligant',
 			method = evo.methods.STONE,
 			[evo.methods.STONE] = 'Pietrasolare',
-		}
+		},
+		{
+			ndex = '549H',
+			name = 'lilligantH',
+			method = evo.methods.UNKNOWN,
+			-- method = evo.methods.STONE,
+			-- [evo.methods.STONE] = 'Pietrasolare',
+		},
 	}
 }
-evo.lilligant = evo.petilil
-evo[548], evo[549] = evo.petilil, evo.petilil
+evo.lilligant, evo.lilligantH = evo.petilil, evo.petilil
+evo[548], evo[549], evo['549H'] = evo.petilil, evo.petilil, evo.petilil
 
 evo.basculin = { ndex = 550, name = 'basculin', notes = altforms.basculin.names.base }
 evo[550] = evo.basculin
@@ -4844,11 +4892,18 @@ evo.rufflet = {
 			name = 'braviary',
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 54,
-		}
+		},
+		{
+			ndex = '628H',
+			name = 'braviaryH',
+			method = evo.methods.UNKNOWN,
+			-- method = evo.methods.LEVEL,
+			-- [evo.methods.LEVEL] = 54,
+		},
 	}
 }
-evo.braviary = evo.rufflet
-evo[627], evo[628] = evo.rufflet, evo.rufflet
+evo.braviary, evo.braviaryH = evo.rufflet, evo.rufflet
+evo[627], evo[628], evo['628H'] = evo.rufflet, evo.rufflet, evo.rufflet
 
 evo.vullaby = {
 	ndex = 629,
@@ -5387,11 +5442,31 @@ evo.goomy = {
 					conditions = { [evo.conditions.OTHER] = "Se [[Pioggia battente|piove]] o c'è [[Nebbia (condizione atmosferica)|nebbia]] nell'overworld" },
 				}
 			}
-		}
+		},
+		{
+			ndex = '705H',
+			name = 'sliggooH',
+			method = evo.methods.UNKNOWN,
+			-- method = evo.methods.LEVEL,
+			-- [evo.methods.LEVEL] = 40,
+
+			evos = {
+				{
+					ndex = '706H',
+					name = 'goodraH',
+					method = evo.methods.UNKNOWN,
+					-- method = evo.methods.LEVEL,
+					-- [evo.methods.LEVEL] = 50,
+					-- conditions = { [evo.conditions.OTHER] = "Se [[Pioggia battente|piove]] o c'è [[Nebbia (condizione atmosferica)|nebbia]] nell'overworld" },
+				}
+			}
+		},
 	}
 }
 evo.sliggoo, evo.goodra = evo.goomy, evo.goomy
 evo[704], evo[705], evo[706] = evo.goomy, evo.goomy, evo.goomy
+evo.sliggooH, evo.goodraH = evo.goomy, evo.goomy
+evo['705H'], evo['706H'] = evo.goomy, evo.goomy
 
 evo.klefki = { ndex = 707, name = 'klefki' }
 evo[707] = evo.klefki
@@ -5438,11 +5513,18 @@ evo.bergmite = {
 			name = 'avalugg',
 			method = evo.methods.LEVEL,
 			[evo.methods.LEVEL] = 37,
-		}
+		},
+		{
+			ndex = '713H',
+			name = 'avaluggH',
+			method = evo.methods.UNKNOWN,
+			-- method = evo.methods.LEVEL,
+			-- [evo.methods.LEVEL] = 37,
+		},
 	}
 }
-evo.avalugg = evo.bergmite
-evo[712], evo[713] = evo.bergmite, evo.bergmite
+evo.avalugg, evo.avaluggH = evo.bergmite, evo.bergmite
+evo[712], evo[713], evo['713H'] = evo.bergmite, evo.bergmite, evo.bergmite
 
 evo.noibat = {
 	ndex = 714,
@@ -5495,13 +5577,20 @@ evo.rowlet = {
 					name = 'decidueye',
 					method = evo.methods.LEVEL,
 					[evo.methods.LEVEL] = 34,
-				}
+				},
+				{
+					ndex = '724H',
+					name = 'decidueyeH',
+					method = evo.methods.UNKNOWN,
+					-- method = evo.methods.LEVEL,
+					-- [evo.methods.LEVEL] = 34,
+				},
 			}
 		}
 	}
 }
-evo.dartrix, evo.decidueye = evo.rowlet, evo.rowlet
-evo[722], evo[723], evo[724] = evo.rowlet, evo.rowlet, evo.rowlet
+evo.dartrix, evo.decidueye, evo.decidueyeH = evo.rowlet, evo.rowlet, evo.rowlet
+evo[722], evo[723], evo[724], evo['724H'] = evo.rowlet, evo.rowlet, evo.rowlet, evo.rowlet
 
 evo.litten = {
 	ndex = 725,
@@ -6673,6 +6762,9 @@ evo[897] = evo.spectrier
 evo.calyrex =  { ndex = 898, name = 'calyrex' }
 evo[898] = evo.calyrex
 
+evo.enamorus =  { ndex = 905, name = 'enamorus' }
+evo[905] = evo.enamorus
+
 -- Alternative forms with evolutions
 evo.rattataA = {
 	ndex = '019A',
@@ -6781,6 +6873,22 @@ evo.meowthG = {
 evo.perrserker = evo.meowthG
 evo['052G'], evo[863] = evo.meowthG, evo.meowthG
 
+evo.growlitheH = {
+	ndex = '058H',
+	name = 'growlitheH',
+
+	evos = {
+		{
+			ndex = '059H',
+			name = 'arcanineH',
+			method = evo.methods.UNKNOWN,
+			-- method = evo.methods.TRADE,
+		}
+	}
+}
+evo.arcanineH = evo.growlitheH
+evo['058H'], evo['059H'] = evo.growlitheH, evo.growlitheH
+
 evo.geodudeA = {
 	ndex = '074A',
 	name = 'geodudeA',
@@ -6884,6 +6992,55 @@ evo.grimerA = {
 evo.mukA = evo.grimerA
 evo['088A'], evo['089A'] = evo.grimerA, evo.grimerA
 
+evo.voltorbH = {
+	ndex = '100H',
+	name = 'voltorbH',
+
+	evos = {
+		{
+			ndex = '101H',
+			name = 'electrodeH',
+			method = evo.methods.UNKNOWN,
+			-- method = evo.methods.LEVEL,
+			-- [evo.methods.LEVEL] = 30,
+		}
+	}
+}
+evo.electrodeH = evo.voltorbH
+evo['100H'], evo['101H'] = evo.voltorbH, evo.voltorbH
+
+evo.qwilfishH = {
+	ndex = '211H',
+	name = 'qwilfishH',
+	notes = altforms.qwilfish.names.H,
+
+	evos = {
+		{
+			ndex = 904,
+			name = 'overqwil',
+			method = evo.methods.UNKNOWN,
+		}
+	}
+}
+evo.overqwil = evo.qwilfishH
+evo['211H'], evo[904] = evo.qwilfishH, evo.qwilfishH
+
+evo.sneaselH = {
+	ndex = '215H',
+	name = 'sneaselH',
+	notes = altforms.sneasel.names.H,
+
+	evos = {
+		{
+			ndex = 903,
+			name = 'sneasler',
+			method = evo.methods.UNKNOWN,
+		}
+	}
+}
+evo.sneasler = evo.sneaselH
+evo['215H'], evo[903] = evo.sneaselH, evo.sneaselH
+
 evo.corsolaG = {
 	ndex = '222G',
 	name = 'corsolaG',
@@ -6929,6 +7086,22 @@ evo.zigzagoonG = {
 evo.linooneG, evo.obstagoon = evo.zigzagoonG, evo.zigzagoonG
 evo['263G'], evo['264G'], evo[862] = evo.zigzagoonG, evo.zigzagoonG, evo.zigzagoonG
 
+evo.basculinH = {
+	ndex = '550H',
+	name = 'basculinH',
+	notes = altforms.basculin.names.H,
+
+	evos = {
+		{
+			ndex = 902,
+			name = 'basculegion',
+			method = evo.methods.UNKNOWN,
+		}
+	}
+}
+evo.basculegion = evo.basculinH
+evo['550H'], evo[902] = evo.basculinH, evo.basculinH
+
 evo.darumakaG = {
 	ndex = '554G',
 	name = 'darumakaG',
@@ -6965,6 +7138,23 @@ evo.yamaskG = {
 }
 evo.runerigus = evo.yamaskG
 evo['562G'], evo[867] = evo.yamaskG, evo.yamaskG
+
+evo.zoruaH = {
+	ndex = '570H',
+	name = 'zoruaH',
+
+	evos = {
+		{
+			ndex = '571H',
+			name = 'zoroarkH',
+			method = evo.methods.UNKNOWN,
+			-- method = evo.methods.LEVEL,
+			-- [evo.methods.LEVEL] = 30,
+		}
+	}
+}
+evo.zoroarkH = evo.zoruaH
+evo['570H'], evo['571H'] = evo.zoruaH, evo.zoruaH
 
 --[[
 
