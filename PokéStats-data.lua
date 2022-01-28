@@ -1802,6 +1802,20 @@ d.spectrier = {hp = 100, atk = 65, def = 60, spatk = 145, spdef = 80, spe = 130}
 d[897] = d.spectrier
 d.calyrex = {hp = 100, atk = 80, def = 80, spatk = 80, spdef = 80, spe = 80}
 d[898] = d.calyrex
+d.wyrdeer = {hp = 103, atk = 105, def = 72, spatk = 105, spdef = 75, spe = 65}
+d[899] = d.wyrdeer
+d.kleavor = {hp = 70, atk = 135, def = 95, spatk = 45, spdef = 70, spe = 85}
+d[900] = d.kleavor
+d.ursaluna = {hp = 130, atk = 140, def = 105, spatk = 45, spdef = 80, spe = 50}
+d[901] = d.ursaluna
+d.basculegion = {hp = 120, atk = 112, def = 65, spatk = 80, spdef = 75, spe = 78}
+d[902] = d.basculegion
+d.sneasler = {hp = 80, atk = 130, def = 60, spatk = 40, spdef = 80, spe = 120}
+d[903] = d.sneasler
+d.overqwil = {hp = 85, atk = 115, def = 95, spatk = 65, spdef = 65, spe = 85}
+d[904] = d.overqwil
+d.enamorus = {hp = 74, atk = 115, def = 70, spatk = 135, spdef = 80, spe = 106}
+d[905] = d.enamorus
 
 -- Alternative forms which actually change stats
 d.pikachuCm = {hp = 45, atk = 80, def = 50, spatk = 75, spdef = 60, spe = 120}
@@ -1834,6 +1848,10 @@ d.rotomV = {hp = 50, atk = 65, def = 107, spatk = 105, spdef = 107, spe = 86}
 d['479V'] = d.rotomV
 d.rotomT = {hp = 50, atk = 65, def = 107, spatk = 105, spdef = 107, spe = 86}
 d['479T'] = d.rotomT
+d.dialgaO = {hp = 100, atk = 100, def = 120, spatk = 150, spdef = 120, spe = 90}
+d['483O'] = d.dialgaO
+d.palkiaO = {hp = 90, atk = 100, def = 100, spatk = 150, spdef = 120, spe = 120}
+d['484O'] = d.palkiaO
 d.giratinaO = {hp = 150, atk = 120, def = 100, spatk = 120, spdef = 100, spe = 90}
 d['487O'] = d.giratinaO
 d.shayminC = {hp = 100, atk = 103, def = 75, spatk = 120, spdef = 75, spe = 127}
@@ -1902,6 +1920,8 @@ d.calyrexG = {hp = 100, atk = 165, def = 150, spatk = 85, spdef = 130, spe = 50}
 d['898G'] = d.calyrexG
 d.calyrexS = {hp = 100, atk = 85, def = 80, spatk = 165, spdef = 100, spe = 150}
 d['898S'] = d.calyrexS
+d.enamorusT = {hp = 74, atk = 115, def = 110, spatk = 135, spdef = 100, spe = 46}
+d['905T'] = d.enamorusT
 
 -- Mega evolutions and Primal reversions
 d.venusaurM = {hp = 80, atk = 100, def = 123, spatk = 122, spdef = 120, spe = 80}
@@ -2078,6 +2098,42 @@ d.yamaskG = {hp = 38, atk = 55, def = 85, spatk = 30, spdef = 65, spe = 30}
 d['562G'] = d.yamaskG
 d.stunfiskG = {hp = 109, atk = 81, def = 99, spatk = 66, spdef = 84, spe = 32}
 d['618G'] = d.stunfiskG
+
+-- Hisuian forms
+d.growlitheH = {hp = 60, atk = 75, def = 45, spatk = 65, spdef = 50, spe = 55}
+d['058H'] = d.growlitheH
+d.arcanineH = {hp = 95, atk = 115, def = 80, spatk = 95, spdef = 80, spe = 90}
+d['059H'] = d.arcanineH
+d.voltorbH = {hp = 40, atk = 30, def = 50, spatk = 55, spdef = 55, spe = 100}
+d['100H'] = d.voltorbH
+d.electrodeH = {hp = 60, atk = 50, def = 70, spatk = 80, spdef = 80, spe = 150}
+d['101H'] = d.electrodeH
+d.typhlosionH = {hp = 73, atk = 84, def = 78, spatk = 119, spdef = 85, spe = 95}
+d['157H'] = d.typhlosionH
+d.qwilfishH = {hp = 65, atk = 95, def = 85, spatk = 55, spdef = 55, spe = 85}
+d['211H'] = d.qwilfishH
+d.sneaselH = {hp = 55, atk = 95, def = 55, spatk = 35, spdef = 75, spe = 115}
+d['215H'] = d.sneaselH
+d.samurottH = {hp = 90, atk = 108, def = 80, spatk = 100, spdef = 65, spe = 85}
+d['503H'] = d.samurottH
+d.lilligantH = {hp = 70, atk = 105, def = 75, spatk = 50, spdef = 75, spe = 105}
+d['549H'] = d.lilligantH
+d.basculinH = {hp = 70, atk = 92, def = 65, spatk = 80, spdef = 55, spe = 98}
+d['550H'] = d.basculinH
+d.zoruaH = {hp = 35, atk = 60, def = 40, spatk = 85, spdef = 40, spe = 70}
+d['570H'] = d.zoruaH
+d.zoroarkH = {hp = 55, atk = 100, def = 60, spatk = 125, spdef = 60, spe = 110}
+d['571H'] = d.zoroarkH
+d.braviaryH = {hp = 110, atk = 83, def = 70, spatk = 112, spdef = 70, spe = 65}
+d['628H'] = d.braviaryH
+d.sliggooH = {hp = 58, atk = 75, def = 83, spatk = 83, spdef = 113, spe = 40}
+d['705H'] = d.sliggooH
+d.goodraH = {hp = 80, atk = 100, def = 100, spatk = 110, spdef = 150, spe = 60}
+d['706H'] = d.goodraH
+d.avaluggH = {hp = 95, atk = 127, def = 184, spatk = 34, spdef = 36, spe = 38}
+d['713H'] = d.avaluggH
+d.decidueyeH = {hp = 88, atk = 112, def = 80, spatk = 95, spdef = 95, spe = 60}
+d['724H'] = d.decidueyeH
 
 -- Other non-useless alternative forms aliases
 d['025Cs'], d['025R'], d['025D'] = d.pikachu, d.pikachu, d.pikachu
