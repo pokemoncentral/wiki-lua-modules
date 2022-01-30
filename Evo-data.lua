@@ -23,6 +23,7 @@ local ms = require('MiniSprite')
 local pokes = require("Poké-data")
 local altforms = require("AltForms-data")
 local useless = require("UselessForms-data")
+local sup = require("Sup-data")
 
 local evo = {}
 
@@ -673,6 +674,13 @@ evo.abra = {
 					ndex = 65,
 					name = 'alakazam',
 					method = evo.methods.TRADE,
+					conditions = {
+						[evo.conditions.OTHER] = table.concat{
+							"oppure<div>",
+							links.bag("Filo dell'unione"),
+							"</div>usando un [[Filo dell'unione]]",
+						},
+					},
 				}
 			}
 		}
@@ -697,6 +705,13 @@ evo.machop = {
 					ndex = 68,
 					name = 'machamp',
 					method = evo.methods.TRADE,
+					conditions = {
+						[evo.conditions.OTHER] = table.concat{
+							"oppure<div>",
+							links.bag("Filo dell'unione"),
+							"</div>usando un [[Filo dell'unione]]",
+						},
+					},
 				}
 			}
 		}
@@ -762,6 +777,13 @@ evo.geodude = {
 					ndex = 76,
 					name = 'golem',
 					method = evo.methods.TRADE,
+					conditions = {
+						[evo.conditions.OTHER] = table.concat{
+							"oppure<div>",
+							links.bag("Filo dell'unione"),
+							"</div>usando un [[Filo dell'unione]]",
+						},
+					},
 				}
 			}
 		}
@@ -925,6 +947,13 @@ evo.gastly = {
 					ndex = 94,
 					name = 'gengar',
 					method = evo.methods.TRADE,
+					conditions = {
+						[evo.conditions.OTHER] = table.concat{
+							"oppure<div>",
+							links.bag("Filo dell'unione"),
+							"</div>usando un [[Filo dell'unione]]",
+						},
+					},
 				}
 			}
 		}
@@ -942,7 +971,10 @@ evo.onix = {
 			ndex = 208,
 			name = 'steelix',
 			method = evo.methods.TRADE,
-			conditions = { [evo.conditions.ITEM] = 'Metalcoperta' },
+			conditions = {
+				[evo.conditions.ITEM] = 'Metalcoperta',
+				[evo.conditions.OTHER] = "oppure usando [[Metalcoperta]]" .. sup.LPA,
+			},
 		}
 	}
 }
@@ -1134,7 +1166,10 @@ evo.rhyhorn = {
 					ndex = 464,
 					name = 'rhyperior',
 					method = evo.methods.TRADE,
-					conditions = { [evo.conditions.ITEM] = 'Copertura' },
+					conditions = {
+						[evo.conditions.ITEM] = 'Copertura',
+						[evo.conditions.OTHER] = "oppure usando [[Copertura]]" .. sup.LPA,
+					},
 				}
 			}
 		}
@@ -1292,14 +1327,16 @@ evo.scyther = {
 			ndex = 212,
 			name = 'scizor',
 			method = evo.methods.TRADE,
-			conditions = { [evo.conditions.ITEM] = 'Metalcoperta' },
+			conditions = {
+				[evo.conditions.ITEM] = 'Metalcoperta',
+				[evo.conditions.OTHER] = "oppure usando [[Metalcoperta]]" .. sup.LPA,
+			},
 		},
 		{
 			ndex = 900,
 			name = 'kleavor',
-			method = evo.methods.UNKNOWN,
-			-- method = evo.methods.TRADE,
-			-- conditions = { [evo.conditions.ITEM] = 'Metalcoperta' },
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = "Augite nera",
 		},
 	}
 }
@@ -1340,7 +1377,10 @@ evo.elekid = {
 					ndex = 466,
 					name = 'electivire',
 					method = evo.methods.TRADE,
-					conditions = { [evo.conditions.ITEM] = 'Elettritore' },
+					conditions = {
+						[evo.conditions.ITEM] = 'Elettritore',
+						[evo.conditions.OTHER] = "oppure usando [[Elettritore]]" .. sup.LPA,
+					},
 				}
 			}
 		}
@@ -1366,7 +1406,10 @@ evo.magby = {
 					ndex = 467,
 					name = 'magmortar',
 					method = evo.methods.TRADE,
-					conditions = { [evo.conditions.ITEM] = 'Magmatore' },
+					conditions = {
+						[evo.conditions.ITEM] = 'Magmatore',
+						[evo.conditions.OTHER] = "oppure usando [[Magmatore]]" .. sup.LPA,
+					},
 				}
 			}
 		}
@@ -1490,14 +1533,20 @@ evo.porygon = {
 			ndex = 233,
 			name = 'porygon2',
 			method = evo.methods.TRADE,
-			conditions = { [evo.conditions.ITEM] = 'Upgrade' },
+			conditions = {
+				[evo.conditions.ITEM] = 'Upgrade',
+				[evo.conditions.OTHER] = "oppure usando [[Upgrade]]" .. sup.LPA,
+			},
 
 			evos = {
 				{
 					ndex = 474,
 					name = 'porygon-z',
 					method = evo.methods.TRADE,
-					conditions = { [evo.conditions.ITEM] = 'Dubbiodisco' },
+					conditions = {
+						[evo.conditions.ITEM] = 'Dubbiodisco',
+						[evo.conditions.OTHER] = "oppure usando [[Dubbiodisco]]" .. sup.LPA,
+					},
 				}
 			}
 		}
@@ -1644,9 +1693,9 @@ evo.cyndaquil = {
 				{
 					ndex = '157H',
 					name = 'typhlosionH',
-					method = evo.methods.UNKNOWN,
-					-- method = evo.methods.LEVEL,
-					-- [evo.methods.LEVEL] = 36,
+					method = evo.methods.LEVEL,
+					[evo.methods.LEVEL] = 36,
+					conditions = { [evo.conditions.REGION] = 'Hisui' },
 				}
 			}
 		}
@@ -2108,7 +2157,9 @@ evo.teddiursa = {
 				{
 					ndex = 901,
 					name = 'ursaluna',
-					method = evo.methods.UNKNOWN,
+					method = evo.methods.STONE,
+					[evo.methods.STONE] = "Blocco di torba",
+					conditions = { [evo.conditions.TIME] = "Luna piena" },
 				}
 			}
 		}
@@ -2241,7 +2292,8 @@ evo.stantler = {
 		{
 			ndex = 899,
 			name = 'wyrdeer',
-			method = evo.methods.UNKNOWN,
+			method = evo.methods.OTHER,
+			[evo.methods.OTHER] = "Usando [[Barrierassalto]] 20 volte come [[Tecnica rapida]]",
 		}
 	}
 }
@@ -2690,7 +2742,15 @@ evo.nosepass = {
 			ndex = 476,
 			name = 'probopass',
 			method = evo.methods.LEVEL,
-			conditions = { [evo.conditions.LOCATION] = 'Campo magnetico speciale' },
+			conditions = {
+				[evo.conditions.LOCATION] = 'Campo magnetico speciale',
+				[evo.conditions.OTHER] = table.concat{
+					"oppure<br>",
+					links.bag("Pietratuono"),
+					"<br>usando una [[Pietratuono]]<br>",
+					"oppure facendolo uscire dalla ball alle [[Pendici Corona]]",
+				},
+			},
 		}
 	}
 }
@@ -3112,7 +3172,10 @@ evo.duskull = {
 					ndex = 477,
 					name = 'dusknoir',
 					method = evo.methods.TRADE,
-					conditions = { [evo.conditions.ITEM] = 'Terrorpanno' },
+					conditions = {
+						[evo.conditions.ITEM] = 'Terrorpanno',
+						[evo.conditions.OTHER] = "oppure usando [[Terrorpanno]]" .. sup.LPA,
+					},
 				}
 			}
 		}
@@ -3925,9 +3988,9 @@ evo.oshawott = {
 				{
 					ndex = '503H',
 					name = 'samurottH',
-					method = evo.methods.UNKNOWN,
-					-- method = evo.methods.LEVEL,
-					-- [evo.methods.LEVEL] = 36,
+					method = evo.methods.LEVEL,
+					[evo.methods.LEVEL] = 36,
+					conditions = { [evo.conditions.REGION] = 'Hisui' },
 				}
 			}
 		}
@@ -4290,9 +4353,9 @@ evo.petilil = {
 		{
 			ndex = '549H',
 			name = 'lilligantH',
-			method = evo.methods.UNKNOWN,
-			-- method = evo.methods.STONE,
-			-- [evo.methods.STONE] = 'Pietrasolare',
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietrasolare',
+			conditions = { [evo.conditions.REGION] = 'Hisui' },
 		},
 	}
 }
@@ -4896,9 +4959,9 @@ evo.rufflet = {
 		{
 			ndex = '628H',
 			name = 'braviaryH',
-			method = evo.methods.UNKNOWN,
-			-- method = evo.methods.LEVEL,
-			-- [evo.methods.LEVEL] = 54,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 54,
+			conditions = { [evo.conditions.REGION] = 'Hisui' },
 		},
 	}
 }
@@ -5446,18 +5509,17 @@ evo.goomy = {
 		{
 			ndex = '705H',
 			name = 'sliggooH',
-			method = evo.methods.UNKNOWN,
-			-- method = evo.methods.LEVEL,
-			-- [evo.methods.LEVEL] = 40,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 40,
+			conditions = { [evo.conditions.REGION] = 'Hisui' },
 
 			evos = {
 				{
 					ndex = '706H',
 					name = 'goodraH',
-					method = evo.methods.UNKNOWN,
-					-- method = evo.methods.LEVEL,
-					-- [evo.methods.LEVEL] = 50,
-					-- conditions = { [evo.conditions.OTHER] = "Se [[Pioggia battente|piove]] o c'è [[Nebbia (condizione atmosferica)|nebbia]] nell'overworld" },
+					method = evo.methods.LEVEL,
+					[evo.methods.LEVEL] = 50,
+					conditions = { [evo.conditions.OTHER] = "Se [[Pioggia battente|piove]] nell'overworld" },
 				}
 			}
 		},
@@ -5517,9 +5579,9 @@ evo.bergmite = {
 		{
 			ndex = '713H',
 			name = 'avaluggH',
-			method = evo.methods.UNKNOWN,
-			-- method = evo.methods.LEVEL,
-			-- [evo.methods.LEVEL] = 37,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 37,
+			conditions = { [evo.conditions.REGION] = 'Hisui' },
 		},
 	}
 }
@@ -5581,9 +5643,9 @@ evo.rowlet = {
 				{
 					ndex = '724H',
 					name = 'decidueyeH',
-					method = evo.methods.UNKNOWN,
-					-- method = evo.methods.LEVEL,
-					-- [evo.methods.LEVEL] = 34,
+					method = evo.methods.LEVEL,
+					[evo.methods.LEVEL] = 36,
+					conditions = { [evo.conditions.REGION] = 'Hisui' },
 				},
 			}
 		}
@@ -6881,8 +6943,8 @@ evo.growlitheH = {
 		{
 			ndex = '059H',
 			name = 'arcanineH',
-			method = evo.methods.UNKNOWN,
-			-- method = evo.methods.TRADE,
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = 'Pietrafocaia',
 		}
 	}
 }
@@ -7000,9 +7062,8 @@ evo.voltorbH = {
 		{
 			ndex = '101H',
 			name = 'electrodeH',
-			method = evo.methods.UNKNOWN,
-			-- method = evo.methods.LEVEL,
-			-- [evo.methods.LEVEL] = 30,
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = "Pietrafoglia",
 		}
 	}
 }
@@ -7018,7 +7079,8 @@ evo.qwilfishH = {
 		{
 			ndex = 904,
 			name = 'overqwil',
-			method = evo.methods.UNKNOWN,
+			method = evo.methods.OTHER,
+			[evo.methods.OTHER] = "Usando [[Mille Fielespine]] 20 volte come [[Tecnica potente]]",
 		}
 	}
 }
@@ -7034,7 +7096,9 @@ evo.sneaselH = {
 		{
 			ndex = 903,
 			name = 'sneasler',
-			method = evo.methods.UNKNOWN,
+			method = evo.methods.STONE,
+			[evo.methods.STONE] = "Affilartigli",
+			conditions = { [evo.conditions.TIME] = 'Giorno' }
 		}
 	}
 }
@@ -7086,21 +7150,29 @@ evo.zigzagoonG = {
 evo.linooneG, evo.obstagoon = evo.zigzagoonG, evo.zigzagoonG
 evo['263G'], evo['264G'], evo[862] = evo.zigzagoonG, evo.zigzagoonG, evo.zigzagoonG
 
-evo.basculinH = {
-	ndex = '550H',
-	name = 'basculinH',
-	notes = altforms.basculin.names.H,
+evo.basculinBi = {
+	ndex = '550Bi',
+	name = 'basculinBi',
+	notes = altforms.basculin.names.Bi,
 
 	evos = {
 		{
 			ndex = 902,
 			name = 'basculegion',
-			method = evo.methods.UNKNOWN,
-		}
+			method = evo.methods.OTHER,
+			[evo.methods.OTHER] = [=[<span class="text-small">Avendo subito almeno 274 PS di danni da [[contraccolpo]]</span>]=],
+			conditions = { [evo.conditions.GENDER] = 'Maschio' }
+		},
+		{
+			ndex = '902F',
+			name = 'basculegionF',
+			[evo.methods.OTHER] = [=[<span class="text-small">Avendo subito almeno 274 PS di danni da [[contraccolpo]]</span>]=],
+			conditions = { [evo.conditions.GENDER] = 'Femmina' }
+		},
 	}
 }
-evo.basculegion = evo.basculinH
-evo['550H'], evo[902] = evo.basculinH, evo.basculinH
+evo.basculegion, evo.basculegionF = evo.basculinBi, evo.basculinBi
+evo['550Bi'], evo[902], evo['902F'] = evo.basculinBi, evo.basculinBi, evo.basculinBi
 
 evo.darumakaG = {
 	ndex = '554G',
@@ -7147,9 +7219,9 @@ evo.zoruaH = {
 		{
 			ndex = '571H',
 			name = 'zoroarkH',
-			method = evo.methods.UNKNOWN,
-			-- method = evo.methods.LEVEL,
-			-- [evo.methods.LEVEL] = 30,
+			method = evo.methods.LEVEL,
+			[evo.methods.LEVEL] = 30,
+			conditions = { [evo.conditions.REGION] = 'Hisui' },
 		}
 	}
 }
@@ -7738,6 +7810,18 @@ efs.eternatus = {
 }
 efs.eternatusD = efs.eternatus
 efs[890], efs['890D'] = efs.eternatus, efs.eternatus
+
+efs.enamorus = {
+	{ { ndex = 905, name = 'enamorus' } },
+	{ {
+		ndex = '905T',
+		name = 'enamorusT',
+		method = efs.methods.UNKNOWN,
+		-- [efs.methods.ITEM] = 'Verispecchio',
+	} },
+}
+efs.enamorusT = efs.enamorus
+efs[905], efs['905T'] = efs.enamorus, efs.enamorus
 
 efs.burmy = {
 	{ {

@@ -1856,6 +1856,8 @@ d.giratinaO = {hp = 150, atk = 120, def = 100, spatk = 120, spdef = 100, spe = 9
 d['487O'] = d.giratinaO
 d.shayminC = {hp = 100, atk = 103, def = 75, spatk = 120, spdef = 75, spe = 127}
 d['492C'] = d.shayminC
+d.basculinBi = {hp = 70, atk = 92, def = 65, spatk = 80, spdef = 55, spe = 98}
+d['550Bi'] = d.basculinBi
 d.darmanitanZ = {hp = 105, atk = 30, def = 105, spatk = 140, spdef = 105, spe = 55}
 d['555Z'] = d.darmanitanZ
 d.tornadusT = {hp = 79, atk = 100, def = 80, spatk = 110, spdef = 90, spe = 121}
@@ -1920,6 +1922,8 @@ d.calyrexG = {hp = 100, atk = 165, def = 150, spatk = 85, spdef = 130, spe = 50}
 d['898G'] = d.calyrexG
 d.calyrexS = {hp = 100, atk = 85, def = 80, spatk = 165, spdef = 100, spe = 150}
 d['898S'] = d.calyrexS
+d.basculegionF = {hp = 120, atk = 92, def = 65, spatk = 100, spdef = 75, spe = 78}
+d['902F'] = d.basculegionF
 d.enamorusT = {hp = 74, atk = 115, def = 110, spatk = 135, spdef = 100, spe = 46}
 d['905T'] = d.enamorusT
 
@@ -2118,8 +2122,6 @@ d.samurottH = {hp = 90, atk = 108, def = 80, spatk = 100, spdef = 65, spe = 85}
 d['503H'] = d.samurottH
 d.lilligantH = {hp = 70, atk = 105, def = 75, spatk = 50, spdef = 75, spe = 105}
 d['549H'] = d.lilligantH
-d.basculinH = {hp = 70, atk = 92, def = 65, spatk = 80, spdef = 55, spe = 98}
-d['550H'] = d.basculinH
 d.zoruaH = {hp = 35, atk = 60, def = 40, spatk = 85, spdef = 40, spe = 70}
 d['570H'] = d.zoruaH
 d.zoroarkH = {hp = 55, atk = 100, def = 60, spatk = 125, spdef = 60, spe = 110}

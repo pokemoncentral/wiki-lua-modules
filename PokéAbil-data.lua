@@ -1914,8 +1914,8 @@ t.lilligantH = {ability1 = 'Clorofilla', ability2 = 'Tuttafretta', abilityd = 'F
 t['549H'] = t.lilligantH
 t.basculinB = {ability1 = 'Testadura', ability2 = 'Adattabilità', abilityd = 'Rompiforma'}
 t['550B'] = t.basculinB
-t.basculinH = {ability1 = 'Paura', ability2 = 'Adattabilità', abilityd = 'Rompiforma'}
-t['550H'] = t.basculinH
+t.basculinBi = {ability1 = 'Paura', ability2 = 'Adattabilità', abilityd = 'Rompiforma'}
+t['550Bi'] = t.basculinBi
 t.darmanitanZ = {ability1 = 'Stato Zen'}
 t['555Z'] = t.darmanitanZ
 t.darmanitanG = {ability1 = 'Vigorilla', abilityd = 'Stato Zen'}
@@ -2044,6 +2044,7 @@ t.zacianR, t['888R'] = t.zacian, t.zacian
 t.zamazentaR, t['889R'] = t.zamazenta, t.zamazenta
 t.eternatusD, t['890D'] = t.eternatus, t.eternatus
 t.urshifuP, t['892P'] = t.urshifu, t.urshifu
+t.basculegionF, t['902F'] = t.basculegion, t.basculegion
 
 -- Gigamax
 t.venusaurGi, t['003Gi'] = t.venusaur, t.venusaur

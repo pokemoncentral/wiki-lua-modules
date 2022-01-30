@@ -153,6 +153,7 @@ t.zamazenta = {}
 t.eternatus = {}
 t.urshifu = {}
 t.calyrex = {}
+t.basculegion = {}
 t.enamorus = {}
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
@@ -201,7 +202,7 @@ t.gigamax = {'venusaur', 'charizard', 'blastoise', 'butterfree', 'meowth',
 -- per efficienza, alcuni sono alla fine del modulo
 
 t.hisui = {'growlithe', 'voltorb', 'typhlosion', 'qwilfish', 'sneasel',
-	'samurott', 'lilligant', 'basculin', 'zorua', 'braviary', 'sliggoo',
+	'samurott', 'lilligant', 'zorua', 'braviary', 'sliggoo',
 	'avalugg', 'decidueye'}
 
 
@@ -233,7 +234,7 @@ t.arceus.names = {base = 'Normale', L = 'Lotta', Vo = 'Volante', Ve = 'Veleno',
 	P = 'Psico', B = 'Buio', S = 'Spettro', Ai = 'Acciaio', Fu = 'Fuoco',
 	D = 'Drago', Fo = 'Folletto', El = 'Elettro', G = 'Ghiaccio',
 	Sc = 'Sconosciuto'}
-t.basculin.names = {B = 'Forma Lineablu', base = 'Forma Linearossa'}
+t.basculin.names = {Bi = 'Forma Lineabianca', B = 'Forma Lineablu', base = 'Forma Linearossa'}
 t.darmanitan.names = {Z = 'Stato Zen', G = 'Forma di Galar',
 	GZ = "Stato Zen (Galar)", base = 'Stato Normale'}
 t.tornadus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
@@ -261,7 +262,7 @@ t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = "Necrozma Ali dell'A
 t.toxtricity.names = {B = 'Forma Basso', Gi = "Toxtricity Gigamax", base = 'Forma Melodia'}
 t.alcremie.names = {base = ""}
 t.eiscue.names = {L = "Liquefaccia", base = "Gelofaccia"}
-t.indeedee.names = t.meowstic.names
+t.indeedee.names = {F = 'Femmina', base = 'Maschio'}
 t.morpeko.names = {V = 'Motivo Panciavuota', base = 'Motivo Panciapiena'}
 t.zacian.names = {R = 'Re delle Spade', base = 'Eroe di Mille Lotte'}
 t.zamazenta.names = {R = 'Re degli Scudi', base = 'Eroe di Mille Lotte'}
@@ -269,6 +270,7 @@ t.eternatus.names = {D = 'Dynamax Infinito', base = ''}
 t.urshifu.names = {P = 'Stile Pluricolpo', Gi = 'Urshifu Gigamax (Stile Singolcolpo)',
 	PGi = 'Urshifu Gigamax (Stile Pluricolpo)', base = 'Stile Singolcolpo'}
 t.calyrex.names = {G = "Cavaliere Glaciale", S = "Cavaliere Spettrale", base = ""}
+t.basculegion.names = {F = 'Femmina', base = 'Maschio'}
 t.enamorus.names = {T = 'Forma Totem', base = ''}
 for _, v in pairs(t.mega) do
 	if not t[v] then
@@ -352,7 +354,7 @@ t.shaymin.ext = {cielo = 'C'}
 	buio = 'B', spettro = 'S', acciaio = 'Ai', fuoco = 'Fu', drago = 'D',
 	folletto = 'Fo', elettro = 'El', ghiaccio = 'G', coleot = 'C',
     sconosciuto = 'Sc'}
-t.basculin.ext = {lineablu = 'B'}
+t.basculin.ext = {lineablu = 'B', lineabianca = 'Bi'}
 t.darmanitan.ext = {zen = 'Z', galar = 'G', ["galar zen"] = 'GZ'}
 t.tornadus.ext = {totem = 'T'}
 t.kyurem.ext = {nero = 'N', bianco = 'B'}
@@ -380,7 +382,8 @@ t.zacian.ext = {eroe = 'base', re = 'R'}
 t.zamazenta.ext = t.zacian.ext
 t.eternatus.ext = {dynamax = 'D'}
 t.urshifu.ext = {pluricolpo = 'P', gigamax = "Gi", singolcolpo = 'base'}
-t.calyrex.ext = {} -- TODO
+t.calyrex.ext = {spettrale = 'S', glaciale = 'G'}
+t.basculegion.ext = {femmina = 'F'}
 t.enamorus.ext = {totem = 'T'}
 for _, v in pairs(t.mega) do
 	t[v].ext = t[v].ext or {}
@@ -437,7 +440,7 @@ t.giratina.gamesOrder = {'base', 'O'}
 t.shaymin.gamesOrder = {'base', 'C'}
 t.arceus.gamesOrder = {'base', 'L', 'Vo', 'Ve', 'T', 'R', 'C', 'S', 'Ai', 'Fu',
 	'Aq', 'Er', 'El', 'P', 'G', 'D', 'B', 'Fo', 'Sc'}
-t.basculin.gamesOrder = {'base', 'B', 'H'}
+t.basculin.gamesOrder = {'base', 'B', 'Bi'}
 t.darmanitan.gamesOrder = {'base', 'Z', 'G', 'GZ'}
 t.tornadus.gamesOrder = {'base', 'T'}
 t.kyurem.gamesOrder = {'base', 'B', 'N'}
@@ -464,6 +467,7 @@ t.zamazenta.gamesOrder = t.zacian.gamesOrder
 t.eternatus.gamesOrder = {'base', 'D'}
 t.urshifu.gamesOrder = {'base', 'Gi', 'P', 'PGi'}
 t.calyrex.gamesOrder = {'base', 'G', 'S'}
+t.basculegion.gamesOrder = {'base', 'F'}
 t.enamorus.gamesOrder = {'base', 'T'}
 for _, v in pairs(t.mega) do
 	t[v].gamesOrder = t[v].gamesOrder or {'base', 'M'}
@@ -566,7 +570,7 @@ t.arceus.since = {base = 'dp', L = 'dp', Vo = 'dp', Ve = 'dp', T = 'dp',
 	Ai = 'dp', Fu = 'dp', D = 'dp', Fo = 'xy', El = 'dp', G = 'dp', Sc = 'dp'}
 t.samurott.since = {H = 'lpa', base = 'nb'}
 t.lilligant.since = {H = 'lpa', base = 'nb'}
-t.basculin.since = {B = 'nb', H = 'lpa', base = 'nb'}
+t.basculin.since = {B = 'nb', Bi = 'lpa', base = 'nb'}
 t.darumaka.since = {G = 'spsc', base = 'nb'}
 t.darmanitan.since = {Z = 'nb', G = 'spsc', GZ = 'spsc', base = 'nb'}
 t.yamask.since = {G = 'spsc', base = 'rz'}
@@ -602,6 +606,7 @@ t.zamazenta.since = {R = 'spsc', base = 'spsc'}
 t.eternatus.since = {D = 'spsc', base = 'spsc'}
 t.urshifu.since = {P = 'spsc', Gi = 'spsc', PGi = 'spsc', base = 'spsc'}
 t.calyrex.since = {G = 'spsc', S = 'spsc', base = 'spsc'}
+t.basculegion.since = {F = 'lpa', base = 'lpa'}
 t.enamorus.since = {T = 'lpa', base = 'lpa'}
 t.venusaur.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
 t.blastoise.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
@@ -825,6 +830,7 @@ t[889] = t.zamazenta
 t[890] = t.eternatus
 t[892] = t.urshifu
 t[898] = t.calyrex
+t[902] = t.basculegion
 t[905] = t.enamorus
 t[3] = t.venusaur
 t[9] = t.blastoise

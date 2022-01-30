@@ -2093,7 +2093,7 @@ t.dialgaO, t['483O'] = t.dialga, t.dialga
 t.palkiaO, t['484O'] = t.palkia, t.palkia
 t.giratinaO, t['487O'] = t.giratina, t.giratina
 t.basculinB, t['550B'] = t.basculin, t.basculin
-t.basculinH, t['550H'] = t.basculin, t.basculin
+t.basculinBi, t['550Bi'] = t.basculin, t.basculin
 t.tornadusT, t['641T'] = t.tornadus, t.tornadus
 t.thundurusT, t['642T'] = t.thundurus, t.thundurus
 t.landorusT, t['645T'] = t.landorus, t.landorus
@@ -2123,6 +2123,7 @@ t['888R'] = t.zacianR
 t.zamazentaR = {name = 'Zamazenta', ndex = 889, type1 = 'lotta', type2 = 'acciaio'}
 t['889R'] = t.zamazentaR
 t.eternatusD, t['890D'] = t.eternatus, t.eternatus
+t.basculegionF, t['902F'] = t.basculegion, t.basculegion
 t.enamorusT, t['905T'] = t.enamorus, t.enamorus
 
 t.venusaurM, t['003M'] = t.venusaur, t.venusaur
