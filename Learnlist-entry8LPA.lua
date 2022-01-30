@@ -71,32 +71,12 @@ local getSTAB = function(move, stabval)
 	end
 end
 
--- Temporary replacement for lib.basicentry because I don't know power, accuracy and PP of LPA moves
-local wdata = require("Wikilib-data")
-local box = require('Box')
-
-lib.basicentry = function(stab, mossa, notes, tipo, pw, acc, pp)
-	local tipobox
-	if table.search(wdata.allTypes, tipo:lower()) then
-		tipobox = box.boxTipoLua(tipo, {'thick'})
-	else
-		tipobox = box.boxLua(tipo, tipo, nil, "thick", "box-sconosciuto")
-	end
-    return string.interp([=[|| style="padding: 0.3em;" class="black-text" | ${stab}${mossa}${stab}${notes}
-| style="padding: 0.8ex 0.3ex; height: 100%;" | ${tipo}]=],
-{
-    mossa = mossa == "&nbsp;" and mossa or table.concat{"[[", mossa, "]]"},
-    stab = stab,
-    notes = notes,
-    tipo = tipobox,
-})
-end
-
 local entry = function(mossa, stab, notes)
 	local data = multigen.getGen(movesLPA[string.lower(mossa)])
-    return lib.basicentry(getSTAB(mossa, stab),
-						  mossa, notes, string.fu(data.type),
-						  data.power, data.accuracy, data.pp)
+    return lib.categoryentry(getSTAB(mossa, stab),
+						  	 mossa, notes,
+							 string.fu(data.type), string.fu(data.category),
+						     data.power, data.accuracy, data.pp)
 end
 
 -- Level entry

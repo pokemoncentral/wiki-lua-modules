@@ -9,7 +9,9 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
+local w = require('Wikilib')
 local multigen = require('Wikilib-multigen')
+local wform = require('Wikilib-forms')
 local css = require('Css')
 local cc = require('ChooseColor')
 local gendata = require("Gens-data")
@@ -312,10 +314,11 @@ end
 d.LevelhLGPE = d.levelhLGPE
 
 d.levelhLPA = function(frame)
-	local pars = lib.sanitize(mw.clone(frame.args))
-	local poke = pars[1] or ''
-	local types = multigen.getGen(pokes[poke:lower()] or { type1 = 'Sconosciuto', type2 = 'Sconosciuto' }, 8)
-	local genh = tonumber(pars[2]) or 0
+    local p = w.trimAll(frame.args)
+    local pokename = mw.text.decode(p[1]):lower()
+    local abbr = p.form or ""
+    local pokedata = multigen.getGen(pokes[wform.nameToDataindex(pokename .. abbr)])
+	local genh = tonumber(p[2]) or 0
 	return txt.interp([=[
 <div class="text-center max-width-xl-100">
 <div class="roundy text-center inline-block max-width-xl-100" style="${bg}">
@@ -327,12 +330,16 @@ d.levelhLPA = function(frame)
 ! colspan="2" | [[Livello|Lv.]]
 ! rowspan="2" | [[Mossa]]
 ! rowspan="2" | [[Tipo]]
+! rowspan="2" | [[Categoria danno|Cat.]]
+! rowspan="2" | [[Potenza|Pot.]]
+! rowspan="2" | [[Statistiche#Precisione|Prec.]]
+! rowspan="2" | [[PP]]
 |-
 ! Imp
 ! Master ]=],
 {
-	textcolor = cc.forModGradBgLua(types.type1, types.type2),
-	bg = css.horizGradLua(types)
+	textcolor = cc.forModGradBgLua(pokedata.type1, pokedata.type2),
+	bg = css.horizGradLua(pokedata)
 })
 end
 d.LevelhLPA = d.levelhLPA
@@ -387,10 +394,11 @@ end
 d.Tutorh = d.tutorh
 
 d.tutorhLPA = function(frame)
-	local pars = lib.sanitize(mw.clone(frame.args))
-	local poke = pars[1] or ''
-	local types = multigen.getGen(pokes[poke:lower()] or { type1 = 'Sconosciuto', type2 = 'Sconosciuto' }, 8)
-	local genh = tonumber(pars[2]) or 0
+    local p = w.trimAll(frame.args)
+    local pokename = mw.text.decode(p[1]):lower()
+    local abbr = p.form or ""
+    local pokedata = multigen.getGen(pokes[wform.nameToDataindex(pokename .. abbr)])
+	local genh = tonumber(p[2]) or 0
 	return txt.interp([=[
 <div class="text-center max-width-xl-100">
 <div class="roundy text-center inline-block max-width-xl-100" style="${bg}">
@@ -401,10 +409,14 @@ d.tutorhLPA = function(frame)
 |- class="text-center ${textcolor}"
 ! colspan = "1" | &nbsp;[[Videogiochi Pokémon|Gioco]]&nbsp;
 ! [[Mossa]]
-! [[Tipo]]]=],
+! [[Tipo]]
+! [[Categoria danno|Cat.]]
+! [[Potenza|Pot.]]
+! [[Statistiche#Precisione|Prec.]]
+! [[PP]]]=],
 {
-	textcolor = cc.forModGradBgLua(types.type1, types.type2),
-	bg = css.horizGradLua(types)
+	textcolor = cc.forModGradBgLua(pokedata.type1, pokedata.type2),
+	bg = css.horizGradLua(pokedata)
 })
 end
 d.tutorhLPA = d.tutorhLPA
@@ -437,26 +449,24 @@ d.Levelf = d.levelf
 d.levelfLGPE = d.levelf
 
 d.levelfLPA = function(frame)
-	local pars = lib.sanitize(mw.clone(frame.args))
-	local poke = pars[1] or ''
-	local types = multigen.getGen(pokes[poke:lower()] or { type1 = 'Sconosciuto', type2 = 'Sconosciuto' }, 8)
-	local genf = tonumber(pars[2]) or 0
-	local form = string.lower(pars.form or 'none')
+    local p = w.trimAll(frame.args)
+    local pokename = mw.text.decode(p[1]):lower()
+    local abbr = p.form or ""
+    local pokedata = multigen.getGen(pokes[wform.nameToDataindex(pokename .. abbr)])
+	local genf = tonumber(p[2]) or 0
     return txt.interp([=[
 |}</div>
 <div class="text-left small-font ${textcolor}" style="line-height: 1em; padding: 0 0.5ex 1ex;">
 ${kindrows}
 *Il '''grassetto''' indica una mossa che ha il [[bonus di tipo]] quando viene usata da un ${poke}.
-*Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un${form} di ${poke}.${last}
+*Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un'evoluzione o una [[Differenze di forma|forma alternativa]] di ${poke}
 </div>
 </div>
 </div>]=],
 {
-	textcolor = cc.forModGradBgLua(types.type1, types.type2),
-	kindrows = rowf('level', genf, poke),
-	poke = poke,
-	form = txt.interp(rowsf.forms[form], {poke = poke}) or '',
-	last = txt.interp(rowsf.last, {way = ways['level']})
+	textcolor = cc.forModGradBgLua(pokedata.type1, pokedata.type2),
+	kindrows = rowf('level', genf, pokedata.name),
+	poke = pokedata.name,
 })
 end
 
@@ -488,26 +498,24 @@ d.Tutorf = d.tutorf
 
 
 d.tutorfLPA = function(frame)
-	local pars = lib.sanitize(mw.clone(frame.args))
-	local poke = pars[1] or ''
-	local types = multigen.getGen(pokes[poke:lower()] or { type1 = 'Sconosciuto', type2 = 'Sconosciuto' }, 8)
-	local genf = tonumber(pars[2]) or 0
-	local form = string.lower(pars.form or 'none')
+    local p = w.trimAll(frame.args)
+    local pokename = mw.text.decode(p[1]):lower()
+    local abbr = p.form or ""
+    local pokedata = multigen.getGen(pokes[wform.nameToDataindex(pokename .. abbr)])
+	local genf = tonumber(p[2]) or 0
     return txt.interp([=[
 |}</div>
 <div class="text-left small-font ${textcolor}" style="line-height: 1em; padding: 0 0.5ex 1ex;">
 ${kindrows}
 *Il '''grassetto''' indica una mossa che ha il [[bonus di tipo]] quando viene usata da un ${poke}.
-*Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un${form} di ${poke}.${last}
+*Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un'evoluzione o una [[Differenze di forma|forma alternativa]] di ${poke}
 </div>
 </div>
 </div>]=],
 {
-	textcolor = cc.forModGradBgLua(types.type1, types.type2),
-	kindrows = rowf('tutor', genf, poke),
-	poke = poke,
-	form = txt.interp(rowsf.forms[form], {poke = poke}) or '',
-	last = txt.interp(rowsf.last, {way = ways['tutor']})
+	textcolor = cc.forModGradBgLua(pokedata.type1, pokedata.type2),
+	kindrows = rowf('tutor', genf, pokedata.name),
+	poke = pokedata.name,
 })
 end
 -- Footer per le mosse imparate tramite accoppiamento
