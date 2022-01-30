@@ -243,7 +243,7 @@ local header = function(pars, kind)
 </div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
-{| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
+{| class="white-rows max-width-xl-100 width-xl-100 no-border-spacing" style="margin-top: 0; background: transparent;"
 |- class="text-center ${textcolor}"
 ${low_row}]=],
 {
@@ -297,7 +297,7 @@ d.levelhLGPE = function(frame)
 <div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font ${textcolor}">'''Settima&nbsp;generazione: [[Pokémon: Let's Go, Pikachu! e Let's Go, Eevee!|LGPE]]'''</span></div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
-{| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
+{| class="white-rows max-width-xl-100 width-xl-100 no-border-spacing" style="margin-top: 0; background: transparent;"
 |- class="text-center ${textcolor}"
 ! colspan="2" | [[Livello|Lv.]]
 ! [[Mossa]]
@@ -325,7 +325,7 @@ d.levelhLPA = function(frame)
 <div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font ${textcolor}">'''Ottava&nbsp;generazione: [[Leggende Pokémon: Arceus|LPA]]'''</span></div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
-{| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
+{| class="white-rows max-width-xl-100 width-xl-100 no-border-spacing" style="margin-top: 0; background: transparent;"
 |- class="text-center ${textcolor}"
 ! colspan="2" | [[Livello|Lv.]]
 ! rowspan="2" | [[Mossa]]
@@ -334,7 +334,7 @@ d.levelhLPA = function(frame)
 ! rowspan="2" | [[Potenza|Pot.]]
 ! rowspan="2" | [[Statistiche#Precisione|Prec.]]
 ! rowspan="2" | [[PP]]
-|-
+|- class="${textcolor}"
 ! Imp
 ! Master ]=],
 {
@@ -362,7 +362,7 @@ d.tmhLGPE = function(frame)
 <div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font ${textcolor}">'''Settima&nbsp;generazione: [[Pokémon: Let's Go, Pikachu! e Let's Go, Eevee!|LGPE]]'''</span></div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
-{| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
+{| class="white-rows max-width-xl-100 width-xl-100 no-border-spacing" style="margin-top: 0; background: transparent;"
 |- class="text-center ${textcolor}"
 ! [[MT]]
 ! [[Mossa]]
@@ -405,7 +405,7 @@ d.tutorhLPA = function(frame)
 <div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font ${textcolor}">'''Ottava&nbsp;generazione: [[Leggende Pokémon: Arceus|LPA]]'''</span></div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
-{| class="white-rows max-width-xl-100 width-xl-100" style="margin-top: 0; border-spacing: 0; background: transparent;"
+{| class="white-rows max-width-xl-100 width-xl-100 no-border-spacing" style="margin-top: 0; background: transparent;"
 |- class="text-center ${textcolor}"
 ! colspan = "1" | &nbsp;[[Videogiochi Pokémon|Gioco]]&nbsp;
 ! [[Mossa]]
