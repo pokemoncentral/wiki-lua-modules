@@ -7159,14 +7159,17 @@ evo.basculinBi = {
 		{
 			ndex = 902,
 			name = 'basculegion',
+			notes = altforms.basculegion.names.base,
 			method = evo.methods.OTHER,
-			[evo.methods.OTHER] = [=[<span class="text-small">Avendo subito almeno 274 PS di danni da [[contraccolpo]]</span>]=],
+			[evo.methods.OTHER] = [=[<span class="text-small">Avendo subito almeno 294 PS di danni da [[contraccolpo]]</span>]=],
 			conditions = { [evo.conditions.GENDER] = 'Maschio' }
 		},
 		{
 			ndex = '902F',
 			name = 'basculegionF',
-			[evo.methods.OTHER] = [=[<span class="text-small">Avendo subito almeno 274 PS di danni da [[contraccolpo]]</span>]=],
+			notes = altforms.basculegion.names.F,
+			method = evo.methods.OTHER,
+			[evo.methods.OTHER] = [=[<span class="text-small">Avendo subito almeno 294 PS di danni da [[contraccolpo]]</span>]=],
 			conditions = { [evo.conditions.GENDER] = 'Femmina' }
 		},
 	}
@@ -7276,6 +7279,9 @@ end
 evo.unown = { ndex = 201, name = 'unown' }
 evo[201] = evo.unown
 
+evo.basculinB = { ndex = '550B', name = 'basculinB', notes = altforms.basculin.names.B }
+evo['550B'] = evo.basculinB
+
 evo.meowsticF = {
 	ndex = 677,
 	name = 'espurr',
@@ -7312,8 +7318,6 @@ evo['854A'], evo['855A'] = evo.sinisteaA, evo.sinisteaA
 createAlternativeForm(useless.burmy, evo.burmy)
 
 createAlternativeForm(useless.shellos, evo.shellos)
-
-createAlternativeForm(altforms.basculin, evo.basculin)
 
 createAlternativeForm(altforms.pumpkaboo, evo.pumpkaboo)
 

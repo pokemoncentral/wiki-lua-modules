@@ -759,7 +759,6 @@ t.sabbiardente = {name = "Sabbiardente", type = "terra", category = 'speciale', 
 t.giunglacura = {name = "Giunglacura", type = "erba", category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 8}
 t.pugnotenebra = {name = "Pugnotenebra", type = "buio", category = 'fisico', power = 80, accuracy = 100, pp = 5, gen = 8}
 t.idroraffica = {name = "Idroraffica", type = "acqua", category = 'fisico', power = 25, accuracy = 100, pp = 5, gen = 8}
--- Incomplete moves
 t.elettrogabbia = {name = "Elettrogabbia", type = "elettro", category = "speciale", power = "80", accuracy = "90", pp = "15", gen = 8}
 t.dragoenergia = {name = "Dragoenergia", type = "drago", category = "speciale", power = "&mdash;", accuracy = "100", pp = "5", gen = 8}
 t["sguardo gelido"] = {name = "Sguardo Gelido", type = "psico", category = "speciale", power = "90", accuracy = "100", pp = "10", gen = 8}
