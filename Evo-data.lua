@@ -2165,8 +2165,8 @@ evo.teddiursa = {
 		}
 	}
 }
-evo.ursaring = evo.teddiursa
-evo[216], evo[217] = evo.teddiursa, evo.teddiursa
+evo.ursaring, evo.ursaluna = evo.teddiursa, evo.teddiursa
+evo[216], evo[217], evo[901] = evo.teddiursa, evo.teddiursa, evo.teddiursa
 
 evo.slugma = {
 	ndex = 218,
