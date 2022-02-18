@@ -1860,9 +1860,9 @@ t.ponytaG = {ability1 = 'Fugafacile', ability2 = 'Pastelvelo', abilityd = 'Presa
 t['077G'] = t.ponytaG
 t.rapidashG = {ability1 = 'Fugafacile', ability2 = 'Pastelvelo', abilityd = 'Presagio'}
 t['078G'] = t.rapidashG
-t.slowpokeG = {ability1 = 'Voracità', ability2 = 'Mente Locale'}
+t.slowpokeG = {ability1 = 'Voracità', ability2 = 'Mente Locale', abilityd = 'Rigenergia'}
 t['079G'] = t.slowpokeG
-t.slowbroG = {ability1 = 'Colpolesto'}
+t.slowbroG = {ability1 = 'Colpolesto', ability2 = 'Mente Locale', abilityd = 'Rigenergia'}
 t['080G'] = t.slowbroG
 t["farfetch'dG"] = {ability1 = 'Cuordeciso', abilityd = 'Nervisaldi'}
 t['083G'] = t["farfetch'dG"]
@@ -1892,7 +1892,7 @@ t.moltresG = {ability1 = 'Furore'}
 t['146G'] = t.moltresG
 t.typhlosionH = {ability1 = 'Aiutofuoco', abilityd = 'Fuocardore'}
 t['157H'] = t.typhlosionH
-t.slowkingG = {ability1 = 'Stranofarmaco'}
+t.slowkingG = {ability1 = 'Stranofarmaco', ability2 = 'Mente Locale', abilityd = 'Rigenergia'}
 t['199G'] = t.slowkingG
 t.qwilfishH = {ability1 = 'Velenopunto', ability2 = 'Nuotovelox', abilityd = 'Prepotenza'}
 t['211H'] = t.qwilfishH
