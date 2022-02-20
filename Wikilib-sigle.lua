@@ -162,6 +162,75 @@ end
 
 --[[
 
+This function returns the abbreviations of all the games in an abbreviaton
+data, displayed in the specified color and shade with some space around them.
+The color can be passed as an hexadecimal or as a named color; it defaults to
+each game's own color, or black if the game has no color. The shade default is
+'normale'.
+
+Arguments:
+    - data: the data of an abbreviation, from module Sigle/data.
+    - makeText: the function creating the text to be displayed. It takes the
+        abbreviation of a single game, and returns the text to be displayed
+        in the link. Defaults to tostring.
+    - textColor: The color the abbreviations should have. Can be a named color
+        or an hexadecimal Defaults to each game's own color.
+    - shade: The shade of the color to use. Defaults to 'normale'.
+
+Return:
+    - A list of strings, each one containing the text for the games grouped
+        together in the abbreviation data.
+
+--]]
+
+q.coloredSpaceAbbrs = function(data, makeText, textColor, shade)
+    shade = shade or 'normale'
+    makeText = makeText or tostring
+
+    return q.mapDisplay(data, function(text, gameColor)
+        -- If the game has no color, using the text color from q.colorAndText
+        local color = textColor or gameColor or ({q.colorAndText()})[2]
+        return string.interp('<span style="padding: 0 0.3em; color: #${color};">${text}</span>', {
+            -- This is ok also for when c[color][shade] evaluates to false
+            color = c[color] and c[color][shade] or color,
+            text = makeText(text)
+        })
+    end)
+end
+
+--[[
+
+This function returns the links to all of the games in an abbreviation data,
+displayed in the specified color and shade with some space around them. The
+color can be passed as an hexadecimal or as a named color; it defaults to each
+game's own color, or black if the game has no color. The shade default
+is 'normale'.
+
+Arguments:
+    - data: the data of an abbreviation, from module Sigle/data.
+    - makeText: the function creating the text to be displayed. It takes the
+        abbreviation of a single game, and returns the text to be displayed
+        in the link. Defaults to tostring.
+    - textColor: The color the abbreviations should have. Can be a named color
+        or an hexadecimal Defaults to each game's own color.
+    - shade: the shade of games color to be used for the abbreviations.
+        Defaults to 'normale'.
+
+Return:
+    - A list of strings, each one containing a single link.
+
+--]]
+q.coloredSpaceAbbrLinks = function(data, makeText, textColor, shade)
+    shade = shade or 'normale'
+    makeText = makeText or tostring
+
+    return q.makeLinks(data, function(abbrData)
+        return q.coloredSpaceAbbrs(abbrData, makeText, textColor, shade)
+    end)
+end
+
+--[[
+
 This function takes as input a color as found in the elements if display key
 in abbreviation data. It returns two hexadecimal colors: the first one is the
 passed color one, the second one is the color the text should have if the first
