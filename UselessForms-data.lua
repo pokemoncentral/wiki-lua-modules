@@ -72,7 +72,6 @@ t.pikachu = {}
 t.pichu = {}
 t.unown = {}
 t.burmy = {}
-t.cherrim = {}
 t.shellos = {}
 t.unfezant = {}
 t.deerling = {}
@@ -111,7 +110,6 @@ t.unown.names = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	W = 'W', X = 'X', Y = 'Y', Z = 'Z', PE = '!', PI = '?'}
 t.burmy.names = {Sa = 'Manto Sabbia', Sc = 'Manto Scarti',
 	base = 'Manto Pianta'}
-t.cherrim.names = {S = 'Forma Splendore', base = 'Forma Nuvola'}
 t.shellos.names = {E = 'Mare Est', base = 'Mare Ovest'}
 t.unfezant.names = {F = '', base = ''}
 t.deerling.names = {E = 'Forma Estate', A = 'Forma Autunno',
@@ -183,7 +181,6 @@ t.unown.ext = {base = 'A', B = 'B', C = 'C', D = 'D', E = 'E', F = 'F',
 	O = 'O', P = 'P', Q = 'Q', R = 'R', S = 'S', T = 'T', U = 'U', V = 'V',
 	W = 'W', X = 'X', Y = 'Y', Z = 'Z', ['!'] = 'PE', ['?'] = 'PI'}
 t.burmy.ext = {sabbia = 'Sa', scarti = 'Sc'}
-t.cherrim.ext = {splendore = 'S'}
 t.shellos.ext = {est = 'E'}
 t.unfezant.ext = {femmina = 'F'}
 t.deerling.ext = {estate = 'E', autunno = 'A', inverno = 'I'}
@@ -228,7 +225,6 @@ t.unown.gamesOrder = {'base', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
 	'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 	'PE', 'PI'}
 t.burmy.gamesOrder = {'base', 'Sa', 'Sc'}
-t.cherrim.gamesOrder = {'base', 'S'}
 t.shellos.gamesOrder = {'base', 'E'}
 t.unfezant.gamesOrder = {'base', 'F'}
 t.deerling.gamesOrder = {'base', 'E', 'A', 'I'}
@@ -264,7 +260,6 @@ t.unown.since = {base = 'oa', B = 'oa', C = 'oa', D = 'oa', E = 'oa', F = 'oa',
 	O = 'oa', P = 'oa', Q = 'oa', R = 'oa', S = 'oa', T = 'oa', U = 'oa', V = 'oa',
 	W = 'oa', X = 'oa', Y = 'oa', Z = 'oa', PE = 'rz', PI = 'rz'}
 t.burmy.since = {Sa = 'dp', Sc = 'dp', base = 'dp'}
-t.cherrim.since = {S = 'dp', base = 'dp'}
 t.shellos.since = {E = 'dp', base = 'dp'}
 t.unfezant.since = {F = 'nb', base = 'nb'}
 t.deerling.since = {E = 'nb', A = 'nb', I = 'nb', base = 'nb'}
@@ -332,7 +327,6 @@ t[25] = t.pikachu
 t[172] = t.pichu
 t[201] = t.unown
 t[412] = t.burmy
-t[421] = t.cherrim
 t[422] = t.shellos
 t[423] = t.gastrodon
 t[521] = t.unfezant

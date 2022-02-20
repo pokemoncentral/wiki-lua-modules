@@ -120,6 +120,7 @@ t.eevee = {}
 t.castform = {}
 t.deoxys = {}
 t.wormadam = {}
+t.cherrim = {}
 t.rotom = {}
 t.dialga = {}
 t.palkia = {}
@@ -223,6 +224,7 @@ t.deoxys.names = {A = 'Forma Attacco', D = 'Forma Difesa',
 	V = 'Forma Velocità', base = 'Forma Normale'}
 t.wormadam.names = {Sa = 'Manto Sabbia', Sc = 'Manto Scarti',
 	base = 'Manto Pianta'}
+t.cherrim.names = {S = 'Forma Splendore', base = 'Forma Nuvola'}
 t.rotom.names = {C = 'Rotom Calore', L = 'Rotom Lavaggio', G = 'Rotom Gelo',
 	V = 'Rotom Vortice', T = 'Rotom Taglio', base = 'Forma Rotom'}
 t.dialga.names = {O = 'Forma Originale', base = ''}
@@ -343,6 +345,7 @@ t.eevee.ext = {compagno = 'Cm'}
 t.castform.ext = {sole = 'S', pioggia = 'P', neve = 'N'}
 t.deoxys.ext = {attacco = 'A', difesa = 'D', ['velocità'] = 'V'}
 t.wormadam.ext = {sabbia = 'Sa', scarti = 'Sc'}
+t.cherrim.ext = {splendore = 'S'}
 t.rotom.ext = {calore = 'C', lavaggio = 'L', gelo = 'G', vortice = 'V',
 	taglio = 'T'}
 t.dialga.ext = {originale = 'O', origine = 'O'}
@@ -433,6 +436,7 @@ t.eevee.gamesOrder = {'base', 'Cm', 'Gi'}
 t.castform.gamesOrder = {'base', 'S', 'P', 'N'}
 t.deoxys.gamesOrder = {'base', 'A', 'D', 'V'}
 t.wormadam.gamesOrder = {'base', 'Sa', 'Sc'}
+t.cherrim.gamesOrder = {'base', 'S'}
 t.rotom.gamesOrder = {'base', 'C', 'L', 'G', 'V', 'T'}
 t.dialga.gamesOrder = {'base', 'O'}
 t.palkia.gamesOrder = {'base', 'O'}
@@ -560,6 +564,7 @@ t.zigzagoon.since = {G = 'spsc', base = 'rz'}
 t.castform.since = {S = 'rz', P = 'rz', N = 'rz', base = 'rz'}
 t.deoxys.since = {A = 'rfvf', D = 'rfvf', V = 's', base = 'rz'}
 t.wormadam.since = {Sa = 'dp', Sc = 'dp', base = 'dp'}
+t.cherrim.since = {S = 'dp', base = 'dp'}
 t.rotom.since = {C = 'pt', L = 'pt', G = 'pt', V = 'pt', T = 'pt', base = 'dp'}
 t.dialga.since = {O = 'lpa', base = 'dp'}
 t.palkia.since = {O = 'lpa', base = 'dp'}
@@ -782,6 +787,7 @@ t[264] = t.linoone
 t[351] = t.castform
 t[386] = t.deoxys
 t[413] = t.wormadam
+t[421] = t.cherrim
 t[479] = t.rotom
 t[483] = t.dialga
 t[484] = t.palkia

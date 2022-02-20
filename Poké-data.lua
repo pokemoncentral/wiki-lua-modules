@@ -2089,6 +2089,7 @@ t.pikachuCs, t['025Cs'], t.pikachuR, t['025R'], t.pikachuD, t['025D'],
 t.eeveeCm, t['133Cm'] = t.eevee, t.eevee
 t.deoxysA, t['386A'], t.deoxysD, t['386D'], t.deoxysV, t['386V'] =
 	t.deoxys, t.deoxys, t.deoxys, t.deoxys, t.deoxys, t.deoxys
+t.cherrimS, t['421S'] = t.cherrim, t.cherrim
 t.dialgaO, t['483O'] = t.dialga, t.dialga
 t.palkiaO, t['484O'] = t.palkia, t.palkia
 t.giratinaO, t['487O'] = t.giratina, t.giratina

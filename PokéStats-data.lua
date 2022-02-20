@@ -1838,6 +1838,9 @@ d.wormadamSa = {hp = 60, atk = 79, def = 105, spatk = 59, spdef = 85, spe = 36}
 d['413Sa'] = d.wormadamSa
 d.wormadamSc = {hp = 60, atk = 69, def = 95, spatk = 69, spdef = 95, spe = 36}
 d['413Sc'] = d.wormadamSc
+-- Actually Cherrim changed stats in LPA, not in gen 8
+d.cherrimS = {hp = 70, atk = {[4] = 60, [8] = 90}, def = 70, spatk = 87, spdef = {[4] = 78, [8] = 117}, spe = 85}
+d['421S'] = d.cherrimS
 d.rotomC = {hp = 50, atk = 65, def = 107, spatk = 105, spdef = 107, spe = 86}
 d['479C'] = d.rotomC
 d.rotomL = {hp = 50, atk = 65, def = 107, spatk = 105, spdef = 107, spe = 86}

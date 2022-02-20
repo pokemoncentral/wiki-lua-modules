@@ -1987,6 +1987,7 @@ t.deoxysA, t.deoxysD, t.deoxysV = t.deoxys, t.deoxys, t.deoxys
 t['386A'], t['386D'], t['386V'] = t.deoxys, t.deoxys, t.deoxys
 t['413Sc'], t['413Sa'] = t.wormadam, t.wormadam
 t.wormadamSc, t.wormadamSa = t.wormadam, t.wormadam
+t.cherrimS, t['421S'] = t.cherrim, t.cherrim
 t.rotomC, t.rotomL, t.rotomG = t.rotom, t.rotom,  t.rotom
 t.rotomV, t.rotomT = t.rotom, t.rotom
 t['479C'], t['479L'], t['479G'] = t.rotom, t.rotom,  t.rotom
