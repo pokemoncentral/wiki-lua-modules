@@ -271,7 +271,7 @@ t.urshifu.names = {P = 'Stile Pluricolpo', Gi = 'Urshifu Gigamax (Stile Singolco
 	PGi = 'Urshifu Gigamax (Stile Pluricolpo)', base = 'Stile Singolcolpo'}
 t.calyrex.names = {G = "Cavaliere Glaciale", S = "Cavaliere Spettrale", base = ""}
 t.basculegion.names = {F = 'Femmina', base = 'Maschio'}
-t.enamorus.names = {T = 'Forma Totem', base = ''}
+t.enamorus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
 for _, v in pairs(t.mega) do
 	if not t[v] then
 		t[v] = { names = {base = ''} }

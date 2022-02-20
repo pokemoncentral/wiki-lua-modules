@@ -1486,30 +1486,26 @@ evo.eevee = {
 			name = 'leafeon',
 			method = evo.methods.STONE,
 			[evo.methods.STONE] = 'Pietrafoglia',
-			-- method = evo.methods.LEVEL,
-			-- conditions = {
-			-- 	[evo.conditions.LOCATION] = 'Roccia Muschio',
-			-- 	[evo.conditions.OTHER] = table.concat{
-			-- 		"oppure<div>",
-			-- 		links.bag("Pietrafoglia"),
-			-- 		"</div>usando una [[Pietrafoglia]]",
-			-- 	},
-			-- },
+			conditions = {
+				[evo.conditions.OTHER] = table.concat{
+					"oppure<div>",
+					links.bag('Mappa città'),
+					"</div>[[Livello|aumento di livello]] presso una [[Roccia Muschio]]",
+				},
+			},
 		},
 		{
 			ndex = 471,
 			name = 'glaceon',
 			method = evo.methods.STONE,
 			[evo.methods.STONE] = 'Pietragelo',
-			-- method = evo.methods.LEVEL,
-			-- conditions = {
-			-- 	[evo.conditions.LOCATION] = 'Roccia Ghiaccio',
-			-- 	[evo.conditions.OTHER] = table.concat{
-			-- 		"oppure<div>",
-			-- 		links.bag("Pietragelo"),
-			-- 		"</div>usando una [[Pietragelo]]",
-			-- 	},
-			-- },
+			conditions = {
+				[evo.conditions.OTHER] = table.concat{
+					"oppure<div>",
+					links.bag('Mappa città'),
+					"</div>[[Livello|aumento di livello]] presso una [[Roccia Ghiaccio]]",
+				},
+			},
 		},
 		{
 			ndex = 700,
