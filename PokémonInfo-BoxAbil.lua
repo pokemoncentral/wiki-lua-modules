@@ -74,7 +74,7 @@ end
 
 -- Prints a single ability. If it's "Nessuna", it returns a "-" without link
 local toStringAbil = function(abil)
-    if abil == "Nessuna" then
+    if abil == "Nessuna" or abil == "Sconosciuta" then
         return "&mdash;"
     end
     return l.aColor(abil)

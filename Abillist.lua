@@ -64,7 +64,7 @@ k.Entry.printAbil = function(abil, marked)
         return string.interp(
             '<div>${abil}<sup>${gen}</sup></div>',
             {
-                abil = v.val == 'Nessuna' and v.val
+                abil = (v.val == 'Nessuna' or v.val == 'Sconosciuta') and v.val
                         or toHTML(v.val),
                 gen = v.first == v.last and first
                         or table.concat{first, '-', last}
