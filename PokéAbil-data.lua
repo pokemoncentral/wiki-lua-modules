@@ -1996,7 +1996,8 @@ t.calyrexG = {ability1 = 'Sintonia Equina'}
 t['898G'] = t.calyrexG
 t.calyrexS = {ability1 = 'Sintonia Equina'}
 t['898S'] = t.calyrexS
-t.enamorusT = {ability1 = 'Copricapo'}
+t.enamorusT = {ability1 = 'Sconosciuta'}
+-- t.enamorusT = {ability1 = 'Copricapo'}
 t['905T'] = t.enamorusT
 
 -- Alias per le altre forme alternative rilevanti
