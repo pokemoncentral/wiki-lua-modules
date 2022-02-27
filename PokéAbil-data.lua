@@ -1821,6 +1821,11 @@ t.enamorus = {ability1 = 'Sconosciuta'}
 -- t.enamorus = {ability1 = 'Curacuore', abilityd = 'Inversione'}
 t[905] = t.enamorus
 
+t.sprigatito = {ability1 = 'Erbaiuto'}
+t.fuecoco = {ability1 = 'Aiutofuoco'}
+t.quaxly = {ability1 = 'Acquaiuto'}
+
+
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
 -- Il nome è composto dal nome del Pokémon, seguito dalla sigla della forma alternativa

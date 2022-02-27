@@ -249,6 +249,13 @@ c.perlasplendente = function(frame) return _colore(frame.args[1] or 'normale', '
 c['Perla Splendente'], c['perla splendente'] = c.perlasplendente, c.perlasplendente
 c.leggendearceus = function(frame) return _colore(frame.args[1] or 'normale', 'CECDBE', 'EFEEE1', '9B9A8F') end
 c['Leggende Pokémon: Arceus'], c['Leggende Arceus'], c['leggende arceus'] = c.leggendearceus, c.leggendearceus, c.leggendearceus
+-- TODO: colori temporanei per i nuovio giochi
+c.scarlatto = c.rosso
+-- c.scarlatto = function(frame) return _colore(frame.args[1] or 'normale', 'CECDBE', 'EFEEE1', '9B9A8F') end
+c.Scarlatto = c.scarlatto
+c.violetto = c.veleno
+-- c.violetto = function(frame) return _colore(frame.args[1] or 'normale', 'CECDBE', 'EFEEE1', '9B9A8F') end
+c.Violetto = c.violetto
 
 -- Colori regioni
 

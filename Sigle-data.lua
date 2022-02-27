@@ -547,6 +547,27 @@ x.LPA = {{
 		{'LPA', 'leggendearceus'}
     }
 }}
+x.Sa = {{
+	link = 'Pokémon Scarlatto e Violetto',
+	text = 'Scarlatto',
+	display = {
+		{'Sa', 'scarlatto'}
+	}
+}}
+x.Vi = {{
+	link = 'Pokémon Scarlatto e Violetto',
+	text = 'Violetto',
+	display = {
+		{'Vi', 'violetto'}
+	}
+}}
+x.SV = {{
+	link = 'Pokémon Scarlatto e Violetto',
+	display = {
+		{'Sa', 'scarlatto'},
+        {'Vi', 'violetto'},
+	}
+}}
 
 x.SJ = {{
     link = 'Pokémon Stadium (Giappone)',

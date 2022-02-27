@@ -1817,6 +1817,11 @@ t[904] = t.overqwil
 t.enamorus = {name = 'Enamorus', ndex = 905, type1 = 'folletto', type2 = 'volante'}
 t[905] = t.enamorus
 
+t.sprigatito = {name = 'Sprigatito', ndex = nil, type1 = 'erba', type2 = 'erba'}
+t.fuecoco = {name = 'Fuecoco', ndex = nil, type1 = 'fuoco', type2 = 'fuoco'}
+t.quaxly = {name = 'Quaxly', ndex = nil, type1 = 'acqua', type2 = 'acqua'}
+
+
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
 
