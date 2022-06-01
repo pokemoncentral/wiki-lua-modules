@@ -1824,7 +1824,11 @@ t[905] = t.enamorus
 t.sprigatito = {ability1 = 'Erbaiuto'}
 t.fuecoco = {ability1 = 'Aiutofuoco'}
 t.quaxly = {ability1 = 'Acquaiuto'}
-
+t.lechonk = {ability1 = 'Aromavelo', ability2 = 'Voracità'}
+t.pawmi = {ability1 = 'Statico', ability2 = 'Alternacura'}
+t.smoliv = {ability1 = 'Sveglialampo'}
+t.koraidon = {ability1 = 'Sconosciuta'}
+t.miraidon = {ability1 = 'Sconosciuta'}
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio

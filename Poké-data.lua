@@ -1820,6 +1820,11 @@ t[905] = t.enamorus
 t.sprigatito = {name = 'Sprigatito', ndex = nil, type1 = 'erba', type2 = 'erba'}
 t.fuecoco = {name = 'Fuecoco', ndex = nil, type1 = 'fuoco', type2 = 'fuoco'}
 t.quaxly = {name = 'Quaxly', ndex = nil, type1 = 'acqua', type2 = 'acqua'}
+t.lechonk = {name = 'Lechonk', ndex = nil, type1 = 'normale', type2 = 'normale'}
+t.pawmi = {name = 'Pawmi', ndex = nil, type1 = 'elettro', type2 = 'elettro'}
+t.smoliv = {name = 'Smoliv', ndex = nil, type1 = 'erba', type2 = 'normale'}
+t.koraidon = {name = 'Koraidon', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+t.miraidon = {name = 'Miraidon', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
