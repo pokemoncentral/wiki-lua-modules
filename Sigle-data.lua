@@ -551,21 +551,21 @@ x.Sa = {{
 	link = 'Pokémon Scarlatto e Violetto',
 	text = 'Scarlatto',
 	display = {
-		{'Sa', 'scarlatto'}
+		{'S', 'scarlatto'}
 	}
 }}
 x.Vi = {{
 	link = 'Pokémon Scarlatto e Violetto',
 	text = 'Violetto',
 	display = {
-		{'Vi', 'violetto'}
+		{'V', 'violetto'}
 	}
 }}
 x.SV = {{
 	link = 'Pokémon Scarlatto e Violetto',
 	display = {
-		{'Sa', 'scarlatto'},
-        {'Vi', 'violetto'},
+		{'S', 'scarlatto'},
+		{'V', 'violetto'},
 	}
 }}
 
