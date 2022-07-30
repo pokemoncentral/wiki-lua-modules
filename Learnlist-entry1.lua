@@ -47,7 +47,8 @@ z.Tm = z.tm
 
 z.preevo = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{lib.preevodata(p, '1'), ' ', lib.basicentry(p[12] or '',
+	-- We use gen 3 for lib.preevodata because gen 1/2 MS are indistinguishable
+    return table.concat{lib.preevodata(p, '3'), ' ', lib.basicentry(p[12] or '',
 			p[7] or 'Scontro', lib.makeNotes(p[13] or ''),
 			p[8] or 'Sconosciuto', p[9] or '0', p[10] or '0', p[11] or '0')}
 end

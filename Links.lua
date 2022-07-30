@@ -89,19 +89,23 @@ l.cat_color = l.catColor
 Template:Bag
 
 Returns the sprite of an item with a link to its page. The item name is case
-sensitive because the module can't handle somthing like 'Fune di Fuga'.
+sensitive because the module can't handle something like 'Fune di Fuga'.
+
+The second parameter is for all optional named arguments. Done this way because
+they are (potentially) many, all optional and each one may be there
+independently of the others.
 
 --]]
 
-l.bag = function(item, md)
+l.bag = function(item, args)
 	local nospriteitems = {'Genefurioso', 'Fiocco Pois', 'Messaggio Visione', 'Messaggio Surf', 'Messaggio Ritratto', 'Messaggio Musica', 'Messaggio Morph', 'Messaggio Fiore', 'Messaggio Eon', 'Messaggio Dolce', 'Messaggio Cielo', 'Messaggio Azzurro', 'Bacca Misteriosa', 'Bacca Miracolosa', 'Bacca Menta', 'Bacca Ghiaccio', 'Bacca Bruciata', 'Bacca Amara', 'Baccantiveleno', 'Baccantiparalisi', 'Bacca Oro', 'Bacca'}
+	args = args or {}
 	if table.search(nospriteitems, item) then
 		return ''
 	else
-		return string.interp('[[File:${item} Sprite Zaino${md}.png|${item}|link=${link}]]', {
+		return string.interp('[[File:${item} Sprite Zaino.png|${item}|link=${link}]]', {
 			item = item,
-			md = md and 'MD' or '',
-			link = item == 'Perla' and 'Perla (strumento)' or item
+			link = args.link or (item == 'Perla' and 'Perla (strumento)' or item)
 		})
 	end
 end

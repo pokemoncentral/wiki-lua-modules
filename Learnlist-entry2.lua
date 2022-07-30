@@ -51,7 +51,8 @@ z.breed = function(frame)
 			abbrLib.concatAbbrs(p[9] or '', s)), p[3] or 'Sconosciuto',
             p[4] or '0', p[5] or '0', p[6] or '0')},
 {
-    fathers = lib.mslistToModal(p[1] or '', '2', nil, 6)
+	-- We use gen 3 MS because gen 1/2 are indistinguishable
+    fathers = lib.mslistToModal(p[1] or '', '3', nil, 6)
 })
 end
 
@@ -73,7 +74,8 @@ z.Tutor = z.tutor
 
 z.preevo = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{lib.preevodata(p, '2'), ' ',
+	-- We use gen 3 MS because gen 1/2 are indistinguishable
+    return table.concat{lib.preevodata(p, '3'), ' ',
 			lib.basicentry(p[12] or '', p[7] or 'Scontro',
 				lib.makeNotes(p[13] or ''), p[8] or 'Sconosciuto',
 				p[9] or '0', p[10] or '0', p[11] or '0')}

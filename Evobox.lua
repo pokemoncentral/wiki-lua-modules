@@ -188,7 +188,7 @@ eb.boxArrow.img.conditions = {
     [evodata.conditions.MOVE] = function(movename)
         -- Takes move name and gets move type for the MT image
         local movetype = multigen.getGenValue(moves[movename:lower()].type)
-        return links.bag('MT ' .. string.fu(movetype))
+        return links.bag('MT ' .. string.fu(movetype), {link="MT"})
     end,
     [evodata.conditions.GENDER] = nilConst,
     [evodata.conditions.TRADED_FOR] = function(ndex)
