@@ -1827,6 +1827,8 @@ t.quaxly = {ability1 = 'Acquaiuto'}
 t.lechonk = {ability1 = 'Aromavelo', ability2 = 'Voracità'}
 t.pawmi = {ability1 = 'Statico', ability2 = 'Alternacura'}
 t.smoliv = {ability1 = 'Sveglialampo'}
+t.fidough = {ability1 = 'Mente Locale'}
+t.cetitan = {ability1 = 'Grassospesso', ability2 = 'Spalaneve'}
 t.koraidon = {ability1 = 'Sconosciuta'}
 t.miraidon = {ability1 = 'Sconosciuta'}
 
@@ -1913,6 +1915,8 @@ t['146G'] = t.moltresG
 t.typhlosionH = {ability1 = 'Sconosciuta'}
 -- t.typhlosionH = {ability1 = 'Aiutofuoco', abilityd = 'Fuocardore'}
 t['157H'] = t.typhlosionH
+t.wooperP = {ability1 = 'Velenopunto', ability2 = 'Assorbacqua'}
+t['194P'] = t.wooperP
 t.slowkingG = {ability1 = 'Stranofarmaco', ability2 = 'Mente Locale', abilityd = 'Rigenergia'}
 t['199G'] = t.slowkingG
 t.qwilfishH = {ability1 = 'Sconosciuta'}

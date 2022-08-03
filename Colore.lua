@@ -273,8 +273,8 @@ c.Alola = c.alola
 c.galar = function(frame) return _colore(frame.args[1] or 'normale', 'FF3DF0', 'FF85F7', 'B81684') end
 c.Galar = c.galar
 c.hisui, c.Hisui = c.sinnoh, c.sinnoh
-c.nonagen = function(frame) return _colore(frame.args[1] or 'normale', 'A8A8A8', 'D1D1D1', '707070') end
-c.Nonagen = c.nonagen
+c.paldea = function(frame) return _colore(frame.args[1] or 'normale', 'A8A8A8', 'D1D1D1', '707070') end
+c.Paldea = c.paldea
 
 c.settipelago = function(frame) return _colore(frame.args[1] or 'normale', '52CC91', '8DEBBC', '2B915E') end
 c.Settipelago = c.settipelago

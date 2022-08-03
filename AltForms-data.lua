@@ -77,7 +77,7 @@ local function makeIndexLinks(index, context)
 	-- Removing support tables since we don't want to operate on them
 	local stdLinks = table.filter(t, function(_, key)
 		return not table.search({'mega', 'megaxy', 'archeo', 'alola', 'galar',
-		                         'gigamax', 'hisui'}, key)
+		                         'gigamax', 'hisui', 'paldea'}, key)
 	end)
 
 	-- Adds standard links
@@ -94,6 +94,7 @@ local function makeIndexLinks(index, context)
 	makeTargetedLink(index, context, 'Forma di Galar', t.galar, {"base", "G"})
 	makeTargetedLink(index, context, 'Gigamax', t.gigamax, {"base", "Gi"})
 	makeTargetedLink(index, context, 'Forma di Hisui', t.hisui, {"base", "H"})
+	makeTargetedLink(index, context, 'Forma di Paldea', t.paldea, {"base", "P"})
 end
 
 -- Create all links for alternative forms (black, blue and plain)
@@ -206,6 +207,9 @@ t.hisui = {'growlithe', 'voltorb', 'typhlosion', 'qwilfish', 'sneasel',
 	'samurott', 'lilligant', 'zorua', 'braviary', 'sliggoo',
 	'avalugg', 'decidueye'}
 
+-- Tabella contenente i Pokémon che hanno una forma di Paldea
+
+t.paldea = {'wooper'}
 
 --[[
 
@@ -318,6 +322,12 @@ for _, v in pairs(t.hisui) do
 	end
 	t[v].names.H = 'Forma di Hisui'
 end
+for _, v in pairs(t.paldea) do
+	if not t[v] then
+		t[v] = { names = {base = ''} }
+	end
+	t[v].names.P = 'Forma di Paldea'
+end
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
@@ -417,6 +427,10 @@ for _, v in pairs(t.hisui) do
 	t[v].ext = t[v].ext or {}
 	t[v].ext.hisui = 'H'
 end
+for _, v in pairs(t.paldea) do
+	t[v].ext = t[v].ext or {}
+	t[v].ext.paldea = 'P'
+end
 
 --[[
 
@@ -494,6 +508,9 @@ end
 for _, v in pairs(t.hisui) do
 	t[v].gamesOrder = t[v].gamesOrder or {'base', 'H'}
 end
+for _, v in pairs(t.paldea) do
+	t[v].gamesOrder = t[v].gamesOrder or {'base', 'P'}
+end
 
 --[[
 
@@ -555,6 +572,7 @@ t.eevee.since = {Cm = 'lgpe', Gi = 'spsc', base = 'rb'}
 t.articuno.since = {G = 'spsc', base = 'rb'}
 t.zapdos.since = {G = 'spsc', base = 'rb'}
 t.moltres.since = {G = 'spsc', base = 'rb'}
+t.wooper.since = {P = 'sv', base = 'oa'}
 t.slowking.since = {G = 'spsc', base = 'oa'}
 t.typhlosion.since = {H = 'lpa', base = 'oa'}
 t.qwilfish.since = {H = 'lpa', base = 'oa'}
@@ -778,6 +796,7 @@ t[144] = t.articuno
 t[145] = t.zapdos
 t[146] = t.moltres
 t[157] = t.typhlosion
+t[194] = t.wooper
 t[199] = t.slowking
 t[211] = t.qwilfish
 t[215] = t.sneasel

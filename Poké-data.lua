@@ -1823,6 +1823,8 @@ t.quaxly = {name = 'Quaxly', ndex = nil, type1 = 'acqua', type2 = 'acqua'}
 t.lechonk = {name = 'Lechonk', ndex = nil, type1 = 'normale', type2 = 'normale'}
 t.pawmi = {name = 'Pawmi', ndex = nil, type1 = 'elettro', type2 = 'elettro'}
 t.smoliv = {name = 'Smoliv', ndex = nil, type1 = 'erba', type2 = 'normale'}
+t.fidough = {name = 'Fidough', ndex = nil, type1 = 'folletto', type2 = 'folletto'}
+t.cetitan = {name = 'Cetitan', ndex = nil, type1 = 'ghiaccio', type2 = 'ghiaccio'}
 t.koraidon = {name = 'Koraidon', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 t.miraidon = {name = 'Miraidon', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 
@@ -1898,6 +1900,8 @@ t.moltresG = {name = 'Moltres', ndex = 146, type1 = 'buio', type2 = 'volante'}
 t['146G'] = t.moltresG
 t.typhlosionH = {name = 'Typhlosion', ndex = 157, type1 = 'fuoco', type2 = 'spettro'}
 t['157H'] = t.typhlosionH
+t.wooperP = {name = 'Wooper', ndex = 194, type1 = 'veleno', type2 = 'terra'}
+t['194P'] = t.wooperP
 t.slowkingG = {name = 'Slowking', ndex = 199, type1 = 'veleno', type2 = 'psico'}
 t['199G'] = t.slowkingG
 t.qwilfishH = {name = 'Qwilfish', ndex = 211, type1 = 'buio', type2 = 'veleno'}
