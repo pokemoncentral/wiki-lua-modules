@@ -103,4 +103,24 @@ k.listgen = function(frame)
     return listgen(tonumber(frame.args[1]))
 end
 
+--[[
+
+WikiCode interface to print a list of entries. Supports only Pokémon names.
+
+Example:
+{{#invoke: Abillist/allpokes | manualEntry | staraptor goomy ampharos scraggy }}
+
+--]]
+k.list = function(frame)
+    local ndexlist = frame.args[1]
+    local res = { abl.headers.makeHeader(string.trim(frame.args.color)) }
+    for ndex in ndexlist:gmatch("[^ ]+") do
+        table.insert(res, tostring(k.GenEntry.new(abils[ndex], ndex)))
+    end
+    table.insert(res, abl.headers.makeFooter(string.trim(frame.args.color)))
+    return table.concat(res, "\n|-\n")
+    -- return table.concat(res, "\n|-\n") .. "\n" .. abl.headers.makeFooter(string.trim(frame.args.color))
+end
+k.List = k.list
+
 return k
