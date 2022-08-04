@@ -25,7 +25,7 @@ gendata[5] = {ext = 'quinta', roman = 'V', region = 'unima'}
 gendata[6] = {ext = 'sesta', roman = 'VI', region = 'kalos'}
 gendata[7] = {ext = 'settima', roman = 'VII', region = 'alola'}
 gendata[8] = {ext = 'ottava', roman = 'VIII', region = 'galar'}
-gendata[9] = {ext = 'nona', roman = 'IX', region = 'nonagen'}
+gendata[9] = {ext = 'nona', roman = 'IX', region = 'paldea'}
 
 --[[
 
