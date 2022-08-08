@@ -12,6 +12,18 @@ local function _checkCol(col)
     return ((col + 0.055) / 1.055) ^ 2.4
 end
 
+-- Given a color name and an optional shade, retrieve the corresponding hex
+-- from modulo colore
+local function getHexFromMod(color, shade)
+	local colorData = colorMod[color]
+	assert(colorData, "Unknown color name: " .. color)
+	if type(colorData) == "table" then
+		return colorData[shade or 'normale']
+	else
+		return colorData
+	end
+end
+
 -- Given a background hex color, return the most appropriate text color. Lua
 -- interface
 p.forBgLua = function(bgColor)
@@ -35,11 +47,7 @@ end
 -- Given a background module color, return the most appropriate text color. Lua
 -- interface
 p.forModBgLua = function(color, shade)
-	shade = shade or 'normale'
-
-	local colorHex = colorMod[color][shade]
-
-	return p.forBgLua(colorHex)
+	return p.forBgLua(getHexFromMod(color, shade))
 end
 -- Given a background module color, return the most appropriate text color
 p.forModBg = function(frame)
@@ -79,7 +87,8 @@ p.forModGradBgLua = function(col1, col2)
 	if (not col2) or (col1 == col2) then
 		return p.forModBgLua(col1)
 	else
-		return p.forGradBgLua(colorMod[col1].normale, colorMod[col2].normale)
+		return p.forGradBgLua(getHexFromMod(col1, "normale"),
+							  getHexFromMod(col2, "normale"))
 	end
 end
 -- Given two background module colors, return the most appropriate text color
