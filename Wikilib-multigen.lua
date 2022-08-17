@@ -68,7 +68,7 @@ mg.getGenSpan = function(data, value)
             return 1, gendata.latest
         end
 
-        local last, first = gendata.latest
+        local last, first = gendata.latest, nil
 
         for gen = 1, gendata.latest do
             if data[gen] == value then
