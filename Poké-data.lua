@@ -1825,6 +1825,7 @@ t.pawmi = {name = 'Pawmi', ndex = nil, type1 = 'elettro', type2 = 'elettro'}
 t.smoliv = {name = 'Smoliv', ndex = nil, type1 = 'erba', type2 = 'normale'}
 t.fidough = {name = 'Fidough', ndex = nil, type1 = 'folletto', type2 = 'folletto'}
 t.cetitan = {name = 'Cetitan', ndex = nil, type1 = 'ghiaccio', type2 = 'ghiaccio'}
+t.cyclizar = {name = 'Cyclizar', ndex = nil, type1 = 'drago', type2 = 'normale'}
 t.koraidon = {name = 'Koraidon', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 t.miraidon = {name = 'Miraidon', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 

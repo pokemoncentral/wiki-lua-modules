@@ -767,5 +767,7 @@ t["furia ardente"] = {name = "Furia Ardente", type = "buio", category = "special
 t.inquietantesimo = {name = "Inquietantesimo", type = "psico", category = "speciale", power = "80", accuracy = "100", pp = "5", gen = 8}
 t["lancia glaciale"] = {name = "Lancia Glaciale", type = "ghiaccio", category = "fisico", power = "130", accuracy = "100", pp = "5", gen = 8}
 t["schegge astrali"] = {name = "Schegge Astrali", type = "spettro", category = "speciale", power = "120", accuracy = "100", pp = "5", gen = 8}
+t.terascoppio = {name = "Terascoppio", type = "normale", category = nil, power = nil, accuracy = nil, pp = nil, gen = 9}
+t.tagliacoda = {name = "Tagliacoda", type = nil, category = "stato", power = '&mdash;', accuracy = nil, pp = nil, gen = 9}
 
 return t
