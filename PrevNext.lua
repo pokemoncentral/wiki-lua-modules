@@ -140,7 +140,7 @@ p.makeContentLine = function(args)
     local interpdata = {
         link = args.link or args.name,
         name = args.name,
-        spr = addNbsp(args.img or ms.staticLua(args.spr), args.dir) or "",
+        spr = addNbsp(args.img or ms.staticLua{args.spr}, args.dir) or "",
         bag = args.bag == "yes" and addNbsp(links.bag(args.name), args.dir)
                                 or "",
         sup = args.sup and sup[args.sup] or "",

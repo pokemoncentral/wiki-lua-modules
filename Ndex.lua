@@ -89,8 +89,8 @@ n.Entry.__tostring = function(this)
 
     return string.interp(n.Entry.strings.ENTRY, {
         ndex = this.ndex and string.tf(this.ndex) or '???',
-        ms = ms.staticLua(string.tf(this.ndex or 0)
-                          .. form.toEmptyAbbr(this.formAbbr or '')),
+        ms = ms.staticLua{string.tf(this.ndex or 0)
+                          .. form.toEmptyAbbr(this.formAbbr or '')},
         name = this.name,
         form = formtag,
         types = box.listTipoLua(table.concat(types, ", "), "thin",
@@ -147,7 +147,7 @@ n.manualEntry = function(frame)
 
     return string.interp(n.Entry.strings.ENTRY, {
         ndex = ndex,
-        ms = ms.staticLua(msidx),
+        ms = ms.staticLua{msidx},
         name = name,
         form = formtag,
         types = box.listTipoLua(table.concat(types, ", "), "thin",

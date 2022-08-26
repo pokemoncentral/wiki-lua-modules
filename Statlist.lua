@@ -194,8 +194,8 @@ ${statsCells}]=],
             sortDex = this.ndex or '???',
             ndex = this.ndex and string.tf(this.ndex) or '???',
             sortName = formUtil.formSortValue(this.ndex, this.formAbbr, name),
-            ms = ms.staticLua(string.tf(this.ndex or 0) ..
-                    (this.formAbbr == 'base' and '' or this.formAbbr or '')),
+            ms = ms.staticLua{string.tf(this.ndex or 0) ..
+                    (this.formAbbr == 'base' and '' or this.formAbbr or '')},
             name = name,
             form = form,
             statsCells = table.concat(cells, '\n')

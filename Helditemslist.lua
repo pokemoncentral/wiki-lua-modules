@@ -130,8 +130,8 @@ h.Entry.__tostring = function(this)
 		type1 = pokedata.type1,
 		type2 = pokedata.type2,
 		ndex = string.tf(this.ndex),
-		ms = ms.staticLua(string.tf(this.ndex) .. (this.formAbbr == 'base'
-				and '' or this.formAbbr or '')),
+		ms = ms.staticLua{string.tf(this.ndex) .. (this.formAbbr == 'base'
+				and '' or this.formAbbr or '')},
 		name = pokedata.name,
 		blacklink = form,
 	})}

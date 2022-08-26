@@ -442,7 +442,7 @@ entry.head = function(ndex, args)
 ]=],
 {
 	num = ndexFigures,
-	ani = ms.staticLua(ndexFigures .. forms.toEmptyAbbr(abbr)),
+	ani = ms.staticLua{ndexFigures .. forms.toEmptyAbbr(abbr)},
 	stab = stab,
 	name = pokedata.name,
 	notes = lib.makeNotes(args.notes or ''),

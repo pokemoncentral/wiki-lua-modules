@@ -177,7 +177,7 @@ eb.boxArrow.img.methods = {
     [evodata.methods.HAPPINESS] = methodsFunctionGenerator(links.bag('Calmanella')),
     [evodata.methods.STONE] = methodsFunctionGenerator(links.bag('${param}')),
     [evodata.methods.TRADE] = methodsFunctionGenerator(links.bag('Blocco Amici')),
-    [evodata.methods.BREED] = methodsFunctionGenerator(ms.staticLua('Uovo')),
+    [evodata.methods.BREED] = methodsFunctionGenerator(ms.staticLua{'Uovo'}),
     [evodata.methods.UNKNOWN] = methodsFunctionGenerator(''),
 }
 eb.boxArrow.img.conditions = {
@@ -192,9 +192,9 @@ eb.boxArrow.img.conditions = {
     end,
     [evodata.conditions.GENDER] = nilConst,
     [evodata.conditions.TRADED_FOR] = function(ndex)
-        return ms.staticLua(ndex)
+        return ms.staticLua{ndex}
     end,
-    [evodata.conditions.BREEDONLY] = methodsFunctionGenerator(ms.staticLua('132')),
+    [evodata.conditions.BREEDONLY] = methodsFunctionGenerator(ms.staticLua{'132'}),
     [evodata.conditions.REGION] = nilConst,
 }
 

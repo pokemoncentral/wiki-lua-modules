@@ -7547,7 +7547,7 @@ efs.landorusT = efs.landorus
 efs[645], efs['645T'] = efs.landorus, efs.landorus
 
 efs.kyurem = {
-	{ { ndex = '646N', name = 'kyuremN', notes = ms.staticLua(644) .. ' con [[Zekrom]]' } },
+	{ { ndex = '646N', name = 'kyuremN', notes = ms.staticLua{644} .. ' con [[Zekrom]]' } },
 	{ {
 		ndex = 664,
 		name = 'kyurem',
@@ -7557,7 +7557,7 @@ efs.kyurem = {
 	{ {
 		ndex = '646B',
 		name = 'kyuremB',
-		notes = ms.staticLua(643) .. ' con [[Reshiram]]',
+		notes = ms.staticLua{643} .. ' con [[Reshiram]]',
 		method = efs.methods.ITEM,
 		[efs.methods.ITEM] = 'Cuneo DNA',
 	} },
@@ -7709,14 +7709,14 @@ efs.necrozma = {
 		{
 			ndex = '800V',
 			name = 'necrozmaV',
-			notes = ms.staticLua(791) .. ' con [[Solgaleo]]',
+			notes = ms.staticLua{791} .. ' con [[Solgaleo]]',
 			method = efs.methods.ITEM,
 			[efs.methods.ITEM] = 'Necrosolix',
 		},
 		{
 			ndex = '800A',
 			name = 'necrozmaA',
-			notes = ms.staticLua(792) .. ' con [[Lunala]]',
+			notes = ms.staticLua{792} .. ' con [[Lunala]]',
 			method = efs.methods.ITEM,
 			[efs.methods.ITEM] = 'Necrolunix',
 		},

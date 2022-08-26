@@ -140,8 +140,8 @@ g.Entry.__tostring = function(this)
 | class="min-width-xl-${typesWidth} width-xs-100" style="padding: 1ex 0.8ex; height: 100%;" | ${types}${groups}]=],
     {
         ndex = this.ndex and string.tf(this.ndex) or '???',
-        static = ms.staticLua(string.tf(this.ndex or 0) ..
-                (this.formAbbr == 'base' and '' or this.formAbbr or '')),
+        static = ms.staticLua{string.tf(this.ndex or 0) ..
+                (this.formAbbr == 'base' and '' or this.formAbbr or '')},
         name = this.name,
         form = this.formLink[this.formAbbr] or '',
         typesWidth = twoGroups and '20' or '30',

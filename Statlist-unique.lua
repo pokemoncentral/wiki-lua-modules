@@ -101,9 +101,9 @@ Entry.__tostring = function(this)
 | style="padding: 0.3ex 0.6ex" | '''${total}''']=],
         {
             ndex = this.ndex and string.tf(this.ndex) or '???',
-            ms = ms.staticLua(string.tf(this.ndex or 0) ..
+            ms = ms.staticLua{string.tf(this.ndex or 0) ..
                     (this.formAbbr == 'base' and ''
-                            or this.formAbbr or '')),
+                            or this.formAbbr or '')},
             name = this.name,
             form = this.formsData and
                     this.formsData.blacklinks[this.formAbbr]

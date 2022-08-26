@@ -83,7 +83,7 @@ v.VexEntry = function(args)
 	radialGrad = css.radialGradLua{"circle closest-side",
 	                               type1 = pokedata.type1,
 	                               type2 = pokedata.type2 },
-	ms = ms.staticLua(p.ndex, args.gen),
+	ms = ms.staticLua{ndex = p.ndex, gen = args.gen},
 	pkmn = p.pkmn,
 	formLink = form ~= "" and string.interp(
 	        '<div class="small-text">${form}</div>', { form = form }) or "",

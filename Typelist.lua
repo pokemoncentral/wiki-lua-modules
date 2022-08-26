@@ -60,8 +60,8 @@ g.Entry.__tostring = function(this)
 ${types}]=],
     {
         ndex = this.ndex and string.tf(this.ndex) or '???',
-        static = ms.staticLua(string.tf(this.ndex or 0) ..
-                (this.formAbbr == 'base' and '' or this.formAbbr or '')),
+        static = ms.staticLua{string.tf(this.ndex or 0) ..
+                (this.formAbbr == 'base' and '' or this.formAbbr or '')},
         name = this.name,
         form = this.formsData and this.formsData.links[this.formAbbr] or '',
         types = resp.twoTypeCellsLua(this.type1, this.type2, {{'thick'}},

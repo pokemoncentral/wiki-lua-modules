@@ -164,7 +164,7 @@ lib.insertnwlns = function(str, linelength, gen, nobox)
 		op = function(sprite) return sprite end
 	else
 		pattern = '#(.-)#'
-		op = function(ndex) return ms.staticLua(ndex, gen) end
+		op = function(ndex) return ms.staticLua{ndex = ndex, gen = gen} end
 	end
 
 	table.insert(res, '<div>')
@@ -237,7 +237,7 @@ lib.mslistToModal = function(list, gen, textDisplay, linelength)
 		op = function(sprite) return sprite end
 	else
 		pattern = '#(.-)#'
-		op = function(ndex) return ms.staticLua(ndex, gen) end
+		op = function(ndex) return ms.staticLua{ndex = ndex, gen = gen} end
 	end
 
 	table.insert(res, '<div>')
@@ -272,8 +272,10 @@ lib.msarrayToModal = function(array, gen, textDisplay, linelength)
 	table.insert(res, '<div>')
 	local mscount = 0
 	for _, ndex in ipairs(array) do
-		table.insert(res, ms.staticLua(type(ndex) == "number"
-		                               and string.tf(ndex) or ndex, gen))
+		table.insert(res, ms.staticLua{
+			ndex = type(ndex) == "number" and string.tf(ndex) or ndex,
+			gen = gen
+		})
 		mscount = mscount + 1
 		if linelength and mscount % linelength == 0 then
 			table.insert(res, '</div><div>')
@@ -507,13 +509,13 @@ end
 lib.preevodata = function(pars, gen)
 	local ani1, tt1 = '', ''
 	if pars[4] then
-		ani1 = ms.staticLua(pars[4], gen or '', pars[5] or 'Bulbasaur')
+		ani1 = ms.staticLua{pars[4], gen = gen, link = pars[5] or 'Bulbasaur'}
 		tt1 = lib.preevott[pars[6]] or ''
 	end
 	return string.interp([=[|-
 | style="padding: 0.1em 0.3em;" | ${ani}${tt}${ani1}${tt1}]=],
 {
-	ani = ms.staticLua(pars[1] or '000', gen or '', pars[2] or 'Bulbasaur'),
+	ani = ms.staticLua{ndex = pars[1] or '000', gen = gen, link = pars[2] or 'Bulbasaur'},
 	tt = lib.preevott[pars[3]] or '',
 	ani1 = ani1,
 	tt1 = tt1
