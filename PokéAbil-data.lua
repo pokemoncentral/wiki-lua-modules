@@ -1828,6 +1828,7 @@ t.lechonk = {ability1 = 'Aromavelo', ability2 = 'Voracità'}
 t.pawmi = {ability1 = 'Statico', ability2 = 'Alternacura'}
 t.smoliv = {ability1 = 'Sveglialampo'}
 t.fidough = {ability1 = 'Mente Locale'}
+t.grafaiai = {ability1 = 'Agiltecnica', ability2 = 'Velentocco'}
 t.cetitan = {ability1 = 'Grassospesso', ability2 = 'Spalaneve'}
 t.cyclizar = {ability1 = 'Muta'}
 t.koraidon = {ability1 = 'Sconosciuta'}
