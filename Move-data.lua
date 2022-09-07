@@ -769,5 +769,7 @@ t["lancia glaciale"] = {name = "Lancia Glaciale", type = "ghiaccio", category = 
 t["schegge astrali"] = {name = "Schegge Astrali", type = "spettro", category = "speciale", power = "120", accuracy = "100", pp = "5", gen = 8}
 t.terascoppio = {name = "Terascoppio", type = "normale", category = nil, power = nil, accuracy = nil, pp = nil, gen = 9}
 t.tagliacoda = {name = "Tagliacoda", type = nil, category = "stato", power = '&mdash;', accuracy = nil, pp = nil, gen = 9}
+t["corazza cannone"] = {name = "Corazza Cannone", type = "fuoco", category = "&mdash;", power = "&mdash;", accuracy = "&mdash;", pp = "&mdash;", gen = 9}
+t["lama del rimorso"] = {name = "Lama del Rimorso", type = "fuoco", category = "fisico", power = "&mdash;", accuracy = "&mdash;", pp = "&mdash;", gen = 9}
 
 return t

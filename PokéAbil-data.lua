@@ -1831,6 +1831,9 @@ t.fidough = {ability1 = 'Mente Locale'}
 t.grafaiai = {ability1 = 'Agiltecnica', ability2 = 'Velentocco'}
 t.cetitan = {ability1 = 'Grassospesso', ability2 = 'Spalaneve'}
 t.cyclizar = {ability1 = 'Muta'}
+t.klawf = {ability1 = 'Iraguscio', ability2 = 'Guscioscudo'}
+t.armarouge = {ability1 = 'Fuocardore'}
+t.ceruledge = {ability1 = 'Fuocardore'}
 t.koraidon = {ability1 = 'Sconosciuta'}
 t.miraidon = {ability1 = 'Sconosciuta'}
 
