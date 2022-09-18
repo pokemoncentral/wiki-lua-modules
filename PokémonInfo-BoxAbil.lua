@@ -28,7 +28,7 @@ Static fields and methods
 AbilsBox.STRINGS = {
     singleAbilBox = '<div class="width-xl-33 width-xs-50" style="padding: 0.2em;">${abil}<div class="small-text">${desc}</div></div>',
     singleAbilNoLabel = '<div class="width-xl-33 width-xs-50" style="padding: 0.2em;">${abil}</div>',
-    formAbilsBox = '<div>${forms}</div><div class="flex flex-row flex-wrap flex-items-end flex-main-stretch" style="padding: 0.2em;">${abils}</div>',
+    formAbilsBox = '<div>${forms}</div><div class="flex flex-row flex-wrap flex-items-center flex-main-stretch" style="padding: 0.2em;">${abils}</div>',
     formLabel = "<div class=\"width-xl-100\" style=\"padding-bottom: 0.2em;\">'''${label}'''</div>",
     LABELS = {
         ability1 = "Prima abilit&agrave;",
