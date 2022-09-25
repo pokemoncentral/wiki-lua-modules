@@ -3,6 +3,7 @@
 local l = {}
 
 local txt = require('Wikilib-strings')  -- luacheck: no unused
+local tab = require('Wikilib-tables')
 local c = require("Colore-data")
 
 --[[
@@ -100,12 +101,13 @@ independently of the others.
 l.bag = function(item, args)
 	local nospriteitems = {'Genefurioso', 'Fiocco Pois', 'Messaggio Visione', 'Messaggio Surf', 'Messaggio Ritratto', 'Messaggio Musica', 'Messaggio Morph', 'Messaggio Fiore', 'Messaggio Eon', 'Messaggio Dolce', 'Messaggio Cielo', 'Messaggio Azzurro', 'Bacca Misteriosa', 'Bacca Miracolosa', 'Bacca Menta', 'Bacca Ghiaccio', 'Bacca Bruciata', 'Bacca Amara', 'Baccantiveleno', 'Baccantiparalisi', 'Bacca Oro', 'Bacca'}
 	args = args or {}
-	if table.search(nospriteitems, item) then
+	if tab.search(nospriteitems, item) then
 		return ''
 	else
-		return string.interp('[[File:${item} Sprite Zaino.png|${item}|link=${link}]]', {
+		return string.interp('[[File:${item} Sprite Zaino.png|${size}|${item}|link=${link}]]', {
 			item = item,
-			link = args.link or (item == 'Perla' and 'Perla (strumento)' or item)
+			link = args.link or (item == 'Perla' and 'Perla (strumento)' or item),
+			size = "24px",
 		})
 	end
 end
