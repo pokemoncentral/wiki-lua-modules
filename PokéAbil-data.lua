@@ -1832,6 +1832,7 @@ t.grafaiai = {ability1 = 'Agiltecnica', ability2 = 'Velentocco'}
 t.cetitan = {ability1 = 'Grassospesso', ability2 = 'Spalaneve'}
 t.cyclizar = {ability1 = 'Muta'}
 t.klawf = {ability1 = 'Iraguscio', ability2 = 'Guscioscudo'}
+t.wiglett = {ability1 = 'Viscosità', ability2 = 'Paura'}
 t.armarouge = {ability1 = 'Fuocardore'}
 t.ceruledge = {ability1 = 'Fuocardore'}
 t.koraidon = {ability1 = 'Sconosciuta'}
