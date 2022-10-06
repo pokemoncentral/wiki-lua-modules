@@ -1836,6 +1836,7 @@ t.armarouge = {ability1 = 'Fuocardore'}
 t.ceruledge = {ability1 = 'Fuocardore'}
 t.koraidon = {ability1 = 'Sconosciuta'}
 t.miraidon = {ability1 = 'Sconosciuta'}
+t.farigiraf = {ability1 = 'Ruminante', ability2 = 'Codarmatura'}
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
