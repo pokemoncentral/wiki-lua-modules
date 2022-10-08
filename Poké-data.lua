@@ -1828,6 +1828,7 @@ t.grafaiai = {name = 'Grafaiai', ndex = nil, type1 = 'veleno', type2 = 'normale'
 t.cetitan = {name = 'Cetitan', ndex = nil, type1 = 'ghiaccio', type2 = 'ghiaccio'}
 t.cyclizar = {name = 'Cyclizar', ndex = nil, type1 = 'drago', type2 = 'normale'}
 t.klawf = {name = 'Klawf', ndex = nil, type1 = 'roccia', type2 = 'roccia'}
+t.farigiraf = {name = 'Farigiraf', ndex = nil, type1 = 'normale', type2 = 'psico'}
 t.armarouge = {name = 'Armarouge', ndex = nil, type1 = 'fuoco', type2 = 'psico'}
 t.ceruledge = {name = 'Ceruledge', ndex = nil, type1 = 'fuoco', type2 = 'spettro'}
 t.wiglett = {name = 'Wiglett', ndex = nil, type1 = 'acqua', type2 = 'acqua'}
