@@ -2057,7 +2057,18 @@ evo.wynaut = {
 evo.wobbuffet = evo.wynaut
 evo[360], evo[202] = evo.wynaut, evo.wynaut
 
-evo.girafarig = { ndex = 203, name = 'girafarig' }
+evo.girafarig = {
+	ndex = 203,
+	name = 'girafarig',
+
+	evos = {
+		{
+			ndex = nil,
+			name = 'farigiraf',
+			method = evo.methods.UNKNOWN,
+		}
+	}
+}
 evo[203] = evo.girafarig
 
 evo.pineco = {
