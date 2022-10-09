@@ -2070,6 +2070,7 @@ evo.girafarig = {
 	}
 }
 evo[203] = evo.girafarig
+evo.farigiraf = evo.girafarig
 
 evo.pineco = {
 	ndex = 204,
