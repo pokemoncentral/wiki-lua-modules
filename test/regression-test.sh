@@ -138,10 +138,10 @@ basename -a "$@" | while read TEST_SCRIPT; do
     echo -ne "\e[94m$CURRENT_HEAD\e[0m and \e[93m$TEST_SCRIPT\e[0m@"
     echo -e "\e[94m$COMMIT\e[0m"
     diff -su --color=always \
-        --label "$TEST_SCRIPT@$CURRENT_HEAD" \
         --label "$TEST_SCRIPT@$COMMIT" \
-        "$CURRENT_OUTPUT_DIR/$TEST_SCRIPT.out" \
-        "$OLD_OUTPUT_DIR/$TEST_SCRIPT.out"
+        --label "$TEST_SCRIPT@$CURRENT_HEAD" \
+        "$OLD_OUTPUT_DIR/$TEST_SCRIPT.out" \
+        "$CURRENT_OUTPUT_DIR/$TEST_SCRIPT.out"
 done
 
 #######################################
