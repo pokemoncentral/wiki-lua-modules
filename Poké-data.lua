@@ -1833,6 +1833,7 @@ t.armarouge = {name = 'Armarouge', ndex = nil, type1 = 'fuoco', type2 = 'psico'}
 t.ceruledge = {name = 'Ceruledge', ndex = nil, type1 = 'fuoco', type2 = 'spettro'}
 t.wiglett = {name = 'Wiglett', ndex = nil, type1 = 'acqua', type2 = 'acqua'}
 t.bellibolt = {name = 'Bellibolt', ndex = nil, type1 = 'elettro', type2 = 'elettro'}
+t.greavard = {name = 'Greavard', ndex = nil, type1 = 'spettro', type2 = 'spettro'}
 t.koraidon = {name = 'Koraidon', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 t.miraidon = {name = 'Miraidon', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 
