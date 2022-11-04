@@ -59,9 +59,10 @@ lib.games = {
         { "XY", "ROZA" },
         { "SL", "USUL" },
         { "SpSc", "DLPS" },
+        { "SV" },
     },
     -- TODO make effective this table, right now only gen 8 is used
-    tm = { {}, {}, {}, {}, {}, {}, {}, { "SpSc", "DLPS" } },
+    tm = { {}, {}, {}, {}, {}, {}, {}, { "SpSc", "DLPS" }, { "SV" } },
     breed = {
         {},
         { "OA", "C" },
@@ -71,6 +72,7 @@ lib.games = {
         { "XY", "ROZA" },
         { "SL", "USUL" },
         { "SpSc", "DLPS" },
+        { "SV" },
     },
     tutor = {
         {},
@@ -81,6 +83,7 @@ lib.games = {
         { "XY", "ROZA" },
         { "SL", "USUL" },
         { "SpSc", "IA", "DLPS" },
+        { "SV" },
     },
 }
 
@@ -484,7 +487,11 @@ lib.gameslevel = function(first, second, third)
 
     -- All three are the same
     if first == second and second == third then
-        return table.concat({ strings.GAMELEVELCELL, ' colspan = "3" | ', first })
+        return table.concat({
+            strings.GAMELEVELCELL,
+            ' colspan = "3" | ',
+            first,
+        })
 
         -- First and second are the same but third is different
     elseif first == second then

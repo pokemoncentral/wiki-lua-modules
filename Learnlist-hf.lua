@@ -19,34 +19,27 @@ local gendata = require("Gens-data")
 local pokes = require("Poké-data")
 -- stylua: ignore end
 
--- Tabelle dati
+-- =============================== Data tables ===============================
 
--- Tabella con i valori del colspan della cella con la generazione,
--- che deve coprire tutta la tabella, in base al tipo di header/footer
--- e alla generazione
+-- Table with the colspan needed for the alltm entry. It should be the length
+-- of the TM table
+local alltmcs = { 7, 7, 10, 10, 8, 11, 8, 7, 7 }
 
-local cs = {}
-cs.level = { 6, 6, 9, 9, 8, 11, 8 }
-cs.tm = { 7, 7, 10, 10, 8, 11, 8 }
-cs.breed = { 6, 6, 9, 9, 7, 10, 7 }
-cs.tutor = { 6, 6, 12, 13, 10, 13, 8 }
-cs.preevo, cs.event = cs.breed, cs.breed
-
--- Tabella con i valori del colspan e del rowspan della prima cella,
--- divisi per tipo poi per generazione dell'header
-
+-- Tabella con i valori del colspan e del rowspan della prima cella, divisi per
+-- tipo poi per generazione dell'header
 local firstcell = { cs = {}, rs = {} }
 
--- In futuro dovranno essere tutti > 1
-firstcell.cs.level = { 1, 1, 1, 3, 2, 2, 2, 2 }
-firstcell.cs.tm = { 1, 1, 1, 1, 1, 1, 1, 1 }
+-- This is the number of cells in games[gen]
+firstcell.cs.level = { 1, 1, 1, 3, 2, 2, 2, 2, 1 }
+firstcell.cs.tm = { 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 firstcell.cs.breed = firstcell.cs.tm
-firstcell.cs.tutor = { 1, 1, 3, 3, 2, 2, 2, 3 }
+firstcell.cs.tutor = { 1, 1, 3, 3, 2, 2, 2, 3, 1 }
 firstcell.cs.preevo = firstcell.cs.breed
 firstcell.cs.event = firstcell.cs.breed
 
-firstcell.rs.level = { 1, 1, 1, 2, 2, 2, 2, 2 }
-firstcell.rs.breed = { 1, 1, 1, 1, 1, 1, 1, 1 }
+-- rs.level = map (\x -> if x > 1 then 2 else 1) cs.level
+firstcell.rs.level = { 1, 1, 1, 2, 2, 2, 2, 2, 1 }
+firstcell.rs.breed = { 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 firstcell.rs.tm = firstcell.rs.breed
 firstcell.rs.tutor = firstcell.rs.breed
 firstcell.rs.preevo = firstcell.rs.breed
@@ -85,10 +78,11 @@ cells.event = '! colspan = "${c}" | &nbsp;[[Pokémon evento|Evento]]&nbsp;'
 cells.basic = table.concat({ cells.moveandtype, cells.ppp })
 cells.category = table.concat({ cells.moveandtype, cells.cat, cells.ppp })
 cells[1], cells[2] = cells.basic, cells.basic
-cells[5], cells[7], cells[8] = cells.category, cells.category, cells.category
 cells[3] = table.concat({ cells.basic, cells.gara, cells.inib })
 cells[4] = table.concat({ cells.category, cells.gara })
+cells[5] = cells.category
 cells[6] = table.concat({ cells.category, cells.gara, cells.inib })
+cells[7], cells[8], cells[9] = cells.category, cells.category, cells.category
 
 -- Tabella con le celle dei giochi per il levelh
 -- incompleta causa mancata implementazione del sistema a due celle
@@ -120,6 +114,10 @@ games[8] = [=[
 |- class="${textcolor}"
 ! style="min-width: 2.2em;" | [[Pokémon Spada e Scudo|SpSc]]
 ! style="min-width: 3em;" | [[Pokémon Diamante Lucente e Perla Splendente|DLPS]]]=]
+games[9] = [=[
+
+|- class="${textcolor}"
+! style="min-width: 2.2em;" | [[Pokémon Scarlatto e Violetto|SV]]]=]
 
 -- Tabella con i Pokémon baby ottenibili tramite incensi, necessaria
 -- per le righe aggiuntive del footer per le mosse Uovo
@@ -173,14 +171,11 @@ rowsf.forms.mega = "a [[Megaevoluzione]]"
 local genlink = function(gen, method, poke)
     method = (method == "tm" and tonumber(gen) > 6) and "tm2" or method
     if gen == gendata.latest then
-        return txt.interp(
-            "[[${poke}#${way}|${genroman}]]",
-            {
-                poke = poke,
-                way = string.fu(ways[method]),
-                genroman = gendata[gen].roman,
-            }
-        )
+        return txt.interp("[[${poke}#${way}|${genroman}]]", {
+            poke = poke,
+            way = string.fu(ways[method]),
+            genroman = gendata[gen].roman,
+        })
     else
         return txt.interp(
             "[[${poke}/Mosse apprese in ${genletters} generazione#${way}|${genroman}]]",
@@ -322,8 +317,6 @@ d.Levelh = d.levelh
 d.levelhLGPE = function(frame)
     local pars = lib.sanitize(mw.clone(frame.args))
     local tipo1, tipo2 = pars[2] or "Sconosciuto", pars[3] or "Sconosciuto"
-    local genh, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
-    local poke = pars[1] or ""
     return txt.interp(
         [=[
 <div class="text-center max-width-xl-100">
@@ -354,7 +347,6 @@ d.levelhLPA = function(frame)
     local abbr = p.form or ""
     local pokedata =
         multigen.getGen(pokes[wform.nameToDataindex(pokename .. abbr)])
-    local genh = tonumber(p[2]) or 0
     return txt.interp(
         [=[
 <div class="text-center max-width-xl-100">
@@ -392,8 +384,6 @@ d.Tmh = d.tmh
 d.tmhLGPE = function(frame)
     local pars = lib.sanitize(mw.clone(frame.args))
     local tipo1, tipo2 = pars[2] or "Sconosciuto", pars[3] or "Sconosciuto"
-    local genh, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
-    local poke = pars[1] or ""
     return txt.interp(
         [=[
 <div class="text-center max-width-xl-100">
@@ -439,7 +429,6 @@ d.tutorhLPA = function(frame)
     local abbr = p.form or ""
     local pokedata =
         multigen.getGen(pokes[wform.nameToDataindex(pokename .. abbr)])
-    local genh = tonumber(p[2]) or 0
     return txt.interp(
         [=[
 <div class="text-center max-width-xl-100">
@@ -601,7 +590,7 @@ d.alltm = function(frame)
             gen = gendata[gen].ext or "brockolosa",
             except = p[3] == "Tm" and ""
                 or " tranne [[mosse tutor peculiari|quelle peculiari]]",
-            cs = cs.tm[gen],
+            cs = alltmcs[gen],
         }
     )
 end
