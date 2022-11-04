@@ -2,9 +2,9 @@
 
 local lib = {}
 
+-- stylua: ignore start
 local w = require('Wikilib')
-local txt = require('Wikilib-strings') -- luacheck: no unused
-local tab = require('Wikilib-tables')  -- luacheck: no unused
+local txt = require('Wikilib-strings')
 local ms = require('MiniSprite')
 local box = require('Box')
 local c = require("Colore-data")
@@ -20,52 +20,69 @@ local forms = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
 local evolib = require('Wikilib-evos')
 local wdata = require("Wikilib-data")
-
+-- stylua: ignore end
 
 local strings = {
-	-- Wikicode per la cella di un gioco nell'entry level
-	GAMELEVELCELL = '| ',
-	-- Wikicode per la cella di un gioco nell'entry tutor
-	-- GAMETUTORCELL = [=[
--- | style="background:#${bg};" | [[${gameLink}|<span style="padding: 0.3em 0; color:#${txtColor};">'''${gameAbbr}'''</span>]]]=]
-	-- Wikicode per gli entrynull
-	ENTRYNULL = [[|-
+    -- Wikicode per la cella di un gioco nell'entry level
+    GAMELEVELCELL = "| ",
+    -- Wikicode per gli entrynull
+    ENTRYNULL = [[|-
 ! class="white-bg" style="padding: 0.1em 0.3em;" colspan="${cs}" | Questo Pokémon non impara nessuna mossa ${ending}.]],
-
 }
 
 -- local trimOnly = {'x v zA'}
 
-local entryNullEnd = { level = 'aumentando di livello', tm = 'tramite MT',
-	breed = 'tramite accoppiamento', tutor = "dall'Insegnamosse",
-	preevo = 'tramite evoluzioni precedenti', event = 'tramite evento' }
+local entryNullEnd = {
+    level = "aumentando di livello",
+    tm = "tramite MT",
+    breed = "tramite accoppiamento",
+    tutor = "dall'Insegnamosse",
+    preevo = "tramite evoluzioni precedenti",
+    event = "tramite evento",
+}
 
 -- Contiene i title per le pre-evoluzioni
 lib.preevott = {
-	T = links.tt('*', "Mossa appresa dall'Esperto Mosse"),
-	E = links.tt('†', "Mossa appresa tramite evento"),
-	D = links.tt('‡', "Mossa appresa nel Dream World")
+    T = links.tt("*", "Mossa appresa dall'Esperto Mosse"),
+    E = links.tt("†", "Mossa appresa tramite evento"),
+    D = links.tt("‡", "Mossa appresa nel Dream World"),
 }
 
 -- Games for various kinds of learn, divided by gen
 lib.games = {
-level = { { "RB", "G" }, { "OA", "C" }, { "RZ", "RFVF", "S" },
-    { "DP", "Pt", "HGSS" }, { "NB", "N2B2" }, { "XY", "ROZA" },
-    { "SL", "USUL" }, { "SpSc", "DLPS" },
-},
--- TODO make effective this table, right now only gen 8 is used
-tm = { {}, {}, {}, {}, {}, {}, {}, { "SpSc", "DLPS" },
-},
-breed = { {}, { "OA", "C" }, { "RZ", "RFVF", "S" },
-    { "DP", "Pt", "HGSS" }, { "NB", "N2B2" }, { "XY", "ROZA" },
-    { "SL", "USUL" }, { "SpSc", "DLPS" },
-},
-tutor = { {}, { "C" }, { "RFVF", "S", "XD" },
-    { "DP", "Pt", "HGSS" }, { "NB", "N2B2" }, { "XY", "ROZA" },
-    { "SL", "USUL" }, { "SpSc", "IA", "DLPS" },
-},
+    level = {
+        { "RB", "G" },
+        { "OA", "C" },
+        { "RZ", "RFVF", "S" },
+        { "DP", "Pt", "HGSS" },
+        { "NB", "N2B2" },
+        { "XY", "ROZA" },
+        { "SL", "USUL" },
+        { "SpSc", "DLPS" },
+    },
+    -- TODO make effective this table, right now only gen 8 is used
+    tm = { {}, {}, {}, {}, {}, {}, {}, { "SpSc", "DLPS" } },
+    breed = {
+        {},
+        { "OA", "C" },
+        { "RZ", "RFVF", "S" },
+        { "DP", "Pt", "HGSS" },
+        { "NB", "N2B2" },
+        { "XY", "ROZA" },
+        { "SL", "USUL" },
+        { "SpSc", "DLPS" },
+    },
+    tutor = {
+        {},
+        { "C" },
+        { "RFVF", "S", "XD" },
+        { "DP", "Pt", "HGSS" },
+        { "NB", "N2B2" },
+        { "XY", "ROZA" },
+        { "SL", "USUL" },
+        { "SpSc", "IA", "DLPS" },
+    },
 }
-
 
 --[[
 
@@ -93,7 +110,7 @@ Used again (I hoped it would take longer) -- Flavio, 07/05/2020
 
 --]]
 local normalizeColeot = function(type)
-	return type == "coleot" and "coleottero" or type
+    return type == "coleot" and "coleottero" or type
 end
 
 --[[
@@ -104,12 +121,11 @@ trim e first_uppercase.
 --]]
 lib.sanitize = function(tab)
     return w.trimAndMap(tab, function(str)
-		if str == 'x v zA' then
-		-- if table.search(trimOnly, str) then
-		    return str
-		end
-		return string.firstUppercase(str)
-	end)
+        if str == "x v zA" then
+            return str
+        end
+        return txt.firstUppercase(str)
+    end)
 end
 
 --[[
@@ -123,17 +139,17 @@ invariato; negli altri casi le si usano come title.
 
 --]]
 lib.makeNotes = function(notes, ...)
-	local pieces = {...}
-    local firstGame = notes:match('^(%S+)')
+    local pieces = { ... }
+    local firstGame = notes:match("^(%S+)")
 
-	if s[firstGame] then
-		table.insert(pieces, 1, abbrLib.concatAbbrs(notes, s))
-	elseif notes:len() < 2 then
-		table.insert(pieces, 1, notes)
-	else
-		table.insert(pieces, 1, links.tt('*', notes))
-	end
-	return table.concat(pieces)
+    if s[firstGame] then
+        table.insert(pieces, 1, abbrLib.concatAbbrs(notes, s))
+    elseif notes:len() < 2 then
+        table.insert(pieces, 1, notes)
+    else
+        table.insert(pieces, 1, links.tt("*", notes))
+    end
+    return table.concat(pieces)
 end
 
 --[[
@@ -143,7 +159,7 @@ Ritorna un sup con il livello se l'argomento
 
 --]]
 lib.makeLevel = function(level)
-	return level and table.concat{'<sup>Lv.', level, '</sup>'} or ''
+    return level and table.concat({ "<sup>Lv.", level, "</sup>" }) or ""
 end
 
 --[[
@@ -153,48 +169,66 @@ nell'entry per il breed, nella cella dei padri
 
 --]]
 lib.insertnwlns = function(str, linelength, gen, nobox)
-	str = str:gsub('<br>', '')
-	linelength = tonumber(linelength) or 7
-	gen = gen or ''
+    str = str:gsub("<br>", "")
+    linelength = tonumber(linelength) or 7
+    gen = gen or ""
 
-	local res, newLinesCount = {}, 1
-	local pattern, op
-	if str:match('File') then
-		pattern = '%[%[File:.-MS%.png|.-|link=.-%]%]'
-		op = function(sprite) return sprite end
-	else
-		pattern = '#(.-)#'
-		op = function(ndex) return ms.staticLua{ndex = ndex, gen = gen} end
-	end
+    local res, newLinesCount = {}, 1
+    local pattern, op
+    if str:match("File") then
+        pattern = "%[%[File:.-MS%.png|.-|link=.-%]%]"
+        op = function(sprite)
+            return sprite
+        end
+    else
+        pattern = "#(.-)#"
+        op = function(ndex)
+            return ms.staticLua({ ndex = ndex, gen = gen })
+        end
+    end
 
-	table.insert(res, '<div>')
-	for minisprite in str:gmatch(pattern) do
-		table.insert(res, op(minisprite))
+    table.insert(res, "<div>")
+    for minisprite in str:gmatch(pattern) do
+        table.insert(res, op(minisprite))
 
-		if (#res - newLinesCount) % linelength == 0 then
-			table.insert(res, '</div><div>')
-			newLinesCount = newLinesCount + 1
-		end
-	end
-	if nobox then
-		table.insert(res, '</div>')
-	else
-		table.insert(res, '</div></div>')
+        if (#res - newLinesCount) % linelength == 0 then
+            table.insert(res, "</div><div>")
+            newLinesCount = newLinesCount + 1
+        end
+    end
+    if nobox then
+        table.insert(res, "</div>")
+    else
+        table.insert(res, "</div></div>")
 
-		if (#res > linelength + 2) then
-			table.insert(res, 1, string.interp('<div class="roundy-5 mw-collapsible mw-collapsed" style="background: #${bg}; margin: 0.3em 0;">&nbsp;<div class="mw-collapsible-content">', { bg = c.background }))
-			table.insert(res, '</div>')
-		else
-			table.insert(res, 1, string.interp('<div class="roundy-5" style="background: #${bg}; margin: 0.3em 0;">', { bg = c.background }))
-		end
-	end
+        if #res > linelength + 2 then
+            table.insert(
+                res,
+                1,
+                txt.interp(
+                    '<div class="roundy-5 mw-collapsible mw-collapsed" style="background: #${bg}; margin: 0.3em 0;">&nbsp;<div class="mw-collapsible-content">',
+                    { bg = c.background }
+                )
+            )
+            table.insert(res, "</div>")
+        else
+            table.insert(
+                res,
+                1,
+                txt.interp(
+                    '<div class="roundy-5" style="background: #${bg}; margin: 0.3em 0;">',
+                    { bg = c.background }
+                )
+            )
+        end
+    end
 
-	return table.concat(res)
+    return table.concat(res)
 end
 
 -- Interfaccia per mediaWiki della funzione di cui sopra
 lib.newline = function(frame)
-    return lib.insertnwlns(string.trim(frame.args[1]), frame.args[2])
+    return lib.insertnwlns(txt.trim(frame.args[1]), frame.args[2])
 end
 
 --[[
@@ -204,13 +238,13 @@ inside the element that binds the modal (defaults to '✔')
 
 --]]
 lib.toModal = function(str, textDisplay)
-	return table.concat({
-		'<span class="open-popup-element explain">',
-		textDisplay or '✔',
-		'<div class="mfp-hide pull-center max-width-xl-80 roundy white-bg" style="display: table; padding: 0.5em;">',
-		str,
-		'</div></span>',
-	})
+    return table.concat({
+        '<span class="open-popup-element explain">',
+        textDisplay or "✔",
+        '<div class="mfp-hide pull-center max-width-xl-80 roundy white-bg" style="display: table; padding: 0.5em;">',
+        str,
+        "</div></span>",
+    })
 end
 
 --[=[
@@ -227,31 +261,35 @@ ms in a single line (default nil, that means no line breaks).
 
 --]=]
 lib.mslistToModal = function(list, gen, textDisplay, linelength)
-	list = list:gsub('<br>', '')
-	gen = gen or ''
+    list = list:gsub("<br>", "")
+    gen = gen or ""
 
-	local res = {}
-	local pattern, op
-	if list:match('File') then
-		pattern = '%[%[File:.-MS%.png|.-|link=.-%]%]'
-		op = function(sprite) return sprite end
-	else
-		pattern = '#(.-)#'
-		op = function(ndex) return ms.staticLua{ndex = ndex, gen = gen} end
-	end
+    local res = {}
+    local pattern, op
+    if list:match("File") then
+        pattern = "%[%[File:.-MS%.png|.-|link=.-%]%]"
+        op = function(sprite)
+            return sprite
+        end
+    else
+        pattern = "#(.-)#"
+        op = function(ndex)
+            return ms.staticLua({ ndex = ndex, gen = gen })
+        end
+    end
 
-	table.insert(res, '<div>')
-	local mscount = 0
-	for minisprite in list:gmatch(pattern) do
-		table.insert(res, op(minisprite))
-		mscount = mscount + 1
-		if linelength and mscount % linelength == 0 then
-			table.insert(res, '</div><div>')
-		end
-	end
-	table.insert(res, '</div>')
+    table.insert(res, "<div>")
+    local mscount = 0
+    for minisprite in list:gmatch(pattern) do
+        table.insert(res, op(minisprite))
+        mscount = mscount + 1
+        if linelength and mscount % linelength == 0 then
+            table.insert(res, "</div><div>")
+        end
+    end
+    table.insert(res, "</div>")
 
-	return lib.toModal(table.concat(res), textDisplay)
+    return lib.toModal(table.concat(res), textDisplay)
 end
 
 --[=[
@@ -265,41 +303,52 @@ line breaks).
 
 --]=]
 lib.msarrayToModal = function(array, gen, textDisplay, linelength)
-	gen = gen or ''
+    gen = gen or ""
 
-	local res = {}
+    local res = {}
 
-	table.insert(res, '<div>')
-	local mscount = 0
-	for _, ndex in ipairs(array) do
-		table.insert(res, ms.staticLua{
-			ndex = type(ndex) == "number" and string.tf(ndex) or ndex,
-			gen = gen
-		})
-		mscount = mscount + 1
-		if linelength and mscount % linelength == 0 then
-			table.insert(res, '</div><div>')
-		end
-	end
-	table.insert(res, '</div>')
+    table.insert(res, "<div>")
+    local mscount = 0
+    for _, ndex in ipairs(array) do
+        table.insert(
+            res,
+            ms.staticLua({
+                ndex = type(ndex) == "number" and txt.tf(ndex) or ndex,
+                gen = gen,
+            })
+        )
+        mscount = mscount + 1
+        if linelength and mscount % linelength == 0 then
+            table.insert(res, "</div><div>")
+        end
+    end
+    table.insert(res, "</div>")
 
-	return lib.toModal(table.concat(res), textDisplay)
+    return lib.toModal(table.concat(res), textDisplay)
 end
 
 -- Funzione che restituisce i cuori per le gare
 lib.concathearts = function(n, black)
-	local N = tonumber(n)
-	if N == nil or N == 0 then
-		return tostring(n)
-	end
-	return table.concat{n, ' <span style="color:#', black and '000' or 'FFAAAA',
-		';">', string.rep('♥', N), '</span>'}
+    local N = tonumber(n)
+    if N == nil or N == 0 then
+        return tostring(n)
+    end
+    return table.concat({
+        n,
+        ' <span style="color:#',
+        black and "000" or "FFAAAA",
+        ';">',
+        string.rep("♥", N),
+        "</span>",
+    })
 end
 
 -- Interfaccia per mediaWiki della funzione di cui sopra
 lib.hearts = function(frame)
-	return lib.concathearts(string.trim(frame.args[1]),
-			string.trim(frame.args[2] or ''):lower() == 'black')
+    return lib.concathearts(
+        txt.trim(frame.args[1]),
+        txt.trim(frame.args[2] or ""):lower() == "black"
+    )
 end
 
 -- ========================= Entry building functions =========================
@@ -310,26 +359,29 @@ precedenti l'introduzione delle categorie danno.
 
 --]]
 lib.basicentry = function(stab, mossa, notes, tipo, pw, acc, pp)
-	local tipobox
-	if table.search(wdata.allTypes, tipo:lower()) then
-		tipobox = box.boxTipoLua(tipo, {'thick'})
-	else
-		tipobox = box.boxLua(tipo, tipo, nil, "thick", "box-sconosciuto")
-	end
-    return string.interp([=[|| style="padding: 0.3em;" class="black-text" | ${stab}${mossa}${stab}${notes}
+    local tipobox
+    if table.search(wdata.allTypes, tipo:lower()) then
+        tipobox = box.boxTipoLua(tipo, { "thick" })
+    else
+        tipobox = box.boxLua(tipo, tipo, nil, "thick", "box-sconosciuto")
+    end
+    return txt.interp(
+        [=[|| style="padding: 0.3em;" class="black-text" | ${stab}${mossa}${stab}${notes}
 | style="padding: 0.8ex 0.3ex; height: 100%;" | ${tipo}
 | style="padding: 0.1em 0.3em;" | ${pw}
 | style="padding: 0.1em 0.3em;" | ${acc}%
 | style="padding: 0.1em 0.3em;" | ${pp}]=],
-{
-    mossa = mossa == "&nbsp;" and mossa or table.concat{"[[", mossa, "]]"},
-    stab = stab,
-    notes = notes,
-    tipo = tipobox,
-    pw = pw,
-    acc = acc,
-    pp = pp
-})
+        {
+            mossa = mossa == "&nbsp;" and mossa
+                or table.concat({ "[[", mossa, "]]" }),
+            stab = stab,
+            notes = notes,
+            tipo = tipobox,
+            pw = pw,
+            acc = acc,
+            pp = pp,
+        }
+    )
 end
 
 --[[
@@ -339,30 +391,42 @@ successive l'introduzione delle categorie danno.
 
 --]]
 lib.categoryentry = function(stab, mossa, notes, tipo, cat, pw, acc, pp)
-	local tipobox
-	-- This thing is ineficient af, but anyway
-	if table.search(table.map(wdata.allTypes, normalizeColeot), tipo:lower()) then
-		tipobox = box.boxTipoLua(tipo, {'thick'})
-	else
-		tipobox = box.boxLua(tipo, tipo, nil, "thick", "box-sconosciuto")
-	end
-	return string.interp([=[|| class="black-text" style="padding: 0.1em 0.3em;" | ${stab}${mossa}${stab}${notes}
+    local tipobox
+    -- This thing is ineficient af, but anyway
+    if
+        table.search(table.map(wdata.allTypes, normalizeColeot), tipo:lower())
+    then
+        tipobox = box.boxTipoLua(tipo, { "thick" })
+    else
+        tipobox = box.boxLua(tipo, tipo, nil, "thick", "box-sconosciuto")
+    end
+    return txt.interp(
+        [=[|| class="black-text" style="padding: 0.1em 0.3em;" | ${stab}${mossa}${stab}${notes}
 | class="height-100" style="padding: 0.8ex 0.3ex;" | ${tipo}
 | class="height-100" style="padding: 0.8ex 0.3ex;" | ${cat}
 | style="padding: 0.1em 0.3em;" | ${pw}
 | style="padding: 0.1em 0.3em;" | ${acc}%
 | style="padding: 0.1em 0.3em;" | ${pp}]=],
-{
-	mossa = mossa == "&nbsp;" and mossa or table.concat{"[[", mossa, "]]"},
-    stab = stab,
-    notes = notes,
-    tipo = tipobox,
-    cat = box.boxLua(cat, 'Categoria danno#' .. cat, cat, {'thick'},
-            nil, nil, c[cat .. '_text']),
-	pw = pw,
-    acc = acc,
-    pp = pp
-})
+        {
+            mossa = mossa == "&nbsp;" and mossa
+                or table.concat({ "[[", mossa, "]]" }),
+            stab = stab,
+            notes = notes,
+            tipo = tipobox,
+            cat = box.boxLua(
+                cat,
+                "Categoria danno#" .. cat,
+                cat,
+                { "thick" },
+                nil,
+                nil,
+                c[cat .. "_text"]
+            ),
+            pw = pw,
+            acc = acc,
+            pp = pp,
+        }
+    )
 end
 
 --[[
@@ -374,13 +438,18 @@ a dire virtù, fascino e, se passato, intralcio
 
 --]]
 lib.contestentry = function(gara, fash, intr)
-	return string.interp([=[|| style="padding: 0.8ex 0.3ex; height: 100%;" | ${gara}
+    return txt.interp(
+        [=[|| style="padding: 0.8ex 0.3ex; height: 100%;" | ${gara}
 | style="padding: 0.1em 0.3em;" | ${fash}${intr}]=],
-{
-    gara = box.boxLua(gara, gara .. ' (gara)', gara, {'thick'}),
-    fash = lib.concathearts(fash, false),
-    intr = intr and table.concat{' || style="padding: 0.3em;" | ', lib.concathearts(intr, true)} or ''
-})
+        {
+            gara = box.boxLua(gara, gara .. " (gara)", gara, { "thick" }),
+            fash = lib.concathearts(fash, false),
+            intr = intr and table.concat({
+                ' || style="padding: 0.3em;" | ',
+                lib.concathearts(intr, true),
+            }) or "",
+        }
+    )
 end
 
 --[[
@@ -390,46 +459,85 @@ pari ai livelli diversi inseriti.
 
 --]]
 lib.gameslevel = function(first, second, third)
-	if not third then
-		--Only one of them
-		if not second then
-			return table.concat{strings.GAMELEVELCELL, ' | ',
-					first}
-		elseif first == second then -- Only two of them
-			return table.concat{strings.GAMELEVELCELL, ' colspan = "2" | ',
-				first}
-		else
-			return table.concat{strings.GAMELEVELCELL, ' | ', first, ' |',
-				strings.GAMELEVELCELL, ' | ', second}
-		end
-	end
+    if not third then
+        --Only one of them
+        if not second then
+            return table.concat({ strings.GAMELEVELCELL, " | ", first })
+        elseif first == second then -- Only two of them
+            return table.concat({
+                strings.GAMELEVELCELL,
+                ' colspan = "2" | ',
+                first,
+            })
+        else
+            return table.concat({
+                strings.GAMELEVELCELL,
+                " | ",
+                first,
+                " |",
+                strings.GAMELEVELCELL,
+                " | ",
+                second,
+            })
+        end
+    end
 
-	-- All three are the same
-	if first == second and second == third then
-		return table.concat{strings.GAMELEVELCELL, ' colspan = "3" | ',
-				first}
+    -- All three are the same
+    if first == second and second == third then
+        return table.concat({ strings.GAMELEVELCELL, ' colspan = "3" | ', first })
 
-	-- First and second are the same but third is different
-	elseif first == second then
-		return table.concat{strings.GAMELEVELCELL, ' colspan = "2" | ',
-				first, ' |', strings.GAMELEVELCELL, ' | ', third}
+        -- First and second are the same but third is different
+    elseif first == second then
+        return table.concat({
+            strings.GAMELEVELCELL,
+            ' colspan = "2" | ',
+            first,
+            " |",
+            strings.GAMELEVELCELL,
+            " | ",
+            third,
+        })
 
-	-- First and third are the same, but second is different
-	elseif first == third then
-		return table.concat{strings.GAMELEVELCELL, ' colspan = "2" | ',
-				first, ' |', strings.GAMELEVELCELL, ' | ', second}
+        -- First and third are the same, but second is different
+    elseif first == third then
+        return table.concat({
+            strings.GAMELEVELCELL,
+            ' colspan = "2" | ',
+            first,
+            " |",
+            strings.GAMELEVELCELL,
+            " | ",
+            second,
+        })
 
-	-- Second and third are the same, but first is different
-	elseif second == third then
-		return table.concat{strings.GAMELEVELCELL, ' | ', first, ' |',
-				strings.GAMELEVELCELL, ' colspan = "2" | ', second}
+        -- Second and third are the same, but first is different
+    elseif second == third then
+        return table.concat({
+            strings.GAMELEVELCELL,
+            " | ",
+            first,
+            " |",
+            strings.GAMELEVELCELL,
+            ' colspan = "2" | ',
+            second,
+        })
 
-	-- All of them are different
-	else
-		return table.concat{strings.GAMELEVELCELL, ' | ', first, ' |',
-				strings.GAMELEVELCELL, ' | ', second, ' |',
-				strings.GAMELEVELCELL, ' | ', third}
-	end
+        -- All of them are different
+    else
+        return table.concat({
+            strings.GAMELEVELCELL,
+            " | ",
+            first,
+            " |",
+            strings.GAMELEVELCELL,
+            " | ",
+            second,
+            " |",
+            strings.GAMELEVELCELL,
+            " | ",
+            third,
+        })
+    end
 end
 
 --[[
@@ -448,78 +556,115 @@ allungherebbe soltanto la chiamata
 
 --]]
 lib.tutorgames = function(games)
-	local cells = table.map(games, function(game)
-			--[[
+    local cells = table.map(games, function(game)
+        --[[
 				Uso del Modulo:Sigle/data per ricavare il
 				colore del gioco dalla sigla
 			--]]
-			local gameData = sig[game[1]][1]
-			local cell = {'| style="padding: 0.8ex 0.5ex;" |'}
+        local gameData = sig[game[1]][1]
+        local cell = { '| style="padding: 0.8ex 0.5ex;" |' }
 
-			if game[2] == 'Yes' then
-				if gameData.display[2] then
-					table.insert(cell, string.interp([=[
+        if game[2] == "Yes" then
+            if gameData.display[2] then
+                table.insert(
+                    cell,
+                    txt.interp(
+                        [=[
 <div class="text-center roundy-5 white-text" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[${gamesLink}|<span style="padding: 0.3em 0;">'''${game1sig}'''</span><span style="padding: 0.3em 0;">'''${game2sig}'''</span>]]</div>]=],
-					{
-						bg = css.horizGradLua{gameData.display[1][2], 'dark', gameData.display[2][2], 'dark'},
-						gamesLink = gameData.link,
-						game1sig = gameData.display[1][1],
-						game2sig = gameData.display[2][1],
-					}))
-				else
-					table.insert(cell, string.interp([=[
+                        {
+                            bg = css.horizGradLua({
+                                gameData.display[1][2],
+                                "dark",
+                                gameData.display[2][2],
+                                "dark",
+                            }),
+                            gamesLink = gameData.link,
+                            game1sig = gameData.display[1][1],
+                            game2sig = gameData.display[2][1],
+                        }
+                    )
+                )
+            else
+                table.insert(
+                    cell,
+                    txt.interp(
+                        [=[
 <div class="text-center roundy-5 white-text" style="${bg}; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[${gamesLink}|<span style="padding: 0.3em 0;">'''${gamesig}'''</span>]]</div>]=],
-					{
-						bg = css.horizGradLua{gameData.display[1][2], 'dark', gameData.display[1][2], 'normale'},
-						gamesLink = gameData.link,
-						gamesig = gameData.display[1][1],
-					}))
-				end
-			else
-				if gameData.display[2] then
-					table.insert(cell, string.interp([=[
+                        {
+                            bg = css.horizGradLua({
+                                gameData.display[1][2],
+                                "dark",
+                                gameData.display[1][2],
+                                "normale",
+                            }),
+                            gamesLink = gameData.link,
+                            gamesig = gameData.display[1][1],
+                        }
+                    )
+                )
+            end
+        else
+            if gameData.display[2] then
+                table.insert(
+                    cell,
+                    txt.interp(
+                        [=[
 [[${gamesLink}|<span style="padding: 0.3em 0; color: #${game1color};">'''${game1sig}'''</span><span style="padding: 0.3em 0; color: #${game2color};">'''${game2sig}'''</span>]]]=],
-					{
-						gamesLink = gameData.link,
-						game1sig = gameData.display[1][1],
-						game2sig = gameData.display[2][1],
-						game1color = c[gameData.display[1][2]].dark,
-						game2color = c[gameData.display[2][2]].dark,
-					}))
-				else
-					table.insert(cell, string.interp([=[
+                        {
+                            gamesLink = gameData.link,
+                            game1sig = gameData.display[1][1],
+                            game2sig = gameData.display[2][1],
+                            game1color = c[gameData.display[1][2]].dark,
+                            game2color = c[gameData.display[2][2]].dark,
+                        }
+                    )
+                )
+            else
+                table.insert(
+                    cell,
+                    txt.interp(
+                        [=[
 [[${gamesLink}|<span style="padding: 0.3em 0; color: #${gamecolor};">'''${gamesig}'''</span>]]]=],
-					{
-						gamesLink = gameData.link,
-						gamesig = gameData.display[1][1],
-						gamecolor = c[gameData.display[1][2]].dark,
-					}))
-				end
-			end
+                        {
+                            gamesLink = gameData.link,
+                            gamesig = gameData.display[1][1],
+                            gamecolor = c[gameData.display[1][2]].dark,
+                        }
+                    )
+                )
+            end
+        end
 
-			return table.concat(cell)
-		end)
+        return table.concat(cell)
+    end)
 
-	-- Inizio dell'entry, bisogna inserire una nuova table row
-	table.insert(cells, 1, '|-')
-	return table.concat(cells, '\n')
+    -- Inizio dell'entry, bisogna inserire una nuova table row
+    table.insert(cells, 1, "|-")
+    return table.concat(cells, "\n")
 end
 
 -- Genera le prime celle per gli entry dei preevo
 lib.preevodata = function(pars, gen)
-	local ani1, tt1 = '', ''
-	if pars[4] then
-		ani1 = ms.staticLua{pars[4], gen = gen, link = pars[5] or 'Bulbasaur'}
-		tt1 = lib.preevott[pars[6]] or ''
-	end
-	return string.interp([=[|-
+    local ani1, tt1 = "", ""
+    if pars[4] then
+        ani1 =
+            ms.staticLua({ pars[4], gen = gen, link = pars[5] or "Bulbasaur" })
+        tt1 = lib.preevott[pars[6]] or ""
+    end
+    return txt.interp(
+        [=[|-
 | style="padding: 0.1em 0.3em;" | ${ani}${tt}${ani1}${tt1}]=],
-{
-	ani = ms.staticLua{ndex = pars[1] or '000', gen = gen, link = pars[2] or 'Bulbasaur'},
-	tt = lib.preevott[pars[3]] or '',
-	ani1 = ani1,
-	tt1 = tt1
-})
+        {
+            ani = ms.staticLua({
+                ndex = pars[1] or "000",
+                gen = gen,
+                link = pars[2] or "Bulbasaur",
+            }),
+            tt = lib.preevott[pars[3]] or "",
+            ani1 = ani1,
+            tt1 = tt1,
+        }
+    )
 end
 
 --[[
@@ -538,30 +683,29 @@ Arguments:
 
 --]]
 lib.autopreevo = function(pars, idx, gen)
-    local fakep = { }
+    local fakep = {}
     local i = 1
-	local j = idx
-	-- I don't like an indexed iteration, but it seems for the best here
-	-- Can't use #pars because there are nils if some parameter is not given
-	while pars[j] do
-		fakep[i] = pars[j]
-		fakep[i + 2] = pars[j + 1]
+    local j = idx
+    -- I don't like an indexed iteration, but it seems for the best here
+    -- Can't use #pars because there are nils if some parameter is not given
+    while pars[j] do
+        fakep[i] = pars[j]
+        fakep[i + 2] = pars[j + 1]
 
-		fakep[i + 1] = (pokes[fakep[i]] or pokes[tonumber(fakep[i])]).name
-		i = i + 3
-		j = j + 2
-	end
+        fakep[i + 1] = (pokes[fakep[i]] or pokes[tonumber(fakep[i])]).name
+        i = i + 3
+        j = j + 2
+    end
     return lib.preevodata(fakep, tostring(gen))
 end
-
 
 -- La cella dell'entry null, utilizzata per i Pokémon che non imparano
 -- mosse in un certo modo
 lib.entrynull = function(entry, cs)
-	return string.interp(strings.ENTRYNULL, {
-		ending = entryNullEnd[entry],
-		cs = cs
-	})
+    return txt.interp(strings.ENTRYNULL, {
+        ending = entryNullEnd[entry],
+        cs = cs,
+    })
 end
 
 --[[
@@ -577,27 +721,42 @@ Arguments:
 
 --]]
 lib.computeSTAB = function(ndex, movename, form, gen)
-	local name, abbr = forms.getnameabbr(tostring(ndex), form)
-	local iname = forms.toEmptyAbbr(abbr) == "" and name
-				or (type(name) == 'number' and string.tf(name) or name)
-				   .. forms.toEmptyAbbr(abbr)
-	-- The or pokes[name] is needed for useless forms, not indexed in Poké-data
-	local pokedata = multigen.getGen(pokes[iname] or pokes[name], gen)
-	local movedata = moves[movename:lower()]
-	local movetype = multigen.getGenValue(movedata.type, gen)
-	if not pokedata or not movedata
-	   or (multigen.getGenValue(movedata.power, gen) == '&mdash;'
-	       and not multigen.getGenValue(movedata.stab, gen)) then
-		return ""
-	elseif (movetype == normalizeColeot(pokedata.type1)
-	        or movetype == normalizeColeot(pokedata.type2)) then
-		return "'''"
-	elseif table.search(table.map(evolib.evoTypesList(iname, gen), normalizeColeot), movetype)
-	       or table.search(table.map(evolib.formTypesList(iname, gen), normalizeColeot), movetype) then
-		return "''"
-	else
-		return ""
-	end
+    local name, abbr = forms.getnameabbr(tostring(ndex), form)
+    local iname = forms.toEmptyAbbr(abbr) == "" and name
+        or (type(name) == "number" and txt.tf(name) or name)
+            .. forms.toEmptyAbbr(abbr)
+    -- The or pokes[name] is needed for useless forms, not indexed in Poké-data
+    local pokedata = multigen.getGen(pokes[iname] or pokes[name], gen)
+    local movedata = moves[movename:lower()]
+    local movetype = multigen.getGenValue(movedata.type, gen)
+    if
+        not pokedata
+        or not movedata
+        or (
+            multigen.getGenValue(movedata.power, gen) == "&mdash;"
+            and not multigen.getGenValue(movedata.stab, gen)
+        )
+    then
+        return ""
+    elseif
+        movetype == normalizeColeot(pokedata.type1)
+        or movetype == normalizeColeot(pokedata.type2)
+    then
+        return "'''"
+    elseif
+        table.search(
+            table.map(evolib.evoTypesList(iname, gen), normalizeColeot),
+            movetype
+        )
+        or table.search(
+            table.map(evolib.formTypesList(iname, gen), normalizeColeot),
+            movetype
+        )
+    then
+        return "''"
+    else
+        return ""
+    end
 end
 
 --[[
@@ -610,12 +769,12 @@ Arguments:
 
 --]]
 lib.moveParentsGame = function(movedata, game)
-	for _, v in ipairs(movedata) do
-		if v.games and table.search(v.games, game) then
-			return v
-		end
-	end
-	return movedata[1]
+    for _, v in ipairs(movedata) do
+        if v.games and table.search(v.games, game) then
+            return v
+        end
+    end
+    return movedata[1]
 end
 
 --[[
@@ -626,9 +785,9 @@ on desktop, "Evo" on mobile)
 
 --]]
 lib.makeEvoText = function(t)
-	return (t == "Evo" or t == "Evoluzione")
-			and 'Evo<span class="hidden-xs">luzione</span>'
-			or t
+    return (t == "Evo" or t == "Evoluzione")
+            and 'Evo<span class="hidden-xs">luzione</span>'
+        or t
 end
 
 --[[
@@ -645,25 +804,27 @@ Arguments:
 
 --]]
 lib.getTMNum = function(move, gen, game)
-	local tmgendata = tmdata[gen]
+    local tmgendata = tmdata[gen]
 
-	if game then
-		tmgendata = table.map(tmgendata, function(val)
-			return table.map(val, function(singlemove)
-				if type(singlemove) == "table" then
-					local found = table.find(singlemove, function(g) return g[1] == game end)
-					return found and singlemove[found][2] or nil
-				else
-					return singlemove
-				end
-			end)
-		end)
-	end
+    if game then
+        tmgendata = table.map(tmgendata, function(val)
+            return table.map(val, function(singlemove)
+                if type(singlemove) == "table" then
+                    local found = table.find(singlemove, function(g)
+                        return g[1] == game
+                    end)
+                    return found and singlemove[found][2] or nil
+                else
+                    return singlemove
+                end
+            end)
+        end)
+    end
 
-	local tmkind, tmnum, _ = table.deepSearch(tmgendata, move)
-	if tmnum then
-		return tmkind, string.nFigures(tmnum, 2)
-	end
+    local tmkind, tmnum, _ = table.deepSearch(tmgendata, move)
+    if tmnum then
+        return tmkind, txt.nFigures(tmnum, 2)
+    end
 end
 
 return lib
