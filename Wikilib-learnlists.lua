@@ -265,7 +265,7 @@ ms in a single line (default nil, that means no line breaks).
 --]=]
 lib.mslistToModal = function(list, gen, textDisplay, linelength)
     list = list:gsub("<br>", "")
-    gen = gen or ""
+    gen = tostring(gen or "")
 
     local res = {}
     local pattern, op
@@ -711,7 +711,7 @@ end
 lib.entrynull = function(entry, cs)
     return txt.interp(strings.ENTRYNULL, {
         ending = entryNullEnd[entry],
-        cs = cs,
+        cs = tostring(cs),
     })
 end
 
