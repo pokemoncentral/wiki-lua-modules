@@ -28,13 +28,13 @@ local mw = require('mw')
 -- Glitch di Rosso e Blu
 
 g.RB = {
-	{hex = 0x00, spr = 'MS Missingno I.gif', name = "'M (00)", type1 = 'Uccello', type2 = 'Normale',
+	{hex = 0x00, spr = 'MS MissingNo I.gif', name = "'M (00)", type1 = 'Uccello', type2 = 'Normale',
 			nameDisplay = "'M"},
 	{hex = {0x1F, 0x20, 0x32, 0x34, 0x38, 0x3D, 0x3E, 0x3F, 0x43, 0x44,
 			0x45, 0x4F, 0x50, 0x51, 0x56, 0x57, 0x5E, 0x5F, 0x73, 0x79,
 			0x7A, 0x7F, 0x86, 0x87, 0x89, 0x8A, 0x92, 0x9C, 0x9F, 0xA0,
 			0xA1, 0xA2, 0xAC, 0xAE, 0xAF, 0xB5, 0xB6, 0xB7, 0xB8},
-			spr = 'MS Missingno I.gif', name = 'Missingno.', type1 = 'Uccello', type2 = 'Normale'},
+			spr = 'MS MissingNo I.gif', name = 'MissingNo.', type1 = 'Uccello', type2 = 'Normale'},
 	{hex = 0xBF, spr = 'MSRBGlitchMenu250.gif', name = '▶ A', type1 = 'Normale', type2 = 'Normale',
 			typeEffectiveness = {'Normale'}},
 	{hex = 0xC0, spr = 'AniMostroMS1.gif', name = 'a', type1 ='Acqua'},
@@ -117,8 +117,8 @@ g.RB = {
 
 g.G = {
 	{hex = 0x00, spr = '3TrainerPoké $ menu.png', name = '3TrainerPoké $', type1 = 'Glitch', type2 = 'Normale'},
-	{hex = g.RB[2].hex, spr = 'MSRBGlitchMenu250.gif', name = 'Missingno.', type1 = 'Normale',
-			type2 = '999', nameDisplay = 'Missingno.#Forma Pokémon Giallo'},
+	{hex = g.RB[2].hex, spr = 'MSRBGlitchMenu250.gif', name = 'MissingNo.', type1 = 'Normale',
+			type2 = '999', nameDisplay = 'MissingNo.#Forma Pokémon Giallo'},
 	{hex = 0xBF, spr = 'YGlitchMenu250.gif', name = '4 4', type1 = '999', type2 = 'Normale'},
 	{hex = 0xC0, spr = 'AniMostroMS1.gif', name = '4 4Hy', type1 = 'Acqua', type2 = 'Psico'},
 	{hex = 0xC1, spr = 'AniUccelloMS1.gif', name = '♀ .', type1 = 'Normale', type2 = 'Normale'},

@@ -50,7 +50,7 @@ local function preprocess(n, gen, link)
         elseif n:find('.*[Uu]ovo.*') then
             link = 'Uova Pokémon'
         else
-            link = 'Missingno'
+            link = 'MissingNo'
         end
     end
     return n, gen, link
