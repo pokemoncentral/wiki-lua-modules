@@ -157,6 +157,7 @@ t.urshifu = {}
 t.calyrex = {}
 t.basculegion = {}
 t.enamorus = {}
+t.gimmighoul = {}
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
 
@@ -278,6 +279,7 @@ t.urshifu.names = {P = 'Stile Pluricolpo', Gi = 'Urshifu Gigamax (Stile Singolco
 t.calyrex.names = {G = "Cavaliere Glaciale", S = "Cavaliere Spettrale", base = ""}
 t.basculegion.names = {F = 'Femmina', base = 'Maschio'}
 t.enamorus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
+t.gimmighoul.names = {A = 'Forma Ambulante', base = 'Forma Scrigno'}
 for _, v in pairs(t.mega) do
 	if not t[v] then
 		t[v] = { names = {base = ''} }
@@ -398,6 +400,7 @@ t.urshifu.ext = {pluricolpo = 'P', gigamax = "Gi", singolcolpo = 'base'}
 t.calyrex.ext = {spettrale = 'S', glaciale = 'G'}
 t.basculegion.ext = {femmina = 'F'}
 t.enamorus.ext = {totem = 'T'}
+t.gimmighoul.ext = {ambulante = 'A'}
 for _, v in pairs(t.mega) do
 	t[v].ext = t[v].ext or {}
 	t[v].ext.mega = 'M'
@@ -487,6 +490,7 @@ t.urshifu.gamesOrder = {'base', 'Gi', 'P', 'PGi'}
 t.calyrex.gamesOrder = {'base', 'G', 'S'}
 t.basculegion.gamesOrder = {'base', 'F'}
 t.enamorus.gamesOrder = {'base', 'T'}
+t.gimmighoul.gamesOrder = {'base', 'A'}
 for _, v in pairs(t.mega) do
 	t[v].gamesOrder = t[v].gamesOrder or {'base', 'M'}
 end
@@ -631,6 +635,7 @@ t.urshifu.since = {P = 'spsc', Gi = 'spsc', PGi = 'spsc', base = 'spsc'}
 t.calyrex.since = {G = 'spsc', S = 'spsc', base = 'spsc'}
 t.basculegion.since = {F = 'lpa', base = 'lpa'}
 t.enamorus.since = {T = 'lpa', base = 'lpa'}
+t.gimmighoul.since = {T = 'sv', base = 'sv'}
 t.venusaur.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
 t.blastoise.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
 t.beedrill.since = {M = 'roza', base = 'rb'}

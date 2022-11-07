@@ -1838,6 +1838,7 @@ t.ceruledge = {ability1 = 'Fuocardore'}
 t.greavard = {ability1 = 'Raccolta'}
 t.farigiraf = {ability1 = 'Ruminante', ability2 = 'Codarmatura'}
 t.bellibolt = {ability1 = 'Convertivolt', ability2 = 'Statico'}
+t.gimmighoul = {ability1 = 'Paura'}
 t.koraidon = {ability1 = 'Sconosciuta'}
 t.miraidon = {ability1 = 'Sconosciuta'}
 
@@ -2021,6 +2022,8 @@ t['898S'] = t.calyrexS
 t.enamorusT = {ability1 = 'Sconosciuta'}
 -- t.enamorusT = {ability1 = 'Copricapo'}
 t['905T'] = t.enamorusT
+-- TODO without ndex
+t.gimmighoulA = t.gimmighoul
 
 -- Alias per le altre forme alternative rilevanti
 
