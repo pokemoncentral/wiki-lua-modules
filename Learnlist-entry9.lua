@@ -40,7 +40,6 @@ local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
 local multigen = require('Wikilib-multigen')
 local moves = require("Move-data")
-local sup = require("Sup-data")
 -- stylua: ignore end
 
 local entryGen = 9 -- This is a constant

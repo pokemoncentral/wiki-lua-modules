@@ -812,6 +812,7 @@ Arguments:
 --]]
 lib.getTMNum = function(move, gen, game)
     local tmgendata = tmdata[gen]
+    local nfig = gen <= 8 and 2 or 3
 
     if game then
         tmgendata = table.map(tmgendata, function(val)
@@ -830,7 +831,7 @@ lib.getTMNum = function(move, gen, game)
 
     local tmkind, tmnum, _ = table.deepSearch(tmgendata, move)
     if tmnum then
-        return tmkind, txt.nFigures(tmnum, 2)
+        return tmkind, txt.nFigures(tmnum, nfig)
     end
 end
 
