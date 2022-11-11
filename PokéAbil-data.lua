@@ -1960,36 +1960,36 @@ t.gholdengo = {ability1 = 'Good as Gold'}
 t[977] = t.gholdengo
 t.grandizanne = {ability1 = 'Protosynthesis'}
 t[978] = t.grandizanne
-t["brute Bonnet"] = {ability1 = 'Protosynthesis'}
-t[979] = t["brute Bonnet"]
+t["brute bonnet"] = {ability1 = 'Protosynthesis'}
+t[979] = t["brute bonnet"]
 -- t.placeholder = {ability1 = 'Protosynthesis'}
 -- t[980] = t.placeholder
-t["sandy Shocks"] = {ability1 = 'Protosynthesis'}
-t[981] = t["sandy Shocks"]
-t["scream Tail"] = {ability1 = 'Protosynthesis'}
-t[982] = t["scream Tail"]
-t["flutter Mane"] = {ability1 = 'Protosynthesis'}
-t[983] = t["flutter Mane"]
-t["slither Wing"] = {ability1 = 'Protosynthesis'}
-t[984] = t["slither Wing"]
-t["roaring Moon"] = {ability1 = 'Protosynthesis'}
-t[985] = t["roaring Moon"]
+t["sandy shocks"] = {ability1 = 'Protosynthesis'}
+t[981] = t["sandy shocks"]
+t["scream tail"] = {ability1 = 'Protosynthesis'}
+t[982] = t["scream tail"]
+t["flutter mane"] = {ability1 = 'Protosynthesis'}
+t[983] = t["flutter mane"]
+t["slither wing"] = {ability1 = 'Protosynthesis'}
+t[984] = t["slither wing"]
+t["roaring moon"] = {ability1 = 'Protosynthesis'}
+t[985] = t["roaring moon"]
 t.solcoferreo = {ability1 = 'Quark Drive'}
 t[986] = t.solcoferreo
 -- t.placeholder = {ability1 = 'Quark Drive'}
 -- t[987] = t.placeholder
-t["iron Moth"] = {ability1 = 'Quark Drive'}
-t[988] = t["iron Moth"]
-t["iron Hands"] = {ability1 = 'Quark Drive'}
-t[989] = t["iron Hands"]
-t["iron Jugulis"] = {ability1 = 'Quark Drive'}
-t[990] = t["iron Jugulis"]
-t["iron Thorns"] = {ability1 = 'Quark Drive'}
-t[991] = t["iron Thorns"]
-t["iron Bundle"] = {ability1 = 'Quark Drive'}
-t[992] = t["iron Bundle"]
-t["iron Valiant"] = {ability1 = 'Quark Drive'}
-t[993] = t["iron Valiant"]
+t["iron moth"] = {ability1 = 'Quark Drive'}
+t[988] = t["iron moth"]
+t["iron hands"] = {ability1 = 'Quark Drive'}
+t[989] = t["iron hands"]
+t["iron jugulis"] = {ability1 = 'Quark Drive'}
+t[990] = t["iron jugulis"]
+t["iron thorns"] = {ability1 = 'Quark Drive'}
+t[991] = t["iron thorns"]
+t["iron bundle"] = {ability1 = 'Quark Drive'}
+t[992] = t["iron bundle"]
+t["iron valiant"] = {ability1 = 'Quark Drive'}
+t[993] = t["iron valiant"]
 t["ting-lu"] = {ability1 = 'Vessel of Ruin'}
 t[994] = t["ting-lu"]
 t["chien-pao"] = {ability1 = 'Sword of Ruin'}
@@ -2093,11 +2093,11 @@ t.weezingG = {ability1 = 'Levitazione', ability2 = 'Gas Reagente', abilityd = 'N
 t['110G'] = t.weezingG
 t['mr. mimeG'] = {ability1 = 'Spiritovivo', ability2 = 'Annullabarriere', abilityd = 'Corpogelo'}
 t['122G'] = t['mr. mimeG']
--- t.taurosP1 = {ability1 = 'Prepotenza', ability2 = 'Grancollera', abilityd = 'Cud Chew'}
--- t['128P'] = t.taurosP1
--- t.taurosP2, t.taurosP3 = t.taurosP1, t.taurosP1
--- t['128P'] = t.taurosP2
--- t['128P'] = t.taurosP3
+t.taurosPa = {ability1 = 'Prepotenza', ability2 = 'Grancollera', abilityd = 'Cud Chew'}
+t['128Pa'] = t.taurosPa
+t.taurosPb, t.taurosPc = t.taurosPa, t.taurosPa
+t['128Pb'] = t.taurosPb
+t['128Pc'] = t.taurosPc
 t.eeveeCm = {ability1 = 'Nessuna'}
 t['133Cm'] = t.eeveeCm
 t.articunoG = {ability1 = 'Tenacia'}
@@ -2180,8 +2180,6 @@ t.lycanrocC = {ability1 = 'Unghiedure'}
 t['745C'] = t.lycanrocC
 t.necrozmaU = {ability1 = 'Cerebroforza'}
 t['800U'] = t.necrozmaU
--- t.cramorantT, t['845T'], t.cramorantI, t['845I'] =
---     t.cramorant, t.cramorant, t.cramorant, t.cramorant
 t.toxtricityB = {ability1 = 'Punk Rock', ability2 = 'Meno', abilityd = 'Tecnico'}
 t['849B'] = t.toxtricityB
 t.indeedeeF = {ability1 = 'Mente Locale', ability2 = 'Sincronismo', abilityd = 'Psicogenesi'}

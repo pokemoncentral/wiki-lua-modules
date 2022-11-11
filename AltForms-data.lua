@@ -147,6 +147,8 @@ to others, thus there's aliasing at the end of the module.
 
 t.pikachu = {}
 t.eevee = {}
+t.tauros = {}
+t.wooper = {}
 t.castform = {}
 t.deoxys = {}
 t.wormadam = {}
@@ -186,7 +188,18 @@ t.urshifu = {}
 t.calyrex = {}
 t.basculegion = {}
 t.enamorus = {}
+-- t.oinkologne = {} -- t.oinkologne-1
+-- t.dudunsparce-1 = t.dudunsparce
+-- t.palafin-1 = t.palafin
+-- t.maushold-1 = t.maushold
+-- t.tatsugiri = {t.tatsugiri-1, t.tatsugiri-2}
+-- t.squawkabilly = {} -- t.squawkabilly-1, t.squawkabilly-2, t.squawkabilly-3
 t.gimmighoul = {}
+-- t.koraidon = {} -- t.koraidon-1, t.koraidon-2, t.koraidon-3, t.koraidon-4
+-- t.miraidon-1 = t.miraidon
+-- t.miraidon-2 = t.miraidon
+-- t.miraidon-3 = t.miraidon
+-- t.miraidon-4 = t.miraidon
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
 
@@ -238,8 +251,7 @@ t.hisui = {'growlithe', 'voltorb', 'typhlosion', 'qwilfish', 'sneasel',
 	'avalugg', 'decidueye'}
 
 -- Tabella contenente i Pokémon che hanno una forma di Paldea
-
-t.paldea = { "wooper" }
+t.paldea = { "wooper", "tauros" }
 
 --[[
 
@@ -252,7 +264,9 @@ t.pikachu.names = {Cs = 'Pikachu Cosplay', R = 'Pikachu rockstar',
 	D = 'Pikachu damigella', Cn = 'Pikachu confetto',
 	S = 'Pikachu scienziata', W = 'Pikachu wrestler', Cm = 'Compagno',
 	Gi = 'Pikachu Gigamax', base = ''}
+t.tauros.names = {Pa = 'Paldea', Pb = 'Paldea', Pc = 'Paldea', base = ''}
 t.eevee.names = {Cm = 'Compagno', base = ''}
+t.wooper.names = {P = 'Forma di Paldea', base = ''}
 t.castform.names = {S = 'Forma Sole', P = 'Forma Pioggia',
 	N = 'Forma Nuvola di Neve', base = 'Forma Castform'}
 t.deoxys.names = {A = 'Forma Attacco', D = 'Forma Difesa',
@@ -355,12 +369,6 @@ for _, v in pairs(t.hisui) do
     end
     t[v].names.H = "Forma di Hisui"
 end
-for _, v in pairs(t.paldea) do
-    if not t[v] then
-        t[v] = { names = { base = "" } }
-    end
-    t[v].names.P = "Forma di Paldea"
-end
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
@@ -385,7 +393,9 @@ t.zigzagoon.anchor = "Zigzagoon e Linoone"
 t.pikachu.ext = {cosplay = 'Cs', rockstar = 'R', damigella = 'D',
 	confetto = 'Cn', scienziata = 'S', wrestler = 'W', compagno = 'Cm',
 	gigamax = 'Gi'}
+t.tauros.ext = { Pa = "Pa", Pb = "Pb", Pc = "Pc" }
 t.eevee.ext = { compagno = "Cm" }
+t.wooper.ext = { paldea = "P" }
 t.castform.ext = { sole = "S", pioggia = "P", neve = "N" }
 t.deoxys.ext = { attacco = "A", difesa = "D", ["velocità"] = "V" }
 t.wormadam.ext = { sabbia = "Sa", scarti = "Sc" }
@@ -463,10 +473,6 @@ for _, v in pairs(t.hisui) do
     t[v].ext = t[v].ext or {}
     t[v].ext.hisui = "H"
 end
-for _, v in pairs(t.paldea) do
-    t[v].ext = t[v].ext or {}
-    t[v].ext.paldea = "P"
-end
 
 --[[
 
@@ -482,7 +488,9 @@ t.pikachu.gamesOrder = { "base", "Cs", "R", "D", "Cn", "S", "W", "Cm", "Gi" }
 t.meowth.gamesOrder = { "base", "A", "G", "Gi" }
 t.gengar.gamesOrder = { "base", "M", "Gi" }
 t.slowbro.gamesOrder = { "base", "M", "G" }
+t.tauros.gamesOrder = { "base", "Pa", "Pb", "Pc" }
 t.eevee.gamesOrder = { "base", "Cm", "Gi" }
+t.wooper.gamesOrder = { "base", "P" }
 t.castform.gamesOrder = { "base", "S", "P", "N" }
 t.deoxys.gamesOrder = { "base", "A", "D", "V" }
 t.wormadam.gamesOrder = { "base", "Sa", "Sc" }
@@ -546,9 +554,6 @@ end
 for _, v in pairs(t.hisui) do
     t[v].gamesOrder = t[v].gamesOrder or { "base", "H" }
 end
-for _, v in pairs(t.paldea) do
-    t[v].gamesOrder = t[v].gamesOrder or { "base", "P" }
-end
 
 --[[
 
@@ -607,6 +612,7 @@ t.exeggutor.since = { A = "sl", base = "rb" }
 t.marowak.since = { A = "sl", base = "rb" }
 t.weezing.since = { G = "spsc", base = "rb" }
 t["mr. mime"].since = { G = "spsc", base = "rb" }
+t.tauros.since = { Pa = "sv", Pb = "sv", Pc = "sv", base = "rb" }
 t.eevee.since = { Cm = "lgpe", Gi = "spsc", base = "rb" }
 t.articuno.since = { G = "spsc", base = "rb" }
 t.zapdos.since = { G = "spsc", base = "rb" }
@@ -835,6 +841,7 @@ t[103] = t.exeggutor
 t[105] = t.marowak
 t[110] = t.weezing
 t[122] = t["mr. mime"]
+t[128] = t.tauros
 t[133] = t.eevee
 t[144] = t.articuno
 t[145] = t.zapdos

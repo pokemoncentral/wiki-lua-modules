@@ -1965,8 +1965,8 @@ d.grandizanne = {hp = 115, atk = 131, def = 131, spatk = 53, spdef = 53, spe = 8
 d[978] = d.grandizanne
 d["brute bonnet"] = {hp = 111, atk = 127, def = 99, spatk = 79, spdef = 99, spe = 55}
 d[979] = d["brute bonnet"]
-d.placeholder = {hp = 111, atk = 127, def = 99, spatk = 79, spdef = 99, spe = 55}
-d[980] = d.placeholder
+-- d.placeholder = {hp = 111, atk = 127, def = 99, spatk = 79, spdef = 99, spe = 55}
+-- d[980] = d.placeholder
 d["sandy shocks"] = {hp = 85, atk = 81, def = 97, spatk = 121, spdef = 85, spe = 101}
 d[981] = d["sandy shocks"]
 d["scream tail"] = {hp = 115, atk = 65, def = 99, spatk = 65, spdef = 115, spe = 111}
@@ -1979,8 +1979,8 @@ d["roaring moon"] = {hp = 105, atk = 139, def = 71, spatk = 55, spdef = 101, spe
 d[985] = d["roaring moon"]
 d.solcoferreo = {hp = 90, atk = 112, def = 120, spatk = 72, spdef = 70, spe = 106}
 d[986] = d.solcoferreo
-d.placeholder = {hp = 111, atk = 127, def = 99, spatk = 79, spdef = 99, spe = 55}
-d[987] = d.placeholder
+-- d.placeholder = {hp = 111, atk = 127, def = 99, spatk = 79, spdef = 99, spe = 55}
+-- d[987] = d.placeholder
 d["iron moth"] = {hp = 80, atk = 70, def = 60, spatk = 140, spdef = 110, spe = 110}
 d[988] = d["iron moth"]
 d["iron hands"] = {hp = 154, atk = 140, def = 108, spatk = 50, spdef = 68, spe = 50}
@@ -2356,10 +2356,10 @@ d.decidueyeH = {hp = 88, atk = 112, def = 80, spatk = 95, spdef = 95, spe = 60}
 d['724H'] = d.decidueyeH
 
 -- Paldean forms
--- d.taurosP1 = {hp = 75, atk = 110, def = 105, spatk = 30, spdef = 70, spe = 100}
--- d["128P1"] = d.taurosP1
--- d.taurosP2, d["128P2"] = d.taurosP1, d.taurosP1
--- d.taurosP3, d["128P3"] = d.taurosP1, d.taurosP1
+d.taurosPa = {hp = 75, atk = 110, def = 105, spatk = 30, spdef = 70, spe = 100}
+d["128Pa"] = d.taurosPa
+d.taurosPb, d["128Pb"] = d.taurosPa, d.taurosPa
+d.taurosPc, d["128Pc"] = d.taurosPa, d.taurosPa
 d.wooperP, d["194P"] = d.wooper, d.wooper
 
 -- stylua: ignore end
