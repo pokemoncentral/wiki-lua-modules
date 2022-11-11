@@ -1800,48 +1800,230 @@ t.spectrier = {ability1 = 'Nitrito Nero'}
 t[897] = t.spectrier
 t.calyrex = {ability1 = 'Agitazione'}
 t[898] = t.calyrex
-t.wyrdeer = {ability1 = 'Sconosciuta'}
--- t.wyrdeer = {ability1 = 'Prepotenza', ability2 = 'Indagine', abilityd = 'Mangiaerba'}
+t.wyrdeer = {ability1 = 'Prepotenza', ability2 = 'Indagine', abilityd = 'Mangiaerba'}
 t[899] = t.wyrdeer
-t.kleavor = {ability1 = 'Sconosciuta'}
--- t.kleavor = {ability1 = 'Aiutinsetto', ability2 = 'Forzabruta', abilityd = 'Cuordeciso'}
+t.kleavor = {ability1 = 'Aiutinsetto', ability2 = 'Forzabruta', abilityd = 'Affilama'}
 t[900] = t.kleavor
-t.ursaluna = {ability1 = 'Sconosciuta'}
--- t.ursaluna = {ability1 = 'Dentistretti', ability2 = 'Antiproiettile', abilityd = 'Agitazione'}
+t.ursaluna = {ability1 = 'Dentistretti', ability2 = 'Antiproiettile', abilityd = 'Agitazione'}
 t[901] = t.ursaluna
-t.basculegion = {ability1 = 'Sconosciuta'}
--- t.basculegion = {ability1 = 'Paura', ability2 = 'Adattabilità', abilityd = 'Rompiforma'}
+t.basculegion = {ability1 = 'Nuotovelox', ability2 = 'Adattabilità', abilityd = 'Rompiforma'}
 t[902] = t.basculegion
-t.sneasler = {ability1 = 'Sconosciuta'}
--- t.sneasler = {ability1 = 'Pressione', abilityd = 'Velentocco'}
+t.sneasler = {ability1 = 'Pressione', ability2 = 'Agiltecnica', abilityd = 'Velentocco'}
 t[903] = t.sneasler
-t.overqwil = {ability1 = 'Sconosciuta'}
--- t.overqwil = {ability1 = 'Velenopunto', ability2 = 'Nuotovelox', abilityd = 'Prepotenza'}
+t.overqwil = {ability1 = 'Velenopunto', ability2 = 'Nuotovelox', abilityd = 'Prepotenza'}
 t[904] = t.overqwil
-t.enamorus = {ability1 = 'Sconosciuta'}
--- t.enamorus = {ability1 = 'Curacuore', abilityd = 'Inversione'}
+t.enamorus = {ability1 = 'Incantevole', abilityd = 'Inversione'}
 t[905] = t.enamorus
-
-t.sprigatito = {ability1 = 'Erbaiuto'}
-t.fuecoco = {ability1 = 'Aiutofuoco'}
-t.quaxly = {ability1 = 'Acquaiuto'}
-t.lechonk = {ability1 = 'Aromavelo', ability2 = 'Voracità'}
-t.pawmi = {ability1 = 'Statico', ability2 = 'Alternacura'}
-t.smoliv = {ability1 = 'Sveglialampo'}
-t.fidough = {ability1 = 'Mente Locale'}
-t.grafaiai = {ability1 = 'Agiltecnica', ability2 = 'Velentocco'}
-t.cetitan = {ability1 = 'Grassospesso', ability2 = 'Spalaneve'}
-t.cyclizar = {ability1 = 'Muta'}
-t.klawf = {ability1 = 'Iraguscio', ability2 = 'Guscioscudo'}
-t.wiglett = {ability1 = 'Viscosità', ability2 = 'Paura'}
-t.armarouge = {ability1 = 'Fuocardore'}
-t.ceruledge = {ability1 = 'Fuocardore'}
-t.greavard = {ability1 = 'Raccolta'}
-t.farigiraf = {ability1 = 'Ruminante', ability2 = 'Codarmatura'}
-t.bellibolt = {ability1 = 'Convertivolt', ability2 = 'Statico'}
+t.sprigatito = {ability1 = 'Erbaiuto', abilityd = 'Mutatipo'}
+t[906] = t.sprigatito
+t.floragato = {ability1 = 'Erbaiuto', abilityd = 'Mutatipo'}
+t[907] = t.floragato
+t.meowscarada = {ability1 = 'Erbaiuto', abilityd = 'Mutatipo'}
+t[908] = t.meowscarada
+t.fuecoco = {ability1 = 'Aiutofuoco', abilityd = 'Imprudenza'}
+t[909] = t.fuecoco
+t.crocalor = {ability1 = 'Aiutofuoco', abilityd = 'Imprudenza'}
+t[910] = t.crocalor
+t.skeledirge = {ability1 = 'Aiutofuoco', abilityd = 'Imprudenza'}
+t[911] = t.skeledirge
+t.quaxly = {ability1 = 'Acquaiuto', abilityd = 'Arroganza'}
+t[912] = t.quaxly
+t.quaxwell = {ability1 = 'Acquaiuto', abilityd = 'Arroganza'}
+t[913] = t.quaxwell
+t.quaquaval = {ability1 = 'Acquaiuto', abilityd = 'Arroganza'}
+t[914] = t.quaquaval
+t.lechonk = {ability1 = 'Aromavelo', ability2 = 'Voracità', abilityd = 'Grassospesso'}
+t[915] = t.lechonk
+t.oinkologne = {ability1 = 'Lingering Aroma', ability2 = 'Voracità', abilityd = 'Grassospesso'}
+t[916] = t.oinkologne
+t.dudunsparce = {ability1 = 'Leggiadro', ability2 = 'Fugafacile', abilityd = 'Paura'}
+t[917] = t.dudunsparce
+t.tarountula = {ability1 = 'Insonnia', abilityd = 'Sorveglianza'}
+t[918] = t.tarountula
+t.spidops = {ability1 = 'Insonnia', abilityd = 'Sorveglianza'}
+t[919] = t.spidops
+t.nymble = {ability1 = 'Aiutinsetto', abilityd = 'Lentifumé'}
+t[920] = t.nymble
+t.lokix = {ability1 = 'Aiutinsetto', abilityd = 'Lentifumé'}
+t[921] = t.lokix
+t.rellor = {ability1 = 'Insettocchi', abilityd = 'Muta'}
+t[922] = t.rellor
+t.rabsca = {ability1 = 'Sincronismo', abilityd = 'Telepatia'}
+t[923] = t.rabsca
+t.greavard = {ability1 = 'Raccolta', abilityd = 'Morbidone'}
+t[924] = t.greavard
+t.houndstone = {ability1 = 'Remasabbia', abilityd = 'Morbidone'}
+t[925] = t.houndstone
+t.flittle = {ability1 = 'Presagio', ability2 = 'Indagine', abilityd = 'Acceleratore'}
+t[926] = t.flittle
+t.espathra = {ability1 = 'Opportunist', ability2 = 'Indagine', abilityd = 'Acceleratore'}
+t[927] = t.espathra
+t.farigiraf = {ability1 = 'Cud Chew', ability2 = 'Armor Tail', abilityd = 'Mangiaerba'}
+t[928] = t.farigiraf
+t.wiglett = {ability1 = 'Viscosità', ability2 = 'Paura', abilityd = 'Sabbiavelo'}
+t[929] = t.wiglett
+t.wugtrio = {ability1 = 'Viscosità', ability2 = 'Paura', abilityd = 'Sabbiavelo'}
+t[930] = t.wugtrio
+t.dondozo = {ability1 = 'Imprudenza', ability2 = 'Indifferenza', abilityd = 'Idrovelo'}
+t[931] = t.dondozo
+t.veluza = {ability1 = 'Rompiforma', abilityd = 'Sharpness'}
+t[932] = t.veluza
+t.finizen = {ability1 = 'Idrovelo'}
+t[933] = t.finizen
+t.palafin = {ability1 = 'Zero to Hero'}
+t[934] = t.palafin
+t.smoliv = {ability1 = 'Sveglialampo', abilityd = 'Coglibacche'}
+t[935] = t.smoliv
+t.dolliv = {ability1 = 'Sveglialampo', abilityd = 'Coglibacche'}
+t[936] = t.dolliv
+t.arboliva = {ability1 = 'Seed Sower', abilityd = 'Coglibacche'}
+t[937] = t.arboliva
+t.capsakid = {ability1 = 'Clorofilla', ability2 = 'Insonnia', abilityd = 'Impaccio'}
+t[938] = t.capsakid
+t.scovillain = {ability1 = 'Clorofilla', ability2 = 'Insonnia', abilityd = 'Altalena'}
+t[939] = t.scovillain
+t.tadbulb = {ability1 = 'Mente Locale', ability2 = 'Statico', abilityd = 'Umidità'}
+t[940] = t.tadbulb
+t.bellibolt = {ability1 = 'Electromorphosis', ability2 = 'Statico', abilityd = 'Umidità'}
+t[941] = t.bellibolt
+t.varoom = {ability1 = 'Copricapo', abilityd = 'Lentoinizio'}
+t[942] = t.varoom
+t.revavroom = {ability1 = 'Copricapo', abilityd = 'Filtro'}
+t[943] = t.revavroom
+t.orthworm = {ability1 = 'Earth Eater', abilityd = 'Sabbiavelo'}
+t[944] = t.orthworm
+t.tandemaus = {ability1 = 'Fugafacile', ability2 = 'Raccolta', abilityd = 'Mente Locale'}
+t[945] = t.tandemaus
+t.maushold = {ability1 = 'Amicoscudo', ability2 = 'Guancegonfie', abilityd = 'Tecnico'}
+t[946] = t.maushold
+t.cetoddle = {ability1 = 'Grassospesso', ability2 = 'Mantelneve', abilityd = 'Forzabruta'}
+t[947] = t.cetoddle
+t.cetitan = {ability1 = 'Grassospesso', ability2 = 'Spalaneve', abilityd = 'Forzabruta'}
+t[948] = t.cetitan
+t.frigibax = {ability1 = 'Thermal Exchange', abilityd = 'Corpogelo'}
+t[949] = t.frigibax
+t.arctibax = {ability1 = 'Thermal Exchange', abilityd = 'Corpogelo'}
+t[950] = t.arctibax
+t.baxcalibur = {ability1 = 'Thermal Exchange', abilityd = 'Corpogelo'}
+t[951] = t.baxcalibur
+t.tatsugiri = {ability1 = 'Commander', abilityd = 'Acquascolo'}
+t[952] = t.tatsugiri
+t.cyclizar = {ability1 = 'Muta', abilityd = 'Rigenergia'}
+t[953] = t.cyclizar
+t.pawmi = {ability1 = 'Statico', ability2 = 'Alternacura', abilityd = 'Ferropugno'}
+t[954] = t.pawmi
+t.pawmo = {ability1 = 'Assorbivolt', ability2 = 'Alternacura', abilityd = 'Ferropugno'}
+t[955] = t.pawmo
+t.pawmot = {ability1 = 'Assorbivolt', ability2 = 'Alternacura', abilityd = 'Ferropugno'}
+t[956] = t.pawmot
+t.wattrel = {ability1 = 'Wind Power', ability2 = 'Assorbivolt', abilityd = 'Tenacia'}
+t[957] = t.wattrel
+t.kilowattrel = {ability1 = 'Wind Power', ability2 = 'Assorbivolt', abilityd = 'Tenacia'}
+t[958] = t.kilowattrel
+t.bombirdier = {ability1 = 'Pettinfuori', ability2 = 'Sguardofermo', abilityd = 'Rocky Payload'}
+t[959] = t.bombirdier
+t.squawkabilly = {ability1 = 'Prepotenza', ability2 = 'Tuttafretta', abilityd = 'Dentistretti'}
+t[960] = t.squawkabilly
+t.flamigo = {ability1 = 'Nervisaldi', ability2 = 'Intricopiedi', abilityd = 'Costar'}
+t[961] = t.flamigo
+t.klawf = {ability1 = 'Anger Shell', ability2 = 'Guscioscudo', abilityd = 'Rigenergia'}
+t[962] = t.klawf
+t.nacli = {ability1 = 'Purifying Salt', ability2 = 'Vigore', abilityd = 'Corpochiaro'}
+t[963] = t.nacli
+t.naclstack = {ability1 = 'Purifying Salt', ability2 = 'Vigore', abilityd = 'Corpochiaro'}
+t[964] = t.naclstack
+t.garganacl = {ability1 = 'Purifying Salt', ability2 = 'Vigore', abilityd = 'Corpochiaro'}
+t[965] = t.garganacl
+t.glimmet = {ability1 = 'Toxic Debris', abilityd = 'Corrosione'}
+t[966] = t.glimmet
+t.glimmora = {ability1 = 'Toxic Debris', abilityd = 'Corrosione'}
+t[967] = t.glimmora
+t.shroodle = {ability1 = 'Agiltecnica', ability2 = 'Arraffalesto', abilityd = 'Burla'}
+t[968] = t.shroodle
+t.grafaiai = {ability1 = 'Agiltecnica', ability2 = 'Velentocco', abilityd = 'Burla'}
+t[969] = t.grafaiai
+t.fidough = {ability1 = 'Mente Locale', abilityd = 'Impaccio'}
+t[970] = t.fidough
+t.dachsbun = {ability1 = 'Well-Baked Body', abilityd = 'Aromavelo'}
+t[971] = t.dachsbun
+t.maschiff = {ability1 = 'Prepotenza', ability2 = 'Fugafacile', abilityd = 'Sorveglianza'}
+t[972] = t.maschiff
+t.mabosstiff = {ability1 = 'Prepotenza', ability2 = 'Guard Dog', abilityd = 'Sorveglianza'}
+t[973] = t.mabosstiff
+t.bramblin = {ability1 = 'Wind Rider', abilityd = 'Intrapasso'}
+t[974] = t.bramblin
+t.brambleghast = {ability1 = 'Wind Rider', abilityd = 'Intrapasso'}
+t[975] = t.brambleghast
 t.gimmighoul = {ability1 = 'Paura'}
-t.koraidon = {ability1 = 'Sconosciuta'}
-t.miraidon = {ability1 = 'Sconosciuta'}
+t[976] = t.gimmighoul
+t.gholdengo = {ability1 = 'Good as Gold'}
+t[977] = t.gholdengo
+t.grandizanne = {ability1 = 'Protosynthesis'}
+t[978] = t.grandizanne
+t["brute Bonnet"] = {ability1 = 'Protosynthesis'}
+t[979] = t["brute Bonnet"]
+-- t.placeholder = {ability1 = 'Protosynthesis'}
+-- t[980] = t.placeholder
+t["sandy Shocks"] = {ability1 = 'Protosynthesis'}
+t[981] = t["sandy Shocks"]
+t["scream Tail"] = {ability1 = 'Protosynthesis'}
+t[982] = t["scream Tail"]
+t["flutter Mane"] = {ability1 = 'Protosynthesis'}
+t[983] = t["flutter Mane"]
+t["slither Wing"] = {ability1 = 'Protosynthesis'}
+t[984] = t["slither Wing"]
+t["roaring Moon"] = {ability1 = 'Protosynthesis'}
+t[985] = t["roaring Moon"]
+t.solcoferreo = {ability1 = 'Quark Drive'}
+t[986] = t.solcoferreo
+-- t.placeholder = {ability1 = 'Quark Drive'}
+-- t[987] = t.placeholder
+t["iron Moth"] = {ability1 = 'Quark Drive'}
+t[988] = t["iron Moth"]
+t["iron Hands"] = {ability1 = 'Quark Drive'}
+t[989] = t["iron Hands"]
+t["iron Jugulis"] = {ability1 = 'Quark Drive'}
+t[990] = t["iron Jugulis"]
+t["iron Thorns"] = {ability1 = 'Quark Drive'}
+t[991] = t["iron Thorns"]
+t["iron Bundle"] = {ability1 = 'Quark Drive'}
+t[992] = t["iron Bundle"]
+t["iron Valiant"] = {ability1 = 'Quark Drive'}
+t[993] = t["iron Valiant"]
+t["ting-lu"] = {ability1 = 'Vessel of Ruin'}
+t[994] = t["ting-lu"]
+t["chien-pao"] = {ability1 = 'Sword of Ruin'}
+t[995] = t["chien-pao"]
+t["wo-chien"] = {ability1 = 'Tablets of Ruin'}
+t[996] = t["wo-chien"]
+t["chi-yu"] = {ability1 = 'Beads of Ruin'}
+t[997] = t["chi-yu"]
+t.koraidon = {ability1 = 'Orichalcum Pulse'}
+t[998] = t.koraidon
+t.miraidon = {ability1 = 'Hadron Engine'}
+t[999] = t.miraidon
+t.tinkatink = {ability1 = 'Rompiforma', ability2 = 'Mente Locale', abilityd = 'Arraffalesto'}
+t[1000] = t.tinkatink
+t.tinkatuff = {ability1 = 'Rompiforma', ability2 = 'Mente Locale', abilityd = 'Arraffalesto'}
+t[1001] = t.tinkatuff
+t.tinkaton = {ability1 = 'Rompiforma', ability2 = 'Mente Locale', abilityd = 'Arraffalesto'}
+t[1002] = t.tinkaton
+t.charcadet = {ability1 = 'Fuocardore', abilityd = 'Corpodifuoco'}
+t[1003] = t.charcadet
+t.armarouge = {ability1 = 'Fuocardore', abilityd = 'Sottilguscio'}
+t[1004] = t.armarouge
+t.ceruledge = {ability1 = 'Fuocardore', abilityd = 'Sottilguscio'}
+t[1005] = t.ceruledge
+t.toedscool = {ability1 = 'Mycelium Might'}
+t[1006] = t.toedscool
+t.toedscruel = {ability1 = 'Mycelium Might'}
+t[1007] = t.toedscruel
+t.kingambit = {ability1 = 'Agonismo', ability2 = 'Supreme Overlord', abilityd = 'Pressione'}
+t[1008] = t.kingambit
+t.clodsire = {ability1 = 'Velenopunto', ability2 = 'Assorbacqua', abilityd = 'Imprudenza'}
+t[1009] = t.clodsire
+t.annihilape = {ability1 = 'Spiritovivo', ability2 = 'Forza Interiore', abilityd = 'Agonismo'}
+t[1010] = t.annihilape
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio
@@ -1875,11 +2057,9 @@ t.meowthG = {ability1 = 'Raccolta', ability2 = 'Unghiedure', abilityd = 'Agitazi
 t['052G'] = t.meowthG
 t.persianA = {ability1 = 'Foltopelo', ability2 = 'Tecnico', abilityd = 'Paura'}
 t['053A'] = t.persianA
-t.growlitheH = {ability1 = 'Sconosciuta'}
--- t.growlitheH = {ability1 = 'Prepotenza', ability2 = 'Fuocardore', abilityd = 'Giustizia'}
+t.growlitheH = {ability1 = 'Prepotenza', ability2 = 'Fuocardore', abilityd = 'Testadura'}
 t['058H'] = t.growlitheH
-t.arcanineH = {ability1 = 'Sconosciuta'}
--- t.arcanineH = {ability1 = 'Prepotenza', ability2 = 'Fuocardore', abilityd = 'Giustizia'}
+t.arcanineH = {ability1 = 'Prepotenza', ability2 = 'Fuocardore', abilityd = 'Testadura'}
 t['059H'] = t.arcanineH
 t.geodudeA = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Pellelettro'}
 t['074A'] = t.geodudeA
@@ -1901,11 +2081,9 @@ t.grimerA = {ability1 = 'Velentocco', ability2 = 'Voracità', abilityd = 'Forza 
 t['088A'] = t.grimerA
 t.mukA = {ability1 = 'Velentocco', ability2 = 'Voracità', abilityd = 'Forza Chimica'}
 t['089A'] = t.mukA
-t.voltorbH = {ability1 = 'Sconosciuta'}
--- t.voltorbH = {ability1 = 'Antisuono', ability2 = 'Statico', abilityd = 'Scoppio'}
+t.voltorbH = {ability1 = 'Antisuono', ability2 = 'Statico', abilityd = 'Scoppio'}
 t['100H'] = t.voltorbH
-t.electrodeH = {ability1 = 'Sconosciuta'}
--- t.electrodeH = {ability1 = 'Antisuono', ability2 = 'Statico', abilityd = 'Scoppio'}
+t.electrodeH = {ability1 = 'Antisuono', ability2 = 'Statico', abilityd = 'Scoppio'}
 t['101H'] = t.electrodeH
 t.exeggutorA = {ability1 = 'Indagine', abilityd = 'Coglibacche'}
 t['103A'] = t.exeggutorA
@@ -1915,6 +2093,11 @@ t.weezingG = {ability1 = 'Levitazione', ability2 = 'Gas Reagente', abilityd = 'N
 t['110G'] = t.weezingG
 t['mr. mimeG'] = {ability1 = 'Spiritovivo', ability2 = 'Annullabarriere', abilityd = 'Corpogelo'}
 t['122G'] = t['mr. mimeG']
+-- t.taurosP1 = {ability1 = 'Prepotenza', ability2 = 'Grancollera', abilityd = 'Cud Chew'}
+-- t['128P'] = t.taurosP1
+-- t.taurosP2, t.taurosP3 = t.taurosP1, t.taurosP1
+-- t['128P'] = t.taurosP2
+-- t['128P'] = t.taurosP3
 t.eeveeCm = {ability1 = 'Nessuna'}
 t['133Cm'] = t.eeveeCm
 t.articunoG = {ability1 = 'Tenacia'}
@@ -1923,18 +2106,15 @@ t.zapdosG = {ability1 = 'Agonismo'}
 t['145G'] = t.zapdosG
 t.moltresG = {ability1 = 'Furore'}
 t['146G'] = t.moltresG
-t.typhlosionH = {ability1 = 'Sconosciuta'}
--- t.typhlosionH = {ability1 = 'Aiutofuoco', abilityd = 'Fuocardore'}
+t.typhlosionH = {ability1 = 'Aiutofuoco', abilityd = 'Indagine'}
 t['157H'] = t.typhlosionH
-t.wooperP = {ability1 = 'Velenopunto', ability2 = 'Assorbacqua'}
+t.wooperP = {ability1 = 'Velenopunto', ability2 = 'Assorbacqua', abilityd = 'Imprudenza'}
 t['194P'] = t.wooperP
 t.slowkingG = {ability1 = 'Stranofarmaco', ability2 = 'Mente Locale', abilityd = 'Rigenergia'}
 t['199G'] = t.slowkingG
-t.qwilfishH = {ability1 = 'Sconosciuta'}
--- t.qwilfishH = {ability1 = 'Velenopunto', ability2 = 'Nuotovelox', abilityd = 'Prepotenza'}
+t.qwilfishH = {ability1 = 'Velenopunto', ability2 = 'Nuotovelox', abilityd = 'Prepotenza'}
 t['211H'] = t.qwilfishH
-t.sneaselH = {ability1 = 'Sconosciuta'}
--- t.sneaselH = {ability1 = 'Forza Interiore', ability2 = 'Sguardofermo', abilityd = 'Velentocco'}
+t.sneaselH = {ability1 = 'Forza Interiore', ability2 = 'Sguardofermo', abilityd = 'Arraffalesto'}
 t['215H'] = t.sneaselH
 t.corsolaG = {ability1 = 'Sottilguscio', abilityd = 'Corpofunesto'}
 t['222G'] = t.corsolaG
@@ -1946,16 +2126,13 @@ t.giratinaO = {ability1 = 'Levitazione'}
 t['487O'] = t.giratinaO
 t.shayminC = {ability1 = 'Leggiadro'}
 t['492C'] = t.shayminC
-t.samurottH = {ability1 = 'Sconosciuta'}
--- t.samurottH = {ability1 = 'Acquaiuto', abilityd = 'Guscioscudo'}
+t.samurottH = {ability1 = 'Acquaiuto', abilityd = 'Affilama'}
 t['503H'] = t.samurottH
-t.lilligantH = {ability1 = 'Sconosciuta'}
--- t.lilligantH = {ability1 = 'Clorofilla', ability2 = 'Tuttafretta', abilityd = 'Fogliamanto'}
+t.lilligantH = {ability1 = 'Clorofilla', ability2 = 'Tuttafretta', abilityd = 'Fogliamanto'}
 t['549H'] = t.lilligantH
 t.basculinB = {ability1 = 'Testadura', ability2 = 'Adattabilità', abilityd = 'Rompiforma'}
 t['550B'] = t.basculinB
-t.basculinBi = {ability1 = 'Sconosciuta'}
--- t.basculinBi = {ability1 = 'Paura', ability2 = 'Adattabilità', abilityd = 'Rompiforma'}
+t.basculinBi = {ability1 = 'Paura', ability2 = 'Adattabilità', abilityd = 'Rompiforma'}
 t['550Bi'] = t.basculinBi
 t.darmanitanZ = {ability1 = 'Stato Zen'}
 t['555Z'] = t.darmanitanZ
@@ -1965,16 +2142,13 @@ t.darmanitanGZ = {ability1 = 'Stato Zen'}
 t['555GZ'] = t.darmanitanGZ
 t.yamaskG = {ability1 = 'Anima Errante'}
 t['562G'] = t.yamaskG
-t.zoruaH = {ability1 = 'Sconosciuta'}
--- t.zoruaH = {ability1 = 'Illusione'}
+t.zoruaH = {ability1 = 'Illusione'}
 t['570H'] = t.zoruaH
-t.zoroarkH = {ability1 = 'Sconosciuta'}
--- t.zoroarkH = {ability1 = 'Illusione'}
+t.zoroarkH = {ability1 = 'Illusione'}
 t['571H'] = t.zoroarkH
 t.stunfiskG = {ability1 = 'Mimetismo'}
 t['618G'] = t.stunfiskG
-t.braviaryH = {ability1 = 'Sconosciuta'}
--- t.braviaryH = {ability1 = 'Sguardofermo', ability2 = 'Forzabruta', abilityd = 'Agonismo'}
+t.braviaryH = {ability1 = 'Sguardofermo', ability2 = 'Forzabruta', abilityd = 'Lentifumé'}
 t['628H'] = t.braviaryH
 t.tornadusT = {ability1 = 'Rigenergia'}
 t['641T'] = t.tornadusT
@@ -1990,19 +2164,15 @@ t.greninjaA = {ability1 = 'Morfosintonia'}
 t['658A'] = t.greninjaA
 t.meowsticF = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'Tenacia'}
 t['678F'] = t.meowsticF
-t.sliggooH = {ability1 = 'Sconosciuta'}
--- t.sliggooH = {ability1 = 'Mangiaerba', ability2 = 'Copricapo', abilityd = 'Viscosità'}
+t.sliggooH = {ability1 = 'Mangiaerba', ability2 = 'Guscioscudo', abilityd = 'Viscosità'}
 t['705H'] = t.sliggooH
-t.goodraH = {ability1 = 'Sconosciuta'}
--- t.goodraH = {ability1 = 'Mangiaerba', ability2 = 'Copricapo', abilityd = 'Viscosità'}
+t.goodraH = {ability1 = 'Mangiaerba', ability2 = 'Guscioscudo', abilityd = 'Viscosità'}
 t['706H'] = t.goodraH
-t.avaluggH = {ability1 = 'Sconosciuta'}
--- t.avaluggH = {ability1 = 'Ferromascella', ability2 = 'Corpogelo', abilityd = 'Vigore'}
+t.avaluggH = {ability1 = 'Ferromascella', ability2 = 'Corpogelo', abilityd = 'Vigore'}
 t['713H'] = t.avaluggH
 t.zygardeP = {ability1 = 'Sciamefusione'}
 t['718P'] = t.zygardeP
-t.decidueyeH = {ability1 = 'Sconosciuta'}
--- t.decidueyeH = {ability1 = 'Erbaiuto', abilityd = 'Distacco'}
+t.decidueyeH = {ability1 = 'Erbaiuto', abilityd = 'Nervisaldi'}
 t['724H'] = t.decidueyeH
 t.lycanrocN = {ability1 = 'Sguardofermo', ability2 = 'Spiritovivo', abilityd = 'Nullodifesa'}
 t['745N'] = t.lycanrocN
@@ -2020,11 +2190,8 @@ t.calyrexG = {ability1 = 'Sintonia Equina'}
 t['898G'] = t.calyrexG
 t.calyrexS = {ability1 = 'Sintonia Equina'}
 t['898S'] = t.calyrexS
-t.enamorusT = {ability1 = 'Sconosciuta'}
--- t.enamorusT = {ability1 = 'Copricapo'}
+t.enamorusT = {ability1 = 'Copricapo'}
 t['905T'] = t.enamorusT
--- TODO without ndex
-t.gimmighoulA = t.gimmighoul
 -- stylua: ignore end
 
 -- Alias per le altre forme alternative rilevanti
@@ -2044,12 +2211,8 @@ t.rotomC, t.rotomL, t.rotomG = t.rotom, t.rotom, t.rotom
 t.rotomV, t.rotomT = t.rotom, t.rotom
 t["479C"], t["479L"], t["479G"] = t.rotom, t.rotom, t.rotom
 t["479V"], t["479T"] = t.rotom, t.rotom
-t.dialgaO = { ability1 = "Sconosciuta" }
-t["483O"] = t.dialgaO
-t.palkiaO = { ability1 = "Sconosciuta" }
-t["484O"] = t.palkiaO
--- t.dialgaO, t['483O'] = t.dialga, t.dialga
--- t.palkiaO, t['484O'] = t.palkia, t.palkia
+t.dialgaO, t["483O"] = t.dialga, t.dialga
+t.palkiaO, t["484O"] = t.palkia, t.palkia
 t["493L"], t["493Vo"], t["493Ve"] = t.arceus, t.arceus, t.arceus
 t.arceusL, t.arceusVo, t.arceusVe = t.arceus, t.arceus, t.arceus
 t["493T"], t["493R"], t["493C"] = t.arceus, t.arceus, t.arceus
@@ -2104,6 +2267,23 @@ t.zamazentaR, t["889R"] = t.zamazenta, t.zamazenta
 t.eternatusD, t["890D"] = t.eternatus, t.eternatus
 t.urshifuP, t["892P"] = t.urshifu, t.urshifu
 t.basculegionF, t["902F"] = t.basculegion, t.basculegion
+-- t.oinkologne-1 = {ability1 = 'Aromavelo', ability2 = 'Voracità', abilityd = 'Grassospesso'}
+-- t.dudunsparce-1 = t.dudunsparce
+-- t.palafin-1 = t.palafin
+-- t.maushold-1 = t.maushold
+-- t.tatsugiri-1 = t.tatsugiri
+-- t.tatsugiri-2 = t.tatsugiri
+-- t.squawkabilly-1 = t.squawkabilly
+-- t.squawkabilly-2 = {ability1 = 'Prepotenza', ability2 = 'Tuttafretta', abilityd = 'Forzabruta'}
+-- t.squawkabilly-3 = t.squawkabilly-2
+-- t.koraidon-1 = t.koraidon
+-- t.koraidon-2 = t.koraidon
+-- t.koraidon-3 = t.koraidon
+-- t.koraidon-4 = t.koraidon
+-- t.miraidon-1 = t.miraidon
+-- t.miraidon-2 = t.miraidon
+-- t.miraidon-3 = t.miraidon
+-- t.miraidon-4 = t.miraidon
 
 -- Gigamax
 t.venusaurGi, t["003Gi"] = t.venusaur, t.venusaur
@@ -2138,8 +2318,9 @@ t.grimmsnarlGi, t["861Gi"] = t.grimmsnarl, t.grimmsnarl
 t.alcremieGi, t["869Gi"] = t.alcremie, t.alcremie
 t.copperajahGi, t["879Gi"] = t.copperajah, t.copperajah
 t.duraludonGi, t["884Gi"] = t.duraludon, t.duraludon
-t.urshifuGi = t.urshifu
-t.urshifuPGi = t.urshifuP
+t.urshifuGi, t["892Gi"] = t.urshifu, t.urshifu
+t.urshifuPGi, t["892PGi"] = t.urshifuP, t.urshifuP
+t.gimmighoulA, t["976A"] = t.gimmighoul, t.gimmighoul
 
 -- Mega evolutions
 
