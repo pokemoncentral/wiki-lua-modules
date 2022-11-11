@@ -63,6 +63,8 @@ gens.getGen.ndex = function(ndex)
         return 7
     elseif ndex < 906 then
         return 8
+    elseif ndex < 1011 then
+        return 9
     end
 end
 
