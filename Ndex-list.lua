@@ -7,16 +7,16 @@ included, for the ndex list (ie: only name, MS and type).
 
 local n = {}
 
-local tab = require('Wikilib-tables')       -- luacheck: no unused
-local txt = require('Wikilib-strings')      -- luacheck: no unused
+-- stylua: ignore start
+local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings')
 local list = require('Wikilib-lists')
--- local oop = require('Wikilib-oop')
 local genUtils = require('Wikilib-gens')
--- local multigen = require('Wikilib-multigen')
 local entry = require('Ndex')
 local pokes = require('Poké-data')
 local gendata = require("Gens-data")
 local useless = require("UselessForms-data")
+-- stylua: ignore end
 
 --[[
 
@@ -27,9 +27,8 @@ Data (ie: types) are from the latest gen.
 local listgen = function(gen)
     -- Creates a fake Poké/data table with data for Pokémon from a single gen,
     -- but adding also useless forms
-    local source = table.filter(pokes, function(v, k)
-        return not string.parseInt(k)
-               and genUtils.getGen.ndex(v.ndex) == gen
+    local source = tab.filter(pokes, function(v, k)
+        return not txt.parseInt(k) and genUtils.getGen.ndex(v.ndex) == gen
     end)
     for upoke, uval in pairs(useless) do
         if source[upoke] then
@@ -62,8 +61,14 @@ Main Wikicode interface. No parameters, just prints the list of Pokémon.
 n.list = function(_)
     local tables = {}
     for gen = 1, gendata.latest do
-        table.insert(tables, table.concat{
-            "==", string.fu(gendata[gen].ext), " generazione==" })
+        table.insert(
+            tables,
+            table.concat({
+                "==",
+                txt.fu(gendata[gen].ext),
+                " generazione==",
+            })
+        )
         table.insert(tables, listgen(gen))
     end
     return table.concat(tables, "\n")

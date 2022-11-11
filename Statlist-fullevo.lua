@@ -9,8 +9,7 @@ the other are merged into one.
 
 local s = {}
 
-local tab = require('Wikilib-tables')       -- luacheck: no unused
-local txt = require('Wikilib-strings')      -- luacheck: no unused
+-- stylua: ignore start
 local oop = require('Wikilib-oop')
 local list = require('Wikilib-lists')
 local gamesUtil = require('Wikilib-games')
@@ -18,7 +17,7 @@ local evo = require('Wikilib-evos')
 local evodata = require("Evo-data")
 local stats = require('PokéStats-data')
 local stl = require('Statlist')
-
+-- stylua: ignore end
 
 --[[
 
@@ -58,7 +57,7 @@ Example:
 {{#invoke: Statlist/fullevo | statlist }}
 
 --]]
-s.statlist = function(frame)        -- luacheck: no unused
+s.statlist = function(_)
     return table.concat({
         [[===Dalla seconda generazione in poi===]],
         list.makeCollapsedList({
@@ -66,8 +65,8 @@ s.statlist = function(frame)        -- luacheck: no unused
             makeEntry = Entry.new,
             iterator = list.pokeNames,
             header = stl.headers.header,
-            fullGroupLabel = 'Tutte le forme',
-            noEmptyLabel = true
+            fullGroupLabel = "Tutte le forme",
+            noEmptyLabel = true,
         }),
         [[===Nella prima generazione===]],
         list.makeCollapsedList({
@@ -76,10 +75,10 @@ s.statlist = function(frame)        -- luacheck: no unused
             entryArgs = 1,
             iterator = list.pokeNames,
             header = stl.headers.firstGenHeader,
-            fullGroupLabel = 'Tutte le forme',
-            noEmptyLabel = true
-        })
-    }, '\n')
+            fullGroupLabel = "Tutte le forme",
+            noEmptyLabel = true,
+        }),
+    }, "\n")
 end
 
 s.Statlist = s.statlist

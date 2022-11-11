@@ -9,6 +9,9 @@ the other are merged into one.
 
 local s = {}
 
+-- stylua: ignore start
+local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings')
 local css = require('Css')
 local ms = require('MiniSprite')
 local gamesUtil = require('Wikilib-games')
@@ -18,14 +21,13 @@ local list = require('Wikilib-lists')
 local mg = require('Wikilib-multigen')
 local oop = require('Wikilib-oop')
 local statsUtil = require('Wikilib-stats')
-local tab = require('Wikilib-tables')       -- luacheck: no unused
-local txt = require('Wikilib-strings')      -- luacheck: no unused
 local c = require("Colore-data")
 local gendata = require("Gens-data")
 local pokes = require('Poké-data')
 local stats = require('PokéStats-data')
 
 local mw = require('mw')
+-- stylua: ignore end
 
 --[[
 
@@ -49,7 +51,7 @@ s.Entry.makeSumSpan = function(stats, gen)
 
     return {
         val = statsUtil.statsSum(stats),
-        first = gen
+        first = gen,
     }
 end
 
@@ -60,7 +62,6 @@ generation. First generation is not included.
 
 --]]
 s.Entry.makeSum = function(stats, startGen)
-
     --[[
         If stats have not changed throughout the generations, returning a
         single span beginning and ends in the latest generation.
@@ -68,18 +69,17 @@ s.Entry.makeSum = function(stats, startGen)
     if not statsUtil.didStatsChange(stats) then
         local sum = s.Entry.makeSumSpan(stats)
         sum.last = gendata.latest
-        return {sum}
+        return { sum }
     end
 
     -- Skipping first gen
     startGen = math.max(startGen, 2)
-    local sums = {s.Entry.makeSumSpan(stats, startGen)}
+    local sums = { s.Entry.makeSumSpan(stats, startGen) }
 
     for gen = startGen + 1, gendata.latest do
-
         -- Whether any stat changed in the current gen
-        local anyChange = table.any(stats, function(stat)
-            return type(stat) == 'table' and stat[gen]
+        local anyChange = tab.any(stats, function(stat)
+            return type(stat) == "table" and stat[gen]
         end)
 
         if anyChange then
@@ -99,16 +99,18 @@ values
 
 --]]
 s.Entry.printStatCell = function(stat, statName)
-    local interpData = {bg = c[statName].light}
-    if type(stat) == 'number' then
-        interpData.val = string.printNumber(stat)
+    local interpData = { bg = c[statName].light }
+    if type(stat) == "number" then
+        interpData.val = txt.printNumber(stat)
         interpData.latest = stat
     else
-        interpData.val = mg.printSpans(stat, string.printNumber)
+        interpData.val = mg.printSpans(stat, txt.printNumber)
         interpData.latest = stat[#stat].val
     end
-    return string.interp('| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${bg};" data-sort-value="${latest}" | ${val}',
-        interpData)
+    return txt.interp(
+        '| style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #${bg};" data-sort-value="${latest}" | ${val}',
+        interpData
+    )
 end
 
 --[[
@@ -132,20 +134,19 @@ s.Entry.new = function(stats, poke, gen)
 
     -- Statistics are not merged at top level to ease subsequent calculations
     if gen then
-
         -- No need for generation spans in single-generation case
         this.stats = statsUtil.getStatsGen(stats, gen)
         this.statsSum = statsUtil.statsSum(this.stats)
-        this.statsAvg = this.statsSum / table.getn(this.stats)
+        this.statsAvg = this.statsSum / tab.getn(this.stats)
     else
         local pokeGen = this.formAbbr
-            and genUtil.getGen.game(this.formsData.since[this.formAbbr])
+                and genUtil.getGen.game(this.formsData.since[this.formAbbr])
             or genUtil.getGen.ndex(this.ndex)
         pokeGen = math.max(pokeGen, 2)
         this.stats = statsUtil.cleanStats(mg.getGenSpans(stats), 2)
         this.statsSum = s.Entry.makeSum(stats, pokeGen)
-        local statsCount = table.getn(this.stats)
-        this.statsAvg = table.map(this.statsSum, function(span)
+        local statsCount = tab.getn(this.stats)
+        this.statsAvg = tab.map(this.statsSum, function(span)
             span = mw.clone(span)
             span.val = span.val / statsCount
             return span
@@ -162,7 +163,7 @@ Equality operator for entries' merging.
 --]]
 s.Entry.__eq = function(a, b)
     -- The two entries are equals iff their stats tables are the same
-    return table.equal(a.stats, b.stats)
+    return tab.equal(a.stats, b.stats)
 end
 
 --[[
@@ -172,41 +173,46 @@ stats, plus total and average.
 
 --]]
 s.Entry.__tostring = function(this)
-    local cells = table.map(this.statsOrder, function(stat)
+    local cells = tab.map(this.statsOrder, function(stat)
         return s.Entry.printStatCell(this.stats[stat], stat)
     end, ipairs)
-    table.insert(cells, s.Entry.printStatCell(this.statsSum, 'pcwiki'))
-    table.insert(cells, s.Entry.printStatCell(this.statsAvg, 'pcwiki'))
+    table.insert(cells, s.Entry.printStatCell(this.statsSum, "pcwiki"))
+    table.insert(cells, s.Entry.printStatCell(this.statsAvg, "pcwiki"))
     local name = pokes[this.name].name
 
-    local form = ''
+    local form = ""
     if this.labels[1] and this.labels[1] ~= "" then
-        form = this.labels[1] == 'Tutte le forme'
+        form = this.labels[1] == "Tutte le forme"
                 and '<div class="small-text">Tutte le forme</div>'
-                or this.formsData.blacklinks[this.formAbbr]
+            or this.formsData.blacklinks[this.formAbbr]
     end
 
-    return string.interp([=[| style="padding: 0.3ex 0.8ex;" data-sort-value="${sortDex}" | ${ndex}
+    return txt.interp(
+        [=[| style="padding: 0.3ex 0.8ex;" data-sort-value="${sortDex}" | ${ndex}
 | style="padding: 0.3ex 0.8ex;" data-sort-value="${sortName}" | ${ms}
 | class="black-text" style="padding: 0.3ex 0.8ex;" | [[${name}]]${form}
 ${statsCells}]=],
         {
-            sortDex = this.ndex or '???',
-            ndex = this.ndex and string.tf(this.ndex) or '???',
+            sortDex = this.ndex or "???",
+            ndex = this.ndex and txt.tf(this.ndex) or "???",
             sortName = formUtil.formSortValue(this.ndex, this.formAbbr, name),
-            ms = ms.staticLua{string.tf(this.ndex or 0) ..
-                    (this.formAbbr == 'base' and '' or this.formAbbr or '')},
+            ms = ms.staticLua({
+                txt.tf(this.ndex or 0)
+                    .. (this.formAbbr == "base" and "" or this.formAbbr or ""),
+            }),
             name = name,
             form = form,
-            statsCells = table.concat(cells, '\n')
-        })
+            statsCells = table.concat(cells, "\n"),
+        }
+    )
 end
 
 -- Headers
 s.headers = {}
 
 -- List header
-s.headers.header = string.interp([=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
+s.headers.header = txt.interp(
+    [=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
 |-
 ! class="black-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
 ! colspan="2" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
@@ -219,19 +225,20 @@ s.headers.header = string.interp([=[{| class="roundy-corners text-center pull-ce
 ! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Totale
 ! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Media]=],
     {
-        bg = css.horizGradLua{type = 'pcwiki'},
+        bg = css.horizGradLua({ type = "pcwiki" }),
         hp = c.ps.normale,
         atk = c.attacco.normale,
         def = c.difesa.normale,
         spatk = c.attacco_speciale.normale,
         spdef = c.difesa_speciale.normale,
         spe = c.velocita.normale,
-        pcw = c.pcwiki.dark
+        pcw = c.pcwiki.dark,
     }
 )
 
 -- List header
-s.headers.firstGenHeader = string.interp([=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
+s.headers.firstGenHeader = txt.interp(
+    [=[{| class="roundy-corners text-center pull-center white-rows sortable" style="border-spacing: 0; padding: 0.6ex; ${bg};"
 |-
 ! class="black-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
 ! colspan="2" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
@@ -243,13 +250,13 @@ s.headers.firstGenHeader = string.interp([=[{| class="roundy-corners text-center
 ! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Totale
 ! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Media]=],
     {
-        bg = css.horizGradLua{type = 'pcwiki'},
+        bg = css.horizGradLua({ type = "pcwiki" }),
         hp = c.ps.normale,
         atk = c.attacco.normale,
         def = c.difesa.normale,
         spec = c.speciale.normale,
         spe = c.velocita.normale,
-        pcw = c.pcwiki.dark
+        pcw = c.pcwiki.dark,
     }
 )
 
@@ -263,7 +270,7 @@ Example:
 {{#invoke: Statlist | statlist }}
 
 --]]
-s.statlist = function(frame)        -- luacheck: no unused
+s.statlist = function(_)
     return table.concat({
         [[===Dalla seconda generazione in poi===]],
         list.makeCollapsedList({
@@ -271,7 +278,7 @@ s.statlist = function(frame)        -- luacheck: no unused
             makeEntry = s.Entry.new,
             iterator = list.pokeNames,
             header = s.headers.header,
-            fullGroupLabel = 'Tutte le forme'
+            fullGroupLabel = "Tutte le forme",
         }),
         [[===Nella prima generazione===]],
         list.makeCollapsedList({
@@ -280,9 +287,9 @@ s.statlist = function(frame)        -- luacheck: no unused
             entryArgs = 1,
             iterator = list.pokeNames,
             header = s.headers.firstGenHeader,
-            fullGroupLabel = 'Tutte le forme'
-        })
-    }, '\n')
+            fullGroupLabel = "Tutte le forme",
+        }),
+    }, "\n")
 end
 
 s.Statlist = s.statlist

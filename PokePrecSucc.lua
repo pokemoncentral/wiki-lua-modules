@@ -12,13 +12,15 @@ corresponding subpages of previous and next Pokémon.
 
 local m = {}
 
+-- stylua: ignore start
 local mw = require('mw')
 
-local txt = require('Wikilib-strings') -- luacheck: no unused
+local txt = require('Wikilib-strings')
 local multigen = require('Wikilib-multigen')
 local prevnext = require('PrevNext')
 local data = require("Wikilib-data")
 local pokes = require("Poké-data")
+-- stylua: ignore end
 
 --[[
 
@@ -41,20 +43,20 @@ local function basePokePrecSucc(poke, linksuffix, list)
     local type1, type2 = pokeData.type1, pokeData.type2
     local pred = (pokeData.ndex - 2 + data.pokeNum) % data.pokeNum + 1
     local succ = pokeData.ndex % data.pokeNum + 1
-    local predTf, succTf = string.tf(pred), string.tf(succ)
+    local predTf, succTf = txt.tf(pred), txt.tf(succ)
     local predname, succname = pokes[pred].name, pokes[succ].name
-    return prevnext.PrevNextLua{
+    return prevnext.PrevNextLua({
         color = type1,
         color2 = type2,
         series = pokeData.name,
         list = list,
-        prev = table.concat{"#", predTf, ": ", predname},
+        prev = table.concat({ "#", predTf, ": ", predname }),
         prevlink = predname .. linksuffix,
         prevspr = predTf,
-        next = table.concat{"#", succTf, ": ", succname},
+        next = table.concat({ "#", succTf, ": ", succname }),
         nextlink = succname .. linksuffix,
         nextspr = succTf,
-    }
+    })
 end
 
 --[[
@@ -75,11 +77,10 @@ Usage:
 
 --]]
 m.subpage = function(frame)
-    local poke = string.trim(frame.args[1]
-                             or mw.title.getCurrentTitle().rootText)
+    local poke = txt.trim(frame.args[1] or mw.title.getCurrentTitle().rootText)
     local subpageSuffix = ""
     if frame.args[2] then
-        subpageSuffix = "/" .. string.trim(frame.args[2])
+        subpageSuffix = "/" .. txt.trim(frame.args[2])
     else
         local title = mw.title.getCurrentTitle()
         if title.isSubpage then
@@ -103,8 +104,8 @@ Usage:
 
 --]]
 m.PokePrecSucc = function(frame)
-    local poke = string.trim(frame.args[1]
-                             or mw.title.getCurrentTitle().text):lower()
+    local poke = txt.trim(frame.args[1] or mw.title.getCurrentTitle().text)
+        :lower()
     return basePokePrecSucc(poke)
 end
 

@@ -5,10 +5,12 @@
 -- alternative non sono puramente estetiche
 
 local t = {}
-local txt = require('Wikilib-strings') -- luacheck: no unused
-local tab = require('Wikilib-tables') -- luacheck: no unused
+-- stylua: ignore start
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 
 local mw = require('mw')
+-- stylua: ignore end
 
 -- TODO: refactor link creations
 --[[
@@ -32,19 +34,20 @@ Arguments:
 
 --]]
 local function makeSingleLink(context, formName, poke, general)
-	if formName == "" then
-		return ""
-	end
+    if formName == "" then
+        return ""
+    end
 
-	local target
-	if general then
-		target = table.concat{general, "#", t[poke].anchor or string.fu(poke)}
-	else
-		target = table.concat{string.fu(poke), "/Forme"}
-	end
-	return string.interp(context, {
-		link = table.concat{"[[", target, "|", formName, "]]"}
-	})
+    local target
+    if general then
+        target =
+            table.concat({ general, "#", t[poke].anchor or string.fu(poke) })
+    else
+        target = table.concat({ string.fu(poke), "/Forme" })
+    end
+    return string.interp(context, {
+        link = table.concat({ "[[", target, "|", formName, "]]" }),
+    })
 end
 
 --[[
@@ -61,52 +64,78 @@ Arguments:
 
 --]]
 local function makeTargetedLink(index, context, target, list, abbrs)
-	for _, name in pairs(list) do
-		t[name][index] = table.map(t[name].names, function(formName, formAbbr)
-			if table.search(abbrs, formAbbr) then
-				return makeSingleLink(context, formName, name, target)
-			else
-				return t[name][index] and t[name][index][formAbbr]
-			end
-		end)
-	end
+    for _, name in pairs(list) do
+        t[name][index] = tab.map(t[name].names, function(formName, formAbbr)
+            if tab.search(abbrs, formAbbr) then
+                return makeSingleLink(context, formName, name, target)
+            else
+                return t[name][index] and t[name][index][formAbbr]
+            end
+        end)
+    end
 end
 
 -- Creates links to alternative forms
 local function makeIndexLinks(index, context)
-	-- Removing support tables since we don't want to operate on them
-	local stdLinks = table.filter(t, function(_, key)
-		return not table.search({'mega', 'megaxy', 'archeo', 'alola', 'galar',
-		                         'gigamax', 'hisui', 'paldea'}, key)
-	end)
+    -- Removing support tables since we don't want to operate on them
+    local stdLinks = tab.filter(t, function(_, key)
+        return not tab.search({
+            "mega",
+            "megaxy",
+            "archeo",
+            "alola",
+            "galar",
+            "gigamax",
+            "hisui",
+            "paldea",
+        }, key)
+    end)
 
-	-- Adds standard links
-	for name, poke in pairs(stdLinks) do
-		poke[index] = table.map(poke.names, function(formName)
-			return makeSingleLink(context, formName, name)
-		end)
-	end
+    -- Adds standard links
+    for name, poke in pairs(stdLinks) do
+        poke[index] = tab.map(poke.names, function(formName)
+            return makeSingleLink(context, formName, name)
+        end)
+    end
 
-	-- Adds links of forms with a dedicated page
-	makeTargetedLink(index, context, 'Megaevoluzione', table.merge(t.mega, t.megaxy), {"base", "M", "MX", "MY"})
-	makeTargetedLink(index, context, 'Archeorisveglio', t.archeo, {"base", "A"})
-	makeTargetedLink(index, context, 'Forma di Alola', t.alola, {"base", "A"})
-	makeTargetedLink(index, context, 'Forma di Galar', t.galar, {"base", "G"})
-	makeTargetedLink(index, context, 'Gigamax', t.gigamax, {"base", "Gi"})
-	makeTargetedLink(index, context, 'Forma di Hisui', t.hisui, {"base", "H"})
-	makeTargetedLink(index, context, 'Forma di Paldea', t.paldea, {"base", "P"})
+    -- Adds links of forms with a dedicated page
+    makeTargetedLink(
+        index,
+        context,
+        "Megaevoluzione",
+        tab.merge(t.mega, t.megaxy),
+        { "base", "M", "MX", "MY" }
+    )
+    makeTargetedLink(
+        index,
+        context,
+        "Archeorisveglio",
+        t.archeo,
+        { "base", "A" }
+    )
+    makeTargetedLink(index, context, "Forma di Alola", t.alola, { "base", "A" })
+    makeTargetedLink(index, context, "Forma di Galar", t.galar, { "base", "G" })
+    makeTargetedLink(index, context, "Gigamax", t.gigamax, { "base", "Gi" })
+    makeTargetedLink(index, context, "Forma di Hisui", t.hisui, { "base", "H" })
+    makeTargetedLink(
+        index,
+        context,
+        "Forma di Paldea",
+        t.paldea,
+        { "base", "P" }
+    )
 end
 
 -- Create all links for alternative forms (black, blue and plain)
 local function makeLinks()
-	local contexts = {
-		links = '<div class="small-text">${link}</div>',
-		blacklinks = '<div class="small-text black-text">${link}</div>',
-		plainlinks = '${link}',
-	}
-	for index, context in pairs(contexts) do
-		makeIndexLinks(index, context)
-	end
+    local contexts = {
+        links = '<div class="small-text">${link}</div>',
+        blacklinks = '<div class="small-text black-text">${link}</div>',
+        plainlinks = "${link}",
+    }
+    for index, context in pairs(contexts) do
+        makeIndexLinks(index, context)
+    end
 end
 
 --[[
@@ -162,7 +191,7 @@ t.gimmighoul = {}
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
 
 -- Tabella con i Pokémon che hanno una sola megaevoluzione
-
+-- stylua: ignore
 t.mega = {'venusaur', 'blastoise', 'beedrill', 'pidgeot', 'alakazam',
 	'gengar', 'slowbro', 'kangaskhan', 'pinsir', 'gyarados', 'aerodactyl',
 	'ampharos', 'steelix', 'scizor', 'heracross', 'houndoom', 'tyranitar',
@@ -174,27 +203,27 @@ t.mega = {'venusaur', 'blastoise', 'beedrill', 'pidgeot', 'alakazam',
 
 -- Tabella contentente i Pokémon che hanno più megaevoluzioni
 
-t.megaxy = {'charizard', 'mewtwo'}
+t.megaxy = { "charizard", "mewtwo" }
 
 -- Tabella contenente i Pokémon che hanno un archeorisveglio
 
-t.archeo = {'kyogre', 'groudon'}
+t.archeo = { "kyogre", "groudon" }
 
 -- Tabella contenente i Pokémon che hanno una forma di Alola:
 -- per efficienza, alcuni sono alla fine del modulo
-
+-- stylua: ignore
 t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'diglett', 'meowth',
 	'persian', 'geodude', 'grimer', 'exeggutor', 'marowak'}
 
 -- Tabella contenente i Pokémon che hanno una forma di Galar:
 -- per efficienza, alcuni sono alla fine del modulo
-
+-- stylua: ignore
 t.galar = {'meowth', 'ponyta', 'slowpoke', 'slowbro', "farfetch'd", 'weezing',
 	'mr. mime', 'articuno', 'zapdos', 'moltres', 'slowking', 'corsola',
 	'zigzagoon', 'darumaka', 'yamask', 'stunfisk'}
 
 -- Table with Pokémon with a Gigamax
-
+-- stylua: ignore
 t.gigamax = {'venusaur', 'charizard', 'blastoise', 'butterfree', 'meowth',
 	'machamp', 'gengar', 'kingler', 'lapras', 'eevee', 'snorlax', 'garbodor',
 	'melmetal', 'rillaboom', 'cinderace', 'inteleon', 'corviknight', 'orbeetle',
@@ -203,14 +232,14 @@ t.gigamax = {'venusaur', 'charizard', 'blastoise', 'butterfree', 'meowth',
 
 -- Tabella contenente i Pokémon che hanno una forma di Hisui:
 -- per efficienza, alcuni sono alla fine del modulo
-
+-- stylua: ignore
 t.hisui = {'growlithe', 'voltorb', 'typhlosion', 'qwilfish', 'sneasel',
 	'samurott', 'lilligant', 'zorua', 'braviary', 'sliggoo',
 	'avalugg', 'decidueye'}
 
 -- Tabella contenente i Pokémon che hanno una forma di Paldea
 
-t.paldea = {'wooper'}
+t.paldea = { "wooper" }
 
 --[[
 
@@ -218,6 +247,7 @@ Alternative forms names. Keys are the abbr.
 
 --]]
 
+-- stylua: ignore start
 t.pikachu.names = {Cs = 'Pikachu Cosplay', R = 'Pikachu rockstar',
 	D = 'Pikachu damigella', Cn = 'Pikachu confetto',
 	S = 'Pikachu scienziata', W = 'Pikachu wrestler', Cm = 'Compagno',
@@ -280,69 +310,70 @@ t.calyrex.names = {G = "Cavaliere Glaciale", S = "Cavaliere Spettrale", base = "
 t.basculegion.names = {F = 'Femmina', base = 'Maschio'}
 t.enamorus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
 t.gimmighoul.names = {A = 'Forma Ambulante', base = 'Forma Scrigno'}
+-- stylua: ignore end
 for _, v in pairs(t.mega) do
-	if not t[v] then
-		t[v] = { names = {base = ''} }
-	end
-	t[v].names.M = 'Mega' .. string.fu(v)
+    if not t[v] then
+        t[v] = { names = { base = "" } }
+    end
+    t[v].names.M = "Mega" .. string.fu(v)
 end
 for _, v in pairs(t.megaxy) do
-	if not t[v] then
-		t[v] = { names = {base = ''} }
-	end
-	local fu = string.fu(v)
-	t[v].names.MX = table.concat{'Mega', fu, ' X'}
-	t[v].names.MY = table.concat{'Mega', fu, ' Y'}
+    if not t[v] then
+        t[v] = { names = { base = "" } }
+    end
+    local fu = string.fu(v)
+    t[v].names.MX = table.concat({ "Mega", fu, " X" })
+    t[v].names.MY = table.concat({ "Mega", fu, " Y" })
 end
 for _, v in pairs(t.archeo) do
-	if not t[v] then
-		t[v] = { names = {base = ''} }
-	end
-	t[v].names.A = 'Archeorisveglio'
+    if not t[v] then
+        t[v] = { names = { base = "" } }
+    end
+    t[v].names.A = "Archeorisveglio"
 end
 for _, v in pairs(t.alola) do
-	if not t[v] then
-		t[v] = { names = {base = ''} }
-	end
-	t[v].names.A = 'Forma di Alola'
+    if not t[v] then
+        t[v] = { names = { base = "" } }
+    end
+    t[v].names.A = "Forma di Alola"
 end
 for _, v in pairs(t.galar) do
-	if not t[v] then
-		t[v] = { names = {base = ''} }
-	end
-	t[v].names.G = 'Forma di Galar'
+    if not t[v] then
+        t[v] = { names = { base = "" } }
+    end
+    t[v].names.G = "Forma di Galar"
 end
 for _, v in pairs(t.gigamax) do
-	if not t[v] then
-		t[v] = { names = {base = ''} }
-	end
-	t[v].names.Gi = string.fu(v) .. " Gigamax"
+    if not t[v] then
+        t[v] = { names = { base = "" } }
+    end
+    t[v].names.Gi = string.fu(v) .. " Gigamax"
 end
 for _, v in pairs(t.hisui) do
-	if not t[v] then
-		t[v] = { names = {base = ''} }
-	end
-	t[v].names.H = 'Forma di Hisui'
+    if not t[v] then
+        t[v] = { names = { base = "" } }
+    end
+    t[v].names.H = "Forma di Hisui"
 end
 for _, v in pairs(t.paldea) do
-	if not t[v] then
-		t[v] = { names = {base = ''} }
-	end
-	t[v].names.P = 'Forma di Paldea'
+    if not t[v] then
+        t[v] = { names = { base = "" } }
+    end
+    t[v].names.P = "Forma di Paldea"
 end
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
 
-t.rattata.anchor = 'Rattata e Raticate'
-t.sandshrew.anchor = 'Sandshrew e Sandslash'
-t.vulpix.anchor = 'Vulpix e Ninetales'
-t.diglett.anchor = 'Diglett e Dugtrio'
-t.persian.anchor = 'Meowth e Persian'
-t.geodude.anchor = 'Geodude, Graveler e Golem'
-t.ponyta.anchor = 'Ponyta e Rapidash'
-t.grimer.anchor = 'Grimer e Muk'
-t.zigzagoon.anchor = 'Zigzagoon e Linoone'
+t.rattata.anchor = "Rattata e Raticate"
+t.sandshrew.anchor = "Sandshrew e Sandslash"
+t.vulpix.anchor = "Vulpix e Ninetales"
+t.diglett.anchor = "Diglett e Dugtrio"
+t.persian.anchor = "Meowth e Persian"
+t.geodude.anchor = "Geodude, Graveler e Golem"
+t.ponyta.anchor = "Ponyta e Rapidash"
+t.grimer.anchor = "Grimer e Muk"
+t.zigzagoon.anchor = "Zigzagoon e Linoone"
 -- t.wormadam.anchor = 'Burmy e Wormadam'
 -- t.tornadus.anchor = 'Forze della Natura'
 -- t.pumpkaboo.anchor = 'Pumpkaboo e Gourgeist'
@@ -350,89 +381,91 @@ t.zigzagoon.anchor = 'Zigzagoon e Linoone'
 
 -- Table to map extended names to abbrs
 
+-- stylua: ignore
 t.pikachu.ext = {cosplay = 'Cs', rockstar = 'R', damigella = 'D',
 	confetto = 'Cn', scienziata = 'S', wrestler = 'W', compagno = 'Cm',
 	gigamax = 'Gi'}
-t.eevee.ext = {compagno = 'Cm'}
-t.castform.ext = {sole = 'S', pioggia = 'P', neve = 'N'}
-t.deoxys.ext = {attacco = 'A', difesa = 'D', ['velocità'] = 'V'}
-t.wormadam.ext = {sabbia = 'Sa', scarti = 'Sc'}
-t.cherrim.ext = {splendore = 'S'}
+t.eevee.ext = { compagno = "Cm" }
+t.castform.ext = { sole = "S", pioggia = "P", neve = "N" }
+t.deoxys.ext = { attacco = "A", difesa = "D", ["velocità"] = "V" }
+t.wormadam.ext = { sabbia = "Sa", scarti = "Sc" }
+t.cherrim.ext = { splendore = "S" }
+-- stylua: ignore
 t.rotom.ext = {calore = 'C', lavaggio = 'L', gelo = 'G', vortice = 'V',
 	taglio = 'T'}
-t.dialga.ext = {originale = 'O', origine = 'O'}
-t.palkia.ext = {originale = 'O', origine = 'O'}
-t.giratina.ext = {originale = 'O', origine = 'O'}
-t.shaymin.ext = {cielo = 'C'}
-    t.arceus.ext = {lotta = 'L', volante = 'Vo', veleno = 'Ve', terra = 'T',
+t.dialga.ext = { originale = "O", origine = "O" }
+t.palkia.ext = { originale = "O", origine = "O" }
+t.giratina.ext = { originale = "O", origine = "O" }
+t.shaymin.ext = { cielo = "C" }
+-- stylua: ignore
+t.arceus.ext = {lotta = 'L', volante = 'Vo', veleno = 'Ve', terra = 'T',
 	roccia = 'R', acqua = 'Aq', coleottero = 'C', erba = 'Er', psico = 'P',
 	buio = 'B', spettro = 'S', acciaio = 'Ai', fuoco = 'Fu', drago = 'D',
 	folletto = 'Fo', elettro = 'El', ghiaccio = 'G', coleot = 'C',
     sconosciuto = 'Sc'}
-t.basculin.ext = {lineablu = 'B', lineabianca = 'Bi'}
-t.darmanitan.ext = {zen = 'Z', galar = 'G', ["galar zen"] = 'GZ'}
-t.tornadus.ext = {totem = 'T'}
-t.kyurem.ext = {nero = 'N', bianco = 'B'}
-t.meloetta.ext = {danza = 'D'}
-t.greninja.ext = {ash = 'A'}
-t.meowstic.ext = {femmina = 'F'}
-t.aegislash.ext = {spada = 'S'}
-t.pumpkaboo.ext = {mini = 'S', grande = 'L', maxi = 'XL'}
-t.zygarde.ext = {dieci = 'D', perfetto = 'P'}
-t.hoopa.ext = {libero = 'L'}
-t.lycanroc.ext = {notte = 'N', crepuscolo = 'C', giorno = 'base'}
-t.oricorio.ext = {cheerdance = 'C', hula = 'H', buyo = 'B',
-flamenco = 'base'}
-t.wishiwashi.ext = {banco = 'B', individuale = 'base'}
+t.basculin.ext = { lineablu = "B", lineabianca = "Bi" }
+t.darmanitan.ext = { zen = "Z", galar = "G", ["galar zen"] = "GZ" }
+t.tornadus.ext = { totem = "T" }
+t.kyurem.ext = { nero = "N", bianco = "B" }
+t.meloetta.ext = { danza = "D" }
+t.greninja.ext = { ash = "A" }
+t.meowstic.ext = { femmina = "F" }
+t.aegislash.ext = { spada = "S" }
+t.pumpkaboo.ext = { mini = "S", grande = "L", maxi = "XL" }
+t.zygarde.ext = { dieci = "D", perfetto = "P" }
+t.hoopa.ext = { libero = "L" }
+t.lycanroc.ext = { notte = "N", crepuscolo = "C", giorno = "base" }
+t.oricorio.ext = { cheerdance = "C", hula = "H", buyo = "B", flamenco = "base" }
+t.wishiwashi.ext = { banco = "B", individuale = "base" }
 t.silvally.ext = mw.clone(t.arceus.ext)
 t.silvally.ext.sconosciuto = nil
-t.minior.ext = {nucleo = 'R', meteora = 'base'}
-t.necrozma.ext = {vespro = 'V', aurora = 'A', ultra = 'U', necrozma = 'base'}
-t.toxtricity.ext = {basso = 'B', gigamax = 'Gi', melodia = 'base'}
-t.alcremie.ext = {lattevaniglia = 'base'}
-t.eiscue.ext = {liquefaccia = 'L', gelofaccia = 'base'}
+t.minior.ext = { nucleo = "R", meteora = "base" }
+t.necrozma.ext = { vespro = "V", aurora = "A", ultra = "U", necrozma = "base" }
+t.toxtricity.ext = { basso = "B", gigamax = "Gi", melodia = "base" }
+t.alcremie.ext = { lattevaniglia = "base" }
+t.eiscue.ext = { liquefaccia = "L", gelofaccia = "base" }
 t.indeedee.ext = t.meowstic.ext
-t.morpeko.ext = {panciavuota = 'V', panciapiena = 'base'}
-t.zacian.ext = {eroe = 'base', re = 'R'}
+t.morpeko.ext = { panciavuota = "V", panciapiena = "base" }
+t.zacian.ext = { eroe = "base", re = "R" }
 t.zamazenta.ext = t.zacian.ext
-t.eternatus.ext = {dynamax = 'D'}
-t.urshifu.ext = {pluricolpo = 'P', gigamax = "Gi", singolcolpo = 'base'}
-t.calyrex.ext = {spettrale = 'S', glaciale = 'G'}
-t.basculegion.ext = {femmina = 'F'}
-t.enamorus.ext = {totem = 'T'}
-t.gimmighoul.ext = {ambulante = 'A'}
+t.eternatus.ext = { dynamax = "D" }
+t.urshifu.ext = { pluricolpo = "P", gigamax = "Gi", singolcolpo = "base" }
+t.calyrex.ext = { spettrale = "S", glaciale = "G" }
+t.basculegion.ext = { femmina = "F" }
+t.enamorus.ext = { totem = "T" }
+t.gimmighoul.ext = { ambulante = "A" }
 for _, v in pairs(t.mega) do
-	t[v].ext = t[v].ext or {}
-	t[v].ext.mega = 'M'
+    t[v].ext = t[v].ext or {}
+    t[v].ext.mega = "M"
 end
 for _, v in pairs(t.megaxy) do
-	t[v].ext = t[v].ext or {}
-	t[v].ext.megax = 'MX'
-	t[v].ext.megay = 'MY'
+    t[v].ext = t[v].ext or {}
+    t[v].ext.megax = "MX"
+    t[v].ext.megay = "MY"
 end
 for _, v in pairs(t.archeo) do
-	t[v].ext = t[v].ext or {}
-	t[v].ext.archeo = 'A'
+    t[v].ext = t[v].ext or {}
+    t[v].ext.archeo = "A"
 end
 for _, v in pairs(t.alola) do
-	t[v].ext = t[v].ext or {}
-	t[v].ext.alola = 'A'
+    t[v].ext = t[v].ext or {}
+    t[v].ext.alola = "A"
 end
 for _, v in pairs(t.galar) do
-	t[v].ext = t[v].ext or {}
-	t[v].ext.galar = 'G'
+    t[v].ext = t[v].ext or {}
+    t[v].ext.galar = "G"
 end
 for _, v in pairs(t.gigamax) do
-	t[v].ext = t[v].ext or {}
-	t[v].ext.gigamax = "Gi"
+    t[v].ext = t[v].ext or {}
+    t[v].ext.gigamax = "Gi"
 end
 for _, v in pairs(t.hisui) do
-	t[v].ext = t[v].ext or {}
-	t[v].ext.hisui = 'H'
+    t[v].ext = t[v].ext or {}
+    t[v].ext.hisui = "H"
 end
 for _, v in pairs(t.paldea) do
-	t[v].ext = t[v].ext or {}
-	t[v].ext.paldea = 'P'
+    t[v].ext = t[v].ext or {}
+    t[v].ext.paldea = "P"
 end
 
 --[[
@@ -442,78 +475,79 @@ game.
 
 --]]
 
-t.venusaur.gamesOrder = {'base', 'M', 'Gi'}
-t.charizard.gamesOrder = {'base', 'MX', 'MY', 'Gi'}
-t.blastoise.gamesOrder = {'base', 'M', 'Gi'}
-t.pikachu.gamesOrder = {'base', 'Cs', 'R', 'D', 'Cn', 'S', 'W', 'Cm', 'Gi'}
-t.meowth.gamesOrder = {'base', 'A', 'G', 'Gi'}
-t.gengar.gamesOrder = {'base', 'M', 'Gi'}
-t.slowbro.gamesOrder = {'base', 'M', 'G'}
-t.eevee.gamesOrder = {'base', 'Cm', 'Gi'}
-t.castform.gamesOrder = {'base', 'S', 'P', 'N'}
-t.deoxys.gamesOrder = {'base', 'A', 'D', 'V'}
-t.wormadam.gamesOrder = {'base', 'Sa', 'Sc'}
-t.cherrim.gamesOrder = {'base', 'S'}
-t.rotom.gamesOrder = {'base', 'C', 'L', 'G', 'V', 'T'}
-t.dialga.gamesOrder = {'base', 'O'}
-t.palkia.gamesOrder = {'base', 'O'}
-t.giratina.gamesOrder = {'base', 'O'}
-t.shaymin.gamesOrder = {'base', 'C'}
+t.venusaur.gamesOrder = { "base", "M", "Gi" }
+t.charizard.gamesOrder = { "base", "MX", "MY", "Gi" }
+t.blastoise.gamesOrder = { "base", "M", "Gi" }
+t.pikachu.gamesOrder = { "base", "Cs", "R", "D", "Cn", "S", "W", "Cm", "Gi" }
+t.meowth.gamesOrder = { "base", "A", "G", "Gi" }
+t.gengar.gamesOrder = { "base", "M", "Gi" }
+t.slowbro.gamesOrder = { "base", "M", "G" }
+t.eevee.gamesOrder = { "base", "Cm", "Gi" }
+t.castform.gamesOrder = { "base", "S", "P", "N" }
+t.deoxys.gamesOrder = { "base", "A", "D", "V" }
+t.wormadam.gamesOrder = { "base", "Sa", "Sc" }
+t.cherrim.gamesOrder = { "base", "S" }
+t.rotom.gamesOrder = { "base", "C", "L", "G", "V", "T" }
+t.dialga.gamesOrder = { "base", "O" }
+t.palkia.gamesOrder = { "base", "O" }
+t.giratina.gamesOrder = { "base", "O" }
+t.shaymin.gamesOrder = { "base", "C" }
+-- stylua: ignore
 t.arceus.gamesOrder = {'base', 'L', 'Vo', 'Ve', 'T', 'R', 'C', 'S', 'Ai', 'Fu',
 	'Aq', 'Er', 'El', 'P', 'G', 'D', 'B', 'Fo', 'Sc'}
-t.basculin.gamesOrder = {'base', 'B', 'Bi'}
-t.darmanitan.gamesOrder = {'base', 'Z', 'G', 'GZ'}
-t.tornadus.gamesOrder = {'base', 'T'}
-t.kyurem.gamesOrder = {'base', 'B', 'N'}
-t.meloetta.gamesOrder = {'base', 'D'}
-t.greninja.gamesOrder = {'base', 'A'}
-t.meowstic.gamesOrder = {'base', 'F'}
-t.aegislash.gamesOrder = {'base', 'S'}
-t.pumpkaboo.gamesOrder = {'base', 'S', 'L', 'XL'}
-t.zygarde.gamesOrder = {'D', 'base', 'P'}
-t.hoopa.gamesOrder = {'base', 'L'}
-t.lycanroc.gamesOrder = {'base', 'N', 'C'}
-t.oricorio.gamesOrder = {'base', 'C', 'H', 'B'}
-t.wishiwashi.gamesOrder = {'base', 'B'}
+t.basculin.gamesOrder = { "base", "B", "Bi" }
+t.darmanitan.gamesOrder = { "base", "Z", "G", "GZ" }
+t.tornadus.gamesOrder = { "base", "T" }
+t.kyurem.gamesOrder = { "base", "B", "N" }
+t.meloetta.gamesOrder = { "base", "D" }
+t.greninja.gamesOrder = { "base", "A" }
+t.meowstic.gamesOrder = { "base", "F" }
+t.aegislash.gamesOrder = { "base", "S" }
+t.pumpkaboo.gamesOrder = { "base", "S", "L", "XL" }
+t.zygarde.gamesOrder = { "D", "base", "P" }
+t.hoopa.gamesOrder = { "base", "L" }
+t.lycanroc.gamesOrder = { "base", "N", "C" }
+t.oricorio.gamesOrder = { "base", "C", "H", "B" }
+t.wishiwashi.gamesOrder = { "base", "B" }
 t.silvally.gamesOrder = mw.clone(t.arceus.gamesOrder)
 table.remove(t.silvally.gamesOrder)
-t.minior.gamesOrder = {'base', 'R'}
-t.necrozma.gamesOrder = {'base', 'V', 'A', 'U'}
-t.toxtricity.gamesOrder = {'base', 'B', 'Gi'}
-t.eiscue.gamesOrder = {'base', 'L'}
+t.minior.gamesOrder = { "base", "R" }
+t.necrozma.gamesOrder = { "base", "V", "A", "U" }
+t.toxtricity.gamesOrder = { "base", "B", "Gi" }
+t.eiscue.gamesOrder = { "base", "L" }
 t.indeedee.gamesOrder = t.meowstic.gamesOrder
-t.morpeko.gamesOrder = {'base', 'V'}
-t.zacian.gamesOrder = {'base', 'R'}
+t.morpeko.gamesOrder = { "base", "V" }
+t.zacian.gamesOrder = { "base", "R" }
 t.zamazenta.gamesOrder = t.zacian.gamesOrder
-t.eternatus.gamesOrder = {'base', 'D'}
-t.urshifu.gamesOrder = {'base', 'Gi', 'P', 'PGi'}
-t.calyrex.gamesOrder = {'base', 'G', 'S'}
-t.basculegion.gamesOrder = {'base', 'F'}
-t.enamorus.gamesOrder = {'base', 'T'}
-t.gimmighoul.gamesOrder = {'base', 'A'}
+t.eternatus.gamesOrder = { "base", "D" }
+t.urshifu.gamesOrder = { "base", "Gi", "P", "PGi" }
+t.calyrex.gamesOrder = { "base", "G", "S" }
+t.basculegion.gamesOrder = { "base", "F" }
+t.enamorus.gamesOrder = { "base", "T" }
+t.gimmighoul.gamesOrder = { "base", "A" }
 for _, v in pairs(t.mega) do
-	t[v].gamesOrder = t[v].gamesOrder or {'base', 'M'}
+    t[v].gamesOrder = t[v].gamesOrder or { "base", "M" }
 end
 for _, v in pairs(t.megaxy) do
-	t[v].gamesOrder = t[v].gamesOrder or {'base', 'MX', 'MY'}
+    t[v].gamesOrder = t[v].gamesOrder or { "base", "MX", "MY" }
 end
 for _, v in pairs(t.archeo) do
-	t[v].gamesOrder = t[v].gamesOrder or {'base', 'A'}
+    t[v].gamesOrder = t[v].gamesOrder or { "base", "A" }
 end
 for _, v in pairs(t.alola) do
-	t[v].gamesOrder = t[v].gamesOrder or {'base', 'A'}
+    t[v].gamesOrder = t[v].gamesOrder or { "base", "A" }
 end
 for _, v in pairs(t.galar) do
-	t[v].gamesOrder = t[v].gamesOrder or {'base', 'G'}
+    t[v].gamesOrder = t[v].gamesOrder or { "base", "G" }
 end
 for _, v in pairs(t.gigamax) do
-	t[v].gamesOrder = t[v].gamesOrder or {"base", "Gi"}
+    t[v].gamesOrder = t[v].gamesOrder or { "base", "Gi" }
 end
 for _, v in pairs(t.hisui) do
-	t[v].gamesOrder = t[v].gamesOrder or {'base', 'H'}
+    t[v].gamesOrder = t[v].gamesOrder or { "base", "H" }
 end
 for _, v in pairs(t.paldea) do
-	t[v].gamesOrder = t[v].gamesOrder or {'base', 'P'}
+    t[v].gamesOrder = t[v].gamesOrder or { "base", "P" }
 end
 
 --[[
@@ -524,25 +558,25 @@ This array is guaranteed to be a sorted subset of gamesOrder (same sorting)
 --]]
 
 for _, v in pairs(t.mega) do
-	t[v].cries = {'M'}
+    t[v].cries = { "M" }
 end
 for _, v in pairs(t.megaxy) do
-	t[v].cries = {'MX', 'MY'}
+    t[v].cries = { "MX", "MY" }
 end
 for _, v in pairs(t.archeo) do
-	t[v].cries = {'A'}
+    t[v].cries = { "A" }
 end
-t.slowbro.cries = {'M'}
-t.shaymin.cries = {'C'}
-t.tornadus.cries = {'T'}
-t.kyurem.cries = {'B', 'N'}
-t.pumpkaboo.cries = {'XL'}
-t.zygarde.cries = {'D', 'P'}
-t.hoopa.cries = {'L'}
-t.oricorio.cries = {'C', 'H', 'B'}
-t.lycanroc.cries = {'N', 'C'}
-t.wishiwashi.cries = {'B'}
-t.necrozma.cries = {'V', 'A', 'U'}
+t.slowbro.cries = { "M" }
+t.shaymin.cries = { "C" }
+t.tornadus.cries = { "T" }
+t.kyurem.cries = { "B", "N" }
+t.pumpkaboo.cries = { "XL" }
+t.zygarde.cries = { "D", "P" }
+t.hoopa.cries = { "L" }
+t.oricorio.cries = { "C", "H", "B" }
+t.lycanroc.cries = { "N", "C" }
+t.wishiwashi.cries = { "B" }
+t.necrozma.cries = { "V", "A", "U" }
 
 --[[
 
@@ -550,162 +584,166 @@ Oldest game in which each form, included base form, appears.
 
 --]]
 
-t.rattata.since = {A = 'sl', base = 'rb'}
+t.rattata.since = { A = "sl", base = "rb" }
+-- stylua: ignore
 t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
 	Cn = 'roza', S = 'roza', W = 'roza', Cm = 'lgpe',
 	Gi = 'spsc', base = 'rb'}
-t.raichu.since = {A = 'sl', base = 'rb'}
-t.sandshrew.since = {A = 'sl', base = 'rb'}
-t.vulpix.since = {A = 'sl', base = 'rb'}
-t.diglett.since = {A = 'sl', base = 'rb'}
-t.meowth.since = {A = 'sl', G = 'spsc', Gi = 'spsc', base = 'rb'}
-t.persian.since = {A = 'sl', base = 'rb'}
-t.growlithe.since = {H = 'lpa', base = 'rb'}
-t.geodude.since = {A = 'sl', base = 'rb'}
-t.ponyta.since = {G = 'spsc', base = 'rb'}
-t.slowpoke.since = {G = 'spsc', base = 'rb'}
-t.slowbro.since = {M = 'roza', G = 'spsc', base = 'rb'}
-t["farfetch'd"].since = {G = 'spsc', base = 'rb'}
-t.grimer.since = {A = 'sl', base = 'rb'}
-t.voltorb.since = {H = 'lpa', base = 'rb'}
-t.exeggutor.since = {A = 'sl', base = 'rb'}
-t.marowak.since = {A = 'sl', base = 'rb'}
-t.weezing.since = {G = 'spsc', base = 'rb'}
-t['mr. mime'].since = {G = 'spsc', base = 'rb'}
-t.eevee.since = {Cm = 'lgpe', Gi = 'spsc', base = 'rb'}
-t.articuno.since = {G = 'spsc', base = 'rb'}
-t.zapdos.since = {G = 'spsc', base = 'rb'}
-t.moltres.since = {G = 'spsc', base = 'rb'}
-t.wooper.since = {P = 'sv', base = 'oa'}
-t.slowking.since = {G = 'spsc', base = 'oa'}
-t.typhlosion.since = {H = 'lpa', base = 'oa'}
-t.qwilfish.since = {H = 'lpa', base = 'oa'}
-t.sneasel.since = {H = 'lpa', base = 'oa'}
-t.corsola.since = {G = 'spsc', base = 'oa'}
-t.zigzagoon.since = {G = 'spsc', base = 'rz'}
-t.castform.since = {S = 'rz', P = 'rz', N = 'rz', base = 'rz'}
-t.deoxys.since = {A = 'rfvf', D = 'rfvf', V = 's', base = 'rz'}
-t.wormadam.since = {Sa = 'dp', Sc = 'dp', base = 'dp'}
-t.cherrim.since = {S = 'dp', base = 'dp'}
-t.rotom.since = {C = 'pt', L = 'pt', G = 'pt', V = 'pt', T = 'pt', base = 'dp'}
-t.dialga.since = {O = 'lpa', base = 'dp'}
-t.palkia.since = {O = 'lpa', base = 'dp'}
-t.giratina.since = {O = 'pt', base = 'dp'}
-t.shaymin.since = {C = 'pt', base = 'dp'}
+t.raichu.since = { A = "sl", base = "rb" }
+t.sandshrew.since = { A = "sl", base = "rb" }
+t.vulpix.since = { A = "sl", base = "rb" }
+t.diglett.since = { A = "sl", base = "rb" }
+t.meowth.since = { A = "sl", G = "spsc", Gi = "spsc", base = "rb" }
+t.persian.since = { A = "sl", base = "rb" }
+t.growlithe.since = { H = "lpa", base = "rb" }
+t.geodude.since = { A = "sl", base = "rb" }
+t.ponyta.since = { G = "spsc", base = "rb" }
+t.slowpoke.since = { G = "spsc", base = "rb" }
+t.slowbro.since = { M = "roza", G = "spsc", base = "rb" }
+t["farfetch'd"].since = { G = "spsc", base = "rb" }
+t.grimer.since = { A = "sl", base = "rb" }
+t.voltorb.since = { H = "lpa", base = "rb" }
+t.exeggutor.since = { A = "sl", base = "rb" }
+t.marowak.since = { A = "sl", base = "rb" }
+t.weezing.since = { G = "spsc", base = "rb" }
+t["mr. mime"].since = { G = "spsc", base = "rb" }
+t.eevee.since = { Cm = "lgpe", Gi = "spsc", base = "rb" }
+t.articuno.since = { G = "spsc", base = "rb" }
+t.zapdos.since = { G = "spsc", base = "rb" }
+t.moltres.since = { G = "spsc", base = "rb" }
+t.wooper.since = { P = "sv", base = "oa" }
+t.slowking.since = { G = "spsc", base = "oa" }
+t.typhlosion.since = { H = "lpa", base = "oa" }
+t.qwilfish.since = { H = "lpa", base = "oa" }
+t.sneasel.since = { H = "lpa", base = "oa" }
+t.corsola.since = { G = "spsc", base = "oa" }
+t.zigzagoon.since = { G = "spsc", base = "rz" }
+t.castform.since = { S = "rz", P = "rz", N = "rz", base = "rz" }
+t.deoxys.since = { A = "rfvf", D = "rfvf", V = "s", base = "rz" }
+t.wormadam.since = { Sa = "dp", Sc = "dp", base = "dp" }
+t.cherrim.since = { S = "dp", base = "dp" }
+t.rotom.since =
+    { C = "pt", L = "pt", G = "pt", V = "pt", T = "pt", base = "dp" }
+t.dialga.since = { O = "lpa", base = "dp" }
+t.palkia.since = { O = "lpa", base = "dp" }
+t.giratina.since = { O = "pt", base = "dp" }
+t.shaymin.since = { C = "pt", base = "dp" }
+-- stylua: ignore
 t.arceus.since = {base = 'dp', L = 'dp', Vo = 'dp', Ve = 'dp', T = 'dp',
 	R = 'dp', Aq = 'dp', C = 'dp', Er = 'dp', P = 'dp', B = 'dp', S = 'dp',
 	Ai = 'dp', Fu = 'dp', D = 'dp', Fo = 'xy', El = 'dp', G = 'dp', Sc = 'dp'}
-t.samurott.since = {H = 'lpa', base = 'nb'}
-t.lilligant.since = {H = 'lpa', base = 'nb'}
-t.basculin.since = {B = 'nb', Bi = 'lpa', base = 'nb'}
-t.darumaka.since = {G = 'spsc', base = 'nb'}
-t.darmanitan.since = {Z = 'nb', G = 'spsc', GZ = 'spsc', base = 'nb'}
-t.yamask.since = {G = 'spsc', base = 'rz'}
-t.zorua.since = {H = 'lpa', base = 'nb'}
-t.stunfisk.since = {G = 'spsc', base = 'nb'}
-t.braviary.since = {H = 'lpa', base = 'nb'}
-t.tornadus.since = {T = 'n2b2', base = 'nb'}
-t.kyurem.since = {N = 'n2b2', B = 'n2b2', base = 'nb'}
-t.meloetta.since = {D = 'nb', base = 'nb'}
-t.greninja.since = {A = 'sl', base = 'xy'}
-t.meowstic.since = {F = 'xy', base = 'xy'}
-t.aegislash.since = {S = 'xy', base = 'xy'}
-t.sliggoo.since = {H = 'lpa', base = 'xy'}
-t.pumpkaboo.since = {S = 'xy', L = 'xy', XL = 'xy', base = 'xy'}
-t.avalugg.since = {H = 'lpa', base = 'xy'}
-t.zygarde.since = {D = 'sl', P = 'sl', base = 'xy'}
-t.hoopa.since = {L = 'roza', base = 'xy'}
-t.decidueye.since = {H = 'lpa', base = 'sl'}
-t.lycanroc.since = {N = 'sl', base = 'sl', C = 'usul'}
-t.oricorio.since = {C = 'sl', H = 'sl', B = 'sl', base = 'sl'}
-t.wishiwashi.since = {B = 'sl', base = 'sl'}
+t.samurott.since = { H = "lpa", base = "nb" }
+t.lilligant.since = { H = "lpa", base = "nb" }
+t.basculin.since = { B = "nb", Bi = "lpa", base = "nb" }
+t.darumaka.since = { G = "spsc", base = "nb" }
+t.darmanitan.since = { Z = "nb", G = "spsc", GZ = "spsc", base = "nb" }
+t.yamask.since = { G = "spsc", base = "rz" }
+t.zorua.since = { H = "lpa", base = "nb" }
+t.stunfisk.since = { G = "spsc", base = "nb" }
+t.braviary.since = { H = "lpa", base = "nb" }
+t.tornadus.since = { T = "n2b2", base = "nb" }
+t.kyurem.since = { N = "n2b2", B = "n2b2", base = "nb" }
+t.meloetta.since = { D = "nb", base = "nb" }
+t.greninja.since = { A = "sl", base = "xy" }
+t.meowstic.since = { F = "xy", base = "xy" }
+t.aegislash.since = { S = "xy", base = "xy" }
+t.sliggoo.since = { H = "lpa", base = "xy" }
+t.pumpkaboo.since = { S = "xy", L = "xy", XL = "xy", base = "xy" }
+t.avalugg.since = { H = "lpa", base = "xy" }
+t.zygarde.since = { D = "sl", P = "sl", base = "xy" }
+t.hoopa.since = { L = "roza", base = "xy" }
+t.decidueye.since = { H = "lpa", base = "sl" }
+t.lycanroc.since = { N = "sl", base = "sl", C = "usul" }
+t.oricorio.since = { C = "sl", H = "sl", B = "sl", base = "sl" }
+t.wishiwashi.since = { B = "sl", base = "sl" }
+-- stylua: ignore
 t.silvally.since = {base = 'sl', L = 'sl', Vo = 'sl', Ve = 'sl', T = 'sl',
 	R = 'sl', Aq = 'sl', C = 'sl', Er = 'sl', P = 'sl', B = 'sl', S = 'sl',
 	Ai = 'sl', Fu = 'sl', D = 'sl', Fo = 'sl', El = 'sl', G = 'sl'}
-t.minior.since = {base = 'sl', R = 'sl'}
-t.necrozma.since = {base = 'sl', V = 'usul', A = 'usul', U = 'usul'}
-t.toxtricity.since = {B = 'spsc', Gi = 'spsc', base = 'spsc'}
-t.eiscue.since = {L = 'spsc', base = 'spsc'}
-t.indeedee.since = {F = 'spsc', base = 'spsc'}
-t.morpeko.since = {base = 'spsc', V = 'spsc'}
-t.zacian.since = {R = 'spsc', base = 'spsc'}
-t.zamazenta.since = {R = 'spsc', base = 'spsc'}
-t.eternatus.since = {D = 'spsc', base = 'spsc'}
-t.urshifu.since = {P = 'spsc', Gi = 'spsc', PGi = 'spsc', base = 'spsc'}
-t.calyrex.since = {G = 'spsc', S = 'spsc', base = 'spsc'}
-t.basculegion.since = {F = 'lpa', base = 'lpa'}
-t.enamorus.since = {T = 'lpa', base = 'lpa'}
-t.gimmighoul.since = {T = 'sv', base = 'sv'}
-t.venusaur.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
-t.blastoise.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
-t.beedrill.since = {M = 'roza', base = 'rb'}
-t.pidgeot.since = {M = 'roza', base = 'rb'}
-t.alakazam.since = {M = 'xy', base = 'rb'}
-t.gengar.since = {M = 'xy', Gi = 'spsc', base = 'rb'}
-t.kangaskhan.since = {M = 'xy', base = 'rb'}
-t.pinsir.since = {M = 'xy', base = 'rb'}
-t.gyarados.since = {M = 'xy', base = 'rb'}
-t.aerodactyl.since = {M = 'xy', base = 'rb'}
-t.ampharos.since = {M = 'xy', base = 'oa'}
-t.steelix.since = {M = 'roza', base = 'oa'}
-t.scizor.since = {M = 'xy', base = 'oa'}
-t.heracross.since = {M = 'xy', base = 'oa'}
-t.houndoom.since = {M = 'xy', base = 'oa'}
-t.tyranitar.since = {M = 'xy', base = 'oa'}
-t.sceptile.since = {M = 'roza', base = 'rz'}
-t.blaziken.since = {M = 'xy', base = 'rz'}
-t.swampert.since = {M = 'roza', base = 'rz'}
-t.gardevoir.since = {M = 'xy', base = 'rz'}
-t.sableye.since = {M = 'roza', base = 'rz'}
-t.mawile.since = {M = 'xy', base = 'rz'}
-t.aggron.since = {M = 'xy', base = 'rz'}
-t.medicham.since = {M = 'xy', base = 'rz'}
-t.manectric.since = {M = 'xy', base = 'rz'}
-t.banette.since = {M = 'xy', base = 'rz'}
-t.sharpedo.since = {M = 'roza', base = 'rz'}
-t.camerupt.since = {M = 'roza', base = 'rz'}
-t.altaria.since = {M = 'roza', base = 'rz'}
-t.absol.since = {M = 'xy', base = 'rz'}
-t.glalie.since = {M = 'roza', base = 'rz'}
-t.salamence.since = {M = 'roza', base = 'rz'}
-t.metagross.since = {M = 'roza', base = 'rz'}
-t.latias.since = {M = 'roza', base = 'rz'}
-t.latios.since = {M = 'roza', base = 'rz'}
-t.rayquaza.since = {M = 'roza', base = 'rz'}
-t.lopunny.since = {M = 'roza', base = 'dp'}
-t.garchomp.since = {M = 'xy', base = 'dp'}
-t.lucario.since = {M = 'xy', base = 'dp'}
-t.abomasnow.since = {M = 'xy', base = 'dp'}
-t.gallade.since = {M = 'roza', base = 'dp'}
-t.audino.since = {M = 'roza', base = 'nb'}
-t.diancie.since = {M = 'roza', base = 'xy'}
-t.charizard.since = {MX = 'xy', MY = 'xy', Gi = 'spsc', base = 'rb'}
-t.mewtwo.since = {MX = 'xy', MY = 'xy', base = 'rb'}
-t.groudon.since = {A = 'roza', base = 'rz'}
-t.kyogre.since = {A = 'roza', base = 'rz'}
-t.butterfree.since = {base = 'rb', Gi = 'spsc'}
-t.machamp.since = {base = 'rb', Gi = 'spsc'}
-t.kingler.since = {base = 'rb', Gi = 'spsc'}
-t.lapras.since = {base = 'rb', Gi = 'spsc'}
-t.snorlax.since = {base = 'rb', Gi = 'spsc'}
-t.garbodor.since = {base = 'nb', Gi = 'spsc'}
-t.melmetal.since = {base = 'lgpe', Gi = 'spsc'}
-t.rillaboom.since = {base = 'spsc', Gi = 'spsc'}
-t.cinderace.since = {base = 'spsc', Gi = 'spsc'}
-t.inteleon.since = {base = 'spsc', Gi = 'spsc'}
-t.corviknight.since = {base = 'spsc', Gi = 'spsc'}
-t.orbeetle.since = {base = 'spsc', Gi = 'spsc'}
-t.drednaw.since = {base = 'spsc', Gi = 'spsc'}
-t.coalossal.since = {base = 'spsc', Gi = 'spsc'}
-t.flapple.since = {base = 'spsc', Gi = 'spsc'}
-t.appletun.since = {base = 'spsc', Gi = 'spsc'}
-t.sandaconda.since = {base = 'spsc', Gi = 'spsc'}
-t.centiskorch.since = {base = 'spsc', Gi = 'spsc'}
-t.hatterene.since = {base = 'spsc', Gi = 'spsc'}
-t.grimmsnarl.since = {base = 'spsc', Gi = 'spsc'}
-t.alcremie.since = {base = 'spsc', Gi = 'spsc'}
-t.copperajah.since = {base = 'spsc', Gi = 'spsc'}
-t.duraludon.since = {base = 'spsc', Gi = 'spsc'}
+t.minior.since = { base = "sl", R = "sl" }
+t.necrozma.since = { base = "sl", V = "usul", A = "usul", U = "usul" }
+t.toxtricity.since = { B = "spsc", Gi = "spsc", base = "spsc" }
+t.eiscue.since = { L = "spsc", base = "spsc" }
+t.indeedee.since = { F = "spsc", base = "spsc" }
+t.morpeko.since = { base = "spsc", V = "spsc" }
+t.zacian.since = { R = "spsc", base = "spsc" }
+t.zamazenta.since = { R = "spsc", base = "spsc" }
+t.eternatus.since = { D = "spsc", base = "spsc" }
+t.urshifu.since = { P = "spsc", Gi = "spsc", PGi = "spsc", base = "spsc" }
+t.calyrex.since = { G = "spsc", S = "spsc", base = "spsc" }
+t.basculegion.since = { F = "lpa", base = "lpa" }
+t.enamorus.since = { T = "lpa", base = "lpa" }
+t.gimmighoul.since = { T = "sv", base = "sv" }
+t.venusaur.since = { M = "xy", Gi = "spsc", base = "rb" }
+t.blastoise.since = { M = "xy", Gi = "spsc", base = "rb" }
+t.beedrill.since = { M = "roza", base = "rb" }
+t.pidgeot.since = { M = "roza", base = "rb" }
+t.alakazam.since = { M = "xy", base = "rb" }
+t.gengar.since = { M = "xy", Gi = "spsc", base = "rb" }
+t.kangaskhan.since = { M = "xy", base = "rb" }
+t.pinsir.since = { M = "xy", base = "rb" }
+t.gyarados.since = { M = "xy", base = "rb" }
+t.aerodactyl.since = { M = "xy", base = "rb" }
+t.ampharos.since = { M = "xy", base = "oa" }
+t.steelix.since = { M = "roza", base = "oa" }
+t.scizor.since = { M = "xy", base = "oa" }
+t.heracross.since = { M = "xy", base = "oa" }
+t.houndoom.since = { M = "xy", base = "oa" }
+t.tyranitar.since = { M = "xy", base = "oa" }
+t.sceptile.since = { M = "roza", base = "rz" }
+t.blaziken.since = { M = "xy", base = "rz" }
+t.swampert.since = { M = "roza", base = "rz" }
+t.gardevoir.since = { M = "xy", base = "rz" }
+t.sableye.since = { M = "roza", base = "rz" }
+t.mawile.since = { M = "xy", base = "rz" }
+t.aggron.since = { M = "xy", base = "rz" }
+t.medicham.since = { M = "xy", base = "rz" }
+t.manectric.since = { M = "xy", base = "rz" }
+t.banette.since = { M = "xy", base = "rz" }
+t.sharpedo.since = { M = "roza", base = "rz" }
+t.camerupt.since = { M = "roza", base = "rz" }
+t.altaria.since = { M = "roza", base = "rz" }
+t.absol.since = { M = "xy", base = "rz" }
+t.glalie.since = { M = "roza", base = "rz" }
+t.salamence.since = { M = "roza", base = "rz" }
+t.metagross.since = { M = "roza", base = "rz" }
+t.latias.since = { M = "roza", base = "rz" }
+t.latios.since = { M = "roza", base = "rz" }
+t.rayquaza.since = { M = "roza", base = "rz" }
+t.lopunny.since = { M = "roza", base = "dp" }
+t.garchomp.since = { M = "xy", base = "dp" }
+t.lucario.since = { M = "xy", base = "dp" }
+t.abomasnow.since = { M = "xy", base = "dp" }
+t.gallade.since = { M = "roza", base = "dp" }
+t.audino.since = { M = "roza", base = "nb" }
+t.diancie.since = { M = "roza", base = "xy" }
+t.charizard.since = { MX = "xy", MY = "xy", Gi = "spsc", base = "rb" }
+t.mewtwo.since = { MX = "xy", MY = "xy", base = "rb" }
+t.groudon.since = { A = "roza", base = "rz" }
+t.kyogre.since = { A = "roza", base = "rz" }
+t.butterfree.since = { base = "rb", Gi = "spsc" }
+t.machamp.since = { base = "rb", Gi = "spsc" }
+t.kingler.since = { base = "rb", Gi = "spsc" }
+t.lapras.since = { base = "rb", Gi = "spsc" }
+t.snorlax.since = { base = "rb", Gi = "spsc" }
+t.garbodor.since = { base = "nb", Gi = "spsc" }
+t.melmetal.since = { base = "lgpe", Gi = "spsc" }
+t.rillaboom.since = { base = "spsc", Gi = "spsc" }
+t.cinderace.since = { base = "spsc", Gi = "spsc" }
+t.inteleon.since = { base = "spsc", Gi = "spsc" }
+t.corviknight.since = { base = "spsc", Gi = "spsc" }
+t.orbeetle.since = { base = "spsc", Gi = "spsc" }
+t.drednaw.since = { base = "spsc", Gi = "spsc" }
+t.coalossal.since = { base = "spsc", Gi = "spsc" }
+t.flapple.since = { base = "spsc", Gi = "spsc" }
+t.appletun.since = { base = "spsc", Gi = "spsc" }
+t.sandaconda.since = { base = "spsc", Gi = "spsc" }
+t.centiskorch.since = { base = "spsc", Gi = "spsc" }
+t.hatterene.since = { base = "spsc", Gi = "spsc" }
+t.grimmsnarl.since = { base = "spsc", Gi = "spsc" }
+t.alcremie.since = { base = "spsc", Gi = "spsc" }
+t.copperajah.since = { base = "spsc", Gi = "spsc" }
+t.duraludon.since = { base = "spsc", Gi = "spsc" }
 
 --[[
 
@@ -715,10 +753,11 @@ not present defaults to latest games.
 
 --]]
 
-t.pikachu['until'] = {Cs = 'roza', R = 'roza', D = 'roza',
-	Cn = 'roza', S = 'roza', W = 'roza', Cm = 'lgpe'}
-t.eevee['until'] = {Cm = 'lgpe'}
-t.arceus['until'] = {Sc = 'hgss'}
+-- stylua: ignore
+t.pikachu["until"] = { Cs = "roza", R = "roza", D = "roza", Cn = "roza",
+	S = "roza", W = "roza", Cm = "lgpe" }
+t.eevee["until"] = { Cm = "lgpe" }
+t.arceus["until"] = { Sc = "hgss" }
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 -- Tables are copied since links should be changed
@@ -741,26 +780,26 @@ t.gourgeist = table.copy(t.pumpkaboo)
 -- Adding missing Pokémon to set with a certain kind of forms. Added here
 -- to avoid useless repetitions of cycles
 -- Otehr Alola forms
-table.insert(t.alola, 'raticate')
-table.insert(t.alola, 'sandslash')
-table.insert(t.alola, 'ninetales')
-table.insert(t.alola, 'dugtrio')
-table.insert(t.alola, 'meowth')
-table.insert(t.alola, 'graveler')
-table.insert(t.alola, 'golem')
-table.insert(t.alola, 'muk')
+table.insert(t.alola, "raticate")
+table.insert(t.alola, "sandslash")
+table.insert(t.alola, "ninetales")
+table.insert(t.alola, "dugtrio")
+table.insert(t.alola, "meowth")
+table.insert(t.alola, "graveler")
+table.insert(t.alola, "golem")
+table.insert(t.alola, "muk")
 -- Other Galar forms
-table.insert(t.galar, 'rapidash')
-table.insert(t.galar, 'linoone')
+table.insert(t.galar, "rapidash")
+table.insert(t.galar, "linoone")
 -- Other Hisuian forms
-table.insert(t.hisui, 'arcanine')
-table.insert(t.hisui, 'electrode')
-table.insert(t.hisui, 'zoroark')
-table.insert(t.hisui, 'goodra')
+table.insert(t.hisui, "arcanine")
+table.insert(t.hisui, "electrode")
+table.insert(t.hisui, "zoroark")
+table.insert(t.hisui, "goodra")
 -- Other Gigamax forms
-table.insert(t.gigamax, 'pikachu')
-table.insert(t.gigamax, 'toxtricity')
-table.insert(t.gigamax, 'urshifu')
+table.insert(t.gigamax, "pikachu")
+table.insert(t.gigamax, "toxtricity")
+table.insert(t.gigamax, "urshifu")
 
 -- Link creation should be done AFTER copying Pokémon with same forms, in order
 -- to use the right name for the link
@@ -795,7 +834,7 @@ t[101] = t.electrode
 t[103] = t.exeggutor
 t[105] = t.marowak
 t[110] = t.weezing
-t[122] = t['mr. mime']
+t[122] = t["mr. mime"]
 t[133] = t.eevee
 t[144] = t.articuno
 t[145] = t.zapdos

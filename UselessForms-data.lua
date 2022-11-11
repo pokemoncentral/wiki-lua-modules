@@ -5,8 +5,11 @@
 -- alternative sono puramente estetiche
 
 local t = {}
-local txt = require('Wikilib-strings') -- luacheck: no unused
-local tab = require('Wikilib-tables') -- luacheck: no unused
+
+-- stylua: ignore start
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
+-- stylua: ignore end
 
 -- TODO: refactor link creations, shamelessly copied from AltForms-data
 --[[
@@ -30,35 +33,35 @@ Arguments:
 
 --]]
 local function makeSingleLink(context, formName, poke, general)
-	if formName == "" then
-		return ""
-	end
+    if formName == "" then
+        return ""
+    end
 
-	local target
-	if general then
-		target = table.concat{general, "#", t[poke].anchor or string.fu(poke)}
-	else
-		target = table.concat{string.fu(poke), "/Forme"}
-	end
-	return string.interp(context, {
-		link = table.concat{"[[", target, "|", formName, "]]"}
-	})
+    local target
+    if general then
+        target = table.concat({ general, "#", t[poke].anchor or txt.fu(poke) })
+    else
+        target = table.concat({ txt.fu(poke), "/Forme" })
+    end
+    return txt.interp(context, {
+        link = table.concat({ "[[", target, "|", formName, "]]" }),
+    })
 end
 
 -- Create all links for alternative forms (black, blue and plain)
 local function makeLinks()
-	local contexts = {
-		links = '<div class="small-text">${link}</div>',
-		blacklinks = '<div class="small-text black-text">${link}</div>',
-		plainlinks = '${link}',
-	}
-	for index, context in pairs(contexts) do
-		for name, poke in pairs(t) do
-			poke[index] = table.map(poke.names, function(formName)
-				return makeSingleLink(context, formName, name)
-			end)
-		end
-	end
+    local contexts = {
+        links = '<div class="small-text">${link}</div>',
+        blacklinks = '<div class="small-text black-text">${link}</div>',
+        plainlinks = "${link}",
+    }
+    for index, context in pairs(contexts) do
+        for name, poke in pairs(t) do
+            poke[index] = tab.map(poke.names, function(formName)
+                return makeSingleLink(context, formName, name)
+            end)
+        end
+    end
 end
 
 --[[
@@ -98,6 +101,7 @@ Alternative forms names. Keys are the abbr.
 
 --]]
 
+-- stylua: ignore start
 t.pikachu.names = {O = 'Berretto Originale', H = 'Berretto Hoenn',
 	Si = 'Berretto Sinnoh', U = 'Berretto Unima',
 	K = 'Berretto Kalos', A = 'Berretto Alola',
@@ -143,36 +147,41 @@ t.minior.names = {R = 'Nucleo Rosso', Ar = 'Nucleo Arancione',
 	I = 'Nucleo Indaco', Vi = 'Nucleo Violetto', base = 'Forma Meteora'}
 t.cramorant.names = {T = "Forma Inghiottitutto", I = "Forma Inghiottintero", base = ""}
 t.sinistea.names = {base = "Forma Contraffatta", A = "Forma Autentica"}
+-- stylua: ignore end
 -- Alcremie is quite molesto in **** (censored for the sake of poor childen who browse our site)
 do
+	-- stylua: ignore
 	local flavours = {Lv = "Lattevaniglia", R = "Latterosa", Ma = "Lattematcha",
 		Me = "Lattementa", L = "Lattelimone", S = "Lattesale", Rm = "Rosamix",
 		Cm = "Caramelmix", Tm = "Triplomix"}
+	-- stylua: ignore
 	local decorations = {Fa = "Bonbonfragola", C = "Bonboncuore",
 		B = "Bonbonbosco", Fo = "Bonbonfoglio", Fe = "Bonbonfiore",
 		S = "Bonbonstella", Fc = "Bonbonfiocco"}
 
-	t.alcremie.names = {base = "Lattevaniglia Bonbonfragola"}
-	for flav, flavname in pairs(flavours) do
-		for dec, decname in pairs(decorations) do
-			t.alcremie.names[flav .. dec] = table.concat{flavname, " ", decname}
-		end
-	end
-	t.alcremie.names["LvFa"] = nil
+    t.alcremie.names = { base = "Lattevaniglia Bonbonfragola" }
+    for flav, flavname in pairs(flavours) do
+        for dec, decname in pairs(decorations) do
+            t.alcremie.names[flav .. dec] =
+                table.concat({ flavname, " ", decname })
+        end
+    end
+    t.alcremie.names["LvFa"] = nil
 end
-t.zarude.names = {P = 'Zarude Papà', base = ''}
+t.zarude.names = { P = "Zarude Papà", base = "" }
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
 
-t.shellos.anchor = 'Shellos e Gastrodon'
-t.burmy.anchor = 'Burmy e Wormadam'
-t.deerling.anchor = 'Deerling e Sawsbuck'
-t.floette.anchor = 'Flabébé, Floette e Florges'
-t.florges.anchor = 'Flabébé, Floette e Florges'
+t.shellos.anchor = "Shellos e Gastrodon"
+t.burmy.anchor = "Burmy e Wormadam"
+t.deerling.anchor = "Deerling e Sawsbuck"
+t.floette.anchor = "Flabébé, Floette e Florges"
+t.florges.anchor = "Flabébé, Floette e Florges"
 
 -- Table to map extended names to abbrs
 
+-- stylua: ignore start
 t.pikachu.ext = {originale = 'O', hoenn = 'H', sinnoh = 'Si',
 	unima = 'U', kalos = 'K', alola = 'A', compagni = 'Co', giramondo = 'G'}
 t.pichu.ext = {spunzorek = 'S'}
@@ -211,6 +220,7 @@ t.alcremie.ext = {lattevaniglia = 'base', latterosa = 'R', lattematcha = 'Ma',
 	lattementa = 'Me', lattelimone = 'L', lattesale = 'S', rosamix = 'Rm',
 	caramelmix = 'Cm', triplomix = 'Tm'}
 t.zarude.ext = {['papà'] = 'P'}
+-- stylua: ignore end
 
 --[[
 
@@ -219,6 +229,7 @@ game.
 
 --]]
 
+-- stylua: ignore start
 t.pikachu.gamesOrder = {'base', 'O', 'H', 'Si', 'U', 'K', 'A', 'Co', 'G'}
 t.pichu.gamesOrder = {'base', 'S'}
 t.unown.gamesOrder = {'base', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
@@ -245,6 +256,7 @@ t.cramorant.gamesOrder = {'base', 'T', 'I'}
 t.sinistea.gamesOrder = {'base', 'A'}
 -- Alcremie's gamesOrder is filled below, with since
 t.zarude.gamesOrder = {'base', 'P'}
+-- stylua: ignore end
 
 --[[
 
@@ -252,6 +264,7 @@ Oldest game in which each form, included base form, appears.
 
 --]]
 
+-- stylua: ignore start
 t.pikachu.since = {O = 'sl', H = 'sl', Si = 'sl', U = 'sl',
 	K = 'sl', A = 'sl', Co = 'usul', G = 'spsc', base = 'rb'}
 t.pichu.since = {S = 'hgss', base = 'oa'}
@@ -282,24 +295,25 @@ t.mimikyu.since = {base = 'sl', S = 'sl'}
 t.magearna.since = {base = 'sl', A = 'sl'}
 t.cramorant.since = {T = 'spsc', I = 'spsc', base = 'spsc'}
 t.sinistea.since = {base = 'spsc', A = 'spsc'}
+-- stylua: ignore end
 -- Alcremie is quite molesto in **** pt. 2
 do
-	local flavours = {'Lv', 'R', 'Ma', 'Me', 'L', 'S', 'Rm', 'Cm', 'Tm'}
-	local decorations = {"Fa", "C", "B", "Fo", "Fe", "S", "Fc"}
+    local flavours = { "Lv", "R", "Ma", "Me", "L", "S", "Rm", "Cm", "Tm" }
+    local decorations = { "Fa", "C", "B", "Fo", "Fe", "S", "Fc" }
 
-	t.alcremie.gamesOrder = {}
-	t.alcremie.since = {base = "spsc"}
-	for _, flav in ipairs(flavours) do
-		for _, dec in ipairs(decorations) do
-			local abbr = table.concat{flav, dec}
-			table.insert(t.alcremie.gamesOrder, abbr)
-			t.alcremie.since[abbr] = "spsc"
-		end
-	end
-	t.alcremie.gamesOrder[1] = "base"
-	t.alcremie.since["LvFa"] = nil
+    t.alcremie.gamesOrder = {}
+    t.alcremie.since = { base = "spsc" }
+    for _, flav in ipairs(flavours) do
+        for _, dec in ipairs(decorations) do
+            local abbr = table.concat({ flav, dec })
+            table.insert(t.alcremie.gamesOrder, abbr)
+            t.alcremie.since[abbr] = "spsc"
+        end
+    end
+    t.alcremie.gamesOrder[1] = "base"
+    t.alcremie.since["LvFa"] = nil
 end
-t.zarude.since = {base = 'spsc', P = 'spsc'}
+t.zarude.since = { base = "spsc", P = "spsc" }
 
 --[[
 
@@ -309,15 +323,15 @@ not present defaults to latest games.
 
 --]]
 
-t.pichu['until'] = {S = 'hgss'}
-t.floette['until'] = {E = 'xy'}
+t.pichu["until"] = { S = "hgss" }
+t.floette["until"] = { E = "xy" }
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
-t.gastrodon = table.copy(t.shellos)
-t.sawsbuck = table.copy(t.deerling)
-t.jellicent = table.copy(t.frillish)
-t['flabébé'] = table.copy(t.florges)
-t.polteageist = table.copy(t.sinistea)
+t.gastrodon = tab.copy(t.shellos)
+t.sawsbuck = tab.copy(t.deerling)
+t.jellicent = tab.copy(t.frillish)
+t["flabébé"] = tab.copy(t.florges)
+t.polteageist = tab.copy(t.sinistea)
 
 -- Link creation should be done AFTER copying Pokémon with same forms, in order
 -- to use the right name for the link
@@ -338,7 +352,7 @@ t[647] = t.keldeo
 t[649] = t.genesect
 t[666] = t.vivillon
 t[668] = t.pyroar
-t[669] = t['flabébé']
+t[669] = t["flabébé"]
 t[670] = t.floette
 t[671] = t.florges
 t[676] = t.furfrou

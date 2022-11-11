@@ -7,8 +7,9 @@ their ability.
 
 local k = {}
 
-local tab = require('Wikilib-tables')       -- luacheck: no unused
-local txt = require('Wikilib-strings')      -- luacheck: no unused
+-- stylua: ignore start
+local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local genUtils = require('Wikilib-gens')
@@ -16,6 +17,7 @@ local abl = require('Abillist')
 local pokes = require("Poké-data")
 local abils = require('PokéAbil-data')
 local gendata = require("Gens-data")
+-- stylua: ignore end
 
 -- Generation filtered entry
 k.GenEntry = oop.makeClass(abl.Entry)
@@ -49,7 +51,7 @@ Equality operator for entries' merging.
 --]]
 k.GenEntry.__eq = function(a, b)
     -- The two entries are equals iff their name and abilities are the same
-    return a.name == b.name and table.equal(a.abils, b.abils)
+    return a.name == b.name and tab.equal(a.abils, b.abils)
 end
 
 --[[
@@ -66,7 +68,7 @@ local listgen = function(gen)
         header = abl.headers.makeHeader(gendata[gen].region),
         separator = abl.headers.separator,
         footer = abl.headers.makeFooter(gendata[gen].region),
-        fullGroupLabel = 'Tutte le forme',
+        fullGroupLabel = "Tutte le forme",
     })
 end
 
@@ -78,11 +80,17 @@ their abilities.
 {{#invoke: Abillist/allpokes | abillist }}
 
 --]]
-k.abillist = function(frame)  -- luacheck: no unused
+k.abillist = function(frame) -- luacheck: no unused
     local tables = {}
-    for gen=1,gendata.latest do
-        table.insert(tables, table.concat{
-            "==", string.fu(gendata[gen].ext), " generazione==" })
+    for gen = 1, gendata.latest do
+        table.insert(
+            tables,
+            table.concat({
+                "==",
+                txt.fu(gendata[gen].ext),
+                " generazione==",
+            })
+        )
         table.insert(tables, listgen(gen))
     end
     return table.concat(tables, "\n")
@@ -113,13 +121,13 @@ Example:
 --]]
 k.list = function(frame)
     local ndexlist = frame.args[1]
-    local res = { abl.headers.makeHeader(string.trim(frame.args.color)) }
+    local res = { abl.headers.makeHeader(txt.trim(frame.args.color)) }
     for ndex in ndexlist:gmatch("[^ ]+") do
         table.insert(res, tostring(k.GenEntry.new(abils[ndex], ndex)))
     end
-    table.insert(res, abl.headers.makeFooter(string.trim(frame.args.color)))
+    table.insert(res, abl.headers.makeFooter(txt.trim(frame.args.color)))
     return table.concat(res, "\n|-\n")
-    -- return table.concat(res, "\n|-\n") .. "\n" .. abl.headers.makeFooter(string.trim(frame.args.color))
+    -- return table.concat(res, "\n|-\n") .. "\n" .. abl.headers.makeFooter(txt.trim(frame.args.color))
 end
 k.List = k.list
 

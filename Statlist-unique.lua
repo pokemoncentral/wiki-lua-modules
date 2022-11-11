@@ -7,17 +7,19 @@ having unique base stat total
 
 local u = {}
 
+-- stylua: ignore start
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local css = require('Css')
 local ms = require('MiniSprite')
 local gamesUtil = require('Wikilib-games')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local statsUtil = require('Wikilib-stats')
-local str = require('Wikilib-strings') -- luacheck: no unused
-local tab = require('Wikilib-tables') -- luacheck: no unused
 local multigen = require('Wikilib-multigen')
 local gendata = require("Gens-data")
 local pokes = require('Poké-data')
+-- stylua: ignore end
 
 --[[
 
@@ -33,15 +35,13 @@ function necessary.
 
 --]]
 local uniqueStatTotal = function(allStats, gen)
-    local pokesInGen = table.filter(allStats, function(_, poke)
-        return not string.parseInt(poke)
-            and gamesUtil.isInGen(poke, gen)
+    local pokesInGen = tab.filter(allStats, function(_, poke)
+        return not txt.parseInt(poke) and gamesUtil.isInGen(poke, gen)
     end)
 
     -- Mapping to base stat totals
-    local tots = table.map(pokesInGen, function(pokeStats)
-        return statsUtil.statsSum(
-                statsUtil.getStatsGen(pokeStats, gen))
+    local tots = tab.map(pokesInGen, function(pokeStats)
+        return statsUtil.statsSum(statsUtil.getStatsGen(pokeStats, gen))
     end)
 
     --[[
@@ -50,8 +50,8 @@ local uniqueStatTotal = function(allStats, gen)
         equal to the current one but of a different
         Pokémon
     --]]
-    return table.filter(tots, function(tot, poke)
-        return not table.any(tots, function(otherTot, otherPoke)
+    return tab.filter(tots, function(tot, poke)
+        return not tab.any(tots, function(otherTot, otherPoke)
             return tot == otherTot and poke ~= otherPoke
         end)
     end)
@@ -77,10 +77,7 @@ never returns nil.
 
 --]]
 Entry.new = function(total, name)
-    local this = table.merge(
-                    Entry.super.new(name),
-                    multigen.getGen(pokes[name])
-                )
+    local this = tab.merge(Entry.super.new(name), multigen.getGen(pokes[name]))
 
     this.total = total
 
@@ -95,21 +92,23 @@ and average.
 
 --]]
 Entry.__tostring = function(this)
-    return string.interp([=[| class="hidden-xs" style="padding: 0.3ex 0.6ex" | ${ndex}
+    return txt.interp(
+        [=[| class="hidden-xs" style="padding: 0.3ex 0.6ex" | ${ndex}
 | style="padding: 0.3ex 0.6ex" | ${ms}
 | style="padding: 0.3ex 0.6ex" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
 | style="padding: 0.3ex 0.6ex" | '''${total}''']=],
         {
-            ndex = this.ndex and string.tf(this.ndex) or '???',
-            ms = ms.staticLua{string.tf(this.ndex or 0) ..
-                    (this.formAbbr == 'base' and ''
-                            or this.formAbbr or '')},
+            ndex = this.ndex and txt.tf(this.ndex) or "???",
+            ms = ms.staticLua({
+                txt.tf(this.ndex or 0)
+                    .. (this.formAbbr == "base" and "" or this.formAbbr or ""),
+            }),
             name = this.name,
-            form = this.formsData and
-                    this.formsData.blacklinks[this.formAbbr]
-                    or '',
-            total = this.total
-        })
+            form = this.formsData and this.formsData.blacklinks[this.formAbbr]
+                or "",
+            total = this.total,
+        }
+    )
 end
 
 --[[
@@ -131,15 +130,17 @@ Specific generation:
 u.statlistUnique = function(frame)
     local gen = tonumber(frame.args[1]) or gendata.latest
     return list.makeList({
-        source = uniqueStatTotal(require('PokéStats-data'), gen),
+        source = uniqueStatTotal(require("PokéStats-data"), gen),
         makeEntry = Entry,
-        header = string.interp([=[{| class="sortable roundy-corners pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
+        header = txt.interp(
+            [=[{| class="sortable roundy-corners pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
 |-
 ! class="hidden-xs" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | [[Pokédex Nazionale|<span style="color: #000;">#</span>]]
 ! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | &nbsp;
 ! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | Pokémon
 ! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | Totale]=],
-            { bg = css.horizGradLua{type = 'pcwiki'} })
+            { bg = css.horizGradLua({ type = "pcwiki" }) }
+        ),
     })
 end
 

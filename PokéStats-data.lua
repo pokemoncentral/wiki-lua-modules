@@ -6,6 +6,7 @@ Data module for Pokémon stats.
 
 local d = {}
 
+-- stylua: ignore start
 d.bulbasaur = {hp = 45, atk = 49, def = 49, spatk = 65, spdef = 65, spe = 45, spec = 65}
 d[1] = d.bulbasaur
 d.ivysaur = {hp = 60, atk = 62, def = 63, spatk = 80, spdef = 80, spe = 60, spec = 80}
@@ -2139,85 +2140,86 @@ d.avaluggH = {hp = 95, atk = 127, def = 184, spatk = 34, spdef = 36, spe = 38}
 d['713H'] = d.avaluggH
 d.decidueyeH = {hp = 88, atk = 112, def = 80, spatk = 95, spdef = 95, spe = 60}
 d['724H'] = d.decidueyeH
+-- stylua: ignore end
 
 -- Other non-useless alternative forms aliases
-d['025Cs'], d['025R'], d['025D'] = d.pikachu, d.pikachu, d.pikachu
-d['025Cn'], d['025S'], d['025W'] = d.pikachu, d.pikachu, d.pikachu
+d["025Cs"], d["025R"], d["025D"] = d.pikachu, d.pikachu, d.pikachu
+d["025Cn"], d["025S"], d["025W"] = d.pikachu, d.pikachu, d.pikachu
 d.pikachuCs, d.pikachuR, d.pikachuD = d.pikachu, d.pikachu, d.pikachu
 d.pikachuCn, d.pikachuS, d.pikachuW = d.pikachu, d.pikachu, d.pikachu
-d['351S'], d['351P'], d['351N'] = d.castform, d.castform, d.castform
+d["351S"], d["351P"], d["351N"] = d.castform, d.castform, d.castform
 d.castformS, d.castformP, d.castformN = d.castform, d.castform, d.castform
-d['493L'], d['493Vo'], d['493Ve'] = d.arceus, d.arceus, d.arceus
+d["493L"], d["493Vo"], d["493Ve"] = d.arceus, d.arceus, d.arceus
 d.arceusL, d.arceusVo, d.arceusVe = d.arceus, d.arceus, d.arceus
-d['493T'], d['493R'], d['493C'] = d.arceus, d.arceus, d.arceus
+d["493T"], d["493R"], d["493C"] = d.arceus, d.arceus, d.arceus
 d.arceusT, d.arceusR, d.arceusC = d.arceus, d.arceus, d.arceus
-d['493S'], d['493Ai'], d['493Fu'] = d.arceus, d.arceus, d.arceus
+d["493S"], d["493Ai"], d["493Fu"] = d.arceus, d.arceus, d.arceus
 d.arceusS, d.arceusAi, d.arceusFu = d.arceus, d.arceus, d.arceus
-d['493Aq'], d['493Er'], d['493El'] = d.arceus, d.arceus, d.arceus
+d["493Aq"], d["493Er"], d["493El"] = d.arceus, d.arceus, d.arceus
 d.arceusAq, d.arceusEr, d.arceusEl = d.arceus, d.arceus, d.arceus
-d['493P'], d['493G'], d['493D'] = d.arceus, d.arceus, d.arceus
+d["493P"], d["493G"], d["493D"] = d.arceus, d.arceus, d.arceus
 d.arceusP, d.arceusG, d.arceusD = d.arceus, d.arceus, d.arceus
-d['493B'], d['493Fo'], d['493Sc'] = d.arceus, d.arceus, d.arceus
+d["493B"], d["493Fo"], d["493Sc"] = d.arceus, d.arceus, d.arceus
 d.arceusB, d.arceusFo, d.arceusSc = d.arceus, d.arceus, d.arceus
-d['550B'], d.basculinB = d.basculin, d.basculin
-d['678F'], d.meowsticF = d.meowstic, d.meowstic
-d['741C'], d['741H'], d['741B'] = d.oricorio, d.oricorio, d.oricorio
+d["550B"], d.basculinB = d.basculin, d.basculin
+d["678F"], d.meowsticF = d.meowstic, d.meowstic
+d["741C"], d["741H"], d["741B"] = d.oricorio, d.oricorio, d.oricorio
 d.oricorioC, d.oricorioH, d.oricorioB = d.oricorio, d.oricorio, d.oricorio
-d['773L'], d['773Vo'], d['773Ve'] = d.silvally, d.silvally, d.silvally
+d["773L"], d["773Vo"], d["773Ve"] = d.silvally, d.silvally, d.silvally
 d.silvallyL, d.silvallyVo, d.silvallyVe = d.silvally, d.silvally, d.silvally
-d['773T'], d['773R'], d['773C'] = d.silvally, d.silvally, d.silvally
+d["773T"], d["773R"], d["773C"] = d.silvally, d.silvally, d.silvally
 d.silvallyT, d.silvallyR, d.silvallyC = d.silvally, d.silvally, d.silvally
-d['773S'], d['773Ai'], d['773Fu'] = d.silvally, d.silvally, d.silvally
+d["773S"], d["773Ai"], d["773Fu"] = d.silvally, d.silvally, d.silvally
 d.silvallyS, d.silvallyAi, d.silvallyFu = d.silvally, d.silvally, d.silvally
-d['773Aq'], d['773Er'], d['773El'] = d.silvally, d.silvally, d.silvally
+d["773Aq"], d["773Er"], d["773El"] = d.silvally, d.silvally, d.silvally
 d.silvallyAq, d.silvallyEr, d.silvallyEl = d.silvally, d.silvally, d.silvally
-d['773P'], d['773G'], d['773D'] = d.silvally, d.silvally, d.silvally
+d["773P"], d["773G"], d["773D"] = d.silvally, d.silvally, d.silvally
 d.silvallyP, d.silvallyG, d.silvallyD = d.silvally, d.silvally, d.silvally
-d['773B'], d['773Fo'] = d.silvally, d.silvally
+d["773B"], d["773Fo"] = d.silvally, d.silvally
 d.silvallyB, d.silvallyFo = d.silvally, d.silvally
 -- d.cramorantT = d.cramorant
 -- d['845T'] = d.cramorantT
 -- d.cramorantI = d.cramorant
 -- d['845I'] = d.cramorantI
 d.toxtricityB = d.toxtricity
-d['849B'] = d.toxtricityB
+d["849B"] = d.toxtricityB
 d.morpekoV = d.morpeko
-d['877V'] = d.morpekoV
-d.urshifuP, d['892P'] = d.urshifu, d.urshifu
+d["877V"] = d.morpekoV
+d.urshifuP, d["892P"] = d.urshifu, d.urshifu
 
 -- Gigamax
-d.venusaurGi, d['003Gi'] = d.venusaur, d.venusaur
-d.charizardGi, d['006Gi'] = d.charizard, d.charizard
-d.blastoiseGi, d['009Gi'] = d.blastoise, d.blastoise
-d.butterfreeGi, d['012Gi'] = d.butterfree, d.butterfree
-d.pikachuGi, d['025Gi'] = d.pikachu, d.pikachu
-d.meowthGi, d['052Gi'] = d.meowth, d.meowth
-d.machampGi, d['068Gi'] = d.machamp, d.machamp
-d.gengarGi, d['094Gi'] = d.gengar, d.gengar
-d.kinglerGi, d['099Gi'] = d.kingler, d.kingler
-d.laprasGi, d['131Gi'] = d.lapras, d.lapras
-d.eeveeGi, d['133Gi'] = d.eevee, d.eevee
-d.snorlaxGi, d['143Gi'] = d.snorlax, d.snorlax
-d.garbodorGi, d['569Gi'] = d.garbodor, d.garbodor
-d.melmetalGi, d['809Gi'] = d.melmetal, d.melmetal
-d.rillaboomGi, d['812Gi'] = d.rillaboom, d.rillaboom
-d.cinderaceGi, d['815Gi'] = d.cinderace, d.cinderace
-d.inteleonGi, d['818Gi'] = d.inteleon, d.inteleon
-d.corviknightGi, d['823Gi'] = d.corviknight, d.corviknight
-d.orbeetleGi, d['826Gi'] = d.orbeetle, d.orbeetle
-d.drednawGi, d['834Gi'] = d.drednaw, d.drednaw
-d.coalossalGi, d['839Gi'] = d.coalossal, d.coalossal
-d.flappleGi, d['841Gi'] = d.flapple, d.flapple
-d.appletunGi, d['842Gi'] = d.appletun, d.appletun
-d.sandacondaGi, d['844Gi'] = d.sandaconda, d.sandaconda
-d.toxtricityGi, d['849Gi'] = d.toxtricity, d.toxtricity
-d.centiskorchGi, d['851Gi'] = d.centiskorch, d.centiskorch
-d.hattereneGi, d['858Gi'] = d.hatterene, d.hatterene
-d.grimmsnarlGi, d['861Gi'] = d.grimmsnarl, d.grimmsnarl
-d.alcremieGi, d['869Gi'] = d.alcremie, d.alcremie
-d.copperajahGi, d['879Gi'] = d.copperajah, d.copperajah
-d.duraludonGi, d['884Gi'] = d.duraludon, d.duraludon
-d.urshifuGi, d['892Gi'] = d.urshifu, d.urshifu
-d.urshifuPGi, d['892PGi'] = d.urshifuP, d.urshifuP
+d.venusaurGi, d["003Gi"] = d.venusaur, d.venusaur
+d.charizardGi, d["006Gi"] = d.charizard, d.charizard
+d.blastoiseGi, d["009Gi"] = d.blastoise, d.blastoise
+d.butterfreeGi, d["012Gi"] = d.butterfree, d.butterfree
+d.pikachuGi, d["025Gi"] = d.pikachu, d.pikachu
+d.meowthGi, d["052Gi"] = d.meowth, d.meowth
+d.machampGi, d["068Gi"] = d.machamp, d.machamp
+d.gengarGi, d["094Gi"] = d.gengar, d.gengar
+d.kinglerGi, d["099Gi"] = d.kingler, d.kingler
+d.laprasGi, d["131Gi"] = d.lapras, d.lapras
+d.eeveeGi, d["133Gi"] = d.eevee, d.eevee
+d.snorlaxGi, d["143Gi"] = d.snorlax, d.snorlax
+d.garbodorGi, d["569Gi"] = d.garbodor, d.garbodor
+d.melmetalGi, d["809Gi"] = d.melmetal, d.melmetal
+d.rillaboomGi, d["812Gi"] = d.rillaboom, d.rillaboom
+d.cinderaceGi, d["815Gi"] = d.cinderace, d.cinderace
+d.inteleonGi, d["818Gi"] = d.inteleon, d.inteleon
+d.corviknightGi, d["823Gi"] = d.corviknight, d.corviknight
+d.orbeetleGi, d["826Gi"] = d.orbeetle, d.orbeetle
+d.drednawGi, d["834Gi"] = d.drednaw, d.drednaw
+d.coalossalGi, d["839Gi"] = d.coalossal, d.coalossal
+d.flappleGi, d["841Gi"] = d.flapple, d.flapple
+d.appletunGi, d["842Gi"] = d.appletun, d.appletun
+d.sandacondaGi, d["844Gi"] = d.sandaconda, d.sandaconda
+d.toxtricityGi, d["849Gi"] = d.toxtricity, d.toxtricity
+d.centiskorchGi, d["851Gi"] = d.centiskorch, d.centiskorch
+d.hattereneGi, d["858Gi"] = d.hatterene, d.hatterene
+d.grimmsnarlGi, d["861Gi"] = d.grimmsnarl, d.grimmsnarl
+d.alcremieGi, d["869Gi"] = d.alcremie, d.alcremie
+d.copperajahGi, d["879Gi"] = d.copperajah, d.copperajah
+d.duraludonGi, d["884Gi"] = d.duraludon, d.duraludon
+d.urshifuGi, d["892Gi"] = d.urshifu, d.urshifu
+d.urshifuPGi, d["892PGi"] = d.urshifuP, d.urshifuP
 
 return d

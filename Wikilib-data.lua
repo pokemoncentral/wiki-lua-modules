@@ -14,7 +14,7 @@ as background.
 The variant taken into account is normale
 
 --]]
-
+-- stylua: ignore
 t.whitetext = {'b', 'blu', 'pmdb', 'mdblu', 'md_blu', 'pmdo', 'mdoscurita',
 	'md_oscurita', 'pmdpsi', 'mdportali', 'md_portali', 'pmdr', 'mdrosso',
 	'md_rosso', 'pmdt', 'mdtempo', 'md_tempo', 'n', 'nero', 'n2', 'nero 2',
@@ -26,7 +26,7 @@ t.whitetext = {'b', 'blu', 'pmdb', 'mdblu', 'md_blu', 'pmdo', 'mdoscurita',
 	'club_pokémiglia', 'pw', 'pokewalker', 'pokéwalker', '000', '000000'}
 
 -- Ndex e nomi dei Pokémon esclusivamente femmina
-
+-- stylua: ignore
 t.onlyFemales = {29, 30, 31, 113, 115, 124, 238, 241, 242, 314, 380,
 	413, 416, 440, 478, 488, 548, 549, 629, 630, 669, 670, 671, 758, 761,
 	762, 763, 856, 857, 858, 868, 869, 905,
@@ -45,7 +45,7 @@ Ndex e nomi dei Pokémon che hanno differenze tra i due generi non
 sufficientemente vistose da avere un mini sprite diverso
 
 --]]
-
+-- stylua: ignore
 t.alsoFemales = {3, 12, 19, 20, 25, 26, 41, 42, 44, 45, 64, 65, 84, 85, 97,
 	111, 112, 118, 119, 123, 129, 130, 154, 165, 166, 178, 185, 186, 190, 194,
 	195, 198, 202, 203, 207, 208, 212, 214, 215, 217, 221, 224, 229, 232, 255,
@@ -70,7 +70,7 @@ t.alsoFemales = {3, 12, 19, 20, 25, 26, 41, 42, 44, 45, 64, 65, 84, 85, 97,
 	'xatu', 'zubat'}
 
 t.femalesToo, t.also_females, t.alsofemales =
-t.alsoFemales, t.alsoFemales, t.alsoFemales
+    t.alsoFemales, t.alsoFemales, t.alsoFemales
 
 --[[
 
@@ -80,7 +80,7 @@ problemi nel caso in cui sia inserito, nonostante non sia uscito fuori
 dal Giappone
 
 --]]
-
+-- stylua: ignore
 t.gamesChron = {'rb', 'v', 'g', 'oa', 'c', 'rz', 'rfvf', 's', 'dp', 'pt',
 	'hgss', 'nb', 'n2b2', 'xy', 'roza', 'sl', 'usul', 'spsc', 'dlps', 'lpa',
 	'sv'}
@@ -94,7 +94,7 @@ Contiene 'coleot' e non 'coleottero' perché la maggior parte
 delle volte il tipo è abbreviato
 
 --]]
-
+-- stylua: ignore
 t.allTypes = {'acciaio', 'acqua', 'buio', 'coleot', 'drago',
 		'elettro', 'erba', 'folletto', 'fuoco', 'ghiaccio',
 		'lotta', 'normale', 'psico', 'roccia', 'spettro',
@@ -107,7 +107,7 @@ t.types, t.all_types = t.allTypes, t.allTypes
 Tables of all the egg groups in alphabetic order.
 
 --]]
-
+-- stylua: ignore
 t.allGroups = {'erba', 'coleottero', 'volante', 'umanoide',
 	'minerale', 'amorfo', 'campo', 'acqua 1', 'acqua 2',
 	'acqua 3', 'mostro', 'magico', 'drago', 'ditto',
@@ -117,13 +117,15 @@ t.types, t.all_types = t.allTypes, t.allTypes
 
 -- Tabella sostitutiva dei template {{male}} e {{female}}
 
-t.genders = {male = '<span style="color:#0000FF;">♂</span>',
-		female = '<span style="color:#FF6060;">♀</span>'}
-t.genders['♂'] = t.genders.male
-t.genders['♀'] = t.genders.female
+t.genders = {
+    male = '<span style="color:#0000FF;">♂</span>',
+    female = '<span style="color:#FF6060;">♀</span>',
+}
+t.genders["♂"] = t.genders.male
+t.genders["♀"] = t.genders.female
 
 -- Misc data about statistics
 
-t.statsOrder = {'hp', 'atk', 'def', 'spatk', 'spdef', 'spec', 'spe'}
+t.statsOrder = { "hp", "atk", "def", "spatk", "spdef", "spec", "spe" }
 
 return t
