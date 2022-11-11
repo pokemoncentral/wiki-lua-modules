@@ -1624,7 +1624,6 @@ t.meltan = {name = 'Meltan', ndex = 808, type1 = 'acciaio', type2 = 'acciaio'}
 t[808] = t.meltan
 t.melmetal = {name = 'Melmetal', ndex = 809, type1 = 'acciaio', type2 = 'acciaio'}
 t[809] = t.melmetal
-
 t.grookey = {name = 'Grookey', ndex = 810, type1 = 'erba', type2 = 'erba'}
 t[810] = t.grookey
 t.thwackey = {name = 'Thwackey', ndex = 811, type1 = 'erba', type2 = 'erba'}
@@ -2027,7 +2026,6 @@ t.clodsire = {name = 'Clodsire', ndex = 1009, type1 = 'veleno', type2 = 'terra'}
 t[1009] = t.clodsire
 t.annihilape = {name = 'Annihilape', ndex = 1010, type1 = 'lotta', type2 = 'spettro'}
 t[1010] = t.annihilape
-
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
