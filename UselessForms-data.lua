@@ -94,6 +94,11 @@ t.cramorant = {}
 t.sinistea = {}
 t.alcremie = {}
 t.zarude = {}
+t.dudunsparce = {}
+t.maushold = {}
+t.tatsugiri = {}
+t.koraidon = {}
+t.miraidon = {}
 
 --[[
 
@@ -147,6 +152,13 @@ t.minior.names = {R = 'Nucleo Rosso', Ar = 'Nucleo Arancione',
 	I = 'Nucleo Indaco', Vi = 'Nucleo Violetto', base = 'Forma Meteora'}
 t.cramorant.names = {T = "Forma Inghiottitutto", I = "Forma Inghiottintero", base = ""}
 t.sinistea.names = {base = "Forma Contraffatta", A = "Forma Autentica"}
+-- Alcremie is below
+t.zarude.names = { P = "Zarude Papà", base = "" }
+t.dudunsparce.names = { base = "Forma Bimetamero", T = "Forma Trimetamero" }
+t.maushold.names = { base = "Trifamiglia", Q = "Quadrifamiglia" }
+t.tatsugiri.names = { base = "Forma Arcuata", A = "Forma Adagiata", T = "Forma Tesa" }
+t.koraidon.names = { base = "Foggia Integrale", P = "Foggia Parziale", S = "Foggia Scattante", N = "Foggia Nautica", L = "Foggia Librata" }
+t.miraidon.names = { base = "Assetto Completo", L = "Assetto Limitato", S = "Assetto Sprint", N = "Assetto Nuoto", P = "Assetto Planata" }
 -- stylua: ignore end
 -- Alcremie is quite molesto in **** (censored for the sake of poor childen who browse our site)
 do
@@ -168,7 +180,6 @@ do
     end
     t.alcremie.names["LvFa"] = nil
 end
-t.zarude.names = { P = "Zarude Papà", base = "" }
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
@@ -220,6 +231,11 @@ t.alcremie.ext = {lattevaniglia = 'base', latterosa = 'R', lattematcha = 'Ma',
 	lattementa = 'Me', lattelimone = 'L', lattesale = 'S', rosamix = 'Rm',
 	caramelmix = 'Cm', triplomix = 'Tm'}
 t.zarude.ext = {['papà'] = 'P'}
+t.dudunsparce.ext = { trimetamero = "T", bimetamero = "base" }
+t.maushold.ext = { quadrifamiglia = "Q", trifamiglia = "base" }
+t.tatsugiri.ext = { adagiata = "A", tesa = "T",  arcuata = "base" }
+t.koraidon.ext = { integrale = "base", parziale = "P", scattante = "S", nautica = "N", librata = "L" }
+t.miraidon.ext = { completo = "base", limitato = "L", sprint = "S", nuoto = "N", planata = "P" }
 -- stylua: ignore end
 
 --[[
@@ -256,6 +272,11 @@ t.cramorant.gamesOrder = {'base', 'T', 'I'}
 t.sinistea.gamesOrder = {'base', 'A'}
 -- Alcremie's gamesOrder is filled below, with since
 t.zarude.gamesOrder = {'base', 'P'}
+t.dudunsparce.gamesOrder = { "base", "T" }
+t.maushold.gamesOrder = { "base", "Q" }
+t.tatsugiri.gamesOrder = { "base", "A", "T" }
+t.koraidon.gamesOrder = { "base", "P", "S", "N", "L" }
+t.miraidon.gamesOrder = { "base", "L", "S", "N", "P" }
 -- stylua: ignore end
 
 --[[
@@ -295,6 +316,11 @@ t.mimikyu.since = {base = 'sl', S = 'sl'}
 t.magearna.since = {base = 'sl', A = 'sl'}
 t.cramorant.since = {T = 'spsc', I = 'spsc', base = 'spsc'}
 t.sinistea.since = {base = 'spsc', A = 'spsc'}
+t.dudunsparce.since = { base = "sv", T = "sv" }
+t.maushold.since = { base = "sv", Q = "sv" }
+t.tatsugiri.since = { base = "sv", A = "sv", T = "sv" }
+t.koraidon.since = { base = "sv", P = "sv", S = "sv", N = "sv", L = "sv" }
+t.miraidon.since = { base = "sv", L = "sv", S = "sv", N = "sv", P = "sv" }
 -- stylua: ignore end
 -- Alcremie is quite molesto in **** pt. 2
 do
@@ -365,5 +391,10 @@ t[854] = t.sinistea
 t[855] = t.polteageist
 t[869] = t.alcremie
 t[893] = t.zarude
+-- t[917] = t.dudunsparce
+-- t[946] = t.maushold
+-- t[952] = t.tatsugiri
+-- t[998] = t.koraidon
+-- t[999] = t.miraidon
 
 return t

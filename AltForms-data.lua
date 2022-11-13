@@ -188,18 +188,10 @@ t.urshifu = {}
 t.calyrex = {}
 t.basculegion = {}
 t.enamorus = {}
--- t.oinkologne = {} -- t.oinkologne-1
--- t.dudunsparce-1 = t.dudunsparce
--- t.palafin-1 = t.palafin
--- t.maushold-1 = t.maushold
--- t.tatsugiri = {t.tatsugiri-1, t.tatsugiri-2}
--- t.squawkabilly = {} -- t.squawkabilly-1, t.squawkabilly-2, t.squawkabilly-3
+t.oinkologne = {}
+t.palafin = {}
+t.squawkabilly = {}
 t.gimmighoul = {}
--- t.koraidon = {} -- t.koraidon-1, t.koraidon-2, t.koraidon-3, t.koraidon-4
--- t.miraidon-1 = t.miraidon
--- t.miraidon-2 = t.miraidon
--- t.miraidon-3 = t.miraidon
--- t.miraidon-4 = t.miraidon
 
 -- Generazione dinamica delle megaevoluzioni e archeorisveglio
 
@@ -323,6 +315,9 @@ t.urshifu.names = {P = 'Stile Pluricolpo', Gi = 'Urshifu Gigamax (Stile Singolco
 t.calyrex.names = {G = "Cavaliere Glaciale", S = "Cavaliere Spettrale", base = ""}
 t.basculegion.names = {F = 'Femmina', base = 'Maschio'}
 t.enamorus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
+t.oinkologne.names = {F = 'Femmina', base = 'Maschio'}
+t.palafin.names = {P = 'Forma Possente', base = 'Forma Ingenua'}
+t.squawkabilly.names = {A = 'Piume Azzurre', G = 'Piume Gialle', B = 'Piume Bianche', base = 'Piume Verdi'}
 t.gimmighoul.names = {A = 'Forma Ambulante', base = 'Forma Scrigno'}
 -- stylua: ignore end
 for _, v in pairs(t.mega) do
@@ -443,7 +438,11 @@ t.urshifu.ext = { pluricolpo = "P", gigamax = "Gi", singolcolpo = "base" }
 t.calyrex.ext = { spettrale = "S", glaciale = "G" }
 t.basculegion.ext = { femmina = "F" }
 t.enamorus.ext = { totem = "T" }
-t.gimmighoul.ext = { ambulante = "A" }
+t.oinkologne.ext = t.meowstic.ext
+t.palafin.ext = { possente = "P", ingenua = "base" }
+-- stylua: ignore
+t.squawkabilly.ext = { azzurre = "A", gialle = "G", bianche = "B", verdi = "base" }
+t.gimmighoul.ext = { ambulante = "A", scrigno = "base" }
 for _, v in pairs(t.mega) do
     t[v].ext = t[v].ext or {}
     t[v].ext.mega = "M"
@@ -532,6 +531,9 @@ t.urshifu.gamesOrder = { "base", "Gi", "P", "PGi" }
 t.calyrex.gamesOrder = { "base", "G", "S" }
 t.basculegion.gamesOrder = { "base", "F" }
 t.enamorus.gamesOrder = { "base", "T" }
+t.oinkologne.gamesOrder = t.meowstic.gamesOrder
+t.palafin.gamesOrder = { "base", "P" }
+t.squawkabilly.gamesOrder = { "base", "A", "G", "B" }
 t.gimmighoul.gamesOrder = { "base", "A" }
 for _, v in pairs(t.mega) do
     t[v].gamesOrder = t[v].gamesOrder or { "base", "M" }
@@ -679,7 +681,10 @@ t.urshifu.since = { P = "spsc", Gi = "spsc", PGi = "spsc", base = "spsc" }
 t.calyrex.since = { G = "spsc", S = "spsc", base = "spsc" }
 t.basculegion.since = { F = "lpa", base = "lpa" }
 t.enamorus.since = { T = "lpa", base = "lpa" }
-t.gimmighoul.since = { T = "sv", base = "sv" }
+t.oinkologne.since = { F = "sv", base = "sv" }
+t.palafin.since = { P = "sv", base = "sv" }
+t.squawkabilly.since = { A = "sv", G = "sv", B = "sv", base = "sv" }
+t.gimmighoul.since = { A = "sv", base = "sv" }
 t.venusaur.since = { M = "xy", Gi = "spsc", base = "rb" }
 t.blastoise.since = { M = "xy", Gi = "spsc", base = "rb" }
 t.beedrill.since = { M = "roza", base = "rb" }
@@ -908,6 +913,10 @@ t[892] = t.urshifu
 t[898] = t.calyrex
 t[902] = t.basculegion
 t[905] = t.enamorus
+-- t[916] = t.oinkologne
+-- t[934] = t.palafin
+-- t[960] = t.squawkabilly
+-- t[976] = t.gimmighoul
 t[3] = t.venusaur
 t[9] = t.blastoise
 t[15] = t.beedrill
