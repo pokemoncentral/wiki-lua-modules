@@ -607,11 +607,20 @@ evo.mankey = {
             name = "primeape",
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 28,
+
+            evos = {
+                {
+                    ndex = 1010,
+                    name = "annihilape",
+                    method = evo.methods.OTHER,
+                    [evo.methods.OTHER] = "Usare [[Pugno Furibondo]] 20 volte",
+                },
+            },
         },
     },
 }
-evo.primeape = evo.mankey
-evo[56], evo[57] = evo.mankey, evo.mankey
+evo.primeape, evo.annihilape = evo.mankey, evo.mankey
+evo[56], evo[57], evo[1010] = evo.mankey, evo.mankey, evo.mankey
 
 evo.growlithe = {
     ndex = 58,
@@ -2105,14 +2114,15 @@ evo.girafarig = {
 
     evos = {
         {
-            ndex = nil,
+            ndex = 928,
             name = "farigiraf",
-            method = evo.methods.UNKNOWN,
+            method = evo.methods.LEVEL,
+            conditions = { [evo.conditions.MOVE] = "Doppioraggio" },
         },
     },
 }
-evo[203] = evo.girafarig
 evo.farigiraf = evo.girafarig
+evo[203], evo[928] = evo.girafarig, evo.girafarig
 
 evo.pineco = {
     ndex = 204,
@@ -2130,8 +2140,20 @@ evo.pineco = {
 evo.forretress = evo.pineco
 evo[204], evo[205] = evo.pineco, evo.pineco
 
-evo.dunsparce = { ndex = 206, name = "dunsparce" }
-evo[206] = evo.dunsparce
+evo.dunsparce = {
+    ndex = 206,
+    name = "dunsparce",
+
+    evos = {
+        {
+            ndex = 917,
+            name = "dudunsparce",
+            method = evo.methods.UNKNOWN, -- TODO
+        },
+    },
+}
+evo.dudunsparce = evo.dunsparce
+evo[206], evo[917] = evo.dunsparce, evo.dunsparce
 
 evo.gligar = {
     ndex = 207,
@@ -5005,11 +5027,20 @@ evo.pawniard = {
             name = "bisharp",
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 52,
+
+            evos = {
+                {
+                    ndex = 1008,
+                    name = "kingambit",
+                    method = evo.methods.OTHER,
+                    [evo.methods.OTHER] = "Sconfiggere tre Bisharp tenendo [[Simbolo del capo]]",
+                },
+            },
         },
     },
 }
-evo.bisharp = evo.pawniard
-evo[624], evo[625] = evo.pawniard, evo.pawniard
+evo.bisharp, evo.kingambit = evo.pawniard, evo.pawniard
+evo[624], evo[625], evo[1008] = evo.pawniard, evo.pawniard, evo.pawniard
 
 evo.bouffalant = { ndex = 626, name = "bouffalant" }
 evo[626] = evo.bouffalant
@@ -6913,6 +6944,663 @@ evo[898] = evo.calyrex
 evo.enamorus = { ndex = 905, name = "enamorus" }
 evo[905] = evo.enamorus
 
+-- Gen 9
+
+evo.sprigatito = {
+    ndex = 906,
+    name = "sprigatito",
+
+    evos = {
+        {
+            ndex = 907,
+            name = "floragato",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 16,
+
+            evos = {
+                {
+                    ndex = 908,
+                    name = "meowscarada",
+                    method = evo.methods.LEVEL,
+                    [evo.methods.LEVEL] = 36,
+                },
+            },
+        },
+    },
+}
+evo.floragato, evo.meowscarada = evo.sprigatito, evo.sprigatito
+evo[906], evo[907], evo[908] = evo.sprigatito, evo.sprigatito, evo.sprigatito
+
+evo.fuecoco = {
+    ndex = 909,
+    name = "fuecoco",
+
+    evos = {
+        {
+            ndex = 910,
+            name = "crocalor",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 16,
+
+            evos = {
+                {
+                    ndex = 911,
+                    name = "skeledirge",
+                    method = evo.methods.LEVEL,
+                    [evo.methods.LEVEL] = 36,
+                },
+            },
+        },
+    },
+}
+evo.crocalor, evo.skeledirge = evo.fuecoco, evo.fuecoco
+evo[909], evo[910], evo[911] = evo.fuecoco, evo.fuecoco, evo.fuecoco
+
+evo.quaxly = {
+    ndex = 912,
+    name = "quaxly",
+
+    evos = {
+        {
+            ndex = 913,
+            name = "quaxwell",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 16,
+
+            evos = {
+                {
+                    ndex = 914,
+                    name = "quaquaval",
+                    method = evo.methods.LEVEL,
+                    [evo.methods.LEVEL] = 36,
+                },
+            },
+        },
+    },
+}
+evo.quaxwell, evo.quaquaval = evo.quaxly, evo.quaxly
+evo[912], evo[913], evo[914] = evo.quaxly, evo.quaxly, evo.quaxly
+
+evo.lechonk = {
+    ndex = 915,
+    name = "lechonk",
+
+    evos = {
+        {
+            ndex = 916,
+            name = "oinkologne",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 18,
+            conditions = { [evo.conditions.GENDER] = "Maschio" },
+        },
+        {
+            ndex = "916F",
+            name = "oinkologneF",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 18,
+            conditions = { [evo.conditions.GENDER] = "Femmina" },
+        },
+    },
+}
+evo.oinkologne, evo.oinkologneF = evo.lechonk, evo.lechonk
+evo[915], evo[916], evo["916F"] = evo.lechonk, evo.lechonk, evo.lechonk
+
+evo.tarountula = {
+    ndex = 918,
+    name = "tarountula",
+
+    evos = {
+        {
+            ndex = 919,
+            name = "spidops",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 15,
+        },
+    },
+}
+evo.spidops = evo.tarountula
+evo[918], evo[919] = evo.tarountula, evo.tarountula
+
+evo.nymble = {
+    ndex = 920,
+    name = "nymble",
+
+    evos = {
+        {
+            ndex = 921,
+            name = "lokix",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 24,
+        },
+    },
+}
+evo.lokix = evo.nymble
+evo[920], evo[921] = evo.nymble, evo.nymble
+
+evo.rellor = {
+    ndex = 922,
+    name = "rellor",
+
+    evos = {
+        {
+            ndex = 923,
+            name = "rabsca",
+            method = evo.methods.UNKNOWN, -- TODO
+            -- Walk 1000 steps in Let's Go, supposedly
+        },
+    },
+}
+evo.rabsca = evo.rellor
+evo[922], evo[923] = evo.rellor, evo.rellor
+
+evo.greavard = {
+    ndex = 924,
+    name = "greavard",
+
+    evos = {
+        {
+            ndex = 925,
+            name = "houndstone",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 30,
+            conditions = { [evo.conditions.TIME] = "Notte" },
+        },
+    },
+}
+evo.houndstone = evo.greavard
+evo[924], evo[925] = evo.greavard, evo.greavard
+
+evo.flittle = {
+    ndex = 926,
+    name = "flittle",
+
+    evos = {
+        {
+            ndex = 927,
+            name = "espathra",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 35,
+        },
+    },
+}
+evo.espathra = evo.flittle
+evo[926], evo[927] = evo.flittle, evo.flittle
+
+evo.wiglett = {
+    ndex = 929,
+    name = "wiglett",
+
+    evos = {
+        {
+            ndex = 930,
+            name = "wugtrio",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 26,
+        },
+    },
+}
+evo.wugtrio = evo.wiglett
+evo[929], evo[930] = evo.wiglett, evo.wiglett
+
+evo.dondozo = { ndex = 931, name = "dondozo" }
+evo[931] = evo.dondozo
+
+evo.veluza = { ndex = 932, name = "veluza" }
+evo[932] = evo.veluza
+
+evo.finizen = {
+    ndex = 933,
+    name = "finizen",
+
+    evos = {
+        {
+            ndex = 934,
+            name = "palafin",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 38,
+            conditions = { [evo.conditions.OTHER] = "(Giocando in co-op)" }, -- TODO ?
+        },
+    },
+}
+evo.palafin = evo.finizen
+evo[933], evo[934] = evo.finizen, evo.finizen
+
+evo.smoliv = {
+    ndex = 935,
+    name = "smoliv",
+
+    evos = {
+        {
+            ndex = 936,
+            name = "dolliv",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 25,
+
+            evos = {
+                {
+                    ndex = 937,
+                    name = "arboliva",
+                    method = evo.methods.LEVEL,
+                    [evo.methods.LEVEL] = 35,
+                },
+            },
+        },
+    },
+}
+evo.dolliv, evo.arboliva = evo.smoliv, evo.smoliv
+evo[935], evo[936], evo[937] = evo.smoliv, evo.smoliv, evo.smoliv
+
+evo.capsakid = {
+    ndex = 938,
+    name = "capsakid",
+
+    evos = {
+        {
+            ndex = 939,
+            name = "scovillain",
+            method = evo.methods.STONE,
+            [evo.methods.STONE] = "Pietrafocaia",
+        },
+    },
+}
+evo.scovillain = evo.capsakid
+evo[938], evo[939] = evo.capsakid, evo.capsakid
+
+evo.tadbulb = {
+    ndex = 940,
+    name = "tadbulb",
+
+    evos = {
+        {
+            ndex = 941,
+            name = "bellibolt",
+            method = evo.methods.STONE,
+            [evo.methods.STONE] = "Pietratuono",
+        },
+    },
+}
+evo.bellibolt = evo.tadbulb
+evo[940], evo[941] = evo.tadbulb, evo.tadbulb
+
+evo.varoom = {
+    ndex = 942,
+    name = "varoom",
+
+    evos = {
+        {
+            ndex = 943,
+            name = "revavroom",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 40,
+        },
+    },
+}
+evo.revavroom = evo.varoom
+evo[942], evo[943] = evo.varoom, evo.varoom
+
+evo.orthworm = { ndex = 944, name = "orthworm" }
+evo[944] = evo.orthworm
+
+evo.tandemaus = {
+    ndex = 945,
+    name = "tandemaus",
+
+    evos = {
+        {
+            ndex = 946,
+            name = "maushold",
+            method = evo.methods.UNKNOWN, -- TODO
+        },
+    },
+}
+evo.maushold = evo.tandemaus
+evo[945], evo[946] = evo.tandemaus, evo.tandemaus
+
+evo.cetoddle = {
+    ndex = 947,
+    name = "cetoddle",
+
+    evos = {
+        {
+            ndex = 948,
+            name = "cetitan",
+            method = evo.methods.STONE,
+            [evo.methods.STONE] = "Pietragelo",
+        },
+    },
+}
+evo.cetitan = evo.cetoddle
+evo[947], evo[948] = evo.cetoddle, evo.cetoddle
+
+evo.frigibax = {
+    ndex = 949,
+    name = "frigibax",
+
+    evos = {
+        {
+            ndex = 950,
+            name = "arctibax",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 35,
+
+            evos = {
+                {
+                    ndex = 951,
+                    name = "baxcalibur",
+                    method = evo.methods.LEVEL,
+                    [evo.methods.LEVEL] = 54,
+                },
+            },
+        },
+    },
+}
+evo.arctibax, evo.baxcalibur = evo.frigibax, evo.frigibax
+evo[949], evo[950], evo[951] = evo.frigibax, evo.frigibax, evo.frigibax
+
+evo.tatsugiri = { ndex = 952, name = "tatsugiri" }
+evo[952] = evo.tatsugiri
+
+evo.cyclizar = { ndex = 953, name = "cyclizar" }
+evo[953] = evo.cyclizar
+
+evo.pawmi = {
+    ndex = 954,
+    name = "pawmi",
+
+    evos = {
+        {
+            ndex = 955,
+            name = "pawmo",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 18,
+
+            evos = {
+                {
+                    ndex = 956,
+                    name = "pawmot",
+                    method = evo.methods.UNKNOWN, -- TODO
+                    -- Walk 1000 steps in Let's Go
+                },
+            },
+        },
+    },
+}
+evo.pawmo, evo.pawmot = evo.pawmi, evo.pawmi
+evo[954], evo[955], evo[956] = evo.pawmi, evo.pawmi, evo.pawmi
+
+evo.wattrel = {
+    ndex = 957,
+    name = "wattrel",
+
+    evos = {
+        {
+            ndex = 958,
+            name = "kilowattrel",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 25,
+        },
+    },
+}
+evo.kilowattrel = evo.wattrel
+evo[957], evo[958] = evo.wattrel, evo.wattrel
+
+evo.bombirdier = { ndex = 959, name = "bombirdier" }
+evo[959] = evo.bombirdier
+
+evo.squawkabilly = { ndex = 960, name = "squawkabilly" }
+evo[960] = evo.squawkabilly
+
+evo.flamigo = { ndex = 961, name = "flamigo" }
+evo[961] = evo.flamigo
+
+evo.klawf = { ndex = 962, name = "klawf" }
+evo[962] = evo.klawf
+
+evo.nacli = {
+    ndex = 963,
+    name = "nacli",
+
+    evos = {
+        {
+            ndex = 964,
+            name = "naclstack",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 24,
+
+            evos = {
+                {
+                    ndex = 965,
+                    name = "garganacl",
+                    method = evo.methods.LEVEL,
+                    [evo.methods.LEVEL] = 38,
+                },
+            },
+        },
+    },
+}
+evo.naclstack, evo.garganacl = evo.nacli, evo.nacli
+evo[963], evo[964], evo[965] = evo.nacli, evo.nacli, evo.nacli
+
+evo.glimmet = {
+    ndex = 966,
+    name = "glimmet",
+
+    evos = {
+        {
+            ndex = 967,
+            name = "glimmora",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 35,
+        },
+    },
+}
+evo.glimmora = evo.glimmet
+evo[966], evo[967] = evo.glimmet, evo.glimmet
+
+evo.shroodle = {
+    ndex = 968,
+    name = "shroodle",
+
+    evos = {
+        {
+            ndex = 969,
+            name = "grafaiai",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 28,
+        },
+    },
+}
+evo.grafaiai = evo.shroodle
+evo[968], evo[969] = evo.shroodle, evo.shroodle
+
+evo.fidough = {
+    ndex = 970,
+    name = "fidough",
+
+    evos = {
+        {
+            ndex = 971,
+            name = "dachsbun",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 26,
+        },
+    },
+}
+evo.dachsbun = evo.fidough
+evo[970], evo[971] = evo.fidough, evo.fidough
+
+evo.maschiff = {
+    ndex = 972,
+    name = "maschiff",
+
+    evos = {
+        {
+            ndex = 973,
+            name = "mabosstiff",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 30,
+        },
+    },
+}
+evo.mabosstiff = evo.maschiff
+evo[972], evo[973] = evo.maschiff, evo.maschiff
+
+evo.bramblin = {
+    ndex = 974,
+    name = "bramblin",
+
+    evos = {
+        {
+            ndex = 975,
+            name = "brambleghast",
+            method = evo.methods.UNKNOWN, -- TODO
+            -- Walk 1000 steps in Let's Go
+        },
+    },
+}
+evo.brambleghast = evo.bramblin
+evo[974], evo[975] = evo.bramblin, evo.bramblin
+
+-- TODO: add for gimmighoulA ?
+evo.gimmighoul = {
+    ndex = 976,
+    name = "gimmighoul",
+
+    evos = {
+        {
+            ndex = 977,
+            name = "gholdengo",
+            method = evo.methods.UNKNOWN, -- TODO
+            -- 999 coins
+        },
+    },
+}
+evo.gholdengo = evo.gimmighoul
+evo[976], evo[977] = evo.gimmighoul, evo.gimmighoul
+
+evo.grandizanne = { ndex = 978, name = "grandizanne" }
+evo[978] = evo.grandizanne
+
+evo.fungofurioso = { ndex = 979, name = "fungofurioso" }
+evo[979] = evo.fungofurioso
+
+evo.peldisabbia = { ndex = 981, name = "peldisabbia" }
+evo[981] = evo.peldisabbia
+
+evo.codaurlante = { ndex = 982, name = "codaurlante" }
+evo[982] = evo.codaurlante
+
+evo.crinealato = { ndex = 983, name = "crinealato" }
+evo[983] = evo.crinealato
+
+evo.alirasenti = { ndex = 984, name = "alirasenti" }
+evo[984] = evo.alirasenti
+
+evo.lunaruggente = { ndex = 985, name = "lunaruggente" }
+evo[985] = evo.lunaruggente
+
+evo.solcoferreo = { ndex = 986, name = "solcoferreo" }
+evo[986] = evo.solcoferreo
+
+evo.falenaferrea = { ndex = 988, name = "falenaferrea" }
+evo[988] = evo.falenaferrea
+
+evo.manoferrea = { ndex = 989, name = "manoferrea" }
+evo[989] = evo.manoferrea
+
+evo.colloferreo = { ndex = 990, name = "colloferreo" }
+evo[990] = evo.colloferreo
+
+evo.spineferree = { ndex = 991, name = "spineferree" }
+evo[991] = evo.spineferree
+
+evo.saccoferreo = { ndex = 992, name = "saccoferreo" }
+evo[992] = evo.saccoferreo
+
+evo.eroeferreo = { ndex = 993, name = "eroeferreo" }
+evo[993] = evo.eroeferreo
+
+evo["ting-lu"] = { ndex = 994, name = "ting-lu" }
+evo[994] = evo["ting-lu"]
+
+evo["chien-pao"] = { ndex = 995, name = "chien-pao" }
+evo[995] = evo["chien-pao"]
+
+evo["wo-chien"] = { ndex = 996, name = "wo-chien" }
+evo[996] = evo["wo-chien"]
+
+evo["chi-yu"] = { ndex = 997, name = "chi-yu" }
+evo[997] = evo["chi-yu"]
+
+evo.koraidon = { ndex = 998, name = "koraidon" }
+evo[998] = evo.koraidon
+
+evo.miraidon = { ndex = 999, name = "miraidon" }
+evo[999] = evo.miraidon
+
+evo.tinkatink = {
+    ndex = 1000,
+    name = "tinkatink",
+
+    evos = {
+        {
+            ndex = 1001,
+            name = "tinkatuff",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 24,
+
+            evos = {
+                {
+                    ndex = 1002,
+                    name = "tinkaton",
+                    method = evo.methods.LEVEL,
+                    [evo.methods.LEVEL] = 38,
+                },
+            },
+        },
+    },
+}
+evo.tinkatuff, evo.tinkaton = evo.tinkatink, evo.tinkatink
+evo[1000], evo[1001], evo[1002] = evo.tinkatink, evo.tinkatink, evo.tinkatink
+
+evo.charcadet = {
+    ndex = 1003,
+    name = "charcadet",
+
+    evos = {
+        {
+            ndex = 1004,
+            name = "armarouge",
+            method = evo.methods.STONE,
+            [evo.methods.STONE] = "Armatura fausta",
+        },
+        {
+            ndex = 1005,
+            name = "ceruledge",
+            method = evo.methods.STONE,
+            [evo.methods.STONE] = "Armatura infausta",
+        },
+    },
+}
+evo.armarouge, evo.ceruledge = evo.charcadet, evo.charcadet
+evo[1003], evo[1004], evo[1005] = evo.charcadet, evo.charcadet, evo.charcadet
+
+evo.toedscool = {
+    ndex = 1006,
+    name = "toedscool",
+
+    evos = {
+        {
+            ndex = 1007,
+            name = "toedscruel",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 30,
+        },
+    },
+}
+evo.toedscruel = evo.toedscool
+evo[1006], evo[1007] = evo.toedscool, evo.toedscool
+
 -- Alternative forms with evolutions
 evo.rattataA = {
     ndex = "019A",
@@ -7155,6 +7843,23 @@ evo.voltorbH = {
 }
 evo.electrodeH = evo.voltorbH
 evo["100H"], evo["101H"] = evo.voltorbH, evo.voltorbH
+
+evo.wooperP = {
+    ndex = "194P",
+    name = "wooperP",
+    notes = altforms.wooper.names.P,
+
+    evos = {
+        {
+            ndex = 1009,
+            name = "clodsire",
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 20,
+        },
+    },
+}
+evo.clodsire = evo.wooperP
+evo["194P"], evo[1009] = evo.wooperP, evo.wooperP
 
 evo.qwilfishH = {
     ndex = "211H",
