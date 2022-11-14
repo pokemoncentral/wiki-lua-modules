@@ -2335,8 +2335,6 @@ t.lycanrocN, t["745N"], t.lycanrocC, t["745C"] =
     t.lycanroc, t.lycanroc, t.lycanroc, t.lycanroc
 t.wishiwashiB, t["746B"] = t.wishiwashi, t.wishiwashi
 t.miniorR, t["774R"] = t.minior, t.minior
--- t.cramorantT, t['845T'], t.cramorantI, t['845I'] =
---     t.cramorant, t.cramorant, t.cramorant, t.cramorant
 t.toxtricityB, t["849B"] = t.toxtricity, t.toxtricity
 t.eiscueL, t["875L"] = t.eiscue, t.eiscue
 t.indeedeeF, t["876F"] = t.indeedee, t.indeedee
@@ -2345,14 +2343,14 @@ t.eternatusD, t["890D"] = t.eternatus, t.eternatus
 t.basculegionF, t["902F"] = t.basculegion, t.basculegion
 t.enamorusT, t["905T"] = t.enamorus, t.enamorus
 t.oinkologneF = t.oinkologne
--- t["916F"] = t.oinkologneF
+t["916F"] = t.oinkologneF
 t.palafinP = t.palafin
--- t["934P"] = t.palafinP
+t["934P"] = t.palafinP
 t.squawkabillyA, t.squawkabillyG, t.squawkabillyB =
     t.squawkabilly, t.squawkabilly, t.squawkabilly
--- t["960A"], t["960G"], t["960B"] = t.squawkabilly, t.squawkabilly, t.squawkabilly
+t["960A"], t["960G"], t["960B"] = t.squawkabilly, t.squawkabilly, t.squawkabilly
 t.gimmighoulA = t.gimmighoul
--- t["976A"] = t.gimmighoulA
+t["976A"] = t.gimmighoulA
 
 t.venusaurM, t["003M"] = t.venusaur, t.venusaur
 t.charizardMY, t["006MY"] = t.charizard, t.charizard
