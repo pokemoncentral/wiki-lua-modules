@@ -17,10 +17,31 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local multigen = require('Wikilib-multigen')
+local genlib = require('Wikilib-gens')
 local prevnext = require('PrevNext')
 local data = require("Wikilib-data")
 local pokes = require("Poké-data")
 -- stylua: ignore end
+
+-- Find the next existing ndex, considering there may be holes
+local function nextNdex(ndex)
+    local succ = ndex % data.pokeNum + 1
+    if pokes[succ] then
+        return succ
+    else
+        return nextNdex(succ)
+    end
+end
+
+-- Find the previous existing ndex, considering there may be holes
+local function prevNdex(ndex)
+    local pred = (ndex - 2 + data.pokeNum) % data.pokeNum + 1
+    if pokes[pred] then
+        return pred
+    else
+        return prevNdex(pred)
+    end
+end
 
 --[[
 
@@ -39,11 +60,15 @@ Parameters:
 local function basePokePrecSucc(poke, linksuffix, list)
     linksuffix = linksuffix or ""
     list = list or "Elenco Pokémon secondo il Pokédex Nazionale"
+
     local pokeData = multigen.getGen(pokes[poke] or pokes[mw.text.decode(poke)])
+
+    local pred = prevNdex(pokeData.ndex)
+    local succ = nextNdex(pokeData.ndex)
+    local predTf = genlib.ndexToString(pred)
+    local succTf = genlib.ndexToString(succ)
+
     local type1, type2 = pokeData.type1, pokeData.type2
-    local pred = (pokeData.ndex - 2 + data.pokeNum) % data.pokeNum + 1
-    local succ = pokeData.ndex % data.pokeNum + 1
-    local predTf, succTf = txt.tf(pred), txt.tf(succ)
     local predname, succname = pokes[pred].name, pokes[succ].name
     return prevnext.PrevNextLua({
         color = type1,

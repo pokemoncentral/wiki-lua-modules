@@ -6,6 +6,9 @@ local mw = require("mw")
 -- Case tested: standard PokePrecSucc
 print(pps.PokePrecSucc({ args = { " Staraptor " } }))
 
+-- Case tested: missing ndex
+print(pps.PokePrecSucc({ args = { "Fungofurioso" } }))
+
 -- Case tested:
 --      - automatic Pokémon name detection
 --      - automatic subpage detection

@@ -13,6 +13,7 @@ local tab = require('Wikilib-tables')
 local css = require('Css')
 local ms = require('MiniSprite')
 local gamesUtil = require('Wikilib-games')
+local genUtil = require('Wikilib-gens')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local statsUtil = require('Wikilib-stats')
@@ -98,7 +99,7 @@ Entry.__tostring = function(this)
 | style="padding: 0.3ex 0.6ex" | [[${name}|<span style="color: #000;">${name}</span>]]${form}
 | style="padding: 0.3ex 0.6ex" | '''${total}''']=],
         {
-            ndex = this.ndex and txt.tf(this.ndex) or "???",
+            ndex = genUtil.ndexToString(this.ndex),
             ms = ms.staticLua({
                 txt.tf(this.ndex or 0)
                     .. (this.formAbbr == "base" and "" or this.formAbbr or ""),

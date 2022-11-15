@@ -2,9 +2,11 @@
 
 local gens = {}
 
--- stylua: ignore
+-- stylua: ignore start
 local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings')
 local data = require("Gens-data")
+-- stylua: ignore end
 
 -- Il primo argomento è un indice delle sottotables delle tables delle
 -- singole generazioni del modulo gensdata, mentre il secondo è un valore
@@ -78,5 +80,20 @@ gens.latest = {}
 
 -- The latest game
 gens.latest.game = data[data.latest].games[#data[data.latest].games]
+
+-- Whether a given ndex is internal or real. Internal means that we use it, but
+-- it has never been confirmed by official sources, such as Pokémon HOME
+gens.isNdexInternal = function(ndex)
+    return ndex > 905
+end
+
+-- Given an ndex, return the appropriate string representation. Takes care of
+-- possibly nil as well as internal ndexes.
+gens.ndexToString = function(ndex)
+    if not ndex or gens.isNdexInternal(ndex) then
+        return "???"
+    end
+    return txt.tf(ndex)
+end
 
 return gens

@@ -25,6 +25,7 @@ local w = require('Wikilib')
 local form = require('Wikilib-forms')
 local oop = require('Wikilib-oop')
 local lists = require('Wikilib-lists')
+local gen = require('Wikilib-gens')
 local multigen = require('Wikilib-multigen')
 local box = require('Box')
 local ms = require('MiniSprite')
@@ -93,7 +94,7 @@ n.Entry.__tostring = function(this)
     local types = type2 == type1 and { type1 } or { type1, type2 }
 
     return txt.interp(n.Entry.strings.ENTRY, {
-        ndex = this.ndex and txt.tf(this.ndex) or "???",
+        ndex = gen.ndexToString(this.ndex),
         ms = ms.staticLua({
             txt.tf(this.ndex or 0) .. form.toEmptyAbbr(this.formAbbr or ""),
         }),
@@ -147,16 +148,17 @@ n.manualEntry = function(frame)
     local formtag = formsData[ndex] and formsData[ndex].links[abbr] or ""
     local types = { p.type1, p.type2 }
 
-    local msidx
+    local ndexs, msidx
     if not tonumber(ndex) then
-        ndex = "???"
-        msidx = ndex
+        ndexs = "???"
+        msidx = ndexs
     else
-        msidx = ndex .. abbr
+        ndexs = txt.tf(ndex)
+        msidx = ndexs .. abbr
     end
 
     return txt.interp(n.Entry.strings.ENTRY, {
-        ndex = ndex,
+        ndex = ndexs,
         ms = ms.staticLua({ msidx }),
         name = name,
         form = formtag,

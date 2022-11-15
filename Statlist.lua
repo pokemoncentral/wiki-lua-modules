@@ -194,7 +194,7 @@ s.Entry.__tostring = function(this)
 ${statsCells}]=],
         {
             sortDex = this.ndex or "???",
-            ndex = this.ndex and txt.tf(this.ndex) or "???",
+            ndex = genUtil.ndexToString(this.ndex),
             sortName = formUtil.formSortValue(this.ndex, this.formAbbr, name),
             ms = ms.staticLua({
                 txt.tf(this.ndex or 0)
