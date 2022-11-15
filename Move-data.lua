@@ -4,6 +4,7 @@
 
 local t = {}
 
+-- stylua: ignore start
 t.botta = {name = 'Botta', type = 'normale', category = 'fisico', power = 40, accuracy = 100, pp = 35, gen = 1}
 t.colpokarate = {name = 'Colpokarate', type = {[1] = 'normale', [2] = 'lotta'}, category = 'fisico', power = 50, accuracy = 100, pp = 25, gen = 1}
 t.doppiasberla = {name = 'Doppiasberla', type = 'normale', category = 'fisico', power = 15, accuracy = 85, pp = 10, gen = 1}
@@ -767,9 +768,78 @@ t["furia ardente"] = {name = "Furia Ardente", type = "buio", category = "special
 t.inquietantesimo = {name = "Inquietantesimo", type = "psico", category = "speciale", power = "80", accuracy = "100", pp = "5", gen = 8}
 t["lancia glaciale"] = {name = "Lancia Glaciale", type = "ghiaccio", category = "fisico", power = "130", accuracy = "100", pp = "5", gen = 8}
 t["schegge astrali"] = {name = "Schegge Astrali", type = "spettro", category = "speciale", power = "120", accuracy = "100", pp = "5", gen = 8}
-t.terascoppio = {name = "Terascoppio", type = "normale", category = nil, power = nil, accuracy = nil, pp = nil, gen = 9}
-t.tagliacoda = {name = "Tagliacoda", type = nil, category = "stato", power = '&mdash;', accuracy = nil, pp = nil, gen = 9}
-t["corazza cannone"] = {name = "Corazza Cannone", type = "fuoco", category = "&mdash;", power = "&mdash;", accuracy = "&mdash;", pp = "&mdash;", gen = 9}
-t["lama del rimorso"] = {name = "Lama del Rimorso", type = "fuoco", category = "fisico", power = "&mdash;", accuracy = "&mdash;", pp = "&mdash;", gen = 9}
+-- Gen 9
+t["artigli fatali"] = {name = "Artigli Fatali", type = "veleno", category = "fisico", power = "80", accuracy = "100", pp = "15", gen = 9}
+t.barrierassalto = {name = "Barrierassalto", type = "psico", category = "fisico", power = "70", accuracy = "90", pp = "10", gen = 9}
+t.scambioforza = {name = "Scambioforza", type = "normale", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
+t.rocciascure = {name = "Rocciascure", type = "roccia", category = "fisico", power = "65", accuracy = "90", pp = "15", gen = 9}
+t["tempesta zefirea"] = {name = "Tempesta Zefirea", type = "folletto", category = "speciale", power = "100", accuracy = "80", pp = "5", gen = 9}
+t["forza mistica"] = {name = "Forza Mistica", type = "psico", category = "speciale", power = "70", accuracy = "90", pp = "10", gen = 9}
+t["ira furente"] = {name = "Ira Furente", type = "fuoco", category = "fisico", power = "120", accuracy = "100", pp = "10", gen = 9}
+t.ondaschianto = {name = "Ondaschianto", type = "acqua", category = "fisico", power = "120", accuracy = "100", pp = "10", gen = 9}
+t.clorofillaser = {name = "Clorofillaser", type = "erba", category = "speciale", power = "150", accuracy = "95", pp = "5", gen = 9}
+t["soffio d'iceberg"] = {name = "Soffio d'Iceberg", type = "ghiaccio", category = "fisico", power = "100", accuracy = "85", pp = "10", gen = 9}
+t.danzavittoria = {name = "Danzavittoria", type = "lotta", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
+t["scontro frontale"] = {name = "Scontro Frontale", type = "terra", category = "fisico", power = "120", accuracy = "100", pp = "5", gen = 9}
+t["mille fielespine"] = {name = "Mille Fielespine", type = "veleno", category = "fisico", power = "60", accuracy = "100", pp = "10", gen = 9}
+t["ali d'aura"] = {name = "Ali d'Aura", type = "psico", category = "speciale", power = "80", accuracy = "100", pp = "10", gen = 9}
+t.livore = {name = "Livore", type = "spettro", category = "speciale", power = "75", accuracy = "100", pp = "10", gen = 9}
+t.barricata = {name = "Barricata", type = "acciaio", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
+t.triplodardo = {name = "Triplodardo", type = "lotta", category = "fisico", power = "90", accuracy = "100", pp = "10", gen = 9}
+t["corteo spettrale"] = {name = "Corteo Spettrale", type = "spettro", category = "speciale", power = "60", accuracy = "100", pp = "15", gen = 9}
+t["lama milleflutti"] = {name = "Lama Milleflutti", type = "buio", category = "fisico", power = "65", accuracy = "90", pp = "15", gen = 9}
+t["tempesta boreale"] = {name = "Tempesta Boreale", type = "volante", category = "speciale", power = "100", accuracy = "80", pp = "10", gen = 9}
+t["tempesta tonante"] = {name = "Tempesta Tonante", type = "elettro", category = "speciale", power = "100", accuracy = "80", pp = "10", gen = 9}
+t["tempesta ardente"] = {name = "Tempesta Ardente", type = "terra", category = "speciale", power = "100", accuracy = "80", pp = "10", gen = 9}
+t.invocaluna = {name = "Invocaluna", type = "psico", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "5", gen = 9}
+t.terascoppio = {name = "Terascoppio", type = "normale", category = "speciale", power = "80", accuracy = "100", pp = "10", gen = 9}
+t.telatrappola = {name = "Telatrappola", type = "coleottero", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
+t["calcio ad ascia"] = {name = "Calcio ad Ascia", type = "lotta", category = "fisico", power = "120", accuracy = "90", pp = "10", gen = 9}
+t["omaggio ai ko"] = {name = "Omaggio ai KO", type = "spettro", category = "fisico", power = "50", accuracy = "100", pp = "10", gen = 9}
+t.fotocollisione = {name = "Fotocollisione", type = "psico", category = "speciale", power = "80", accuracy = "100", pp = "10", gen = 9}
+t["alta cucina"] = {name = "Alta Cucina", type = "drago", category = "fisico", power = "80", accuracy = "100", pp = "10", gen = 9}
+t.pugnojet = {name = "Pugnojet", type = "acqua", category = "fisico", power = "60", accuracy = "100", pp = "15", gen = 9}
+t["essenza piccante"] = {name = "Essenza Piccante", type = "erba", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "15", gen = 9}
+t.slittaruote = {name = "Slittaruote", type = "acciaio", category = "fisico", power = "100", accuracy = "100", pp = "5", gen = 9}
+t.infestazione = {name = "Infestazione", type = "normale", category = "fisico", power = "20", accuracy = "90", pp = "10", gen = 9}
+t.vortighiaccio = {name = "Vortighiaccio", type = "ghiaccio", category = "fisico", power = "80", accuracy = "100", pp = "15", gen = 9}
+t.spadoncarica = {name = "Spadoncarica", type = "drago", category = "fisico", power = "120", accuracy = "100", pp = "5", gen = 9}
+t["preghiera vitale"] = {name = "Preghiera Vitale", type = "normale", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "1", gen = 9}
+t["sotto sale"] = {name = "Sotto Sale", type = "roccia", category = "fisico", power = "40", accuracy = "100", pp = "15", gen = 9}
+t["triplo tuffo"] = {name = "Triplo Tuffo", type = "acqua", category = "fisico", power = "30", accuracy = "95", pp = "10", gen = 9}
+t.glitturbine = {name = "Glitturbine", type = "veleno", category = "fisico", power = "30", accuracy = "100", pp = "15", gen = 9}
+t.ricalco = {name = "Ricalco", type = "normale", category = "stato", power = "&mdash;", accuracy = "100", pp = "10", gen = 9}
+t.alleggerimento = {name = "Alleggerimento", type = "normale", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
+t.genufendente = {name = "Genufendente", type = "buio", category = "fisico", power = "85", accuracy = "&mdash;", pp = "10", gen = 9}
+t.prestigiafiore = {name = "Prestigiafiore", type = "erba", category = "fisico", power = "70", accuracy = "&mdash;", pp = "10", gen = 9}
+t["canzone ardente"] = {name = "Canzone Ardente", type = "fuoco", category = "speciale", power = "80", accuracy = "100", pp = "10", gen = 9}
+t.idroballetto = {name = "Idroballetto", type = "acqua", category = "fisico", power = "80", accuracy = "100", pp = "10", gen = 9}
+t.scatenatoro = {name = "Scatenatoro", type = "normale", category = "fisico", power = "90", accuracy = "100", pp = "10", gen = 9}
+t["corsa all'oro"] = {name = "Corsa all'Oro", type = "acciaio", category = "speciale", power = "120", accuracy = "100", pp = "5", gen = 9}
+t.catastrofe = {name = "Catastrofe", type = "buio", category = "speciale", power = "1", accuracy = "90", pp = "10", gen = 9}
+t.turboschianto = {name = "Turboschianto", type = "lotta", category = "fisico", power = "100", accuracy = "100", pp = "5", gen = 9}
+t.fulmiscatto = {name = "Fulmiscatto", type = "elettro", category = "speciale", power = "100", accuracy = "100", pp = "5", gen = 9}
+t.tagliacoda = {name = "Tagliacoda", type = "normale", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
+t.freddura = {name = "Freddura", type = "ghiaccio", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
+t.pulizie = {name = "Pulizie", type = "normale", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
+t["vista innevata"] = {name = "Vista Innevata", type = "ghiaccio", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
+t.balzo = {name = "Balzo", type = "coleottero", category = "fisico", power = "50", accuracy = "100", pp = "20", gen = 9}
+t.apripista = {name = "Apripista", type = "erba", category = "fisico", power = "50", accuracy = "100", pp = "20", gen = 9}
+t["doccia fredda"] = {name = "Doccia Fredda", type = "acqua", category = "speciale", power = "50", accuracy = "100", pp = "20", gen = 9}
+t.ipertrapano = {name = "Ipertrapano", type = "normale", category = "fisico", power = "100", accuracy = "100", pp = "5", gen = 9}
+t.doppioraggio = {name = "Doppioraggio", type = "psico", category = "speciale", power = "40", accuracy = "100", pp = "10", gen = 9}
+t["pugno furibondo"] = {name = "Pugno Furibondo", type = "spettro", category = "fisico", power = "50", accuracy = "100", pp = "10", gen = 9}
+t["corazza cannone"] = {name = "Corazza Cannone", type = "fuoco", category = "speciale", power = "120", accuracy = "100", pp = "5", gen = 9}
+t["lama del rimorso"] = {name = "Lama del Rimorso", type = "fuoco", category = "fisico", power = "90", accuracy = "100", pp = "10", gen = 9}
+t.doppiolampo = {name = "Doppiolampo", type = "elettro", category = "fisico", power = "120", accuracy = "100", pp = "5", gen = 9}
+t.granmartello = {name = "Granmartello", type = "acciaio", category = "fisico", power = "160", accuracy = "100", pp = "5", gen = 9}
+t.ritorsione = {name = "Ritorsione", type = "buio", category = "fisico", power = "1", accuracy = "100", pp = "10", gen = 9}
+t.idrotaglio = {name = "Idrotaglio", type = "acqua", category = "fisico", power = "70", accuracy = "100", pp = "20", gen = 9}
+t.turboustione = {name = "Turboustione", type = "fuoco", category = "fisico", power = "80", accuracy = "100", pp = "10", gen = 9}
+t.turbotenebra = {name = "Turbotenebra", type = "buio", category = "fisico", power = "80", accuracy = "100", pp = "10", gen = 9}
+t.turbotossina = {name = "Turbotossina", type = "veleno", category = "fisico", power = "100", accuracy = "100", pp = "10", gen = 9}
+t.turborissa = {name = "Turborissa", type = "lotta", category = "fisico", power = "100", accuracy = "100", pp = "10", gen = 9}
+t.turboincanto = {name = "Turboincanto", type = "folletto", category = "fisico", power = "100", accuracy = "100", pp = "10", gen = 9}
+-- stylua: ignore end
 
 return t
