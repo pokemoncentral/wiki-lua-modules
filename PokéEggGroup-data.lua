@@ -1762,6 +1762,227 @@ t.spectrier = { group1 = "sconosciuto" }
 t[897] = t.spectrier
 t.calyrex = { group1 = "sconosciuto" }
 t[898] = t.calyrex
+t.wyrdeer = { group1 = "campo" }
+t[899] = t.wyrdeer
+t.kleavor = { group1 = "coleottero" }
+t[900] = t.kleavor
+t.ursaluna = { group1 = "campo" }
+t[901] = t.ursaluna
+t.basculegion = { group1 = "acqua 2" }
+t[902] = t.basculegion
+t.sneasler = { group1 = "campo" }
+t[903] = t.sneasler
+t.overqwil = { group1 = "acqua 2" }
+t[904] = t.overqwil
+t.enamorus = { group1 = "sconosciuto" }
+t[905] = t.enamorus
+-- Gen 9
+t.sprigatito = { group1 = "campo", group2 = "erba" }
+t[906] = t.sprigatito
+t.floragato = { group1 = "campo", group2 = "erba" }
+t[907] = t.floragato
+t.meowscarada = { group1 = "campo", group2 = "erba" }
+t[908] = t.meowscarada
+t.fuecoco = { group1 = "campo" }
+t[909] = t.fuecoco
+t.crocalor = { group1 = "campo" }
+t[910] = t.crocalor
+t.skeledirge = { group1 = "campo" }
+t[911] = t.skeledirge
+t.quaxly = { group1 = "volante", group2 = "acqua 1" }
+t[912] = t.quaxly
+t.quaxwell = { group1 = "volante", group2 = "acqua 1" }
+t[913] = t.quaxwell
+t.quaquaval = { group1 = "volante", group2 = "acqua 1" }
+t[914] = t.quaquaval
+t.lechonk = { group1 = "campo" }
+t[915] = t.lechonk
+t.oinkologne = { group1 = "campo" }
+t[916] = t.oinkologne
+t.dudunsparce = { group1 = "campo" }
+t[917] = t.dudunsparce
+t.tarountula = { group1 = "coleottero" }
+t[918] = t.tarountula
+t.spidops = { group1 = "coleottero" }
+t[919] = t.spidops
+t.nymble = { group1 = "coleottero" }
+t[920] = t.nymble
+t.lokix = { group1 = "coleottero" }
+t[921] = t.lokix
+t.rellor = { group1 = "coleottero" }
+t[922] = t.rellor
+t.rabsca = { group1 = "coleottero" }
+t[923] = t.rabsca
+t.greavard = { group1 = "campo" }
+t[924] = t.greavard
+t.houndstone = { group1 = "campo" }
+t[925] = t.houndstone
+t.flittle = { group1 = "volante" }
+t[926] = t.flittle
+t.espathra = { group1 = "volante" }
+t[927] = t.espathra
+t.farigiraf = { group1 = "campo" }
+t[928] = t.farigiraf
+t.wiglett = { group1 = "acqua 3" }
+t[929] = t.wiglett
+t.wugtrio = { group1 = "acqua 3" }
+t[930] = t.wugtrio
+t.dondozo = { group1 = "acqua 2" }
+t[931] = t.dondozo
+t.veluza = { group1 = "acqua 2" }
+t[932] = t.veluza
+t.finizen = { group1 = "campo", group2 = "acqua 2" }
+t[933] = t.finizen
+t.palafin = { group1 = "campo", group2 = "acqua 2" }
+t[934] = t.palafin
+t.smoliv = { group1 = "erba" }
+t[935] = t.smoliv
+t.dolliv = { group1 = "erba" }
+t[936] = t.dolliv
+t.arboliva = { group1 = "erba" }
+t[937] = t.arboliva
+t.capsakid = { group1 = "erba" }
+t[938] = t.capsakid
+t.scovillain = { group1 = "erba" }
+t[939] = t.scovillain
+t.tadbulb = { group1 = "acqua 1" }
+t[940] = t.tadbulb
+t.bellibolt = { group1 = "acqua 1" }
+t[941] = t.bellibolt
+t.varoom = { group1 = "minerale" }
+t[942] = t.varoom
+t.revavroom = { group1 = "minerale" }
+t[943] = t.revavroom
+t.orthworm = { group1 = "campo" }
+t[944] = t.orthworm
+t.tandemaus = { group1 = "campo", group2 = "magico" }
+t[945] = t.tandemaus
+t.maushold = { group1 = "campo", group2 = "magico" }
+t[946] = t.maushold
+t.cetoddle = { group1 = "campo" }
+t[947] = t.cetoddle
+t.cetitan = { group1 = "campo" }
+t[948] = t.cetitan
+t.frigibax = { group1 = "drago", group2 = "minerale" }
+t[949] = t.frigibax
+t.arctibax = { group1 = "drago", group2 = "minerale" }
+t[950] = t.arctibax
+t.baxcalibur = { group1 = "drago", group2 = "minerale" }
+t[951] = t.baxcalibur
+t.tatsugiri = { group1 = "acqua 2" }
+t[952] = t.tatsugiri
+t.cyclizar = { group1 = "campo" }
+t[953] = t.cyclizar
+t.pawmi = { group1 = "campo" }
+t[954] = t.pawmi
+t.pawmo = { group1 = "campo" }
+t[955] = t.pawmo
+t.pawmot = { group1 = "campo" }
+t[956] = t.pawmot
+t.wattrel = { group1 = "acqua 1", group2 = "volante" }
+t[957] = t.wattrel
+t.kilowattrel = { group1 = "acqua 1", group2 = "volante" }
+t[958] = t.kilowattrel
+t.bombirdier = { group1 = "volante" }
+t[959] = t.bombirdier
+t.squawkabilly = { group1 = "volante" }
+t[960] = t.squawkabilly
+t.flamigo = { group1 = "volante" }
+t[961] = t.flamigo
+t.klawf = { group1 = "acqua 3" }
+t[962] = t.klawf
+t.nacli = { group1 = "minerale" }
+t[963] = t.nacli
+t.naclstack = { group1 = "minerale" }
+t[964] = t.naclstack
+t.garganacl = { group1 = "minerale" }
+t[965] = t.garganacl
+t.glimmet = { group1 = "minerale" }
+t[966] = t.glimmet
+t.glimmora = { group1 = "minerale" }
+t[967] = t.glimmora
+t.shroodle = { group1 = "campo" }
+t[968] = t.shroodle
+t.grafaiai = { group1 = "campo" }
+t[969] = t.grafaiai
+t.fidough = { group1 = "campo", group2 = "minerale" }
+t[970] = t.fidough
+t.dachsbun = { group1 = "campo", group2 = "minerale" }
+t[971] = t.dachsbun
+t.maschiff = { group1 = "campo" }
+t[972] = t.maschiff
+t.mabosstiff = { group1 = "campo" }
+t[973] = t.mabosstiff
+t.bramblin = { group1 = "erba" }
+t[974] = t.bramblin
+t.brambleghast = { group1 = "erba" }
+t[975] = t.brambleghast
+t.gimmighoul = { group1 = "sconosciuto" }
+t[976] = t.gimmighoul
+t.gholdengo = { group1 = "sconosciuto" }
+t[977] = t.gholdengo
+t.grandizanne = { group1 = "sconosciuto" }
+t[978] = t.grandizanne
+t.fungofurioso = { group1 = "sconosciuto" }
+t[979] = t.fungofurioso
+t.peldisabbia = { group1 = "sconosciuto" }
+t[980] = t.peldisabbia
+t.codaurlante = { group1 = "sconosciuto" }
+t[981] = t.codaurlante
+t.crinealato = { group1 = "sconosciuto" }
+t[982] = t.crinealato
+t.alirasenti = { group1 = "sconosciuto" }
+t[983] = t.alirasenti
+t.lunaruggente = { group1 = "sconosciuto" }
+t[984] = t.lunaruggente
+t.solcoferreo = { group1 = "sconosciuto" }
+t[985] = t.solcoferreo
+t.falenaferrea = { group1 = "sconosciuto" }
+t[986] = t.falenaferrea
+t.manoferrea = { group1 = "sconosciuto" }
+t[987] = t.manoferrea
+t.colloferreo = { group1 = "sconosciuto" }
+t[988] = t.colloferreo
+t.spineferree = { group1 = "sconosciuto" }
+t[989] = t.spineferree
+t.saccoferreo = { group1 = "sconosciuto" }
+t[990] = t.saccoferreo
+t.eroeferreo = { group1 = "sconosciuto" }
+t[991] = t.eroeferreo
+t["ting-lu"] = { group1 = "sconosciuto" }
+t[992] = t["ting-lu"]
+t["chien-pao"] = { group1 = "sconosciuto" }
+t[993] = t["chien-pao"]
+t["wo-chien"] = { group1 = "sconosciuto" }
+t[994] = t["wo-chien"]
+t["chi-yu"] = { group1 = "sconosciuto" }
+t[995] = t["chi-yu"]
+t.koraidon = { group1 = "sconosciuto" }
+t[996] = t.koraidon
+t.miraidon = { group1 = "sconosciuto" }
+t[997] = t.miraidon
+t.tinkatink = { group1 = "magico" }
+t[998] = t.tinkatink
+t.tinkatuff = { group1 = "magico" }
+t[999] = t.tinkatuff
+t.tinkaton = { group1 = "magico" }
+t[1000] = t.tinkaton
+t.charcadet = { group1 = "umanoide" }
+t[1001] = t.charcadet
+t.armarouge = { group1 = "umanoide" }
+t[1002] = t.armarouge
+t.ceruledge = { group1 = "umanoide" }
+t[1003] = t.ceruledge
+t.toedscool = { group1 = "erba" }
+t[1004] = t.toedscool
+t.toedscruel = { group1 = "erba" }
+t[1005] = t.toedscruel
+t.kingambit = { group1 = "umanoide" }
+t[1006] = t.kingambit
+t.clodsire = { group1 = "acqua 1", group2 = "campo" }
+t[1007] = t.clodsire
+t.annihilape = { group1 = "campo" }
+t[1008] = t.annihilape
 
 -- Forme alternative che esistono fuori dalla lotta e quindi
 -- possono avere un gruppo uova diverso da quello della forma base
@@ -1858,12 +2079,18 @@ t.weezingG = t.weezing
 t["110G"] = t.weezing
 t["mr. mimeG"] = t["mr. mime"]
 t["122G"] = t["mr. mime"]
+t.taurosPa, t.taurosPb, t.taurosPc = t.tauros, t.tauros, t.tauros
+t["128Pa"] = t.taurosPa
+t["128Pb"] = t.taurosPb
+t["128Pc"] = t.taurosPc
 t.articunoG = t.articuno
 t["144G"] = t.articunoG
 t.zapdosG = t.zapdos
 t["145G"] = t.zapdosG
 t.moltresG = t.moltres
 t["146G"] = t.moltresG
+t.wooperP = t.wooper
+t["194P"] = t.wooperP
 t.slowkingG = t.slowking
 t["199G"] = t.slowkingG
 t.corsolaG = t.corsola
