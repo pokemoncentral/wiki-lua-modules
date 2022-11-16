@@ -77,6 +77,7 @@ local regiongens = {
     Armatura = { ord = 9, pref = "" },
     Corona = { ord = 10, pref = "" },
     Hisui = { ord = 11 },
+    Paldea = { ord = 12 },
 }
 
 local region_sort = function(c, d)
