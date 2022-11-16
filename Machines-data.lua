@@ -252,4 +252,45 @@ for k, v in pairs(m[8].DT) do
     m[8].DT[k] = { { "SpSc", v } }
 end
 
+-- stylua: ignore
+m[9] = {
+    MT = {
+        "riduttore", "fascino", "falselacrime", "agilità", "fangosberla",
+        "visotruce", "protezione", "rogodenti", "fulmindenti", "gelodenti",
+        "idropulsar", "colpo basso", "acidobomba", "acrobazia", "entomoblocco",
+        "psicoraggio", "stordiraggio", "furto", "incantavoce", "apripista",
+        "balzo", "doccia fredda", "raggioscossa", "turbofuoco", "facciata",
+        "velenocoda", "aeroassalto", "battiterra", "sciagura", "urlorabbia",
+        "ferrartigli", "comete", "fogliamagica", "ventogelato", "colpodifango",
+        "rocciotomba", "assorbibacio", "nitrocarica", "calciobasso", "aerasoio",
+        "veicolaforza", "ombra notturna", "lancio", "codadrago", "velenoshock",
+        "slavina", "resistenza", "invertivolt", "giornodisole", "pioggiadanza",
+        "terrempesta", "vista innevata", "sottilcorno", "psicoshock", "fossa",
+        "semitraglia", "falsofinale", "breccia", "cozzata zen", "retromarcia",
+        "ombrartigli", "ripicca", "psicozanna", "granfisico", "eterelama",
+        "corposcontro", "fuocopugno", "tuonopugno", "gelopugno", "sonnolalia",
+        "semebomba", "energisfera", "assorbipugno", "riflesso", "schermoluce",
+        "cadutamassi", "cascata", "dragartigli", "magibrillio", "metronomo",
+        "laccioerboso", "tuononda", "velenpuntura", "battipiedi", "riposo",
+        "frana", "provocazione", "danzaspada", "schiacciacorpo", "punte",
+        "fielepunte", "esclusiva", "cannonflash", "neropulsar", "sanguisuga",
+        "elettromistero", "volo", "baratto", "metaltestata", "dragodanza",
+        "gemmoforza", "sporcolancio", "sostituto", "ferroscudo", "forbice x",
+        "giravvita", "fuocofatuo", "sgranocchio", "raggiro", "idrobreccia",
+        "gigassorbimento", "forzasfera", "ventoincoda", "palla ombra",
+        "dragopulsar", "levitoroccia", "granvoce", "ondacalda", "energipalla",
+        "psichico", "pesobomba", "ripeti", "surf", "vortighiaccio",
+        "lanciafiamme", "fulmine", "carineria", "amnesia", "calmamente",
+        "altruismo", "sferapolline", "staffetta", "geoforza", "contropiede",
+        "geloraggio", "campo elettrico", "campo erboso", "campo psichico",
+        "campo nebbioso", "congiura", "fuocobomba", "idropompa", "bora",
+        "fiammapatto", "acquapatto", "erbapatto", "sprizzalampo", "fangobomba",
+        "terremoto", "pietrataglio", "spettrotuffo", "gigaimpatto", "incendio",
+        "idrocannone", "radicalbero", "oltraggio", "vampata", "focalcolpo",
+        "verdebufera", "tifone", "distortozona", "ronzio", "iper raggio",
+        "baldeali", "fuococarica", "tuono", "zuffa", "solarraggio",
+        "dragobolide", "raggio d'acciaio", "terascoppio",
+    },
+}
+
 return m
