@@ -6,9 +6,11 @@ Utility functions and data about statistics.
 
 local s = {}
 
+-- stylua: ignore start
 local tab = require('Wikilib-tables')
 local mg = require('Wikilib-multigen')
 local gendata = require("Gens-data")
+-- stylua: ignore end
 
 --[[
 
@@ -23,14 +25,14 @@ local makeSumSpan = function(stats, gen)
 
     return {
         val = s.statsSum(s.getStatsGen(stats, gen)),
-        first = gen
+        first = gen,
     }
 end
 
 -- Statistics order, split by generation
 s.statsOrder = {
-    [1] = {'hp', 'atk', 'def', 'spec', 'spe'},
-    [2] = {'hp', 'atk', 'def', 'spatk', 'spdef', 'spe' }
+    [1] = { "hp", "atk", "def", "spec", "spe" },
+    [2] = { "hp", "atk", "def", "spatk", "spdef", "spe" },
 }
 s.statsOrder[3], s.statsOrder[4] = s.statsOrder[2], s.statsOrder[2]
 s.statsOrder[5], s.statsOrder[6] = s.statsOrder[2], s.statsOrder[2]
@@ -101,8 +103,9 @@ to write it every time.
 
 --]]
 s.statsSum = function(stats)
-    return table.fold(stats, 0, function(a, b)
-        return a + b end)
+    return tab.fold(stats, 0, function(a, b)
+        return a + b
+    end)
 end
 s.statssum, s.stats_sum = s.statsSum, s.statsSum
 
@@ -114,7 +117,6 @@ is not included.
 
 --]]
 s.spansSum = function(statSpans, startGen)
-
     --[[
         If stats have not changed throughout the
         generations, returning a single span beginning
@@ -123,16 +125,15 @@ s.spansSum = function(statSpans, startGen)
     if not s.didStatsChange(statSpans) then
         local sum = makeSumSpan(statSpans)
         sum.last = gendata.latest
-        return {sum}
+        return { sum }
     end
 
-    local sums = {makeSumSpan(statSpans, startGen)}
+    local sums = { makeSumSpan(statSpans, startGen) }
 
     for gen = startGen + 1, gendata.latest do
-
         -- Whether any stat changed in the current gen
-        local anyChange = table.any(statSpans, function(stat)
-            return type(stat) == 'table' and stat[gen]
+        local anyChange = tab.any(statSpans, function(stat)
+            return type(stat) == "table" and stat[gen]
         end)
 
         if anyChange then
