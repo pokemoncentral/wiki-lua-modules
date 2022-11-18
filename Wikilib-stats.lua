@@ -37,6 +37,7 @@ s.statsOrder = {
 s.statsOrder[3], s.statsOrder[4] = s.statsOrder[2], s.statsOrder[2]
 s.statsOrder[5], s.statsOrder[6] = s.statsOrder[2], s.statsOrder[2]
 s.statsOrder[7], s.statsOrder[8] = s.statsOrder[2], s.statsOrder[2]
+s.statsOrder[9] = s.statsOrder[2]
 
 s.statsorder, s.stats_order = s.statsOrder, s.statsOrder
 
