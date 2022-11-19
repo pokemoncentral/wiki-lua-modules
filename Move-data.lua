@@ -146,7 +146,8 @@ t['sguardo feroce'] = {name = { [1] = 'Bagliore', [6] = 'Sguardo Feroce'}, type 
 t.bagliore = t['sguardo feroce']
 t.mangiasogni = {name = 'Mangiasogni', type = 'psico', category = 'speciale', power = 100, accuracy = 100, pp = 15, gen = 1}
 t.velenogas = {name = 'Velenogas', type = 'veleno', category = 'stato', power = '&mdash;', accuracy = 90, pp = 40, gen = 1}
-t['attacco pioggia'] = {name = 'Attacco Pioggia', type = 'normale', category = 'fisico', power = 15, accuracy = 85, pp = 20, gen = 1}
+t['attacco pioggia'] = {name = {[1] = 'Attacco Pioggia', [9] = "Sferattacco"}, type = 'normale', category = 'fisico', power = 15, accuracy = 85, pp = 20, gen = 1}
+t.sferattacco = t['attacco pioggia']
 t.sanguisuga = {name = 'Sanguisuga', type = 'coleottero', category = 'fisico', power = 80, accuracy = 100, pp = 10, gen = 1}
 t.demonbacio = {name = 'Demonbacio', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 75, pp = 10, gen = 1}
 t.aeroattacco = {name = 'Aeroattacco', type = 'volante', category = 'fisico', power = 140, accuracy = 90, pp = 5, gen = 1}
@@ -184,7 +185,8 @@ t.maledizione = {name = 'Maledizione', type = {[2] = 'sconosciuto', [5] = 'spett
 t.flagello = {name = 'Flagello', type = 'normale', category = 'fisico', power = '&mdash;', accuracy = 100, pp = 15, stab = true, gen = 2}
 t.conversione2 = {name = 'Conversione2', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 30, gen = 2}
 t.aerocolpo = {name = 'Aerocolpo', type = 'volante', category = 'speciale', power = 100, accuracy = 95, pp = 5, gen = 2}
-t.cottonspora = {name = 'Cottonspora', type = 'erba', category = 'stato', power = '&mdash;', accuracy = 100, pp = 40, gen = 2}
+t.cottonspora = {name = {[2] = 'Cottonspora', [9] = "Cotonspora"}, type = 'erba', category = 'stato', power = '&mdash;', accuracy = 100, pp = 40, gen = 2}
+t.cottonspora = t.cotonspora
 t.contropiede = {name = 'Contropiede', type = 'lotta', category = 'fisico', power = '&mdash;', accuracy = 100, pp = 15, stab = true, gen = 2}
 t.dispetto = {name = 'Dispetto', type = 'spettro', category = 'stato', power = '&mdash;', accuracy = 100, pp = 10, gen = 2}
 t.polneve = {name = 'Polneve', type = 'ghiaccio', category = 'speciale', power = 40, accuracy = 100, pp = 25, gen = 2}
@@ -198,7 +200,8 @@ t.fangobomba = {name = 'Fangobomba', type = 'veleno', category = 'speciale', pow
 t.fangosberla = {name = 'Fangosberla', type = 'terra', category = 'speciale', power = 20, accuracy = 100, pp = 10, gen = 2}
 t.octazooka = {name = 'Octazooka', type = 'acqua', category = 'speciale', power = 65, accuracy = 85, pp = 10, gen = 2}
 t.punte = {name = 'Punte', type = 'terra', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 20, gen = 2}
-t.falcecannone = {name = 'Falcecannone', type = 'elettro', category = 'speciale', power = 120, accuracy = 50, pp = 5, gen = 2}
+t.falcecannone = {name = {[2] = "Falcecannone", [9] = "Elettrocannone"}, type = 'elettro', category = 'speciale', power = 120, accuracy = 50, pp = 5, gen = 2}
+t.elettrocannone = t.falcecannone
 t.preveggenza = {name = 'Preveggenza', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 100, pp = 40, gen = 2}
 t.destinobbligato = {name = 'Destinobbligato', type = 'spettro', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 5, gen = 2}
 t.ultimocanto = {name = 'Ultimocanto', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 5, gen = 2}
@@ -359,7 +362,8 @@ t.dragodanza = {name = 'Dragodanza', type = 'drago', category = 'stato', power =
 t.cadutamassi = {name = 'Cadutamassi', type = 'roccia', category = 'fisico', power = 25, accuracy = 90, pp = 10, gen = 3}
 t.ondashock = {name = 'Ondashock', type = 'elettro', category = 'speciale', power = 60, accuracy = '&mdash;', pp = 20, gen = 3}
 t.idropulsar = {name = 'Idropulsar', type = 'acqua', category = 'speciale', power = 60, accuracy = 100, pp = 20, gen = 3}
-t.obbliderio = {name = 'Obbliderio', type = 'acciaio', category = 'speciale', power = 140, accuracy = 100, pp = 5, gen = 3}
+t.obbliderio = {name = {[3] = "Obbliderio", [9] = "Desiderio Fatale"}, type = 'acciaio', category = 'speciale', power = 140, accuracy = 100, pp = 5, gen = 3}
+t["desiderio Fatale"] = t.obbliderio
 t.psicoslancio = {name = 'Psicoslancio', type = 'psico', category = 'speciale', power = 140, accuracy = 90, pp = 5, gen = 3}
 t.trespolo = {name = 'Trespolo', type = 'volante', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 4}
 t['gravità'] = {name = 'Gravità', type = 'psico', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 5, gen = 4}
@@ -402,7 +406,8 @@ t.acquanello = {name = 'Acquanello', type = 'acqua', category = 'stato', power =
 t.magnetascesa = {name = 'Magnetascesa', type = 'elettro', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 4}
 t.fuococarica = {name = 'Fuococarica', type = 'fuoco', category = 'fisico', power = 120, accuracy = 100, pp = 15, gen = 4}
 t.palmoforza = {name = 'Palmoforza', type = 'lotta', category = 'fisico', power = 60, accuracy = 100, pp = 10, gen = 4}
-t.forzasfera = {name = 'Forzasfera', type = 'lotta', category = 'speciale', power = 80, accuracy = '&mdash;', pp = 20, gen = 4}
+t.forzasfera = {name = {[4] = "Forzasfera", [9] = "Sferapulsar"}, type = 'lotta', category = 'speciale', power = 80, accuracy = '&mdash;', pp = 20, gen = 4}
+t.sferapulsar = t.forzasfera
 t.lucidatura = {name = 'Lucidatura', type = 'roccia', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 20, gen = 4}
 t.velenpuntura = {name = 'Velenpuntura', type = 'veleno', category = 'fisico', power = 80, accuracy = 100, pp = 20, gen = 4}
 t.neropulsar = {name = 'Neropulsar', type = 'buio', category = 'speciale', power = 80, accuracy = 100, pp = 15, gen = 4}
@@ -511,7 +516,8 @@ t.anticipo = {name = 'Anticipo', type = 'lotta', category = 'stato', power = '&m
 t.cambiaposto = {name = 'Cambiaposto', type = 'psico', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 15, gen = 5}
 t.idrovampata = {name = 'Idrovampata', type = 'acqua', category = 'speciale', power = 80, accuracy = 100, pp = 15, gen = 5}
 t.gettaguscio = {name = 'Gettaguscio', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 15, gen = 5}
-t.ondasana = {name = 'Ondasana', type = 'psico', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 5}
+t.ondasana = {name = {[5] = 'Ondasana', [9] = "Curapulsar"}, type = 'psico', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 5}
+t.curapulsar = t.ondasana
 t.sciagura = {name = 'Sciagura', type = 'spettro', category = 'speciale', power = 65, accuracy = 100, pp = 10, gen = 5}
 t.cadutalibera = {name = 'Cadutalibera', type = 'volante', category = 'fisico', power = 60, accuracy = 100, pp = 10, gen = 5}
 t.cambiomarcia = {name = 'Cambiomarcia', type = 'acciaio', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 5}
