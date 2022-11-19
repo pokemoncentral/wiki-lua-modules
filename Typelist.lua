@@ -13,6 +13,8 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local multigen = require('Wikilib-multigen')
+local gen = require('Wikilib-gens')
+local form = require('Wikilib-forms')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local css = require('Css')
@@ -64,10 +66,9 @@ g.Entry.__tostring = function(this)
 | class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[${name}]]${form}
 ${types}]=],
         {
-            ndex = this.ndex and txt.tf(this.ndex) or "???",
+            ndex = gen.ndexToString(this.ndex),
             static = ms.staticLua({
-                txt.tf(this.ndex or 0)
-                    .. (this.formAbbr == "base" and "" or this.formAbbr or ""),
+                txt.tf(this.ndex or 0) .. form.toEmptyAbbr(this.formAbbr or ""),
             }),
             name = this.name,
             form = this.formsData and this.formsData.links[this.formAbbr] or "",
