@@ -1,10 +1,11 @@
-local render = require('Render')
-local header = require('Learnlist-hf')
-local mw = require('mw')
+local render = require("Render")
+local header = require("Learnlist-hf")
+local mw = require("mw")
 
 -- ============================ Gen 8 ============================
 mw.title.setTitle("Zacian")
-print(header.levelh{args={"Zacian", "folletto", "folletto", "8", "8" }})
+print(header.levelh({ args = { "Zacian", "folletto", "folletto", "8", "8" } }))
+-- stylua: ignore
 print(render.render{args={"Learnlist-entry8", "level", "//",
 "Anticipo", "", "", "Inizio", "Inizio", "//",
 "Attacco Rapido", "", "", "Inizio", "Inizio", "//",
@@ -12,7 +13,7 @@ print(render.render{args={"Learnlist-entry8", "level", "//",
 "Gridodilotta", "", "", "Inizio", "Inizio", "//",
 "Morso", "", "", "Inizio", "4", "//",
 "Spadasolenne", "", "", "Inizio", "5", "//",
-"Lacerazione", "", "", "11", "11", "//",
+"Falcecannone", "", "", "11", "11", "//",
 "Danzaspada", "", "", "22", "33", "//",
 "Metaltestata", "''", "", "33", "34", "//",
 "Concentrazione", "", "", "44", "5", "//",
@@ -21,35 +22,37 @@ print(render.render{args={"Learnlist-entry8", "level", "//",
 "Zuffa", "", "", "77", "8", "//",
 "Gigaimpatto", "", "", "88", "88", "//",
 "Surf", "", "", "2", "88", "//"}})
-print(header.levelf{args={"Zacian", "folletto", "folletto", "8", "8" }})
+print(header.levelf({ args = { "Zacian", "folletto", "folletto", "8", "8" } }))
 
 mw.title.setTitle("Marshadow")
-print(header.tmh{args={"Marshadow", "spettro", "lotta", "8", "7" }})
+print(header.tmh({ args = { "Marshadow", "spettro", "lotta", "8", "7" } }))
+-- stylua: ignore
 print(render.render{args={"Learnlist-entry8", "tm", "//",
 "Fascino", "", "", "MT29", "", "//",
 "Velociscambio", "", "", "no", "MT123", "//",
 "Scalaroccia", "", "", "", "", "//",
 "Lanciafiamme", "", "", "", "", "//"}})
-print(header.tmf{args={"Marshadow", "spettro", "lotta", "8", "7" }})
+print(header.tmf({ args = { "Marshadow", "spettro", "lotta", "8", "7" } }))
 
-
-print(header.tutorh{args={"Marshadow", "spettro", "lotta", "8", "7" }})
+print(header.tutorh({ args = { "Marshadow", "spettro", "lotta", "8", "7" } }))
+-- stylua: ignore
 print(render.render{args={"Learnlist-entry8", "tutor", "//",
 "Coaching", "", "", "yes", "yes", "no", "//",
 "Strisciacolpo", "", "", "no", "yes", "yes", "//",
 "Poltergeist", "no", "", "no", "yes", "no", "//",
 "Radicalbero", "no", "", "no", "no", "yes", "//",
 }})
-print(header.tutorf{args={"Marshadow", "spettro", "lotta", "8", "7" }})
-
+print(header.tutorf({ args = { "Marshadow", "spettro", "lotta", "8", "7" } }))
 
 mw.title.setTitle("Marshadow")
-print(header.preevoh{args={"Marshadow", "spettro", "lotta", "8", "7" }})
+print(header.preevoh({ args = { "Marshadow", "spettro", "lotta", "8", "7" } }))
+-- stylua: ignore
 print(render.entry{args={"Learnlist-entry8.preevo",
 "[[€Auguri||001|E£]]",
 }})
-print(header.preevof{args={"Marshadow", "spettro", "lotta", "8", "7" }})
+print(header.preevof({ args = { "Marshadow", "spettro", "lotta", "8", "7" } }))
 
+-- stylua: ignore start
 if false then
 -- ============================ Gen 7- ============================
 print(header.levelh{args={'Necrozma', 'Psico', 'Psico', '7', '7'}})
@@ -676,3 +679,4 @@ print(render.entry{args={ 'Learnlist-entry5.tutor',
 print(header.tutorf{args={'Bulbasaur', 'erba', 'veleno', '5', '1'}})
 
 end
+-- stylua: ignore end

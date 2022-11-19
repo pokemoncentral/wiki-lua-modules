@@ -186,7 +186,7 @@ t.flagello = {name = 'Flagello', type = 'normale', category = 'fisico', power = 
 t.conversione2 = {name = 'Conversione2', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 30, gen = 2}
 t.aerocolpo = {name = 'Aerocolpo', type = 'volante', category = 'speciale', power = 100, accuracy = 95, pp = 5, gen = 2}
 t.cottonspora = {name = {[2] = 'Cottonspora', [9] = "Cotonspora"}, type = 'erba', category = 'stato', power = '&mdash;', accuracy = 100, pp = 40, gen = 2}
-t.cottonspora = t.cotonspora
+t.cotonspora = t.cottonspora
 t.contropiede = {name = 'Contropiede', type = 'lotta', category = 'fisico', power = '&mdash;', accuracy = 100, pp = 15, stab = true, gen = 2}
 t.dispetto = {name = 'Dispetto', type = 'spettro', category = 'stato', power = '&mdash;', accuracy = 100, pp = 10, gen = 2}
 t.polneve = {name = 'Polneve', type = 'ghiaccio', category = 'speciale', power = 40, accuracy = 100, pp = 25, gen = 2}
@@ -363,7 +363,7 @@ t.cadutamassi = {name = 'Cadutamassi', type = 'roccia', category = 'fisico', pow
 t.ondashock = {name = 'Ondashock', type = 'elettro', category = 'speciale', power = 60, accuracy = '&mdash;', pp = 20, gen = 3}
 t.idropulsar = {name = 'Idropulsar', type = 'acqua', category = 'speciale', power = 60, accuracy = 100, pp = 20, gen = 3}
 t.obbliderio = {name = {[3] = "Obbliderio", [9] = "Desiderio Fatale"}, type = 'acciaio', category = 'speciale', power = 140, accuracy = 100, pp = 5, gen = 3}
-t["desiderio Fatale"] = t.obbliderio
+t["desiderio fatale"] = t.obbliderio
 t.psicoslancio = {name = 'Psicoslancio', type = 'psico', category = 'speciale', power = 140, accuracy = 90, pp = 5, gen = 3}
 t.trespolo = {name = 'Trespolo', type = 'volante', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 4}
 t['gravità'] = {name = 'Gravità', type = 'psico', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 5, gen = 4}
