@@ -7,17 +7,19 @@ a given type. It divides them into mono-typed, first-typed and second-typed.
 
 local g = {}
 
+-- stylua: ignore start
 local mw = require('mw')
 
-local css = require('Css')
-local ms = require('MiniSprite')
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
+local multigen = require('Wikilib-multigen')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
+local css = require('Css')
+local ms = require('MiniSprite')
 local resp = require('Resp')
-local txt = require('Wikilib-strings')      -- luacheck: no unused
-local tab = require('Wikilib-tables')       -- luacheck: no unused
-local multigen = require('Wikilib-multigen')
 local pokes = require('Poké-data')
+-- stylua: ignore end
 
 --[[
 
@@ -29,10 +31,12 @@ g.Entry = oop.makeClass(list.PokeSortableEntry)
 
 -- Returns the heading line for tables, given type, heading level and ending.
 g.Entry.makeHeader = function(type, level, ending)
-    type = type == 'coleot' and 'Coleottero' or string.fu(type)
-    local headerTags = string.rep('=', level)
-    return table.concat({headerTags, 'Pokémon di tipo', type, ending,
-            headerTags}, ' ')
+    type = type == "coleot" and "Coleottero" or txt.fu(type)
+    local headerTags = string.rep("=", level)
+    return table.concat(
+        { headerTags, "Pokémon di tipo", type, ending, headerTags },
+        " "
+    )
 end
 
 --[[
@@ -44,7 +48,7 @@ Subclasses are to return nil, as specified by makeList in Wikilib/lists.
 g.Entry.new = function(pokeData, name)
     local this = g.Entry.super.new(name, pokeData.ndex)
 
-    return setmetatable(table.merge(this, pokeData), g.Entry)
+    return setmetatable(tab.merge(this, pokeData), g.Entry)
 end
 
 --[[
@@ -54,19 +58,27 @@ Mono-typed Pokémon display the type only once.
 
 --]]
 g.Entry.__tostring = function(this)
-    return string.interp([=[| class="width-xs-20" | ${ndex}
+    return txt.interp(
+        [=[| class="width-xs-20" | ${ndex}
 | class="width-xs-20" | ${static}
 | class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[${name}]]${form}
 ${types}]=],
-    {
-        ndex = this.ndex and string.tf(this.ndex) or '???',
-        static = ms.staticLua{string.tf(this.ndex or 0) ..
-                (this.formAbbr == 'base' and '' or this.formAbbr or '')},
-        name = this.name,
-        form = this.formsData and this.formsData.links[this.formAbbr] or '',
-        types = resp.twoTypeCellsLua(this.type1, this.type2, {{'thick'}},
-            {{'type-cell'}})
-    })
+        {
+            ndex = this.ndex and txt.tf(this.ndex) or "???",
+            static = ms.staticLua({
+                txt.tf(this.ndex or 0)
+                    .. (this.formAbbr == "base" and "" or this.formAbbr or ""),
+            }),
+            name = this.name,
+            form = this.formsData and this.formsData.links[this.formAbbr] or "",
+            types = resp.twoTypeCellsLua(
+                this.type1,
+                this.type2,
+                { { "thick" } },
+                { { "type-cell" } }
+            ),
+        }
+    )
 end
 
 -- Mono-typed Pokémon entry class
@@ -74,7 +86,7 @@ g.MonoTypeEntry = oop.makeClass(g.Entry)
 
 -- Creates mono-typed headings
 g.MonoTypeEntry.makeHeader = function(type)
-    return g.MonoTypeEntry.super.makeHeader(type, 3, 'puro')
+    return g.MonoTypeEntry.super.makeHeader(type, 3, "puro")
 end
 
 --[[
@@ -91,8 +103,10 @@ g.MonoTypeEntry.new = function(pokeData, name, type)
         return nil
     end
 
-    return setmetatable(g.MonoTypeEntry.super.new(pokeData,
-            name), g.MonoTypeEntry)
+    return setmetatable(
+        g.MonoTypeEntry.super.new(pokeData, name),
+        g.MonoTypeEntry
+    )
 end
 
 -- First-typed Pokémon entry class
@@ -100,8 +114,7 @@ g.FirstTypeEntry = oop.makeClass(g.Entry)
 
 -- Creates first-typed headings
 g.FirstTypeEntry.makeHeader = function(type)
-    return g.FirstTypeEntry.super.makeHeader(type, 4,
-        'come tipo primario')
+    return g.FirstTypeEntry.super.makeHeader(type, 4, "come tipo primario")
 end
 
 --[[
@@ -118,8 +131,10 @@ g.FirstTypeEntry.new = function(pokeData, name, type)
         return nil
     end
 
-    return setmetatable(g.FirstTypeEntry.super.new(pokeData,
-            name), g.FirstTypeEntry)
+    return setmetatable(
+        g.FirstTypeEntry.super.new(pokeData, name),
+        g.FirstTypeEntry
+    )
 end
 
 -- Second-typed Pokémon entry class
@@ -127,8 +142,7 @@ g.SecondTypeEntry = oop.makeClass(g.Entry)
 
 -- Creates second-typed headings
 g.SecondTypeEntry.makeHeader = function(type)
-    return g.SecondTypeEntry.super.makeHeader(type, 4,
-        'come tipo secondario')
+    return g.SecondTypeEntry.super.makeHeader(type, 4, "come tipo secondario")
 end
 
 --[[
@@ -141,13 +155,14 @@ mono-typed or its second type is not the passed one.
 --]]
 g.SecondTypeEntry.new = function(pokeData, name, type)
     pokeData = multigen.getGen(pokeData)
-    if pokeData.type1 == pokeData.type2
-            or type ~= pokeData.type2 then
+    if pokeData.type1 == pokeData.type2 or type ~= pokeData.type2 then
         return nil
     end
 
-    return setmetatable(g.SecondTypeEntry.super.new(pokeData,
-            name), g.SecondTypeEntry)
+    return setmetatable(
+        g.SecondTypeEntry.super.new(pokeData, name),
+        g.SecondTypeEntry
+    )
 end
 
 --[[
@@ -157,18 +172,20 @@ types, to print the correct amount of type columns.
 
 --]]
 local makeHeader = function(type, typesCount)
-    return string.interp([=[{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
+    return txt.interp(
+        [=[{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
 |- class="hidden-xs"
 ! class="black-text" style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
 ! class="unsortable" | &nbsp;
 ! class="black-text" | [[Pokémon]]
 ${types}]=],
-{
-    bg = css.horizGradLua{type = type},
-    types = typesCount < 2 and '! class="black-text" | [[Tipo]]'
-        or [=[! class="black-text" | [[Tipo|Tipo 1]]
-! class="black-text" | [[Tipo|Tipo 2]]]=]
-})
+        {
+            bg = css.horizGradLua({ type = type }),
+            types = typesCount < 2 and '! class="black-text" | [[Tipo]]'
+                or [=[! class="black-text" | [[Tipo|Tipo 1]]
+! class="black-text" | [[Tipo|Tipo 2]]]=],
+        }
+    )
 end
 
 --[[
@@ -180,16 +197,17 @@ optional, defaulting to the return of the Entry class makeHeader method.
 
 --]]
 g.makeTypeTable = function(type, Entry, header)
-    return table.concat({header or Entry.makeHeader(type),
+    return table.concat({
+        header or Entry.makeHeader(type),
         list.makeList({
             source = pokes,
             iterator = list.pokeNames,
             entryArgs = type,
             makeEntry = Entry.new,
-            header = makeHeader(type,
-                    Entry == g.MonoTypeEntry and 1 or 2),
-            separator = '|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"'
-        })}, '\n')
+            header = makeHeader(type, Entry == g.MonoTypeEntry and 1 or 2),
+            separator = '|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"',
+        }),
+    }, "\n")
 end
 
 --[[
@@ -207,20 +225,19 @@ Examples:
 
 --]]
 g.typelist = function(frame)
-
     -- Extracting type from page title
-    local monoType = string.trim(mw.text.decode(frame.args[1]
-            or 'sconosciuto')):lower()
+    local monoType = txt.trim(mw.text.decode(frame.args[1] or "sconosciuto"))
+        :lower()
 
     -- Dual-typed Pokémon have 'coleottero' as 'coleot'
-    local dualType = monoType == 'coleottero' and 'coleot' or monoType
+    local dualType = monoType == "coleottero" and "coleot" or monoType
 
     return table.concat({
-            g.makeTypeTable(monoType, g.MonoTypeEntry),
-            g.Entry.makeHeader(monoType, 3, 'parziale'),
-            g.makeTypeTable(dualType, g.FirstTypeEntry),
-            g.makeTypeTable(dualType, g.SecondTypeEntry)
-        }, '\n\n')
+        g.makeTypeTable(monoType, g.MonoTypeEntry),
+        g.Entry.makeHeader(monoType, 3, "parziale"),
+        g.makeTypeTable(dualType, g.FirstTypeEntry),
+        g.makeTypeTable(dualType, g.SecondTypeEntry),
+    }, "\n\n")
 end
 
 g.Typelist, g.TypeList, g.typeList = g.typelist, g.typelist, g.typelist

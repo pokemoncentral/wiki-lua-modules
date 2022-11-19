@@ -2,10 +2,11 @@
 
 local m = {}
 
+-- stylua: ignore start
 local mw = require('mw')
 
-local txt = require('Wikilib-strings')          -- luacheck: no unused
-local tab = require('Wikilib-tables')           -- luacheck: no unused
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local forms = require('Wikilib-forms')
 local w = require('Wikilib')
 local multigen = require('Wikilib-multigen')
@@ -21,6 +22,7 @@ local blackabbr = require("Blackabbrev-data")
 local pokes = require("Poké-data")
 local groups = require("PokéEggGroup-data")
 local useless = require("UselessForms-data")
+-- stylua: ignore end
 
 --[[
 
@@ -44,33 +46,51 @@ from a table (indexed with kinds) AND to format them together.
 local entry = {}
 
 -- Boolean parameters representation
-entry.boolDisplay = {no = '×', yes = '✔'}
+entry.boolDisplay = { no = "×", yes = "✔" }
 
 -- Map from gen to list of game abbrs (that are parameters) of that gen
 entry.genGames = {
-	[1] = {"Y"}, [2] = {"C"}, [3] = {"FRLG", "E"}, [4] = {"HGSS", "PtHGSS"},
-	[5] = {"B2W2"}, [6] = {"ORAS"}, [7] = {"USUM", "LGPE"},
-	[8] = {"SpSc"},
+    [1] = { "Y" },
+    [2] = { "C" },
+    [3] = { "FRLG", "E" },
+    [4] = { "HGSS", "PtHGSS" },
+    [5] = { "B2W2" },
+    [6] = { "ORAS" },
+    [7] = { "USUM", "LGPE" },
+    [8] = { "SpSc" },
 }
 
 -- Reverse of the previous table
 entry.gameGens = {}
-table.map(entry.genGames, function(v, k)
-	table.map(v, function(abbr)
-		entry.gameGens[abbr] = k
-	end)
+tab.map(entry.genGames, function(v, k)
+    tab.map(v, function(abbr)
+        entry.gameGens[abbr] = k
+    end)
 end)
 
 -- Strings for printing
 entry.strings = {
-	CELLBOX = [[| class="${textcolor} height-100" style="padding: 0.8ex 0.3ex;${cs}" | <div class="text-center height-100 roundy-5 vert-middle" style="${bg}; padding: 0 0.3ex;">${cnt}</div>]],
+    CELLBOX = [[| class="${textcolor} height-100" style="padding: 0.8ex 0.3ex;${cs}" | <div class="text-center height-100 roundy-5 vert-middle" style="${bg}; padding: 0 0.3ex;">${cnt}</div>]],
 }
 
 -- Sorted background colors of tutor cells
 entry.tutorCellsColors = {
-	'cristallo', 'rossofuoco', 'smeraldo', 'xd', 'diamante', 'platino',
-	'heartgold', 'nero', 'nero2', 'x', 'rubinoomega', 'sole', 'ultrasole',
-	'lgpikachu', 'spada', 'isolaarmatura'
+    "cristallo",
+    "rossofuoco",
+    "smeraldo",
+    "xd",
+    "diamante",
+    "platino",
+    "heartgold",
+    "nero",
+    "nero2",
+    "x",
+    "rubinoomega",
+    "sole",
+    "ultrasole",
+    "lgpikachu",
+    "spada",
+    "isolaarmatura",
 }
 
 --[[
@@ -87,111 +107,110 @@ Each entry in a gen is a list of tables, with the following keys:
 
 --]]
 entry.levelCellsData = {
-	[1] = {
-		Y = {
-			{bg = 'rosso', abbr = 'RVB', val = 'base'},
-			{bg = 'giallo', abbr = 'G', val = 'Y'}
-		}
-	},
-	[2] = {
-		C = {
-			{bg = 'oro', abbr = 'OA', val = 'base'},
-			{bg = 'cristallo', abbr = 'C', val = 'C'}
-		}
-	},
-	[3] = {
-		FRLG = {
-			{bg = 'rubino', abbr = 'RZS', val = 'base', colspan = 2},
-			{bg = 'rossofuoco', abbr = 'RFVF', val = 'FRLG'}
-		},
-		E = {
-			{bg = 'rubino', abbr = 'RZRFVF', val = 'base', colspan = 2},
-			{bg = 'smeraldo', abbr = 'S', val = 'E'}
-		}
-	},
-	[4] = {
-		HGSS = {
-			{bg = 'diamante', abbr = 'DPPt', val = 'base', colspan = 2},
-			{bg = 'heartgold', abbr = 'HGSS', val = 'HGSS'}
-		},
-		PtHGSS = {
-			{bg = 'diamante', abbr = 'DP', val = 'base', colspan = 2},
-			{bg = 'heartgold', abbr = 'PtHGSS', val = 'PtHGSS'}
-		}
-	},
-	[5] = {
-		B2W2 = {
-			{bg = 'bianco', abbr = 'NB', val = 'base'},
-			{bg = 'bianco2', abbr = 'N2B2', val = 'B2W2'}
-		}
-	},
-	[6] = {
-		ORAS = {
-			{bg = 'x', abbr = 'XY', val = 'base'},
-			{bg = 'rubinoomega', abbr = 'ROZA', val = 'ORAS'}
-		}
-	},
-	[7] = {
-		USUM = {
-			{bg = 'sole', abbr = 'SL', val = 'base', colspan = 2},
-			{bg = 'ultrasole', abbr = 'UsUl', val = 'USUM'}
-		},
-		LGPE = {
-			{bg = 'sole', abbr = 'SLUsUl', val = 'base', colspan = 2},
-			{bg = 'lgp', abbr = 'LGPE', val = 'LGPE'}
-		},
-		USUMLGPE = {
-			{bg = 'sole', abbr = 'SL', val = 'base'},
-			{bg = 'ultrasole', abbr = 'UsUl', val = 'USUM'},
-			{bg = 'lgp', abbr = 'LGPE', val = 'LGPE'}
-		}
-	},
-	[8] = {
-	},
+    [1] = {
+        Y = {
+            { bg = "rosso", abbr = "RVB", val = "base" },
+            { bg = "giallo", abbr = "G", val = "Y" },
+        },
+    },
+    [2] = {
+        C = {
+            { bg = "oro", abbr = "OA", val = "base" },
+            { bg = "cristallo", abbr = "C", val = "C" },
+        },
+    },
+    [3] = {
+        FRLG = {
+            { bg = "rubino", abbr = "RZS", val = "base", colspan = 2 },
+            { bg = "rossofuoco", abbr = "RFVF", val = "FRLG" },
+        },
+        E = {
+            { bg = "rubino", abbr = "RZRFVF", val = "base", colspan = 2 },
+            { bg = "smeraldo", abbr = "S", val = "E" },
+        },
+    },
+    [4] = {
+        HGSS = {
+            { bg = "diamante", abbr = "DPPt", val = "base", colspan = 2 },
+            { bg = "heartgold", abbr = "HGSS", val = "HGSS" },
+        },
+        PtHGSS = {
+            { bg = "diamante", abbr = "DP", val = "base", colspan = 2 },
+            { bg = "heartgold", abbr = "PtHGSS", val = "PtHGSS" },
+        },
+    },
+    [5] = {
+        B2W2 = {
+            { bg = "bianco", abbr = "NB", val = "base" },
+            { bg = "bianco2", abbr = "N2B2", val = "B2W2" },
+        },
+    },
+    [6] = {
+        ORAS = {
+            { bg = "x", abbr = "XY", val = "base" },
+            { bg = "rubinoomega", abbr = "ROZA", val = "ORAS" },
+        },
+    },
+    [7] = {
+        USUM = {
+            { bg = "sole", abbr = "SL", val = "base", colspan = 2 },
+            { bg = "ultrasole", abbr = "UsUl", val = "USUM" },
+        },
+        LGPE = {
+            { bg = "sole", abbr = "SLUsUl", val = "base", colspan = 2 },
+            { bg = "lgp", abbr = "LGPE", val = "LGPE" },
+        },
+        USUMLGPE = {
+            { bg = "sole", abbr = "SL", val = "base" },
+            { bg = "ultrasole", abbr = "UsUl", val = "USUM" },
+            { bg = "lgp", abbr = "LGPE", val = "LGPE" },
+        },
+    },
+    [8] = {},
 }
 
 -- Table of level games for generation
 entry.levelgames = {
-	{ -- 1
-		{bg = 'rosso', abbr = 'RVB'},
-		{bg = 'giallo', abbr = 'G'},
-	},
-	{ -- 2
-		{bg = 'oro', abbr = 'OA'},
-		{bg = 'cristallo', abbr = 'C'},
-	},
-	{ -- 3
-		{bg = 'rubino', abbr = 'RZ'},
-		{bg = 'rossofuoco', abbr = 'RFVF'},
-		{bg = 'smeraldo', abbr = 'S'},
-	},
-	{ -- 4
-		{bg = 'diamante', abbr = 'DP'},
-		{bg = 'platino', abbr = 'Pt'},
-		{bg = 'heartgold', abbr = 'HGSS'},
-	},
-	{ -- 5
-		{bg = 'bianco', abbr = 'NB'},
-		{bg = 'bianco2', abbr = 'N2B2'},
-	},
-	{ -- 6
-		{bg = 'x', abbr = 'XY'},
-		{bg = 'rubinoomega', abbr = 'ROZA'},
-	},
-	{ -- 7
-		{bg = 'sole', abbr = 'SL'},
-		{bg = 'ultrasole', abbr = 'UsUl'},
-		{bg = 'lgp', abbr = 'LGPE'},
-	},
-	{ -- 8
-		{bg = 'spada', abbr = 'SpSc'},
-	},
+    { -- 1
+        { bg = "rosso", abbr = "RVB" },
+        { bg = "giallo", abbr = "G" },
+    },
+    { -- 2
+        { bg = "oro", abbr = "OA" },
+        { bg = "cristallo", abbr = "C" },
+    },
+    { -- 3
+        { bg = "rubino", abbr = "RZ" },
+        { bg = "rossofuoco", abbr = "RFVF" },
+        { bg = "smeraldo", abbr = "S" },
+    },
+    { -- 4
+        { bg = "diamante", abbr = "DP" },
+        { bg = "platino", abbr = "Pt" },
+        { bg = "heartgold", abbr = "HGSS" },
+    },
+    { -- 5
+        { bg = "bianco", abbr = "NB" },
+        { bg = "bianco2", abbr = "N2B2" },
+    },
+    { -- 6
+        { bg = "x", abbr = "XY" },
+        { bg = "rubinoomega", abbr = "ROZA" },
+    },
+    { -- 7
+        { bg = "sole", abbr = "SL" },
+        { bg = "ultrasole", abbr = "UsUl" },
+        { bg = "lgp", abbr = "LGPE" },
+    },
+    { -- 8
+        { bg = "spada", abbr = "SpSc" },
+    },
 }
 
 -- Maximum of level columns for a generation. Exported because used also in
 -- Movelist/hf
-m.maxCellsNumber = table.map(entry.levelgames, function(v)
-	return #v
+m.maxCellsNumber = tab.map(entry.levelgames, function(v)
+    return #v
 end)
 
 --[[
@@ -206,25 +225,27 @@ Arguments:
 	- abbr: games abbr to add after text (optional)
 --]]
 entry.makeBox = function(text, bgcolor, bold, colspan, tt, abbr)
-	local bg = bgcolor:lower() == "fff"
-				and ""
-				or css.horizGradLua{ type = bgcolor }
-	text = bold and table.concat{"'''", text, "'''"} or text
-	local cnt = tt and tt ~= "" and links.tt(text, tt) or text
-	local tc
-	if bgcolor:lower() == "fff" then
-		tc = 'black-text'
-	else
-		tc = cc.forModGradBgLua(bgcolor)
-	end
-	return string.interp(entry.strings.CELLBOX, {
-		bg = bg,
-		textcolor = tc,
-		cs = colspan and colspan ~= 1
-		     and ('" colspan="' .. colspan) or "",
-		cnt = abbr and table.concat{"<span>", cnt, blackabbr[abbr] or "",
-		                            "</span>"} or cnt,
-	})
+    local bg = bgcolor:lower() == "fff" and ""
+        or css.horizGradLua({ type = bgcolor })
+    text = bold and table.concat({ "'''", text, "'''" }) or text
+    local cnt = tt and tt ~= "" and links.tt(text, tt) or text
+    local tc
+    if bgcolor:lower() == "fff" then
+        tc = "black-text"
+    else
+        tc = cc.forModGradBgLua(bgcolor)
+    end
+    return txt.interp(entry.strings.CELLBOX, {
+        bg = bg,
+        textcolor = tc,
+        cs = colspan and colspan ~= 1 and ('" colspan="' .. colspan) or "",
+        cnt = abbr and table.concat({
+            "<span>",
+            cnt,
+            blackabbr[abbr] or "",
+            "</span>",
+        }) or cnt,
+    })
 end
 
 --[[
@@ -241,50 +262,50 @@ Parameters are named because of many possible nil:
 
 --]]
 entry.printValue = {
-	level = function(args)
-		local text = args.data or "N/D"
-		local bg = args.bg
-		if text:lower() == 'no' then
-			text = entry.boolDisplay.no
-			bg = "fff"
-		end
-		return entry.makeBox(text, bg, true, args.colspan, args.abbr)
-	end,
-	tm = function(args)
-		local text = args.data and entry.boolDisplay[args.data:lower()] or "N/D"
-		local bg = args.bg
-		if text == entry.boolDisplay.no then
-			bg = "fff"
-		end
-		return entry.makeBox(text, bg, true, args.colspan, args.abbr)
-	end,
-	breed = function(args)
-		local text = args.data or "N/D"
-		text = text:match('%#')
-				and lib.mslistToModal(text, nil, entry.boolDisplay.yes)
-				or text
-		local bg = args.bg
-		if text:lower() == 'no' then
-			text = entry.boolDisplay.no
-			bg = "fff"
-		end
-		return entry.makeBox(text, bg, true, args.colspan, nil, args.abbr)
-	end,
-	tutor = function(args)
-		if not args.data or args.data:lower() == 'x' then
-			return ""
-		elseif args.data:lower() == "no" then
-			return entry.makeBox(entry.boolDisplay.no, "fff", true)
-		elseif args.data:lower() == "yes" then
-			return entry.makeBox(entry.boolDisplay.yes, args.bg, true)
-		end
-	end,
-	event = function(args)
-		-- Should be wrapped in a div because this text may go to multiple lines
-		-- and this breaks vert-middle
-		local text = table.concat{"<div>", args.data, "</div>"}
-		return entry.makeBox(text, args.bg, false)
-	end,
+    level = function(args)
+        local text = args.data or "N/D"
+        local bg = args.bg
+        if text:lower() == "no" then
+            text = entry.boolDisplay.no
+            bg = "fff"
+        end
+        return entry.makeBox(text, bg, true, args.colspan, args.abbr)
+    end,
+    tm = function(args)
+        local text = args.data and entry.boolDisplay[args.data:lower()] or "N/D"
+        local bg = args.bg
+        if text == entry.boolDisplay.no then
+            bg = "fff"
+        end
+        return entry.makeBox(text, bg, true, args.colspan, args.abbr)
+    end,
+    breed = function(args)
+        local text = args.data or "N/D"
+        text = text:match("%#")
+                and lib.mslistToModal(text, nil, entry.boolDisplay.yes)
+            or text
+        local bg = args.bg
+        if text:lower() == "no" then
+            text = entry.boolDisplay.no
+            bg = "fff"
+        end
+        return entry.makeBox(text, bg, true, args.colspan, nil, args.abbr)
+    end,
+    tutor = function(args)
+        if not args.data or args.data:lower() == "x" then
+            return ""
+        elseif args.data:lower() == "no" then
+            return entry.makeBox(entry.boolDisplay.no, "fff", true)
+        elseif args.data:lower() == "yes" then
+            return entry.makeBox(entry.boolDisplay.yes, args.bg, true)
+        end
+    end,
+    event = function(args)
+        -- Should be wrapped in a div because this text may go to multiple lines
+        -- and this breaks vert-middle
+        local text = table.concat({ "<div>", args.data, "</div>" })
+        return entry.makeBox(text, args.bg, false)
+    end,
 }
 
 --[[
@@ -303,43 +324,46 @@ arguments:
 
 --]]
 entry.valueMapper = {
-	level = function(source, args, valPrinter, key)
-		-- key + args.startGen is the generation of this source because
-		-- table.filter compacts integer keys
-		local gen = key + args.startGen - 1
+    level = function(source, args, valPrinter, key)
+        -- key + args.startGen is the generation of this source because
+        -- table.filter compacts integer keys
+        local gen = key + args.startGen - 1
 
-		-- Searches for parameters
-		local parameters = table.concat(table.mapToNum(
-			entry.genGames[gen],
-			function(v) return args[v] and v or nil end,
-			ipairs
-		))
-		if parameters == "" then
-			-- No extra parameters
-			return valPrinter{ data = args[key], bg = gendata[gen].region,
-								colspan = m.maxCellsNumber[gen] }
-		else
-			-- Extra parameters
-			local boxes = table.map(source[parameters], function(printData)
-				local idx = printData.val == "base" and key or printData.val
-				return valPrinter{ data = args[idx], bg = printData.bg,
-									abbr = printData.abbr,
-									colspan = printData.colspan }
-			end)
-			return table.concat(boxes, "\n")
-		end
-	end,
-	tutor = function(source, args, valPrinter, key)
-		return valPrinter{ data = args[key], bg = source }
-	end,
-	event = function(source, args, valPrinter)
-		return valPrinter{ data = args[1], bg = "fff" }
-	end,
+        -- Searches for parameters
+        local parameters =
+            table.concat(tab.mapToNum(entry.genGames[gen], function(v)
+                return args[v] and v or nil
+            end, ipairs))
+        if parameters == "" then
+            -- No extra parameters
+            return valPrinter({
+                data = args[key],
+                bg = gendata[gen].region,
+                colspan = m.maxCellsNumber[gen],
+            })
+        else
+            -- Extra parameters
+            local boxes = tab.map(source[parameters], function(printData)
+                local idx = printData.val == "base" and key or printData.val
+                return valPrinter({
+                    data = args[idx],
+                    bg = printData.bg,
+                    abbr = printData.abbr,
+                    colspan = printData.colspan,
+                })
+            end)
+            return table.concat(boxes, "\n")
+        end
+    end,
+    tutor = function(source, args, valPrinter, key)
+        return valPrinter({ data = args[key], bg = source })
+    end,
+    event = function(source, args, valPrinter)
+        return valPrinter({ data = args[1], bg = "fff" })
+    end,
 }
 entry.valueMapper.tm = entry.valueMapper.level
 entry.valueMapper.breed = entry.valueMapper.level
-
-
 
 --[[
 
@@ -361,27 +385,28 @@ args should contain the following, depending on kind:
 
 --]]
 entry.tail = function(kind, args)
-	kind = kind:lower()
-	local dataSource
-	if table.search({"level", "tm", "breed"}, kind) then
-		dataSource = table.filter(entry.levelCellsData, function(_, k)
-			return k >= args.startGen
-		end)
-	elseif kind == "tutor" then
-		dataSource = entry.tutorCellsColors
-	else
-		-- kind == "event" or any other value (shouldn't happen)
-		dataSource = { "" }
-	end
-	-- Fixing absence of gen 8
-	local cells = table.map(dataSource, function(v, k)
-		-- Simply applies the right function, depending on kind
-		return entry.valueMapper[kind](v, args, entry.printValue[kind], k) .. "\n"
-	end)
+    kind = kind:lower()
+    local dataSource
+    if tab.search({ "level", "tm", "breed" }, kind) then
+        dataSource = tab.filter(entry.levelCellsData, function(_, k)
+            return k >= args.startGen
+        end)
+    elseif kind == "tutor" then
+        dataSource = entry.tutorCellsColors
+    else
+        -- kind == "event" or any other value (shouldn't happen)
+        dataSource = { "" }
+    end
+    -- Fixing absence of gen 8
+    local cells = tab.map(dataSource, function(v, k)
+        -- Simply applies the right function, depending on kind
+        return entry.valueMapper[kind](v, args, entry.printValue[kind], k)
+            .. "\n"
+    end)
 
-	return table.concat(table.filter(cells, function(v)
-		return string.trim(v) ~= ""
-	end))
+    return table.concat(tab.filter(cells, function(v)
+        return txt.trim(v) ~= ""
+    end))
 end
 
 --[[
@@ -402,56 +427,68 @@ Arguments:
 
 --]]
 entry.head = function(ndex, args)
-	local ndexFigures = ndex:match('^(%d+)')
-	local abbr = forms.getabbr(ndex, args.form)
-	local pokedata = pokes[forms.nameToDataindex(ndexFigures .. forms.toEmptyAbbr(abbr))]
-					 or {name = 'Missingno.', ndex = '000'}
-	local forml = args.allforms and '<div class="text-small">Tutte le forme</div>' or
-					(args.useless
-						and useless[tonumber(ndexFigures)].links[abbr]
-						or forms.getlink(ndex, false, args.form)
-					)
-	pokedata = table.merge(
-		multigen.getGen(pokedata),
-		multigen.getGen(groups[pokedata.ndex] or {group1 = 'sconosciuto'})
-	)
-	local movename = args.movename or mw.title.getCurrentTitle().text
-	local stab = args.STAB == "no" and ""
-	             or args.STAB
-				 or lib.computeSTAB(ndex, movename, args.form)
-	pokedata.group1show = pokedata.group1 == 'coleottero'
-							and 'Coleot'
-							or (pokedata.group1 == 'non ancora scoperto'
-								and 'Non ancora<div>scoperto</div>'
-								or string.fu(pokedata.group1)
-							)
-	pokedata.group2show = pokedata.group2 == 'coleottero'
-						and 'Coleot'
-						or string.fu(pokedata.group2)
-	pokedata.type2 = pokedata.type2 ~= pokedata.type1
-					and string.fu(pokedata.type2)
-					or nil
-	pokedata.type1 = string.fu(pokedata.type1)
+    local ndexFigures = ndex:match("^(%d+)")
+    local abbr = forms.getabbr(ndex, args.form)
+    local pokedata = pokes[forms.nameToDataindex(
+        ndexFigures .. forms.toEmptyAbbr(abbr)
+    )] or { name = "Missingno.", ndex = "000" }
+    local forml = args.allforms
+            and '<div class="text-small">Tutte le forme</div>'
+        or (
+            args.useless and useless[tonumber(ndexFigures)].links[abbr]
+            or forms.getlink(ndex, false, args.form)
+        )
+    pokedata = tab.merge(
+        multigen.getGen(pokedata),
+        multigen.getGen(groups[pokedata.ndex] or { group1 = "sconosciuto" })
+    )
+    local movename = args.movename or mw.title.getCurrentTitle().text
+    local stab = args.STAB == "no" and ""
+        or args.STAB
+        or lib.computeSTAB(ndex, movename, args.form)
+    pokedata.group1show = pokedata.group1 == "coleottero" and "Coleot"
+        or (
+            pokedata.group1 == "non ancora scoperto"
+                and "Non ancora<div>scoperto</div>"
+            or txt.fu(pokedata.group1)
+        )
+    pokedata.group2show = pokedata.group2 == "coleottero" and "Coleot"
+        or txt.fu(pokedata.group2)
+    pokedata.type2 = pokedata.type2 ~= pokedata.type1 and txt.fu(pokedata.type2)
+        or nil
+    pokedata.type1 = txt.fu(pokedata.type1)
 
-	return string.interp([=[|- class="height-100"
+    return txt.interp(
+        [=[|- class="height-100"
 | class="hidden-xs" | ${num}
 | ${ani}
 | <span class="hidden-xs">${stab}[[${name}]]${stab}${notes}${forml}</span>
 | class="hidden-sm height-100" style="padding: 0.8ex 0.3ex;" | ${types}
 | class="hidden-sm height-100" style="padding: 0.8ex 0.3ex;" | ${groups}
 ]=],
-{
-	num = ndexFigures,
-	ani = ms.staticLua{ndexFigures .. forms.toEmptyAbbr(abbr)},
-	stab = stab,
-	name = pokedata.name,
-	notes = lib.makeNotes(args.notes or ''),
-	forml = forml,
-	types = resp.twoTypeBoxesLua(pokedata.type1, pokedata.type2, {'tiny'},
-        nil, {'vert-center'}),
-	groups = resp.twoEggBoxesLua(pokedata.group1, pokedata.group2, {'tiny'},
-        nil, {'vert-center'}),
-})
+        {
+            num = ndexFigures,
+            ani = ms.staticLua({ ndexFigures .. forms.toEmptyAbbr(abbr) }),
+            stab = stab,
+            name = pokedata.name,
+            notes = lib.makeNotes(args.notes or ""),
+            forml = forml,
+            types = resp.twoTypeBoxesLua(
+                pokedata.type1,
+                pokedata.type2,
+                { "tiny" },
+                nil,
+                { "vert-center" }
+            ),
+            groups = resp.twoEggBoxesLua(
+                pokedata.group1,
+                pokedata.group2,
+                { "tiny" },
+                nil,
+                { "vert-center" }
+            ),
+        }
+    )
 end
 
 --[[
@@ -463,25 +500,32 @@ provided that categories don't work.
 
 --]]
 entry.removeOldParams = function(p)
-	local pokedata = pokes[tonumber(p[1])] or pokes[p[1]] or {name = 'Missingno.'}
-	pokedata = multigen.getGen(pokedata)
+    local pokedata = pokes[tonumber(p[1])]
+        or pokes[p[1]]
+        or { name = "Missingno." }
+    pokedata = multigen.getGen(pokedata)
 
-	-- rimuove il parametro 2 se è il nome del Pokémon
-	if (string.fu(p[2]) == pokedata.name) then
-		table.remove(p, 2)
-	end
-	-- rimuove i parametri 3, 4 e 5 (ora 2, 3 e 4)
-	--		se 3 è 1 o 2 (il numero di tipi)
-	--		e se 4 e 5 sono tipi
-	if (p[2] == '1' or p[2] == '2')
-		and p[3]
-		and (table.search(libdata.allTypes, string.lower(p[3])) or string.lower(p[3]) == 'coleottero') then
-		table.remove(p, 4)
-		table.remove(p, 3)
-		table.remove(p, 2)
-	end
+    -- rimuove il parametro 2 se è il nome del Pokémon
+    if txt.fu(p[2]) == pokedata.name then
+        table.remove(p, 2)
+    end
+    -- rimuove i parametri 3, 4 e 5 (ora 2, 3 e 4)
+    --		se 3 è 1 o 2 (il numero di tipi)
+    --		e se 4 e 5 sono tipi
+    if
+        (p[2] == "1" or p[2] == "2")
+        and p[3]
+        and (
+            tab.search(libdata.allTypes, string.lower(p[3]))
+            or string.lower(p[3]) == "coleottero"
+        )
+    then
+        table.remove(p, 4)
+        table.remove(p, 3)
+        table.remove(p, 2)
+    end
 
-	return p
+    return p
 end
 
 --[[
@@ -494,22 +538,24 @@ Arguments:
 
 --]]
 entry.entry = function(p, kind)
-	p = w.trimAll(p)
-	local gen
-	-- p[1] can be both a gen number or an ndex, depending on kind
-	if table.search({"level", "tm", "breed"}, kind) then
-		gen = tonumber(table.remove(p, 1))
-		p.startGen = gen
-	end
-	-- now p[1] is the ndex, and may be followed by old params
-	p = entry.removeOldParams(p)
-	local ndex = table.remove(p, 1)
-	return entry.head(ndex, { STAB = p.STAB, notes = p.note,
-	                          form = string.lower(p.form or ''),
-							  allforms = p.allforms, useless = p.useless,
-							  movename = p.movename
-					 })
-		.. entry.tail(kind, p)
+    p = w.trimAll(p)
+    local gen
+    -- p[1] can be both a gen number or an ndex, depending on kind
+    if tab.search({ "level", "tm", "breed" }, kind) then
+        gen = tonumber(table.remove(p, 1))
+        p.startGen = gen
+    end
+    -- now p[1] is the ndex, and may be followed by old params
+    p = entry.removeOldParams(p)
+    local ndex = table.remove(p, 1)
+    return entry.head(ndex, {
+        STAB = p.STAB,
+        notes = p.note,
+        form = string.lower(p.form or ""),
+        allforms = p.allforms,
+        useless = p.useless,
+        movename = p.movename,
+    }) .. entry.tail(kind, p)
 end
 
 -- ========================= Wikicode interfaces ==============================
@@ -520,7 +566,7 @@ Entry level
 
 --]]
 m.level = function(frame)
-	return entry.entry(mw.clone(frame.args), "level")
+    return entry.entry(mw.clone(frame.args), "level")
 end
 m.Level = m.level
 
@@ -530,7 +576,7 @@ Entry tm
 
 --]]
 m.tm = function(frame)
-	return entry.entry(mw.clone(frame.args), "tm")
+    return entry.entry(mw.clone(frame.args), "tm")
 end
 m.Tm, m.TM = m.tm, m.tm
 
@@ -540,7 +586,7 @@ Entry breed
 
 --]]
 m.breed = function(frame)
-	return entry.entry(mw.clone(frame.args), "breed")
+    return entry.entry(mw.clone(frame.args), "breed")
 end
 m.Breed = m.breed
 
@@ -550,7 +596,7 @@ Entry event
 
 --]]
 m.event = function(frame)
-	return entry.entry(mw.clone(frame.args), "event")
+    return entry.entry(mw.clone(frame.args), "event")
 end
 m.Event = m.event
 
@@ -560,7 +606,7 @@ Entry tutor
 
 --]]
 m.tutor = function(frame)
-	return entry.entry(mw.clone(frame.args), "tutor")
+    return entry.entry(mw.clone(frame.args), "tutor")
 end
 m.Tutor = m.tutor
 
