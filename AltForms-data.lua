@@ -40,12 +40,11 @@ local function makeSingleLink(context, formName, poke, general)
 
     local target
     if general then
-        target =
-            table.concat({ general, "#", t[poke].anchor or string.fu(poke) })
+        target = table.concat({ general, "#", t[poke].anchor or txt.fu(poke) })
     else
-        target = table.concat({ string.fu(poke), "/Forme" })
+        target = table.concat({ txt.fu(poke), "/Forme" })
     end
-    return string.interp(context, {
+    return txt.interp(context, {
         link = table.concat({ "[[", target, "|", formName, "]]" }),
     })
 end
@@ -324,13 +323,13 @@ for _, v in pairs(t.mega) do
     if not t[v] then
         t[v] = { names = { base = "" } }
     end
-    t[v].names.M = "Mega" .. string.fu(v)
+    t[v].names.M = "Mega" .. txt.fu(v)
 end
 for _, v in pairs(t.megaxy) do
     if not t[v] then
         t[v] = { names = { base = "" } }
     end
-    local fu = string.fu(v)
+    local fu = txt.fu(v)
     t[v].names.MX = table.concat({ "Mega", fu, " X" })
     t[v].names.MY = table.concat({ "Mega", fu, " Y" })
 end
@@ -356,7 +355,7 @@ for _, v in pairs(t.gigamax) do
     if not t[v] then
         t[v] = { names = { base = "" } }
     end
-    t[v].names.Gi = string.fu(v) .. " Gigamax"
+    t[v].names.Gi = txt.fu(v) .. " Gigamax"
 end
 for _, v in pairs(t.hisui) do
     if not t[v] then
@@ -810,11 +809,14 @@ table.insert(t.hisui, "goodra")
 -- Other Gigamax forms
 table.insert(t.gigamax, "pikachu")
 table.insert(t.gigamax, "toxtricity")
-table.insert(t.gigamax, "urshifu")
 
 -- Link creation should be done AFTER copying Pokémon with same forms, in order
 -- to use the right name for the link
 makeLinks()
+
+-- Urshifu has both a gigamax and a non-empty base form, hence we copy it after
+-- link creation
+table.insert(t.gigamax, "urshifu")
 
 t[19] = t.rattata
 t[20] = t.raticate
