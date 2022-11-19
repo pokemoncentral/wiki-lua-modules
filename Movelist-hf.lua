@@ -68,6 +68,7 @@ games[7] =
     { { "SL", "sole" }, { "USUL", "ultrasole" }, { "LGPE", "lgpikachu" } }
 games[8] =
     { { "SpSc", "spada" }, { "IA", "isolaarmatura" }, { "TC", "landacorona" } }
+games[9] = { { "SV", "scarlatto" } }
 
 -- Contiene le varie funzioni che generano le celle
 

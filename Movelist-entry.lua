@@ -10,6 +10,7 @@ local tab = require('Wikilib-tables')
 local forms = require('Wikilib-forms')
 local w = require('Wikilib')
 local multigen = require('Wikilib-multigen')
+local gen = require('Wikilib-gens')
 local lib = require('Wikilib-learnlists')
 local libdata = require("Wikilib-data")
 local ms = require('MiniSprite')
@@ -58,6 +59,7 @@ entry.genGames = {
     [6] = { "ORAS" },
     [7] = { "USUM", "LGPE" },
     [8] = { "SpSc" },
+    [9] = { "SV" },
 }
 
 -- Reverse of the previous table
@@ -91,6 +93,7 @@ entry.tutorCellsColors = {
     "lgpikachu",
     "spada",
     "isolaarmatura",
+    "scarlatto",
 }
 
 --[[
@@ -167,6 +170,7 @@ entry.levelCellsData = {
         },
     },
     [8] = {},
+    [9] = {},
 }
 
 -- Table of level games for generation
@@ -204,6 +208,9 @@ entry.levelgames = {
     },
     { -- 8
         { bg = "spada", abbr = "SpSc" },
+    },
+    { -- 9
+        { bg = "scarlatto", abbr = "SV" },
     },
 }
 
@@ -467,7 +474,7 @@ entry.head = function(ndex, args)
 | class="hidden-sm height-100" style="padding: 0.8ex 0.3ex;" | ${groups}
 ]=],
         {
-            num = ndexFigures,
+            num = gen.ndexToString(tonumber(ndexFigures)),
             ani = ms.staticLua({ ndexFigures .. forms.toEmptyAbbr(abbr) }),
             stab = stab,
             name = pokedata.name,
