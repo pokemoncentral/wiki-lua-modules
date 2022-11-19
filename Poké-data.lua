@@ -2090,12 +2090,12 @@ t.weezingG = {name = 'Weezing', ndex = 110, type1 = 'veleno', type2 = 'folletto'
 t['110G'] = t.weezingG
 t['mr. mimeG'] = {name = 'Mr. Mime', ndex = 122, type1 = 'ghiaccio', type2 = 'psico'}
 t['122G'] = t['mr. mimeG']
-t.taurosPa = {name = 'Tauros', ndex = 128, type1 = 'lotta', type2 = 'lotta'}
-t["128Pa"] = t.taurosPa
-t.taurosPb = {name = 'Tauros', ndex = 128, type1 = 'lotta', type2 = 'fuoco'}
-t["128Pb"] = t.taurosPb
-t.taurosPc = {name = 'Tauros', ndex = 128, type1 = 'lotta', type2 = 'acqua'}
-t["128Pc"] = t.taurosPc
+t.taurosC = {name = 'Tauros', ndex = 128, type1 = 'lotta', type2 = 'lotta'}
+t["128C"] = t.taurosC
+t.taurosI = {name = 'Tauros', ndex = 128, type1 = 'lotta', type2 = 'fuoco'}
+t["128I"] = t.taurosI
+t.taurosA = {name = 'Tauros', ndex = 128, type1 = 'lotta', type2 = 'acqua'}
+t["128A"] = t.taurosA
 t.articunoG = {name = 'Articuno', ndex = 144, type1 = 'psico', type2 = 'volante'}
 t['144G'] = t.articunoG
 t.zapdosG = {name = 'Zapdos', ndex = 145, type1 = 'lotta', type2 = 'volante'}

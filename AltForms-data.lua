@@ -256,7 +256,7 @@ t.pikachu.names = {Cs = 'Pikachu Cosplay', R = 'Pikachu rockstar',
 	D = 'Pikachu damigella', Cn = 'Pikachu confetto',
 	S = 'Pikachu scienziata', W = 'Pikachu wrestler', Cm = 'Compagno',
 	Gi = 'Pikachu Gigamax', base = ''}
-t.tauros.names = {Pa = 'Paldea', Pb = 'Paldea', Pc = 'Paldea', base = ''}
+t.tauros.names = {C = 'Forma di Paldea, Varietà Combattiva', I = 'Forma di Paldea, Varietà Infuocata', A = 'Forma di Paldea, Varietà Acquatica', base = ''}
 t.eevee.names = {Cm = 'Compagno', base = ''}
 t.wooper.names = {P = 'Forma di Paldea', base = ''}
 t.castform.names = {S = 'Forma Sole', P = 'Forma Pioggia',
@@ -388,7 +388,7 @@ t.zigzagoon.anchor = "Zigzagoon e Linoone"
 t.pikachu.ext = {cosplay = 'Cs', rockstar = 'R', damigella = 'D',
 	confetto = 'Cn', scienziata = 'S', wrestler = 'W', compagno = 'Cm',
 	gigamax = 'Gi'}
-t.tauros.ext = { Pa = "Pa", Pb = "Pb", Pc = "Pc" }
+t.tauros.ext = { Combattiva = "C", Infuocata = "I", Acquatica = "A" }
 t.eevee.ext = { compagno = "Cm" }
 t.wooper.ext = { paldea = "P" }
 t.castform.ext = { sole = "S", pioggia = "P", neve = "N" }
@@ -487,7 +487,7 @@ t.pikachu.gamesOrder = { "base", "Cs", "R", "D", "Cn", "S", "W", "Cm", "Gi" }
 t.meowth.gamesOrder = { "base", "A", "G", "Gi" }
 t.gengar.gamesOrder = { "base", "M", "Gi" }
 t.slowbro.gamesOrder = { "base", "M", "G" }
-t.tauros.gamesOrder = { "base", "Pa", "Pb", "Pc" }
+t.tauros.gamesOrder = { "base", "C", "I", "A" }
 t.eevee.gamesOrder = { "base", "Cm", "Gi" }
 t.wooper.gamesOrder = { "base", "P" }
 t.castform.gamesOrder = { "base", "S", "P", "N" }
@@ -614,7 +614,7 @@ t.exeggutor.since = { A = "sl", base = "rb" }
 t.marowak.since = { A = "sl", base = "rb" }
 t.weezing.since = { G = "spsc", base = "rb" }
 t["mr. mime"].since = { G = "spsc", base = "rb" }
-t.tauros.since = { Pa = "sv", Pb = "sv", Pc = "sv", base = "rb" }
+t.tauros.since = { C = "sv", I = "sv", A = "sv", base = "rb" }
 t.eevee.since = { Cm = "lgpe", Gi = "spsc", base = "rb" }
 t.articuno.since = { G = "spsc", base = "rb" }
 t.zapdos.since = { G = "spsc", base = "rb" }

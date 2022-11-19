@@ -2359,10 +2359,10 @@ d.decidueyeH = {hp = 88, atk = 112, def = 80, spatk = 95, spdef = 95, spe = 60}
 d['724H'] = d.decidueyeH
 
 -- Paldean forms
-d.taurosPa = {hp = 75, atk = 110, def = 105, spatk = 30, spdef = 70, spe = 100}
-d["128Pa"] = d.taurosPa
-d.taurosPb, d["128Pb"] = d.taurosPa, d.taurosPa
-d.taurosPc, d["128Pc"] = d.taurosPa, d.taurosPa
+d.taurosC = {hp = 75, atk = 110, def = 105, spatk = 30, spdef = 70, spe = 100}
+d["128C"] = d.taurosC
+d.taurosI, d["128I"] = d.taurosC, d.taurosC
+d.taurosA, d["128A"] = d.taurosC, d.taurosC
 d.wooperP, d["194P"] = d.wooper, d.wooper
 
 -- stylua: ignore end

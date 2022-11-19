@@ -2093,11 +2093,11 @@ t.weezingG = {ability1 = 'Levitazione', ability2 = 'Gas Reagente', abilityd = 'N
 t['110G'] = t.weezingG
 t['mr. mimeG'] = {ability1 = 'Spiritovivo', ability2 = 'Annullabarriere', abilityd = 'Corpogelo'}
 t['122G'] = t['mr. mimeG']
-t.taurosPa = {ability1 = 'Prepotenza', ability2 = 'Grancollera', abilityd = 'Ruminante'}
-t['128Pa'] = t.taurosPa
-t.taurosPb, t.taurosPc = t.taurosPa, t.taurosPa
-t['128Pb'] = t.taurosPb
-t['128Pc'] = t.taurosPc
+t.taurosC = {ability1 = 'Prepotenza', ability2 = 'Grancollera', abilityd = 'Ruminante'}
+t['128C'] = t.taurosC
+t.taurosI, t.taurosA = t.taurosC, t.taurosC
+t['128I'] = t.taurosI
+t['128A'] = t.taurosA
 t.eeveeCm = {ability1 = 'Nessuna'}
 t['133Cm'] = t.eeveeCm
 t.articunoG = {ability1 = 'Tenacia'}
