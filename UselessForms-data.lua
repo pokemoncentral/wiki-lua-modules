@@ -391,10 +391,10 @@ t[854] = t.sinistea
 t[855] = t.polteageist
 t[869] = t.alcremie
 t[893] = t.zarude
--- t[917] = t.dudunsparce
--- t[946] = t.maushold
--- t[952] = t.tatsugiri
--- t[998] = t.koraidon
--- t[999] = t.miraidon
+t[917] = t.dudunsparce
+t[946] = t.maushold
+t[952] = t.tatsugiri
+t[998] = t.koraidon
+t[999] = t.miraidon
 
 return t

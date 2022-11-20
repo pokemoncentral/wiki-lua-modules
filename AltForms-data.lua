@@ -255,7 +255,7 @@ t.pikachu.names = {Cs = 'Pikachu Cosplay', R = 'Pikachu rockstar',
 	D = 'Pikachu damigella', Cn = 'Pikachu confetto',
 	S = 'Pikachu scienziata', W = 'Pikachu wrestler', Cm = 'Compagno',
 	Gi = 'Pikachu Gigamax', base = ''}
-t.tauros.names = {C = 'Forma di Paldea, Varietà Combattiva', I = 'Forma di Paldea, Varietà Infuocata', A = 'Forma di Paldea, Varietà Acquatica', base = ''}
+t.tauros.names = {C = 'Forma di Paldea Varietà Combattiva', I = 'Forma di Paldea Varietà Infuocata', A = 'Forma di Paldea Varietà Acquatica', base = ''}
 t.eevee.names = {Cm = 'Compagno', base = ''}
 t.wooper.names = {P = 'Forma di Paldea', base = ''}
 t.castform.names = {S = 'Forma Sole', P = 'Forma Pioggia',
@@ -915,10 +915,10 @@ t[892] = t.urshifu
 t[898] = t.calyrex
 t[902] = t.basculegion
 t[905] = t.enamorus
--- t[916] = t.oinkologne
--- t[934] = t.palafin
--- t[960] = t.squawkabilly
--- t[976] = t.gimmighoul
+t[916] = t.oinkologne
+t[934] = t.palafin
+t[960] = t.squawkabilly
+t[976] = t.gimmighoul
 t[3] = t.venusaur
 t[9] = t.blastoise
 t[15] = t.beedrill
