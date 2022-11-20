@@ -116,13 +116,9 @@ local function makeIndexLinks(index, context)
     makeTargetedLink(index, context, "Forma di Galar", t.galar, { "base", "G" })
     makeTargetedLink(index, context, "Gigamax", t.gigamax, { "base", "Gi" })
     makeTargetedLink(index, context, "Forma di Hisui", t.hisui, { "base", "H" })
-    makeTargetedLink(
-        index,
-        context,
-        "Forma di Paldea",
-        t.paldea,
-        { "base", "P" }
-    )
+    -- stylua: ignore
+    -- TODO: this shit is terrible
+    makeTargetedLink(index, context, "Forma di Paldea", t.paldea, { "base", "P", "C", "I", "A" })
 end
 
 -- Create all links for alternative forms (black, blue and plain)
