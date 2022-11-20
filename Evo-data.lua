@@ -612,8 +612,10 @@ evo.mankey = {
                 {
                     ndex = 1010,
                     name = "annihilape",
-                    method = evo.methods.OTHER,
-                    [evo.methods.OTHER] = "Usare [[Pugno Furibondo]] 20 volte",
+                    method = evo.methods.LEVEL,
+                    conditions = {
+                        [evo.conditions.OTHER] = "Usare [[Pugno Furibondo]] 20 volte",
+                    },
                 },
             },
         },
@@ -2148,7 +2150,8 @@ evo.dunsparce = {
         {
             ndex = 917,
             name = "dudunsparce",
-            method = evo.methods.UNKNOWN, -- TODO
+            method = evo.methods.LEVEL,
+            conditions = { [evo.conditions.MOVE] = "Ipertrapano" },
         },
     },
 }
@@ -5033,7 +5036,7 @@ evo.pawniard = {
                     ndex = 1008,
                     name = "kingambit",
                     method = evo.methods.OTHER,
-                    [evo.methods.OTHER] = "Sconfiggere tre Bisharp tenendo [[Simbolo del capo]]",
+                    [evo.methods.OTHER] = "Sconfiggere tre Bisharp che tengono un [[Simbolo del capo]] tenendo lo stesso strumento",
                 },
             },
         },
@@ -5895,7 +5898,15 @@ evo.crabrawler = {
             ndex = 740,
             name = "crabominable",
             method = evo.methods.LEVEL,
-            conditions = { [evo.conditions.LOCATION] = "Monte Lanakila" },
+            -- conditions = { [evo.conditions.LOCATION] = "Monte Lanakila" },
+            conditions = {
+                [evo.conditions.LOCATION] = "Monte Lanakila",
+                [evo.conditions.OTHER] = table.concat({
+                    "oppure<div>",
+                    links.bag("Pietragelo"),
+                    "</div>usando una [[Pietragelo]]",
+                }),
+            },
         },
     },
 }
@@ -7029,6 +7040,7 @@ evo.lechonk = {
         {
             ndex = 916,
             name = "oinkologne",
+            notes = altforms.oinkologne.names.base,
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 18,
             conditions = { [evo.conditions.GENDER] = "Maschio" },
@@ -7036,6 +7048,7 @@ evo.lechonk = {
         {
             ndex = "916F",
             name = "oinkologneF",
+            notes = altforms.oinkologne.names.F,
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 18,
             conditions = { [evo.conditions.GENDER] = "Femmina" },
@@ -7085,8 +7098,10 @@ evo.rellor = {
         {
             ndex = 923,
             name = "rabsca",
-            method = evo.methods.UNKNOWN, -- TODO
-            -- Walk 1000 steps in Let's Go, supposedly
+            method = evo.methods.LEVEL,
+            conditions = {
+                [evo.conditions.OTHER] = "Avendo fatto 1000 passi in modalità [[lotta autonoma]]",
+            },
         },
     },
 }
@@ -7158,7 +7173,9 @@ evo.finizen = {
             name = "palafin",
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 38,
-            conditions = { [evo.conditions.OTHER] = "(Giocando in co-op)" }, -- TODO ?
+            conditions = {
+                [evo.conditions.OTHER] = "Giocando in modalità cooperativa con la [[Cerchia contatto]]",
+            },
         },
     },
 }
@@ -7249,7 +7266,8 @@ evo.tandemaus = {
         {
             ndex = 946,
             name = "maushold",
-            method = evo.methods.UNKNOWN, -- TODO
+            method = evo.methods.LEVEL,
+            [evo.methods.LEVEL] = 25,
         },
     },
 }
@@ -7318,8 +7336,10 @@ evo.pawmi = {
                 {
                     ndex = 956,
                     name = "pawmot",
-                    method = evo.methods.UNKNOWN, -- TODO
-                    -- Walk 1000 steps in Let's Go
+                    method = evo.methods.LEVEL,
+                    conditions = {
+                        [evo.conditions.OTHER] = "Avendo fatto 1000 passi in modalità [[lotta autonoma]]",
+                    },
                 },
             },
         },
@@ -7453,25 +7473,29 @@ evo.bramblin = {
         {
             ndex = 975,
             name = "brambleghast",
-            method = evo.methods.UNKNOWN, -- TODO
-            -- Walk 1000 steps in Let's Go
+            method = evo.methods.LEVEL,
+            conditions = {
+                [evo.conditions.OTHER] = "Avendo fatto 1000 passi in modalità [[lotta autonoma]]",
+            },
         },
     },
 }
 evo.brambleghast = evo.bramblin
 evo[974], evo[975] = evo.bramblin, evo.bramblin
 
--- TODO: add for gimmighoulA ?
 evo.gimmighoul = {
     ndex = 976,
     name = "gimmighoul",
+    notes = altforms.gimmighoul.names.base,
 
     evos = {
         {
             ndex = 977,
             name = "gholdengo",
-            method = evo.methods.UNKNOWN, -- TODO
-            -- 999 coins
+            method = evo.methods.LEVEL,
+            conditions = {
+                [evo.conditions.OTHER] = "Avendo 999 [[Monete di Gimmighoul]] nella [[Borsa]]",
+            },
         },
     },
 }
