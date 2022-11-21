@@ -7100,7 +7100,7 @@ evo.rellor = {
             name = "rabsca",
             method = evo.methods.LEVEL,
             conditions = {
-                [evo.conditions.OTHER] = "Avendo fatto 1000 passi in modalità [[lotta autonoma]]",
+                [evo.conditions.OTHER] = "Avendo fatto 1000 passi come [[Mandare avanti|Pokémon mandato avanti]]",
             },
         },
     },
@@ -7338,7 +7338,7 @@ evo.pawmi = {
                     name = "pawmot",
                     method = evo.methods.LEVEL,
                     conditions = {
-                        [evo.conditions.OTHER] = "Avendo fatto 1000 passi in modalità [[lotta autonoma]]",
+                        [evo.conditions.OTHER] = "Avendo fatto 1000 passi come [[Mandare avanti|Pokémon mandato avanti]]",
                     },
                 },
             },
@@ -7475,7 +7475,7 @@ evo.bramblin = {
             name = "brambleghast",
             method = evo.methods.LEVEL,
             conditions = {
-                [evo.conditions.OTHER] = "Avendo fatto 1000 passi in modalità [[lotta autonoma]]",
+                [evo.conditions.OTHER] = "Avendo fatto 1000 passi come [[Mandare avanti|Pokémon mandato avanti]]",
             },
         },
     },
@@ -8154,7 +8154,7 @@ Simple function that creates empty tables for all alternative forms but base
 --]]
 local emptyAlternativeForms = function(altdata, name)
     local ndex = pokes[name].ndex
-    tab.map(altdata.names, function(_, abbr)
+    tab.map(altdata.names, function(formname, abbr)
         if abbr == "base" then
             return
         end
@@ -8165,6 +8165,7 @@ local emptyAlternativeForms = function(altdata, name)
         evo[name .. abbr] = {
             ndex = ndex and (txt.tf(ndex) .. abbr) or nil,
             name = name .. abbr,
+            notes = formname,
         }
         if ndex then
             evo[txt.tf(ndex) .. abbr] = evo[name .. abbr]
