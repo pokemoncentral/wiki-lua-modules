@@ -20,6 +20,7 @@ local statsUtil = require('Wikilib-stats')
 local multigen = require('Wikilib-multigen')
 local gendata = require("Gens-data")
 local pokes = require('Poké-data')
+local pokestats = require('PokéStats-data')
 -- stylua: ignore end
 
 --[[
@@ -131,7 +132,7 @@ Specific generation:
 u.statlistUnique = function(frame)
     local gen = tonumber(frame.args[1]) or gendata.latest
     return list.makeList({
-        source = uniqueStatTotal(require("PokéStats-data"), gen),
+        source = uniqueStatTotal(pokestats, gen),
         makeEntry = Entry,
         header = txt.interp(
             [=[{| class="sortable roundy-corners pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
