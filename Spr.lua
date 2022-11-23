@@ -39,6 +39,7 @@ local gamesAbbr = {
     ["let's go pikachu e let's go eevee"] = "lgpe",
     ["spada e scudo"] = "spsc",
     ["diamante lucente e perla splendente"] = "dlps",
+    ["scarlatto e violetto"] = "sv",
     colosseum = "colo",
     -- XD is not necessary
     stadium = "stad",
@@ -65,6 +66,7 @@ tab.tableKeysAlias(gamesAbbr, {
     "let's go pikachu e let's go eevee",
     "spada e scudo",
     "diamante lucente e perla splendente",
+    "scarlatto e violetto",
     "stadium 2",
 }, {
     { "rosso e verde", "rv", "v" },
@@ -103,6 +105,7 @@ tab.tableKeysAlias(gamesAbbr, {
     },
     { "spada", "scudo", "sp", "sc" },
     { "diamante lucente", "perla splendente", "dl", "ps" },
+    { "scarlatto", "violetto", "sa", "vi" },
     { "stad 2" },
 })
 
@@ -163,6 +166,7 @@ local sizes = {
     usul = "|150px",
     lgpe = "|150px",
     spsc = "|150px",
+    sv = "|150px",
 }
 
 -- Table per le stringhe da interpolare a seconda del gioco
@@ -197,6 +201,7 @@ tab.tableKeysAlias(interpStrings, { "rb" }, {
         "lgpe",
         "spsc",
         "dlps",
+        "sv",
         "colo",
         "xd",
         "stad",
