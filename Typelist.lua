@@ -184,10 +184,16 @@ ${types}]=],
         {
             bg = css.horizGradLua({ type = type }),
             textcolor = cc.forModGradBgLua(type),
-            types = typesCount < 2 and txt.interp([=[! class="${textcolor}" | [[Tipo]]]=],
-            { textcolor = cc.forModGradBgLua(type) })
-                or txt.interp([=[! class="${textcolor}" | [[Tipo|Tipo 1]]
-! class="${textcolor}" | [[Tipo|Tipo 2]]]=], { textcolor = cc.forModGradBgLua(type) })
+            types = typesCount < 2
+                    and txt.interp(
+                        [=[! class="${textcolor}" | [[Tipo]]]=],
+                        { textcolor = cc.forModGradBgLua(type) }
+                    )
+                or txt.interp(
+                    [=[! class="${textcolor}" | [[Tipo|Tipo 1]]
+! class="${textcolor}" | [[Tipo|Tipo 2]]]=],
+                    { textcolor = cc.forModGradBgLua(type) }
+                ),
         }
     )
 end
