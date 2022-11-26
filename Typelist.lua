@@ -18,6 +18,7 @@ local form = require('Wikilib-forms')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local css = require('Css')
+local cc = require('ChooseColor')
 local ms = require('MiniSprite')
 local resp = require('Resp')
 local pokes = require('Poké-data')
@@ -176,19 +177,20 @@ local makeHeader = function(type, typesCount)
     return txt.interp(
         [=[{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
 |- class="hidden-xs"
-! class="black-text" style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
+! class="${textcolor}" style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
 ! class="unsortable" | &nbsp;
-! class="black-text" | [[Pokémon]]
+! class="${textcolor}" | [[Pokémon]]
 ${types}]=],
         {
             bg = css.horizGradLua({ type = type }),
-            types = typesCount < 2 and '! class="black-text" | [[Tipo]]'
-                or [=[! class="black-text" | [[Tipo|Tipo 1]]
-! class="black-text" | [[Tipo|Tipo 2]]]=],
+            textcolor = cc.forModGradBgLua(type),
+            types = typesCount < 2 and txt.interp([=[! class="${textcolor}" | [[Tipo]]]=],
+            { textcolor = cc.forModGradBgLua(type) })
+                or txt.interp([=[! class="${textcolor}" | [[Tipo|Tipo 1]]
+! class="${textcolor}" | [[Tipo|Tipo 2]]]=], { textcolor = cc.forModGradBgLua(type) })
         }
     )
 end
-
 --[[
 
 Creates heading and HTML table for Pokémons of a given type. Its first argument
