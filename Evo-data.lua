@@ -5509,7 +5509,7 @@ evo.skrelp = {
             ndex = 691,
             name = "dragalge",
             method = evo.methods.LEVEL,
-            [evo.methods.LEVEL] = 41,
+            [evo.methods.LEVEL] = 48,
         },
     },
 }
