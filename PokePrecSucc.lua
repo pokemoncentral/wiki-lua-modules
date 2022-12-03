@@ -77,10 +77,10 @@ local function basePokePrecSucc(poke, linksuffix, list)
         list = list,
         prev = table.concat({ "#", predTf, ": ", predname }),
         prevlink = predname .. linksuffix,
-        prevspr = predTf,
+        prevspr = txt.tf(pred),
         next = table.concat({ "#", succTf, ": ", succname }),
         nextlink = succname .. linksuffix,
-        nextspr = succTf,
+        nextspr = txt.tf(succ),
     })
 end
 
