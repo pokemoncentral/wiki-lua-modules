@@ -822,7 +822,7 @@ t["canzone ardente"] = {name = "Canzone Ardente", type = "fuoco", category = "sp
 t.idroballetto = {name = "Idroballetto", type = "acqua", category = "fisico", power = "80", accuracy = "100", pp = "10", gen = 9}
 t.scatenatoro = {name = "Scatenatoro", type = "normale", category = "fisico", power = "90", accuracy = "100", pp = "10", gen = 9}
 t["corsa all'oro"] = {name = "Corsa all'Oro", type = "acciaio", category = "speciale", power = "120", accuracy = "100", pp = "5", gen = 9}
-t.catastrofe = {name = "Catastrofe", type = "buio", category = "speciale", power = "1", accuracy = "90", pp = "10", gen = 9}
+t.catastrofe = {name = "Catastrofe", type = "buio", category = "speciale", power = "&mdash;", accuracy = "90", pp = "10", gen = 9}
 t.turboschianto = {name = "Turboschianto", type = "lotta", category = "fisico", power = "100", accuracy = "100", pp = "5", gen = 9}
 t.fulmiscatto = {name = "Fulmiscatto", type = "elettro", category = "speciale", power = "100", accuracy = "100", pp = "5", gen = 9}
 t.tagliacoda = {name = "Tagliacoda", type = "normale", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
