@@ -189,7 +189,7 @@ c.nero_2 = _colore("424B50", "848A8D", "2B3134")
 c.Nero_2, c.Nero2, c.nero2, c["nero 2"], c["Nero 2"] =
     c.nero_2, c.nero_2, c.nero_2, c.nero_2, c.nero_2
 c.OsA = _colore("2D4B98", "768ABC", "1D3163")
-c.osA, c.osa, c.almia = c.OsA, c.OsA, c.OsA
+c.osA, c.osa = c.OsA, c.OsA
 c.oro = _colore("DAA520", "E7C46E", "8E6B15")
 c.Oro = c.oro
 c.heartgold = _colore("B69E00", "CEB654", "766700")
@@ -201,7 +201,7 @@ c.Platino = c.platino
 c["pokémon"] = _colore("E5653C", "E2947C", "A62F19")
 c["Pokémon"] = c["pokémon"]
 c.ranger = _colore("F7681A", "FA9D6A", "A14411")
-c.Ranger, c.fiore = c.ranger, c.ranger
+c.Ranger = c.ranger
 c.rosso = _colore("FF1111", "FF7777", "A60B0B")
 c.Rosso = c.rosso
 c.rossofuoco = _colore("FF7327", "FFA472", "A64B19")
@@ -215,7 +215,7 @@ c.Rubinoomega, c.RubinoOmega, c["Rubino Omega"] =
 c.smeraldo = _colore("00A000", "2ED42E", "006800")
 c.Smeraldo = c.smeraldo
 c.TL = _colore("2CB8E9", "76D1F1", "1D7898")
-c.Tl, c.tl, c.oblivia = c.TL, c.TL, c.TL
+c.Tl, c.tl = c.TL, c.TL
 c.verde = _colore("11BB11", "A7DB8D", "0B7A0B")
 c.Verde = c.verde
 c.verdefoglia = _colore("00DD00", "59E959", "015701")
@@ -329,6 +329,11 @@ c.Ulaula, c["ula ula"], c["Ula ula"], c["Ula Ula"] =
     c.ulaula, c.ulaula, c.ulaula, c.ulaula
 c.poni = c.spettro
 c.Poni = c.poni
+
+c.fiore, c.Fiore = c.ranger, c.ranger
+c.almia, c.Almia = c.OsA, c.OsA
+c.oblivia, c.Oblivia = c.TL, c.TL
+c.pasio, c.Pasio = c.orange, c.orange
 
 -- Stats
 
