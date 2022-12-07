@@ -1926,63 +1926,63 @@ t[978] = t.grandizanne
 t.fungofurioso = { group1 = "sconosciuto" }
 t[979] = t.fungofurioso
 t.peldisabbia = { group1 = "sconosciuto" }
-t[980] = t.peldisabbia
+t[981] = t.peldisabbia
 t.codaurlante = { group1 = "sconosciuto" }
-t[981] = t.codaurlante
+t[982] = t.codaurlante
 t.crinealato = { group1 = "sconosciuto" }
-t[982] = t.crinealato
+t[983] = t.crinealato
 t.alirasenti = { group1 = "sconosciuto" }
-t[983] = t.alirasenti
+t[984] = t.alirasenti
 t.lunaruggente = { group1 = "sconosciuto" }
-t[984] = t.lunaruggente
+t[985] = t.lunaruggente
 t.solcoferreo = { group1 = "sconosciuto" }
-t[985] = t.solcoferreo
+t[986] = t.solcoferreo
 t.falenaferrea = { group1 = "sconosciuto" }
-t[986] = t.falenaferrea
+t[988] = t.falenaferrea
 t.manoferrea = { group1 = "sconosciuto" }
-t[987] = t.manoferrea
+t[989] = t.manoferrea
 t.colloferreo = { group1 = "sconosciuto" }
-t[988] = t.colloferreo
+t[990] = t.colloferreo
 t.spineferree = { group1 = "sconosciuto" }
-t[989] = t.spineferree
+t[991] = t.spineferree
 t.saccoferreo = { group1 = "sconosciuto" }
-t[990] = t.saccoferreo
+t[992] = t.saccoferreo
 t.eroeferreo = { group1 = "sconosciuto" }
-t[991] = t.eroeferreo
+t[993] = t.eroeferreo
 t["ting-lu"] = { group1 = "sconosciuto" }
-t[992] = t["ting-lu"]
+t[994] = t["ting-lu"]
 t["chien-pao"] = { group1 = "sconosciuto" }
-t[993] = t["chien-pao"]
+t[995] = t["chien-pao"]
 t["wo-chien"] = { group1 = "sconosciuto" }
-t[994] = t["wo-chien"]
+t[996] = t["wo-chien"]
 t["chi-yu"] = { group1 = "sconosciuto" }
-t[995] = t["chi-yu"]
+t[997] = t["chi-yu"]
 t.koraidon = { group1 = "sconosciuto" }
-t[996] = t.koraidon
+t[998] = t.koraidon
 t.miraidon = { group1 = "sconosciuto" }
-t[997] = t.miraidon
+t[999] = t.miraidon
 t.tinkatink = { group1 = "magico" }
-t[998] = t.tinkatink
+t[1000] = t.tinkatink
 t.tinkatuff = { group1 = "magico" }
-t[999] = t.tinkatuff
+t[1001] = t.tinkatuff
 t.tinkaton = { group1 = "magico" }
-t[1000] = t.tinkaton
+t[1002] = t.tinkaton
 t.charcadet = { group1 = "umanoide" }
-t[1001] = t.charcadet
+t[1003] = t.charcadet
 t.armarouge = { group1 = "umanoide" }
-t[1002] = t.armarouge
+t[1004] = t.armarouge
 t.ceruledge = { group1 = "umanoide" }
-t[1003] = t.ceruledge
+t[1005] = t.ceruledge
 t.toedscool = { group1 = "erba" }
-t[1004] = t.toedscool
+t[1006] = t.toedscool
 t.toedscruel = { group1 = "erba" }
-t[1005] = t.toedscruel
+t[1007] = t.toedscruel
 t.kingambit = { group1 = "umanoide" }
-t[1006] = t.kingambit
+t[1008] = t.kingambit
 t.clodsire = { group1 = "acqua 1", group2 = "campo" }
-t[1007] = t.clodsire
+t[1009] = t.clodsire
 t.annihilape = { group1 = "campo" }
-t[1008] = t.annihilape
+t[1010] = t.annihilape
 
 -- Forme alternative che esistono fuori dalla lotta e quindi
 -- possono avere un gruppo uova diverso da quello della forma base
