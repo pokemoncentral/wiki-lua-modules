@@ -84,7 +84,7 @@ gens.latest.game = data[data.latest].games[#data[data.latest].games]
 -- Whether a given ndex is internal or real. Internal means that we use it, but
 -- it has never been confirmed by official sources, such as Pokémon HOME
 gens.isNdexInternal = function(ndex)
-    return ndex > 905
+    return false
 end
 
 -- Given an ndex, return the appropriate string representation. Takes care of
