@@ -4,12 +4,13 @@
 -- Il primo indice è il nome del colore, e il secondo la variante
 
 local c = {}
+-- stylua: ignore
 local s = require('Colorscheme')
 
 for a in pairs(s) do
     c[a] = {}
-    c[a].light = s[a]{args={'light'}}
-    c[a].dark = s[a]{args={'dark'}}
+    c[a].light = s[a]({ args = { "light" } })
+    c[a].dark = s[a]({ args = { "dark" } })
 end
 
 return c
