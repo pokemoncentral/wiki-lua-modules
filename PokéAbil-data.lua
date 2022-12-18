@@ -2309,7 +2309,6 @@ t.copperajahGi, t["879Gi"] = t.copperajah, t.copperajah
 t.duraludonGi, t["884Gi"] = t.duraludon, t.duraludon
 t.urshifuGi, t["892Gi"] = t.urshifu, t.urshifu
 t.urshifuPGi, t["892PGi"] = t.urshifuP, t.urshifuP
-t.gimmighoulA, t["999A"] = t.gimmighoul, t.gimmighoul
 
 -- Mega evolutions
 

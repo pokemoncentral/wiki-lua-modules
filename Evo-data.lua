@@ -7100,7 +7100,7 @@ evo.rellor = {
             name = "rabsca",
             method = evo.methods.LEVEL,
             conditions = {
-                [evo.conditions.OTHER] = "Avendo fatto 957 passi come [[Mandare avanti|Pokémon mandato avanti]]",
+                [evo.conditions.OTHER] = "Avendo fatto 1000 passi come [[Mandare avanti|Pokémon mandato avanti]]",
             },
         },
     },
@@ -7338,7 +7338,7 @@ evo.pawmi = {
                     name = "pawmot",
                     method = evo.methods.LEVEL,
                     conditions = {
-                        [evo.conditions.OTHER] = "Avendo fatto 957 passi come [[Mandare avanti|Pokémon mandato avanti]]",
+                        [evo.conditions.OTHER] = "Avendo fatto 1000 passi come [[Mandare avanti|Pokémon mandato avanti]]",
                     },
                 },
             },
@@ -7475,7 +7475,7 @@ evo.bramblin = {
             name = "brambleghast",
             method = evo.methods.LEVEL,
             conditions = {
-                [evo.conditions.OTHER] = "Avendo fatto 957 passi come [[Mandare avanti|Pokémon mandato avanti]]",
+                [evo.conditions.OTHER] = "Avendo fatto 1000 passi come [[Mandare avanti|Pokémon mandato avanti]]",
             },
         },
     },
@@ -7494,7 +7494,7 @@ evo.gimmighoul = {
             name = "gholdengo",
             method = evo.methods.LEVEL,
             conditions = {
-                [evo.conditions.OTHER] = "Avendo 1008 [[Monete di Gimmighoul]] nella [[Borsa]]",
+                [evo.conditions.OTHER] = "Avendo 999 [[Monete di Gimmighoul]] nella [[Borsa]]",
             },
         },
     },
