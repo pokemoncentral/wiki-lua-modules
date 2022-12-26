@@ -404,7 +404,9 @@ lib.categoryentry = function(stab, mossa, notes, tipo, cat, pw, acc, pp)
         tipobox = box.boxLua(tipo, tipo, nil, "thick", "box-sconosciuto")
     end
     return txt.interp(
-        [=[|| class="black-text" style="padding: 0.1em 0.3em;" | ${stab}${mossa}${stab}${notes}
+        [=[
+
+| class="black-text" style="padding: 0.1em 0.3em;" | ${stab}${mossa}${stab}${notes}
 | class="height-100" style="padding: 0.8ex 0.3ex;" | ${tipo}
 | class="height-100" style="padding: 0.8ex 0.3ex;" | ${cat}
 | style="padding: 0.1em 0.3em;" | ${pw}

@@ -2,6 +2,56 @@ local render = require("Render")
 local header = require("Learnlist-hf")
 local mw = require("mw")
 
+-- ============================ Gen 9 ============================
+mw.title.setTitle("Staraptor")
+print(header.levelh({ args = { "Staraptor", "normale", "volante", "9", "4" } }))
+-- stylua: ignore
+print(render.render{args={"Learnlist-entry9", "level", "//",
+"Agilità", "no", "", "41", " //",
+"Baldeali", "'''", "", "49", " //",
+"Azzardo", "no", "", "57", " //",
+}})
+print(header.levelf({ args = { "Staraptor", "normale", "volante", "9", "4" } }))
+
+print(header.tmh({ args = { "Staraptor", "normale", "volante", "9", "4" } }))
+-- stylua: ignore
+print(render.render{args={"Learnlist-entry9", "tm", "//",
+"Baldeali", "'''", "", "MT164", " //",
+"Zuffa", "no", "", "MT167", " //",
+"Terascoppio", "'''", "", "MT171", " //",
+}})
+print(header.tmf({ args = { "Staraptor", "normale", "volante", "9", "4" } }))
+
+print(header.breedh({ args = { "Staraptor", "normale", "volante", "9", "4" } }))
+-- stylua: ignore
+print(render.render{args={"Learnlist-entry9", "breed", "//",
+"Baraonda", "'''", "", " //",
+"Danzadipiume", "no", "", " //",
+"Furia", "'''", "", " //",
+}})
+print(header.breedf({ args = { "Staraptor", "normale", "volante", "9", "4" } }))
+
+print(header.tutorh({ args = { "Staraptor", "normale", "volante", "9", "4" } }))
+-- stylua: ignore
+print(render.render{args={"Learnlist-entry9", "tutor", "//",
+"Baldeali", "", "", "yes", "//",
+}})
+print(header.tutorf({ args = { "Staraptor", "normale", "volante", "9", "4" } }))
+
+print(
+    header.preevoh({ args = { "Staraptor", "normale", "volante", "9", "4" } })
+)
+-- stylua: ignore
+print(render.render{args={"Learnlist-entry9", "preevo", "//",
+"Beccata", "", "396", "//",
+}})
+print(
+    header.preevof({ args = { "Staraptor", "normale", "volante", "9", "4" } })
+)
+
+-- stylua: ignore start
+if false then
+
 -- ============================ Gen 8 ============================
 mw.title.setTitle("Zacian")
 print(header.levelh({ args = { "Zacian", "folletto", "folletto", "8", "8" } }))
@@ -52,8 +102,6 @@ print(render.entry{args={"Learnlist-entry8.preevo",
 }})
 print(header.preevof({ args = { "Marshadow", "spettro", "lotta", "8", "7" } }))
 
--- stylua: ignore start
-if false then
 -- ============================ Gen 7- ============================
 print(header.levelh{args={'Necrozma', 'Psico', 'Psico', '7', '7'}})
 print(render.entry{args={'Learnlist-entry7.level',
@@ -485,7 +533,7 @@ print(header.breedf{args={'Bulbasaur', 'Erba', 'Veleno', '4', '2'}})
 print(header.breedh{args={'Bulbasaur', 'Erba', 'Veleno', '3', '2'}})
 print(render.entry{args={ 'Learnlist-entry3.breed',
 [[€#033##034##285##286#|Fascino|Normale|&mdash;|100|20|Grazia|2|1|*£]],
-[[€#152##153##154##179##180##181#|Schermoluce|Psico|&mdash;|&mdash;|30|Bellezza|1|0}}£]],
+[[€#152##153##154##179##180##181#|Schermoluce|Psico|&mdash;|&mdash;|30|Bellezza|1|0£]],
 [[€#007##008##009#|Capocciata|Normale|100|100|15|Grinta|1|4£]]}})
 print(header.breedf{args={'Bulbasaur', 'Erba', 'Veleno', '3', '2'}})
 

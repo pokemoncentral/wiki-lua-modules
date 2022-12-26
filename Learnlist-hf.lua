@@ -59,19 +59,26 @@ ways.event = "tramite eventi"
 -- Tabella con le celle della prima riga degli headers
 
 local cells = {}
-cells.moveandtype =
-    '!! rowspan = "${r}" | &nbsp;[[Mossa]]&nbsp; !! rowspan = "${r}" | &nbsp;[[Tipo]]&nbsp;'
-cells.ppp = [=[!! rowspan = "${r}" | &nbsp;[[Potenza|Pot.]]&nbsp;
+cells.moveandtype = [=[
+
+! rowspan = "${r}" | &nbsp;[[Mossa]]&nbsp;
+! rowspan = "${r}" | &nbsp;[[Tipo]]&nbsp;]=]
+cells.ppp = [=[
+
+! rowspan = "${r}" | &nbsp;[[Potenza|Pot.]]&nbsp;
 ! rowspan = "${r}" | &nbsp;[[Precisione|Prec.]]&nbsp;
 ! rowspan = "${r}" | &nbsp;[[PP]]&nbsp;]=]
-cells.cat = '!! rowspan = "${r}" | &nbsp;[[Categoria danno|Cat.]]&nbsp;'
-cells.gara = [=[!! rowspan = "${r}" | &nbsp;[[Virtù]]&nbsp;
+cells.cat = '\n! rowspan = "${r}" | &nbsp;[[Categoria danno|Cat.]]&nbsp;'
+cells.gara = [=[
+
+! rowspan = "${r}" | &nbsp;[[Virtù]]&nbsp;
 ! rowspan = "${r}" | &nbsp;[[Saggio di Recitazione|Fascino]]&nbsp;]=]
-cells.inib = '!! rowspan = "${r}" | &nbsp;[[Intralcio]]&nbsp;'
+cells.inib = '\n! rowspan = "${r}" | &nbsp;[[Intralcio]]&nbsp;'
 cells.level = '! colspan = "${c}" | &nbsp;[[Livello|Lv.]]&nbsp;'
 cells.tm = '! colspan = "${c}" | &nbsp;[[MT]]&nbsp;'
 cells.tmhm = '! colspan = "${c}" | &nbsp;[[MT]]/[[MN]]&nbsp;'
 cells.breed = '! colspan = "${c}" | &nbsp;[[Mossa Uovo|${parent}]]&nbsp;'
+cells.breedpicnic = ""
 cells.tutor = '! colspan = "${c}" | &nbsp;[[Videogiochi Pokémon|Gioco]]&nbsp;'
 cells.preevo = '! colspan = "${c}" | &nbsp;[[Evoluzione|Stadio]]&nbsp;'
 cells.event = '! colspan = "${c}" | &nbsp;[[Pokémon evento|Evento]]&nbsp;'
@@ -114,10 +121,10 @@ games[8] = [=[
 |- class="${textcolor}"
 ! style="min-width: 2.2em;" | [[Pokémon Spada e Scudo|SpSc]]
 ! style="min-width: 3em;" | [[Pokémon Diamante Lucente e Perla Splendente|DLPS]]]=]
-games[9] = [=[
-
-|- class="${textcolor}"
-! style="min-width: 2.2em;" | [[Pokémon Scarlatto e Violetto|SV]]]=]
+-- games[9] = [=[
+--
+-- |- class="${textcolor}"
+-- ! style="min-width: 2.2em;" | [[Pokémon Scarlatto e Violetto|SV]]]=]
 
 -- Tabella con i Pokémon baby ottenibili tramite incensi, necessaria
 -- per le righe aggiuntive del footer per le mosse Uovo
@@ -144,25 +151,26 @@ rowsf.breed1 =
     [=[*Le mosse segnate con un asterisco (*) si ottengono solo con una [[catena di accoppiamenti]] su ${poke} in ${genl} generazione.
 *Le mosse segnate con una doppia croce (‡) possono essere ottenute solo da un Pokémon che le abbia apprese in una generazione precedente.
 *Le mosse segnate con un'abbreviazione di un gioco in apice si possono ottenere su ${poke} solo in quel gioco.]=]
-rowsf.breed2 = [=[
-
-*Le mosse segnate con una croce (†) si possono ottenere su ${poke} solo se ad uscire dall'Uovo è [[${baby}]], e non altrimenti.]=]
+rowsf.breed2 =
+    "\n*Le mosse segnate con una croce (†) si possono ottenere su ${poke} solo se ad uscire dall'Uovo è [[${baby}]], e non altrimenti."
+rowsf.breedpicnic = [=[
+*Maggiori informazioni su come il Pokémon può imparare queste mosse nella pagina delle [[Mossa Uovo#Pokémon Scarlatto e Violetto|mosse Uovo]].
+*Le mosse segnate con un'abbreviazione di un gioco in apice si possono ottenere su ${poke} solo in quel gioco.]=]
 rowsf.tutor =
     [=[*Un'abbreviazione bianca in una casella colorata indica che ${poke} può imparare la mossa dall'Insegnamosse in quel gioco.
 *Un'abbreviazione colorata su sfondo bianco indica che ${poke} non può imparare la mossa dall'Insegnamosse in quel gioco.]=]
 rowsf.event =
     "*Un livello in apice indica che ${poke} può imparare questa mossa normalmente in ${genl} generazione a quel livello."
-rowsf.last = [[
-
-*Clicca sui numeri delle generazioni in alto per vedere le mosse apprese ${way} nelle altre generazioni.]]
+rowsf.last =
+    "\n*Clicca sui numeri delle generazioni in alto per vedere le mosse apprese ${way} nelle altre generazioni."
 
 -- Testo da aggiungere per le forme
 
-rowsf.forms = {}
-rowsf.forms.none = "'evoluzione"
-rowsf.forms.yes =
-    "'evoluzione o una [[Differenze di forma#${poke}|forma alternativa]]"
-rowsf.forms.mega = "a [[Megaevoluzione]]"
+rowsf.forms = {
+    none = "'evoluzione",
+    yes = "'evoluzione o una [[Differenze di forma#${poke}|forma alternativa]]",
+    mega = "a [[Megaevoluzione]]",
+}
 
 -- Funzioni di supporto
 
@@ -227,6 +235,7 @@ local lowrow = function(gen, kind, tc)
     }
 
     kind = (kind == "tm" and gen < 7) and "tmhm" or kind
+    kind = (kind == "breed" and gen >= 9) and "breedpicnic" or kind
 
     local baseStr = table.concat({
         cells[kind],
@@ -241,7 +250,11 @@ end
 local rowf = function(kind, gen, poke)
     local rows = rowsf[kind] or ""
     if kind == "breed" then
-        rows = rowsf.breed1 .. (baby[poke] and rowsf.breed2 or "")
+        if gen < 9 then
+            rows = rowsf.breed1 .. (baby[poke] and rowsf.breed2 or "")
+        else -- gen >= 9
+            rows = rowsf.breedpicnic
+        end
     end
     return txt.interp(
         rows,

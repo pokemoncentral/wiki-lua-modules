@@ -16,14 +16,14 @@ Tm entry: 1 is the move name, 2 is the STAB (if empty is autocomputed), 3 are
 optional notes, 4 is the MT of the move in SV. This is autocomputed if empty,
 to force empty use the value "no"
 
-Breed entry: 1 is the list of parents, 2 is the move name, 3 is the STAB (if
-empty is autocomputed), 4 to 6 are optional notes
+Breed entry: 1 is the move name, 2 is the STAB (if empty is autocomputed), 3
+and 4 are optional notes
 
 Tutor entry: 1 is the move name. 2 is the STAB (if empty is autocomputed), 3
 are optional notes, 4 is yes/no for SV
 
-Preevo entry: 1 is the move name. 2 is the STAB (if empty is autocomputed), 2
-is ndex, 3 (optional) notes of the first evolution that learn the move, 4 and 5
+Preevo entry: 1 is the move name. 2 is the STAB (if empty is autocomputed), 3
+is ndex, 4 (optional) notes of the first evolution that learn the move, 5 and 6
 are the same for the second
 
 Event entry: 1 is move name, 2 is the STAB (if empty is autocomputed), 3 are
@@ -49,7 +49,7 @@ local strings = {
 | class="black-text" style="padding: 0.1em 0.3em;" | ${content} ]=],
     TMIMGLINK = [=[<span class="hidden-xs">[[File:${kind} ${tipo} VIII Sprite Zaino.png]]</span>[[${kind}${num}]]]=],
     TMSLASH = [[&nbsp;/&nbsp;]],
-    BREEDENTRY = '|-\n| style="padding: 0.1em 0.3em;" | ${p1}',
+    BREEDENTRY = "|-",
 }
 
 -- Compute the displayed STAB from the input.
@@ -128,16 +128,11 @@ z.Tm = z.tm
 z.breed = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return table.concat({
-        txt.interp(strings.BREEDENTRY, {
-            p1 = lib.mslistToModal(p[1] or "", entryGen, nil, 6),
-        }),
+        strings.BREEDENTRY,
         entry(
-            p[2] or "Lanciafiamme",
-            p[3],
-            lib.makeNotes(
-                p[4] or "",
-                lib.makeNotes(p[5] or "", lib.makeNotes(p[6] or ""))
-            )
+            p[1] or "Lanciafiamme",
+            p[2],
+            lib.makeNotes(p[3] or "", lib.makeNotes(p[4] or ""))
         ),
     })
 end
@@ -191,7 +186,7 @@ z.Tmnull = z.tmnull
 
 -- Entry per i Pokémon che non imparano mosse tramite accoppiamento
 z.breednull = function(_)
-    return lib.entrynull("breed", 7)
+    return lib.entrynull("breed", 6)
 end
 z.Breednull = z.breednull
 
