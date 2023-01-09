@@ -85,7 +85,14 @@ For the syntax check the doc at the top of the file.
 r.render = function(frame)
     local p = w.trimAll(mw.clone(frame.args), false)
     local modulename = p[1]
-    local modulefunc = require(modulename)[p[2]]
+    local module
+    if modulename:sub(1, 7) == "Modulo:" then
+        module = require(modulename)
+    else
+        -- This becomes require("Modulo:" .. modulename) before upload to PCW
+        module = require("" .. modulename)
+    end
+    local modulefunc = module[p[2]]
     local separator = p[3]
     -- Check if separator matches the standard
     if not separator:match("^/%-*/$") then
