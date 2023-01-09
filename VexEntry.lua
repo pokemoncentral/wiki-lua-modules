@@ -134,6 +134,7 @@ local fixedParams = {
     ["8"] = { abbr1 = "Sp", abbr2 = "Sc", gen = 8 },
     LGPE = { abbr1 = "LGP", abbr2 = "LGE", gen = 7 },
     DLPS = { abbr1 = "DL", abbr2 = "PS", gen = 8 },
+    ["9"] = { abbr1 = "Sa", abbr2 = "Vi", gen = 9 },
     md1 = { abbr1 = "PMDR", abbr2 = "PMDB", gen = 3 },
     md2 = { abbr1 = "PMDT", abbr2 = "PMDO", abbr3 = "PMDC", gen = 4 },
 }
