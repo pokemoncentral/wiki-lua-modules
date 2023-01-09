@@ -17,10 +17,10 @@ entry (in the entry's order)
 
 local v = {}
 
+-- stylua: ignore start
 local mw = require('mw')
 
-local txt = require('Wikilib-strings') -- luacheck: no unused
-local tab = require('Wikilib-tables') -- luacheck: no unused
+local txt = require('Wikilib-strings')
 local formlib = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
 local w = require('Wikilib')
@@ -29,6 +29,7 @@ local ms = require('MiniSprite')
 local blackabbr = require("Blackabbrev-data")
 local colorabbr = require("Colorabbrev-data")
 local pokes = require("Poké-data")
+-- stylua: ignore end
 
 --[[
 
@@ -42,11 +43,11 @@ Arguments:
 
 --]]
 v.makeGame = function(disp, abbr)
-	if not abbr or abbr == "" then
-		return ""
-	end
-	return disp == "yes" and blackabbr[abbr]
-	                     or table.concat{ "&nbsp;", colorabbr[abbr], "&nbsp;" }
+    if not abbr or abbr == "" then
+        return ""
+    end
+    return disp == "yes" and blackabbr[abbr]
+        or table.concat({ "&nbsp;", colorabbr[abbr], "&nbsp;" })
 end
 
 --[[
@@ -68,30 +69,39 @@ Parametri (named):
 
 --]]
 v.VexEntry = function(args)
-	local p = w.trimAll(args)
+    local p = w.trimAll(args)
     formlib.loadUseless(true)
-	local form = formlib.getLink(p.ndex, "black") or ""
-	local baseName, _ = formlib.getNameAbbr(p.ndex)
-	local pokedata = pokes[p.ndex] or pokes[baseName]
-	pokedata = multigen.getGen(pokedata, args.gen)
-	return string.interp([=[
+    local form = formlib.getLink(p.ndex, "black") or ""
+    local baseName, _ = formlib.getNameAbbr(p.ndex)
+    local pokedata = pokes[p.ndex] or pokes[baseName]
+    pokedata = multigen.getGen(pokedata, args.gen)
+    return txt.interp(
+        [=[
 |-
 | style="padding: 0.5em;" | <div class="flex flex-row flex-nowrap flex-items-center"><div class="inline-block roundy-full" style="${radialGrad}">${ms}</div>
 <span class="flex-item-fill" style="padding-left: 0.3em;">[[${pkmn}]]${formLink}</span></div>
 | style="padding: 0.5em;" | ${abbr1}${abbr2}${abbr3}${abbr4}
-]=], {
-	radialGrad = css.radialGradLua{"circle closest-side",
-	                               type1 = pokedata.type1,
-	                               type2 = pokedata.type2 },
-	ms = ms.staticLua{ndex = p.ndex, gen = args.gen},
-	pkmn = p.pkmn,
-	formLink = form ~= "" and string.interp(
-	        '<div class="small-text">${form}</div>', { form = form }) or "",
-	abbr1 = v.makeGame(p.disp1, p.abbr1),
-	abbr2 = v.makeGame(p.disp2, p.abbr2),
-	abbr3 = v.makeGame(p.disp3, p.abbr3),
-	abbr4 = v.makeGame(p.disp4, p.abbr4),
-})
+]=],
+        {
+            radialGrad = css.radialGradLua({
+                "circle closest-side",
+                type1 = pokedata.type1,
+                type2 = pokedata.type2,
+            }),
+            ms = ms.staticLua({ ndex = p.ndex, gen = args.gen }),
+            pkmn = p.pkmn,
+            formLink = form ~= ""
+                    and txt.interp(
+                        '<div class="small-text">${form}</div>',
+                        { form = form }
+                    )
+                or "",
+            abbr1 = v.makeGame(p.disp1, p.abbr1),
+            abbr2 = v.makeGame(p.disp2, p.abbr2),
+            abbr3 = v.makeGame(p.disp3, p.abbr3),
+            abbr4 = v.makeGame(p.disp4, p.abbr4),
+        }
+    )
 end
 
 --[[
@@ -109,33 +119,33 @@ interface is enough to add such a table.
 --]]
 local baseParamMap = { "ndex", "pkmn", "disp1", "disp2", "disp3", "disp4" }
 local fixedParams = {
-	['1'] = { abbr1 = "R", abbr2 = "V", abbr3 = "B", abbr4 = "G", gen = 1 },
-	['2'] = { abbr1 = "O", abbr2 = "A", abbr3 = "C", gen = 2 },
-	['3'] = { abbr1 = "Ru", abbr2 = "Z", abbr3 = "S", gen = 3 },
-	fl = { abbr1 = "RF", abbr2 = "VF", gen = 3 },
-	['4'] = { abbr1 = "D", abbr2 = "P", abbr3 = "Pt", gen = 4 },
-	hs = { abbr1 = "HG", abbr2 = "SS", gen = 4 },
-	['5'] = { abbr1 = "N", abbr2 = "Bi", gen = 5 },
-	n2b2 = { abbr1 = "N2", abbr2 = "B2", gen = 5 },
-	['6'] = { abbr1 = "X", abbr2 = "Y", gen = 6 },
-	roza = { abbr1 = "RO", abbr2 = "ZA", gen = 6 },
-	['7'] = { abbr1 = "So", abbr2 = "L", gen = 7 },
-	usul = { abbr1 = "US", abbr2 = "UL", gen = 7 },
-	['8'] = { abbr1 = "Sp", abbr2 = "Sc", gen = 8 },
-	LGPE = { abbr1 = "LGP", abbr2 = "LGE", gen = 7 },
-	DLPS = { abbr1 = "DL", abbr2 = "PS", gen = 8 },
-	md1 = { abbr1 = "PMDR", abbr2 = "PMDB", gen = 3 },
-	md2 = { abbr1 = "PMDT", abbr2 = "PMDO", abbr3 = "PMDC", gen = 4 },
+    ["1"] = { abbr1 = "R", abbr2 = "V", abbr3 = "B", abbr4 = "G", gen = 1 },
+    ["2"] = { abbr1 = "O", abbr2 = "A", abbr3 = "C", gen = 2 },
+    ["3"] = { abbr1 = "Ru", abbr2 = "Z", abbr3 = "S", gen = 3 },
+    fl = { abbr1 = "RF", abbr2 = "VF", gen = 3 },
+    ["4"] = { abbr1 = "D", abbr2 = "P", abbr3 = "Pt", gen = 4 },
+    hs = { abbr1 = "HG", abbr2 = "SS", gen = 4 },
+    ["5"] = { abbr1 = "N", abbr2 = "Bi", gen = 5 },
+    n2b2 = { abbr1 = "N2", abbr2 = "B2", gen = 5 },
+    ["6"] = { abbr1 = "X", abbr2 = "Y", gen = 6 },
+    roza = { abbr1 = "RO", abbr2 = "ZA", gen = 6 },
+    ["7"] = { abbr1 = "So", abbr2 = "L", gen = 7 },
+    usul = { abbr1 = "US", abbr2 = "UL", gen = 7 },
+    ["8"] = { abbr1 = "Sp", abbr2 = "Sc", gen = 8 },
+    LGPE = { abbr1 = "LGP", abbr2 = "LGE", gen = 7 },
+    DLPS = { abbr1 = "DL", abbr2 = "PS", gen = 8 },
+    md1 = { abbr1 = "PMDR", abbr2 = "PMDB", gen = 3 },
+    md2 = { abbr1 = "PMDT", abbr2 = "PMDO", abbr3 = "PMDC", gen = 4 },
 }
 
 for funcName, params in pairs(fixedParams) do
-	v['Vex' .. funcName] = function(frame)
-		local args = mw.clone(params)
-		for k, val in pairs(frame.args) do
-			args[baseParamMap[k]] = val
-		end
-		return v.VexEntry(args)
-	end
+    v["Vex" .. funcName] = function(frame)
+        local args = mw.clone(params)
+        for k, val in pairs(frame.args) do
+            args[baseParamMap[k]] = val
+        end
+        return v.VexEntry(args)
+    end
 end
 
 return v
