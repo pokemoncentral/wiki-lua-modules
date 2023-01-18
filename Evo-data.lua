@@ -5035,8 +5035,10 @@ evo.pawniard = {
                 {
                     ndex = 983,
                     name = "kingambit",
-                    method = evo.methods.OTHER,
-                    [evo.methods.OTHER] = "Sconfiggere tre Bisharp che tengono un [[Simbolo del capo]] tenendo lo stesso strumento",
+                    method = evo.methods.LEVEL,
+                    conditions = {
+                        [evo.conditions.OTHER] = "Dopo aver sconfitto tre Bisharp che tengono un [[Simbolo del capo]]",
+                    },
                 },
             },
         },
