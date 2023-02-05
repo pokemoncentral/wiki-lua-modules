@@ -10,8 +10,11 @@ user-supplied values
 
 local s = {}
 
-local txt = require('Wikilib-strings') -- luacheck: no unused
-local tab = require('Wikilib-tables') -- luacheck: no unused
+-- stylua: ignore start
+local mw = require('mw')
+
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local formUtil = require('Wikilib-forms')
 local formulas = require('Wikilib-formulas')
 local gamesUtil = require('Wikilib-games')
@@ -29,24 +32,23 @@ local c = require("Colore-data")
 local gendata = require("Gens-data")
 local pokes = require('Poké-data')
 local stats = require("PokéStats-data")
-
-local mw = require('mw')
+-- stylua: ignore end
 
 -- Mapping of stat keys to user-interface names
 local statNames = {
-    hp = 'PS',
-    atk = 'Attacco',
-    def = 'Difesa',
-    spatk = 'Att. Sp.',
-    spdef = 'Dif. Sp.',
-    spec = 'Speciali',
-    spe = 'Velocità'
+    hp = "PS",
+    atk = "Attacco",
+    def = "Difesa",
+    spatk = "Att. Sp.",
+    spdef = "Dif. Sp.",
+    spec = "Speciali",
+    spe = "Velocità",
 }
 
 -- Mapping of stat keys to URL fragments in 'Statistiche' page
 local statLinks = mw.clone(statNames)
-statLinks.spatk = 'Attacco_Speciale'
-statLinks.spdef = 'Difesa_Speciale'
+statLinks.spatk = "Attacco_Speciale"
+statLinks.spdef = "Difesa_Speciale"
 
 -- Long wikicode strings making functions unreadable
 local strings = {
@@ -68,17 +70,17 @@ ${stats}
 | class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | ${total}${footer}
 |}]=],
 
-    catSpecToBoth = '[[Categoria:Pokémon la cui statistica Speciali è diventata sia Attacco Speciale che Difesa Speciale|${display}]]',
+    catSpecToBoth = "[[Categoria:Pokémon la cui statistica Speciali è diventata sia Attacco Speciale che Difesa Speciale|${display}]]",
 
-    catSpecToSpatk = '[[Categoria:Pokémon la cui statistica Speciali è diventata Attacco Speciale|${display}]]',
+    catSpecToSpatk = "[[Categoria:Pokémon la cui statistica Speciali è diventata Attacco Speciale|${display}]]",
 
-    catSpecToSpdef = '[[Categoria:Pokémon la cui statistica Speciali è diventata Difesa Speciale|${display}]]',
+    catSpecToSpdef = "[[Categoria:Pokémon la cui statistica Speciali è diventata Difesa Speciale|${display}]]",
 
-    catStatsChanged = '[[Categoria:Pokémon le cui statistiche base sono cambiate in ${gen} generazione|${display}]]',
+    catStatsChanged = "[[Categoria:Pokémon le cui statistiche base sono cambiate in ${gen} generazione|${display}]]",
 
-    catTotal = '[[Categoria:Pokémon con statistiche base totali di ${tot}|${display}]]',
+    catTotal = "[[Categoria:Pokémon con statistiche base totali di ${tot}|${display}]]",
 
-    catStatsEqual = '[[Categoria:Pokémon con lo stesso valore in tutte le statistiche base|${display}]]',
+    catStatsEqual = "[[Categoria:Pokémon con lo stesso valore in tutte le statistiche base|${display}]]",
 
     footer = [=[
 
@@ -118,7 +120,7 @@ ${stats}
 | ${rleft}style="width: 5.5em; padding: 0.3ex 0.8ex; background: #${light};" | [[Statistiche#${link}|<span style="color: #${normale};">${stat}</span>]]
 | ${rright}style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #${light};" | ${statBar}${bounds}]=],
 
-    totalLink = [=[<div class="flex flex-nowrap flex-row flex-main-start flex-items-center">${tot}<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di ${tot}|Altri Pokémon con questo totale]]</span></div>]=]
+    totalLink = [=[<div class="flex flex-nowrap flex-row flex-main-start flex-items-center">${tot}<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di ${tot}|Altri Pokémon con questo totale]]</span></div>]=],
 }
 
 --[[
@@ -130,37 +132,39 @@ string found in data modules.
 
 --]]
 local makeCategories = function(poke, tot)
-
     --[[
         Displaying page in the category with
         the form name.
     --]]
     local baseName, abbr = formUtil.getNameAbbr(poke)
-    local catInterp = {display = table.concat(table.unique{
-        pokes[poke].name,
-        alt[baseName] and alt[baseName].names[abbr] or nil
-    }, ' ')}
+    local catInterp = {
+        display = table.concat(
+            tab.unique({
+                pokes[poke].name,
+                alt[baseName] and alt[baseName].names[abbr] or nil,
+            }),
+            " "
+        ),
+    }
 
     -- Closure, as it needs catInterp
     local interpCat = function(catString, interpVal)
-        interpVal = interpVal
-                and table.merge(catInterp, interpVal)
-                or catInterp
-        return string.interp(catString, interpVal)
+        interpVal = interpVal and tab.merge(catInterp, interpVal) or catInterp
+        return txt.interp(catString, interpVal)
     end
 
-    local categories = {interpCat(strings.catTotal, {tot = tot})}
+    local categories = { interpCat(strings.catTotal, { tot = tot }) }
 
     -- Handling gen II special split, if necessary
     if stats[poke].spec then
         local gen2Stats = mg.getGen(stats[poke], 2)
-        if gen2Stats.spec == gen2Stats.spatk
-                and gen2Stats.spec == gen2Stats.spdef then
+        if
+            gen2Stats.spec == gen2Stats.spatk
+            and gen2Stats.spec == gen2Stats.spdef
+        then
             table.insert(categories, interpCat(strings.catSpecToBoth))
-
         elseif gen2Stats.spec == gen2Stats.spatk then
             table.insert(categories, interpCat(strings.catSpecToSpatk))
-
         elseif gen2Stats.spec == gen2Stats.spdef then
             table.insert(categories, interpCat(strings.catSpecToSpdef))
         end
@@ -173,19 +177,22 @@ local makeCategories = function(poke, tot)
         gen II earlier on.
     --]]
     for gen = 6, gendata.latest do
-        local changedInGen = table.any(stats[poke],
-            function(val)
-                return type(val) == 'table'
-                       and multigen.getfirstgen(val) ~= gen
-                       and val[gen]
-            end)
+        local changedInGen = tab.any(stats[poke], function(val)
+            return type(val) == "table"
+                and multigen.getfirstgen(val) ~= gen
+                and val[gen]
+        end)
         if changedInGen then
-            table.insert(categories, interpCat(
-                strings.catStatsChanged, {gen = gendata[gen].ext}))
-            local genTotal = statsUtil.statsSum(
-                statsUtil.getStatsGen(stats[poke], gen - 1))
-            table.insert(categories, interpCat(
-                strings.catTotal, { tot = genTotal }))
+            table.insert(
+                categories,
+                interpCat(strings.catStatsChanged, { gen = gendata[gen].ext })
+            )
+            local genTotal =
+                statsUtil.statsSum(statsUtil.getStatsGen(stats[poke], gen - 1))
+            table.insert(
+                categories,
+                interpCat(strings.catTotal, { tot = genTotal })
+            )
         end
     end
 
@@ -195,7 +202,7 @@ local makeCategories = function(poke, tot)
         local equalFirst = function(val)
             return mg.getGenValue(val) == firstStat
         end
-        if table.all(stats[poke], equalFirst) then
+        if tab.all(stats[poke], equalFirst) then
             table.insert(categories, interpCat(strings.catStatsEqual))
         end
     end
@@ -212,21 +219,22 @@ combination seen in all data modules.
 
 --]]
 local statsAvg = function(pokeNames, gen)
-    local avgStats = statsUtil.getStatsGen({hp = 0,
-        atk = 0, def = 0, spatk = 0,
-        spdef = 0, spe = 0, spec = 0}, gen)
+    local avgStats = statsUtil.getStatsGen(
+        { hp = 0, atk = 0, def = 0, spatk = 0, spdef = 0, spe = 0, spec = 0 },
+        gen
+    )
 
     -- Computing sum for every stat
-    avgStats = table.fold(pokeNames, avgStats, function(avgStats, poke)
+    avgStats = tab.fold(pokeNames, avgStats, function(avgStats, poke)
         local pokeStats = statsUtil.getStatsGen(stats[poke], gen)
-        return table.map(avgStats, function(stat, statName)
+        return tab.map(avgStats, function(stat, statName)
             return stat + pokeStats[statName]
         end)
     end)
 
     -- Actually computing average
-    local pokesCount = table.getn(pokeNames)
-    return table.map(avgStats, function(stat)
+    local pokesCount = tab.getn(pokeNames)
+    return tab.map(avgStats, function(stat)
         return stat / pokesCount
     end)
 end
@@ -257,18 +265,17 @@ local statRow = function(stat, value, gen, roundyness)
         which means no roundyness and no
         min-max calculation.
     --]]
-    local bounds = ''
-    local roundy = {left = '', right = '',
-        boundsLeft = '', boundsRight = ''}
+    local bounds = ""
+    local roundy = { left = "", right = "", boundsLeft = "", boundsRight = "" }
 
     if roundyness then
         local edge = roundyness:sub(1, 1)
-        roundy.left = table.concat{'class="roundy', edge, 'l" '}
-        roundy.right = table.concat{'class="roundy', edge, 'r" '}
+        roundy.left = table.concat({ 'class="roundy', edge, 'l" ' })
+        roundy.right = table.concat({ 'class="roundy', edge, 'r" ' })
 
         if computeBounds then
-            roundy.boundsLeft = table.concat{'roundy', edge, 'l '}
-            roundy.boundsRight = table.concat{'roundy', edge, 'r '}
+            roundy.boundsLeft = table.concat({ "roundy", edge, "l " })
+            roundy.boundsRight = table.concat({ "roundy", edge, "r " })
         end
     end
 
@@ -284,12 +291,13 @@ local statRow = function(stat, value, gen, roundyness)
                 max50 = 1,
                 rright = roundy.boundsRight,
                 min100 = 1,
-                max100 = 1
+                max100 = 1,
             }
 
         -- Any normal stat calculation
         else
-            local calcStat = formulas.stats[gen][stat == 'hp' and 'hp' or 'anyOther']
+            local calcStat =
+                formulas.stats[gen][stat == "hp" and "hp" or "anyOther"]
             local maxIV, maxEV = statsUtil.ivEvMax(gen)
 
             --[[
@@ -303,24 +311,23 @@ local statRow = function(stat, value, gen, roundyness)
                 max50 = calcStat(maxIV, value, maxEV, 50, 1.1),
                 rright = roundy.boundsRight,
                 min100 = calcStat(0, value, 0, 100, 0.9),
-                max100 = calcStat(maxIV, value, maxEV, 100, 1.1)
+                max100 = calcStat(maxIV, value, maxEV, 100, 1.1),
             }
         end
 
-        bounds = string.interp(strings.statBounds, interpVal)
+        bounds = txt.interp(strings.statBounds, interpVal)
     end
 
-    return string.interp(strings.statRow,
-        {
-            rleft = roundy.left,
-            light = c[stat].light,
-            link = statLinks[stat],
-            normale = c[stat].normale,
-            stat = statNames[stat],
-            rright = roundy.right,
-            statBar = s.statBarLua(stat, value),
-            bounds = bounds
-        })
+    return txt.interp(strings.statRow, {
+        rleft = roundy.left,
+        light = c[stat].light,
+        link = statLinks[stat],
+        normale = c[stat].normale,
+        stat = statNames[stat],
+        rright = roundy.right,
+        statBar = s.statBarLua(stat, value),
+        bounds = bounds,
+    })
 end
 
 --[[
@@ -336,26 +343,26 @@ local makeStatFooterLines = function(stat, values)
         if k < #spans then -- the last value shouldn't be in the footer
             local interpVal = {
                 stat_color = c[stat].normale,
-                stat = statLinks[stat]:gsub('_', ' '),
+                stat = statLinks[stat]:gsub("_", " "),
                 old_value = v.val,
             }
             if v.first == v.last then
                 -- Single generation span
-                interpVal.when = string.interp(strings.singleGenFooter, {
+                interpVal.when = txt.interp(strings.singleGenFooter, {
                     gen = gendata[v.first].ext,
                 })
             elseif k == 1 then
                 -- The first element has a different text
-                interpVal.when = string.interp(strings.beforeGenFooter, {
+                interpVal.when = txt.interp(strings.beforeGenFooter, {
                     gen = gendata[v.last + 1].ext,
                 })
             else
-                interpVal.when = string.interp(strings.betweenGenFooter, {
+                interpVal.when = txt.interp(strings.betweenGenFooter, {
                     startGen = gendata[v.first].ext,
                     endGen = gendata[v.last].ext,
                 })
             end
-            local line = string.interp(strings.oldValueFooter, interpVal)
+            local line = txt.interp(strings.oldValueFooter, interpVal)
             footerLines[k] = line
         end
     end
@@ -400,7 +407,7 @@ PokeStatBox.new = function(poke, formExtName, args)
         advantage in skipping them
     --]]
     if not stats[poke] then
-            -- or not gamesUtil.isInGen(poke, gen) then
+        -- or not gamesUtil.isInGen(poke, gen) then
         return nil
     end
 
@@ -417,23 +424,23 @@ PokeStatBox.new = function(poke, formExtName, args)
     this.listLink = statsUtil.didStatsChange(stats[poke])
     this.poke = not noCats and poke
     this.stats = statsUtil.getStatsGen(stats[poke], gen)
-    this.multigenStats = table.map(stats[poke], function(val, key)
-        if key == 'spec' then
+    this.multigenStats = tab.map(stats[poke], function(val, key)
+        if key == "spec" then
             -- Handling stats speciali
-            return {[1] = val, [2] = 0}
+            return { [1] = val, [2] = 0 }
         end
-        return type(val) == 'table' and val or nil
+        return type(val) == "table" and val or nil
     end)
 
     local pokeData = multigen.getGen(pokes[poke])
-    this.types = {type1 = pokeData.type1, type2 = pokeData.type2}
+    this.types = { type1 = pokeData.type1, type2 = pokeData.type2 }
 
     return setmetatable(this, PokeStatBox)
 end
 
 -- Two equal stat boxes have the same stats
 PokeStatBox.__eq = function(a, b)
-    return table.equal(a.stats, b.stats)
+    return tab.equal(a.stats, b.stats)
 end
 
 --[[
@@ -449,28 +456,26 @@ related categories are also printed.
 --]]
 PokeStatBox.__tostring = function(this)
     local statsTot = statsUtil.statsSum(this.stats)
-    local box = s.boxStats{
+    local box = s.boxStats({
         stats = this.stats,
         tot = statsTot,
         types = this.types,
-        align = 'center',
+        align = "center",
         gen = this.gen,
         totalLink = true,
         listLink = false,
         multigenStats = this.multigenStats,
-    } .. (not this.poke and '' or
-            makeCategories(this.poke, statsTot))
+    }) .. (not this.poke and "" or makeCategories(this.poke, statsTot))
 
     if not PokeStatBox.super.hasLabel(this) then
         return box
     end
 
-    return string.interp(strings.boxFormWrapper,
-        {
-            title = mw.text.listToText(this.labels),
-            collapse = this.collapse or '',
-            box = box
-        })
+    return txt.interp(strings.boxFormWrapper, {
+        title = mw.text.listToText(this.labels),
+        collapse = this.collapse or "",
+        box = box,
+    })
 end
 
 --[[
@@ -484,7 +489,7 @@ PokeStatBox.addLabel = function(this, label)
     PokeStatBox.super.addLabel(this, label)
 
     local pokeData = multigen.getGen(pokes[this.baseFormName])
-    this.types = {type1 = pokeData.type1, type2 = pokeData.type2}
+    this.types = { type1 = pokeData.type1, type2 = pokeData.type2 }
 end
 
 -- Sets the collapsed status
@@ -521,8 +526,7 @@ Prints a statistics box. Arguments are named:
 --]]
 s.boxStats = function(args)
     local stats, types = args.stats, args.types
-    local tot = string.printNumber(args.tot
-            or statsUtil.statsSum(stats))
+    local tot = txt.printNumber(args.tot or statsUtil.statsSum(stats))
     local gen, align = args.gen, args.align
     local totalLink, listLink = args.totalLink, args.listLink
     local multigenStats = args.multigenStats
@@ -534,8 +538,9 @@ s.boxStats = function(args)
         holes are allowed when concatenating later on
     --]]
     local statsOrder = statsUtil.statsOrder[gen or (stats.spec and 1 or 2)]
-    local statRows = table.filter(statsOrder, function(stat)
-            return stats[stat] end)
+    local statRows = tab.filter(statsOrder, function(stat)
+        return stats[stat]
+    end)
 
     --[[
         Interpolation values for basic case,
@@ -544,55 +549,53 @@ s.boxStats = function(args)
         same base stat total displayed.
     --]]
     local interpVal = {
-        align = align == 'left' and '' or ' pull-' .. align,
-        width = ' width-xl-30 width-md-50 width-sm-60 width-xs-100',
+        align = align == "left" and "" or " pull-" .. align,
+        width = " width-xl-30 width-md-50 width-sm-60 width-xs-100",
         textcolor = cc.forModGradBgLua(
-                            types['type1'] or 'pcwiki',
-                            types['type2'] or types['type1'] or 'pcwiki'),
+            types["type1"] or "pcwiki",
+            types["type2"] or types["type1"] or "pcwiki"
+        ),
         bg = css.horizGradLua(types),
-        rs = '',
-        values = '',
-        stats = w.mapAndConcat(statRows, '\n',
-            function(stat, index)
-                local roundy = false
-                if index == 1 then
-                    roundy = 'top'
-                elseif index == table.getn(statRows) then
-                    roundy = 'bottom'
-                end
+        rs = "",
+        values = "",
+        stats = w.mapAndConcat(statRows, "\n", function(stat, index)
+            local roundy
+            if index == 1 then
+                roundy = "top"
+            elseif index == tab.getn(statRows) then
+                roundy = "bottom"
+            end
 
-                return statRow(stat, stats[stat], gen, roundy)
-            end),
+            return statRow(stat, stats[stat], gen, roundy)
+        end),
         total = tot,
-        footer = ''
+        footer = "",
     }
 
     if computeBounds then
         local maxIV, maxEV = statsUtil.ivEvMax(gen)
 
-        interpVal.width = ''
+        interpVal.width = ""
         interpVal.rs = 'rowspan="2" '
         interpVal.values = strings.headerValues
-        interpVal.footer = string.interp(strings.boundsFooter,
-            {
-                minParams = mw.text.listToText{
-                    '0 [[Punti base|PA]]',
-                    '[[Punti individuali|VI]] pari a 0',
-                    gen > 2 and 'una [[natura]] sfavorevole' or nil
-                },
+        interpVal.footer = txt.interp(strings.boundsFooter, {
+            minParams = mw.text.listToText({
+                "0 [[Punti base|PA]]",
+                "[[Punti individuali|VI]] pari a 0",
+                gen > 2 and "una [[natura]] sfavorevole" or nil,
+            }),
 
-                maxParams = mw.text.listToText{
-                    maxEV .. ' PA',
-                    'VI pari a ' .. maxIV,
-                    gen > 2 and 'una natura favorevole' or nil
-                },
-            })
+            maxParams = mw.text.listToText({
+                maxEV .. " PA",
+                "VI pari a " .. maxIV,
+                gen > 2 and "una natura favorevole" or nil,
+            }),
+        })
     end
 
     if totalLink then
-        interpVal.width = ''
-        interpVal.total = string.interp(strings.totalLink,
-            {tot = tot})
+        interpVal.width = ""
+        interpVal.total = txt.interp(strings.totalLink, { tot = tot })
     end
 
     if listLink then
@@ -600,7 +603,7 @@ s.boxStats = function(args)
     end
 
     if multigenStats then
-        multigenStats = table.map(multigenStats, function(val, key)
+        multigenStats = tab.map(multigenStats, function(val, key)
             return makeStatFooterLines(key, val)
         end)
         local multigenFooter = {}
@@ -613,12 +616,12 @@ s.boxStats = function(args)
         interpVal.footer = interpVal.footer .. table.concat(multigenFooter)
     end
 
-    if interpVal.footer ~= '' then
-        interpVal.footer = string.interp(strings.footer,
-            {content = interpVal.footer})
+    if interpVal.footer ~= "" then
+        interpVal.footer =
+            txt.interp(strings.footer, { content = interpVal.footer })
     end
 
-    return string.interp(strings.boxStats, interpVal)
+    return txt.interp(strings.boxStats, interpVal)
 end
 s.boxstats, s.box_stats = s.boxStats, s.boxStats
 
@@ -631,13 +634,12 @@ relatively to 255.
 
 --]]
 s.statBarLua = function(stat, value)
-    return string.interp(strings.statBar,
-        {
-            width = value / 270 * 100,
-            bg = css.horizGradLua{type = stat},
-            dark = c[stat].dark,
-            val = string.printNumber(value)
-        })
+    return txt.interp(strings.statBar, {
+        width = value / 270 * 100,
+        bg = css.horizGradLua({ type = stat }),
+        dark = c[stat].dark,
+        val = txt.printNumber(value),
+    })
 end
 s.stat_bar_lua = s.statBarLua
 
@@ -696,20 +698,19 @@ Older generations and no category:
 s.pokeStats = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
     local poke = string.lower(mw.text.decode(p[1] or p.poke))
-    local noForms = (p[2] or p.noForms or 'no'):lower() == 'yes'
+    local noForms = (p[2] or p.noForms or "no"):lower() == "yes"
     local gen = tonumber(p[3] or p.gen) or gendata.latest
-    local noCat = (p[4] or p.noCat or 'no'):lower() == 'yes'
-    local boxArgs = {gen = gen, noCats = noCat}
+    local noCat = (p[4] or p.noCat or "no"):lower() == "yes"
+    local boxArgs = { gen = gen, noCats = noCat }
 
     if noForms then
         return tostring(PokeStatBox.new(poke, nil, boxArgs))
     else
-        return list.makeFormsLabelledBoxes{
+        return list.makeFormsLabelledBoxes({
             name = poke,
             makeBox = PokeStatBox.new,
             boxArgs = boxArgs,
             printBoxes = function(boxes)
-
                 -- No collapse and extra markup for single boxes
                 if #boxes == 1 then
                     return tostring(boxes[1])
@@ -720,15 +721,16 @@ s.pokeStats = function(frame)
                     first collapsed by default
                 --]]
                 return w.mapAndConcat(boxes, function(box, key)
-                    box:setCollapse('mw-collapsible' ..
-                            (key == 1 and '' or ' mw-collapsed'))
+                    box:setCollapse(
+                        "mw-collapsible" .. (key == 1 and "" or " mw-collapsed")
+                    )
                     return tostring(box)
-                end, '\n')
-            end
-        }
+                end, "\n")
+            end,
+        })
     end
 end
-s.PokeStats, s['pokéStats'], s['PokéStats'] =
+s.PokeStats, s["pokéStats"], s["PokéStats"] =
     s.pokeStats, s.pokeStats, s.pokeStats
 
 --[[
@@ -753,9 +755,8 @@ With generation:
 
 --]]
 s.typeAvg = function(frame)
-    local type = string.trim(frame.args[1]):lower()
-    local gen = tonumber(string.trim(frame.args[2]))
-        or gendata.latest
+    local type = txt.trim(frame.args[1]):lower()
+    local gen = tonumber(txt.trim(frame.args[2])) or gendata.latest
 
     --[[
         string.find is used instead of plain equality
@@ -764,19 +765,19 @@ s.typeAvg = function(frame)
         statistics data and Pokémon data are not updated
         together consistently.
     --]]
-    local typedPokes = table.keys(table.filter(pokes, function(data, poke)
+    local typedPokes = tab.keys(tab.filter(pokes, function(data, poke)
         data = multigen.getGen(data)
         return stats[poke]
-            and not string.parseInt(poke)
-                and gamesUtil.isInGen(poke, gen)
+            and not txt.parseInt(poke)
+            and gamesUtil.isInGen(poke, gen)
             and (data.type1:find(type) or data.type2:find(type))
     end))
 
-    return s.boxStats{
+    return s.boxStats({
         stats = statsAvg(typedPokes, gen),
-        types = {type1 = type},
-        align = 'left',
-    }
+        types = { type1 = type },
+        align = "left",
+    })
 end
 s.TypeAvg, s.typeavg = s.typeAvg, s.typeavg
 
@@ -844,12 +845,12 @@ Examples:
 
 --]]
 s.statsBox = function(frame)
-
     -- tonumber() is necessary for stats values
-    local p = w.trimAndMap(mw.clone(frame.args), true,
-        function(val) return tonumber(val) or val end)
+    local p = w.trimAndMap(mw.clone(frame.args), true, function(val)
+        return tonumber(val) or val
+    end)
 
-    local bounds = (p.bounds or 'no'):lower() == 'yes'
+    local bounds = (p.bounds or "no"):lower() == "yes"
     p.bounds = nil
 
     p.stats = {
@@ -859,17 +860,17 @@ s.statsBox = function(frame)
         spatk = p.spatk,
         spdef = p.spdef,
         spe = p.spe,
-        spec = p.spec
+        spec = p.spec,
     }
     p.types = {
         type = p.type,
         type1 = p.type1 or p.type,
-        type2 = p.type2
+        type2 = p.type2,
     }
     p.gen = bounds and (p.gen or gendata.latest)
-    p.totalLink = (p.totalLink or 'no'):lower() == 'yes'
-    p.listLink = (p.listLink or 'no'):lower() == 'yes'
-    p.align = (p.align or 'center')
+    p.totalLink = (p.totalLink or "no"):lower() == "yes"
+    p.listLink = (p.listLink or "no"):lower() == "yes"
+    p.align = (p.align or "center")
 
     return s.boxStats(p)
 end

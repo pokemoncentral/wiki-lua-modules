@@ -17,10 +17,11 @@ create one).
 
 local eb = {}
 
+-- stylua: ignore start
 local mw = require('mw')
 
-local txt = require('Wikilib-strings')      -- luacheck: no unused
-local tab = require('Wikilib-tables')       -- luacheck: no unused
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local form = require('Wikilib-forms')
 local evolib = require('Wikilib-evos')
 local multigen = require('Wikilib-multigen')
@@ -34,6 +35,7 @@ local c = require("Colore-data")
 local pokes = require("Poké-data")
 local moves = require("Move-data")
 local evodata = require("Evo-data")
+-- stylua: ignore end
 form.loadUseless(true)
 local bothforms = form.allFormsData()
 
@@ -74,28 +76,28 @@ eb.strings = {
 
     SMALL_TEXT_NEWLINE = [=[<div class="small-text">${text}</div>]=],
 
-    CAT_TRE_PHASES = '[[Categoria:Pokémon appartenenti a una linea di evoluzione a tre stadi]]',
-    CAT_TWO_PHASES =  '[[Categoria:Pokémon appartenenti a una linea di evoluzione a due stadi]]',
-    CAT_ONE_PHASE =  '[[Categoria:Pokémon che non fanno parte di una linea di evoluzione]]',
-    CAT_BRANCHED_PHASES =  '[[Categoria:Pokémon con evoluzioni diramate]]',
+    CAT_TRE_PHASES = "[[Categoria:Pokémon appartenenti a una linea di evoluzione a tre stadi]]",
+    CAT_TWO_PHASES = "[[Categoria:Pokémon appartenenti a una linea di evoluzione a due stadi]]",
+    CAT_ONE_PHASE = "[[Categoria:Pokémon che non fanno parte di una linea di evoluzione]]",
+    CAT_BRANCHED_PHASES = "[[Categoria:Pokémon con evoluzioni diramate]]",
 }
 
 eb.strings.desktoparrows = {
-    normal = '&rarr;',
-    fixed = '&rarr;',
-    reverse = '&larr;',
-    double = '&harr;'
+    normal = "&rarr;",
+    fixed = "&rarr;",
+    reverse = "&larr;",
+    double = "&harr;",
 }
 
 eb.strings.mobilearrows = {
-    normal = '&darr;',
-    fixed = '&rarr;',
-    reverse = '&uarr;',
-    double = '↕'
+    normal = "&darr;",
+    fixed = "&rarr;",
+    reverse = "&uarr;",
+    double = "↕",
 }
 
 -- this should be constant
-eb.emptybox = { }
+eb.emptybox = {}
 
 --[[
 
@@ -115,25 +117,31 @@ The parameters are named:
 
 --]]
 eb.boxPokemon = function(args)
-    return string.interp(eb.strings.BOX_POKEMON, {
-        notes = args.notes and string.interp(eb.strings.SMALL_TEXT_NEWLINE, {
-            text = args.notes
-        }) or '',
-        background = css.radialGradLua{ type1 = args.type1, type2 = args.type2 },
+    return txt.interp(eb.strings.BOX_POKEMON, {
+        notes = args.notes and txt.interp(eb.strings.SMALL_TEXT_NEWLINE, {
+            text = args.notes,
+        }) or "",
+        background = css.radialGradLua({
+            type1 = args.type1,
+            type2 = args.type2,
+        }),
         spr = args.spr,
         phase = args.phase or "Non si evolve",
         name = args.name,
         shownName = args.shownName or args.name,
-        type1rect = links.colorType(args.type1,
-                                    c[args.disptype1 or args.type1].dark),
-        type2rect = args.disptype2
-                    and links.colorType(args.type2, c[args.disptype2].dark)
-                    or (args.type2 ~= args.type1
-                        and links.colorType(args.type2, c[args.type2].dark)
-                        or '')
+        type1rect = links.colorType(
+            args.type1,
+            c[args.disptype1 or args.type1].dark
+        ),
+        type2rect = args.disptype2 and links.colorType(
+            args.type2,
+            c[args.disptype2].dark
+        ) or (args.type2 ~= args.type1 and links.colorType(
+            args.type2,
+            c[args.type2].dark
+        ) or ""),
     })
 end
-
 
 --[[
 
@@ -147,14 +155,14 @@ div.small-text. The third is the nil constant function.
 
 local methodsFunctionGenerator = function(text)
     return function(param)
-        return string.interp(text, { param = param })
+        return txt.interp(text, { param = param })
     end
 end
 
 local smallMethodsFunctionGenerator = function(text)
-    text = string.interp(eb.strings.SMALL_TEXT_NEWLINE, { text = text })
+    text = txt.interp(eb.strings.SMALL_TEXT_NEWLINE, { text = text })
     return function(param)
-        return string.interp(text, { param = param })
+        return txt.interp(text, { param = param })
     end
 end
 
@@ -172,65 +180,86 @@ module) as the only parameter returns the string to insert in the result.
 
 eb.boxArrow = { img = {}, desc = {} }
 eb.boxArrow.img.methods = {
-    [evodata.methods.OTHER] = methodsFunctionGenerator(''),
-    [evodata.methods.LEVEL] = methodsFunctionGenerator(links.bag('Caramella rara')),
-    [evodata.methods.HAPPINESS] = methodsFunctionGenerator(links.bag('Calmanella')),
-    [evodata.methods.STONE] = methodsFunctionGenerator(links.bag('${param}')),
-    [evodata.methods.TRADE] = methodsFunctionGenerator(links.bag('Blocco Amici')),
-    [evodata.methods.BREED] = methodsFunctionGenerator(ms.staticLua{'Uovo'}),
-    [evodata.methods.UNKNOWN] = methodsFunctionGenerator(''),
+    [evodata.methods.OTHER] = methodsFunctionGenerator(""),
+    [evodata.methods.LEVEL] = methodsFunctionGenerator(
+        links.bag("Caramella rara")
+    ),
+    [evodata.methods.HAPPINESS] = methodsFunctionGenerator(
+        links.bag("Calmanella")
+    ),
+    [evodata.methods.STONE] = methodsFunctionGenerator(links.bag("${param}")),
+    [evodata.methods.TRADE] = methodsFunctionGenerator(
+        links.bag("Blocco Amici")
+    ),
+    [evodata.methods.BREED] = methodsFunctionGenerator(
+        ms.staticLua({ "Uovo" })
+    ),
+    [evodata.methods.UNKNOWN] = methodsFunctionGenerator(""),
 }
 eb.boxArrow.img.conditions = {
     [evodata.conditions.OTHER] = nilConst,
     [evodata.conditions.TIME] = nilConst,
-    [evodata.conditions.ITEM] = methodsFunctionGenerator(links.bag('${param}')),
-    [evodata.conditions.LOCATION] = methodsFunctionGenerator(links.bag('Mappa città')),
+    [evodata.conditions.ITEM] = methodsFunctionGenerator(links.bag("${param}")),
+    [evodata.conditions.LOCATION] = methodsFunctionGenerator(
+        links.bag("Mappa città")
+    ),
     [evodata.conditions.MOVE] = function(movename)
         -- Takes move name and gets move type for the MT image
         local movetype = multigen.getGenValue(moves[movename:lower()].type)
-        return links.bag('MT ' .. string.fu(movetype), {link="MT"})
+        return links.bag("MT " .. txt.fu(movetype), { link = "MT" })
     end,
     [evodata.conditions.GENDER] = nilConst,
     [evodata.conditions.TRADED_FOR] = function(ndex)
-        return ms.staticLua{ndex}
+        return ms.staticLua({ ndex })
     end,
-    [evodata.conditions.BREEDONLY] = methodsFunctionGenerator(ms.staticLua{'132'}),
+    [evodata.conditions.BREEDONLY] = methodsFunctionGenerator(
+        ms.staticLua({ "132" })
+    ),
     [evodata.conditions.REGION] = nilConst,
 }
 
 eb.boxArrow.desc.methods = {
-    [evodata.methods.OTHER] = methodsFunctionGenerator('${param}'),
+    [evodata.methods.OTHER] = methodsFunctionGenerator("${param}"),
     [evodata.methods.LEVEL] = function(level)
         if not level then
-            return '[[Livello|Aumento di livello]]'
+            return "[[Livello|Aumento di livello]]"
         end
-        return table.concat{ '[[Livello|Livello ', level, ']]' }
+        return table.concat({ "[[Livello|Livello ", level, "]]" })
     end,
-    [evodata.methods.HAPPINESS] = methodsFunctionGenerator('[[Affetto|Legame]]'),
-    [evodata.methods.STONE] = methodsFunctionGenerator('${param}'),
-    [evodata.methods.TRADE] = methodsFunctionGenerator('[[Scambio]]'),
-    [evodata.methods.BREED] = methodsFunctionGenerator('[[Accoppiamento Pokémon|Accoppiamento]]'),
-    [evodata.methods.UNKNOWN] = methodsFunctionGenerator('Sconosciuto'),
+    [evodata.methods.HAPPINESS] = methodsFunctionGenerator(
+        "[[Affetto|Legame]]"
+    ),
+    [evodata.methods.STONE] = methodsFunctionGenerator("${param}"),
+    [evodata.methods.TRADE] = methodsFunctionGenerator("[[Scambio]]"),
+    [evodata.methods.BREED] = methodsFunctionGenerator(
+        "[[Accoppiamento Pokémon|Accoppiamento]]"
+    ),
+    [evodata.methods.UNKNOWN] = methodsFunctionGenerator("Sconosciuto"),
 }
 eb.boxArrow.desc.conditions = {
-    [evodata.conditions.OTHER] = smallMethodsFunctionGenerator('${param}'),
-    [evodata.conditions.TIME] = smallMethodsFunctionGenerator('(${param})'),
-    [evodata.conditions.ITEM] = smallMethodsFunctionGenerator('tenendo [[${param}]]'),
-    [evodata.conditions.LOCATION] = smallMethodsFunctionGenerator('presso: [[${param}]]'),
+    [evodata.conditions.OTHER] = smallMethodsFunctionGenerator("${param}"),
+    [evodata.conditions.TIME] = smallMethodsFunctionGenerator("(${param})"),
+    [evodata.conditions.ITEM] = smallMethodsFunctionGenerator(
+        "tenendo [[${param}]]"
+    ),
+    [evodata.conditions.LOCATION] = smallMethodsFunctionGenerator(
+        "presso: [[${param}]]"
+    ),
     [evodata.conditions.MOVE] = function(movename)
-        return string.interp(eb.strings.SMALL_TEXT_NEWLINE, {
-            text = table.concat{ 'avendo appreso [[', movename, ']]' }
+        return txt.interp(eb.strings.SMALL_TEXT_NEWLINE, {
+            text = table.concat({ "avendo appreso [[", movename, "]]" }),
         })
     end,
-    [evodata.conditions.GENDER] = smallMethodsFunctionGenerator('(${param})'),
+    [evodata.conditions.GENDER] = smallMethodsFunctionGenerator("(${param})"),
     [evodata.conditions.TRADED_FOR] = function(ndex)
-            local name = pokes[tonumber(ndex)].name
-            return table.concat{ ' per [[', name, ']]' }
-        end,
-    [evodata.conditions.BREEDONLY] = methodsFunctionGenerator(' con [[Ditto]]'),
-    [evodata.conditions.REGION] = smallMethodsFunctionGenerator('nella regione di [[${param}]]'),
+        local name = pokes[tonumber(ndex)].name
+        return table.concat({ " per [[", name, "]]" })
+    end,
+    [evodata.conditions.BREEDONLY] = methodsFunctionGenerator(" con [[Ditto]]"),
+    [evodata.conditions.REGION] = smallMethodsFunctionGenerator(
+        "nella regione di [[${param}]]"
+    ),
 }
-
 
 --[[
 
@@ -251,40 +280,43 @@ eb.boxArrowGen = function(data, direction)
         return ""
     end
     direction = direction
-                or (data.method == evodata.methods.BREED
-                    and 'reverse'
-                    or 'normal'
-                )
+        or (data.method == evodata.methods.BREED and "reverse" or "normal")
 
     -- Only uses the first image found. The actual order is the keys' one
     -- because there souldn't be more than one condition with an img at a time
-    local img = table.mapToNum(data.conditions or {}, function(val, condition)
+    local img = tab.mapToNum(data.conditions or {}, function(val, condition)
         return eb.boxArrow.img.conditions[condition](val)
     end)
     table.insert(img, eb.boxArrow.img.methods[data.method](data[data.method]))
 
-    local desc = table.mapToNum(data.conditions or {}, function(val, condition)
+    local desc = tab.mapToNum(data.conditions or {}, function(val, condition)
         return eb.boxArrow.desc.conditions[condition](val)
     end)
-    table.insert(desc, 1, eb.boxArrow.desc.methods[data.method](data[data.method]))
+    table.insert(
+        desc,
+        1,
+        eb.boxArrow.desc.methods[data.method](data[data.method])
+    )
 
     local interpData = {
         img = img[1],
         evodesc = table.concat(desc),
         desktoparrow = eb.strings.desktoparrows[direction],
         mobilearrow = eb.strings.mobilearrows[direction],
-        info = ''
+        info = "",
     }
     local interpString = eb.strings.BOX_ARROW
 
-    if interpData.evodesc == ''
-       and interpData.info == ''
-       and interpData.timegender == '' then
+    if
+        interpData.evodesc == ""
+        and interpData.info == ""
+        and interpData.timegender == ""
+    then
         interpString = eb.strings.BOX_ARROW_INFOLESS
-    elseif interpData.direction == 'fixed' then
+    elseif interpData.direction == "fixed" then
         interpString = eb.strings.BOX_ARROW_UNRESPONSIVE
     end
-    return string.interp(interpString, interpData)
+    return txt.interp(interpString, interpData)
 end
 
 --[[
@@ -293,8 +325,8 @@ Returns a single arrow. Parameter is the same as eb.boxArrowGen
 
 --]]
 eb.SingleArrow = function(data, direction)
-    return string.interp(eb.strings.SINGLE_ARROW, {
-        boxarrow = eb.boxArrowGen(data, direction)
+    return txt.interp(eb.strings.SINGLE_ARROW, {
+        boxarrow = eb.boxArrowGen(data, direction),
     })
 end
 
@@ -309,7 +341,7 @@ evolution.
 
 --]]
 eb.DoubleArrow = function(data)
-    return string.interp(eb.strings.DOUBLE_ARROW, {
+    return txt.interp(eb.strings.DOUBLE_ARROW, {
         boxarrow1 = eb.boxArrowGen(data.evos[1]),
         boxarrow2 = eb.boxArrowGen(data),
     })
@@ -326,7 +358,7 @@ evolutions.
 
 --]]
 eb.TripleArrow = function(data)
-    return string.interp(eb.strings.TRIPLE_ARROW, {
+    return txt.interp(eb.strings.TRIPLE_ARROW, {
         boxarrow1 = eb.boxArrowGen(data.evos[1]),
         boxarrow2 = eb.boxArrowGen(data),
         boxarrow3 = eb.boxArrowGen(data.evos[2]),
@@ -343,26 +375,30 @@ and the presence of evolutions (NOT their datas).
 eb.phaseName = function(position, baseData)
     if position == 1 then
         if baseData.method == evodata.methods.BREED then
-            if baseData.conditions
-               and baseData.conditions[evodata.conditions.BREEDONLY] then
-                return 'Non si evolve'
+            if
+                baseData.conditions
+                and baseData.conditions[evodata.conditions.BREEDONLY]
+            then
+                return "Non si evolve"
             else
-                return 'Forma Baby'
+                return "Forma Baby"
             end
         elseif not baseData.method and baseData.evos then
-            return 'Forma Base'
+            return "Forma Base"
         else
-            return 'Non si evolve'
+            return "Non si evolve"
         end
     elseif position == 2 then
-        if baseData.conditions
-           and baseData.conditions[evodata.conditions.BREEDONLY] then
-            return 'Genitore'
+        if
+            baseData.conditions
+            and baseData.conditions[evodata.conditions.BREEDONLY]
+        then
+            return "Genitore"
         else
-            return 'Prima evoluzione'
+            return "Prima evoluzione"
         end
     else
-        return 'Seconda evoluzione'
+        return "Seconda evoluzione"
     end
 end
 
@@ -382,20 +418,22 @@ eb.boxPokemonAuto = function(ndex, phase, notes, shownName)
     if not ndex then
         return ""
     end
-    local poke = multigen.getGen(pokes[ndex]
-                    or pokes[tonumber(ndex)]
-                    or pokes[tonumber(string.match(ndex, "(%d%d%d)%u%l*"))])
-    ndex = type(ndex) == "string" and ndex or string.threeFigures(ndex)
+    local poke = multigen.getGen(
+        pokes[ndex]
+            or pokes[tonumber(ndex)]
+            or pokes[tonumber(string.match(ndex, "(%d%d%d)%u%l*"))]
+    )
+    ndex = type(ndex) == "string" and ndex or txt.threeFigures(ndex)
 
-    return eb.boxPokemon{
+    return eb.boxPokemon({
         notes = notes,
         type1 = poke.type1 or "sconosciuto",
         type2 = poke.type2 or "sconosciuto",
         spr = spr.sprLua(ndex, "current", "male", "150px"),
         phase = phase,
         name = poke.name,
-        shownName = shownName
-    }
+        shownName = shownName,
+    })
 end
 
 --[[
@@ -417,7 +455,7 @@ like that.
 eb.makePhaseRows = function(evos, phase)
     local arrows, boxes = {}, {}
     for k, v in ipairs(evos) do
-        local key = 'box' .. tostring(k)
+        local key = "box" .. tostring(k)
         arrows[key] = eb.SingleArrow(v)
         boxes[key] = eb.boxPokemonAuto(
             v.ndex or v.name,
@@ -426,18 +464,18 @@ eb.makePhaseRows = function(evos, phase)
         )
     end
 
-    if table.getn(arrows) == 0 then
-        return ''
-    elseif table.getn(arrows) == 1 then
-        return table.concat{
-            string.interp(eb.strings.ROW_ONE, arrows),
-            string.interp(eb.strings.ROW_ONE, boxes)
-        }
+    if tab.getn(arrows) == 0 then
+        return ""
+    elseif tab.getn(arrows) == 1 then
+        return table.concat({
+            txt.interp(eb.strings.ROW_ONE, arrows),
+            txt.interp(eb.strings.ROW_ONE, boxes),
+        })
     else
-        return table.concat{
-            string.interp(eb.strings.ROW_TWO, arrows),
-            string.interp(eb.strings.ROW_TWO, boxes)
-        }
+        return table.concat({
+            txt.interp(eb.strings.ROW_TWO, arrows),
+            txt.interp(eb.strings.ROW_TWO, boxes),
+        })
     end
 end
 
@@ -451,19 +489,19 @@ This parameter may be the evos field of the lower phase.
 
 --]]
 eb.makeManyEvosRow = function(evos)
-    local rowContent = table.map(evos, function(v)
-        return string.interp(eb.strings.GRID_ROW, {
-            arrow = eb.SingleArrow(v, 'fixed'),
+    local rowContent = tab.map(evos, function(v)
+        return txt.interp(eb.strings.GRID_ROW, {
+            arrow = eb.SingleArrow(v, "fixed"),
             box = eb.boxPokemonAuto(
                 v.ndex or v.name,
                 eb.phaseName(2, evodata[v.name]),
                 v.notes
-            )
+            ),
         })
     end, ipairs)
 
-    return string.interp(eb.strings.ROW_THREE, {
-        boxes = table.concat(rowContent)
+    return txt.interp(eb.strings.ROW_THREE, {
+        boxes = table.concat(rowContent),
     })
 end
 
@@ -478,45 +516,49 @@ The parameter is the table of the base form (ie: the baby Pokémon).
 eb.makeBreedRow = function(data)
     if data.conditions and data.conditions[evodata.conditions.BREEDONLY] then
         -- Breedonly (aka Phione)
-        return table.concat{
-            string.interp(eb.strings.ROW_ONE, {
-                box1 = eb.SingleArrow(data)
+        return table.concat({
+            txt.interp(eb.strings.ROW_ONE, {
+                box1 = eb.SingleArrow(data),
             }),
-            string.interp(eb.strings.ROW_ONE, {
-                box1 = eb.boxPokemonAuto(data.evos[1].ndex or data.evos[1].name,
-                                         eb.phaseName(2, data),
-                                         data.evos[1].notes)
-            }),
-        }
-    elseif table.getn(data.evos) > 1 then
-        -- More than one phase one, even with breed
-        return table.concat{
-            eb.TripleArrow(data),
-            string.interp(eb.strings.ROW_TWO, {
+            txt.interp(eb.strings.ROW_ONE, {
                 box1 = eb.boxPokemonAuto(
-                        data.evos[1].ndex or data.evos[1].name,
-                        eb.phaseName(2, data),
-                        data.evos[1].notes
-                    ),
+                    data.evos[1].ndex or data.evos[1].name,
+                    eb.phaseName(2, data),
+                    data.evos[1].notes
+                ),
+            }),
+        })
+    elseif tab.getn(data.evos) > 1 then
+        -- More than one phase one, even with breed
+        return table.concat({
+            eb.TripleArrow(data),
+            txt.interp(eb.strings.ROW_TWO, {
+                box1 = eb.boxPokemonAuto(
+                    data.evos[1].ndex or data.evos[1].name,
+                    eb.phaseName(2, data),
+                    data.evos[1].notes
+                ),
                 box2 = eb.boxPokemonAuto(
-                        data.evos[2].ndex or data.evos[2].name,
-                        eb.phaseName(2, data),
-                        data.evos[2].notes
-                    ),
-            })
-        }
+                    data.evos[2].ndex or data.evos[2].name,
+                    eb.phaseName(2, data),
+                    data.evos[2].notes
+                ),
+            }),
+        })
     else
         -- There is one phase one evolution, but with double arrow
-        return table.concat{
-            string.interp(eb.strings.ROW_ONE, {
-                box1 = eb.DoubleArrow(data)
+        return table.concat({
+            txt.interp(eb.strings.ROW_ONE, {
+                box1 = eb.DoubleArrow(data),
             }),
-            string.interp(eb.strings.ROW_ONE, {
-                box1 = eb.boxPokemonAuto(data.evos[1].ndex or data.evos[1].name,
-                                         eb.phaseName(2, data),
-                                         data.evos[1].notes)
-            })
-        }
+            txt.interp(eb.strings.ROW_ONE, {
+                box1 = eb.boxPokemonAuto(
+                    data.evos[1].ndex or data.evos[1].name,
+                    eb.phaseName(2, data),
+                    data.evos[1].notes
+                ),
+            }),
+        })
     end
 end
 
@@ -533,7 +575,8 @@ eb.Evobox = function(frame)
     local p = w.trimAll(frame.args)
     local pokename = mw.text.decode(p[1]):lower()
     local abbr = p.form or ""
-    local pokeData = multigen.getGen(pokes[form.nameToDataindex(pokename .. abbr)])
+    local pokeData =
+        multigen.getGen(pokes[form.nameToDataindex(pokename .. abbr)])
     local nameabbr = abbr == "" and pokename or pokename .. abbr
 
     local data
@@ -542,20 +585,28 @@ eb.Evobox = function(frame)
     else
         data = evolib.prunedEvotree(nameabbr)
     end
+    assert(data)
 
     local evoboxcontent = {}
     local boxContainer = eb.strings.BOX_CONTAINER
 
     -- Insert the first phase Pokémon box
-    table.insert(evoboxcontent, string.interp(eb.strings.ROW_ONE, {
-        box1 = eb.boxPokemonAuto(data.ndex or data.name, eb.phaseName(1, data), data.notes)
-    }))
+    table.insert(
+        evoboxcontent,
+        txt.interp(eb.strings.ROW_ONE, {
+            box1 = eb.boxPokemonAuto(
+                data.ndex or data.name,
+                eb.phaseName(1, data),
+                data.notes
+            ),
+        })
+    )
 
     local phase3evos
     if data.evos then
         -- If there are more than 2 phase one evolutions the module assumes there
         -- aren't higher level evolutions and uses the unresponsive layout
-        if table.getn(data.evos, "num") > 2 then
+        if tab.getn(data.evos, "num") > 2 then
             boxContainer = eb.strings.BOX_CONTAINER_UNRESPONSIVE
             table.insert(evoboxcontent, eb.makeManyEvosRow(data.evos))
         -- If the base form is a baby (ie: method == BREED) it should add
@@ -565,51 +616,62 @@ eb.Evobox = function(frame)
         else
             table.insert(evoboxcontent, eb.makePhaseRows(data.evos, 2))
         end
-        phase3evos = table.flatMapToNum(data.evos, function(v)
+        phase3evos = tab.flatMapToNum(data.evos, function(v)
             return v.evos or { eb.emptybox }
         end)
-        if table.any(phase3evos, function(v) return v ~= eb.emptybox end) then
+        if
+            tab.any(phase3evos, function(v)
+                return v ~= eb.emptybox
+            end)
+        then
             table.insert(evoboxcontent, eb.makePhaseRows(phase3evos, 3))
         end
     end
 
     local evobox = {
-        string.interp(boxContainer, {
+        txt.interp(boxContainer, {
             textcolor = cc.forModGradBgLua(
-                pokeData.type1 or 'sconosciuto',
-                pokeData.type2 or 'sconosciuto'
+                pokeData.type1 or "sconosciuto",
+                pokeData.type2 or "sconosciuto"
             ),
-            background = css.horizGradLua{
-                type1 = pokeData.type1 or 'sconosciuto',
-                type2 = pokeData.type2 or 'sconosciuto'
-            },
-            content = table.concat(evoboxcontent)
-        })
+            background = css.horizGradLua({
+                type1 = pokeData.type1 or "sconosciuto",
+                type2 = pokeData.type2 or "sconosciuto",
+            }),
+            content = table.concat(evoboxcontent),
+        }),
     }
 
     -- Adds categories
     phase3evos = phase3evos
-                 and table.filter(phase3evos, function(v) return v ~= eb.emptybox end)
-                 or {}
-    if p.cat ~= "no"
-       and not (data.conditions
-                and data.conditions[evodata.conditions.BREEDONLY]) then
-        if table.getn(phase3evos, "num") > 0 then
+            and tab.filter(phase3evos, function(v)
+                return v ~= eb.emptybox
+            end)
+        or {}
+    if
+        p.cat ~= "no"
+        and not (
+            data.conditions
+            and data.conditions[evodata.conditions.BREEDONLY]
+        )
+    then
+        if tab.getn(phase3evos, "num") > 0 then
             table.insert(evobox, eb.strings.CAT_TRE_PHASES)
         elseif data.evos then
             table.insert(evobox, eb.strings.CAT_TWO_PHASES)
         else
             table.insert(evobox, eb.strings.CAT_ONE_PHASE)
         end
-        if table.getn(phase3evos, "num") > 1
-           or (data.evos and table.getn(data.evos, "num") > 1) then
+        if
+            tab.getn(phase3evos, "num") > 1
+            or (data.evos and tab.getn(data.evos, "num") > 1)
+        then
             table.insert(evobox, eb.strings.CAT_BRANCHED_PHASES)
         end
     end
 
     return table.concat(evobox)
 end
-
 
 -- ========================== Non-automatic interface ==========================
 
@@ -625,14 +687,17 @@ Elements of this table are lua patterns. Any key that matches any of those
 patterns should have its value lowered.
 
 --]]
-eb.processInput.mapToLower = { '^family$', '^evotype%d%a?$', '^move%d%a?$',
-    '^type%d$' }
+eb.processInput.mapToLower =
+    { "^family$", "^evotype%d%a?$", "^move%d%a?$", "^type%d$" }
 
 -- Processes an argument: maps to lowercase when needed.
 eb.processInput.processElement = function(v, k)
-    if type(k) == 'string' and table.any(eb.processInput.mapToLower, function(pattern)
-        return string.match(k, pattern)
-    end) then
+    if
+        type(k) == "string"
+        and tab.any(eb.processInput.mapToLower, function(pattern)
+            return string.match(k, pattern)
+        end)
+    then
         v = string.lower(v)
     end
 
@@ -655,7 +720,7 @@ eb.boxPokemonManual = function(p, suff)
         return ""
     end
     local fakephase = p.family == "normale" and { evos = {} } or {}
-    return eb.boxPokemon{
+    return eb.boxPokemon({
         notes = p["loc" .. suff],
         type1 = p["type1-" .. suff],
         disptype1 = p["disptype1-" .. suff],
@@ -663,21 +728,21 @@ eb.boxPokemonManual = function(p, suff)
         disptype2 = p["disptype2-" .. suff],
         spr = "[[File:" .. p["sprite" .. suff] .. ".png|150px]]",
         phase = p["forme" .. suff]
-                or eb.phaseName(tonumber(suff:match("^(%d*)%a?")), fakephase),
+            or eb.phaseName(tonumber(suff:match("^(%d*)%a?")), fakephase),
         name = p["name" .. suff],
         shownName = p["displayname" .. suff],
-    }
+    })
 end
 
 -- Tables mapping evotype to method for fake evodata building
 eb.evotypeToMethod = {
     livello = evodata.methods.LEVEL,
-    ['affetto'] = evodata.methods.HAPPINESS,
+    ["affetto"] = evodata.methods.HAPPINESS,
     posizione = evodata.methods.LEVEL,
     pietra = evodata.methods.STONE,
     mossa = evodata.methods.LEVEL,
-    ['strum. tenuto'] = evodata.methods.LEVEL,
-    ['ogg. tenuto'] = evodata.methods.LEVEL,
+    ["strum. tenuto"] = evodata.methods.LEVEL,
+    ["ogg. tenuto"] = evodata.methods.LEVEL,
     scambio = evodata.methods.TRADE,
     other = evodata.methods.OTHER,
 }
@@ -705,7 +770,7 @@ eb.SingleArrowMaybe = function(p, suff, direction)
 
     local fakeevo = { ndex = 000, conditions = {} }
     fakeevo.method = eb.evotypeToMethod[p["evotype" .. suff]]
-                    or evodata.methods.OTHER
+        or evodata.methods.OTHER
 
     fakeevo[evodata.methods.LEVEL] = p["level" .. suff]
     fakeevo[evodata.methods.STONE] = p["evostone" .. suff]
@@ -742,25 +807,37 @@ like that.
 eb.makeGlitchPhaseRows = function(p, phase)
     local result = {}
     local evotypePhase = tostring(phase - 1)
-    if p['name' .. phase] or p['name' .. phase .. 'a'] then
-        if p['name' .. phase .. 'a'] then
+    if p["name" .. phase] or p["name" .. phase .. "a"] then
+        if p["name" .. phase .. "a"] then
             -- There are two evolutions
-            table.insert(result, string.interp(eb.strings.ROW_TWO, {
-                box1 = eb.SingleArrowMaybe(p, evotypePhase),
-                box2 = eb.SingleArrowMaybe(p, evotypePhase .. 'a')
-            }))
-            table.insert(result, string.interp(eb.strings.ROW_TWO, {
-                box1 = eb.boxPokemonManual(p, tostring(phase)),
-                box2 = eb.boxPokemonManual(p, tostring(phase) .. "a"),
-            }))
+            table.insert(
+                result,
+                txt.interp(eb.strings.ROW_TWO, {
+                    box1 = eb.SingleArrowMaybe(p, evotypePhase),
+                    box2 = eb.SingleArrowMaybe(p, evotypePhase .. "a"),
+                })
+            )
+            table.insert(
+                result,
+                txt.interp(eb.strings.ROW_TWO, {
+                    box1 = eb.boxPokemonManual(p, tostring(phase)),
+                    box2 = eb.boxPokemonManual(p, tostring(phase) .. "a"),
+                })
+            )
         else
             -- There's only one evolution
-            table.insert(result, string.interp(eb.strings.ROW_ONE, {
-                box1 = eb.SingleArrowMaybe(p, evotypePhase),
-            }))
-            table.insert(result, string.interp(eb.strings.ROW_ONE, {
-                box1 = eb.boxPokemonManual(p, tostring(phase)),
-            }))
+            table.insert(
+                result,
+                txt.interp(eb.strings.ROW_ONE, {
+                    box1 = eb.SingleArrowMaybe(p, evotypePhase),
+                })
+            )
+            table.insert(
+                result,
+                txt.interp(eb.strings.ROW_ONE, {
+                    box1 = eb.boxPokemonManual(p, tostring(phase)),
+                })
+            )
         end
     end
 
@@ -812,28 +889,27 @@ Parameters are named because of their number:
 --]]
 eb.GlitchEvobox = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
-    p = table.map(p, eb.processInput.processElement)
+    p = tab.map(p, eb.processInput.processElement)
 
-    p.family = p.family and p.family:lower() or 'nessuna'
+    p.family = p.family and p.family:lower() or "nessuna"
 
     local evoboxcontent = {
-        string.interp(eb.strings.ROW_ONE, { box1 = eb.boxPokemonManual(p, "1") })
+        txt.interp(eb.strings.ROW_ONE, { box1 = eb.boxPokemonManual(p, "1") }),
     }
 
     table.insert(evoboxcontent, eb.makeGlitchPhaseRows(p, 2))
     table.insert(evoboxcontent, eb.makeGlitchPhaseRows(p, 3))
     table.insert(evoboxcontent, eb.makeGlitchPhaseRows(p, 4))
 
-    return string.interp(eb.strings.BOX_CONTAINER, {
-            textcolor = cc.forModGradBgLua(p[1], p[2] or p[1]),
-            background = css.horizGradLua{ type1 = p[1], type2 = p[2] or p[1] },
-            content = table.concat(evoboxcontent)
-        })
+    return txt.interp(eb.strings.BOX_CONTAINER, {
+        textcolor = cc.forModGradBgLua(p[1], p[2] or p[1]),
+        background = css.horizGradLua({ type1 = p[1], type2 = p[2] or p[1] }),
+        content = table.concat(evoboxcontent),
+    })
 end
 
 eb.glitchEvobox, eb.glitchevobox, eb.Glitchevobox =
     eb.GlitchEvobox, eb.GlitchEvobox, eb.GlitchEvobox
-
 
 -- ============================ Alternative forms box ==========================
 
@@ -847,8 +923,9 @@ third, defaulting to the data modules value.
 eb.BoxForm = function(ndex, notes, shownname)
     local name, abbr = form.getnameabbr(ndex)
     local altdata = bothforms[name]
-    shownname = shownname or altdata.names[abbr] == "" and string.fu(pokes[name].name)
-    return eb.boxPokemonAuto(ndex, '', notes, shownname)
+    shownname = shownname
+        or altdata.names[abbr] == "" and txt.fu(pokes[name].name)
+    return eb.boxPokemonAuto(ndex, "", notes, shownname)
 end
 
 --[[
@@ -865,17 +942,15 @@ eb.FormArrow = function(args)
     local fakeevo = {
         ndex = 000,
         method = evodata.methods.OTHER,
-        [evodata.methods.OTHER] = args.item
-                            and table.concat{
-                                links.bag(args.item),
-                                "<div>",
-                                args.item,
-                                "</div>",
-                            }
-                            or "",
+        [evodata.methods.OTHER] = args.item and table.concat({
+            links.bag(args.item),
+            "<div>",
+            args.item,
+            "</div>",
+        }) or "",
     }
-    return string.interp(eb.strings.SINGLE_ARROW, {
-        boxarrow = eb.boxArrowGen(fakeevo, 'double')
+    return txt.interp(eb.strings.SINGLE_ARROW, {
+        boxarrow = eb.boxArrowGen(fakeevo, "double"),
     })
 end
 
@@ -889,8 +964,8 @@ the keys of the result.
 eb.argsEndingSubset = function(args, ending)
     local newArgs = {}
     for k, v in pairs(args) do
-        if k:match(ending .. '$') then
-            newArgs[k:match('(.*)' .. ending .. '$')] = v
+        if k:match(ending .. "$") then
+            newArgs[k:match("(.*)" .. ending .. "$")] = v
         end
     end
     return newArgs
@@ -911,38 +986,52 @@ method.
 eb.makeFormRows = function(p, index)
     local result = {}
     local evotypeIdx = tostring(index - 1)
-    if p['sprite' .. tostring(index)] then
+    if p["sprite" .. tostring(index)] then
         -- There is at least one evolution
-        if p['sprite' .. tostring(index) .. 'a'] then
+        if p["sprite" .. tostring(index) .. "a"] then
             -- There are two evolutions
-            table.insert(result, string.interp(eb.strings.ROW_TWO, {
-                box1 = eb.FormArrow(eb.argsEndingSubset(p, evotypeIdx)),
-                box2 = eb.FormArrow(eb.argsEndingSubset(p, evotypeIdx .. 'a'))
-            }))
-            table.insert(result, string.interp(eb.strings.ROW_TWO, {
-                box1 = eb.BoxForm(
-                        p['sprite' .. tostring(index)],
-                        p['loc' .. tostring(index)],
-                        p['name' .. tostring(index)]
+            table.insert(
+                result,
+                txt.interp(eb.strings.ROW_TWO, {
+                    box1 = eb.FormArrow(eb.argsEndingSubset(p, evotypeIdx)),
+                    box2 = eb.FormArrow(
+                        eb.argsEndingSubset(p, evotypeIdx .. "a")
                     ),
-                box2 = eb.BoxForm(
-                        p['sprite' .. tostring(index) .. 'a'],
-                        p['loc' .. tostring(index) .. 'a'],
-                        p['name' .. tostring(index) .. 'a']
+                })
+            )
+            table.insert(
+                result,
+                txt.interp(eb.strings.ROW_TWO, {
+                    box1 = eb.BoxForm(
+                        p["sprite" .. tostring(index)],
+                        p["loc" .. tostring(index)],
+                        p["name" .. tostring(index)]
                     ),
-            }))
+                    box2 = eb.BoxForm(
+                        p["sprite" .. tostring(index) .. "a"],
+                        p["loc" .. tostring(index) .. "a"],
+                        p["name" .. tostring(index) .. "a"]
+                    ),
+                })
+            )
         else
             -- There's only one evolution
-            table.insert(result, string.interp(eb.strings.ROW_ONE, {
-                box1 = eb.FormArrow(eb.argsEndingSubset(p, evotypeIdx)),
-            }))
-            table.insert(result, string.interp(eb.strings.ROW_ONE, {
-                box1 = eb.BoxForm(
-                        p['sprite' .. tostring(index)],
-                        p['loc' .. tostring(index)],
-                        p['name' .. tostring(index)]
-                    )
-            }))
+            table.insert(
+                result,
+                txt.interp(eb.strings.ROW_ONE, {
+                    box1 = eb.FormArrow(eb.argsEndingSubset(p, evotypeIdx)),
+                })
+            )
+            table.insert(
+                result,
+                txt.interp(eb.strings.ROW_ONE, {
+                    box1 = eb.BoxForm(
+                        p["sprite" .. tostring(index)],
+                        p["loc" .. tostring(index)],
+                        p["name" .. tostring(index)]
+                    ),
+                })
+            )
         end
     end
 
@@ -969,31 +1058,42 @@ Parameters are named because of their number:
 eb.Formbox = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
 
-    local pagename = string.fl(p[1] or mw.title.getCurrentTitle().text)
+    local pagename = txt.fl(p[1] or mw.title.getCurrentTitle().text)
     p[1] = nil
-    p.family = p.family or 'nessuna'
+    p.family = p.family or "nessuna"
     local pagepoke = pokes[form.nameToDataindex(pagename)]
-            or {name = 'Sconosciuto', ndex = 0, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+        or {
+            name = "Sconosciuto",
+            ndex = 0,
+            type1 = "sconosciuto",
+            type2 = "sconosciuto",
+        }
     pagepoke = multigen.getGen(pagepoke)
 
     local formboxcontent = {}
 
     -- Insert the first phase Pokémon box
-    table.insert(formboxcontent, string.interp(eb.strings.ROW_ONE, {
-        box1 = eb.BoxForm(p.sprite1, p.loc1, p.name1)
-    }))
+    table.insert(
+        formboxcontent,
+        txt.interp(eb.strings.ROW_ONE, {
+            box1 = eb.BoxForm(p.sprite1, p.loc1, p.name1),
+        })
+    )
 
     -- Adds any form passed as argument
     local i = 2
-    while p['sprite' .. tostring(i)] do
+    while p["sprite" .. tostring(i)] do
         table.insert(formboxcontent, eb.makeFormRows(p, i))
         i = i + 1
     end
 
-    return string.interp(eb.strings.BOX_CONTAINER, {
+    return txt.interp(eb.strings.BOX_CONTAINER, {
         textcolor = cc.forModGradBgLua(pagepoke.type1, pagepoke.type2),
-        background = css.horizGradLua{ type1 = pagepoke.type1, type2 = pagepoke.type2 },
-        content = table.concat(formboxcontent)
+        background = css.horizGradLua({
+            type1 = pagepoke.type1,
+            type2 = pagepoke.type2,
+        }),
+        content = table.concat(formboxcontent),
     })
 end
 
