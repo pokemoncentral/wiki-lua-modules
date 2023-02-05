@@ -82,6 +82,8 @@ ${stats}
 
     catStatsEqual = "[[Categoria:Pokémon con lo stesso valore in tutte le statistiche base|${display}]]",
 
+    catUniqueBST = "[[Categoria:Pokémon con statistiche base totali uniche|${display}]]",
+
     footer = [=[
 
 | colspan="3" class="hidden-xs" | &nbsp;
@@ -204,6 +206,20 @@ local makeCategories = function(poke, tot)
         end
         if tab.all(stats[poke], equalFirst) then
             table.insert(categories, interpCat(strings.catStatsEqual))
+        end
+    end
+
+    -- Category for Pokémon with unique bst
+    do
+        local dupe = tab.any(stats, function(data, otherPoke)
+            local otherTot =
+                statsUtil.statsSum(statsUtil.getStatsGen(data, gendata.latest))
+            return not txt.parseInt(otherPoke)
+                and poke ~= otherPoke
+                and tot == otherTot
+        end)
+        if not dupe then
+            table.insert(categories, interpCat(strings.catUniqueBST))
         end
     end
 
