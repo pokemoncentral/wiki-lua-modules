@@ -2020,6 +2020,11 @@ t.clodsire = {ability1 = 'Velenopunto', ability2 = 'Assorbacqua', abilityd = 'Im
 t[980] = t.clodsire
 t.annihilape = {ability1 = 'Spiritovivo', ability2 = 'Forza Interiore', abilityd = 'Agonismo'}
 t[979] = t.annihilape
+t.acquecrespe = {ability1 = 'Paleoattivazione'}
+t[1009] = t.acquecrespe
+t.fogliaferrea = {ability1 = 'Carica Quark'}
+t[1010] = t.fogliaferrea
+
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
 -- Sono raggiungibili soltanto tramite il nome, dato che non hanno un ndex proprio

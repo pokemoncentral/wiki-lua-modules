@@ -2023,6 +2023,10 @@ d.clodsire = {hp = 130, atk = 75, def = 60, spatk = 45, spdef = 100, spe = 20}
 d[980] = d.clodsire
 d.annihilape = {hp = 110, atk = 115, def = 80, spatk = 50, spdef = 90, spe = 90}
 d[979] = d.annihilape
+d.acquecrespe = {hp = 99, atk = 83, def = 91, spatk = 125, spdef = 83, spe = 109}
+d[1009] = d.acquecrespe
+d.fogliaferrea = {hp = 90, atk = 130, def = 88, spatk = 70, spdef = 108, spe = 104}
+d[1010] = d.fogliaferrea
 
 -- Alternative forms which actually change stats
 d.pikachuCm = {hp = 45, atk = 80, def = 50, spatk = 75, spdef = 60, spe = 120}

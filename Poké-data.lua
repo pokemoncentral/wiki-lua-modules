@@ -2022,6 +2022,10 @@ t.clodsire = {name = 'Clodsire', ndex = 980, type1 = 'veleno', type2 = 'terra'}
 t[980] = t.clodsire
 t.annihilape = {name = 'Annihilape', ndex = 979, type1 = 'lotta', type2 = 'spettro'}
 t[979] = t.annihilape
+t.acquecrespe = {name = 'Acquecrespe', ndex = 1009, type1 = 'acqua', type2 = 'drago'}
+t[1009] = t.acquecrespe
+t.fogliaferrea = {name = 'Fogliaferrea', ndex = 1010, type1 = 'erba', type2 = 'psico'}
+t[1010] = t.fogliaferrea
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa

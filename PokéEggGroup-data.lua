@@ -1983,6 +1983,10 @@ t.clodsire = { group1 = "acqua 1", group2 = "campo" }
 t[980] = t.clodsire
 t.annihilape = { group1 = "campo" }
 t[979] = t.annihilape
+t.acquecrespe = { group1 = "sconosciuto" }
+t[1009] = t.acquecrespe
+t.fogliaferrea = { group1 = "sconosciuto" }
+t[1010] = t.fogliaferrea
 
 -- Forme alternative che esistono fuori dalla lotta e quindi
 -- possono avere un gruppo uova diverso da quello della forma base

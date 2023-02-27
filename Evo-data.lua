@@ -7627,6 +7627,12 @@ evo.toedscool = {
 evo.toedscruel = evo.toedscool
 evo[948], evo[949] = evo.toedscool, evo.toedscool
 
+evo.acquecrespe = { ndex = 1009, name = "acquecrespe" }
+evo[1009] = evo.acquecrespe
+
+evo.fogliaferrea = { ndex = 1010, name = "fogliaferrea" }
+evo[1010] = evo.fogliaferrea
+
 -- Alternative forms with evolutions
 evo.rattataA = {
     ndex = "019A",
