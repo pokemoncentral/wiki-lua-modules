@@ -2437,6 +2437,7 @@ d.flappleGi, d["841Gi"] = d.flapple, d.flapple
 d.appletunGi, d["842Gi"] = d.appletun, d.appletun
 d.sandacondaGi, d["844Gi"] = d.sandaconda, d.sandaconda
 d.toxtricityGi, d["849Gi"] = d.toxtricity, d.toxtricity
+d.toxtricityBGi, d["849BGi"] = d.toxtricity, d.toxtricity
 d.centiskorchGi, d["851Gi"] = d.centiskorch, d.centiskorch
 d.hattereneGi, d["858Gi"] = d.hatterene, d.hatterene
 d.grimmsnarlGi, d["861Gi"] = d.grimmsnarl, d.grimmsnarl

@@ -297,7 +297,7 @@ t.silvally.names = {base = 'Tipo Normale', L = 'Tipo Lotta', Vo = 'Tipo Volante'
 t.minior.names = {R = 'Forma Nucleo', base = 'Forma Meteora'}
 t.necrozma.names = {V = 'Necrozma Criniera del Vespro', A = "Necrozma Ali dell'Aurora",
 	U = 'UltraNecrozma', base = ''}
-t.toxtricity.names = {B = 'Forma Basso', Gi = "Toxtricity Gigamax", base = 'Forma Melodia'}
+t.toxtricity.names = {B = 'Forma Basso', Gi = "Toxtricity Gigamax (Melodia)", BGi = "Toxtricity Gigamax (Basso)", base = 'Forma Melodia'}
 t.alcremie.names = {base = ""}
 t.eiscue.names = {L = "Liquefaccia", base = "Gelofaccia"}
 t.indeedee.names = {F = 'Femmina', base = 'Maschio'}
@@ -515,7 +515,7 @@ t.silvally.gamesOrder = mw.clone(t.arceus.gamesOrder)
 table.remove(t.silvally.gamesOrder)
 t.minior.gamesOrder = { "base", "R" }
 t.necrozma.gamesOrder = { "base", "V", "A", "U" }
-t.toxtricity.gamesOrder = { "base", "B", "Gi" }
+t.toxtricity.gamesOrder = { "base", "B", "Gi", "BGi" }
 t.eiscue.gamesOrder = { "base", "L" }
 t.indeedee.gamesOrder = t.meowstic.gamesOrder
 t.morpeko.gamesOrder = { "base", "V" }
@@ -665,7 +665,7 @@ t.silvally.since = {base = 'sl', L = 'sl', Vo = 'sl', Ve = 'sl', T = 'sl',
 	Ai = 'sl', Fu = 'sl', D = 'sl', Fo = 'sl', El = 'sl', G = 'sl'}
 t.minior.since = { base = "sl", R = "sl" }
 t.necrozma.since = { base = "sl", V = "usul", A = "usul", U = "usul" }
-t.toxtricity.since = { B = "spsc", Gi = "spsc", base = "spsc" }
+t.toxtricity.since = { B = "spsc", Gi = "spsc", BGi = "spsc", base = "spsc" }
 t.eiscue.since = { L = "spsc", base = "spsc" }
 t.indeedee.since = { F = "spsc", base = "spsc" }
 t.morpeko.since = { base = "spsc", V = "spsc" }
