@@ -272,6 +272,11 @@ c.scarlatto = _colore("D90D19", "FF8088", "700007")
 c.Scarlatto = c.scarlatto
 c.violetto = _colore("842F8C", "C787C7", "39003E")
 c.Violetto = c.violetto
+-- Temporary aliases
+c.mascheraturchese = c.azienda
+c.Mascheraturchese = c.mascheraturchese
+c.discoindaco = c.cupola
+c.Discoindaco = c.discoindaco
 
 -- Regions
 
