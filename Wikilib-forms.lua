@@ -6,13 +6,13 @@ delle forme alternative
 --]]
 
 local f = {}
-local tab = require('Wikilib-tables') -- luacheck: no unused
-local txt = require('Wikilib-strings') -- luacheck: no unused
+
+-- stylua: ignore start
+local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings')
 local genUtil = require('Wikilib-gens')
 local alt = require("AltForms-data")
-
-local mw = require('mw')
-
+-- stylua: ignore end
 
 -- Boolean used to avoid double loading of useless forms
 local allFormsLoaded = false
@@ -30,7 +30,7 @@ f.allFormsData = function()
         return alt
     end
 
-    local all = table.copy(alt)
+    local all = tab.copy(alt)
     local useless = require("UselessForms-data")
     local both = require("BothForms-data")
 
@@ -85,11 +85,11 @@ caso di fallimento, ritorna la stringa vuota.
 --]]
 f.getabbr = function(name, extform)
     if alt[tonumber(name) or name:lower()] then
-        extform = string.lower(extform or '')
+        extform = string.lower(extform or "")
         name = tonumber(name) or name:lower()
-        return alt[name].ext[extform] or 'base'
+        return alt[name].ext[extform] or "base"
     end
-    return name:match('(%u+%a*)$') or 'base'
+    return name:match("(%u+%a*)$") or "base"
 end
 
 f.getAbbr, f.get_abbr = f.getabbr, f.getabbr
@@ -104,12 +104,12 @@ In caso di fallimento, ritorna la stringa vuota.
 --]]
 f.getnameabbr = function(name, extform)
     if alt[tonumber(name) or name:lower()] then
-        extform = string.lower(extform or '')
+        extform = string.lower(extform or "")
         name = tonumber(name) or name:lower()
-        return name, alt[name].ext[extform] or 'base'
+        return name, alt[name].ext[extform] or "base"
     end
     local poke, abbr = name:match("^([%lé%-♂♀'%s%.&#;%d]+)(%u*%a*)$")
-    return tonumber(poke) or poke or '', abbr or 'base'
+    return tonumber(poke) or poke or "", abbr or "base"
 end
 
 f.getNameAbbr, f.get_name_abbr = f.getnameabbr, f.getnameabbr
@@ -125,12 +125,12 @@ del Pokémon e quello esteso della forma alternativa.
 
 --]]
 f.getlink = function(poke, black, extform)
-    black = black or ''
+    black = black or ""
     poke, extform = f.getnameabbr(poke, extform)
-    if extform == '' then
-        return ''
+    if extform == "" then
+        return ""
     end
-    return alt[poke] and alt[poke][black .. 'links'][extform] or ''
+    return alt[poke] and alt[poke][black .. "links"][extform] or ""
 end
 
 f.getLink, f.get_link = f.getlink, f.getlink
@@ -143,7 +143,7 @@ per il modulo Poké/data. Ritorna 0 in caso di errore.
 
 --]]
 f.getNdexForm = function(poke)
-    if type(poke) == 'number' then
+    if type(poke) == "number" then
         return poke
     end
 
@@ -152,7 +152,7 @@ f.getNdexForm = function(poke)
         return 0
     end
     for k, tab in pairs(alt) do
-        if type(k) == 'number' and tab == alt[poke] then
+        if type(k) == "number" and tab == alt[poke] then
             return k
         end
     end
@@ -162,14 +162,14 @@ f.getndexform, f.get_ndex_form = f.getNdexForm, f.getNdexForm
 
 -- Converte la sigla vuota in 'base'
 f.toBase = function(abbr)
-    return abbr == '' and 'base' or abbr
+    return abbr == "" and "base" or abbr
 end
 
 f.tobase, f.to_base = f.toBase, f.toBase
 
 -- Converte la sigla 'base' nella sigla vuota
 f.toEmptyAbbr = function(abbr)
-    return abbr == 'base' and '' or abbr
+    return abbr == "base" and "" or abbr
 end
 
 f.toemptyabbr, f.to_empty_abbr = f.toEmptyAbbr, f.toEmptyAbbr
@@ -183,11 +183,11 @@ a false altrimenti
 
 --]]
 f.hasMega = function(poke)
-    poke = string.lower(poke or '')
+    poke = string.lower(poke or "")
     if alt.mega then
-        return table.search(alt.mega, poke)
-            or table.search(alt.megaxy, poke)
-            or table.search(alt.archeo, poke)
+        return tab.search(alt.mega, poke)
+            or tab.search(alt.megaxy, poke)
+            or tab.search(alt.archeo, poke)
     end
     return false
 end
@@ -202,9 +202,9 @@ di alola, uno equiparabile a false altrimenti.
 
 --]]
 f.hasAlola = function(poke)
-    poke = string.lower(poke or '')
+    poke = string.lower(poke or "")
     if alt.alola then
-        return table.search(alt.alola, poke)
+        return tab.search(alt.alola, poke)
     end
     return false
 end
@@ -219,9 +219,7 @@ available.
 --]]
 f.formSpan = function(poke, abbr)
     return alt[poke].since[abbr],
-           alt[poke]['until']
-           and alt[poke]['until'][abbr]
-           or genUtil.latest.game
+        alt[poke]["until"] and alt[poke]["until"][abbr] or genUtil.latest.game
 end
 
 f.formspan, f.form_span = f.formSpan, f.formSpan
@@ -234,24 +232,26 @@ If name is a Pokémon name it can't be followed by the abbr.
 
 --]]
 f.nameToDataindex = function(name)
-    name = string.trim(tostring(name))
+    name = txt.trim(tostring(name))
     local trueName, extform = f.getnameabbr(name)
     -- If the name contains uppercase letters it's not recognized by
     -- getnameabbr, so this mess is needed
-    trueName = type(trueName) == 'number' and trueName or (
-                    trueName == '' and name:lower() or trueName:lower())
+    trueName = type(trueName) == "number" and trueName
+        or (trueName == "" and name:lower() or trueName:lower())
     -- The local variable is needed because global alt can be changed with
     -- loadUseless
     local trueAlt = require("AltForms-data")
     -- If the Pokémon isn't in altForms/data, should return the plain name
     -- extform == 'base' settles problems with numbers and string concat
     -- The last check is for Pokémon with both forms
-    if extform == 'base'
+    if
+        extform == "base"
         or not trueAlt[tonumber(trueName) or trueName]
-        or not trueAlt[tonumber(trueName) or trueName].names[extform] then
+        or not trueAlt[tonumber(trueName) or trueName].names[extform]
+    then
         return trueName
     end
-    trueName = type(trueName) == 'number' and string.tf(trueName) or trueName
+    trueName = type(trueName) == "number" and txt.tf(trueName) or trueName
     return trueName .. f.toEmptyAbbr(extform)
 end
 
@@ -262,8 +262,8 @@ AltForms-data and the two form abbr.
 
 --]]
 f.abbrLT = function(formsData, abbr1, abbr2)
-    return table.search(formsData.gamesOrder, abbr1)
-            < table.search(formsData.gamesOrder, abbr2)
+    return tab.search(formsData.gamesOrder, abbr1)
+        < tab.search(formsData.gamesOrder, abbr2)
 end
 
 --[[
@@ -283,18 +283,18 @@ Arguments:
 
 --]]
 f.formSortValue = function(ndex, abbr, poke)
-    ndex = f.getNdexForm(type(ndex) == 'string' and ndex:lower() or ndex)
-    local data, value, name = alt[ndex], '${name}', poke
+    ndex = f.getNdexForm(type(ndex) == "string" and ndex:lower() or ndex)
+    local data, value, name = alt[ndex], "${name}", poke
     local formName
 
-    if data and data.links[abbr] ~= '' then
+    if data and data.links[abbr] ~= "" then
         formName = data.names[abbr]
-        value = '${name}, ${form}'
+        value = "${name}, ${form}"
     end
 
-    return string.interp(value, {
+    return txt.interp(value, {
         name = name,
-        form = formName
+        form = formName,
     })
 end
 

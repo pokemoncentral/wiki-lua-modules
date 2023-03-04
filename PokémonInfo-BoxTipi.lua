@@ -2,16 +2,16 @@
 
 local b = {}
 
+-- stylua: ignore start
 local mw = require('mw')
 
-local l = require('Links')
-local w = require('Wikilib')
+local txt = require('Wikilib-strings')
 local oop = require('Wikilib-oop')
 local list = require('Wikilib-lists')
-local txt = require('Wikilib-strings')
 local multigen = require('Wikilib-multigen')
-local c = require("Colore-data")
+local l = require('Links')
 local pokes = require("Poké-data")
+-- stylua: ignore end
 
 --[[
 
@@ -31,17 +31,16 @@ e, opzionalmente, il nome esteso della forma
 
 --]]
 TypesBox.new = function(name, formName)
-	local this = setmetatable(TypesBox.super.new(formName),
-			TypesBox)
+    local this = setmetatable(TypesBox.super.new(formName), TypesBox)
 
-	local pokeData = multigen.getGen(pokes[name])
-	this.type1, this.type2 = pokeData.type1, pokeData.type2
+    local pokeData = multigen.getGen(pokes[name])
+    this.type1, this.type2 = pokeData.type1, pokeData.type2
 
-	return this
+    return this
 end
 
 TypesBox.__eq = function(a, b)
-	return a.type1 == b.type1 and a.type2 == b.type2
+    return a.type1 == b.type1 and a.type2 == b.type2
 end
 
 --[[
@@ -52,16 +51,18 @@ sotto in piccolo.
 
 --]]
 TypesBox.__tostring = function(this)
-	return string.interp('<div class="width-xl-50 text-center" style="box-sizing: border-box; padding: 0.2em;" >${type1}${type2}${forms}</div>',
-	{
-		type1 = l.typeColor(this.type1),
-		type2 = this.type1 == this.type2 and '' or l.typeColor(this.type2),
-		forms = #this.labels < 1 and '' or table.concat{
-			'<div class="small-text">',
-			mw.text.listToText(this.labels, ', ', ' e '),
-			'</div>'
-		}
-	})
+    return txt.interp(
+        '<div class="width-xl-50 text-center" style="box-sizing: border-box; padding: 0.2em;" >${type1}${type2}${forms}</div>',
+        {
+            type1 = l.typeColor(this.type1),
+            type2 = this.type1 == this.type2 and "" or l.typeColor(this.type2),
+            forms = #this.labels < 1 and "" or table.concat({
+                '<div class="small-text">',
+                mw.text.listToText(this.labels, ", ", " e "),
+                "</div>",
+            }),
+        }
+    )
 end
 
 --[[
@@ -72,11 +73,15 @@ raggruppati in due per riga
 --]]
 
 local printBoxes = function(boxes)
-	local acc = table.map(boxes, tostring)
-	table.insert(acc, 1, '<div class="roundy white-bg flex flex-row flex-wrap flex-main-stretch flex-items-center" style="padding: 0.2em;">')
-	table.insert(acc, '</div>')
+    local acc = table.map(boxes, tostring)
+    table.insert(
+        acc,
+        1,
+        '<div class="roundy white-bg flex flex-row flex-wrap flex-main-stretch flex-items-center" style="padding: 0.2em;">'
+    )
+    table.insert(acc, "</div>")
 
-	return table.concat(acc)
+    return table.concat(acc)
 end
 
 --[[
@@ -89,17 +94,17 @@ delle forme che li hanno
 
 --]]
 b.boxTipi = function(frame)
-	local name = string.trim(frame.args[1] or ''):lower()
-	local pokeData = pokes[string.parseInt(name) or name]
-			or pokes[mw.text.decode(name)]
-	pokeData = multigen.getGen(pokeData)
-	name = pokeData.name:lower()
+    local name = txt.trim(frame.args[1] or ""):lower()
+    local pokeData = pokes[txt.parseInt(name) or name]
+        or pokes[mw.text.decode(name)]
+    pokeData = multigen.getGen(pokeData)
+    name = pokeData.name:lower()
 
-	return list.makeFormsLabelledBoxes({
-		name = name,
-		makeBox = TypesBox.new,
-		printBoxes = printBoxes
-	})
+    return list.makeFormsLabelledBoxes({
+        name = name,
+        makeBox = TypesBox.new,
+        printBoxes = printBoxes,
+    })
 end
 
 b.BoxTipi, b.box_tipi, b.Box_tipi = b.boxTipi, b.boxTipi, b.boxTipi

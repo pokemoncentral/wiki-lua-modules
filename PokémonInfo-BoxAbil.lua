@@ -2,15 +2,17 @@
 
 local j = {}
 
+-- stylua: ignore start
 local mw = require('mw')
 
-local txt = require('Wikilib-strings')      -- luacheck: no unused
-local tab = require('Wikilib-tables')       -- luacheck: no unused
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local l = require('Links')
 local oop = require('Wikilib-oop')
 local multigen = require('Wikilib-multigen')
 local list = require('Wikilib-lists')
 local abils = require("PokéAbil-data")
+-- stylua: ignore end
 
 --[[
 
@@ -40,8 +42,13 @@ AbilsBox.STRINGS = {
 
 -- Table holding forms to be ignored
 AbilsBox.ignorableForms = {
-    'pikachuR', 'pikachuD', 'pikachuCn', 'pikachuS', 'pikachuW',
-    'pikachuCm', 'eeveeCm',
+    "pikachuR",
+    "pikachuD",
+    "pikachuCn",
+    "pikachuS",
+    "pikachuW",
+    "pikachuCm",
+    "eeveeCm",
 }
 
 --[[
@@ -52,12 +59,12 @@ the form. The name is given in the form name/ndex + abbreviation,
 --]]
 AbilsBox.new = function(name, formName)
     -- Pokémon whose ability is yet unknown
-    if abils[name].ability1 == '' then
+    if abils[name].ability1 == "" then
         return nil
     end
 
     -- Ignored forms
-    if table.search(AbilsBox.ignorableForms, name) then
+    if tab.search(AbilsBox.ignorableForms, name) then
         return nil
     end
 
@@ -69,7 +76,7 @@ AbilsBox.new = function(name, formName)
 end
 
 AbilsBox.__eq = function(a, b)
-    return table.equal(a.abils, b.abils)
+    return tab.equal(a.abils, b.abils)
 end
 
 -- Prints a single ability. If it's "Nessuna", it returns a "-" without link
@@ -86,12 +93,14 @@ Get the function to print a single ability.
 
 --]]
 AbilsBox.getAbilityPrinter = function(this)
-    local str = table.getn(this.abils) == 1
-                and AbilsBox.STRINGS.singleAbilNoLabel
-                or AbilsBox.STRINGS.singleAbilBox
+    local str = tab.getn(this.abils) == 1 and AbilsBox.STRINGS.singleAbilNoLabel
+        or AbilsBox.STRINGS.singleAbilBox
     return function(ability, key)
-        return string.interp(str, {
-            abil = multigen.printSpans(multigen.getGenSpan(ability), toStringAbil),
+        return txt.interp(str, {
+            abil = multigen.printSpans(
+                multigen.getGenSpan(ability),
+                toStringAbil
+            ),
             desc = AbilsBox.STRINGS.LABELS[key],
         })
     end
@@ -106,7 +115,7 @@ are added at the top, if present.
 
 --]]
 AbilsBox.__tostring = function(this)
-    local abilBoxes = table.map(this.abils, this:getAbilityPrinter())
+    local abilBoxes = tab.map(this.abils, this:getAbilityPrinter())
 
     local temp = {}
     -- Inserting ensures to avoid holes for concat
@@ -116,13 +125,12 @@ AbilsBox.__tostring = function(this)
     table.insert(temp, abilBoxes.abilitye)
     local abilstring = table.concat(temp)
 
-    local forms = #this.labels < 1
-                  and ''
-                  or string.interp(AbilsBox.STRINGS.formLabel, {
-                      label = mw.text.listToText(this.labels, ', ', ' e '),
-                  })
+    local forms = #this.labels < 1 and ""
+        or txt.interp(AbilsBox.STRINGS.formLabel, {
+            label = mw.text.listToText(this.labels, ", ", " e "),
+        })
 
-    return string.interp(AbilsBox.STRINGS.formAbilsBox, {
+    return txt.interp(AbilsBox.STRINGS.formAbilsBox, {
         abils = abilstring,
         forms = forms,
     })
@@ -130,7 +138,7 @@ end
 
 -- HTML code for the forms cells
 local printBoxes = function(boxes)
-    local acc = table.map(boxes, tostring)
+    local acc = tab.map(boxes, tostring)
     return table.concat(acc)
 end
 
@@ -142,13 +150,13 @@ with the forms that have if displayed above.
 
 --]]
 j.boxAbil = function(frame)
-    local name = string.trim(frame.args[1] or '')
-    name = string.parseInt(name) or mw.text.decode(name):lower()
+    local name = txt.trim(frame.args[1] or "")
+    name = txt.parseInt(name) or mw.text.decode(name):lower()
 
     return list.makeFormsLabelledBoxes({
         name = name,
         makeBox = AbilsBox.new,
-        printBoxes = printBoxes
+        printBoxes = printBoxes,
     })
 end
 

@@ -5,7 +5,7 @@ local text = {}
 -- Rimuove gli spazi vuoti all'inizio e alla fine di una stringa
 
 string.trim = function(s)
-    return tostring(s):match('^%s*(.-)%s*$')
+    return tostring(s):match("^%s*(.-)%s*$")
 end
 
 text.trim = string.trim
@@ -19,9 +19,11 @@ vedi: http://lua-users.org/wiki/StringInterpolation
 --]]
 
 string.interp = function(s, tab)
-    return (s:gsub('($%b{})', function(w)
-        return tab[w:sub(3, -2)] or w
-    end))
+    return (
+        s:gsub("($%b{})", function(w)
+            return tab[w:sub(3, -2)] or w
+        end)
+    )
 end
 
 text.interp = string.interp
@@ -41,7 +43,7 @@ end
 
 string.transform_first = string.transformFirst
 text.transformFirst, text.transform_first =
-        string.transformFirst, string.transformFirst
+    string.transformFirst, string.transformFirst
 
 -- Rende maiuscola la prima lettera di una stringa
 
@@ -50,9 +52,9 @@ string.firstUppercase = function(s)
 end
 
 string.first_uppercase, string.fu, string.ucfirst =
-        string.firstUppercase, string.firstUppercase, string.firstUppercase
+    string.firstUppercase, string.firstUppercase, string.firstUppercase
 text.firstUppercase, text.first_uppercase =
-        string.firstUppercase, string.firstUppercase
+    string.firstUppercase, string.firstUppercase
 text.fu, text.ucfirst = string.firstUppercase, string.firstUppercase
 
 -- Rende minuscola la prima leggera di una stringa
@@ -62,9 +64,9 @@ string.firstLowercase = function(s)
 end
 
 string.first_lowercase, string.fl, string.lcfirst =
-        string.firstLowercase, string.firstLowercase, string.firstLowercase
+    string.firstLowercase, string.firstLowercase, string.firstLowercase
 text.firstLowercase, text.first_lowercase =
-        string.firstLowercase, string.firstLowercase
+    string.firstLowercase, string.firstLowercase
 text.fl, text.lcfirst = string.firstLowercase, string.firstLowercase
 
 --[[
@@ -75,12 +77,12 @@ di una stringa
 --]]
 
 string.camelCase = function(s)
-    return (tostring(s):gsub('(%w[%w%d]*)', string.fu))
+    return (tostring(s):gsub("(%w[%w%d]*)", string.fu))
 end
 
 string.camel_case, string.cc = string.camelCase, string.camelCase
 text.camelCase, text.camel_case, text.cc =
-        string.camelCase, string.camelCase, string.camelCase
+    string.camelCase, string.camelCase, string.camelCase
 
 --[[
 
@@ -92,18 +94,18 @@ three figures, is widely used.
 
 --]]
 string.nFigures = function(n, figures)
-    return string.format('%0' .. tostring(figures) .. 'd', n)
+    return string.format("%0" .. tostring(figures) .. "d", n)
 end
 string.n_figures = string.nFigures
 text.nFigures, text.n_figures = string.n_figures, string.nFigures
 
 string.threeFigures = function(n)
-	return string.format('%03d', n)
+    return string.format("%03d", n)
 end
 
 string.three_figures, string.tf = string.threeFigures, string.threeFigures
 text.threeFigures, text.three_figures, text.tf =
-        string.threeFigures, string.threeFigures, string.threeFigures
+    string.threeFigures, string.threeFigures, string.threeFigures
 
 --[[
 
@@ -115,13 +117,12 @@ anche un segno, '+' o '-', in prima posizione
 --]]
 
 string.parseInt = function(s)
-
     -- Evito inuliti computazioni se l'input è già un numero
 
-    if type(s) == 'number' then
+    if type(s) == "number" then
         return s
     end
-    return tonumber(tostring(s):match('^%s*([%-%+]?%d+)'))
+    return tonumber(tostring(s):match("^%s*([%-%+]?%d+)"))
 end
 
 string.parse_int = string.parseInt
@@ -139,13 +140,12 @@ nel qual caso è posta a zero.
 --]]
 
 string.parseNumber = function(s)
-
     -- Evito inuliti computazioni se l'input è già un numero
 
-    if type(s) == 'number' then
+    if type(s) == "number" then
         return s
     end
-    return tonumber(tostring(s):match('^%s*([%-%+]?%d*%.?%d+)'))
+    return tonumber(tostring(s):match("^%s*([%-%+]?%d*%.?%d+)"))
 end
 
 string.parse_number = string.parseNumber
@@ -161,12 +161,10 @@ is comma.
 
 --]]
 string.printNumber = function(value, format)
-    return math.floor(value) == math.ceil(value)
-            and tostring(value)
-            or (string.format(format or '%.2f', value):gsub('%.', ','))
+    return math.floor(value) == math.ceil(value) and tostring(value)
+        or (string.format(format or "%.2f", value):gsub("%.", ","))
 end
-string.print_number, string.printnumber =
-    string.printNumber, string.printNumber
+string.print_number, string.printnumber = string.printNumber, string.printNumber
 text.printNumber, text.print_number, text.printnumber =
     string.printNumber, string.printNumber, string.printNumber
 

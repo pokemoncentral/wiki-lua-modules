@@ -9,19 +9,21 @@ double egg group.
 
 local g = {}
 
+-- stylua: ignore start
 local mw = require('mw')
 
-local css = require('Css')
-local ms = require('MiniSprite')
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')       -- luacheck: no unused
 local form = require('Wikilib-forms')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local multigen = require('Wikilib-multigen')
+local css = require('Css')
+local ms = require('MiniSprite')
 local resp = require('Resp')
-local txt = require('Wikilib-strings')      -- luacheck: no unused
-local tab = require('Wikilib-tables')       -- luacheck: no unused
 local pokes = require('Poké-data')
 local groups = require('PokéEggGroup-data')
+-- stylua: ignore end
 
 form.loadUseless(true)
 local alt = form.allFormsData()
@@ -46,25 +48,26 @@ by makeList in Wikilib/lists.
 --]]
 g.Entry.new = function(eggData, name, group)
     local baseName, abbr = form.getnameabbr(name)
-    local pokeData = table.merge(multigen.getGen(eggData), pokes[name] or pokes[baseName])
+    local pokeData =
+        tab.merge(multigen.getGen(eggData), pokes[name] or pokes[baseName])
     pokeData = multigen.getGen(pokeData)
     local this = g.Entry.super.new(name, pokeData.ndex)
 
     this.group = group
     this.formsData = alt[baseName]
-    this.formsData = this.formsData and table.copy(this.formsData)
+    this.formsData = this.formsData and tab.copy(this.formsData)
     if this.formsData and not this.formsData.names[abbr] then
         -- Se la forma non esiste in alt[baseName] è una versione evento che non esiste
         -- nei moduli dati. Prende tutti i dati dalla forma normale
         this.formsData.links[abbr] = this.formsData.links.base:gsub(
-                                            this.formsData.names.base,
-                                            '<div class="text-small">Evento</div>'
-                                        )
+            this.formsData.names.base,
+            '<div class="text-small">Evento</div>'
+        )
     end
     this.formAbbr = abbr
     -- Se c'è un'altra forma del Pokémon in PokéEggGroup-data
     -- ha senso scrivere la forma, altrimenti no
-    if abbr ~= 'base' then
+    if abbr ~= "base" then
         this.formLink = this.formsData and this.formsData.links or {}
     else
         this.formLink = {}
@@ -76,7 +79,7 @@ g.Entry.new = function(eggData, name, group)
         end
     end
 
-    return setmetatable(table.merge(this, pokeData), g.Entry)
+    return setmetatable(tab.merge(this, pokeData), g.Entry)
 end
 
 --[[
@@ -86,9 +89,9 @@ numeric so that they can be easier used to call functions.
 
 --]]
 g.Entry.eggBox = {
-    {'thick'},          -- pdfs
-    {'vert-center'},    -- classes
-    {height = '100%'}   -- styles
+    { "thick" }, -- pdfs
+    { "vert-center" }, -- classes
+    { height = "100%" }, -- styles
 }
 
 --[[
@@ -98,10 +101,10 @@ are numeric so that they can be easier used to call functions.
 
 --]]
 g.Entry.eggCell = {
-    {'one-box-cell'},   -- pdfs
-    false,              -- bp
-    {},                 -- classes
-    {height = '100%'}   -- styles
+    { "one-box-cell" }, -- pdfs
+    false, -- bp
+    {}, -- classes
+    { height = "100%" }, -- styles
 }
 
 --[[
@@ -114,15 +117,15 @@ Egggrouplist-allgroups overrides it.
 --]]
 g.Entry.groupsString = function(this)
     if not this.group2 then
-        return ''
+        return ""
     end
 
-    local group = string.fu(this.group1 == this.group
-        and this.group2 or this.group1)
+    local group =
+        txt.fu(this.group1 == this.group and this.group2 or this.group1)
 
     -- Little abuse here, but ensures styles consistency
-    return '|' .. resp.eggsTwoCellsLua(group, nil,
-        g.Entry.eggBox, g.Entry.eggCell)
+    return "|"
+        .. resp.eggsTwoCellsLua(group, nil, g.Entry.eggBox, g.Entry.eggCell)
 end
 
 --[[
@@ -134,28 +137,37 @@ Pokémon display the type only once.
 --]]
 g.Entry.__tostring = function(this)
     local twoGroups = this.group2 ~= nil
-    return string.interp([=[| class="min-width-xs-20" | ${ndex}
+    return txt.interp(
+        [=[| class="min-width-xs-20" | ${ndex}
 | class="min-width-xs-20" | ${static}
 | class="min-width-xs-60" style="padding: 0 0.5em;" | [[${name}]]${form}
 | class="min-width-xl-${typesWidth} width-xs-100" style="padding: 1ex 0.8ex; height: 100%;" | ${types}${groups}]=],
-    {
-        ndex = this.ndex and string.tf(this.ndex) or '???',
-        static = ms.staticLua{string.tf(this.ndex or 0) ..
-                (this.formAbbr == 'base' and '' or this.formAbbr or '')},
-        name = this.name,
-        form = this.formLink[this.formAbbr] or '',
-        typesWidth = twoGroups and '20' or '30',
-        types = resp.twoTypeBoxesLua(this.type1, this.type2, {'thin'}, nil,
-            {'vert-center'}),
-        groups = this:groupsString()
-    })
+        {
+            ndex = this.ndex and txt.tf(this.ndex) or "???",
+            static = ms.staticLua({
+                txt.tf(this.ndex or 0)
+                    .. (this.formAbbr == "base" and "" or this.formAbbr or ""),
+            }),
+            name = this.name,
+            form = this.formLink[this.formAbbr] or "",
+            typesWidth = twoGroups and "20" or "30",
+            types = resp.twoTypeBoxesLua(
+                this.type1,
+                this.type2,
+                { "thin" },
+                nil,
+                { "vert-center" }
+            ),
+            groups = this:groupsString(),
+        }
+    )
 end
 
 -- Single-grouped Pokémon entry class
 g.SingleGroupEntry = oop.makeClass(g.Entry)
 
 -- Creates Single-grouped headings
-g.SingleGroupEntry.header = '===Solo in questo gruppo==='
+g.SingleGroupEntry.header = "===Solo in questo gruppo==="
 
 --[[
 
@@ -168,20 +180,21 @@ dual-grouped or not of the passed group.
 
 --]]
 g.SingleGroupEntry.new = function(eggData, name, group)
-    if eggData.group2
-            or group ~= eggData.group1 then
+    if eggData.group2 or group ~= eggData.group1 then
         return nil
     end
 
-    return setmetatable(g.SingleGroupEntry.super.new(eggData,
-            name, group), g.SingleGroupEntry)
+    return setmetatable(
+        g.SingleGroupEntry.super.new(eggData, name, group),
+        g.SingleGroupEntry
+    )
 end
 
 -- First-typed Pokémon entry class
 g.DoubleGroupEntry = oop.makeClass(g.Entry)
 
 -- Creates first-typed headings
-g.DoubleGroupEntry.header = '===In questo gruppo e in un altro==='
+g.DoubleGroupEntry.header = "===In questo gruppo e in un altro==="
 
 --[[
 
@@ -194,13 +207,17 @@ single-grouped or it hasn't the passed one.
 
 --]]
 g.DoubleGroupEntry.new = function(eggData, name, group)
-    if not eggData.group2
-            or not table.search(multigen.getGen(eggData), group) then
+    if
+        not eggData.group2
+        or not tab.search(multigen.getGen(eggData), group)
+    then
         return nil
     end
 
-    return setmetatable(g.DoubleGroupEntry.super.new(eggData,
-            name, group), g.DoubleGroupEntry)
+    return setmetatable(
+        g.DoubleGroupEntry.super.new(eggData, name, group),
+        g.DoubleGroupEntry
+    )
 end
 
 --[[
@@ -211,18 +228,20 @@ to print the correct amount of group columns.
 
 --]]
 local makeHeader = function(group, groupsCount)
-    return string.interp([=[{| class="roundy-corners sortable pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
+    return txt.interp(
+        [=[{| class="roundy-corners sortable pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; ${bg};"
 |- class="hidden-xs"
 ! style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|<span style="color:#000">#</span>]]
 ! class="unsortable" | &nbsp;
 ! [[Pokémon|<span style="color:#000">Pokémon</span>]]
 ! [[Tipo|<span style="color:#000">Tipo</span>]]
 ${groups}]=],
-{
-    bg = css.horizGradLua{type = group:gsub(' ', '_') .. '_uova'},
-    groups = groupsCount < 2 and ''
-        or '! [[Gruppi Uova|<span style="color:#000">Altro gruppo</span>]]'
-})
+        {
+            bg = css.horizGradLua({ type = group:gsub(" ", "_") .. "_uova" }),
+            groups = groupsCount < 2 and ""
+                or '! [[Gruppi Uova|<span style="color:#000">Altro gruppo</span>]]',
+        }
+    )
 end
 
 --[[
@@ -239,16 +258,20 @@ of the Entry class makeHeader method.
 --]]
 g.makeGroupTable = function(group, Entry, header, headerGenerator)
     headerGenerator = headerGenerator or makeHeader
-    return table.concat({header or Entry.header,
+    return table.concat({
+        header or Entry.header,
         list.makeList({
             source = groups,
             iterator = list.pokeNames,
             entryArgs = group,
             makeEntry = Entry.new,
-            header = headerGenerator(group,
-                    Entry == g.SingleGroupEntry and 1 or 2),
-            separator = '|- class="roundy flex-xs flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0; height: 100%;"'
-        })}, '\n')
+            header = headerGenerator(
+                group,
+                Entry == g.SingleGroupEntry and 1 or 2
+            ),
+            separator = '|- class="roundy flex-xs flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0; height: 100%;"',
+        }),
+    }, "\n")
 end
 
 --[[
@@ -266,10 +289,11 @@ Examples:
 
 --]]
 g.singlegrouplist = function(frame)
-
     -- Extracting type from page title
-    local group = string.trim(mw.text.decode(frame.args[1]
-            or 'sconosciuto (Gruppo Uova)')):match('^([%a%d%s]+) %(Gruppo Uova%)$'):lower()
+    local group = string
+        .trim(mw.text.decode(frame.args[1] or "sconosciuto (Gruppo Uova)"))
+        :match("^([%a%d%s]+) %(Gruppo Uova%)$")
+        :lower()
 
     return g.makeGroupTable(group, g.SingleGroupEntry)
 end
@@ -293,10 +317,11 @@ Examples:
 
 --]]
 g.doublegrouplist = function(frame)
-
     -- Extracting type from page title
-    local group = string.trim(mw.text.decode(frame.args[1]
-            or 'sconosciuto (Gruppo Uova)')):match('^([%a%d%s]+) %(Gruppo Uova%)$'):lower()
+    local group = string
+        .trim(mw.text.decode(frame.args[1] or "sconosciuto (Gruppo Uova)"))
+        :match("^([%a%d%s]+) %(Gruppo Uova%)$")
+        :lower()
 
     return g.makeGroupTable(group, g.DoubleGroupEntry)
 end

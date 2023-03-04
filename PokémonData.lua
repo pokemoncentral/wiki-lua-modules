@@ -10,31 +10,14 @@ local b = {}
 
 -- Data modules aren't loaded here because they probably won't be used
 
+-- stylua: ignore start
 local mw = require('mw')
-mw.loadData = require
 
-local txt = require('Wikilib-strings')      -- luacheck: no unused
+local txt = require('Wikilib-strings')
 local formlib = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
 local cc = require('ChooseColor')
-local pokes
-local abils
-local stats
-local forms
-
---[[
-
-Returns the passed table if it's already been loaded, otherwise the module
-named after the second parameter is loaded and returned. The module is loaded
-with mw.loadData
-
---]]
-local loadData = function(tab, moduleName)
-    if not tab then
-        return mw.loadData(moduleName) --mw.loadData('Modulo:' .. moduleName)
-    end
-    return tab
-end
+-- stylua: ignore end
 
 --[[
 
@@ -51,8 +34,8 @@ Returns ndex given the name.
 
 --]]
 b.getNdex = function(frame)
-    pokes = loadData(pokes, 'Poké-data')
-    return string.tf(pokes[parseName(frame.args[1])].ndex)
+    local pokes = require("Poké-data")
+    return txt.tf(pokes[parseName(frame.args[1])].ndex)
 end
 
 b.get_ndex = b.getNdex
@@ -68,7 +51,7 @@ Ex:
 
 --]]
 b.getName = function(frame)
-    pokes = loadData(pokes, 'Poké-data')
+    local pokes = require("Poké-data")
     return pokes[parseName(frame.args[1])].name
 end
 
@@ -87,9 +70,9 @@ Ex:
 
 --]]
 b.getFormName = function(frame)
-    forms = formlib.allFormsData()
-    local name, abbr = formlib.getnameabbr(string.trim(frame.args[1]))
-    return forms[name] and forms[name].names[formlib.toBase(abbr)] or ''
+    local forms = formlib.allFormsData()
+    local name, abbr = formlib.getnameabbr(txt.trim(frame.args[1]))
+    return forms[name] and forms[name].names[formlib.toBase(abbr)] or ""
 end
 
 --[[
@@ -102,9 +85,9 @@ lower case.
 
 --]]
 local getAbil = function(name, abilityNumber, gen)
-    abils = loadData(abils, 'PokéAbil-data')
+    local abils = require("PokéAbil-data")
     return multigen.getGenValue(
-        abils[parseName(name)]['ability' .. abilityNumber] or '',
+        abils[parseName(name)]["ability" .. abilityNumber] or "",
         tonumber(gen)
     )
 end
@@ -122,7 +105,7 @@ Ex:
 
 --]]
 b.getAbil1 = function(frame)
-    return getAbil(frame.args[1], '1', frame.args.gen)
+    return getAbil(frame.args[1], "1", frame.args.gen)
 end
 
 b.get_abil_1 = b.getAbil1
@@ -140,7 +123,7 @@ Ex:
 
 --]]
 b.getAbil2 = function(frame)
-    return getAbil(frame.args[1], '2', frame.args.gen)
+    return getAbil(frame.args[1], "2", frame.args.gen)
 end
 
 b.get_abil_2 = b.getAbil2
@@ -158,7 +141,7 @@ Ex:
 
 --]]
 b.getAbild = function(frame)
-    return getAbil(frame.args[1], 'd', frame.args.gen)
+    return getAbil(frame.args[1], "d", frame.args.gen)
 end
 
 b.get_abil_d, b.get_abil_h, b.get_abil_n = b.getAbild, b.getAbild, b.getAbild
@@ -175,11 +158,10 @@ Ex:
 
 --]]
 b.getAbile = function(frame)
-    return getAbil(frame.args[1], 'e', frame.args.gen)
+    return getAbil(frame.args[1], "e", frame.args.gen)
 end
 
 b.get_abil_e = b.getAbile
-
 
 --[[
 
@@ -191,11 +173,13 @@ lower case.
 
 --]]
 local getType = function(name, typeNumber, gen)
-    pokes = loadData(pokes, 'Poké-data')
-    return string.fu(multigen.getGenValue(
-        pokes[parseName(name)]['type' .. typeNumber],
-        tonumber(gen)
-    ))
+    local pokes = require("Poké-data")
+    return txt.fu(
+        multigen.getGenValue(
+            pokes[parseName(name)]["type" .. typeNumber],
+            tonumber(gen)
+        )
+    )
 end
 
 --[[
@@ -210,7 +194,7 @@ Ex:
 
 --]]
 b.getType1 = function(frame)
-    return getType(frame.args[1], '1', frame.args.gen)
+    return getType(frame.args[1], "1", frame.args.gen)
 end
 
 b.get_type_1 = b.getType1
@@ -230,7 +214,7 @@ Ex:
 
 --]]
 b.getType2 = function(frame)
-    return getType(frame.args[1], '2', frame.args.gen)
+    return getType(frame.args[1], "2", frame.args.gen)
 end
 
 b.get_type_2 = b.getType2
@@ -250,10 +234,9 @@ Ex:
 
 --]]
 b.gradTypes = function(frame)
-    return table.concat({b.getType1(frame), b.getType2(frame)}, '-'):lower()
+    return table.concat({ b.getType1(frame), b.getType2(frame) }, "-"):lower()
 end
 b.grad_types = b.gradTypes
-
 
 --[[
 
@@ -271,14 +254,13 @@ Ex:
 
 --]]
 b.getStat = function(frame)
-    stats = loadData(stats, 'PokéStats-data')
-    local stat = string.trim(frame.args[2])
+    local stats = require("PokéStats-data")
+    local stat = txt.trim(frame.args[2])
     return multigen.getGenValue(
         stats[parseName(frame.args[1])][stat],
         tonumber(frame.args.gen)
     )
 end
-
 
 --[[
 
@@ -290,10 +272,10 @@ Pokémon has two types or not.
 
 --]]
 b.ifTwoTypes = function(frame)
-    pokes = loadData(pokes, 'Poké-data')
+    local pokes = require("Poké-data")
     local poke = pokes[parseName(frame.args[1])]
     local isDualType = poke.type1 == poke.type2
-    return isDualType and string.trim(frame.args[2]) or string.trim(frame.args[3])
+    return isDualType and txt.trim(frame.args[2]) or txt.trim(frame.args[3])
 end
 
 --[[
@@ -321,8 +303,8 @@ Ex:
 
 --]]
 b.getLink = function(frame)
-    local name = string.trim(frame.args[1])
-    local black = string.trim(frame.args[2] or "")
+    local name = txt.trim(frame.args[1])
+    local black = txt.trim(frame.args[2] or "")
     -- Links also to UselessForms
     formlib.loadUseless(true)
     return formlib.getLink(name, black)
@@ -339,27 +321,30 @@ the same cry, returns the special value 'all'
 
 --]]
 b.getCriesList = function(frame)
-    forms = loadData(forms, 'AltForms-data')
+    local forms = require("AltForms-data")
     local result = {}
-    local ndex = string.trim(frame.args[1])
+    local ndex = txt.trim(frame.args[1])
     local formData = forms[tonumber(ndex) or ndex]
     -- No alt forms case
     if formData == nil then
-        return ''
+        return ""
     end
     -- No alt forms with different cries
     if not formData.cries then
-        return 'all'
+        return "all"
     end
     -- Standard list
     table.map(formData.cries, function(abbr)
-        table.insert(result, table.concat{
-            abbr,
-            '-',
-            formData.names[abbr]
-        })
+        table.insert(
+            result,
+            table.concat({
+                abbr,
+                "-",
+                formData.names[abbr],
+            })
+        )
     end)
-    return table.concat(result, ',')
+    return table.concat(result, ",")
 end
 
 --[[
@@ -376,10 +361,10 @@ Ex:
 
 --]]
 b.getPokeTextColor = function(frame)
-    local type1 = getType(frame.args[1], '1', frame.args.gen):lower()
-    local type2 = getType(frame.args[1], '2', frame.args.gen):lower()
+    local type1 = getType(frame.args[1], "1", frame.args.gen):lower()
+    local type2 = getType(frame.args[1], "2", frame.args.gen):lower()
 
-	return cc.forModGradBgLua(type1, type2)
+    return cc.forModGradBgLua(type1, type2)
 end
 
 return b

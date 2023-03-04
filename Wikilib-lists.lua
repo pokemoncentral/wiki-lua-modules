@@ -14,19 +14,22 @@ rendono possibile l'automazione del sorting.
 --]]
 local l = {}
 
+-- stylua: ignore start
 local w = require('Wikilib')
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local form = require('Wikilib-forms')
 local oop = require('Wikilib-oop')
-local txt = require('Wikilib-strings') -- luacheck: no unused
-local tab = require('Wikilib-tables') -- luacheck: no unused
 local alts = require('AltForms-data')
 local pokes = require("Poké-data")
+-- stylua: ignore end
 
 --[[-----------------------------------------
 
                     Utility
 
---]]-----------------------------------------
+--]]
+-----------------------------------------
 
 --[[
 
@@ -55,7 +58,8 @@ end
 
                 Iterators
 
---]]-----------------------------------------
+--]]
+-----------------------------------------
 
 --[[
 
@@ -68,7 +72,7 @@ local nextPokeName = function(tab, key)
     local nextKey, nextValue = key
     repeat
         nextKey, nextValue = next(tab, nextKey)
-    until not nextKey or not string.parseInt(nextKey)
+    until not nextKey or not txt.parseInt(nextKey)
     return nextKey, nextValue
 end
 
@@ -85,7 +89,8 @@ l.poke_names = l.pokeNames
 
                 Ordinamento
 
---]]-----------------------------------------
+--]]
+-----------------------------------------
 
 --[[
 
@@ -110,8 +115,8 @@ l.sortForm = function(a, b)
     if rawequal(a, b) then
         return false
     end
-    return table.search(a.formsData.gamesOrder, a.formAbbr)
-            < table.search(b.formsData.gamesOrder, b.formAbbr)
+    return tab.search(a.formsData.gamesOrder, a.formAbbr)
+        < tab.search(b.formsData.gamesOrder, b.formAbbr)
 end
 
 l.sort_form = l.sortForm
@@ -148,7 +153,6 @@ l.sortNdex = function(a, b)
 
     -- If at least one ndex is not defined
     if not (a.ndex and b.ndex) then
-
         -- The defined ndex gets sorted first
         if a.ndex then
             return true
@@ -160,7 +164,6 @@ l.sortNdex = function(a, b)
             return a.fallbackSort < b.fallbackSort
         end
     end
-
 
     if a.ndex ~= b.ndex then
         return a.ndex < b.ndex
@@ -174,7 +177,8 @@ l.sort_ndex = l.sortNdex
 
         List-creating functions
 
---]]-----------------------------------------
+--]]
+-----------------------------------------
 
 --[[
 
@@ -202,17 +206,20 @@ The class representing the entries, needs to implement the following interface:
     - __tostring(): Returns the wikicode representing the entry.
 --]]
 l.makeList = function(args)
-    args.footer = '\n' .. (args.footer or '|}')
+    args.footer = "\n" .. (args.footer or "|}")
 
     -- "height: 100%" is just CSS making fun of us, can't really hurt anything
-    args.separator = table.concat{'\n',
-            args.separator or '|- style="height: 100%;"', '\n'}
+    args.separator = table.concat({
+        "\n",
+        args.separator or '|- style="height: 100%;"',
+        "\n",
+    })
 
     local makeEntry = function(sourceData, sourceKey)
         return args.makeEntry(sourceData, sourceKey, args.entryArgs)
     end
 
-    local entries = table.mapToNum(args.source, makeEntry, args.iterator)
+    local entries = tab.mapToNum(args.source, makeEntry, args.iterator)
     table.sort(entries)
 
     table.insert(entries, 1, args.header)
@@ -263,26 +270,29 @@ The class representing the entries must implement the following interface:
     - emptyLabel(): Empties the label.
 --]]
 l.makeGroupedList = function(args)
-    args.footer = '\n' .. (args.footer or '|}')
-    args.fullGroupLabel = args.fullGroupLabel or 'Tutte le forme'
+    args.footer = "\n" .. (args.footer or "|}")
+    args.fullGroupLabel = args.fullGroupLabel or "Tutte le forme"
 
     -- "height: 100%" is just CSS making fun of us, can't really hurt anything
-    args.separator = table.concat{'\n',
-            args.separator or '|- class="height-100"', '\n'}
+    args.separator = table.concat({
+        "\n",
+        args.separator or '|- class="height-100"',
+        "\n",
+    })
 
     local makeEntry = function(sourceData, sourceKey)
         return args.makeEntry(sourceData, sourceKey, args.entryArgs)
     end
 
-    local entries = table.map(args.source, makeEntry, args.iterator)
-    local groups = table.groupBy(entries, function(v)
+    local entries = tab.map(args.source, makeEntry, args.iterator)
+    local groups = tab.groupBy(entries, function(v)
         return v:groupID()
     end)
-    entries = table.flatMapToNum(groups, function(group)
+    entries = tab.flatMapToNum(groups, function(group)
         local groupEntries = {}
 
         for _, entry in pairs(group) do
-            local index = table.search(groupEntries, entry)
+            local index = tab.search(groupEntries, entry)
             if index then
                 groupEntries[index]:addLabel(entry:getLabel())
             else
@@ -291,9 +301,11 @@ l.makeGroupedList = function(args)
         end
         -- No need for sorting here because all entries are sorted after the
         -- flatten
-        return allForms(groupEntries,
-                        args.fullGroupLabel,
-                        not args.noEmptyLabel)
+        return allForms(
+            groupEntries,
+            args.fullGroupLabel,
+            not args.noEmptyLabel
+        )
     end)
     table.sort(entries)
 
@@ -341,22 +353,25 @@ The class representing the entries must implement the following interface:
     - emptyLabel(): Empties the label.
 --]]
 l.makeCollapsedList = function(args)
-    args.footer = '\n' .. (args.footer or '|}')
-    args.fullGroupLabel = args.fullGroupLabel or 'Tutte le forme'
+    args.footer = "\n" .. (args.footer or "|}")
+    args.fullGroupLabel = args.fullGroupLabel or "Tutte le forme"
 
     -- "height: 100%" is just CSS making fun of us, can't really hurt anything
-    args.separator = table.concat{'\n',
-            args.separator or '|- style="height: 100%;"', '\n'}
+    args.separator = table.concat({
+        "\n",
+        args.separator or '|- style="height: 100%;"',
+        "\n",
+    })
 
     local makeEntry = function(sourceData, sourceKey)
         return args.makeEntry(sourceData, sourceKey, args.entryArgs)
     end
 
-    local entries = table.map(args.source, makeEntry, args.iterator)
-    local groups = table.groupBy(entries, function(v)
+    local entries = tab.map(args.source, makeEntry, args.iterator)
+    local groups = tab.groupBy(entries, function(v)
         return v:groupID()
     end)
-    entries = table.flatMapToNum(groups, function(group)
+    entries = tab.flatMapToNum(groups, function(group)
         if #group == 1 then
             if not args.noEmptyLabel then
                 group[1]:emptyLabel()
@@ -368,7 +383,7 @@ l.makeCollapsedList = function(args)
             return group[1] == val
         end
 
-        if not table.all(group, equalFirst) then
+        if not tab.all(group, equalFirst) then
             return group
         end
         -- Groups all entries printing the first value
@@ -427,14 +442,13 @@ the following interface:
 --]]
 l.makeFormsLabelledBoxes = function(args)
     local makeBox = function(sourceData, sourceKey)
-        return args.makeBox(sourceData, sourceKey,
-            args.boxArgs)
+        return args.makeBox(sourceData, sourceKey, args.boxArgs)
     end
 
     local altData = args.altData or alts[args.name]
 
     if not altData then
-        return args.printBoxes({makeBox(args.name)})
+        return args.printBoxes({ makeBox(args.name) })
     end
 
     local boxes = {}
@@ -450,23 +464,25 @@ l.makeFormsLabelledBoxes = function(args)
     for _, abbr in ipairs(altData.gamesOrder) do
         local formName = altData.names[abbr]
         -- Replaces empty base form name with Pokémon's name
-        formName = abbr == 'base' and formName == ''
-                   and pokes[args.name] and pokes[args.name].name
-                   or formName
+        formName = abbr == "base"
+                and formName == ""
+                and pokes[args.name]
+                and pokes[args.name].name
+            or formName
         --[[
             If ndex is passed, base form should stay a number (thus can't be
             concatenated to the empty string) and other forms should have three
             digits followed by form abbr.
         --]]
-        local name = abbr == 'base'
-                     and args.name
-                     or (type(args.name) == 'number'
-                         and string.threeFigures(args.name) .. abbr
-                         or args.name .. abbr
-                     )
+        local name = abbr == "base" and args.name
+            or (
+                type(args.name) == "number"
+                    and txt.threeFigures(args.name) .. abbr
+                or args.name .. abbr
+            )
         local formBox = makeBox(name, formName)
 
-        local index = table.search(boxes, formBox)
+        local index = tab.search(boxes, formBox)
         if index then
             boxes[index]:addLabel(formName)
         else
@@ -474,14 +490,15 @@ l.makeFormsLabelledBoxes = function(args)
         end
     end
 
-    return args.printBoxes(allForms(boxes, 'Tutte le forme'))
+    return args.printBoxes(allForms(boxes, "Tutte le forme"))
 end
 
 --[[-----------------------------------------
 
             Classi di utilità
 
---]]-----------------------------------------
+--]]
+-----------------------------------------
 
 --[[
 
@@ -494,8 +511,7 @@ come criterio in caso di ndex mancante.
 l.PokeSortableEntry = oop.makeClass()
 
 l.PokeSortableEntry.new = function(name, ndex)
-    local this = setmetatable({ndex = ndex, name = name},
-        l.PokeSortableEntry)
+    local this = setmetatable({ ndex = ndex, name = name }, l.PokeSortableEntry)
 
     if not this.ndex then
         this.fallbackSort = this.name
@@ -529,10 +545,8 @@ essa una sola label o una table di labels.
 
 --]]
 l.Labelled.replaceLabel = function(this, label)
-
     -- Table vuota anche in caso label non sia dato
-    this.labels = type(label) == 'table'
-        and label or {label}
+    this.labels = type(label) == "table" and label or { label }
 end
 
 l.Labelled.new = function(label)
@@ -550,8 +564,8 @@ end
 
 -- Aggiunge una label o una table di labels
 l.Labelled.addLabel = function(this, label)
-    if type(label) == 'table' then
-        this.labels = table.merge(this.labels, label)
+    if type(label) == "table" then
+        this.labels = tab.merge(this.labels, label)
     else
         table.insert(this.labels, label)
     end
@@ -589,8 +603,8 @@ l.PokeLabelledEntry = oop.makeClass(l.Labelled)
 l.PokeLabelledEntry.new = function(name, ndex)
     local baseName, abbr = form.getNameAbbr(name)
 
-    local this = setmetatable(l.PokeLabelledEntry.super.new(abbr),
-        l.PokeLabelledEntry)
+    local this =
+        setmetatable(l.PokeLabelledEntry.super.new(abbr), l.PokeLabelledEntry)
     this.ndex = ndex
     this.name = name
 
@@ -620,7 +634,7 @@ Should be reimplemented to take into account the change in this.formAbbr
 l.PokeLabelledEntry.replaceLabel = function(this, label)
     l.PokeLabelledEntry.super.replaceLabel(this, label)
 
-    if type(label) == 'table' then
+    if type(label) == "table" then
         -- Takes care also of the empty label case
         this.formAbbr = label[1]
         for _, v in ipairs(label) do
@@ -634,14 +648,14 @@ l.PokeLabelledEntry.replaceLabel = function(this, label)
         if this.formsData.names[label] then
             this.formAbbr = label
         else
-            this.formAbbr = 'base'
+            this.formAbbr = "base"
         end
     end
 end
 
 l.PokeLabelledEntry.addLabel = function(this, label)
-    if type(label) ~= 'table' then
-        label = {label}
+    if type(label) ~= "table" then
+        label = { label }
     end
     for _, v in ipairs(label) do
         table.insert(this.labels, v)
