@@ -18,16 +18,16 @@ local sup = require("Sup-data")
 
 local getOldDex = function(newDex, oldDexTable, changedDexTable)
     if changedDexTable and changedDexTable[newDex] then
-        return txt.tf(changedDexTable[newDex])
+        return txt.ff(changedDexTable[newDex])
     end
     for subtract, ndex in ipairs(oldDexTable) do
         if ndex == newDex then
             return nil
         elseif ndex > newDex then
-            return txt.tf(newDex - subtract + 1)
+            return txt.ff(newDex - subtract + 1)
         end
     end
-    return txt.tf(newDex - tab.getn(oldDexTable))
+    return txt.ff(newDex - tab.getn(oldDexTable))
 end
 
 -- Aggiunge un title al primo argomento costituito
@@ -162,7 +162,7 @@ local search = function(ndex)
     for region, regionalDex in pairs(dex) do
         local rdex = tab.search(regionalDex, ndex)
         if rdex then
-            dexes[region] = txt.three_figures(rdex)
+            dexes[region] = txt.fourFigures(rdex)
         end
     end
     return dexes

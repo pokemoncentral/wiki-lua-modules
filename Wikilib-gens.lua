@@ -93,7 +93,7 @@ gens.ndexToString = function(ndex)
     if not ndex or gens.isNdexInternal(ndex) then
         return "???"
     end
-    return txt.tf(ndex)
+    return txt.ff(ndex)
 end
 
 return gens

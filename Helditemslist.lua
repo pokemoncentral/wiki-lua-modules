@@ -143,9 +143,9 @@ h.Entry.__tostring = function(this)
         txt.interp(this.strings.ENTRY_HEAD, {
             type1 = pokedata.type1,
             type2 = pokedata.type2,
-            ndex = txt.tf(this.ndex),
+            ndex = txt.ff(this.ndex),
             ms = ms.staticLua({
-                txt.tf(this.ndex)
+                txt.ff(this.ndex)
                     .. (this.formAbbr == "base" and "" or this.formAbbr or ""),
             }),
             name = pokedata.name,

@@ -423,7 +423,7 @@ eb.boxPokemonAuto = function(ndex, phase, notes, shownName)
             or pokes[tonumber(ndex)]
             or pokes[tonumber(string.match(ndex, "(%d%d%d)%u%l*"))]
     )
-    ndex = type(ndex) == "string" and ndex or txt.threeFigures(ndex)
+    ndex = type(ndex) == "string" and ndex or txt.fourFigures(ndex)
 
     return eb.boxPokemon({
         notes = notes,

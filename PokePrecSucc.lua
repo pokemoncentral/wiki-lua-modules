@@ -65,8 +65,8 @@ local function basePokePrecSucc(poke, linksuffix, list)
 
     local pred = prevNdex(pokeData.ndex)
     local succ = nextNdex(pokeData.ndex)
-    local predTf = genlib.ndexToString(pred)
-    local succTf = genlib.ndexToString(succ)
+    local predFf = genlib.ndexToString(pred)
+    local succFf = genlib.ndexToString(succ)
 
     local type1, type2 = pokeData.type1, pokeData.type2
     local predname, succname = pokes[pred].name, pokes[succ].name
@@ -75,12 +75,12 @@ local function basePokePrecSucc(poke, linksuffix, list)
         color2 = type2,
         series = pokeData.name,
         list = list,
-        prev = table.concat({ "#", predTf, ": ", predname }),
+        prev = table.concat({ "#", predFf, ": ", predname }),
         prevlink = predname .. linksuffix,
-        prevspr = txt.tf(pred),
-        next = table.concat({ "#", succTf, ": ", succname }),
+        prevspr = txt.ff(pred),
+        next = table.concat({ "#", succFf, ": ", succname }),
         nextlink = succname .. linksuffix,
-        nextspr = txt.tf(succ),
+        nextspr = txt.ff(succ),
     })
 end
 

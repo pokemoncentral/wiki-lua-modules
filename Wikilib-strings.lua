@@ -107,6 +107,12 @@ string.three_figures, string.tf = string.threeFigures, string.threeFigures
 text.threeFigures, text.three_figures, text.tf =
     string.threeFigures, string.threeFigures, string.threeFigures
 
+string.fourFigures = function(n)
+    return string.format("%04d", n)
+end
+string.ff = string.fourFigures
+text.fourFigures, text.ff = string.fourFigures, string.fourFigures
+
 --[[
 
 Ritorna il numero intero presete all'inizio

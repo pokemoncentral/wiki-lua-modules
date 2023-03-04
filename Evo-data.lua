@@ -312,7 +312,7 @@ evo.pichu = {
                     [evo.methods.STONE] = "Pietratuono",
                 },
                 {
-                    ndex = "026A",
+                    ndex = "0026A",
                     name = "raichuA",
                     notes = altforms.raichu.names.A,
                     method = evo.methods.STONE,
@@ -324,7 +324,7 @@ evo.pichu = {
     },
 }
 evo.pikachu, evo.raichu, evo.raichuA = evo.pichu, evo.pichu, evo.pichu
-evo[172], evo[25], evo[26], evo["026A"] =
+evo[172], evo[25], evo[26], evo["0026A"] =
     evo.pichu, evo.pichu, evo.pichu, evo.pichu
 
 evo.sandshrew = {
@@ -1056,7 +1056,7 @@ evo.exeggcute = {
             [evo.methods.STONE] = "Pietrafoglia",
         },
         {
-            ndex = "103A",
+            ndex = "0103A",
             name = "exeggutorA",
             notes = altforms.exeggutor.names.A,
             method = evo.methods.STONE,
@@ -1066,7 +1066,7 @@ evo.exeggcute = {
     },
 }
 evo.exeggutor, evo.exeggutorA = evo.exeggcute, evo.exeggcute
-evo[102], evo[103], evo["103A"] = evo.exeggcute, evo.exeggcute, evo.exeggcute
+evo[102], evo[103], evo["0103A"] = evo.exeggcute, evo.exeggcute, evo.exeggcute
 
 evo.cubone = {
     ndex = 104,
@@ -1080,7 +1080,7 @@ evo.cubone = {
             [evo.methods.LEVEL] = 28,
         },
         {
-            ndex = "105A",
+            ndex = "0105A",
             name = "marowakA",
             notes = altforms.marowak.names.A,
             method = evo.methods.LEVEL,
@@ -1093,7 +1093,7 @@ evo.cubone = {
     },
 }
 evo.marowak, evo.marowakA = evo.cubone, evo.cubone
-evo[104], evo[105], evo["105A"] = evo.cubone, evo.cubone, evo.cubone
+evo[104], evo[105], evo["0105A"] = evo.cubone, evo.cubone, evo.cubone
 
 evo.tyrogue = {
     ndex = 236,
@@ -1163,7 +1163,7 @@ evo.koffing = {
             [evo.methods.LEVEL] = 35,
         },
         {
-            ndex = "110G",
+            ndex = "0110G",
             name = "weezingG",
             notes = altforms.weezing.names.G,
             method = evo.methods.LEVEL,
@@ -1173,7 +1173,7 @@ evo.koffing = {
     },
 }
 evo.weezing, evo.weezingG = evo.koffing, evo.koffing
-evo[109], evo[110], evo["110G"] = evo.koffing, evo.koffing, evo.koffing
+evo[109], evo[110], evo["0110G"] = evo.koffing, evo.koffing, evo.koffing
 
 evo.rhyhorn = {
     ndex = 111,
@@ -1323,7 +1323,7 @@ evo["mime jr."] = {
             conditions = { [evo.conditions.MOVE] = "Mimica" },
         },
         {
-            ndex = "122G",
+            ndex = "0122G",
             name = "mr. mimeG",
             notes = altforms["mr. mime"].names.G,
             method = evo.methods.LEVEL,
@@ -1346,7 +1346,7 @@ evo["mime jr."] = {
 evo["mr. mime"] = evo["mime jr."]
 evo[439], evo[122] = evo["mime jr."], evo["mime jr."]
 evo["mr. rime"], evo["mr. mimeG"] = evo["mime jr."], evo["mime jr."]
-evo["122G"], evo[866] = evo["mr. mimeG"], evo["mr. mimeG"]
+evo["0122G"], evo[866] = evo["mr. mimeG"], evo["mr. mimeG"]
 
 evo.scyther = {
     ndex = 123,
@@ -1738,7 +1738,7 @@ evo.cyndaquil = {
                     [evo.methods.LEVEL] = 36,
                 },
                 {
-                    ndex = "157H",
+                    ndex = "0157H",
                     name = "typhlosionH",
                     method = evo.methods.LEVEL,
                     [evo.methods.LEVEL] = 36,
@@ -1750,7 +1750,7 @@ evo.cyndaquil = {
 }
 evo.quilava, evo.typhlosion, evo.typhlosionH =
     evo.cyndaquil, evo.cyndaquil, evo.cyndaquil
-evo[155], evo[156], evo[157], evo["157H"] =
+evo[155], evo[156], evo[157], evo["0157H"] =
     evo.cyndaquil, evo.cyndaquil, evo.cyndaquil, evo.cyndaquil
 
 evo.totodile = {
@@ -4077,7 +4077,7 @@ evo.oshawott = {
                     [evo.methods.LEVEL] = 36,
                 },
                 {
-                    ndex = "503H",
+                    ndex = "0503H",
                     name = "samurottH",
                     method = evo.methods.LEVEL,
                     [evo.methods.LEVEL] = 36,
@@ -4089,7 +4089,7 @@ evo.oshawott = {
 }
 evo.dewott, evo.samurott, evo.samurottH =
     evo.oshawott, evo.oshawott, evo.oshawott
-evo[501], evo[502], evo[503], evo["503H"] =
+evo[501], evo[502], evo[503], evo["0503H"] =
     evo.oshawott, evo.oshawott, evo.oshawott, evo.oshawott
 
 evo.patrat = {
@@ -4444,7 +4444,7 @@ evo.petilil = {
             [evo.methods.STONE] = "Pietrasolare",
         },
         {
-            ndex = "549H",
+            ndex = "0549H",
             name = "lilligantH",
             method = evo.methods.STONE,
             [evo.methods.STONE] = "Pietrasolare",
@@ -4453,7 +4453,7 @@ evo.petilil = {
     },
 }
 evo.lilligant, evo.lilligantH = evo.petilil, evo.petilil
-evo[548], evo[549], evo["549H"] = evo.petilil, evo.petilil, evo.petilil
+evo[548], evo[549], evo["0549H"] = evo.petilil, evo.petilil, evo.petilil
 
 evo.basculin =
     { ndex = 550, name = "basculin", notes = altforms.basculin.names.base }
@@ -5062,7 +5062,7 @@ evo.rufflet = {
             [evo.methods.LEVEL] = 54,
         },
         {
-            ndex = "628H",
+            ndex = "0628H",
             name = "braviaryH",
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 54,
@@ -5071,7 +5071,7 @@ evo.rufflet = {
     },
 }
 evo.braviary, evo.braviaryH = evo.rufflet, evo.rufflet
-evo[627], evo[628], evo["628H"] = evo.rufflet, evo.rufflet, evo.rufflet
+evo[627], evo[628], evo["0628H"] = evo.rufflet, evo.rufflet, evo.rufflet
 
 evo.vullaby = {
     ndex = 629,
@@ -5617,7 +5617,7 @@ evo.goomy = {
             },
         },
         {
-            ndex = "705H",
+            ndex = "0705H",
             name = "sliggooH",
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 40,
@@ -5625,7 +5625,7 @@ evo.goomy = {
 
             evos = {
                 {
-                    ndex = "706H",
+                    ndex = "0706H",
                     name = "goodraH",
                     method = evo.methods.LEVEL,
                     [evo.methods.LEVEL] = 50,
@@ -5640,7 +5640,7 @@ evo.goomy = {
 evo.sliggoo, evo.goodra = evo.goomy, evo.goomy
 evo[704], evo[705], evo[706] = evo.goomy, evo.goomy, evo.goomy
 evo.sliggooH, evo.goodraH = evo.goomy, evo.goomy
-evo["705H"], evo["706H"] = evo.goomy, evo.goomy
+evo["0705H"], evo["0706H"] = evo.goomy, evo.goomy
 
 evo.klefki = { ndex = 707, name = "klefki" }
 evo[707] = evo.klefki
@@ -5689,7 +5689,7 @@ evo.bergmite = {
             [evo.methods.LEVEL] = 37,
         },
         {
-            ndex = "713H",
+            ndex = "0713H",
             name = "avaluggH",
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 37,
@@ -5698,7 +5698,7 @@ evo.bergmite = {
     },
 }
 evo.avalugg, evo.avaluggH = evo.bergmite, evo.bergmite
-evo[712], evo[713], evo["713H"] = evo.bergmite, evo.bergmite, evo.bergmite
+evo[712], evo[713], evo["0713H"] = evo.bergmite, evo.bergmite, evo.bergmite
 
 evo.noibat = {
     ndex = 714,
@@ -5753,7 +5753,7 @@ evo.rowlet = {
                     [evo.methods.LEVEL] = 34,
                 },
                 {
-                    ndex = "724H",
+                    ndex = "0724H",
                     name = "decidueyeH",
                     method = evo.methods.LEVEL,
                     [evo.methods.LEVEL] = 36,
@@ -5764,7 +5764,7 @@ evo.rowlet = {
     },
 }
 evo.dartrix, evo.decidueye, evo.decidueyeH = evo.rowlet, evo.rowlet, evo.rowlet
-evo[722], evo[723], evo[724], evo["724H"] =
+evo[722], evo[723], evo[724], evo["0724H"] =
     evo.rowlet, evo.rowlet, evo.rowlet, evo.rowlet
 
 evo.litten = {
@@ -5950,7 +5950,7 @@ evo.rockruff = {
             },
         },
         {
-            ndex = "745N",
+            ndex = "0745N",
             name = "lycanrocN",
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 25,
@@ -5960,7 +5960,7 @@ evo.rockruff = {
             },
         },
         {
-            ndex = "745C",
+            ndex = "0745C",
             name = "lycanrocC",
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 25,
@@ -5974,7 +5974,7 @@ evo.rockruff = {
 }
 evo.lycanroc, evo.lycanrocN, evo.lycanrocC =
     evo.rockruff, evo.rockruff, evo.rockruff
-evo[744], evo[745], evo["745N"], evo["745C"] =
+evo[744], evo[745], evo["0745N"], evo["0745C"] =
     evo.rockruff, evo.rockruff, evo.rockruff, evo.rockruff
 
 evo.wishiwashi = { ndex = 746, name = "wishiwashi" }
@@ -6669,7 +6669,7 @@ evo.toxel = {
             },
         },
         {
-            ndex = "849B",
+            ndex = "0849B",
             name = "toxtricityB",
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 30,
@@ -6680,7 +6680,7 @@ evo.toxel = {
     },
 }
 evo.toxtricity, evo.toxtricityB = evo.toxel, evo.toxel
-evo[848], evo[849], evo["849B"] = evo.toxel, evo.toxel, evo.toxel
+evo[848], evo[849], evo["0849B"] = evo.toxel, evo.toxel, evo.toxel
 
 evo.sizzlipede = {
     ndex = 850,
@@ -6839,8 +6839,8 @@ evo[875] = evo.eiscue
 evo.indeedee = { ndex = 876, name = "indeedee" }
 evo[876] = evo.indeedee
 
-evo.indeedeeF = { ndex = "876F", name = "indeedeeF" }
-evo["876F"] = evo.indeedeeF
+evo.indeedeeF = { ndex = "0876F", name = "indeedeeF" }
+evo["0876F"] = evo.indeedeeF
 
 evo.morpeko = { ndex = 877, name = "morpeko" }
 evo[877] = evo.morpeko
@@ -6924,7 +6924,7 @@ evo.kubfu = {
             [evo.methods.OTHER] = "Vedendo il [[Torre Buio|Rotolo del Buio]]",
         },
         {
-            ndex = "892P",
+            ndex = "0892P",
             name = "urshifuP",
             notes = altforms.urshifu.names.P,
 
@@ -6934,7 +6934,7 @@ evo.kubfu = {
     },
 }
 evo.urshifu, evo.urshifuP = evo.kubfu, evo.kubfu
-evo[891], evo[892], evo["892P"] = evo.kubfu, evo.kubfu, evo.kubfu
+evo[891], evo[892], evo["0892P"] = evo.kubfu, evo.kubfu, evo.kubfu
 
 evo.zarude = { ndex = 893, name = "zarude" }
 evo[893] = evo.zarude
@@ -7048,7 +7048,7 @@ evo.lechonk = {
             conditions = { [evo.conditions.GENDER] = "Maschio" },
         },
         {
-            ndex = "916F",
+            ndex = "0916F",
             name = "oinkologneF",
             notes = altforms.oinkologne.names.F,
             method = evo.methods.LEVEL,
@@ -7058,7 +7058,7 @@ evo.lechonk = {
     },
 }
 evo.oinkologne, evo.oinkologneF = evo.lechonk, evo.lechonk
-evo[915], evo[916], evo["916F"] = evo.lechonk, evo.lechonk, evo.lechonk
+evo[915], evo[916], evo["0916F"] = evo.lechonk, evo.lechonk, evo.lechonk
 
 evo.tarountula = {
     ndex = 917,
@@ -7635,13 +7635,13 @@ evo[1010] = evo.fogliaferrea
 
 -- Alternative forms with evolutions
 evo.rattataA = {
-    ndex = "019A",
+    ndex = "0019A",
     name = "rattataA",
     notes = altforms.rattata.names.A,
 
     evos = {
         {
-            ndex = "020A",
+            ndex = "0020A",
             name = "raticateA",
             notes = altforms.raticate.names.A,
             method = evo.methods.LEVEL,
@@ -7651,16 +7651,16 @@ evo.rattataA = {
     },
 }
 evo.raticateA = evo.rattataA
-evo["019A"], evo["020A"] = evo.rattataA, evo.rattataA
+evo["0019A"], evo["0020A"] = evo.rattataA, evo.rattataA
 
 evo.sandshrewA = {
-    ndex = "027A",
+    ndex = "0027A",
     name = "sandshrewA",
     notes = altforms.sandshrew.names.A,
 
     evos = {
         {
-            ndex = "028A",
+            ndex = "0028A",
             name = "sandslashA",
             notes = altforms.sandslash.names.A,
             method = evo.methods.STONE,
@@ -7669,16 +7669,16 @@ evo.sandshrewA = {
     },
 }
 evo.sandslashA = evo.sandshrewA
-evo["027A"], evo["028A"] = evo.sandshrewA, evo.sandshrewA
+evo["0027A"], evo["0028A"] = evo.sandshrewA, evo.sandshrewA
 
 evo.vulpixA = {
-    ndex = "037A",
+    ndex = "0037A",
     name = "vulpixA",
     notes = altforms.vulpix.names.A,
 
     evos = {
         {
-            ndex = "038A",
+            ndex = "0038A",
             name = "ninetalesA",
             notes = altforms.ninetales.names.A,
             method = evo.methods.STONE,
@@ -7687,16 +7687,16 @@ evo.vulpixA = {
     },
 }
 evo.ninetalesA = evo.vulpixA
-evo["037A"], evo["038A"] = evo.vulpixA, evo.vulpixA
+evo["0037A"], evo["0038A"] = evo.vulpixA, evo.vulpixA
 
 evo.diglettA = {
-    ndex = "050A",
+    ndex = "0050A",
     name = "diglettA",
     notes = altforms.diglett.names.A,
 
     evos = {
         {
-            ndex = "051A",
+            ndex = "0051A",
             name = "dugtrioA",
             notes = altforms.dugtrio.names.A,
             method = evo.methods.LEVEL,
@@ -7705,16 +7705,16 @@ evo.diglettA = {
     },
 }
 evo.dugtrioA = evo.diglettA
-evo["050A"], evo["051A"] = evo.diglettA, evo.diglettA
+evo["0050A"], evo["0051A"] = evo.diglettA, evo.diglettA
 
 evo.meowthA = {
-    ndex = "052A",
+    ndex = "0052A",
     name = "meowthA",
     notes = altforms.meowth.names.A,
 
     evos = {
         {
-            ndex = "053A",
+            ndex = "0053A",
             name = "persianA",
             notes = altforms.persian.names.A,
             method = evo.methods.HAPPINESS,
@@ -7722,10 +7722,10 @@ evo.meowthA = {
     },
 }
 evo.persianA = evo.meowthA
-evo["052A"], evo["053A"] = evo.meowthA, evo.meowthA
+evo["0052A"], evo["0053A"] = evo.meowthA, evo.meowthA
 
 evo.meowthG = {
-    ndex = "052G",
+    ndex = "0052G",
     name = "meowthG",
     notes = altforms.meowth.names.G,
 
@@ -7739,15 +7739,15 @@ evo.meowthG = {
     },
 }
 evo.perrserker = evo.meowthG
-evo["052G"], evo[863] = evo.meowthG, evo.meowthG
+evo["0052G"], evo[863] = evo.meowthG, evo.meowthG
 
 evo.growlitheH = {
-    ndex = "058H",
+    ndex = "0058H",
     name = "growlitheH",
 
     evos = {
         {
-            ndex = "059H",
+            ndex = "0059H",
             name = "arcanineH",
             method = evo.methods.STONE,
             [evo.methods.STONE] = "Pietrafocaia",
@@ -7755,16 +7755,16 @@ evo.growlitheH = {
     },
 }
 evo.arcanineH = evo.growlitheH
-evo["058H"], evo["059H"] = evo.growlitheH, evo.growlitheH
+evo["0058H"], evo["0059H"] = evo.growlitheH, evo.growlitheH
 
 evo.geodudeA = {
-    ndex = "074A",
+    ndex = "0074A",
     name = "geodudeA",
     notes = altforms.geodude.names.A,
 
     evos = {
         {
-            ndex = "075A",
+            ndex = "0075A",
             name = "gravelerA",
             notes = altforms.graveler.names.A,
             method = evo.methods.LEVEL,
@@ -7772,7 +7772,7 @@ evo.geodudeA = {
 
             evos = {
                 {
-                    ndex = "076A",
+                    ndex = "0076A",
                     name = "golemA",
                     notes = altforms.golem.names.A,
                     method = evo.methods.TRADE,
@@ -7782,16 +7782,17 @@ evo.geodudeA = {
     },
 }
 evo.gravelerA, evo.golemA = evo.geodudeA, evo.geodudeA
-evo["074A"], evo["075A"], evo["076A"] = evo.geodudeA, evo.geodudeA, evo.geodudeA
+evo["0074A"], evo["0075A"], evo["0076A"] =
+    evo.geodudeA, evo.geodudeA, evo.geodudeA
 
 evo.ponytaG = {
-    ndex = "077G",
+    ndex = "0077G",
     name = "ponytaG",
     notes = altforms.ponyta.names.G,
 
     evos = {
         {
-            ndex = "078G",
+            ndex = "0078G",
             name = "rapidashG",
             notes = altforms.rapidash.names.G,
             method = evo.methods.LEVEL,
@@ -7800,21 +7801,21 @@ evo.ponytaG = {
     },
 }
 evo.rapidashG = evo.ponytaG
-evo["077G"], evo["078G"] = evo.ponytaG, evo.ponytaG
+evo["0077G"], evo["0078G"] = evo.ponytaG, evo.ponytaG
 
 evo.slowpokeG = {
-    ndex = "079G",
+    ndex = "0079G",
     name = "slowpokeG",
 
     evos = {
         {
-            ndex = "080G",
+            ndex = "0080G",
             name = "slowbroG",
             method = evo.methods.STONE,
             [evo.methods.STONE] = "Fascia Galarnoce",
         },
         {
-            ndex = "199G",
+            ndex = "0199G",
             name = "slowkingG",
             method = evo.methods.STONE,
             [evo.methods.STONE] = "Corona Galarnoce",
@@ -7822,11 +7823,11 @@ evo.slowpokeG = {
     },
 }
 evo.slowbroG, evo.slowkingG = evo.slowpokeG, evo.slowpokeG
-evo["079G"], evo["080G"], evo["199G"] =
+evo["0079G"], evo["0080G"], evo["0199G"] =
     evo.slowpokeG, evo.slowpokeG, evo.slowpokeG
 
 evo["farfetch'dG"] = {
-    ndex = "083G",
+    ndex = "0083G",
     name = "farfetch'dG",
     notes = altforms["farfetch'd"].names.G,
 
@@ -7840,16 +7841,16 @@ evo["farfetch'dG"] = {
     },
 }
 evo["sirfetch'd"] = evo["farfetch'dG"]
-evo["083G"], evo[865] = evo["farfetch'dG"], evo["farfetch'dG"]
+evo["0083G"], evo[865] = evo["farfetch'dG"], evo["farfetch'dG"]
 
 evo.grimerA = {
-    ndex = "088A",
+    ndex = "0088A",
     name = "grimerA",
     notes = altforms.grimer.names.A,
 
     evos = {
         {
-            ndex = "089A",
+            ndex = "0089A",
             name = "mukA",
             notes = altforms.muk.names.A,
             method = evo.methods.LEVEL,
@@ -7858,15 +7859,15 @@ evo.grimerA = {
     },
 }
 evo.mukA = evo.grimerA
-evo["088A"], evo["089A"] = evo.grimerA, evo.grimerA
+evo["0088A"], evo["0089A"] = evo.grimerA, evo.grimerA
 
 evo.voltorbH = {
-    ndex = "100H",
+    ndex = "0100H",
     name = "voltorbH",
 
     evos = {
         {
-            ndex = "101H",
+            ndex = "0101H",
             name = "electrodeH",
             method = evo.methods.STONE,
             [evo.methods.STONE] = "Pietrafoglia",
@@ -7874,10 +7875,10 @@ evo.voltorbH = {
     },
 }
 evo.electrodeH = evo.voltorbH
-evo["100H"], evo["101H"] = evo.voltorbH, evo.voltorbH
+evo["0100H"], evo["0101H"] = evo.voltorbH, evo.voltorbH
 
 evo.wooperP = {
-    ndex = "194P",
+    ndex = "0194P",
     name = "wooperP",
     notes = altforms.wooper.names.P,
 
@@ -7891,10 +7892,10 @@ evo.wooperP = {
     },
 }
 evo.clodsire = evo.wooperP
-evo["194P"], evo[980] = evo.wooperP, evo.wooperP
+evo["0194P"], evo[980] = evo.wooperP, evo.wooperP
 
 evo.qwilfishH = {
-    ndex = "211H",
+    ndex = "0211H",
     name = "qwilfishH",
     notes = altforms.qwilfish.names.H,
 
@@ -7908,10 +7909,10 @@ evo.qwilfishH = {
     },
 }
 evo.overqwil = evo.qwilfishH
-evo["211H"], evo[904] = evo.qwilfishH, evo.qwilfishH
+evo["0211H"], evo[904] = evo.qwilfishH, evo.qwilfishH
 
 evo.sneaselH = {
-    ndex = "215H",
+    ndex = "0215H",
     name = "sneaselH",
     notes = altforms.sneasel.names.H,
 
@@ -7926,10 +7927,10 @@ evo.sneaselH = {
     },
 }
 evo.sneasler = evo.sneaselH
-evo["215H"], evo[903] = evo.sneaselH, evo.sneaselH
+evo["0215H"], evo[903] = evo.sneaselH, evo.sneaselH
 
 evo.corsolaG = {
-    ndex = "222G",
+    ndex = "0222G",
     name = "corsolaG",
     notes = altforms.corsola.names.G,
 
@@ -7943,16 +7944,16 @@ evo.corsolaG = {
     },
 }
 evo.cursola = evo.corsolaG
-evo["222G"], evo[864] = evo.corsolaG, evo.corsolaG
+evo["0222G"], evo[864] = evo.corsolaG, evo.corsolaG
 
 evo.zigzagoonG = {
-    ndex = "263G",
+    ndex = "0263G",
     name = "zigzagoonG",
     notes = altforms.zigzagoon.names.G,
 
     evos = {
         {
-            ndex = "264G",
+            ndex = "0264G",
             name = "linooneG",
             notes = altforms.linoone.names.G,
             method = evo.methods.LEVEL,
@@ -7971,11 +7972,11 @@ evo.zigzagoonG = {
     },
 }
 evo.linooneG, evo.obstagoon = evo.zigzagoonG, evo.zigzagoonG
-evo["263G"], evo["264G"], evo[862] =
+evo["0263G"], evo["0264G"], evo[862] =
     evo.zigzagoonG, evo.zigzagoonG, evo.zigzagoonG
 
 evo.basculinBi = {
-    ndex = "550Bi",
+    ndex = "0550Bi",
     name = "basculinBi",
     notes = altforms.basculin.names.Bi,
 
@@ -7989,7 +7990,7 @@ evo.basculinBi = {
             conditions = { [evo.conditions.GENDER] = "Maschio" },
         },
         {
-            ndex = "902F",
+            ndex = "0902F",
             name = "basculegionF",
             notes = altforms.basculegion.names.F,
             method = evo.methods.OTHER,
@@ -7999,17 +8000,17 @@ evo.basculinBi = {
     },
 }
 evo.basculegion, evo.basculegionF = evo.basculinBi, evo.basculinBi
-evo["550Bi"], evo[902], evo["902F"] =
+evo["0550Bi"], evo[902], evo["0902F"] =
     evo.basculinBi, evo.basculinBi, evo.basculinBi
 
 evo.darumakaG = {
-    ndex = "554G",
+    ndex = "0554G",
     name = "darumakaG",
     notes = altforms.darumaka.names.G,
 
     evos = {
         {
-            ndex = "555G",
+            ndex = "0555G",
             name = "darmanitanG",
             notes = altforms.darmanitan.names.G,
             method = evo.methods.STONE,
@@ -8018,10 +8019,10 @@ evo.darumakaG = {
     },
 }
 evo.darmanitanG = evo.darumakaG
-evo["554G"], evo["555G"] = evo.darumakaG, evo.darumakaG
+evo["0554G"], evo["0555G"] = evo.darumakaG, evo.darumakaG
 
 evo.yamaskG = {
-    ndex = "562G",
+    ndex = "0562G",
     name = "yamaskG",
     notes = altforms.yamask.names.G,
 
@@ -8037,15 +8038,15 @@ evo.yamaskG = {
     },
 }
 evo.runerigus = evo.yamaskG
-evo["562G"], evo[867] = evo.yamaskG, evo.yamaskG
+evo["0562G"], evo[867] = evo.yamaskG, evo.yamaskG
 
 evo.zoruaH = {
-    ndex = "570H",
+    ndex = "0570H",
     name = "zoruaH",
 
     evos = {
         {
-            ndex = "571H",
+            ndex = "0571H",
             name = "zoroarkH",
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 30,
@@ -8054,7 +8055,7 @@ evo.zoruaH = {
     },
 }
 evo.zoroarkH = evo.zoruaH
-evo["570H"], evo["571H"] = evo.zoruaH, evo.zoruaH
+evo["0570H"], evo["0571H"] = evo.zoruaH, evo.zoruaH
 
 --[[
 
@@ -8087,7 +8088,7 @@ local createAlternativeForm = function(altdata, basetab)
         local newtab = mapTree(basetab, function(basenode)
             if basenode.notes then
                 table.insert(ndexes, basenode.ndex)
-                basenode.ndex = txt.tf(basenode.ndex) .. abbr
+                basenode.ndex = txt.ff(basenode.ndex) .. abbr
                 basenode.name = tostring(basenode.name) .. abbr
                 basenode.notes = name
             end
@@ -8095,7 +8096,7 @@ local createAlternativeForm = function(altdata, basetab)
         end)
 
         tab.map(ndexes, function(ndex)
-            evo[txt.tf(ndex) .. abbr] = newtab
+            evo[txt.ff(ndex) .. abbr] = newtab
             evo[pokes[ndex].name:lower() .. abbr] = newtab
         end)
     end)
@@ -8105,8 +8106,8 @@ evo.unown = { ndex = 201, name = "unown" }
 evo[201] = evo.unown
 
 evo.basculinB =
-    { ndex = "550B", name = "basculinB", notes = altforms.basculin.names.B }
-evo["550B"] = evo.basculinB
+    { ndex = "0550B", name = "basculinB", notes = altforms.basculin.names.B }
+evo["0550B"] = evo.basculinB
 
 evo.meowsticF = {
     ndex = 677,
@@ -8114,23 +8115,23 @@ evo.meowsticF = {
 
     evos = {
         {
-            ndex = "678F",
+            ndex = "0678F",
             name = "meowsticF",
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 25,
         },
     },
 }
-evo["678F"] = evo.meowsticF
+evo["0678F"] = evo.meowsticF
 
 evo.sinisteaA = {
-    ndex = "854A",
+    ndex = "0854A",
     name = "sinisteaA",
     notes = useless.sinistea.names["A"],
 
     evos = {
         {
-            ndex = "855A",
+            ndex = "0855A",
             name = "polteageistA",
             notes = useless.polteageist.names["A"],
             method = evo.methods.STONE,
@@ -8139,7 +8140,7 @@ evo.sinisteaA = {
     },
 }
 evo.polteageistA = evo.sinisteaA
-evo["854A"], evo["855A"] = evo.sinisteaA, evo.sinisteaA
+evo["0854A"], evo["0855A"] = evo.sinisteaA, evo.sinisteaA
 
 createAlternativeForm(useless.burmy, evo.burmy)
 
@@ -8171,12 +8172,12 @@ local emptyAlternativeForms = function(altdata, name)
             return
         end
         evo[name .. abbr] = {
-            ndex = ndex and (txt.tf(ndex) .. abbr) or nil,
+            ndex = ndex and (txt.ff(ndex) .. abbr) or nil,
             name = name .. abbr,
             notes = formname,
         }
         if ndex then
-            evo[txt.tf(ndex) .. abbr] = evo[name .. abbr]
+            evo[txt.ff(ndex) .. abbr] = evo[name .. abbr]
         end
     end)
 end
@@ -8223,7 +8224,7 @@ efs.castform = {
     { { ndex = 351, name = "castform" } },
     {
         {
-            ndex = "351S",
+            ndex = "0351S",
             name = "castformS",
             notes = "Sotto il [[Luce solare intensa|sole]]",
             method = efs.methods.NONE,
@@ -8231,7 +8232,7 @@ efs.castform = {
     },
     {
         {
-            ndex = "351P",
+            ndex = "0351P",
             name = "castformP",
             notes = "Sotto la [[Pioggia battente|pioggia]]",
             method = efs.methods.NONE,
@@ -8239,7 +8240,7 @@ efs.castform = {
     },
     {
         {
-            ndex = "351N",
+            ndex = "0351N",
             name = "castformN",
             notes = "Sotto la [[Grandine (condizione atmosferica)|grandine]]",
             method = efs.methods.NONE,
@@ -8248,30 +8249,30 @@ efs.castform = {
 }
 efs.castformS, efs.castformP, efs.castformN =
     efs.castform, efs.castform, efs.castform
-efs[351], efs["351S"], efs["351P"], efs["351N"] =
+efs[351], efs["0351S"], efs["0351P"], efs["0351N"] =
     efs.castform, efs.castform, efs.castform, efs.castform
 
 efs.deoxys = {
     { { ndex = 386, name = "deoxys" } },
-    { { ndex = "386A", name = "deoxysA", method = efs.methods.NONE } },
-    { { ndex = "386D", name = "deoxysD", method = efs.methods.NONE } },
-    { { ndex = "386V", name = "deoxysV", method = efs.methods.NONE } },
+    { { ndex = "0386A", name = "deoxysA", method = efs.methods.NONE } },
+    { { ndex = "0386D", name = "deoxysD", method = efs.methods.NONE } },
+    { { ndex = "0386V", name = "deoxysV", method = efs.methods.NONE } },
 }
 efs.deoxysA, efs.deoxysD, efs.deoxysV = efs.deoxys, efs.deoxys, efs.deoxys
-efs[386], efs["386A"], efs["386D"], efs["386V"] =
+efs[386], efs["0386A"], efs["0386D"], efs["0386V"] =
     efs.deoxys, efs.deoxys, efs.deoxys, efs.deoxys
 
 efs.rotom = {
     { { ndex = 479, name = "rotom" } },
-    { { ndex = "479C", name = "rotomC", method = efs.methods.NONE } },
-    { { ndex = "479L", name = "rotomL", method = efs.methods.NONE } },
-    { { ndex = "479G", name = "rotomG", method = efs.methods.NONE } },
-    { { ndex = "479V", name = "rotomV", method = efs.methods.NONE } },
-    { { ndex = "479T", name = "rotomT", method = efs.methods.NONE } },
+    { { ndex = "0479C", name = "rotomC", method = efs.methods.NONE } },
+    { { ndex = "0479L", name = "rotomL", method = efs.methods.NONE } },
+    { { ndex = "0479G", name = "rotomG", method = efs.methods.NONE } },
+    { { ndex = "0479V", name = "rotomV", method = efs.methods.NONE } },
+    { { ndex = "0479T", name = "rotomT", method = efs.methods.NONE } },
 }
 efs.rotomC, efs.rotomL, efs.rotomG, efs.rotomV, efs.rotomT =
     efs.rotom, efs.rotom, efs.rotom, efs.rotom, efs.rotom
-efs[479], efs["479C"], efs["479L"], efs["479G"], efs["479V"], efs["479T"] =
+efs[479], efs["0479C"], efs["0479L"], efs["0479G"], efs["0479V"], efs["0479T"] =
     efs.rotom, efs.rotom, efs.rotom, efs.rotom, efs.rotom, efs.rotom
 
 efs.giratina = {
@@ -8284,7 +8285,7 @@ efs.giratina = {
     },
     {
         {
-            ndex = "487O",
+            ndex = "0487O",
             name = "giratinaO",
             notes = "[[Mondo Pokémon]],<br>senza tenere la Grigiosfera",
             method = efs.methods.ITEM,
@@ -8293,7 +8294,7 @@ efs.giratina = {
     },
 }
 efs.giratinaO = efs.giratina
-efs[487], efs["487O"] = efs.giratina, efs.giratina
+efs[487], efs["0487O"] = efs.giratina, efs.giratina
 
 efs.shaymin = {
     {
@@ -8305,7 +8306,7 @@ efs.shaymin = {
     },
     {
         {
-            ndex = "492C",
+            ndex = "0492C",
             name = "shayminC",
             method = efs.methods.ITEM,
             [efs.methods.ITEM] = "Gracidea",
@@ -8313,50 +8314,50 @@ efs.shaymin = {
     },
 }
 efs.shayminC = efs.shaymin
-efs[492], efs["492C"] = efs.shaymin, efs.shaymin
+efs[492], efs["0492C"] = efs.shaymin, efs.shaymin
 
 -- No notes because right now it isn't used to build evobox
 efs.arceus = {
     { { ndex = 493, name = "arceus" } },
-    { { ndex = "493L", name = "arceusL", method = efs.methods.NONE } },
-    { { ndex = "493Vo", name = "arceusVo", method = efs.methods.NONE } },
-    { { ndex = "493Ve", name = "arceusVe", method = efs.methods.NONE } },
-    { { ndex = "493T", name = "arceusT", method = efs.methods.NONE } },
-    { { ndex = "493R", name = "arceusR", method = efs.methods.NONE } },
-    { { ndex = "493C", name = "arceusC", method = efs.methods.NONE } },
-    { { ndex = "493S", name = "arceusS", method = efs.methods.NONE } },
-    { { ndex = "493Ai", name = "arceusAi", method = efs.methods.NONE } },
-    { { ndex = "493Fu", name = "arceusFu", method = efs.methods.NONE } },
-    { { ndex = "493Aq", name = "arceusAq", method = efs.methods.NONE } },
-    { { ndex = "493Er", name = "arceusEr", method = efs.methods.NONE } },
-    { { ndex = "493El", name = "arceusEl", method = efs.methods.NONE } },
-    { { ndex = "493P", name = "arceusP", method = efs.methods.NONE } },
-    { { ndex = "493G", name = "arceusG", method = efs.methods.NONE } },
-    { { ndex = "493D", name = "arceusD", method = efs.methods.NONE } },
-    { { ndex = "493B", name = "arceusB", method = efs.methods.NONE } },
-    { { ndex = "493Fo", name = "arceusFo", method = efs.methods.NONE } },
+    { { ndex = "0493L", name = "arceusL", method = efs.methods.NONE } },
+    { { ndex = "0493Vo", name = "arceusVo", method = efs.methods.NONE } },
+    { { ndex = "0493Ve", name = "arceusVe", method = efs.methods.NONE } },
+    { { ndex = "0493T", name = "arceusT", method = efs.methods.NONE } },
+    { { ndex = "0493R", name = "arceusR", method = efs.methods.NONE } },
+    { { ndex = "0493C", name = "arceusC", method = efs.methods.NONE } },
+    { { ndex = "0493S", name = "arceusS", method = efs.methods.NONE } },
+    { { ndex = "0493Ai", name = "arceusAi", method = efs.methods.NONE } },
+    { { ndex = "0493Fu", name = "arceusFu", method = efs.methods.NONE } },
+    { { ndex = "0493Aq", name = "arceusAq", method = efs.methods.NONE } },
+    { { ndex = "0493Er", name = "arceusEr", method = efs.methods.NONE } },
+    { { ndex = "0493El", name = "arceusEl", method = efs.methods.NONE } },
+    { { ndex = "0493P", name = "arceusP", method = efs.methods.NONE } },
+    { { ndex = "0493G", name = "arceusG", method = efs.methods.NONE } },
+    { { ndex = "0493D", name = "arceusD", method = efs.methods.NONE } },
+    { { ndex = "0493B", name = "arceusB", method = efs.methods.NONE } },
+    { { ndex = "0493Fo", name = "arceusFo", method = efs.methods.NONE } },
 }
 efs[493] = efs.arceus
 
 efs.darmanitan = {
     { { ndex = 555, name = "darmanitan" } },
-    { { ndex = "555Z", name = "darmanitanZ", method = efs.methods.NONE } },
+    { { ndex = "0555Z", name = "darmanitanZ", method = efs.methods.NONE } },
 }
 efs.darmanitanZ = efs.darmanitan
-efs[555], efs["555Z"] = efs.darmanitan, efs.darmanitan
+efs[555], efs["0555Z"] = efs.darmanitan, efs.darmanitan
 
 efs.darmanitanG = {
-    { { ndex = "555G", name = "darmanitanG" } },
-    { { ndex = "555GZ", name = "darmanitanGZ", method = efs.methods.NONE } },
+    { { ndex = "0555G", name = "darmanitanG" } },
+    { { ndex = "0555GZ", name = "darmanitanGZ", method = efs.methods.NONE } },
 }
 efs.darmanitanGZ = efs.darmanitanG
-efs["555G"], efs["555GZ"] = efs.darmanitanG, efs.darmanitanG
+efs["0555G"], efs["0555GZ"] = efs.darmanitanG, efs.darmanitanG
 
 efs.tornadus = {
     { { ndex = 641, name = "tornadus" } },
     {
         {
-            ndex = "641T",
+            ndex = "0641T",
             name = "tornadusT",
             method = efs.methods.ITEM,
             [efs.methods.ITEM] = "Verispecchio",
@@ -8364,13 +8365,13 @@ efs.tornadus = {
     },
 }
 efs.tornadusT = efs.tornadus
-efs[641], efs["641T"] = efs.tornadus, efs.tornadus
+efs[641], efs["0641T"] = efs.tornadus, efs.tornadus
 
 efs.thundurus = {
     { { ndex = 642, name = "thundurus" } },
     {
         {
-            ndex = "642T",
+            ndex = "0642T",
             name = "thundurusT",
             method = efs.methods.ITEM,
             [efs.methods.ITEM] = "Verispecchio",
@@ -8378,13 +8379,13 @@ efs.thundurus = {
     },
 }
 efs.thundurusT = efs.thundurus
-efs[642], efs["642T"] = efs.thundurus, efs.thundurus
+efs[642], efs["0642T"] = efs.thundurus, efs.thundurus
 
 efs.landorus = {
     { { ndex = 645, name = "landorus" } },
     {
         {
-            ndex = "645T",
+            ndex = "0645T",
             name = "landorusT",
             method = efs.methods.ITEM,
             [efs.methods.ITEM] = "Verispecchio",
@@ -8392,12 +8393,12 @@ efs.landorus = {
     },
 }
 efs.landorusT = efs.landorus
-efs[645], efs["645T"] = efs.landorus, efs.landorus
+efs[645], efs["0645T"] = efs.landorus, efs.landorus
 
 efs.kyurem = {
     {
         {
-            ndex = "646N",
+            ndex = "0646N",
             name = "kyuremN",
             notes = ms.staticLua({ 644 }) .. " con [[Zekrom]]",
         },
@@ -8412,7 +8413,7 @@ efs.kyurem = {
     },
     {
         {
-            ndex = "646B",
+            ndex = "0646B",
             name = "kyuremB",
             notes = ms.staticLua({ 643 }) .. " con [[Reshiram]]",
             method = efs.methods.ITEM,
@@ -8421,13 +8422,13 @@ efs.kyurem = {
     },
 }
 efs.kyuremB, efs.kyuremN = efs.kyurem, efs.kyurem
-efs[664], efs["646B"], efs["646N"] = efs.kyurem, efs.kyurem, efs.kyurem
+efs[664], efs["0646B"], efs["0646N"] = efs.kyurem, efs.kyurem, efs.kyurem
 
 efs.meloetta = {
     { { ndex = 648, name = "meloetta" } },
     {
         {
-            ndex = "648D",
+            ndex = "0648D",
             name = "meloettaD",
             method = efs.methods.OTHER,
             [efs.methods.OTHER] = links.bag("MT Normale")
@@ -8436,13 +8437,13 @@ efs.meloetta = {
     },
 }
 efs.meloettaD = efs.meloetta
-efs[648], efs["648D"] = efs.meloetta, efs.meloetta
+efs[648], efs["0648D"] = efs.meloetta, efs.meloetta
 
 efs.greninja = {
     { { ndex = 658, name = "greninja" } },
     {
         {
-            ndex = "658A",
+            ndex = "0658A",
             name = "greninjaA",
             notes = "Dopo aver mandato KO un Pokémon",
             method = efs.methods.NONE,
@@ -8450,7 +8451,7 @@ efs.greninja = {
     },
 }
 efs.greninjaA = efs.greninja
-efs[658], efs["658A"] = efs.greninja, efs.greninja
+efs[658], efs["0658A"] = efs.greninja, efs.greninja
 
 efs.aegislash = {
     {
@@ -8462,7 +8463,7 @@ efs.aegislash = {
     },
     {
         {
-            ndex = "681S",
+            ndex = "0681S",
             name = "aegislashS",
             notes = "Usando una mossa non di [[stato]]",
             method = efs.methods.NONE,
@@ -8470,10 +8471,10 @@ efs.aegislash = {
     },
 }
 efs.aegislashS = efs.aegislash
-efs[681], efs["681S"] = efs.aegislash, efs.aegislash
+efs[681], efs["0681S"] = efs.aegislash, efs.aegislash
 
 efs.zygarde = {
-    { { ndex = "718D", name = "zygardeD" } },
+    { { ndex = "0718D", name = "zygardeD" } },
     {
         {
             ndex = 718,
@@ -8484,7 +8485,7 @@ efs.zygarde = {
     },
     {
         {
-            ndex = "718P",
+            ndex = "0718P",
             name = "zygardeP",
             method = efs.methods.ITEM,
             [efs.methods.ITEM] = "Teca Zygarde",
@@ -8492,7 +8493,7 @@ efs.zygarde = {
     },
 }
 efs.zygardeD, efs.zygardeP = efs.zygarde, efs.zygarde
-efs[718], efs["718D"], efs["718P"] = efs.zygarde, efs.zygarde, efs.zygarde
+efs[718], efs["0718D"], efs["0718P"] = efs.zygarde, efs.zygarde, efs.zygarde
 
 efs.hoopa = {
     {
@@ -8504,7 +8505,7 @@ efs.hoopa = {
     },
     {
         {
-            ndex = "720L",
+            ndex = "0720L",
             name = "hoopaL",
             method = efs.methods.ITEM,
             [efs.methods.ITEM] = "Vaso del vincolo",
@@ -8512,19 +8513,19 @@ efs.hoopa = {
     },
 }
 efs.hoopaL = efs.hoopa
-efs[720], efs["720L"] = efs.hoopa, efs.hoopa
+efs[720], efs["0720L"] = efs.hoopa, efs.hoopa
 
 efs.oricorio = {
     {
         {
-            ndex = "741C",
+            ndex = "0741C",
             name = "oricorioC",
             notes = links.bag("Nettare Giallo") .. "[[Nettare Giallo]]",
         },
     },
     {
         {
-            ndex = "741H",
+            ndex = "0741H",
             name = "oricorioH",
             method = efs.methods.NONE,
             notes = links.bag("Nettare Rosa") .. "[[Nettare Rosa]]",
@@ -8540,7 +8541,7 @@ efs.oricorio = {
     },
     {
         {
-            ndex = "741B",
+            ndex = "0741B",
             name = "oricorioB",
             method = efs.methods.NONE,
             notes = links.bag("Nettare Viola") .. "[[Nettare Viola]]",
@@ -8549,14 +8550,14 @@ efs.oricorio = {
 }
 efs.oricorioC, efs.oricorioH, efs.oricorioB =
     efs.oricorio, efs.oricorio, efs.oricorio
-efs[741], efs["741C"], efs["741H"], efs["741B"] =
+efs[741], efs["0741C"], efs["0741H"], efs["0741B"] =
     efs.oricorio, efs.oricorio, efs.oricorio, efs.oricorio
 
 efs.wishiwashi = {
     { { ndex = 746, name = "wishiwashi" } },
     {
         {
-            ndex = "746B",
+            ndex = "0746B",
             name = "wishiwashiB",
             notes = "Con più di un quarto dei PS a partire dal livello 20",
             method = efs.methods.NONE,
@@ -8564,34 +8565,34 @@ efs.wishiwashi = {
     },
 }
 efs.wishiwashiB = efs.wishiwashi
-efs[746], efs["746B"] = efs.wishiwashi, efs.wishiwashi
+efs[746], efs["0746B"] = efs.wishiwashi, efs.wishiwashi
 
 efs.silvally = {
     { { ndex = 773, name = "silvally" } },
-    { { ndex = "773L", name = "silvallyL", method = efs.methods.NONE } },
-    { { ndex = "773Vo", name = "silvallyVo", method = efs.methods.NONE } },
-    { { ndex = "773Ve", name = "silvallyVe", method = efs.methods.NONE } },
-    { { ndex = "773T", name = "silvallyT", method = efs.methods.NONE } },
-    { { ndex = "773R", name = "silvallyR", method = efs.methods.NONE } },
-    { { ndex = "773C", name = "silvallyC", method = efs.methods.NONE } },
-    { { ndex = "773S", name = "silvallyS", method = efs.methods.NONE } },
-    { { ndex = "773Ai", name = "silvallyAi", method = efs.methods.NONE } },
-    { { ndex = "773Fu", name = "silvallyFu", method = efs.methods.NONE } },
-    { { ndex = "773Aq", name = "silvallyAq", method = efs.methods.NONE } },
-    { { ndex = "773Er", name = "silvallyEr", method = efs.methods.NONE } },
-    { { ndex = "773El", name = "silvallyEl", method = efs.methods.NONE } },
-    { { ndex = "773P", name = "silvallyP", method = efs.methods.NONE } },
-    { { ndex = "773G", name = "silvallyG", method = efs.methods.NONE } },
-    { { ndex = "773D", name = "silvallyD", method = efs.methods.NONE } },
-    { { ndex = "773B", name = "silvallyB", method = efs.methods.NONE } },
-    { { ndex = "773Fo", name = "silvallyFo", method = efs.methods.NONE } },
+    { { ndex = "0773L", name = "silvallyL", method = efs.methods.NONE } },
+    { { ndex = "0773Vo", name = "silvallyVo", method = efs.methods.NONE } },
+    { { ndex = "0773Ve", name = "silvallyVe", method = efs.methods.NONE } },
+    { { ndex = "0773T", name = "silvallyT", method = efs.methods.NONE } },
+    { { ndex = "0773R", name = "silvallyR", method = efs.methods.NONE } },
+    { { ndex = "0773C", name = "silvallyC", method = efs.methods.NONE } },
+    { { ndex = "0773S", name = "silvallyS", method = efs.methods.NONE } },
+    { { ndex = "0773Ai", name = "silvallyAi", method = efs.methods.NONE } },
+    { { ndex = "0773Fu", name = "silvallyFu", method = efs.methods.NONE } },
+    { { ndex = "0773Aq", name = "silvallyAq", method = efs.methods.NONE } },
+    { { ndex = "0773Er", name = "silvallyEr", method = efs.methods.NONE } },
+    { { ndex = "0773El", name = "silvallyEl", method = efs.methods.NONE } },
+    { { ndex = "0773P", name = "silvallyP", method = efs.methods.NONE } },
+    { { ndex = "0773G", name = "silvallyG", method = efs.methods.NONE } },
+    { { ndex = "0773D", name = "silvallyD", method = efs.methods.NONE } },
+    { { ndex = "0773B", name = "silvallyB", method = efs.methods.NONE } },
+    { { ndex = "0773Fo", name = "silvallyFo", method = efs.methods.NONE } },
 }
 
 efs.minior = {
     { { ndex = 774, name = "minior" } },
     {
         {
-            ndex = "774R",
+            ndex = "0774R",
             name = "miniorR",
             notes = "Con meno di metà dei PS",
             method = efs.methods.NONE,
@@ -8599,20 +8600,20 @@ efs.minior = {
     },
 }
 efs.miniorR = efs.minior
-efs[774], efs["774R"] = efs.minior, efs.minior
+efs[774], efs["0774R"] = efs.minior, efs.minior
 
 efs.necrozma = {
     { { ndex = 800, name = "necrozma" } },
     {
         {
-            ndex = "800V",
+            ndex = "0800V",
             name = "necrozmaV",
             notes = ms.staticLua({ 791 }) .. " con [[Solgaleo]]",
             method = efs.methods.ITEM,
             [efs.methods.ITEM] = "Necrosolix",
         },
         {
-            ndex = "800A",
+            ndex = "0800A",
             name = "necrozmaA",
             notes = ms.staticLua({ 792 }) .. " con [[Lunala]]",
             method = efs.methods.ITEM,
@@ -8621,7 +8622,7 @@ efs.necrozma = {
     },
     {
         {
-            ndex = "800U",
+            ndex = "0800U",
             name = "necrozmaU",
             method = efs.methods.ITEM,
             [efs.methods.ITEM] = "Ultranecrozium Z",
@@ -8630,14 +8631,14 @@ efs.necrozma = {
 }
 efs.necrozmaV, efs.necrozmaA, efs.necrozmaU =
     efs.necrozma, efs.necrozma, efs.necrozma
-efs[800], efs["800V"], efs["800A"], efs["800U"] =
+efs[800], efs["0800V"], efs["0800A"], efs["0800U"] =
     efs.necrozma, efs.necrozma, efs.necrozma, efs.necrozma
 
 efs.cramorant = {
     { { ndex = 845, name = "cramorant" } },
     {
         {
-            ndex = "845T",
+            ndex = "0845T",
             name = "cramorantT",
             method = efs.methods.OTHER,
             [efs.methods.OTHER] = "N/D",
@@ -8645,7 +8646,7 @@ efs.cramorant = {
     },
     {
         {
-            ndex = "845I",
+            ndex = "0845I",
             name = "cramorantI",
             method = efs.methods.OTHER,
             [efs.methods.OTHER] = "N/D",
@@ -8653,13 +8654,14 @@ efs.cramorant = {
     },
 }
 efs.cramorantT, efs.cramorantI = efs.cramorant, efs.cramorant
-efs[845], efs["845T"], efs["845I"] = efs.cramorant, efs.cramorant, efs.cramorant
+efs[845], efs["0845T"], efs["0845I"] =
+    efs.cramorant, efs.cramorant, efs.cramorant
 
 efs.eiscue = {
     { { ndex = 875, name = "eiscue" } },
     {
         {
-            ndex = "875L",
+            ndex = "0875L",
             name = "eiscueL",
             method = efs.methods.OTHER,
             [efs.methods.OTHER] = "N/D",
@@ -8667,13 +8669,13 @@ efs.eiscue = {
     },
 }
 efs.eiscueL = efs.eiscue
-efs[875], efs["875L"] = efs.eiscue, efs.eiscue
+efs[875], efs["0875L"] = efs.eiscue, efs.eiscue
 
 efs.morpeko = {
     { { ndex = 877, name = "morpeko" } },
     {
         {
-            ndex = "877V",
+            ndex = "0877V",
             name = "morpekoV",
             method = efs.methods.OTHER,
             [efs.methods.OTHER] = "Cambia forma ogni turno<br>per l'abilità [[Pancialterna]]",
@@ -8681,13 +8683,13 @@ efs.morpeko = {
     },
 }
 efs.morpekoV = efs.morpeko
-efs[877], efs["877V"] = efs.morpeko, efs.morpeko
+efs[877], efs["0877V"] = efs.morpeko, efs.morpeko
 
 efs.zacian = {
     { { ndex = 888, name = "zacian" } },
     {
         {
-            ndex = "888R",
+            ndex = "0888R",
             name = "zacianR",
             method = efs.methods.OTHER,
             [efs.methods.OTHER] = "N/D",
@@ -8695,13 +8697,13 @@ efs.zacian = {
     },
 }
 efs.zacianR = efs.zacian
-efs[888], efs["888R"] = efs.zacian, efs.zacian
+efs[888], efs["0888R"] = efs.zacian, efs.zacian
 
 efs.zamazenta = {
     { { ndex = 888, name = "zamazenta" } },
     {
         {
-            ndex = "889R",
+            ndex = "0889R",
             name = "zamazentaR",
             method = efs.methods.OTHER,
             [efs.methods.OTHER] = "N/D",
@@ -8709,13 +8711,13 @@ efs.zamazenta = {
     },
 }
 efs.zamazentaR = efs.zamazenta
-efs[889], efs["889R"] = efs.zamazenta, efs.zamazenta
+efs[889], efs["0889R"] = efs.zamazenta, efs.zamazenta
 
 efs.eternatus = {
     { { ndex = 890, name = "eternatus" } },
     {
         {
-            ndex = "890D",
+            ndex = "0890D",
             name = "eternatusD",
             method = efs.methods.OTHER,
             [efs.methods.OTHER] = "N/D",
@@ -8723,13 +8725,13 @@ efs.eternatus = {
     },
 }
 efs.eternatusD = efs.eternatus
-efs[890], efs["890D"] = efs.eternatus, efs.eternatus
+efs[890], efs["0890D"] = efs.eternatus, efs.eternatus
 
 efs.enamorus = {
     { { ndex = 905, name = "enamorus" } },
     {
         {
-            ndex = "905T",
+            ndex = "0905T",
             name = "enamorusT",
             method = efs.methods.UNKNOWN,
             -- [efs.methods.ITEM] = 'Verispecchio',
@@ -8737,7 +8739,7 @@ efs.enamorus = {
     },
 }
 efs.enamorusT = efs.enamorus
-efs[905], efs["905T"] = efs.enamorus, efs.enamorus
+efs[905], efs["0905T"] = efs.enamorus, efs.enamorus
 
 efs.burmy = {
     {
@@ -8749,7 +8751,7 @@ efs.burmy = {
     },
     {
         {
-            ndex = "412Sc",
+            ndex = "0412Sc",
             name = "burmySc",
             method = efs.methods.NONE,
             notes = "Dopo aver lottato in un edificio",
@@ -8757,7 +8759,7 @@ efs.burmy = {
     },
     {
         {
-            ndex = "412Sa",
+            ndex = "0412Sa",
             name = "burmySa",
             method = efs.methods.NONE,
             notes = "Dopo aver lottato in una grotta o su una spiaggia",
@@ -8765,13 +8767,13 @@ efs.burmy = {
     },
 }
 efs.burmySc, efs.Sa = efs.burmy, efs.burmy
-efs[412], efs["412Sc"], efs["412Sa"] = efs.burmy, efs.burmy, efs.burmy
+efs[412], efs["0412Sc"], efs["0412Sa"] = efs.burmy, efs.burmy, efs.burmy
 
 efs.cherrim = {
     { { ndex = 421, name = "cherrim" } },
     {
         {
-            ndex = "421S",
+            ndex = "0421S",
             name = "cherrimS",
             notes = "Sotto il [[Luce solare intensa|sole]]",
             method = efs.methods.NONE,
@@ -8779,13 +8781,13 @@ efs.cherrim = {
     },
 }
 efs.cherrimS = efs.cherrim
-efs[421], efs["421S"] = efs.cherrim, efs.cherrim
+efs[421], efs["0421S"] = efs.cherrim, efs.cherrim
 
 efs.keldeo = {
     { { ndex = 647, name = "keldeo" } },
     {
         {
-            ndex = "647R",
+            ndex = "0647R",
             name = "keldeoR",
             method = efs.methods.OTHER,
             [efs.methods.OTHER] = links.bag("MT Lotta")
@@ -8794,13 +8796,13 @@ efs.keldeo = {
     },
 }
 efs.keldeoR = efs.keldeo
-efs[647], efs["647R"] = efs.keldeo, efs.keldeo
+efs[647], efs["0647R"] = efs.keldeo, efs.keldeo
 
 efs.genesect = {
     { { ndex = 649, name = "genesect" } },
     {
         {
-            ndex = "649I",
+            ndex = "0649I",
             name = "genesectI",
             method = efs.methods.NONE,
             notes = "Tenendo " .. links.bag("Idromodulo"),
@@ -8808,7 +8810,7 @@ efs.genesect = {
     },
     {
         {
-            ndex = "649V",
+            ndex = "0649V",
             name = "genesectV",
             method = efs.methods.NONE,
             notes = "Tenendo " .. links.bag("Voltmodulo"),
@@ -8816,7 +8818,7 @@ efs.genesect = {
     },
     {
         {
-            ndex = "649P",
+            ndex = "0649P",
             name = "genesectP",
             method = efs.methods.NONE,
             notes = "Tenendo " .. links.bag("Piromodulo"),
@@ -8824,7 +8826,7 @@ efs.genesect = {
     },
     {
         {
-            ndex = "649G",
+            ndex = "0649G",
             name = "genesectG",
             method = efs.methods.NONE,
             notes = "Tenendo " .. links.bag("Gelomodulo"),
@@ -8833,14 +8835,14 @@ efs.genesect = {
 }
 efs.genesectI, efs.genesectV, efs.genesectP, efs.genesectG =
     efs.genesect, efs.genesect, efs.genesect, efs.genesect
-efs[649], efs["649I"], efs["649V"], efs["649P"], efs["649G"] =
+efs[649], efs["0649I"], efs["0649V"], efs["0649P"], efs["0649G"] =
     efs.oricorio, efs.oricorio, efs.oricorio, efs.oricorio, efs.genesect
 
 efs.xerneas = {
     { { ndex = 716, name = "xerneas", notes = "Fuori dalla lotta" } },
     {
         {
-            ndex = "716A",
+            ndex = "0716A",
             name = "xerneasA",
             notes = "In lotta",
             method = efs.methods.NONE,
@@ -8848,13 +8850,13 @@ efs.xerneas = {
     },
 }
 efs.xerneasA = efs.xerneas
-efs[716], efs["716A"] = efs.xerneas, efs.xerneas
+efs[716], efs["0716A"] = efs.xerneas, efs.xerneas
 
 efs.mimikyu = {
     { { ndex = 778, name = "mimikyu" } },
     {
         {
-            ndex = "778S",
+            ndex = "0778S",
             name = "mimikyuS",
             notes = "Venendo colpito in lotta",
             method = efs.methods.NONE,
@@ -8862,10 +8864,10 @@ efs.mimikyu = {
     },
 }
 efs.mimikyuS = efs.mimikyu
-efs[778], efs["778S"] = efs.mimikyu, efs.mimikyu
+efs[778], efs["0778S"] = efs.mimikyu, efs.mimikyu
 
 efs.charizard = {
-    { { ndex = "006MX", name = "charizardMX" } },
+    { { ndex = "0006MX", name = "charizardMX" } },
     {
         {
             ndex = 6,
@@ -8876,7 +8878,7 @@ efs.charizard = {
     },
     {
         {
-            ndex = "006MY",
+            ndex = "0006MY",
             name = "charizardMY",
             method = efs.methods.ITEM,
             [efs.methods.ITEM] = "Charizardite Y",
@@ -8884,10 +8886,11 @@ efs.charizard = {
     },
 }
 efs.charizardMX, efs.charizardMY = efs.charizard, efs.charizard
-efs[6], efs["006MX"], efs["006MY"] = efs.charizard, efs.charizard, efs.charizard
+efs[6], efs["0006MX"], efs["0006MY"] =
+    efs.charizard, efs.charizard, efs.charizard
 
 efs.mewtwo = {
-    { { ndex = "150MX", name = "mewtwoMX" } },
+    { { ndex = "0150MX", name = "mewtwoMX" } },
     {
         {
             ndex = 150,
@@ -8898,7 +8901,7 @@ efs.mewtwo = {
     },
     {
         {
-            ndex = "150MY",
+            ndex = "0150MY",
             name = "mewtwoMY",
             method = efs.methods.ITEM,
             [efs.methods.ITEM] = "Mewtwoite Y",
@@ -8906,13 +8909,13 @@ efs.mewtwo = {
     },
 }
 efs.mewtwoMX, efs.mewtwoMY = efs.mewtwo, efs.mewtwo
-efs[150], efs["150MX"], efs["150MY"] = efs.mewtwo, efs.mewtwo, efs.mewtwo
+efs[150], efs["0150MX"], efs["0150MY"] = efs.mewtwo, efs.mewtwo, efs.mewtwo
 
 efs.kyogre = {
     { { ndex = 382, name = "kyogre" } },
     {
         {
-            ndex = "382A",
+            ndex = "0382A",
             name = "kyogreA",
             method = efs.methods.ITEM,
             [efs.methods.ITEM] = "Gemma blu",
@@ -8920,13 +8923,13 @@ efs.kyogre = {
     },
 }
 efs.kyogreA = efs.kyogre
-efs[382], efs["382A"] = efs.kyogre, efs.kyogre
+efs[382], efs["0382A"] = efs.kyogre, efs.kyogre
 
 efs.groudon = {
     { { ndex = 383, name = "groudon" } },
     {
         {
-            ndex = "383A",
+            ndex = "0383A",
             name = "groudonA",
             method = efs.methods.ITEM,
             [efs.methods.ITEM] = "Gemma rossa",
@@ -8934,27 +8937,27 @@ efs.groudon = {
     },
 }
 efs.groudonA = efs.groudon
-efs[383], efs["383A"] = efs.groudon, efs.groudon
+efs[383], efs["0383A"] = efs.groudon, efs.groudon
 
 efs.rayquaza = {
     { { ndex = 384, name = "rayquaza" } },
     {
         {
-            ndex = "384M",
+            ndex = "0384M",
             name = "rayquazaM",
             method = efs.methods.NONE,
         },
     },
 }
 efs.rayquazaM = efs.rayquaza
-efs[384], efs["384M"] = efs.rayquaza, efs.rayquaza
+efs[384], efs["0384M"] = efs.rayquaza, efs.rayquaza
 
 local createMega = function(pkmn, ndex, item)
     efs[pkmn] = {
         { { ndex = ndex, name = pkmn } },
         {
             {
-                ndex = txt.tf(ndex) .. "M",
+                ndex = txt.ff(ndex) .. "M",
                 name = pkmn .. "M",
                 method = efs.methods.ITEM,
                 [efs.methods.ITEM] = item,
@@ -8962,7 +8965,7 @@ local createMega = function(pkmn, ndex, item)
         },
     }
     efs[pkmn .. "M"] = efs[pkmn]
-    efs[ndex], efs[txt.tf(ndex) .. "M"] = efs[pkmn], efs[pkmn]
+    efs[ndex], efs[txt.ff(ndex) .. "M"] = efs[pkmn], efs[pkmn]
 end
 
 createMega("venusaur", 3, "Venusaurite")

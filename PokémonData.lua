@@ -35,7 +35,7 @@ Returns ndex given the name.
 --]]
 b.getNdex = function(frame)
     local pokes = require("Poké-data")
-    return txt.tf(pokes[parseName(frame.args[1])].ndex)
+    return txt.ff(pokes[parseName(frame.args[1])].ndex)
 end
 
 b.get_ndex = b.getNdex

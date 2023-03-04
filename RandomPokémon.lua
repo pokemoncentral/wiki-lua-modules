@@ -32,7 +32,7 @@ p.artwork = function(frame)
     if alt[num] then
         forme = alt[num].gamesOrder
     end
-    local ndex = txt.three_figures(num)
+    local ndex = txt.fourFigures(num)
     if forme then
         ndex = ndex
             .. form.toEmptyAbbr(

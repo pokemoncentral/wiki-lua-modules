@@ -72,6 +72,8 @@ stds.wiki = {
                 fl = {},
                 nFigures = {},
                 n_figures = {},
+                fourFigures = {},
+                ff = {},
             }
         }
     }

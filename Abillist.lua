@@ -107,9 +107,9 @@ k.Entry.__tostring = function(this)
 | class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Seconda abilit&agrave;</div>${abil2}
 | class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Abilit&agrave; speciali</div>${abild}]=],
         {
-            ndex = this.ndex and txt.tf(this.ndex) or "???",
+            ndex = this.ndex and txt.ff(this.ndex) or "???",
             static = ms.staticLua({
-                txt.tf(this.ndex or 0)
+                txt.ff(this.ndex or 0)
                     .. (this.formAbbr == "base" and "" or this.formAbbr or ""),
             }),
             name = this.name,

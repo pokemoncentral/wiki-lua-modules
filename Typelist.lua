@@ -69,7 +69,7 @@ ${types}]=],
         {
             ndex = gen.ndexToString(this.ndex),
             static = ms.staticLua({
-                txt.tf(this.ndex or 0) .. form.toEmptyAbbr(this.formAbbr or ""),
+                txt.ff(this.ndex or 0) .. form.toEmptyAbbr(this.formAbbr or ""),
             }),
             name = this.name,
             form = this.formsData and this.formsData.links[this.formAbbr] or "",

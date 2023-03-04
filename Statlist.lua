@@ -197,7 +197,7 @@ ${statsCells}]=],
             ndex = genUtil.ndexToString(this.ndex),
             sortName = formUtil.formSortValue(this.ndex, this.formAbbr, name),
             ms = ms.staticLua({
-                txt.tf(this.ndex or 0)
+                txt.ff(this.ndex or 0)
                     .. (this.formAbbr == "base" and "" or this.formAbbr or ""),
             }),
             name = name,

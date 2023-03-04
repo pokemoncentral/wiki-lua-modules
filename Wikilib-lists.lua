@@ -471,13 +471,13 @@ l.makeFormsLabelledBoxes = function(args)
             or formName
         --[[
             If ndex is passed, base form should stay a number (thus can't be
-            concatenated to the empty string) and other forms should have three
+            concatenated to the empty string) and other forms should have four
             digits followed by form abbr.
         --]]
         local name = abbr == "base" and args.name
             or (
                 type(args.name) == "number"
-                    and txt.threeFigures(args.name) .. abbr
+                    and txt.fourFigures(args.name) .. abbr
                 or args.name .. abbr
             )
         local formBox = makeBox(name, formName)

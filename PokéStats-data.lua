@@ -2030,421 +2030,422 @@ d[1010] = d.fogliaferrea
 
 -- Alternative forms which actually change stats
 d.pikachuCm = {hp = 45, atk = 80, def = 50, spatk = 75, spdef = 60, spe = 120}
-d['025Cm'] = d.pikachuCm
+d["0025Cm"] = d.pikachuCm
 d.eeveeCm = {hp = 65, atk = 75, def = 70, spatk = 65, spdef = 85, spe = 75}
-d['133Cm'] = d.eeveeCm
+d["0133Cm"] = d.eeveeCm
 d.articunoG = {hp = 90, atk = 85, def = 85, spatk = 125, spdef = 100, spe = 95}
-d['144G'] = d.articunoG
+d["0144G"] = d.articunoG
 d.zapdosG = {hp = 90, atk = 125, def = 90, spatk = 85, spdef = 90, spe = 100}
-d['145G'] = d.zapdosG
+d["0145G"] = d.zapdosG
 d.moltresG = {hp = 90, atk = 85, def = 90, spatk = 100, spdef = 125, spe = 90}
-d['146G'] = d.moltresG
+d["0146G"] = d.moltresG
 d.deoxysA = {hp = 50, atk = 180, def = 20, spatk = 180, spdef = 20, spe = 150}
-d['386A'] = d.deoxysA
+d["0386A"] = d.deoxysA
 d.deoxysD = {hp = 50, atk = 70, def = 160, spatk = 70, spdef = 160, spe = 90}
-d['386D'] = d.deoxysD
+d["0386D"] = d.deoxysD
 d.deoxysV = {hp = 50, atk = 95, def = 90, spatk = 95, spdef = 90, spe = 180}
-d['386V'] = d.deoxysV
+d["0386V"] = d.deoxysV
 d.wormadamSa = {hp = 60, atk = 79, def = 105, spatk = 59, spdef = 85, spe = 36}
-d['413Sa'] = d.wormadamSa
+d["0413Sa"] = d.wormadamSa
 d.wormadamSc = {hp = 60, atk = 69, def = 95, spatk = 69, spdef = 95, spe = 36}
-d['413Sc'] = d.wormadamSc
+d["0413Sc"] = d.wormadamSc
 -- Actually Cherrim changed stats in LPA, not in gen 8
 d.cherrimS = {hp = 70, atk = {[4] = 60, [8] = 90}, def = 70, spatk = 87, spdef = {[4] = 78, [8] = 117}, spe = 85}
-d['421S'] = d.cherrimS
+d["0421S"] = d.cherrimS
 d.rotomC = {hp = 50, atk = 65, def = 107, spatk = 105, spdef = 107, spe = 86}
-d['479C'] = d.rotomC
+d["0479C"] = d.rotomC
 d.rotomL = {hp = 50, atk = 65, def = 107, spatk = 105, spdef = 107, spe = 86}
-d['479L'] = d.rotomL
+d["0479L"] = d.rotomL
 d.rotomG = {hp = 50, atk = 65, def = 107, spatk = 105, spdef = 107, spe = 86}
-d['479G'] = d.rotomG
+d["0479G"] = d.rotomG
 d.rotomV = {hp = 50, atk = 65, def = 107, spatk = 105, spdef = 107, spe = 86}
-d['479V'] = d.rotomV
+d["0479V"] = d.rotomV
 d.rotomT = {hp = 50, atk = 65, def = 107, spatk = 105, spdef = 107, spe = 86}
-d['479T'] = d.rotomT
+d["0479T"] = d.rotomT
 d.dialgaO = {hp = 100, atk = 100, def = 120, spatk = 150, spdef = 120, spe = 90}
-d['483O'] = d.dialgaO
+d["0483O"] = d.dialgaO
 d.palkiaO = {hp = 90, atk = 100, def = 100, spatk = 150, spdef = 120, spe = 120}
-d['484O'] = d.palkiaO
+d["0484O"] = d.palkiaO
 d.giratinaO = {hp = 150, atk = 120, def = 100, spatk = 120, spdef = 100, spe = 90}
-d['487O'] = d.giratinaO
+d["0487O"] = d.giratinaO
 d.shayminC = {hp = 100, atk = 103, def = 75, spatk = 120, spdef = 75, spe = 127}
-d['492C'] = d.shayminC
+d["0492C"] = d.shayminC
 d.basculinBi = {hp = 70, atk = 92, def = 65, spatk = 80, spdef = 55, spe = 98}
-d['550Bi'] = d.basculinBi
+d["0550Bi"] = d.basculinBi
 d.darmanitanZ = {hp = 105, atk = 30, def = 105, spatk = 140, spdef = 105, spe = 55}
-d['555Z'] = d.darmanitanZ
+d["0555Z"] = d.darmanitanZ
 d.tornadusT = {hp = 79, atk = 100, def = 80, spatk = 110, spdef = 90, spe = 121}
-d['641T'] = d.tornadusT
+d["0641T"] = d.tornadusT
 d.thundurusT = {hp = 79, atk = 105, def = 70, spatk = 145, spdef = 80, spe = 101}
-d['642T'] = d.thundurusT
+d["0642T"] = d.thundurusT
 d.landorusT = {hp = 89, atk = 145, def = 90, spatk = 105, spdef = 80, spe = 91}
-d['645T'] = d.landorusT
+d["0645T"] = d.landorusT
 d.kyuremN = {hp = 125, atk = 170, def = 100, spatk = 120, spdef = 90, spe = 95}
-d['646N'] = d.kyuremN
+d["0646N"] = d.kyuremN
 d.kyuremB = {hp = 125, atk = 120, def = 90, spatk = 170, spdef = 100, spe = 95}
-d['646B'] = d.kyuremB
+d["0646B"] = d.kyuremB
 d.meloettaD = {hp = 100, atk = 128, def = 90, spatk = 77, spdef = 77, spe = 128}
-d['648D'] = d.meloettaD
+d["0648D"] = d.meloettaD
 d.greninjaA = {hp = 72, atk = 145, def = 67, spatk = 153, spdef = 71, spe = 132}
-d['658A'] = d.greninjaA
+d["0658A"] = d.greninjaA
 d.aegislashS = {hp = 60, atk = { [6] = 150, [8] = 140 }, def = 50, spatk = { [6] = 150, [8] = 140 }, spdef = 50, spe = 60}
-d['681S'] = d.aegislashS
+d["0681S"] = d.aegislashS
 d.pumpkabooS = {hp = 44, atk = 66, def = 70, spatk = 44, spdef = 55, spe = 56}
-d['710S'] = d.pumpkabooS
+d["0710S"] = d.pumpkabooS
 d.pumpkabooL = {hp = 54, atk = 66, def = 70, spatk = 44, spdef = 55, spe = 46}
-d['710L'] = d.pumpkabooL
+d["0710L"] = d.pumpkabooL
 d.pumpkabooXL = {hp = 59, atk = 66, def = 70, spatk = 44, spdef = 55, spe = 41}
-d['710XL'] = d.pumpkabooXL
+d["0710XL"] = d.pumpkabooXL
 d.gourgeistS = {hp = 55, atk = 85, def = 122, spatk = 58, spdef = 75, spe = 99}
-d['711S'] = d.gourgeistS
+d["0711S"] = d.gourgeistS
 d.gourgeistL = {hp = 75, atk = 95, def = 122, spatk = 58, spdef = 75, spe = 69}
-d['711L'] = d.gourgeistL
+d["0711L"] = d.gourgeistL
 d.gourgeistXL = {hp = 85, atk = 100, def = 122, spatk = 58, spdef = 75, spe = 54}
-d['711XL'] = d.gourgeistXL
+d["0711XL"] = d.gourgeistXL
 d.zygardeD = {hp = 54, atk = 100, def = 71, spatk = 61, spdef = 85, spe = 115}
-d['718D'] = d.zygardeD
+d["0718D"] = d.zygardeD
 d.zygardeP = {hp = 216, atk = 100, def = 121, spatk = 91, spdef = 95, spe = 85}
-d['718P'] = d.zygardeP
+d["0718P"] = d.zygardeP
 d.hoopaL = {hp = 80, atk = 160, def = 60, spatk = 170, spdef = 130, spe = 80}
-d['720L'] = d.hoopaL
+d["0720L"] = d.hoopaL
 d.lycanrocN = {hp = 85, atk = 115, def = 75, spatk = 55, spdef = 75, spe = 82}
-d['745N'] = d.lycanrocN
+d["0745N"] = d.lycanrocN
 d.lycanrocC = {hp = 75, atk = 117, def = 65, spatk = 55, spdef = 65, spe = 110}
-d['745C'] = d.lycanrocC
+d["0745C"] = d.lycanrocC
 d.wishiwashiB = {hp = 45, atk = 140, def = 130, spatk = 140, spdef = 135, spe = 30}
-d['746B'] = d.wishiwashiB
+d["0746B"] = d.wishiwashiB
 d.miniorR = {hp = 60, atk = 100, def = 60, spatk = 100, spdef = 60, spe = 120}
-d['774R'] = d.miniorR
+d["0774R"] = d.miniorR
 d.necrozmaV = {hp = 97, atk = 157, def = 127, spatk = 113, spdef = 109, spe = 77}
-d['800V'] = d.necrozmaV
+d["0800V"] = d.necrozmaV
 d.necrozmaA = {hp = 97, atk = 113, def = 109, spatk = 157, spdef = 127, spe = 77}
-d['800A'] = d.necrozmaA
+d["0800A"] = d.necrozmaA
 d.necrozmaU = {hp = 97, atk = 167, def = 97, spatk = 167, spdef = 97, spe = 129}
-d['800U'] = d.necrozmaU
+d["0800U"] = d.necrozmaU
 d.eiscueL = {hp = 75, atk = 80, def = 70, spatk = 65, spdef = 50, spe = 130}
-d['875L'] = d.eiscueL
+d["0875L"] = d.eiscueL
 d.indeedeeF = {hp = 70, atk = 55, def = 65, spatk = 95, spdef = 105, spe = 85}
-d['876F'] = d.indeedeeF
+d["0876F"] = d.indeedeeF
 d.zacianR = {hp = 92, atk = {[8] = 170, [9] = 150}, def = 115, spatk = 80, spdef = 115, spe = 148}
-d['888R'] = d.zacianR
+d["0888R"] = d.zacianR
 d.zamazentaR = {hp = 92, atk = {[8] = 130, [9] = 120}, def = {[8] = 145, [9] = 140}, spatk = 80, spdef = {[8] = 145, [9] = 140}, spe = 128}
-d['889R'] = d.zamazentaR
+d["0889R"] = d.zamazentaR
 d.eternatusD = {hp = 255, atk = 115, def = 250, spatk = 125, spdef = 250, spe = 130}
-d['890D'] = d.eternatusD
+d["0890D"] = d.eternatusD
 d.calyrexG = {hp = 100, atk = 165, def = 150, spatk = 85, spdef = 130, spe = 50}
-d['898G'] = d.calyrexG
+d["0898G"] = d.calyrexG
 d.calyrexS = {hp = 100, atk = 85, def = 80, spatk = 165, spdef = 100, spe = 150}
-d['898S'] = d.calyrexS
+d["0898S"] = d.calyrexS
 d.basculegionF = {hp = 120, atk = 92, def = 65, spatk = 100, spdef = 75, spe = 78}
-d['902F'] = d.basculegionF
+d["0902F"] = d.basculegionF
 d.enamorusT = {hp = 74, atk = 115, def = 110, spatk = 135, spdef = 100, spe = 46}
-d['905T'] = d.enamorusT
+d["0905T"] = d.enamorusT
 d.oinkologneF = {hp = 115, atk = 90, def = 70, spatk = 59, spdef = 90, spe = 65}
-d["916F"] = d.oinkologneF
+d["0916F"] = d.oinkologneF
 d.palafinP = {hp = 100, atk = 160, def = 97, spatk = 106, spdef = 87, spe = 100}
-d["964P"] = d.palafinP
+d["0964P"] = d.palafinP
 d.gimmighoulA = {hp = 45, atk = 30, def = 25, spatk = 75, spdef = 45, spe = 80}
-d["999A"] = d.gimmighoulA
+d["0999A"] = d.gimmighoulA
 
 
 -- Mega evolutions and Primal reversions
 d.venusaurM = {hp = 80, atk = 100, def = 123, spatk = 122, spdef = 120, spe = 80}
-d['003M'] = d.venusaurM
+d["0003M"] = d.venusaurM
 d.charizardMX = {hp = 78, atk = 130, def = 111, spatk = 130, spdef = 85, spe = 100}
-d['006MX'] = d.charizardMX
+d["0006MX"] = d.charizardMX
 d.charizardMY = {hp = 78, atk = 104, def = 78, spatk = 159, spdef = 115, spe = 100}
-d['006MY'] = d.charizardMY
+d["0006MY"] = d.charizardMY
 d.blastoiseM = {hp = 79, atk = 103, def = 120, spatk = 135, spdef = 115, spe = 78}
-d['009M'] = d.blastoiseM
+d["0009M"] = d.blastoiseM
 d.beedrillM = {hp = 65, atk = 150, def = 40, spatk = 15, spdef = 80, spe = 145}
-d['015M'] = d.beedrillM
+d["0015M"] = d.beedrillM
 d.pidgeotM = {hp = 83, atk = 80, def = 80, spatk = 135, spdef = 80, spe = 121}
-d['018M'] = d.pidgeotM
+d["0018M"] = d.pidgeotM
 d.alakazamM = {hp = 55, atk = 50, def = 65, spatk = 175, spdef = {[6] = 95, [7] = 105}, spe = 150}
-d['065M'] = d.alakazamM
+d["0065M"] = d.alakazamM
 d.slowbroM = {hp = 95, atk = 75, def = 180, spatk = 130, spdef = 80, spe = 30}
-d['080M'] = d.slowbroM
+d["0080M"] = d.slowbroM
 d.gengarM = {hp = 60, atk = 65, def = 80, spatk = 170, spdef = 95, spe = 130}
-d['094M'] = d.gengarM
+d["0094M"] = d.gengarM
 d.kangaskhanM = {hp = 105, atk = 125, def = 100, spatk = 60, spdef = 100, spe = 100}
-d['115M'] = d.kangaskhanM
+d["0115M"] = d.kangaskhanM
 d.pinsirM = {hp = 65, atk = 155, def = 120, spatk = 65, spdef = 90, spe = 105}
-d['127M'] = d.pinsirM
+d["0127M"] = d.pinsirM
 d.gyaradosM = {hp = 95, atk = 155, def = 109, spatk = 70, spdef = 130, spe = 81}
-d['130M'] = d.gyaradosM
+d["0130M"] = d.gyaradosM
 d.aerodactylM = {hp = 80, atk = 135, def = 85, spatk = 70, spdef = 95, spe = 150}
-d['142M'] = d.aerodactylM
+d["0142M"] = d.aerodactylM
 d.mewtwoMX = {hp = 106, atk = 190, def = 100, spatk = 154, spdef = 100, spe = 130}
-d['150MX'] = d.mewtwoMX
+d["0150MX"] = d.mewtwoMX
 d.mewtwoMY = {hp = 106, atk = 150, def = 70, spatk = 194, spdef = 120, spe = 140}
-d['150MY'] = d.mewtwoMY
+d["0150MY"] = d.mewtwoMY
 d.ampharosM = {hp = 90, atk = 95, def = 105, spatk = 165, spdef = 110, spe = 45}
-d['181M'] = d.ampharosM
+d["0181M"] = d.ampharosM
 d.steelixM = {hp = 75, atk = 125, def = 230, spatk = 55, spdef = 95, spe = 30}
-d['208M'] = d.steelixM
+d["0208M"] = d.steelixM
 d.scizorM = {hp = 70, atk = 150, def = 140, spatk = 65, spdef = 100, spe = 75}
-d['212M'] = d.scizorM
+d["0212M"] = d.scizorM
 d.heracrossM = {hp = 80, atk = 185, def = 115, spatk = 40, spdef = 105, spe = 75}
-d['214M'] = d.heracrossM
+d["0214M"] = d.heracrossM
 d.houndoomM = {hp = 75, atk = 90, def = 90, spatk = 140, spdef = 90, spe = 115}
-d['229M'] = d.houndoomM
+d["0229M"] = d.houndoomM
 d.tyranitarM = {hp = 100, atk = 164, def = 150, spatk = 95, spdef = 120, spe = 71}
-d['248M'] = d.tyranitarM
+d["0248M"] = d.tyranitarM
 d.sceptileM = {hp = 70, atk = 110, def = 75, spatk = 145, spdef = 85, spe = 145}
-d['254M'] = d.sceptileM
+d["0254M"] = d.sceptileM
 d.blazikenM = {hp = 80, atk = 160, def = 80, spatk = 130, spdef = 80, spe = 100}
-d['257M'] = d.blazikenM
+d["0257M"] = d.blazikenM
 d.swampertM = {hp = 100, atk = 150, def = 110, spatk = 95, spdef = 110, spe = 70}
-d['260M'] = d.swampertM
+d["0260M"] = d.swampertM
 d.gardevoirM = {hp = 68, atk = 85, def = 65, spatk = 165, spdef = 135, spe = 100}
-d['282M'] = d.gardevoirM
+d["0282M"] = d.gardevoirM
 d.sableyeM = {hp = 50, atk = 85, def = 125, spatk = 85, spdef = 115, spe = 20}
-d['302M'] = d.sableyeM
+d["0302M"] = d.sableyeM
 d.mawileM = {hp = 50, atk = 105, def = 125, spatk = 55, spdef = 95, spe = 50}
-d['303M'] = d.mawileM
+d["0303M"] = d.mawileM
 d.aggronM = {hp = 70, atk = 140, def = 230, spatk = 60, spdef = 80, spe = 50}
-d['306M'] = d.aggronM
+d["0306M"] = d.aggronM
 d.medichamM = {hp = 60, atk = 100, def = 85, spatk = 80, spdef = 85, spe = 100}
-d['308M'] = d.medichamM
+d["0308M"] = d.medichamM
 d.manectricM = {hp = 70, atk = 75, def = 80, spatk = 135, spdef = 80, spe = 135}
-d['310M'] = d.manectricM
+d["0310M"] = d.manectricM
 d.sharpedoM = {hp = 70, atk = 140, def = 70, spatk = 110, spdef = 65, spe = 105}
-d['319M'] = d.sharpedoM
+d["0319M"] = d.sharpedoM
 d.cameruptM = {hp = 70, atk = 120, def = 100, spatk = 145, spdef = 105, spe = 20}
-d['323M'] = d.cameruptM
+d["0323M"] = d.cameruptM
 d.altariaM = {hp = 75, atk = 110, def = 110, spatk = 110, spdef = 105, spe = 80}
-d['334M'] = d.altariaM
+d["0334M"] = d.altariaM
 d.banetteM = {hp = 64, atk = 165, def = 75, spatk = 93, spdef = 83, spe = 75}
-d['354M'] = d.banetteM
+d["0354M"] = d.banetteM
 d.absolM = {hp = 65, atk = 150, def = 60, spatk = 115, spdef = 60, spe = 115}
-d['359M'] = d.absolM
+d["0359M"] = d.absolM
 d.glalieM = {hp = 80, atk = 120, def = 80, spatk = 120, spdef = 80, spe = 100}
-d['362M'] = d.glalieM
+d["0362M"] = d.glalieM
 d.salamenceM = {hp = 95, atk = 145, def = 130, spatk = 120, spdef = 90, spe = 120}
-d['373M'] = d.salamenceM
+d["0373M"] = d.salamenceM
 d.metagrossM = {hp = 80, atk = 145, def = 150, spatk = 105, spdef = 110, spe = 110}
-d['376M'] = d.metagrossM
+d["0376M"] = d.metagrossM
 d.latiasM = {hp = 80, atk = 100, def = 120, spatk = 140, spdef = 150, spe = 110}
-d['380M'] = d.latiasM
+d["0380M"] = d.latiasM
 d.latiosM = {hp = 80, atk = 130, def = 100, spatk = 160, spdef = 120, spe = 110}
-d['381M'] = d.latiosM
+d["0381M"] = d.latiosM
 d.rayquazaM = {hp = 105, atk = 180, def = 100, spatk = 180, spdef = 100, spe = 115}
-d['384M'] = d.rayquazaM
+d["0384M"] = d.rayquazaM
 d.lopunnyM = {hp = 65, atk = 136, def = 94, spatk = 54, spdef = 96, spe = 135}
-d['428M'] = d.lopunnyM
+d["0428M"] = d.lopunnyM
 d.garchompM = {hp = 108, atk = 170, def = 115, spatk = 120, spdef = 95, spe = 92}
-d['445M'] = d.garchompM
+d["0445M"] = d.garchompM
 d.lucarioM = {hp = 70, atk = 145, def = 88, spatk = 140, spdef = 70, spe = 112}
-d['448M'] = d.lucarioM
+d["0448M"] = d.lucarioM
 d.abomasnowM = {hp = 90, atk = 132, def = 105, spatk = 132, spdef = 105, spe = 30}
-d['460M'] = d.abomasnowM
+d["0460M"] = d.abomasnowM
 d.galladeM = {hp = 68, atk = 165, def = 95, spatk = 65, spdef = 115, spe = 110}
-d['475M'] = d.galladeM
+d["0475M"] = d.galladeM
 d.audinoM = {hp = 103, atk = 60, def = 126, spatk = 80, spdef = 126, spe = 50}
-d['531M'] = d.audinoM
+d["0531M"] = d.audinoM
 d.diancieM = {hp = 50, atk = 160, def = 110, spatk = 160, spdef = 110, spe = 110}
-d['719M'] = d.diancieM
+d["0719M"] = d.diancieM
 d.kyogreA = {hp = 100, atk = 150, def = 90, spatk = 180, spdef = 160, spe = 90}
-d['382A'] = d.kyogreA
+d["0382A"] = d.kyogreA
 d.groudonA = {hp = 100, atk = 180, def = 160, spatk = 150, spdef = 90, spe = 90}
-d['383A'] = d.groudonA
+d["0383A"] = d.groudonA
 
 -- Alolan forms
 d.rattataA = {hp = 30, atk = 56, def = 35, spatk = 25, spdef = 35, spe = 72}
-d['019A'] = d.rattataA
+d["0019A"] = d.rattataA
 d.raticateA = {hp = 75, atk = 71, def = 70, spatk = 40, spdef = 80, spe = 77}
-d['020A'] = d.raticateA
+d["0020A"] = d.raticateA
 d.raichuA = {hp = 60, atk = 85, def = 50, spatk = 95, spdef = 85, spe = 110}
-d['026A'] = d.raichuA
+d["0026A"] = d.raichuA
 d.sandshrewA = {hp = 50, atk = 75, def = 90, spatk = 10, spdef = 35, spe = 40}
-d['027A'] = d.sandshrewA
+d["0027A"] = d.sandshrewA
 d.sandslashA = {hp = 75, atk = 100, def = 120, spatk = 25, spdef = 65, spe = 65}
-d['028A'] = d.sandslashA
+d["0028A"] = d.sandslashA
 d.vulpixA = {hp = 38, atk = 41, def = 40, spatk = 50, spdef = 65, spe = 65}
-d['037A'] = d.vulpixA
+d["0037A"] = d.vulpixA
 d.ninetalesA = {hp = 73, atk = 67, def = 75, spatk = 81, spdef = 100, spe = 109}
-d['038A'] = d.ninetalesA
+d["0038A"] = d.ninetalesA
 d.diglettA = {hp = 10, atk = 55, def = 30, spatk = 35, spdef = 45, spe = 90}
-d['050A'] = d.diglettA
+d["0050A"] = d.diglettA
 d.dugtrioA = {hp = 35, atk = 100, def = 60, spatk = 50, spdef = 70, spe = 110}
-d['051A'] = d.dugtrioA
+d["0051A"] = d.dugtrioA
 d.meowthA = {hp = 40, atk = 35, def = 35, spatk = 50, spdef = 40, spe = 90}
-d['052A'] = d.meowthA
+d["0052A"] = d.meowthA
 d.persianA = {hp = 65, atk = 60, def = 60, spatk = 75, spdef = 65, spe = 115}
-d['053A'] = d.persianA
+d["0053A"] = d.persianA
 d.geodudeA = {hp = 40, atk = 80, def = 100, spatk = 30, spdef = 30, spe = 20}
-d['074A'] = d.geodudeA
+d["0074A"] = d.geodudeA
 d.gravelerA = {hp = 55, atk = 95, def = 115, spatk = 45, spdef = 45, spe = 35}
-d['075A'] = d.gravelerA
+d["0075A"] = d.gravelerA
 d.golemA = {hp = 80, atk = 120, def = 130, spatk = 55, spdef = 65, spe = 45}
-d['076A'] = d.golemA
+d["0076A"] = d.golemA
 d.grimerA = {hp = 80, atk = 80, def = 50, spatk = 40, spdef = 50, spe = 25}
-d['088A'] = d.grimerA
+d["0088A"] = d.grimerA
 d.mukA = {hp = 105, atk = 105, def = 75, spatk = 65, spdef = 100, spe = 50}
-d['089A'] = d.mukA
+d["0089A"] = d.mukA
 d.exeggutorA = {hp = 95, atk = 105, def = 85, spatk = 125, spdef = 75, spe = 45}
-d['103A'] = d.exeggutorA
+d["0103A"] = d.exeggutorA
 d.marowakA = {hp = 60, atk = 80, def = 110, spatk = 50, spdef = 80, spe = 45}
-d['105A'] = d.marowakA
+d["0105A"] = d.marowakA
 
 -- Galarian forms
 d.meowthG = {hp = 50, atk = 65, def = 55, spatk = 40, spdef = 40, spe = 40}
-d['052G'] = d.meowthG
+d["0052G"] = d.meowthG
 d.ponytaG = {hp = 50, atk = 85, def = 55, spatk = 65, spdef = 65, spe = 90}
-d['077G'] = d.ponytaG
+d["0077G"] = d.ponytaG
 d.rapidashG = {hp = 65, atk = 100, def = 70, spatk = 80, spdef = 80, spe = 105}
-d['078G'] = d.rapidashG
+d["0078G"] = d.rapidashG
 d.slowpokeG = {hp = 90, atk = 65, def = 65, spatk = 40, spdef = 40, spe = 15}
-d['079G'] = d.slowpokeG
+d["0079G"] = d.slowpokeG
 d.slowbroG = {hp = 95, atk = 100, def = 95, spatk = 100, spdef = 70, spe = 30}
-d['080G'] = d.slowbroG
+d["0080G"] = d.slowbroG
 d["farfetch'dG"] = {hp = 52, atk = 95, def = 55, spatk = 58, spdef = 62, spe = 55}
-d['083G'] = d["farfetch'dG"]
+d["0083G"] = d["farfetch'dG"]
 d.weezingG = {hp = 65, atk = 90, def = 120, spatk = 85, spdef = 70, spe = 60}
-d['110G'] = d.weezingG
+d["0110G"] = d.weezingG
 d["mr. mimeG"] = {hp = 50, atk = 65, def = 65, spatk = 90, spdef = 90, spe = 100}
-d['122G'] = d['mr. mimeG']
+d["0122G"] = d['mr. mimeG']
 d.corsolaG = {hp = 60, atk = 55, def = 100, spatk = 65, spdef = 100, spe = 30}
-d['222G'] = d.corsolaG
+d["0222G"] = d.corsolaG
 d.slowkingG = {hp = 95, atk = 65, def = 80, spatk = 110, spdef = 110, spe = 30}
-d['199G'] = d.slowkingG
+d["0199G"] = d.slowkingG
 d.zigzagoonG = {hp = 38, atk = 30, def = 41, spatk = 30, spdef = 41, spe = 60}
-d['263G'] = d.zigzagoonG
+d["0263G"] = d.zigzagoonG
 d.linooneG = {hp = 78, atk = 70, def = 61, spatk = 50, spdef = 61, spe = 100}
-d['264G'] = d.linooneG
+d["0264G"] = d.linooneG
 d.darumakaG = {hp = 70, atk = 90, def = 45, spatk = 15, spdef = 45, spe = 50}
-d['554G'] = d.darumakaG
+d["0554G"] = d.darumakaG
 d.darmanitanG = {hp = 105, atk = 140, def = 55, spatk = 30, spdef = 55, spe = 95}
-d['555G'] = d.darmanitanG
+d["0555G"] = d.darmanitanG
 d.darmanitanGZ = {hp = 105, atk = 160, def = 55, spatk = 30, spdef = 55, spe = 135}
-d['555GZ'] = d.darmanitanGZ
+d["0555GZ"] = d.darmanitanGZ
 d.yamaskG = {hp = 38, atk = 55, def = 85, spatk = 30, spdef = 65, spe = 30}
-d['562G'] = d.yamaskG
+d["0562G"] = d.yamaskG
 d.stunfiskG = {hp = 109, atk = 81, def = 99, spatk = 66, spdef = 84, spe = 32}
-d['618G'] = d.stunfiskG
+d["0618G"] = d.stunfiskG
 
 -- Hisuian forms
 d.growlitheH = {hp = 60, atk = 75, def = 45, spatk = 65, spdef = 50, spe = 55}
-d['058H'] = d.growlitheH
+d["0058H"] = d.growlitheH
 d.arcanineH = {hp = 95, atk = 115, def = 80, spatk = 95, spdef = 80, spe = 90}
-d['059H'] = d.arcanineH
+d["0059H"] = d.arcanineH
 d.voltorbH = {hp = 40, atk = 30, def = 50, spatk = 55, spdef = 55, spe = 100}
-d['100H'] = d.voltorbH
+d["0100H"] = d.voltorbH
 d.electrodeH = {hp = 60, atk = 50, def = 70, spatk = 80, spdef = 80, spe = 150}
-d['101H'] = d.electrodeH
+d["0101H"] = d.electrodeH
 d.typhlosionH = {hp = 73, atk = 84, def = 78, spatk = 119, spdef = 85, spe = 95}
-d['157H'] = d.typhlosionH
+d["0157H"] = d.typhlosionH
 d.qwilfishH = {hp = 65, atk = 95, def = 85, spatk = 55, spdef = 55, spe = 85}
-d['211H'] = d.qwilfishH
+d["0211H"] = d.qwilfishH
 d.sneaselH = {hp = 55, atk = 95, def = 55, spatk = 35, spdef = 75, spe = 115}
-d['215H'] = d.sneaselH
+d["0215H"] = d.sneaselH
 d.samurottH = {hp = 90, atk = 108, def = 80, spatk = 100, spdef = 65, spe = 85}
-d['503H'] = d.samurottH
+d["0503H"] = d.samurottH
 d.lilligantH = {hp = 70, atk = 105, def = 75, spatk = 50, spdef = 75, spe = 105}
-d['549H'] = d.lilligantH
+d["0549H"] = d.lilligantH
 d.zoruaH = {hp = 35, atk = 60, def = 40, spatk = 85, spdef = 40, spe = 70}
-d['570H'] = d.zoruaH
+d["0570H"] = d.zoruaH
 d.zoroarkH = {hp = {[8] = 55, [9] = 60}, atk = {[8] = 100, [9] = 105}, def = 60, spatk = {[8] = 125, [9] = 120}, spdef = 60, spe = {[8] = 110, [9] = 105}}
-d['571H'] = d.zoroarkH
+d["0571H"] = d.zoroarkH
 d.braviaryH = {hp = 110, atk = 83, def = 70, spatk = 112, spdef = 70, spe = 65}
-d['628H'] = d.braviaryH
+d["0628H"] = d.braviaryH
 d.sliggooH = {hp = 58, atk = 75, def = 83, spatk = 83, spdef = 113, spe = 40}
-d['705H'] = d.sliggooH
+d["0705H"] = d.sliggooH
 d.goodraH = {hp = 80, atk = 100, def = 100, spatk = 110, spdef = 150, spe = 60}
-d['706H'] = d.goodraH
+d["0706H"] = d.goodraH
 d.avaluggH = {hp = 95, atk = 127, def = 184, spatk = 34, spdef = 36, spe = 38}
-d['713H'] = d.avaluggH
+d["0713H"] = d.avaluggH
 d.decidueyeH = {hp = 88, atk = 112, def = 80, spatk = 95, spdef = 95, spe = 60}
-d['724H'] = d.decidueyeH
+d["0724H"] = d.decidueyeH
 
 -- Paldean forms
 d.taurosC = {hp = 75, atk = 110, def = 105, spatk = 30, spdef = 70, spe = 100}
-d["128C"] = d.taurosC
-d.taurosI, d["128I"] = d.taurosC, d.taurosC
-d.taurosA, d["128A"] = d.taurosC, d.taurosC
-d.wooperP, d["194P"] = d.wooper, d.wooper
+d["0128C"] = d.taurosC
+d.taurosI, d["0128I"] = d.taurosC, d.taurosC
+d.taurosA, d["0128A"] = d.taurosC, d.taurosC
+d.wooperP, d["0194P"] = d.wooper, d.wooper
 
 -- stylua: ignore end
 
 -- Other non-useless alternative forms aliases
-d["025Cs"], d["025R"], d["025D"] = d.pikachu, d.pikachu, d.pikachu
-d["025Cn"], d["025S"], d["025W"] = d.pikachu, d.pikachu, d.pikachu
+d["0025Cs"], d["0025R"], d["0025D"] = d.pikachu, d.pikachu, d.pikachu
+d["0025Cn"], d["0025S"], d["0025W"] = d.pikachu, d.pikachu, d.pikachu
 d.pikachuCs, d.pikachuR, d.pikachuD = d.pikachu, d.pikachu, d.pikachu
 d.pikachuCn, d.pikachuS, d.pikachuW = d.pikachu, d.pikachu, d.pikachu
-d["351S"], d["351P"], d["351N"] = d.castform, d.castform, d.castform
+d["0351S"], d["0351P"], d["0351N"] = d.castform, d.castform, d.castform
 d.castformS, d.castformP, d.castformN = d.castform, d.castform, d.castform
-d["493L"], d["493Vo"], d["493Ve"] = d.arceus, d.arceus, d.arceus
+d["0493L"], d["0493Vo"], d["0493Ve"] = d.arceus, d.arceus, d.arceus
 d.arceusL, d.arceusVo, d.arceusVe = d.arceus, d.arceus, d.arceus
-d["493T"], d["493R"], d["493C"] = d.arceus, d.arceus, d.arceus
+d["0493T"], d["0493R"], d["0493C"] = d.arceus, d.arceus, d.arceus
 d.arceusT, d.arceusR, d.arceusC = d.arceus, d.arceus, d.arceus
-d["493S"], d["493Ai"], d["493Fu"] = d.arceus, d.arceus, d.arceus
+d["0493S"], d["0493Ai"], d["0493Fu"] = d.arceus, d.arceus, d.arceus
 d.arceusS, d.arceusAi, d.arceusFu = d.arceus, d.arceus, d.arceus
-d["493Aq"], d["493Er"], d["493El"] = d.arceus, d.arceus, d.arceus
+d["0493Aq"], d["0493Er"], d["0493El"] = d.arceus, d.arceus, d.arceus
 d.arceusAq, d.arceusEr, d.arceusEl = d.arceus, d.arceus, d.arceus
-d["493P"], d["493G"], d["493D"] = d.arceus, d.arceus, d.arceus
+d["0493P"], d["0493G"], d["0493D"] = d.arceus, d.arceus, d.arceus
 d.arceusP, d.arceusG, d.arceusD = d.arceus, d.arceus, d.arceus
-d["493B"], d["493Fo"], d["493Sc"] = d.arceus, d.arceus, d.arceus
+d["0493B"], d["0493Fo"], d["0493Sc"] = d.arceus, d.arceus, d.arceus
 d.arceusB, d.arceusFo, d.arceusSc = d.arceus, d.arceus, d.arceus
-d["550B"], d.basculinB = d.basculin, d.basculin
-d["678F"], d.meowsticF = d.meowstic, d.meowstic
-d["741C"], d["741H"], d["741B"] = d.oricorio, d.oricorio, d.oricorio
+d["0550B"], d.basculinB = d.basculin, d.basculin
+d["0678F"], d.meowsticF = d.meowstic, d.meowstic
+d["0741C"], d["0741H"], d["0741B"] = d.oricorio, d.oricorio, d.oricorio
 d.oricorioC, d.oricorioH, d.oricorioB = d.oricorio, d.oricorio, d.oricorio
-d["773L"], d["773Vo"], d["773Ve"] = d.silvally, d.silvally, d.silvally
+d["0773L"], d["0773Vo"], d["0773Ve"] = d.silvally, d.silvally, d.silvally
 d.silvallyL, d.silvallyVo, d.silvallyVe = d.silvally, d.silvally, d.silvally
-d["773T"], d["773R"], d["773C"] = d.silvally, d.silvally, d.silvally
+d["0773T"], d["0773R"], d["0773C"] = d.silvally, d.silvally, d.silvally
 d.silvallyT, d.silvallyR, d.silvallyC = d.silvally, d.silvally, d.silvally
-d["773S"], d["773Ai"], d["773Fu"] = d.silvally, d.silvally, d.silvally
+d["0773S"], d["0773Ai"], d["0773Fu"] = d.silvally, d.silvally, d.silvally
 d.silvallyS, d.silvallyAi, d.silvallyFu = d.silvally, d.silvally, d.silvally
-d["773Aq"], d["773Er"], d["773El"] = d.silvally, d.silvally, d.silvally
+d["0773Aq"], d["0773Er"], d["0773El"] = d.silvally, d.silvally, d.silvally
 d.silvallyAq, d.silvallyEr, d.silvallyEl = d.silvally, d.silvally, d.silvally
-d["773P"], d["773G"], d["773D"] = d.silvally, d.silvally, d.silvally
+d["0773P"], d["0773G"], d["0773D"] = d.silvally, d.silvally, d.silvally
 d.silvallyP, d.silvallyG, d.silvallyD = d.silvally, d.silvally, d.silvally
-d["773B"], d["773Fo"] = d.silvally, d.silvally
+d["0773B"], d["0773Fo"] = d.silvally, d.silvally
 d.silvallyB, d.silvallyFo = d.silvally, d.silvally
 d.toxtricityB = d.toxtricity
-d["849B"] = d.toxtricityB
+d["0849B"] = d.toxtricityB
 d.morpekoV = d.morpeko
-d["877V"] = d.morpekoV
-d.urshifuP, d["892P"] = d.urshifu, d.urshifu
+d["0877V"] = d.morpekoV
+d.urshifuP, d["0892P"] = d.urshifu, d.urshifu
 d.squawkabillyA, d.squawkabillyG, d.squawkabillyB =
     d.squawkabilly, d.squawkabilly, d.squawkabilly
-d["931A"], d["931G"], d["931B"] = d.squawkabilly, d.squawkabilly, d.squawkabilly
+d["0931A"], d["0931G"], d["0931B"] =
+    d.squawkabilly, d.squawkabilly, d.squawkabilly
 
 -- Gigamax
-d.venusaurGi, d["003Gi"] = d.venusaur, d.venusaur
-d.charizardGi, d["006Gi"] = d.charizard, d.charizard
-d.blastoiseGi, d["009Gi"] = d.blastoise, d.blastoise
-d.butterfreeGi, d["012Gi"] = d.butterfree, d.butterfree
-d.pikachuGi, d["025Gi"] = d.pikachu, d.pikachu
-d.meowthGi, d["052Gi"] = d.meowth, d.meowth
-d.machampGi, d["068Gi"] = d.machamp, d.machamp
-d.gengarGi, d["094Gi"] = d.gengar, d.gengar
-d.kinglerGi, d["099Gi"] = d.kingler, d.kingler
-d.laprasGi, d["131Gi"] = d.lapras, d.lapras
-d.eeveeGi, d["133Gi"] = d.eevee, d.eevee
-d.snorlaxGi, d["143Gi"] = d.snorlax, d.snorlax
-d.garbodorGi, d["569Gi"] = d.garbodor, d.garbodor
-d.melmetalGi, d["809Gi"] = d.melmetal, d.melmetal
-d.rillaboomGi, d["812Gi"] = d.rillaboom, d.rillaboom
-d.cinderaceGi, d["815Gi"] = d.cinderace, d.cinderace
-d.inteleonGi, d["818Gi"] = d.inteleon, d.inteleon
-d.corviknightGi, d["823Gi"] = d.corviknight, d.corviknight
-d.orbeetleGi, d["826Gi"] = d.orbeetle, d.orbeetle
-d.drednawGi, d["834Gi"] = d.drednaw, d.drednaw
-d.coalossalGi, d["839Gi"] = d.coalossal, d.coalossal
-d.flappleGi, d["841Gi"] = d.flapple, d.flapple
-d.appletunGi, d["842Gi"] = d.appletun, d.appletun
-d.sandacondaGi, d["844Gi"] = d.sandaconda, d.sandaconda
-d.toxtricityGi, d["849Gi"] = d.toxtricity, d.toxtricity
-d.toxtricityBGi, d["849BGi"] = d.toxtricity, d.toxtricity
-d.centiskorchGi, d["851Gi"] = d.centiskorch, d.centiskorch
-d.hattereneGi, d["858Gi"] = d.hatterene, d.hatterene
-d.grimmsnarlGi, d["861Gi"] = d.grimmsnarl, d.grimmsnarl
-d.alcremieGi, d["869Gi"] = d.alcremie, d.alcremie
-d.copperajahGi, d["879Gi"] = d.copperajah, d.copperajah
-d.duraludonGi, d["884Gi"] = d.duraludon, d.duraludon
-d.urshifuGi, d["892Gi"] = d.urshifu, d.urshifu
-d.urshifuPGi, d["892PGi"] = d.urshifuP, d.urshifuP
+d.venusaurGi, d["0003Gi"] = d.venusaur, d.venusaur
+d.charizardGi, d["0006Gi"] = d.charizard, d.charizard
+d.blastoiseGi, d["0009Gi"] = d.blastoise, d.blastoise
+d.butterfreeGi, d["0012Gi"] = d.butterfree, d.butterfree
+d.pikachuGi, d["0025Gi"] = d.pikachu, d.pikachu
+d.meowthGi, d["0052Gi"] = d.meowth, d.meowth
+d.machampGi, d["0068Gi"] = d.machamp, d.machamp
+d.gengarGi, d["0094Gi"] = d.gengar, d.gengar
+d.kinglerGi, d["0099Gi"] = d.kingler, d.kingler
+d.laprasGi, d["0131Gi"] = d.lapras, d.lapras
+d.eeveeGi, d["0133Gi"] = d.eevee, d.eevee
+d.snorlaxGi, d["0143Gi"] = d.snorlax, d.snorlax
+d.garbodorGi, d["0569Gi"] = d.garbodor, d.garbodor
+d.melmetalGi, d["0809Gi"] = d.melmetal, d.melmetal
+d.rillaboomGi, d["0812Gi"] = d.rillaboom, d.rillaboom
+d.cinderaceGi, d["0815Gi"] = d.cinderace, d.cinderace
+d.inteleonGi, d["0818Gi"] = d.inteleon, d.inteleon
+d.corviknightGi, d["0823Gi"] = d.corviknight, d.corviknight
+d.orbeetleGi, d["0826Gi"] = d.orbeetle, d.orbeetle
+d.drednawGi, d["0834Gi"] = d.drednaw, d.drednaw
+d.coalossalGi, d["0839Gi"] = d.coalossal, d.coalossal
+d.flappleGi, d["0841Gi"] = d.flapple, d.flapple
+d.appletunGi, d["0842Gi"] = d.appletun, d.appletun
+d.sandacondaGi, d["0844Gi"] = d.sandaconda, d.sandaconda
+d.toxtricityGi, d["0849Gi"] = d.toxtricity, d.toxtricity
+d.toxtricityBGi, d["0849BGi"] = d.toxtricity, d.toxtricity
+d.centiskorchGi, d["0851Gi"] = d.centiskorch, d.centiskorch
+d.hattereneGi, d["0858Gi"] = d.hatterene, d.hatterene
+d.grimmsnarlGi, d["0861Gi"] = d.grimmsnarl, d.grimmsnarl
+d.alcremieGi, d["0869Gi"] = d.alcremie, d.alcremie
+d.copperajahGi, d["0879Gi"] = d.copperajah, d.copperajah
+d.duraludonGi, d["0884Gi"] = d.duraludon, d.duraludon
+d.urshifuGi, d["0892Gi"] = d.urshifu, d.urshifu
+d.urshifuPGi, d["0892PGi"] = d.urshifuP, d.urshifuP
 
 return d

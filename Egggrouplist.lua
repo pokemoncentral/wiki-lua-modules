@@ -143,9 +143,9 @@ g.Entry.__tostring = function(this)
 | class="min-width-xs-60" style="padding: 0 0.5em;" | [[${name}]]${form}
 | class="min-width-xl-${typesWidth} width-xs-100" style="padding: 1ex 0.8ex; height: 100%;" | ${types}${groups}]=],
         {
-            ndex = this.ndex and txt.tf(this.ndex) or "???",
+            ndex = this.ndex and txt.ff(this.ndex) or "???",
             static = ms.staticLua({
-                txt.tf(this.ndex or 0)
+                txt.ff(this.ndex or 0)
                     .. (this.formAbbr == "base" and "" or this.formAbbr or ""),
             }),
             name = this.name,

@@ -316,7 +316,7 @@ lib.msarrayToModal = function(array, gen, textDisplay, linelength)
         table.insert(
             res,
             ms.staticLua({
-                ndex = type(ndex) == "number" and txt.tf(ndex) or ndex,
+                ndex = type(ndex) == "number" and txt.ff(ndex) or ndex,
                 gen = gen,
             })
         )
@@ -732,7 +732,7 @@ Arguments:
 lib.computeSTAB = function(ndex, movename, form, gen)
     local name, abbr = forms.getnameabbr(tostring(ndex), form)
     local iname = forms.toEmptyAbbr(abbr) == "" and name
-        or (type(name) == "number" and txt.tf(name) or name)
+        or (type(name) == "number" and txt.ff(name) or name)
             .. forms.toEmptyAbbr(abbr)
     -- The or pokes[name] is needed for useless forms, not indexed in Poké-data
     local pokedata = multigen.getGen(pokes[iname] or pokes[name], gen)

@@ -96,7 +96,7 @@ n.Entry.__tostring = function(this)
     return txt.interp(n.Entry.strings.ENTRY, {
         ndex = gen.ndexToString(this.ndex),
         ms = ms.staticLua({
-            txt.tf(this.ndex or 0) .. form.toEmptyAbbr(this.formAbbr or ""),
+            txt.ff(this.ndex or 0) .. form.toEmptyAbbr(this.formAbbr or ""),
         }),
         name = this.name,
         form = formtag,
@@ -153,7 +153,7 @@ n.manualEntry = function(frame)
         ndexs = "???"
         msidx = ndexs
     else
-        ndexs = txt.tf(ndex)
+        ndexs = txt.ff(ndex)
         msidx = ndexs .. abbr
     end
 

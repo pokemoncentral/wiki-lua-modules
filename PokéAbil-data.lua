@@ -2031,392 +2031,392 @@ t[1010] = t.fogliaferrea
 -- Il nome è composto dal nome del Pokémon, seguito dalla sigla della forma alternativa
 
 t.rattataA = {ability1 = 'Voracità', ability2 = 'Tuttafretta', abilityd = 'Grassospesso'}
-t['019A'] = t.rattataA
+t["0019A"] = t.rattataA
 t.raticateA = {ability1 = 'Voracità', ability2 = 'Tuttafretta', abilityd = 'Grassospesso'}
-t['020A'] = t.raticateA
+t["0020A"] = t.raticateA
 t.pikachuCs = {ability1 = 'Parafulmine'}
-t['025Cs'] = t.pikachuCs
+t["0025Cs"] = t.pikachuCs
 t.pikachuCm = {ability1 = 'Nessuna'}
-t['025Cm'] = t.pikachuCm
+t["0025Cm"] = t.pikachuCm
 t.raichuA = {ability1 = 'Codasurf'}
-t['026A'] = t.raichuA
+t["0026A"] = t.raichuA
 t.sandshrewA = {ability1 = 'Mantelneve', abilityd = 'Spalaneve'}
-t['027A'] = t.sandshrewA
+t["0027A"] = t.sandshrewA
 t.sandslashA = {ability1 = 'Mantelneve', abilityd = 'Spalaneve'}
-t['028A'] = t.sandslashA
+t["0028A"] = t.sandslashA
 t.vulpixA = {ability1 = 'Mantelneve', abilityd = 'Scendineve'}
-t['037A'] = t.vulpixA
+t["0037A"] = t.vulpixA
 t.ninetalesA = {ability1 = 'Mantelneve', abilityd = 'Scendineve'}
-t['038A'] = t.ninetalesA
+t["0038A"] = t.ninetalesA
 t.diglettA = {ability1 = 'Sabbiavelo', ability2 = 'Boccolidoro', abilityd = 'Silicoforza'}
-t['050A'] = t.diglettA
+t["0050A"] = t.diglettA
 t.dugtrioA = {ability1 = 'Sabbiavelo', ability2 = 'Boccolidoro', abilityd = 'Silicoforza'}
-t['051A'] = t.dugtrioA
+t["0051A"] = t.dugtrioA
 t.meowthA = {ability1 = 'Raccolta', ability2 = 'Tecnico', abilityd = 'Paura'}
-t['052A'] = t.meowthA
+t["0052A"] = t.meowthA
 t.meowthG = {ability1 = 'Raccolta', ability2 = 'Unghiedure', abilityd = 'Agitazione'}
-t['052G'] = t.meowthG
+t["0052G"] = t.meowthG
 t.persianA = {ability1 = 'Foltopelo', ability2 = 'Tecnico', abilityd = 'Paura'}
-t['053A'] = t.persianA
+t["0053A"] = t.persianA
 t.growlitheH = {ability1 = 'Prepotenza', ability2 = 'Fuocardore', abilityd = 'Testadura'}
-t['058H'] = t.growlitheH
+t["0058H"] = t.growlitheH
 t.arcanineH = {ability1 = 'Prepotenza', ability2 = 'Fuocardore', abilityd = 'Testadura'}
-t['059H'] = t.arcanineH
+t["0059H"] = t.arcanineH
 t.geodudeA = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Pellelettro'}
-t['074A'] = t.geodudeA
+t["0074A"] = t.geodudeA
 t.gravelerA = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Pellelettro'}
-t['075A'] = t.gravelerA
+t["0075A"] = t.gravelerA
 t.golemA = {ability1 = 'Magnetismo', ability2 = 'Vigore', abilityd = 'Pellelettro'}
-t['076A'] = t.golemA
+t["0076A"] = t.golemA
 t.ponytaG = {ability1 = 'Fugafacile', ability2 = 'Pastelvelo', abilityd = 'Presagio'}
-t['077G'] = t.ponytaG
+t["0077G"] = t.ponytaG
 t.rapidashG = {ability1 = 'Fugafacile', ability2 = 'Pastelvelo', abilityd = 'Presagio'}
-t['078G'] = t.rapidashG
+t["0078G"] = t.rapidashG
 t.slowpokeG = {ability1 = 'Voracità', ability2 = 'Mente Locale', abilityd = 'Rigenergia'}
-t['079G'] = t.slowpokeG
+t["0079G"] = t.slowpokeG
 t.slowbroG = {ability1 = 'Colpolesto', ability2 = 'Mente Locale', abilityd = 'Rigenergia'}
-t['080G'] = t.slowbroG
+t["0080G"] = t.slowbroG
 t["farfetch'dG"] = {ability1 = 'Cuordeciso', abilityd = 'Nervisaldi'}
-t['083G'] = t["farfetch'dG"]
+t["0083G"] = t["farfetch'dG"]
 t.grimerA = {ability1 = 'Velentocco', ability2 = 'Voracità', abilityd = 'Forza Chimica'}
-t['088A'] = t.grimerA
+t["0088A"] = t.grimerA
 t.mukA = {ability1 = 'Velentocco', ability2 = 'Voracità', abilityd = 'Forza Chimica'}
-t['089A'] = t.mukA
+t["0089A"] = t.mukA
 t.voltorbH = {ability1 = 'Antisuono', ability2 = 'Statico', abilityd = 'Scoppio'}
-t['100H'] = t.voltorbH
+t["0100H"] = t.voltorbH
 t.electrodeH = {ability1 = 'Antisuono', ability2 = 'Statico', abilityd = 'Scoppio'}
-t['101H'] = t.electrodeH
+t["0101H"] = t.electrodeH
 t.exeggutorA = {ability1 = 'Indagine', abilityd = 'Coglibacche'}
-t['103A'] = t.exeggutorA
+t["0103A"] = t.exeggutorA
 t.marowakA = {ability1 = 'Corpofunesto', ability2 = 'Parafulmine', abilityd = 'Testadura'}
-t['105A'] = t.marowakA
+t["0105A"] = t.marowakA
 t.weezingG = {ability1 = 'Levitazione', ability2 = 'Gas Reagente', abilityd = 'Nebbiogenesi'}
-t['110G'] = t.weezingG
+t["0110G"] = t.weezingG
 t['mr. mimeG'] = {ability1 = 'Spiritovivo', ability2 = 'Annullabarriere', abilityd = 'Corpogelo'}
-t['122G'] = t['mr. mimeG']
+t["0122G"] = t['mr. mimeG']
 t.taurosC = {ability1 = 'Prepotenza', ability2 = 'Grancollera', abilityd = 'Ruminante'}
-t['128C'] = t.taurosC
+t["0128C"] = t.taurosC
 t.taurosI, t.taurosA = t.taurosC, t.taurosC
-t['128I'] = t.taurosI
-t['128A'] = t.taurosA
+t["0128I"] = t.taurosI
+t["0128A"] = t.taurosA
 t.eeveeCm = {ability1 = 'Nessuna'}
-t['133Cm'] = t.eeveeCm
+t["0133Cm"] = t.eeveeCm
 t.articunoG = {ability1 = 'Tenacia'}
-t['144G'] = t.articunoG
+t["0144G"] = t.articunoG
 t.zapdosG = {ability1 = 'Agonismo'}
-t['145G'] = t.zapdosG
+t["0145G"] = t.zapdosG
 t.moltresG = {ability1 = 'Furore'}
-t['146G'] = t.moltresG
+t["0146G"] = t.moltresG
 t.typhlosionH = {ability1 = 'Aiutofuoco', abilityd = 'Indagine'}
-t['157H'] = t.typhlosionH
+t["0157H"] = t.typhlosionH
 t.wooperP = {ability1 = 'Velenopunte', ability2 = 'Assorbacqua', abilityd = 'Imprudenza'}
-t['194P'] = t.wooperP
+t["0194P"] = t.wooperP
 t.slowkingG = {ability1 = 'Stranofarmaco', ability2 = 'Mente Locale', abilityd = 'Rigenergia'}
-t['199G'] = t.slowkingG
+t["0199G"] = t.slowkingG
 t.qwilfishH = {ability1 = 'Velenopunte', ability2 = 'Nuotovelox', abilityd = 'Prepotenza'}
-t['211H'] = t.qwilfishH
+t["0211H"] = t.qwilfishH
 t.sneaselH = {ability1 = 'Forza Interiore', ability2 = 'Sguardofermo', abilityd = 'Arraffalesto'}
-t['215H'] = t.sneaselH
+t["0215H"] = t.sneaselH
 t.corsolaG = {ability1 = 'Sottilguscio', abilityd = 'Corpofunesto'}
-t['222G'] = t.corsolaG
+t["0222G"] = t.corsolaG
 t.zigzagoonG = {ability1 = 'Raccolta', ability2 = 'Voracità', abilityd = 'Piedisvelti'}
-t['263G'] = t.zigzagoonG
+t["0263G"] = t.zigzagoonG
 t.linooneG = {ability1 = 'Raccolta', ability2 = 'Voracità', abilityd = 'Piedisvelti'}
-t['264G'] = t.linooneG
+t["0264G"] = t.linooneG
 t.giratinaO = {ability1 = 'Levitazione'}
-t['487O'] = t.giratinaO
+t["0487O"] = t.giratinaO
 t.shayminC = {ability1 = 'Leggiadro'}
-t['492C'] = t.shayminC
+t["0492C"] = t.shayminC
 t.samurottH = {ability1 = 'Acquaiuto', abilityd = 'Affilama'}
-t['503H'] = t.samurottH
+t["0503H"] = t.samurottH
 t.lilligantH = {ability1 = 'Clorofilla', ability2 = 'Tuttafretta', abilityd = 'Fogliamanto'}
-t['549H'] = t.lilligantH
+t["0549H"] = t.lilligantH
 t.basculinB = {ability1 = 'Testadura', ability2 = 'Adattabilità', abilityd = 'Rompiforma'}
-t['550B'] = t.basculinB
+t["0550B"] = t.basculinB
 t.basculinBi = {ability1 = 'Paura', ability2 = 'Adattabilità', abilityd = 'Rompiforma'}
-t['550Bi'] = t.basculinBi
+t["0550Bi"] = t.basculinBi
 t.darmanitanZ = {ability1 = 'Stato Zen'}
-t['555Z'] = t.darmanitanZ
+t["0555Z"] = t.darmanitanZ
 t.darmanitanG = {ability1 = 'Vigorilla', abilityd = 'Stato Zen'}
-t['555G'] = t.darmanitanG
+t["0555G"] = t.darmanitanG
 t.darmanitanGZ = {ability1 = 'Stato Zen'}
-t['555GZ'] = t.darmanitanGZ
+t["0555GZ"] = t.darmanitanGZ
 t.yamaskG = {ability1 = 'Anima Errante'}
-t['562G'] = t.yamaskG
+t["0562G"] = t.yamaskG
 t.zoruaH = {ability1 = 'Illusione'}
-t['570H'] = t.zoruaH
+t["0570H"] = t.zoruaH
 t.zoroarkH = {ability1 = 'Illusione'}
-t['571H'] = t.zoroarkH
+t["0571H"] = t.zoroarkH
 t.stunfiskG = {ability1 = 'Mimetismo'}
-t['618G'] = t.stunfiskG
+t["0618G"] = t.stunfiskG
 t.braviaryH = {ability1 = 'Sguardofermo', ability2 = 'Forzabruta', abilityd = 'Lentifumé'}
-t['628H'] = t.braviaryH
+t["0628H"] = t.braviaryH
 t.tornadusT = {ability1 = 'Rigenergia'}
-t['641T'] = t.tornadusT
+t["0641T"] = t.tornadusT
 t.thundurusT = {ability1 = 'Assorbivolt'}
-t['642T'] = t.thundurusT
+t["0642T"] = t.thundurusT
 t.landorusT = {ability1 = 'Prepotenza'}
-t['645T'] = t.landorusT
+t["0645T"] = t.landorusT
 t.kyuremN = {ability1 = 'Teravolt'}
-t['646N'] = t.kyuremN
+t["0646N"] = t.kyuremN
 t.kyuremB = {ability1 = 'Piroturbina'}
-t['646B'] = t.kyuremB
+t["0646B"] = t.kyuremB
 t.greninjaA = {ability1 = 'Morfosintonia'}
-t['658A'] = t.greninjaA
+t["0658A"] = t.greninjaA
 t.meowsticF = {ability1 = 'Sguardofermo', ability2 = 'Intrapasso', abilityd = 'Tenacia'}
-t['678F'] = t.meowsticF
+t["0678F"] = t.meowsticF
 t.sliggooH = {ability1 = 'Mangiaerba', ability2 = 'Guscioscudo', abilityd = 'Viscosità'}
-t['705H'] = t.sliggooH
+t["0705H"] = t.sliggooH
 t.goodraH = {ability1 = 'Mangiaerba', ability2 = 'Guscioscudo', abilityd = 'Viscosità'}
-t['706H'] = t.goodraH
+t["0706H"] = t.goodraH
 t.avaluggH = {ability1 = 'Ferromascella', ability2 = 'Corpogelo', abilityd = 'Vigore'}
-t['713H'] = t.avaluggH
+t["0713H"] = t.avaluggH
 t.zygardeP = {ability1 = 'Sciamefusione'}
-t['718P'] = t.zygardeP
+t["0718P"] = t.zygardeP
 t.decidueyeH = {ability1 = 'Erbaiuto', abilityd = 'Nervisaldi'}
-t['724H'] = t.decidueyeH
+t["0724H"] = t.decidueyeH
 t.lycanrocN = {ability1 = 'Sguardofermo', ability2 = 'Spiritovivo', abilityd = 'Nullodifesa'}
-t['745N'] = t.lycanrocN
+t["0745N"] = t.lycanrocN
 t.lycanrocC = {ability1 = 'Unghiedure'}
-t['745C'] = t.lycanrocC
+t["0745C"] = t.lycanrocC
 t.necrozmaU = {ability1 = 'Cerebroforza'}
-t['800U'] = t.necrozmaU
+t["0800U"] = t.necrozmaU
 t.toxtricityB = {ability1 = 'Punk Rock', ability2 = 'Meno', abilityd = 'Tecnico'}
-t['849B'] = t.toxtricityB
+t["0849B"] = t.toxtricityB
 t.indeedeeF = {ability1 = 'Mente Locale', ability2 = 'Sincronismo', abilityd = 'Psicogenesi'}
-t['876F'] = t.indeedeeF
+t["0876F"] = t.indeedeeF
 t.calyrexG = {ability1 = 'Sintonia Equina'}
-t['898G'] = t.calyrexG
+t["0898G"] = t.calyrexG
 t.calyrexS = {ability1 = 'Sintonia Equina'}
-t['898S'] = t.calyrexS
+t["0898S"] = t.calyrexS
 t.enamorusT = {ability1 = 'Copricapo'}
-t['905T'] = t.enamorusT
+t["0905T"] = t.enamorusT
 t.oinkologneF = {ability1 = 'Aromavelo', ability2 = 'Voracità', abilityd = 'Grassospesso'}
-t["916F"] = t.oinkologneF
+t["0916F"] = t.oinkologneF
 t.squawkabillyA, t.squawkabillyG, t.squawkabillyB = t.squawkabilly, t.squawkabilly, t.squawkabilly
 t.squawkabillyA = t.squawkabilly
 t.squawkabillyG = {ability1 = 'Prepotenza', ability2 = 'Tuttafretta', abilityd = 'Forzabruta'}
 t.squawkabillyB = t.squawkabillyG
-t["931A"], t["931G"], t["931B"] = t.squawkabillyA, t.squawkabillyG, t.squawkabillyB
+t["0931A"], t["0931G"], t["0931B"] = t.squawkabillyA, t.squawkabillyG, t.squawkabillyB
 t.gimmighoulA = {ability1 = 'Fugafacile'}
-t["999A"] = t.gimmighoulA
+t["0999A"] = t.gimmighoulA
 
 -- stylua: ignore end
 
 -- Alias per le altre forme alternative rilevanti
 
-t.pikachuR, t["025R"], t.pikachuD, t["025D"], t.pikachuCn, t["025Cn"] =
+t.pikachuR, t["0025R"], t.pikachuD, t["0025D"], t.pikachuCn, t["0025Cn"] =
     t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs
-t.pikachuS, t["025S"], t.pikachuW, t["025W"] =
+t.pikachuS, t["0025S"], t.pikachuW, t["0025W"] =
     t.pikachuCs, t.pikachuCs, t.pikachuCs, t.pikachuCs
 t.castformS, t.castformP, t.castformN = t.castform, t.castform, t.castform
-t["351S"], t["351P"], t["351N"] = t.castform, t.castform, t.castform
+t["0351S"], t["0351P"], t["0351N"] = t.castform, t.castform, t.castform
 t.deoxysA, t.deoxysD, t.deoxysV = t.deoxys, t.deoxys, t.deoxys
-t["386A"], t["386D"], t["386V"] = t.deoxys, t.deoxys, t.deoxys
-t["413Sc"], t["413Sa"] = t.wormadam, t.wormadam
+t["0386A"], t["0386D"], t["0386V"] = t.deoxys, t.deoxys, t.deoxys
+t["0413Sc"], t["0413Sa"] = t.wormadam, t.wormadam
 t.wormadamSc, t.wormadamSa = t.wormadam, t.wormadam
-t.cherrimS, t["421S"] = t.cherrim, t.cherrim
+t.cherrimS, t["0421S"] = t.cherrim, t.cherrim
 t.rotomC, t.rotomL, t.rotomG = t.rotom, t.rotom, t.rotom
 t.rotomV, t.rotomT = t.rotom, t.rotom
-t["479C"], t["479L"], t["479G"] = t.rotom, t.rotom, t.rotom
-t["479V"], t["479T"] = t.rotom, t.rotom
-t.dialgaO, t["483O"] = t.dialga, t.dialga
-t.palkiaO, t["484O"] = t.palkia, t.palkia
-t["493L"], t["493Vo"], t["493Ve"] = t.arceus, t.arceus, t.arceus
+t["0479C"], t["0479L"], t["0479G"] = t.rotom, t.rotom, t.rotom
+t["0479V"], t["0479T"] = t.rotom, t.rotom
+t.dialgaO, t["0483O"] = t.dialga, t.dialga
+t.palkiaO, t["0484O"] = t.palkia, t.palkia
+t["0493L"], t["0493Vo"], t["0493Ve"] = t.arceus, t.arceus, t.arceus
 t.arceusL, t.arceusVo, t.arceusVe = t.arceus, t.arceus, t.arceus
-t["493T"], t["493R"], t["493C"] = t.arceus, t.arceus, t.arceus
+t["0493T"], t["0493R"], t["0493C"] = t.arceus, t.arceus, t.arceus
 t.arceusT, t.arceusR, t.arceusC = t.arceus, t.arceus, t.arceus
-t["493S"], t["493Ai"], t["493Fu"] = t.arceus, t.arceus, t.arceus
+t["0493S"], t["0493Ai"], t["0493Fu"] = t.arceus, t.arceus, t.arceus
 t.arceusS, t.arceusAi, t.arceusFu = t.arceus, t.arceus, t.arceus
-t["493Aq"], t["493Er"], t["493El"] = t.arceus, t.arceus, t.arceus
+t["0493Aq"], t["0493Er"], t["0493El"] = t.arceus, t.arceus, t.arceus
 t.arceusAq, t.arceusEr, t.arceusEl = t.arceus, t.arceus, t.arceus
-t["493P"], t["493G"], t["493D"] = t.arceus, t.arceus, t.arceus
+t["0493P"], t["0493G"], t["0493D"] = t.arceus, t.arceus, t.arceus
 t.arceusP, t.arceusG, t.arceusD = t.arceus, t.arceus, t.arceus
-t["493B"], t["493Fo"], t["493Sc"] = t.arceus, t.arceus, t.arceus
+t["0493B"], t["0493Fo"], t["0493Sc"] = t.arceus, t.arceus, t.arceus
 t.arceusB, t.arceusFo, t.arceusSc = t.arceus, t.arceus, t.arceus
 t.darumakaG = t.darumaka
-t["554G"] = t.darumaka
+t["0554G"] = t.darumaka
 t.meloettaD = t.meloetta
-t["648D"] = t.meloetta
+t["0648D"] = t.meloetta
 t.aegislashS = t.aegislash
-t["681S"] = t.aegislash
+t["0681S"] = t.aegislash
 t.pumpkabooS, t.pumpkabooL, t.pumpkabooXL =
     t.pumpkaboo, t.pumpkaboo, t.pumpkaboo
-t["710S"], t["710L"], t["710XL"] = t.pumpkaboo, t.pumpkaboo, t.pumpkaboo
+t["0710S"], t["0710L"], t["0710XL"] = t.pumpkaboo, t.pumpkaboo, t.pumpkaboo
 t.gourgeistS, t.gourgeistL, t.gourgeistXL =
     t.gourgeist, t.gourgeist, t.gourgeist
-t["711S"], t["711L"], t["711XL"] = t.gourgeist, t.gourgeist, t.gourgeist
+t["0711S"], t["0711L"], t["0711XL"] = t.gourgeist, t.gourgeist, t.gourgeist
 t.zygardeD = t.zygarde
-t["718D"] = t.zygarde
+t["0718D"] = t.zygarde
 t.hoopaL = t.hoopa
-t["720L"] = t.hoopa
+t["0720L"] = t.hoopa
 t.oricorioC, t.oricorioH, t.oricorioB = t.oricorio, t.oricorio, t.oricorio
-t["741C"], t["741H"], t["741B"] = t.oricorio, t.oricorio, t.oricorio
+t["0741C"], t["0741H"], t["0741B"] = t.oricorio, t.oricorio, t.oricorio
 t.wishiwashiB = t.wishiwashi
-t["746B"] = t.wishiwashi
+t["0746B"] = t.wishiwashi
 t.silvallyL, t.silvallyVo, t.silvallyVe = t.silvally, t.silvally, t.silvally
-t["773L"], t["773Vo"], t["773Ve"] = t.silvally, t.silvally, t.silvally
+t["0773L"], t["0773Vo"], t["0773Ve"] = t.silvally, t.silvally, t.silvally
 t.silvallyT, t.silvallyR, t.silvallyC = t.silvally, t.silvally, t.silvally
-t["773T"], t["773R"], t["773C"] = t.silvally, t.silvally, t.silvally
+t["0773T"], t["0773R"], t["0773C"] = t.silvally, t.silvally, t.silvally
 t.silvallyS, t.silvallyAi, t.silvallyFu = t.silvally, t.silvally, t.silvally
-t["773S"], t["773Ai"], t["773Fu"] = t.silvally, t.silvally, t.silvally
+t["0773S"], t["0773Ai"], t["0773Fu"] = t.silvally, t.silvally, t.silvally
 t.silvallyAq, t.silvallyEr, t.silvallyEl = t.silvally, t.silvally, t.silvally
-t["773Aq"], t["773Er"], t["773El"] = t.silvally, t.silvally, t.silvally
+t["0773Aq"], t["0773Er"], t["0773El"] = t.silvally, t.silvally, t.silvally
 t.silvallyP, t.silvallyG, t.silvallyD = t.silvally, t.silvally, t.silvally
-t["773P"], t["773G"], t["773D"] = t.silvally, t.silvally, t.silvally
+t["0773P"], t["0773G"], t["0773D"] = t.silvally, t.silvally, t.silvally
 t.silvallyB, t.silvallyFo = t.silvally, t.silvally
-t["773B"], t["773Fo"] = t.silvally, t.silvally
-t.miniorR, t["774R"] = t.minior, t.minior
+t["0773B"], t["0773Fo"] = t.silvally, t.silvally
+t.miniorR, t["0774R"] = t.minior, t.minior
 t.necrozmaV, t.necrozmaA = t.necrozma, t.necrozma
-t["800V"], t["800A"] = t.necrozma, t.necrozma
-t.eiscueL, t["875L"] = t.eiscue, t.eiscue
-t.morpekoV, t["877V"] = t.morpeko, t.morpeko
-t.zacianR, t["888R"] = t.zacian, t.zacian
-t.zamazentaR, t["889R"] = t.zamazenta, t.zamazenta
-t.eternatusD, t["890D"] = t.eternatus, t.eternatus
-t.urshifuP, t["892P"] = t.urshifu, t.urshifu
-t.basculegionF, t["902F"] = t.basculegion, t.basculegion
+t["0800V"], t["0800A"] = t.necrozma, t.necrozma
+t.eiscueL, t["0875L"] = t.eiscue, t.eiscue
+t.morpekoV, t["0877V"] = t.morpeko, t.morpeko
+t.zacianR, t["0888R"] = t.zacian, t.zacian
+t.zamazentaR, t["0889R"] = t.zamazenta, t.zamazenta
+t.eternatusD, t["0890D"] = t.eternatus, t.eternatus
+t.urshifuP, t["0892P"] = t.urshifu, t.urshifu
+t.basculegionF, t["0902F"] = t.basculegion, t.basculegion
 t.palafinP = t.palafin
-t["964P"] = t.palafinP
+t["0964P"] = t.palafinP
 
 -- Gigamax
-t.venusaurGi, t["003Gi"] = t.venusaur, t.venusaur
-t.charizardGi, t["006Gi"] = t.charizard, t.charizard
-t.blastoiseGi, t["009Gi"] = t.blastoise, t.blastoise
-t.butterfreeGi, t["012Gi"] = t.butterfree, t.butterfree
-t.pikachuGi, t["025Gi"] = t.pikachu, t.pikachu
-t.meowthGi, t["052Gi"] = t.meowth, t.meowth
-t.machampGi, t["068Gi"] = t.machamp, t.machamp
+t.venusaurGi, t["0003Gi"] = t.venusaur, t.venusaur
+t.charizardGi, t["0006Gi"] = t.charizard, t.charizard
+t.blastoiseGi, t["0009Gi"] = t.blastoise, t.blastoise
+t.butterfreeGi, t["0012Gi"] = t.butterfree, t.butterfree
+t.pikachuGi, t["0025Gi"] = t.pikachu, t.pikachu
+t.meowthGi, t["0052Gi"] = t.meowth, t.meowth
+t.machampGi, t["0068Gi"] = t.machamp, t.machamp
 t.gengarGi = { ability1 = "Corpofunesto" }
-t["094Gi"] = t.gengarGi
-t.kinglerGi, t["099Gi"] = t.kingler, t.kingler
-t.laprasGi, t["131Gi"] = t.lapras, t.lapras
-t.eeveeGi, t["133Gi"] = t.eevee, t.eevee
-t.snorlaxGi, t["143Gi"] = t.snorlax, t.snorlax
-t.garbodorGi, t["569Gi"] = t.garbodor, t.garbodor
-t.melmetalGi, t["809Gi"] = t.melmetal, t.melmetal
-t.rillaboomGi, t["812Gi"] = t.rillaboom, t.rillaboom
-t.cinderaceGi, t["815Gi"] = t.cinderace, t.cinderace
-t.inteleonGi, t["818Gi"] = t.inteleon, t.inteleon
-t.corviknightGi, t["823Gi"] = t.corviknight, t.corviknight
-t.orbeetleGi, t["826Gi"] = t.orbeetle, t.orbeetle
-t.drednawGi, t["834Gi"] = t.drednaw, t.drednaw
-t.coalossalGi, t["839Gi"] = t.coalossal, t.coalossal
-t.flappleGi, t["841Gi"] = t.flapple, t.flapple
-t.appletunGi, t["842Gi"] = t.appletun, t.appletun
-t.sandacondaGi, t["844Gi"] = t.sandaconda, t.sandaconda
-t.toxtricityGi, t["849Gi"] = t.toxtricity, t.toxtricity
-t.toxtricityBGi, t["849BGi"] = t.toxtricityB, t.toxtricityB
-t.centiskorchGi, t["851Gi"] = t.centiskorch, t.centiskorch
-t.hattereneGi, t["858Gi"] = t.hatterene, t.hatterene
-t.grimmsnarlGi, t["861Gi"] = t.grimmsnarl, t.grimmsnarl
-t.alcremieGi, t["869Gi"] = t.alcremie, t.alcremie
-t.copperajahGi, t["879Gi"] = t.copperajah, t.copperajah
-t.duraludonGi, t["884Gi"] = t.duraludon, t.duraludon
-t.urshifuGi, t["892Gi"] = t.urshifu, t.urshifu
-t.urshifuPGi, t["892PGi"] = t.urshifuP, t.urshifuP
+t["0094Gi"] = t.gengarGi
+t.kinglerGi, t["0099Gi"] = t.kingler, t.kingler
+t.laprasGi, t["0131Gi"] = t.lapras, t.lapras
+t.eeveeGi, t["0133Gi"] = t.eevee, t.eevee
+t.snorlaxGi, t["0143Gi"] = t.snorlax, t.snorlax
+t.garbodorGi, t["0569Gi"] = t.garbodor, t.garbodor
+t.melmetalGi, t["0809Gi"] = t.melmetal, t.melmetal
+t.rillaboomGi, t["0812Gi"] = t.rillaboom, t.rillaboom
+t.cinderaceGi, t["0815Gi"] = t.cinderace, t.cinderace
+t.inteleonGi, t["0818Gi"] = t.inteleon, t.inteleon
+t.corviknightGi, t["0823Gi"] = t.corviknight, t.corviknight
+t.orbeetleGi, t["0826Gi"] = t.orbeetle, t.orbeetle
+t.drednawGi, t["0834Gi"] = t.drednaw, t.drednaw
+t.coalossalGi, t["0839Gi"] = t.coalossal, t.coalossal
+t.flappleGi, t["0841Gi"] = t.flapple, t.flapple
+t.appletunGi, t["0842Gi"] = t.appletun, t.appletun
+t.sandacondaGi, t["0844Gi"] = t.sandaconda, t.sandaconda
+t.toxtricityGi, t["0849Gi"] = t.toxtricity, t.toxtricity
+t.toxtricityBGi, t["0849BGi"] = t.toxtricityB, t.toxtricityB
+t.centiskorchGi, t["0851Gi"] = t.centiskorch, t.centiskorch
+t.hattereneGi, t["0858Gi"] = t.hatterene, t.hatterene
+t.grimmsnarlGi, t["0861Gi"] = t.grimmsnarl, t.grimmsnarl
+t.alcremieGi, t["0869Gi"] = t.alcremie, t.alcremie
+t.copperajahGi, t["0879Gi"] = t.copperajah, t.copperajah
+t.duraludonGi, t["0884Gi"] = t.duraludon, t.duraludon
+t.urshifuGi, t["0892Gi"] = t.urshifu, t.urshifu
+t.urshifuPGi, t["0892PGi"] = t.urshifuP, t.urshifuP
 
 -- Mega evolutions
 
 t.venusaurM = { ability1 = "Grassospesso" }
-t["003M"] = t.venusaurM
+t["0003M"] = t.venusaurM
 t.charizardMX = { ability1 = "Unghiedure" }
-t["006MX"] = t.charizardMX
+t["0006MX"] = t.charizardMX
 t.charizardMY = { ability1 = "Siccità" }
-t["006MY"] = t.charizardMY
+t["0006MY"] = t.charizardMY
 t.blastoiseM = { ability1 = "Megalancio" }
-t["009M"] = t.blastoiseM
+t["0009M"] = t.blastoiseM
 t.beedrillM = { ability1 = "Adattabilità" }
-t["015M"] = t.beedrillM
+t["0015M"] = t.beedrillM
 t.pidgeotM = { ability1 = "Nullodifesa" }
-t["018M"] = t.pidgeotM
+t["0018M"] = t.pidgeotM
 t.alakazamM = { ability1 = "Traccia" }
-t["065M"] = t.alakazamM
+t["0065M"] = t.alakazamM
 t.slowbroM = { ability1 = "Guscioscudo" }
-t["080M"] = t.slowbroM
+t["0080M"] = t.slowbroM
 t.gengarM = { ability1 = "Pedinombra" }
-t["094M"] = t.gengarM
+t["0094M"] = t.gengarM
 t.kangaskhanM = { ability1 = "Amorefiliale" }
-t["115M"] = t.kangaskhanM
+t["0115M"] = t.kangaskhanM
 t.pinsirM = { ability1 = "Pellecielo" }
-t["127M"] = t.pinsirM
+t["0127M"] = t.pinsirM
 t.gyaradosM = { ability1 = "Rompiforma" }
-t["130M"] = t.gyaradosM
+t["0130M"] = t.gyaradosM
 t.aerodactylM = { ability1 = "Unghiedure" }
-t["142M"] = t.aerodactylM
+t["0142M"] = t.aerodactylM
 t.mewtwoMX = { ability1 = "Cuordeciso" }
-t["150MX"] = t.mewtwoMX
+t["0150MX"] = t.mewtwoMX
 t.mewtwoMY = { ability1 = "Insonnia" }
-t["150MY"] = t.mewtwoMY
+t["0150MY"] = t.mewtwoMY
 t.ampharosM = { ability1 = "Rompiforma" }
-t["181M"] = t.ampharosM
+t["0181M"] = t.ampharosM
 t.steelixM = { ability1 = "Silicoforza" }
-t["208M"] = t.steelixM
+t["0208M"] = t.steelixM
 t.scizorM = { ability1 = "Tecnico" }
-t["212M"] = t.scizorM
+t["0212M"] = t.scizorM
 t.heracrossM = { ability1 = "Abillegame" }
-t["214M"] = t.heracrossM
+t["0214M"] = t.heracrossM
 t.houndoomM = { ability1 = "Solarpotere" }
-t["229M"] = t.houndoomM
+t["0229M"] = t.houndoomM
 t.tyranitarM = { ability1 = "Sabbiafiume" }
-t["248M"] = t.tyranitarM
+t["0248M"] = t.tyranitarM
 t.sceptileM = { ability1 = "Parafulmine" }
-t["254M"] = t.sceptileM
+t["0254M"] = t.sceptileM
 t.blazikenM = { ability1 = "Acceleratore" }
-t["257M"] = t.blazikenM
+t["0257M"] = t.blazikenM
 t.swampertM = { ability1 = "Nuotovelox" }
-t["260M"] = t.swampertM
+t["0260M"] = t.swampertM
 t.gardevoirM = { ability1 = "Pellefolletto" }
-t["282M"] = t.gardevoirM
+t["0282M"] = t.gardevoirM
 t.sableyeM = { ability1 = "Magispecchio" }
-t["302M"] = t.sableyeM
+t["0302M"] = t.sableyeM
 t.mawileM = { ability1 = "Macroforza" }
-t["303M"] = t.mawileM
+t["0303M"] = t.mawileM
 t.aggronM = { ability1 = "Filtro" }
-t["306M"] = t.aggronM
+t["0306M"] = t.aggronM
 t.medichamM = { ability1 = "Forzapura" }
-t["308M"] = t.medichamM
+t["0308M"] = t.medichamM
 t.manectricM = { ability1 = "Prepotenza" }
-t["310M"] = t.manectricM
+t["0310M"] = t.manectricM
 t.sharpedoM = { ability1 = "Ferromascella" }
-t["319M"] = t.sharpedoM
+t["0319M"] = t.sharpedoM
 t.cameruptM = { ability1 = "Forzabruta" }
-t["323M"] = t.cameruptM
+t["0323M"] = t.cameruptM
 t.altariaM = { ability1 = "Pellefolletto" }
-t["334M"] = t.altariaM
+t["0334M"] = t.altariaM
 t.banetteM = { ability1 = "Burla" }
-t["354M"] = t.banetteM
+t["0354M"] = t.banetteM
 t.absolM = { ability1 = "Magispecchio" }
-t["359M"] = t.absolM
+t["0359M"] = t.absolM
 t.glalieM = { ability1 = "Pellegelo" }
-t["362M"] = t.glalieM
+t["0362M"] = t.glalieM
 t.salamenceM = { ability1 = "Pellecielo" }
-t["373M"] = t.salamenceM
+t["0373M"] = t.salamenceM
 t.metagrossM = { ability1 = "Unghiedure" }
-t["376M"] = t.metagrossM
+t["0376M"] = t.metagrossM
 t.latiasM = { ability1 = "Levitazione" }
-t["380M"] = t.latiasM
+t["0380M"] = t.latiasM
 t.latiosM = { ability1 = "Levitazione" }
-t["381M"] = t.latiosM
+t["0381M"] = t.latiosM
 t.kyogreA = { ability1 = "Mare Primordiale" }
-t["382A"] = t.kyogreA
+t["0382A"] = t.kyogreA
 t.groudonA = { ability1 = "Terra Estrema" }
-t["383A"] = t.groudonA
+t["0383A"] = t.groudonA
 t.rayquazaM = { ability1 = "Flusso Delta" }
-t["384M"] = t.rayquazaM
+t["0384M"] = t.rayquazaM
 t.lopunnyM = { ability1 = "Nervisaldi" }
-t["428M"] = t.lopunnyM
+t["0428M"] = t.lopunnyM
 t.garchompM = { ability1 = "Silicoforza" }
-t["445M"] = t.garchompM
+t["0445M"] = t.garchompM
 t.lucarioM = { ability1 = "Adattabilità" }
-t["448M"] = t.lucarioM
+t["0448M"] = t.lucarioM
 t.abomasnowM = { ability1 = "Scendineve" }
-t["460M"] = t.abomasnowM
+t["0460M"] = t.abomasnowM
 t.galladeM = { ability1 = "Forza Interiore" }
-t["475M"] = t.galladeM
+t["0475M"] = t.galladeM
 t.audinoM = { ability1 = "Curacuore" }
-t["531M"] = t.audinoM
+t["0531M"] = t.audinoM
 t.diancieM = { ability1 = "Magispecchio" }
-t["719M"] = t.diancieM
+t["0719M"] = t.diancieM
 
 return t

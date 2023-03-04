@@ -102,7 +102,7 @@ Entry.__tostring = function(this)
         {
             ndex = genUtil.ndexToString(this.ndex),
             ms = ms.staticLua({
-                txt.tf(this.ndex or 0)
+                txt.ff(this.ndex or 0)
                     .. (this.formAbbr == "base" and "" or this.formAbbr or ""),
             }),
             name = this.name,
