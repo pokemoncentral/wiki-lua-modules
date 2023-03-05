@@ -846,6 +846,8 @@ t.turbotenebra = {name = "Turbotenebra", type = "buio", category = "fisico", pow
 t.turbotossina = {name = "Turbotossina", type = "veleno", category = "fisico", power = "100", accuracy = "100", pp = "10", gen = 9}
 t.turborissa = {name = "Turborissa", type = "lotta", category = "fisico", power = "100", accuracy = "100", pp = "10", gen = 9}
 t.turboincanto = {name = "Turboincanto", type = "folletto", category = "fisico", power = "100", accuracy = "100", pp = "10", gen = 9}
+t.psicolama = {name = "Psicolama", type = "psico", category = "fisico", power = "80", accuracy = "100", pp = "15", gen = 9}
+t.idrovapore = {name = "Idrovapore", type = "acqua", category = "speciale", power = "80", accuracy = "100", pp = "15", gen = 9}
 -- stylua: ignore end
 
 return t
