@@ -58,7 +58,7 @@ entry.genGames = {
     [5] = { "B2W2" },
     [6] = { "ORAS" },
     [7] = { "USUM", "LGPE" },
-    [8] = { "SpSc" },
+    [8] = { "SpSc", "BDSP" },
     [9] = { "SV" },
 }
 
@@ -169,7 +169,12 @@ entry.levelCellsData = {
             { bg = "lgp", abbr = "LGPE", val = "LGPE" },
         },
     },
-    [8] = {},
+    [8] = {
+        BDSP = {
+            { bg = "spada", abbr = "SpSc", val = "base" },
+            { bg = "perlasplendente", abbr = "DLPS", val = "BDSP" },
+        },
+    },
     [9] = {},
 }
 
@@ -208,6 +213,7 @@ entry.levelgames = {
     },
     { -- 8
         { bg = "spada", abbr = "SpSc" },
+        { bg = "perlasplendente", abbr = "DLPS" },
     },
     { -- 9
         { bg = "scarlatto", abbr = "SV" },
