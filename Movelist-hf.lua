@@ -66,9 +66,13 @@ games[5] = { { "NB", "nero" }, { "N2B2", "nero2" } }
 games[6] = { { "XY", "x" }, { "RΩZα", "rubinoomega" } }
 games[7] =
     { { "SL", "sole" }, { "USUL", "ultrasole" }, { "LGPE", "lgpikachu" } }
-games[8] =
-    { { "SpSc", "spada" }, { "IA", "isolaarmatura" }, { "TC", "landacorona" } }
-games[9] = { { "SV", "scarlatto" } }
+games[8] = {
+    { "SpSc", "spada" },
+    { "IA", "isolaarmatura" },
+    { "DLPS", "diamantelucente" },
+    { "LPA", "leggendearceus" },
+}
+games[9] = {}
 
 -- Contiene le varie funzioni che generano le celle
 
@@ -400,11 +404,12 @@ j.autotmhlua = function(move)
     local link
     for g = startgen, gendata.latest do
         local tmkind, tmnum = tab.deepSearch(mtdata[g], move)
+        local numFigures = g >= 9 and 3 or 2
         link = tmkind
                 and table.concat({
                     "[[",
                     tmkind,
-                    txt.nFigures(tmnum, 2),
+                    txt.nFigures(tmnum, numFigures),
                     "]]",
                 })
             or "Ness."

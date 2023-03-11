@@ -58,7 +58,7 @@ entry.genGames = {
     [5] = { "B2W2" },
     [6] = { "ORAS" },
     [7] = { "USUM", "LGPE" },
-    [8] = { "SpSc", "BDSP" },
+    [8] = { "SpSc", "BDSP", "LA" },
     [9] = { "SV" },
 }
 
@@ -93,7 +93,8 @@ entry.tutorCellsColors = {
     "lgpikachu",
     "spada",
     "isolaarmatura",
-    "scarlatto",
+    "diamantelucente",
+    "leggendearceus",
 }
 
 --[[
@@ -171,60 +172,35 @@ entry.levelCellsData = {
     },
     [8] = {
         BDSP = {
+            { bg = "spada", abbr = "SpSc", val = "base", colspan = 2 },
+            { bg = "perlasplendente", abbr = "DLPS", val = "BDSP" },
+        },
+        LA = {
+            { bg = "spada", abbr = "SpSc", val = "base", colspan = 2 },
+            { bg = "leggendearceus", abbr = "LPA", val = "LA" },
+        },
+        BDSPLA = {
             { bg = "spada", abbr = "SpSc", val = "base" },
             { bg = "perlasplendente", abbr = "DLPS", val = "BDSP" },
+            { bg = "leggendearceus", abbr = "LPA", val = "LA" },
         },
     },
     [9] = {},
 }
 
--- Table of level games for generation
-entry.levelgames = {
-    { -- 1
-        { bg = "rosso", abbr = "RVB" },
-        { bg = "giallo", abbr = "G" },
-    },
-    { -- 2
-        { bg = "oro", abbr = "OA" },
-        { bg = "cristallo", abbr = "C" },
-    },
-    { -- 3
-        { bg = "rubino", abbr = "RZ" },
-        { bg = "rossofuoco", abbr = "RFVF" },
-        { bg = "smeraldo", abbr = "S" },
-    },
-    { -- 4
-        { bg = "diamante", abbr = "DP" },
-        { bg = "platino", abbr = "Pt" },
-        { bg = "heartgold", abbr = "HGSS" },
-    },
-    { -- 5
-        { bg = "bianco", abbr = "NB" },
-        { bg = "bianco2", abbr = "N2B2" },
-    },
-    { -- 6
-        { bg = "x", abbr = "XY" },
-        { bg = "rubinoomega", abbr = "ROZA" },
-    },
-    { -- 7
-        { bg = "sole", abbr = "SL" },
-        { bg = "ultrasole", abbr = "UsUl" },
-        { bg = "lgp", abbr = "LGPE" },
-    },
-    { -- 8
-        { bg = "spada", abbr = "SpSc" },
-        { bg = "perlasplendente", abbr = "DLPS" },
-    },
-    { -- 9
-        { bg = "scarlatto", abbr = "SV" },
-    },
-}
-
 -- Maximum of level columns for a generation. Exported because used also in
 -- Movelist/hf
-m.maxCellsNumber = tab.map(entry.levelgames, function(v)
-    return #v
-end)
+m.maxCellsNumber = {
+    2, -- 1
+    2, -- 2
+    3, -- 3
+    3, -- 4
+    2, -- 5
+    2, -- 6
+    3, -- 7
+    3, -- 8
+    1, -- 9
+}
 
 --[[
 
