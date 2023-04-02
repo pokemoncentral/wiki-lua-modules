@@ -8183,23 +8183,13 @@ end
 
 -- Given that emptyAlternativeForms can't overwrite an existing table, simply
 -- maps over altforms and useless
-local nopokes = {
-    "mega",
-    "megaxy",
-    "archeo",
-    "alola",
-    "galar",
-    "gigamax",
-    "hisui",
-    "paldea",
-}
 for k, v in pairs(altforms) do
-    if type(k) == "string" and not tab.search(nopokes, k) then
+    if type(k) == "string" and k ~= "formgroups" then
         emptyAlternativeForms(v, k)
     end
 end
 for k, v in pairs(useless) do
-    if type(k) == "string" and not tab.search(nopokes, k) then
+    if type(k) == "string" and k ~= "formgroups" then
         emptyAlternativeForms(v, k)
     end
 end

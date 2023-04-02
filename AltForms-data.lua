@@ -1,8 +1,14 @@
--- Ogni Pokémon con forme alternative ha una tabella associata con
--- tutte le informazioni necessarie come sottotabelle: si usano le
--- sigle come chiavi, o come elementi stessi se l'informazione della
--- tabella è booleana; sono considerati solo i Pokémon le cui forme
--- alternative non sono puramente estetiche
+--[[
+
+Ogni Pokémon con forme alternative ha una tabella associata con
+tutte le informazioni necessarie come sottotabelle: si usano le
+sigle come chiavi, o come elementi stessi se l'informazione della
+tabella è booleana; sono considerati solo i Pokémon le cui forme
+alternative non sono puramente estetiche.
+
+Abbrs for alternate forms MUST match the pattern "^%u%a*$".
+
+--]]
 
 local t = {}
 -- stylua: ignore start
@@ -76,18 +82,9 @@ end
 
 -- Creates links to alternative forms
 local function makeIndexLinks(index, context)
-    -- Removing support tables since we don't want to operate on them
+    -- Removing support table since we only want Pokémon tables
     local stdLinks = tab.filter(t, function(_, key)
-        return not tab.search({
-            "mega",
-            "megaxy",
-            "archeo",
-            "alola",
-            "galar",
-            "gigamax",
-            "hisui",
-            "paldea",
-        }, key)
+        return key ~= "formgroups"
     end)
 
     -- Adds standard links
@@ -98,27 +95,16 @@ local function makeIndexLinks(index, context)
     end
 
     -- Adds links of forms with a dedicated page
-    makeTargetedLink(
-        index,
-        context,
-        "Megaevoluzione",
-        tab.merge(t.mega, t.megaxy),
-        { "base", "M", "MX", "MY" }
-    )
-    makeTargetedLink(
-        index,
-        context,
-        "Archeorisveglio",
-        t.archeo,
-        { "base", "A" }
-    )
-    makeTargetedLink(index, context, "Forma di Alola", t.alola, { "base", "A" })
-    makeTargetedLink(index, context, "Forma di Galar", t.galar, { "base", "G" })
-    makeTargetedLink(index, context, "Gigamax", t.gigamax, { "base", "Gi" })
-    makeTargetedLink(index, context, "Forma di Hisui", t.hisui, { "base", "H" })
-    -- stylua: ignore
+    -- stylua: ignore start
+    makeTargetedLink(index, context, "Megaevoluzione", tab.merge(t.formgroups.mega, t.formgroups.megaxy), { "base", "M", "MX", "MY" })
+    makeTargetedLink(index, context, "Archeorisveglio", t.formgroups.archeo, { "base", "A" })
+    makeTargetedLink(index, context, "Forma di Alola", t.formgroups.alola, { "base", "A" })
+    makeTargetedLink(index, context, "Forma di Galar", t.formgroups.galar, { "base", "G" })
+    makeTargetedLink(index, context, "Gigamax", t.formgroups.gigamax, { "base", "Gi" })
+    makeTargetedLink(index, context, "Forma di Hisui", t.formgroups.hisui, { "base", "H" })
     -- TODO: this shit is terrible
-    makeTargetedLink(index, context, "Forma di Paldea", t.paldea, { "base", "P", "C", "I", "A" })
+    makeTargetedLink(index, context, "Forma di Paldea", t.formgroups.paldea, { "base", "P", "C", "I", "A" })
+    -- stylua: ignore end
 end
 
 -- Create all links for alternative forms (black, blue and plain)
@@ -188,11 +174,15 @@ t.palafin = {}
 t.squawkabilly = {}
 t.gimmighoul = {}
 
--- Generazione dinamica delle megaevoluzioni e archeorisveglio
+-- Automatic generation of groups of alt forms
+
+-- The lists of Pokémon in a given group is kept in a subtable in order not to
+-- add keys which are not Pokémon names
+t.formgroups = {}
 
 -- Tabella con i Pokémon che hanno una sola megaevoluzione
 -- stylua: ignore
-t.mega = {'venusaur', 'blastoise', 'beedrill', 'pidgeot', 'alakazam',
+t.formgroups.mega = {'venusaur', 'blastoise', 'beedrill', 'pidgeot', 'alakazam',
 	'gengar', 'slowbro', 'kangaskhan', 'pinsir', 'gyarados', 'aerodactyl',
 	'ampharos', 'steelix', 'scizor', 'heracross', 'houndoom', 'tyranitar',
 	'sceptile', 'blaziken', 'swampert', 'gardevoir', 'sableye', 'mawile',
@@ -203,42 +193,43 @@ t.mega = {'venusaur', 'blastoise', 'beedrill', 'pidgeot', 'alakazam',
 
 -- Tabella contentente i Pokémon che hanno più megaevoluzioni
 
-t.megaxy = { "charizard", "mewtwo" }
+t.formgroups.megaxy = { "charizard", "mewtwo" }
 
 -- Tabella contenente i Pokémon che hanno un archeorisveglio
 
-t.archeo = { "kyogre", "groudon" }
+t.formgroups.archeo = { "kyogre", "groudon" }
 
 -- Tabella contenente i Pokémon che hanno una forma di Alola:
 -- per efficienza, alcuni sono alla fine del modulo
 -- stylua: ignore
-t.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'diglett', 'meowth',
-	'persian', 'geodude', 'grimer', 'exeggutor', 'marowak'}
+t.formgroups.alola = {'rattata', 'raichu', 'sandshrew', 'vulpix', 'diglett',
+    'meowth', 'persian', 'geodude', 'grimer', 'exeggutor', 'marowak'}
 
 -- Tabella contenente i Pokémon che hanno una forma di Galar:
 -- per efficienza, alcuni sono alla fine del modulo
 -- stylua: ignore
-t.galar = {'meowth', 'ponyta', 'slowpoke', 'slowbro', "farfetch'd", 'weezing',
-	'mr. mime', 'articuno', 'zapdos', 'moltres', 'slowking', 'corsola',
-	'zigzagoon', 'darumaka', 'yamask', 'stunfisk'}
+t.formgroups.galar = {'meowth', 'ponyta', 'slowpoke', 'slowbro', "farfetch'd",
+    'weezing', 'mr. mime', 'articuno', 'zapdos', 'moltres', 'slowking',
+    'corsola', 'zigzagoon', 'darumaka', 'yamask', 'stunfisk'}
 
 -- Table with Pokémon with a Gigamax
 -- stylua: ignore
-t.gigamax = {'venusaur', 'charizard', 'blastoise', 'butterfree', 'meowth',
-	'machamp', 'gengar', 'kingler', 'lapras', 'eevee', 'snorlax', 'garbodor',
-	'melmetal', 'rillaboom', 'cinderace', 'inteleon', 'corviknight', 'orbeetle',
-	'drednaw', 'coalossal', 'flapple', 'appletun', 'sandaconda', 'centiskorch',
-	'hatterene', 'grimmsnarl', 'alcremie', 'copperajah', 'duraludon'}
+t.formgroups.gigamax = {'venusaur', 'charizard', 'blastoise', 'butterfree',
+    'meowth', 'machamp', 'gengar', 'kingler', 'lapras', 'eevee', 'snorlax',
+    'garbodor', 'melmetal', 'rillaboom', 'cinderace', 'inteleon',
+    'corviknight', 'orbeetle', 'drednaw', 'coalossal', 'flapple', 'appletun',
+    'sandaconda', 'centiskorch', 'hatterene', 'grimmsnarl', 'alcremie',
+    'copperajah', 'duraludon'}
 
 -- Tabella contenente i Pokémon che hanno una forma di Hisui:
 -- per efficienza, alcuni sono alla fine del modulo
 -- stylua: ignore
-t.hisui = {'growlithe', 'voltorb', 'typhlosion', 'qwilfish', 'sneasel',
-	'samurott', 'lilligant', 'zorua', 'braviary', 'sliggoo',
+t.formgroups.hisui = {'growlithe', 'voltorb', 'typhlosion', 'qwilfish',
+    'sneasel', 'samurott', 'lilligant', 'zorua', 'braviary', 'sliggoo',
 	'avalugg', 'decidueye'}
 
 -- Tabella contenente i Pokémon che hanno una forma di Paldea
-t.paldea = { "wooper", "tauros" }
+t.formgroups.paldea = { "wooper", "tauros" }
 
 --[[
 
@@ -315,13 +306,13 @@ t.palafin.names = {P = 'Forma Possente', base = 'Forma Ingenua'}
 t.squawkabilly.names = {A = 'Piume Azzurre', G = 'Piume Gialle', B = 'Piume Bianche', base = 'Piume Verdi'}
 t.gimmighoul.names = {A = 'Forma Ambulante', base = 'Forma Scrigno'}
 -- stylua: ignore end
-for _, v in pairs(t.mega) do
+for _, v in pairs(t.formgroups.mega) do
     if not t[v] then
         t[v] = { names = { base = "" } }
     end
     t[v].names.M = "Mega" .. txt.fu(v)
 end
-for _, v in pairs(t.megaxy) do
+for _, v in pairs(t.formgroups.megaxy) do
     if not t[v] then
         t[v] = { names = { base = "" } }
     end
@@ -329,31 +320,31 @@ for _, v in pairs(t.megaxy) do
     t[v].names.MX = table.concat({ "Mega", fu, " X" })
     t[v].names.MY = table.concat({ "Mega", fu, " Y" })
 end
-for _, v in pairs(t.archeo) do
+for _, v in pairs(t.formgroups.archeo) do
     if not t[v] then
         t[v] = { names = { base = "" } }
     end
     t[v].names.A = "Archeorisveglio"
 end
-for _, v in pairs(t.alola) do
+for _, v in pairs(t.formgroups.alola) do
     if not t[v] then
         t[v] = { names = { base = "" } }
     end
     t[v].names.A = "Forma di Alola"
 end
-for _, v in pairs(t.galar) do
+for _, v in pairs(t.formgroups.galar) do
     if not t[v] then
         t[v] = { names = { base = "" } }
     end
     t[v].names.G = "Forma di Galar"
 end
-for _, v in pairs(t.gigamax) do
+for _, v in pairs(t.formgroups.gigamax) do
     if not t[v] then
         t[v] = { names = { base = "" } }
     end
     t[v].names.Gi = txt.fu(v) .. " Gigamax"
 end
-for _, v in pairs(t.hisui) do
+for _, v in pairs(t.formgroups.hisui) do
     if not t[v] then
         t[v] = { names = { base = "" } }
     end
@@ -438,32 +429,32 @@ t.palafin.ext = { possente = "P", ingenua = "base" }
 -- stylua: ignore
 t.squawkabilly.ext = { azzurre = "A", gialle = "G", bianche = "B", verdi = "base" }
 t.gimmighoul.ext = { ambulante = "A", scrigno = "base" }
-for _, v in pairs(t.mega) do
+for _, v in pairs(t.formgroups.mega) do
     t[v].ext = t[v].ext or {}
     t[v].ext.mega = "M"
 end
-for _, v in pairs(t.megaxy) do
+for _, v in pairs(t.formgroups.megaxy) do
     t[v].ext = t[v].ext or {}
     t[v].ext.megax = "MX"
     t[v].ext.megay = "MY"
 end
-for _, v in pairs(t.archeo) do
+for _, v in pairs(t.formgroups.archeo) do
     t[v].ext = t[v].ext or {}
     t[v].ext.archeo = "A"
 end
-for _, v in pairs(t.alola) do
+for _, v in pairs(t.formgroups.alola) do
     t[v].ext = t[v].ext or {}
     t[v].ext.alola = "A"
 end
-for _, v in pairs(t.galar) do
+for _, v in pairs(t.formgroups.galar) do
     t[v].ext = t[v].ext or {}
     t[v].ext.galar = "G"
 end
-for _, v in pairs(t.gigamax) do
+for _, v in pairs(t.formgroups.gigamax) do
     t[v].ext = t[v].ext or {}
     t[v].ext.gigamax = "Gi"
 end
-for _, v in pairs(t.hisui) do
+for _, v in pairs(t.formgroups.hisui) do
     t[v].ext = t[v].ext or {}
     t[v].ext.hisui = "H"
 end
@@ -530,25 +521,25 @@ t.oinkologne.gamesOrder = t.meowstic.gamesOrder
 t.palafin.gamesOrder = { "base", "P" }
 t.squawkabilly.gamesOrder = { "base", "A", "G", "B" }
 t.gimmighoul.gamesOrder = { "base", "A" }
-for _, v in pairs(t.mega) do
+for _, v in pairs(t.formgroups.mega) do
     t[v].gamesOrder = t[v].gamesOrder or { "base", "M" }
 end
-for _, v in pairs(t.megaxy) do
+for _, v in pairs(t.formgroups.megaxy) do
     t[v].gamesOrder = t[v].gamesOrder or { "base", "MX", "MY" }
 end
-for _, v in pairs(t.archeo) do
+for _, v in pairs(t.formgroups.archeo) do
     t[v].gamesOrder = t[v].gamesOrder or { "base", "A" }
 end
-for _, v in pairs(t.alola) do
+for _, v in pairs(t.formgroups.alola) do
     t[v].gamesOrder = t[v].gamesOrder or { "base", "A" }
 end
-for _, v in pairs(t.galar) do
+for _, v in pairs(t.formgroups.galar) do
     t[v].gamesOrder = t[v].gamesOrder or { "base", "G" }
 end
-for _, v in pairs(t.gigamax) do
+for _, v in pairs(t.formgroups.gigamax) do
     t[v].gamesOrder = t[v].gamesOrder or { "base", "Gi" }
 end
-for _, v in pairs(t.hisui) do
+for _, v in pairs(t.formgroups.hisui) do
     t[v].gamesOrder = t[v].gamesOrder or { "base", "H" }
 end
 
@@ -559,13 +550,13 @@ This array is guaranteed to be a sorted subset of gamesOrder (same sorting)
 
 --]]
 
-for _, v in pairs(t.mega) do
+for _, v in pairs(t.formgroups.mega) do
     t[v].cries = { "M" }
 end
-for _, v in pairs(t.megaxy) do
+for _, v in pairs(t.formgroups.megaxy) do
     t[v].cries = { "MX", "MY" }
 end
-for _, v in pairs(t.archeo) do
+for _, v in pairs(t.formgroups.archeo) do
     t[v].cries = { "A" }
 end
 t.slowbro.cries = { "M" }
@@ -786,25 +777,25 @@ t.gourgeist = table.copy(t.pumpkaboo)
 -- Adding missing Pokémon to set with a certain kind of forms. Added here
 -- to avoid useless repetitions of cycles
 -- Otehr Alola forms
-table.insert(t.alola, "raticate")
-table.insert(t.alola, "sandslash")
-table.insert(t.alola, "ninetales")
-table.insert(t.alola, "dugtrio")
-table.insert(t.alola, "meowth")
-table.insert(t.alola, "graveler")
-table.insert(t.alola, "golem")
-table.insert(t.alola, "muk")
+table.insert(t.formgroups.alola, "raticate")
+table.insert(t.formgroups.alola, "sandslash")
+table.insert(t.formgroups.alola, "ninetales")
+table.insert(t.formgroups.alola, "dugtrio")
+table.insert(t.formgroups.alola, "meowth")
+table.insert(t.formgroups.alola, "graveler")
+table.insert(t.formgroups.alola, "golem")
+table.insert(t.formgroups.alola, "muk")
 -- Other Galar forms
-table.insert(t.galar, "rapidash")
-table.insert(t.galar, "linoone")
+table.insert(t.formgroups.galar, "rapidash")
+table.insert(t.formgroups.galar, "linoone")
 -- Other Hisuian forms
-table.insert(t.hisui, "arcanine")
-table.insert(t.hisui, "electrode")
-table.insert(t.hisui, "zoroark")
-table.insert(t.hisui, "goodra")
+table.insert(t.formgroups.hisui, "arcanine")
+table.insert(t.formgroups.hisui, "electrode")
+table.insert(t.formgroups.hisui, "zoroark")
+table.insert(t.formgroups.hisui, "goodra")
 -- Other Gigamax forms
-table.insert(t.gigamax, "pikachu")
-table.insert(t.gigamax, "toxtricity")
+table.insert(t.formgroups.gigamax, "pikachu")
+table.insert(t.formgroups.gigamax, "toxtricity")
 
 -- Link creation should be done AFTER copying Pokémon with same forms, in order
 -- to use the right name for the link
@@ -812,7 +803,7 @@ makeLinks()
 
 -- Urshifu has both a gigamax and a non-empty base form, hence we copy it after
 -- link creation
-table.insert(t.gigamax, "urshifu")
+table.insert(t.formgroups.gigamax, "urshifu")
 
 t[19] = t.rattata
 t[20] = t.raticate
