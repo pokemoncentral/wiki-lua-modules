@@ -7,12 +7,14 @@ and data related to games
 
 local g = {}
 
+-- stylua: ignore start
 local txt = require('Wikilib-strings') -- luacheck: no unused
 local tab = require('Wikilib-tables') -- luacheck: no unused
 local formUtil = require('Wikilib-forms')
 local genUtil = require('Wikilib-gens')
 local gendata = require("Gens-data")
 local pokes = require("Poké-data")
+-- stylua: ignore end
 local alts = formUtil.allFormsData()
 
 --[[
@@ -26,8 +28,7 @@ games.
 --]]
 g.gamesChron = {}
 for _, data in ipairs(gendata) do
-    g.gamesChron = table.merge(
-            g.gamesChron, data.games)
+    g.gamesChron = table.merge(g.gamesChron, data.games)
 end
 
 g.gamesOrder = g.gamesChron
@@ -43,8 +44,17 @@ abbreviation.
 
 --]]
 g.isInGame = function(poke, game)
-    local ndex = string.parseInt(poke)
-    local abbr = formUtil.getAbbr(poke)
+    local ndex_ = string.parseInt(poke)
+    local abbr_ = formUtil.getabbr(poke)
+    local ndex, abbr = formUtil.getndexabbr(poke)
+    assert(
+        ndex == ndex_,
+        "Mismatch in Wikilib/games.isInGame: ndex are different"
+    )
+    assert(
+        abbr == abbr_,
+        "Mismatch in Wikilib/games.isInGame: abbr are different"
+    )
 
     -- Pokémon given as a name
     if not ndex then
@@ -57,23 +67,20 @@ g.isInGame = function(poke, game)
         been released only in new generations.
         This, comparing generations is enough.
     --]]
-	if abbr == 'base' then
-		return genUtil.getGen.game(game)
-				>= genUtil.getGen.ndex(ndex)
-	end
+    if abbr == "base" then
+        return genUtil.getGen.game(game) >= genUtil.getGen.ndex(ndex)
+    end
 
-	local alt = alts[ndex]
-	local sinceOrd = table.search(g.gamesChron,
-			alt.since[abbr])
+    local alt = alts[ndex]
+    local sinceOrd = table.search(g.gamesChron, alt.since[abbr])
 
     -- Until not found means available until latest game
-    local untilOrd = (alt['until'] and alt['until'][abbr])
-            and table.search(g.gamesChron, alt['until'][abbr])
-            or #g.gamesChron
-	local gameOrd = table.search(g.gamesChron,
-			game)
+    local untilOrd = (alt["until"] and alt["until"][abbr])
+            and table.search(g.gamesChron, alt["until"][abbr])
+        or #g.gamesChron
+    local gameOrd = table.search(g.gamesChron, game)
 
-	return gameOrd >= sinceOrd and gameOrd <= untilOrd
+    return gameOrd >= sinceOrd and gameOrd <= untilOrd
 end
 
 g.is_in_game, g.isingame = g.isInGame, g.isInGame
@@ -90,7 +97,7 @@ name + abbreviation.
 g.isInGen = function(poke, gen)
     local baseForm, abbr = formUtil.getNameAbbr(poke)
 
-    if not abbr or abbr == '' then
+    if not abbr or abbr == "" then
         return genUtil.getGen.ndex(pokes[poke].ndex) <= gen
     end
 
@@ -106,8 +113,7 @@ second.
 
 --]]
 g.isBefore = function(game1, game2)
-    return table.search(g.gamesChron, game1)
-            < table.search(g.gamesChron, game2)
+    return table.search(g.gamesChron, game1) < table.search(g.gamesChron, game2)
 end
 
 g.is_before, g.isbefore = g.isBefore, g.isBefore
@@ -128,24 +134,25 @@ and defaulting to the latest released game.
 --]]
 
 g.anyInGen = function(gen, from, to)
-
     --[[
         `from` is a game and no `to` is given:
         all games up to the latest are meant,
         so that we can check for `from` being
         released previously or in passed gen.
     --]]
-    if type(from) ~= 'table' and not to then
+    if type(from) ~= "table" and not to then
         return genUtil.getGen.game(from) <= gen
     end
 
     -- Flipping for faster indexing check
-    local games = table.flip(type(from) == 'table'
-            and from
-            or table.slice(g.gamesChron,
-                    table.search(g.gamesChron, from),
-                    table.search(g.gamesChron, to)
-            ))
+    local games = table.flip(
+        type(from) == "table" and from
+            or table.slice(
+                g.gamesChron,
+                table.search(g.gamesChron, from),
+                table.search(g.gamesChron, to)
+            )
+    )
 
     return table.any(gendata[gen].games, function(game)
         return games[game]

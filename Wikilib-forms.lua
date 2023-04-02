@@ -75,14 +75,16 @@ f.loaduseless, f.load_useless = f.loadUseless, f.loadUseless
 
 --[[
 
-Estrae la sigla della forma alternativa dal
-nome del Pokémon così come è negli indici
-delle tabelle dati o negli ndex dei Mini
-Sprite, oppure a partire dal nome del Pokémon
-e quello esteso della forma alternativa. In
-caso di fallimento, ritorna la stringa vuota.
+Estrae la sigla della forma alternativa dal nome del Pokémon così come è negli
+indici delle tabelle dati o negli ndex dei Mini Sprite, oppure a partire dal
+nome del Pokémon e quello esteso della forma alternativa. In caso di
+fallimento, ritorna la stringa vuota.
+
+DEPRECATION NOTICE: this function is deprecated. Use getnameabbr or getndexabbr
+instead.
 
 --]]
+---@deprecated
 f.getabbr = function(name, extform)
     if alt[tonumber(name) or name:lower()] then
         extform = string.lower(extform or "")
@@ -91,8 +93,6 @@ f.getabbr = function(name, extform)
     end
     return name:match("(%u+%a*)$") or "base"
 end
-
-f.getAbbr, f.get_abbr = f.getabbr, f.getabbr
 
 --[[
 
@@ -113,6 +113,35 @@ f.getnameabbr = function(name, extform)
 end
 
 f.getNameAbbr, f.get_name_abbr = f.getnameabbr, f.getnameabbr
+
+--[[
+
+Given a Pokémon ndex, possibly followed by a form abbr, split the ndex itself
+from the abbr. If given a Pokémon name instead of an ndex, the function returns
+it unchanged.
+
+The name behaviour is needed because in general it not possible to separate the
+name from the abbr. If there is some extra assumption (eg. the name is all
+lowercase, its the caller's resposibility to exploit it.)
+
+--]]
+--@param name string An ndex+abbr or Pokémon name
+---@return number|string, string
+f.getndexabbr = function(name)
+    -- name is just an ndex
+    local ndex = string.match(name, "^(%d+)$")
+    if ndex then
+        return tonumber(ndex), "base" ---@diagnostic disable-line: return-type-mismatch
+    end
+    -- name is an ndex followed by an abbr
+    local ndex, abbr = string.match(name, "^(%d+)(%u%a*)$")
+    if ndex then
+        return tonumber(ndex), abbr ---@diagnostic disable-line: return-type-mismatch
+    end
+    -- name is not an ndex: it's assumed to be a Pokémon name. In this case,
+    -- there is no abbr and the name is returned as-is
+    return name, "base"
+end
 
 --[[
 

@@ -418,6 +418,18 @@ Arguments:
 entry.head = function(ndex, args)
     local ndexFigures = ndex:match("^(%d+)")
     local abbr = forms.getabbr(ndex, args.form)
+    -- This code checks backward compatibility
+    local ndexNumber_, abbr_ = forms.getndexabbr(ndex)
+    local ndexFigures_ = string.tf(ndexNumber_)
+    local extraCat_ = ""
+    if ndexFigures ~= ndexFigures_ then
+        extraCat_ = extraCat_
+            .. "[[Categoria:Movelist con mismatching ndexFigures]]"
+    end
+    if abbr ~= abbr_ then
+        extraCat_ = extraCat_ .. "[[Categoria:Movelist con mismatching abbr]]"
+    end
+
     local pokedata = pokes[forms.nameToDataindex(
         ndexFigures .. forms.toEmptyAbbr(abbr)
     )] or { name = "Missingno.", ndex = "000" }
@@ -453,7 +465,7 @@ entry.head = function(ndex, args)
 | ${ani}
 | <span class="hidden-xs">${stab}[[${name}]]${stab}${notes}${forml}</span>
 | class="hidden-sm height-100" style="padding: 0.8ex 0.3ex;" | ${types}
-| class="hidden-sm height-100" style="padding: 0.8ex 0.3ex;" | ${groups}
+| class="hidden-sm height-100" style="padding: 0.8ex 0.3ex;" | ${groups}${extraCat}
 ]=],
         {
             num = gen.ndexToString(tonumber(ndexFigures)),
@@ -476,16 +488,15 @@ entry.head = function(ndex, args)
                 nil,
                 { "vert-center" }
             ),
+            extraCat = extraCat_,
         }
     )
 end
 
 --[[
 
-Remove from frame.args useless params, here just because of not up-to-date calls
-in the pages.
-It would be nice to check whether it's still usefull or no, but it's too long
-provided that categories don't work.
+Remove from frame.args useless params, here just because of not up-to-date
+calls in the pages. It also return whether some parameter was removed or not.
 
 --]]
 entry.removeOldParams = function(p)
@@ -494,9 +505,13 @@ entry.removeOldParams = function(p)
         or { name = "Missingno." }
     pokedata = multigen.getGen(pokedata)
 
+    -- Whether something was removed
+    local removed = 0
+
     -- rimuove il parametro 2 se è il nome del Pokémon
     if txt.fu(p[2]) == pokedata.name then
         table.remove(p, 2)
+        removed = removed + 1
     end
     -- rimuove i parametri 3, 4 e 5 (ora 2, 3 e 4)
     --		se 3 è 1 o 2 (il numero di tipi)
@@ -512,9 +527,10 @@ entry.removeOldParams = function(p)
         table.remove(p, 4)
         table.remove(p, 3)
         table.remove(p, 2)
+        removed = removed + 1
     end
 
-    return p
+    return p, removed
 end
 
 --[[
@@ -535,8 +551,21 @@ entry.entry = function(p, kind)
         p.startGen = gen
     end
     -- now p[1] is the ndex, and may be followed by old params
-    p = entry.removeOldParams(p)
+    local p, removed = entry.removeOldParams(p)
     local ndex = table.remove(p, 1)
+
+    local extraCats = ""
+    if removed == 2 then
+        extraCats =
+            "[[Categoria:Movelist in cui vengono rimossi tutti i parametri vecchi]]"
+    elseif removed == 1 then
+        extraCats =
+            "[[Categoria:Movelist in cui vengono rimossi alcuni parametri vecchi]]"
+    end
+    if p.form then
+        extraCats = extraCats .. "[[Categoria:Moduli con parametri deprecati]]"
+    end
+
     return entry.head(ndex, {
         STAB = p.STAB,
         notes = p.note,
@@ -544,7 +573,7 @@ entry.entry = function(p, kind)
         allforms = p.allforms,
         useless = p.useless,
         movename = p.movename,
-    }) .. entry.tail(kind, p)
+    }) .. entry.tail(kind, p) .. extraCats
 end
 
 -- ========================= Wikicode interfaces ==============================
