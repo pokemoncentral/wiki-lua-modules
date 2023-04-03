@@ -438,4 +438,42 @@ j.autotmh = function(frame)
 end
 j.autoTMh, j.Autotmh = j.autotmh, j.autotmh
 
+--[[
+
+WikiCode interface for the allTM row. The first parameter if the move name
+(optional, default to {{BASEPAGENAME}}). Named parameters are:
+  * genderless: put "yes" if the move can be learned by all Pokémon except
+    genderless ones.
+  * except: the list of Pokémon who can't learn the move
+
+--]]
+j.alltm = function(frame)
+    local move = frame.args[1] and txt.trim(frame.args[1])
+        or mw.title.getCurrentTitle().text
+    local genderless = frame.args.genderless
+            and txt.trim(frame.args.genderless) == "yes"
+        or false
+    local hasExcept = frame.args.except
+    local cs = tab.fold(mlentry.maxCellsNumber, 0, function(a, b)
+        return a + b
+    end)
+
+    return txt.interp(
+        [=[ |-
+! colspan="${cs}" class="black-text white-bg" style="padding: 0 1ex;" | ''Tutti'' i Pokémon che possono apprendere mosse tramite [[MT]]${genderlesspre} possono imparare ${move}${except}.${exceptCategory}]=],
+        {
+            cs = cs,
+            genderlesspre = genderless and " e hanno un [[sesso]]" or "",
+            move = move,
+            except = hasExcept
+                    and (", eccetto " .. txt.trim(frame.args.except))
+                or "",
+            exceptCategory = hasExcept
+                    and [[Categoria:Mosse Macchina insegnabili a tutti i Pokémon]]
+                or "",
+        }
+    )
+end
+j.allTM, j.Alltm = j.alltm, j.alltm
+
 return j
