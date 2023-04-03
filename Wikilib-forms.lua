@@ -125,7 +125,7 @@ name from the abbr. If there is some extra assumption (eg. the name is all
 lowercase, its the caller's resposibility to exploit it.)
 
 --]]
---@param name string An ndex+abbr or Pokémon name
+---@param name string An ndex+abbr or Pokémon name
 ---@return number|string, string
 f.getndexabbr = function(name)
     -- name is just an ndex

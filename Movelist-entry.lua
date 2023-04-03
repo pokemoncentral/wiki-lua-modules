@@ -407,7 +407,6 @@ Arguments:
 		* STAB: a string with the STAB value (either the empty string, "''"
 		        or "'''")
 		* notes: any note that should be added in tt after the Pokémon's name
-		* form: the extended name of the form
 		* allforms: a true value means that this entry is about all the
 				    forms of this Pokémon
 		* useless: a true value means that the form of this entry is
@@ -416,19 +415,13 @@ Arguments:
 
 --]]
 entry.head = function(ndex, args)
-    local ndexFigures = ndex:match("^(%d+)")
-    local abbr = forms.getabbr(ndex, args.form)
+    local ndexNumber, abbr = forms.getndexabbr(ndex)
+    local ndexFigures = string.tf(ndexNumber)
     -- This code checks backward compatibility
-    local ndexNumber_, abbr_ = forms.getndexabbr(ndex)
-    local ndexFigures_ = string.tf(ndexNumber_)
-    local extraCat_ = ""
-    if ndexFigures ~= ndexFigures_ then
-        extraCat_ = extraCat_
-            .. "[[Categoria:Movelist con mismatching ndexFigures]]"
-    end
-    if abbr ~= abbr_ then
-        extraCat_ = extraCat_ .. "[[Categoria:Movelist con mismatching abbr]]"
-    end
+    local nf_ = ndex:match("^(%d+)")
+    local abbr_ = forms.getabbr(ndex)
+    assert(ndexFigures == nf_, "Movelist/entry.head: mismatching ndexFigures")
+    assert(abbr == abbr_, "Movelist/entry.head: mismatching abbr")
 
     local pokedata = pokes[forms.nameToDataindex(
         ndexFigures .. forms.toEmptyAbbr(abbr)
@@ -437,7 +430,7 @@ entry.head = function(ndex, args)
             and '<div class="text-small">Tutte le forme</div>'
         or (
             args.useless and useless[tonumber(ndexFigures)].links[abbr]
-            or forms.getlink(ndex, false, args.form)
+            or forms.getlink(ndex, false)
         )
     pokedata = tab.merge(
         multigen.getGen(pokedata),
@@ -446,7 +439,7 @@ entry.head = function(ndex, args)
     local movename = args.movename or mw.title.getCurrentTitle().text
     local stab = args.STAB == "no" and ""
         or args.STAB
-        or lib.computeSTAB(ndex, movename, args.form)
+        or lib.computeSTAB(ndex, movename)
     pokedata.group1show = pokedata.group1 == "coleottero" and "Coleot"
         or (
             pokedata.group1 == "non ancora scoperto"
@@ -465,7 +458,7 @@ entry.head = function(ndex, args)
 | ${ani}
 | <span class="hidden-xs">${stab}[[${name}]]${stab}${notes}${forml}</span>
 | class="hidden-sm height-100" style="padding: 0.8ex 0.3ex;" | ${types}
-| class="hidden-sm height-100" style="padding: 0.8ex 0.3ex;" | ${groups}${extraCat}
+| class="hidden-sm height-100" style="padding: 0.8ex 0.3ex;" | ${groups}
 ]=],
         {
             num = gen.ndexToString(tonumber(ndexFigures)),
@@ -488,7 +481,6 @@ entry.head = function(ndex, args)
                 nil,
                 { "vert-center" }
             ),
-            extraCat = extraCat_,
         }
     )
 end
@@ -499,7 +491,7 @@ Remove from frame.args useless params, here just because of not up-to-date
 calls in the pages. It also return whether some parameter was removed or not.
 
 --]]
-entry.removeOldParams = function(p)
+local function removeOldParams(p)
     local pokedata = pokes[tonumber(p[1])]
         or pokes[p[1]]
         or { name = "Missingno." }
@@ -551,16 +543,18 @@ entry.entry = function(p, kind)
         p.startGen = gen
     end
     -- now p[1] is the ndex, and may be followed by old params
-    local p, removed = entry.removeOldParams(p)
+    local p, removed = removeOldParams(p)
     local ndex = table.remove(p, 1)
 
     local extraCats = ""
+    assert(
+        removed == 0 or removed == 2,
+        "Movelist/entry.removeOldParams: unexpected number of removals: "
+            .. tostring(removed)
+    )
     if removed == 2 then
-        extraCats =
-            "[[Categoria:Movelist in cui vengono rimossi tutti i parametri vecchi]]"
-    elseif removed == 1 then
-        extraCats =
-            "[[Categoria:Movelist in cui vengono rimossi alcuni parametri vecchi]]"
+        extraCats = extraCats
+            .. "[[Categoria:Movelist in cui vengono rimossi tutti i parametri vecchi]]"
     end
     if p.form then
         extraCats = extraCats .. "[[Categoria:Moduli con parametri deprecati]]"
@@ -569,7 +563,6 @@ entry.entry = function(p, kind)
     return entry.head(ndex, {
         STAB = p.STAB,
         notes = p.note,
-        form = string.lower(p.form or ""),
         allforms = p.allforms,
         useless = p.useless,
         movename = p.movename,

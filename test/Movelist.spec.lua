@@ -55,8 +55,8 @@ print(header.tutor8({ args = { "yes" } }))
 -- stylua: ignore
 print(render.entry{args={'Movelist-entry.tutor',
 "[[€148|X|X|X|X|yes|yes|yes|yes|yes|yes|yes|no|no|yes|yes|STAB='''£]]",
-"[[€487|X|X|X|X|no|yes|yes|yes|yes|yes|yes|yes|no|yes|yes|STAB='''|form=originale£]]",
-"[[€646|X|X|X|X|no|no|no|no|yes|yes|yes|yes|no|no|yes|STAB='''|form=nero£]]",
+"[[€487O|X|X|X|X|no|yes|yes|yes|yes|yes|yes|yes|no|yes|yes|STAB='''|form=originale£]]",
+"[[€646N|X|X|X|X|no|no|no|no|yes|yes|yes|yes|no|no|yes|STAB='''|form=nero£]]",
 "[[€715|X|X|X|X|no|no|no|no|no|yes|yes|no|no|yes|yes|STAB='''£]]",
 "[[€718|X|X|X|X|no|no|no|no|no|yes|yes|yes|yes|yes|no|STAB='''£]]",
 "[[€284|X|X|X|X|no|no|no|no|no|no|yes|yes|no|no|no£]]",}})
@@ -67,10 +67,10 @@ print(header.Eventh({ args = { "volante" } }))
 print(header.div({ args = { "4" } }))
 -- stylua: ignore start
 print(entry.Event{args={'491', 'Darkrai', '1', 'Buio', 'Buio', '[[F10|Evento decimo film]]<br>Toys "R" Us e Nintendo World Store<br>Darkrai Alamos europeo<br>Darkrai Alamos australano'}})
-print(entry.Event{args={'493', 'Arceus', '1', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
+print(entry.Event{args={'493', '1', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
 print(entry.Event{args={'492', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
-print(entry.Event{args={'492C', 'Shaymin', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
-print(entry.Event{args={'493', 'Arceus', 'Normale', 'Normale', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''", allforms = 'yes'}})
+print(entry.Event{args={'492C', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''"}})
+print(entry.Event{args={'493', '[[F12|Evento dodicesimo film]]<br>Arceus Michina australano<br>Toys "R" Us Arceus<br>Arceus Michina europeo', "''", allforms = 'yes'}})
 print(header.footer({ args = {} }))
 
 mw.title.setTitle("Azione")
