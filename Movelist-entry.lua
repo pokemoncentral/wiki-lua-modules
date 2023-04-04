@@ -416,21 +416,18 @@ Arguments:
 --]]
 entry.head = function(ndex, args)
     local ndexNumber, abbr = forms.getndexabbr(ndex)
-    local ndexFigures = string.tf(ndexNumber)
-    -- This code checks backward compatibility
-    local nf_ = ndex:match("^(%d+)")
-    local abbr_ = forms.getabbr(ndex)
-    assert(ndexFigures == nf_, "Movelist/entry.head: mismatching ndexFigures")
-    assert(abbr == abbr_, "Movelist/entry.head: mismatching abbr")
+    local ndexFigures = string.ff(ndexNumber)
+    local ndexAbbr = ndexFigures .. forms.toEmptyAbbr(abbr)
 
-    local pokedata = pokes[forms.nameToDataindex(
-        ndexFigures .. forms.toEmptyAbbr(abbr)
-    )] or { name = "Missingno.", ndex = "000" }
+    -- First tries ndex + abbr, then the numeric ndex
+    local pokedata = pokes[ndexAbbr]
+        or pokes[ndexNumber]
+        or { name = "Missingno.", ndex = "000" }
     local forml = args.allforms
             and '<div class="text-small">Tutte le forme</div>'
         or (
-            args.useless and useless[tonumber(ndexFigures)].links[abbr]
-            or forms.getlink(ndex, false)
+            args.useless and useless[ndexNumber].links[abbr]
+            or forms.getlink(ndexAbbr, "")
         )
     pokedata = tab.merge(
         multigen.getGen(pokedata),
@@ -439,7 +436,7 @@ entry.head = function(ndex, args)
     local movename = args.movename or mw.title.getCurrentTitle().text
     local stab = args.STAB == "no" and ""
         or args.STAB
-        or lib.computeSTAB(ndex, movename)
+        or lib.computeSTAB(ndexAbbr, movename)
     pokedata.group1show = pokedata.group1 == "coleottero" and "Coleot"
         or (
             pokedata.group1 == "non ancora scoperto"
@@ -462,7 +459,7 @@ entry.head = function(ndex, args)
 ]=],
         {
             num = gen.ndexToString(tonumber(ndexFigures)),
-            ani = ms.staticLua({ ndexFigures .. forms.toEmptyAbbr(abbr) }),
+            ani = ms.staticLua({ ndexAbbr }),
             stab = stab,
             name = pokedata.name,
             notes = lib.makeNotes(args.notes or ""),

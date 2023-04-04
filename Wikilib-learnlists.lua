@@ -724,7 +724,7 @@ doesn't matches an entry of the respective module, an empty string is returned.
 Arguments:
 	- ndex: either the ndex or the Pokémon's name, all but the abbr lowercase
 	- movename: name of the move to compute the STAB against
-	- form (optional): abbr or extended form name
+	- form (optional): extended form name
 	- gen (optional): the generation in which compute the STAB. Defaults to the
 					  latest
 

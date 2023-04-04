@@ -80,11 +80,8 @@ indici delle tabelle dati o negli ndex dei Mini Sprite, oppure a partire dal
 nome del Pokémon e quello esteso della forma alternativa. In caso di
 fallimento, ritorna la stringa vuota.
 
-DEPRECATION NOTICE: this function is deprecated. Use getnameabbr or getndexabbr
-instead.
-
 --]]
----@deprecated
+---@deprecated use getnameabbr or getndexabbr instead
 f.getabbr = function(name, extform)
     if alt[tonumber(name) or name:lower()] then
         extform = string.lower(extform or "")
