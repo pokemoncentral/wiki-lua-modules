@@ -1,5 +1,8 @@
--- Modulo da usare nel template PokémonInfo per determinare
--- i dex regionali
+--[[
+
+Module to compute regional dex in PokémonInfo
+
+--]]
 
 local rdex = {}
 
@@ -12,28 +15,30 @@ local c = require("Colore-data")
 local sup = require("Sup-data")
 -- stylua: ignore end
 
--- Ritorna il dex regionale di un Pokémon nel vecchio
--- dex regionale specificato: nel caso in cui non sia
--- presente, ritorna nil
+--[[
 
-local getOldDex = function(newDex, oldDexTable, changedDexTable)
-    if changedDexTable and changedDexTable[newDex] then
-        return txt.ff(changedDexTable[newDex])
+Returns the regional dex of a Pokémon in the given oldDex. It returns either
+the rdex number or nil.
+
+-- ]]
+local function getOldDex(newRdex, oldDexTable, changedDexTable)
+    if changedDexTable and changedDexTable[newRdex] then
+        return changedDexTable[newRdex]
     end
-    for subtract, ndex in ipairs(oldDexTable) do
-        if ndex == newDex then
+    for subtract, rdex in ipairs(oldDexTable) do
+        if rdex == newRdex then
             return nil
-        elseif ndex > newDex then
-            return txt.ff(newDex - subtract + 1)
+        elseif rdex > newRdex then
+            return newRdex - subtract + 1
         end
     end
-    return txt.ff(newDex - tab.getn(oldDexTable))
+    return newRdex - tab.getn(oldDexTable)
 end
 
 -- Aggiunge un title al primo argomento costituito
 -- dal secondo e dal terzo separati da uno spazio
 
-local addtt = function(newDex, oldDex, title)
+local function addtt(newDex, oldDex, title)
     return txt.interp(links.tt(newDex, oldDex .. title))
 end
 
@@ -66,24 +71,34 @@ end
 -- Ordina la tabella store: la table è esterna alla
 -- funzione così da non essere ricreata ogni volta
 local regiongens = {
-    Kanto = { ord = 1 },
-    Johto = { ord = 2 },
-    Hoenn = { ord = 3 },
-    Sinnoh = { ord = 4 },
-    Unima = { ord = 5 },
-    Kalos = { ord = 6 },
-    Alola = { ord = 7 },
-    Galar = { ord = 8 },
-    Armatura = { ord = 9, pref = "" },
-    Corona = { ord = 10, pref = "" },
-    Hisui = { ord = 11 },
-    Paldea = { ord = 12 },
+    Kanto = { ord = 1, nfig = 3 },
+    Johto = { ord = 2, nfig = 3 },
+    Hoenn = { ord = 3, nfig = 3 },
+    Sinnoh = { ord = 4, nfig = 3 },
+    Unima = { ord = 5, nfig = 3 },
+    Kalos = { ord = 6, nfig = 3 },
+    Alola = { ord = 7, nfig = 3 },
+    Galar = { ord = 8, nfig = 3 },
+    Armatura = { ord = 9, pref = "", nfig = 3 },
+    Corona = { ord = 10, pref = "", nfig = 3 },
+    Hisui = { ord = 11, nfig = 3 },
+    Paldea = { ord = 12, nfig = 0 },
 }
 
-local region_sort = function(c, d)
+local function region_sort(c, d)
     local a, b = c:match(">(%a+)</span>"), d:match(">(%a+)</span>")
     return regiongens[a].ord < regiongens[b].ord
 end
+
+-- Format a numeric ndex with right number of leading zeros for the given region
+local function regionNdexFormat(region, ndex)
+    return txt.nFigures(ndex, regiongens[txt.fu(region)].nfig)
+end
+
+local STRINGS = {
+    base = [=[<span><div class="small-font">'''[[Elenco Pokémon secondo il Pokédex ${pref}${reg}|<span class="black-text">${reg}</span>]]'''</div>#${rdex}</span>]=],
+    kalos = [=[<span><div class="small-font">'''[[Elenco Pokémon secondo i Pokédex di Kalos#Pokédex di Kalos ${reg}|<span style="color:#${c}">Kalos</span>]]'''</div>#${ttdex}</span>]=],
+}
 
 --[[
 
@@ -94,45 +109,42 @@ ed effettua l'inserimento; se ciò non accade, concatena all'ultimo
 elemento l'asterisco giusto chiamando la funzione olddex.
 
 --]]
-local dexlist = function(dexes)
+local function dexlist(dexes)
     if tab.getn(dexes) == 0 then
-        return nil
+        return "In nessun Pokédex regionale"
     end
     local store = {}
-    local str =
-        [=[<span><div class="small-font">'''[[Elenco Pokémon secondo il Pokédex ${pref}${reg}|<span class="black-text">${reg}</span>]]'''</div>#${rdex}</span>]=]
-    local kalos =
-        [=[<span><div class="small-font">'''[[Elenco Pokémon secondo i Pokédex di Kalos#Pokédex di Kalos ${reg}|<span style="color:#${c}">Kalos</span>]]'''</div>#${ttdex}</span>]=]
     for region, rdex in pairs(dexes) do
         if region:find("kalos") then
+            local rdexFigures = regionNdexFormat("kalos", rdex)
             local zone = region:match("kalos(%a+)$")
             table.insert(
                 store,
-                txt.interp(kalos, {
+                txt.interp(STRINGS.kalos, {
                     c = c["kalos" .. zone].normale,
-                    ttdex = links.tt(rdex, zone),
+                    ttdex = links.tt(rdexFigures, zone),
                     reg = zone,
                 })
             )
         else
-            local oldDexTable = dex[region .. "Added"]
+            local oldDexTable = dex.added[region]
+            local rdexFigures = regionNdexFormat(region, rdex)
             if oldDexTable then
-                local oldDex = getOldDex(
-                    tonumber(rdex),
-                    oldDexTable,
-                    dex[region .. "Changed"]
-                )
+                local oldDex = getOldDex(rdex, oldDexTable, dex.changed[region])
                 if oldDex ~= rdex then
-                    rdex = insOld[region](rdex, oldDex or "Non disponibile")
+                    local oldDexText = oldDex
+                            and regionNdexFormat(region, oldDex)
+                        or "Non disponibile"
+                    rdexFigures = insOld[region](rdexFigures, oldDexText)
                 end
             end
             local regionName = txt.fu(region)
             table.insert(
                 store,
-                txt.interp(str, {
+                txt.interp(STRINGS.base, {
                     reg = regionName,
                     pref = regiongens[regionName].pref or "di ",
-                    rdex = rdex,
+                    rdex = rdexFigures,
                 })
             )
         end
@@ -157,23 +169,28 @@ end
 -- ha più dex regionali (es: alola) inserisce come valore una table
 -- contenente il numero di dex nazionale
 
-local search = function(ndex)
+local function search(ndex)
     local dexes = {}
     for region, regionalDex in pairs(dex) do
-        local rdex = tab.search(regionalDex, ndex)
-        if rdex then
-            dexes[region] = txt.fourFigures(rdex)
+        if region ~= "added" and region ~= "changed" then
+            local rdex = tab.search(regionalDex, ndex)
+            if rdex then
+                dexes[region] = rdex
+            end
         end
     end
     return dexes
 end
 
---Interfaccia. Riceve un ndex su tre cifre e un tipo, e interpola il colore standard
--- del tipo e la lista dei dex regionali, creata con la funzione dexlist, al box in wikicode
+--[[
 
+WikiCode interface. Takes a single argument, that is the numeric ndex of the
+Pokémon, and computes the list of regional dexes.
+
+--]]
 rdex.regionaldex = function(frame)
-    local ndex = txt.trim(frame.args[1]) or "000"
-    return dexlist(search(ndex)) or "In nessun Pokédex regionale"
+    local ndex = tonumber(frame.args[1]) or 0
+    return dexlist(search(ndex))
 end
 
 rdex.Regionaldex, rdex.RegionalDex = rdex.regionaldex, rdex.regionaldex
