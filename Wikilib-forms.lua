@@ -277,7 +277,7 @@ f.nameToDataindex = function(name)
     then
         return trueName
     end
-    trueName = type(trueName) == "number" and txt.ff(trueName) or trueName
+    local trueName = type(trueName) == "number" and txt.ff(trueName) or trueName
     return trueName .. f.toEmptyAbbr(extform)
 end
 

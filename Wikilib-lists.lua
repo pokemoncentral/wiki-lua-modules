@@ -69,7 +69,7 @@ che non iniziano con delle cifre
 
 --]]
 local nextPokeName = function(tab, key)
-    local nextKey, nextValue = key
+    local nextKey, nextValue = key, nil
     repeat
         nextKey, nextValue = next(tab, nextKey)
     until not nextKey or not txt.parseInt(nextKey)

@@ -29,6 +29,7 @@ tl.FirstTypeEntry.__lt = function(a, b)
 end
 
 -- Needs a different heading level than Typelist
+---@diagnostic disable-next-line: duplicate-set-field
 tl.FirstTypeEntry.makeHeader = function(type)
     return tl.FirstTypeEntry.super.makeHeader(type, 3, "come tipo primario")
 end

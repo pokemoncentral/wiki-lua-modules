@@ -55,7 +55,7 @@ spins[3] = string.interp([=[! style=" background: #${cl}" width="40px"| [[Pokém
 ]=], {cl = c.colo.normale, xd = c.xd.normale, brz = c.rubino.normale, chn = c.giallo.normale, tc = c.background})
 spins[4] = string.interp([=[! style=" background: #${br}" width="40px"| [[Pokémon Battle Revolution|<span style="color:#${tc};">PBR</span>]]
 ! style=" background: #${mpr}" width="40px"| [[My Pokémon Ranch|<span style="color:#${tc};">Ranch</span>]]
-! style=" background: #${rng}" width="40px"| [[Pokémon Ranger (gioco)|<span style="color:#${tc};">Ran</span>]] 
+! style=" background: #${rng}" width="40px"| [[Pokémon Ranger (gioco)|<span style="color:#${tc};">Ran</span>]]
 ! style=" background: #${osa}" width="40px"| [[Pokémon Ranger: Ombre su Almia|<span style="color:#${tc};">OsA</span>]]
 ! style=" background: #${tl}" width="40px"| [[Pokémon Ranger: Tracce di Luce|<span style="color:#${tc};">TdL</span>]]
 ! style=" background: #${pw}" width="40px"| [[Pokéwalker|<span style="color:#${tc};">PW</span>]]
@@ -266,9 +266,9 @@ local _so1 = function(p)
 
 | style="background: #${bgst}; color: #${tst};" | '''${st}''']=], t)
 end
-    
-    
-    
+
+
+
 -- L'header per i giochi della serie principale
 
 f.h = function(frame)
@@ -308,9 +308,9 @@ ${g}]=],
     g = cells(gen, 'spinoff')
 })
 end
-    
+
 f.Spinoffh = f.spinoffh
-    
+
 -- Entry per tutte le generazioni, che chiama quelli specifici per una singola generazione.
 
 f.entry = function(frame)
@@ -382,8 +382,7 @@ f.spinoff = function(frame)
     h = g
 })
 end
-    
+
 f.Spinoff = f.spinoff
 
 return f
-

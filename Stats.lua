@@ -355,7 +355,7 @@ It takes the stat name and the stat table (in multigen format).
 local makeStatFooterLines = function(stat, values)
     local footerLines = {}
     local spans = mg.getGenSpan(values)
-    for k, v in ipairs(spans) do
+    for k, v in ipairs(spans) do ---@diagnostic disable-line: param-type-mismatch
         if k < #spans then -- the last value shouldn't be in the footer
             local interpVal = {
                 stat_color = c[stat].normale,
@@ -884,8 +884,8 @@ s.statsBox = function(frame)
         type2 = p.type2,
     }
     p.gen = bounds and (p.gen or gendata.latest)
-    p.totalLink = (p.totalLink or "no"):lower() == "yes"
-    p.listLink = (p.listLink or "no"):lower() == "yes"
+    p.totalLink = (p.totalLink or "no"):lower() == "yes" ---@diagnostic disable-line: param-type-mismatch
+    p.listLink = (p.listLink or "no"):lower() == "yes" ---@diagnostic disable-line: param-type-mismatch
     p.align = (p.align or "center")
 
     return s.boxStats(p)

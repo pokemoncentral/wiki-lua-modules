@@ -19,4 +19,5 @@ repos:
       name: Check alt forms abbr invariants
       entry: lua static/abbr-checks.lua
       language: lua
-      always_run: true
+      files: 'Poké-data.lua|AltForms-data.lua|UselessForms-data.lua|BothForms-data.lua'
+      pass_filenames: false

@@ -19,16 +19,18 @@ Oppure con una combinazione di tipi:
 
 local dr = {}
 
+-- stylua: ignore start
 local mw = require('mw')
 
+local tab = require('Wikilib-tables')
 local w = require('Wikilib')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
-local tab = require('Wikilib-tables')
 local multigen = require('Wikilib-multigen')
 local drp = require('DebRes')
 local et = require('EffTipi-1')
 local pokes = require("Poké-data")
+-- stylua: ignore end
 
 --[[
 
@@ -47,9 +49,7 @@ dr.EffTable = oop.makeClass(drp.EffTable)
 Tutti i possibili moltiplicatori dell'efficacia
 
 --]]
-dr.EffTable.allEff = {
-	0, 0.25, 0.5, 1, 2, 4, -- Standard
-}
+dr.EffTable.allEff = { 0, 0.25, 0.5, 1, 2, 4 }
 
 --[[
 
@@ -59,45 +59,43 @@ e, opzionalmente, il nome esteso dell gioco
 
 --]]
 dr.EffTable.new = function(name, formName)
-	local types
+    local types
 
-	if type(name) == 'table' and type(formName) == 'table' then
-		types = table.map(name, string.lower)
-	else
-		types = multigen.getGen(pokes[name], 1)
-	end
+    if type(name) == "table" and type(formName) == "table" then
+        types = tab.map(name, string.lower)
+    else
+        types = multigen.getGen(pokes[name], 1)
+    end
 
-	local this = setmetatable(dr.EffTable.super.super.new(),
-			dr.EffTable)
-	this.collapse = ''
+    local this = setmetatable(dr.EffTable.super.super.new(), dr.EffTable)
+    this.collapse = ""
 
-	local monoType = types.type1 == types.type2
+    local monoType = types.type1 == types.type2
 
-	-- Dati per la stampa
-	this:createColors(types)
+    -- Dati per la stampa
+    this:createColors(types)
 
-	--[[
+    --[[
 		Per ogni possibile efficacia, se vi sono
 		tipi che la hanno, inserisce una table
 		con i loro nomi all'indice dell'efficacia
 		stessa
 	--]]
-	for _, eff in ipairs(dr.EffTable.allEff) do
-		local types = et.difesa(eff, types.type1, types.type2, 'Tanfo')
-		if #types > 0 then
-
-			--[[
+    for _, eff in ipairs(dr.EffTable.allEff) do
+        local types = et.difesa(eff, types.type1, types.type2)
+        if #types > 0 then
+            --[[
 				I tipi devono essere ordinati per il
 				confronto e la conversione a stringa
 			--]]
-			table.sort(types)
-			this[eff] = types
-		end
-	end
+            table.sort(types)
+            this[eff] = types
+        end
+    end
 
-	this.footer = {}
+    this.footer = {}
 
-	return this
+    return this
 end
 
 --[[
@@ -111,33 +109,31 @@ estesa al caricamento della pagina.
 
 --]]
 dr.debRes = function(frame)
-	local p = w.trimAndMap(mw.clone(frame.args), string.lower)
-	local pokeData = pokes[string.parseInt(p[1]) or p[1]]
-			or pokes[mw.text.decode(p[1])]
+    local p = w.trimAndMap(mw.clone(frame.args), string.lower)
+    local pokeData = pokes[string.parseInt(p[1]) or p[1]]
+        or pokes[mw.text.decode(p[1])]
 
-	--[[
+    --[[
 		If no data is found, the first parameter is
 		the type, that is no Pokémon is given and
 		types are directly provided
 	--]]
-	if not pokeData then
-		local types = {}
-		types.type1 = p[1] or p.type1 or p.type
-		types.type2 = p[2] or p.type2 or types.type1
-		return tostring(dr.EffTable.new(types, {}))
-	end
+    if not pokeData then
+        local types = {}
+        types.type1 = p[1] or p.type1 or p.type
+        types.type2 = p[2] or p.type2 or types.type1
+        return tostring(dr.EffTable.new(types, {}))
+    end
 
-	pokeData = multigen.getGen(pokeData, 1)
+    pokeData = multigen.getGen(pokeData, 1)
 
-	return list.makeFormsLabelledBoxes({
-		name = pokeData.name:lower(),
-		makeBox = dr.EffTable.new,
-		printBoxes = dr.EffTable.printEffTables
-	})
+    return list.makeFormsLabelledBoxes({
+        name = pokeData.name:lower(),
+        makeBox = dr.EffTable.new,
+        printBoxes = dr.EffTable.printEffTables,
+    })
 end
 
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
-local arg = {"Parasect"}
-print(dr.DebRes{args=arg})
--- return dr
+return dr

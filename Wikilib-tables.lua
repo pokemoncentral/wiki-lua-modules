@@ -3,17 +3,15 @@
 
 local t = {}
 
-
 -- Stateless iterator on non-integer keys
 local nextNonInt = function(tab, key)
-    local nextKey, nextValue = key
+    local nextKey, nextValue = key, nil
     repeat
         nextKey, nextValue = next(tab, nextKey)
-    until type(nextKey) ~= 'number' or math.floor(nextKey) ~= nextKey
+    until type(nextKey) ~= "number" or math.floor(nextKey) ~= nextKey
     return nextKey, nextValue
 end
-local next_non_int = nextNonInt     -- luacheck: no unused
-
+local next_non_int = nextNonInt -- luacheck: no unused
 
 -- Returns true only if a is lexigographically greater than b
 local minor = function(a, b)
@@ -29,7 +27,6 @@ local minor = function(a, b)
 
     return tostring(a) < tostring(b)
 end
-
 
 --[[
 
@@ -51,14 +48,12 @@ TODO: refactoring to use just built-ins
 
 --]]
 table.all = function(tab, funct, iter)
-     return table.fold(tab, true,
-        function(acc, value, key)
-            return funct(value, key) and acc
-        end, iter)
+    return table.fold(tab, true, function(acc, value, key)
+        return funct(value, key) and acc
+    end, iter)
 end
 
 t.all = table.all
-
 
 --[[
 
@@ -72,13 +67,11 @@ TODO: refactoring to use just built-ins
 
 --]]
 table.any = function(tab, funct, iter)
-    return table.fold(tab, false,
-        function(acc, value, key)
-            return funct(value, key) or acc
-        end, iter)
+    return table.fold(tab, false, function(acc, value, key)
+        return funct(value, key) or acc
+    end, iter)
 end
 t.any = table.any
-
 
 --[[
 
@@ -89,12 +82,11 @@ the job of mw.clone.
 table.copy = function(value)
     local dest = {}
     for k, v in pairs(value) do
-        dest[k] = type(v) == 'table' and table.copy(v) or v
+        dest[k] = type(v) == "table" and table.copy(v) or v
     end
     return dest
 end
 t.copy = table.copy
-
 
 --[[
 
@@ -105,7 +97,8 @@ in this case they are merged recursively.
 
 --]]
 table.deepMerge = function(tab1, tab2)
-local mw = require('mw')
+    -- stylua: ignore
+    local mw = require('mw')
     -- Better to use mw.clone, so as to keep metatable of items.
     local dest = mw.clone(tab1)
 
@@ -114,9 +107,10 @@ local mw = require('mw')
         table.insert(dest, value)
     end
     for key, value in table.nonIntPairs(tab2) do
-        if dest[key]
-                and type(dest[key]) == 'table'
-                and type(value) == 'table'
+        if
+            dest[key]
+            and type(dest[key]) == "table"
+            and type(value) == "table"
         then
             dest[key] = table.deepMerge(dest[key], value)
         else
@@ -127,7 +121,6 @@ local mw = require('mw')
 end
 table.deep_merge = table.deepMerge
 t.deep_merge, t.deepMerge = table.deepMerge, table.deepMerge
-
 
 --[[
 
@@ -146,12 +139,12 @@ table.deepSearch = function(tab, value)
         if v == value then
             return k
         end
-        if type(v) == 'table' then
+        if type(v) == "table" then
             --[[
                 If the last list element is not nil, value
                 has been found, thus returning
             --]]
-            local valueKeys = {table.deepSearch(v, value)}
+            local valueKeys = { table.deepSearch(v, value) }
             if valueKeys[#valueKeys] then
                 return k, table.unpack(valueKeys)
             end
@@ -192,9 +185,12 @@ table.equal = function(tab1, tab2)
     --]]
     local mt1 = getmetatable(tab1)
     local mt2 = getmetatable(tab2)
-    if mt1 and mt1.__eq or mt2 and mt2.__eq
-            or type(tab1) ~= 'table'
-            or type(tab2) ~= 'table' then
+    if
+        mt1 and mt1.__eq
+        or mt2 and mt2.__eq
+        or type(tab1) ~= "table"
+        or type(tab2) ~= "table"
+    then
         return tab1 == tab2
     end
 
@@ -257,7 +253,6 @@ table.filter = function(tab, cond)
 end
 t.filter = table.filter
 
-
 --[[
 
 Applies a function over all of the elements of a table returned by the passed
@@ -280,7 +275,6 @@ table.flatMap = function(tab, funct, iter)
 end
 table.flat_map = table.flatMap
 t.flatMap, t.fat_map = table.flatMap, table.flatMap
-
 
 --[[
 
@@ -307,7 +301,6 @@ table.flatMapToNum = function(tab, funct, iter)
 end
 table.flat_map_to_num = table.flatMapToNum
 t.flatMapToNum, t.flat_map_to_num = table.flatMapToNum, table.flatMapToNum
-
 
 -- Returns the input table, but with keys and values swapped.
 table.flip = function(tab)
@@ -338,7 +331,7 @@ table.flatten = function(tab, iter)
 
     local dest = {}
     for k, v in iter(tab) do
-        if type(v) == 'table' then
+        if type(v) == "table" then
             dest = table.merge(dest, v)
         else
             dest[k] = v
@@ -347,7 +340,6 @@ table.flatten = function(tab, iter)
     return dest
 end
 t.flatten = table.flatten
-
 
 --[[
 
@@ -371,7 +363,6 @@ table.fold = function(tab, zero, func, iter)
 end
 t.fold = table.fold
 
-
 --[[
 
 Returns the number of elements in a table. It should only be used when
@@ -380,12 +371,14 @@ If the second argument is 'num' it only counts items having a integer index,
 otherwise it takes all elements in account.
 
 --]]
+---@diagnostic disable-next-line: duplicate-set-field
 table.getn = function(self, count)
-    count = count or 'all'
+    count = count or "all"
 
     local n = 0
-    local iterator = (count == true or tostring(count):lower() == 'num')
-    and ipairs or pairs
+    local iterator = (count == true or tostring(count):lower() == "num")
+            and ipairs
+        or pairs
 
     for _ in iterator(self) do
         n = n + 1
@@ -394,7 +387,6 @@ table.getn = function(self, count)
     return n
 end
 t.getn = table.getn
-
 
 --[[
 
@@ -410,7 +402,6 @@ table.keys = function(tab)
     return keys
 end
 t.keys = table.keys
-
 
 --[[
 
@@ -433,7 +424,6 @@ table.map = function(tab, funct, iter)
     return dest
 end
 t.map = table.map
-
 
 --[[
 
@@ -458,7 +448,6 @@ end
 table.map_to_num = table.mapToNum
 t.mapToNum, t.map_to_num = table.mapToNum, table.mapToNum
 
-
 --[[
 
 Merges two tables into a new one. Integer indices of the second table will
@@ -467,7 +456,8 @@ in case of equlity.
 
 --]]
 table.merge = function(tab1, tab2)
-local mw = require('mw')
+    -- stylua: ignore
+    local mw = require('mw')
     -- Better to use mw.clone, so as to keep metatable of items.
     local dest = mw.clone(tab1)
 
@@ -481,7 +471,6 @@ local mw = require('mw')
     return dest
 end
 t.merge = table.merge
-
 
 -- Stateless iterator to be used in for loops
 table.nonIntPairs = function(tab)
@@ -516,7 +505,6 @@ table.search = function(tab, value)
 end
 t.search = table.search
 
-
 --[[
 
 Returns the elements of a numeric table whose indices are within the specified
@@ -531,10 +519,10 @@ table.slice = function(tab, from, to)
 
     to = to or length
     if from < 0 then
-        from = length + from + 1      -- + because from is negative
+        from = length + from + 1 -- + because from is negative
     end
     if to < 0 then
-        to = length + to + 1          -- + because to is negative
+        to = length + to + 1 -- + because to is negative
     end
 
     local dest = {}
@@ -544,7 +532,6 @@ table.slice = function(tab, from, to)
     return dest
 end
 t.slice = table.slice
-
 
 --[[
 
@@ -571,10 +558,12 @@ table.tableKeysAlias = function(tab, source, dest)
 end
 
 table.table_keys_alias, table.keysAlias, table.keys_alias =
-        table.tableKeysAlias, table.tableKeysAlias, table.tableKeysAlias
+    table.tableKeysAlias, table.tableKeysAlias, table.tableKeysAlias
 t.tableKeysAlias, t.table_keys_alias, t.keysAlias, t.keys_alias =
-        table.tableKeysAlias, table.tableKeysAlias, table.tableKeysAlias, table.tableKeysAlias
-
+    table.tableKeysAlias,
+    table.tableKeysAlias,
+    table.tableKeysAlias,
+    table.tableKeysAlias
 
 --[[
 
@@ -618,7 +607,6 @@ table.unique = function(tab)
 end
 t.unique = table.unique
 
-
 --[[
 
 Returns a numeric table containing the values of the passed table, in the
@@ -648,7 +636,9 @@ table. The iterator defaults to pairs.
 
 --]]
 table.zip = function(tab1, tab2, combinator, iter)
-    combinator = combinator or function(a, b) return {a, b} end
+    combinator = combinator or function(a, b)
+        return { a, b }
+    end
     iter = iter or pairs
 
     local res = {}
