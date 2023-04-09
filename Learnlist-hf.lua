@@ -359,7 +359,7 @@ d.levelhLPA = function(frame)
     local pokename = mw.text.decode(p[1]):lower()
     local abbr = p.form or ""
     local pokedata =
-        multigen.getGen(pokes[wform.nameToDataindex(pokename .. abbr)])
+        multigen.getGen(pokes[wform.nameToDataindex(pokename, abbr)])
     return txt.interp(
         [=[
 <div class="text-center max-width-xl-100">
@@ -441,7 +441,7 @@ d.tutorhLPA = function(frame)
     local pokename = mw.text.decode(p[1]):lower()
     local abbr = p.form or ""
     local pokedata =
-        multigen.getGen(pokes[wform.nameToDataindex(pokename .. abbr)])
+        multigen.getGen(pokes[wform.nameToDataindex(pokename, abbr)])
     return txt.interp(
         [=[
 <div class="text-center max-width-xl-100">
@@ -498,7 +498,7 @@ d.levelfLPA = function(frame)
     local pokename = mw.text.decode(p[1]):lower()
     local abbr = p.form or ""
     local pokedata =
-        multigen.getGen(pokes[wform.nameToDataindex(pokename .. abbr)])
+        multigen.getGen(pokes[wform.nameToDataindex(pokename, abbr)])
     local genf = tonumber(p[2]) or 0
     return txt.interp(
         [=[
@@ -549,7 +549,7 @@ d.tutorfLPA = function(frame)
     local pokename = mw.text.decode(p[1]):lower()
     local abbr = p.form or ""
     local pokedata =
-        multigen.getGen(pokes[wform.nameToDataindex(pokename .. abbr)])
+        multigen.getGen(pokes[wform.nameToDataindex(pokename, abbr)])
     local genf = tonumber(p[2]) or 0
     return txt.interp(
         [=[

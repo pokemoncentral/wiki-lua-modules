@@ -576,7 +576,7 @@ eb.Evobox = function(frame)
     local pokename = mw.text.decode(p[1]):lower()
     local abbr = p.form or ""
     local pokeData =
-        multigen.getGen(pokes[form.nameToDataindex(pokename .. abbr)])
+        multigen.getGen(pokes[form.nameToDataindex(pokename, abbr)])
     local nameabbr = abbr == "" and pokename or pokename .. abbr
 
     local data

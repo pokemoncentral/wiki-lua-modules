@@ -24,7 +24,7 @@ local cc = require('ChooseColor')
 Parse the input data when it's a Pokémon name.
 
 --]]
-local parseName = function(name)
+local function parseName(name)
     return formlib.nameToDataindex(mw.text.decode(name))
 end
 
@@ -37,7 +37,6 @@ b.getNdex = function(frame)
     local pokes = require("Poké-data")
     return txt.ff(pokes[parseName(frame.args[1])].ndex)
 end
-
 b.get_ndex = b.getNdex
 
 --[[
@@ -54,7 +53,6 @@ b.getName = function(frame)
     local pokes = require("Poké-data")
     return pokes[parseName(frame.args[1])].name
 end
-
 b.get_name = b.getName
 
 --[[
@@ -84,10 +82,10 @@ ndex) it should be lowercase but the first letter, that can be both upper or
 lower case.
 
 --]]
-local getAbil = function(name, abilityNumber, gen)
+local function getAbil(frame, abilityNumber, gen)
     local abils = require("PokéAbil-data")
     return multigen.getGenValue(
-        abils[parseName(name)]["ability" .. abilityNumber] or "",
+        abils[parseName(frame.args[1])]["ability" .. abilityNumber] or "",
         tonumber(gen)
     )
 end
@@ -105,9 +103,8 @@ Ex:
 
 --]]
 b.getAbil1 = function(frame)
-    return getAbil(frame.args[1], "1", frame.args.gen)
+    return getAbil(frame, "1", frame.args.gen)
 end
-
 b.get_abil_1 = b.getAbil1
 
 --[[
@@ -123,9 +120,8 @@ Ex:
 
 --]]
 b.getAbil2 = function(frame)
-    return getAbil(frame.args[1], "2", frame.args.gen)
+    return getAbil(frame, "2", frame.args.gen)
 end
-
 b.get_abil_2 = b.getAbil2
 
 --[[
@@ -141,9 +137,8 @@ Ex:
 
 --]]
 b.getAbild = function(frame)
-    return getAbil(frame.args[1], "d", frame.args.gen)
+    return getAbil(frame, "d", frame.args.gen)
 end
-
 b.get_abil_d, b.get_abil_h, b.get_abil_n = b.getAbild, b.getAbild, b.getAbild
 
 --[[
@@ -158,9 +153,8 @@ Ex:
 
 --]]
 b.getAbile = function(frame)
-    return getAbil(frame.args[1], "e", frame.args.gen)
+    return getAbil(frame, "e", frame.args.gen)
 end
-
 b.get_abil_e = b.getAbile
 
 --[[
@@ -172,7 +166,7 @@ ndex) it should be lowercase but the first letter, that can be both upper or
 lower case.
 
 --]]
-local getType = function(name, typeNumber, gen)
+local function getType(name, typeNumber, gen)
     local pokes = require("Poké-data")
     return txt.fu(
         multigen.getGenValue(
@@ -196,7 +190,6 @@ Ex:
 b.getType1 = function(frame)
     return getType(frame.args[1], "1", frame.args.gen)
 end
-
 b.get_type_1 = b.getType1
 
 --[[
@@ -216,7 +209,6 @@ Ex:
 b.getType2 = function(frame)
     return getType(frame.args[1], "2", frame.args.gen)
 end
-
 b.get_type_2 = b.getType2
 
 --[[
@@ -309,7 +301,6 @@ b.getLink = function(frame)
     formlib.loadUseless(true)
     return formlib.getLink(name, black)
 end
-
 b.getlink = b.getLink
 
 --[[

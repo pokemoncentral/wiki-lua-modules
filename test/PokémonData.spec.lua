@@ -131,11 +131,11 @@ makeTest(pokeData.getPokeTextColor({ args = { " 065" } }), "black-text")
 makeTest(pokeData.getPokeTextColor({ args = { "249" } }), "white-text")
 
 -- Alt forms
-makeTest(pokeData.getPokeTextColor({ args = { " alakazamM " } }), "black-text")
+makeTest(pokeData.getPokeTextColor({ args = { " 65M " } }), "black-text")
 makeTest(pokeData.getPokeTextColor({ args = { "487O" } }), "white-text")
 
 -- Useless forms (probably they shouldn't even work, but here we go)
-makeTest(pokeData.getPokeTextColor({ args = { " shellosE " } }), "white-text")
+makeTest(pokeData.getPokeTextColor({ args = { " 0422E " } }), "white-text")
 
 -- Gen parameter
 makeTest(

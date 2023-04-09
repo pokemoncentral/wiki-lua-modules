@@ -114,7 +114,8 @@ f.getNameAbbr = f.getnameabbr
 
 Given a Pokémon ndex, possibly followed by a form abbr, split the ndex itself
 from the abbr. If given a Pokémon name instead of an ndex, the function returns
-it unchanged.
+it as is. The second parameter is an optional abbr, which is used when no abbr
+is found in name.
 
 The name behaviour is needed because in general it not possible to separate the
 name from the abbr. If there is some extra assumption (eg. the name is all
@@ -122,21 +123,22 @@ lowercase, its the caller's resposibility to exploit it.)
 
 --]]
 ---@param name string An ndex+abbr or Pokémon name
+---@param abbr string? An optional abbr, to be used when name doesn't contain any
 ---@return number|string, string
-f.getndexabbr = function(name)
+f.getndexabbr = function(name, abbr)
     -- name is just an ndex
     local ndex = string.match(name, "^(%d+)$")
     if ndex then
-        return tonumber(ndex), "base" ---@diagnostic disable-line: return-type-mismatch
+        return tonumber(ndex), abbr or "base" ---@diagnostic disable-line: return-type-mismatch
     end
     -- name is an ndex followed by an abbr
-    local ndex, abbr = string.match(name, "^(%d+)(%u%a*)$")
+    local ndex, abbr_ = string.match(name, "^(%d+)(%u%a*)$")
     if ndex then
-        return tonumber(ndex), abbr ---@diagnostic disable-line: return-type-mismatch
+        return tonumber(ndex), abbr_ ---@diagnostic disable-line: return-type-mismatch
     end
     -- name is not an ndex: it's assumed to be a Pokémon name. In this case,
-    -- there is no abbr and the name is returned as-is
-    return name, "base"
+    -- there is no abbr in the name, so it's returned unmodified
+    return name, abbr or "base"
 end
 
 --[[
@@ -252,32 +254,35 @@ f.formspan, f.form_span = f.formSpan, f.formSpan
 --[[
 
 Parse an argument that should be a Pokémon name or ndex, the latter possibly
-followed by a form abbr, so that it can be used to index a data module.
-If name is a Pokémon name it can't be followed by the abbr.
+followed by a form abbr, so that it can be used to index a data module. The
+second argument "abbr" is optional and specify the form.
+
+If name is a Pokémon name it can't be followed by the abbr. If name already
+contains an abbr (eg. ndex + abbr) the second argument is ignored.
+
+This function makes name lowercase, and removes the form abbr if it is useless.
 
 --]]
-f.nameToDataindex = function(name)
+f.nameToDataindex = function(name, abbr)
     name = txt.trim(tostring(name))
-    local trueName, extform = f.getnameabbr(name)
-    -- If the name contains uppercase letters it's not recognized by
-    -- getnameabbr, so this mess is needed
-    trueName = type(trueName) == "number" and trueName
-        or (trueName == "" and name:lower() or trueName:lower())
+    local namePlain, abbr = f.getndexabbr(name, abbr)
+    -- Make lowercase for indexing
+    namePlain = type(namePlain) == "string" and namePlain:lower() or namePlain
     -- The local variable is needed because global alt can be changed with
     -- loadUseless
     local trueAlt = require("AltForms-data")
-    -- If the Pokémon isn't in altForms/data, should return the plain name
-    -- extform == 'base' settles problems with numbers and string concat
-    -- The last check is for Pokémon with both forms
-    if
-        extform == "base"
-        or not trueAlt[tonumber(trueName) or trueName]
-        or not trueAlt[tonumber(trueName) or trueName].names[extform]
-    then
-        return trueName
+    -- If the Pokémon isn't in AltForms/data, should return the plain name. The
+    -- second check is for Pokémon with both forms
+    if not (trueAlt[namePlain] and trueAlt[namePlain].names[abbr]) then
+        return namePlain
     end
-    local trueName = type(trueName) == "number" and txt.ff(trueName) or trueName
-    return trueName .. f.toEmptyAbbr(extform)
+    if abbr ~= "base" then
+        local nameTxt = type(namePlain) == "number" and txt.ff(namePlain)
+            or namePlain
+        return nameTxt .. abbr
+    else
+        return namePlain
+    end
 end
 
 --[[
