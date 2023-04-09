@@ -44,17 +44,7 @@ abbreviation.
 
 --]]
 g.isInGame = function(poke, game)
-    local ndex_ = string.parseInt(poke)
-    local abbr_ = formUtil.getabbr(poke)
     local ndex, abbr = formUtil.getndexabbr(poke)
-    assert(
-        ndex == ndex_,
-        "Mismatch in Wikilib/games.isInGame: ndex are different"
-    )
-    assert(
-        abbr == abbr_,
-        "Mismatch in Wikilib/games.isInGame: abbr are different"
-    )
 
     -- Pokémon given as a name
     if not ndex then

@@ -3,11 +3,11 @@
 local text = {}
 
 -- Rimuove gli spazi vuoti all'inizio e alla fine di una stringa
-
+---@param s string
+---@return string
 string.trim = function(s)
     return tostring(s):match("^%s*(.-)%s*$")
 end
-
 text.trim = string.trim
 
 --[[

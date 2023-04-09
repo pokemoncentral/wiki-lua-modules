@@ -108,8 +108,7 @@ f.getnameabbr = function(name, extform)
     local poke, abbr = name:match("^([%lé%-♂♀'%s%.&#;%d]+)(%u*%a*)$")
     return tonumber(poke) or poke or "", abbr or "base"
 end
-
-f.getNameAbbr, f.get_name_abbr = f.getnameabbr, f.getnameabbr
+f.getNameAbbr = f.getnameabbr
 
 --[[
 
