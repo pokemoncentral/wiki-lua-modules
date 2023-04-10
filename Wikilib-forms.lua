@@ -143,24 +143,18 @@ end
 
 --[[
 
-Il parametro black è una stringa che indica il
-tipo di link ("black", "" o "plain", default a ""),
-mentre ext deve essere minuscolo. Recupera il
-link per le forme alternative a partire dal nome
-del Pokémon comprensivo di sigla, oppure dal nome
-del Pokémon e quello esteso della forma alternativa.
+Given a Pokémon name or ndex, return the link to the alternative form. The
+second parameter specify the kind of link, and can either be "black", "plain"
+or "" (default to ""). The optional third parameter is the abbr of the
+alternative form.
 
 --]]
-f.getlink = function(poke, black, extform)
+f.getlink = function(poke, black, abbr)
     black = black or ""
-    poke, extform = f.getnameabbr(poke, extform)
-    if extform == "" then
-        return ""
-    end
-    return alt[poke] and alt[poke][black .. "links"][extform] or ""
+    poke, abbr = f.getndexabbr(poke, abbr)
+    return alt[poke] and alt[poke][black .. "links"][abbr] or ""
 end
-
-f.getLink, f.get_link = f.getlink, f.getlink
+f.getLink = f.getlink
 
 --[[
 
@@ -263,6 +257,7 @@ contains an abbr (eg. ndex + abbr) the second argument is ignored.
 This function makes name lowercase, and removes the form abbr if it is useless.
 
 --]]
+---@param abbr string?
 f.nameToDataindex = function(name, abbr)
     name = txt.trim(tostring(name))
     local namePlain, abbr = f.getndexabbr(name, abbr)

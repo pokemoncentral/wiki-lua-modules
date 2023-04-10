@@ -16,26 +16,39 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')
 local formlib = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
+local wlib = require('Wikilib')
 local cc = require('ChooseColor')
 -- stylua: ignore end
 
 --[[
 
-Parse the input data when it's a Pokémon name.
+Given the frame.args, find out which Pokémon the caller wants, and return a
+value to index data module to get that Pokémon.
+
+Inspects the first argument, which should be either the name or the ndex (the
+latter possibly with an abbr), and the 'form' named argument, which can specify
+the abbr when the first parameter is the name.
 
 --]]
-local function parseName(name)
-    return formlib.nameToDataindex(mw.text.decode(name))
+local function parseName(args)
+    local p = wlib.trimAll(args)
+    return formlib.nameToDataindex(mw.text.decode(p[1]), p.form)
 end
 
 --[[
 
-Returns ndex given the name.
+Returns the ndex given the name. Note that this is the plain (ingame) ndex even
+for alternative forms.
+
+Ex:
+{{#invoke: PokémonData | getNdex | Staraptor }}            --> 0398
+{{#invoke: PokémonData | getNdex | alakazam }}             --> 0065
+{{#invoke: PokémonData | getNdex | giratina | form = O }}  --> 0487
 
 --]]
 b.getNdex = function(frame)
     local pokes = require("Poké-data")
-    return txt.ff(pokes[parseName(frame.args[1])].ndex)
+    return txt.ff(pokes[parseName(frame.args)].ndex)
 end
 b.get_ndex = b.getNdex
 
@@ -51,7 +64,7 @@ Ex:
 --]]
 b.getName = function(frame)
     local pokes = require("Poké-data")
-    return pokes[parseName(frame.args[1])].name
+    return pokes[parseName(frame.args)].name
 end
 b.get_name = b.getName
 
@@ -69,7 +82,8 @@ Ex:
 --]]
 b.getFormName = function(frame)
     local forms = formlib.allFormsData()
-    local name, abbr = formlib.getnameabbr(txt.trim(frame.args[1]))
+    local p = wlib.trimAll(frame.args)
+    local name, abbr = formlib.getndexabbr(p[1], p.form)
     return forms[name] and forms[name].names[formlib.toBase(abbr)] or ""
 end
 
@@ -85,7 +99,7 @@ lower case.
 local function getAbil(frame, abilityNumber, gen)
     local abils = require("PokéAbil-data")
     return multigen.getGenValue(
-        abils[parseName(frame.args[1])]["ability" .. abilityNumber] or "",
+        abils[parseName(frame.args)]["ability" .. abilityNumber] or "",
         tonumber(gen)
     )
 end
@@ -160,18 +174,17 @@ b.get_abil_e = b.getAbile
 --[[
 
 Returns a Pokémon's type (specified by the second parameter) given its name or
-ndex. The optional third parameter is the generation.
-The name can contain a form abbreviation, and if it's a Pokémon name (not an
-ndex) it should be lowercase but the first letter, that can be both upper or
-lower case.
+ndex. Optional parameters are gen, to specify the generation, and form, to
+specify the form abbr.
 
 --]]
-local function getType(name, typeNumber, gen)
+local function getType(frame, typeNumber)
     local pokes = require("Poké-data")
+    local p = wlib.trimAll(frame.args)
     return txt.fu(
         multigen.getGenValue(
-            pokes[parseName(name)]["type" .. typeNumber],
-            tonumber(gen)
+            pokes[parseName(p)]["type" .. typeNumber],
+            tonumber(p.gen)
         )
     )
 end
@@ -181,14 +194,18 @@ end
 Returns a Pokémon's first type given its name or ndex. An optional 'gen'
 parameter specifies the generation.
 
+The form abbr can be included in the ndex, but not in the Pokémon name; in the
+latter case, use the optional parameter 'form' to specify it.
+
 Ex:
 {{#invoke: PokémonData | getType1 | 398 }}    --> Normale
 {{#invoke: PokémonData | getType1 | Staraptor }}    --> Normale
 {{#invoke: PokémonData | getType1 | 493Fu }}  --> Fuoco
+{{#invoke: PokémonData | getType1 | Aegislash | form = S }}  --> Spettro
 
 --]]
 b.getType1 = function(frame)
-    return getType(frame.args[1], "1", frame.args.gen)
+    return getType(frame, "1")
 end
 b.get_type_1 = b.getType1
 
@@ -198,16 +215,20 @@ Returns a Pokémon's second type given its name or ndex. If the Pokémon has
 only one type, it returns the first type instead. An optional 'gen' parameter
 specifies the generation.
 
+The form abbr can be included in the ndex, but not in the Pokémon name; in the
+latter case, use the optional parameter 'form' to specify it.
+
 Ex:
 {{#invoke: PokémonData | getType2 | 398 }}   --> Volante
 {{#invoke: PokémonData | getType2 | Staraptor }}  --> Volante
 {{#invoke: PokémonData | getType2 | 65 }}    --> Psico
 {{#invoke: PokémonData | getType2 | 479L }}  --> Acqua
 {{#invoke: PokémonData | getType2 | 082 | gen = 1 }}  --> Elettro
+{{#invoke: PokémonData | getType2 | Giratina | form = O }}  --> Drago
 
 --]]
 b.getType2 = function(frame)
-    return getType(frame.args[1], "2", frame.args.gen)
+    return getType(frame, "2")
 end
 b.get_type_2 = b.getType2
 
@@ -216,6 +237,9 @@ b.get_type_2 = b.getType2
 Returns a Pokémon's types given its name or ndex, in a format suitable to be
 used as CSS gradient classes. An optional 'gen' parameter specifies the
 generation.
+
+The form abbr can be included in the ndex, but not in the Pokémon name; in the
+latter case, use the optional parameter 'form' to specify it.
 
 Ex:
 {{#invoke: PokémonData | gradTypes | 398 }}   --> normale-volante
@@ -233,9 +257,12 @@ b.grad_types = b.gradTypes
 --[[
 
 Returns a Pokémon's stats (specified by the second parameter) given its name or
-ndex. The optional third parameter is the generation.
-If the Pokémon doesn't have the stat (i.e: stat "spec" of a non gen 1 Pokémon)
-return an empty string.
+ndex. An optional 'gen' parameter specifies the generation. If the Pokémon
+doesn't have the stat (i.e: stat "spec" of a non gen 1 Pokémon) return an empty
+string.
+
+The form abbr can be included in the ndex, but not in the Pokémon name; in the
+latter case, use the optional parameter 'form' to specify it.
 
 Ex:
 {{#invoke: PokémonData | getStat | 398 | hp }}     --> 85
@@ -249,7 +276,7 @@ b.getStat = function(frame)
     local stats = require("PokéStats-data")
     local stat = txt.trim(frame.args[2])
     return multigen.getGenValue(
-        stats[parseName(frame.args[1])][stat],
+        stats[parseName(frame.args)][stat],
         tonumber(frame.args.gen)
     )
 end
@@ -262,10 +289,13 @@ parameters are trimmed.
 This function is meant to replace an #if parser function to check whether a
 Pokémon has two types or not.
 
+The form abbr can be included in the ndex, but not in the Pokémon name; in the
+latter case, use the optional parameter 'form' to specify it.
+
 --]]
 b.ifTwoTypes = function(frame)
     local pokes = require("Poké-data")
-    local poke = pokes[parseName(frame.args[1])]
+    local poke = pokes[parseName(frame.args)]
     local isDualType = poke.type1 == poke.type2
     return isDualType and txt.trim(frame.args[2]) or txt.trim(frame.args[3])
 end
@@ -277,6 +307,9 @@ be both a name or a ndex followed by the abbr, the second argument is a flag
 to get black or normal link.
 The ndex may be the base form's one. If the ndex doesn't correspond to a
 Pokémon with alternative forms, it returns an empty string.
+
+The form abbr can be included in the ndex, but not in the Pokémon name; in the
+latter case, use the optional parameter 'form' to specify it.
 
 Ex:
 {{#invoke: PokémonData | getLink | 487 }}
@@ -296,10 +329,11 @@ Ex:
 --]]
 b.getLink = function(frame)
     local name = txt.trim(frame.args[1])
+    local abbr = frame.args.form and txt.trim(frame.args.form)
     local black = txt.trim(frame.args[2] or "")
     -- Links also to UselessForms
     formlib.loadUseless(true)
-    return formlib.getLink(name, black)
+    return formlib.getlink(name, black, abbr)
 end
 b.getlink = b.getLink
 
@@ -344,16 +378,20 @@ Return the text color to use on a gradient made of a Pokémon's types. An
 optional 'gen' parameter specifies the generation. The result is one of the two
 css classes "white-text" and "black-text".
 
+The form abbr can be included in the ndex, but not in the Pokémon name; in the
+latter case, use the optional parameter 'form' to specify it.
+
 Ex:
-{{#invoke: PokémonData | getPokeTextColor | 398 }}            --> black-text
-{{#invoke: PokémonData | getPokeTextColor | Staraptor }}      --> black-text
-{{#invoke: PokémonData | getPokeTextColor | 498O }}           --> white-text
-{{#invoke: PokémonData | getPokeTextColor | 082 | gen = 1 }}  --> black-text
+{{#invoke: PokémonData | getPokeTextColor | 398 }}               --> black-text
+{{#invoke: PokémonData | getPokeTextColor | Staraptor }}         --> black-text
+{{#invoke: PokémonData | getPokeTextColor | 498O }}              --> white-text
+{{#invoke: PokémonData | getPokeTextColor | 082 | gen = 1 }}     --> black-text
+{{#invoke: PokémonData | getPokeTextColor | Rotom | form = L }}  --> black-text
 
 --]]
 b.getPokeTextColor = function(frame)
-    local type1 = getType(frame.args[1], "1", frame.args.gen):lower()
-    local type2 = getType(frame.args[1], "2", frame.args.gen):lower()
+    local type1 = b.getType1(frame):lower()
+    local type2 = b.getType2(frame):lower()
 
     return cc.forModGradBgLua(type1, type2)
 end

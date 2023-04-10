@@ -20,6 +20,12 @@ local function makeTest(actual, expected)
     end
 end
 
+-- ================================== getNdex =================================
+makeTest(pokeData.getNdex({ args = { " Staraptor " } }), "0398")
+makeTest(pokeData.getNdex({ args = { "alakazam" } }), "0065")
+makeTest(pokeData.getNdex({ args = { " giratina", form = "O" } }), "0487")
+makeTest(pokeData.getNdex({ args = { "Minior", form = "R" } }), "0774")
+
 -- ================================ getName ================================
 -- Standard case
 makeTest(pokeData.getName({ args = { "0398" } }), "Staraptor")
@@ -82,7 +88,7 @@ makeTest(pokeData.getAbil1({ args = { "94", gen = "5" } }), "Levitazione")
 makeTest(pokeData.getType1({ args = { "398" } }), "Normale")
 makeTest(pokeData.getType2({ args = { "398" } }), "Volante")
 
--- From name
+-- Name
 makeTest(pokeData.getType1({ args = { "Ho-Oh" } }), "Fuoco")
 
 -- Second type on Pokémon with only one type, two digits
@@ -91,6 +97,9 @@ makeTest(pokeData.getType2({ args = { "65" } }), "Psico")
 -- Alternative form type
 makeTest(pokeData.getType1({ args = { "493Fu" } }), "Fuoco")
 makeTest(pokeData.getType2({ args = { "479L" } }), "Acqua")
+
+-- Name and alternative form type
+makeTest(pokeData.getType2({ args = { "Rotom ", form = "L" } }), "Acqua")
 
 -- Old gen type
 makeTest(pokeData.getType2({ args = { "082", gen = "1" } }), "Elettro")
@@ -109,6 +118,12 @@ makeTest(pokeData.getStat({ args = { "487O", "def" } }), 100)
 
 -- Old gen
 makeTest(pokeData.getStat({ args = { "189", "spdef", gen = "2" } }), 85)
+
+-- Alt form from name in an old gen
+makeTest(
+    pokeData.getStat({ args = { "Aegislash", "atk", form = "S", gen = "6" } }),
+    150
+)
 
 -- =============================== getCriesList ===============================
 -- Standard
@@ -133,6 +148,10 @@ makeTest(pokeData.getPokeTextColor({ args = { "249" } }), "white-text")
 -- Alt forms
 makeTest(pokeData.getPokeTextColor({ args = { " 65M " } }), "black-text")
 makeTest(pokeData.getPokeTextColor({ args = { "487O" } }), "white-text")
+makeTest(
+    pokeData.getPokeTextColor({ args = { "giratina", form = "O" } }),
+    "white-text"
+)
 
 -- Useless forms (probably they shouldn't even work, but here we go)
 makeTest(pokeData.getPokeTextColor({ args = { " 0422E " } }), "white-text")
@@ -188,8 +207,7 @@ makeTest(
 -- Pokémon without alternative forms
 makeTest(pokeData.getLink({ args = { "398" } }), "")
 
--- Tests 47, 48
--- Standard case
+-- Plain link
 makeTest(
     pokeData.getLink({ args = { "487", "plain" } }),
     "[[Giratina/Forme|Forma Alterata]]"
@@ -198,5 +216,10 @@ makeTest(
 -- Pokémon without alternative forms
 makeTest(pokeData.getLink({ args = { "398", "black" } }), "")
 
+-- Pokémon name
+makeTest(
+    pokeData.getLink({ args = { "giratina ", form = "O" } }),
+    '<div class="small-text">[[Giratina/Forme|Forma Originale]]</div>'
+)
 -- ============================================================================
 print("All tests succesfull!")
