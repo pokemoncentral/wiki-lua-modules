@@ -99,6 +99,7 @@ delle tabelle dati o negli ndex dei Mini Sprite.
 In caso di fallimento, ritorna la stringa vuota.
 
 --]]
+---@deprecated use getndexabbr instead
 f.getnameabbr = function(name, extform)
     if alt[tonumber(name) or name:lower()] then
         extform = string.lower(extform or "")
@@ -108,6 +109,7 @@ f.getnameabbr = function(name, extform)
     local poke, abbr = name:match("^([%lé%-♂♀'%s%.&#;%d]+)(%u*%a*)$")
     return tonumber(poke) or poke or "", abbr or "base"
 end
+---@deprecated use getndexabbr instead
 f.getNameAbbr = f.getnameabbr
 
 --[[
