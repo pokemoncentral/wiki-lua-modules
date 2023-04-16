@@ -94,6 +94,12 @@ makeTest(pokeData.getType1({ args = { "Ho-Oh" } }), "Fuoco")
 -- Second type on Pokémon with only one type, two digits
 makeTest(pokeData.getType2({ args = { "65" } }), "Psico")
 
+-- Coleot
+makeTest(pokeData.getType2({ args = { "0752" } }), "Coleottero")
+makeTest(pokeData.getShortType2({ args = { "0752" } }), "Coleot")
+makeTest(pokeData.getShortType1({ args = { "0752" } }), "Acqua")
+makeTest(pokeData.getShortType1({ args = { "Caterpie" } }), "Coleottero")
+
 -- Alternative form type
 makeTest(pokeData.getType1({ args = { "493Fu" } }), "Fuoco")
 makeTest(pokeData.getType2({ args = { "479L" } }), "Acqua")

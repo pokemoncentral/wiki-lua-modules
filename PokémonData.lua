@@ -174,19 +174,23 @@ b.get_abil_e = b.getAbile
 --[[
 
 Returns a Pokémon's type (specified by the second parameter) given its name or
-ndex. Optional parameters are gen, to specify the generation, and form, to
+ndex. If the third parameter is true return the short version of the type (ie.
+Coleottero becomes Coleot if the Pokémon has two types), otherwise return the
+full name. Optional parameters are gen, to specify the generation, and form, to
 specify the form abbr.
 
 --]]
-local function getType(frame, typeNumber)
+local function getType(frame, typeNumber, short)
     local pokes = require("Poké-data")
     local p = wlib.trimAll(frame.args)
-    return txt.fu(
-        multigen.getGenValue(
-            pokes[parseName(p)]["type" .. typeNumber],
-            tonumber(p.gen)
-        )
+    local type = multigen.getGenValue(
+        pokes[parseName(p)]["type" .. typeNumber],
+        tonumber(p.gen)
     )
+    if not short then
+        type = type == "coleot" and "coleottero" or type
+    end
+    return txt.fu(type)
 end
 
 --[[
@@ -205,7 +209,7 @@ Ex:
 
 --]]
 b.getType1 = function(frame)
-    return getType(frame, "1")
+    return getType(frame, "1", false)
 end
 b.get_type_1 = b.getType1
 
@@ -228,9 +232,27 @@ Ex:
 
 --]]
 b.getType2 = function(frame)
-    return getType(frame, "2")
+    return getType(frame, "2", false)
 end
 b.get_type_2 = b.getType2
+
+--[[
+
+Same as getType1/2 but return the short version of the type, that is
+"Coleottero" becomes "Coleot" if the Pokémon has two types.
+
+Ex:
+{{#invoke: PokémonData | getShortType2 | 752 }}   --> Coleot
+{{#invoke: PokémonData | getShortType1 | 0752 }}  --> Acqua
+{{#invoke: PokémonData | getShortType1 | Caterpie }}  --> Coleottero
+
+--]]
+b.getShortType1 = function(frame)
+    return getType(frame, "1", true)
+end
+b.getShortType2 = function(frame)
+    return getType(frame, "2", true)
+end
 
 --[[
 

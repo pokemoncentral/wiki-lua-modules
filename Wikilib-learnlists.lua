@@ -110,6 +110,7 @@ use this function, so we can witness the failure
 of my proposal.
 
 Used again (I hoped it would take longer) -- Flavio, 07/05/2020
+Again (copied in PokémonData) -- Flavio, 16/04/2023
 
 --]]
 local normalizeColeot = function(type)
