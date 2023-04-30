@@ -5945,8 +5945,8 @@ evo.rockruff = {
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 25,
             conditions = {
-                -- [evo.conditions.OTHER] = 'Di [[Tempo|giorno]]',
                 [evo.conditions.TIME] = "Giorno",
+                [evo.conditions.OTHER] = "senza [[Mente Locale]]",
             },
         },
         {
@@ -5955,8 +5955,8 @@ evo.rockruff = {
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 25,
             conditions = {
-                -- [evo.conditions.OTHER] = 'Di [[Tempo|notte]]',
                 [evo.conditions.TIME] = "Notte",
+                [evo.conditions.OTHER] = "senza [[Mente Locale]]",
             },
         },
         {

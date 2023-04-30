@@ -79,7 +79,7 @@ eb.strings = {
     CAT_TRE_PHASES = "[[Categoria:Pokémon appartenenti a una linea di evoluzione a tre stadi]]",
     CAT_TWO_PHASES = "[[Categoria:Pokémon appartenenti a una linea di evoluzione a due stadi]]",
     CAT_ONE_PHASE = "[[Categoria:Pokémon che non fanno parte di una linea di evoluzione]]",
-    CAT_BRANCHED_PHASES = "[[Categoria:Pokémon con evoluzioni diramate]]",
+    CAT_BRANCHED_PHASES = "[[Categoria:Pokémon con evoluzioni ramificate]]",
 }
 
 eb.strings.desktoparrows = {
@@ -921,7 +921,7 @@ third, defaulting to the data modules value.
 
 --]]
 eb.BoxForm = function(ndex, notes, shownname)
-    local name, abbr = form.getnameabbr(ndex)
+    local name, abbr = form.getndexabbr(ndex)
     local altdata = bothforms[name]
     shownname = shownname
         or altdata.names[abbr] == "" and txt.fu(pokes[name].name)

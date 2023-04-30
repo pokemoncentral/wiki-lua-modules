@@ -169,7 +169,7 @@ rowsf.last =
 rowsf.forms = {
     none = "'evoluzione",
     yes = "'evoluzione o una [[Differenze di forma#${poke}|forma alternativa]]",
-    mega = "a [[Megaevoluzione]]",
+    mega = "a [[megaevoluzione]]",
 }
 
 -- Funzioni di supporto
