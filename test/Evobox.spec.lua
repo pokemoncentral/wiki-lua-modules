@@ -103,9 +103,9 @@ if true then
     print(evobox.Formbox({
         args = {
             "Aerodactyl",
-            sprite1 = "142",
+            sprite1 = "0142",
             item1 = "Aerodactylite",
-            sprite2 = "142M",
+            sprite2 = "0142M",
         },
     }))
 

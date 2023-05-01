@@ -409,30 +409,32 @@ end
 Returns a single Pokémon box, with notes, image, name, evolutionary phase and
 types. Requires some info and get others from data modules.
 
-The parameters are the Pokémon ndex, the evolutionary phase (text, not a
-number), the notes and the name to be displayed in place of the Pokémon name
-(optional, defaults to the Pokémon's name).
+Parameters are named:
+    - ndex: the Pokémon ndex or name
+    - abbr: the abbr of the form
+    - phase: the evolutionary phase (text, not a number)
+    - notes: addition notes
+    - displayname (optional): the name to be displayed in place of the Pokémon
+      name (defaults to the Pokémon's name).
 
 --]]
-eb.boxPokemonAuto = function(ndex, phase, notes, shownName)
-    if not ndex then
+eb.boxPokemonAuto = function(args)
+    if not args.ndex then
         return ""
     end
-    local poke = multigen.getGen(
-        pokes[ndex]
-            or pokes[tonumber(ndex)]
-            or pokes[tonumber(string.match(ndex, "(%d%d%d)%u%l*"))]
-    )
-    ndex = type(ndex) == "string" and ndex or txt.fourFigures(ndex)
+    local ndex, abbr = form.getndexabbr(args.ndex, args.abbr)
+    local poke = multigen.getGen(pokes[form.nameToDataindex(ndex, abbr)])
+    local sprndex = (type(ndex) == "string" and ndex or txt.ff(ndex))
+        .. form.toemptyabbr(abbr)
 
     return eb.boxPokemon({
-        notes = notes,
+        notes = args.notes,
         type1 = poke.type1 or "sconosciuto",
         type2 = poke.type2 or "sconosciuto",
-        spr = spr.sprLua(ndex, "current", "male", "150px"),
-        phase = phase,
+        spr = spr.sprLua(sprndex, "current", "male", "150px"),
+        phase = args.phase,
         name = poke.name,
-        shownName = shownName,
+        shownName = args.displayname,
     })
 end
 
@@ -457,11 +459,11 @@ eb.makePhaseRows = function(evos, phase)
     for k, v in ipairs(evos) do
         local key = "box" .. tostring(k)
         arrows[key] = eb.SingleArrow(v)
-        boxes[key] = eb.boxPokemonAuto(
-            v.ndex or v.name,
-            eb.phaseName(phase, evodata[v.name]),
-            v.notes
-        )
+        boxes[key] = eb.boxPokemonAuto({
+            ndex = v.ndex or v.name,
+            phase = eb.phaseName(phase, evodata[v.name]),
+            notes = v.notes,
+        })
     end
 
     if tab.getn(arrows) == 0 then
@@ -492,11 +494,11 @@ eb.makeManyEvosRow = function(evos)
     local rowContent = tab.map(evos, function(v)
         return txt.interp(eb.strings.GRID_ROW, {
             arrow = eb.SingleArrow(v, "fixed"),
-            box = eb.boxPokemonAuto(
-                v.ndex or v.name,
-                eb.phaseName(2, evodata[v.name]),
-                v.notes
-            ),
+            box = eb.boxPokemonAuto({
+                ndex = v.ndex or v.name,
+                phase = eb.phaseName(2, evodata[v.name]),
+                notes = v.notes,
+            }),
         })
     end, ipairs)
 
@@ -521,11 +523,11 @@ eb.makeBreedRow = function(data)
                 box1 = eb.SingleArrow(data),
             }),
             txt.interp(eb.strings.ROW_ONE, {
-                box1 = eb.boxPokemonAuto(
-                    data.evos[1].ndex or data.evos[1].name,
-                    eb.phaseName(2, data),
-                    data.evos[1].notes
-                ),
+                box1 = eb.boxPokemonAuto({
+                    ndex = data.evos[1].ndex or data.evos[1].name,
+                    phase = eb.phaseName(2, data),
+                    notes = data.evos[1].notes,
+                }),
             }),
         })
     elseif tab.getn(data.evos) > 1 then
@@ -533,16 +535,16 @@ eb.makeBreedRow = function(data)
         return table.concat({
             eb.TripleArrow(data),
             txt.interp(eb.strings.ROW_TWO, {
-                box1 = eb.boxPokemonAuto(
-                    data.evos[1].ndex or data.evos[1].name,
-                    eb.phaseName(2, data),
-                    data.evos[1].notes
-                ),
-                box2 = eb.boxPokemonAuto(
-                    data.evos[2].ndex or data.evos[2].name,
-                    eb.phaseName(2, data),
-                    data.evos[2].notes
-                ),
+                box1 = eb.boxPokemonAuto({
+                    ndex = data.evos[1].ndex or data.evos[1].name,
+                    phase = eb.phaseName(2, data),
+                    notes = data.evos[1].notes,
+                }),
+                box2 = eb.boxPokemonAuto({
+                    ndex = data.evos[2].ndex or data.evos[2].name,
+                    phase = eb.phaseName(2, data),
+                    notes = data.evos[2].notes,
+                }),
             }),
         })
     else
@@ -552,11 +554,11 @@ eb.makeBreedRow = function(data)
                 box1 = eb.DoubleArrow(data),
             }),
             txt.interp(eb.strings.ROW_ONE, {
-                box1 = eb.boxPokemonAuto(
-                    data.evos[1].ndex or data.evos[1].name,
-                    eb.phaseName(2, data),
-                    data.evos[1].notes
-                ),
+                box1 = eb.boxPokemonAuto({
+                    ndex = data.evos[1].ndex or data.evos[1].name,
+                    phase = eb.phaseName(2, data),
+                    notes = data.evos[1].notes,
+                }),
             }),
         })
     end
@@ -594,11 +596,11 @@ eb.Evobox = function(frame)
     table.insert(
         evoboxcontent,
         txt.interp(eb.strings.ROW_ONE, {
-            box1 = eb.boxPokemonAuto(
-                data.ndex or data.name,
-                eb.phaseName(1, data),
-                data.notes
-            ),
+            box1 = eb.boxPokemonAuto({
+                ndex = data.ndex or data.name,
+                phase = eb.phaseName(1, data),
+                notes = data.notes,
+            }),
         })
     )
 
@@ -925,7 +927,13 @@ eb.BoxForm = function(ndex, notes, shownname)
     local altdata = bothforms[name]
     shownname = shownname
         or altdata.names[abbr] == "" and txt.fu(pokes[name].name)
-    return eb.boxPokemonAuto(ndex, "", notes, shownname)
+    return eb.boxPokemonAuto({
+        ndex = name,
+        abbr = abbr,
+        phase = "",
+        notes = notes,
+        displayname = shownname,
+    })
 end
 
 --[[
@@ -1046,6 +1054,7 @@ transformation methods.
 Parameters are named because of their number:
     - 1: the page name, as returned by {{PAGENAME}}. This parameter is used
          only to determine the colors of the background gradient.
+    - form: the abbr of the form (since it can't be included in the name)
     - spriteN: the ndex of the N-th form
     - nameN: the name of the N-th form (printed instead of the default got
          from data modules)
@@ -1061,7 +1070,7 @@ eb.Formbox = function(frame)
     local pagename = txt.fl(p[1] or mw.title.getCurrentTitle().text)
     p[1] = nil
     p.family = p.family or "nessuna"
-    local pagepoke = pokes[form.nameToDataindex(pagename)]
+    local pagepoke = pokes[form.nameToDataindex(pagename, p.form)]
         or {
             name = "Sconosciuto",
             ndex = 0,

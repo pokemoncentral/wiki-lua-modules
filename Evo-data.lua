@@ -8061,7 +8061,7 @@ evo["0570H"], evo["0571H"] = evo.zoruaH, evo.zoruaH
 
 Given a Pokémon's tree builds versions for its alternative forms and binds them
 with the expected names. Tables are created only for the Pokémon and it's
-evolutions, not for it's preevo (actually it takes ndexes from it's traversal
+evolutions, not for it's preevo (actually it takes ndexes from its traversal
 of the tree).
 
 If a node doesn't have the "notes" field it's kept as is, without adding
