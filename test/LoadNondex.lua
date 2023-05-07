@@ -8,12 +8,12 @@ not load many other informations.
 
 --]]
 
-local pokes = require('Poké-data')
-local pokeabils = require('PokéAbil-data')
-local eggs = require('PokéEggGroup-data')
-local items = require('PokéItems-data')
-local stats = require('PokéStats-data')
-local evos = require('Evo-data')
+local pokes = require("Poké-data")
+local pokeabils = require("PokéAbil-data")
+local eggs = require("PokéEggGroup-data")
+local items = require("PokéItems-data")
+local stats = require("PokéStats-data")
+local evos = require("Evo-data")
 
 --[[
 
@@ -35,7 +35,7 @@ local function loadSnorloBello(load)
     if load.types == nil or load.types then
         pokes[nameidx].type1, pokes[nameidx].type2 = "Psico", "Psico"
     end
-    pokeabils[nameidx] = { ability1 = '' }
+    pokeabils[nameidx] = { ability1 = "" }
     if load.abil then
         pokeabils[nameidx].ability1 = "Burla"
     end
@@ -44,6 +44,7 @@ local function loadSnorloBello(load)
     end
     items[nameidx] = {}
     if load.stats then
+        -- stylua: ignore
         stats[nameidx] = {hp = 45, atk = 49, def = 49, spatk = 65, spdef = 65, spe = 45, spec = 65}
     end
     evos[nameidx] = { ndex = nil, name = nameidx }

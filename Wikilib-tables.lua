@@ -475,7 +475,6 @@ t.merge = table.merge
 table.nonIntPairs = function(tab)
     return nextNonInt, tab
 end
-table.non_int_pairs = t.nonIntPairs
 t.nonIntPairs, t.non_int_pairs = table.nonIntPairs, table.nonIntPairs
 
 -- Predicate search. Returns the index of any value satisfying the predicate,
@@ -492,6 +491,7 @@ table.find = function(tab, pred, iter)
     end
     return nil
 end
+t.find = table.find
 
 -- Linear search. Returns the index of the passed value if found, else nil.
 table.search = function(tab, value)

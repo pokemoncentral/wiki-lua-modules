@@ -8,14 +8,13 @@ Each interface function is documented in its own comment, with examples.
 
 local b = {}
 
-local mw = require('mw')
-
-local tab = require('Wikilib-tables')      -- luacheck: no unused
-local str = require('Wikilib-strings')      -- luacheck: no unused
+-- stylua: ignore start
+local tab = require('Wikilib-tables')
+local txt = require('Wikilib-strings')
 local css = require('Css')
 local gens = require("Gens-data")
 local c = require("Colore-data")
-
+-- stylua: ignore end
 
 --[[
 
@@ -33,7 +32,9 @@ b.GetLastGen = b.getLastGen
 -- Internal function to convert a roman number to arabic. The number should
 -- corespond to a generation.
 local function roman2arabic(roman)
-    return table.find(gens, function(gentab) return gentab.roman == roman end, ipairs)
+    return tab.find(gens, function(gentab)
+        return gentab.roman == roman
+    end, ipairs)
 end
 
 -- Internal function to get the gens-data
@@ -52,7 +53,7 @@ Ex: {{#invoke: GenerationsData | getOrdinal | III }}  --> terza
 
 --]]
 b.getOrdinal = function(frame)
-    local gen = string.trim(frame.args[1])
+    local gen = txt.trim(frame.args[1])
     return genTable(gen).ext
 end
 b.GetOrdinal = b.getOrdinal
@@ -67,7 +68,7 @@ Ex: {{#invoke: GenerationsData | getRegion | III }}  --> hoenn
 
 --]]
 b.getRegion = function(frame)
-    local gen = string.trim(frame.args[1])
+    local gen = txt.trim(frame.args[1])
     return genTable(gen).region
 end
 b.GetRegion = b.getRegion
@@ -83,9 +84,9 @@ Ex: {{#invoke: GenerationsData | getRegionColor | II | light }}  --> FFB287
 
 --]]
 b.getRegionColor = function(frame)
-    local gen = string.trim(frame.args[1])
+    local gen = txt.trim(frame.args[1])
     local region = genTable(gen).region
-    local shade = string.trim(frame.args[2] or "normale")
+    local shade = txt.trim(frame.args[2] or "normale")
     return c[region][shade]
 end
 b.GetRegionColor = b.getRegionColor
@@ -101,10 +102,10 @@ Ex: {{#invoke: GenerationsData | getRegionGradient | V | radialGrad }}
 
 --]]
 b.getRegionGradient = function(frame)
-    local gen = string.trim(frame.args[1])
+    local gen = txt.trim(frame.args[1])
     local region = genTable(gen).region
-    local func = string.trim(frame.args[2]) .. "Lua"
-    return css[func]{ type = region }
+    local func = txt.trim(frame.args[2]) .. "Lua"
+    return css[func]({ type = region })
 end
 b.GetRegionGradient = b.getRegionGradient
 

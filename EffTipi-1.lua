@@ -5,6 +5,7 @@ local et = {}
 -- Tabella contenente i valori di efficacia. Il livello esterno è il tipo attaccante, il livello interno il difensore.
 -- Ad esempio, normale.fuoco è l'efficacia di un attacco di tipo normale che colpisce un tipo fuoco puro
 
+-- stylua: ignore start
 local eff = {}
 eff.normale = {normale = 1, fuoco = 1, acqua = 1, elettro = 1, erba = 1, ghiaccio = 1, lotta = 1, veleno = 1, terra = 1,
     volante = 1, psico = 1, coleottero = 1, roccia = 0.5, spettro = 0, drago = 1}
@@ -36,6 +37,7 @@ eff.spettro = {normale = 0, fuoco = 1, acqua = 1, elettro = 1, erba = 1, ghiacci
 	volante = 1, psico = 0, coleottero = 1, roccia = 1, spettro = 2, drago = 1}
 eff.drago = {normale = 1, fuoco = 1, acqua = 1, elettro = 1, erba = 1, ghiaccio = 1, lotta = 1, veleno = 1, terra = 1,
 	volante = 1, psico = 1, coleottero = 1, roccia = 1, spettro = 1, drago = 2}
+-- stylua: ignore end
 eff.coleot = eff.coleottero
 for a in pairs(eff) do
     eff[a].coleot = eff[a].coleottero
@@ -45,43 +47,46 @@ end
 -- si aspetta i nomi dei tipi, tutti in minuscolo
 
 et.efficacia = function(a, d1, d2)
-	local e = eff[a][d1]
-	if d2 ~= d1 then
-		 return e * eff[a][d2]
-	end
-	return e
+    local e = eff[a][d1]
+    if d2 ~= d1 then
+        return e * eff[a][d2]
+    end
+    return e
 end
 
 -- Cerca tutti i tipi che soddisfano una condizione data.
 -- Il parametro test è una funzione che si aspetta un solo argomento (vedere gli esempi dopo per chiarimenti).
 
 local cerca_tipi = function(test)
-	local t = {}
-	for k in pairs(eff) do
-		if k ~= 'coleottero' and test(k) then
-			table.insert(t,k)
-		end
-	end
-	return t
+    local t = {}
+    for k in pairs(eff) do
+        if k ~= "coleottero" and test(k) then
+            table.insert(t, k)
+        end
+    end
+    return t
 end
 
 -- Trova tutti i tipi che attaccando tipo1,tipo2 hanno efficacia eff
 
 et.difesa = function(eff, tipo1, tipo2)
-	return cerca_tipi(function (x) return et.efficacia(x, tipo1, tipo2) == eff end)
+    return cerca_tipi(function(x)
+        return et.efficacia(x, tipo1, tipo2) == eff
+    end)
 end
 
 -- Trova tutti i tipi su cui tipo ha efficacia eff
 
 et.attacco = function(eff, tipo)
-	return cerca_tipi(function (x) return et.efficacia(tipo, x, x) == eff end)
+    return cerca_tipi(function(x)
+        return et.efficacia(tipo, x, x) == eff
+    end)
 end
 
 --Restituisce i dati di efficacia in attacco del tipo passato
 
 et.data = function(tipo)
-	return eff[tipo]
+    return eff[tipo]
 end
 
 return et
-

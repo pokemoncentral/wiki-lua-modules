@@ -1,6 +1,6 @@
 --  "Test cases" for Party
 
-local party = require('Party')
+local party = require("Party")
 
 local poke = [==[
 
@@ -30,24 +30,26 @@ local poke = [==[
 
 -- Single + Shaded named colors + manual expandablelight
 
-print(party.single{args={
-    color = 'ghiaccio normale',
-    headcolor = 'ghiaccio light',
-    bordercolor = 'ghiaccio dark',
-    sprite = 'RB Agatha.png',
-    prize = '[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]5940',
-    name = '<span style="color: #000;">Agatha</span>',
-    game = 'RB',
-    location = 'Altopiano Blu',
-    pokemon = '5',
-    expandiblelight = 'yes'
-}})
+print(party.single({
+    args = {
+        color = "ghiaccio normale",
+        headcolor = "ghiaccio light",
+        bordercolor = "ghiaccio dark",
+        sprite = "RB Agatha.png",
+        prize = "[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]5940",
+        name = '<span style="color: #000;">Agatha</span>',
+        game = "RB",
+        location = "Altopiano Blu",
+        pokemon = "5",
+        expandiblelight = "yes",
+    },
+}))
 
 print(poke:rep(3))
 
 -- Div
 
-print(party.div{args={color = 'spettro'}})
+print(party.div({ args = { color = "spettro" } }))
 
 print(poke:rep(2))
 
@@ -55,23 +57,25 @@ print(party.footer())
 
 -- Single + Shaded named colors + no expandablelight
 
-print(party.single{args={
-    color = 'ghiaccio dark',
-    headcolor = 'ghiaccio light',
-    bordercolor = 'ghiaccio normale',
-    sprite = 'RB Agatha.png',
-    prize = '[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]5940',
-    name = '<span style="color: #000;">Agatha</span>',
-    game = 'RB',
-    location = 'Altopiano Blu',
-    pokemon = '5'
-}})
+print(party.single({
+    args = {
+        color = "ghiaccio dark",
+        headcolor = "ghiaccio light",
+        bordercolor = "ghiaccio normale",
+        sprite = "RB Agatha.png",
+        prize = "[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]5940",
+        name = '<span style="color: #000;">Agatha</span>',
+        game = "RB",
+        location = "Altopiano Blu",
+        pokemon = "5",
+    },
+}))
 
 print(poke:rep(3))
 
 -- Div
 
-print(party.div{args={color = 'spettro'}})
+print(party.div({ args = { color = "spettro" } }))
 
 print(poke:rep(2))
 
@@ -79,32 +83,34 @@ print(party.footer())
 
 -- Tag + hexes + shadeless named color + more games + automatic expandablelight
 
-print(party.tag{args={
-    back1 = '7722FF',
-    back2 = 'rubinoomega',
-    sprcolor1 = 'terra normale',
-    sprcolor2 = 'terra light',
-    head1 = 'terra normale',
-    head2 = 'terra light',
-    spr2color1 = 'terra normale',
-    spr2color2 = 'terra light',
-    class = 'Magmatenente',
-    name = '[[Magmatenente Ottavio|<span style="color: #000;">Ottavio</span>]]',
-    sprite = 'ROZA VSOttavio.png',
-    size = '200px',
-    class2 = 'Recluta Team Magma',
-    name2 = '<span style="color: #000;">Recluta</span>',
-    sprite2 = 'ROZA VSRecluta Team Magma F.png|200px',
-    game = 'RO S',
-    location = 'Cascate Meteora',
-    prize = '[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]3.220',
-    pokemon1 = '2',
-    pokemon2 = '1'
-}})
+print(party.tag({
+    args = {
+        back1 = "7722FF",
+        back2 = "rubinoomega",
+        sprcolor1 = "terra normale",
+        sprcolor2 = "terra light",
+        head1 = "terra normale",
+        head2 = "terra light",
+        spr2color1 = "terra normale",
+        spr2color2 = "terra light",
+        class = "Magmatenente",
+        name = '[[Magmatenente Ottavio|<span style="color: #000;">Ottavio</span>]]',
+        sprite = "ROZA VSOttavio.png",
+        size = "200px",
+        class2 = "Recluta Team Magma",
+        name2 = '<span style="color: #000;">Recluta</span>',
+        sprite2 = "ROZA VSRecluta Team Magma F.png|200px",
+        game = "RO S",
+        location = "Cascate Meteora",
+        prize = "[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]3.220",
+        pokemon1 = "2",
+        pokemon2 = "1",
+    },
+}))
 
 print(poke:rep(2))
 
-print(party.div{args={color = 'Rubinoomega light'}})
+print(party.div({ args = { color = "Rubinoomega light" } }))
 
 print(poke)
 

@@ -1,3 +1,3 @@
-local entry = require('Helditemslist')
+local entry = require("Helditemslist")
 
-print(entry.helditem{args={}})
+print(entry.helditem({ args = {} }))

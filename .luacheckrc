@@ -5,7 +5,6 @@ stds.wiki = {
                 eq = {},
                 table_keys_alias = {},
                 getn = {},
-                non_int_pairs = {},
                 slice = {},
                 any = {},
                 map = {},

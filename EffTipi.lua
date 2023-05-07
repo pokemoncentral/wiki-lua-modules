@@ -2,8 +2,6 @@
 
 local et = {}
 
-local tab = require('Wikilib-tables')
-
 --[[
 
 Tabella contenente i valori di efficacia. Il livello esterno
@@ -13,6 +11,7 @@ tipo normale che colpisce un tipo fuoco puro
 
 --]]
 
+-- stylua: ignore start
 local eff = {}
 eff.normale = {normale = 1, fuoco = 1, acqua = 1, elettro = 1, erba = 1, ghiaccio = 1, lotta = 1, veleno = 1, terra = 1,
     volante = 1, psico = 1, coleottero = 1, roccia = 0.5, spettro = 0, drago = 1, buio = 1, acciaio = 0.5, folletto = 1}
@@ -50,6 +49,7 @@ eff.acciaio = {normale = 1, fuoco = 0.5, acqua = 0.5, elettro = 0.5, erba = 1, g
 	volante = 1, psico = 1, coleottero = 1, roccia = 2, spettro = 1, drago = 1, buio = 1, acciaio = 0.5, folletto = 2}
 eff.folletto = {normale = 1, fuoco = 0.5, acqua = 1, elettro = 1, erba = 1, ghiaccio = 1, lotta = 2, veleno = 0.5, terra = 1,
 	volante = 1, psico = 1, coleottero = 1, roccia = 1, spettro = 1, drago = 2, buio = 2, acciaio = 0.5, folletto = 1}
+-- stylua: ignore end
 eff.coleot = eff.coleottero
 for a in pairs(eff) do
     eff[a].coleot = eff[a].coleottero
@@ -71,22 +71,22 @@ Filtro, Solidroccia e Magidifesa sono trattate a parte.
 --]]
 
 local ability = {}
-ability.levitazione = {terra = 0}
-ability.grassospesso = {fuoco = 0.5, ghiaccio = 0.5}
-ability.antifuoco = {fuoco = 0.5}
-ability.fuocardore = {fuoco = 0}
-ability.pellearsa = {fuoco = 1.25, acqua = 0}
-ability.acquascolo = {acqua = 0}
+ability.levitazione = { terra = 0 }
+ability.grassospesso = { fuoco = 0.5, ghiaccio = 0.5 }
+ability.antifuoco = { fuoco = 0.5 }
+ability.fuocardore = { fuoco = 0 }
+ability.pellearsa = { fuoco = 1.25, acqua = 0 }
+ability.acquascolo = { acqua = 0 }
 ability.assorbacqua = ability.acquascolo
-ability.parafulmine = {elettro = 0}
+ability.parafulmine = { elettro = 0 }
 ability.elettrorapid = ability.parafulmine
 ability.assorbivolt = ability.parafulmine
-ability.mangiaerba = {erba = 0}
-ability['mare primordiale'] = ability.fuocardore
-ability['terra estrema'] = ability.acquascolo
-ability['flusso delta'] = {elettro = 0.5, ghiaccio = 0.5, roccia = 0.5}
-ability.bolladacqua = {fuoco = 0.5}
-ability.morbidone = {fuoco = 2}
+ability.mangiaerba = { erba = 0 }
+ability["mare primordiale"] = ability.fuocardore
+ability["terra estrema"] = ability.acquascolo
+ability["flusso delta"] = { elettro = 0.5, ghiaccio = 0.5, roccia = 0.5 }
+ability.bolladacqua = { fuoco = 0.5 }
+ability.morbidone = { fuoco = 2 }
 
 --[[
 
@@ -102,12 +102,13 @@ che non hanno tipi associati fissi
 
 --]]
 
-et.modTypesAbil = {magidifesa = {}, filtro = {}, solidroccia = {}, scudoprisma = {}}
+et.modTypesAbil =
+    { magidifesa = {}, filtro = {}, solidroccia = {}, scudoprisma = {} }
 for abil, types in pairs(ability) do
-	et.modTypesAbil[abil] = {}
-	for Type, eff in pairs(types) do
-		table.insert(et.modTypesAbil[abil], Type)
-	end
+    et.modTypesAbil[abil] = {}
+    for Type, eff in pairs(types) do
+        table.insert(et.modTypesAbil[abil], Type)
+    end
 end
 
 --[[
@@ -122,14 +123,14 @@ table ad essi associata, es: all'indice spettro
 
 et.typesHaveImm = {}
 for atk, defs in pairs(eff) do
-	for def, eff in pairs(defs) do
-		if eff == 0 then
-			if type(et.typesHaveImm[def]) ~= 'table' then
-				et.typesHaveImm[def] = {}
-			end
-			table.insert(et.typesHaveImm[def], atk)
-		end
-	end
+    for def, eff in pairs(defs) do
+        if eff == 0 then
+            if type(et.typesHaveImm[def]) ~= "table" then
+                et.typesHaveImm[def] = {}
+            end
+            table.insert(et.typesHaveImm[def], atk)
+        end
+    end
 end
 
 --[[
@@ -140,30 +141,30 @@ nomi dei tipi e dell'abilità, tutti in minuscolo
 --]]
 
 et.efficacia = function(atk, def1, def2, abil)
-	
-	-- Efficacia base con due tipi
+    -- Efficacia base con due tipi
 
-	local e = eff[atk][def1]
-	if def2 ~= def1 then
-		e = e * eff[atk][def2]
-	end
+    local e = eff[atk][def1]
+    if def2 ~= def1 then
+        e = e * eff[atk][def2]
+    end
 
-	-- Abilità standard
+    -- Abilità standard
 
-	if ability[abil] and ability[abil][atk] then
-		return e * ability[abil][atk]
+    if ability[abil] and ability[abil][atk] then
+        return e * ability[abil][atk]
 
-	-- Filtro e solidroccia
+    -- Filtro e solidroccia
+    elseif
+        e >= 2
+        and (abil == "filtro" or abil == "solidroccia" or abil == "scudoprisma")
+    then
+        return e * 0.75
 
-	elseif e >= 2 and (abil == 'filtro' or abil == 'solidroccia' or abil == 'scudoprisma') then
-		return e * 0.75
-
-	-- Magidifesa
-
-	elseif e < 2 and abil == 'magidifesa' then
-		return 0
-	end
-	return e
+    -- Magidifesa
+    elseif e < 2 and abil == "magidifesa" then
+        return 0
+    end
+    return e
 end
 
 --[[
@@ -175,13 +176,13 @@ argomento (vedere gli esempi dopo per chiarimenti).
 --]]
 
 local cerca_tipi = function(test)
-	local t = {}
-	for k in pairs(eff) do
-		if k ~= 'coleottero' and test(k) then
-			table.insert(t, k)
-		end
-	end
-	return t
+    local t = {}
+    for k in pairs(eff) do
+        if k ~= "coleottero" and test(k) then
+            table.insert(t, k)
+        end
+    end
+    return t
 end
 
 --[[
@@ -192,13 +193,17 @@ abilità abil, hanno efficacia eff
 --]]
 
 et.difesa = function(eff, tipo1, tipo2, abil)
-	return cerca_tipi(function (x) return et.efficacia(x, tipo1, tipo2, abil) == eff end)
+    return cerca_tipi(function(x)
+        return et.efficacia(x, tipo1, tipo2, abil) == eff
+    end)
 end
 
 -- Trova tutti i tipi su cui tipo ha efficacia eff
 
 et.attacco = function(eff, tipo)
-	return cerca_tipi(function (x) return et.efficacia(tipo, x, x, 'Tanfo') == eff end)
+    return cerca_tipi(function(x)
+        return et.efficacia(tipo, x, x, "Tanfo") == eff
+    end)
 end
 
 return et

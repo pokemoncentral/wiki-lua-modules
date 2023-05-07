@@ -1,4 +1,4 @@
--- "Test cases" for Typelist
+-- Test cases for PokémonData
 
 local pokeData = require("PokémonData")
 

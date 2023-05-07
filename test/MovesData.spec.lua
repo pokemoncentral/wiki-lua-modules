@@ -1,57 +1,50 @@
--- "Test cases" for MovesData
+-- Test cases for MovesData
 
-local movesData = require('MovesData')
-local tests = {}
+local movesData = require("MovesData")
 
--- ================================ getType ================================
--- Tests 1, 2
--- Standard case
-table.insert(tests, { movesData.getType{args={'Psichico'}}, 'Psico' })
-
--- Strange characters
-table.insert(tests, { movesData.getType{args={"Attacco d'Ala"}}, 'Volante' })
-
--- ============================= getDamageCategory ============================
--- Tests 3, 4
--- Normal cases
-table.insert(tests, { movesData.getDamageCategory{args={'Baldeali'}}, "Fisico" })
-table.insert(tests, { movesData.getDamageCategory{args={'fortuncanto'}}, "Stato" })
-
-
--- ================================ getPower ================================
--- Tests 5, 6
--- Standard case
-table.insert(tests, { movesData.getPower{args={'Oscurotuffo'}}, 120 })
-
--- &mdash;
-table.insert(tests, { movesData.getPower{args={'inondazione'}}, '&mdash;' })
-
--- ================================ getAccuracy ================================
--- Tests 7, 8
--- Standard case
-table.insert(tests, { movesData.getAccuracy{args={'dragobolide'}}, 90 })
-
--- &mdash;
-table.insert(tests, { movesData.getAccuracy{args={'Comete'}}, '&mdash;' })
-
--- ================================ getPP ================================
--- Tests 9
--- Standard case
-table.insert(tests, { movesData.getPP{args={'Supplica'}}, 25 })
-
--- ==================== Actual execution ======================
-for n, v in ipairs(tests) do
-    if v[1] ~= v[2] then
-        print(table.concat{
-            'Test ',
-            tostring(n),
-            ' failed: ',
-            v[2],
-            ' expected, but ',
-            v[1],
-            ' got'
-        })
-        return
+-- Run a single test. The first argument is the computed value, the second is
+-- the expected result.
+local function makeTest(actual, expected)
+    if actual ~= expected then
+        error(table.concat({
+            'Test failed: "',
+            expected,
+            '" expected, but got "',
+            actual or "nil",
+            '"',
+        }))
     end
 end
-print('All tests succesfull!')
+
+-- ================================ getType ================================
+-- Standard case
+makeTest(movesData.getType({ args = { "Psichico" } }), "Psico")
+
+-- Strange characters
+makeTest(movesData.getType({ args = { "Attacco d'Ala" } }), "Volante")
+
+-- ============================= getDamageCategory ============================
+-- Normal cases
+makeTest(movesData.getDamageCategory({ args = { "Baldeali" } }), "Fisico")
+makeTest(movesData.getDamageCategory({ args = { "fortuncanto" } }), "Stato")
+
+-- ================================ getPower ================================
+-- Standard case
+makeTest(movesData.getPower({ args = { "Oscurotuffo" } }), 120)
+
+-- &mdash;
+makeTest(movesData.getPower({ args = { "inondazione" } }), "&mdash;")
+
+-- ================================ getAccuracy ===============================
+-- Standard case
+makeTest(movesData.getAccuracy({ args = { "dragobolide" } }), 90)
+
+-- &mdash;
+makeTest(movesData.getAccuracy({ args = { "Comete" } }), "&mdash;")
+
+-- ================================ getPP ================================
+-- Standard case
+makeTest(movesData.getPP({ args = { "Supplica" } }), 25)
+
+-- ============================================================================
+print("All tests succesfull!")
