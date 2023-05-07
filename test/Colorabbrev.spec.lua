@@ -1,24 +1,24 @@
 -- "Test cases" for Colorabbrev
 
-local ca = require('Colorabbrev')
+local ca = require("Colorabbrev")
 
 -- A very long one
-local solid = ca.OACRFVFHGSS{args={}}
+local solid = ca.OACRFVFHGSS({ args = {} })
 print(solid)
 
 -- The very long one, but split
-local split = ca.OA{args={'C RFVF', 'HGSS'}}
+local split = ca.OA({ args = { "C RFVF", "HGSS" } })
 print(split)
 
 -- Syntax equivalence
 
-assert(solid == split, 'syntax mismatch')
+assert(solid == split, "syntax mismatch")
 
 -- No color specified
 
-local noColor = ca.LGPE{args={}}
+local noColor = ca.LGPE({ args = {} })
 print(noColor)
 
 -- _abbr function
-local abbr = ca._abbr{args={'RBG', 'RFVF LGPE'}}
+local abbr = ca._abbr({ args = { "RBG", "RFVF LGPE" } })
 print(abbr)

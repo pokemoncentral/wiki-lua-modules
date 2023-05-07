@@ -11,7 +11,6 @@ local nextNonInt = function(tab, key)
     until type(nextKey) ~= "number" or math.floor(nextKey) ~= nextKey
     return nextKey, nextValue
 end
-local next_non_int = nextNonInt -- luacheck: no unused
 
 -- Returns true only if a is lexigographically greater than b
 local minor = function(a, b)

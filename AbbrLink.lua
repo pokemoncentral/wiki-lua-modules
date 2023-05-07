@@ -30,10 +30,11 @@ function to pass all the abbreviations in the "games" argument:
 
 --]]
 
-local tab = require('Wikilib-tables')       -- luacheck: no unused
-local txt = require('Wikilib-strings')      -- luacheck: no unused
+-- stylua: ignore start
+local txt = require('Wikilib-strings')
 local lib = require('Wikilib-sigle')
 local w = require('Wikilib')
+-- stylua: ignore end
 
 --[[
 
@@ -57,19 +58,19 @@ first item in the first argument.
 
 --]]
 local makeLink = function(args, text)
-    return string.interp('[[${link}|${text}]]', {
+    return txt.interp("[[${link}|${text}]]", {
         link = args[1],
-        text = table.concat(text)
+        text = table.concat(text),
     })
 end
 
 -- Dynamically generates lua and wikicode interfaces
 local al = lib.makeLuaAndWikicode(function(_, abbr)
-    local lua = lib.onMergedAbbrsArgs(abbr, 'games', makeText, makeLink)
+    local lua = lib.onMergedAbbrsArgs(abbr, "games", makeText, makeLink)
 
     -- Not standard from Wikilib, it is necessary not to unpack
     local wikicode = function(frame)
-        local p = w.trimAll(table.copy(frame.args))
+        local p = w.trimAll(frame.args)
         return lua(p)
     end
 
@@ -77,6 +78,6 @@ local al = lib.makeLuaAndWikicode(function(_, abbr)
 end)
 
 -- Adding _abbr proxy function
-lib.proxy(al, 'games')
+lib.proxy(al, "games")
 
 return al

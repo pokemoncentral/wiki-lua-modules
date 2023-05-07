@@ -21,6 +21,7 @@ _abbr function to pass all the abbreviations as parameters:
 
 --]]
 
+-- stylua: ignore
 local lib = require('Wikilib-sigle')
 
 -- Creates the links for a single abbreviation, as a single string
@@ -30,7 +31,6 @@ end
 
 -- Dynamically generated Wikicode interface
 local ba = lib.mapAbbrs(function(_, abbr)
-
     --[[
         Wikicode arguments are first processed one-by-one by makeLinks,
         resulting in a table having a string for every argument, containing

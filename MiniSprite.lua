@@ -13,12 +13,14 @@ Examples:
 
 local o = {}
 
+-- stylua: ignore start
 local mw = require('mw')
 
-local txt = require('Wikilib-strings') -- luacheck: no unused
+local txt = require('Wikilib-strings')
 local wlib = require('Wikilib')
 local gendata = require("Gens-data")
 local pokes = require("Poké-data")
+-- stylua: ignore end
 
 -- Alias for generations with the same MS
 local genAliases = {}
@@ -26,11 +28,15 @@ genAliases[3] = 5
 genAliases[4] = 5
 genAliases[6] = 7
 
--- Generations with only static MS
-local staticOnly = {false, false, false, false, false, true, true, true}
+-- Return true if the given generation has only static MS
+local function staticOnly(gen)
+    return gen > 5
+end
 
--- Generations with only animated MS
-local aniOnly = {true, true, false, false, false, false, false, false}
+-- Return true if the given generation has only animated MS
+local function aniOnly(gen)
+    return gen < 3
+end
 
 --[[
 
@@ -38,19 +44,19 @@ Preprocess the arguments to make them more suitable for the module internals.
 
 --]]
 local function preprocess(n, gen, link)
-    n = n or '000'
+    n = n or "000"
 
     gen = tonumber(gen) or gendata.latest
     gen = genAliases[gen] or gen
 
     if not link then
-        local numberN = string.parseInt(n)
+        local numberN = txt.parseInt(n)
         if pokes[numberN] then
             link = pokes[numberN].name
-        elseif n:find('.*[Uu]ovo.*') then
-            link = 'Uova Pokémon'
+        elseif n:find(".*[Uu]ovo.*") then
+            link = "Uova Pokémon"
         else
-            link = 'MissingNo'
+            link = "MissingNo"
         end
     end
     return n, gen, link
@@ -80,21 +86,21 @@ local function splitMwArgs(args)
         gen = args.gen or args[3],
         link = args.link or args[2],
         female = args.female,
-        shiny = args.shiny
+        shiny = args.shiny,
     }
 end
 
 -- Animated MS, Lua call
 o.aniLua = function(args)
     local n, gen, link = preprocess(args.ndex or args[1], args.gen, args.link)
-    if staticOnly[gen] then
+    if staticOnly(gen) then
         args.ndex = n
         args.gen = gen
         args.link = link
         return o.staticLua(args)
     end
     -- Here we can assume gen < 8, so filenames are much more consistent
-    return string.interp(
+    return txt.interp(
         "[[File:Ani${num}MS${gen}.gif|${name}|link=${name}]]",
         { num = n, gen = gen, name = link }
     )
@@ -110,7 +116,7 @@ o.Ani, o.AniP, o.aniP = o.ani, o.ani, o.ani
 -- Static MS, Lua call
 o.staticLua = function(args)
     local n, gen, link = preprocess(args.ndex or args[1], args.gen, args.link)
-    if aniOnly[gen] then
+    if aniOnly(gen) then
         args.ndex = n
         args.gen = gen
         args.link = link
@@ -121,11 +127,12 @@ o.staticLua = function(args)
     if gen < 8 then
         interpString = "[[File:${num}MS${gen}.png|${name}|link=${name}]]"
     else
-        interpString = "[[File:Mini${gender}${shiny}${num}.png|${name}|40px|link=${name}]]"
-        interpData.gender = args.female and 'f' or 'm'
-        interpData.shiny = args.shiny and 'sh' or ''
+        interpString =
+            "[[File:Mini${gender}${shiny}${num}.png|${name}|40px|link=${name}]]"
+        interpData.gender = args.female and "f" or "m"
+        interpData.shiny = args.shiny and "sh" or ""
     end
-    return string.interp(interpString, interpData)
+    return txt.interp(interpString, interpData)
 end
 o.static_lua = o.staticLua
 
