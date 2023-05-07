@@ -129,8 +129,8 @@ o.staticLua = function(args)
     else
         interpString =
             "[[File:Mini${gender}${shiny}${num}.png|${name}|40px|link=${name}]]"
-        interpData.gender = args.female and "f" or "m"
-        interpData.shiny = args.shiny and "sh" or ""
+        interpData.gender = args.female == "yes" and "f" or "m"
+        interpData.shiny = args.shiny == "yes" and "sh" or ""
     end
     return txt.interp(interpString, interpData)
 end
