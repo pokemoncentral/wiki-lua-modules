@@ -27,7 +27,7 @@ local w = require('Wikilib')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local multigen = require('Wikilib-multigen')
-local drp = require('DebRes')
+local basedr = require('DebRes-base')
 local et = require('EffTipi-1')
 local pokes = require("Poké-data")
 -- stylua: ignore end
@@ -42,7 +42,7 @@ certa combinazione di tipi; oltre a ciò, possiede
 le righe che compongono il footer.
 
 --]]
-dr.EffTable = oop.makeClass(drp.EffTable)
+dr.EffTable = oop.makeClass(basedr.EffTable)
 
 --[[
 
