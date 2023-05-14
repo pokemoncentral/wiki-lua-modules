@@ -1,6 +1,6 @@
 -- "Test cases" for DebRes-1glitch
 
-local dr = require("DebRes-1-glitch").debRes
+local dr = require("DebRes-1glitch").debRes
 
 -- Something "normal" first
 print(dr({ args = { " 'M (00) " } }))

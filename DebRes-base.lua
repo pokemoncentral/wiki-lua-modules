@@ -1,11 +1,7 @@
 --[[
 
 This file contains the base class for a DebRes. Is a module meant for internal
-use only, not to be used in pages
-
-=========================== DEVELOPERS INFORMATIONS ===========================
-
-
+use only, not to be used in pages directly.
 
 --]]
 
@@ -146,6 +142,20 @@ dr.EffTable.printEffBoxes = function(boxes)
     return w.mapAndConcat(boxes, dr.EffTable.printSingleBox)
 end
 
+-- Equality operator for effectiveness tables. Returns true if both the footers
+-- and the effectiveness values are equal.
+dr.EffTable.__eq = function(a, b)
+    if not tab.equal(a.footer, b.footer) then
+        return false
+    end
+
+    -- dr.EffTable.allEff is used since a and b can have differents set of
+    -- effectinevess values.
+    return tab.all(dr.EffTable.allEff, function(eff)
+        return tab.equal(a[eff], b[eff])
+    end)
+end
+
 -- Get types and abilities from Pokémon name and form name (and gen)
 dr.EffTable.parseEntryData = function(name, formName, gen)
     if type(name) == "table" and type(formName) == "table" then
@@ -190,7 +200,7 @@ dr.EffTable.new = function(name, formname, gen)
 
     -- Printing stuff
     this.collapse = ""
-    this.colors = this.types
+    this:createColors()
 
     this:computeEff()
     this:makeFooter()
@@ -198,12 +208,17 @@ dr.EffTable.new = function(name, formname, gen)
     return this
 end
 
+-- Prepare the tables with colors for printing. Changed in glitch subclasses
+dr.EffTable.createColors = function(this)
+    this.colors = this.types
+end
+
 -- Computes the actual values to put in the output. Does not compute footer
 dr.EffTable.computeEff = function(this)
     -- For every possible effectiveness value, checks for types having it
     -- against the current types + ability combination. If some are found, they
     -- are added as a table to this, the key being the effectiveness.
-    for _, eff in ipairs(dr.EffTable.allEff) do
+    for _, eff in ipairs(this.allEff) do
         local effTypes = etlib.difesa(
             this.et,
             eff,
@@ -217,20 +232,6 @@ dr.EffTable.computeEff = function(this)
             this[eff] = effTypes
         end
     end
-end
-
--- Equaity operator for effectiveness tables. Returns true if both the footers
--- and the effectiveness values are equal.
-dr.EffTable.__eq = function(a, b)
-    if not tab.equal(a.footer, b.footer) then
-        return false
-    end
-
-    -- dr.EffTable.allEff is used since a and b can have differents set of
-    -- effectinevess values.
-    return tab.all(dr.EffTable.allEff, function(eff)
-        return tab.equal(a[eff], b[eff])
-    end)
 end
 
 -- Collapsed setter
