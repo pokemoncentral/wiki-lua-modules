@@ -19,9 +19,9 @@ local tab = require('Wikilib-tables')
 local list = require('Wikilib-lists')
 local oop = require('Wikilib-oop')
 local multigen = require('Wikilib-multigen')
+local etlib = require('Wikilib-efftipi')
 local w = require('Wikilib')
 local box = require('Box')
-local et = require('EffTipi')
 local link = require('Links')
 local css = require('Css')
 local cc = require('ChooseColor')
@@ -180,6 +180,7 @@ dr.EffTable.new = function(name, formname, gen)
     this.types = types
     this.abils = abils
     this.gen = gen
+    this.et = etlib.getEtdata(gen)
 
     -- More data
     this.onlyAbil = tab.getn(this.abils) == 1
@@ -203,8 +204,8 @@ dr.EffTable.computeEff = function(this)
     -- against the current types + ability combination. If some are found, they
     -- are added as a table to this, the key being the effectiveness.
     for _, eff in ipairs(dr.EffTable.allEff) do
-        local effTypes = et.difesa(
-            this.gen,
+        local effTypes = etlib.difesa(
+            this.et,
             eff,
             this.types.type1,
             this.types.type2,
@@ -308,25 +309,26 @@ dr.EffTable.makeFooter = function(this)
     local types = this.types
     local abils = this.abils
     local abil = this.abil
-    local gen = this.gen
+    local etdata = this.et
     this.footer = {}
 
-    if gen <= 2 then
+    if this.gen <= 2 then
         -- No abilities before gen 3, hence no need for the footer
         return
     end
 
     -- Adding immunities footer lines
     if abil ~= "magidifesa" then
-        if et.hasAnyImmunity(gen, types.type1) then
+        if etlib.hasAnyImmunity(etdata, types.type1) then
             table.insert(
                 this.footer,
-                dr.EffTable.FooterLine.new("RINGTARGET", types, abils, gen)
+                dr.EffTable.FooterLine.new("RINGTARGET", types, abils, etdata)
             )
         end
 
         if
-            types.type1 ~= types.type2 and et.hasAnyImmunity(gen, types.type2)
+            types.type1 ~= types.type2
+            and etlib.hasAnyImmunity(etdata, types.type2)
         then
             -- Swapping types for dual typed Pokémon, since
             -- dr.EffTable.FooterLine only checks the first one for immunities
@@ -336,7 +338,7 @@ dr.EffTable.makeFooter = function(this)
                     "RINGTARGET",
                     { type1 = types.type2, type2 = types.type1 },
                     abils,
-                    gen
+                    etdata
                 )
             )
         end
@@ -344,20 +346,20 @@ dr.EffTable.makeFooter = function(this)
 
     -- Adding TAKENOFF footer line for Pokémon having just one ability
     if this.onlyAbil then
-        if et.modTypesAbil[abil] then
+        if etlib.modTypesAbil[abil] then
             table.insert(
                 this.footer,
-                dr.EffTable.FooterLine.new("TAKENOFF", types, abil, gen)
+                dr.EffTable.FooterLine.new("TAKENOFF", types, abil, etdata)
             )
         end
 
     -- Adding MAYBE footer line for Pokémon having more than one ability
     else
         local maybeAbils = tab.filter(abils, function(ability)
-            return et.changesEffectiveness(this.gen, ability, types)
+            return etlib.changesEffectiveness(etdata, ability, types)
         end)
         local maybeLines = tab.mapToNum(maybeAbils, function(ability)
-            return dr.EffTable.FooterLine.new("MAYBE", types, ability, gen)
+            return dr.EffTable.FooterLine.new("MAYBE", types, ability, etdata)
         end)
         this.footer = tab.merge(this.footer, maybeLines)
     end
@@ -435,7 +437,7 @@ end
 
 -- Initial part for RINGTARGET category. After adding some more strings based
 -- on the type and the abilities, concatenates the result.
-dr.EffTable.FooterLine.init.RINGTARGET = function(abils, type, gen)
+dr.EffTable.FooterLine.init.RINGTARGET = function(abils, type, etdata)
     local pieces = { dr.EffTable.FooterLine.strings.RINGTARGET }
 
     -- Adding text for specific types, otherwise a space
@@ -454,10 +456,10 @@ dr.EffTable.FooterLine.init.RINGTARGET = function(abils, type, gen)
         type of the footerline
     --]]
     local abilImm = tab.flatMap(
-        et.typeImmunesList(gen, type:lower()),
+        etlib.typeImmunesList(etdata, type:lower()),
         function(typeImm)
             return tab.filter(abils, function(abil)
-                return et.abilityGrantsImm(gen, abil, typeImm)
+                return etlib.abilityGrantsImm(etdata, abil, typeImm)
             end)
         end
     )
@@ -477,7 +479,7 @@ and a single ability. The only exception is the RINGTARGET category, that
 requires all of the Pokémon abilities.
 
 --]]
-dr.EffTable.FooterLine.new = function(kind, types, abil, gen)
+dr.EffTable.FooterLine.new = function(kind, types, abil, etdata)
     local this = setmetatable({}, dr.EffTable.FooterLine)
 
     kind = kind:upper()
@@ -485,11 +487,11 @@ dr.EffTable.FooterLine.new = function(kind, types, abil, gen)
     abil = type(abil) ~= "table" and abil:lower() or tab.map(abil, string.lower)
 
     this.kind = kind
-    this.gen = gen
+    this.et = etdata
 
     -- Initial part of the footer line
     this.init = "\n*"
-        .. dr.EffTable.FooterLine.init[kind](abil, types.type1, gen)
+        .. dr.EffTable.FooterLine.init[kind](abil, types.type1, etdata)
 
     --[[
         For every new effectiveness value, a key-value pair is added to this
@@ -510,7 +512,7 @@ dr.EffTable.FooterLine.new = function(kind, types, abil, gen)
         against the types the Pokémon is immune to
     --]]
     if kind == "RINGTARGET" and types.type1 == types.type2 then
-        this.newEff[1] = et.typeImmunesList(gen, types.type1)
+        this.newEff[1] = etlib.typeImmunesList(etdata, types.type1)
         -- See the comment for this.newEff
         table.sort(this.newEff[1])
 
@@ -528,7 +530,8 @@ dr.EffTable.FooterLine.new = function(kind, types, abil, gen)
         created on the spot if not already existing.
     --]]
     for _, type in ipairs(newTypes) do
-        local eff = et.efficacia(gen, type, types.type1, types.type2, abil)
+        local eff =
+            etlib.efficacia(etdata, type, types.type1, types.type2, abil)
         if this.newEff[eff] then
             table.insert(this.newEff[eff], type)
         else
@@ -549,12 +552,12 @@ dr.EffTable.FooterLine.makeNewTypes = function(this, types, abil)
     local newTypes
     if this.kind == "RINGTARGET" then
         -- The new types are the ones the first type is immune to
-        newTypes = et.typeImmunesList(this.gen, types.type1)
+        newTypes = etlib.typeImmunesList(this.et, types.type1)
         -- The Pokémon is now mono-type, in type effectiveness respect
         types.type1 = types.type2
     else
         -- The new types are the ones the ability has an impact on
-        newTypes = et.modTypesAbil[abil]
+        newTypes = etlib.modTypesAbil[abil]
         --[[
             If the ability is taken off, then it should not be taken in
             account when dealing with this line type effectiveness
@@ -609,7 +612,7 @@ dr.EffTable.FooterLine.makeSpecialAbil = function(this, abil, types)
         --]]
         for _, eff in ipairs(superEff) do
             local effTypes =
-                et.difesa(this.gen, eff, types.type1, types.type2, effAbil)
+                etlib.difesa(this.et, eff, types.type1, types.type2, effAbil)
             if #effTypes > 0 then
                 local newEff = math.ceil(eff * mult * 100) / 100
                 -- See the comment for this.newEff in the constructor

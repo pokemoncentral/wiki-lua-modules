@@ -16,3 +16,8 @@ Sequence of operations:
 - check if abilities should actually be used (ONLY `DebRes`)
 - actual computation of types for each effectiveness
 - footer creation
+
+# TODO
+- Merge `DebRes` and `DebRes-base`? How does this impact glitches?
+- Cleanup all the shit
+- Tests for glitches

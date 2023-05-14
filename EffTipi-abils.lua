@@ -1,5 +1,5 @@
--- Extension of EffTipi for ability effectiveness. In a separate module because
--- they both get updated separately and are shared among different generations.
+-- Data module for ability effectiveness. In a separate module because they
+-- both get updated separately and are shared among generations.
 
 local eta = {}
 
