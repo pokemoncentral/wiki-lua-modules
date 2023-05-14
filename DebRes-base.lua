@@ -21,7 +21,7 @@ local oop = require('Wikilib-oop')
 local multigen = require('Wikilib-multigen')
 local w = require('Wikilib')
 local box = require('Box')
--- local et = require('EffTipi')
+local et = require('EffTipi')
 local link = require('Links')
 local css = require('Css')
 local cc = require('ChooseColor')
@@ -151,32 +151,48 @@ dr.EffTable.parseEntryData = function(name, formName, gen)
     if type(name) == "table" and type(formName) == "table" then
         return tab.map(name, string.lower), tab.map(formName, string.lower), nil
     else
-        return multigen.getGen(pokes[name], gen),
-            tab.map(multigen.getGen(abilData[name], gen), string.lower),
-            formName
+        -- If gen <= 2, no abilities
+        local abils = gen <= 2 and { ability1 = "nessuna" }
+            or tab.map(multigen.getGen(abilData[name], gen), string.lower)
+        return multigen.getGen(pokes[name], gen), abils, formName
     end
 end
 
 -- ============================= INSTANCE METHODS =============================
 
--- EffTable constructor. It takes as parameter types, abils, gen, the
--- efftable module and the label (for makeFormsLabelledBoxes).
-dr.EffTable.new = function(types, abils, gen, et, label)
+--[[
+
+EffTable constructor. It can be used in two versions.
+
+In the first, name and formname are a string with the Pokémon name, as name +
+abbreviation, and an optional extended name of the alternative form.
+
+In the second, name and formname are tables, respectively holding types and
+abilities for which the DebRes should be created.
+
+The last parameter is the generation (see boxArgs in makeFormsLabelledBoxes).
+
+--]]
+dr.EffTable.new = function(name, formname, gen)
+    local types, abils, label = dr.EffTable.parseEntryData(name, formname, gen)
+
     local this = setmetatable(dr.EffTable.super.new(label), dr.EffTable)
     this.types = types
     this.abils = abils
-    this.et = et
     this.gen = gen
 
     -- More data
     this.onlyAbil = tab.getn(this.abils) == 1
     -- For non unique abilities, the effectiveness calculations have to be
     -- made without ability, since the footer will contain lines about them.
-    this.abil = this.onlyAbil and this.abils.ability1 or "tanfo"
+    this.abil = this.onlyAbil and this.abils.ability1 or "nessuna"
 
     -- Printing stuff
     this.collapse = ""
     this.colors = this.types
+
+    this:computeEff()
+    this:makeFooter()
 
     return this
 end
@@ -187,8 +203,13 @@ dr.EffTable.computeEff = function(this)
     -- against the current types + ability combination. If some are found, they
     -- are added as a table to this, the key being the effectiveness.
     for _, eff in ipairs(dr.EffTable.allEff) do
-        local effTypes =
-            this.et.difesa(eff, this.types.type1, this.types.type2, this.abil)
+        local effTypes = et.difesa(
+            this.gen,
+            eff,
+            this.types.type1,
+            this.types.type2,
+            this.abil
+        )
         if #effTypes > 0 then
             -- Sorting necessary for comparison and printing.
             table.sort(effTypes)
@@ -281,48 +302,32 @@ end
 
 -- ================================== FOOTER ==================================
 
--- Returns true whether a MAYBE footer line should be added, given abilities and
--- types. This happens only if the ability doesn't modify the types immunities.
-dr.EffTable.shouldAddMaybe = function(abil, types, gen, et)
-    local abilMod = et.modTypesAbil[abil]
-    local immType1 = et.typesHaveImm[types.type1]
-    local immType2 = et.typesHaveImm[types.type2]
-
-    -- Ability doesn't modify any types
-    if not abilMod then
-        return false
-    end
-
-    -- The types don't have immunities
-    if not (immType1 or immType2) then
-        return true
-    end
-
-    return tab.all(abilMod, function(type)
-        return immType1 and not tab.search(immType1, type)
-            or immType2 and not tab.search(immType2, type)
-    end)
-end
-
 -- Creates the footer for an efftable, given the primary ability, the types,
 -- the full ability list and whether the ability is only one
 dr.EffTable.makeFooter = function(this)
     local types = this.types
     local abils = this.abils
     local abil = this.abil
-    local et = this.et
+    local gen = this.gen
     this.footer = {}
+
+    if gen <= 2 then
+        -- No abilities before gen 3, hence no need for the footer
+        return
+    end
 
     -- Adding immunities footer lines
     if abil ~= "magidifesa" then
-        if et.typesHaveImm[types.type1] then
+        if et.hasAnyImmunity(gen, types.type1) then
             table.insert(
                 this.footer,
-                dr.EffTable.FooterLine.new("RINGTARGET", types, abils, et)
+                dr.EffTable.FooterLine.new("RINGTARGET", types, abils, gen)
             )
         end
 
-        if types.type1 ~= types.type2 and et.typesHaveImm[types.type2] then
+        if
+            types.type1 ~= types.type2 and et.hasAnyImmunity(gen, types.type2)
+        then
             -- Swapping types for dual typed Pokémon, since
             -- dr.EffTable.FooterLine only checks the first one for immunities
             table.insert(
@@ -331,7 +336,7 @@ dr.EffTable.makeFooter = function(this)
                     "RINGTARGET",
                     { type1 = types.type2, type2 = types.type1 },
                     abils,
-                    et
+                    gen
                 )
             )
         end
@@ -342,17 +347,17 @@ dr.EffTable.makeFooter = function(this)
         if et.modTypesAbil[abil] then
             table.insert(
                 this.footer,
-                dr.EffTable.FooterLine.new("TAKENOFF", types, abil, et)
+                dr.EffTable.FooterLine.new("TAKENOFF", types, abil, gen)
             )
         end
 
     -- Adding MAYBE footer line for Pokémon having more than one ability
     else
         local maybeAbils = tab.filter(abils, function(ability)
-            return dr.EffTable.shouldAddMaybe(ability, types, this.gen, et)
+            return et.changesEffectiveness(this.gen, ability, types)
         end)
         local maybeLines = tab.mapToNum(maybeAbils, function(ability)
-            return dr.EffTable.FooterLine.new("MAYBE", types, ability, et)
+            return dr.EffTable.FooterLine.new("MAYBE", types, ability, gen)
         end)
         this.footer = tab.merge(this.footer, maybeLines)
     end
@@ -408,13 +413,6 @@ dr.EffTable.FooterLine.strings = {
 -- Sorting categories to sort footerlines
 dr.EffTable.FooterLine.kindOrder = { "MAYBE", "TAKENOFF", "RINGTARGET" }
 
--- Returns whether an ability gives immunity to a certain type. The arguments
--- are the ability and the type. It just checks whether the effectivenes of
--- type against a type that doesn't have immunities by itself is zero.
-dr.EffTable.FooterLine.abilityGrantsImm = function(abil, type, et)
-    return 0 == et.efficacia(type, "elettro", "elettro", abil)
-end
-
 -- This table holds functions to generate the initial part of a FooterLine based
 -- on its category.
 dr.EffTable.FooterLine.init = {}
@@ -437,7 +435,7 @@ end
 
 -- Initial part for RINGTARGET category. After adding some more strings based
 -- on the type and the abilities, concatenates the result.
-dr.EffTable.FooterLine.init.RINGTARGET = function(abils, type, et)
+dr.EffTable.FooterLine.init.RINGTARGET = function(abils, type, gen)
     local pieces = { dr.EffTable.FooterLine.strings.RINGTARGET }
 
     -- Adding text for specific types, otherwise a space
@@ -455,11 +453,14 @@ dr.EffTable.FooterLine.init.RINGTARGET = function(abils, type, et)
         Adds a string for every ability that shares an immunity with the
         type of the footerline
     --]]
-    local abilImm = tab.flatMap(et.typesHaveImm[type:lower()], function(typeImm)
-        return tab.filter(abils, function(abil)
-            return dr.EffTable.FooterLine.abilityGrantsImm(abil, typeImm, et)
-        end)
-    end)
+    local abilImm = tab.flatMap(
+        et.typeImmunesList(gen, type:lower()),
+        function(typeImm)
+            return tab.filter(abils, function(abil)
+                return et.abilityGrantsImm(gen, abil, typeImm)
+            end)
+        end
+    )
     local abilImmString = tab.mapToNum(abilImm, function(abil)
         return string.interp(notAbil, { abil = string.camelCase(abil) })
     end)
@@ -476,19 +477,19 @@ and a single ability. The only exception is the RINGTARGET category, that
 requires all of the Pokémon abilities.
 
 --]]
-dr.EffTable.FooterLine.new = function(kind, types, abil, et)
+dr.EffTable.FooterLine.new = function(kind, types, abil, gen)
     local this = setmetatable({}, dr.EffTable.FooterLine)
 
     kind = kind:upper()
     types = tab.map(types, string.lower)
     abil = type(abil) ~= "table" and abil:lower() or tab.map(abil, string.lower)
 
-    -- Line category
     this.kind = kind
+    this.gen = gen
 
     -- Initial part of the footer line
     this.init = "\n*"
-        .. dr.EffTable.FooterLine.init[kind](abil, types.type1, et)
+        .. dr.EffTable.FooterLine.init[kind](abil, types.type1, gen)
 
     --[[
         For every new effectiveness value, a key-value pair is added to this
@@ -500,7 +501,7 @@ dr.EffTable.FooterLine.new = function(kind, types, abil, et)
     this.newEff = {}
 
     -- Handling corner case abilities
-    if this:makeSpecialAbil(abil, types, et) then
+    if this:makeSpecialAbil(abil, types) then
         return this
     end
 
@@ -509,7 +510,7 @@ dr.EffTable.FooterLine.new = function(kind, types, abil, et)
         against the types the Pokémon is immune to
     --]]
     if kind == "RINGTARGET" and types.type1 == types.type2 then
-        this.newEff[1] = et.typesHaveImm[types.type1]
+        this.newEff[1] = et.typeImmunesList(gen, types.type1)
         -- See the comment for this.newEff
         table.sort(this.newEff[1])
 
@@ -517,7 +518,7 @@ dr.EffTable.FooterLine.new = function(kind, types, abil, et)
     end
 
     local newTypes
-    newTypes, types, abil = this:makeNewTypes(types, abil, et)
+    newTypes, types, abil = this:makeNewTypes(types, abil)
     -- See the comment for this.newEff
     table.sort(newTypes)
 
@@ -527,7 +528,7 @@ dr.EffTable.FooterLine.new = function(kind, types, abil, et)
         created on the spot if not already existing.
     --]]
     for _, type in ipairs(newTypes) do
-        local eff = et.efficacia(type, types.type1, types.type2, abil)
+        local eff = et.efficacia(gen, type, types.type1, types.type2, abil)
         if this.newEff[eff] then
             table.insert(this.newEff[eff], type)
         else
@@ -544,11 +545,11 @@ end
     in the effectiveness value calculations. It takes as parameters the types
     and abilities to base the computations on.
 --]]
-dr.EffTable.FooterLine.makeNewTypes = function(this, types, abil, et)
+dr.EffTable.FooterLine.makeNewTypes = function(this, types, abil)
     local newTypes
     if this.kind == "RINGTARGET" then
         -- The new types are the ones the first type is immune to
-        newTypes = et.typesHaveImm[types.type1]
+        newTypes = et.typeImmunesList(this.gen, types.type1)
         -- The Pokémon is now mono-type, in type effectiveness respect
         types.type1 = types.type2
     else
@@ -558,7 +559,7 @@ dr.EffTable.FooterLine.makeNewTypes = function(this, types, abil, et)
             If the ability is taken off, then it should not be taken in
             account when dealing with this line type effectiveness
         --]]
-        abil = this.kind == "TAKENOFF" and "tanfo" or abil
+        abil = this.kind == "TAKENOFF" and "nessuna" or abil
     end
 
     return newTypes, types, abil
@@ -572,17 +573,15 @@ end
     is returned, false otherwise. Such abilities are so far Filtro,
     Solidroccia, Scudoprisma and Magidifesa.
 --]]
-dr.EffTable.FooterLine.makeSpecialAbil = function(this, abil, types, et)
+dr.EffTable.FooterLine.makeSpecialAbil = function(this, abil, types)
     -- RINGTARGET footer line type doesn't deal with abilities
     if this.kind == "RINGTARGET" then
         return false
     end
 
-    --[[
-        These abilities reduce the effectiveness of super-effective moves.
-        However, if the type is TAKENOFF, the effectiveness shown in the footer
-        should be the one without theability, that is the increased one.
-    --]]
+    -- These abilities reduce the effectiveness of super-effective moves.
+    -- However, if the type is TAKENOFF, the effectiveness shown in the footer
+    -- should be the one without the ability, that is the increased one.
     if tab.search({ "filtro", "solidroccia", "scudoprisma" }, abil) then
         -- Super-effective number values
         local superEff = tab.filter(dr.EffTable.allEff, function(eff)
@@ -602,14 +601,15 @@ dr.EffTable.FooterLine.makeSpecialAbil = function(this, abil, types, et)
             in account when looking for super-effective types. Otherwise, it
             should be not.
         --]]
-        local effAbil = this.kind == "TAKENOFF" and abil or "tanfo"
+        local effAbil = this.kind == "TAKENOFF" and abil or "nessuna"
 
         --[[
             For any super-effective value that has some types, the types are
             added to the footer with reduced/incrased effectiveness.
         --]]
         for _, eff in ipairs(superEff) do
-            local effTypes = et.difesa(eff, types.type1, types.type2, effAbil)
+            local effTypes =
+                et.difesa(this.gen, eff, types.type1, types.type2, effAbil)
             if #effTypes > 0 then
                 local newEff = math.ceil(eff * mult * 100) / 100
                 -- See the comment for this.newEff in the constructor

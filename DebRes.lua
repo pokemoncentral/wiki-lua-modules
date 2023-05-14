@@ -44,31 +44,17 @@ local mw = require('mw')
 local txt = require('Wikilib-strings')
 local list = require('Wikilib-lists')
 local multigen = require('Wikilib-multigen')
-local gendata = require('Gens-data')
 local w = require('Wikilib')
-local dr1 = require('DebRes-1')
-local dr2 = require('DebRes-2')
-local dr6 = require('DebRes-6')
+local basedr = require('DebRes-base')
 local pokes = require("Poké-data")
+local gendata = require("Gens-data")
 -- stylua: ignore end
-
--- Get the right debres for the given gen
-local function getDr(gen)
-    gen = tonumber(gen)
-    if gen < 2 then
-        return dr1
-    elseif gen < 6 then
-        return dr2
-    else
-        return dr6
-    end
-end
 
 dr.debRes = function(frame)
     local p = w.trimAndMap(frame.args, string.lower)
     local pokeData = p[1]
         and (pokes[txt.parseInt(p[1]) or p[1]] or pokes[mw.text.decode(p[1])])
-    local currdr = getDr(p.gen or gendata.latest)
+    local gen = tonumber(p.gen) or gendata.latest
 
     -- If no data is found, types and abilities are directly provided
     if not pokeData then
@@ -79,15 +65,17 @@ dr.debRes = function(frame)
         abils.ability2 = p[4] or p.abil2
         abils.abilityd = p[5] or p.abild
         abils.abilitye = p[6] or p.abile
-        return tostring(currdr.EffTable.new(types, abils))
+        return tostring(basedr.EffTable.new(types, abils, gen))
     end
 
-    pokeData = multigen.getGen(pokeData)
+    -- pokeData = multigen.getGen(pokeData)
+    local name = multigen.getGenValue(pokeData.name, gen)
 
     return list.makeFormsLabelledBoxes({
-        name = pokeData.name:lower(),
-        makeBox = currdr.EffTable.new,
-        printBoxes = currdr.EffTable.printEffTables,
+        name = name:lower(),
+        makeBox = basedr.EffTable.new,
+        printBoxes = basedr.EffTable.printEffTables,
+        boxArgs = gen,
     })
 end
 dr.DebRes, dr.debres = dr.debRes, dr.debRes
