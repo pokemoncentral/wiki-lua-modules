@@ -1805,7 +1805,7 @@ d.calyrex = {hp = 100, atk = 80, def = 80, spatk = 80, spdef = 80, spe = 80}
 d[898] = d.calyrex
 d.wyrdeer = {hp = 103, atk = 105, def = 72, spatk = 105, spdef = 75, spe = 65}
 d[899] = d.wyrdeer
-d.kleavor = {hp = 70, atk = {[8] = 135, [9] = 130}, def = 95, spatk = 45, spdef = {[8] = 70, [9] = 75}, spe = 85}
+d.kleavor = {hp = 70, atk = 135, def = 95, spatk = 45, spdef = 70, spe = 85}
 d[900] = d.kleavor
 d.ursaluna = {hp = 130, atk = 140, def = 105, spatk = 45, spdef = 80, spe = 50}
 d[901] = d.ursaluna
@@ -2345,7 +2345,7 @@ d.lilligantH = {hp = 70, atk = 105, def = 75, spatk = 50, spdef = 75, spe = 105}
 d["0549H"] = d.lilligantH
 d.zoruaH = {hp = 35, atk = 60, def = 40, spatk = 85, spdef = 40, spe = 70}
 d["0570H"] = d.zoruaH
-d.zoroarkH = {hp = {[8] = 55, [9] = 60}, atk = {[8] = 100, [9] = 105}, def = 60, spatk = {[8] = 125, [9] = 120}, spdef = 60, spe = {[8] = 110, [9] = 105}}
+d.zoroarkH = {hp = {[8] = 55, [9] = 60}, atk = 100, def = 60, spatk = {[8] = 125, [9] = 120}, spdef = 60, spe = 110}
 d["0571H"] = d.zoroarkH
 d.braviaryH = {hp = 110, atk = 83, def = 70, spatk = 112, spdef = 70, spe = 65}
 d["0628H"] = d.braviaryH
