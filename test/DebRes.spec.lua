@@ -63,3 +63,9 @@ print(debRes({ args = { type = "Spettro" } }))
 
 print(debRes({ args = { "Veleno", "Terra" } }))
 print(debRes({ args = { type1 = "Veleno", type2 = "Terra" } }))
+
+-- Old gen
+print(debRes({ args = { "Parasect", gen = 1 } }))
+print(debRes({ args = { "Gengar", gen = 2 } }))
+print(debRes({ args = { "Metagross", gen = 3 } }))
+print(debRes({ args = { "Gengar", gen = 6 } }))
