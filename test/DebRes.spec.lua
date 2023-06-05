@@ -83,9 +83,9 @@ print(dr.single({ args = { "Gengar", gen = 2 } }))
 -- Gen 3, Steel resisted to Dark and Ghost
 print(dr.single({ args = { "Metagross", gen = 3 } }))
 
--- Gen 3, with types and abilities
+-- Gen 4, with types and abilities
 print(dr.single({
-    args = { "Acciaio", "Spettro", "Levitazione", "Acquascolo", gen = 3 },
+    args = { "Acciaio", "Spettro", "Levitazione", "Acquascolo", gen = 4 },
 }))
 
 -- Gen 6, old ability (changed in gen 7)

@@ -397,12 +397,7 @@ dr.EffTable.FooterLine.strings = {
     TAKENOFF = "Se le abilit&agrave; non compaiono nel gioco, se questo Pok&eacute;mon perde [[${abil}]] o se ne sono annullati gli effetti, ",
 
     -- RINGTARGET category beginning text
-    RINGTARGET = "Se questo Pok&eacute;mon tiene un [[Facilsaglio]]",
-
-    -- Strings to be concatenated to RINGTARGET for some types
-    SPETTRO = ", se un avversario usa [[Preveggenza]] o [[Segugio]] o ha [[Nervisaldi]], ",
-    BUIO = " o se un avversario usa [[Miracolvista]], ",
-    VOLANTE = " o una [[Ferropalla]] o se viene usata [[Gravit&agrave;]], ",
+    RINGTARGET = "Se questo Pokémon perde l'immunità data dal tipo ${type} ",
 
     --[[
         Strings to be concatenated to RINGTARGET for immunities shared by
@@ -441,23 +436,21 @@ end
 -- Initial part for RINGTARGET category. After adding some more strings based
 -- on the type and the abilities, concatenates the result.
 dr.EffTable.FooterLine.init.RINGTARGET = function(abils, type, etdata)
-    local pieces = { dr.EffTable.FooterLine.strings.RINGTARGET }
+    local pieces = {
+        string.interp(
+            dr.EffTable.FooterLine.strings.RINGTARGET,
+            { type = link.colorType(type) }
+        ),
+    }
 
-    -- Adding text for specific types, otherwise a space
-    table.insert(pieces, dr.EffTable.FooterLine.strings[type:upper()] or " ")
-
-    --[[
-        If the Pokémon has only one ability, the related string deals with its
-        loss, otherwise it is about the possibility of it happening.
-    --]]
+    -- If the Pokémon has only one ability, the related string deals with its
+    -- loss, otherwise it is about the possibility of it happening.
     local notAbil = tab.getn(abils) == 1
             and dr.EffTable.FooterLine.strings.IMM_TAKENOFF
         or dr.EffTable.FooterLine.strings.NOT_HAVE_ABIL
 
-    --[[
-        Adds a string for every ability that shares an immunity with the
-        type of the footerline
-    --]]
+    -- Adds a string for every ability that shares an immunity with the type of
+    -- the footerline
     local abilImm = tab.flatMap(
         etlib.typeImmunesList(etdata, type:lower()),
         function(typeImm)
@@ -510,10 +503,8 @@ dr.EffTable.FooterLine.new = function(kind, types, abil, etdata)
         return this
     end
 
-    --[[
-        RINGTARGET type with mono-type Pokémon, the new effectiveness are 1x
-        against the types the Pokémon is immune to
-    --]]
+    -- RINGTARGET type with mono-type Pokémon, the new effectiveness are 1x
+    -- against the types the Pokémon is immune to
     if kind == "RINGTARGET" and types.type1 == types.type2 then
         this.newEff[1] = etlib.typeImmunesList(etdata, types.type1)
         -- See the comment for this.newEff
@@ -546,10 +537,12 @@ dr.EffTable.FooterLine.new = function(kind, types, abil, etdata)
 end
 
 --[[
-    This method returns the types that gain a new effectiveness in the footer
-    line context, as well as returning the new types and abilities to be used
-    in the effectiveness value calculations. It takes as parameters the types
-    and abilities to base the computations on.
+
+This method returns the types that gain a new effectiveness in the footer
+line context, as well as returning the new types and abilities to be used
+in the effectiveness value calculations. It takes as parameters the types
+and abilities to base the computations on.
+
 --]]
 dr.EffTable.FooterLine.makeNewTypes = function(this, types, abil)
     local newTypes
@@ -561,10 +554,8 @@ dr.EffTable.FooterLine.makeNewTypes = function(this, types, abil)
     else
         -- The new types are the ones the ability has an impact on
         newTypes = etlib.modTypesAbil[abil]
-        --[[
-            If the ability is taken off, then it should not be taken in
-            account when dealing with this line type effectiveness
-        --]]
+        -- If the ability is taken off, then it should not be taken in account
+        -- when dealing with this line type effectiveness
         abil = this.kind == "TAKENOFF" and "nessuna" or abil
     end
 
@@ -572,12 +563,14 @@ dr.EffTable.FooterLine.makeNewTypes = function(this, types, abil)
 end
 
 --[[
-    This method takes care of corner case abilities that need to be treated
-    separately when calculating new effectiveness. It takes as argument athe
-    ability to be checked and possibly handled, and the types to be used when
-    calculating the new effectiveness. If the ability is a corner case, true
-    is returned, false otherwise. Such abilities are so far Filtro,
-    Solidroccia, Scudoprisma and Magidifesa.
+
+This method takes care of corner case abilities that need to be treated
+separately when calculating new effectiveness. It takes as argument athe
+ability to be checked and possibly handled, and the types to be used when
+calculating the new effectiveness. If the ability is a corner case, true is
+returned, false otherwise. Such abilities are so far Filtro, Solidroccia,
+Scudoprisma and Magidifesa.
+
 --]]
 dr.EffTable.FooterLine.makeSpecialAbil = function(this, abil, types)
     -- RINGTARGET footer line type doesn't deal with abilities
