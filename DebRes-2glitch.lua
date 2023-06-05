@@ -9,7 +9,7 @@ forme che condividono la stessa.
 
 Può essere chiamato con il nome di un Pokémon, es:
 
-{{#invoke: DebRes/5glitch | DebRes | ????? (FF) }}
+{{#invoke: DebRes/2glitch | DebRes | ????? (FF) }}
 
 Se un glitch con lo stesso nome compare in più giochi
 il modulo crea automaticamente una tabella diversa per
@@ -22,7 +22,7 @@ resistenze diversa)
 È anche possibile passare un parametro game per indicare
 il gioco di cui si vuole la tabella, es:
 
-{{#invoke: DebRes/5glitch | DebRes | Uovo Peste | game = RZS }}
+{{#invoke: DebRes/2glitch | DebRes | Uovo Peste | game = RZS }}
 
 --]]
 
@@ -32,7 +32,6 @@ local dr = {}
 local mw = require('mw')
 
 local w = require('Wikilib')
-local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local wdata = require("Wikilib-data")
 local gamesUtil = require('Wikilib-games')
@@ -97,17 +96,17 @@ GlitchEffTable.FooterStrings = {
 
 --[[
 
-Costruttore della classe: ha in ingresso il
-nome del Pokémon, nella forma nome + sigla gioco,
-e, opzionalmente, il nome esteso del gioco
+Costruttore della classe: ha in ingresso il nome del Pokémon, nella forma nome
++ sigla gioco, e, opzionalmente, il nome esteso del gioco.
 
-Dato che i glitch non hanno abilità che modificano le
-efficacie questo modulo non si occupa di gestirle
+Dato che i glitch non hanno abilità che modificano le efficacie questo modulo
+non si occupa di gestirle.
 
 --]]
 GlitchEffTable.new = function(name, game)
-    -- Can't call super.new because it requires parameters that do not exists
-    -- for glitches
+    -- Don't call super.new because we don't have data yet and it performs some
+    -- stuff that we would have to do again after setting some things (eg. run
+    -- this:computeEff() after setting this.et)
     local this = setmetatable(GlitchEffTable.super.super.new(), GlitchEffTable)
 
     if game then
@@ -121,12 +120,11 @@ GlitchEffTable.new = function(name, game)
 
     local data = glitch[game][tab.deepSearch(glitch[game], name)]
     -- data.typeEffectiveness viene usato solo per glitch di prima generazione
-    local types = { type1 = data.type1, type2 = data.type2 }
-    if not types.type2 then
-        types.type2 = types.type1
-    end
-    this.types = table.map(types, string.lower)
-    this.abil = { ability1 = "nessuna" }
+    this.types = {
+        type1 = string.lower(data.type1),
+        type2 = string.lower(data.type2 or data.type1),
+    }
+    this.abil = "nessuna"
     -- placeholder, doesn't really matter as long as it's between 2 and 5
     this.gen = 2
     this.et = etdata

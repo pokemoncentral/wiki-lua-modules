@@ -85,8 +85,8 @@ dr.single = function(frame)
     local pokename = formlib.nameToDataindex(ndex, abbr)
     local gen = tonumber(p.gen) or gendata.latest
 
-    -- If no data is found, types and abilities are directly provided
     if not pokes[pokename] then
+        -- If no data is found, types and abilities are directly provided
         p = tab.map(p, string.lower)
         local types, abils = {}, {}
         types.type1 = p[1] or p.type1 or p.type
@@ -96,11 +96,10 @@ dr.single = function(frame)
         abils.abilityd = p[5] or p.abild
         abils.abilitye = p[6] or p.abile
         return tostring(basedr.EffTable.new(types, abils, gen))
+    else
+        -- We never add a label because this is always a single box
+        return tostring(basedr.EffTable.new(pokename, nil, gen))
     end
-
-    -- Here we have the Pokémon data. We never add a label because this is
-    -- always a single box.
-    return tostring(basedr.EffTable.new(pokename, "", gen))
 end
 dr.Single = dr.single
 

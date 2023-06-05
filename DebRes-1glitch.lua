@@ -115,7 +115,7 @@ GlitchEffTable.new = function(name, game)
     this.types =
         { type1 = string.lower(types[1]), type2 = string.lower(types[2]) }
     this.typeEffectiveness = data.typeEffectiveness
-    this.abil = { ability1 = "nessuna" }
+    this.abil = "nessuna"
     this.gen = 1
     this.et = etdata
 

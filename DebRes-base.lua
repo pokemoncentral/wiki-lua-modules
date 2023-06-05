@@ -155,7 +155,7 @@ dr.EffTable.__eq = function(a, b)
     -- dr.EffTable.allEff is used since a and b can have differents set of
     -- effectinevess values.
     return tab.all(dr.EffTable.allEff, function(eff)
-        return tab.equal(a[eff], b[eff])
+        return tab.equal(a.effs[eff], b.effs[eff])
     end)
 end
 
@@ -218,6 +218,7 @@ end
 
 -- Computes the actual values to put in the output. Does not compute footer
 dr.EffTable.computeEff = function(this)
+    this.effs = {}
     -- For every possible effectiveness value, checks for types having it
     -- against the current types + ability combination. If some are found, they
     -- are added as a table to this, the key being the effectiveness.
@@ -232,7 +233,7 @@ dr.EffTable.computeEff = function(this)
         if #effTypes > 0 then
             -- Sorting necessary for comparison and printing.
             table.sort(effTypes)
-            this[eff] = effTypes
+            this.effs[eff] = effTypes
         end
     end
 end
@@ -261,19 +262,17 @@ dr.EffTable.__tostring = function(this)
     }
 
     -- Can't use ipairs because effectivenesses are not integers but floats
-    for eff, types in pairs(this) do
-        if type(eff) == "number" then
-            -- eff is not used as an index since sorting is only supported for
-            -- integer indixes
-            if eff == 0 then
-                table.insert(imm, { eff = 0, types = types })
-            elseif eff < 1 then
-                table.insert(res, { eff = eff, types = types })
-            elseif eff == 1 then
-                table.insert(std, { eff = 1, types = types })
-            else -- eff > 1
-                table.insert(weak, { eff = eff, types = types })
-            end
+    for eff, types in pairs(this.effs) do
+        -- eff is not used as an index since sorting is only supported for
+        -- integer indixes
+        if eff == 0 then
+            table.insert(imm, { eff = 0, types = types })
+        elseif eff < 1 then
+            table.insert(res, { eff = eff, types = types })
+        elseif eff == 1 then
+            table.insert(std, { eff = 1, types = types })
+        else -- eff > 1
+            table.insert(weak, { eff = eff, types = types })
         end
     end
 
