@@ -3,6 +3,9 @@
 This file contains the base class for a DebRes. Is a module meant for internal
 use only, not to be used in pages directly.
 
+It defines a class which is used directly for standard DebRes, and is
+subclassed for glitches.
+
 --]]
 
 local dr = {}
@@ -724,48 +727,5 @@ dr.EffTable.printEffTables = function(EffTables)
         return tostring(EffTable)
     end, "\n")
 end
-
---[[
-
-Wikicode interface function: takes as input the name or the ndex of a Pokémon,
-or a combo types + abilities and generate the HTML code for type effectiveness
-tables for all forms of the Pokémon. While all tables are collapsible, the one
-for the base form is the only default-expanded one, whereas the other tables
-are all collapsed by default.
-
---]]
-dr.debRes = function(frame)
-    local p = w.trimAndMap(mw.clone(frame.args), string.lower)
-    local pokeData = p[1]
-        and (
-            pokes[string.parseInt(p[1]) or p[1]]
-            or pokes[mw.text.decode(p[1])]
-        )
-
-    --[[
-        If no data is found, the first parameter is the type, that is no
-        Pokémon is given and types and abilities are directly provided
-    --]]
-    if not pokeData then
-        local types, abils = {}, {}
-        types.type1 = p[1] or p.type1 or p.type
-        types.type2 = p[2] or p.type2 or types.type1
-        abils.ability1 = p[3] or p.abil1 or p.abil
-        abils.ability2 = p[4] or p.abil2
-        abils.abilityd = p[5] or p.abild
-        abils.abilitye = p[6] or p.abile
-        return tostring(dr.EffTable.new(types, abils))
-    end
-
-    pokeData = multigen.getGen(pokeData)
-
-    return list.makeFormsLabelledBoxes({
-        name = pokeData.name:lower(),
-        makeBox = dr.EffTable.new,
-        printBoxes = dr.EffTable.printEffTables,
-    })
-end
-
-dr.DebRes, dr.debres = dr.debRes, dr.debRes
 
 return dr
