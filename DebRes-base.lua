@@ -406,6 +406,9 @@ dr.EffTable.FooterLine.strings = {
 
     -- New effectieness text
     EFF = "l'efficacia delle mosse di tipo ${types} &egrave; pari a ${eff}×",
+
+    -- Magidifesa text
+    MAGIDIFESA = "solo le mosse di tipo ${types} continuano a non avere effetto.",
 }
 
 -- Sorting categories to sort footerlines
@@ -627,12 +630,14 @@ dr.EffTable.FooterLine.makeSpecialAbil = function(this, abil, types)
             table.concat({
                 "\n*",
                 dr.EffTable.FooterLine.strings.TAKENOFF,
-                [=[solo mosse di tipo ${normale} e ${lotta} non lo renderanno esausto.]=],
+                dr.EffTable.FooterLine.strings.MAGIDIFESA,
             }),
             {
                 abil = "Magidifesa",
-                normale = link.colorType("Normale"),
-                lotta = link.colorType("Lotta"),
+                types = table.concat(
+                    { link.colorType("Normale"), link.colorType("Lotta") },
+                    " e "
+                ),
             }
         )
 

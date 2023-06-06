@@ -33,6 +33,9 @@ print(dr.debRes({ args = { "Charizard" } }))
 -- No forms collapse
 print(dr.debRes({ args = { "Altaria" } }))
 
+-- Magidifesa
+print(dr.debRes({ args = { "Shedinja" } }))
+
 -- ================================== Single ==================================
 -- It automatically checks that positional and named produces the same output
 
