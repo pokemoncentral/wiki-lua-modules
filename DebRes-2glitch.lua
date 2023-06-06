@@ -149,7 +149,7 @@ solo quella della forma base estesa al caricamento della pagina.
 
 --]]
 dr.debRes = function(frame)
-    local p = tab.map(mw.clone(frame.args), w.trim)
+    local p = tab.map(frame.args, w.trim)
     local games = {}
 
     local name = mw.text.decode(p[1])

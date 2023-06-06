@@ -52,7 +52,8 @@ end
 -- attaccante, il livello interno il difensore. Visto che non mettiamo i tipi
 -- glitch nel DebRes, come tipi attaccanti ci sono solo quelli normali
 for k, v in pairs(glitchEff) do
-    etg[k] = tab.merge(et[k], v)
+    -- We put et[k] second because we can't mw.clone an mw.loaddata table
+    etg[k] = tab.merge(v, et[k])
 end
 etg.coleot = etg.coleottero
 

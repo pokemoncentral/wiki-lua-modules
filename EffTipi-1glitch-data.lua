@@ -24,21 +24,23 @@ end
 -- Tabella contenente i valori di efficacia. Il livello esterno è il tipo
 -- attaccante, il livello interno il difensore. Visto che non mettiamo i tipi
 -- glitch nel DebRes, come tipi attaccanti ci sono solo quelli normali
-etg.normale = tab.merge(et.normale, standardEff)
-etg.fuoco = tab.merge(et.fuoco, standardEff)
-etg.acqua = tab.merge(et.acqua, standardEff)
-etg.elettro = tab.merge(et.elettro, standardEff)
-etg.erba = tab.merge(et.erba, standardEff)
-etg.ghiaccio = tab.merge(et.ghiaccio, standardEff)
-etg.lotta = tab.merge(et.lotta, standardEff)
-etg.veleno = tab.merge(et.veleno, standardEff)
-etg.terra = tab.merge(et.terra, standardEff)
-etg.volante = tab.merge(et.volante, standardEff)
-etg.psico = tab.merge(et.psico, standardEff)
-etg.coleottero = tab.merge(et.coleottero, standardEff)
-etg.roccia = tab.merge(et.roccia, standardEff)
-etg.spettro = tab.merge(et.spettro, standardEff)
-etg.drago = tab.merge(et.drago, standardEff)
+
+-- We put et[k] second because we can't mw.clone an mw.loaddata table
+etg.normale = tab.merge(standardEff, et.normale)
+etg.fuoco = tab.merge(standardEff, et.fuoco)
+etg.acqua = tab.merge(standardEff, et.acqua)
+etg.elettro = tab.merge(standardEff, et.elettro)
+etg.erba = tab.merge(standardEff, et.erba)
+etg.ghiaccio = tab.merge(standardEff, et.ghiaccio)
+etg.lotta = tab.merge(standardEff, et.lotta)
+etg.veleno = tab.merge(standardEff, et.veleno)
+etg.terra = tab.merge(standardEff, et.terra)
+etg.volante = tab.merge(standardEff, et.volante)
+etg.psico = tab.merge(standardEff, et.psico)
+etg.coleottero = tab.merge(standardEff, et.coleottero)
+etg.roccia = tab.merge(standardEff, et.roccia)
+etg.spettro = tab.merge(standardEff, et.spettro)
+etg.drago = tab.merge(standardEff, et.drago)
 etg.coleot = etg.coleottero
 
 return etg

@@ -469,8 +469,10 @@ table.merge = function(tab1, tab2)
     for _, value in ipairs(tab2) do
         table.insert(dest, value)
     end
-    for key, value in table.nonIntPairs(tab2) do
-        dest[key] = value
+    for key, value in pairs(tab2) do
+        if not isint(key) then
+            dest[key] = value
+        end
     end
     return dest
 end
