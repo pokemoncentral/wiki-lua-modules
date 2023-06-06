@@ -364,7 +364,7 @@ dr.EffTable.makeFooter = function(this)
         local maybeLines = tab.mapToNum(maybeAbils, function(ability)
             return dr.EffTable.FooterLine.new("MAYBE", types, ability, etdata)
         end)
-        this.footer = tab.merge(this.footer, maybeLines)
+        this.footer = tab.append(this.footer, maybeLines)
     end
 
     -- Footer should be sorted for equality and printing
@@ -399,10 +399,8 @@ dr.EffTable.FooterLine.strings = {
     -- RINGTARGET category beginning text
     RINGTARGET = "Se questo Pokémon perde l'immunità data dal tipo ${type} ",
 
-    --[[
-        Strings to be concatenated to RINGTARGET for immunities shared by
-        ability and types
-    --]]
+    -- Strings to be concatenated to RINGTARGET for immunities shared by
+    -- ability and types
     NOT_HAVE_ABIL = "e se non ha [[${abil}]], ",
     IMM_TAKENOFF = "e se ha perso [[${abil}]] o ne sono stati annullati gli effetti, ",
 
@@ -463,7 +461,7 @@ dr.EffTable.FooterLine.init.RINGTARGET = function(abils, type, etdata)
         return string.interp(notAbil, { abil = string.camelCase(abil) })
     end)
 
-    pieces = tab.merge(pieces, abilImmString)
+    pieces = tab.append(pieces, abilImmString)
 
     return table.concat(pieces)
 end
