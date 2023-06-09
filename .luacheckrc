@@ -31,14 +31,14 @@ stds.wiki = {
                 deepMerge = {},
                 search = {},
                 equal = {},
-                nonIntPairs = {},
                 flatMap = {},
                 filter = {},
                 keysAlias = {},
                 groupBy = {},
                 unpack = {},
                 empty = {},
-                find = {}
+                find = {},
+                append = {},
             }
         },
 
