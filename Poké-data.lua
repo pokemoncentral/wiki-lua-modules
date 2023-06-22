@@ -2026,6 +2026,17 @@ t.acquecrespe = {name = 'Acquecrespe', ndex = 1009, type1 = 'acqua', type2 = 'dr
 t[1009] = t.acquecrespe
 t.fogliaferrea = {name = 'Fogliaferrea', ndex = 1010, type1 = 'erba', type2 = 'psico'}
 t[1010] = t.fogliaferrea
+-- SV DLC stuff
+t.okidogi = {name = 'Okidogi', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+-- t[1010] = t.okidogi
+t.munkidori = {name = 'Munkidori', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+-- t[1010] = t.munkidori
+t.fezandipiti = {name = 'Fezandipiti', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+-- t[1010] = t.fezandipiti​
+t.ogerpon = {name = 'Ogerpon', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+-- t[1010] = t.ogerpon
+t.terapagos = {name = 'Terapagos', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
+-- t[1010] = t.terapagos
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
