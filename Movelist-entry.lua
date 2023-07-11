@@ -12,7 +12,6 @@ local w = require('Wikilib')
 local multigen = require('Wikilib-multigen')
 local gen = require('Wikilib-gens')
 local lib = require('Wikilib-learnlists')
-local libdata = require("Wikilib-data")
 local ms = require('MiniSprite')
 local links = require('Links')
 local css = require('Css')
@@ -484,46 +483,6 @@ end
 
 --[[
 
-Remove from frame.args useless params, here just because of not up-to-date
-calls in the pages. It also return whether some parameter was removed or not.
-
---]]
-local function removeOldParams(p)
-    local pokedata = pokes[tonumber(p[1])]
-        or pokes[p[1]]
-        or { name = "Missingno." }
-    pokedata = multigen.getGen(pokedata)
-
-    -- Whether something was removed
-    local removed = 0
-
-    -- rimuove il parametro 2 se è il nome del Pokémon
-    if txt.fu(p[2]) == pokedata.name then
-        table.remove(p, 2)
-        removed = removed + 1
-    end
-    -- rimuove i parametri 3, 4 e 5 (ora 2, 3 e 4)
-    --		se 3 è 1 o 2 (il numero di tipi)
-    --		e se 4 e 5 sono tipi
-    if
-        (p[2] == "1" or p[2] == "2")
-        and p[3]
-        and (
-            tab.search(libdata.allTypes, string.lower(p[3]))
-            or string.lower(p[3]) == "coleottero"
-        )
-    then
-        table.remove(p, 4)
-        table.remove(p, 3)
-        table.remove(p, 2)
-        removed = removed + 1
-    end
-
-    return p, removed
-end
-
---[[
-
 Generic entry creation function.
 Arguments:
 	- p: wikicode arguments table
@@ -540,22 +499,7 @@ entry.entry = function(p, kind)
         p.startGen = gen
     end
     -- now p[1] is the ndex, and may be followed by old params
-    local p, removed = removeOldParams(p)
     local ndex = table.remove(p, 1)
-
-    local extraCats = ""
-    assert(
-        removed == 0 or removed == 2,
-        "Movelist/entry.removeOldParams: unexpected number of removals: "
-            .. tostring(removed)
-    )
-    if removed == 2 then
-        extraCats = extraCats
-            .. "[[Categoria:Movelist in cui vengono rimossi tutti i parametri vecchi]]"
-    end
-    if p.form then
-        extraCats = extraCats .. "[[Categoria:Moduli con parametri deprecati]]"
-    end
 
     return entry.head(ndex, {
         STAB = p.STAB,
@@ -563,7 +507,7 @@ entry.entry = function(p, kind)
         allforms = p.allforms,
         useless = p.useless,
         movename = p.movename,
-    }) .. entry.tail(kind, p) .. extraCats
+    }) .. entry.tail(kind, p)
 end
 
 -- ========================= Wikicode interfaces ==============================
