@@ -117,6 +117,8 @@ local normalizeColeot = function(type)
     return type == "coleot" and "coleottero" or type
 end
 
+local _allTypes = table.map(wdata.allTypes, normalizeColeot)
+
 --[[
 
 Processa i parametri passati al modulo, effettuando
@@ -364,7 +366,7 @@ precedenti l'introduzione delle categorie danno.
 --]]
 lib.basicentry = function(stab, mossa, notes, tipo, pw, acc, pp)
     local tipobox
-    if table.search(wdata.allTypes, tipo:lower()) then
+    if table.search(_allTypes, tipo:lower()) then
         tipobox = box.boxTipoLua(tipo, { "thick" })
     else
         tipobox = box.boxLua(tipo, tipo, nil, "thick", "box-sconosciuto")
@@ -397,9 +399,7 @@ successive l'introduzione delle categorie danno.
 lib.categoryentry = function(stab, mossa, notes, tipo, cat, pw, acc, pp)
     local tipobox
     -- This thing is ineficient af, but anyway
-    if
-        table.search(table.map(wdata.allTypes, normalizeColeot), tipo:lower())
-    then
+    if table.search(_allTypes, tipo:lower()) then
         tipobox = box.boxTipoLua(tipo, { "thick" })
     else
         tipobox = box.boxLua(tipo, tipo, nil, "thick", "box-sconosciuto")
