@@ -1,5 +1,5 @@
 -- Gli header e i footer per le tabelle dei Pokémon
--- che imaprano una data mossa tramite vari metodi
+-- che imparano una data mossa tramite vari metodi
 
 local j = {}
 
@@ -160,7 +160,7 @@ cells.tutor = function(gen, gms)
                 txt.interp(str, {
                     bg = c[games[gen][a][2]].normale,
                     game = games[gen][a][1],
-                    textcolor = cc.forModBgLua(gendata[a].region),
+                    textcolor = cc.forModBgLua(games[gen][a][2]),
                 })
             )
         end
