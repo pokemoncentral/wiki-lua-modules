@@ -42,65 +42,75 @@ in LPA
 
 local z = {}
 
+-- stylua: ignore start
 local mw = require('mw')
 
-local txt = require('Wikilib-strings')			-- luacheck: no unused
+local txt = require('Wikilib-strings')
 local lib = require('Wikilib-learnlists')
 local multigen = require('Wikilib-multigen')
 local movesLPA = require("Move-LPA-data")
 local sup = require("Sup-data")
+-- stylua: ignore end
 
 local strings = {
-	TMENTRYCELL = [=[|-
+    TMENTRYCELL = [=[|-
 | class="black-text" style="padding: 0.1em 0.3em;" | ${content} ]=],
-	TMIMGLINK = [=[<span class="hidden-xs">[[File:${kind} ${tipo} VIII Sprite Zaino.png]]</span>[[${kind}${num}]]]=],
-	TMSLASH = [[&nbsp;/&nbsp;]],
-	BREEDENTRY = '|-\n| style="padding: 0.1em 0.3em;" | ${p1}',
-	-- EVENTENTRY = '|-\n| style="padding: 0.1em 0.3em;" | ${p1}${p10}',
+    TMIMGLINK = [=[<span class="hidden-xs">[[File:${kind} ${tipo} VIII Sprite Zaino.png]]</span>[[${kind}${num}]]]=],
+    TMSLASH = [[&nbsp;/&nbsp;]],
+    BREEDENTRY = '|-\n| style="padding: 0.1em 0.3em;" | ${p1}',
+    -- EVENTENTRY = '|-\n| style="padding: 0.1em 0.3em;" | ${p1}${p10}',
 }
 
 -- Compute the displayed STAB from the input.
 -- "move" is the move name, "stabval" is the value of stab passed to the call
 local getSTAB = function(move, stabval)
-	if stabval == "No" then
-		return ""
-	elseif stabval and stabval ~= "" then
-		return stabval
-	else
-		return lib.computeSTAB(mw.title.getCurrentTitle().rootText:lower(), move, nil, 8)
-	end
+    if stabval == "No" then
+        return ""
+    elseif stabval and stabval ~= "" then
+        return stabval
+    else
+        return lib.computeSTAB(
+            mw.title.getCurrentTitle().rootText:lower(),
+            move,
+            nil,
+            8
+        )
+    end
 end
 
 local entry = function(mossa, stab, notes)
-	local data = multigen.getGen(movesLPA[string.lower(mossa)])
-    return lib.categoryentry(getSTAB(mossa, stab),
-						  	 mossa, notes,
-							 string.fu(data.type), string.fu(data.category),
-						     data.power, data.accuracy, data.pp)
+    local data = multigen.getGen(movesLPA[string.lower(mossa)])
+    return lib.categoryentry(
+        getSTAB(mossa, stab),
+        mossa,
+        notes,
+        txt.fu(data.type),
+        txt.fu(data.category),
+        data.power,
+        data.accuracy,
+        data.pp
+    )
 end
 
 -- Level entry
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{
-		'|-\n',
-		lib.gameslevel(lib.makeEvoText(p[4]), lib.makeEvoText(p[5])),
-		entry(p[1] or 'Geloraggio', p[2], lib.makeNotes(p[3] or ''))
-	}
+    return table.concat({
+        "|-\n",
+        lib.gameslevel(lib.makeEvoText(p[4]), lib.makeEvoText(p[5])),
+        entry(p[1] or "Geloraggio", p[2], lib.makeNotes(p[3] or "")),
+    })
 end
 z.Level = z.level
 
 -- Entry per le mosse apprese tramite esperto mosse
 z.tutor = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return table.concat{
-		lib.tutorgames{ {'LPA', p[4]} },
-		' ',
-		entry(p[1] or 'Tuono',
-			  p[2],
-			  lib.makeNotes(p[3] or '')
-		)
-	}
+    return table.concat({
+        lib.tutorgames({ { "LPA", p[4] } }),
+        " ",
+        entry(p[1] or "Tuono", p[2], lib.makeNotes(p[3] or "")),
+    })
 end
 z.Tutor = z.tutor
 
@@ -119,7 +129,7 @@ z.Tutor = z.tutor
 -- z.event = function(frame)
 --     local p = lib.sanitize(mw.clone(frame.args))
 --     return table.concat{
--- 		string.interp(strings.BREEDENTRY, {
+-- 		txt.interp(strings.BREEDENTRY, {
 -- 				p1 = p[4] or 'Evento',
 -- 				-- p10 = lib.makeLevel(p[5]),
 -- 			}
@@ -131,13 +141,13 @@ z.Tutor = z.tutor
 
 -- Entry per i Pokémon che non imparano mosse aumentando di livello
 z.levelnull = function(_)
-	return lib.entrynull('level', '11')
+    return lib.entrynull("level", "11")
 end
 z.Levelnull = z.levenull
 
 -- Entry per i Pokémon che non imparano mosse dall'esperto mosse
 z.tutornull = function(_)
-	return lib.entrynull('tutor', '13')
+    return lib.entrynull("tutor", "13")
 end
 z.Tutornull = z.tutornull
 
