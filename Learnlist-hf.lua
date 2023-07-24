@@ -30,7 +30,7 @@ local alltmcs = { 7, 7, 10, 10, 8, 11, 8, 7, 7 }
 local firstcell = { cs = {}, rs = {} }
 
 -- This is the number of cells in games[gen]
-firstcell.cs.level = { 1, 1, 1, 3, 2, 2, 2, 2, 1 }
+firstcell.cs.level = { 1, 1, 2, 3, 2, 2, 2, 2, 1 }
 firstcell.cs.tm = { 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 firstcell.cs.breed = firstcell.cs.tm
 firstcell.cs.tutor = { 1, 1, 3, 3, 2, 2, 2, 3, 1 }
@@ -38,7 +38,7 @@ firstcell.cs.preevo = firstcell.cs.breed
 firstcell.cs.event = firstcell.cs.breed
 
 -- rs.level = map (\x -> if x > 1 then 2 else 1) cs.level
-firstcell.rs.level = { 1, 1, 1, 2, 2, 2, 2, 2, 1 }
+firstcell.rs.level = { 1, 1, 2, 2, 2, 2, 2, 2, 1 }
 firstcell.rs.breed = { 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 firstcell.rs.tm = firstcell.rs.breed
 firstcell.rs.tutor = firstcell.rs.breed
@@ -95,6 +95,11 @@ cells[7], cells[8], cells[9] = cells.category, cells.category, cells.category
 -- incompleta causa mancata implementazione del sistema a due celle
 
 local games = {}
+games[3] = [=[
+
+|- class="${textcolor}"
+! style="min-width: 2.4em;" | [[Pokémon Rubino e Zaffiro|RZ]][[Pokémon Smeraldo|S]]
+! style="min-width: 2.8em;" | [[Pokémon Rosso Fuoco e Verde Foglia|RFVF]]]=]
 games[4] = [=[
 
 |- class="${textcolor}"

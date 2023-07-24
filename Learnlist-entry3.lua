@@ -22,28 +22,22 @@ end
 
 z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    return txt.interp(
-        table.concat({
-            [=[|-
-| style="padding: 0.1em 0.3em;" | ${p1}${games}]=],
-            entry(
-                p[11] or "",
-                p[2] or "Stramontante",
-                lib.makeNotes(p[10] or ""),
-                p[3] or "Sconosciuto",
-                p[4] or "0",
-                p[5] or "0",
-                p[6] or "0",
-                p[7] or "Grinta",
-                p[8] or "0",
-                p[9] or "0"
-            ),
-        }),
-        {
-            p1 = p[1] or "Inizio",
-            games = abbrLib.concatAbbrs(p[12] or "", s),
-        }
-    )
+    return table.concat({
+        "|-\n",
+        lib.gameslevel(p[1] or "&mdash;", p[2] or "&mdash;"),
+        entry(
+            p[12] or "",
+            p[3] or "Stramontante",
+            lib.makeNotes(p[11] or ""),
+            p[4] or "Sconosciuto",
+            p[5] or "0",
+            p[6] or "0",
+            p[7] or "0",
+            p[8] or "Grinta",
+            p[9] or "0",
+            p[10] or "0"
+        ),
+    })
 end
 
 z.Level = z.level

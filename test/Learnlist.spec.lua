@@ -272,17 +272,17 @@ print(header.levelf{args={'Bulbasaur', 'Erba', 'Veleno', '4', '1'}})
 
 print(header.levelh{args={'Bulbasaur', 'Erba', 'Veleno', '3', '1'}})
 print(render.entry{args={ 'Learnlist-entry3.level',
-[[€Start|Azione|Normale|35|95|35|Grinta|4|0£]],
-[[€4|Ruggito|Normale|&mdash;|100|40|Grazia|2|0£]],
-[[€7|Parassiseme|Erba|&mdash;|90|10|Acume|2|2£]],
-[[€10|Frustata|Erba|35|100|10|Classe|4|0||'''£]],
-[[€15|Velenpolvere|Veleno|&mdash;|75|35|Acume|3|0£]],
-[[€15|Sonnifero|Erba|&mdash;|75|15|Acume|1|3£]],
-[[€20|Foglielama|Erba|55|95|25|Classe|3|0||'''£]],
-[[€25|Profumino|Normale|&mdash;|100|20|Grazia|1|3£]],
-[[€32|Crescita|Normale|&mdash;|&mdash;|40|Bellezza|1|0£]],
-[[€39|Sintesi|Erba|&mdash;|&mdash;|5|Acume|1|0£]],
-[[€46|Solarraggio|Erba|120|100|10|Classe|4|0||'''£]]}})
+[[€Inizio|Inizio|Azione|Normale|35|95|35|Grinta|4|0£]],
+[[€4|4|Ruggito|Normale|&mdash;|100|40|Grazia|2|0£]],
+[[€7|7|Parassiseme|Erba|&mdash;|90|10|Acume|2|2£]],
+[[€10|10|Frustata|Erba|35|100|10|Classe|4|0||'''£]],
+[[€15|15|Velenpolvere|Veleno|&mdash;|75|35|Acume|3|0£]],
+[[€15|15|Sonnifero|Erba|&mdash;|75|15|Acume|1|3£]],
+[[€20|20|Foglielama|Erba|55|95|25|Classe|3|0||'''£]],
+[[€25|25|Profumino|Normale|&mdash;|100|20|Grazia|1|3£]],
+[[€32|32|Crescita|Normale|&mdash;|&mdash;|40|Bellezza|1|0£]],
+[[€39|39|Sintesi|Erba|&mdash;|&mdash;|5|Acume|1|0£]],
+[[€46|46|Solarraggio|Erba|120|100|10|Classe|4|0||'''£]]}})
 print(header.levelf{args={'Bulbasaur', 'Erba', 'Veleno', '3', '1'}})
 
 
