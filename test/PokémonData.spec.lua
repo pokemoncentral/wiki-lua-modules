@@ -204,10 +204,20 @@ makeTest(
     '<div class="small-text">[[Forma di Galar#Slowbro|Forma di Galar]]</div>'
 )
 
+-- Mix "group" (Gigamax) and non "group" (Forma Basso/Melodia)
+makeTest(
+    pokeData.getLink({ args = { "849B", "plain" } }),
+    "[[Toxtricity/Forme|Forma Basso]]"
+)
+makeTest(
+    pokeData.getLink({ args = { "849Gi", "plain" } }),
+    "[[Gigamax#Toxtricity|Toxtricity Gigamax (Melodia)]]"
+)
+
 -- Urshifu (strange Gigamax)
 makeTest(
     pokeData.getLink({ args = { "892PGi", "black" } }),
-    '<div class="small-text black-text">[[Urshifu/Forme|Urshifu Gigamax (Stile Pluricolpo)]]</div>'
+    '<div class="small-text black-text">[[Gigamax#Urshifu|Urshifu Gigamax (Stile Pluricolpo)]]</div>'
 )
 
 -- Pokémon without alternative forms

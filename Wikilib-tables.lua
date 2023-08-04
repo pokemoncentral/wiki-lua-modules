@@ -507,7 +507,7 @@ table.search = function(tab, value)
             return k
         end
     end
-    -- No explicit return, thus nil
+    return nil
 end
 t.search = table.search
 

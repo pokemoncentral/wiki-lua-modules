@@ -7,62 +7,9 @@
 local t = {}
 
 -- stylua: ignore start
-local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
+local fdlib = require('Wikilib-formdata')
 -- stylua: ignore end
-
--- TODO: refactor link creations, shamelessly copied from AltForms-data
---[[
-
-Creates the link for an alternative form. There are two general
-kinds of link: those pointing to the specific subpage of the Pokémon,
-and those pointing to general pages (eg: "Forma di Alola").
-This function handles boths, depending on the arguments.
-This function also handles empty form name, yielding no link at all
-(an empty string).
-
-Arguments:
-	- context: a string containing a ${link} replacement. The string is a
-			context in which ${link} is replaced with the actual link
-	- formName: name of the specific form
-	- poke: base name of the Pokémon
-	- general: an optional string argument. If given, the function assumes
-			the link target should be the general page whose title is given by
-			the value of this parameter (eg: for a Megaevoluzione, this
-			parameter should be "Megaevoluzione")
-
---]]
-local function makeSingleLink(context, formName, poke, general)
-    if formName == "" then
-        return ""
-    end
-
-    local target
-    if general then
-        target = table.concat({ general, "#", t[poke].anchor or txt.fu(poke) })
-    else
-        target = table.concat({ txt.fu(poke), "/Forme" })
-    end
-    return txt.interp(context, {
-        link = table.concat({ "[[", target, "|", formName, "]]" }),
-    })
-end
-
--- Create all links for alternative forms (black, blue and plain)
-local function makeLinks()
-    local contexts = {
-        links = '<div class="small-text">${link}</div>',
-        blacklinks = '<div class="small-text black-text">${link}</div>',
-        plainlinks = "${link}",
-    }
-    for index, context in pairs(contexts) do
-        for name, poke in pairs(t) do
-            poke[index] = tab.map(poke.names, function(formName)
-                return makeSingleLink(context, formName, name)
-            end)
-        end
-    end
-end
 
 --[[
 
@@ -361,7 +308,9 @@ t.polteageist = tab.copy(t.sinistea)
 
 -- Link creation should be done AFTER copying Pokémon with same forms, in order
 -- to use the right name for the link
-makeLinks()
+for name, poke in pairs(t) do
+    fdlib.makeStandardLinks(name, poke)
+end
 
 t[25] = t.pikachu
 t[172] = t.pichu

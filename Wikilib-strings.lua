@@ -17,7 +17,7 @@ es.: interp("${name} is ${value}", {name = "foo", value = "bar"}
 vedi: http://lua-users.org/wiki/StringInterpolation
 
 --]]
-
+---@return string
 string.interp = function(s, tab)
     return (
         s:gsub("($%b{})", function(w)

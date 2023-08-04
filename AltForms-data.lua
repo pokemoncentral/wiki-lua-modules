@@ -14,74 +14,13 @@ local t = {}
 -- stylua: ignore start
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
+local fdlib = require('Wikilib-formdata')
 
 local mw = require('mw')
 -- stylua: ignore end
 
--- TODO: refactor link creations
---[[
-
-Creates the link for an alternative form. There are two general
-kinds of link: those pointing to the specific subpage of the Pokémon,
-and those pointing to general pages (eg: "Forma di Alola").
-This function handles boths, depending on the arguments.
-This function also handles empty form name, yielding no link at all
-(an empty string).
-
-Arguments:
-	- context: a string containing a ${link} replacement. The string is a
-			context in which ${link} is replaced with the actual link
-	- formName: name of the specific form
-	- poke: base name of the Pokémon
-	- general: an optional string argument. If given, the function assumes
-			the link target should be the general page whose title is given by
-			the value of this parameter (eg: for a Megaevoluzione, this
-			parameter should be "Megaevoluzione")
-
---]]
-local function makeSingleLink(context, formName, poke, general)
-    if formName == "" then
-        return ""
-    end
-
-    local target
-    if general then
-        target = table.concat({ general, "#", t[poke].anchor or txt.fu(poke) })
-    else
-        target = table.concat({ txt.fu(poke), "/Forme" })
-    end
-    return txt.interp(context, {
-        link = table.concat({ "[[", target, "|", formName, "]]" }),
-    })
-end
-
---[[
-
-Adds links to alternative forms pointing to a generic page instead of
-the specific subpage of the Pokémon. This function modifies links only
-for a given list of abbrs, and doesn't change other links.
-Arguments:
-	- index: the index in the Pokémon's table at which store the link
-	- context: a context for the link, containin a ${link} replacement
-	- target: the target page name
-	- list: a list of keys to which add the links for this target
-	- abbrs: the list of abbrs to modify
-
---]]
-local function makeTargetedLink(index, context, target, list, abbrs)
-    for _, name in pairs(list) do
-        t[name][index] = tab.map(t[name].names, function(formName, formAbbr)
-            if tab.search(abbrs, formAbbr) then
-                return makeSingleLink(context, formName, name, target)
-            else
-                return t[name][index] and t[name][index][formAbbr]
-            end
-        end)
-    end
-end
-
--- Creates links to alternative forms
-local function makeIndexLinks(index, context)
+-- Create all links for alternative forms (black, blue and plain)
+local function makeLinks()
     -- Removing support table since we only want Pokémon tables
     local stdLinks = tab.filter(t, function(_, key)
         return key ~= "formgroups"
@@ -89,34 +28,20 @@ local function makeIndexLinks(index, context)
 
     -- Adds standard links
     for name, poke in pairs(stdLinks) do
-        poke[index] = tab.map(poke.names, function(formName)
-            return makeSingleLink(context, formName, name)
-        end)
+        fdlib.makeStandardLinks(name, poke)
     end
 
-    -- Adds links of forms with a dedicated page
+    -- Adds links to forms with a dedicated page
     -- stylua: ignore start
-    makeTargetedLink(index, context, "Megaevoluzione", tab.merge(t.formgroups.mega, t.formgroups.megaxy), { "base", "M", "MX", "MY" })
-    makeTargetedLink(index, context, "Archeorisveglio", t.formgroups.archeo, { "base", "A" })
-    makeTargetedLink(index, context, "Forma di Alola", t.formgroups.alola, { "base", "A" })
-    makeTargetedLink(index, context, "Forma di Galar", t.formgroups.galar, { "base", "G" })
-    makeTargetedLink(index, context, "Gigamax", t.formgroups.gigamax, { "base", "Gi" })
-    makeTargetedLink(index, context, "Forma di Hisui", t.formgroups.hisui, { "base", "H" })
+    fdlib.makeTargetedLink("Megaevoluzione", { "M", "MX", "MY" }, tab.merge(t.formgroups.mega, t.formgroups.megaxy), t)
+    fdlib.makeTargetedLink("Archeorisveglio", { "A" }, t.formgroups.archeo, t)
+    fdlib.makeTargetedLink("Forma di Alola", { "A" }, t.formgroups.alola, t)
+    fdlib.makeTargetedLink("Forma di Galar", { "G" }, t.formgroups.galar, t)
+    fdlib.makeTargetedLink("Gigamax", { "Gi", "PGi", "BGi" }, t.formgroups.gigamax, t)
+    fdlib.makeTargetedLink("Forma di Hisui", { "H" }, t.formgroups.hisui, t)
     -- TODO: this shit is terrible
-    makeTargetedLink(index, context, "Forma di Paldea", t.formgroups.paldea, { "base", "P", "C", "I", "A" })
+    fdlib.makeTargetedLink("Forma di Paldea", { "P", "C", "I", "A" }, t.formgroups.paldea, t)
     -- stylua: ignore end
-end
-
--- Create all links for alternative forms (black, blue and plain)
-local function makeLinks()
-    local contexts = {
-        links = '<div class="small-text">${link}</div>',
-        blacklinks = '<div class="small-text black-text">${link}</div>',
-        plainlinks = "${link}",
-    }
-    for index, context in pairs(contexts) do
-        makeIndexLinks(index, context)
-    end
 end
 
 --[[
@@ -796,14 +721,11 @@ table.insert(t.formgroups.hisui, "goodra")
 -- Other Gigamax forms
 table.insert(t.formgroups.gigamax, "pikachu")
 table.insert(t.formgroups.gigamax, "toxtricity")
+table.insert(t.formgroups.gigamax, "urshifu")
 
 -- Link creation should be done AFTER copying Pokémon with same forms, in order
 -- to use the right name for the link
 makeLinks()
-
--- Urshifu has both a gigamax and a non-empty base form, hence we copy it after
--- link creation
-table.insert(t.formgroups.gigamax, "urshifu")
 
 t[19] = t.rattata
 t[20] = t.raticate
@@ -970,7 +892,6 @@ t[839] = t.coalossal
 t[841] = t.flapple
 t[842] = t.appletun
 t[844] = t.sandaconda
-t[849] = t.toxtricity
 t[851] = t.centiskorch
 t[858] = t.hatterene
 t[861] = t.grimmsnarl
