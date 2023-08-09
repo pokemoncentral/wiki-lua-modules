@@ -2025,12 +2025,20 @@ t[1009] = t.acquecrespe
 t.fogliaferrea = {ability1 = 'Carica Quark'}
 t[1010] = t.fogliaferrea
 -- SV DLC stuff
+t.dipplin = {ability1 = 'Sciroppo Sublime', ability2 = 'Voracità'}
+-- t[1010] = t.dipplin
+t.archaludon = {ability1 = 'Sopportazione', ability2 = 'Vigore'}
+-- t[1010] = t.archaludon
+t.furiatonante = {ability1 = 'Paleoattivazione'}
+-- t[1010] = t.furiatonante
+t.capoferreo = {ability1 = 'Carica Quark'}
+-- t[1010] = t.capoferreo
 t.okidogi = {ability1 = 'Catena Tossica'}
 -- t[1010] = t.okidogi
 t.munkidori = {ability1 = 'Catena Tossica'}
 -- t[1010] = t.munkidori
 t.fezandipiti = {ability1 = 'Catena Tossica'}
--- t[1010] = t.fezandipiti​
+-- t[1010] = t.fezandipiti
 -- t.ogerpon = {ability1 = 'Sconosciuta'}
 -- t[1010] = t.ogerpon
 -- t.terapagos = {ability1 = 'Sconosciuta'}

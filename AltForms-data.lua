@@ -98,6 +98,8 @@ t.oinkologne = {}
 t.palafin = {}
 t.squawkabilly = {}
 t.gimmighoul = {}
+t.ogerpon = {}
+t.terapagos = {}
 
 -- Automatic generation of groups of alt forms
 
@@ -230,6 +232,8 @@ t.oinkologne.names = {F = 'Femmina', base = 'Maschio'}
 t.palafin.names = {P = 'Forma Possente', base = 'Forma Ingenua'}
 t.squawkabilly.names = {A = 'Piume Azzurre', G = 'Piume Gialle', B = 'Piume Bianche', base = 'Piume Verdi'}
 t.gimmighoul.names = {A = 'Forma Ambulante', base = 'Forma Scrigno'}
+t.ogerpon.names = {T = 'Forma Teracristal', base = 'Forma Normale'}
+t.terapagos.names = {T = 'Forma Teracristal', base = 'Forma Normale'}
 -- stylua: ignore end
 for _, v in pairs(t.formgroups.mega) do
     if not t[v] then
@@ -354,6 +358,8 @@ t.palafin.ext = { possente = "P", ingenua = "base" }
 -- stylua: ignore
 t.squawkabilly.ext = { azzurre = "A", gialle = "G", bianche = "B", verdi = "base" }
 t.gimmighoul.ext = { ambulante = "A", scrigno = "base" }
+t.ogerpon.ext = { teracristal = "T", normale = "base" }
+t.terapagos.ext = { teracristal = "T", normale = "base" }
 for _, v in pairs(t.formgroups.mega) do
     t[v].ext = t[v].ext or {}
     t[v].ext.mega = "M"
@@ -446,6 +452,8 @@ t.oinkologne.gamesOrder = t.meowstic.gamesOrder
 t.palafin.gamesOrder = { "base", "P" }
 t.squawkabilly.gamesOrder = { "base", "A", "G", "B" }
 t.gimmighoul.gamesOrder = { "base", "A" }
+t.ogerpon.gamesOrder = { "base", "T" }
+t.terapagos.gamesOrder = { "base", "T" }
 for _, v in pairs(t.formgroups.mega) do
     t[v].gamesOrder = t[v].gamesOrder or { "base", "M" }
 end
@@ -596,6 +604,8 @@ t.oinkologne.since = { F = "sv", base = "sv" }
 t.palafin.since = { P = "sv", base = "sv" }
 t.squawkabilly.since = { A = "sv", G = "sv", B = "sv", base = "sv" }
 t.gimmighoul.since = { A = "sv", base = "sv" }
+t.ogerpon.since = { T = "sv", base = "sv" }
+t.terapagos.since = { T = "sv", base = "sv" }
 t.venusaur.since = { M = "xy", Gi = "spsc", base = "rb" }
 t.blastoise.since = { M = "xy", Gi = "spsc", base = "rb" }
 t.beedrill.since = { M = "roza", base = "rb" }
@@ -828,6 +838,8 @@ t[916] = t.oinkologne
 t[964] = t.palafin
 t[931] = t.squawkabilly
 t[999] = t.gimmighoul
+-- t[1000] = t.ogerpon
+-- t[1000] = t.terapagos
 t[3] = t.venusaur
 t[9] = t.blastoise
 t[15] = t.beedrill

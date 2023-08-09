@@ -6613,9 +6613,14 @@ evo.applin = {
             method = evo.methods.STONE,
             [evo.methods.STONE] = "Dolcepomo",
         },
+        {
+            ndex = nil,
+            name = "dipplin",
+            method = evo.methods.UNKNOWN,
+        },
     },
 }
-evo.flapple, evo.appletun = evo.applin, evo.applin
+evo.flapple, evo.appletun, evo.dipplin = evo.applin, evo.applin, evo.applin
 evo[840], evo[841], evo[842] = evo.applin, evo.applin, evo.applin
 
 evo.silicobra = {
@@ -6873,7 +6878,19 @@ evo[882] = evo.dracovish
 evo.arctovish = { ndex = 883, name = "arctovish" }
 evo[883] = evo.arctovish
 
-evo.duraludon = { ndex = 884, name = "duraludon" }
+evo.duraludon = {
+    ndex = 884,
+    name = "duraludon",
+
+    evos = {
+        {
+            ndex = nil,
+            name = "archaludon",
+            method = evo.methods.UNKNOWN,
+        },
+    },
+}
+evo.archaludon = evo.duraludon
 evo[884] = evo.duraludon
 
 evo.dreepy = {
@@ -7632,6 +7649,12 @@ evo[1009] = evo.acquecrespe
 
 evo.fogliaferrea = { ndex = 1010, name = "fogliaferrea" }
 evo[1010] = evo.fogliaferrea
+
+evo.furiatonante = { ndex = nil, name = "furiatonante" }
+-- evo[1010] = evo.furiatonante
+
+evo.capoferreo = { ndex = nil, name = "capoferreo" }
+-- evo[1010] = evo.capoferreo
 
 -- Alternative forms with evolutions
 evo.rattataA = {

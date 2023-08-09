@@ -2027,6 +2027,14 @@ t[1009] = t.acquecrespe
 t.fogliaferrea = {name = 'Fogliaferrea', ndex = 1010, type1 = 'erba', type2 = 'psico'}
 t[1010] = t.fogliaferrea
 -- SV DLC stuff
+t.dipplin = {name = 'Dipplin', ndex = nil, type1 = 'erba', type2 = 'drago'}
+-- t[1010] = t.dipplin
+t.archaludon = {name = 'Archaludon', ndex = nil, type1 = 'acciaio', type2 = 'drago'}
+-- t[1010] = t.archaludon
+t.furiatonante = {name = 'Furiatonante', ndex = nil, type1 = 'elettro', type2 = 'drago'}
+-- t[1010] = t.furiatonante
+t.capoferreo = {name = 'Capoferreo', ndex = nil, type1 = 'acciaio', type2 = 'psico'}
+-- t[1010] = t.capoferreo
 t.okidogi = {name = 'Okidogi', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 -- t[1010] = t.okidogi
 t.munkidori = {name = 'Munkidori', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
@@ -2363,6 +2371,10 @@ t["0931A"], t["0931G"], t["0931B"] =
     t.squawkabilly, t.squawkabilly, t.squawkabilly
 t.gimmighoulA = t.gimmighoul
 t["0999A"] = t.gimmighoulA
+t.ogerponT = t.ogerpon
+-- t["1000T"] = t.ogerponT
+t.terapagosT = t.terapagos
+-- t["1000T"] = t.terapagosT
 
 t.venusaurM, t["0003M"] = t.venusaur, t.venusaur
 t.charizardMY, t["0006MY"] = t.charizard, t.charizard
