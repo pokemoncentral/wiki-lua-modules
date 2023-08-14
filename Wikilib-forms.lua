@@ -145,6 +145,41 @@ end
 
 --[[
 
+Given a key of Poké-data (or other data modules), split the ndex/name from the
+abbr.
+
+WARNING: don't use this function for user input; use getndexabbr instead and
+force split name and abbr parameters.
+
+Note: in general it is not possible to separate the name from the abbr. To do
+so, this function assumes that the Pokémon name is all lowercase, and the abbr
+start with the first uppercase letter. Note that for user input this is not
+always the case (eg. the argument is composed using name and abbr parameters of
+a template). However, this works if the input is a key in Poké-data.
+
+--]]
+---@param name string An ndex/name+abbr or Pokémon name
+---@return number|string, string
+f.getpokekeyabbr = function(name)
+    -- name is just an ndex
+    local ndex = string.match(name, "^(%d+)$")
+    if ndex then
+        return tonumber(ndex), "base" ---@diagnostic disable-line: return-type-mismatch
+    end
+    -- name is an ndex followed by an abbr
+    local ndex, abbr_ = string.match(name, "^(%d+)(%u%a*)$")
+    if ndex then
+        return tonumber(ndex), abbr_ ---@diagnostic disable-line: return-type-mismatch
+    end
+    -- name is not an ndex, so split on the first uppercase letter
+    if string.match(name, "%u") then
+        return string.match(name, "^(%U*)(%u%a*)$")
+    else
+        return name, "base"
+    end
+end
+--[[
+
 Given a Pokémon name or ndex, return the link to the alternative form. The
 second parameter specify the kind of link, and can either be "black", "plain"
 or "" (default to ""). The optional third parameter is the abbr of the

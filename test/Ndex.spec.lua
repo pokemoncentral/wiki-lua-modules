@@ -3,7 +3,6 @@
 local ndex = require("Ndex")
 local ndexlist = require("Ndex-list")
 local nondex = require("test.LoadNondex")
-local render = require("Render")
 nondex({ types = false })
 
 -- Cases tested:
@@ -24,13 +23,10 @@ print(ndexlist.listgen({ args = { " 8 " } }))
 
 -- manualEntry
 print(ndex.header({ args = { "galar" } }))
-print(render.entry({
-    args = {
-        "Ndex.manualEntry",
-        "[[€urshifu|urshifu|type1=lotta|type2=buio£]]",
-        "[[€urshifuGi|urshifu|type1=lotta|type2=buio£]]",
-        "[[€urshifuP|urshifu|type1=lotta|type2=acqua£]]",
-        "[[€urshifuPGi|urshifu|type1=lotta|type2=acqua£]]",
-    },
-}))
+-- stylua: ignore start
+print(ndex.manualEntry({args = { "urshifu", "urshifu", type1 = "lotta", type2 = "buio" }}))
+print(ndex.manualEntry({args = { "urshifu", "urshifu", type1 = "lotta", type2 = "buio", form = "Gi" }}))
+print(ndex.manualEntry({args = { "urshifu", "urshifu", type1 = "lotta", type2 = "acqua", form = "P" }}))
+print(ndex.manualEntry({args = { "urshifu", "urshifu", type1 = "lotta", type2 = "acqua", form = "PGi" }}))
+-- stylua: ignore end
 print("</div>")

@@ -67,7 +67,8 @@ n.Entry.strings = {
 n.Entry.new = function(pokedata, name)
     local this = n.Entry.super.new(name, pokedata.ndex)
 
-    local baseName, abbr = form.getNameAbbr(name)
+    local baseName, abbr = form.getpokekeyabbr(name)
+
     if alts[baseName] then
         -- Table.copy because alts is mw.loadData, so mw.clone doesn't work
         this.formsData = tab.copy(alts[baseName])
@@ -93,11 +94,13 @@ n.Entry.__tostring = function(this)
     local type2 = multigen.getGenValue(this.type2)
     local types = type2 == type1 and { type1 } or { type1, type2 }
 
+    local ndex = gen.ndexToString(this.ndex)
+    local msidx = ndex == "???" and ndex
+        or ndex .. form.toEmptyAbbr(this.formAbbr or "")
+
     return txt.interp(n.Entry.strings.ENTRY, {
-        ndex = gen.ndexToString(this.ndex),
-        ms = ms.staticLua({
-            txt.ff(this.ndex or 0) .. form.toEmptyAbbr(this.formAbbr or ""),
-        }),
+        ndex = ndex,
+        ms = ms.staticLua({ msidx }),
         name = this.name,
         form = formtag,
         types = box.listTipoLua(
@@ -129,7 +132,7 @@ n.list = function(frame)
     local ndexlist = frame.args[1]
     local res = { n.headerLua(txt.trim(frame.args.color)) }
     for ndex in ndexlist:gmatch("[^ ]+") do
-        local baseName, _ = form.getNameAbbr(ndex)
+        local baseName, _ = form.getpokekeyabbr(ndex)
         table.insert(
             res,
             tostring(n.Entry.new(pokes[ndex] or pokes[baseName], ndex))
@@ -143,7 +146,7 @@ n.List = n.list
 -- =============================== Manual entry ===============================
 n.manualEntry = function(frame)
     local p = w.trimAll(frame.args)
-    local ndex, abbr = form.getNameAbbr(p[1])
+    local ndex, abbr = form.getndexabbr(p[1], p.form)
     local name = txt.fu(p[2])
     local formtag = formsData[ndex] and formsData[ndex].links[abbr] or ""
     local types = { p.type1, p.type2 }
