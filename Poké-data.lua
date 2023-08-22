@@ -2035,6 +2035,8 @@ t.furiatonante = {name = 'Furiatonante', ndex = nil, type1 = 'elettro', type2 = 
 -- t[1010] = t.furiatonante
 t.capoferreo = {name = 'Capoferreo', ndex = nil, type1 = 'acciaio', type2 = 'psico'}
 -- t[1010] = t.capoferreo
+t.poltchageist = {name = 'Poltchageist', ndex = nil, type1 = 'erba', type2 = 'spettro'}
+-- t[1010] = t.poltchageist
 t.okidogi = {name = 'Okidogi', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 -- t[1010] = t.okidogi
 t.munkidori = {name = 'Munkidori', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}

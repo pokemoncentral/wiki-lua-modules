@@ -2033,6 +2033,8 @@ t.furiatonante = {ability1 = 'Paleoattivazione'}
 -- t[1010] = t.furiatonante
 t.capoferreo = {ability1 = 'Carica Quark'}
 -- t[1010] = t.capoferreo
+t.poltchageist = {ability1 = 'Ospitalità'}
+-- t[1010] = t.poltchageist
 t.okidogi = {ability1 = 'Catena Tossica'}
 -- t[1010] = t.okidogi
 t.munkidori = {ability1 = 'Catena Tossica'}

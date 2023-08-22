@@ -7656,6 +7656,9 @@ evo.furiatonante = { ndex = nil, name = "furiatonante" }
 evo.capoferreo = { ndex = nil, name = "capoferreo" }
 -- evo[1010] = evo.capoferreo
 
+evo.poltchageist = { ndex = nil, name = "poltchageist" }
+-- evo[1010] = evo.poltchageist
+
 -- Alternative forms with evolutions
 evo.rattataA = {
     ndex = "0019A",
