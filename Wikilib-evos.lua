@@ -6,11 +6,13 @@ Library for Evo/data module use.
 
 local ev = {}
 
-local tab = require('Wikilib-tables')       -- luacheck: no unused
+-- stylua: ignore start
+local tab = require('Wikilib-tables')
 local forms = require('Wikilib-forms')
 local multigen = require('Wikilib-multigen')
 local evodata = require("Evo-data")
 local pokes = require("Poké-data")
+-- stylua: ignore end
 
 --[[
 
@@ -24,13 +26,6 @@ have to be rewritten.
 
 --]]
 ev.ownTable = function(pkmn, evotab)
-    -- if type(pkmn) == 'number' then
-    --     return pkmn == evotab.ndex
-    -- if evotab.name == pkmn then
-    --     return true
-    -- else
-    --     return evotab.ndex == pkmn
-    -- end
     return pkmn == evotab.name or pkmn == evotab.ndex
 end
 
@@ -46,7 +41,7 @@ module's order.
 ev.foldEvoTree = function(evotab, acc, func)
     acc = func(acc, evotab)
     if evotab.evos then
-        acc = table.fold(evotab.evos, acc, function(acc1, v)
+        acc = tab.fold(evotab.evos, acc, function(acc1, v)
             return ev.foldEvoTree(v, acc1, func)
         end, ipairs) -- Uses ipairs to keep the module's order
     end
@@ -96,7 +91,7 @@ ev.prunedEvotree = function(name)
             return nil
         end
         local result = {}
-        result.evos = table.mapToNum(evotab.evos, recPruneEvoTree, ipairs)
+        result.evos = tab.mapToNum(evotab.evos, recPruneEvoTree, ipairs)
         if #result.evos == 0 then
             return nil
         end
@@ -171,15 +166,27 @@ defaults to the latest.
 --]]
 ev.evoTypesList = function(name, gen)
     local thisdata = pokes[name] or pokes[forms.getnameabbr(name)]
-    return table.filter(table.unique(table.flatMap(ev.foldEvoTree(ev.preciseEvotable(name), {}, function(acc, v)
-        table.insert(acc, v.ndex)
-        return acc
-    end), function(ndex)
-        local pokedata = pokes[ndex] or pokes[forms.getnameabbr(name)]
-        return multigen.getGen({ pokedata.type1, pokedata.type2 }, gen)
-    end)), function(type)
-        return not (type == thisdata.type1 or type == thisdata.type2)
-    end)
+    return tab.filter(
+        tab.unique(
+            tab.flatMap(
+                ev.foldEvoTree(ev.preciseEvotable(name), {}, function(acc, v)
+                    table.insert(acc, v.ndex)
+                    return acc
+                end),
+                function(ndex)
+                    local pokedata = pokes[ndex]
+                        or pokes[forms.getnameabbr(name)]
+                    return multigen.getGen(
+                        { pokedata.type1, pokedata.type2 },
+                        gen
+                    )
+                end
+            )
+        ),
+        function(type)
+            return not (type == thisdata.type1 or type == thisdata.type2)
+        end
+    )
 end
 
 --[[
@@ -196,14 +203,17 @@ ev.formTypesList = function(name, gen)
         return {}
     end
     local thisdata = pokes[name] or pokes[forms.getnameabbr(name)]
-    return table.filter(table.unique(table.flatMap(formstab, function(tt)
-        return table.flatMap(tt, function(formtab)
-            local pokedata = pokes[forms.uselessToEmpty(formtab.name)]
-            return multigen.getGen({ pokedata.type1, pokedata.type2 }, gen)
-        end)
-    end)), function(type)
-        return not (type == thisdata.type1 or type == thisdata.type2)
-    end)
+    return tab.filter(
+        tab.unique(tab.flatMap(formstab, function(tt)
+            return tab.flatMap(tt, function(formtab)
+                local pokedata = pokes[forms.uselessToEmpty(formtab.name)]
+                return multigen.getGen({ pokedata.type1, pokedata.type2 }, gen)
+            end)
+        end)),
+        function(type)
+            return not (type == thisdata.type1 or type == thisdata.type2)
+        end
+    )
 end
 
 --[[
@@ -232,9 +242,12 @@ ev.directPreevo = function(name)
     return ev.foldEvoTree(evodata[name], nil, function(acc, v)
         if acc then
             return acc
-        elseif v.evos and table.any(v.evos, function(a)
-            return ev.ownTable(name, a)
-        end) then
+        elseif
+            v.evos
+            and tab.any(v.evos, function(a)
+                return ev.ownTable(name, a)
+            end)
+        then
             return v.name
         else
             return nil

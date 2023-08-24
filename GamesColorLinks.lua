@@ -30,13 +30,15 @@ function to pass all the abbreviations in the "games" argument:
 
 --]]
 
+-- stylua: ignore start
 local mw = require('mw')
 
-local txt = require('Wikilib-strings')      -- luacheck: no unused
-local tab = require('Wikilib-tables')       -- luacheck: no unused
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local lib = require('Wikilib-sigle')
 local w = require('Wikilib')
 local c = require("Colore-data")
+-- stylua: ignore end
 
 --[[
 
@@ -45,14 +47,14 @@ link target with a list of its games names.
 
 --]]
 local makeText = function(data)
-    return table.map(data, function(game)
-        local text = game.text or game.link:gsub('^Pokémon ', '')
+    return tab.map(data, function(game)
+        local text = game.text or game.link:gsub("^Pokémon ", "")
 
         -- Splitting by ' e ', so that games paired by that can be joined via
         -- commas instead later.
-        local singleGames = mw.text.split(text, ' e ')
+        local singleGames = mw.text.split(text, " e ")
 
-        return {game.link, w.trimAll(singleGames)}
+        return { game.link, w.trimAll(singleGames) }
     end)
 end
 
@@ -68,11 +70,14 @@ local makeColoredLink = function(color, sep)
     return function(link)
         local target, text = table.unpack(link)
 
-        return string.interp('[[${link}|<span style="color: #${color};">${text}</span>]]', {
-            color = color,
-            link = target,
-            text = mw.text.listToText(text, ', ', sep)
-        })
+        return txt.interp(
+            '[[${link}|<span style="color: #${color};">${text}</span>]]',
+            {
+                color = color,
+                link = target,
+                text = mw.text.listToText(text, ", ", sep),
+            }
+        )
     end
 end
 
@@ -84,9 +89,8 @@ pairs, but it is flattened).
 
 --]]
 local makeAllLinks = function(args, links)
-
     -- The library returns a nested list
-    links = table.flatten(links)
+    links = tab.flatten(links)
 
     local color, shade = table.unpack(args)
 
@@ -94,11 +98,10 @@ local makeAllLinks = function(args, links)
         First try to index colore/data: if such color does not exist, an
         hexadecimal is assumed. If it is not, 'inherit' is used
     --]]
-    color = c[color] and c[color][shade or 'normale']
-        or color or 'inherit'
+    color = c[color] and c[color][shade or "normale"] or color or "inherit"
 
     -- All but the last links use the comma as a separator within a link
-    local makeLink = makeColoredLink(color, ', ')
+    local makeLink = makeColoredLink(color, ", ")
 
     local last = table.remove(links)
 
@@ -111,10 +114,10 @@ local makeAllLinks = function(args, links)
     a separator, meaning that ' e ' itself should be used as a separator
     before the last link.
     --]]
-    local beforeLastSep = #last[2] > 1 and ', ' or ' e '
+    local beforeLastSep = #last[2] > 1 and ", " or " e "
 
     -- The last link needs an ' e ' as a separator
-    last = makeColoredLink(color, ' e ')(last)
+    last = makeColoredLink(color, " e ")(last)
 
     --[[
         One link only implies empty init later on, that is annoying to manage
@@ -125,18 +128,18 @@ local makeAllLinks = function(args, links)
     end
 
     -- All but the last links are concatenated using a comma
-    local init = w.mapAndConcat(links, makeLink, ', ')
+    local init = w.mapAndConcat(links, makeLink, ", ")
 
-    return table.concat{init, beforeLastSep, last}
+    return table.concat({ init, beforeLastSep, last })
 end
 
 -- Dynamically generates lua and wikicode interfaces
 local gcl = lib.makeLuaAndWikicode(function(_, abbr)
-    local lua = lib.onMergedAbbrsArgs(abbr, 'games', makeText, makeAllLinks)
+    local lua = lib.onMergedAbbrsArgs(abbr, "games", makeText, makeAllLinks)
 
     -- Not standard from Wikilib, it is necessary not to unpack
     local wikicode = function(frame)
-        local p = w.trimAll(table.copy(frame.args))
+        local p = w.trimAll(tab.copy(frame.args))
         return lua(p)
     end
 
@@ -144,6 +147,6 @@ local gcl = lib.makeLuaAndWikicode(function(_, abbr)
 end)
 
 -- Adding _abbr proxy function
-lib.proxy(gcl, 'games')
+lib.proxy(gcl, "games")
 
 return gcl

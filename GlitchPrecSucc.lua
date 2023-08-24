@@ -23,13 +23,15 @@ RB, G, OA, C, RZS, RFVF, 4, 5, 6
 
 local m = {}
 
+-- stylua: ignore start
 local mw = require('mw')
 
-local txt = require('Wikilib-strings')  -- luacheck: no unused
-local tab = require('Wikilib-tables')  -- luacheck: no unused
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local links = require('Links')
 local prevnext = require('PrevNext')
 local glitches = require('Glitch-data')
+-- stylua: ignore end
 
 --[[
 
@@ -49,7 +51,7 @@ end
 -- Formatta l'esadecimale in maiuscolo su quattro cifre
 
 printHex.number = function(hex)
-    return string.format('%04X', hex)
+    return string.format("%04X", hex)
 end
 
 --[[
@@ -72,14 +74,17 @@ printHex.table = function(hexes)
     end
 
     if contiguous then
-        return table.concat{printHex.number(hexes[1]),
-                '-', printHex.number(hexes[#hexes])}
+        return table.concat({
+            printHex.number(hexes[1]),
+            "-",
+            printHex.number(hexes[#hexes]),
+        })
     end
 
     for k, hex in ipairs(hexes) do
         hexes[k] = printHex.number(hex)
     end
-    return links.tt('Vari', table.concat(hexes, ', '))
+    return links.tt("Vari", table.concat(hexes, ", "))
 end
 
 --[[
@@ -90,44 +95,50 @@ crea la barra mediante interpolazione di stringhe
 --]]
 
 m.GlitchPrecSucc = function(frame)
-    local glitch = mw.text.decode(string.trim(frame.args[1]))
-    local game = tonumber(frame.args.game) or string.trim(frame.args.game):upper()
+    local glitch = mw.text.decode(txt.trim(frame.args[1]))
+    local game = tonumber(frame.args.game) or txt.trim(frame.args.game):upper()
 
     local glitchIndex
     if glitches[game] then
-        glitchIndex = table.deepSearch(glitches[game], glitch)
+        glitchIndex = tab.deepSearch(glitches[game], glitch)
     else
-        game, glitchIndex = table.deepSearch(glitches, glitch)
+        game, glitchIndex = tab.deepSearch(glitches, glitch)
     end
     game = glitches[game]
 
-    local tipo1 = game[glitchIndex].type1:gsub(' ', '_')
-    local tipo2 = (game[glitchIndex].type2 or tipo1):gsub(' ', '_')
+    local tipo1 = game[glitchIndex].type1:gsub(" ", "_")
+    local tipo2 = (game[glitchIndex].type2 or tipo1):gsub(" ", "_")
 
-    local size = table.getn(game)
+    local size = tab.getn(game)
     local prev = (glitchIndex - 2 + size) % size + 1
-	local nxt = glitchIndex % size + 1
+    local nxt = glitchIndex % size + 1
 
-    return prevnext.PrevNextLua{
+    return prevnext.PrevNextLua({
         color = tipo1,
         color2 = tipo2,
         series = game[glitchIndex].name,
         list = "Elenco Pokémon Glitch",
 
-        prev = table.concat{"#", printHex[type(game[prev].hex)](game[prev].hex),
-                            ": ", game[prev].displayName or game[prev].name
-                           },
+        prev = table.concat({
+            "#",
+            printHex[type(game[prev].hex)](game[prev].hex),
+            ": ",
+            game[prev].displayName or game[prev].name,
+        }),
         prevlink = game[prev].name,
-        previmg = not game[prev].spr:find('%.') and game[prev].spr
-                      or table.concat{'[[File:', game[prev].spr, ']]'},
+        previmg = not game[prev].spr:find("%.") and game[prev].spr
+            or table.concat({ "[[File:", game[prev].spr, "]]" }),
 
-        next = table.concat{"#", printHex[type(game[nxt].hex)](game[nxt].hex),
-                            ": ", game[nxt].displayName or game[nxt].name
-                           },
+        next = table.concat({
+            "#",
+            printHex[type(game[nxt].hex)](game[nxt].hex),
+            ": ",
+            game[nxt].displayName or game[nxt].name,
+        }),
         nextlink = game[nxt].name,
-        nextimg = not game[nxt].spr:find('%.') and game[nxt].spr
-                      or table.concat{'[[File:', game[nxt].spr, ']]'},
-    }
+        nextimg = not game[nxt].spr:find("%.") and game[nxt].spr
+            or table.concat({ "[[File:", game[nxt].spr, "]]" }),
+    })
 end
 
 m.glitchprecsucc, m.glitchPrecSucc = m.GlitchPrecSucc, m.GlitchPrecSucc
