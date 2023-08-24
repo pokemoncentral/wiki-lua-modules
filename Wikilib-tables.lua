@@ -8,15 +8,6 @@ local function isint(val)
     return type(val) == "number" and val == math.floor(val)
 end
 
--- Stateless iterator on non-integer keys
-local function nextNonInt(tab, key)
-    local nextKey, nextValue = key, nil
-    repeat
-        nextKey, nextValue = next(tab, nextKey)
-    until not isint(nextKey)
-    return nextKey, nextValue
-end
-
 -- Returns true only if a is lexigographically greater than b
 local function minor(a, b)
     if not b then
@@ -110,15 +101,17 @@ table.deepMerge = function(tab1, tab2)
     for _, value in ipairs(tab2) do
         table.insert(dest, value)
     end
-    for key, value in table.nonIntPairs(tab2) do
-        if
-            dest[key]
-            and type(dest[key]) == "table"
-            and type(value) == "table"
-        then
-            dest[key] = table.deepMerge(dest[key], value)
-        else
-            dest[key] = value
+    for key, value in pairs(tab2) do
+        if not isint(key) then
+            if
+                dest[key]
+                and type(dest[key]) == "table"
+                and type(value) == "table"
+            then
+                dest[key] = table.deepMerge(dest[key], value)
+            else
+                dest[key] = value
+            end
         end
     end
     return dest
@@ -478,12 +471,6 @@ table.merge = function(tab1, tab2)
 end
 t.merge = table.merge
 
--- Stateless iterator to be used in for loops
----@deprecated
-table.nonIntPairs = function(tab)
-    return nextNonInt, tab
-end
-
 -- Predicate search. Returns the index of any value satisfying the predicate,
 -- nil if no such values exists in the table. The last parameter iter is
 -- optional and specifies the iterator to use (pairs is the default). The
@@ -599,11 +586,13 @@ table.unique = function(tab)
         end
     end
 
-    for key, value in table.nonIntPairs(tab) do
-        -- If value is not in check, minor returns true, as the second argument
-        -- is nil
-        if minor(key, check[value]) then
-            check[value] = key
+    for key, value in pairs(tab) do
+        if not isint(key) then
+            -- If value is not in check, minor returns true, as the second argument
+            -- is nil
+            if minor(key, check[value]) then
+                check[value] = key
+            end
         end
     end
 

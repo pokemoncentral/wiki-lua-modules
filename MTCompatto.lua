@@ -36,6 +36,7 @@ local moves = require("Move-data")
 
 local strings = {
     MAIN_BOX = [=[
+<br class="clear-all" />
 <div class="roundy pull-center text-center mw-collapsible${collapsed} width-xl-55 width-md-75 width-sm-100" style="${bg} padding: 0.5ex; padding-bottom: 0.01ex;">
 <div class="roundy text-center ${text}" style="font-weight: bold; margin-bottom: 0.5ex;">[[MT]] nelle varie generazioni</div>
 <div class="mw-collapsible-content">${mtGens}
