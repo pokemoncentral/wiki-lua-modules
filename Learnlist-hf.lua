@@ -9,6 +9,7 @@ local d = {}
 local mw = require('mw')
 
 local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local lib = require('Wikilib-learnlists')
 local w = require('Wikilib')
 local multigen = require('Wikilib-multigen')
@@ -589,26 +590,25 @@ end
 
 d.Eventf = d.eventf
 
--- Entry per un Pokémon che impara tutte le MT e MN
+-- Wrapper for a learnlist with all the moves of that generation
 
 d.alltm = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
-    local gen = tonumber(p[2]) or gendata.latest
-    local moveKind = {
-        Tm = gen > 6 and "[[MT]]" or "[[MT]] e [[MN]]",
-        Tutor = "mossa tutor",
-    }
+    local gen = tonumber(p[2])
+        or tab.find(gendata, function(g)
+            return g.roman == p[2]
+        end)
+    local kind = p[3] or "tm"
     return txt.interp(
         [=[
-|-
-! class="white-bg black-text" style="padding: 0.1em 0.3em;" colspan ="${cs}" | ${poke} può imparare ''qualsiasi'' ${moveKind} in ${gen} generazione${except}.]=],
+<div class="mw-collapsible mw-collapsed">
+<div class="text-center" style="margin-bottom: 0.5ex;">'''${poke} può imparare qualsiasi ${movekind} in ${gen} generazione.'''</div>
+<div class="mw-collapsible-content">]=],
         {
             poke = p[1] or "Questo Pokémon",
-            moveKind = moveKind[p[3] or "Tm"],
-            gen = gendata[gen].ext or "brockolosa",
-            except = p[3] == "Tm" and ""
-                or " tranne [[mosse tutor peculiari|quelle peculiari]]",
-            cs = alltmcs[gen],
+            movekind = kind == "tm" and ("MT" .. (gen < 7 and " e MN" or ""))
+                or "mossa dall'Insegnamosse",
+            gen = gendata[gen].ext,
         }
     )
 end
