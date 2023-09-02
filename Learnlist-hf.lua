@@ -277,7 +277,7 @@ local header = function(pars, kind)
     return txt.interp(
         [=[
 <div class="text-center max-width-xl-100">
-<div class="roundy text-center inline-block max-width-xl-100" style="${bg}">
+<div class="roundy text-center inline-block max-width-xl-100" style="${bg} padding: 0.2em;">
 <div class="flex-row-center-around flex-wrap ${textcolor}" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''${gentitle}&nbsp;generazione'''</span></span></div>
 <div class="text-center" style="font-weight: bold; padding: 0.5ex;">
 <div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
