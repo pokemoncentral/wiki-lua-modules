@@ -23,7 +23,7 @@ local cc = require('ChooseColor')
 
 j.strings = {
     HEADERBASE = [=[
-{| class="roundy text-center white-rows roundy-footer no-border-spacing" style="${bg}; padding: 0.3ex;"
+{| class="roundy text-center white-rows roundy-footer no-border-spacing" style="${bg}; padding: 0.3em;"
 |- class="${textcolor}"
 ! class="roundytl hidden-xs" rowspan="${rs}" | #
 ! rowspan="${rs}" colspan="2" | Pokémon
