@@ -46,6 +46,8 @@ t.maushold = {}
 t.tatsugiri = {}
 t.koraidon = {}
 t.miraidon = {}
+t.poltchageist = {}
+t.sinistcha = {}
 
 --[[
 
@@ -107,6 +109,8 @@ t.tatsugiri.names = { base = "Forma Arcuata", A = "Forma Adagiata", T = "Forma T
 t.koraidon.names = { base = "Foggia Integrale", P = "Foggia Parziale", S = "Foggia Scattante", N = "Foggia Nautica", L = "Foggia Librata" }
 t.miraidon.names = { base = "Assetto Completo", L = "Assetto Limitato", S = "Assetto Sprint", N = "Assetto Nuoto", P = "Assetto Planata" }
 -- stylua: ignore end
+t.poltchageist.names = { base = "Forma Taroccata", D = "Forma Dozzinale" }
+t.sinistcha.names = { base = "Forma Pregiata", E = "Forma Eccezionale" }
 -- Alcremie is quite molesto in **** (censored for the sake of poor childen who browse our site)
 do
 	-- stylua: ignore
@@ -184,6 +188,8 @@ t.tatsugiri.ext = { adagiata = "A", tesa = "T",  arcuata = "base" }
 t.koraidon.ext = { integrale = "base", parziale = "P", scattante = "S", nautica = "N", librata = "L" }
 t.miraidon.ext = { completo = "base", limitato = "L", sprint = "S", nuoto = "N", planata = "P" }
 -- stylua: ignore end
+t.poltchageist.ext = {}
+t.sinistcha.ext = {}
 
 --[[
 
@@ -225,6 +231,8 @@ t.tatsugiri.gamesOrder = { "base", "A", "T" }
 t.koraidon.gamesOrder = { "base", "P", "S", "N", "L" }
 t.miraidon.gamesOrder = { "base", "L", "S", "N", "P" }
 -- stylua: ignore end
+t.poltchageist.gamesOrder = { "base", "D" }
+t.sinistcha.gamesOrder = { "base", "E" }
 
 --[[
 
@@ -269,6 +277,8 @@ t.tatsugiri.since = { base = "sv", A = "sv", T = "sv" }
 t.koraidon.since = { base = "sv", P = "sv", S = "sv", N = "sv", L = "sv" }
 t.miraidon.since = { base = "sv", L = "sv", S = "sv", N = "sv", P = "sv" }
 -- stylua: ignore end
+t.poltchageist.since = { base = "sv", D = "sv" }
+t.sinistcha.since = { base = "sv", E = "sv" }
 -- Alcremie is quite molesto in **** pt. 2
 do
     local flavours = { "Lv", "R", "Ma", "Me", "L", "S", "Rm", "Cm", "Tm" }
@@ -345,5 +355,7 @@ t[925] = t.maushold
 t[978] = t.tatsugiri
 t[1007] = t.koraidon
 t[1008] = t.miraidon
+t[1012] = t.poltchageist
+t[1013] = t.sinistcha
 
 return t

@@ -600,7 +600,7 @@ t.seedot = {ability1 = 'Clorofilla', ability2 = 'Sveglialampo', abilityd = 'Arra
 t[273] = t.seedot
 t.nuzleaf = {ability1 = 'Clorofilla', ability2 = 'Sveglialampo', abilityd = 'Arraffalesto'}
 t[274] = t.nuzleaf
-t.shiftry = {ability1 = 'Clorofilla', ability2 = 'Sveglialampo', abilityd = 'Arraffalesto'}
+t.shiftry = {ability1 = 'Clorofilla', ability2 = {[3] = "Sveglialampo", [9] = "Vento Propizio"}, abilityd = "Arraffalesto"}
 t[275] = t.shiftry
 t.taillow = {ability1 = 'Dentistretti', abilityd = 'Nervisaldi'}
 t[276] = t.taillow
@@ -846,11 +846,11 @@ t.monferno = {ability1 = 'Aiutofuoco', abilityd = 'Ferropugno'}
 t[391] = t.monferno
 t.infernape = {ability1 = 'Aiutofuoco', abilityd = 'Ferropugno'}
 t[392] = t.infernape
-t.piplup = {ability1 = 'Acquaiuto', abilityd = 'Agonismo'}
+t.piplup = {ability1 = 'Acquaiuto', abilityd = {[4] = "Agonismo", [9] = "Tenacia"}}
 t[393] = t.piplup
-t.prinplup = {ability1 = 'Acquaiuto', abilityd = 'Agonismo'}
+t.prinplup = {ability1 = 'Acquaiuto', abilityd = {[4] = "Agonismo", [9] = "Tenacia"}}
 t[394] = t.prinplup
-t.empoleon = {ability1 = 'Acquaiuto', abilityd = 'Agonismo'}
+t.empoleon = {ability1 = 'Acquaiuto', abilityd = {[4] = "Agonismo", [9] = "Tenacia"}}
 t[395] = t.empoleon
 t.starly = {ability1 = 'Sguardofermo', abilityd = {[5] = 'Nessuna', [6] = 'Temerarietà'}}
 t[396] = t.starly
@@ -2024,25 +2024,28 @@ t.acquecrespe = {ability1 = 'Paleoattivazione'}
 t[1009] = t.acquecrespe
 t.fogliaferrea = {ability1 = 'Carica Quark'}
 t[1010] = t.fogliaferrea
+t.dipplin = {ability1 = "Sciroppo Sublime", ability2 = "Voracità", abilityd = "Antifurto"}
+t[1011] = t.dipplin
+t.poltchageist = {ability1 = "Ospitalità", abilityd = "Antifuoco"}
+t[1012] = t.poltchageist
+t.sinistcha = {ability1 = "Ospitalità", abilityd = "Antifuoco"}
+t[1013] = t.sinistcha
+t.okidogi = {ability1 = "Catena Tossica", abilityd = "Cane da Guardia"}
+t[1014] = t.okidogi
+t.munkidori = {ability1 = "Catena Tossica", abilityd = "Indagine"}
+t[1015] = t.munkidori
+t.fezandipiti = {ability1 = "Catena Tossica", abilityd = "Tecnico"}
+t[1016] = t.fezandipiti
+t.ogerpon = {ability1 = "Agonismo"}
+t[1017] = t.ogerpon
+
 -- SV DLC stuff
-t.dipplin = {ability1 = 'Sciroppo Sublime', ability2 = 'Voracità'}
--- t[1010] = t.dipplin
-t.archaludon = {ability1 = 'Sopportazione', ability2 = 'Vigore'}
+t.archaludon = {ability1 = "Sopportazione", ability2 = "Vigore"}
 -- t[1010] = t.archaludon
-t.furiatonante = {ability1 = 'Paleoattivazione'}
+t.furiatonante = {ability1 = "Paleoattivazione"}
 -- t[1010] = t.furiatonante
-t.capoferreo = {ability1 = 'Carica Quark'}
+t.capoferreo = {ability1 = "Carica Quark"}
 -- t[1010] = t.capoferreo
-t.poltchageist = {ability1 = 'Ospitalità'}
--- t[1010] = t.poltchageist
-t.okidogi = {ability1 = 'Catena Tossica'}
--- t[1010] = t.okidogi
-t.munkidori = {ability1 = 'Catena Tossica'}
--- t[1010] = t.munkidori
-t.fezandipiti = {ability1 = 'Catena Tossica'}
--- t[1010] = t.fezandipiti
--- t.ogerpon = {ability1 = 'Sconosciuta'}
--- t[1010] = t.ogerpon
 -- t.terapagos = {ability1 = 'Sconosciuta'}
 -- t[1010] = t.terapagos
 
@@ -2210,6 +2213,8 @@ t.calyrexG = {ability1 = 'Sintonia Equina'}
 t["0898G"] = t.calyrexG
 t.calyrexS = {ability1 = 'Sintonia Equina'}
 t["0898S"] = t.calyrexS
+t.ursalunaL = {ability1 = "Occhio Interiore"}
+t["901L"] = t.ursalunaL
 t.enamorusT = {ability1 = 'Copricapo'}
 t["0905T"] = t.enamorusT
 t.oinkologneF = {ability1 = 'Aromavelo', ability2 = 'Voracità', abilityd = 'Grassospesso'}
@@ -2221,6 +2226,14 @@ t.squawkabillyB = t.squawkabillyG
 t["0931A"], t["0931G"], t["0931B"] = t.squawkabillyA, t.squawkabillyG, t.squawkabillyB
 t.gimmighoulA = {ability1 = 'Fugafacile'}
 t["0999A"] = t.gimmighoulA
+t.ogerponP = {ability1 = "Assorbacqua"}
+t["1017P"] = t.ogerponP
+t.ogerponFc = {ability1 = "Rompiforma"}
+t["1017Fc"] = t.ogerponFc
+t.ogerponFn = {ability1 = "Vigore"}
+t["1017Fn"] = t.ogerponFn
+t.ogerponTT = {ability1 = "Albergamemorie"}
+t["1017TT"] = t.ogerponTT
 
 -- stylua: ignore end
 
@@ -2297,8 +2310,10 @@ t.zamazentaR, t["0889R"] = t.zamazenta, t.zamazenta
 t.eternatusD, t["0890D"] = t.eternatus, t.eternatus
 t.urshifuP, t["0892P"] = t.urshifu, t.urshifu
 t.basculegionF, t["0902F"] = t.basculegion, t.basculegion
-t.palafinP = t.palafin
-t["0964P"] = t.palafinP
+t.palafinP, t["0964P"] = t.palafin, t.palafin
+t.ogerponPT, t["1017PT"] = t.ogerponTT, t.ogerponTT
+t.ogerponFcT, t["1017FcT"] = t.ogerponTT, t.ogerponTT
+t.ogerponFnT, t["1017FnT"] = t.ogerponTT, t.ogerponTT
 
 -- Gigamax
 t.venusaurGi, t["0003Gi"] = t.venusaur, t.venusaur

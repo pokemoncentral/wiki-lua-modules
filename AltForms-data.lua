@@ -92,6 +92,7 @@ t.zamazenta = {}
 t.eternatus = {}
 t.urshifu = {}
 t.calyrex = {}
+t.ursaluna = {}
 t.basculegion = {}
 t.enamorus = {}
 t.oinkologne = {}
@@ -226,13 +227,17 @@ t.eternatus.names = {D = 'Dynamax Infinito', base = ''}
 t.urshifu.names = {P = 'Stile Pluricolpo', Gi = 'Urshifu Gigamax (Stile Singolcolpo)',
 	PGi = 'Urshifu Gigamax (Stile Pluricolpo)', base = 'Stile Singolcolpo'}
 t.calyrex.names = {G = "Cavaliere Glaciale", S = "Cavaliere Spettrale", base = ""}
+t.ursaluna.names = {L = "Luna Cremisi", base = ""}
 t.basculegion.names = {F = 'Femmina', base = 'Maschio'}
 t.enamorus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
 t.oinkologne.names = {F = 'Femmina', base = 'Maschio'}
 t.palafin.names = {P = 'Forma Possente', base = 'Forma Ingenua'}
 t.squawkabilly.names = {A = 'Piume Azzurre', G = 'Piume Gialle', B = 'Piume Bianche', base = 'Piume Verdi'}
 t.gimmighoul.names = {A = 'Forma Ambulante', base = 'Forma Scrigno'}
-t.ogerpon.names = {T = 'Forma Teracristal', base = 'Forma Normale'}
+t.ogerpon.names = { base = "Maschera Turchese", Fn = "Maschera Fondamenta",
+    P = "Maschera Pozzo", Fc = "Maschera Focolare", TT = "Maschera Turchese (Teracristal)",
+    FnT = "Maschera Fondamenta (Teracristal)", PT = "Maschera Pozzo (Teracristal)", FcT = "Maschera Focolare (Teracristal)",
+}
 t.terapagos.names = {T = 'Forma Teracristal', base = 'Forma Normale'}
 -- stylua: ignore end
 for _, v in pairs(t.formgroups.mega) do
@@ -351,6 +356,7 @@ t.zamazenta.ext = t.zacian.ext
 t.eternatus.ext = { dynamax = "D" }
 t.urshifu.ext = { pluricolpo = "P", gigamax = "Gi", singolcolpo = "base" }
 t.calyrex.ext = { spettrale = "S", glaciale = "G" }
+t.ursaluna.ext = {}
 t.basculegion.ext = { femmina = "F" }
 t.enamorus.ext = { totem = "T" }
 t.oinkologne.ext = t.meowstic.ext
@@ -358,7 +364,7 @@ t.palafin.ext = { possente = "P", ingenua = "base" }
 -- stylua: ignore
 t.squawkabilly.ext = { azzurre = "A", gialle = "G", bianche = "B", verdi = "base" }
 t.gimmighoul.ext = { ambulante = "A", scrigno = "base" }
-t.ogerpon.ext = { teracristal = "T", normale = "base" }
+t.ogerpon.ext = { teracristal = "TT", normale = "base" }
 t.terapagos.ext = { teracristal = "T", normale = "base" }
 for _, v in pairs(t.formgroups.mega) do
     t[v].ext = t[v].ext or {}
@@ -446,13 +452,14 @@ t.zamazenta.gamesOrder = t.zacian.gamesOrder
 t.eternatus.gamesOrder = { "base", "D" }
 t.urshifu.gamesOrder = { "base", "Gi", "P", "PGi" }
 t.calyrex.gamesOrder = { "base", "G", "S" }
+t.ursaluna.gamesOrder = { "base", "L" }
 t.basculegion.gamesOrder = { "base", "F" }
 t.enamorus.gamesOrder = { "base", "T" }
 t.oinkologne.gamesOrder = t.meowstic.gamesOrder
 t.palafin.gamesOrder = { "base", "P" }
 t.squawkabilly.gamesOrder = { "base", "A", "G", "B" }
 t.gimmighoul.gamesOrder = { "base", "A" }
-t.ogerpon.gamesOrder = { "base", "T" }
+t.ogerpon.gamesOrder = { "base", "P", "Fc", "Fn", "TT", "PT", "FcT", "FnT" }
 t.terapagos.gamesOrder = { "base", "T" }
 for _, v in pairs(t.formgroups.mega) do
     t[v].gamesOrder = t[v].gamesOrder or { "base", "M" }
@@ -598,13 +605,15 @@ t.zamazenta.since = { R = "spsc", base = "spsc" }
 t.eternatus.since = { D = "spsc", base = "spsc" }
 t.urshifu.since = { P = "spsc", Gi = "spsc", PGi = "spsc", base = "spsc" }
 t.calyrex.since = { G = "spsc", S = "spsc", base = "spsc" }
+t.ursaluna.since = { L = "sv", base = "lpa" }
 t.basculegion.since = { F = "lpa", base = "lpa" }
 t.enamorus.since = { T = "lpa", base = "lpa" }
 t.oinkologne.since = { F = "sv", base = "sv" }
 t.palafin.since = { P = "sv", base = "sv" }
 t.squawkabilly.since = { A = "sv", G = "sv", B = "sv", base = "sv" }
 t.gimmighoul.since = { A = "sv", base = "sv" }
-t.ogerpon.since = { T = "sv", base = "sv" }
+-- stylua: ignore
+t.ogerpon.since = { P = "sv", Fc = "sv", Fn = "sv", TT = "sv", PT = "sv", FcT = "sv", FnT = "sv", base = "sv" }
 t.terapagos.since = { T = "sv", base = "sv" }
 t.venusaur.since = { M = "xy", Gi = "spsc", base = "rb" }
 t.blastoise.since = { M = "xy", Gi = "spsc", base = "rb" }
@@ -832,13 +841,14 @@ t[889] = t.zamazenta
 t[890] = t.eternatus
 t[892] = t.urshifu
 t[898] = t.calyrex
+t[901] = t.ursaluna
 t[902] = t.basculegion
 t[905] = t.enamorus
 t[916] = t.oinkologne
 t[964] = t.palafin
 t[931] = t.squawkabilly
 t[999] = t.gimmighoul
--- t[1000] = t.ogerpon
+t[1017] = t.ogerpon
 -- t[1000] = t.terapagos
 t[3] = t.venusaur
 t[9] = t.blastoise

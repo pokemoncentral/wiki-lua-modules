@@ -2027,6 +2027,21 @@ d.acquecrespe = {hp = 99, atk = 83, def = 91, spatk = 125, spdef = 83, spe = 109
 d[1009] = d.acquecrespe
 d.fogliaferrea = {hp = 90, atk = 130, def = 88, spatk = 70, spdef = 108, spe = 104}
 d[1010] = d.fogliaferrea
+d.dipplin = {hp = 80, atk = 80, def = 110, spatk = 95, spdef = 80, spe = 40}
+d[1011] = d.dipplin
+d.poltchageist = {hp = 40, atk = 45, def = 45, spatk = 74, spdef = 54, spe = 50}
+d[1012] = d.poltchageist
+d.sinistcha = {hp = 71, atk = 60, def = 106, spatk = 121, spdef = 80, spe = 70}
+d[1013] = d.sinistchaw
+d.okidogi = {hp = 88, atk = 128, def = 115, spatk = 58, spdef = 86, spe = 80}
+d[1014] = d.okidogi
+d.munkidori = {hp = 88, atk = 75, def = 66, spatk = 130, spdef = 90, spe = 106}
+d[1015] = d.munkidori
+d.fezandipiti = {hp = 88, atk = 91, def = 82, spatk = 70, spdef = 125, spe = 99}
+d[1016] = d.fezandipiti
+d.ogerpon = {hp = 80, atk = 120, def = 84, spatk = 60, spdef = 96, spe = 110}
+d[1017] = d.ogerpon
+
 
 -- Alternative forms which actually change stats
 d.pikachuCm = {hp = 45, atk = 80, def = 50, spatk = 75, spdef = 60, spe = 120}
@@ -2136,6 +2151,8 @@ d.calyrexG = {hp = 100, atk = 165, def = 150, spatk = 85, spdef = 130, spe = 50}
 d["0898G"] = d.calyrexG
 d.calyrexS = {hp = 100, atk = 85, def = 80, spatk = 165, spdef = 100, spe = 150}
 d["0898S"] = d.calyrexS
+d.ursalunaL = {hp = 113, atk = 70, def = 120, spatk = 135, spdef = 65, spe = 52}
+d["0901L"] = d.ursalunaL
 d.basculegionF = {hp = 120, atk = 92, def = 65, spatk = 100, spdef = 75, spe = 78}
 d["0902F"] = d.basculegionF
 d.enamorusT = {hp = 74, atk = 115, def = 110, spatk = 135, spdef = 100, spe = 46}
@@ -2411,6 +2428,13 @@ d.squawkabillyA, d.squawkabillyG, d.squawkabillyB =
     d.squawkabilly, d.squawkabilly, d.squawkabilly
 d["0931A"], d["0931G"], d["0931B"] =
     d.squawkabilly, d.squawkabilly, d.squawkabilly
+d.ogerponFn, d["1017Fn"] = d.ogerpon, d.ogerpon
+d.ogerponP, d["1017P"] = d.ogerpon, d.ogerpon
+d.ogerponFc, d["1017Fc"] = d.ogerpon, d.ogerpon
+d.ogerponTT, d["1017TT"] = d.ogerpon, d.ogerpon
+d.ogerponPT, d["1017PT"] = d.ogerponP, d.ogerponP
+d.ogerponFcT, d["1017FcT"] = d.ogerponFc, d.ogerponFc
+d.ogerponFnT, d["1017FnT"] = d.ogerponFn, d.ogerponFn
 
 -- Gigamax
 d.venusaurGi, d["0003Gi"] = d.venusaur, d.venusaur

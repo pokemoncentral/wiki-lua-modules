@@ -6614,14 +6614,16 @@ evo.applin = {
             [evo.methods.STONE] = "Dolcepomo",
         },
         {
-            ndex = nil,
+            ndex = 1011,
             name = "dipplin",
-            method = evo.methods.UNKNOWN,
+            method = evo.methods.STONE,
+            [evo.methods.STONE] = "Sciroppomo",
         },
     },
 }
 evo.flapple, evo.appletun, evo.dipplin = evo.applin, evo.applin, evo.applin
-evo[840], evo[841], evo[842] = evo.applin, evo.applin, evo.applin
+evo[840], evo[841], evo[842], evo[1011] =
+    evo.applin, evo.applin, evo.applin, evo.applin
 
 evo.silicobra = {
     ndex = 843,
@@ -7650,14 +7652,39 @@ evo[1009] = evo.acquecrespe
 evo.fogliaferrea = { ndex = 1010, name = "fogliaferrea" }
 evo[1010] = evo.fogliaferrea
 
+evo.poltchageist = {
+    ndex = 1012,
+    name = "poltchageist",
+
+    evos = {
+        {
+            ndex = 1013,
+            name = "sinistcha",
+            method = evo.methods.STONE,
+            [evo.methods.STONE] = "Tazza dozzinale",
+        },
+    },
+}
+evo.sinistcha = evo.poltchageist
+evo[1012], evo[1013] = evo.poltchageist, evo.poltchageist
+
+evo.okidogi = { ndex = 1014, name = "okidogi" }
+evo[1014] = evo.okidogi
+
+evo.munkidori = { ndex = 1015, name = "munkidori" }
+evo[1015] = evo.munkidori
+
+evo.fezandipiti = { ndex = 1016, name = "fezandipiti" }
+evo[1016] = evo.fezandipiti
+
+evo.ogerpon = { ndex = 1017, name = "ogerpon" }
+evo[1017] = evo.ogerpon
+
 evo.furiatonante = { ndex = nil, name = "furiatonante" }
 -- evo[1010] = evo.furiatonante
 
 evo.capoferreo = { ndex = nil, name = "capoferreo" }
 -- evo[1010] = evo.capoferreo
-
-evo.poltchageist = { ndex = nil, name = "poltchageist" }
--- evo[1010] = evo.poltchageist
 
 -- Alternative forms with evolutions
 evo.rattataA = {
@@ -8167,6 +8194,22 @@ evo.sinisteaA = {
 }
 evo.polteageistA = evo.sinisteaA
 evo["0854A"], evo["0855A"] = evo.sinisteaA, evo.sinisteaA
+
+evo.poltchageistD = {
+    ndex = "1012D",
+    name = "poltchageistD",
+
+    evos = {
+        {
+            ndex = "1013E",
+            name = "sinistchaE",
+            method = evo.methods.STONE,
+            [evo.methods.STONE] = "Tazza eccezionale",
+        },
+    },
+}
+evo.sinistchaE = evo.poltchageistD
+evo["1012D"], evo["1013E"] = evo.poltchageistD, evo.poltchageistD
 
 createAlternativeForm(useless.burmy, evo.burmy)
 

@@ -1987,6 +1987,19 @@ t.acquecrespe = { group1 = "sconosciuto" }
 t[1009] = t.acquecrespe
 t.fogliaferrea = { group1 = "sconosciuto" }
 t[1010] = t.fogliaferrea
+t.dipplin = t.applin
+t[1011] = t.dipplin
+t.poltchageist = { group1 = "minerale", group2 = "amorfo" }
+t.sinistcha = t.poltchageist
+t[1012], t[1013] = t.poltchageist, t.poltchageist
+t.okidogi = { group1 = "sconosciuto" }
+t[1014] = t.okidogi
+t.munkidori = { group1 = "sconosciuto" }
+t[1015] = t.munkidori
+t.fezandipiti = { group1 = "sconosciuto" }
+t[1016] = t.fezandipiti
+t.ogerpon = { group1 = "sconosciuto" }
+t[1017] = t.ogerpon
 
 -- Forme alternative che esistono fuori dalla lotta e quindi
 -- possono avere un gruppo uova diverso da quello della forma base

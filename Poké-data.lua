@@ -2026,25 +2026,27 @@ t.acquecrespe = {name = 'Acquecrespe', ndex = 1009, type1 = 'acqua', type2 = 'dr
 t[1009] = t.acquecrespe
 t.fogliaferrea = {name = 'Fogliaferrea', ndex = 1010, type1 = 'erba', type2 = 'psico'}
 t[1010] = t.fogliaferrea
+t.dipplin = {name = 'Dipplin', ndex = 1011, type1 = 'erba', type2 = 'drago'}
+t[1011] = t.dipplin
+t.poltchageist = {name = 'Poltchageist', ndex = 1012, type1 = 'erba', type2 = 'spettro'}
+t[1012] = t.poltchageist
+t.sinistcha = {name = 'Sinistcha', ndex = 1013, type1 = 'erba', type2 = 'spettro'}
+t[1013] = t.sinistcha
+t.okidogi = {name = 'Okidogi', ndex = 1014, type1 = 'veleno', type2 = 'lotta'}
+t[1014] = t.okidogi
+t.munkidori = {name = 'Munkidori', ndex = 1015, type1 = 'veleno', type2 = 'psico'}
+t[1015] = t.munkidori
+t.fezandipiti = {name = 'Fezandipiti', ndex = 1016, type1 = 'veleno', type2 = 'folletto'}
+t[1016] = t.fezandipiti
+t.ogerpon = {name = 'Ogerpon', ndex = 1017, type1 = 'erba', type2 = 'erba'}
+t[1017] = t.ogerpon
 -- SV DLC stuff
-t.dipplin = {name = 'Dipplin', ndex = nil, type1 = 'erba', type2 = 'drago'}
--- t[1010] = t.dipplin
 t.archaludon = {name = 'Archaludon', ndex = nil, type1 = 'acciaio', type2 = 'drago'}
--- t[1010] = t.archaludon
+-- t[1020] = t.archaludon
 t.furiatonante = {name = 'Furiatonante', ndex = nil, type1 = 'elettro', type2 = 'drago'}
--- t[1010] = t.furiatonante
+-- t[1020] = t.furiatonante
 t.capoferreo = {name = 'Capoferreo', ndex = nil, type1 = 'acciaio', type2 = 'psico'}
--- t[1010] = t.capoferreo
-t.poltchageist = {name = 'Poltchageist', ndex = nil, type1 = 'erba', type2 = 'spettro'}
--- t[1010] = t.poltchageist
-t.okidogi = {name = 'Okidogi', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
--- t[1010] = t.okidogi
-t.munkidori = {name = 'Munkidori', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
--- t[1010] = t.munkidori
-t.fezandipiti = {name = 'Fezandipiti', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
--- t[1010] = t.fezandipiti​
-t.ogerpon = {name = 'Ogerpon', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
--- t[1010] = t.ogerpon
+-- t[1020] = t.capoferreo
 t.terapagos = {name = 'Terapagos', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
 -- t[1010] = t.terapagos
 
@@ -2292,6 +2294,12 @@ t.calyrexG = {name = 'Calyrex', ndex = 898, type1 = 'psico', type2 = 'ghiaccio'}
 t["0898G"] = t.calyrexG
 t.calyrexS = {name = 'Calyrex', ndex = 898, type1 = 'psico', type2 = 'spettro'}
 t["0898S"] = t.calyrexS
+t.ogerponFn = {name = 'Ogerpon', ndex = 1017, type1 = 'erba', type2 = 'roccia'}
+t["1017Fn"] = t.ogerponFn
+t.ogerponP = {name = 'Ogerpon', ndex = 1017, type1 = 'erba', type2 = 'acqua'}
+t["1017P"] = t.ogerponP
+t.ogerponFc = {name = 'Ogerpon', ndex = 1017, type1 = 'erba', type2 = 'fuoco'}
+t["1017Fc"] = t.ogerponFc
 
 t.charizardMX = {name = 'Charizard', ndex = 6, type1 = 'fuoco', type2 = 'drago'}
 t["0006MX"] = t.charizardMX
@@ -2361,6 +2369,7 @@ t.eiscueL, t["0875L"] = t.eiscue, t.eiscue
 t.indeedeeF, t["0876F"] = t.indeedee, t.indeedee
 t.morpekoV, t["0877V"] = t.morpeko, t.morpeko
 t.eternatusD, t["0890D"] = t.eternatus, t.eternatus
+t.ursalunaL, t["901L"] = t.ursaluna, t.ursaluna
 t.basculegionF, t["0902F"] = t.basculegion, t.basculegion
 t.enamorusT, t["0905T"] = t.enamorus, t.enamorus
 t.oinkologneF = t.oinkologne
@@ -2373,8 +2382,10 @@ t["0931A"], t["0931G"], t["0931B"] =
     t.squawkabilly, t.squawkabilly, t.squawkabilly
 t.gimmighoulA = t.gimmighoul
 t["0999A"] = t.gimmighoulA
-t.ogerponT = t.ogerpon
--- t["1000T"] = t.ogerponT
+t.ogerponTT, t["1017TT"] = t.ogerpon, t.ogerpon
+t.ogerponPT, t["1017PT"] = t.ogerponP, t.ogerponP
+t.ogerponFcT, t["1017FcT"] = t.ogerponFc, t.ogerponFc
+t.ogerponFnT, t["1017FnT"] = t.ogerponFn, t.ogerponFn
 t.terapagosT = t.terapagos
 -- t["1000T"] = t.terapagosT
 
