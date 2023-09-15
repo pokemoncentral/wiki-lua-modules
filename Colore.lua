@@ -272,11 +272,10 @@ c.scarlatto = _colore("D90D19", "FF8088", "700007")
 c.Scarlatto = c.scarlatto
 c.violetto = _colore("842F8C", "C787C7", "39003E")
 c.Violetto = c.violetto
--- Temporary aliases
-c.mascheraturchese = c.azienda
-c.Mascheraturchese = c.mascheraturchese
-c.discoindaco = c.cupola
-c.Discoindaco = c.discoindaco
+-- c.mascheraturchese = c.azienda
+-- c.Mascheraturchese = c.mascheraturchese
+-- c.discoindaco = c.cupola
+-- c.Discoindaco = c.discoindaco
 
 -- Regions
 
@@ -334,6 +333,8 @@ c.Ulaula, c["ula ula"], c["Ula ula"], c["Ula Ula"] =
     c.ulaula, c.ulaula, c.ulaula, c.ulaula
 c.poni = c.spettro
 c.Poni = c.poni
+-- c.nordivia = c.maniero
+-- c.Nordivia = c.nordivia
 
 c.fiore, c.Fiore = c.ranger, c.ranger
 c.almia, c.Almia = c.OsA, c.OsA
@@ -771,5 +772,13 @@ c.HOME, c.Home, c.home = c.agilita, c.agilita, c.agilita
 c.teamrocket = _colore("4F5253", "B92C1A", "EAEAEA")
 c.TeamRocket, c["team rocket"], c["Team Rocket"], c.team_rocket, c.Team_Rocket =
     c.teamrocket, c.teamrocket, c.teamrocket, c.teamrocket, c.teamrocket
+
+-- Temporary aliases
+c.mascheraturchese = c.azienda
+c.Mascheraturchese = c.mascheraturchese
+c.discoindaco = c.cupola
+c.Discoindaco = c.discoindaco
+c.nordivia = c.maniero
+c.Nordivia = c.nordivia
 
 return c
