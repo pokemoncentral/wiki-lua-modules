@@ -8,9 +8,11 @@ Each interface function is documented in its own comment, with examples.
 
 local b = {}
 
-local txt = require('Wikilib-strings')      -- luacheck: no unused
+-- stylua: ignore start
+local txt = require('Wikilib-strings')
 local multigen = require('Wikilib-multigen')
 local moves = require("Move-data")
+-- stylua: ignore end
 
 --[[
 
@@ -18,9 +20,9 @@ Returns type given move name.
 
 --]]
 b.getType = function(frame)
-    return string.fu(
+    return txt.fu(
         multigen.getGenValue(
-            moves[string.trim(frame.args[1]:lower())].type,
+            moves[txt.trim(frame.args[1]:lower())].type,
             tonumber(frame.args.gen)
         )
     )
@@ -34,9 +36,9 @@ Returns damage category given move name.
 
 --]]
 b.getDamageCategory = function(frame)
-    return string.fu(
+    return txt.fu(
         multigen.getGenValue(
-            moves[string.trim(frame.args[1]:lower())].category,
+            moves[txt.trim(frame.args[1]:lower())].category,
             tonumber(frame.args.gen)
         )
     )
@@ -52,7 +54,7 @@ Returns power given move name.
 --]]
 b.getPower = function(frame)
     return multigen.getGenValue(
-        moves[string.trim(frame.args[1]:lower())].power,
+        moves[txt.trim(frame.args[1]:lower())].power,
         tonumber(frame.args.gen)
     )
 end
@@ -66,7 +68,7 @@ Returns type given move name.
 --]]
 b.getAccuracy = function(frame)
     return multigen.getGenValue(
-        moves[string.trim(frame.args[1]:lower())].accuracy,
+        moves[txt.trim(frame.args[1]:lower())].accuracy,
         tonumber(frame.args.gen)
     )
 end
@@ -80,7 +82,7 @@ Returns type given move name.
 --]]
 b.getPP = function(frame)
     return multigen.getGenValue(
-        moves[string.trim(frame.args[1]:lower())].pp,
+        moves[txt.trim(frame.args[1]:lower())].pp,
         tonumber(frame.args.gen)
     )
 end

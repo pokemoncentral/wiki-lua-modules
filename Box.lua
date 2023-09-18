@@ -82,12 +82,14 @@ arguments are applied to all generated boxes. Some example calls below:
 
 local b = {}
 
+-- stylua: ignore start
 local mw = require('mw')
 
-local txt = require('Wikilib-strings')      -- luacheck: no unused
-local tab = require('Wikilib-tables')       -- luacheck: no unused
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local css = require('Css')
 local w = require('Wikilib')
+-- stylua: ignore end
 
 --[[
     This table holds predefined styles configurations for boxes. Names of
@@ -97,19 +99,19 @@ local w = require('Wikilib')
 --]]
 local predefs = {
     thick = {
-        classes = {'roundy-5', 'text-center'},
-        styles = {['padding'] = '0.5ex'}
+        classes = { "roundy-5", "text-center" },
+        styles = { ["padding"] = "0.5ex" },
     },
 
     thin = {
-        classes = {'roundy-5', 'text-center'},
-        styles = {['font-size'] = '90%', ['padding'] = '0 0.5ex'}
+        classes = { "roundy-5", "text-center" },
+        styles = { ["font-size"] = "90%", ["padding"] = "0 0.5ex" },
     },
 
     tiny = {
-        classes = {'roundy-5', 'text-center', 'text-small'},
-        styles = {['padding'] = '0 0.3ex'}
-    }
+        classes = { "roundy-5", "text-center", "text-small" },
+        styles = { ["padding"] = "0 0.3ex" },
+    },
 }
 
 --[[
@@ -126,9 +128,9 @@ elements.
 --]]
 local aliases = {
     type = {
-        box = {'boxTipo', 'box_tipo'},
-        list = {'listTipo', 'list_tipo'}
-    }
+        box = { "boxTipo", "box_tipo" },
+        list = { "listTipo", "list_tipo" },
+    },
 }
 
 --[[
@@ -147,21 +149,30 @@ Arguments:
 
 --]]
 local export = function(name, suffix, luaFunction, wikicodeFunction)
-    suffix = suffix or 'box'
+    suffix = suffix or "box"
     local nameAliases = aliases[name] and aliases[name][suffix]
 
     -- Aliases-independent names (eg. typeBoxLua)
-    local luaNames = {table.concat{name, string.fu(suffix), 'Lua'},
-            table.concat{name, '_', suffix, '_lua'}}
-    local wikicodeNames = {name .. string.fu(suffix),
-            string.fu(name .. suffix)}
+    local luaNames = {
+        table.concat({ name, txt.fu(suffix), "Lua" }),
+        table.concat({ name, "_", suffix, "_lua" }),
+    }
+    local wikicodeNames = { name .. txt.fu(suffix), txt.fu(name .. suffix) }
 
     -- Aliases-dependent names (eg, boxTipoLua)
     if nameAliases then
-        luaNames = table.merge(luaNames, table.flatMap(nameAliases,
-                function(alias) return {alias .. 'Lua', alias .. '_lua'} end))
-        wikicodeNames = table.merge(wikicodeNames, table.flatMap(nameAliases,
-                function(alias) return {alias, string.fu(alias)} end))
+        luaNames = tab.merge(
+            luaNames,
+            tab.flatMap(nameAliases, function(alias)
+                return { alias .. "Lua", alias .. "_lua" }
+            end)
+        )
+        wikicodeNames = tab.merge(
+            wikicodeNames,
+            tab.flatMap(nameAliases, function(alias)
+                return { alias, txt.fu(alias) }
+            end)
+        )
     end
 
     for _, luaName in pairs(luaNames) do
@@ -186,7 +197,7 @@ meaning that the box would basically be unstyled.
 --]]
 local makeWikicodeIntreface = function(luaFunction)
     return function(frame)
-        local p = w.trimAll(table.copy(frame.args), false)
+        local p = w.trimAll(tab.copy(frame.args), false)
         return luaFunction(table.unpack(p))
     end
 end
@@ -214,14 +225,14 @@ b.shortHands = {
                 printStyles produce respectively. Optional, defaults to {}.
     --]]
     type = function(tipo, pdfs, classes, styles)
-        tipo = string.fu(string.trim(tipo or 'Sconosciuto'))
-        if type(classes) == 'table' then
-            classes = table.copy(classes)
-            table.insert(classes, 'box-' .. tipo:lower())
+        tipo = txt.fu(txt.trim(tipo or "Sconosciuto"))
+        if type(classes) == "table" then
+            classes = tab.copy(classes)
+            table.insert(classes, "box-" .. tipo:lower())
         else
-            classes = table.concat{ classes or "", ' box-',  tipo:lower() }
+            classes = table.concat({ classes or "", " box-", tipo:lower() })
         end
-        return tipo, tipo, nil, pdfs, classes, styles, 'FFF'
+        return tipo, tipo, nil, pdfs, classes, styles, "FFF"
     end,
 
     --[[
@@ -235,9 +246,8 @@ b.shortHands = {
                 printStyles produce respectively. Optional, defaults to {}.
     --]]
     cat = function(cat, pdfs, classes, styles)
-        cat = string.fu(string.trim(cat or 'Stato'))
-        return cat, 'Categoria danno#' .. cat, cat, pdfs,
-            classes, styles, 'FFF'
+        cat = txt.fu(txt.trim(cat or "Stato"))
+        return cat, "Categoria danno#" .. cat, cat, pdfs, classes, styles, "FFF"
     end,
 
     --[[
@@ -252,10 +262,15 @@ b.shortHands = {
                 printStyles produce respectively. Optional, defaults to {}.
     --]]
     egg = function(egg, pdfs, classes, styles)
-        egg = string.fu(string.trim(egg or 'Sconosciuto (Gruppo Uova)'))
-        return egg, egg .. ' (Gruppo Uova)', egg .. '_uova', pdfs,
-            classes, styles, 'FFF'
-    end
+        egg = txt.fu(txt.trim(egg or "Sconosciuto (Gruppo Uova)"))
+        return egg,
+            egg .. " (Gruppo Uova)",
+            egg .. "_uova",
+            pdfs,
+            classes,
+            styles,
+            "FFF"
+    end,
 }
 
 --[[
@@ -278,14 +293,19 @@ Main function creating a box. Lua interface. Arguments:
 b.boxLua = function(text, link, color, pdfs, classes, styles, textcolor)
     classes, styles = css.classesStyles(predefs, pdfs, classes, styles)
 
-    return string.interp([=[<div class="${class}" style="${bg}; ${style}">[[${link}|<span style="color:#${tc}">${text}</span>]]</div>]=], {
-        class = css.printClasses(classes),
-        bg = color and css.horizGradLua{color, 'dark', color, 'normale'} or '',
-        tc = textcolor or 'FFF',
-        link = link or text,
-        text = text,
-        style = css.printStyles(styles)
-    })
+    return txt.interp(
+        [=[<div class="${class}" style="${bg}; ${style}">[[${link}|<span style="color:#${tc}">${text}</span>]]</div>]=],
+        {
+            class = css.printClasses(classes),
+            bg = color
+                    and css.horizGradLua({ color, "dark", color, "normale" })
+                or "",
+            tc = textcolor or "FFF",
+            link = link or text,
+            text = text,
+            style = css.printStyles(styles),
+        }
+    )
 end
 b.box_lua = b.boxLua
 
@@ -303,7 +323,6 @@ b.Box = b.box
     both for list and single boxes.
 --]]
 for name, makeBoxArgs in pairs(b.shortHands) do
-
     --[[
         Lua interface: just calls b.boxLua with wathever the shorthand returns,
         given arbitrary arguments.
@@ -314,7 +333,7 @@ for name, makeBoxArgs in pairs(b.shortHands) do
     local wikicodeFunction = makeWikicodeIntreface(luaFunction)
 
     -- Exporting single box interfaces
-    export(name, 'box', luaFunction, wikicodeFunction)
+    export(name, "box", luaFunction, wikicodeFunction)
 
     --[[
         List-of-boxes lua interface: the first argument is a sequence: from
@@ -324,9 +343,9 @@ for name, makeBoxArgs in pairs(b.shortHands) do
         The sequence can be a table of strings or a comma-separated string.
     --]]
     local luaList = function(items, ...)
-        local args = {...}
-        if type(items) == 'string' then
-            items = items == '' and {} or mw.text.split(items, ',%s*')
+        local args = { ... }
+        if type(items) == "string" then
+            items = items == "" and {} or mw.text.split(items, ",%s*")
         end
         return w.mapAndConcat(items, function(item)
             return luaFunction(item, table.unpack(args))
@@ -335,7 +354,7 @@ for name, makeBoxArgs in pairs(b.shortHands) do
     local wikicodeList = makeWikicodeIntreface(luaList)
 
     -- Exporting list interfaces
-    export(name, 'list', luaList, wikicodeList)
+    export(name, "list", luaList, wikicodeList)
 end
 
 return b

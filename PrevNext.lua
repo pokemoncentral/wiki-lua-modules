@@ -41,12 +41,14 @@ Arguments are (in Italian, copied from the template):
 
 local p = {}
 
-local txt = require('Wikilib-strings') -- luacheck: no unused
+-- stylua: ignore start
+local txt = require('Wikilib-strings')
 local w = require('Wikilib')
 local css = require('Css')
 local ms = require('MiniSprite')
 local links = require('Links')
 local sup = require("Sup-data")
+-- stylua: ignore end
 
 p.strings = {
     MAIN_BOX = [=[
@@ -97,10 +99,10 @@ Arguments:
 
 --]]
 p.sideBox = function(presence, content)
-    return string.interp(p.strings.SIDE_BOX, {
+    return txt.interp(p.strings.SIDE_BOX, {
         class1 = presence and "width-sm-100" or "hidden-sm",
         class2 = presence and "white-bg" or "hidden-xl",
-        content = presence and content
+        content = presence and content,
     })
 end
 
@@ -114,8 +116,8 @@ Arguments:
 
 --]]
 p.middleBox = function(list, img)
-    local imglink = img and table.concat{"[[File:", img, "]]"}
-    return string.interp(p.strings.MIDDLE_BOX, {
+    local imglink = img and table.concat({ "[[File:", img, "]]" })
+    return txt.interp(p.strings.MIDDLE_BOX, {
         imgpre = addNbsp(imglink, "next") or "",
         list = list,
         imgpost = addNbsp(imglink, "prev") or "",
@@ -140,15 +142,15 @@ p.makeContentLine = function(args)
     local interpdata = {
         link = args.link or args.name,
         name = args.name,
-        spr = addNbsp(args.img or ms.staticLua{args.spr}, args.dir) or "",
+        spr = addNbsp(args.img or ms.staticLua({ args.spr }), args.dir) or "",
         bag = args.bag == "yes" and addNbsp(links.bag(args.name), args.dir)
-                                or "",
+            or "",
         sup = args.sup and sup[args.sup] or "",
     }
     if args.dir == "prev" then
-        return string.interp(p.strings.PREV_CONTENT, interpdata)
+        return txt.interp(p.strings.PREV_CONTENT, interpdata)
     else
-        return string.interp(p.strings.NEXT_CONTENT, interpdata)
+        return txt.interp(p.strings.NEXT_CONTENT, interpdata)
     end
 end
 
@@ -169,19 +171,19 @@ p.makeContent = function(args)
     -- Args has more values, but all the values needed have the same key
     local res = p.makeContentLine(args)
     if args.name2 then
-        res = res .. p.makeContentLine{
-            dir = args.dir,
-            name = args.name2,
-            link = args.link2,
-            spr = args.spr2,
-            bag = args.bag2,
-            img = args.img2,
-            sup = args.sup2,
-        }
+        res = res
+            .. p.makeContentLine({
+                dir = args.dir,
+                name = args.name2,
+                link = args.link2,
+                spr = args.spr2,
+                bag = args.bag2,
+                img = args.img2,
+                sup = args.sup2,
+            })
     end
     return res
 end
-
 
 --[[
 
@@ -193,14 +195,14 @@ interface.
 --]]
 p.PrevNextLua = function(args)
     local bgargs = args.color and { type = args.color, type2 = args.color2 }
-                              or { colorscheme = args.colorscheme or "pcwiki" }
+        or { colorscheme = args.colorscheme or "pcwiki" }
     local prevpresence = args.prev and args.prev ~= "Nessuna"
     local nextpresence = args.next and args.next ~= "Nessuna"
-    local listlink = string.interp("[[${link}|${name}]]", {
+    local listlink = txt.interp("[[${link}|${name}]]", {
         link = args.list,
         name = args.series or args.list,
     })
-    local prevcontent = p.makeContent{
+    local prevcontent = p.makeContent({
         dir = "prev",
         name = args.prev,
         link = args.prevlink,
@@ -214,8 +216,8 @@ p.PrevNextLua = function(args)
         bag2 = args.prevbag2,
         img2 = args.previmg2,
         sup2 = args.prevsup2,
-    }
-    local nextcontent = p.makeContent{
+    })
+    local nextcontent = p.makeContent({
         dir = "next",
         name = args.next,
         link = args.nextlink,
@@ -229,8 +231,8 @@ p.PrevNextLua = function(args)
         bag2 = args.nextbag2,
         img2 = args.nextimg2,
         sup2 = args.nextsup2,
-    }
-    return string.interp(p.strings.MAIN_BOX, {
+    })
+    return txt.interp(p.strings.MAIN_BOX, {
         bg = css.horizGradLua(bgargs),
         prevbox = p.sideBox(prevpresence, prevcontent),
         nextbox = p.sideBox(nextpresence, nextcontent),
@@ -244,7 +246,7 @@ WikiCode interface. Documented in the file comment.
 
 --]]
 p.PrevNext = function(frame)
-    return p.PrevNextLua(w.emptyStringToNil(frame.args, string.trim))
+    return p.PrevNextLua(w.emptyStringToNil(frame.args, txt.trim))
 end
 
 p.prevnext = p.PrevNext
