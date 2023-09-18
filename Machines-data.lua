@@ -290,6 +290,14 @@ m[9] = {
         "verdebufera", "tifone", "distortozona", "ronzio", "iper raggio",
         "baldeali", "fuococarica", "tuono", "zuffa", "solarraggio",
         "dragobolide", "raggio d'acciaio", "terascoppio",
+        -- first DLC
+        "boato", "sottocarica", "nube", "tossina", "sabbiotomba", "dispetto",
+        "gravità", "abbattimento", "vortexpalla", "privazione", "coleomorso",
+        "superzanna", "vuotonda", "assalto", "forza equina", "gelolancia",
+        "idrovampata", "marchiafuoco", "lama solare", "baraonda",
+        "centripugno", "palla clima", "erboscivolata", "fiamminvidia",
+        "virata", "doppia ala", "poltergeist", "sfogarabbia", "squamacolpo",
+        "nebbioscoppio",
     },
 }
 

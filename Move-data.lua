@@ -122,7 +122,7 @@ t.schermoluce = {name = 'Schermoluce', type = 'psico', category = 'stato', power
 t.nube = {name = 'Nube', type = 'ghiaccio', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 30, gen = 1}
 t.riflesso = {name = 'Riflesso', type = 'psico', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 20, gen = 1}
 t.focalenergia = {name = 'Focalenergia', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 30, gen = 1}
-t.pazienza = {name = 'Pazienza', type = 'normale', category = 'fisico', power = '&mdash;', accuracy = 100, pp = 10, gen = 1}
+t.pazienza = {name = 'Pazienza', type = 'normale', category = 'fisico', power = '&mdash;', accuracy = { [1] = "&mdash;", [2] = 100, [4] = "&mdash;" }, pp = 10, gen = 1}
 t.metronomo = {name = 'Metronomo', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 1}
 t.speculmossa = {name = 'Speculmossa', type = 'volante', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 20, gen = 1}
 t.autodistruzione = {name = 'Autodistruzione', type = 'normale', category = 'fisico', power = 200, accuracy = 100, pp = 5, gen = 1}
@@ -208,7 +208,7 @@ t.ultimocanto = {name = 'Ultimocanto', type = 'normale', category = 'stato', pow
 t.ventogelato = {name = 'Ventogelato', type = 'ghiaccio', category = 'speciale', power = 55, accuracy = 95, pp = 15, gen = 2}
 t.individua = {name = 'Individua', type = 'lotta', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 5, gen = 2}
 t.ossoraffica = {name = 'Ossoraffica', type = 'terra', category = 'fisico', power = 25, accuracy = 90, pp = 10, gen = 2}
-t.localizza = {name = 'Localizza', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 100, pp = 5, gen = 2}
+t.localizza = {name = 'Localizza', type = 'normale', category = 'stato', power = '&mdash;', accuracy = { [2] = 100, [4] = "&mdash;" }, pp = 5, gen = 2}
 t.oltraggio = {name = 'Oltraggio', type = 'drago', category = 'fisico', power = 120, accuracy = 100, pp = 10, gen = 2}
 t.terrempesta = {name = 'Terrempesta', type = 'roccia', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 2}
 t.gigassorbimento = {name = 'Gigassorbimento', type = 'erba', category = 'speciale', power = 75, accuracy = 100, pp = 10, gen = 2}
@@ -229,7 +229,7 @@ t.ritorno = {name = 'Ritorno', type = 'normale', category = 'fisico', power = '&
 t.regalino = {name = 'Regalino', type = 'normale', category = 'fisico', power = '&mdash;', accuracy = 90, pp = 15, stab = true, gen = 2}
 t.frustrazione = {name = 'Frustrazione', type = 'normale', category = 'fisico', power = '&mdash;', accuracy = 100, pp = 20, stab = true, gen = 2}
 t.salvaguardia = {name = 'Salvaguardia', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 25, gen = 2}
-t.malcomune = {name = 'Malcomune', type = 'normale', category = 'stato', power = '&mdash;', accuracy = 100, pp = 20, gen = 2}
+t.malcomune = {name = 'Malcomune', type = 'normale', category = 'stato', power = '&mdash;', accuracy = { [2] = 100, [3] = "&mdash;" }, pp = 20, gen = 2}
 t.magifuoco = {name = 'Magifuoco', type = 'fuoco', category = 'fisico', power = 100, accuracy = 95, pp = 5, gen = 2}
 t.magnitudo = {name = 'Magnitudo', type = 'terra', category = 'fisico', power = '&mdash;', accuracy = 100, pp = 30, stab = true, gen = 2}
 t.dinamipugno = {name = 'Dinamipugno', type = 'lotta', category = 'fisico', power = 100, accuracy = 50, pp = 5, gen = 2}
@@ -750,7 +750,7 @@ t.squamacolpo = {name = "Squamacolpo", type = "drago", category = 'fisico', powe
 t.raggiometeora = {name = "Raggiometeora", type = "roccia", category = 'speciale', power = 120, accuracy = 90, pp = 10, gen = 8}
 t.armaguscio = {name = "Armaguscio", type = "veleno", category = 'speciale', power = 90, accuracy = 100, pp = 10, gen = 8}
 t.nebbioscoppio = {name = "Nebbioscoppio", type = "folletto", category = 'speciale', power = 100, accuracy = 100, pp = 5, gen = 8}
-t.erboscivolata = {name = "Erboscivolata", type = "erba", category = 'fisico', power = { [8] = 70, [9] = 60 }, accuracy = 100, pp = 20, gen = 8}
+t.erboscivolata = {name = "Erboscivolata", type = "erba", category = 'fisico', power = { [8] = 70, [9] = 55 }, accuracy = 100, pp = 20, gen = 8}
 t.elettroimpennata = {name = "Elettroimpennata", type = "elettro", category = 'speciale', power = 70, accuracy = 100, pp = 20, gen = 8}
 t.campopulsar = {name = "Campopulsar", type = "normale", category = 'speciale', power = 50, accuracy = 100, pp = 10, gen = 8}
 t.strisciacolpo = {name = "Strisciacolpo", type = "coleottero", category = 'fisico', power = 70, accuracy = 90, pp = 10, gen = 8}
@@ -839,7 +839,7 @@ t["corazza cannone"] = {name = "Corazza Cannone", type = "fuoco", category = "sp
 t["lama del rimorso"] = {name = "Lama del Rimorso", type = "fuoco", category = "fisico", power = "90", accuracy = "100", pp = "10", gen = 9}
 t.doppiolampo = {name = "Doppiolampo", type = "elettro", category = "fisico", power = "120", accuracy = "100", pp = "5", gen = 9}
 t.granmartello = {name = "Granmartello", type = "acciaio", category = "fisico", power = "160", accuracy = "100", pp = "5", gen = 9}
-t.ritorsione = {name = "Ritorsione", type = "buio", category = "fisico", power = "1", accuracy = "100", pp = "10", gen = 9}
+t.ritorsione = {name = "Ritorsione", type = "buio", category = "fisico", power = "&mdash;", accuracy = "100", pp = "10", gen = 9}
 t.idrotaglio = {name = "Idrotaglio", type = "acqua", category = "fisico", power = "70", accuracy = "100", pp = "20", gen = 9}
 t.turboustione = {name = "Turboustione", type = "fuoco", category = "fisico", power = "80", accuracy = "100", pp = "10", gen = 9}
 t.turbotenebra = {name = "Turbotenebra", type = "buio", category = "fisico", power = "80", accuracy = "100", pp = "10", gen = 9}

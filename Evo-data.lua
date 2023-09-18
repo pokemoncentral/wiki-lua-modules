@@ -8195,9 +8195,9 @@ evo.sinisteaA = {
 evo.polteageistA = evo.sinisteaA
 evo["0854A"], evo["0855A"] = evo.sinisteaA, evo.sinisteaA
 
-evo.poltchageistD = {
-    ndex = "1012D",
-    name = "poltchageistD",
+evo.poltchageistP = {
+    ndex = "1012P",
+    name = "poltchageistP",
 
     evos = {
         {
@@ -8208,8 +8208,8 @@ evo.poltchageistD = {
         },
     },
 }
-evo.sinistchaE = evo.poltchageistD
-evo["1012D"], evo["1013E"] = evo.poltchageistD, evo.poltchageistD
+evo.sinistchaE = evo.poltchageistP
+evo["1012P"], evo["1013E"] = evo.poltchageistP, evo.poltchageistP
 
 createAlternativeForm(useless.burmy, evo.burmy)
 

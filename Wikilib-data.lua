@@ -29,13 +29,13 @@ t.whitetext = {'b', 'blu', 'pmdb', 'mdblu', 'md_blu', 'pmdo', 'mdoscurita',
 -- stylua: ignore
 t.onlyFemales = {29, 30, 31, 113, 115, 124, 238, 241, 242, 314, 380,
 	413, 416, 440, 478, 488, 548, 549, 629, 630, 669, 670, 671, 758, 761,
-	762, 763, 856, 857, 858, 868, 869, 905,
+	762, 763, 856, 857, 858, 868, 869, 905, 1017,
 	'alcremie', 'blissey', 'bounsweet', 'chansey', 'cresselia', 'enamorus',
 	'flabébé', 'floette', 'florges', 'froslass', 'happiny', 'hatenna',
 	'hattrem', 'hatterene', 'illumise', 'jynx', 'kangaskhan', 'latias',
 	'lilligant', 'mandibuzz', 'milcery', 'miltank', 'nidoqueen', 'nidoran♀',
-	'nidorina', 'petilil', 'salazzle', 'smoochum', 'steenee', 'tsareena',
-	'vespiquen', 'vullaby', 'wormadam'}
+	'nidorina', 'ogerpon', 'petilil', 'salazzle', 'smoochum', 'steenee',
+	'tsareena', 'vespiquen', 'vullaby', 'wormadam'}
 
 t.only_females, t.onlyfemales = t.onlyFemales, t.onlyFemales
 

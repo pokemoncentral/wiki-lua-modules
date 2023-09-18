@@ -83,6 +83,7 @@ local regiongens = {
     Corona = { ord = 10, pref = "", nfig = 3 },
     Hisui = { ord = 11, nfig = 3 },
     Paldea = { ord = 12, nfig = 0 },
+    Nordivia = { ord = 13, nfig = 0 },
 }
 
 local function region_sort(c, d)
