@@ -44,8 +44,6 @@ t.zarude = {}
 t.dudunsparce = {}
 t.maushold = {}
 t.tatsugiri = {}
-t.koraidon = {}
-t.miraidon = {}
 t.poltchageist = {}
 t.sinistcha = {}
 
@@ -106,8 +104,6 @@ t.zarude.names = { P = "Zarude Papà", base = "" }
 t.dudunsparce.names = { base = "Forma Bimetamero", T = "Forma Trimetamero" }
 t.maushold.names = { base = "Quadrifamiglia", T = "Trifamiglia" }
 t.tatsugiri.names = { base = "Forma Arcuata", A = "Forma Adagiata", T = "Forma Tesa" }
-t.koraidon.names = { base = "Foggia Integrale", P = "Foggia Parziale", S = "Foggia Scattante", N = "Foggia Nautica", L = "Foggia Librata" }
-t.miraidon.names = { base = "Assetto Completo", L = "Assetto Limitato", S = "Assetto Sprint", N = "Assetto Nuoto", P = "Assetto Planata" }
 -- stylua: ignore end
 t.poltchageist.names = { base = "Forma Taroccata", P = "Forma Pregiata" }
 t.sinistcha.names = { base = "Forma Dozzinale", E = "Forma Eccezionale" }
@@ -185,8 +181,6 @@ t.zarude.ext = {['papà'] = 'P'}
 t.dudunsparce.ext = { trimetamero = "T", bimetamero = "base" }
 t.maushold.ext = { quadrifamiglia = "base", trifamiglia = "T" }
 t.tatsugiri.ext = { adagiata = "A", tesa = "T",  arcuata = "base" }
-t.koraidon.ext = { integrale = "base", parziale = "P", scattante = "S", nautica = "N", librata = "L" }
-t.miraidon.ext = { completo = "base", limitato = "L", sprint = "S", nuoto = "N", planata = "P" }
 -- stylua: ignore end
 t.poltchageist.ext = {}
 t.sinistcha.ext = {}
@@ -228,8 +222,6 @@ t.zarude.gamesOrder = {'base', 'P'}
 t.dudunsparce.gamesOrder = { "base", "T" }
 t.maushold.gamesOrder = { "base", "T" }
 t.tatsugiri.gamesOrder = { "base", "A", "T" }
-t.koraidon.gamesOrder = { "base", "P", "S", "N", "L" }
-t.miraidon.gamesOrder = { "base", "L", "S", "N", "P" }
 -- stylua: ignore end
 t.poltchageist.gamesOrder = { "base", "P" }
 t.sinistcha.gamesOrder = { "base", "E" }
@@ -274,8 +266,6 @@ t.sinistea.since = {base = 'spsc', A = 'spsc'}
 t.dudunsparce.since = { base = "sv", T = "sv" }
 t.maushold.since = { base = "sv", T = "sv" }
 t.tatsugiri.since = { base = "sv", A = "sv", T = "sv" }
-t.koraidon.since = { base = "sv", P = "sv", S = "sv", N = "sv", L = "sv" }
-t.miraidon.since = { base = "sv", L = "sv", S = "sv", N = "sv", P = "sv" }
 -- stylua: ignore end
 t.poltchageist.since = { base = "sv", P = "sv" }
 t.sinistcha.since = { base = "sv", E = "sv" }
@@ -353,8 +343,6 @@ t[893] = t.zarude
 t[982] = t.dudunsparce
 t[925] = t.maushold
 t[978] = t.tatsugiri
-t[1007] = t.koraidon
-t[1008] = t.miraidon
 t[1012] = t.poltchageist
 t[1013] = t.sinistcha
 
