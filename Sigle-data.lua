@@ -706,6 +706,31 @@ x.SV = {
         },
     },
 }
+x.MT = {
+    {
+        link = "La maschera turchese",
+        display = {
+            { "MT", "mascheraturchese" },
+        },
+    },
+}
+x.DI = {
+    {
+        link = "Il disco indaco",
+        display = {
+            { "DI", "discoindaco" },
+        },
+    },
+}
+x.MTDI = {
+    {
+        link = "Pokémon Scarlatto e Violetto - Il tesoro dell'Area Zero",
+        display = {
+            { "MT", "mascheraturchese" },
+            { "DI", "discoindaco" },
+        },
+    },
+}
 
 x.SJ = {
     {

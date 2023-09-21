@@ -148,11 +148,11 @@ makeTest(pokeData.getCriesList({ args = { "487" } }), "all")
 -- Standard cases
 makeTest(pokeData.getPokeTextColor({ args = { " Luxray " } }), "black-text")
 makeTest(pokeData.getPokeTextColor({ args = { " Gengar " } }), "white-text")
-makeTest(pokeData.getPokeTextColor({ args = { " 065" } }), "black-text")
+makeTest(pokeData.getPokeTextColor({ args = { " 065" } }), "white-text")
 makeTest(pokeData.getPokeTextColor({ args = { "249" } }), "white-text")
 
 -- Alt forms
-makeTest(pokeData.getPokeTextColor({ args = { " 65M " } }), "black-text")
+makeTest(pokeData.getPokeTextColor({ args = { " 65M " } }), "white-text")
 makeTest(pokeData.getPokeTextColor({ args = { "487O" } }), "white-text")
 makeTest(
     pokeData.getPokeTextColor({ args = { "giratina", form = "O" } }),

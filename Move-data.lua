@@ -848,6 +848,10 @@ t.turborissa = {name = "Turborissa", type = "lotta", category = "fisico", power 
 t.turboincanto = {name = "Turboincanto", type = "folletto", category = "fisico", power = "100", accuracy = "100", pp = "10", gen = 9}
 t.psicolama = {name = "Psicolama", type = "psico", category = "fisico", power = "80", accuracy = "100", pp = "15", gen = 9}
 t.idrovapore = {name = "Idrovapore", type = "acqua", category = "speciale", power = "80", accuracy = "100", pp = "15", gen = 9}
+t["luna rossa"] = {name = "Luna Rossa", type = "normale", category = "speciale", power = "140", accuracy = "100", pp = "5", gen = 9}
+t["bomba sciroppata"] = {name = "Bomba Sciroppata", type = "erba", category = "speciale", power = "60", accuracy = "85", pp = "10", gen = 9}
+t["spruzzatè"] = {name = "Spruzzatè", type = "erba", category = "speciale", power = "80", accuracy = "90", pp = "15", gen = 9}
+t["clava di liane"] = {name = "Clava di Liane", type = "erba", category = "fisico", power = "100", accuracy = "100", pp = "10", gen = 9}
 -- stylua: ignore end
 
 return t

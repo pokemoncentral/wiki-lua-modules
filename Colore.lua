@@ -33,45 +33,45 @@ end
 
 -- Types
 
-c.acciaio = _colore("5A8DA1", "BDD1D9", "1D4C5E")
+c.acciaio = _colore("60A1B8", "A2D0E0", "25657C")
 c.Acciaio = c.acciaio
-c.acqua = _colore("4F90D5", "B4D0EC", "114983")
+c.acqua = _colore("2980EF", "83B9FF", "004DAF")
 c.Acqua = c.acqua
-c.buio = _colore("5A5365", "A29EA7", "1E1A25")
+c.buio = _colore("50413F", "747474", "110B0A")
 c.Buio = c.buio
-c.coleottero = _colore("91C02E", "D8F895", "547904")
+c.coleottero = _colore("91A119", "C5D260", "5C6800")
 c.Coleottero, c.coleot, c.Coleot = c.coleottero, c.coleottero, c.coleottero
-c.drago = _colore("0A6DC2", "7DB0DC", "002B50")
+c.drago = _colore("5060E1", "909CFF", "1222A0")
 c.Drago = c.drago
-c.elettro = _colore("F4D23C", "FAF5AF", "917908")
+c.elettro = _colore("FAC000", "FFE695", "987500")
 c.Elettro = c.elettro
-c.erba = _colore("62BB5A", "B1FFA9", "11500A")
+c.erba = _colore("3FA129", "81D36E", "165F06")
 c.Erba = c.erba
-c.folletto = _colore("EB8FE6", "FFD3FC", "A940A3")
+c.folletto = _colore("EF70EF", "FFCDFF", "BF31BF")
 c.Folletto = c.folletto
-c.fuoco = _colore("FE9C54", "FFD2A1", "A74700")
+c.fuoco = _colore("E62829", "FF7172", "840001")
 c.Fuoco = c.fuoco
-c.ghiaccio = _colore("73CEBF", "CCFFF6", "187C6A")
+c.ghiaccio = _colore("3FD8FF", "BCF2FF", "0098BF")
 c.Ghiaccio = c.ghiaccio
-c.lotta = _colore("CD406A", "F488A9", "801334")
+c.lotta = _colore("FF8000", "FFB162", "9C4E00")
 c.Lotta = c.lotta
-c.normale = _colore("9199A1", "DADDE0", "444B53")
+c.normale = _colore("9FA19F", "D8D8D8", "5B615B")
 c.Normale = c.normale
 c.ombra = _colore("604E82", "8674A8", "3E3355")
 c.Ombra = c.ombra
-c.psico = _colore("F67177", "FFBBBE", "A20D14")
+c.psico = _colore("EF4179", "FF96B8", "9E0234")
 c.Psico = c.psico
-c.roccia = _colore("C5B78B", "F1E7C7", "7E6E3F")
+c.roccia = _colore("AFA981", "DBD8C8", "746C38")
 c.Roccia = c.roccia
 c.sconosciuto = _colore("68A090", "9DC1B7", "44685E")
 c.Sconosciuto, c["???"] = c.sconosciuto, c.sconosciuto
-c.spettro = _colore("5269AC", "A5B6E7", "193177")
+c.spettro = _colore("704170", "9C809C", "380838")
 c.Spettro = c.spettro
-c.terra = _colore("D87844", "FFBB96", "9A3E0B")
+c.terra = _colore("915121", "C2895F", "4A2000")
 c.Terra = c.terra
-c.veleno = _colore("A96AC8", "E0B0F9", "79339D")
+c.veleno = _colore("9141CB", "C078F4", "450474")
 c.Veleno = c.veleno
-c.volante = _colore("8EA8DE", "D6E4FF", "3B5DA2")
+c.volante = _colore("81B9EF", "BDDFFF", "3075B8")
 c.Volante = c.volante
 
 -- Glitch aliases
@@ -272,10 +272,10 @@ c.scarlatto = _colore("D90D19", "FF8088", "700007")
 c.Scarlatto = c.scarlatto
 c.violetto = _colore("842F8C", "C787C7", "39003E")
 c.Violetto = c.violetto
--- c.mascheraturchese = c.azienda
--- c.Mascheraturchese = c.mascheraturchese
--- c.discoindaco = c.cupola
--- c.Discoindaco = c.discoindaco
+c.mascheraturchese = _colore("00A29A", "70ECE6", "005955")
+c.Mascheraturchese = c.mascheraturchese
+c.discoindaco = _colore("094260", "528CAB", "002030")
+c.Discoindaco = c.discoindaco
 
 -- Regions
 
@@ -333,8 +333,8 @@ c.Ulaula, c["ula ula"], c["Ula ula"], c["Ula Ula"] =
     c.ulaula, c.ulaula, c.ulaula, c.ulaula
 c.poni = c.spettro
 c.Poni = c.poni
--- c.nordivia = c.maniero
--- c.Nordivia = c.nordivia
+c.nordivia = c.mascheraturchese
+c.Nordivia = c.nordivia
 
 c.fiore, c.Fiore = c.ranger, c.ranger
 c.almia, c.Almia = c.OsA, c.OsA
@@ -772,13 +772,5 @@ c.HOME, c.Home, c.home = c.agilita, c.agilita, c.agilita
 c.teamrocket = _colore("4F5253", "B92C1A", "EAEAEA")
 c.TeamRocket, c["team rocket"], c["Team Rocket"], c.team_rocket, c.Team_Rocket =
     c.teamrocket, c.teamrocket, c.teamrocket, c.teamrocket, c.teamrocket
-
--- Temporary aliases
-c.mascheraturchese = c.azienda
-c.Mascheraturchese = c.mascheraturchese
-c.discoindaco = c.cupola
-c.Discoindaco = c.discoindaco
-c.nordivia = c.maniero
-c.Nordivia = c.nordivia
 
 return c
