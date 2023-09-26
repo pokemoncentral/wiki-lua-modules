@@ -6348,8 +6348,6 @@ evo.meltan = {
 evo.melmetal = evo.meltan
 evo[808], evo[809] = evo.meltan, evo.meltan
 
--- Pokémon without an ndex
-
 evo.grookey = {
     ndex = 810,
     name = "grookey",

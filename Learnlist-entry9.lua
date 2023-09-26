@@ -88,7 +88,7 @@ z.level = function(frame)
     local p = lib.sanitize(mw.clone(frame.args))
     return table.concat({
         "|-\n",
-        lib.gameslevel(lib.makeEvoText(p[4])),
+        lib.gameslevel(lib.makeLevelText(p[4])),
         entry(p[1] or "Geloraggio", p[2], lib.makeNotes(p[3] or "")),
     })
 end

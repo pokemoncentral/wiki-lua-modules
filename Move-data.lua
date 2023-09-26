@@ -689,7 +689,7 @@ t['geyser fotonico'] = {name = 'Geyser Fotonico', type = 'psico', category = 'sp
 t['sbalorditesta'] = {name = 'Sbalorditesta', type = 'fuoco', category = 'speciale', power = 150, accuracy = 100, pp = 5, gen = 7}
 t['pugni plasma'] = {name = 'Pugni Plasma', type = 'elettro', category = 'fisico', power = 100, accuracy = 100, pp = 15, gen = 7}
 t['pugni corazzati'] = {name = 'Pugni Corazzati', type = 'acciaio', category = 'fisico', power = 60, accuracy = 100, pp = 5, gen = 7}
--- New moves, TODO: check
+-- Gen 8
 t.dynabarriera = {name = 'DynaBarriera', type = 'normale', category = 'stato', power = '&mdash;', accuracy = '&mdash;', pp = 10, gen = 8}
 t['cannone dynamax'] = {name = 'Cannone Dynamax', type = 'drago', category = 'speciale', power = 100, accuracy = 100, pp = 5, gen = 8}
 t.tiromirato = {name = 'Tiromirato', type = 'acqua', category = 'speciale', power = 80, accuracy = 100, pp = 15, gen = 8}
@@ -774,7 +774,7 @@ t["furia ardente"] = {name = "Furia Ardente", type = "buio", category = "special
 t.inquietantesimo = {name = "Inquietantesimo", type = "psico", category = "speciale", power = "80", accuracy = "100", pp = "5", gen = 8}
 t["lancia glaciale"] = {name = "Lancia Glaciale", type = "ghiaccio", category = "fisico", power = { [8] = 130, [9] = 120 }, accuracy = 100, pp = 5, gen = 8}
 t["schegge astrali"] = {name = "Schegge Astrali", type = "spettro", category = "speciale", power = "120", accuracy = "100", pp = "5", gen = 8}
--- Gen 9
+-- LPA moves added later
 t["artigli fatali"] = {name = "Artigli Fatali", type = "veleno", category = "fisico", power = "80", accuracy = "100", pp = "15", gen = 9}
 t.barrierassalto = {name = "Barrierassalto", type = "psico", category = "fisico", power = "70", accuracy = "90", pp = "10", gen = 9}
 t.scambioforza = {name = "Scambioforza", type = "normale", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
@@ -798,6 +798,8 @@ t["tempesta boreale"] = {name = "Tempesta Boreale", type = "volante", category =
 t["tempesta tonante"] = {name = "Tempesta Tonante", type = "elettro", category = "speciale", power = "100", accuracy = "80", pp = "10", gen = 9}
 t["tempesta ardente"] = {name = "Tempesta Ardente", type = "terra", category = "speciale", power = "100", accuracy = "80", pp = "10", gen = 9}
 t.invocaluna = {name = "Invocaluna", type = "psico", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "5", gen = 9}
+t.baldimpulso = {name = "Baldimpulso", type = "psico", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
+-- Gen 9
 t.terascoppio = {name = "Terascoppio", type = "normale", category = "speciale", power = "80", accuracy = "100", pp = "10", gen = 9}
 t.telatrappola = {name = "Telatrappola", type = "coleottero", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
 t["calcio ad ascia"] = {name = "Calcio ad Ascia", type = "lotta", category = "fisico", power = "120", accuracy = "90", pp = "10", gen = 9}

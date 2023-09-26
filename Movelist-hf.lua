@@ -301,7 +301,7 @@ j.Shadowh = j.shadowh
 
 -- Footer
 
-local foot = function(interpData)
+local function foot(interpData)
     return txt.interp(
         [=[|-
 ! class="text-small text-left ${textcolor}" colspan="${cs}" |
@@ -330,7 +330,8 @@ j.levelf = function(frame)
         textcolor = cc.forModGradBgLua(p[1] or "Sconosciuto"),
         last = [=[
 
-* Le mosse segnate al livello "Evo" possono essere apprese al momento dell'evoluzione.]=],
+* Le mosse segnate al livello "Evo" possono essere apprese al momento dell'evoluzione.
+* Le mosse segnate al livello "R" possono essere apprese solo tramite ricordamosse.]=],
     })
 end
 
@@ -369,31 +370,6 @@ end
 j.Div = j.div
 
 -- ============================ Automatic tm header ===========================
-j.tmcellgames = {
-    { { bg = gendata[1].region, abbr = "" } }, -- 1
-    { { bg = gendata[2].region, abbr = "" } }, -- 2
-    { -- 3
-        { bg = gendata[3].region, abbr = "RZS" },
-        { bg = gendata[3].region, abbr = "RFVF" },
-    },
-    { -- 4
-        { bg = "diamante", abbr = "DPPt" },
-        { bg = "heartgold", abbr = "HGSS" },
-    },
-    { { bg = gendata[5].region, abbr = "" } }, -- 5
-    { -- 6
-        { bg = "x", abbr = "XY" },
-        { bg = "rubinoomega", abbr = "ROZA" },
-    },
-    {
-        { bg = "sole", abbr = "SLUSUL" },
-        { bg = "lgp", abbr = "LGPE" },
-    }, -- 7
-    {
-        { bg = "spada", abbr = "SpSc" },
-    }, -- 8
-}
-
 j.autotmhlua = function(move)
     local tipo = multigen.getGenValue(moves[move].type)
     local startgen = moves[move].gen or 1

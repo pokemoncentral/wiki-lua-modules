@@ -152,7 +152,9 @@ baby.Mantine = "Mantyke"
 local rowsf = {}
 rowsf.level =
     [=[*Il livello "Inizio" indica una mossa conosciuta da ${poke} ottenuto a livello 1 in ${genl} generazione.
-*Le mosse segnate al livello "Evo" possono essere apprese al momento dell'evoluzione.]=]
+*Il livello "Evo" indica una mossa che può essere apprese al momento dell'evoluzione.]=]
+rowsf.levelreminder =
+    [=[*Il livello "Ricorda" indica una mossa che può essere appresa solo tramite ricordamosse.]=]
 rowsf.breed1 =
     [=[*Le mosse segnate con un asterisco (*) si ottengono solo con una [[catena di accoppiamenti]] su ${poke} in ${genl} generazione.
 *Le mosse segnate con una doppia croce (‡) possono essere ottenute solo da un Pokémon che le abbia apprese in una generazione precedente.
@@ -232,7 +234,7 @@ end
 
 -- Crea le celle dell'ultima riga degli headers
 
-local lowrow = function(gen, kind, tc)
+local function lowrow(gen, kind, tc)
     local values = {
         r = firstcell.rs[kind][gen],
         c = firstcell.cs[kind][gen],
@@ -253,7 +255,7 @@ end
 
 -- Genera solo le righe dei footer diverse in base al tipo dello stesso
 
-local rowf = function(kind, gen, poke)
+local function rowf(kind, gen, poke)
     local rows = rowsf[kind] or ""
     if kind == "breed" then
         if gen < 9 then
@@ -261,6 +263,9 @@ local rowf = function(kind, gen, poke)
         else -- gen >= 9
             rows = rowsf.breedpicnic
         end
+    end
+    if kind == "level" and gen == 9 then
+        rows = rows .. "\n" .. rowsf.levelreminder
     end
     return txt.interp(
         rows,

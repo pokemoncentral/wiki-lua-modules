@@ -794,10 +794,30 @@ learned upon evolution (ie: "Evoluzione"
 on desktop, "Evo" on mobile)
 
 --]]
+---@deprecated use makeLevelText
 lib.makeEvoText = function(t)
     return (t == "Evo" or t == "Evoluzione")
             and 'Evo<span class="hidden-xs">luzione</span>'
         or t
+end
+
+--[[
+
+Make any transformation needed for a text used as the level uppon which a
+Pokémon learns a move. Namely, it makes the following things:
+- "Evo" and "Evoluzione" are transformerd so that they appear as "Evoluzione"
+  on desktop and "Evo" on mobile
+- "Ricorda" and "R" are transformed so that they appear as "Ricorda"
+
+--]]
+lib.makeLevelText = function(t)
+    if t == "Evo" or t == "Evoluzione" then
+        return 'Evo<span class="hidden-xs">luzione</span>'
+    elseif t == "Ricorda" or t == "R" then
+        return "Ricorda"
+    else
+        return t
+    end
 end
 
 --[[

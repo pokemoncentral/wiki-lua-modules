@@ -256,6 +256,11 @@ entry.printValue = {
         if text:lower() == "no" then
             text = entry.boolDisplay.no
             bg = "fff"
+        elseif text:lower() == "r" then
+            text = links.tt(
+                "R",
+                "Questa mossa può essere appresa solo tramite ricordamosse"
+            )
         end
         return entry.makeBox(text, bg, true, args.colspan, args.abbr)
     end,

@@ -153,8 +153,7 @@ end
 
 Template:tt
 
-Not very useful, but you don't know if the future will bring another change.
-Used to add a tooltip to a text
+Used to add a tooltip to a text.
 
 --]]
 l.tt = function(text, title)
