@@ -154,7 +154,7 @@ rowsf.level =
     [=[*Il livello "Inizio" indica una mossa conosciuta da ${poke} ottenuto a livello 1 in ${genl} generazione.
 *Il livello "Evo" indica una mossa che può essere apprese al momento dell'evoluzione.]=]
 rowsf.levelreminder =
-    [=[*Il livello "Ricorda" indica una mossa che può essere appresa solo tramite ricordamosse.]=]
+    [=[*Il livello "Ricorda" indica una mossa che può essere appresa solo tramite Ricordamosse.]=]
 rowsf.breed1 =
     [=[*Le mosse segnate con un asterisco (*) si ottengono solo con una [[catena di accoppiamenti]] su ${poke} in ${genl} generazione.
 *Le mosse segnate con una doppia croce (‡) possono essere ottenute solo da un Pokémon che le abbia apprese in una generazione precedente.

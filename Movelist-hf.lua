@@ -331,7 +331,7 @@ j.levelf = function(frame)
         last = [=[
 
 * Le mosse segnate al livello "Evo" possono essere apprese al momento dell'evoluzione.
-* Le mosse segnate al livello "R" possono essere apprese solo tramite ricordamosse.]=],
+* Le mosse segnate al livello "R" possono essere apprese solo tramite Ricordamosse.]=],
     })
 end
 

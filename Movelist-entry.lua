@@ -259,7 +259,7 @@ entry.printValue = {
         elseif text:lower() == "r" then
             text = links.tt(
                 "R",
-                "Questa mossa può essere appresa solo tramite ricordamosse"
+                "Questa mossa può essere appresa solo tramite Ricordamosse"
             )
         end
         return entry.makeBox(text, bg, true, args.colspan, args.abbr)
