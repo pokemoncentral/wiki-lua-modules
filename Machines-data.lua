@@ -277,7 +277,7 @@ m[9] = {
         "elettromistero", "volo", "baratto", "metaltestata", "dragodanza",
         "gemmoforza", "sporcolancio", "sostituto", "ferroscudo", "forbice x",
         "giravvita", "fuocofatuo", "sgranocchio", "raggiro", "idrobreccia",
-        "gigassorbimento", "forzasfera", "ventoincoda", "palla ombra",
+        "gigassorbimento", "sferapulsar", "ventoincoda", "palla ombra",
         "dragopulsar", "levitoroccia", "granvoce", "ondacalda", "energipalla",
         "psichico", "pesobomba", "ripeti", "surf", "vortighiaccio",
         "lanciafiamme", "fulmine", "carineria", "amnesia", "calmamente",
