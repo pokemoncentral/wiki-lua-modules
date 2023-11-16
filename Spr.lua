@@ -39,6 +39,7 @@ local gamesAbbr = {
     ["let's go pikachu e let's go eevee"] = "lgpe",
     ["spada e scudo"] = "spsc",
     ["diamante lucente e perla splendente"] = "dlps",
+    ["leggende pokémon arceus"] = "lpa",
     ["scarlatto e violetto"] = "sv",
     colosseum = "colo",
     -- XD is not necessary
@@ -66,6 +67,7 @@ tab.tableKeysAlias(gamesAbbr, {
     "let's go pikachu e let's go eevee",
     "spada e scudo",
     "diamante lucente e perla splendente",
+    "leggende pokémon arceus",
     "scarlatto e violetto",
     "stadium 2",
 }, {
@@ -105,6 +107,7 @@ tab.tableKeysAlias(gamesAbbr, {
     },
     { "spada", "scudo", "sp", "sc" },
     { "diamante lucente", "perla splendente", "dl", "ps" },
+    { "leggende arceus", "leggende pokemon arceus", "lpa" },
     { "scarlatto", "violetto", "sa", "vi" },
     { "stad 2" },
 })
@@ -166,6 +169,7 @@ local sizes = {
     usul = "|150px",
     lgpe = "|150px",
     spsc = "|150px",
+    lpa = "|150px",
     sv = "|150px",
 }
 
@@ -201,6 +205,7 @@ tab.tableKeysAlias(interpStrings, { "rb" }, {
         "lgpe",
         "spsc",
         "dlps",
+        "lpa",
         "sv",
         "colo",
         "xd",
