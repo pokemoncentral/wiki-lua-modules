@@ -33,6 +33,10 @@ makeTest(testedmod.getLastGen({ args = {} }), gendata.latest)
 makeTest(testedmod.getOrdinal({ args = { " 4 " } }), "quarta")
 makeTest(testedmod.getOrdinal({ args = { " III " } }), "terza")
 
+-- ================================ getRoman ===============================
+makeTest(testedmod.getRoman({ args = { " 7 " } }), "VII")
+makeTest(testedmod.getRoman({ args = { " IX" } }), "IX")
+
 -- ================================ getRegion ================================
 makeTest(testedmod.getRegion({ args = { " VII" } }), "alola")
 makeTest(testedmod.getRegion({ args = { "1 " } }), "kanto")

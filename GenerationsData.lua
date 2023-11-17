@@ -60,6 +60,21 @@ b.GetOrdinal = b.getOrdinal
 
 --[[
 
+Return the roman number of the given generation (either an arabic or roman
+number).
+
+Ex: {{#invoke: GenerationsData | getRoman | 7 }}   --> VII
+Ex: {{#invoke: GenerationsData | getRoman | IX }}  --> IX
+
+--]]
+b.getRoman = function(frame)
+    local gen = txt.trim(frame.args[1])
+    return genTable(gen).roman
+end
+b.GetRoman = b.getRoman
+
+--[[
+
 Return the region of the given generation (either an arabic or roman number).
 The result is all lowercase.
 
