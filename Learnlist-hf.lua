@@ -155,6 +155,8 @@ rowsf.level =
 *Il livello "Evo" indica una mossa che può essere apprese al momento dell'evoluzione.]=]
 rowsf.levelreminder =
     [=[*Il livello "Ricorda" indica una mossa che può essere appresa solo tramite Ricordamosse.]=]
+rowsf.tmnewversion =
+    [=[*Alcune MT sono disponibili solo a partire da una determinata versione del gioco. ${poke} può imparare le mosse di quelle MT solo da tale versione.]=]
 rowsf.breed1 =
     [=[*Le mosse segnate con un asterisco (*) si ottengono solo con una [[catena di accoppiamenti]] su ${poke} in ${genl} generazione.
 *Le mosse segnate con una doppia croce (‡) possono essere ottenute solo da un Pokémon che le abbia apprese in una generazione precedente.
@@ -266,6 +268,9 @@ local function rowf(kind, gen, poke)
     end
     if kind == "level" and gen == 9 then
         rows = rows .. "\n" .. rowsf.levelreminder
+    end
+    if kind == "tm" and gen == 9 then
+        rows = rows .. "\n" .. rowsf.tmnewversion
     end
     return txt.interp(
         rows,
