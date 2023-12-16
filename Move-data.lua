@@ -854,6 +854,21 @@ t["luna rossa"] = {name = "Luna Rossa", type = "normale", category = "speciale",
 t["bomba sciroppata"] = {name = "Bomba Sciroppata", type = "erba", category = "speciale", power = "60", accuracy = "85", pp = "10", gen = 9}
 t["spruzzatè"] = {name = "Spruzzatè", type = "erba", category = "speciale", power = "80", accuracy = "90", pp = "15", gen = 9}
 t["clava di liane"] = {name = "Clava di Liane", type = "erba", category = "fisico", power = "100", accuracy = "100", pp = "10", gen = 9}
+t.elettroraggio = {name = "Elettroraggio", type = "elettro", category = "speciale", power = "130", accuracy = "100", pp = "10", gen = 9}
+t.teracluster = {name = "Teracluster", type = "normale", category = "speciale", power = "120", accuracy = "100", pp = "10", gen = 9}
+t.irregolaser = {name = "Irregolaser", type = "drago", category = "speciale", power = "80", accuracy = "100", pp = "5", gen = 9}
+t["egida ignea"] = {name = "Egida Ignea", type = "fuoco", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "10", gen = 9}
+t.saetta = {name = "Saetta", type = "elettro", category = "speciale", power = "70", accuracy = "100", pp = "5", gen = 9}
+t["taglio poderoso"] = {name = "Taglio Poderoso", type = "roccia", category = "fisico", power = "95", accuracy = "100", pp = "5", gen = 9}
+t.tachiontaglio = {name = "Tachiontaglio", type = "acciaio", category = "speciale", power = "50", accuracy = "&mdash;", pp = "10", gen = 9}
+t["pressa d'acciaio"] = {name = "Pressa d'Acciaio", type = "acciaio", category = "fisico", power = "&mdash;", accuracy = "100", pp = "10", gen = 9}
+t["grido del drago"] = {name = "Grido del Drago", type = "drago", category = "stato", power = "&mdash;", accuracy = "&mdash;", pp = "15", gen = 9}
+t.ammaliavoce = {name = "Ammaliavoce", type = "folletto", category = "speciale", power = "80", accuracy = "100", pp = "10", gen = 9}
+t["rabbia bruciante"] = {name = "Rabbia Bruciante", type = "fuoco", category = "fisico", power = "75", accuracy = "100", pp = "10", gen = 9}
+t.elettrotuffo = {name = "Elettrotuffo", type = "elettro", category = "fisico", power = "100", accuracy = "95", pp = "15", gen = 9}
+t.psicorumore = {name = "Psicorumore", type = "psico", category = "speciale", power = "75", accuracy = "100", pp = "10", gen = 9}
+t["colpo di mano"] = {name = "Colpo di Mano", type = "lotta", category = "fisico", power = "65", accuracy = "100", pp = "15", gen = 9}
+-- t.intossicatena = {name = "Intossicatena", type = "veleno", category = "speciale", power = "100", accuracy = "100", pp = "5", gen = 9}
 -- stylua: ignore end
 
 return t

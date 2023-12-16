@@ -2000,6 +2000,22 @@ t.fezandipiti = { group1 = "sconosciuto" }
 t[1016] = t.fezandipiti
 t.ogerpon = { group1 = "sconosciuto" }
 t[1017] = t.ogerpon
+t.archaludon = { group1 = "minerale", group2 = "drago" }
+t[1018] = t.archaludon
+t.hydrapple = t.applin
+t[1019] = t.hydrapple
+t.vampeaguzze = { group1 = "sconosciuto" }
+t[1020] = t.vampeaguzze
+t.furiatonante = { group1 = "sconosciuto" }
+t[1021] = t.furiatonante
+t.massoferreo = { group1 = "sconosciuto" }
+t[1022] = t.massoferreo
+t.capoferreo = { group1 = "sconosciuto" }
+t[1023] = t.capoferreo
+t.terapagos = { group1 = "sconosciuto" }
+t[1024] = t.terapagos
+-- t.pecharunt = { group1 = "sconosciuto" }
+-- t[1025] = t.pecharunt
 
 -- Forme alternative che esistono fuori dalla lotta e quindi
 -- possono avere un gruppo uova diverso da quello della forma base

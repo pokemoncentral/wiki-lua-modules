@@ -298,6 +298,14 @@ m[9] = {
         "centripugno", "palla clima", "erboscivolata", "fiamminvidia",
         "virata", "doppia ala", "poltergeist", "sfogarabbia", "squamacolpo",
         "nebbioscoppio",
+        -- second DLC
+        "malcomune", "psicamisù", "sdoppiatore", "rimonta", "fiortempesta",
+        "rabbia bruciante", "mulinello", "fanghiglia", "elettrotuffo",
+        "elettrotela", "triplo axel", "coaching", "fangonda", "sabbiardente",
+        "danzadipiume", "divinazione", "vastenergia", "strisciacolpo",
+        "raggiometeora", "colpo infernale", "vastoimpatto", "ferrostrido",
+        "maledizione", "pressa d'acciaio", "grido del drago", "ammaliavoce",
+        "psicorumore", "colpo di mano"
     },
 }
 

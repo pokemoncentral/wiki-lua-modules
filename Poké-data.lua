@@ -2040,15 +2040,22 @@ t.fezandipiti = {name = 'Fezandipiti', ndex = 1016, type1 = 'veleno', type2 = 'f
 t[1016] = t.fezandipiti
 t.ogerpon = {name = 'Ogerpon', ndex = 1017, type1 = 'erba', type2 = 'erba'}
 t[1017] = t.ogerpon
--- SV DLC stuff
-t.archaludon = {name = 'Archaludon', ndex = nil, type1 = 'acciaio', type2 = 'drago'}
--- t[1020] = t.archaludon
-t.furiatonante = {name = 'Furiatonante', ndex = nil, type1 = 'elettro', type2 = 'drago'}
--- t[1020] = t.furiatonante
-t.capoferreo = {name = 'Capoferreo', ndex = nil, type1 = 'acciaio', type2 = 'psico'}
--- t[1020] = t.capoferreo
-t.terapagos = {name = 'Terapagos', ndex = nil, type1 = 'sconosciuto', type2 = 'sconosciuto'}
--- t[1010] = t.terapagos
+t.archaludon = {name = 'Archaludon', ndex = 1018, type1 = 'acciaio', type2 = 'drago'}
+t[1018] = t.archaludon
+t.hydrapple = {name = 'Hydrapple', ndex = 1019, type1 = 'erba', type2 = 'drago'}
+t[1019] = t.hydrapple
+t.vampeaguzze = {name = 'Vampeaguzze', ndex = 1020, type1 = 'fuoco', type2 = 'drago'}
+t[1020] = t.vampeaguzze
+t.furiatonante = {name = 'Furiatonante', ndex = 1021, type1 = 'elettro', type2 = 'drago'}
+t[1021] = t.furiatonante
+t.massoferreo = {name = 'Massoferreo', ndex = 1022, type1 = 'roccia', type2 = 'psico'}
+t[1022] = t.massoferreo
+t.capoferreo = {name = 'Capoferreo', ndex = 1023, type1 = 'acciaio', type2 = 'psico'}
+t[1023] = t.capoferreo
+t.terapagos = {name = 'Terapagos', ndex = 1024, type1 = 'normale', type2 = 'normale'}
+t[1024] = t.terapagos
+-- t.pecharunt = {name = 'Pecharunt', ndex = 1025, type1 = 'veleno', type2 = 'spettro'}
+-- t[1025] = t.pecharunt
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa
@@ -2386,8 +2393,8 @@ t.ogerponTT, t["1017TT"] = t.ogerpon, t.ogerpon
 t.ogerponPT, t["1017PT"] = t.ogerponP, t.ogerponP
 t.ogerponFcT, t["1017FcT"] = t.ogerponFc, t.ogerponFc
 t.ogerponFnT, t["1017FnT"] = t.ogerponFn, t.ogerponFn
-t.terapagosT = t.terapagos
--- t["1000T"] = t.terapagosT
+t.terapagosT, t["1024T"] = t.terapagos, t.terapagos
+t.terapagosA, t["1024A"] = t.terapagos, t.terapagos
 
 t.venusaurM, t["0003M"] = t.venusaur, t.venusaur
 t.charizardMY, t["0006MY"] = t.charizard, t.charizard

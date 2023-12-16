@@ -2041,7 +2041,22 @@ d.fezandipiti = {hp = 88, atk = 91, def = 82, spatk = 70, spdef = 125, spe = 99}
 d[1016] = d.fezandipiti
 d.ogerpon = {hp = 80, atk = 120, def = 84, spatk = 60, spdef = 96, spe = 110}
 d[1017] = d.ogerpon
-
+d.archaludon = {hp = 90, atk = 105, def = 130, spatk = 125, spdef = 65, spe = 85}
+d[1018] = d.archaludon
+d.hydrapple = {hp = 106, atk = 80, def = 110, spatk = 120, spdef = 80, spe = 44}
+d[1019] = d.hydrapple
+d.vampeaguzze = {hp = 105, atk = 115, def = 121, spatk = 65, spdef = 93, spe = 91}
+d[1020] = d.vampeaguzze
+d.furiatonante = {hp = 125, atk = 73, def = 91, spatk = 137, spdef = 89, spe = 75}
+d[1021] = d.furiatonante
+d.massoferreo = {hp = 90, atk = 120, def = 80, spatk = 68, spdef = 108, spe = 124}
+d[1022] = d.massoferreo
+d.capoferreo = {hp = 90, atk = 72, def = 100, spatk = 122, spdef = 108, spe = 98}
+d[1023] = d.capoferreo
+d.terapagos = {hp = 90, atk = 65, def = 85, spatk = 65, spdef = 85, spe = 60}
+d[1024] = d.terapagos
+-- d.pecharunt = {hp = 88, atk = 88, def = 160, spatk = 88, spdef = 88, spe = 88}
+-- d[1025] = d.pecharunt
 
 -- Alternative forms which actually change stats
 d.pikachuCm = {hp = 45, atk = 80, def = 50, spatk = 75, spdef = 60, spe = 120}
@@ -2163,7 +2178,10 @@ d.palafinP = {hp = 100, atk = 160, def = 97, spatk = 106, spdef = 87, spe = 100}
 d["0964P"] = d.palafinP
 d.gimmighoulA = {hp = 45, atk = 30, def = 25, spatk = 75, spdef = 45, spe = 80}
 d["0999A"] = d.gimmighoulA
-
+d.terapagosT = {hp = 95, atk = 95, def = 110, spatk = 105, spdef = 110, spe = 85}
+d["1024T"] = d.terapagosT
+d.terapagosA = {hp = 160, atk = 105, def = 110, spatk = 130, spdef = 110, spe = 85}
+d["1024A"] = d.terapagosA
 
 -- Mega evolutions and Primal reversions
 d.venusaurM = {hp = 80, atk = 100, def = 123, spatk = 122, spdef = 120, spe = 80}

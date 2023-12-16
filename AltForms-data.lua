@@ -238,7 +238,7 @@ t.ogerpon.names = { base = "Maschera Turchese", Fn = "Maschera Fondamenta",
     P = "Maschera Pozzo", Fc = "Maschera Focolare", TT = "Maschera Turchese (Teracristal)",
     FnT = "Maschera Fondamenta (Teracristal)", PT = "Maschera Pozzo (Teracristal)", FcT = "Maschera Focolare (Teracristal)",
 }
-t.terapagos.names = {T = 'Forma Teracristal', base = 'Forma Normale'}
+t.terapagos.names = {T = "Forma Teracristal", A = "Forma Astrale", base = "Forma Normale"}
 -- stylua: ignore end
 for _, v in pairs(t.formgroups.mega) do
     if not t[v] then
@@ -365,7 +365,7 @@ t.palafin.ext = { possente = "P", ingenua = "base" }
 t.squawkabilly.ext = { azzurre = "A", gialle = "G", bianche = "B", verdi = "base" }
 t.gimmighoul.ext = { ambulante = "A", scrigno = "base" }
 t.ogerpon.ext = { teracristal = "TT", normale = "base" }
-t.terapagos.ext = { teracristal = "T", normale = "base" }
+t.terapagos.ext = { teracristal = "T", astrale = "A", normale = "base" }
 for _, v in pairs(t.formgroups.mega) do
     t[v].ext = t[v].ext or {}
     t[v].ext.mega = "M"
@@ -460,7 +460,7 @@ t.palafin.gamesOrder = { "base", "P" }
 t.squawkabilly.gamesOrder = { "base", "A", "G", "B" }
 t.gimmighoul.gamesOrder = { "base", "A" }
 t.ogerpon.gamesOrder = { "base", "P", "Fc", "Fn", "TT", "PT", "FcT", "FnT" }
-t.terapagos.gamesOrder = { "base", "T" }
+t.terapagos.gamesOrder = { "base", "T", "A" }
 for _, v in pairs(t.formgroups.mega) do
     t[v].gamesOrder = t[v].gamesOrder or { "base", "M" }
 end
@@ -614,7 +614,7 @@ t.squawkabilly.since = { A = "sv", G = "sv", B = "sv", base = "sv" }
 t.gimmighoul.since = { A = "sv", base = "sv" }
 -- stylua: ignore
 t.ogerpon.since = { P = "sv", Fc = "sv", Fn = "sv", TT = "sv", PT = "sv", FcT = "sv", FnT = "sv", base = "sv" }
-t.terapagos.since = { T = "sv", base = "sv" }
+t.terapagos.since = { T = "sv", A = "sv", base = "sv" }
 t.venusaur.since = { M = "xy", Gi = "spsc", base = "rb" }
 t.blastoise.since = { M = "xy", Gi = "spsc", base = "rb" }
 t.beedrill.since = { M = "roza", base = "rb" }
@@ -849,7 +849,7 @@ t[964] = t.palafin
 t[931] = t.squawkabilly
 t[999] = t.gimmighoul
 t[1017] = t.ogerpon
--- t[1000] = t.terapagos
+t[1024] = t.terapagos
 t[3] = t.venusaur
 t[9] = t.blastoise
 t[15] = t.beedrill

@@ -2038,16 +2038,22 @@ t.fezandipiti = {ability1 = "Catena Tossica", abilityd = "Tecnico"}
 t[1016] = t.fezandipiti
 t.ogerpon = {ability1 = "Agonismo"}
 t[1017] = t.ogerpon
-
--- SV DLC stuff
-t.archaludon = {ability1 = "Sopportazione", ability2 = "Vigore"}
--- t[1010] = t.archaludon
+t.archaludon = {ability1 = "Sopportazione", ability2 = "Vigore", abilityd = "Volontà di Ferro"}
+t[1018] = t.archaludon
+t.hydrapple = {ability1 = "Sciroppo Sublime", ability2 = "Rigenergia", abilityd = "Antifurto"}
+t[1019] = t.hydrapple
+t.vampeaguzze = {ability1 = "Paleoattivazione"}
+t[1020] = t.vampeaguzze
 t.furiatonante = {ability1 = "Paleoattivazione"}
--- t[1010] = t.furiatonante
+t[1021] = t.furiatonante
+t.massoferreo = {ability1 = "Carica Quark"}
+t[1022] = t.massoferreo
 t.capoferreo = {ability1 = "Carica Quark"}
--- t[1010] = t.capoferreo
--- t.terapagos = {ability1 = 'Sconosciuta'}
--- t[1010] = t.terapagos
+t[1023] = t.capoferreo
+t.terapagos = {ability1 = "Teramorfosi"}
+t[1024] = t.terapagos
+-- t.pecharunt = {ability1 = "Malia Tossica"}
+-- t[1025] = t.pecharunt
 
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base
@@ -2234,6 +2240,10 @@ t.ogerponFn = {ability1 = "Vigore"}
 t["1017Fn"] = t.ogerponFn
 t.ogerponTT = {ability1 = "Albergamemorie"}
 t["1017TT"] = t.ogerponTT
+t.terapagosT = {ability1 = "Teraguscio"}
+t["1024T"] = t.terapagosT
+t.terapagosA = {ability1 = "Zeroformazione"}
+t["1024A"] = t.terapagosA
 
 -- stylua: ignore end
 

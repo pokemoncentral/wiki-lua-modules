@@ -6616,12 +6616,21 @@ evo.applin = {
             name = "dipplin",
             method = evo.methods.STONE,
             [evo.methods.STONE] = "Sciroppomo",
+            evos = {
+                {
+                    ndex = 1019,
+                    name = "hydrapple",
+                    method = evo.methods.LEVEL,
+                    conditions = { [evo.conditions.MOVE] = "Grido del Drago" },
+                },
+            },
         },
     },
 }
-evo.flapple, evo.appletun, evo.dipplin = evo.applin, evo.applin, evo.applin
-evo[840], evo[841], evo[842], evo[1011] =
+evo.flapple, evo.appletun, evo.dipplin, evo.hydrapple =
     evo.applin, evo.applin, evo.applin, evo.applin
+evo[840], evo[841], evo[842], evo[1011], evo[1019] =
+    evo.applin, evo.applin, evo.applin, evo.applin, evo.applin
 
 evo.silicobra = {
     ndex = 843,
@@ -6884,14 +6893,15 @@ evo.duraludon = {
 
     evos = {
         {
-            ndex = nil,
+            ndex = 1018,
             name = "archaludon",
-            method = evo.methods.UNKNOWN,
+            method = evo.methods.STONE,
+            [evo.methods.STONE] = "Metallo composito",
         },
     },
 }
 evo.archaludon = evo.duraludon
-evo[884] = evo.duraludon
+evo[884], evo[1018] = evo.duraludon, evo.duraludon
 
 evo.dreepy = {
     ndex = 885,
@@ -7678,11 +7688,23 @@ evo[1016] = evo.fezandipiti
 evo.ogerpon = { ndex = 1017, name = "ogerpon" }
 evo[1017] = evo.ogerpon
 
-evo.furiatonante = { ndex = nil, name = "furiatonante" }
--- evo[1010] = evo.furiatonante
+evo.vampeaguzze = { ndex = 1020, name = "vampeaguzze" }
+evo[1020] = evo.vampeaguzze
 
-evo.capoferreo = { ndex = nil, name = "capoferreo" }
--- evo[1010] = evo.capoferreo
+evo.furiatonante = { ndex = 1021, name = "furiatonante" }
+evo[1021] = evo.furiatonante
+
+evo.massoferreo = { ndex = 1022, name = "massoferreo" }
+evo[1022] = evo.massoferreo
+
+evo.capoferreo = { ndex = 1023, name = "capoferreo" }
+evo[1023] = evo.capoferreo
+
+evo.terapagos = { ndex = 1024, name = "terapagos" }
+evo[1024] = evo.terapagos
+
+-- evo.pecharunt = { ndex = 1025, name = "pecharunt" }
+-- evo[1025] = evo.pecharunt
 
 -- Alternative forms with evolutions
 evo.rattataA = {
