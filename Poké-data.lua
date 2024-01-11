@@ -2054,8 +2054,8 @@ t.capoferreo = {name = 'Capoferreo', ndex = 1023, type1 = 'acciaio', type2 = 'ps
 t[1023] = t.capoferreo
 t.terapagos = {name = 'Terapagos', ndex = 1024, type1 = 'normale', type2 = 'normale'}
 t[1024] = t.terapagos
--- t.pecharunt = {name = 'Pecharunt', ndex = 1025, type1 = 'veleno', type2 = 'spettro'}
--- t[1025] = t.pecharunt
+t.pecharunt = {name = 'Pecharunt', ndex = 1025, type1 = 'veleno', type2 = 'spettro'}
+t[1025] = t.pecharunt
 
 -- I dati sulle forme alternative che cambiano tipo rispetto alla forma base
 -- NOTA BENE: Entrambi gli indici sono stringa

@@ -2014,8 +2014,8 @@ t.capoferreo = { group1 = "sconosciuto" }
 t[1023] = t.capoferreo
 t.terapagos = { group1 = "sconosciuto" }
 t[1024] = t.terapagos
--- t.pecharunt = { group1 = "sconosciuto" }
--- t[1025] = t.pecharunt
+t.pecharunt = { group1 = "sconosciuto" }
+t[1025] = t.pecharunt
 
 -- Forme alternative che esistono fuori dalla lotta e quindi
 -- possono avere un gruppo uova diverso da quello della forma base

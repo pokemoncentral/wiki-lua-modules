@@ -2052,8 +2052,8 @@ t.capoferreo = {ability1 = "Carica Quark"}
 t[1023] = t.capoferreo
 t.terapagos = {ability1 = "Teramorfosi"}
 t[1024] = t.terapagos
--- t.pecharunt = {ability1 = "Malia Tossica"}
--- t[1025] = t.pecharunt
+t.pecharunt = {ability1 = "Malia Tossica"}
+t[1025] = t.pecharunt
 
 
 -- I dati sulle forme alternative che cambiano abilità rispetto alla forma base

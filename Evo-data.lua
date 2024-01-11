@@ -7703,8 +7703,8 @@ evo[1023] = evo.capoferreo
 evo.terapagos = { ndex = 1024, name = "terapagos" }
 evo[1024] = evo.terapagos
 
--- evo.pecharunt = { ndex = 1025, name = "pecharunt" }
--- evo[1025] = evo.pecharunt
+evo.pecharunt = { ndex = 1025, name = "pecharunt" }
+evo[1025] = evo.pecharunt
 
 -- Alternative forms with evolutions
 evo.rattataA = {

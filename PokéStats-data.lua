@@ -2055,8 +2055,8 @@ d.capoferreo = {hp = 90, atk = 72, def = 100, spatk = 122, spdef = 108, spe = 98
 d[1023] = d.capoferreo
 d.terapagos = {hp = 90, atk = 65, def = 85, spatk = 65, spdef = 85, spe = 60}
 d[1024] = d.terapagos
--- d.pecharunt = {hp = 88, atk = 88, def = 160, spatk = 88, spdef = 88, spe = 88}
--- d[1025] = d.pecharunt
+d.pecharunt = {hp = 88, atk = 88, def = 160, spatk = 88, spdef = 88, spe = 88}
+d[1025] = d.pecharunt
 
 -- Alternative forms which actually change stats
 d.pikachuCm = {hp = 45, atk = 80, def = 50, spatk = 75, spdef = 60, spe = 120}
