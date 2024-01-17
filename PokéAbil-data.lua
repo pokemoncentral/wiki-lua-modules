@@ -1784,7 +1784,7 @@ t.zamazenta = {ability1 = 'Scudo Saldo'}
 t[889] = t.zamazenta
 t.eternatus = {ability1 = 'Pressione'}
 t[890] = t.eternatus
-t.kubfu = {ability1 = 'Forza Interiore', abilityd = {[8] = 'Nessuna', [9] = 'Nullodifesa'}}
+t.kubfu = {ability1 = 'Forza Interiore', abilityd = 'Nessuna'}
 t[891] = t.kubfu
 t.urshifu = {ability1 = 'Pugni Invisibili'}
 t[892] = t.urshifu
