@@ -33,8 +33,13 @@ eta.ability.mangiaterra = { terra = 0 }
 -- For instance, at index "pellearsa" there is a list containing "fuoco" and
 -- "acqua". As an exception, abilities with special effects (such as Filtro)
 -- are in this table with not type associated.
-eta.modTypesAbil =
-    { magidifesa = {}, filtro = {}, solidroccia = {}, scudoprisma = {} }
+eta.modTypesAbil = {
+    magidifesa = {},
+    filtro = {},
+    solidroccia = {},
+    scudoprisma = {},
+    teraguscio = {},
+}
 for abil, types in pairs(eta.ability) do
     eta.modTypesAbil[abil] = {}
     for t, _ in pairs(types) do

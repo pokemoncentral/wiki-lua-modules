@@ -36,6 +36,9 @@ print(dr.debRes({ args = { "Altaria" } }))
 -- Magidifesa
 print(dr.debRes({ args = { "Shedinja" } }))
 
+-- Teraguscio
+print(dr.debRes({ args = { "Terapagos", form = "T" } }))
+
 -- ================================== Single ==================================
 -- It automatically checks that positional and named produces the same output
 
@@ -97,3 +100,6 @@ print(dr.single({ args = { "Gengar", gen = 6 } }))
 -- Alternative form
 print(dr.single({ args = { "Rotom", form = "L", gen = 4 } }))
 print(dr.single({ args = { "Rotom", form = "L", gen = 5 } }))
+
+-- Gen 9 (Astral type)
+print(dr.single({ args = { "Luxio", gen = 9 } }))

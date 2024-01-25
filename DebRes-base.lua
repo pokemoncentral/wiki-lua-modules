@@ -367,6 +367,14 @@ dr.EffTable.makeFooter = function(this)
         this.footer = tab.append(this.footer, maybeLines)
     end
 
+    -- Adding ASTRAL footer line for gen 9
+    if this.gen == 9 then
+        table.insert(
+            this.footer,
+            dr.EffTable.FooterLine.new("ASTRAL", types, "nessuna", etdata)
+        )
+    end
+
     -- Footer should be sorted for equality and printing
     table.sort(this.footer)
 end
@@ -409,10 +417,17 @@ dr.EffTable.FooterLine.strings = {
 
     -- Magidifesa text
     MAGIDIFESA = "solo le mosse di tipo ${types} continuano a non avere effetto.",
+
+    -- Teraguscio text
+    TERAGUSCIO = "Se Terapagos Forma Teracristal ha tutti i PS e gli effetti di [[${abil}]] non sono stati annullati, l'efficacia di qualsiasi mossa non di tipo ${types} è x0,5",
+
+    -- Astral type
+    ASTRAL = "Se questo Pokémon è [[Teracristal|teracristallizzato]], ",
 }
 
 -- Sorting categories to sort footerlines
-dr.EffTable.FooterLine.kindOrder = { "MAYBE", "TAKENOFF", "RINGTARGET" }
+dr.EffTable.FooterLine.kindOrder =
+    { "MAYBE", "TAKENOFF", "RINGTARGET", "ASTRAL" }
 
 -- This table holds functions to generate the initial part of a FooterLine based
 -- on its category.
@@ -469,6 +484,15 @@ dr.EffTable.FooterLine.init.RINGTARGET = function(abils, type, etdata)
     return table.concat(pieces)
 end
 
+-- Initial part for ASTRAL category.
+dr.EffTable.FooterLine.init.ASTRAL = function()
+    return dr.EffTable.FooterLine.strings.ASTRAL
+        .. txt.interp(
+            dr.EffTable.FooterLine.strings.EFF,
+            { types = "[[Astrale]]", eff = "2" }
+        )
+end
+
 --[[
 
 FooterLine constructor. Its arguments are a line category, the Pokémon type
@@ -487,7 +511,7 @@ dr.EffTable.FooterLine.new = function(kind, types, abil, etdata)
     this.et = etdata
 
     -- Initial part of the footer line
-    this.init = "\n*"
+    this.init = "\n* "
         .. dr.EffTable.FooterLine.init[kind](abil, types.type1, etdata)
 
     --[[
@@ -501,6 +525,10 @@ dr.EffTable.FooterLine.new = function(kind, types, abil, etdata)
 
     -- Handling corner case abilities
     if this:makeSpecialAbil(abil, types) then
+        return this
+    end
+    -- ASTRAL kind
+    if kind == "ASTRAL" then
         return this
     end
 
@@ -566,11 +594,11 @@ end
 --[[
 
 This method takes care of corner case abilities that need to be treated
-separately when calculating new effectiveness. It takes as argument athe
+separately when calculating new effectiveness. It takes as argument the
 ability to be checked and possibly handled, and the types to be used when
 calculating the new effectiveness. If the ability is a corner case, true is
 returned, false otherwise. Such abilities are so far Filtro, Solidroccia,
-Scudoprisma and Magidifesa.
+Scudoprisma, Magidifesa and Teraguscio.
 
 --]]
 dr.EffTable.FooterLine.makeSpecialAbil = function(this, abil, types)
@@ -628,7 +656,7 @@ dr.EffTable.FooterLine.makeSpecialAbil = function(this, abil, types)
     elseif abil == "magidifesa" then
         this.tostring = string.interp(
             table.concat({
-                "\n*",
+                "\n* ",
                 dr.EffTable.FooterLine.strings.TAKENOFF,
                 dr.EffTable.FooterLine.strings.MAGIDIFESA,
             }),
@@ -640,6 +668,14 @@ dr.EffTable.FooterLine.makeSpecialAbil = function(this, abil, types)
                 ),
             }
         )
+
+        return true
+    elseif abil == "teraguscio" then
+        this.tostring =
+            string.interp("\n* " .. dr.EffTable.FooterLine.strings.TERAGUSCIO, {
+                abil = "Teraguscio",
+                types = link.colorType("Spettro"),
+            })
 
         return true
     end
