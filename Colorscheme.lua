@@ -71,8 +71,9 @@ c.BN, c.BW, c.Unima, c.Unova, c.unima, c.Isshu =
 c["Black & White"], c["Nero & Bianco"], c["Nero e Bianco"] = c.NB, c.NB, c.NB
 c.NB2 = _colore("E3CED0", "424B50")
 c.Isshu2, c.Unova2, c.Unima2, c.N2B2 = c.NB2, c.NB2, c.NB2, c.NB2
-c.NBs2, c.B2W2, c.BW2, c["Black 2 & White 2"] = c.NB2, c.NB2, c.NB2, c.NB2
-c["Best Wishes 2"], c["Best Wishes stagione 2"] = c.NB2, c.NB2
+c.NBs2, c.B2W2, c.BW2, c["Nero 2 & Bianco 2"] = c.NB2, c.NB2, c.NB2, c.NB2
+c["Black 2 & White 2"], c["Best Wishes 2"], c["Best Wishes stagione 2"] =
+    c.NB2, c.NB2, c.NB2
 c.cristalline = _colore("FFE6AA", "FFCD55")
 c.Cristalline = c.cristalline
 c.kalos = _colore("F16A81", "025DA6")
