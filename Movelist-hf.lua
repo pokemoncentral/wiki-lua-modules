@@ -31,7 +31,7 @@ j.strings = {
 ! class="hidden-sm" style="padding: 0 0.7ex;" rowspan="${rs}" | Gruppo Uova
 ! class="roundytr" colspan="${cs}" | ]=],
     HEADERTM = [=[
-! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 4ex; line-height: 1em;" colspan="${cs}" | [[${genl} generazione|${genr}]]<div class="text-small">${tm}</div>
+! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 4ex; line-height: 1em; position: sticky; top: 0; z-index: 10;" colspan="${cs}" | [[${genl} generazione|${genr}]]<div class="text-small">${tm}</div>
 ]=],
 }
 
@@ -84,7 +84,7 @@ local cells = {}
 
 cells.level = function(gen)
     local str =
-        '! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 4ex;" colspan="${cs}" | [[${genl} generazione|${genr}]]\n'
+        '! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 4ex; position: sticky; top: 0; z-index: 10;" colspan="${cs}" | [[${genl} generazione|${genr}]]\n'
     local row = {}
     for a = gen, gendata.latest do
         table.insert(
@@ -105,7 +105,7 @@ end
 
 cells.tm = function(gen, tms)
     local str =
-        '! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 4ex; line-height: 1em;" colspan="${cs}" | [[${genl} generazione|${genr}]]<div class="text-small">${tm}</div>\n'
+        '! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 4ex; line-height: 1em; position: sticky; top: 0; z-index: 10;" colspan="${cs}" | [[${genl} generazione|${genr}]]<div class="text-small">${tm}</div>\n'
     local row = {}
     local l
     for a = gen, gendata.latest do
@@ -130,7 +130,7 @@ end
 
 cells.breed = function(gen)
     local str =
-        '! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 4ex" colspan="${cs}" | [[${genl} generazione|${genr}]]\n'
+        '! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 4ex; position: sticky; top: 0; z-index: 10;" colspan="${cs}" | [[${genl} generazione|${genr}]]\n'
     local row = {}
     for a = gen, gendata.latest do
         table.insert(
@@ -151,7 +151,7 @@ end
 
 cells.tutor = function(gen, gms)
     local str =
-        '! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 6ex;" | ${game}\n'
+        '! class="roundytop ${textcolor}" style="background: #${bg}; min-width: 6ex; position: sticky; top: 0; z-index: 10;" | ${game}\n'
     local row = {}
     for a in ipairs(gms) do
         if gms[a] == "yes" then
@@ -277,13 +277,13 @@ j.shadowh = function(frame)
     local game = p[1] or "xd"
 
     local colo = txt.interp(
-        '\n! class="roundytop ${textcolor}" style="background: #${bg}; width: 100px;" | [[Pokémon Colosseum|C]]\n',
+        '\n! class="roundytop ${textcolor}" style="background: #${bg}; width: 100px; position: sticky; top: 0; z-index: 10;" | [[Pokémon Colosseum|C]]\n',
         { bg = c.colo.normale, textcolor = cc.forModBgLua(c.colo.normale) }
     )
     return txt.interp(
         [=[${str}Livello
 |-${colo}
-! class="roundytop ${textcolor}" style="background: #${bg}; width: 100px;" | [[Pokémon XD: Tempesta Oscura|XD]]]=],
+! class="roundytop ${textcolor}" style="background: #${bg}; width: 100px; position: sticky; top: 0; z-index: 10;" | [[Pokémon XD: Tempesta Oscura|XD]]]=],
         {
             str = j.headers(
                 "xd",
