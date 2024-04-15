@@ -298,6 +298,7 @@ c.Galar = c.galar
 c.hisui, c.Hisui = c.sinnoh, c.sinnoh
 c.paldea = _colore("A8A8A8", "D1D1D1", "707070")
 c.Paldea = c.paldea
+c.luminopoli, c.Luminopoli = c.kalos, c.kalos
 
 c.settipelago = _colore("52CC91", "8DEBBC", "2B915E")
 c.Settipelago = c.settipelago
