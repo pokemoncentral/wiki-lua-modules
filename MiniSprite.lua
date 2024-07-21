@@ -8,6 +8,7 @@ Examples:
 {{#invoke: MiniSprite | ani | 63 | gen = 2 }}
 {{#invoke: MiniSprite | static | 398 | gen = 7 }}
 {{#invoke: MiniSprite | static | 398 | female = yes | shiny = yes }}
+{{#invoke: MiniSprite | static | 398 | game = LPA }}
 
 --]]
 
@@ -17,6 +18,7 @@ local o = {}
 local mw = require('mw')
 
 local txt = require('Wikilib-strings')
+local genlib = require('Wikilib-gens')
 local wlib = require('Wikilib')
 local gendata = require("Gens-data")
 local pokes = require("Poké-data")
@@ -43,10 +45,14 @@ end
 Preprocess the arguments to make them more suitable for the module internals.
 
 --]]
-local function preprocess(n, gen, link)
-    n = n or "000"
+local function preprocess(n, gen, game, link)
+    n = n or "0000"
 
-    gen = tonumber(gen) or gendata.latest
+    game = game and string.lower(game)
+    local gameGen = game and genlib.getGen.game(game)
+
+    -- If game is specified, overrides the gen
+    gen = gameGen or tonumber(gen) or gendata.latest
     gen = genAliases[gen] or gen
 
     if not link then
@@ -59,7 +65,7 @@ local function preprocess(n, gen, link)
             link = "MissingNo"
         end
     end
-    return n, gen, link
+    return n, gen, game, link
 end
 
 --[[
@@ -70,6 +76,7 @@ Supports the following arguments. The ndex can be also the first argument.
     - 1 | ndex: ndex number
     - link (optional): link for the image (by default the Pokémon page)
     - gen (optional): generation of the MS
+    - game (optional): game of the MS (if provided, overrides gen)
     - female (optional): for gen 8 and after, use the female MS if given
     - shiny (optional): for gen 8 and after, use the shiny MS if given
 
@@ -84,6 +91,7 @@ local function splitMwArgs(args)
     return {
         ndex = args.ndex or args[1],
         gen = args.gen or args[3],
+        game = args.game,
         link = args.link or args[2],
         female = args.female,
         shiny = args.shiny,
@@ -92,9 +100,11 @@ end
 
 -- Animated MS, Lua call
 o.aniLua = function(args)
-    local n, gen, link = preprocess(args.ndex or args[1], args.gen, args.link)
+    local n, gen, game, link =
+        preprocess(args.ndex or args[1], args.gen, args.game, args.link)
     if staticOnly(gen) then
         args.ndex = n
+        args.game = game
         args.gen = gen
         args.link = link
         return o.staticLua(args)
@@ -115,22 +125,31 @@ o.Ani, o.AniP, o.aniP = o.ani, o.ani, o.ani
 
 -- Static MS, Lua call
 o.staticLua = function(args)
-    local n, gen, link = preprocess(args.ndex or args[1], args.gen, args.link)
+    local n, gen, game, link =
+        preprocess(args.ndex or args[1], args.gen, args.game, args.link)
     if aniOnly(gen) then
         args.ndex = n
+        args.game = game
         args.gen = gen
         args.link = link
         return o.aniLua(args)
     end
     local interpString
-    local interpData = { num = n, gen = tostring(gen), name = link }
-    if gen < 8 then
+    local interpData = {
+        num = n,
+        gen = tostring(gen),
+        name = link,
+        gender = args.female == "yes" and "f" or "m",
+        shiny = args.shiny == "yes" and "sh" or "",
+    }
+    if game == "lpa" then
+        interpString =
+            "[[File:Iconlpa${gender}${shiny}${num}.png|${name}|40px|link=${name}]]"
+    elseif gen < 8 then
         interpString = "[[File:${num}MS${gen}.png|${name}|link=${name}]]"
     else
         interpString =
             "[[File:Mini${gender}${shiny}${num}.png|${name}|40px|link=${name}]]"
-        interpData.gender = args.female == "yes" and "f" or "m"
-        interpData.shiny = args.shiny == "yes" and "sh" or ""
     end
     return txt.interp(interpString, interpData)
 end
