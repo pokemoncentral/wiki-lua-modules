@@ -30,6 +30,13 @@ genAliases[3] = 5
 genAliases[4] = 5
 genAliases[6] = 7
 
+-- Interp strings for static ms of specific games
+local staticGamesString = {
+    spsc = "[[File:${num}MSSpSc.png|${name}|40px|link=${name}]]",
+    dlps = "[[File:${num}MSDLPS.png|${name}|40px|link=${name}]]",
+    lpa = "[[File:Iconlpa${gender}${shiny}${num}.png|${name}|40px|link=${name}]]",
+}
+
 -- Return true if the given generation has only static MS
 local function staticOnly(gen)
     return gen > 5
@@ -134,7 +141,6 @@ o.staticLua = function(args)
         args.link = link
         return o.aniLua(args)
     end
-    local interpString
     local interpData = {
         num = n,
         gen = tostring(gen),
@@ -142,14 +148,14 @@ o.staticLua = function(args)
         gender = args.female == "yes" and "f" or "m",
         shiny = args.shiny == "yes" and "sh" or "",
     }
-    if game == "lpa" then
-        interpString =
-            "[[File:Iconlpa${gender}${shiny}${num}.png|${name}|40px|link=${name}]]"
-    elseif gen < 8 then
-        interpString = "[[File:${num}MS${gen}.png|${name}|link=${name}]]"
-    else
-        interpString =
-            "[[File:Mini${gender}${shiny}${num}.png|${name}|40px|link=${name}]]"
+    local interpString = staticGamesString[game]
+    if interpString == nil then
+        if gen < 8 then
+            interpString = "[[File:${num}MS${gen}.png|${name}|link=${name}]]"
+        else
+            interpString =
+                "[[File:Mini${gender}${shiny}${num}.png|${name}|40px|link=${name}]]"
+        end
     end
     return txt.interp(interpString, interpData)
 end
