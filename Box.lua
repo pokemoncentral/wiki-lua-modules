@@ -195,7 +195,7 @@ to nil, classes and styles wouldn't be unpacked and passed to the lua function,
 meaning that the box would basically be unstyled.
 
 --]]
-local makeWikicodeIntreface = function(luaFunction)
+local makeWikicodeInterface = function(luaFunction)
     return function(frame)
         local p = w.trimAll(tab.copy(frame.args), false)
         return luaFunction(table.unpack(p))
@@ -288,24 +288,24 @@ Main function creating a box. Lua interface. Arguments:
 - styles: Table/string of CSS styles, in the format parseStyles and
     printStyles produce respectively. Optional, defaults to {}.
 - textcolor: Text color, defaults to #FFFFFF
+- nolink: flag to prevent adding a link to the box, defaults to no
 
 --]]
-b.boxLua = function(text, link, color, pdfs, classes, styles, textcolor)
+b.boxLua = function(text, link, color, pdfs, classes, styles, textcolor, nolink)
     classes, styles = css.classesStyles(predefs, pdfs, classes, styles)
+    local interp_str = nolink == "yes"
+            and [=[<div class="${class}" style="${bg}; ${style}"><span style="color: #${tc};">${text}</span></div>]=]
+        or [=[<div class="${class}" style="${bg}; ${style}">[[${link}|<span style="color: #${tc};">${text}</span>]]</div>]=]
 
-    return txt.interp(
-        [=[<div class="${class}" style="${bg}; ${style}">[[${link}|<span style="color:#${tc}">${text}</span>]]</div>]=],
-        {
-            class = css.printClasses(classes),
-            bg = color
-                    and css.horizGradLua({ color, "dark", color, "normale" })
-                or "",
-            tc = textcolor or "FFF",
-            link = link or text,
-            text = text,
-            style = css.printStyles(styles),
-        }
-    )
+    return txt.interp(interp_str, {
+        class = css.printClasses(classes),
+        bg = color and css.horizGradLua({ color, "dark", color, "normale" })
+            or "",
+        tc = textcolor or "FFF",
+        link = link or text,
+        text = text,
+        style = css.printStyles(styles),
+    })
 end
 b.box_lua = b.boxLua
 
@@ -315,7 +315,7 @@ Wikicode interface to boxLua. More info (but you won't likely need it if you
 read till here ;) ), in the top comment.
 
 --]]
-b.box = makeWikicodeIntreface(b.boxLua)
+b.box = makeWikicodeInterface(b.boxLua)
 b.Box = b.box
 
 --[[
@@ -330,7 +330,7 @@ for name, makeBoxArgs in pairs(b.shortHands) do
     local luaFunction = function(...)
         return b.boxLua(makeBoxArgs(...))
     end
-    local wikicodeFunction = makeWikicodeIntreface(luaFunction)
+    local wikicodeFunction = makeWikicodeInterface(luaFunction)
 
     -- Exporting single box interfaces
     export(name, "box", luaFunction, wikicodeFunction)
@@ -351,7 +351,7 @@ for name, makeBoxArgs in pairs(b.shortHands) do
             return luaFunction(item, table.unpack(args))
         end)
     end
-    local wikicodeList = makeWikicodeIntreface(luaList)
+    local wikicodeList = makeWikicodeInterface(luaList)
 
     -- Exporting list interfaces
     export(name, "list", luaList, wikicodeList)
