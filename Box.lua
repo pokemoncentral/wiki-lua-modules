@@ -21,6 +21,7 @@ The basic function is called box, and has the following arguments:
 - 6: CSS styles, in the format of an HTML style attribute values. Optional,
     defaults to no CSS styles.
 - 7: Text color, defaults to #FFFFFF
+- 8: flag, set to "yes" to remove links from boxes
 
 Example call:
 
@@ -39,6 +40,7 @@ listed below:
         classes.
     - 4: CSS styles, in the format of an HTML style attribute values. Optional,
         defaults to no CSS styles.
+    - 5: flag, set to "yes" to remove links from boxes
 
     Example: {{#invoke: Box | typeBox | Elettro | thick | | margin: 3em; }}
 
@@ -223,8 +225,9 @@ b.shortHands = {
                 and printClasses produce respectively. Optional, defaults to {}.
             - styles: Table/string of CSS styles, in the format parseStyles and
                 printStyles produce respectively. Optional, defaults to {}.
+            - nolink: flag to remove link from boxes
     --]]
-    type = function(tipo, pdfs, classes, styles)
+    type = function(tipo, pdfs, classes, styles, nolink)
         tipo = txt.fu(txt.trim(tipo or "Sconosciuto"))
         if type(classes) == "table" then
             classes = tab.copy(classes)
@@ -232,7 +235,7 @@ b.shortHands = {
         else
             classes = table.concat({ classes or "", " box-", tipo:lower() })
         end
-        return tipo, tipo, nil, pdfs, classes, styles, "FFF"
+        return tipo, tipo, nil, pdfs, classes, styles, "FFF", nolink
     end,
 
     --[[
@@ -294,14 +297,25 @@ Main function creating a box. Lua interface. Arguments:
 b.boxLua = function(text, link, color, pdfs, classes, styles, textcolor, nolink)
     classes, styles = css.classesStyles(predefs, pdfs, classes, styles)
     local interp_str = nolink == "yes"
-            and [=[<div class="${class}" style="${bg}; ${style}"><span style="color: #${tc};">${text}</span></div>]=]
-        or [=[<div class="${class}" style="${bg}; ${style}">[[${link}|<span style="color: #${tc};">${text}</span>]]</div>]=]
+            and [=[<div class="${class}" style="${bg}; ${style}"><span style="${tc};">${text}</span></div>]=]
+        or [=[<div class="${class}" style="${bg}; ${style}">[[${link}|<span style="${tc};">${text}</span>]]</div>]=]
+
+    -- Handles textcolor classes
+    local tcclass = false
+    if textcolor == "FFF" or textcolor == "FFFFFF" then
+        tcclass = true
+        table.insert(classes, "white-text")
+    end
+    if textcolor == "000" or textcolor == "000000" then
+        tcclass = true
+        table.insert(classes, "black-text")
+    end
 
     return txt.interp(interp_str, {
         class = css.printClasses(classes),
         bg = color and css.horizGradLua({ color, "dark", color, "normale" })
             or "",
-        tc = textcolor or "FFF",
+        tc = tcclass and "" or table.concat({ "color: #", textcolor or "FFF" }),
         link = link or text,
         text = text,
         style = css.printStyles(styles),
