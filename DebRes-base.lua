@@ -649,11 +649,14 @@ dr.EffTable.FooterLine.makeSpecialAbil = function(this, abil, types)
         return true
 
     --[[
-        The stantard footer would be too long here. Furthermore, the
-        ability will always be Shedinja's peculiar, so we chose a custom
+        The stantard footer would be too long here, so we chose a custom
         solution.
     --]]
     elseif abil == "magidifesa" then
+        -- Moves that are ineffective even without Magidifesa
+        local noEffTypes =
+            etlib.difesa(this.et, 0, types.type1, types.type2, "Tanfo")
+
         this.tostring = string.interp(
             table.concat({
                 "\n* ",
@@ -662,8 +665,11 @@ dr.EffTable.FooterLine.makeSpecialAbil = function(this, abil, types)
             }),
             {
                 abil = "Magidifesa",
-                types = table.concat(
-                    { link.colorType("Normale"), link.colorType("Lotta") },
+                types = mw.text.listToText(
+                    tab.map(noEffTypes, function(t)
+                        return link.colorType(txt.fu(t))
+                    end),
+                    ", ",
                     " e "
                 ),
             }

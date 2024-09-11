@@ -7515,7 +7515,6 @@ evo[946], evo[947] = evo.bramblin, evo.bramblin
 evo.gimmighoul = {
     ndex = 999,
     name = "gimmighoul",
-    notes = altforms.gimmighoul.names.base,
 
     evos = {
         {

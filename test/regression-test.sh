@@ -62,7 +62,7 @@ run_tests() {
 #######################################
 
 # The git commit whose test output will be compared to the current one.
-COMMIT='HEAD~1'
+COMMIT='HEAD'
 # Whether output files should be kept
 KEEP_OUTPUT='false'
 
