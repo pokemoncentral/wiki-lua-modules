@@ -6,6 +6,7 @@ local b = {}
 local mw = require('mw')
 
 local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
 local oop = require('Wikilib-oop')
 local list = require('Wikilib-lists')
 local multigen = require('Wikilib-multigen')
@@ -23,6 +24,19 @@ sulle forme che li hanno.
 --]]
 local TypesBox = oop.makeClass(list.Labelled)
 
+TypesBox.STRINGS = {
+    singleFormBox = '<div class="width-xl-50 text-center" style="box-sizing: border-box; padding: 0.2em;" >${type1}${type2}${forms}</div>',
+    typesBox = '<div class="roundy white-bg flex flex-row flex-wrap flex-main-stretch flex-items-center" style="padding: 0.2em;">',
+}
+
+-- Table holding forms to ignore (not print)
+TypesBox.ignorableForms = {
+    "ogerponTT",
+    "ogerponFcT",
+    "ogerponFnT",
+    "ogerponPT",
+}
+
 --[[
 
 Costruttore della classe: ha in ingresso il
@@ -31,6 +45,11 @@ e, opzionalmente, il nome esteso della forma
 
 --]]
 TypesBox.new = function(name, formName)
+    -- Ignored forms
+    if tab.search(TypesBox.ignorableForms, name) then
+        return nil
+    end
+
     local this = setmetatable(TypesBox.super.new(formName), TypesBox)
 
     local pokeData = multigen.getGen(pokes[name])
@@ -51,18 +70,15 @@ sotto in piccolo.
 
 --]]
 TypesBox.__tostring = function(this)
-    return txt.interp(
-        '<div class="width-xl-50 text-center" style="box-sizing: border-box; padding: 0.2em;" >${type1}${type2}${forms}</div>',
-        {
-            type1 = l.typeColor(this.type1),
-            type2 = this.type1 == this.type2 and "" or l.typeColor(this.type2),
-            forms = #this.labels < 1 and "" or table.concat({
-                '<div class="small-text">',
-                mw.text.listToText(this.labels, ", ", " e "),
-                "</div>",
-            }),
-        }
-    )
+    return txt.interp(TypesBox.STRINGS.singleFormBox, {
+        type1 = l.typeColor(this.type1),
+        type2 = this.type1 == this.type2 and "" or l.typeColor(this.type2),
+        forms = #this.labels < 1 and "" or table.concat({
+            '<div class="small-text">',
+            mw.text.listToText(this.labels, ", ", " e "),
+            "</div>",
+        }),
+    })
 end
 
 --[[
@@ -74,11 +90,7 @@ raggruppati in due per riga
 
 local printBoxes = function(boxes)
     local acc = table.map(boxes, tostring)
-    table.insert(
-        acc,
-        1,
-        '<div class="roundy white-bg flex flex-row flex-wrap flex-main-stretch flex-items-center" style="padding: 0.2em;">'
-    )
+    table.insert(acc, 1, TypesBox.STRINGS.typesBox)
     table.insert(acc, "</div>")
 
     return table.concat(acc)

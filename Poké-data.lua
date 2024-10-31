@@ -2307,6 +2307,15 @@ t.ogerponP = {name = 'Ogerpon', ndex = 1017, type1 = 'erba', type2 = 'acqua'}
 t["1017P"] = t.ogerponP
 t.ogerponFc = {name = 'Ogerpon', ndex = 1017, type1 = 'erba', type2 = 'fuoco'}
 t["1017Fc"] = t.ogerponFc
+t.ogerponTT = t.ogerpon
+t["1017TT"] = t.ogerponTT
+t.ogerponPT = {name = 'Ogerpon', ndex = 1017, type1 = 'acqua', type2 = 'acqua'}
+t["1017PT"] = t.ogerponPT
+t.ogerponFcT = {name = 'Ogerpon', ndex = 1017, type1 = 'fuoco', type2 = 'fuoco'}
+t["1017FcT"] = t.ogerponFcT
+t.ogerponFnT = {name = 'Ogerpon', ndex = 1017, type1 = 'roccia', type2 = 'roccia'}
+t["1017FnT"] = t.ogerponFnT
+
 
 t.charizardMX = {name = 'Charizard', ndex = 6, type1 = 'fuoco', type2 = 'drago'}
 t["0006MX"] = t.charizardMX
@@ -2389,10 +2398,6 @@ t["0931A"], t["0931G"], t["0931B"] =
     t.squawkabilly, t.squawkabilly, t.squawkabilly
 t.gimmighoulA = t.gimmighoul
 t["0999A"] = t.gimmighoulA
-t.ogerponTT, t["1017TT"] = t.ogerpon, t.ogerpon
-t.ogerponPT, t["1017PT"] = t.ogerponP, t.ogerponP
-t.ogerponFcT, t["1017FcT"] = t.ogerponFc, t.ogerponFc
-t.ogerponFnT, t["1017FnT"] = t.ogerponFn, t.ogerponFn
 t.terapagosT, t["1024T"] = t.terapagos, t.terapagos
 t.terapagosA, t["1024A"] = t.terapagos, t.terapagos
 
