@@ -32,7 +32,7 @@ eta.ability.mangiaterra = { terra = 0 }
 -- Table holding, for all abilities, which types effectiveness it influences.
 -- For instance, at index "pellearsa" there is a list containing "fuoco" and
 -- "acqua". As an exception, abilities with special effects (such as Filtro)
--- are in this table with not type associated.
+-- are in this table with no type associated.
 eta.modTypesAbil = {
     magidifesa = {},
     filtro = {},

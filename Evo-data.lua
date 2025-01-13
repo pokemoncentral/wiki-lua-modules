@@ -8122,7 +8122,6 @@ evo.zoruaH = {
             name = "zoroarkH",
             method = evo.methods.LEVEL,
             [evo.methods.LEVEL] = 30,
-            conditions = { [evo.conditions.REGION] = "Hisui" },
         },
     },
 }
