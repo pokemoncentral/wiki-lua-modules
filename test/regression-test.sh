@@ -36,6 +36,7 @@ CURRENT_OUTPUT_DIR="$TESTS_DIR/current-output"
 RESET='\e[0m'
 BLUE='\e[94m'
 GREEN='\e[92m'
+RED='\e[91m'
 YELLOW='\e[93m'
 
 #######################################
@@ -50,23 +51,24 @@ YELLOW='\e[93m'
 #   - $2+: The test scripts
 run_tests() {
     local OUTPUT_DIR="$1"
-    shift 1
+    local COMMIT="$2"
+    shift 2
 
     while [ $# -gt 0 ]; do
         local TEST_SCRIPT_PATH="$1"
         local TEST_SCRIPT
         TEST_SCRIPT="$(basename "$TEST_SCRIPT_PATH")"
-        # [[ ! -e "$TEST_SCRIPT_PATH" ]] && {
-        #     echo -ne >&2 '\e[91m[TEST]\e[0m '
-        #     echo -e >&2 "\e[91m$TEST_SCRIPT\e[0m@$COMMIT not found"
-        #     continue
-        # }
+        shift
+
+        [ ! -f "$TEST_SCRIPT_PATH" ] && {
+            echo -ne >&2 "${GREEN}[TEST]${RESET} ${RED}$TEST_SCRIPT${RESET}@"
+            echo -e >&2 "${BLUE}$COMMIT${RESET} not found"
+            continue
+        }
 
         echo -ne "${GREEN}[TEST]${RESET} Running "
-        echo -e "${GREEN}$TEST_SCRIPT${RESET}@${BLUE}current${RESET}"
+        echo -e "${GREEN}$TEST_SCRIPT${RESET}@${BLUE}$COMMIT${RESET}"
         lua "$TEST_SCRIPT_PATH" > "$OUTPUT_DIR/$TEST_SCRIPT.out"
-
-        shift
     done
 }
 
@@ -118,7 +120,8 @@ if [ -n "$COMMIT" ]; then
 
     if [ "$KEEP_OUTPUT" == 'false' ]; then
         # shellcheck disable=SC2064
-        trap "git worktree remove $WORKTREE_FOR_COMMIT" EXIT
+        # TODO: if worktree not exists
+        trap "git worktree remove --force $WORKTREE_FOR_COMMIT" EXIT
     fi
 
     git worktree add "$WORKTREE_FOR_COMMIT" "$COMMIT" > /dev/null
@@ -129,7 +132,13 @@ if [ -n "$COMMIT" ]; then
         echo -ne "${GREEN}[TEST]${RESET} Use ${YELLOW}snapshots${RESET} "
         echo -e "from ${BLUE}$COMMIT${RESET}"
     else
-        echo uuu
+        echo -ne "${GREEN}[TEST]${RESET} Snapshots@${BLUE}$COMMIT${RESET} not "
+        echo 'found. Execute tests.'
+        mkdir -p "$SNAPSHOTS_DIR"
+        TESTS_IN_WORKTREE="$(readlink -f "$@" \
+            | sed "s|^$GIT_ROOT|$WORKTREE_FOR_COMMIT|")"
+        # shellcheck disable=SC2086
+        run_tests "$SNAPSHOTS_DIR" "$COMMIT" $TESTS_IN_WORKTREE
     fi
 fi
 
@@ -163,7 +172,7 @@ fi
 #######################################
 
 mkdir -p "$CURRENT_OUTPUT_DIR"
-run_tests "$CURRENT_OUTPUT_DIR" "$@"
+run_tests "$CURRENT_OUTPUT_DIR" 'current' "$@"
 
 #######################################
 # Diffing
