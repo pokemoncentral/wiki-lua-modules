@@ -32,6 +32,12 @@ TESTS_DIR="$(dirname "${BASH_SOURCE[0]}" | xargs readlink -f)"
 SNAPSHOTS_DIR="$TESTS_DIR/snapshots"
 CURRENT_OUTPUT_DIR="$TESTS_DIR/current-output"
 
+# Colored output
+RESET='\e[0m'
+BLUE='\e[94m'
+GREEN='\e[92m'
+YELLOW='\e[93m'
+
 #######################################
 # Functions
 #######################################
@@ -56,7 +62,8 @@ run_tests() {
         #     continue
         # }
 
-        echo -e "\e[92m[TEST]\e[0m Running \e[92m$TEST_SCRIPT\e[0m@\e[94mcurrent\e[0m"
+        echo -ne "${GREEN}[TEST]${RESET} Running "
+        echo -e "${GREEN}$TEST_SCRIPT${RESET}@${BLUE}current${RESET}"
         lua "$TEST_SCRIPT_PATH" > "$OUTPUT_DIR/$TEST_SCRIPT.out"
 
         shift
@@ -151,7 +158,8 @@ run_tests "$CURRENT_OUTPUT_DIR" "$@"
 #######################################
 
 basename -a "$@" | while read -r TEST_SCRIPT; do
-    echo -e "\e[93m[DIFF]\e[0m Compare \e[93m$TEST_SCRIPT\e[0m output with snapshot"
+    echo -ne "${YELLOW}[DIFF]${RESET} Compare ${YELLOW}$TEST_SCRIPT${RESET} "
+    echo 'output with snapshot'
     diff -su --color=always \
         --label "$TEST_SCRIPT@snapshot" \
         --label "$TEST_SCRIPT@current" \
