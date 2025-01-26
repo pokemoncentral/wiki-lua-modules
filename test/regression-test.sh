@@ -111,15 +111,22 @@ grep -E '\s+-\w\s+' <<<"$*" > /dev/null && {
 # Get old commit snapshots
 ########################################
 
-# if [ -n "$COMMIT" ]; then
-#     SNAPSHOTS_COMMIT="$SNAPSHOTS_DIR-$COMMIT"
+if [ -n "$COMMIT" ]; then
+    COMMIT_SHA="$(git rev-parse --short "$COMMIT")"
+    WORKTREE_FOR_COMMIT="$(mktemp --tmpdir="$TESTS_DIR" \
+        -d "worktree-$COMMIT_SHA.XXX")"
 
-#     git worktree add "$SNAPSHOTS_COMMIT" "$COMMIT"
-#     cd "$SNAPSHOTS_COMMIT/test/snapshot" || {
-#         bash cd "$SNAPSHOTS_COMMIT/test
-#     }
+    git worktree add "$WORKTREE_FOR_COMMIT" "$COMMIT" > /dev/null
+    GIT_ROOT="$(git rev-parse --show-toplevel)"
+    SNAPSHOTS_DIR="$WORKTREE_FOR_COMMIT/${SNAPSHOTS_DIR##"$GIT_ROOT"}"
 
-# fi
+    if [ -d "$SNAPSHOTS_DIR" ]; then
+        echo -ne "${GREEN}[TEST]${RESET} Use ${YELLOW}snapshots${RESET} "
+        echo -e "from ${BLUE}$COMMIT${RESET}"
+    else
+        echo uuu
+    fi
+fi
 
 # #######################################
 # # Going back to old git commit
@@ -172,5 +179,5 @@ done
 #######################################
 
 if [[ "$KEEP_OUTPUT" == 'false' ]]; then
-    rm -rf "$OLD_OUTPUT_DIR" "$CURRENT_OUTPUT_DIR"
+    git worktree remove "$WORKTREE_FOR_COMMIT"
 fi
