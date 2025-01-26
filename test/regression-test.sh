@@ -2,24 +2,32 @@
 
 # This script runs snapshot test, that is it compares the current output of a
 # test suite with the ones stored in the `snapshots` directory. It can also use
-# the `snapshots` directory of a previous commit, or the test output from that
-# commit if the `snapshots` directory wasn't there yet. For more info, read the
-# help string below
+# snapshots from a previous commit. For more info, read the help string below.
 
 HELP_STRING="Usage:
-regression-test [-hp] [-c HASH] FILES...
+regression-test [-hp] [-c GIT-REF] FILES...
 
 Runs snapshot tests against one or more test files.
-This script simply compares the current output of the test file with that
+This script simply compares the current output of the test files with that
 stored in the snapshots directory, printing differences.
+
+If a commit is provided via the -c option, the snapshots from such commits are
+used. If the commit doesn't have snapshots, they are generated on-the-fly by
+executing tests at that commit.
+Snapshots/test output of previous commits are cleaned up after each run of the
+script. If the -p option is given, they are kept around under
+test/worktree-<commit-sha>.
 
 Arguments:
     FILES...: The test files to be executed
 
 Options:
-    -h: Show this help
-    -c: Commit to compare with. Default to HEAD
-    -p: Preserve test outputs. If not specified, those are removed"
+    -h:             Show this help
+    -c GIT-REF:     Commit ref from which snapshots are used. If not given, the
+                    snapshots *currently on the filesystem* are used.
+    -p:             Preserve snapshots from the commit provided by -c. If not
+                    specified, the snapshots are removed
+"
 
 #######################################
 # Variables
@@ -143,31 +151,6 @@ grep -E '\s+-\w\s+' <<<"$*" > /dev/null && {
         run_tests "$SNAPSHOTS_DIR" "$COMMIT" $TESTS_IN_WORKTREE
     fi
 }
-
-# #######################################
-# # Going back to old git commit
-# #######################################
-
-# echo -e '\e[94m[GIT]\e[0m Stashing uncommitted changes'
-# git -C "$TESTS_DIR" stash push -q
-# echo -e "\e[94m[GIT]\e[0m Checking out $COMMIT"
-# git -C "$TESTS_DIR" checkout -q "$COMMIT"
-
-# #######################################
-# # Running old test scripts
-# #######################################
-
-# OLD_OUTPUT_DIR="$(mktemp --tmpdir="$TESTS_DIR" -d "output-$COMMIT.XXX")"
-# run_tests "$OLD_OUTPUT_DIR" "$TESTS_DIR" "$@"
-
-# #######################################
-# # Going back to current HEAD
-# #######################################
-
-# echo -e '\e[94m[GIT]\e[0m Checking back out to current HEAD'
-# git -C "$TESTS_DIR" checkout -q "$CURRENT_HEAD"
-# echo -e '\e[94m[GIT]\e[0m Stashing changes back'
-# git -C "$TESTS_DIR" stash pop -q
 
 #######################################
 # Running current test scripts
