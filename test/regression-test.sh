@@ -116,6 +116,11 @@ if [ -n "$COMMIT" ]; then
     WORKTREE_FOR_COMMIT="$(mktemp --tmpdir="$TESTS_DIR" \
         -d "worktree-$COMMIT_SHA.XXX")"
 
+    if [ "$KEEP_OUTPUT" == 'false' ]; then
+        # shellcheck disable=SC2064
+        trap "git worktree remove $WORKTREE_FOR_COMMIT" EXIT
+    fi
+
     git worktree add "$WORKTREE_FOR_COMMIT" "$COMMIT" > /dev/null
     GIT_ROOT="$(git rev-parse --show-toplevel)"
     SNAPSHOTS_DIR="$WORKTREE_FOR_COMMIT/${SNAPSHOTS_DIR##"$GIT_ROOT"}"
@@ -173,11 +178,3 @@ basename -a "$@" | while read -r TEST_SCRIPT; do
         "$CURRENT_OUTPUT_DIR/$TEST_SCRIPT.out" \
         "$SNAPSHOTS_DIR/$TEST_SCRIPT.out"
 done
-
-#######################################
-# Cleaning up
-#######################################
-
-if [[ "$KEEP_OUTPUT" == 'false' ]]; then
-    git worktree remove "$WORKTREE_FOR_COMMIT"
-fi
