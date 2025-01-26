@@ -113,18 +113,19 @@ grep -E '\s+-\w\s+' <<<"$*" > /dev/null && {
 # Get old commit snapshots
 ########################################
 
-if [ -n "$COMMIT" ]; then
+[ -n "$COMMIT" ] && {
     COMMIT_SHA="$(git rev-parse --short "$COMMIT")"
-    WORKTREE_FOR_COMMIT="$(mktemp --tmpdir="$TESTS_DIR" \
-        -d "worktree-$COMMIT_SHA.XXX")"
+    WORKTREE_FOR_COMMIT="$TESTS_DIR/worktree-$COMMIT_SHA"
 
-    if [ "$KEEP_OUTPUT" == 'false' ]; then
-        # shellcheck disable=SC2064
-        # TODO: if worktree not exists
-        trap "git worktree remove --force $WORKTREE_FOR_COMMIT" EXIT
-    fi
+    git worktree list --porcelain | grep --quiet "$WORKTREE_FOR_COMMIT" || {
+        rm --recursive --force "$WORKTREE_FOR_COMMIT"
+        git worktree add "$WORKTREE_FOR_COMMIT" "$COMMIT" > /dev/null
+    }
 
-    git worktree add "$WORKTREE_FOR_COMMIT" "$COMMIT" > /dev/null
+    # shellcheck disable=SC2064
+    [ "$KEEP_OUTPUT" == 'false' ] \
+        && trap "git worktree remove --force $WORKTREE_FOR_COMMIT" EXIT
+
     GIT_ROOT="$(git rev-parse --show-toplevel)"
     SNAPSHOTS_DIR="$WORKTREE_FOR_COMMIT/${SNAPSHOTS_DIR##"$GIT_ROOT"}"
 
@@ -134,13 +135,14 @@ if [ -n "$COMMIT" ]; then
     else
         echo -ne "${GREEN}[TEST]${RESET} Snapshots@${BLUE}$COMMIT${RESET} not "
         echo 'found. Execute tests.'
+
         mkdir -p "$SNAPSHOTS_DIR"
         TESTS_IN_WORKTREE="$(readlink -f "$@" \
             | sed "s|^$GIT_ROOT|$WORKTREE_FOR_COMMIT|")"
         # shellcheck disable=SC2086
         run_tests "$SNAPSHOTS_DIR" "$COMMIT" $TESTS_IN_WORKTREE
     fi
-fi
+}
 
 # #######################################
 # # Going back to old git commit
