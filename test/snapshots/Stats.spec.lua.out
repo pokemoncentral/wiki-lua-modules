@@ -1,0 +1,824 @@
+{| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #FAC000, #E62829); background-image: -webkit-linear-gradient(left, #FAC000, #E62829); background-image: linear-gradient(to right, #FAC000, #E62829);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 94.444444444444%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''255'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 315—362
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 620—714
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 1.8518518518519%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''5'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 10—57
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 15—109
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 3.7037037037037%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''10'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 15—62
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 25—119
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 34.444444444444%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''93'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 98—145
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 191—285
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 50%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''135'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 140—187
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 275—369
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 23.333333333333%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''63'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 68—115
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 131—225
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | 561
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]] e [[Punti individuali|VI]] pari a 0.
+* Le statistiche massime sono calcolate 65535 PA e VI pari a 15.
+* Le statistiche di questo Pokémon sono cambiate nel corso delle generazioni. Tutti i valori sono disponibili [[Elenco Pokémon per statistiche base|qui]]. 
+|}
+{| class="roundy text-center black-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #A2D0E0, #60A1B8); background-image: -webkit-linear-gradient(left, #A2D0E0, #60A1B8); background-image: linear-gradient(to right, #A2D0E0, #60A1B8);;"
+! colspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 18.518518518519%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''50'''</div>
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 81.481481481481%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''220'''</div>
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 77.777777777778%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''210'''</div>
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 33.333333333333%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''90'''</div>
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 7.7777777777778%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''21'''</div>
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 44.444444444444%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''120'''</div>
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">711<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 711|Altri Pokémon con questo totale]]</span></div>
+|}
+{| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #68A090, #9FA19F); background-image: -webkit-linear-gradient(left, #68A090, #9FA19F); background-image: linear-gradient(to right, #68A090, #9FA19F);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 12.222222222222%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''33'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 93—140
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 176—270
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 50.37037037037%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''136'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 141—188
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 277—371
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 0%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''0'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 5—52
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 5—99
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #A3FFEF;" | [[Statistiche#Speciali|<span style="color: #3ECDB4;">Speciali</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #A3FFEF;" | <div class="roundyright text-left" style="width: calc(1em + 2.2222222222222%); color: #179881; background-size: 100%; background-image: -moz-linear-gradient(left, #A3FFEF, #3ECDB4); background-image: -webkit-linear-gradient(left, #A3FFEF, #3ECDB4); background-image: linear-gradient(to right, #A3FFEF, #3ECDB4);;">'''6'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #A3FFEF;" | 11—58
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #A3FFEF;" | 17—111
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 10.740740740741%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''29'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 34—81
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 63—157
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | 204
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]] e [[Punti individuali|VI]] pari a 0.
+* Le statistiche massime sono calcolate 65535 PA e VI pari a 15.
+|}
+{| class="roundy text-center width-xl-30 width-md-50 width-sm-60 width-xs-100 black-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #FFE695, #FAC000); background-image: -webkit-linear-gradient(left, #FFE695, #FAC000); background-image: linear-gradient(to right, #FFE695, #FAC000);;"
+! colspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 25.115995115995%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''67,81'''</div>
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 28.310948310948%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''76,44'''</div>
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 25.946275946276%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''70,05'''</div>
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 32.222222222222%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''87'''</div>
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 26.202686202686%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''70,75'''</div>
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 30.687830687831%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''82,86'''</div>
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | 454,91
+|}
+{| class="roundy text-center width-xl-30 width-md-50 width-sm-60 width-xs-100 white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #FF7172, #E62829); background-image: -webkit-linear-gradient(left, #FF7172, #E62829); background-image: linear-gradient(to right, #FF7172, #E62829);;"
+! colspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 24.609053497942%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''66,44'''</div>
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 30.421810699588%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''82,14'''</div>
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 25.092592592593%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''67,75'''</div>
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 32.757201646091%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''88,44'''</div>
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 27.664609053498%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''74,69'''</div>
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 27.746913580247%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''74,92'''</div>
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | 454,39
+|}
+{| class="roundy text-center pull-center black-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #9FA19F, #81B9EF); background-image: -webkit-linear-gradient(left, #9FA19F, #81B9EF); background-image: linear-gradient(to right, #9FA19F, #81B9EF);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 14.814814814815%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''40'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 100—147
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 190—284
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 20.37037037037%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''55'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 54—117
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 103—229
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 11.111111111111%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''30'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 31—90
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 58—174
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 11.111111111111%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''30'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 31—90
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 58—174
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 11.111111111111%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''30'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 31—90
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 58—174
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 22.222222222222%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''60'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 58—123
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 112—240
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">245<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 245|Altri Pokémon con questo totale]]</span></div>
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
+* Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
+|}[[Categoria:Pokémon con statistiche base totali di 245|Starly]]
+{| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #E62829, #81B9EF); background-image: -webkit-linear-gradient(left, #E62829, #81B9EF); background-image: linear-gradient(to right, #E62829, #81B9EF);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 39.259259259259%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''106'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 166—213
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 322—416
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 48.148148148148%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''130'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 121—200
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 238—394
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 33.333333333333%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''90'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 85—156
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 166—306
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 40.740740740741%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''110'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 103—178
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 202—350
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 57.037037037037%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''154'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 143—226
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 281—447
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 33.333333333333%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''90'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 85—156
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 166—306
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">680<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 680|Altri Pokémon con questo totale]]</span></div>
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
+* Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
+|}[[Categoria:Pokémon con statistiche base totali di 680|Ho-Oh]]
+{| class="roundy text-center pull-center black-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #D8D8D8, #9FA19F); background-image: -webkit-linear-gradient(left, #D8D8D8, #9FA19F); background-image: linear-gradient(to right, #D8D8D8, #9FA19F);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 94.444444444444%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''255'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 315—362
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 620—714
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 3.7037037037037%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''10'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 13—68
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 22—130
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 3.7037037037037%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''10'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 13—68
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 22—130
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 27.777777777778%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''75'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 72—139
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 139—273
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 50%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''135'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 126—205
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 247—405
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 20.37037037037%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''55'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 54—117
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 103—229
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">540<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 540|Altri Pokémon con questo totale]]</span></div>
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
+* Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
+|}[[Categoria:Pokémon con statistiche base totali di 540|Blissey]]
+{| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #91A119, #704170); background-image: -webkit-linear-gradient(left, #91A119, #704170); background-image: linear-gradient(to right, #91A119, #704170);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 0.37037037037037%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''1'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 1—1
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 1—1
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 33.333333333333%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''90'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 85—156
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 166—306
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 16.666666666667%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''45'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 45—106
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 85—207
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 11.111111111111%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''30'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 31—90
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 58—174
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 11.111111111111%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''30'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 31—90
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 58—174
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 14.814814814815%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''40'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 40—101
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 76—196
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">236<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 236|Altri Pokémon con questo totale]]</span></div>
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
+* Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
+|}[[Categoria:Pokémon con statistiche base totali di 236|Shedinja]][[Categoria:Pokémon con statistiche base totali uniche|Shedinja]]
+==== Tutte le forme ====
+<div class="">
+{| class="roundy text-center pull-center black-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #D8D8D8, #9FA19F); background-image: -webkit-linear-gradient(left, #D8D8D8, #9FA19F); background-image: linear-gradient(to right, #D8D8D8, #9FA19F);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 44.444444444444%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''120'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 180—227
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 350—444
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 44.444444444444%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''120'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 112—189
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 220—372
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 44.444444444444%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''120'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 112—189
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 220—372
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 44.444444444444%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''120'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 112—189
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 220—372
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 44.444444444444%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''120'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 112—189
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 220—372
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 44.444444444444%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''120'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 112—189
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 220—372
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">720<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 720|Altri Pokémon con questo totale]]</span></div>
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
+* Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
+|}[[Categoria:Pokémon con statistiche base totali di 720|Arceus Normale]][[Categoria:Pokémon con lo stesso valore in tutte le statistiche base|Arceus Normale]]
+</div>
+==== Forma Alterata ====
+<div class="mw-collapsible">
+{| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #704170, #5060E1); background-image: -webkit-linear-gradient(left, #704170, #5060E1); background-image: linear-gradient(to right, #704170, #5060E1);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 55.555555555556%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''150'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 210—257
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 410—504
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 37.037037037037%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''100'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 94—167
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 184—328
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 44.444444444444%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''120'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 112—189
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 220—372
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 37.037037037037%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''100'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 94—167
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 184—328
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 44.444444444444%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''120'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 112—189
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 220—372
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 33.333333333333%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''90'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 85—156
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 166—306
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">680<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 680|Altri Pokémon con questo totale]]</span></div>
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
+* Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
+|}[[Categoria:Pokémon con statistiche base totali di 680|Giratina Forma Alterata]]
+</div>
+==== Forma Originale ====
+<div class="mw-collapsible mw-collapsed">
+{| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #704170, #5060E1); background-image: -webkit-linear-gradient(left, #704170, #5060E1); background-image: linear-gradient(to right, #704170, #5060E1);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 55.555555555556%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''150'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 210—257
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 410—504
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 44.444444444444%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''120'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 112—189
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 220—372
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 37.037037037037%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''100'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 94—167
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 184—328
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 44.444444444444%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''120'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 112—189
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 220—372
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 37.037037037037%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''100'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 94—167
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 184—328
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 33.333333333333%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''90'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 85—156
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 166—306
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">680<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 680|Altri Pokémon con questo totale]]</span></div>
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
+* Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
+|}[[Categoria:Pokémon con statistiche base totali di 680|Giratina Forma Originale]]
+</div>
+{| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #83B9FF, #2980EF); background-image: -webkit-linear-gradient(left, #83B9FF, #2980EF); background-image: linear-gradient(to right, #83B9FF, #2980EF);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 7.4074074074074%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''20'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 80—127
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 150—244
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 3.7037037037037%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''10'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 13—68
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 22—130
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 20.37037037037%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''55'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 54—117
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 103—229
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 5.5555555555556%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''15'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 18—73
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 31—141
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 7.4074074074074%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''20'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 22—79
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 40—152
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 29.62962962963%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''80'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 76—145
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 148—284
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">200<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 200|Altri Pokémon con questo totale]]</span></div>
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
+* Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
+* La statistica <span style="background: #3ECDB4; padding: 0 0.3ex;">Speciali</span> di questo Pokémon in [[prima generazione]] era pari a '''20'''.
+|}[[Categoria:Pokémon con statistiche base totali di 200|Magikarp]][[Categoria:Pokémon la cui statistica Speciali è diventata Difesa Speciale|Magikarp]]
+==== Forma Scudo ====
+<div class="mw-collapsible">
+{| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #60A1B8, #704170); background-image: -webkit-linear-gradient(left, #60A1B8, #704170); background-image: linear-gradient(to right, #60A1B8, #704170);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 22.222222222222%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''60'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 120—167
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 230—324
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 18.518518518519%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''50'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 49—112
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 94—218
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 51.851851851852%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''140'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 130—211
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 256—416
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 18.518518518519%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''50'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 49—112
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 94—218
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 51.851851851852%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''140'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 130—211
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 256—416
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 22.222222222222%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''60'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 58—123
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 112—240
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">500<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 500|Altri Pokémon con questo totale]]</span></div>
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
+* Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
+* La statistica <span style="background: #E5721D; padding: 0 0.3ex;">Difesa</span> di questo Pokémon prima della [[ottava generazione]] era pari a '''150'''.
+* La statistica <span style="background: #4C6CD4; padding: 0 0.3ex;">Difesa Speciale</span> di questo Pokémon prima della [[ottava generazione]] era pari a '''150'''.
+|}[[Categoria:Pokémon con statistiche base totali di 500|Aegislash Forma Scudo]][[Categoria:Pokémon le cui statistiche base sono cambiate in ottava generazione|Aegislash Forma Scudo]][[Categoria:Pokémon con statistiche base totali di 520|Aegislash Forma Scudo]]
+</div>
+==== Forma Spada ====
+<div class="mw-collapsible mw-collapsed">
+{| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #60A1B8, #704170); background-image: -webkit-linear-gradient(left, #60A1B8, #704170); background-image: linear-gradient(to right, #60A1B8, #704170);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 22.222222222222%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''60'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 120—167
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 230—324
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 51.851851851852%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''140'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 130—211
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 256—416
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 18.518518518519%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''50'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 49—112
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 94—218
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 51.851851851852%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''140'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 130—211
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 256—416
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 18.518518518519%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''50'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 49—112
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 94—218
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 22.222222222222%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''60'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 58—123
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 112—240
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">500<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 500|Altri Pokémon con questo totale]]</span></div>
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
+* Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
+* La statistica <span style="background: #EACA2F; padding: 0 0.3ex;">Attacco</span> di questo Pokémon prima della [[ottava generazione]] era pari a '''150'''.
+* La statistica <span style="background: #26BAE0; padding: 0 0.3ex;">Attacco Speciale</span> di questo Pokémon prima della [[ottava generazione]] era pari a '''150'''.
+|}[[Categoria:Pokémon con statistiche base totali di 500|Aegislash Forma Spada]][[Categoria:Pokémon le cui statistiche base sono cambiate in ottava generazione|Aegislash Forma Spada]][[Categoria:Pokémon con statistiche base totali di 520|Aegislash Forma Spada]]
+</div>
+==== Alakazam ====
+<div class="mw-collapsible">
+{| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #FF96B8, #EF4179); background-image: -webkit-linear-gradient(left, #FF96B8, #EF4179); background-image: linear-gradient(to right, #FF96B8, #EF4179);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 20.37037037037%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''55'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 115—162
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 220—314
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 18.518518518519%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''50'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 49—112
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 94—218
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 16.666666666667%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''45'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 45—106
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 85—207
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 50%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''135'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 126—205
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 247—405
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 35.185185185185%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''95'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 90—161
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 175—317
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 44.444444444444%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''120'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 112—189
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 220—372
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">500<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 500|Altri Pokémon con questo totale]]</span></div>
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
+* Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
+* La statistica <span style="background: #3ECDB4; padding: 0 0.3ex;">Speciali</span> di questo Pokémon in [[prima generazione]] era pari a '''135'''.
+* La statistica <span style="background: #4C6CD4; padding: 0 0.3ex;">Difesa Speciale</span> di questo Pokémon prima della [[sesta generazione]] era pari a '''85'''.
+|}[[Categoria:Pokémon con statistiche base totali di 500|Alakazam ]][[Categoria:Pokémon la cui statistica Speciali è diventata Attacco Speciale|Alakazam ]][[Categoria:Pokémon le cui statistiche base sono cambiate in sesta generazione|Alakazam ]][[Categoria:Pokémon con statistiche base totali di 490|Alakazam ]]
+</div>
+==== MegaAlakazam ====
+<div class="mw-collapsible mw-collapsed">
+{| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: -moz-linear-gradient(left, #FF96B8, #EF4179); background-image: -webkit-linear-gradient(left, #FF96B8, #EF4179); background-image: linear-gradient(to right, #FF96B8, #EF4179);;"
+! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
+! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
+|-
+! class="hidden-xs" style="width: 0.1ex; padding: 0;" | &nbsp;
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 50
+! class="hidden-xs text-small" style="padding: 0.3ex 0.8ex;" | Lv. 100
+|-
+| class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 20.37037037037%); color: #2E7A08; background-size: 100%; background-image: -moz-linear-gradient(left, #E1FFD3, #58E810); background-image: -webkit-linear-gradient(left, #E1FFD3, #58E810); background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''55'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundytl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 115—162
+| class="roundytr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #E1FFD3;" | 220—314
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 18.518518518519%); color: #B88C00; background-size: 100%; background-image: -moz-linear-gradient(left, #FFFBE6, #EACA2F); background-image: -webkit-linear-gradient(left, #FFFBE6, #EACA2F); background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''50'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 49—112
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFFBE6;" | 94—218
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 24.074074074074%); color: #8E3600; background-size: 100%; background-image: -moz-linear-gradient(left, #FFC499, #E5721D); background-image: -webkit-linear-gradient(left, #FFC499, #E5721D); background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''65'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 63—128
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #FFC499;" | 121—251
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 64.814814814815%); color: #15687D; background-size: 100%; background-image: -moz-linear-gradient(left, #B2E3EF, #26BAE0); background-image: -webkit-linear-gradient(left, #B2E3EF, #26BAE0); background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''175'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 162—249
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #B2E3EF;" | 319—493
+|-
+| style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 38.888888888889%); color: #0A163D; background-size: 100%; background-image: -moz-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: -webkit-linear-gradient(left, #9EB5FF, #4C6CD4); background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''105'''</div>
+| class="hidden-xs" | &nbsp;
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 99—172
+| class="text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #9EB5FF;" | 193—339
+|-
+| class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 55.555555555556%); color: #380036; background-size: 100%; background-image: -moz-linear-gradient(left, #EF8DEC, #D425CE); background-image: -webkit-linear-gradient(left, #EF8DEC, #D425CE); background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''150'''</div>
+| class="hidden-xs" | &nbsp;
+| class="roundybl text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 139—222
+| class="roundybr text-small hidden-xs black-text" style="padding: 0.3ex 0.8ex; white-space: nowrap; background: #EF8DEC;" | 274—438
+|-
+| style="padding: 0.3ex 0.8ex;" | Totale
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">600<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 600|Altri Pokémon con questo totale]]</span></div>
+| colspan="3" class="hidden-xs" | &nbsp;
+|-
+| colspan="5" class="hidden-xs text-left text-small" style="font-weight: normal;" | 
+* Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
+* Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
+* La statistica <span style="background: #4C6CD4; padding: 0 0.3ex;">Difesa Speciale</span> di questo Pokémon in [[sesta generazione]] era pari a '''95'''.
+|}[[Categoria:Pokémon con statistiche base totali di 600|Alakazam MegaAlakazam]][[Categoria:Pokémon le cui statistiche base sono cambiate in settima generazione|Alakazam MegaAlakazam]][[Categoria:Pokémon con statistiche base totali di 590|Alakazam MegaAlakazam]]
+</div>

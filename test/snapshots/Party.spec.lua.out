@@ -1,0 +1,386 @@
+{| class="mw-collapsible mw-collapsed light-text text-center pull-left roundy" style="padding: 0.5ex; background-size: 100%; background-image: -moz-linear-gradient(left, #BCF2FF, #0098BF); background-image: -webkit-linear-gradient(left, #BCF2FF, #0098BF); background-image: linear-gradient(to right, #BCF2FF, #0098BF);"
+|-
+| <div class="flex flex-row flex-nowrap flex-items-center flex-main-center" style="padding: 0 2.5em;">
+<div>
+<div class="roundy-full" style="padding: 0.3ex; background-size: 100%; background-image: -moz-linear-gradient(left, #3FD8FF, #BCF2FF); background-image: -webkit-linear-gradient(left, #3FD8FF, #BCF2FF); background-image: linear-gradient(to right, #3FD8FF, #BCF2FF);">[[File:RB Agatha.png]]</div>
+<div class="text-small" style="margin-top: 0.5ex; line-height: 10px">Ricompensa:</div>
+<div>'''[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]5940'''</div>
+</div>
+<div>
+<div class="roundy text-center" style="margin-left: 1ex; width: 18em; padding: 0.2ex; background-size: 100%; background-image: -moz-linear-gradient(left, #3FD8FF, #BCF2FF); background-image: -webkit-linear-gradient(left, #3FD8FF, #BCF2FF); background-image: linear-gradient(to right, #3FD8FF, #BCF2FF);">
+
+<div class="text-big">'''<span style="color: #000;">Agatha</span>'''</div>
+<div>'''[[Altopiano Blu|<span style="color: #000;">Altopiano Blu</span>]]'''</div>
+<div class="text-small">[[Pokémon Rosso e Blu|<span style="color: #000000;">Rosso e Blu</span>]]</div>
+</div>
+<div class="roundy pull-center" style="margin-top: 0.5ex; width: 14ex; padding: 0.2ex; line-height: 10px; background-size: 100%; background-image: -moz-linear-gradient(left, #3FD8FF, #BCF2FF); background-image: -webkit-linear-gradient(left, #3FD8FF, #BCF2FF); background-image: linear-gradient(to right, #3FD8FF, #BCF2FF);">[[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballempty.png]]</div>
+</div>
+</div>
+|-
+| style="padding: 0;" | <div class="roundy flex flex-row flex-nowrap flex-items-center flex-main-space-around" style="background-size: 100%; background-image: -moz-linear-gradient(left, #BCF2FF, #0098BF); background-image: -webkit-linear-gradient(left, #BCF2FF, #0098BF); background-image: linear-gradient(to right, #BCF2FF, #0098BF);">
+
+<div class="inline-block">
+<div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
+<div class="width-xl-50 width-xs-100">
+<div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
+<div class="roundy" style="background: #fff; margin-top: 1ex;">{{#ifexpr: 1 > 6 | {{#ifeq: Poké Ball | none | | {{bag|Poké Ball}}&nbsp;}}}}{{colore2|000|Haunter|{{ucfirst:Haunter}}}}{{#ifexpr: 1 > 1 | {{#switch: Haunter | Nidoran♀ | Nidoran♂ = | {{#switch: {{lc:none}} | male | ♂ = {{male}} | female | ♀ = {{female}} | both = {{male}}/{{female}}}}}}}}&nbsp;<span class="small-font">L.</span>55{{#ifexpr: 1 > 1 | {{#switch: {{lc:male}} | shiny | male shiny | female shiny = [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]] | {{#ifeq: {{lc:no}} | yes | [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]]}}}}}}</div>
+</div>
+<div class="width-xl-50 width-xs-100">
+<div class="small-font" style="margin-bottom: 0.1ex;">Tip{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | o | i }}:</div>
+<div class="same-line roundy{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | left}}" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Spettro | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | {{ucfirst:Spettro}} | {{#ifeq: {{lc:Spettro}} | coleottero | Coleot | {{ucfirst:Spettro}}}}}}|fff}}</div>{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | <div class="same-line roundyright" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Veleno | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | coleottero | Coleot | {{ucfirst:Veleno}}}}|fff}}</div>}}{{#ifexpr: 1 > 2 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Abilit&agrave;:</div>
+<div>{{acolor|{{ucfirst:Nessuna}}|000}}{{#if: |&nbsp;o {{acolor|{{ucfirst:{{{ability2}}}}}|000}}}}</div>}}{{#ifexpr: 1 > 1 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Strumento:</div>
+<div>{{#if:  | {{Bag|{{{held}}}}} {{colore2|000|{{ucfirst:{{{held}}}}}}}|Nessuno}}</div>}}
+</div>
+{{#switch: {{lc:}} | gara | contest = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Stordiraggio|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ombra Notturna|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ipnosi|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Mangiasogni|cat=Grinta|hearts=0}}</div> | #default = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Stordiraggio|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ombra Notturna|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ipnosi|type=Psico|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Mangiasogni|type=Psico|cat=Fisico|gen=1}}</div>}}
+</div>
+</div>
+<div class="inline-block">
+<div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
+<div class="width-xl-50 width-xs-100">
+<div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
+<div class="roundy" style="background: #fff; margin-top: 1ex;">{{#ifexpr: 1 > 6 | {{#ifeq: Poké Ball | none | | {{bag|Poké Ball}}&nbsp;}}}}{{colore2|000|Haunter|{{ucfirst:Haunter}}}}{{#ifexpr: 1 > 1 | {{#switch: Haunter | Nidoran♀ | Nidoran♂ = | {{#switch: {{lc:none}} | male | ♂ = {{male}} | female | ♀ = {{female}} | both = {{male}}/{{female}}}}}}}}&nbsp;<span class="small-font">L.</span>55{{#ifexpr: 1 > 1 | {{#switch: {{lc:male}} | shiny | male shiny | female shiny = [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]] | {{#ifeq: {{lc:no}} | yes | [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]]}}}}}}</div>
+</div>
+<div class="width-xl-50 width-xs-100">
+<div class="small-font" style="margin-bottom: 0.1ex;">Tip{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | o | i }}:</div>
+<div class="same-line roundy{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | left}}" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Spettro | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | {{ucfirst:Spettro}} | {{#ifeq: {{lc:Spettro}} | coleottero | Coleot | {{ucfirst:Spettro}}}}}}|fff}}</div>{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | <div class="same-line roundyright" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Veleno | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | coleottero | Coleot | {{ucfirst:Veleno}}}}|fff}}</div>}}{{#ifexpr: 1 > 2 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Abilit&agrave;:</div>
+<div>{{acolor|{{ucfirst:Nessuna}}|000}}{{#if: |&nbsp;o {{acolor|{{ucfirst:{{{ability2}}}}}|000}}}}</div>}}{{#ifexpr: 1 > 1 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Strumento:</div>
+<div>{{#if:  | {{Bag|{{{held}}}}} {{colore2|000|{{ucfirst:{{{held}}}}}}}|Nessuno}}</div>}}
+</div>
+{{#switch: {{lc:}} | gara | contest = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Stordiraggio|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ombra Notturna|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ipnosi|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Mangiasogni|cat=Grinta|hearts=0}}</div> | #default = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Stordiraggio|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ombra Notturna|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ipnosi|type=Psico|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Mangiasogni|type=Psico|cat=Fisico|gen=1}}</div>}}
+</div>
+</div>
+<div class="inline-block">
+<div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
+<div class="width-xl-50 width-xs-100">
+<div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
+<div class="roundy" style="background: #fff; margin-top: 1ex;">{{#ifexpr: 1 > 6 | {{#ifeq: Poké Ball | none | | {{bag|Poké Ball}}&nbsp;}}}}{{colore2|000|Haunter|{{ucfirst:Haunter}}}}{{#ifexpr: 1 > 1 | {{#switch: Haunter | Nidoran♀ | Nidoran♂ = | {{#switch: {{lc:none}} | male | ♂ = {{male}} | female | ♀ = {{female}} | both = {{male}}/{{female}}}}}}}}&nbsp;<span class="small-font">L.</span>55{{#ifexpr: 1 > 1 | {{#switch: {{lc:male}} | shiny | male shiny | female shiny = [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]] | {{#ifeq: {{lc:no}} | yes | [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]]}}}}}}</div>
+</div>
+<div class="width-xl-50 width-xs-100">
+<div class="small-font" style="margin-bottom: 0.1ex;">Tip{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | o | i }}:</div>
+<div class="same-line roundy{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | left}}" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Spettro | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | {{ucfirst:Spettro}} | {{#ifeq: {{lc:Spettro}} | coleottero | Coleot | {{ucfirst:Spettro}}}}}}|fff}}</div>{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | <div class="same-line roundyright" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Veleno | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | coleottero | Coleot | {{ucfirst:Veleno}}}}|fff}}</div>}}{{#ifexpr: 1 > 2 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Abilit&agrave;:</div>
+<div>{{acolor|{{ucfirst:Nessuna}}|000}}{{#if: |&nbsp;o {{acolor|{{ucfirst:{{{ability2}}}}}|000}}}}</div>}}{{#ifexpr: 1 > 1 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Strumento:</div>
+<div>{{#if:  | {{Bag|{{{held}}}}} {{colore2|000|{{ucfirst:{{{held}}}}}}}|Nessuno}}</div>}}
+</div>
+{{#switch: {{lc:}} | gara | contest = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Stordiraggio|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ombra Notturna|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ipnosi|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Mangiasogni|cat=Grinta|hearts=0}}</div> | #default = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Stordiraggio|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ombra Notturna|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ipnosi|type=Psico|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Mangiasogni|type=Psico|cat=Fisico|gen=1}}</div>}}
+</div>
+</div>
+</div>
+<div class="flex flex-row flex-nowrap flex-items-center flex-main-space-around" style="margin-top: 0.5ex;">
+
+<div class="inline-block">
+<div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
+<div class="width-xl-50 width-xs-100">
+<div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
+<div class="roundy" style="background: #fff; margin-top: 1ex;">{{#ifexpr: 1 > 6 | {{#ifeq: Poké Ball | none | | {{bag|Poké Ball}}&nbsp;}}}}{{colore2|000|Haunter|{{ucfirst:Haunter}}}}{{#ifexpr: 1 > 1 | {{#switch: Haunter | Nidoran♀ | Nidoran♂ = | {{#switch: {{lc:none}} | male | ♂ = {{male}} | female | ♀ = {{female}} | both = {{male}}/{{female}}}}}}}}&nbsp;<span class="small-font">L.</span>55{{#ifexpr: 1 > 1 | {{#switch: {{lc:male}} | shiny | male shiny | female shiny = [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]] | {{#ifeq: {{lc:no}} | yes | [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]]}}}}}}</div>
+</div>
+<div class="width-xl-50 width-xs-100">
+<div class="small-font" style="margin-bottom: 0.1ex;">Tip{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | o | i }}:</div>
+<div class="same-line roundy{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | left}}" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Spettro | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | {{ucfirst:Spettro}} | {{#ifeq: {{lc:Spettro}} | coleottero | Coleot | {{ucfirst:Spettro}}}}}}|fff}}</div>{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | <div class="same-line roundyright" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Veleno | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | coleottero | Coleot | {{ucfirst:Veleno}}}}|fff}}</div>}}{{#ifexpr: 1 > 2 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Abilit&agrave;:</div>
+<div>{{acolor|{{ucfirst:Nessuna}}|000}}{{#if: |&nbsp;o {{acolor|{{ucfirst:{{{ability2}}}}}|000}}}}</div>}}{{#ifexpr: 1 > 1 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Strumento:</div>
+<div>{{#if:  | {{Bag|{{{held}}}}} {{colore2|000|{{ucfirst:{{{held}}}}}}}|Nessuno}}</div>}}
+</div>
+{{#switch: {{lc:}} | gara | contest = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Stordiraggio|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ombra Notturna|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ipnosi|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Mangiasogni|cat=Grinta|hearts=0}}</div> | #default = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Stordiraggio|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ombra Notturna|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ipnosi|type=Psico|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Mangiasogni|type=Psico|cat=Fisico|gen=1}}</div>}}
+</div>
+</div>
+<div class="inline-block">
+<div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
+<div class="width-xl-50 width-xs-100">
+<div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
+<div class="roundy" style="background: #fff; margin-top: 1ex;">{{#ifexpr: 1 > 6 | {{#ifeq: Poké Ball | none | | {{bag|Poké Ball}}&nbsp;}}}}{{colore2|000|Haunter|{{ucfirst:Haunter}}}}{{#ifexpr: 1 > 1 | {{#switch: Haunter | Nidoran♀ | Nidoran♂ = | {{#switch: {{lc:none}} | male | ♂ = {{male}} | female | ♀ = {{female}} | both = {{male}}/{{female}}}}}}}}&nbsp;<span class="small-font">L.</span>55{{#ifexpr: 1 > 1 | {{#switch: {{lc:male}} | shiny | male shiny | female shiny = [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]] | {{#ifeq: {{lc:no}} | yes | [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]]}}}}}}</div>
+</div>
+<div class="width-xl-50 width-xs-100">
+<div class="small-font" style="margin-bottom: 0.1ex;">Tip{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | o | i }}:</div>
+<div class="same-line roundy{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | left}}" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Spettro | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | {{ucfirst:Spettro}} | {{#ifeq: {{lc:Spettro}} | coleottero | Coleot | {{ucfirst:Spettro}}}}}}|fff}}</div>{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | <div class="same-line roundyright" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Veleno | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | coleottero | Coleot | {{ucfirst:Veleno}}}}|fff}}</div>}}{{#ifexpr: 1 > 2 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Abilit&agrave;:</div>
+<div>{{acolor|{{ucfirst:Nessuna}}|000}}{{#if: |&nbsp;o {{acolor|{{ucfirst:{{{ability2}}}}}|000}}}}</div>}}{{#ifexpr: 1 > 1 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Strumento:</div>
+<div>{{#if:  | {{Bag|{{{held}}}}} {{colore2|000|{{ucfirst:{{{held}}}}}}}|Nessuno}}</div>}}
+</div>
+{{#switch: {{lc:}} | gara | contest = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Stordiraggio|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ombra Notturna|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ipnosi|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Mangiasogni|cat=Grinta|hearts=0}}</div> | #default = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Stordiraggio|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ombra Notturna|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ipnosi|type=Psico|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Mangiasogni|type=Psico|cat=Fisico|gen=1}}</div>}}
+</div>
+</div>
+</div>
+|}<br><br clear="left">
+{| class="mw-collapsible mw-collapsed  text-center pull-left roundy" style="padding: 0.5ex; background-size: 100%; background-image: -moz-linear-gradient(left, #BCF2FF, #3FD8FF); background-image: -webkit-linear-gradient(left, #BCF2FF, #3FD8FF); background-image: linear-gradient(to right, #BCF2FF, #3FD8FF);"
+|-
+| <div class="flex flex-row flex-nowrap flex-items-center flex-main-center" style="padding: 0 2.5em;">
+<div>
+<div class="roundy-full" style="padding: 0.3ex; background-size: 100%; background-image: -moz-linear-gradient(left, #0098BF, #BCF2FF); background-image: -webkit-linear-gradient(left, #0098BF, #BCF2FF); background-image: linear-gradient(to right, #0098BF, #BCF2FF);">[[File:RB Agatha.png]]</div>
+<div class="text-small" style="margin-top: 0.5ex; line-height: 10px">Ricompensa:</div>
+<div>'''[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]5940'''</div>
+</div>
+<div>
+<div class="roundy text-center" style="margin-left: 1ex; width: 18em; padding: 0.2ex; background-size: 100%; background-image: -moz-linear-gradient(left, #0098BF, #BCF2FF); background-image: -webkit-linear-gradient(left, #0098BF, #BCF2FF); background-image: linear-gradient(to right, #0098BF, #BCF2FF);">
+
+<div class="text-big">'''<span style="color: #000;">Agatha</span>'''</div>
+<div>'''[[Altopiano Blu|<span style="color: #000;">Altopiano Blu</span>]]'''</div>
+<div class="text-small">[[Pokémon Rosso e Blu|<span style="color: #000000;">Rosso e Blu</span>]]</div>
+</div>
+<div class="roundy pull-center" style="margin-top: 0.5ex; width: 14ex; padding: 0.2ex; line-height: 10px; background-size: 100%; background-image: -moz-linear-gradient(left, #0098BF, #BCF2FF); background-image: -webkit-linear-gradient(left, #0098BF, #BCF2FF); background-image: linear-gradient(to right, #0098BF, #BCF2FF);">[[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballempty.png]]</div>
+</div>
+</div>
+|-
+| style="padding: 0;" | <div class="roundy flex flex-row flex-nowrap flex-items-center flex-main-space-around" style="background-size: 100%; background-image: -moz-linear-gradient(left, #BCF2FF, #3FD8FF); background-image: -webkit-linear-gradient(left, #BCF2FF, #3FD8FF); background-image: linear-gradient(to right, #BCF2FF, #3FD8FF);">
+
+<div class="inline-block">
+<div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
+<div class="width-xl-50 width-xs-100">
+<div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
+<div class="roundy" style="background: #fff; margin-top: 1ex;">{{#ifexpr: 1 > 6 | {{#ifeq: Poké Ball | none | | {{bag|Poké Ball}}&nbsp;}}}}{{colore2|000|Haunter|{{ucfirst:Haunter}}}}{{#ifexpr: 1 > 1 | {{#switch: Haunter | Nidoran♀ | Nidoran♂ = | {{#switch: {{lc:none}} | male | ♂ = {{male}} | female | ♀ = {{female}} | both = {{male}}/{{female}}}}}}}}&nbsp;<span class="small-font">L.</span>55{{#ifexpr: 1 > 1 | {{#switch: {{lc:male}} | shiny | male shiny | female shiny = [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]] | {{#ifeq: {{lc:no}} | yes | [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]]}}}}}}</div>
+</div>
+<div class="width-xl-50 width-xs-100">
+<div class="small-font" style="margin-bottom: 0.1ex;">Tip{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | o | i }}:</div>
+<div class="same-line roundy{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | left}}" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Spettro | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | {{ucfirst:Spettro}} | {{#ifeq: {{lc:Spettro}} | coleottero | Coleot | {{ucfirst:Spettro}}}}}}|fff}}</div>{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | <div class="same-line roundyright" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Veleno | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | coleottero | Coleot | {{ucfirst:Veleno}}}}|fff}}</div>}}{{#ifexpr: 1 > 2 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Abilit&agrave;:</div>
+<div>{{acolor|{{ucfirst:Nessuna}}|000}}{{#if: |&nbsp;o {{acolor|{{ucfirst:{{{ability2}}}}}|000}}}}</div>}}{{#ifexpr: 1 > 1 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Strumento:</div>
+<div>{{#if:  | {{Bag|{{{held}}}}} {{colore2|000|{{ucfirst:{{{held}}}}}}}|Nessuno}}</div>}}
+</div>
+{{#switch: {{lc:}} | gara | contest = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Stordiraggio|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ombra Notturna|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ipnosi|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Mangiasogni|cat=Grinta|hearts=0}}</div> | #default = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Stordiraggio|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ombra Notturna|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ipnosi|type=Psico|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Mangiasogni|type=Psico|cat=Fisico|gen=1}}</div>}}
+</div>
+</div>
+<div class="inline-block">
+<div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
+<div class="width-xl-50 width-xs-100">
+<div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
+<div class="roundy" style="background: #fff; margin-top: 1ex;">{{#ifexpr: 1 > 6 | {{#ifeq: Poké Ball | none | | {{bag|Poké Ball}}&nbsp;}}}}{{colore2|000|Haunter|{{ucfirst:Haunter}}}}{{#ifexpr: 1 > 1 | {{#switch: Haunter | Nidoran♀ | Nidoran♂ = | {{#switch: {{lc:none}} | male | ♂ = {{male}} | female | ♀ = {{female}} | both = {{male}}/{{female}}}}}}}}&nbsp;<span class="small-font">L.</span>55{{#ifexpr: 1 > 1 | {{#switch: {{lc:male}} | shiny | male shiny | female shiny = [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]] | {{#ifeq: {{lc:no}} | yes | [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]]}}}}}}</div>
+</div>
+<div class="width-xl-50 width-xs-100">
+<div class="small-font" style="margin-bottom: 0.1ex;">Tip{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | o | i }}:</div>
+<div class="same-line roundy{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | left}}" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Spettro | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | {{ucfirst:Spettro}} | {{#ifeq: {{lc:Spettro}} | coleottero | Coleot | {{ucfirst:Spettro}}}}}}|fff}}</div>{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | <div class="same-line roundyright" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Veleno | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | coleottero | Coleot | {{ucfirst:Veleno}}}}|fff}}</div>}}{{#ifexpr: 1 > 2 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Abilit&agrave;:</div>
+<div>{{acolor|{{ucfirst:Nessuna}}|000}}{{#if: |&nbsp;o {{acolor|{{ucfirst:{{{ability2}}}}}|000}}}}</div>}}{{#ifexpr: 1 > 1 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Strumento:</div>
+<div>{{#if:  | {{Bag|{{{held}}}}} {{colore2|000|{{ucfirst:{{{held}}}}}}}|Nessuno}}</div>}}
+</div>
+{{#switch: {{lc:}} | gara | contest = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Stordiraggio|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ombra Notturna|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ipnosi|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Mangiasogni|cat=Grinta|hearts=0}}</div> | #default = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Stordiraggio|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ombra Notturna|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ipnosi|type=Psico|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Mangiasogni|type=Psico|cat=Fisico|gen=1}}</div>}}
+</div>
+</div>
+<div class="inline-block">
+<div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
+<div class="width-xl-50 width-xs-100">
+<div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
+<div class="roundy" style="background: #fff; margin-top: 1ex;">{{#ifexpr: 1 > 6 | {{#ifeq: Poké Ball | none | | {{bag|Poké Ball}}&nbsp;}}}}{{colore2|000|Haunter|{{ucfirst:Haunter}}}}{{#ifexpr: 1 > 1 | {{#switch: Haunter | Nidoran♀ | Nidoran♂ = | {{#switch: {{lc:none}} | male | ♂ = {{male}} | female | ♀ = {{female}} | both = {{male}}/{{female}}}}}}}}&nbsp;<span class="small-font">L.</span>55{{#ifexpr: 1 > 1 | {{#switch: {{lc:male}} | shiny | male shiny | female shiny = [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]] | {{#ifeq: {{lc:no}} | yes | [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]]}}}}}}</div>
+</div>
+<div class="width-xl-50 width-xs-100">
+<div class="small-font" style="margin-bottom: 0.1ex;">Tip{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | o | i }}:</div>
+<div class="same-line roundy{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | left}}" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Spettro | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | {{ucfirst:Spettro}} | {{#ifeq: {{lc:Spettro}} | coleottero | Coleot | {{ucfirst:Spettro}}}}}}|fff}}</div>{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | <div class="same-line roundyright" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Veleno | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | coleottero | Coleot | {{ucfirst:Veleno}}}}|fff}}</div>}}{{#ifexpr: 1 > 2 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Abilit&agrave;:</div>
+<div>{{acolor|{{ucfirst:Nessuna}}|000}}{{#if: |&nbsp;o {{acolor|{{ucfirst:{{{ability2}}}}}|000}}}}</div>}}{{#ifexpr: 1 > 1 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Strumento:</div>
+<div>{{#if:  | {{Bag|{{{held}}}}} {{colore2|000|{{ucfirst:{{{held}}}}}}}|Nessuno}}</div>}}
+</div>
+{{#switch: {{lc:}} | gara | contest = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Stordiraggio|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ombra Notturna|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ipnosi|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Mangiasogni|cat=Grinta|hearts=0}}</div> | #default = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Stordiraggio|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ombra Notturna|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ipnosi|type=Psico|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Mangiasogni|type=Psico|cat=Fisico|gen=1}}</div>}}
+</div>
+</div>
+</div>
+<div class="flex flex-row flex-nowrap flex-items-center flex-main-space-around" style="margin-top: 0.5ex;">
+
+<div class="inline-block">
+<div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
+<div class="width-xl-50 width-xs-100">
+<div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
+<div class="roundy" style="background: #fff; margin-top: 1ex;">{{#ifexpr: 1 > 6 | {{#ifeq: Poké Ball | none | | {{bag|Poké Ball}}&nbsp;}}}}{{colore2|000|Haunter|{{ucfirst:Haunter}}}}{{#ifexpr: 1 > 1 | {{#switch: Haunter | Nidoran♀ | Nidoran♂ = | {{#switch: {{lc:none}} | male | ♂ = {{male}} | female | ♀ = {{female}} | both = {{male}}/{{female}}}}}}}}&nbsp;<span class="small-font">L.</span>55{{#ifexpr: 1 > 1 | {{#switch: {{lc:male}} | shiny | male shiny | female shiny = [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]] | {{#ifeq: {{lc:no}} | yes | [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]]}}}}}}</div>
+</div>
+<div class="width-xl-50 width-xs-100">
+<div class="small-font" style="margin-bottom: 0.1ex;">Tip{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | o | i }}:</div>
+<div class="same-line roundy{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | left}}" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Spettro | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | {{ucfirst:Spettro}} | {{#ifeq: {{lc:Spettro}} | coleottero | Coleot | {{ucfirst:Spettro}}}}}}|fff}}</div>{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | <div class="same-line roundyright" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Veleno | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | coleottero | Coleot | {{ucfirst:Veleno}}}}|fff}}</div>}}{{#ifexpr: 1 > 2 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Abilit&agrave;:</div>
+<div>{{acolor|{{ucfirst:Nessuna}}|000}}{{#if: |&nbsp;o {{acolor|{{ucfirst:{{{ability2}}}}}|000}}}}</div>}}{{#ifexpr: 1 > 1 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Strumento:</div>
+<div>{{#if:  | {{Bag|{{{held}}}}} {{colore2|000|{{ucfirst:{{{held}}}}}}}|Nessuno}}</div>}}
+</div>
+{{#switch: {{lc:}} | gara | contest = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Stordiraggio|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ombra Notturna|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ipnosi|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Mangiasogni|cat=Grinta|hearts=0}}</div> | #default = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Stordiraggio|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ombra Notturna|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ipnosi|type=Psico|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Mangiasogni|type=Psico|cat=Fisico|gen=1}}</div>}}
+</div>
+</div>
+<div class="inline-block">
+<div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
+<div class="width-xl-50 width-xs-100">
+<div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
+<div class="roundy" style="background: #fff; margin-top: 1ex;">{{#ifexpr: 1 > 6 | {{#ifeq: Poké Ball | none | | {{bag|Poké Ball}}&nbsp;}}}}{{colore2|000|Haunter|{{ucfirst:Haunter}}}}{{#ifexpr: 1 > 1 | {{#switch: Haunter | Nidoran♀ | Nidoran♂ = | {{#switch: {{lc:none}} | male | ♂ = {{male}} | female | ♀ = {{female}} | both = {{male}}/{{female}}}}}}}}&nbsp;<span class="small-font">L.</span>55{{#ifexpr: 1 > 1 | {{#switch: {{lc:male}} | shiny | male shiny | female shiny = [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]] | {{#ifeq: {{lc:no}} | yes | [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]]}}}}}}</div>
+</div>
+<div class="width-xl-50 width-xs-100">
+<div class="small-font" style="margin-bottom: 0.1ex;">Tip{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | o | i }}:</div>
+<div class="same-line roundy{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | left}}" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Spettro | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | {{ucfirst:Spettro}} | {{#ifeq: {{lc:Spettro}} | coleottero | Coleot | {{ucfirst:Spettro}}}}}}|fff}}</div>{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | <div class="same-line roundyright" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Veleno | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | coleottero | Coleot | {{ucfirst:Veleno}}}}|fff}}</div>}}{{#ifexpr: 1 > 2 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Abilit&agrave;:</div>
+<div>{{acolor|{{ucfirst:Nessuna}}|000}}{{#if: |&nbsp;o {{acolor|{{ucfirst:{{{ability2}}}}}|000}}}}</div>}}{{#ifexpr: 1 > 1 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Strumento:</div>
+<div>{{#if:  | {{Bag|{{{held}}}}} {{colore2|000|{{ucfirst:{{{held}}}}}}}|Nessuno}}</div>}}
+</div>
+{{#switch: {{lc:}} | gara | contest = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Stordiraggio|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ombra Notturna|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ipnosi|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Mangiasogni|cat=Grinta|hearts=0}}</div> | #default = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Stordiraggio|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ombra Notturna|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ipnosi|type=Psico|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Mangiasogni|type=Psico|cat=Fisico|gen=1}}</div>}}
+</div>
+</div>
+</div>
+|}<br><br clear="left">
+{| class="mw-collapsible mw-collapsed light-text text-center pull-left roundy" style="padding: 0.5ex; background-size: 100%; background-image: -moz-linear-gradient(left, #7722FF, #AB2813); background-image: -webkit-linear-gradient(left, #7722FF, #AB2813); background-image: linear-gradient(to right, #7722FF, #AB2813);"
+|-
+| <div class="flex flex-row flex-nowrap flex-items-center flex-main-center" style="padding: 0 2.5em;">
+<div>
+<div class="roundy-full" style="padding: 0.3ex; background-size: 100%; background-image: -moz-linear-gradient(left, #915121, #C2895F); background-image: -webkit-linear-gradient(left, #915121, #C2895F); background-image: linear-gradient(to right, #915121, #C2895F);">[[File:ROZA VSOttavio.png|200px]]</div>
+<div class="text-small" style="margin-top: 0.5ex; line-height: 10px">Ricompensa:</div>
+<div>'''[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]3.220'''</div>
+</div>
+<div>
+<div class="roundy text-center" style="margin-left: 1ex; width: 18em; padding: 0.2ex; background-size: 100%; background-image: -moz-linear-gradient(left, #915121, #C2895F); background-image: -webkit-linear-gradient(left, #915121, #C2895F); background-image: linear-gradient(to right, #915121, #C2895F);"><div class="flex flex-row flex-nowrap flex-items-center flex-main-center">
+<div>
+<div style="line-height: 10px" class="text-small">'''[[Magmatenente (classe allenatore)|<span style="color:#000">Magmatenente</span>]]'''</div>
+<div class="text-big">'''[[Magmatenente Ottavio|<span style="color: #000;">Ottavio</span>]]'''</div>
+</div>
+<div>''e''</div>
+<div>
+<div style="line-height: 10px" class="text-small">'''[[Recluta Team Magma (classe allenatore)|<span style="color:#000">Recluta Team Magma</span>]]'''</div><div class="big-text">'''<span style="color: #000;">Recluta</span>'''</div>
+</div>
+</div>
+<div>'''[[Cascate Meteora|<span style="color: #000;">Cascate Meteora</span>]]'''</div>
+<div class="text-small">[[Pokémon Rubino Omega e Zaffiro Alpha|<span style="color: #000000;">Rubino Omega</span>]] e [[Pokémon Smeraldo|<span style="color: #000000;">Smeraldo</span>]]</div>
+</div>
+<div class="roundy pull-center" style="margin-top: 0.5ex; width: 14ex; padding: 0.2ex; background-size: 100%; background-image: -moz-linear-gradient(left, #915121, #C2895F); background-image: -webkit-linear-gradient(left, #915121, #C2895F); background-image: linear-gradient(to right, #915121, #C2895F); line-height: 10px">[[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballempty.png]][[File:Ballfull.png]][[File:Ballempty.png]][[File:Ballempty.png]]</div>
+</div>
+<div class="flex-items-self-start roundy-full" style="margin-left: 1ex; padding: 0.3ex; background-size: 100%; background-image: -moz-linear-gradient(left, #915121, #C2895F); background-image: -webkit-linear-gradient(left, #915121, #C2895F); background-image: linear-gradient(to right, #915121, #C2895F);">[[File:ROZA VSRecluta Team Magma F.png|200px]]</div>
+</div>
+|-
+| <div class="roundy" style="padding: 0.5ex; background-size: 100%; background-image: -moz-linear-gradient(#915121, #C2895F); background-image: -webkit-linear-gradient(#915121, #C2895F); background-image: linear-gradient(#915121, #C2895F);">
+<div class="flex flex-row flex-nowrap flex-items-center flex-main-space-around">
+
+<div class="inline-block">
+<div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
+<div class="width-xl-50 width-xs-100">
+<div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
+<div class="roundy" style="background: #fff; margin-top: 1ex;">{{#ifexpr: 1 > 6 | {{#ifeq: Poké Ball | none | | {{bag|Poké Ball}}&nbsp;}}}}{{colore2|000|Haunter|{{ucfirst:Haunter}}}}{{#ifexpr: 1 > 1 | {{#switch: Haunter | Nidoran♀ | Nidoran♂ = | {{#switch: {{lc:none}} | male | ♂ = {{male}} | female | ♀ = {{female}} | both = {{male}}/{{female}}}}}}}}&nbsp;<span class="small-font">L.</span>55{{#ifexpr: 1 > 1 | {{#switch: {{lc:male}} | shiny | male shiny | female shiny = [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]] | {{#ifeq: {{lc:no}} | yes | [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]]}}}}}}</div>
+</div>
+<div class="width-xl-50 width-xs-100">
+<div class="small-font" style="margin-bottom: 0.1ex;">Tip{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | o | i }}:</div>
+<div class="same-line roundy{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | left}}" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Spettro | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | {{ucfirst:Spettro}} | {{#ifeq: {{lc:Spettro}} | coleottero | Coleot | {{ucfirst:Spettro}}}}}}|fff}}</div>{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | <div class="same-line roundyright" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Veleno | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | coleottero | Coleot | {{ucfirst:Veleno}}}}|fff}}</div>}}{{#ifexpr: 1 > 2 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Abilit&agrave;:</div>
+<div>{{acolor|{{ucfirst:Nessuna}}|000}}{{#if: |&nbsp;o {{acolor|{{ucfirst:{{{ability2}}}}}|000}}}}</div>}}{{#ifexpr: 1 > 1 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Strumento:</div>
+<div>{{#if:  | {{Bag|{{{held}}}}} {{colore2|000|{{ucfirst:{{{held}}}}}}}|Nessuno}}</div>}}
+</div>
+{{#switch: {{lc:}} | gara | contest = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Stordiraggio|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ombra Notturna|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ipnosi|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Mangiasogni|cat=Grinta|hearts=0}}</div> | #default = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Stordiraggio|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ombra Notturna|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ipnosi|type=Psico|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Mangiasogni|type=Psico|cat=Fisico|gen=1}}</div>}}
+</div>
+</div>
+<div class="inline-block">
+<div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
+<div class="width-xl-50 width-xs-100">
+<div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
+<div class="roundy" style="background: #fff; margin-top: 1ex;">{{#ifexpr: 1 > 6 | {{#ifeq: Poké Ball | none | | {{bag|Poké Ball}}&nbsp;}}}}{{colore2|000|Haunter|{{ucfirst:Haunter}}}}{{#ifexpr: 1 > 1 | {{#switch: Haunter | Nidoran♀ | Nidoran♂ = | {{#switch: {{lc:none}} | male | ♂ = {{male}} | female | ♀ = {{female}} | both = {{male}}/{{female}}}}}}}}&nbsp;<span class="small-font">L.</span>55{{#ifexpr: 1 > 1 | {{#switch: {{lc:male}} | shiny | male shiny | female shiny = [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]] | {{#ifeq: {{lc:no}} | yes | [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]]}}}}}}</div>
+</div>
+<div class="width-xl-50 width-xs-100">
+<div class="small-font" style="margin-bottom: 0.1ex;">Tip{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | o | i }}:</div>
+<div class="same-line roundy{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | left}}" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Spettro | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | {{ucfirst:Spettro}} | {{#ifeq: {{lc:Spettro}} | coleottero | Coleot | {{ucfirst:Spettro}}}}}}|fff}}</div>{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | <div class="same-line roundyright" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Veleno | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | coleottero | Coleot | {{ucfirst:Veleno}}}}|fff}}</div>}}{{#ifexpr: 1 > 2 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Abilit&agrave;:</div>
+<div>{{acolor|{{ucfirst:Nessuna}}|000}}{{#if: |&nbsp;o {{acolor|{{ucfirst:{{{ability2}}}}}|000}}}}</div>}}{{#ifexpr: 1 > 1 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Strumento:</div>
+<div>{{#if:  | {{Bag|{{{held}}}}} {{colore2|000|{{ucfirst:{{{held}}}}}}}|Nessuno}}</div>}}
+</div>
+{{#switch: {{lc:}} | gara | contest = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Stordiraggio|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ombra Notturna|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ipnosi|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Mangiasogni|cat=Grinta|hearts=0}}</div> | #default = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Stordiraggio|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ombra Notturna|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ipnosi|type=Psico|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Mangiasogni|type=Psico|cat=Fisico|gen=1}}</div>}}
+</div>
+</div>
+</div>
+<div class="flex flex-row flex-nowrap flex-items-center flex-main-space-around" style="margin-top: 0.5ex;">
+
+<div class="inline-block">
+<div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
+<div class="width-xl-50 width-xs-100">
+<div class="roundy img-fluid" style="padding: 0.5ex; background: #fff;">{{#invoke: Spr | Spr | 093 | Rosso | male {{#ifeq: {{lc:no}} | yes | back}} {{#ifeq: {{lc:no}} | yes | shiny}}}}</div>
+<div class="roundy" style="background: #fff; margin-top: 1ex;">{{#ifexpr: 1 > 6 | {{#ifeq: Poké Ball | none | | {{bag|Poké Ball}}&nbsp;}}}}{{colore2|000|Haunter|{{ucfirst:Haunter}}}}{{#ifexpr: 1 > 1 | {{#switch: Haunter | Nidoran♀ | Nidoran♂ = | {{#switch: {{lc:none}} | male | ♂ = {{male}} | female | ♀ = {{female}} | both = {{male}}/{{female}}}}}}}}&nbsp;<span class="small-font">L.</span>55{{#ifexpr: 1 > 1 | {{#switch: {{lc:male}} | shiny | male shiny | female shiny = [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]] | {{#ifeq: {{lc:no}} | yes | [[File:Shiny{{#switch: 1 | 2 = GS | 3 = RS | 4 = DP | 5 = BW | 6 = XY | 7 = SL}}Star.png]]}}}}}}</div>
+</div>
+<div class="width-xl-50 width-xs-100">
+<div class="small-font" style="margin-bottom: 0.1ex;">Tip{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | o | i }}:</div>
+<div class="same-line roundy{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | left}}" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Spettro | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | {{ucfirst:Spettro}} | {{#ifeq: {{lc:Spettro}} | coleottero | Coleot | {{ucfirst:Spettro}}}}}}|fff}}</div>{{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | | <div class="same-line roundyright" style="padding: 0.4ex 1.2ex; background: #{{#invoke: colore | Veleno | dark}};">{{tcolore|{{#ifeq: {{lc:Veleno}} | coleottero | Coleot | {{ucfirst:Veleno}}}}|fff}}</div>}}{{#ifexpr: 1 > 2 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Abilit&agrave;:</div>
+<div>{{acolor|{{ucfirst:Nessuna}}|000}}{{#if: |&nbsp;o {{acolor|{{ucfirst:{{{ability2}}}}}|000}}}}</div>}}{{#ifexpr: 1 > 1 |
+<div class="small-font" style="margin-top: 0.5ex; margin-bottom: -0.5ex;">Strumento:</div>
+<div>{{#if:  | {{Bag|{{{held}}}}} {{colore2|000|{{ucfirst:{{{held}}}}}}}|Nessuno}}</div>}}
+</div>
+{{#switch: {{lc:}} | gara | contest = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Stordiraggio|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ombra Notturna|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Ipnosi|cat=Grinta|hearts=0}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{ContestMoveBox|name=Mangiasogni|cat=Grinta|hearts=0}}</div> | #default = <div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Stordiraggio|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ombra Notturna|type=Spettro|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Ipnosi|type=Psico|cat=Fisico|gen=1}}</div>
+<div class="width-xl-50 width-xs-100" style="padding: 0.5ex;">{{MoveBox|name=Mangiasogni|type=Psico|cat=Fisico|gen=1}}</div>}}
+</div>
+</div>
+</div>
+|}<br><br clear="left">

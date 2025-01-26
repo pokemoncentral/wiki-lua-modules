@@ -1,20 +1,25 @@
 #!/usr/bin/env bash
 
-# This script runs a regression test, that is it compares the current output of
-# a test file with the one of an previous git commit. For more info, read the
+# This script runs snapshot test, that is it compares the current output of a
+# test suite with the ones stored in the `snapshots` directory. It can also use
+# the `snapshots` directory of a previous commit, or the test output from that
+# commit if the `snapshots` directory wasn't there yet. For more info, read the
 # help string below
 
 HELP_STRING="Usage:
 regression-test [-hp] [-c HASH] FILES...
 
-Runs regression tests against one or more test file.
-This script simply compare the current output of the test file with that of an
-older (git) version, printing differences.
+Runs snapshot tests against one or more test files.
+This script simply compares the current output of the test file with that
+stored in the snapshots directory, printing differences.
 
 Arguments:
-- h: Show this help
-- c: Commit to compare with. Default to HEAD
-- p: Preserve test outputs. If not specified, those are removed"
+    FILES...: The test files to be executed
+
+Options:
+    -h: Show this help
+    -c: Commit to compare with. Default to HEAD
+    -p: Preserve test outputs. If not specified, those are removed"
 
 #######################################
 # Variables
@@ -22,7 +27,10 @@ Arguments:
 
 # This is the directory where test scripts are located. It happens to be the
 # same as this script's, and it also happens to be inside the git repository
-SCRIPTS_DIR="$(dirname "${BASH_SOURCE[0]}" | xargs readlink -f)"
+TESTS_DIR="$(dirname "${BASH_SOURCE[0]}" | xargs readlink -f)"
+
+SNAPSHOTS_DIR="$TESTS_DIR/snapshots"
+CURRENT_OUTPUT_DIR="$TESTS_DIR/current-output"
 
 #######################################
 # Functions
@@ -33,27 +41,25 @@ SCRIPTS_DIR="$(dirname "${BASH_SOURCE[0]}" | xargs readlink -f)"
 #
 # Arguments:
 #   - $1: The output directory to which the test output are saved
-#   - $2: The directory where the test scripts are located
-#   - $4+: The test scripts
+#   - $2+: The test scripts
 run_tests() {
     local OUTPUT_DIR="$1"
-    local SCRIPTS_DIR="$2"
-    shift 2
+    shift 1
 
-    # This includes also shell color escaping, as it's only used for logging
-    local COMMIT
-    COMMIT="\e[94m$(git rev-parse --abbrev-ref HEAD)\e[0m"
+    while [ $# -gt 0 ]; do
+        local TEST_SCRIPT_PATH="$1"
+        local TEST_SCRIPT
+        TEST_SCRIPT="$(basename "$TEST_SCRIPT_PATH")"
+        # [[ ! -e "$TEST_SCRIPT_PATH" ]] && {
+        #     echo -ne >&2 '\e[91m[TEST]\e[0m '
+        #     echo -e >&2 "\e[91m$TEST_SCRIPT\e[0m@$COMMIT not found"
+        #     continue
+        # }
 
-    basename -a "$@" | while read TEST_SCRIPT; do
-        TEST_SCRIPT_PATH="$SCRIPTS_DIR/$TEST_SCRIPT"
-        [[ ! -e "$TEST_SCRIPT_PATH" ]] && {
-            echo -ne >&2 '\e[91m[TEST]\e[0m '
-            echo -e >&2 "\e[91m$TEST_SCRIPT\e[0m@$COMMIT not found"
-            continue
-        }
-
-        echo -e "\e[92m[TEST]\e[0m Running \e[92m$TEST_SCRIPT\e[0m@$COMMIT"
+        echo -e "\e[92m[TEST]\e[0m Running \e[92m$TEST_SCRIPT\e[0m@\e[94mcurrent\e[0m"
         lua "$TEST_SCRIPT_PATH" > "$OUTPUT_DIR/$TEST_SCRIPT.out"
+
+        shift
     done
 }
 
@@ -62,7 +68,7 @@ run_tests() {
 #######################################
 
 # The git commit whose test output will be compared to the current one.
-COMMIT='HEAD'
+COMMIT=''
 # Whether output files should be kept
 KEEP_OUTPUT='false'
 
@@ -94,54 +100,63 @@ grep -E '\s+-\w\s+' <<<"$*" > /dev/null && {
     exit 1
 }
 
-#######################################
-# Going back to old git commit
-#######################################
+########################################
+# Get old commit snapshots
+########################################
 
-CURRENT_HEAD="$(git rev-parse --abbrev-ref HEAD)"
+# if [ -n "$COMMIT" ]; then
+#     SNAPSHOTS_COMMIT="$SNAPSHOTS_DIR-$COMMIT"
 
-echo -e '\e[94m[GIT]\e[0m Stashing uncommitted changes'
-git -C "$SCRIPTS_DIR" stash push -q
-echo -e "\e[94m[GIT]\e[0m Checking out $COMMIT"
-git -C "$SCRIPTS_DIR" checkout -q "$COMMIT"
+#     git worktree add "$SNAPSHOTS_COMMIT" "$COMMIT"
+#     cd "$SNAPSHOTS_COMMIT/test/snapshot" || {
+#         bash cd "$SNAPSHOTS_COMMIT/test
+#     }
 
-#######################################
-# Running old test scripts
-#######################################
+# fi
 
-OLD_OUTPUT_DIR="$(mktemp --tmpdir="$SCRIPTS_DIR" -d "output-$COMMIT.XXX")"
-run_tests "$OLD_OUTPUT_DIR" "$SCRIPTS_DIR" "$@"
+# #######################################
+# # Going back to old git commit
+# #######################################
 
-#######################################
-# Going back to current HEAD
-#######################################
+# echo -e '\e[94m[GIT]\e[0m Stashing uncommitted changes'
+# git -C "$TESTS_DIR" stash push -q
+# echo -e "\e[94m[GIT]\e[0m Checking out $COMMIT"
+# git -C "$TESTS_DIR" checkout -q "$COMMIT"
 
-echo -e '\e[94m[GIT]\e[0m Checking back out to current HEAD'
-git -C "$SCRIPTS_DIR" checkout -q "$CURRENT_HEAD"
-echo -e '\e[94m[GIT]\e[0m Stashing changes back'
-git -C "$SCRIPTS_DIR" stash pop -q
+# #######################################
+# # Running old test scripts
+# #######################################
+
+# OLD_OUTPUT_DIR="$(mktemp --tmpdir="$TESTS_DIR" -d "output-$COMMIT.XXX")"
+# run_tests "$OLD_OUTPUT_DIR" "$TESTS_DIR" "$@"
+
+# #######################################
+# # Going back to current HEAD
+# #######################################
+
+# echo -e '\e[94m[GIT]\e[0m Checking back out to current HEAD'
+# git -C "$TESTS_DIR" checkout -q "$CURRENT_HEAD"
+# echo -e '\e[94m[GIT]\e[0m Stashing changes back'
+# git -C "$TESTS_DIR" stash pop -q
 
 #######################################
 # Running current test scripts
 #######################################
 
-CURRENT_OUTPUT_DIR="$(mktemp --tmpdir="$SCRIPTS_DIR" \
-    -d "output-$CURRENT_HEAD.XXX")"
-run_tests "$CURRENT_OUTPUT_DIR" "$SCRIPTS_DIR" "$@"
+mkdir -p "$CURRENT_OUTPUT_DIR"
+run_tests "$CURRENT_OUTPUT_DIR" "$@"
 
 #######################################
 # Diffing
 #######################################
 
-basename -a "$@" | while read TEST_SCRIPT; do
-    echo -ne "\e[93m[DIFF]\e[0m Comparing files \e[93m$TEST_SCRIPT\e[0m@"
-    echo -ne "\e[94m$CURRENT_HEAD\e[0m and \e[93m$TEST_SCRIPT\e[0m@"
-    echo -e "\e[94m$COMMIT\e[0m"
+basename -a "$@" | while read -r TEST_SCRIPT; do
+    echo -e "\e[93m[DIFF]\e[0m Compare \e[93m$TEST_SCRIPT\e[0m output with snapshot"
     diff -su --color=always \
-        --label "$TEST_SCRIPT@$COMMIT" \
-        --label "$TEST_SCRIPT@$CURRENT_HEAD" \
-        "$OLD_OUTPUT_DIR/$TEST_SCRIPT.out" \
-        "$CURRENT_OUTPUT_DIR/$TEST_SCRIPT.out"
+        --label "$TEST_SCRIPT@snapshot" \
+        --label "$TEST_SCRIPT@current" \
+        "$CURRENT_OUTPUT_DIR/$TEST_SCRIPT.out" \
+        "$SNAPSHOTS_DIR/$TEST_SCRIPT.out"
 done
 
 #######################################

@@ -1,0 +1,599 @@
+{| class="sortable roundy-corners pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; background-size: 100%; background-image: -moz-linear-gradient(left, #D0E6FF, #7CBAFF); background-image: -webkit-linear-gradient(left, #D0E6FF, #7CBAFF); background-image: linear-gradient(to right, #D0E6FF, #7CBAFF);;"
+|-
+! class="hidden-xs" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | [[Pokédex Nazionale|<span style="color: #000;">#</span>]]
+! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | &nbsp;
+! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | Pokémon
+! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | Totale
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0016
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0016.png|Pidgey|40px|link=Pidgey]]
+| style="padding: 0.3ex 0.6ex" | [[Pidgey|<span style="color: #000;">Pidgey</span>]]
+| style="padding: 0.3ex 0.6ex" | '''251'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0017
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0017.png|Pidgeotto|40px|link=Pidgeotto]]
+| style="padding: 0.3ex 0.6ex" | [[Pidgeotto|<span style="color: #000;">Pidgeotto</span>]]
+| style="padding: 0.3ex 0.6ex" | '''349'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0018
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0018M.png|Pidgeot|40px|link=Pidgeot]]
+| style="padding: 0.3ex 0.6ex" | [[Pidgeot|<span style="color: #000;">Pidgeot</span>]]<div class="small-text black-text">[[Megaevoluzione#Pidgeot|MegaPidgeot]]</div>
+| style="padding: 0.3ex 0.6ex" | '''579'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0022
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0022.png|Fearow|40px|link=Fearow]]
+| style="padding: 0.3ex 0.6ex" | [[Fearow|<span style="color: #000;">Fearow</span>]]
+| style="padding: 0.3ex 0.6ex" | '''442'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0032
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0032.png|Nidoran♂|40px|link=Nidoran♂]]
+| style="padding: 0.3ex 0.6ex" | [[Nidoran♂|<span style="color: #000;">Nidoran♂</span>]]
+| style="padding: 0.3ex 0.6ex" | '''273'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0142
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0142M.png|Aerodactyl|40px|link=Aerodactyl]]
+| style="padding: 0.3ex 0.6ex" | [[Aerodactyl|<span style="color: #000;">Aerodactyl</span>]]<div class="small-text black-text">[[Megaevoluzione#Aerodactyl|MegaAerodactyl]]</div>
+| style="padding: 0.3ex 0.6ex" | '''615'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0161
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0161.png|Sentret|40px|link=Sentret]]
+| style="padding: 0.3ex 0.6ex" | [[Sentret|<span style="color: #000;">Sentret</span>]]
+| style="padding: 0.3ex 0.6ex" | '''215'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0173
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0173.png|Cleffa|40px|link=Cleffa]]
+| style="padding: 0.3ex 0.6ex" | [[Cleffa|<span style="color: #000;">Cleffa</span>]]
+| style="padding: 0.3ex 0.6ex" | '''218'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0201
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0201.png|Unown|40px|link=Unown]]
+| style="padding: 0.3ex 0.6ex" | [[Unown|<span style="color: #000;">Unown</span>]]
+| style="padding: 0.3ex 0.6ex" | '''336'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0260
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0260M.png|Swampert|40px|link=Swampert]]
+| style="padding: 0.3ex 0.6ex" | [[Swampert|<span style="color: #000;">Swampert</span>]]<div class="small-text black-text">[[Megaevoluzione#Swampert|MegaSwampert]]</div>
+| style="padding: 0.3ex 0.6ex" | '''635'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0280
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0280.png|Ralts|40px|link=Ralts]]
+| style="padding: 0.3ex 0.6ex" | [[Ralts|<span style="color: #000;">Ralts</span>]]
+| style="padding: 0.3ex 0.6ex" | '''198'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0290
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0290.png|Nincada|40px|link=Nincada]]
+| style="padding: 0.3ex 0.6ex" | [[Nincada|<span style="color: #000;">Nincada</span>]]
+| style="padding: 0.3ex 0.6ex" | '''266'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0291
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0291.png|Ninjask|40px|link=Ninjask]]
+| style="padding: 0.3ex 0.6ex" | [[Ninjask|<span style="color: #000;">Ninjask</span>]]
+| style="padding: 0.3ex 0.6ex" | '''456'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0292
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0292.png|Shedinja|40px|link=Shedinja]]
+| style="padding: 0.3ex 0.6ex" | [[Shedinja|<span style="color: #000;">Shedinja</span>]]
+| style="padding: 0.3ex 0.6ex" | '''236'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0298
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0298.png|Azurill|40px|link=Azurill]]
+| style="padding: 0.3ex 0.6ex" | [[Azurill|<span style="color: #000;">Azurill</span>]]
+| style="padding: 0.3ex 0.6ex" | '''190'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0299
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0299.png|Nosepass|40px|link=Nosepass]]
+| style="padding: 0.3ex 0.6ex" | [[Nosepass|<span style="color: #000;">Nosepass</span>]]
+| style="padding: 0.3ex 0.6ex" | '''375'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0310
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0310M.png|Manectric|40px|link=Manectric]]
+| style="padding: 0.3ex 0.6ex" | [[Manectric|<span style="color: #000;">Manectric</span>]]<div class="small-text black-text">[[Megaevoluzione#Manectric|MegaManectric]]</div>
+| style="padding: 0.3ex 0.6ex" | '''575'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0316
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0316.png|Gulpin|40px|link=Gulpin]]
+| style="padding: 0.3ex 0.6ex" | [[Gulpin|<span style="color: #000;">Gulpin</span>]]
+| style="padding: 0.3ex 0.6ex" | '''302'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0317
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0317.png|Swalot|40px|link=Swalot]]
+| style="padding: 0.3ex 0.6ex" | [[Swalot|<span style="color: #000;">Swalot</span>]]
+| style="padding: 0.3ex 0.6ex" | '''467'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0359
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0359M.png|Absol|40px|link=Absol]]
+| style="padding: 0.3ex 0.6ex" | [[Absol|<span style="color: #000;">Absol</span>]]<div class="small-text black-text">[[Megaevoluzione#Absol|MegaAbsol]]</div>
+| style="padding: 0.3ex 0.6ex" | '''565'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0401
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0401.png|Kricketot|40px|link=Kricketot]]
+| style="padding: 0.3ex 0.6ex" | [[Kricketot|<span style="color: #000;">Kricketot</span>]]
+| style="padding: 0.3ex 0.6ex" | '''194'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0403
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0403.png|Shinx|40px|link=Shinx]]
+| style="padding: 0.3ex 0.6ex" | [[Shinx|<span style="color: #000;">Shinx</span>]]
+| style="padding: 0.3ex 0.6ex" | '''263'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0404
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0404.png|Luxio|40px|link=Luxio]]
+| style="padding: 0.3ex 0.6ex" | [[Luxio|<span style="color: #000;">Luxio</span>]]
+| style="padding: 0.3ex 0.6ex" | '''363'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0405
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0405.png|Luxray|40px|link=Luxray]]
+| style="padding: 0.3ex 0.6ex" | [[Luxray|<span style="color: #000;">Luxray</span>]]
+| style="padding: 0.3ex 0.6ex" | '''523'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0412
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0412.png|Burmy|40px|link=Burmy]]
+| style="padding: 0.3ex 0.6ex" | [[Burmy|<span style="color: #000;">Burmy</span>]]
+| style="padding: 0.3ex 0.6ex" | '''224'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0415
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0415.png|Combee|40px|link=Combee]]
+| style="padding: 0.3ex 0.6ex" | [[Combee|<span style="color: #000;">Combee</span>]]
+| style="padding: 0.3ex 0.6ex" | '''244'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0460
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0460M.png|Abomasnow|40px|link=Abomasnow]]
+| style="padding: 0.3ex 0.6ex" | [[Abomasnow|<span style="color: #000;">Abomasnow</span>]]<div class="small-text black-text">[[Megaevoluzione#Abomasnow|MegaAbomasnow]]</div>
+| style="padding: 0.3ex 0.6ex" | '''594'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0509
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0509.png|Purrloin|40px|link=Purrloin]]
+| style="padding: 0.3ex 0.6ex" | [[Purrloin|<span style="color: #000;">Purrloin</span>]]
+| style="padding: 0.3ex 0.6ex" | '''281'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0510
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0510.png|Liepard|40px|link=Liepard]]
+| style="padding: 0.3ex 0.6ex" | [[Liepard|<span style="color: #000;">Liepard</span>]]
+| style="padding: 0.3ex 0.6ex" | '''446'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0519
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0519.png|Pidove|40px|link=Pidove]]
+| style="padding: 0.3ex 0.6ex" | [[Pidove|<span style="color: #000;">Pidove</span>]]
+| style="padding: 0.3ex 0.6ex" | '''264'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0520
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0520.png|Tranquill|40px|link=Tranquill]]
+| style="padding: 0.3ex 0.6ex" | [[Tranquill|<span style="color: #000;">Tranquill</span>]]
+| style="padding: 0.3ex 0.6ex" | '''358'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0523
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0523.png|Zebstrika|40px|link=Zebstrika]]
+| style="padding: 0.3ex 0.6ex" | [[Zebstrika|<span style="color: #000;">Zebstrika</span>]]
+| style="padding: 0.3ex 0.6ex" | '''497'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0531
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0531.png|Audino|40px|link=Audino]]
+| style="padding: 0.3ex 0.6ex" | [[Audino|<span style="color: #000;">Audino</span>]]
+| style="padding: 0.3ex 0.6ex" | '''445'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0537
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0537.png|Seismitoad|40px|link=Seismitoad]]
+| style="padding: 0.3ex 0.6ex" | [[Seismitoad|<span style="color: #000;">Seismitoad</span>]]
+| style="padding: 0.3ex 0.6ex" | '''509'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0552
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0552.png|Krokorok|40px|link=Krokorok]]
+| style="padding: 0.3ex 0.6ex" | [[Krokorok|<span style="color: #000;">Krokorok</span>]]
+| style="padding: 0.3ex 0.6ex" | '''351'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0556
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0556.png|Maractus|40px|link=Maractus]]
+| style="padding: 0.3ex 0.6ex" | [[Maractus|<span style="color: #000;">Maractus</span>]]
+| style="padding: 0.3ex 0.6ex" | '''461'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0566
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0566.png|Archen|40px|link=Archen]]
+| style="padding: 0.3ex 0.6ex" | [[Archen|<span style="color: #000;">Archen</span>]]
+| style="padding: 0.3ex 0.6ex" | '''401'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0567
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0567.png|Archeops|40px|link=Archeops]]
+| style="padding: 0.3ex 0.6ex" | [[Archeops|<span style="color: #000;">Archeops</span>]]
+| style="padding: 0.3ex 0.6ex" | '''567'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0581
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0581.png|Swanna|40px|link=Swanna]]
+| style="padding: 0.3ex 0.6ex" | [[Swanna|<span style="color: #000;">Swanna</span>]]
+| style="padding: 0.3ex 0.6ex" | '''473'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0587
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0587.png|Emolga|40px|link=Emolga]]
+| style="padding: 0.3ex 0.6ex" | [[Emolga|<span style="color: #000;">Emolga</span>]]
+| style="padding: 0.3ex 0.6ex" | '''428'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0595
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0595.png|Joltik|40px|link=Joltik]]
+| style="padding: 0.3ex 0.6ex" | [[Joltik|<span style="color: #000;">Joltik</span>]]
+| style="padding: 0.3ex 0.6ex" | '''319'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0650
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0650.png|Chespin|40px|link=Chespin]]
+| style="padding: 0.3ex 0.6ex" | [[Chespin|<span style="color: #000;">Chespin</span>]]
+| style="padding: 0.3ex 0.6ex" | '''313'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0653
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0653.png|Fennekin|40px|link=Fennekin]]
+| style="padding: 0.3ex 0.6ex" | [[Fennekin|<span style="color: #000;">Fennekin</span>]]
+| style="padding: 0.3ex 0.6ex" | '''307'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0654
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0654.png|Braixen|40px|link=Braixen]]
+| style="padding: 0.3ex 0.6ex" | [[Braixen|<span style="color: #000;">Braixen</span>]]
+| style="padding: 0.3ex 0.6ex" | '''409'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0662
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0662.png|Fletchinder|40px|link=Fletchinder]]
+| style="padding: 0.3ex 0.6ex" | [[Fletchinder|<span style="color: #000;">Fletchinder</span>]]
+| style="padding: 0.3ex 0.6ex" | '''382'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0663
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0663.png|Talonflame|40px|link=Talonflame]]
+| style="padding: 0.3ex 0.6ex" | [[Talonflame|<span style="color: #000;">Talonflame</span>]]
+| style="padding: 0.3ex 0.6ex" | '''499'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0665
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0665.png|Spewpa|40px|link=Spewpa]]
+| style="padding: 0.3ex 0.6ex" | [[Spewpa|<span style="color: #000;">Spewpa</span>]]
+| style="padding: 0.3ex 0.6ex" | '''213'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0667
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0667.png|Litleo|40px|link=Litleo]]
+| style="padding: 0.3ex 0.6ex" | [[Litleo|<span style="color: #000;">Litleo</span>]]
+| style="padding: 0.3ex 0.6ex" | '''369'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0670
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0670.png|Floette|40px|link=Floette]]
+| style="padding: 0.3ex 0.6ex" | [[Floette|<span style="color: #000;">Floette</span>]]
+| style="padding: 0.3ex 0.6ex" | '''371'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0671
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0671.png|Florges|40px|link=Florges]]
+| style="padding: 0.3ex 0.6ex" | [[Florges|<span style="color: #000;">Florges</span>]]
+| style="padding: 0.3ex 0.6ex" | '''552'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0673
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0673.png|Gogoat|40px|link=Gogoat]]
+| style="padding: 0.3ex 0.6ex" | [[Gogoat|<span style="color: #000;">Gogoat</span>]]
+| style="padding: 0.3ex 0.6ex" | '''531'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0683
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0683.png|Aromatisse|40px|link=Aromatisse]]
+| style="padding: 0.3ex 0.6ex" | [[Aromatisse|<span style="color: #000;">Aromatisse</span>]]
+| style="padding: 0.3ex 0.6ex" | '''462'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0688
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0688.png|Binacle|40px|link=Binacle]]
+| style="padding: 0.3ex 0.6ex" | [[Binacle|<span style="color: #000;">Binacle</span>]]
+| style="padding: 0.3ex 0.6ex" | '''306'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0694
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0694.png|Helioptile|40px|link=Helioptile]]
+| style="padding: 0.3ex 0.6ex" | [[Helioptile|<span style="color: #000;">Helioptile</span>]]
+| style="padding: 0.3ex 0.6ex" | '''289'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0702
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0702.png|Dedenne|40px|link=Dedenne]]
+| style="padding: 0.3ex 0.6ex" | [[Dedenne|<span style="color: #000;">Dedenne</span>]]
+| style="padding: 0.3ex 0.6ex" | '''431'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0718
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0718P.png|Zygarde|40px|link=Zygarde]]
+| style="padding: 0.3ex 0.6ex" | [[Zygarde|<span style="color: #000;">Zygarde</span>]]<div class="small-text black-text">[[Zygarde/Forme|Forma Perfetta]]</div>
+| style="padding: 0.3ex 0.6ex" | '''708'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0739
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0739.png|Crabrawler|40px|link=Crabrawler]]
+| style="padding: 0.3ex 0.6ex" | [[Crabrawler|<span style="color: #000;">Crabrawler</span>]]
+| style="padding: 0.3ex 0.6ex" | '''338'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0746
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0746.png|Wishiwashi|40px|link=Wishiwashi]]
+| style="padding: 0.3ex 0.6ex" | [[Wishiwashi|<span style="color: #000;">Wishiwashi</span>]]<div class="small-text black-text">[[Wishiwashi/Forme|Forma Individuale]]</div>
+| style="padding: 0.3ex 0.6ex" | '''175'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0746
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0746B.png|Wishiwashi|40px|link=Wishiwashi]]
+| style="padding: 0.3ex 0.6ex" | [[Wishiwashi|<span style="color: #000;">Wishiwashi</span>]]<div class="small-text black-text">[[Wishiwashi/Forme|Forma Banco]]</div>
+| style="padding: 0.3ex 0.6ex" | '''620'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0767
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0767.png|Wimpod|40px|link=Wimpod]]
+| style="padding: 0.3ex 0.6ex" | [[Wimpod|<span style="color: #000;">Wimpod</span>]]
+| style="padding: 0.3ex 0.6ex" | '''230'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0781
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0781.png|Dhelmise|40px|link=Dhelmise]]
+| style="padding: 0.3ex 0.6ex" | [[Dhelmise|<span style="color: #000;">Dhelmise</span>]]
+| style="padding: 0.3ex 0.6ex" | '''517'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0800
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0800U.png|Necrozma|40px|link=Necrozma]]
+| style="padding: 0.3ex 0.6ex" | [[Necrozma|<span style="color: #000;">Necrozma</span>]]<div class="small-text black-text">[[Necrozma/Forme|UltraNecrozma]]</div>
+| style="padding: 0.3ex 0.6ex" | '''754'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0833
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0833.png|Chewtle|40px|link=Chewtle]]
+| style="padding: 0.3ex 0.6ex" | [[Chewtle|<span style="color: #000;">Chewtle</span>]]
+| style="padding: 0.3ex 0.6ex" | '''284'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0848
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0848.png|Toxel|40px|link=Toxel]]
+| style="padding: 0.3ex 0.6ex" | [[Toxel|<span style="color: #000;">Toxel</span>]]
+| style="padding: 0.3ex 0.6ex" | '''242'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0872
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0872.png|Snom|40px|link=Snom]]
+| style="padding: 0.3ex 0.6ex" | [[Snom|<span style="color: #000;">Snom</span>]]
+| style="padding: 0.3ex 0.6ex" | '''185'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0890
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0890.png|Eternatus|40px|link=Eternatus]]
+| style="padding: 0.3ex 0.6ex" | [[Eternatus|<span style="color: #000;">Eternatus</span>]]
+| style="padding: 0.3ex 0.6ex" | '''690'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0890
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0890D.png|Eternatus|40px|link=Eternatus]]
+| style="padding: 0.3ex 0.6ex" | [[Eternatus|<span style="color: #000;">Eternatus</span>]]<div class="small-text black-text">[[Eternatus/Forme|Dynamax Infinito]]</div>
+| style="padding: 0.3ex 0.6ex" | '''1125'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0915
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0915.png|Lechonk|40px|link=Lechonk]]
+| style="padding: 0.3ex 0.6ex" | [[Lechonk|<span style="color: #000;">Lechonk</span>]]
+| style="padding: 0.3ex 0.6ex" | '''254'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0918
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0918.png|Spidops|40px|link=Spidops]]
+| style="padding: 0.3ex 0.6ex" | [[Spidops|<span style="color: #000;">Spidops</span>]]
+| style="padding: 0.3ex 0.6ex" | '''404'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0926
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0926.png|Fidough|40px|link=Fidough]]
+| style="padding: 0.3ex 0.6ex" | [[Fidough|<span style="color: #000;">Fidough</span>]]
+| style="padding: 0.3ex 0.6ex" | '''312'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0927
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0927.png|Dachsbun|40px|link=Dachsbun]]
+| style="padding: 0.3ex 0.6ex" | [[Dachsbun|<span style="color: #000;">Dachsbun</span>]]
+| style="padding: 0.3ex 0.6ex" | '''477'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0929
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0929.png|Dolliv|40px|link=Dolliv]]
+| style="padding: 0.3ex 0.6ex" | [[Dolliv|<span style="color: #000;">Dolliv</span>]]
+| style="padding: 0.3ex 0.6ex" | '''354'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0938
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0938.png|Tadbulb|40px|link=Tadbulb]]
+| style="padding: 0.3ex 0.6ex" | [[Tadbulb|<span style="color: #000;">Tadbulb</span>]]
+| style="padding: 0.3ex 0.6ex" | '''272'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0957
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0957.png|Tinkatink|40px|link=Tinkatink]]
+| style="padding: 0.3ex 0.6ex" | [[Tinkatink|<span style="color: #000;">Tinkatink</span>]]
+| style="padding: 0.3ex 0.6ex" | '''297'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0959
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0959.png|Tinkaton|40px|link=Tinkaton]]
+| style="padding: 0.3ex 0.6ex" | [[Tinkaton|<span style="color: #000;">Tinkaton</span>]]
+| style="padding: 0.3ex 0.6ex" | '''506'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0964
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0964.png|Palafin|40px|link=Palafin]]
+| style="padding: 0.3ex 0.6ex" | [[Palafin|<span style="color: #000;">Palafin</span>]]<div class="small-text black-text">[[Palafin/Forme|Forma Ingenua]]</div>
+| style="padding: 0.3ex 0.6ex" | '''457'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0964
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0964P.png|Palafin|40px|link=Palafin]]
+| style="padding: 0.3ex 0.6ex" | [[Palafin|<span style="color: #000;">Palafin</span>]]<div class="small-text black-text">[[Palafin/Forme|Forma Possente]]</div>
+| style="padding: 0.3ex 0.6ex" | '''650'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0967
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0967.png|Cyclizar|40px|link=Cyclizar]]
+| style="padding: 0.3ex 0.6ex" | [[Cyclizar|<span style="color: #000;">Cyclizar</span>]]
+| style="padding: 0.3ex 0.6ex" | '''501'''
+|}
+{| class="sortable roundy-corners pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; background-size: 100%; background-image: -moz-linear-gradient(left, #D0E6FF, #7CBAFF); background-image: -webkit-linear-gradient(left, #D0E6FF, #7CBAFF); background-image: linear-gradient(to right, #D0E6FF, #7CBAFF);;"
+|-
+! class="hidden-xs" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | [[Pokédex Nazionale|<span style="color: #000;">#</span>]]
+! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | &nbsp;
+! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | Pokémon
+! style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | Totale
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0016
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0016.png|Pidgey|40px|link=Pidgey]]
+| style="padding: 0.3ex 0.6ex" | [[Pidgey|<span style="color: #000;">Pidgey</span>]]
+| style="padding: 0.3ex 0.6ex" | '''251'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0017
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0017.png|Pidgeotto|40px|link=Pidgeotto]]
+| style="padding: 0.3ex 0.6ex" | [[Pidgeotto|<span style="color: #000;">Pidgeotto</span>]]
+| style="padding: 0.3ex 0.6ex" | '''349'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0018
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0018.png|Pidgeot|40px|link=Pidgeot]]
+| style="padding: 0.3ex 0.6ex" | [[Pidgeot|<span style="color: #000;">Pidgeot</span>]]
+| style="padding: 0.3ex 0.6ex" | '''469'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0019
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0019.png|Rattata|40px|link=Rattata]]
+| style="padding: 0.3ex 0.6ex" | [[Rattata|<span style="color: #000;">Rattata</span>]]
+| style="padding: 0.3ex 0.6ex" | '''253'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0020
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0020.png|Raticate|40px|link=Raticate]]
+| style="padding: 0.3ex 0.6ex" | [[Raticate|<span style="color: #000;">Raticate</span>]]
+| style="padding: 0.3ex 0.6ex" | '''413'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0024
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0024.png|Arbok|40px|link=Arbok]]
+| style="padding: 0.3ex 0.6ex" | [[Arbok|<span style="color: #000;">Arbok</span>]]
+| style="padding: 0.3ex 0.6ex" | '''438'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0029
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0029.png|Nidoran♀|40px|link=Nidoran♀]]
+| style="padding: 0.3ex 0.6ex" | [[Nidoran♀|<span style="color: #000;">Nidoran♀</span>]]
+| style="padding: 0.3ex 0.6ex" | '''275'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0032
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0032.png|Nidoran♂|40px|link=Nidoran♂]]
+| style="padding: 0.3ex 0.6ex" | [[Nidoran♂|<span style="color: #000;">Nidoran♂</span>]]
+| style="padding: 0.3ex 0.6ex" | '''273'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0035
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0035.png|Clefairy|40px|link=Clefairy]]
+| style="padding: 0.3ex 0.6ex" | [[Clefairy|<span style="color: #000;">Clefairy</span>]]
+| style="padding: 0.3ex 0.6ex" | '''323'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0036
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0036.png|Clefable|40px|link=Clefable]]
+| style="padding: 0.3ex 0.6ex" | [[Clefable|<span style="color: #000;">Clefable</span>]]
+| style="padding: 0.3ex 0.6ex" | '''473'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0037
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0037.png|Vulpix|40px|link=Vulpix]]
+| style="padding: 0.3ex 0.6ex" | [[Vulpix|<span style="color: #000;">Vulpix</span>]]
+| style="padding: 0.3ex 0.6ex" | '''299'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0046
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0046.png|Paras|40px|link=Paras]]
+| style="padding: 0.3ex 0.6ex" | [[Paras|<span style="color: #000;">Paras</span>]]
+| style="padding: 0.3ex 0.6ex" | '''285'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0058
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0058.png|Growlithe|40px|link=Growlithe]]
+| style="padding: 0.3ex 0.6ex" | [[Growlithe|<span style="color: #000;">Growlithe</span>]]
+| style="padding: 0.3ex 0.6ex" | '''350'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0059
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0059.png|Arcanine|40px|link=Arcanine]]
+| style="padding: 0.3ex 0.6ex" | [[Arcanine|<span style="color: #000;">Arcanine</span>]]
+| style="padding: 0.3ex 0.6ex" | '''555'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0079
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0079.png|Slowpoke|40px|link=Slowpoke]]
+| style="padding: 0.3ex 0.6ex" | [[Slowpoke|<span style="color: #000;">Slowpoke</span>]]
+| style="padding: 0.3ex 0.6ex" | '''315'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0083
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0083.png|Farfetch'd|40px|link=Farfetch'd]]
+| style="padding: 0.3ex 0.6ex" | [[Farfetch'd|<span style="color: #000;">Farfetch'd</span>]]
+| style="padding: 0.3ex 0.6ex" | '''352'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0096
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0096.png|Drowzee|40px|link=Drowzee]]
+| style="padding: 0.3ex 0.6ex" | [[Drowzee|<span style="color: #000;">Drowzee</span>]]
+| style="padding: 0.3ex 0.6ex" | '''328'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0097
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0097.png|Hypno|40px|link=Hypno]]
+| style="padding: 0.3ex 0.6ex" | [[Hypno|<span style="color: #000;">Hypno</span>]]
+| style="padding: 0.3ex 0.6ex" | '''483'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0161
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0161.png|Sentret|40px|link=Sentret]]
+| style="padding: 0.3ex 0.6ex" | [[Sentret|<span style="color: #000;">Sentret</span>]]
+| style="padding: 0.3ex 0.6ex" | '''215'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0173
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0173.png|Cleffa|40px|link=Cleffa]]
+| style="padding: 0.3ex 0.6ex" | [[Cleffa|<span style="color: #000;">Cleffa</span>]]
+| style="padding: 0.3ex 0.6ex" | '''218'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0191
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0191.png|Sunkern|40px|link=Sunkern]]
+| style="padding: 0.3ex 0.6ex" | [[Sunkern|<span style="color: #000;">Sunkern</span>]]
+| style="padding: 0.3ex 0.6ex" | '''180'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0201
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0201.png|Unown|40px|link=Unown]]
+| style="padding: 0.3ex 0.6ex" | [[Unown|<span style="color: #000;">Unown</span>]]
+| style="padding: 0.3ex 0.6ex" | '''336'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0208
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0208.png|Steelix|40px|link=Steelix]]
+| style="padding: 0.3ex 0.6ex" | [[Steelix|<span style="color: #000;">Steelix</span>]]
+| style="padding: 0.3ex 0.6ex" | '''510'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0280
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0280.png|Ralts|40px|link=Ralts]]
+| style="padding: 0.3ex 0.6ex" | [[Ralts|<span style="color: #000;">Ralts</span>]]
+| style="padding: 0.3ex 0.6ex" | '''198'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0281
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0281.png|Kirlia|40px|link=Kirlia]]
+| style="padding: 0.3ex 0.6ex" | [[Kirlia|<span style="color: #000;">Kirlia</span>]]
+| style="padding: 0.3ex 0.6ex" | '''278'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0282
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0282.png|Gardevoir|40px|link=Gardevoir]]
+| style="padding: 0.3ex 0.6ex" | [[Gardevoir|<span style="color: #000;">Gardevoir</span>]]
+| style="padding: 0.3ex 0.6ex" | '''518'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0283
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0283.png|Surskit|40px|link=Surskit]]
+| style="padding: 0.3ex 0.6ex" | [[Surskit|<span style="color: #000;">Surskit</span>]]
+| style="padding: 0.3ex 0.6ex" | '''269'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0284
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0284.png|Masquerain|40px|link=Masquerain]]
+| style="padding: 0.3ex 0.6ex" | [[Masquerain|<span style="color: #000;">Masquerain</span>]]
+| style="padding: 0.3ex 0.6ex" | '''414'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0290
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0290.png|Nincada|40px|link=Nincada]]
+| style="padding: 0.3ex 0.6ex" | [[Nincada|<span style="color: #000;">Nincada</span>]]
+| style="padding: 0.3ex 0.6ex" | '''266'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0291
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0291.png|Ninjask|40px|link=Ninjask]]
+| style="padding: 0.3ex 0.6ex" | [[Ninjask|<span style="color: #000;">Ninjask</span>]]
+| style="padding: 0.3ex 0.6ex" | '''456'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0292
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0292.png|Shedinja|40px|link=Shedinja]]
+| style="padding: 0.3ex 0.6ex" | [[Shedinja|<span style="color: #000;">Shedinja</span>]]
+| style="padding: 0.3ex 0.6ex" | '''236'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0296
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0296.png|Makuhita|40px|link=Makuhita]]
+| style="padding: 0.3ex 0.6ex" | [[Makuhita|<span style="color: #000;">Makuhita</span>]]
+| style="padding: 0.3ex 0.6ex" | '''237'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0297
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0297.png|Hariyama|40px|link=Hariyama]]
+| style="padding: 0.3ex 0.6ex" | [[Hariyama|<span style="color: #000;">Hariyama</span>]]
+| style="padding: 0.3ex 0.6ex" | '''474'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0298
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0298.png|Azurill|40px|link=Azurill]]
+| style="padding: 0.3ex 0.6ex" | [[Azurill|<span style="color: #000;">Azurill</span>]]
+| style="padding: 0.3ex 0.6ex" | '''190'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0299
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0299.png|Nosepass|40px|link=Nosepass]]
+| style="padding: 0.3ex 0.6ex" | [[Nosepass|<span style="color: #000;">Nosepass</span>]]
+| style="padding: 0.3ex 0.6ex" | '''375'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0316
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0316.png|Gulpin|40px|link=Gulpin]]
+| style="padding: 0.3ex 0.6ex" | [[Gulpin|<span style="color: #000;">Gulpin</span>]]
+| style="padding: 0.3ex 0.6ex" | '''302'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0317
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0317.png|Swalot|40px|link=Swalot]]
+| style="padding: 0.3ex 0.6ex" | [[Swalot|<span style="color: #000;">Swalot</span>]]
+| style="padding: 0.3ex 0.6ex" | '''467'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0341
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0341.png|Corphish|40px|link=Corphish]]
+| style="padding: 0.3ex 0.6ex" | [[Corphish|<span style="color: #000;">Corphish</span>]]
+| style="padding: 0.3ex 0.6ex" | '''308'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0562
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0562.png|Yamask|40px|link=Yamask]]
+| style="padding: 0.3ex 0.6ex" | [[Yamask|<span style="color: #000;">Yamask</span>]]
+| style="padding: 0.3ex 0.6ex" | '''303'''
+|}
