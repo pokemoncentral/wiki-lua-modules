@@ -88,8 +88,10 @@ run_tests() {
 COMMIT=''
 # Whether output files should be kept
 KEEP_OUTPUT='false'
+# Whether to update snapshots
+UPDATE_SNAPSHOTS='false'
 
-while getopts 'hpc:' OPTION; do
+while getopts 'hpc:u' OPTION; do
     case "$OPTION" in
         'h')
             echo "$HELP_STRING"
@@ -104,6 +106,10 @@ while getopts 'hpc:' OPTION; do
             KEEP_OUTPUT='true'
             ;;
 
+        'u')
+            UPDATE_SNAPSHOTS='true'
+            ;;
+
         *) # getopts already printed an error message
             exit 1
             ;;
@@ -115,6 +121,18 @@ shift $(( OPTIND - 1 ))
 grep -E '\s+-\w\s+' <<<"$*" > /dev/null && {
     echo >&2 "Named arguments found after positional in: $*"
     exit 1
+}
+
+########################################
+# Update snapshots
+########################################
+
+# We don't support updating snapshots from a previous commit yet. Hence, we
+# handle updating here before dealing with old commits and exit early.
+[ "$UPDATE_SNAPSHOTS" == 'true' ] && {
+    run_tests "$SNAPSHOTS_DIR" 'current' "$@"
+    echo -e "${YELLOW}[UPDATE]${RESET} Snapshot updated"
+    exit 0
 }
 
 ########################################
