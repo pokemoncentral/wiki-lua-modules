@@ -19,7 +19,8 @@ script. If the -p option is given, they are kept around under
 test/worktree-<commit-sha>.
 
 Arguments:
-    FILES...: The test files to be executed
+    FILES...: The test files to be executed. If none is given, all test will be
+              executed.
 
 Options:
     -h:             Show this help
@@ -123,6 +124,11 @@ grep -E '\s+-\w\s+' <<<"$*" > /dev/null && {
     exit 1
 }
 
+TEST_FILES=( "$@" )
+[ "${#TEST_FILES}" -eq 0 ] && {
+    TEST_FILES=( "$TESTS_DIR"/*.spec.lua )
+}
+
 ########################################
 # Update snapshots
 ########################################
@@ -130,7 +136,7 @@ grep -E '\s+-\w\s+' <<<"$*" > /dev/null && {
 # We don't support updating snapshots from a previous commit yet. Hence, we
 # handle updating here before dealing with old commits and exit early.
 [ "$UPDATE_SNAPSHOTS" == 'true' ] && {
-    run_tests "$SNAPSHOTS_DIR" 'current' "$@"
+    run_tests "$SNAPSHOTS_DIR" 'current' "${TEST_FILES[@]}"
     echo -e "${YELLOW}[UPDATE]${RESET} Snapshot updated"
     exit 0
 }
@@ -175,18 +181,21 @@ grep -E '\s+-\w\s+' <<<"$*" > /dev/null && {
 #######################################
 
 mkdir -p "$CURRENT_OUTPUT_DIR"
-run_tests "$CURRENT_OUTPUT_DIR" 'current' "$@"
+run_tests "$CURRENT_OUTPUT_DIR" 'current' "${TEST_FILES[@]}"
 
 #######################################
 # Diffing
 #######################################
 
-basename -a "$@" | while read -r TEST_SCRIPT; do
+EXIT_CODE=0
+while read -r TEST_SCRIPT; do
     echo -ne "${YELLOW}[DIFF]${RESET} Compare ${YELLOW}$TEST_SCRIPT${RESET} "
     echo 'output with snapshot'
     diff -su --color=always \
         --label "$TEST_SCRIPT@snapshot" \
         --label "$TEST_SCRIPT@current" \
         "$CURRENT_OUTPUT_DIR/$TEST_SCRIPT.out" \
-        "$SNAPSHOTS_DIR/$TEST_SCRIPT.out"
-done
+        "$SNAPSHOTS_DIR/$TEST_SCRIPT.out" \
+        || EXIT_CODE=1
+done < <(basename -a "${TEST_FILES[@]}")
+exit "$EXIT_CODE"

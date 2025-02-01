@@ -8,11 +8,13 @@ repos:
   - id: end-of-file-fixer
   - id: check-yaml
   - id: check-added-large-files
+
 - repo: https://github.com/JohnnyMorganz/StyLua
   rev: v0.17.1
   hooks:
     - id: stylua
       exclude: unused
+
 - repo: local
   hooks:
     - id: abbr-checks
@@ -21,3 +23,17 @@ repos:
       language: lua
       files: 'Poké-data.lua|AltForms-data.lua|UselessForms-data.lua|BothForms-data.lua'
       pass_filenames: false
+
+    - id: changed-snapshot-tests
+      name: Run snapshot tests on changed files
+      entry: bash test/pre-commit-snapshots.sh
+      language: lua
+      files: '.*\.lua$'
+
+    - id: all-snapshot-tests
+      name: Verify snapshot tests are passing
+      entry: bash test/regression-test.sh
+      language: lua
+      pass_filenames: false
+      always_run: true
+      stages: [pre-push]
