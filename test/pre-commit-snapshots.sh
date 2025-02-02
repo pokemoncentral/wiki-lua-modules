@@ -22,12 +22,15 @@ GREEN='\e[92m'
 # Main
 ########################################
 
-basename -a "$@" | while read -r CHANGED_LUA_FILE; do
-    TEST_FILE="$TESTS_DIR/${CHANGED_LUA_FILE%%.lua}.spec.lua"
+[ "$#" -eq 0 ] && exit 0
+
+basename --multiple --suffix .lua "$@" | while read -r CHANGED_LUA_FILE; do
+    # Removing .spec via shell substitution handles test files
+    TEST_FILE="$TESTS_DIR/${CHANGED_LUA_FILE%%.spec}.spec.lua"
     if [ -f "$TEST_FILE" ]; then
         echo "$TEST_FILE"
     else
-        echo -en >&2 "${GREEN}[TEST]${RESET} No snapshot found for "
-        echo -e >&2 "${GREEN}$CHANGED_LUA_FILE${RESET}"
+        echo -en >&2 "${GREEN}[TEST]${RESET} No tests found for "
+        echo -e >&2 "${GREEN}$CHANGED_LUA_FILE.lua${RESET}"
     fi
-done | xargs bash "$TESTS_DIR/regression-test.sh"
+done | xargs --no-run-if-empty bash "$TESTS_DIR/regression-test.sh"

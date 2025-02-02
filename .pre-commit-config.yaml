@@ -28,7 +28,8 @@ repos:
       name: Run snapshot tests on changed files
       entry: bash test/pre-commit-snapshots.sh
       language: lua
-      files: '.*\.lua$'
+      files: '^(|test/)'
+      types: [lua]
 
     - id: all-snapshot-tests
       name: Verify snapshot tests are passing
