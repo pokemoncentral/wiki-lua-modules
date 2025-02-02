@@ -44,6 +44,7 @@ CURRENT_OUTPUT_DIR="$TESTS_DIR/current-output"
 # Colored output
 RESET='\e[0m'
 BLUE='\e[94m'
+GRAY='\e[90m'
 GREEN='\e[92m'
 RED='\e[91m'
 YELLOW='\e[93m'
@@ -188,6 +189,7 @@ run_tests "$CURRENT_OUTPUT_DIR" 'current' "${TEST_FILES[@]}"
 #######################################
 
 EXIT_CODE=0
+
 while read -r TEST_SCRIPT; do
     echo -ne "${YELLOW}[DIFF]${RESET} Compare ${YELLOW}$TEST_SCRIPT${RESET} "
     echo 'output with snapshot'
@@ -198,4 +200,13 @@ while read -r TEST_SCRIPT; do
         "$SNAPSHOTS_DIR/$TEST_SCRIPT.out" \
         || EXIT_CODE=1
 done < <(basename -a "${TEST_FILES[@]}")
+
+[ "$EXIT_CODE" -ne 0 ] && {
+    echo -ne "${GREEN}[TEST]${RESET} Some tests produced different output than"
+    echo -n " the snapshot. If the current output is what's expected, you can "
+    echo 'update the snapshots by mens of'
+    echo -en "${GREEN}[TEST]${RESET}"
+    echo -e "     ${GRAY}bash $0 -u [TEST-FILE...]${RESET}"
+}
+
 exit "$EXIT_CODE"
