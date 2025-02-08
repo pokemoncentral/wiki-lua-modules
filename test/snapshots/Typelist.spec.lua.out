@@ -1,0 +1,550 @@
+=== Pokémon di tipo Fuoco puro ===
+{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; background-size: 100%; background-image: -moz-linear-gradient(left, #FF7172, #E62829); background-image: -webkit-linear-gradient(left, #FF7172, #E62829); background-image: linear-gradient(to right, #FF7172, #E62829);;"
+|- class="hidden-xs"
+! class="white-text" style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
+! class="unsortable" | &nbsp;
+! class="white-text" | [[Pokémon]]
+! class="white-text" | [[Tipo]]
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0004
+| class="width-xs-20" | [[File:Minim0004.png|Charmander|40px|link=Charmander]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Charmander]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0005
+| class="width-xs-20" | [[File:Minim0005.png|Charmeleon|40px|link=Charmeleon]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Charmeleon]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0037
+| class="width-xs-20" | [[File:Minim0037.png|Vulpix|40px|link=Vulpix]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Vulpix]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0038
+| class="width-xs-20" | [[File:Minim0038.png|Ninetales|40px|link=Ninetales]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Ninetales]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0058
+| class="width-xs-20" | [[File:Minim0058.png|Growlithe|40px|link=Growlithe]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Growlithe]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0059
+| class="width-xs-20" | [[File:Minim0059.png|Arcanine|40px|link=Arcanine]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Arcanine]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0077
+| class="width-xs-20" | [[File:Minim0077.png|Ponyta|40px|link=Ponyta]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Ponyta]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0078
+| class="width-xs-20" | [[File:Minim0078.png|Rapidash|40px|link=Rapidash]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Rapidash]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0126
+| class="width-xs-20" | [[File:Minim0126.png|Magmar|40px|link=Magmar]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Magmar]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0136
+| class="width-xs-20" | [[File:Minim0136.png|Flareon|40px|link=Flareon]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Flareon]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0155
+| class="width-xs-20" | [[File:Minim0155.png|Cyndaquil|40px|link=Cyndaquil]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Cyndaquil]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0156
+| class="width-xs-20" | [[File:Minim0156.png|Quilava|40px|link=Quilava]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Quilava]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0157
+| class="width-xs-20" | [[File:Minim0157.png|Typhlosion|40px|link=Typhlosion]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Typhlosion]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0218
+| class="width-xs-20" | [[File:Minim0218.png|Slugma|40px|link=Slugma]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Slugma]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0240
+| class="width-xs-20" | [[File:Minim0240.png|Magby|40px|link=Magby]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Magby]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0244
+| class="width-xs-20" | [[File:Minim0244.png|Entei|40px|link=Entei]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Entei]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0255
+| class="width-xs-20" | [[File:Minim0255.png|Torchic|40px|link=Torchic]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Torchic]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0324
+| class="width-xs-20" | [[File:Minim0324.png|Torkoal|40px|link=Torkoal]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Torkoal]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0351
+| class="width-xs-20" | [[File:Minim0351S.png|Castform|40px|link=Castform]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Castform]]<div class="small-text">[[Castform/Forme|Forma Sole]]</div>
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0390
+| class="width-xs-20" | [[File:Minim0390.png|Chimchar|40px|link=Chimchar]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Chimchar]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0467
+| class="width-xs-20" | [[File:Minim0467.png|Magmortar|40px|link=Magmortar]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Magmortar]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0493
+| class="width-xs-20" | [[File:Minim0493Fu.png|Arceus|40px|link=Arceus]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Arceus]]<div class="small-text">[[Arceus/Forme|Fuoco]]</div>
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0498
+| class="width-xs-20" | [[File:Minim0498.png|Tepig|40px|link=Tepig]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Tepig]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0513
+| class="width-xs-20" | [[File:Minim0513.png|Pansear|40px|link=Pansear]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Pansear]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0514
+| class="width-xs-20" | [[File:Minim0514.png|Simisear|40px|link=Simisear]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Simisear]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0554
+| class="width-xs-20" | [[File:Minim0554.png|Darumaka|40px|link=Darumaka]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Darumaka]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0555
+| class="width-xs-20" | [[File:Minim0555.png|Darmanitan|40px|link=Darmanitan]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Darmanitan]]<div class="small-text">[[Darmanitan/Forme|Stato Normale]]</div>
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0631
+| class="width-xs-20" | [[File:Minim0631.png|Heatmor|40px|link=Heatmor]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Heatmor]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0653
+| class="width-xs-20" | [[File:Minim0653.png|Fennekin|40px|link=Fennekin]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Fennekin]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0654
+| class="width-xs-20" | [[File:Minim0654.png|Braixen|40px|link=Braixen]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Braixen]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0725
+| class="width-xs-20" | [[File:Minim0725.png|Litten|40px|link=Litten]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Litten]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0726
+| class="width-xs-20" | [[File:Minim0726.png|Torracat|40px|link=Torracat]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Torracat]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0773
+| class="width-xs-20" | [[File:Minim0773Fu.png|Silvally|40px|link=Silvally]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Silvally]]<div class="small-text">[[Silvally/Forme|Tipo Fuoco]]</div>
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0813
+| class="width-xs-20" | [[File:Minim0813.png|Scorbunny|40px|link=Scorbunny]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Scorbunny]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0814
+| class="width-xs-20" | [[File:Minim0814.png|Raboot|40px|link=Raboot]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Raboot]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0815
+| class="width-xs-20" | [[File:Minim0815.png|Cinderace|40px|link=Cinderace]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Cinderace]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0815
+| class="width-xs-20" | [[File:Minim0815Gi.png|Cinderace|40px|link=Cinderace]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Cinderace]]<div class="small-text">[[Gigamax#Cinderace|Cinderace Gigamax]]</div>
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0909
+| class="width-xs-20" | [[File:Minim0909.png|Fuecoco|40px|link=Fuecoco]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Fuecoco]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0910
+| class="width-xs-20" | [[File:Minim0910.png|Crocalor|40px|link=Crocalor]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Crocalor]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0935
+| class="width-xs-20" | [[File:Minim0935.png|Charcadet|40px|link=Charcadet]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Charcadet]]
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 1017
+| class="width-xs-20" | [[File:Minim1017FcT.png|Ogerpon|40px|link=Ogerpon]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Ogerpon]]<div class="small-text">[[Ogerpon/Forme|Maschera Focolare (Teracristal)]]</div>
+| class=" min-width-xs-70" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|}
+
+=== Pokémon di tipo Fuoco parziale ===
+
+==== Pokémon di tipo Fuoco come tipo primario ====
+{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; background-size: 100%; background-image: -moz-linear-gradient(left, #FF7172, #E62829); background-image: -webkit-linear-gradient(left, #FF7172, #E62829); background-image: linear-gradient(to right, #FF7172, #E62829);;"
+|- class="hidden-xs"
+! class="white-text" style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
+! class="unsortable" | &nbsp;
+! class="white-text" | [[Pokémon]]
+! class="white-text" | [[Tipo|Tipo 1]]
+! class="white-text" | [[Tipo|Tipo 2]]
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0006
+| class="width-xs-20" | [[File:Minim0006.png|Charizard|40px|link=Charizard]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Charizard]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0006
+| class="width-xs-20" | [[File:Minim0006MX.png|Charizard|40px|link=Charizard]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Charizard]]<div class="small-text">[[Megaevoluzione#Charizard|MegaCharizard X]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-drago roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Drago|<span style=";">Drago</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0006
+| class="width-xs-20" | [[File:Minim0006MY.png|Charizard|40px|link=Charizard]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Charizard]]<div class="small-text">[[Megaevoluzione#Charizard|MegaCharizard Y]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0006
+| class="width-xs-20" | [[File:Minim0006Gi.png|Charizard|40px|link=Charizard]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Charizard]]<div class="small-text">[[Gigamax#Charizard|Charizard Gigamax]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0058
+| class="width-xs-20" | [[File:Minim0058H.png|Growlithe|40px|link=Growlithe]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Growlithe]]<div class="small-text">[[Forma di Hisui#Growlithe|Forma di Hisui]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-roccia roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Roccia|<span style=";">Roccia</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0059
+| class="width-xs-20" | [[File:Minim0059H.png|Arcanine|40px|link=Arcanine]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Arcanine]]<div class="small-text">[[Forma di Hisui#Arcanine|Forma di Hisui]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-roccia roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Roccia|<span style=";">Roccia</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0105
+| class="width-xs-20" | [[File:Minim0105A.png|Marowak|40px|link=Marowak]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Marowak]]<div class="small-text">[[Forma di Alola#Marowak|Forma di Alola]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-spettro roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Spettro|<span style=";">Spettro</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0146
+| class="width-xs-20" | [[File:Minim0146.png|Moltres|40px|link=Moltres]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Moltres]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0157
+| class="width-xs-20" | [[File:Minim0157H.png|Typhlosion|40px|link=Typhlosion]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Typhlosion]]<div class="small-text">[[Forma di Hisui#Typhlosion|Forma di Hisui]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-spettro roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Spettro|<span style=";">Spettro</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0219
+| class="width-xs-20" | [[File:Minim0219.png|Magcargo|40px|link=Magcargo]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Magcargo]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-roccia roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Roccia|<span style=";">Roccia</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0250
+| class="width-xs-20" | [[File:Minim0250.png|Ho-Oh|40px|link=Ho-Oh]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Ho-Oh]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0256
+| class="width-xs-20" | [[File:Minim0256.png|Combusken|40px|link=Combusken]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Combusken]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-lotta roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Lotta|<span style=";">Lotta</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0257
+| class="width-xs-20" | [[File:Minim0257.png|Blaziken|40px|link=Blaziken]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Blaziken]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-lotta roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Lotta|<span style=";">Lotta</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0257
+| class="width-xs-20" | [[File:Minim0257M.png|Blaziken|40px|link=Blaziken]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Blaziken]]<div class="small-text">[[Megaevoluzione#Blaziken|MegaBlaziken]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-lotta roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Lotta|<span style=";">Lotta</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0322
+| class="width-xs-20" | [[File:Minim0322.png|Numel|40px|link=Numel]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Numel]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-terra roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Terra|<span style=";">Terra</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0323
+| class="width-xs-20" | [[File:Minim0323.png|Camerupt|40px|link=Camerupt]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Camerupt]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-terra roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Terra|<span style=";">Terra</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0323
+| class="width-xs-20" | [[File:Minim0323M.png|Camerupt|40px|link=Camerupt]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Camerupt]]<div class="small-text">[[Megaevoluzione#Camerupt|MegaCamerupt]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-terra roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Terra|<span style=";">Terra</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0391
+| class="width-xs-20" | [[File:Minim0391.png|Monferno|40px|link=Monferno]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Monferno]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-lotta roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Lotta|<span style=";">Lotta</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0392
+| class="width-xs-20" | [[File:Minim0392.png|Infernape|40px|link=Infernape]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Infernape]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-lotta roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Lotta|<span style=";">Lotta</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0485
+| class="width-xs-20" | [[File:Minim0485.png|Heatran|40px|link=Heatran]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Heatran]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-acciaio roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Acciaio|<span style=";">Acciaio</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0499
+| class="width-xs-20" | [[File:Minim0499.png|Pignite|40px|link=Pignite]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Pignite]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-lotta roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Lotta|<span style=";">Lotta</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0500
+| class="width-xs-20" | [[File:Minim0500.png|Emboar|40px|link=Emboar]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Emboar]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-lotta roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Lotta|<span style=";">Lotta</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0555
+| class="width-xs-20" | [[File:Minim0555Z.png|Darmanitan|40px|link=Darmanitan]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Darmanitan]]<div class="small-text">[[Darmanitan/Forme|Stato Zen]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-psico roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Psico|<span style=";">Psico</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0655
+| class="width-xs-20" | [[File:Minim0655.png|Delphox|40px|link=Delphox]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Delphox]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-psico roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Psico|<span style=";">Psico</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0662
+| class="width-xs-20" | [[File:Minim0662.png|Fletchinder|40px|link=Fletchinder]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Fletchinder]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0663
+| class="width-xs-20" | [[File:Minim0663.png|Talonflame|40px|link=Talonflame]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Talonflame]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0667
+| class="width-xs-20" | [[File:Minim0667.png|Litleo|40px|link=Litleo]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Litleo]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-normale roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Normale|<span style=";">Normale</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0668
+| class="width-xs-20" | [[File:Minim0668.png|Pyroar|40px|link=Pyroar]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Pyroar]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-normale roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Normale|<span style=";">Normale</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0721
+| class="width-xs-20" | [[File:Minim0721.png|Volcanion|40px|link=Volcanion]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Volcanion]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-acqua roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Acqua|<span style=";">Acqua</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0727
+| class="width-xs-20" | [[File:Minim0727.png|Incineroar|40px|link=Incineroar]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Incineroar]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-buio roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Buio|<span style=";">Buio</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0741
+| class="width-xs-20" | [[File:Minim0741.png|Oricorio|40px|link=Oricorio]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Oricorio]]<div class="small-text">[[Oricorio/Forme|Stile Flamenco]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0776
+| class="width-xs-20" | [[File:Minim0776.png|Turtonator|40px|link=Turtonator]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Turtonator]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-drago roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Drago|<span style=";">Drago</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0806
+| class="width-xs-20" | [[File:Minim0806.png|Blacephalon|40px|link=Blacephalon]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Blacephalon]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-spettro roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Spettro|<span style=";">Spettro</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0850
+| class="width-xs-20" | [[File:Minim0850.png|Sizzlipede|40px|link=Sizzlipede]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Sizzlipede]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-coleot roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Coleot|<span style=";">Coleot</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0851
+| class="width-xs-20" | [[File:Minim0851.png|Centiskorch|40px|link=Centiskorch]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Centiskorch]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-coleot roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Coleot|<span style=";">Coleot</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0851
+| class="width-xs-20" | [[File:Minim0851Gi.png|Centiskorch|40px|link=Centiskorch]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Centiskorch]]<div class="small-text">[[Gigamax#Centiskorch|Centiskorch Gigamax]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-coleot roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Coleot|<span style=";">Coleot</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0911
+| class="width-xs-20" | [[File:Minim0911.png|Skeledirge|40px|link=Skeledirge]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Skeledirge]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-spettro roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Spettro|<span style=";">Spettro</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0936
+| class="width-xs-20" | [[File:Minim0936.png|Armarouge|40px|link=Armarouge]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Armarouge]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-psico roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Psico|<span style=";">Psico</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0937
+| class="width-xs-20" | [[File:Minim0937.png|Ceruledge|40px|link=Ceruledge]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Ceruledge]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-spettro roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Spettro|<span style=";">Spettro</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0994
+| class="width-xs-20" | [[File:Minim0994.png|Falenaferrea|40px|link=Falenaferrea]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Falenaferrea]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-veleno roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Veleno|<span style=";">Veleno</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 1020
+| class="width-xs-20" | [[File:Minim1020.png|Vampeaguzze|40px|link=Vampeaguzze]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Vampeaguzze]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-drago roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Drago|<span style=";">Drago</span>]]</div>
+|}
+
+==== Pokémon di tipo Fuoco come tipo secondario ====
+{| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; background-size: 100%; background-image: -moz-linear-gradient(left, #FF7172, #E62829); background-image: -webkit-linear-gradient(left, #FF7172, #E62829); background-image: linear-gradient(to right, #FF7172, #E62829);;"
+|- class="hidden-xs"
+! class="white-text" style="padding-top: 0.5ex; padding-bottom: 0.5ex; padding-left: 0.5ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
+! class="unsortable" | &nbsp;
+! class="white-text" | [[Pokémon]]
+! class="white-text" | [[Tipo|Tipo 1]]
+! class="white-text" | [[Tipo|Tipo 2]]
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0128
+| class="width-xs-20" | [[File:Minim0128I.png|Tauros|40px|link=Tauros]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Tauros]]<div class="small-text">[[Forma di Paldea#Tauros|Forma di Paldea Varietà Infuocata]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-lotta roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Lotta|<span style=";">Lotta</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0228
+| class="width-xs-20" | [[File:Minim0228.png|Houndour|40px|link=Houndour]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Houndour]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-buio roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Buio|<span style=";">Buio</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0229
+| class="width-xs-20" | [[File:Minim0229.png|Houndoom|40px|link=Houndoom]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Houndoom]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-buio roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Buio|<span style=";">Buio</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0229
+| class="width-xs-20" | [[File:Minim0229M.png|Houndoom|40px|link=Houndoom]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Houndoom]]<div class="small-text">[[Megaevoluzione#Houndoom|MegaHoundoom]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-buio roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Buio|<span style=";">Buio</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0383
+| class="width-xs-20" | [[File:Minim0383A.png|Groudon|40px|link=Groudon]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Groudon]]<div class="small-text">[[Archeorisveglio#Groudon|Archeorisveglio]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-terra roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Terra|<span style=";">Terra</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0479
+| class="width-xs-20" | [[File:Minim0479C.png|Rotom|40px|link=Rotom]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Rotom]]<div class="small-text">[[Rotom/Forme|Rotom Calore]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-elettro roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Elettro|<span style=";">Elettro</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0494
+| class="width-xs-20" | [[File:Minim0494.png|Victini|40px|link=Victini]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Victini]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-psico roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Psico|<span style=";">Psico</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0555
+| class="width-xs-20" | [[File:Minim0555GZ.png|Darmanitan|40px|link=Darmanitan]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Darmanitan]]<div class="small-text">[[Darmanitan/Forme|Stato Zen (Galar)]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-ghiaccio roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Ghiaccio|<span style=";">Ghiaccio</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0607
+| class="width-xs-20" | [[File:Minim0607.png|Litwick|40px|link=Litwick]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Litwick]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-spettro roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Spettro|<span style=";">Spettro</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0608
+| class="width-xs-20" | [[File:Minim0608.png|Lampent|40px|link=Lampent]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Lampent]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-spettro roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Spettro|<span style=";">Spettro</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0609
+| class="width-xs-20" | [[File:Minim0609.png|Chandelure|40px|link=Chandelure]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Chandelure]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-spettro roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Spettro|<span style=";">Spettro</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0636
+| class="width-xs-20" | [[File:Minim0636.png|Larvesta|40px|link=Larvesta]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Larvesta]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-coleot roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Coleot|<span style=";">Coleot</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0637
+| class="width-xs-20" | [[File:Minim0637.png|Volcarona|40px|link=Volcarona]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Volcarona]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-coleot roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Coleot|<span style=";">Coleot</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0643
+| class="width-xs-20" | [[File:Minim0643.png|Reshiram|40px|link=Reshiram]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Reshiram]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-drago roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Drago|<span style=";">Drago</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0757
+| class="width-xs-20" | [[File:Minim0757.png|Salandit|40px|link=Salandit]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Salandit]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-veleno roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Veleno|<span style=";">Veleno</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0758
+| class="width-xs-20" | [[File:Minim0758.png|Salazzle|40px|link=Salazzle]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Salazzle]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-veleno roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Veleno|<span style=";">Veleno</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0838
+| class="width-xs-20" | [[File:Minim0838.png|Carkol|40px|link=Carkol]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Carkol]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-roccia roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Roccia|<span style=";">Roccia</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0839
+| class="width-xs-20" | [[File:Minim0839.png|Coalossal|40px|link=Coalossal]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Coalossal]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-roccia roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Roccia|<span style=";">Roccia</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0839
+| class="width-xs-20" | [[File:Minim0839Gi.png|Coalossal|40px|link=Coalossal]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Coalossal]]<div class="small-text">[[Gigamax#Coalossal|Coalossal Gigamax]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-roccia roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Roccia|<span style=";">Roccia</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0952
+| class="width-xs-20" | [[File:Minim0952.png|Scovillain|40px|link=Scovillain]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Scovillain]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-erba roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Erba|<span style=";">Erba</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 1004
+| class="width-xs-20" | [[File:Minim1004.png|Chi-Yu|40px|link=Chi-Yu]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Chi-Yu]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-buio roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Buio|<span style=";">Buio</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 1017
+| class="width-xs-20" | [[File:Minim1017Fc.png|Ogerpon|40px|link=Ogerpon]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Ogerpon]]<div class="small-text">[[Ogerpon/Forme|Maschera Focolare]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-erba roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Erba|<span style=";">Erba</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|}

@@ -1,20 +1,34 @@
 #!/usr/bin/env bash
 
-# This script runs a regression test, that is it compares the current output of
-# a test file with the one of an previous git commit. For more info, read the
-# help string below
+# This script runs snapshot test, that is it compares the current output of a
+# test suite with the ones stored in the `snapshots` directory. It can also use
+# snapshots from a previous commit. For more info, read the help string below.
 
 HELP_STRING="Usage:
-regression-test [-hp] [-c HASH] FILES...
+regression-test [-hp] [-c GIT-REF] FILES...
 
-Runs regression tests against one or more test file.
-This script simply compare the current output of the test file with that of an
-older (git) version, printing differences.
+Runs snapshot tests against one or more test files.
+This script simply compares the current output of the test files with that
+stored in the snapshots directory, printing differences.
+
+If a commit is provided via the -c option, the snapshots from such commits are
+used. If the commit doesn't have snapshots, they are generated on-the-fly by
+executing tests at that commit.
+Snapshots/test output of previous commits are cleaned up after each run of the
+script. If the -p option is given, they are kept around under
+test/worktree-<commit-sha>.
 
 Arguments:
-- h: Show this help
-- c: Commit to compare with. Default to HEAD
-- p: Preserve test outputs. If not specified, those are removed"
+    FILES...: The test files to be executed. If none is given, all test will be
+              executed.
+
+Options:
+    -h:             Show this help
+    -c GIT-REF:     Commit ref from which snapshots are used. If not given, the
+                    snapshots *currently on the filesystem* are used.
+    -p:             Preserve snapshots from the commit provided by -c. If not
+                    specified, the snapshots are removed
+"
 
 #######################################
 # Variables
@@ -22,7 +36,18 @@ Arguments:
 
 # This is the directory where test scripts are located. It happens to be the
 # same as this script's, and it also happens to be inside the git repository
-SCRIPTS_DIR="$(dirname "${BASH_SOURCE[0]}" | xargs readlink -f)"
+TESTS_DIR="$(dirname "${BASH_SOURCE[0]}" | xargs readlink -f)"
+
+SNAPSHOTS_DIR="$TESTS_DIR/snapshots"
+CURRENT_OUTPUT_DIR="$TESTS_DIR/current-output"
+
+# Colored output
+RESET='\e[0m'
+BLUE='\e[94m'
+GRAY='\e[90m'
+GREEN='\e[92m'
+RED='\e[91m'
+YELLOW='\e[93m'
 
 #######################################
 # Functions
@@ -33,26 +58,26 @@ SCRIPTS_DIR="$(dirname "${BASH_SOURCE[0]}" | xargs readlink -f)"
 #
 # Arguments:
 #   - $1: The output directory to which the test output are saved
-#   - $2: The directory where the test scripts are located
-#   - $4+: The test scripts
+#   - $2+: The test scripts
 run_tests() {
     local OUTPUT_DIR="$1"
-    local SCRIPTS_DIR="$2"
+    local COMMIT="$2"
     shift 2
 
-    # This includes also shell color escaping, as it's only used for logging
-    local COMMIT
-    COMMIT="\e[94m$(git rev-parse --abbrev-ref HEAD)\e[0m"
+    while [ $# -gt 0 ]; do
+        local TEST_SCRIPT_PATH="$1"
+        local TEST_SCRIPT
+        TEST_SCRIPT="$(basename "$TEST_SCRIPT_PATH")"
+        shift
 
-    basename -a "$@" | while read TEST_SCRIPT; do
-        TEST_SCRIPT_PATH="$SCRIPTS_DIR/$TEST_SCRIPT"
-        [[ ! -e "$TEST_SCRIPT_PATH" ]] && {
-            echo -ne >&2 '\e[91m[TEST]\e[0m '
-            echo -e >&2 "\e[91m$TEST_SCRIPT\e[0m@$COMMIT not found"
+        [ ! -f "$TEST_SCRIPT_PATH" ] && {
+            echo -ne >&2 "${GREEN}[TEST]${RESET} ${RED}$TEST_SCRIPT${RESET}@"
+            echo -e >&2 "${BLUE}$COMMIT${RESET} not found"
             continue
         }
 
-        echo -e "\e[92m[TEST]\e[0m Running \e[92m$TEST_SCRIPT\e[0m@$COMMIT"
+        echo -ne "${GREEN}[TEST]${RESET} Running "
+        echo -e "${GREEN}$TEST_SCRIPT${RESET}@${BLUE}$COMMIT${RESET}"
         lua "$TEST_SCRIPT_PATH" > "$OUTPUT_DIR/$TEST_SCRIPT.out"
     done
 }
@@ -62,11 +87,13 @@ run_tests() {
 #######################################
 
 # The git commit whose test output will be compared to the current one.
-COMMIT='HEAD'
+COMMIT=''
 # Whether output files should be kept
 KEEP_OUTPUT='false'
+# Whether to update snapshots
+UPDATE_SNAPSHOTS='false'
 
-while getopts 'hpc:' OPTION; do
+while getopts 'hpc:u' OPTION; do
     case "$OPTION" in
         'h')
             echo "$HELP_STRING"
@@ -79,6 +106,10 @@ while getopts 'hpc:' OPTION; do
 
         'p')
             KEEP_OUTPUT='true'
+            ;;
+
+        'u')
+            UPDATE_SNAPSHOTS='true'
             ;;
 
         *) # getopts already printed an error message
@@ -94,60 +125,88 @@ grep -E '\s+-\w\s+' <<<"$*" > /dev/null && {
     exit 1
 }
 
-#######################################
-# Going back to old git commit
-#######################################
+TEST_FILES=( "$@" )
+[ "${#TEST_FILES}" -eq 0 ] && {
+    TEST_FILES=( "$TESTS_DIR"/*.spec.lua )
+}
 
-CURRENT_HEAD="$(git rev-parse --abbrev-ref HEAD)"
+########################################
+# Update snapshots
+########################################
 
-echo -e '\e[94m[GIT]\e[0m Stashing uncommitted changes'
-git -C "$SCRIPTS_DIR" stash push -q
-echo -e "\e[94m[GIT]\e[0m Checking out $COMMIT"
-git -C "$SCRIPTS_DIR" checkout -q "$COMMIT"
+# We don't support updating snapshots from a previous commit yet. Hence, we
+# handle updating here before dealing with old commits and exit early.
+[ "$UPDATE_SNAPSHOTS" == 'true' ] && {
+    run_tests "$SNAPSHOTS_DIR" 'current' "${TEST_FILES[@]}"
+    echo -e "${YELLOW}[UPDATE]${RESET} Snapshot updated"
+    exit 0
+}
 
-#######################################
-# Running old test scripts
-#######################################
+########################################
+# Get old commit snapshots
+########################################
 
-OLD_OUTPUT_DIR="$(mktemp --tmpdir="$SCRIPTS_DIR" -d "output-$COMMIT.XXX")"
-run_tests "$OLD_OUTPUT_DIR" "$SCRIPTS_DIR" "$@"
+[ -n "$COMMIT" ] && {
+    COMMIT_SHA="$(git rev-parse --short "$COMMIT")"
+    WORKTREE_FOR_COMMIT="$TESTS_DIR/worktree-$COMMIT_SHA"
 
-#######################################
-# Going back to current HEAD
-#######################################
+    git worktree list --porcelain | grep --quiet "$WORKTREE_FOR_COMMIT" || {
+        rm --recursive --force "$WORKTREE_FOR_COMMIT"
+        git worktree add "$WORKTREE_FOR_COMMIT" "$COMMIT" > /dev/null
+    }
 
-echo -e '\e[94m[GIT]\e[0m Checking back out to current HEAD'
-git -C "$SCRIPTS_DIR" checkout -q "$CURRENT_HEAD"
-echo -e '\e[94m[GIT]\e[0m Stashing changes back'
-git -C "$SCRIPTS_DIR" stash pop -q
+    # shellcheck disable=SC2064
+    [ "$KEEP_OUTPUT" == 'false' ] \
+        && trap "git worktree remove --force $WORKTREE_FOR_COMMIT" EXIT
+
+    GIT_ROOT="$(git rev-parse --show-toplevel)"
+    SNAPSHOTS_DIR="$WORKTREE_FOR_COMMIT/${SNAPSHOTS_DIR##"$GIT_ROOT"}"
+
+    if [ -d "$SNAPSHOTS_DIR" ]; then
+        echo -ne "${GREEN}[TEST]${RESET} Use ${YELLOW}snapshots${RESET} "
+        echo -e "from ${BLUE}$COMMIT${RESET}"
+    else
+        echo -ne "${GREEN}[TEST]${RESET} Snapshots@${BLUE}$COMMIT${RESET} not "
+        echo 'found. Execute tests.'
+
+        mkdir -p "$SNAPSHOTS_DIR"
+        TESTS_IN_WORKTREE="$(readlink -f "$@" \
+            | sed "s|^$GIT_ROOT|$WORKTREE_FOR_COMMIT|")"
+        # shellcheck disable=SC2086
+        run_tests "$SNAPSHOTS_DIR" "$COMMIT" $TESTS_IN_WORKTREE
+    fi
+}
 
 #######################################
 # Running current test scripts
 #######################################
 
-CURRENT_OUTPUT_DIR="$(mktemp --tmpdir="$SCRIPTS_DIR" \
-    -d "output-$CURRENT_HEAD.XXX")"
-run_tests "$CURRENT_OUTPUT_DIR" "$SCRIPTS_DIR" "$@"
+mkdir -p "$CURRENT_OUTPUT_DIR"
+run_tests "$CURRENT_OUTPUT_DIR" 'current' "${TEST_FILES[@]}"
 
 #######################################
 # Diffing
 #######################################
 
-basename -a "$@" | while read TEST_SCRIPT; do
-    echo -ne "\e[93m[DIFF]\e[0m Comparing files \e[93m$TEST_SCRIPT\e[0m@"
-    echo -ne "\e[94m$CURRENT_HEAD\e[0m and \e[93m$TEST_SCRIPT\e[0m@"
-    echo -e "\e[94m$COMMIT\e[0m"
+EXIT_CODE=0
+
+while read -r TEST_SCRIPT; do
+    echo -ne "${YELLOW}[DIFF]${RESET} Compare ${YELLOW}$TEST_SCRIPT${RESET} "
+    echo 'output with snapshot'
     diff -su --color=always \
-        --label "$TEST_SCRIPT@$COMMIT" \
-        --label "$TEST_SCRIPT@$CURRENT_HEAD" \
-        "$OLD_OUTPUT_DIR/$TEST_SCRIPT.out" \
-        "$CURRENT_OUTPUT_DIR/$TEST_SCRIPT.out"
-done
+        --label "$TEST_SCRIPT@snapshot" \
+        --label "$TEST_SCRIPT@current" \
+        "$CURRENT_OUTPUT_DIR/$TEST_SCRIPT.out" \
+        "$SNAPSHOTS_DIR/$TEST_SCRIPT.out" \
+        || EXIT_CODE=1
+done < <(basename -a "${TEST_FILES[@]}")
 
-#######################################
-# Cleaning up
-#######################################
+[ "$EXIT_CODE" -ne 0 ] && {
+    echo -ne "${GREEN}[TEST]${RESET} Some tests produced different output than"
+    echo -n " the snapshot. If the current output is what's expected, you can "
+    echo 'update the snapshots by mens of'
+    echo -en "${GREEN}[TEST]${RESET}"
+    echo -e "     ${GRAY}bash $0 -u [TEST-FILE...]${RESET}"
+}
 
-if [[ "$KEEP_OUTPUT" == 'false' ]]; then
-    rm -rf "$OLD_OUTPUT_DIR" "$CURRENT_OUTPUT_DIR"
-fi
+exit "$EXIT_CODE"
