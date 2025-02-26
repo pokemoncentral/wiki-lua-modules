@@ -130,15 +130,12 @@ c.speciale_text = c.Speciale_text
 c.Stato_text = const("F7F7F7")
 c.stato_text = c.Stato_text
 
--- Games
+-- Mainline games
 
 c.argento = _colore("C0C0C0", "D6D6D6", "7D7D7D")
 c.Argento = c.argento
 c.soulsilver = _colore("C0C0E1", "D6D6EB", "7D7D92")
 c.Soulsilver, c.SoulSilver = c.soulsilver, c.soulsilver
-c.br = _colore("DCA202", "FFD461", "684D02")
-c.Battle_revolution, c.battle_revolution, c.Battlerevolution, c.battlerevolution, c.Br, c.BR =
-    c.br, c.br, c.br, c.br, c.br, c.br
 c.bianco = _colore("C3C3C3", "D8D8D8", "7F7F7F")
 c.Bianco = c.bianco
 c.bianco_2 = _colore("E3CED0", "EDDFE0", "948687")
@@ -146,14 +143,108 @@ c.Bianco_2, c.Bianco2, c.bianco2, c["bianco 2"], c["Bianco 2"] =
     c.bianco_2, c.bianco_2, c.bianco_2, c.bianco_2, c.bianco_2
 c.blu = _colore("1111FF", "7777FF", "0B0BA6")
 c.Blu = c.blu
-c.colo = _colore("B6CAE4", "CFDCED", "768394")
-c.Colo, c.colosseum, c.Colosseum = c.colo, c.colo, c.colo
 c.cristallo = _colore("4FD9FF", "8CE6FF", "338DA6")
 c.Cristallo = c.cristallo
 c.diamante = _colore("AAAAFF", "CCCCFF", "6F6FA6")
 c.Diamante = c.diamante
 c.giallo = _colore("FFD733", "FFE57A", "A68C21")
 c.Giallo = c.giallo
+c.nero = _colore("444444", "858585", "2C2C2C")
+c.Nero = c.nero
+c.nero_2 = _colore("424B50", "848A8D", "2B3134")
+c.Nero_2, c.Nero2, c.nero2, c["nero 2"], c["Nero 2"] =
+    c.nero_2, c.nero_2, c.nero_2, c.nero_2, c.nero_2
+c.oro = _colore("DAA520", "E7C46E", "8E6B15")
+c.Oro = c.oro
+c.heartgold = _colore("B69E00", "CEB654", "766700")
+c.Heartgold, c.HeartGold = c.heartgold, c.heartgold
+c.perla = _colore("FFAAAA", "FFC8C8", "A66F6F")
+c.Perla = c.perla
+c.platino = _colore("999999", "BDBDBD", "646464")
+c.Platino = c.platino
+c["pokémon"] = _colore("E5653C", "E2947C", "A62F19")
+c["Pokémon"] = c["pokémon"]
+c.rosso = _colore("FF1111", "FF7777", "A60B0B")
+c.Rosso = c.rosso
+c.rossofuoco = _colore("FF7327", "FFA472", "A64B19")
+c.Rossofuoco, c.RossoFuoco, c["Rosso Fuoco"] =
+    c.rossofuoco, c.rossofuoco, c.rossofuoco
+c.rubino = _colore("A00000", "D42E2E", "680000")
+c.Rubino = c.rubino
+c.rubinoomega = _colore("AB2813", "C87365", "6F1A0C")
+c.Rubinoomega, c.RubinoOmega, c["Rubino Omega"] =
+    c.rubinoomega, c.rubinoomega, c.rubinoomega
+c.smeraldo = _colore("00A000", "2ED42E", "006800")
+c.Smeraldo = c.smeraldo
+c.verde = _colore("11BB11", "A7DB8D", "0B7A0B")
+c.Verde = c.verde
+c.verdefoglia = _colore("00DD00", "59E959", "015701")
+c.Verdefoglia, c.VerdeFoglia, c["Verde Foglia"] =
+    c.verdefoglia, c.verdefoglia, c.verdefoglia
+c.x = _colore("025DA6", "5A96C5", "013D6C")
+c.X = c.x
+c.y = _colore("EA1A3E", "F16A81", "981128")
+c.Y = c.y
+c.zaffiro = _colore("0000A0", "5959C1", "000068")
+c.Zaffiro = c.zaffiro
+c.zaffiroalpha = _colore("26649C", "729ABF", "194166")
+c.Zaffiroalpha, c.ZaffiroAplha, c["Zaffiro Alpha"] =
+    c.zaffiroalpha, c.zaffiroalpha, c.zaffiroalpha
+c.sole = _colore("F2952D", "FFC587", "A45500")
+c.Sole = c.sole
+c.luna = _colore("5599C8", "9ACFF4", "155785")
+c.Luna = c.luna
+c.ultrasole = _colore("EE7936", "FFB58C", "B54000")
+c.Ultrasole = c.ultrasole
+c.ultraluna = _colore("884799", "AF8DB7", "440E52")
+c.Ultraluna = c.ultraluna
+c.LG_pikachu = _colore("ffcf11", "fff4c3", "d09e2a")
+c["LG Pikachu"], c.LG_Pikachu, c.lg_pikachu, c.LGP =
+    c.LG_pikachu, c.LG_pikachu, c.LG_pikachu, c.LG_pikachu
+c.lgp, c.lgpikachu, c["Let's Go, Pikachu!"] =
+    c.LG_pikachu, c.LG_pikachu, c.LG_pikachu
+c.LG_eevee = _colore("c47e39", "f9c876", "6a3f31")
+c["LG Eevee"], c.LG_Eevee, c.lg_eevee, c.LGE =
+    c.LG_eevee, c.LG_eevee, c.LG_eevee, c.LG_eevee
+c.lge, c.lgeevee, c["Let's Go, Eevee!"] = c.LG_eevee, c.LG_eevee, c.LG_eevee
+c.spada = _colore("00AEEF", "6AE5FF", "0079CD")
+c.Spada = c.spada
+c.scudo = _colore("ED1165", "FA89AB", "851042")
+c.Scudo = c.scudo
+c.isolaarmatura = _colore("F5E036", "FFFAA9", "F7AF00")
+c.Isolaarmatura = c.isolaarmatura
+c.landacorona = _colore("009D88", "00D668", "004C65")
+c.Landacorona = c.landacorona
+c.diamantelucente = _colore("01A4E7", "BFE4F6", "0154A4")
+c["Diamante Lucente"], c["diamante lucente"] =
+    c.diamantelucente, c.diamantelucente
+c.perlasplendente = _colore("C584DD", "DBC1E4", "875D96")
+c["Perla Splendente"], c["perla splendente"] =
+    c.perlasplendente, c.perlasplendente
+c.leggendearceus = _colore("CECDBE", "EFEEE1", "9B9A8F")
+c["Leggende Pokémon: Arceus"], c["Leggende Arceus"], c["leggende arceus"] =
+    c.leggendearceus, c.leggendearceus, c.leggendearceus
+c.scarlatto = _colore("D90D19", "FF8088", "700007")
+c.Scarlatto = c.scarlatto
+c.violetto = _colore("842F8C", "C787C7", "39003E")
+c.Violetto = c.violetto
+c.mascheraturchese = _colore("00A29A", "70ECE6", "005955")
+c.Mascheraturchese = c.mascheraturchese
+c.discoindaco = _colore("094260", "528CAB", "002030")
+c.Discoindaco = c.discoindaco
+c.leggendeza = _colore("3CB87C", "BADDAA", "357A6A")
+c["Leggende Pokémon: Z-A"], c["Leggende Z-A"], c["leggende za"] =
+    c.leggendeza, c.leggendeza, c.leggendeza
+
+-- Other games
+
+c.colo = _colore("B6CAE4", "CFDCED", "768394")
+c.Colo, c.colosseum, c.Colosseum = c.colo, c.colo, c.colo
+c.xd = _colore("604E82", "8674A8", "3E3355")
+c.XD, c.Xd = c.xd, c.xd
+c.br = _colore("DCA202", "FFD461", "684D02")
+c.Battle_revolution, c.battle_revolution, c.Battlerevolution, c.battlerevolution, c.Br, c.BR =
+    c.br, c.br, c.br, c.br, c.br, c.br
 c.md = _colore("D78144", "DECAA9", "7C4B2D")
 c.Md, c.MD = c.md, c.md
 c.md_blu = _colore("095BAF", "5A91C9", "063D75")
@@ -183,99 +274,16 @@ c.super_md, c.Super_md, c.supermd, c.Supermd, c["super md"], c["Super md"] =
     c.md_super, c.md_super, c.md_super, c.md_super, c.md_super, c.md_super
 c.mddx = _colore("FFC809", "FFEBA6", "A68100")
 c.Mddx, c.md_dx, c.Md_dx, c.MDDX = c.mddx, c.mddx, c.mddx, c.mddx
-c.nero = _colore("444444", "858585", "2C2C2C")
-c.Nero = c.nero
-c.nero_2 = _colore("424B50", "848A8D", "2B3134")
-c.Nero_2, c.Nero2, c.nero2, c["nero 2"], c["Nero 2"] =
-    c.nero_2, c.nero_2, c.nero_2, c.nero_2, c.nero_2
-c.OsA = _colore("2D4B98", "768ABC", "1D3163")
-c.osA, c.osa = c.OsA, c.OsA
-c.oro = _colore("DAA520", "E7C46E", "8E6B15")
-c.Oro = c.oro
-c.heartgold = _colore("B69E00", "CEB654", "766700")
-c.Heartgold, c.HeartGold = c.heartgold, c.heartgold
-c.perla = _colore("FFAAAA", "FFC8C8", "A66F6F")
-c.Perla = c.perla
-c.platino = _colore("999999", "BDBDBD", "646464")
-c.Platino = c.platino
-c["pokémon"] = _colore("E5653C", "E2947C", "A62F19")
-c["Pokémon"] = c["pokémon"]
 c.ranger = _colore("F7681A", "FA9D6A", "A14411")
 c.Ranger = c.ranger
-c.rosso = _colore("FF1111", "FF7777", "A60B0B")
-c.Rosso = c.rosso
-c.rossofuoco = _colore("FF7327", "FFA472", "A64B19")
-c.Rossofuoco, c.RossoFuoco, c["Rosso Fuoco"] =
-    c.rossofuoco, c.rossofuoco, c.rossofuoco
-c.rubino = _colore("A00000", "D42E2E", "680000")
-c.Rubino = c.rubino
-c.rubinoomega = _colore("AB2813", "C87365", "6F1A0C")
-c.Rubinoomega, c.RubinoOmega, c["Rubino Omega"] =
-    c.rubinoomega, c.rubinoomega, c.rubinoomega
-c.smeraldo = _colore("00A000", "2ED42E", "006800")
-c.Smeraldo = c.smeraldo
+c.OsA = _colore("2D4B98", "768ABC", "1D3163")
+c.osA, c.osa = c.OsA, c.OsA
 c.TL = _colore("2CB8E9", "76D1F1", "1D7898")
 c.Tl, c.tl = c.TL, c.TL
-c.verde = _colore("11BB11", "A7DB8D", "0B7A0B")
-c.Verde = c.verde
-c.verdefoglia = _colore("00DD00", "59E959", "015701")
-c.Verdefoglia, c.VerdeFoglia, c["Verde Foglia"] =
-    c.verdefoglia, c.verdefoglia, c.verdefoglia
-c.x = _colore("025DA6", "5A96C5", "013D6C")
-c.X = c.x
-c.y = _colore("EA1A3E", "F16A81", "981128")
-c.Y = c.y
-c.xd = _colore("604E82", "8674A8", "3E3355")
-c.XD, c.Xd = c.xd, c.xd
-c.zaffiro = _colore("0000A0", "5959C1", "000068")
-c.Zaffiro = c.zaffiro
-c.zaffiroalpha = _colore("26649C", "729ABF", "194166")
-c.Zaffiroalpha, c.ZaffiroAplha, c["Zaffiro Alpha"] =
-    c.zaffiroalpha, c.zaffiroalpha, c.zaffiroalpha
-c.sole = _colore("F2952D", "FFC587", "A45500")
-c.Sole = c.sole
-c.luna = _colore("5599C8", "9ACFF4", "155785")
-c.Luna = c.luna
-c.ultrasole = _colore("EE7936", "FFB58C", "B54000")
-c.Ultrasole = c.ultrasole
-c.ultraluna = _colore("884799", "AF8DB7", "440E52")
-c.Ultraluna = c.ultraluna
-c.LG_pikachu = _colore("ffcf11", "fff4c3", "d09e2a")
-c["LG Pikachu"], c.LG_Pikachu, c.lg_pikachu, c.LGP =
-    c.LG_pikachu, c.LG_pikachu, c.LG_pikachu, c.LG_pikachu
-c.lgp, c.lgpikachu, c["Let's Go, Pikachu!"] =
-    c.LG_pikachu, c.LG_pikachu, c.LG_pikachu
-c.LG_eevee = _colore("c47e39", "f9c876", "6a3f31")
-c["LG Eevee"], c.LG_Eevee, c.lg_eevee, c.LGE =
-    c.LG_eevee, c.LG_eevee, c.LG_eevee, c.LG_eevee
-c.lge, c.lgeevee, c["Let's Go, Eevee!"] = c.LG_eevee, c.LG_eevee, c.LG_eevee
 c.conquest = _colore("EC9722", "F8DF9D", "945F13")
 c.Conquest = c.conquest
-c.spada = _colore("00AEEF", "6AE5FF", "0079CD")
-c.Spada = c.spada
-c.scudo = _colore("ED1165", "FA89AB", "851042")
-c.Scudo = c.scudo
-c.isolaarmatura = _colore("F5E036", "FFFAA9", "F7AF00")
-c.Isolaarmatura = c.isolaarmatura
-c.landacorona = _colore("009D88", "00D668", "004C65")
-c.Landacorona = c.landacorona
-c.diamantelucente = _colore("01A4E7", "BFE4F6", "0154A4")
-c["Diamante Lucente"], c["diamante lucente"] =
-    c.diamantelucente, c.diamantelucente
-c.perlasplendente = _colore("C584DD", "DBC1E4", "875D96")
-c["Perla Splendente"], c["perla splendente"] =
-    c.perlasplendente, c.perlasplendente
-c.leggendearceus = _colore("CECDBE", "EFEEE1", "9B9A8F")
-c["Leggende Pokémon: Arceus"], c["Leggende Arceus"], c["leggende arceus"] =
-    c.leggendearceus, c.leggendearceus, c.leggendearceus
-c.scarlatto = _colore("D90D19", "FF8088", "700007")
-c.Scarlatto = c.scarlatto
-c.violetto = _colore("842F8C", "C787C7", "39003E")
-c.Violetto = c.violetto
-c.mascheraturchese = _colore("00A29A", "70ECE6", "005955")
-c.Mascheraturchese = c.mascheraturchese
-c.discoindaco = _colore("094260", "528CAB", "002030")
-c.Discoindaco = c.discoindaco
+c.GCCP = _colore("3763AF", "42E1FB", "08235E")
+c.gcc_pocket, c.gccpocket, c.gccp = c.GCCP, c.GCCP, c.GCCP
 
 -- Regions
 
@@ -588,17 +596,21 @@ c.Oscurita_gcc, c["oscurita gcc"], c["Oscurita gcc"] =
     c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc
 c["oscurità_gcc"], c["Oscurità_gcc"], c["oscurità gcc"], c["Oscurità gcc"] =
     c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc
-c.psiche_gcc = _colore("A65E9A", "C596BD", "6C3D64")
-c.Psiche_gcc, c["psiche gcc"], c["Psiche gcc"] =
-    c.psiche_gcc, c.psiche_gcc, c.psiche_gcc
+c.psico_gcc = _colore("A65E9A", "C596BD", "6C3D64")
+c.Psico_gcc, c["psico gcc"], c["Psico gcc"] =
+    c.psico_gcc, c.psico_gcc, c.psico_gcc
+c.psiche_gcc, c.Psiche_gcc, c["psiche gcc"], c["Psiche gcc"] =
+    c.psico_gcc, c.psico_gcc, c.psico_gcc, c.psico_gcc
 c.supporto_gcc = _colore("DC2222", "E66363", "9A1717")
 c.Supporto_gcc, c["supporto gcc"], c["Supporto gcc"] =
     c.supporto_gcc, c.supporto_gcc, c.supporto_gcc
 c.aiuto_gcc, c.Aiuto_gcc, c["aiuto gcc"], c["Aiuto gcc"] =
     c.supporto_gcc, c.supporto_gcc, c.supporto_gcc, c.supporto_gcc
-c.combattimento_gcc = _colore("FF501F", "FF8D6D", "A63414")
-c.Combattimento_gcc, c["combattimento gcc"], c["Combattimento gcc"] =
-    c.combattimento_gcc, c.combattimento_gcc, c.combattimento_gcc
+c.lotta_gcc = _colore("FF501F", "FF8D6D", "A63414")
+c.Lotta_gcc, c["lotta gcc"], c["Lotta gcc"] =
+    c.lotta_gcc, c.lotta_gcc, c.lotta_gcc
+c.combattimento_gcc, c.Combattimento_gcc, c["combattimento gcc"], c["Combattimento gcc"] =
+    c.lotta_gcc, c.lotta_gcc, c.lotta_gcc, c.lotta_gcc
 c.allenatore_gcc = _colore("FFE955", "FFFCE4", "B3A33B")
 c.Allenatore_gcc, c["allenatore gcc"], c["Allenatore gcc"] =
     c.allenatore_gcc, c.allenatore_gcc, c.allenatore_gcc
