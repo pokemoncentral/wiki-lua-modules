@@ -37,7 +37,7 @@ x.B = {
 }
 x.V = {
     {
-        link = "Pokémon Rosso e Verde",
+        link = "Pocket Monsters aka e midori",
         text = "Verde",
         display = {
             { "V", "verde" },
@@ -54,7 +54,7 @@ x.G = {
 }
 x.Bj = {
     {
-        link = "Pokémon Blu (Giappone)",
+        link = "Pocket Monsters ao",
         text = "Blu",
         display = {
             { "B", "blu" },
@@ -72,7 +72,7 @@ x.RB = {
 }
 x.RV = {
     {
-        link = "Pokémon Rosso e Verde",
+        link = "Pocket Monsters aka e midori",
         display = {
             { "R", "rosso" },
             { "V", "verde" },
@@ -728,6 +728,14 @@ x.MTDI = {
         display = {
             { "MT", "mascheraturchese" },
             { "DI", "discoindaco" },
+        },
+    },
+}
+x.LPZA = {
+    {
+        link = "Leggende Pokémon: Z-A",
+        display = {
+            { "LPZA", "luminopoli" },
         },
     },
 }
