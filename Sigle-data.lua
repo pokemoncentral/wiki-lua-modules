@@ -17,6 +17,7 @@ visualizzare. Tale table ha la seguente struttura:
 
 --]]
 
+-- serie principale
 x.R = {
     {
         link = "Pokémon Rosso e Blu",
@@ -740,6 +741,7 @@ x.LPZA = {
     },
 }
 
+-- serie Stadium
 x.SJ = {
     {
         link = "Pokémon Stadium (Giappone)",
@@ -768,6 +770,8 @@ x.S2 = {
 }
 x.St2, x.ST2 = x.S2, x.S2
 x.StS2 = { x.St[1], x.S2[1] }
+
+-- serie Auros
 x.COLO = {
     {
         link = "Pokémon Colosseum",
@@ -796,6 +800,8 @@ x.PBR = {
         },
     },
 }
+
+-- serie Mystery Dungeon
 x.PMDR = {
     {
         link = "Pokémon Mystery Dungeon: Squadra Rossa e Squadra Blu",
@@ -897,6 +903,8 @@ x.PMDDX = {
         },
     },
 }
+
+-- serie Ranger
 x.Ra = {
     {
         link = "Pokémon Ranger (gioco)",
@@ -933,7 +941,7 @@ x.Cq = {
     },
 }
 
--- Super Smash Bros.
+-- serie Super Smash Bros.
 x["64"] = {
     {
         link = "Super Smash Bros.",
@@ -998,6 +1006,26 @@ x.Ultimate = {
     },
 }
 x.ultimate = x.Ultimate
+
+-- altri spin-off
+x.GO = {
+    {
+        link = "Pokémon GO",
+        text = "GO",
+        display = {
+            { "GO", "notte" },
+        },
+    },
+}
+x.MEX = {
+    {
+        link = "Pokémon Masters EX",
+        text = "Masters EX",
+        display = {
+            { "MEX", "arancione" },
+        },
+    },
+}
 
 -- Non-games abbreviations
 x.CPM = {
