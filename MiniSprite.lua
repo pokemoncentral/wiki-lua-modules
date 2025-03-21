@@ -35,6 +35,7 @@ local staticGamesString = {
     spsc = "[[File:${num}MSSpSc.png|${name}|40px|link=${name}]]",
     dlps = "[[File:${num}MSDLPS.png|${name}|40px|link=${name}]]",
     lpa = "[[File:Iconlpa${gender}${shiny}${num}.png|${name}|40px|link=${name}]]",
+    sv = "[[File:${num}MSSV.png|${name}|40px|link=${name}]]",
 }
 
 -- Return true if the given generation has only static MS
