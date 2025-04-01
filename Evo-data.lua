@@ -7975,8 +7975,9 @@ evo.qwilfishH = {
         {
             ndex = 904,
             name = "overqwil",
-            method = evo.methods.OTHER,
-            [evo.methods.OTHER] = "Usando [[Mille Fielespine]] 20 volte come [[Tecnica potente]]",
+            method = evo.methods.LEVEL,
+            -- [evo.methods.OTHER] = "Usando [[Mille Fielespine]] 20 volte come [[Tecnica potente]]",
+            conditions = { [evo.conditions.MOVE] = "Mille Fielespine" },
         },
     },
 }
