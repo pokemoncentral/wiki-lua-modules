@@ -49,17 +49,11 @@ vendorMappings.gradient = {
 
 -- All linear gradient function names
 vendorMappings.linearGradients = {
-    "-moz-linear-gradient",
-    "-webkit-linear-gradient",
     "linear-gradient",
 }
 
 -- All radial gradient function names
 vendorMappings.radialGradients = {
-    "-moz-radial-gradient",
-    "-ms-radial-gradient",
-    "-o-radial-gradient",
-    "-webkit-radial-gradient",
     "radial-gradient",
 }
 
