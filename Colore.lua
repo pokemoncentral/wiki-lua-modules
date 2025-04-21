@@ -235,6 +235,7 @@ c.Discoindaco = c.discoindaco
 c.leggendeza = _colore("3CB87C", "BADDAA", "357A6A")
 c["Leggende Pokémon: Z-A"], c["Leggende Z-A"], c["leggende za"] =
     c.leggendeza, c.leggendeza, c.leggendeza
+c.Leggendeza, c.LeggendeZA = c.leggendeza, c.leggendeza
 
 -- Other games
 
