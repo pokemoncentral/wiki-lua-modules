@@ -1,5 +1,5 @@
 <br class="clear-all" />
-<div class="roundy pull-center text-center mw-collapsible mw-collapsed width-xl-55 width-md-75 width-sm-100" style="background-size: 100%; background-image: -moz-linear-gradient(left, #FFE695, #FAC000); background-image: -webkit-linear-gradient(left, #FFE695, #FAC000); background-image: linear-gradient(to right, #FFE695, #FAC000); padding: 0.5ex; padding-bottom: 0.01ex;">
+<div class="roundy pull-center text-center mw-collapsible mw-collapsed width-xl-55 width-md-75 width-sm-100" style="background-size: 100%; background-image: linear-gradient(to right, #FFE695, #FAC000); padding: 0.5ex; padding-bottom: 0.01ex;">
 <div class="roundy text-center black-text" style="font-weight: bold; margin-bottom: 0.5ex;">[[MT]] nelle varie generazioni</div>
 <div class="mw-collapsible-content"><div class="roundy text-center pull-center text-small" style="background: #{{#invoke: colore | unima | light}}; width: auto; padding: 0.5ex; margin-bottom: 0.5ex;">
 <div class="black-text" style="margin-top: 2px; font-weight: bold;">[[MT]] di [[quinta generazione]]</div>
@@ -31,7 +31,7 @@
 </div></div>
 [[Categoria:Mosse Macchina]]
 <br class="clear-all" />
-<div class="roundy pull-center text-center mw-collapsible mw-collapsed width-xl-55 width-md-75 width-sm-100" style="background-size: 100%; background-image: -moz-linear-gradient(left, #83B9FF, #2980EF); background-image: -webkit-linear-gradient(left, #83B9FF, #2980EF); background-image: linear-gradient(to right, #83B9FF, #2980EF); padding: 0.5ex; padding-bottom: 0.01ex;">
+<div class="roundy pull-center text-center mw-collapsible mw-collapsed width-xl-55 width-md-75 width-sm-100" style="background-size: 100%; background-image: linear-gradient(to right, #83B9FF, #2980EF); padding: 0.5ex; padding-bottom: 0.01ex;">
 <div class="roundy text-center white-text" style="font-weight: bold; margin-bottom: 0.5ex;">[[MT]] nelle varie generazioni</div>
 <div class="mw-collapsible-content"><div class="roundy text-center pull-center text-small" style="background: #{{#invoke: colore | johto | light}}; width: auto; padding: 0.5ex; margin-bottom: 0.5ex;">
 <div class="black-text" style="margin-top: 2px; font-weight: bold;">[[MT]] di [[seconda generazione]]</div>

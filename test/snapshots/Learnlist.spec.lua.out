@@ -1,5 +1,5 @@
 <div class="text-center max-width-xl-100">
-<div class="roundy text-center inline-block max-width-xl-100" style="background-size: 100%; background-image: -moz-linear-gradient(left, #9FA19F, #81B9EF); background-image: -webkit-linear-gradient(left, #9FA19F, #81B9EF); background-image: linear-gradient(to right, #9FA19F, #81B9EF); padding: 0.2em;">
+<div class="roundy text-center inline-block max-width-xl-100" style="background-size: 100%; background-image: linear-gradient(to right, #9FA19F, #81B9EF); padding: 0.2em;">
 <div class="flex-row-center-around flex-wrap black-text" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''Nona&nbsp;generazione'''</span></span></div>
 <div class="text-center" style="font-weight: bold; padding: 0.5ex;">
 <div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
@@ -20,7 +20,7 @@
 |  | 41
 | class="black-text" style="padding: 0.1em 0.3em;" | [[Agilità]]
 | class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-psico roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Psico|<span style=";">Psico</span>]]</div>
-| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: -moz-linear-gradient(left, #5B585B, #8C888C); background-image: -webkit-linear-gradient(left, #5B585B, #8C888C); background-image: linear-gradient(to right, #5B585B, #8C888C);; padding: 0.5ex;">[[Categoria danno#Stato|<span style="color: #F7F7F7;">Stato</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: linear-gradient(to right, #5B585B, #8C888C);; padding: 0.5ex;">[[Categoria danno#Stato|<span style="color: #F7F7F7;">Stato</span>]]</div>
 | style="padding: 0.1em 0.3em;" | &mdash;
 | style="padding: 0.1em 0.3em;" | &mdash;%
 | style="padding: 0.1em 0.3em;" | 30
@@ -28,7 +28,7 @@
 |  | 49
 | class="black-text" style="padding: 0.1em 0.3em;" | '''[[Baldeali]]'''
 | class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
-| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: -moz-linear-gradient(left, #82150B, #C92112); background-image: -webkit-linear-gradient(left, #82150B, #C92112); background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style="color: #F67A1A;">Fisico</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style="color: #F67A1A;">Fisico</span>]]</div>
 | style="padding: 0.1em 0.3em;" | 120
 | style="padding: 0.1em 0.3em;" | 100%
 | style="padding: 0.1em 0.3em;" | 15
@@ -36,7 +36,7 @@
 |  | 57
 | class="black-text" style="padding: 0.1em 0.3em;" | [[Azzardo]]
 | class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-lotta roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Lotta|<span style=";">Lotta</span>]]</div>
-| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: -moz-linear-gradient(left, #333948, #4F5870); background-image: -webkit-linear-gradient(left, #333948, #4F5870); background-image: linear-gradient(to right, #333948, #4F5870);; padding: 0.5ex;">[[Categoria danno#Speciale|<span style=";">Speciale</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #333948, #4F5870);; padding: 0.5ex;">[[Categoria danno#Speciale|<span style=";">Speciale</span>]]</div>
 | style="padding: 0.1em 0.3em;" | &mdash;
 | style="padding: 0.1em 0.3em;" | 100%
 | style="padding: 0.1em 0.3em;" | 5
@@ -52,7 +52,7 @@
 </div>
 </div>
 <div class="text-center max-width-xl-100">
-<div class="roundy text-center inline-block max-width-xl-100" style="background-size: 100%; background-image: -moz-linear-gradient(left, #9FA19F, #81B9EF); background-image: -webkit-linear-gradient(left, #9FA19F, #81B9EF); background-image: linear-gradient(to right, #9FA19F, #81B9EF); padding: 0.2em;">
+<div class="roundy text-center inline-block max-width-xl-100" style="background-size: 100%; background-image: linear-gradient(to right, #9FA19F, #81B9EF); padding: 0.2em;">
 <div class="flex-row-center-around flex-wrap black-text" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''Nona&nbsp;generazione'''</span></span></div>
 <div class="text-center" style="font-weight: bold; padding: 0.5ex;">
 <div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
@@ -73,7 +73,7 @@
 | class="black-text" style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:MT Volante VIII Sprite Zaino.png]]</span>[[MT164]] 
 | class="black-text" style="padding: 0.1em 0.3em;" | '''[[Baldeali]]'''
 | class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
-| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: -moz-linear-gradient(left, #82150B, #C92112); background-image: -webkit-linear-gradient(left, #82150B, #C92112); background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style="color: #F67A1A;">Fisico</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style="color: #F67A1A;">Fisico</span>]]</div>
 | style="padding: 0.1em 0.3em;" | 120
 | style="padding: 0.1em 0.3em;" | 100%
 | style="padding: 0.1em 0.3em;" | 15
@@ -81,7 +81,7 @@
 | class="black-text" style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:MT Lotta VIII Sprite Zaino.png]]</span>[[MT167]] 
 | class="black-text" style="padding: 0.1em 0.3em;" | [[Zuffa]]
 | class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-lotta roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Lotta|<span style=";">Lotta</span>]]</div>
-| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: -moz-linear-gradient(left, #82150B, #C92112); background-image: -webkit-linear-gradient(left, #82150B, #C92112); background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style="color: #F67A1A;">Fisico</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style="color: #F67A1A;">Fisico</span>]]</div>
 | style="padding: 0.1em 0.3em;" | 120
 | style="padding: 0.1em 0.3em;" | 100%
 | style="padding: 0.1em 0.3em;" | 5
@@ -89,7 +89,7 @@
 | class="black-text" style="padding: 0.1em 0.3em;" | <span class="hidden-xs">[[File:MT Normale VIII Sprite Zaino.png]]</span>[[MT171]] 
 | class="black-text" style="padding: 0.1em 0.3em;" | '''[[Terascoppio]]'''
 | class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-normale roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Normale|<span style=";">Normale</span>]]</div>
-| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: -moz-linear-gradient(left, #333948, #4F5870); background-image: -webkit-linear-gradient(left, #333948, #4F5870); background-image: linear-gradient(to right, #333948, #4F5870);; padding: 0.5ex;">[[Categoria danno#Speciale|<span style=";">Speciale</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #333948, #4F5870);; padding: 0.5ex;">[[Categoria danno#Speciale|<span style=";">Speciale</span>]]</div>
 | style="padding: 0.1em 0.3em;" | 80
 | style="padding: 0.1em 0.3em;" | 100%
 | style="padding: 0.1em 0.3em;" | 10
@@ -104,7 +104,7 @@
 </div>
 </div>
 <div class="text-center max-width-xl-100">
-<div class="roundy text-center inline-block max-width-xl-100" style="background-size: 100%; background-image: -moz-linear-gradient(left, #9FA19F, #81B9EF); background-image: -webkit-linear-gradient(left, #9FA19F, #81B9EF); background-image: linear-gradient(to right, #9FA19F, #81B9EF); padding: 0.2em;">
+<div class="roundy text-center inline-block max-width-xl-100" style="background-size: 100%; background-image: linear-gradient(to right, #9FA19F, #81B9EF); padding: 0.2em;">
 <div class="flex-row-center-around flex-wrap black-text" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''Nona&nbsp;generazione'''</span></span></div>
 <div class="text-center" style="font-weight: bold; padding: 0.5ex;">
 <div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
@@ -124,21 +124,21 @@
 |-
 | class="black-text" style="padding: 0.1em 0.3em;" | '''[[Baraonda]]'''
 | class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-normale roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Normale|<span style=";">Normale</span>]]</div>
-| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: -moz-linear-gradient(left, #333948, #4F5870); background-image: -webkit-linear-gradient(left, #333948, #4F5870); background-image: linear-gradient(to right, #333948, #4F5870);; padding: 0.5ex;">[[Categoria danno#Speciale|<span style=";">Speciale</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #333948, #4F5870);; padding: 0.5ex;">[[Categoria danno#Speciale|<span style=";">Speciale</span>]]</div>
 | style="padding: 0.1em 0.3em;" | 90
 | style="padding: 0.1em 0.3em;" | 100%
 | style="padding: 0.1em 0.3em;" | 10
 |-
 | class="black-text" style="padding: 0.1em 0.3em;" | [[Danzadipiume]]
 | class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
-| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: -moz-linear-gradient(left, #5B585B, #8C888C); background-image: -webkit-linear-gradient(left, #5B585B, #8C888C); background-image: linear-gradient(to right, #5B585B, #8C888C);; padding: 0.5ex;">[[Categoria danno#Stato|<span style="color: #F7F7F7;">Stato</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: linear-gradient(to right, #5B585B, #8C888C);; padding: 0.5ex;">[[Categoria danno#Stato|<span style="color: #F7F7F7;">Stato</span>]]</div>
 | style="padding: 0.1em 0.3em;" | &mdash;
 | style="padding: 0.1em 0.3em;" | 100%
 | style="padding: 0.1em 0.3em;" | 15
 |-
 | class="black-text" style="padding: 0.1em 0.3em;" | '''[[Furia]]'''
 | class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-normale roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Normale|<span style=";">Normale</span>]]</div>
-| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: -moz-linear-gradient(left, #82150B, #C92112); background-image: -webkit-linear-gradient(left, #82150B, #C92112); background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style="color: #F67A1A;">Fisico</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style="color: #F67A1A;">Fisico</span>]]</div>
 | style="padding: 0.1em 0.3em;" | 15
 | style="padding: 0.1em 0.3em;" | 85%
 | style="padding: 0.1em 0.3em;" | 20
@@ -153,7 +153,7 @@
 </div>
 </div>
 <div class="text-center max-width-xl-100">
-<div class="roundy text-center inline-block max-width-xl-100" style="background-size: 100%; background-image: -moz-linear-gradient(left, #9FA19F, #81B9EF); background-image: -webkit-linear-gradient(left, #9FA19F, #81B9EF); background-image: linear-gradient(to right, #9FA19F, #81B9EF); padding: 0.2em;">
+<div class="roundy text-center inline-block max-width-xl-100" style="background-size: 100%; background-image: linear-gradient(to right, #9FA19F, #81B9EF); padding: 0.2em;">
 <div class="flex-row-center-around flex-wrap black-text" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''Nona&nbsp;generazione'''</span></span></div>
 <div class="text-center" style="font-weight: bold; padding: 0.5ex;">
 <div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
@@ -171,10 +171,10 @@
 ! rowspan = "1" | &nbsp;[[Precisione|Prec.]]&nbsp;
 ! rowspan = "1" | &nbsp;[[PP]]&nbsp;
 |-
-| style="padding: 0.8ex 0.5ex;" |<div class="text-center roundy-5 white-text" style="background-size: 100%; background-image: -moz-linear-gradient(left, #700007, #39003E); background-image: -webkit-linear-gradient(left, #700007, #39003E); background-image: linear-gradient(to right, #700007, #39003E);; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[Pokémon Scarlatto e Violetto|<span style="padding: 0.3em 0;">'''S'''</span><span style="padding: 0.3em 0;">'''V'''</span>]]</div> 
+| style="padding: 0.8ex 0.5ex;" |<div class="text-center roundy-5 white-text" style="background-size: 100%; background-image: linear-gradient(to right, #700007, #39003E);; padding: 0 0.5ex; margin-bottom: 0.2ex;">[[Pokémon Scarlatto e Violetto|<span style="padding: 0.3em 0;">'''S'''</span><span style="padding: 0.3em 0;">'''V'''</span>]]</div> 
 | class="black-text" style="padding: 0.1em 0.3em;" | '''[[Baldeali]]'''
 | class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
-| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: -moz-linear-gradient(left, #82150B, #C92112); background-image: -webkit-linear-gradient(left, #82150B, #C92112); background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style="color: #F67A1A;">Fisico</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style="color: #F67A1A;">Fisico</span>]]</div>
 | style="padding: 0.1em 0.3em;" | 120
 | style="padding: 0.1em 0.3em;" | 100%
 | style="padding: 0.1em 0.3em;" | 15
@@ -189,7 +189,7 @@
 </div>
 </div>
 <div class="text-center max-width-xl-100">
-<div class="roundy text-center inline-block max-width-xl-100" style="background-size: 100%; background-image: -moz-linear-gradient(left, #9FA19F, #81B9EF); background-image: -webkit-linear-gradient(left, #9FA19F, #81B9EF); background-image: linear-gradient(to right, #9FA19F, #81B9EF); padding: 0.2em;">
+<div class="roundy text-center inline-block max-width-xl-100" style="background-size: 100%; background-image: linear-gradient(to right, #9FA19F, #81B9EF); padding: 0.2em;">
 <div class="flex-row-center-around flex-wrap black-text" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''Nona&nbsp;generazione'''</span></span></div>
 <div class="text-center" style="font-weight: bold; padding: 0.5ex;">
 <div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
@@ -210,7 +210,7 @@
 | style="padding: 0.1em 0.3em;" | [[File:Minim396.png|Starly|40px|link=Starly]] 
 | class="black-text" style="padding: 0.1em 0.3em;" | '''[[Beccata]]'''
 | class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
-| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: -moz-linear-gradient(left, #82150B, #C92112); background-image: -webkit-linear-gradient(left, #82150B, #C92112); background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style="color: #F67A1A;">Fisico</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center" style="background-size: 100%; background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style="color: #F67A1A;">Fisico</span>]]</div>
 | style="padding: 0.1em 0.3em;" | 35
 | style="padding: 0.1em 0.3em;" | 100%
 | style="padding: 0.1em 0.3em;" | 35

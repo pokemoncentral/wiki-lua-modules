@@ -1,23 +1,23 @@
-{| class="mw-collapsible mw-collapsed light-text text-center pull-left roundy" style="padding: 0.5ex; background-size: 100%; background-image: -moz-linear-gradient(left, #BCF2FF, #0098BF); background-image: -webkit-linear-gradient(left, #BCF2FF, #0098BF); background-image: linear-gradient(to right, #BCF2FF, #0098BF);"
+{| class="mw-collapsible mw-collapsed light-text text-center pull-left roundy" style="padding: 0.5ex; background-size: 100%; background-image: linear-gradient(to right, #BCF2FF, #0098BF);"
 |-
 | <div class="flex flex-row flex-nowrap flex-items-center flex-main-center" style="padding: 0 2.5em;">
 <div>
-<div class="roundy-full" style="padding: 0.3ex; background-size: 100%; background-image: -moz-linear-gradient(left, #3FD8FF, #BCF2FF); background-image: -webkit-linear-gradient(left, #3FD8FF, #BCF2FF); background-image: linear-gradient(to right, #3FD8FF, #BCF2FF);">[[File:RB Agatha.png]]</div>
+<div class="roundy-full" style="padding: 0.3ex; background-size: 100%; background-image: linear-gradient(to right, #3FD8FF, #BCF2FF);">[[File:RB Agatha.png]]</div>
 <div class="text-small" style="margin-top: 0.5ex; line-height: 10px">Ricompensa:</div>
 <div>'''[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]5940'''</div>
 </div>
 <div>
-<div class="roundy text-center" style="margin-left: 1ex; width: 18em; padding: 0.2ex; background-size: 100%; background-image: -moz-linear-gradient(left, #3FD8FF, #BCF2FF); background-image: -webkit-linear-gradient(left, #3FD8FF, #BCF2FF); background-image: linear-gradient(to right, #3FD8FF, #BCF2FF);">
+<div class="roundy text-center" style="margin-left: 1ex; width: 18em; padding: 0.2ex; background-size: 100%; background-image: linear-gradient(to right, #3FD8FF, #BCF2FF);">
 
 <div class="text-big">'''<span style="color: #000;">Agatha</span>'''</div>
 <div>'''[[Altopiano Blu|<span style="color: #000;">Altopiano Blu</span>]]'''</div>
 <div class="text-small">[[Pokémon Rosso e Blu|<span style="color: #000000;">Rosso e Blu</span>]]</div>
 </div>
-<div class="roundy pull-center" style="margin-top: 0.5ex; width: 14ex; padding: 0.2ex; line-height: 10px; background-size: 100%; background-image: -moz-linear-gradient(left, #3FD8FF, #BCF2FF); background-image: -webkit-linear-gradient(left, #3FD8FF, #BCF2FF); background-image: linear-gradient(to right, #3FD8FF, #BCF2FF);">[[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballempty.png]]</div>
+<div class="roundy pull-center" style="margin-top: 0.5ex; width: 14ex; padding: 0.2ex; line-height: 10px; background-size: 100%; background-image: linear-gradient(to right, #3FD8FF, #BCF2FF);">[[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballempty.png]]</div>
 </div>
 </div>
 |-
-| style="padding: 0;" | <div class="roundy flex flex-row flex-nowrap flex-items-center flex-main-space-around" style="background-size: 100%; background-image: -moz-linear-gradient(left, #BCF2FF, #0098BF); background-image: -webkit-linear-gradient(left, #BCF2FF, #0098BF); background-image: linear-gradient(to right, #BCF2FF, #0098BF);">
+| style="padding: 0;" | <div class="roundy flex flex-row flex-nowrap flex-items-center flex-main-space-around" style="background-size: 100%; background-image: linear-gradient(to right, #BCF2FF, #0098BF);">
 
 <div class="inline-block">
 <div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
@@ -139,26 +139,26 @@
 </div>
 </div>
 |}<br><br clear="left">
-{| class="mw-collapsible mw-collapsed  text-center pull-left roundy" style="padding: 0.5ex; background-size: 100%; background-image: -moz-linear-gradient(left, #BCF2FF, #3FD8FF); background-image: -webkit-linear-gradient(left, #BCF2FF, #3FD8FF); background-image: linear-gradient(to right, #BCF2FF, #3FD8FF);"
+{| class="mw-collapsible mw-collapsed  text-center pull-left roundy" style="padding: 0.5ex; background-size: 100%; background-image: linear-gradient(to right, #BCF2FF, #3FD8FF);"
 |-
 | <div class="flex flex-row flex-nowrap flex-items-center flex-main-center" style="padding: 0 2.5em;">
 <div>
-<div class="roundy-full" style="padding: 0.3ex; background-size: 100%; background-image: -moz-linear-gradient(left, #0098BF, #BCF2FF); background-image: -webkit-linear-gradient(left, #0098BF, #BCF2FF); background-image: linear-gradient(to right, #0098BF, #BCF2FF);">[[File:RB Agatha.png]]</div>
+<div class="roundy-full" style="padding: 0.3ex; background-size: 100%; background-image: linear-gradient(to right, #0098BF, #BCF2FF);">[[File:RB Agatha.png]]</div>
 <div class="text-small" style="margin-top: 0.5ex; line-height: 10px">Ricompensa:</div>
 <div>'''[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]5940'''</div>
 </div>
 <div>
-<div class="roundy text-center" style="margin-left: 1ex; width: 18em; padding: 0.2ex; background-size: 100%; background-image: -moz-linear-gradient(left, #0098BF, #BCF2FF); background-image: -webkit-linear-gradient(left, #0098BF, #BCF2FF); background-image: linear-gradient(to right, #0098BF, #BCF2FF);">
+<div class="roundy text-center" style="margin-left: 1ex; width: 18em; padding: 0.2ex; background-size: 100%; background-image: linear-gradient(to right, #0098BF, #BCF2FF);">
 
 <div class="text-big">'''<span style="color: #000;">Agatha</span>'''</div>
 <div>'''[[Altopiano Blu|<span style="color: #000;">Altopiano Blu</span>]]'''</div>
 <div class="text-small">[[Pokémon Rosso e Blu|<span style="color: #000000;">Rosso e Blu</span>]]</div>
 </div>
-<div class="roundy pull-center" style="margin-top: 0.5ex; width: 14ex; padding: 0.2ex; line-height: 10px; background-size: 100%; background-image: -moz-linear-gradient(left, #0098BF, #BCF2FF); background-image: -webkit-linear-gradient(left, #0098BF, #BCF2FF); background-image: linear-gradient(to right, #0098BF, #BCF2FF);">[[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballempty.png]]</div>
+<div class="roundy pull-center" style="margin-top: 0.5ex; width: 14ex; padding: 0.2ex; line-height: 10px; background-size: 100%; background-image: linear-gradient(to right, #0098BF, #BCF2FF);">[[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballempty.png]]</div>
 </div>
 </div>
 |-
-| style="padding: 0;" | <div class="roundy flex flex-row flex-nowrap flex-items-center flex-main-space-around" style="background-size: 100%; background-image: -moz-linear-gradient(left, #BCF2FF, #3FD8FF); background-image: -webkit-linear-gradient(left, #BCF2FF, #3FD8FF); background-image: linear-gradient(to right, #BCF2FF, #3FD8FF);">
+| style="padding: 0;" | <div class="roundy flex flex-row flex-nowrap flex-items-center flex-main-space-around" style="background-size: 100%; background-image: linear-gradient(to right, #BCF2FF, #3FD8FF);">
 
 <div class="inline-block">
 <div class="roundy text-center flex flex-row flex-main-space-around flex-wrap flex-items-center" style="padding: 1ex; {{#invoke: css | horizGrad | Spettro | normale | Veleno | {{#ifeq: {{lc:Veleno}} | {{lc:Spettro}} | light | normale}}}}}}">
@@ -280,16 +280,16 @@
 </div>
 </div>
 |}<br><br clear="left">
-{| class="mw-collapsible mw-collapsed light-text text-center pull-left roundy" style="padding: 0.5ex; background-size: 100%; background-image: -moz-linear-gradient(left, #7722FF, #AB2813); background-image: -webkit-linear-gradient(left, #7722FF, #AB2813); background-image: linear-gradient(to right, #7722FF, #AB2813);"
+{| class="mw-collapsible mw-collapsed light-text text-center pull-left roundy" style="padding: 0.5ex; background-size: 100%; background-image: linear-gradient(to right, #7722FF, #AB2813);"
 |-
 | <div class="flex flex-row flex-nowrap flex-items-center flex-main-center" style="padding: 0 2.5em;">
 <div>
-<div class="roundy-full" style="padding: 0.3ex; background-size: 100%; background-image: -moz-linear-gradient(left, #915121, #C2895F); background-image: -webkit-linear-gradient(left, #915121, #C2895F); background-image: linear-gradient(to right, #915121, #C2895F);">[[File:ROZA VSOttavio.png|200px]]</div>
+<div class="roundy-full" style="padding: 0.3ex; background-size: 100%; background-image: linear-gradient(to right, #915121, #C2895F);">[[File:ROZA VSOttavio.png|200px]]</div>
 <div class="text-small" style="margin-top: 0.5ex; line-height: 10px">Ricompensa:</div>
 <div>'''[[File:Dollaro Pokémon.png|link=Dollari Pokémon]]3.220'''</div>
 </div>
 <div>
-<div class="roundy text-center" style="margin-left: 1ex; width: 18em; padding: 0.2ex; background-size: 100%; background-image: -moz-linear-gradient(left, #915121, #C2895F); background-image: -webkit-linear-gradient(left, #915121, #C2895F); background-image: linear-gradient(to right, #915121, #C2895F);"><div class="flex flex-row flex-nowrap flex-items-center flex-main-center">
+<div class="roundy text-center" style="margin-left: 1ex; width: 18em; padding: 0.2ex; background-size: 100%; background-image: linear-gradient(to right, #915121, #C2895F);"><div class="flex flex-row flex-nowrap flex-items-center flex-main-center">
 <div>
 <div style="line-height: 10px" class="text-small">'''[[Magmatenente (classe allenatore)|<span style="color:#000">Magmatenente</span>]]'''</div>
 <div class="text-big">'''[[Magmatenente Ottavio|<span style="color: #000;">Ottavio</span>]]'''</div>
@@ -302,12 +302,12 @@
 <div>'''[[Cascate Meteora|<span style="color: #000;">Cascate Meteora</span>]]'''</div>
 <div class="text-small">[[Pokémon Rubino Omega e Zaffiro Alpha|<span style="color: #000000;">Rubino Omega</span>]] e [[Pokémon Smeraldo|<span style="color: #000000;">Smeraldo</span>]]</div>
 </div>
-<div class="roundy pull-center" style="margin-top: 0.5ex; width: 14ex; padding: 0.2ex; background-size: 100%; background-image: -moz-linear-gradient(left, #915121, #C2895F); background-image: -webkit-linear-gradient(left, #915121, #C2895F); background-image: linear-gradient(to right, #915121, #C2895F); line-height: 10px">[[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballempty.png]][[File:Ballfull.png]][[File:Ballempty.png]][[File:Ballempty.png]]</div>
+<div class="roundy pull-center" style="margin-top: 0.5ex; width: 14ex; padding: 0.2ex; background-size: 100%; background-image: linear-gradient(to right, #915121, #C2895F); line-height: 10px">[[File:Ballfull.png]][[File:Ballfull.png]][[File:Ballempty.png]][[File:Ballfull.png]][[File:Ballempty.png]][[File:Ballempty.png]]</div>
 </div>
-<div class="flex-items-self-start roundy-full" style="margin-left: 1ex; padding: 0.3ex; background-size: 100%; background-image: -moz-linear-gradient(left, #915121, #C2895F); background-image: -webkit-linear-gradient(left, #915121, #C2895F); background-image: linear-gradient(to right, #915121, #C2895F);">[[File:ROZA VSRecluta Team Magma F.png|200px]]</div>
+<div class="flex-items-self-start roundy-full" style="margin-left: 1ex; padding: 0.3ex; background-size: 100%; background-image: linear-gradient(to right, #915121, #C2895F);">[[File:ROZA VSRecluta Team Magma F.png|200px]]</div>
 </div>
 |-
-| <div class="roundy" style="padding: 0.5ex; background-size: 100%; background-image: -moz-linear-gradient(#915121, #C2895F); background-image: -webkit-linear-gradient(#915121, #C2895F); background-image: linear-gradient(#915121, #C2895F);">
+| <div class="roundy" style="padding: 0.5ex; background-size: 100%; background-image: linear-gradient(#915121, #C2895F);">
 <div class="flex flex-row flex-nowrap flex-items-center flex-main-space-around">
 
 <div class="inline-block">
