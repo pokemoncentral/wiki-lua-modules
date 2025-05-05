@@ -108,7 +108,7 @@ ${stats}
 
     listFooter = [=[
 
-* Le statistiche di questo Pokémon sono cambiate nel corso delle generazioni. Tutti i valori sono disponibili [[Elenco Pokémon per statistiche base|qui]]. ]=],
+* Le statistiche di questo Pokémon sono cambiate nel corso delle generazioni. Tutti i valori sono disponibili [[Elenco Pokémon per statistiche base|qui]].]=],
 
     statBar = [=[<div class="roundyright text-left" style="width: calc(1em + ${width}%); color: #${dark}; ${bg};">'''${val}'''</div>]=],
 
