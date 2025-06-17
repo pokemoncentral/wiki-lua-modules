@@ -216,14 +216,14 @@ s.headers.header = txt.interp(
 |-
 ! class="black-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
 ! colspan="2" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${hp};" | [[Statistiche#PS|PS]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${atk};" | [[Statistiche#Attacco|Attacco]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${def};" | [[Statistiche#Difesa|Difesa]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spatk};" | [[Statistiche#Attacco Speciale|Attacco sp.]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spdef};" | [[Statistiche#Difesa Speciale|Difesa sp.]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spe};" | [[Statistiche#Velocità|Velocità]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Totale
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Media]=],
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${hp};" | [[Statistiche#PS|PS]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${atk};" | [[Statistiche#Attacco|Attacco]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${def};" | [[Statistiche#Difesa|Difesa]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spatk};" | [[Statistiche#Attacco Speciale|Attacco Sp.]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spdef};" | [[Statistiche#Difesa Speciale|Difesa Sp.]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spe};" | [[Statistiche#Velocità|Velocità]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Totale
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Media]=],
     {
         bg = css.horizGradLua({ type = "pcwiki" }),
         hp = c.ps.normale,
@@ -242,13 +242,13 @@ s.headers.firstGenHeader = txt.interp(
 |-
 ! class="black-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
 ! colspan="2" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${hp};" | [[Statistiche#PS|PS]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${atk};" | [[Statistiche#Attacco|Attacco]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${def};" | [[Statistiche#Difesa|Difesa]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spec};" | [[Statistiche#Speciali|Speciali]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spe};" | [[Statistiche#Velocità|Velocità]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Totale
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Media]=],
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${hp};" | [[Statistiche#PS|PS]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${atk};" | [[Statistiche#Attacco|Attacco]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${def};" | [[Statistiche#Difesa|Difesa]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spec};" | [[Statistiche#Speciali|Speciali]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${spe};" | [[Statistiche#Velocità|Velocità]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Totale
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #${pcw};" | Media]=],
     {
         bg = css.horizGradLua({ type = "pcwiki" }),
         hp = c.ps.normale,
