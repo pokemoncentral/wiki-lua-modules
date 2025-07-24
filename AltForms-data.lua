@@ -110,14 +110,18 @@ t.formgroups = {}
 
 -- Tabella con i Pokémon che hanno una sola megaevoluzione
 -- stylua: ignore
-t.formgroups.mega = {'venusaur', 'blastoise', 'beedrill', 'pidgeot', 'alakazam',
-	'gengar', 'slowbro', 'kangaskhan', 'pinsir', 'gyarados', 'aerodactyl',
-	'ampharos', 'steelix', 'scizor', 'heracross', 'houndoom', 'tyranitar',
-	'sceptile', 'blaziken', 'swampert', 'gardevoir', 'sableye', 'mawile',
-	'aggron', 'medicham', 'manectric', 'sharpedo', 'camerupt', 'altaria',
-	'banette', 'absol', 'glalie', 'salamence', 'metagross', 'latias', 'latios',
+t.formgroups.mega = {
+    'venusaur', 'blastoise', 'beedrill', 'pidgeot', 'alakazam', 'gengar',
+    'slowbro', 'kangaskhan', 'pinsir', 'gyarados', 'aerodactyl', 'ampharos',
+    'steelix', 'scizor', 'heracross', 'houndoom', 'tyranitar', 'sceptile',
+    'blaziken', 'swampert', 'gardevoir', 'sableye', 'mawile', 'aggron',
+    'medicham', 'manectric', 'sharpedo', 'camerupt', 'altaria', 'banette',
+    'absol', 'glalie', 'salamence', 'metagross', 'latias', 'latios',
 	'rayquaza', 'lopunny', 'garchomp', 'lucario', 'abomasnow', 'gallade',
-	'audino', 'diancie'}
+	'audino', 'diancie',
+    -- LPZA
+    'dragonite'
+}
 
 -- Tabella contentente i Pokémon che hanno più megaevoluzioni
 
@@ -685,6 +689,7 @@ t.grimmsnarl.since = { base = "spsc", Gi = "spsc" }
 t.alcremie.since = { base = "spsc", Gi = "spsc" }
 t.copperajah.since = { base = "spsc", Gi = "spsc" }
 t.duraludon.since = { base = "spsc", Gi = "spsc" }
+t.dragonite.since = { M = "lpza", base = "rb" }
 
 --[[
 

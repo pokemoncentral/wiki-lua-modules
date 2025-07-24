@@ -2390,6 +2390,8 @@ t.gyaradosM = { ability1 = "Rompiforma" }
 t["0130M"] = t.gyaradosM
 t.aerodactylM = { ability1 = "Unghiedure" }
 t["0142M"] = t.aerodactylM
+t.dragoniteM = { ability1 = "Sconosciuta" }
+t["0149M"] = t.dragoniteM
 t.mewtwoMX = { ability1 = "Cuordeciso" }
 t["0150MX"] = t.mewtwoMX
 t.mewtwoMY = { ability1 = "Insonnia" }

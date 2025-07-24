@@ -1485,6 +1485,13 @@
 | class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Seconda abilit&agrave;</div>Nessuna
 | class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Abilit&agrave; speciali</div>[[Multisquame]]
 |- class="roundy flex-sm flex-row flex-wrap flex-main-stretch flex-items-center" style="margin-top: 0.5rem;"
+| class="min-width-sm-20" data-sort-value="0149" | [[File:Minim0149M.png|Dragonite|40px|link=Dragonite]]
+| class="black-text min-width-sm-40 min-width-xs-80" | [[Dragonite]]<div class="small-text black-text">[[Megaevoluzione#Dragonite|MegaDragonite]]</div>
+| class="min-width-xl-20 width-sm-40 width-xs-100" style="padding: 1ex 0.8ex;" | <div class="inline-block-sm min-width-sm-70 inline-block-xs min-width-xs-35 roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #1222A0, #5060E1);; padding: 0 0.5ex; height: 50%; margin-bottom: 0.2ex; margin-left: 0.2ex; font-size: 90%;">[[Drago|<span style=";">Drago</span>]]</div><div class="inline-block-sm min-width-sm-70 inline-block-xs min-width-xs-35 roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #3075B8, #81B9EF);; padding: 0 0.5ex; height: 50%; margin-bottom: 0.2ex; margin-left: 0.2ex; font-size: 90%;">[[Volante|<span style=";">Volante</span>]]</div>
+| class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Prima abilit&agrave;</div>[[Sconosciuta]]
+| class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Seconda abilit&agrave;</div>Nessuna
+| class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Abilit&agrave; speciali</div>Nessuna
+|- class="roundy flex-sm flex-row flex-wrap flex-main-stretch flex-items-center" style="margin-top: 0.5rem;"
 | class="min-width-sm-20" data-sort-value="0150" | [[File:Minim0150.png|Mewtwo|40px|link=Mewtwo]]
 | class="black-text min-width-sm-40 min-width-xs-80" | [[Mewtwo]]
 | class="min-width-xl-20 width-sm-40 width-xs-100" style="padding: 1ex 0.8ex;" | <div class="inline-block-sm min-width-sm-70 inline-block-xs min-width-xs-70 roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #9E0234, #EF4179);; padding: 0 0.5ex; height: 100%; margin-bottom: 0.2ex; margin-left: 0.2ex; font-size: 90%;">[[Psico|<span style=";">Psico</span>]]</div>
@@ -7293,7 +7300,7 @@
 | class="min-width-xl-20 width-sm-40 width-xs-100" style="padding: 1ex 0.8ex;" | <div class="inline-block-sm min-width-sm-70 inline-block-xs min-width-xs-70 roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #9C4E00, #FF8000);; padding: 0 0.5ex; height: 100%; margin-bottom: 0.2ex; margin-left: 0.2ex; font-size: 90%;">[[Lotta|<span style=";">Lotta</span>]]</div>
 | class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Prima abilit&agrave;</div>[[Forza Interiore]]
 | class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Seconda abilit&agrave;</div>Nessuna
-| class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Abilit&agrave; speciali</div>[[Nessuna]]
+| class="black-text min-width-sm-33" style="padding: 0.3ex;" | <div class="visible-sm text-small">Abilit&agrave; speciali</div>Nessuna
 |- class="roundy flex-sm flex-row flex-wrap flex-main-stretch flex-items-center" style="margin-top: 0.5rem;"
 | class="min-width-sm-20" data-sort-value="0892" | [[File:Minim0892.png|Urshifu|40px|link=Urshifu]]
 | class="black-text min-width-sm-40 min-width-xs-80" | [[Urshifu]]<div class="small-text">Tutte le forme</div>

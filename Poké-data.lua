@@ -2411,6 +2411,7 @@ t.slowbroM, t["0080M"] = t.slowbro, t.slowbro
 t.gengarM, t["0094M"] = t.gengar, t.gengar
 t.kangaskhanM, t["0115M"] = t.kangaskhan, t.kangaskhan
 t.aerodactylM, t["0142M"] = t.aerodactyl, t.aerodactyl
+t.dragoniteM, t["0149M"] = t.dragonite, t.dragonite
 t.mewtwoMY, t["0150MY"] = t.mewtwo, t.mewtwo
 t.steelixM, t["0208M"] = t.steelix, t.steelix
 t.scizorM, t["0212M"] = t.scizor, t.scizor
