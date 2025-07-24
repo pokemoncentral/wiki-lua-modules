@@ -3,14 +3,14 @@
 |-
 ! class="black-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
 ! colspan="2" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #58E810;" | [[Statistiche#PS|PS]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #EACA2F;" | [[Statistiche#Attacco|Attacco]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #E5721D;" | [[Statistiche#Difesa|Difesa]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #26BAE0;" | [[Statistiche#Attacco Speciale|Attacco sp.]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #4C6CD4;" | [[Statistiche#Difesa Speciale|Difesa sp.]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #D425CE;" | [[Statistiche#Velocità|Velocità]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #0078FF;" | Totale
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #0078FF;" | Media
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #58E810;" | [[Statistiche#PS|PS]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #EACA2F;" | [[Statistiche#Attacco|Attacco]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #E5721D;" | [[Statistiche#Difesa|Difesa]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #26BAE0;" | [[Statistiche#Attacco Speciale|Attacco Sp.]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #4C6CD4;" | [[Statistiche#Difesa Speciale|Difesa Sp.]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #D425CE;" | [[Statistiche#Velocità|Velocità]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #0078FF;" | Totale
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #0078FF;" | Media
 |- style="height: 100%;"
 | style="padding: 0.3ex 0.8ex;" data-sort-value="1" | 0001
 | style="padding: 0.3ex 0.8ex;" data-sort-value="Bulbasaur" | [[File:Minim0001.png|Bulbasaur|40px|link=Bulbasaur]]
@@ -14249,13 +14249,13 @@
 |-
 ! class="black-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | [[Elenco Pokémon secondo il Pokédex Nazionale|#]]
 ! colspan="2" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex;" | Pokémon
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #58E810;" | [[Statistiche#PS|PS]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #EACA2F;" | [[Statistiche#Attacco|Attacco]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #E5721D;" | [[Statistiche#Difesa|Difesa]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #4F5870;" | [[Statistiche#Speciali|Speciali]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #D425CE;" | [[Statistiche#Velocità|Velocità]]
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #0078FF;" | Totale
-! class="roundytop text-small white-text" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #0078FF;" | Media
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #58E810;" | [[Statistiche#PS|PS]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #EACA2F;" | [[Statistiche#Attacco|Attacco]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #E5721D;" | [[Statistiche#Difesa|Difesa]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #4F5870;" | [[Statistiche#Speciali|Speciali]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #D425CE;" | [[Statistiche#Velocità|Velocità]]
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #0078FF;" | Totale
+! class="roundytop text-small white-text" style="position: sticky; top: 0; z-index: 10; padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 1ex; background-color: #0078FF;" | Media
 |- style="height: 100%;"
 | style="padding: 0.3ex 0.8ex;" data-sort-value="1" | 0001
 | style="padding: 0.3ex 0.8ex;" data-sort-value="Bulbasaur" | [[File:Minim0001.png|Bulbasaur|40px|link=Bulbasaur]]
