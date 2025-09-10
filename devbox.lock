@@ -1,0 +1,73 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "github:NixOS/nixpkgs/nixpkgs-unstable": {
+      "last_modified": "2025-09-05T01:14:44Z",
+      "resolved": "github:NixOS/nixpkgs/ca77296380960cd497a765102eeb1356eb80fed0?lastModified=1757034884&narHash=sha256-PgLSZDBEWUHpfTRfFyklmiiLBE1i1aGCtz4eRA3POao%3D"
+    },
+    "lua51Packages.lua@latest": {
+      "last_modified": "2025-07-28T17:09:23Z",
+      "resolved": "github:NixOS/nixpkgs/648f70160c03151bc2121d179291337ad6bc564b#lua51Packages.lua",
+      "source": "devbox-search",
+      "version": "5.1.5",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/lxli6sbwhkvsr81mwvwy0lpvmm3w4d6w-lua-5.1.5",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/gdhh5cd8gn3hr405sfl8cj41z7gp5rky-lua-5.1.5-doc"
+            }
+          ],
+          "store_path": "/nix/store/lxli6sbwhkvsr81mwvwy0lpvmm3w4d6w-lua-5.1.5"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/nlm0cl5r94bszq4dhh9bnxj753w7nz4j-lua-5.1.5",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/irmikhxvpqprmg39kmgycxwwgnf754v2-lua-5.1.5-doc"
+            }
+          ],
+          "store_path": "/nix/store/nlm0cl5r94bszq4dhh9bnxj753w7nz4j-lua-5.1.5"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ni1qiq3kaz5qy04wymzx0lkw0rp19njv-lua-5.1.5",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/41zp3gnpfb9gl904pn33n4gzi9z9smr9-lua-5.1.5-doc"
+            }
+          ],
+          "store_path": "/nix/store/ni1qiq3kaz5qy04wymzx0lkw0rp19njv-lua-5.1.5"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/3wm9pyxminvc248z6mdbbwf4vy4fn2ll-lua-5.1.5",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/bdvq9l1q212z0isi4kzhr6jszx3x62fd-lua-5.1.5-doc"
+            }
+          ],
+          "store_path": "/nix/store/3wm9pyxminvc248z6mdbbwf4vy4fn2ll-lua-5.1.5"
+        }
+      }
+    }
+  }
+}
