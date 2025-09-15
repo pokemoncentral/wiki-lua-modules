@@ -735,6 +735,7 @@ t.pikachu["until"] = { Cs = "roza", R = "roza", D = "roza", Cn = "roza",
 	S = "roza", W = "roza", Cm = "lgpe" }
 t.eevee["until"] = { Cm = "lgpe" }
 t.arceus["until"] = { Sc = "hgss" }
+-- t.greninja["until"] = { A = "spsc" }
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 -- Tables are copied since links should be changed

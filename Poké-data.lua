@@ -2361,6 +2361,8 @@ t.pikachuCs, t["0025Cs"], t.pikachuR, t["0025R"], t.pikachuD, t["0025D"] =
 t.pikachuCn, t["0025Cn"], t.pikachuS, t["0025S"], t.pikachuW, t["0025W"] =
     t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu
 t.pikachuCm, t["0025Cm"] = t.pikachu, t.pikachu
+t.raichuMX, t["0026MX"], t.raichuMY, t["0026MY"] =
+    t.raichu, t.raichu, t.raichu, t.raichu
 t.victreebelM, t["0071M"] = t.victreebel, t.victreebel
 t.starmieM, t["0121M"] = t.starmie, t.starmie
 t.eeveeCm, t["0133Cm"] = t.eevee, t.eevee
@@ -2387,12 +2389,13 @@ t.kyuremN, t["0646N"], t.kyuremB, t["0646B"] =
     t.kyurem, t.kyurem, t.kyurem, t.kyurem
 t.chesnaughtM, t["0652M"] = t.chesnaught, t.chesnaught
 t.delphoxM, t["0655M"] = t.delphox, t.delphox
-t.greninjaA, t["0658A"], t.greninjaM, t["0658M"] =
-    t.greninja, t.greninja, t.greninja, t.greninja
+t.greninjaA, t["0658A"] = t.greninja, t.greninja
+t.greninjaM, t["0658M"] = t.greninja, t.greninja
 t.pyroarM, t["0668M"] = t.pyroar, t.pyroar
 t.floetteE, t["0670E"], t.floetteM, t["0670M"] =
     t.floette, t.floette, t.floette, t.floette
 t.meowsticF, t["0678F"] = t.meowstic, t.meowstic
+t.malamarM, t["0687M"] = t.malamar, t.malamar
 t.aegislashS, t["0681S"] = t.aegislash, t.aegislash
 t.malamarM, t["0687M"] = t.malamar, t.malamar
 t.dragalgeM, t["0691M"] = t.dragalge, t.dragalge

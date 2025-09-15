@@ -2376,8 +2376,14 @@ t.beedrillM = { ability1 = "Adattabilità" }
 t["0015M"] = t.beedrillM
 t.pidgeotM = { ability1 = "Nullodifesa" }
 t["0018M"] = t.pidgeotM
+t.raichuMX = { ability1 = "Sconosciuta" }
+t["0026MX"] = t.raichuMX
+t.raichuMY = { ability1 = "Sconosciuta" }
+t["0026MY"] = t.raichuMY
 t.alakazamM = { ability1 = "Traccia" }
 t["0065M"] = t.alakazamM
+t.victreebelM = { ability1 = "Sconosciuta" }
+t["0071M"] = t.victreebelM
 t.slowbroM = { ability1 = "Guscioscudo" }
 t["0080M"] = t.slowbroM
 t.gengarM = { ability1 = "Pedinombra" }
@@ -2462,6 +2468,16 @@ t.galladeM = { ability1 = "Forza Interiore" }
 t["0475M"] = t.galladeM
 t.audinoM = { ability1 = "Curacuore" }
 t["0531M"] = t.audinoM
+t.chesnaughtM = { ability1 = "Sconosciuta" }
+t["0652M"] = t.chesnaughtM
+t.delphoxM = { ability1 = "Sconosciuta" }
+t["0655M"] = t.delphoxM
+t.greninjaM = { ability1 = "Sconosciuta" }
+t["0658M"] = t.greninjaM
+t.malamarM = { ability1 = "Sconosciuta" }
+t["0687M"] = t.malamarM
+t.hawluchaM = { ability1 = "Sconosciuta" }
+t["0701M"] = t.hawluchaM
 t.diancieM = { ability1 = "Magispecchio" }
 t["0719M"] = t.diancieM
 
