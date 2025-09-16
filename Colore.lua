@@ -567,47 +567,47 @@ c.Grinta, c.Aspro, c.aspro = c.grinta, c.grinta, c.grinta
 
 -- Colori gcc
 
-c.acqua_gcc = _colore("5BC7E5", "94DBEE", "3B8295")
+c.acqua_gcc = _colore("01A7E5", "92D9F7", "0179B5")
 c.Acqua_gcc, c["acqua gcc"], c["Acqua gcc"] =
     c.acqua_gcc, c.acqua_gcc, c.acqua_gcc
-c.lampo_gcc = _colore("FAB536", "FCCE7C", "A37523")
+c.lampo_gcc = _colore("FECC4D", "FEF7A5", "FDAF19")
 c.Lampo_gcc, c["lampo gcc"], c["Lampo gcc"] =
     c.lampo_gcc, c.lampo_gcc, c.lampo_gcc
-c.drago_gcc = _colore("C6A114", "DAC266", "81690D")
+c.drago_gcc = _colore("A09434", "DCD3A5", "816A2D")
 c.Drago_gcc, c["drago gcc"], c["Drago gcc"] =
     c.drago_gcc, c.drago_gcc, c.drago_gcc
-c.erba_gcc = _colore("7DB808", "AAD15E", "517805")
+c.erba_gcc = _colore("4EB449", "AAD161", "008540")
 c.Erba_gcc, c["erba gcc"], c["Erba gcc"] = c.erba_gcc, c.erba_gcc, c.erba_gcc
-c.folletto_gcc = _colore("E03A83", "EA7EAE", "912555")
+c.folletto_gcc = _colore("F16EA9", "F7C0D1", "A5185B")
 c.Folletto_gcc, c["folletto gcc"], c["Folletto gcc"] =
     c.folletto_gcc, c.folletto_gcc, c.folletto_gcc
-c.fuoco_gcc = _colore("E24242", "EC8484", "932B2B")
+c.fuoco_gcc = _colore("ED283A", "F8AB70", "C91D37")
 c.Fuoco_gcc, c["fuoco gcc"], c["Fuoco gcc"] =
     c.fuoco_gcc, c.fuoco_gcc, c.fuoco_gcc
-c.incolore_gcc = _colore("E5D6D0", "EEE4E0", "958B87")
+c.incolore_gcc = _colore("DFD4CE", "F7F4F0", "9B9691")
 c.Incolore_gcc, c["incolore gcc"], c["Incolore gcc"] =
     c.incolore_gcc, c.incolore_gcc, c.incolore_gcc
 c.arcobaleno_gcc, c.Arcobaleno_gcc, c["arcobaleno gcc"], c["Arcobaleno gcc"] =
     c.incolore_gcc, c.incolore_gcc, c.incolore_gcc, c.incolore_gcc
-c.metallo_gcc = _colore("8A776E", "B3A6A1", "5A4D48")
+c.metallo_gcc = _colore("9EA09F", "D6DFDF", "596B6F")
 c.Metallo_gcc, c["metallo gcc"], c["Metallo gcc"] =
     c.metallo_gcc, c.metallo_gcc, c.metallo_gcc
-c.oscurita_gcc = _colore("2C2E2B", "767775", "1D1E1C")
+c.oscurita_gcc = _colore("108694", "88BCCE", "183F44")
 c.Oscurita_gcc, c["oscurita gcc"], c["Oscurita gcc"] =
     c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc
 c["oscurità_gcc"], c["Oscurità_gcc"], c["oscurità gcc"], c["Oscurità gcc"] =
     c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc, c.oscurita_gcc
-c.psico_gcc = _colore("A65E9A", "C596BD", "6C3D64")
+c.psico_gcc = _colore("B56FAC", "E4A7CC", "6851A3")
 c.Psico_gcc, c["psico gcc"], c["Psico gcc"] =
     c.psico_gcc, c.psico_gcc, c.psico_gcc
 c.psiche_gcc, c.Psiche_gcc, c["psiche gcc"], c["Psiche gcc"] =
     c.psico_gcc, c.psico_gcc, c.psico_gcc, c.psico_gcc
-c.supporto_gcc = _colore("DC2222", "E66363", "9A1717")
-c.Supporto_gcc, c["supporto gcc"], c["Supporto gcc"] =
-    c.supporto_gcc, c.supporto_gcc, c.supporto_gcc
-c.aiuto_gcc, c.Aiuto_gcc, c["aiuto gcc"], c["Aiuto gcc"] =
-    c.supporto_gcc, c.supporto_gcc, c.supporto_gcc, c.supporto_gcc
-c.lotta_gcc = _colore("FF501F", "FF8D6D", "A63414")
+c.aiuto_gcc = _colore("F98453", "FDBB8E", "EF5A23")
+c.Aiuto_gcc, c["aiuto gcc"], c["Aiuto gcc"] =
+    c.aiuto_gcc, c.aiuto_gcc, c.aiuto_gcc
+c.supporto_gcc, c.Supporto_gcc, c["supporto gcc"], c["Supporto gcc"] =
+    c.aiuto_gcc, c.aiuto_gcc, c.aiuto_gcc, c.aiuto_gcc
+c.lotta_gcc = _colore("DF671F", "FEBF71", "984B1F")
 c.Lotta_gcc, c["lotta gcc"], c["Lotta gcc"] =
     c.lotta_gcc, c.lotta_gcc, c.lotta_gcc
 c.combattimento_gcc, c.Combattimento_gcc, c["combattimento gcc"], c["Combattimento gcc"] =
@@ -633,17 +633,22 @@ c["poké-power_gcc"], c["Poké-power_gcc"], c["poké-power gcc"], c["Poké-power
     c["poképower_gcc"],
     c["poképower_gcc"],
     c["poképower_gcc"]
-c.abilita_gcc = _colore("C84923", "D87F64", "8C3318")
-c.Abilita_gcc, c["abilita gcc"], c["Abilita gcc"] =
-    c.abilita_gcc, c.abilita_gcc, c.abilita_gcc
+c.oggetto_gcc = _colore("A576AD", "E1BBD8", "7358A5")
+c.Oggetto_gcc, c["oggetto gcc"], c["Oggetto gcc"] =
+    c.oggetto_gcc, c.oggetto_gcc, c.oggetto_gcc
+c.abilita_gcc, c.Abilita_gcc, c["abilita gcc"], c["Abilita gcc"] =
+    c.oggetto_gcc, c.oggetto_gcc, c.oggetto_gcc, c.oggetto_gcc
 c["abilità_gcc"], c["Abilità_gcc"], c["abilità gcc"], c["Abilità gcc"] =
-    c.abilita_gcc, c.abilita_gcc, c.abilita_gcc, c.abilita_gcc
-c.strumento_gcc = _colore("7777EE", "A6A6F4", "4D4D9B")
+    c.oggetto_gcc, c.oggetto_gcc, c.oggetto_gcc, c.oggetto_gcc
+c.strumento_gcc = _colore("10BAEE", "9BD5EE", "0171BE")
 c.Strumento_gcc, c["strumento gcc"], c["Strumento gcc"] =
     c.strumento_gcc, c.strumento_gcc, c.strumento_gcc
-c.stadio_gcc = _colore("90E183", "B7EBAE", "5E9255")
+c.stadio_gcc = _colore("82C45D", "BBDAA2", "417D28")
 c.Stadio_gcc, c["stadio gcc"], c["Stadio gcc"] =
     c.stadio_gcc, c.stadio_gcc, c.stadio_gcc
+c.assotattico_gcc = _colore("EC008C", "F78CBA", "A00060")
+c.Assotattico_gcc, c["assotattico gcc"], c["Assotattico gcc"] =
+    c.assotattico_gcc, c.assotattico_gcc, c.assotattico_gcc
 
 -- Colori Parco Lotta
 
