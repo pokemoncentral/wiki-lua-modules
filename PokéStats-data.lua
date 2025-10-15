@@ -619,9 +619,9 @@ d.lairon = {hp = 60, atk = 90, def = 140, spatk = 50, spdef = 50, spe = 40}
 d[305] = d.lairon
 d.aggron = {hp = 70, atk = 110, def = 180, spatk = 60, spdef = 60, spe = 50}
 d[306] = d.aggron
-d.meditite = {hp = 30, atk = 40, def = 55, spatk = 40, spdef = 55, spe = 60}
+d.meditite = {hp = 30, atk = {[8] = 40, [9] = 56}, def = 55, spatk = 40, spdef = 55, spe = 60}
 d[307] = d.meditite
-d.medicham = {hp = 60, atk = 60, def = 75, spatk = 60, spdef = 75, spe = 80}
+d.medicham = {hp = 60, atk = {[8] = 60, [9] = 84}, def = 75, spatk = 60, spdef = 75, spe = 80}
 d[308] = d.medicham
 d.electrike = {hp = 40, atk = 45, def = 40, spatk = 65, spdef = 40, spe = 65}
 d[309] = d.electrike
@@ -2118,6 +2118,8 @@ d.meloettaD = {hp = 100, atk = 128, def = 90, spatk = 77, spdef = 77, spe = 128}
 d["0648D"] = d.meloettaD
 d.greninjaA = {hp = 72, atk = 145, def = 67, spatk = 153, spdef = 71, spe = 132}
 d["0658A"] = d.greninjaA
+d.floetteE = {hp = 74, atk = 65, def = 67, spatk = 125, spdef = 128, spe = 92}
+d["0670E"] = d.floetteE
 d.aegislashS = {hp = 60, atk = { [6] = 150, [8] = 140 }, def = 50, spatk = { [6] = 150, [8] = 140 }, spdef = 50, spe = 60}
 d["0681S"] = d.aegislashS
 d.pumpkabooS = {hp = 44, atk = 66, def = 70, spatk = 44, spdef = 55, spe = 56}
@@ -2196,24 +2198,36 @@ d.beedrillM = {hp = 65, atk = 150, def = 40, spatk = 15, spdef = 80, spe = 145}
 d["0015M"] = d.beedrillM
 d.pidgeotM = {hp = 83, atk = 80, def = 80, spatk = 135, spdef = 80, spe = 121}
 d["0018M"] = d.pidgeotM
+d.clefableM = {hp = 95, atk = 80, def = 93, spatk = 135, spdef = 110, spe = 70}
+d["0036M"] = d.clefableM
 d.alakazamM = {hp = 55, atk = 50, def = 65, spatk = 175, spdef = {[6] = 95, [7] = 105}, spe = 150}
 d["0065M"] = d.alakazamM
+d.victreebelM = {hp = 80, atk = 125, def = 85, spatk = 135, spdef = 95, spe = 70}
+d["0071M"] = d.victreebelM
 d.slowbroM = {hp = 95, atk = 75, def = 180, spatk = 130, spdef = 80, spe = 30}
 d["0080M"] = d.slowbroM
 d.gengarM = {hp = 60, atk = 65, def = 80, spatk = 170, spdef = 95, spe = 130}
 d["0094M"] = d.gengarM
 d.kangaskhanM = {hp = 105, atk = 125, def = 100, spatk = 60, spdef = 100, spe = 100}
 d["0115M"] = d.kangaskhanM
+d.starmieM = {hp = 60, atk = 140, def = 105, spatk = 130, spdef = 105, spe = 120}
+d["0121M"] = d.starmieM
 d.pinsirM = {hp = 65, atk = 155, def = 120, spatk = 65, spdef = 90, spe = 105}
 d["0127M"] = d.pinsirM
 d.gyaradosM = {hp = 95, atk = 155, def = 109, spatk = 70, spdef = 130, spe = 81}
 d["0130M"] = d.gyaradosM
 d.aerodactylM = {hp = 80, atk = 135, def = 85, spatk = 70, spdef = 95, spe = 150}
 d["0142M"] = d.aerodactylM
+d.dragoniteM = {hp = 91, atk = 124, def = 115, spatk = 145, spdef = 125, spe = 100}
+d["0149M"] = d.dragoniteM
 d.mewtwoMX = {hp = 106, atk = 190, def = 100, spatk = 154, spdef = 100, spe = 130}
 d["0150MX"] = d.mewtwoMX
 d.mewtwoMY = {hp = 106, atk = 150, def = 70, spatk = 194, spdef = 120, spe = 140}
 d["0150MY"] = d.mewtwoMY
+d.meganiumM = {hp = 80, atk = 92, def = 115, spatk = 143, spdef = 115, spe = 80}
+d["0154M"] = d.meganiumM
+d.feraligatrM = {hp = 85, atk = 160, def = 125, spatk = 89, spdef = 93, spe = 78}
+d["0160M"] = d.feraligatrM
 d.ampharosM = {hp = 90, atk = 95, def = 105, spatk = 165, spdef = 110, spe = 45}
 d["0181M"] = d.ampharosM
 d.steelixM = {hp = 75, atk = 125, def = 230, spatk = 55, spdef = 95, spe = 30}
@@ -2222,6 +2236,8 @@ d.scizorM = {hp = 70, atk = 150, def = 140, spatk = 65, spdef = 100, spe = 75}
 d["0212M"] = d.scizorM
 d.heracrossM = {hp = 80, atk = 185, def = 115, spatk = 40, spdef = 105, spe = 75}
 d["0214M"] = d.heracrossM
+d.skarmoryM = {hp = 65, atk = 140, def = 110, spatk = 40, spdef = 100, spe = 110}
+d["0227M"] = d.skarmoryM
 d.houndoomM = {hp = 75, atk = 90, def = 90, spatk = 140, spdef = 90, spe = 115}
 d["0229M"] = d.houndoomM
 d.tyranitarM = {hp = 100, atk = 164, def = 150, spatk = 95, spdef = 120, spe = 71}
@@ -2236,11 +2252,11 @@ d.gardevoirM = {hp = 68, atk = 85, def = 65, spatk = 165, spdef = 135, spe = 100
 d["0282M"] = d.gardevoirM
 d.sableyeM = {hp = 50, atk = 85, def = 125, spatk = 85, spdef = 115, spe = 20}
 d["0302M"] = d.sableyeM
-d.mawileM = {hp = 50, atk = 105, def = 125, spatk = 55, spdef = 95, spe = 50}
+d.mawileM = {hp = 50, atk = {[8] = 105, [9] = 147}, def = 125, spatk = 55, spdef = 95, spe = 50}
 d["0303M"] = d.mawileM
 d.aggronM = {hp = 70, atk = 140, def = 230, spatk = 60, spdef = 80, spe = 50}
 d["0306M"] = d.aggronM
-d.medichamM = {hp = 60, atk = 100, def = 85, spatk = 80, spdef = 85, spe = 100}
+d.medichamM = {hp = 60, atk = {[8] = 100, [9] = 140}, def = 85, spatk = 80, spdef = 85, spe = 100}
 d["0308M"] = d.medichamM
 d.manectricM = {hp = 70, atk = 75, def = 80, spatk = 135, spdef = 80, spe = 135}
 d["0310M"] = d.manectricM
@@ -2276,10 +2292,48 @@ d.abomasnowM = {hp = 90, atk = 132, def = 105, spatk = 132, spdef = 105, spe = 3
 d["0460M"] = d.abomasnowM
 d.galladeM = {hp = 68, atk = 165, def = 95, spatk = 65, spdef = 115, spe = 110}
 d["0475M"] = d.galladeM
+d.froslassM = {hp = 70, atk = 80, def = 70, spatk = 140, spdef = 100, spe = 120}
+d["0478M"] = d.froslassM
+d.emboarM = {hp = 110, atk = 148, def = 75, spatk = 110, spdef = 110, spe = 75}
+d["0500M"] = d.emboarM
+d.excadrillM = {hp = 110, atk = 165, def = 100, spatk = 65, spdef = 65, spe = 103}
+d["0530M"] = d.excadrillM
 d.audinoM = {hp = 103, atk = 60, def = 126, spatk = 80, spdef = 126, spe = 50}
 d["0531M"] = d.audinoM
+d.scolipedeM = {hp = 60, atk = 140, def = 149, spatk = 75, spdef = 99, spe = 62}
+d["0545M"] = d.scolipedeM
+d.scraftyM = {hp = 65, atk = 130, def = 135, spatk = 55, spdef = 135, spe = 68}
+d["0560M"] = d.scraftyM
+d.eelektrossM = {hp = 85, atk = 145, def = 80, spatk = 135, spdef = 90, spe = 80}
+d["0604M"] = d.eelektrossM
+d.chandelureM = {hp = 60, atk = 75, def = 110, spatk = 175, spdef = 110, spe = 90}
+d["0609M"] = d.chandelureM
+d.chesnaughtM = {hp = 88, atk = 137, def = 172, spatk = 74, spdef = 115, spe = 44}
+d["0652M"] = d.chesnaughtM
+d.delphoxM = {hp = 75, atk = 69, def = 72, spatk = 159, spdef = 125, spe = 134}
+d["0655M"] = d.delphoxM
+d.greninjaM = {hp = 72, atk = 125, def = 77, spatk = 133, spdef = 81, spe = 142}
+d["0658M"] = d.greninjaM
+d.pyroarM = {hp = 86, atk = 88, def = 92, spatk = 129, spdef = 86, spe = 126}
+d["0668M"] = d.pyroarM
+d.floetteM = {hp = 74, atk = 85, def = 87, spatk = 155, spdef = 148, spe = 102}
+d["0670M"] = d.floetteM
+d.malamarM = {hp = 86, atk = 102, def = 88, spatk = 98, spdef = 120, spe = 88}
+d["0687M"] = d.malamarM
+d.barbaracleM = {hp = 72, atk = 140, def = 130, spatk = 64, spdef = 106, spe = 88}
+d["0689M"] = d.barbaracleM
+d.dragalgeM = {hp = 65, atk = 85, def = 105, spatk = 132, spdef = 163, spe = 44}
+d["0691M"] = d.dragalgeM
+d.hawluchaM = {hp = 78, atk = 137, def = 100, spatk = 74, spdef = 93, spe = 118}
+d["0701M"] = d.hawluchaM
+d.zygardeM = {hp = 216, atk = 70, def = 91, spatk = 216, spdef = 85, spe = 100}
+d["0718M"] = d.zygardeM
 d.diancieM = {hp = 50, atk = 160, def = 110, spatk = 160, spdef = 110, spe = 110}
 d["0719M"] = d.diancieM
+d.drampaM = {hp = 78, atk = 85, def = 110, spatk = 160, spdef = 116, spe = 36}
+d["0780M"] = d.drampaM
+d.falinksM = {hp = 65, atk = 135, def = 135, spatk = 70, spdef = 65, spe = 100}
+d["0870M"] = d.falinksM
 d.kyogreA = {hp = 100, atk = 150, def = 90, spatk = 180, spdef = 160, spe = 90}
 d["0382A"] = d.kyogreA
 d.groudonA = {hp = 100, atk = 180, def = 160, spatk = 150, spdef = 90, spe = 90}
