@@ -2319,12 +2319,18 @@ t["1017FnT"] = t.ogerponFnT
 
 t.charizardMX = {name = 'Charizard', ndex = 6, type1 = 'fuoco', type2 = 'drago'}
 t["0006MX"] = t.charizardMX
+t.clefableM = {name = 'Clefable', ndex = 36, type1 = 'folletto', type2 = 'volante'}
+t["0036M"] = t.clefableM
 t.pinsirM = {name = 'Pinsir', ndex = 127, type1 = 'coleot', type2 = 'volante'}
 t["0127M"] = t.pinsirM
 t.gyaradosM = {name = 'Gyarados', ndex = 130, type1 = 'acqua', type2 = 'buio'}
 t["0130M"] = t.gyaradosM
 t.mewtwoMX = {name = 'Mewtwo', ndex = 150, type1 = 'psico', type2 = 'lotta'}
 t["0150MX"] = t.mewtwoMX
+t.meganiumM = {name = 'Meganium', ndex = 154, type1 = 'erba', type2 = 'folletto'}
+t["0154M"] = t.meganiumM
+t.feraligatrM = {name = 'Feraligatr', ndex = 160, type1 = 'acqua', type2 = 'drago'}
+t["0160M"] = t.feraligatrM
 t.ampharosM = {name = 'Ampharos', ndex = 181, type1 = 'elettro', type2 = 'drago'}
 t["0181M"] = t.ampharosM
 t.sceptileM = {name = 'Sceptile', ndex = 254, type1 = 'erba', type2 = 'drago'}
@@ -2344,6 +2350,8 @@ t.lopunnyM = {name = 'Lopunny', ndex = 428, type1 = 'normale', type2 = 'lotta'}
 t["0428M"] = t.lopunnyM
 t.audinoM = {name = 'Audino', ndex = 531, type1 = 'normale', type2 = 'folletto'}
 t["0531M"] = t.audinoM
+t.barbaracleM = {name = 'Barbaracle', ndex = 689, type1 = 'roccia', type2 = 'lotta'}
+t["0689M"] = t.barbaracleM
 -- stylua: ignore end
 
 -- Gli alias per le altre forme alternative rilevanti
@@ -2353,34 +2361,55 @@ t.pikachuCs, t["0025Cs"], t.pikachuR, t["0025R"], t.pikachuD, t["0025D"] =
 t.pikachuCn, t["0025Cn"], t.pikachuS, t["0025S"], t.pikachuW, t["0025W"] =
     t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu, t.pikachu
 t.pikachuCm, t["0025Cm"] = t.pikachu, t.pikachu
+t.victreebelM, t["0071M"] = t.victreebel, t.victreebel
+t.starmieM, t["0121M"] = t.starmie, t.starmie
 t.eeveeCm, t["0133Cm"] = t.eevee, t.eevee
+t.skarmoryM, t["0227M"] = t.skarmory, t.skarmory
 t.deoxysA, t["0386A"], t.deoxysD, t["0386D"], t.deoxysV, t["0386V"] =
     t.deoxys, t.deoxys, t.deoxys, t.deoxys, t.deoxys, t.deoxys
 t.cherrimS, t["0421S"] = t.cherrim, t.cherrim
+t.froslassM, t["0478M"] = t.froslass, t.froslass
 t.dialgaO, t["0483O"] = t.dialga, t.dialga
 t.palkiaO, t["0484O"] = t.palkia, t.palkia
 t.giratinaO, t["0487O"] = t.giratina, t.giratina
+t.emboarM, t["0500M"] = t.emboar, t.emboar
+t.excadrillM, t["0530M"] = t.excadrill, t.excadrill
+t.scolipedeM, t["0545M"] = t.scolipede, t.scolipede
 t.basculinB, t["0550B"] = t.basculin, t.basculin
 t.basculinBi, t["0550Bi"] = t.basculin, t.basculin
+t.scraftyM, t["0560M"] = t.scrafty, t.scrafty
+t.eelektrossM, t["0604M"] = t.eelektross, t.eelektross
+t.chandelureM, t["0609M"] = t.chandelure, t.chandelure
 t.tornadusT, t["0641T"] = t.tornadus, t.tornadus
 t.thundurusT, t["0642T"] = t.thundurus, t.thundurus
 t.landorusT, t["0645T"] = t.landorus, t.landorus
 t.kyuremN, t["0646N"], t.kyuremB, t["0646B"] =
     t.kyurem, t.kyurem, t.kyurem, t.kyurem
-t.greninjaA, t["0658A"] = t.greninja, t.greninja
+t.chesnaughtM, t["0652M"] = t.chesnaught, t.chesnaught
+t.delphoxM, t["0655M"] = t.delphox, t.delphox
+t.greninjaA, t["0658A"], t.greninjaM, t["0658M"] =
+    t.greninja, t.greninja, t.greninja, t.greninja
+t.pyroarM, t["0668M"] = t.pyroar, t.pyroar
+t.floetteE, t["0670E"], t.floetteM, t["0670M"] =
+    t.floette, t.floette, t.floette, t.floette
 t.meowsticF, t["0678F"] = t.meowstic, t.meowstic
 t.aegislashS, t["0681S"] = t.aegislash, t.aegislash
+t.malamarM, t["0687M"] = t.malamar, t.malamar
+t.dragalgeM, t["0691M"] = t.dragalge, t.dragalge
+t.hawluchaM, t["0701M"] = t.hawlucha, t.hawlucha
 t.pumpkabooS, t["0710S"], t.pumpkabooL, t["0710L"], t.pumpkabooXL, t["0710XL"] =
     t.pumpkaboo, t.pumpkaboo, t.pumpkaboo, t.pumpkaboo, t.pumpkaboo, t.pumpkaboo
 t.gourgeistS, t["0711S"], t.gourgeistL, t["0711L"], t.gourgeistXL, t["0711XL"] =
     t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist
-t.zygardeD, t["0718D"], t.zygardeP, t["0718P"] =
-    t.zygarde, t.zygarde, t.zygarde, t.zygarde
+t.zygardeD, t["0718D"], t.zygardeP, t["0718P"], t.zygardeM, t["0718M"] =
+    t.zygarde, t.zygarde, t.zygarde, t.zygarde, t.zygarde, t.zygarde
 t.lycanrocN, t["0745N"], t.lycanrocC, t["0745C"] =
     t.lycanroc, t.lycanroc, t.lycanroc, t.lycanroc
 t.wishiwashiB, t["0746B"] = t.wishiwashi, t.wishiwashi
 t.miniorR, t["0774R"] = t.minior, t.minior
+t.drampaM, t["0780M"] = t.drampa, t.drampa
 t.toxtricityB, t["0849B"] = t.toxtricity, t.toxtricity
+t.falinksM, t["0870M"] = t.falinks, t.falinks
 t.eiscueL, t["0875L"] = t.eiscue, t.eiscue
 t.indeedeeF, t["0876F"] = t.indeedee, t.indeedee
 t.morpekoV, t["0877V"] = t.morpeko, t.morpeko
@@ -2406,6 +2435,8 @@ t.charizardMY, t["0006MY"] = t.charizard, t.charizard
 t.blastoiseM, t["0009M"] = t.blastoise, t.blastoise
 t.beedrillM, t["0015M"] = t.beedrill, t.beedrill
 t.pidgeotM, t["0018M"] = t.pidgeot, t.pidgeot
+t.raichuMX, t["0026MX"], t.raichuMY, t["0026MY"] =
+    t.raichu, t.raichu, t.raichu, t.raichu
 t.alakazamM, t["0065M"] = t.alakazam, t.alakazam
 t.slowbroM, t["0080M"] = t.slowbro, t.slowbro
 t.gengarM, t["0094M"] = t.gengar, t.gengar
