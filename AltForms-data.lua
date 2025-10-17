@@ -71,6 +71,7 @@ t.tornadus = {}
 t.kyurem = {}
 t.meloetta = {}
 t.greninja = {}
+t.floette = {}
 t.meowstic = {}
 t.aegislash = {}
 t.pumpkaboo = {}
@@ -127,7 +128,7 @@ t.formgroups.mega = {
 
 -- Tabella contentente i Pokémon che hanno più megaevoluzioni
 
-t.formgroups.megaxy = { "charizard", "mewtwo" }
+t.formgroups.megaxy = { "charizard", "raichu", "mewtwo" }
 
 -- Tabella contenente i Pokémon che hanno un archeorisveglio
 
@@ -204,6 +205,7 @@ t.tornadus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
 t.kyurem.names = {N = 'Kyurem Nero', B = 'Kyurem Bianco', base = 'Forma di Kyurem'}
 t.meloetta.names = {D = 'Forma Danza', base = 'Forma Canto'}
 t.greninja.names = {A = 'Forma Ash', base = ''}
+t.floette.names = {E = 'Fiore Eterno', base = ''}
 t.meowstic.names = {F = 'Femmina', base = 'Maschio'}
 t.aegislash.names = {S = 'Forma Spada', base = 'Forma Scudo'}
 t.pumpkaboo.names = {S = 'Mini', L = 'Grande', XL = 'Maxi', base = 'Normale'}
@@ -303,6 +305,7 @@ t.geodude.anchor = "Geodude, Graveler e Golem"
 t.ponyta.anchor = "Ponyta e Rapidash"
 t.grimer.anchor = "Grimer e Muk"
 t.zigzagoon.anchor = "Zigzagoon e Linoone"
+t.floette.anchor = "Flabébé, Floette e Florges"
 -- t.wormadam.anchor = 'Burmy e Wormadam'
 -- t.tornadus.anchor = 'Forze della Natura'
 -- t.pumpkaboo.anchor = 'Pumpkaboo e Gourgeist'
@@ -340,6 +343,7 @@ t.tornadus.ext = { totem = "T" }
 t.kyurem.ext = { nero = "N", bianco = "B" }
 t.meloetta.ext = { danza = "D" }
 t.greninja.ext = { ash = "A" }
+t.floette.ext = { eterno = "E" }
 t.meowstic.ext = { femmina = "F" }
 t.aegislash.ext = { spada = "S" }
 t.pumpkaboo.ext = { mini = "S", grande = "L", maxi = "XL" }
@@ -413,6 +417,7 @@ t.venusaur.gamesOrder = { "base", "M", "Gi" }
 t.charizard.gamesOrder = { "base", "MX", "MY", "Gi" }
 t.blastoise.gamesOrder = { "base", "M", "Gi" }
 t.pikachu.gamesOrder = { "base", "Cs", "R", "D", "Cn", "S", "W", "Cm", "Gi" }
+t.raichu.gamesOrder = { "base", "A", "MX", "MY" }
 t.meowth.gamesOrder = { "base", "A", "G", "Gi" }
 t.gengar.gamesOrder = { "base", "M", "Gi" }
 t.slowbro.gamesOrder = { "base", "M", "G" }
@@ -529,7 +534,7 @@ t.rattata.since = { A = "sl", base = "rb" }
 t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
 	Cn = 'roza', S = 'roza', W = 'roza', Cm = 'lgpe',
 	Gi = 'spsc', base = 'rb'}
-t.raichu.since = { A = "sl", base = "rb" }
+t.raichu.since = { A = "sl", MX = "lpza", MY = "lpza", base = "rb" }
 t.sandshrew.since = { A = "sl", base = "rb" }
 t.vulpix.since = { A = "sl", base = "rb" }
 t.diglett.since = { A = "sl", base = "rb" }

@@ -31,7 +31,6 @@ t.genesect = {}
 t.vivillon = {}
 t.pyroar = {}
 t.floette = {}
-t.florges = {}
 t.furfrou = {}
 t.xerneas = {}
 t.minior = {}
@@ -83,10 +82,7 @@ t.vivillon.names = {base = 'Motivo Nevi Perenni', No = 'Motivo Nordico',
 	Gu =  'Motivo Giungla', Po = 'Motivo Poké Ball', Sr = 'Motivo Sbarazzino'}
 t.pyroar.names = t.unfezant.names
 t.floette.names = {G = 'Fiore Giallo', A = 'Fiore Arancione',
-	Bi = 'Fiore Bianco', Bl = 'Fiore Blu', base = 'Fiore Rosso',
-	E = "Fiore Eterno"}
-t.florges.names = {G = 'Fiore Giallo', A = 'Fiore Arancione',
-	Bi = 'Fiore Bianco', Bl = 'Fiore Blu', base = 'Fiore Rosso'}
+	Bi = 'Fiore Bianco', Bl = 'Fiore Blu', base = 'Fiore Rosso' }
 t.furfrou.names = {C = 'Taglio Cuore', St = 'Taglio Stella',
 	D = 'Taglio Diamante', Si = 'Taglio Signorina', Gd = 'Taglio Gentildonna',
 	Gu = 'Taglio Gentiluomo', R = 'Taglio Regina', K = 'Taglio Kabuki',
@@ -135,7 +131,6 @@ t.shellos.anchor = "Shellos e Gastrodon"
 t.burmy.anchor = "Burmy e Wormadam"
 t.deerling.anchor = "Deerling e Sawsbuck"
 t.floette.anchor = "Flabébé, Floette e Florges"
-t.florges.anchor = "Flabébé, Floette e Florges"
 
 -- Table to map extended names to abbrs
 
@@ -162,8 +157,7 @@ t.vivillon.ext = {nordico = 'No', ['manto di neve'] = 'Mn',
 	savana = 'Sv', solare = 'So', oceanico = 'O', giungla = 'Gu',
 	['poké ball'] = 'Po', sbarazzino = 'Sr', ball = 'Po'}
 t.pyroar.ext = t.unfezant.ext
-t.floette.ext = {giallo = 'G', arancione = 'A', bianco = 'Bi', blu = 'Bl', eterno = 'E'}
-t.florges.ext = {giallo = 'G', arancione = 'A', bianco = 'Bi', blu = 'Bl'}
+t.floette.ext = {giallo = 'G', arancione = 'A', bianco = 'Bi', blu = 'Bl' }
 t.furfrou.ext = {cuore = 'C', stella = 'St', diamante = 'D', dignorina = 'Si',
 	gentildonna = 'Gd', gentiluomo = 'Gu', regina = 'R', kabuki = 'K',
 	faraone = 'F'}
@@ -208,8 +202,7 @@ t.genesect.gamesOrder = {'base', 'I', 'V', 'P', 'G'}
 t.vivillon.gamesOrder = {'base', 'No', 'Mn', 'C', 'Pr', 'E', 'Ga', 'T', 'Mr', 'A',
 	'D', 'Sb', 'F', 'Pl', 'Sv', 'So', 'O', 'Gu', 'Sr', 'Po'}
 t.pyroar.gamesOrder = t.unfezant.gamesOrder
-t.floette.gamesOrder = {'base', 'G', 'A', 'Bl', 'Bi', 'E'}
-t.florges.gamesOrder = {'base', 'G', 'A', 'Bl', 'Bi'}
+t.floette.gamesOrder = {'base', 'G', 'A', 'Bl', 'Bi'}
 t.furfrou.gamesOrder = {'base', 'C', 'St', 'Si', 'Gd', 'D', 'Gu', 'R', 'K', 'F'}
 t.xerneas.gamesOrder = {'base', 'A'}
 t.minior.gamesOrder = {'base', 'R', 'Ar', 'G', 'Ve', 'Az', 'I', 'Vi'}
@@ -252,8 +245,7 @@ t.vivillon.since = {base = 'xy', No = 'xy', Mn = 'xy', C = 'xy', Pr = 'xy',
 	F = 'xy', Pl = 'xy', Sv = 'xy', So = 'xy', O = 'xy', Gu =  'xy',
 	Po = 'xy', Sr = 'xy'}
 t.pyroar.since = {F = 'xy', base = 'xy'}
-t.floette.since = {G = 'xy', A = 'xy', Bi = 'xy', Bl = 'xy', E = 'xy', base = 'xy'}
-t.florges.since = {G = 'xy', A = 'xy', Bi = 'xy', Bl = 'xy', base = 'xy'}
+t.floette.since = {G = 'xy', A = 'xy', Bi = 'xy', Bl = 'xy', base = 'xy'}
 t.furfrou.since = {C = 'xy', St = 'xy', D = 'xy', Si = 'xy', Gd = 'xy',
 	Gu = 'xy', R = 'xy', K = 'xy', F = 'xy', base = 'xy'}
 t.xerneas.since = {A = 'xy', base = 'xy'}
@@ -297,13 +289,16 @@ not present defaults to latest games.
 --]]
 
 t.pichu["until"] = { S = "hgss" }
-t.floette["until"] = { E = "xy" }
+-- Comment this out until (pun intended) we know how to handle the fact that it
+-- became available again in LPZA
+-- t.floette["until"] = { E = "xy" }
 
 -- Alias, messi qui per evitare inutili iterazioni dei cicli precedenti
 t.gastrodon = tab.copy(t.shellos)
 t.sawsbuck = tab.copy(t.deerling)
 t.jellicent = tab.copy(t.frillish)
-t["flabébé"] = tab.copy(t.florges)
+t["flabébé"] = tab.copy(t.floette)
+t.florges = tab.copy(t.floette)
 t.polteageist = tab.copy(t.sinistea)
 
 -- Link creation should be done AFTER copying Pokémon with same forms, in order
