@@ -196,8 +196,8 @@ while read -r TEST_SCRIPT; do
     diff -su --color=always \
         --label "$TEST_SCRIPT@snapshot" \
         --label "$TEST_SCRIPT@current" \
-        "$CURRENT_OUTPUT_DIR/$TEST_SCRIPT.out" \
         "$SNAPSHOTS_DIR/$TEST_SCRIPT.out" \
+        "$CURRENT_OUTPUT_DIR/$TEST_SCRIPT.out" \
         || EXIT_CODE=1
 done < <(basename -a "${TEST_FILES[@]}")
 
