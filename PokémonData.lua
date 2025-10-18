@@ -87,19 +87,31 @@ b.getFormName = function(frame)
     return forms[name] and forms[name].names[formlib.toBase(abbr)] or ""
 end
 
---[[
+--[[--
+    Returns one of a Pokémon's abilities given its name or ndex
 
-Returns a Pokémon's ability (specified by the second parameter) given its name
-or ndex. The optional third parameter is the generation.
-The name can contain a form abbreviation, and if it's a Pokémon name (not an
-ndex) it should be lowercase but the first letter, that can be both upper or
-lower case.
-
---]]
+    @param frame - MediaWiki arguments. These are used:
+        * #1 - The Pokémon name/ndex. Can end in a form abbreviation.
+            If a Pokémon name, it should all be lowercase but the first letter
+        * form - the alternative form name
+        * placeholder - Placeholder text to be used if the Pokémon has no
+            ability data. Primarily used for newly revealed Pokémon whose
+            ability is still unknown.
+            Optional, if not given allows crashing if the Pokémon has no
+            ability data
+    @param abilityNumber - The ability to return. One of: '1' | '2' | 'd' | 'e'
+    @param gen - The generation for which the ability is returned. Optional,
+        defaults to the current generation
+    @return - The requested Pokémon ability
+]]
 local function getAbil(frame, abilityNumber, gen)
     local abils = require("PokéAbil-data")
+    local pokeAbils = abils[parseName(frame.args)]
+    if frame.placeholder and not pokeAbils then
+        return frame.placeholder
+    end
     return multigen.getGenValue(
-        abils[parseName(frame.args)]["ability" .. abilityNumber] or "",
+        pokeAbils["ability" .. abilityNumber] or "",
         tonumber(gen)
     )
 end
@@ -276,31 +288,42 @@ b.gradTypes = function(frame)
 end
 b.grad_types = b.gradTypes
 
---[[
+--[[--
+    Returns one of a Pokémon's base stats given its name or ndex
 
-Returns a Pokémon's stats (specified by the second parameter) given its name or
-ndex. An optional 'gen' parameter specifies the generation. If the Pokémon
-doesn't have the stat (i.e: stat "spec" of a non gen 1 Pokémon) return an empty
-string.
+    @param frame - MediaWiki arguments. These are used:
+        * #1 - The Pokémon name/ndex. Only if an ndex, it can end in a form
+            abbreviation. For Pokémon names, use the optional parameter 'form'
+            to specify it.
+        * #2 - The base stat to return.
+            One of: 'hp' | 'atk' | 'def' | 'spatk' | 'spdef' | 'spe' | 'spec'.
+            If the Pokémon doesn't have the stat (i.e: stat "spec" of a non-gen
+            1 Pokémon), an empty string is returned
+        * form - the alternative form name
+        * gen - The generation for which the ability is returned. Optional,
+            defaults to the current generation
+        * placeholder - Placeholder text to be used if the Pokémon has no
+            base stats data. Primarily used for newly revealed Pokémon whose
+            base stats are still unknown.
+            Optional, if not given allows crashing if the Pokémon has no
+            base stats data
+    @return - The requested Pokémon base stat
 
-The form abbr can be included in the ndex, but not in the Pokémon name; in the
-latter case, use the optional parameter 'form' to specify it.
-
-Ex:
-{{#invoke: PokémonData | getStat | 398 | hp }}     --> 85
-{{#invoke: PokémonData | getStat | Staraptor | hp }}    --> 85
-{{#invoke: PokémonData | getStat | 65 | spatk }}   --> 135
-{{#invoke: PokémonData | getStat | 487O | def }}   --> 100
-{{#invoke: PokémonData | getStat | 189 | spdef | gen = 2 }}  --> 85
-
---]]
+    Ex:
+    {{#invoke: PokémonData | getStat | 398 | hp }}     --> 85
+    {{#invoke: PokémonData | getStat | Staraptor | hp }}    --> 85
+    {{#invoke: PokémonData | getStat | 65 | spatk }}   --> 135
+    {{#invoke: PokémonData | getStat | 487O | def }}   --> 100
+    {{#invoke: PokémonData | getStat | 189 | spdef | gen = 2 }}  --> 85
+]]
 b.getStat = function(frame)
     local stats = require("PokéStats-data")
-    local stat = txt.trim(frame.args[2])
-    return multigen.getGenValue(
-        stats[parseName(frame.args)][stat],
-        tonumber(frame.args.gen)
-    )
+    local args = wlib.trimAll(frame.args)
+    local pokeStats = stats[parseName(args)]
+    if args.placeholder and not pokeStats then
+        return args.placeholder
+    end
+    return multigen.getGenValue(pokeStats[args[2]], tonumber(args.gen))
 end
 
 --[[

@@ -1,3 +1,6 @@
+
+~~~~~~~~~~~~~~ Latest gen ~~~~~~~~~~~~~~
+
 {| class="sortable roundy-corners pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; background-size: 100%; background-image: linear-gradient(to right, #D0E6FF, #7CBAFF);;"
 |-
 ! class="hidden-xs" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | [[Pokédex Nazionale|<span style="color: #000;">#</span>]]
@@ -30,10 +33,10 @@
 | style="padding: 0.3ex 0.6ex" | [[Nidoran♂|<span style="color: #000;">Nidoran♂</span>]]
 | style="padding: 0.3ex 0.6ex" | '''273'''
 |- style="height: 100%;"
-| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0142
-| style="padding: 0.3ex 0.6ex" | [[File:Minim0142M.png|Aerodactyl|40px|link=Aerodactyl]]
-| style="padding: 0.3ex 0.6ex" | [[Aerodactyl|<span style="color: #000;">Aerodactyl</span>]]<div class="small-text black-text">[[Megaevoluzione#Aerodactyl|MegaAerodactyl]]</div>
-| style="padding: 0.3ex 0.6ex" | '''615'''
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0036
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0036M.png|Clefable|40px|link=Clefable]]
+| style="padding: 0.3ex 0.6ex" | [[Clefable|<span style="color: #000;">Clefable</span>]]<div class="small-text black-text">[[Megaevoluzione#Clefable|MegaClefable]]</div>
+| style="padding: 0.3ex 0.6ex" | '''583'''
 |- style="height: 100%;"
 | class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0161
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0161.png|Sentret|40px|link=Sentret]]
@@ -85,6 +88,21 @@
 | style="padding: 0.3ex 0.6ex" | [[Nosepass|<span style="color: #000;">Nosepass</span>]]
 | style="padding: 0.3ex 0.6ex" | '''375'''
 |- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0303
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0303M.png|Mawile|40px|link=Mawile]]
+| style="padding: 0.3ex 0.6ex" | [[Mawile|<span style="color: #000;">Mawile</span>]]<div class="small-text black-text">[[Megaevoluzione#Mawile|MegaMawile]]</div>
+| style="padding: 0.3ex 0.6ex" | '''522'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0307
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0307.png|Meditite|40px|link=Meditite]]
+| style="padding: 0.3ex 0.6ex" | [[Meditite|<span style="color: #000;">Meditite</span>]]
+| style="padding: 0.3ex 0.6ex" | '''296'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0308
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0308.png|Medicham|40px|link=Medicham]]
+| style="padding: 0.3ex 0.6ex" | [[Medicham|<span style="color: #000;">Medicham</span>]]
+| style="padding: 0.3ex 0.6ex" | '''434'''
+|- style="height: 100%;"
 | class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0310
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0310M.png|Manectric|40px|link=Manectric]]
 | style="padding: 0.3ex 0.6ex" | [[Manectric|<span style="color: #000;">Manectric</span>]]<div class="small-text black-text">[[Megaevoluzione#Manectric|MegaManectric]]</div>
@@ -99,11 +117,6 @@
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0317.png|Swalot|40px|link=Swalot]]
 | style="padding: 0.3ex 0.6ex" | [[Swalot|<span style="color: #000;">Swalot</span>]]
 | style="padding: 0.3ex 0.6ex" | '''467'''
-|- style="height: 100%;"
-| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0359
-| style="padding: 0.3ex 0.6ex" | [[File:Minim0359M.png|Absol|40px|link=Absol]]
-| style="padding: 0.3ex 0.6ex" | [[Absol|<span style="color: #000;">Absol</span>]]<div class="small-text black-text">[[Megaevoluzione#Absol|MegaAbsol]]</div>
-| style="padding: 0.3ex 0.6ex" | '''565'''
 |- style="height: 100%;"
 | class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0401
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0401.png|Kricketot|40px|link=Kricketot]]
@@ -135,10 +148,10 @@
 | style="padding: 0.3ex 0.6ex" | [[Combee|<span style="color: #000;">Combee</span>]]
 | style="padding: 0.3ex 0.6ex" | '''244'''
 |- style="height: 100%;"
-| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0460
-| style="padding: 0.3ex 0.6ex" | [[File:Minim0460M.png|Abomasnow|40px|link=Abomasnow]]
-| style="padding: 0.3ex 0.6ex" | [[Abomasnow|<span style="color: #000;">Abomasnow</span>]]<div class="small-text black-text">[[Megaevoluzione#Abomasnow|MegaAbomasnow]]</div>
-| style="padding: 0.3ex 0.6ex" | '''594'''
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0500
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0500M.png|Emboar|40px|link=Emboar]]
+| style="padding: 0.3ex 0.6ex" | [[Emboar|<span style="color: #000;">Emboar</span>]]<div class="small-text black-text">[[Megaevoluzione#Emboar|MegaEmboar]]</div>
+| style="padding: 0.3ex 0.6ex" | '''628'''
 |- style="height: 100%;"
 | class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0509
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0509.png|Purrloin|40px|link=Purrloin]]
@@ -165,6 +178,11 @@
 | style="padding: 0.3ex 0.6ex" | [[Zebstrika|<span style="color: #000;">Zebstrika</span>]]
 | style="padding: 0.3ex 0.6ex" | '''497'''
 |- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0530
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0530M.png|Excadrill|40px|link=Excadrill]]
+| style="padding: 0.3ex 0.6ex" | [[Excadrill|<span style="color: #000;">Excadrill</span>]]<div class="small-text black-text">[[Megaevoluzione#Excadrill|MegaExcadrill]]</div>
+| style="padding: 0.3ex 0.6ex" | '''608'''
+|- style="height: 100%;"
 | class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0531
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0531.png|Audino|40px|link=Audino]]
 | style="padding: 0.3ex 0.6ex" | [[Audino|<span style="color: #000;">Audino</span>]]
@@ -184,6 +202,11 @@
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0556.png|Maractus|40px|link=Maractus]]
 | style="padding: 0.3ex 0.6ex" | [[Maractus|<span style="color: #000;">Maractus</span>]]
 | style="padding: 0.3ex 0.6ex" | '''461'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0560
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0560M.png|Scrafty|40px|link=Scrafty]]
+| style="padding: 0.3ex 0.6ex" | [[Scrafty|<span style="color: #000;">Scrafty</span>]]<div class="small-text black-text">[[Megaevoluzione#Scrafty|MegaScrafty]]</div>
+| style="padding: 0.3ex 0.6ex" | '''588'''
 |- style="height: 100%;"
 | class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0566
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0566.png|Archen|40px|link=Archen]]
@@ -245,10 +268,25 @@
 | style="padding: 0.3ex 0.6ex" | [[Litleo|<span style="color: #000;">Litleo</span>]]
 | style="padding: 0.3ex 0.6ex" | '''369'''
 |- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0668
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0668M.png|Pyroar|40px|link=Pyroar]]
+| style="padding: 0.3ex 0.6ex" | [[Pyroar|<span style="color: #000;">Pyroar</span>]]<div class="small-text black-text">[[Megaevoluzione#Pyroar|MegaPyroar]]</div>
+| style="padding: 0.3ex 0.6ex" | '''607'''
+|- style="height: 100%;"
 | class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0670
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0670.png|Floette|40px|link=Floette]]
 | style="padding: 0.3ex 0.6ex" | [[Floette|<span style="color: #000;">Floette</span>]]
 | style="padding: 0.3ex 0.6ex" | '''371'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0670
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0670E.png|Floette|40px|link=Floette]]
+| style="padding: 0.3ex 0.6ex" | [[Floette|<span style="color: #000;">Floette</span>]]<div class="small-text black-text">[[Floette/Forme|Fiore Eterno]]</div>
+| style="padding: 0.3ex 0.6ex" | '''551'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0670
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0670M.png|Floette|40px|link=Floette]]
+| style="padding: 0.3ex 0.6ex" | [[Floette|<span style="color: #000;">Floette</span>]]<div class="small-text black-text">[[Megaevoluzione#Flabébé, Floette e Florges|MegaFloette]]</div>
+| style="padding: 0.3ex 0.6ex" | '''651'''
 |- style="height: 100%;"
 | class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0671
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0671.png|Florges|40px|link=Florges]]
@@ -264,6 +302,11 @@
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0683.png|Aromatisse|40px|link=Aromatisse]]
 | style="padding: 0.3ex 0.6ex" | [[Aromatisse|<span style="color: #000;">Aromatisse</span>]]
 | style="padding: 0.3ex 0.6ex" | '''462'''
+|- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0687
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0687M.png|Malamar|40px|link=Malamar]]
+| style="padding: 0.3ex 0.6ex" | [[Malamar|<span style="color: #000;">Malamar</span>]]<div class="small-text black-text">[[Megaevoluzione#Malamar|MegaMalamar]]</div>
+| style="padding: 0.3ex 0.6ex" | '''582'''
 |- style="height: 100%;"
 | class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0688
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0688.png|Binacle|40px|link=Binacle]]
@@ -285,6 +328,11 @@
 | style="padding: 0.3ex 0.6ex" | [[Zygarde|<span style="color: #000;">Zygarde</span>]]<div class="small-text black-text">[[Zygarde/Forme|Forma Perfetta]]</div>
 | style="padding: 0.3ex 0.6ex" | '''708'''
 |- style="height: 100%;"
+| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0718
+| style="padding: 0.3ex 0.6ex" | [[File:Minim0718M.png|Zygarde|40px|link=Zygarde]]
+| style="padding: 0.3ex 0.6ex" | [[Zygarde|<span style="color: #000;">Zygarde</span>]]<div class="small-text black-text">[[Megaevoluzione#Zygarde|MegaZygarde]]</div>
+| style="padding: 0.3ex 0.6ex" | '''778'''
+|- style="height: 100%;"
 | class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0739
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0739.png|Crabrawler|40px|link=Crabrawler]]
 | style="padding: 0.3ex 0.6ex" | [[Crabrawler|<span style="color: #000;">Crabrawler</span>]]
@@ -294,11 +342,6 @@
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0746.png|Wishiwashi|40px|link=Wishiwashi]]
 | style="padding: 0.3ex 0.6ex" | [[Wishiwashi|<span style="color: #000;">Wishiwashi</span>]]<div class="small-text black-text">[[Wishiwashi/Forme|Forma Individuale]]</div>
 | style="padding: 0.3ex 0.6ex" | '''175'''
-|- style="height: 100%;"
-| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0746
-| style="padding: 0.3ex 0.6ex" | [[File:Minim0746B.png|Wishiwashi|40px|link=Wishiwashi]]
-| style="padding: 0.3ex 0.6ex" | [[Wishiwashi|<span style="color: #000;">Wishiwashi</span>]]<div class="small-text black-text">[[Wishiwashi/Forme|Forma Banco]]</div>
-| style="padding: 0.3ex 0.6ex" | '''620'''
 |- style="height: 100%;"
 | class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0767
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0767.png|Wimpod|40px|link=Wimpod]]
@@ -395,6 +438,9 @@
 | style="padding: 0.3ex 0.6ex" | [[Cyclizar|<span style="color: #000;">Cyclizar</span>]]
 | style="padding: 0.3ex 0.6ex" | '''501'''
 |}
+
+~~~~~~~~~~~~~~ Gen 3 ~~~~~~~~~~~~~~
+
 {| class="sortable roundy-corners pull-center text-center white-rows" style="border-spacing: 0; padding: 0.3ex; background-size: 100%; background-image: linear-gradient(to right, #D0E6FF, #7CBAFF);;"
 |-
 ! class="hidden-xs" style="padding-top: 0.8ex; padding-bottom: 0.8ex; padding-left: 0.8ex;" | [[Pokédex Nazionale|<span style="color: #000;">#</span>]]
@@ -461,11 +507,6 @@
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0046.png|Paras|40px|link=Paras]]
 | style="padding: 0.3ex 0.6ex" | [[Paras|<span style="color: #000;">Paras</span>]]
 | style="padding: 0.3ex 0.6ex" | '''285'''
-|- style="height: 100%;"
-| class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0058
-| style="padding: 0.3ex 0.6ex" | [[File:Minim0058.png|Growlithe|40px|link=Growlithe]]
-| style="padding: 0.3ex 0.6ex" | [[Growlithe|<span style="color: #000;">Growlithe</span>]]
-| style="padding: 0.3ex 0.6ex" | '''350'''
 |- style="height: 100%;"
 | class="hidden-xs" style="padding: 0.3ex 0.6ex" | 0059
 | style="padding: 0.3ex 0.6ex" | [[File:Minim0059.png|Arcanine|40px|link=Arcanine]]

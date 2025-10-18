@@ -347,7 +347,7 @@ Arguments:
 f.formSortValue = function(ndex, abbr, poke)
     ndex = f.getNdexForm(type(ndex) == "string" and ndex:lower() or ndex)
     local data, value, name = alt[ndex], "${name}", poke
-    local formName
+    local formName = ""
 
     if data and data.links[abbr] ~= "" then
         formName = data.names[abbr]

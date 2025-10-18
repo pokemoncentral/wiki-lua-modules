@@ -1,8 +1,9 @@
 -- "Test cases" for stats
 
+local lib = require("test/snapshot-lib")
 local stats = require("Stats")
 
--- =========== StatsBox ==============
+lib.printHeading("StatsBox - #1")
 print(stats.statsBox({
     args = {
         hp = 255,
@@ -19,6 +20,7 @@ print(stats.statsBox({
     },
 }))
 
+lib.printHeading("StatsBox - #2")
 print(stats.statsBox({
     args = {
         hp = "50",
@@ -33,7 +35,7 @@ print(stats.statsBox({
     },
 }))
 
--- First gen, with spec
+lib.printHeading("StatsBox - First gen, with spec")
 print(stats.statsBox({
     args = {
         hp = "33",
@@ -48,36 +50,35 @@ print(stats.statsBox({
     },
 }))
 
--- =================== TypeAvg =================
+lib.printHeading("TypeAvg", { "Elettro" })
 print(stats.typeAvg({ args = { "Elettro" } }))
 
+lib.printHeading("TypeAvg", { "Fuoco", "4" })
 print(stats.typeAvg({ args = { "Fuoco", "4" } }))
 
--- =================== PokeStats ==================
-
--- Plain
+lib.printHeading("PokeStats - Plain")
 print(stats.PokeStats({ args = { "Starly" } }))
 
--- Strange name
+lib.printHeading("PokeStats - Strange name")
 print(stats.PokeStats({ args = { "Ho-Oh" } }))
 
--- Huge values
+lib.printHeading("PokeStats - Huge values")
 print(stats.PokeStats({ args = { "Blissey" } }))
 
--- Non-standard stat calculation
+lib.printHeading("PokeStats - Non-standard stat calculation")
 print(stats.PokeStats({ args = { "Shedinja" } }))
 
--- Form collapse
+lib.printHeading("PokeStats - Form collapse")
 print(stats.PokeStats({ args = { "Arceus" } }))
 
--- Form non collapse
+lib.printHeading("PokeStats - Form non collapse")
 print(stats.PokeStats({ args = { "Giratina" } }))
 
--- Speciali
+lib.printHeading("PokeStats - Speciali")
 print(stats.PokeStats({ args = { "Magikarp" } }))
 
--- Multigen
+lib.printHeading("PokeStats - Multigen")
 print(stats.PokeStats({ args = { "Aegislash" } }))
 
--- Both form multigen
+lib.printHeading("PokeStats - Both form multigen")
 print(stats.PokeStats({ args = { "Alakazam" } }))

@@ -2390,8 +2390,6 @@ t.gyaradosM = { ability1 = "Rompiforma" }
 t["0130M"] = t.gyaradosM
 t.aerodactylM = { ability1 = "Unghiedure" }
 t["0142M"] = t.aerodactylM
-t.dragoniteM = { ability1 = "Sconosciuta" }
-t["0149M"] = t.dragoniteM
 t.mewtwoMX = { ability1 = "Cuordeciso" }
 t["0150MX"] = t.mewtwoMX
 t.mewtwoMY = { ability1 = "Insonnia" }
@@ -2466,5 +2464,65 @@ t.audinoM = { ability1 = "Curacuore" }
 t["0531M"] = t.audinoM
 t.diancieM = { ability1 = "Magispecchio" }
 t["0719M"] = t.diancieM
+
+-- LPZA placeholders
+t.raichuMX = { ability1 = "Sconosciuta" }
+t["0026MX"] = t.raichuMX
+t.raichuMY = { ability1 = "Sconosciuta" }
+t["0026MY"] = t.raichuMY
+t.clefableM = { ability1 = "Sconosciuta" }
+t["0036M"] = t.clefableM
+t.victreebelM = { ability1 = "Sconosciuta" }
+t["0071M"] = t.victreebelM
+t.starmieM = { ability1 = "Sconosciuta" }
+t["0121M"] = t.starmieM
+t.dragoniteM = { ability1 = "Sconosciuta" }
+t["0149M"] = t.dragoniteM
+t.meganiumM = { ability1 = "Sconosciuta" }
+t["0154M"] = t.meganiumM
+t.feraligatrM = { ability1 = "Sconosciuta" }
+t["0160M"] = t.feraligatrM
+t.skarmoryM = { ability1 = "Sconosciuta" }
+t["0227M"] = t.skarmoryM
+t.froslassM = { ability1 = "Sconosciuta" }
+t["0478M"] = t.froslassM
+t.emboarM = { ability1 = "Sconosciuta" }
+t["0500M"] = t.emboarM
+t.excadrillM = { ability1 = "Sconosciuta" }
+t["0530M"] = t.excadrillM
+t.scolipedeM = { ability1 = "Sconosciuta" }
+t["0545M"] = t.scolipedeM
+t.scraftyM = { ability1 = "Sconosciuta" }
+t["0560M"] = t.scraftyM
+t.eelektrossM = { ability1 = "Sconosciuta" }
+t["0604M"] = t.eelektrossM
+t.chandelureM = { ability1 = "Sconosciuta" }
+t["0609M"] = t.chandelureM
+t.chesnaughtM = { ability1 = "Sconosciuta" }
+t["0652M"] = t.chesnaughtM
+t.delphoxM = { ability1 = "Sconosciuta" }
+t["0655M"] = t.delphoxM
+t.greninjaM = { ability1 = "Sconosciuta" }
+t["0658M"] = t.greninjaM
+t.pyroarM = { ability1 = "Sconosciuta" }
+t["0668M"] = t.pyroarM
+t.floetteE = { ability1 = "Sconosciuta" }
+t["0670E"] = t.floetteE
+t.floetteM = { ability1 = "Sconosciuta" }
+t["0670M"] = t.floetteM
+t.malamarM = { ability1 = "Sconosciuta" }
+t["0687M"] = t.malamarM
+t.barbaracleM = { ability1 = "Sconosciuta" }
+t["0689M"] = t.barbaracleM
+t.dragalgeM = { ability1 = "Sconosciuta" }
+t["0691M"] = t.dragalgeM
+t.hawluchaM = { ability1 = "Sconosciuta" }
+t["0701M"] = t.hawluchaM
+t.zygardeM = { ability1 = "Sconosciuta" }
+t["0718M"] = t.zygardeM
+t.drampaM = { ability1 = "Sconosciuta" }
+t["0780M"] = t.drampaM
+t.falinksM = { ability1 = "Sconosciuta" }
+t["0870M"] = t.falinksM
 
 return t

@@ -41,6 +41,7 @@ local gamesAbbr = {
     ["diamante lucente e perla splendente"] = "dlps",
     ["leggende pokémon arceus"] = "lpa",
     ["scarlatto e violetto"] = "sv",
+    ["leggende pokémon za"] = "lpza",
     colosseum = "colo",
     -- XD is not necessary
     stadium = "stad",
@@ -108,6 +109,7 @@ tab.tableKeysAlias(gamesAbbr, {
     { "spada", "scudo", "sp", "sc" },
     { "diamante lucente", "perla splendente", "dl", "ps" },
     { "leggende arceus", "leggende pokemon arceus", "lpa" },
+    { "leggende za", "leggende pokemon za", "lpza" },
     { "scarlatto", "violetto", "sa", "vi" },
     { "stad 2" },
 })
@@ -171,6 +173,7 @@ local sizes = {
     spsc = "|150px",
     lpa = "|150px",
     sv = "|150px",
+    lpza = "|150px",
 }
 
 -- Table per le stringhe da interpolare a seconda del gioco
@@ -207,6 +210,7 @@ tab.tableKeysAlias(interpStrings, { "rb" }, {
         "dlps",
         "lpa",
         "sv",
+        "lpza",
         "colo",
         "xd",
         "stad",

@@ -71,6 +71,7 @@ t.tornadus = {}
 t.kyurem = {}
 t.meloetta = {}
 t.greninja = {}
+t.floette = {}
 t.meowstic = {}
 t.aegislash = {}
 t.pumpkaboo = {}
@@ -111,21 +112,23 @@ t.formgroups = {}
 -- Tabella con i Pokémon che hanno una sola megaevoluzione
 -- stylua: ignore
 t.formgroups.mega = {
-    'venusaur', 'blastoise', 'beedrill', 'pidgeot', 'alakazam', 'gengar',
-    'slowbro', 'kangaskhan', 'pinsir', 'gyarados', 'aerodactyl', 'ampharos',
-    'steelix', 'scizor', 'heracross', 'houndoom', 'tyranitar', 'sceptile',
-    'blaziken', 'swampert', 'gardevoir', 'sableye', 'mawile', 'aggron',
-    'medicham', 'manectric', 'sharpedo', 'camerupt', 'altaria', 'banette',
-    'absol', 'glalie', 'salamence', 'metagross', 'latias', 'latios',
-	'rayquaza', 'lopunny', 'garchomp', 'lucario', 'abomasnow', 'gallade',
-	'audino', 'diancie',
-    -- LPZA
-    'dragonite'
+    'venusaur', 'blastoise', 'beedrill', 'pidgeot', 'clefable', 'alakazam',
+    'victreebel', 'gengar', 'slowbro', 'kangaskhan', 'starmie', 'pinsir',
+    'gyarados', 'aerodactyl', 'dragonite', 'meganium', 'feraligatr',
+    'ampharos', 'steelix', 'scizor', 'heracross', 'skarmory', 'houndoom',
+    'tyranitar', 'sceptile', 'blaziken', 'swampert', 'gardevoir', 'sableye',
+    'mawile', 'aggron', 'medicham', 'manectric', 'sharpedo', 'camerupt',
+    'altaria', 'banette', 'absol', 'glalie', 'salamence', 'metagross',
+    'latias', 'latios', 'rayquaza', 'lopunny', 'garchomp', 'lucario',
+    'abomasnow', 'gallade', 'froslass', 'emboar', 'excadrill', 'audino',
+    'scolipede', 'scrafty', 'eelektross', 'chandelure', 'chesnaught',
+    'delphox', 'greninja', 'pyroar', 'floette', 'malamar', 'barbaracle',
+    'dragalge', 'hawlucha', 'zygarde', 'diancie', 'drampa', 'falinks'
 }
 
 -- Tabella contentente i Pokémon che hanno più megaevoluzioni
 
-t.formgroups.megaxy = { "charizard", "mewtwo" }
+t.formgroups.megaxy = { "charizard", "raichu", "mewtwo" }
 
 -- Tabella contenente i Pokémon che hanno un archeorisveglio
 
@@ -202,6 +205,7 @@ t.tornadus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
 t.kyurem.names = {N = 'Kyurem Nero', B = 'Kyurem Bianco', base = 'Forma di Kyurem'}
 t.meloetta.names = {D = 'Forma Danza', base = 'Forma Canto'}
 t.greninja.names = {A = 'Forma Ash', base = ''}
+t.floette.names = {E = 'Fiore Eterno', base = ''}
 t.meowstic.names = {F = 'Femmina', base = 'Maschio'}
 t.aegislash.names = {S = 'Forma Spada', base = 'Forma Scudo'}
 t.pumpkaboo.names = {S = 'Mini', L = 'Grande', XL = 'Maxi', base = 'Normale'}
@@ -301,6 +305,7 @@ t.geodude.anchor = "Geodude, Graveler e Golem"
 t.ponyta.anchor = "Ponyta e Rapidash"
 t.grimer.anchor = "Grimer e Muk"
 t.zigzagoon.anchor = "Zigzagoon e Linoone"
+t.floette.anchor = "Flabébé, Floette e Florges"
 -- t.wormadam.anchor = 'Burmy e Wormadam'
 -- t.tornadus.anchor = 'Forze della Natura'
 -- t.pumpkaboo.anchor = 'Pumpkaboo e Gourgeist'
@@ -338,6 +343,7 @@ t.tornadus.ext = { totem = "T" }
 t.kyurem.ext = { nero = "N", bianco = "B" }
 t.meloetta.ext = { danza = "D" }
 t.greninja.ext = { ash = "A" }
+t.floette.ext = { eterno = "E" }
 t.meowstic.ext = { femmina = "F" }
 t.aegislash.ext = { spada = "S" }
 t.pumpkaboo.ext = { mini = "S", grande = "L", maxi = "XL" }
@@ -411,6 +417,7 @@ t.venusaur.gamesOrder = { "base", "M", "Gi" }
 t.charizard.gamesOrder = { "base", "MX", "MY", "Gi" }
 t.blastoise.gamesOrder = { "base", "M", "Gi" }
 t.pikachu.gamesOrder = { "base", "Cs", "R", "D", "Cn", "S", "W", "Cm", "Gi" }
+t.raichu.gamesOrder = { "base", "A", "MX", "MY" }
 t.meowth.gamesOrder = { "base", "A", "G", "Gi" }
 t.gengar.gamesOrder = { "base", "M", "Gi" }
 t.slowbro.gamesOrder = { "base", "M", "G" }
@@ -434,11 +441,12 @@ t.darmanitan.gamesOrder = { "base", "Z", "G", "GZ" }
 t.tornadus.gamesOrder = { "base", "T" }
 t.kyurem.gamesOrder = { "base", "B", "N" }
 t.meloetta.gamesOrder = { "base", "D" }
-t.greninja.gamesOrder = { "base", "A" }
+t.greninja.gamesOrder = { "base", "A", "M" }
+t.floette.gamesOrder = { "base", "E", "M" }
 t.meowstic.gamesOrder = { "base", "F" }
 t.aegislash.gamesOrder = { "base", "S" }
 t.pumpkaboo.gamesOrder = { "base", "S", "L", "XL" }
-t.zygarde.gamesOrder = { "D", "base", "P" }
+t.zygarde.gamesOrder = { "D", "base", "P", "M" }
 t.hoopa.gamesOrder = { "base", "L" }
 t.lycanroc.gamesOrder = { "base", "N", "C" }
 t.oricorio.gamesOrder = { "base", "C", "H", "B" }
@@ -526,7 +534,7 @@ t.rattata.since = { A = "sl", base = "rb" }
 t.pikachu.since = {Cs = 'roza', R = 'roza', D = 'roza',
 	Cn = 'roza', S = 'roza', W = 'roza', Cm = 'lgpe',
 	Gi = 'spsc', base = 'rb'}
-t.raichu.since = { A = "sl", base = "rb" }
+t.raichu.since = { A = "sl", MX = "lpza", MY = "lpza", base = "rb" }
 t.sandshrew.since = { A = "sl", base = "rb" }
 t.vulpix.since = { A = "sl", base = "rb" }
 t.diglett.since = { A = "sl", base = "rb" }
@@ -582,13 +590,13 @@ t.braviary.since = { H = "lpa", base = "nb" }
 t.tornadus.since = { T = "n2b2", base = "nb" }
 t.kyurem.since = { N = "n2b2", B = "n2b2", base = "nb" }
 t.meloetta.since = { D = "nb", base = "nb" }
-t.greninja.since = { A = "sl", base = "xy" }
+t.greninja.since = { A = "sl", M = "lpza", base = "xy" }
 t.meowstic.since = { F = "xy", base = "xy" }
 t.aegislash.since = { S = "xy", base = "xy" }
 t.sliggoo.since = { H = "lpa", base = "xy" }
 t.pumpkaboo.since = { S = "xy", L = "xy", XL = "xy", base = "xy" }
 t.avalugg.since = { H = "lpa", base = "xy" }
-t.zygarde.since = { D = "sl", P = "sl", base = "xy" }
+t.zygarde.since = { D = "sl", P = "sl", M = "lpza", base = "xy" }
 t.hoopa.since = { L = "roza", base = "xy" }
 t.decidueye.since = { H = "lpa", base = "sl" }
 t.lycanroc.since = { N = "sl", base = "sl", C = "usul" }
@@ -689,7 +697,30 @@ t.grimmsnarl.since = { base = "spsc", Gi = "spsc" }
 t.alcremie.since = { base = "spsc", Gi = "spsc" }
 t.copperajah.since = { base = "spsc", Gi = "spsc" }
 t.duraludon.since = { base = "spsc", Gi = "spsc" }
-t.dragonite.since = { M = "lpza", base = "rb" }
+t.dragonite.since = { base = "rb", M = "lpza" }
+t.barbaracle.since = { base = "xy", M = "lpza" }
+t.chandelure.since = { base = "nb", M = "lpza" }
+t.chesnaught.since = { base = "xy", M = "lpza" }
+t.clefable.since = { base = "rb", M = "lpza" }
+t.delphox.since = { base = "xy", M = "lpza" }
+t.dragalge.since = { base = "xy", M = "lpza" }
+t.drampa.since = { base = "sl", M = "lpza" }
+t.eelektross.since = { base = "nb", M = "lpza" }
+t.emboar.since = { base = "nb", M = "lpza" }
+t.excadrill.since = { base = "nb", M = "lpza" }
+t.falinks.since = { base = "spsc", M = "lpza" }
+t.feraligatr.since = { base = "oa", M = "lpza" }
+t.floette.since = { base = "xy", E = "xy", M = "lpza" }
+t.froslass.since = { base = "dp", M = "lpza" }
+t.hawlucha.since = { base = "xy", M = "lpza" }
+t.malamar.since = { base = "xy", M = "lpza" }
+t.meganium.since = { base = "oa", M = "lpza" }
+t.pyroar.since = { base = "xy", M = "lpza" }
+t.scolipede.since = { base = "nb", M = "lpza" }
+t.scrafty.since = { base = "nb", M = "lpza" }
+t.skarmory.since = { base = "oa", M = "lpza" }
+t.starmie.since = { base = "rb", M = "lpza" }
+t.victreebel.since = { base = "rb", M = "lpza" }
 
 --[[
 
@@ -751,12 +782,19 @@ table.insert(t.formgroups.gigamax, "urshifu")
 -- to use the right name for the link
 makeLinks()
 
+t[3] = t.venusaur
+t[6] = t.charizard
+t[9] = t.blastoise
+t[12] = t.butterfree
+t[15] = t.beedrill
+t[18] = t.pidgeot
 t[19] = t.rattata
 t[20] = t.raticate
 t[25] = t.pikachu
 t[26] = t.raichu
 t[27] = t.sandshrew
 t[28] = t.sandslash
+t[36] = t.clefable
 t[37] = t.vulpix
 t[38] = t.ninetales
 t[50] = t.diglett
@@ -765,6 +803,9 @@ t[52] = t.meowth
 t[53] = t.persian
 t[58] = t.growlithe
 t[59] = t.arcanine
+t[65] = t.alakazam
+t[68] = t.machamp
+t[71] = t.victreebel
 t[74] = t.geodude
 t[75] = t.graveler
 t[76] = t.golem
@@ -775,105 +816,48 @@ t[80] = t.slowbro
 t[83] = t["farfetch'd"]
 t[88] = t.grimer
 t[89] = t.muk
+t[94] = t.gengar
+t[99] = t.kingler
 t[100] = t.voltorb
 t[101] = t.electrode
 t[103] = t.exeggutor
 t[105] = t.marowak
 t[110] = t.weezing
+t[115] = t.kangaskhan
+t[121] = t.starmie
 t[122] = t["mr. mime"]
+t[127] = t.pinsir
 t[128] = t.tauros
+t[130] = t.gyarados
+t[131] = t.lapras
 t[133] = t.eevee
+t[142] = t.aerodactyl
+t[143] = t.snorlax
 t[144] = t.articuno
 t[145] = t.zapdos
 t[146] = t.moltres
+t[149] = t.dragonite
+t[150] = t.mewtwo
+t[154] = t.meganium
 t[157] = t.typhlosion
+t[160] = t.feraligatr
+t[181] = t.ampharos
 t[194] = t.wooper
 t[199] = t.slowking
-t[211] = t.qwilfish
-t[215] = t.sneasel
-t[222] = t.corsola
-t[263] = t.zigzagoon
-t[264] = t.linoone
-t[351] = t.castform
-t[386] = t.deoxys
-t[413] = t.wormadam
-t[421] = t.cherrim
-t[479] = t.rotom
-t[483] = t.dialga
-t[484] = t.palkia
-t[487] = t.giratina
-t[492] = t.shaymin
-t[493] = t.arceus
-t[503] = t.samurott
-t[549] = t.lilligant
-t[550] = t.basculin
-t[554] = t.darumaka
-t[555] = t.darmanitan
-t[562] = t.yamask
-t[570] = t.zorua
-t[571] = t.zoroark
-t[618] = t.stunfisk
-t[628] = t.braviary
-t[641] = t.tornadus
-t[642] = t.thundurus
-t[645] = t.landorus
-t[646] = t.kyurem
-t[648] = t.meloetta
-t[658] = t.greninja
-t[678] = t.meowstic
-t[681] = t.aegislash
-t[705] = t.sliggoo
-t[706] = t.goodra
-t[710] = t.pumpkaboo
-t[711] = t.gourgeist
-t[713] = t.avalugg
-t[718] = t.zygarde
-t[720] = t.hoopa
-t[724] = t.decidueye
-t[741] = t.oricorio
-t[745] = t.lycanroc
-t[746] = t.wishiwashi
-t[773] = t.silvally
-t[774] = t.minior
-t[800] = t.necrozma
-t[849] = t.toxtricity
-t[869] = t.alcremie
-t[875] = t.eiscue
-t[876] = t.indeedee
-t[877] = t.morpeko
-t[888] = t.zacian
-t[889] = t.zamazenta
-t[890] = t.eternatus
-t[892] = t.urshifu
-t[898] = t.calyrex
-t[901] = t.ursaluna
-t[902] = t.basculegion
-t[905] = t.enamorus
-t[916] = t.oinkologne
-t[964] = t.palafin
-t[931] = t.squawkabilly
-t[999] = t.gimmighoul
-t[1017] = t.ogerpon
-t[1024] = t.terapagos
-t[3] = t.venusaur
-t[9] = t.blastoise
-t[15] = t.beedrill
-t[18] = t.pidgeot
-t[65] = t.alakazam
-t[94] = t.gengar
-t[115] = t.kangaskhan
-t[127] = t.pinsir
-t[130] = t.gyarados
-t[142] = t.aerodactyl
-t[181] = t.ampharos
 t[208] = t.steelix
+t[211] = t.qwilfish
 t[212] = t.scizor
 t[214] = t.heracross
+t[215] = t.sneasel
+t[222] = t.corsola
+t[227] = t.skarmory
 t[229] = t.houndoom
 t[248] = t.tyranitar
 t[254] = t.sceptile
 t[257] = t.blaziken
 t[260] = t.swampert
+t[263] = t.zigzagoon
+t[264] = t.linoone
 t[282] = t.gardevoir
 t[302] = t.sableye
 t[303] = t.mawile
@@ -883,6 +867,7 @@ t[310] = t.manectric
 t[319] = t.sharpedo
 t[323] = t.camerupt
 t[334] = t.altaria
+t[351] = t.castform
 t[354] = t.banette
 t[359] = t.absol
 t[362] = t.glalie
@@ -890,24 +875,74 @@ t[373] = t.salamence
 t[376] = t.metagross
 t[380] = t.latias
 t[381] = t.latios
+t[382] = t.kyogre
+t[383] = t.groudon
 t[384] = t.rayquaza
+t[386] = t.deoxys
+t[413] = t.wormadam
+t[421] = t.cherrim
 t[428] = t.lopunny
 t[445] = t.garchomp
 t[448] = t.lucario
 t[460] = t.abomasnow
 t[475] = t.gallade
+t[478] = t.froslass
+t[479] = t.rotom
+t[483] = t.dialga
+t[484] = t.palkia
+t[487] = t.giratina
+t[492] = t.shaymin
+t[493] = t.arceus
+t[500] = t.emboar
+t[503] = t.samurott
+t[530] = t.excadrill
 t[531] = t.audino
-t[719] = t.diancie
-t[6] = t.charizard
-t[150] = t.mewtwo
-t[382] = t.kyogre
-t[383] = t.groudon
-t[12] = t.butterfree
-t[68] = t.machamp
-t[99] = t.kingler
-t[131] = t.lapras
-t[143] = t.snorlax
+t[545] = t.scolipede
+t[549] = t.lilligant
+t[550] = t.basculin
+t[554] = t.darumaka
+t[555] = t.darmanitan
+t[560] = t.scrafty
+t[562] = t.yamask
 t[569] = t.garbodor
+t[570] = t.zorua
+t[571] = t.zoroark
+t[604] = t.eelektross
+t[609] = t.chandelure
+t[618] = t.stunfisk
+t[628] = t.braviary
+t[641] = t.tornadus
+t[642] = t.thundurus
+t[645] = t.landorus
+t[646] = t.kyurem
+t[648] = t.meloetta
+t[652] = t.chesnaught
+t[655] = t.delphox
+t[658] = t.greninja
+t[668] = t.pyroar
+t[670] = t.floette
+t[678] = t.meowstic
+t[681] = t.aegislash
+t[687] = t.malamar
+t[689] = t.barbaracle
+t[691] = t.dragalge
+t[701] = t.hawlucha
+t[705] = t.sliggoo
+t[706] = t.goodra
+t[710] = t.pumpkaboo
+t[711] = t.gourgeist
+t[713] = t.avalugg
+t[718] = t.zygarde
+t[719] = t.diancie
+t[720] = t.hoopa
+t[724] = t.decidueye
+t[741] = t.oricorio
+t[745] = t.lycanroc
+t[746] = t.wishiwashi
+t[773] = t.silvally
+t[774] = t.minior
+t[780] = t.drampa
+t[800] = t.necrozma
 t[809] = t.melmetal
 t[812] = t.rillaboom
 t[815] = t.cinderace
@@ -919,11 +954,31 @@ t[839] = t.coalossal
 t[841] = t.flapple
 t[842] = t.appletun
 t[844] = t.sandaconda
+t[849] = t.toxtricity
 t[851] = t.centiskorch
 t[858] = t.hatterene
 t[861] = t.grimmsnarl
 t[869] = t.alcremie
+t[869] = t.alcremie
+t[870] = t.falinks
+t[875] = t.eiscue
+t[876] = t.indeedee
+t[877] = t.morpeko
 t[879] = t.copperajah
 t[884] = t.duraludon
+t[888] = t.zacian
+t[889] = t.zamazenta
+t[890] = t.eternatus
+t[892] = t.urshifu
+t[898] = t.calyrex
+t[901] = t.ursaluna
+t[902] = t.basculegion
+t[905] = t.enamorus
+t[916] = t.oinkologne
+t[931] = t.squawkabilly
+t[964] = t.palafin
+t[999] = t.gimmighoul
+t[1017] = t.ogerpon
+t[1024] = t.terapagos
 
 return t

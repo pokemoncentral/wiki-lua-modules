@@ -1,3 +1,6 @@
+
+~~~~~~~~~~~~~~ TypeList - [ Fuoco ] ~~~~~~~~~~~~~~
+
 === Pokémon di tipo Fuoco puro ===
 {| class="roundy sortable pull-center text-center roundy-footer white-rows" style="border-spacing: 0; padding: 0.3ex; background-size: 100%; background-image: linear-gradient(to right, #FF7172, #E62829);;"
 |- class="hidden-xs"
@@ -333,6 +336,11 @@
 | class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Emboar]]
 | class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-lotta roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Lotta|<span style=";">Lotta</span>]]</div>
 |- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0500
+| class="width-xs-20" | [[File:Minim0500M.png|Emboar|40px|link=Emboar]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Emboar]]<div class="small-text">[[Megaevoluzione#Emboar|MegaEmboar]]</div>
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-lotta roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Lotta|<span style=";">Lotta</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
 | class="width-xs-20" | 0555
 | class="width-xs-20" | [[File:Minim0555Z.png|Darmanitan|40px|link=Darmanitan]]
 | class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Darmanitan]]<div class="small-text">[[Darmanitan/Forme|Stato Zen]]</div>
@@ -341,6 +349,11 @@
 | class="width-xs-20" | 0655
 | class="width-xs-20" | [[File:Minim0655.png|Delphox|40px|link=Delphox]]
 | class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Delphox]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-psico roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Psico|<span style=";">Psico</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0655
+| class="width-xs-20" | [[File:Minim0655M.png|Delphox|40px|link=Delphox]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Delphox]]<div class="small-text">[[Megaevoluzione#Delphox|MegaDelphox]]</div>
 | class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-psico roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Psico|<span style=";">Psico</span>]]</div>
 |- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
 | class="width-xs-20" | 0662
@@ -361,6 +374,11 @@
 | class="width-xs-20" | 0668
 | class="width-xs-20" | [[File:Minim0668.png|Pyroar|40px|link=Pyroar]]
 | class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Pyroar]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-normale roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Normale|<span style=";">Normale</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0668
+| class="width-xs-20" | [[File:Minim0668M.png|Pyroar|40px|link=Pyroar]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Pyroar]]<div class="small-text">[[Megaevoluzione#Pyroar|MegaPyroar]]</div>
 | class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-normale roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Normale|<span style=";">Normale</span>]]</div>
 |- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
 | class="width-xs-20" | 0721
@@ -491,6 +509,11 @@
 | class="width-xs-20" | 0609
 | class="width-xs-20" | [[File:Minim0609.png|Chandelure|40px|link=Chandelure]]
 | class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Chandelure]]
+| class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-spettro roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Spettro|<span style=";">Spettro</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+|- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
+| class="width-xs-20" | 0609
+| class="width-xs-20" | [[File:Minim0609M.png|Chandelure|40px|link=Chandelure]]
+| class="width-xs-60" style="padding: 0.5ex 0.5em;" | [[Chandelure]]<div class="small-text">[[Megaevoluzione#Chandelure|MegaChandelure]]</div>
 | class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-spettro roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Spettro|<span style=";">Spettro</span>]]</div> || class=" min-width-xs-35" style="padding: 1.2ex 0.6ex 1.2ex 0;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
 |- class="roundy flex-xs flex-row flex-wrap flex-main-center flex-items-center" style="margin: 0.5rem 0;"
 | class="width-xs-20" | 0636

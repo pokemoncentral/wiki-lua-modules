@@ -1,3 +1,6 @@
+
+~~~~~~~~~~~~~~ StatsBox - #1 ~~~~~~~~~~~~~~
+
 {| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #FAC000, #E62829);;"
 ! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
 ! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
@@ -51,6 +54,9 @@
 * Le statistiche massime sono calcolate 65535 PA e VI pari a 15.
 * Le statistiche di questo Pokémon sono cambiate nel corso delle generazioni. Tutti i valori sono disponibili [[Elenco Pokémon per statistiche base|qui]].
 |}
+
+~~~~~~~~~~~~~~ StatsBox - #2 ~~~~~~~~~~~~~~
+
 {| class="roundy text-center black-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #A2D0E0, #60A1B8);;"
 ! colspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
 |-
@@ -75,6 +81,9 @@
 | style="padding: 0.3ex 0.8ex;" | Totale
 | class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | <div class="flex flex-nowrap flex-row flex-main-start flex-items-center">711<span class="text-small text-center" style="margin-left: 2ex;">[[:Categoria:Pokémon con statistiche base totali di 711|Altri Pokémon con questo totale]]</span></div>
 |}
+
+~~~~~~~~~~~~~~ StatsBox - First gen, with spec ~~~~~~~~~~~~~~
+
 {| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #68A090, #9FA19F);;"
 ! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
 ! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
@@ -121,30 +130,36 @@
 * Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]] e [[Punti individuali|VI]] pari a 0.
 * Le statistiche massime sono calcolate 65535 PA e VI pari a 15.
 |}
+
+~~~~~~~~~~~~~~ TypeAvg - [ Elettro ] ~~~~~~~~~~~~~~
+
 {| class="roundy text-center width-xl-30 width-md-50 width-sm-60 width-xs-100 black-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #FFE695, #FAC000);;"
 ! colspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
 |-
 | class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
-| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 25.115995115995%); color: #2E7A08; background-size: 100%; background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''67,81'''</div>
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 25.185185185185%); color: #2E7A08; background-size: 100%; background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''68'''</div>
 |-
 | style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
-| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 28.310948310948%); color: #B88C00; background-size: 100%; background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''76,44'''</div>
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 28.586956521739%); color: #B88C00; background-size: 100%; background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''77,18'''</div>
 |-
 | style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
-| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 25.946275946276%); color: #8E3600; background-size: 100%; background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''70,05'''</div>
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 25.986312399356%); color: #8E3600; background-size: 100%; background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''70,16'''</div>
 |-
 | style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
-| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 32.222222222222%); color: #15687D; background-size: 100%; background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''87'''</div>
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 32.415458937198%); color: #15687D; background-size: 100%; background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''87,52'''</div>
 |-
 | style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
-| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 26.202686202686%); color: #0A163D; background-size: 100%; background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''70,75'''</div>
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 26.280193236715%); color: #0A163D; background-size: 100%; background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''70,96'''</div>
 |-
 | class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
-| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 30.687830687831%); color: #380036; background-size: 100%; background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''82,86'''</div>
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 30.676328502415%); color: #380036; background-size: 100%; background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''82,83'''</div>
 |-
 | style="padding: 0.3ex 0.8ex;" | Totale
-| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | 454,91
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | 456,65
 |}
+
+~~~~~~~~~~~~~~ TypeAvg - [ Fuoco, 4 ] ~~~~~~~~~~~~~~
+
 {| class="roundy text-center width-xl-30 width-md-50 width-sm-60 width-xs-100 white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #FF7172, #E62829);;"
 ! colspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
 |-
@@ -169,6 +184,9 @@
 | style="padding: 0.3ex 0.8ex;" | Totale
 | class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | 454,39
 |}
+
+~~~~~~~~~~~~~~ PokeStats - Plain ~~~~~~~~~~~~~~
+
 {| class="roundy text-center pull-center black-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #9FA19F, #81B9EF);;"
 ! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
 ! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
@@ -221,6 +239,9 @@
 * Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
 * Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
 |}[[Categoria:Pokémon con statistiche base totali di 245|Starly]]
+
+~~~~~~~~~~~~~~ PokeStats - Strange name ~~~~~~~~~~~~~~
+
 {| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #E62829, #81B9EF);;"
 ! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
 ! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
@@ -273,6 +294,9 @@
 * Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
 * Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
 |}[[Categoria:Pokémon con statistiche base totali di 680|Ho-Oh]]
+
+~~~~~~~~~~~~~~ PokeStats - Huge values ~~~~~~~~~~~~~~
+
 {| class="roundy text-center pull-center black-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #D8D8D8, #9FA19F);;"
 ! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
 ! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
@@ -325,6 +349,9 @@
 * Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
 * Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
 |}[[Categoria:Pokémon con statistiche base totali di 540|Blissey]]
+
+~~~~~~~~~~~~~~ PokeStats - Non-standard stat calculation ~~~~~~~~~~~~~~
+
 {| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #91A119, #704170);;"
 ! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
 ! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
@@ -377,6 +404,9 @@
 * Le [[statistiche]] minime sono calcolate con 0 [[Punti base|PA]], [[Punti individuali|VI]] pari a 0 e una [[natura]] sfavorevole.
 * Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
 |}[[Categoria:Pokémon con statistiche base totali di 236|Shedinja]][[Categoria:Pokémon con statistiche base totali uniche|Shedinja]]
+
+~~~~~~~~~~~~~~ PokeStats - Form collapse ~~~~~~~~~~~~~~
+
 ==== Tutte le forme ====
 <div class="">
 {| class="roundy text-center pull-center black-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #D8D8D8, #9FA19F);;"
@@ -432,6 +462,9 @@
 * Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
 |}[[Categoria:Pokémon con statistiche base totali di 720|Arceus Normale]][[Categoria:Pokémon con lo stesso valore in tutte le statistiche base|Arceus Normale]]
 </div>
+
+~~~~~~~~~~~~~~ PokeStats - Form non collapse ~~~~~~~~~~~~~~
+
 ==== Forma Alterata ====
 <div class="mw-collapsible">
 {| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #704170, #5060E1);;"
@@ -542,6 +575,9 @@
 * Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
 |}[[Categoria:Pokémon con statistiche base totali di 680|Giratina Forma Originale]]
 </div>
+
+~~~~~~~~~~~~~~ PokeStats - Speciali ~~~~~~~~~~~~~~
+
 {| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #83B9FF, #2980EF);;"
 ! colspan="2" rowspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
 ! colspan="3" class="min-width-xl-30 hidden-xs" style="padding: 0.3ex 0.8ex;" | Valori
@@ -595,6 +631,9 @@
 * Le statistiche massime sono calcolate 252 PA, VI pari a 31 e una natura favorevole.
 * La statistica <span style="background: #3ECDB4; padding: 0 0.3ex;">Speciali</span> di questo Pokémon in [[prima generazione]] era pari a '''20'''.
 |}[[Categoria:Pokémon con statistiche base totali di 200|Magikarp]][[Categoria:Pokémon la cui statistica Speciali è diventata Difesa Speciale|Magikarp]]
+
+~~~~~~~~~~~~~~ PokeStats - Multigen ~~~~~~~~~~~~~~
+
 ==== Forma Scudo ====
 <div class="mw-collapsible">
 {| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #60A1B8, #704170);;"
@@ -709,6 +748,9 @@
 * La statistica <span style="background: #26BAE0; padding: 0 0.3ex;">Attacco Speciale</span> di questo Pokémon prima della [[ottava generazione]] era pari a '''150'''.
 |}[[Categoria:Pokémon con statistiche base totali di 500|Aegislash Forma Spada]][[Categoria:Pokémon le cui statistiche base sono cambiate in ottava generazione|Aegislash Forma Spada]][[Categoria:Pokémon con statistiche base totali di 520|Aegislash Forma Spada]]
 </div>
+
+~~~~~~~~~~~~~~ PokeStats - Both form multigen ~~~~~~~~~~~~~~
+
 ==== Alakazam ====
 <div class="mw-collapsible">
 {| class="roundy text-center pull-center white-text" style="border-spacing: 0 0.3ex; padding: 0.3ex 0.5ex; font-weight: bolder; background-size: 100%; background-image: linear-gradient(to right, #FF96B8, #EF4179);;"
