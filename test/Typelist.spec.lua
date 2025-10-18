@@ -1,8 +1,9 @@
 -- "Test cases" for Typelist
 
+local lib = require("test/snapshot-lib")
 local typelist = require("Typelist").typelist
 
--- No real corner cases exist
+lib.printHeading("TypeList", { "Fuoco" })
 print(typelist({ args = { "Fuoco" } }))
 
 if #arg > 0 then
