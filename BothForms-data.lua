@@ -64,6 +64,7 @@ to others, thus there's aliasing at the end of the module.
 --]]
 
 t.pikachu = mergeByName("pikachu")
+t.pyroar = mergeByName("pyroar")
 t.floette = mergeByName("floette")
 t.alcremie = mergeByName("alcremie")
 t.alcremie.names.base = useless.alcremie.names.base
@@ -79,6 +80,7 @@ t.pikachu.gamesOrder = {
     'base', 'Cs', 'R', 'D', 'Cn', 'S', 'W', 'O', 'H', 'Si', 'U', 'K', 'A',
     'Co', 'Cm', 'G', 'Gi'
 }
+t.pyroar.gamesOrder = { "base", "F", "M" }
 t.floette.gamesOrder = { "base", "E", "M", "G", "A", "Bl", "Bi" }
 t.alcremie.gamesOrder = tab.copy(useless.alcremie.gamesOrder)
 table.insert(t.alcremie.gamesOrder, "Gi")
@@ -86,6 +88,7 @@ table.insert(t.alcremie.gamesOrder, "Gi")
 -- Aliasing, put here to avoid needless repetitions of previous cycles.
 
 t[25] = t.pikachu
+t[668] = t.pyroar
 t[670] = t.floette
 t[774] = t.minior
 t[869] = t.alcremie
