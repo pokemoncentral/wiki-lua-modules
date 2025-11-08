@@ -398,7 +398,7 @@ successive l'introduzione delle categorie danno.
 --]]
 lib.categoryentry = function(stab, mossa, notes, tipo, cat, pw, acc, pp)
     local tipobox
-    -- This thing is ineficient af, but anyway
+    -- This thing is inefficient af, but anyway
     if table.search(_allTypes, tipo:lower()) then
         tipobox = box.boxTipoLua(tipo, { "thick" })
     else

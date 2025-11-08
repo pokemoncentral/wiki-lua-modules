@@ -277,6 +277,7 @@ local function rowf(kind, gen, poke)
         { poke = poke, genl = gendata[gen].ext, baby = baby[poke] }
     )
 end
+d.rowf = rowf
 
 -- Crea i vari headers; chiamata da tutti gli header
 
