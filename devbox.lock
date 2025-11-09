@@ -5,6 +5,12 @@
       "last_modified": "2025-09-05T01:14:44Z",
       "resolved": "github:NixOS/nixpkgs/ca77296380960cd497a765102eeb1356eb80fed0?lastModified=1757034884&narHash=sha256-PgLSZDBEWUHpfTRfFyklmiiLBE1i1aGCtz4eRA3POao%3D"
     },
+    "lua51Packages.lua-cjson@latest": {
+      "last_modified": "2023-02-24T09:01:09Z",
+      "resolved": "github:NixOS/nixpkgs/7d0ed7f2e5aea07ab22ccb338d27fbe347ed2f11#lua51Packages.lua-cjson",
+      "source": "devbox-search",
+      "version": "2.1.0.10-1"
+    },
     "lua51Packages.lua@latest": {
       "last_modified": "2025-07-28T17:09:23Z",
       "resolved": "github:NixOS/nixpkgs/648f70160c03151bc2121d179291337ad6bc564b#lua51Packages.lua",
