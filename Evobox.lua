@@ -783,6 +783,7 @@ eb.SingleArrowMaybe = function(p, suff, direction)
     fakeevo.conditions[evodata.conditions.ITEM] = p["held" .. suff]
     fakeevo.conditions[evodata.conditions.TIME] = p["time" .. suff]
     fakeevo.conditions[evodata.conditions.GENDER] = p["gender" .. suff]
+    fakeevo.conditions[evodata.conditions.OTHER] = p["otherconditions" .. suff]
 
     -- Checks for emptyness
     if next(fakeevo.conditions) == nil then
@@ -884,6 +885,7 @@ Parameters are named because of their number:
     - evoinfoN: notes paired with evotypeN
     - timeN: time of the day paired with evotypeN
     - genderN: gender paired with evotypeN
+    - otherconditionsN: additional evo conditions paired with evotypeN
     - any N-ed parameter, but with a trailing "a" (for instance: 'evotypeNa'):
         the same information of un-a-ed parameter, but for the second N-th
         form (if any)
