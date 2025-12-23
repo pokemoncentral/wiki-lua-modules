@@ -236,6 +236,8 @@ c.leggendeza = _colore("3CB87C", "BADDAA", "357A6A")
 c["Leggende Pokémon: Z-A"], c["Leggende Z-A"], c["leggende za"] =
     c.leggendeza, c.leggendeza, c.leggendeza
 c.Leggendeza, c.LeggendeZA = c.leggendeza, c.leggendeza
+c.megadimensione = _colore("A40F84", "A695D5", "710E5C")
+c.Megadimensione = c.megadimensione
 
 -- Other games
 
