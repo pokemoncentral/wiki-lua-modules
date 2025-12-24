@@ -1,7 +1,7 @@
 local lib = require("test/snapshot-lib")
 local l = require("Learnlist-LPZA")
 
-lib.printHeading("No form - change type with evolution")
+lib.printHeading("Level - No form - change type with evolution")
 print(l.level({
     args = {
         "Kirlia",
@@ -15,6 +15,10 @@ print(l.level({
         "Inizio",
         " Doppioteam",
         "//",
+        " 92",
+        "Inizio",
+        " Teletrasporto",
+        "//",
         "37 ",
         "100",
         "Zuffa ",
@@ -22,7 +26,7 @@ print(l.level({
     },
 }))
 
-lib.printHeading("Alternate form")
+lib.printHeading("Level - Alternate form")
 print(l.level({
     args = {
         -- stylua: ignore start
@@ -40,6 +44,51 @@ print(l.level({
         "Inizio ",
         "46",
         "Ferrartigli ",
+        -- stylua: ignore end
+    },
+}))
+
+lib.printHeading("TM - No form - change type with evolution")
+print(l.tm({
+    args = {
+        "Kirlia",
+        -- stylua: ignore start
+        "//",
+        " MT028 ",
+        " Fogliamagica ",
+        "//",
+        " MT089",
+        " Magibrillio",
+        "//",
+        " MT094",
+        " Calmamente",
+        "//",
+        "MT102 ",
+        "Focalcolpo ",
+        "no",
+        "//",
+        "MT017",
+        "Lanciafiamme",
+        "yes",
+        -- stylua: ignore end
+    },
+}))
+
+lib.printHeading("TM - Alternate form")
+print(l.tm({
+    args = {
+        -- stylua: ignore start
+        "Charizard",
+        form = "MX",
+        "//",
+        " MT045 ",
+        " Dragobolide ",
+        "//",
+        " MT012",
+        " Attacco d'ala",
+        "//",
+        "MT082 ",
+        "Alacciaio ",
         -- stylua: ignore end
     },
 }))

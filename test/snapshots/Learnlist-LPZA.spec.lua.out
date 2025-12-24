@@ -1,5 +1,5 @@
 
-~~~~~~~~~~~~~~ No form - change type with evolution ~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~ Level - No form - change type with evolution ~~~~~~~~~~~~~~
 
 <div class="text-center">
 <div class="roundy inline-block max-width-xl-100" style="background-size: 100%; background-image: linear-gradient(to right, #EF4179, #EF70EF); padding: 0.2em;">
@@ -36,6 +36,15 @@
 | style="padding: 0.1em 0.3em;" | 15
 | style="padding: 0.1em 0.3em;" | 99
 |-
+| class="black-text" style="padding: 0.1em 0.3em;" | 92
+| class="black-text" style="padding: 0.1em 0.3em;" | Inizio
+| class="black-text" style="padding: 0.1em 0.3em;" | Teletrasporto
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-psico roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Psico|<span style=";">Psico</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #5B585B, #8C888C);; padding: 0.5ex;">[[Categoria danno#Stato|<span style=";">Stato</span>]]</div>
+| style="padding: 0.1em 0.3em;" | &mdash;
+| style="padding: 0.1em 0.3em;" | 7
+| style="padding: 0.1em 0.3em;" | 99
+|-
 | class="black-text" style="padding: 0.1em 0.3em;" | 37
 | class="black-text" style="padding: 0.1em 0.3em;" | 100
 | class="black-text" style="padding: 0.1em 0.3em;" | ''Zuffa''
@@ -56,7 +65,7 @@
 </div>
 </div>
 
-~~~~~~~~~~~~~~ Alternate form ~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~ Level - Alternate form ~~~~~~~~~~~~~~
 
 <div class="text-center">
 <div class="roundy inline-block max-width-xl-100" style="background-size: 100%; background-image: linear-gradient(to right, #E62829, #5060E1); padding: 0.2em;">
@@ -109,6 +118,124 @@
 *Il livello "Ricorda" indica una mossa che può essere appresa solo tramite Ricordamosse.
 *Il '''grassetto''' indica una mossa che ha il [[bonus di tipo]] quando viene usata da un Charizard.
 *Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un'evoluzione o una [[Differenze di forma|forma alternativa]] di Charizard
+</div>
+</div>
+</div>
+
+~~~~~~~~~~~~~~ TM - No form - change type with evolution ~~~~~~~~~~~~~~
+
+<div class="text-center">
+<div class="roundy inline-block max-width-xl-100" style="background-size: 100%; background-image: linear-gradient(to right, #EF4179, #EF70EF); padding: 0.2em;">
+<div class="flex-row-center-around flex-wrap big-font" style="padding: 0.5ex;"><span class="big-font white-text">'''Nona&nbsp;generazione: [[Leggende Pokémon: Z-A|LPZA]]'''</span></div>
+<div style="overflow-x: auto; margin: 0 0.3ex;">
+{| class="white-rows max-width-xl-100 width-xl-100 no-border-spacing" style="margin-top: 0; background: transparent;"
+|- class="text-center white-text"
+! colspan="2" | [[MT]]
+! rowspan="2" | [[Mossa]]
+! rowspan="2" | [[Tipo]]
+! rowspan="2" | [[Categoria danno|Cat.]]
+! rowspan="2" | [[Potenza]]
+! rowspan="2" | '''Tempo di recupero'''
+! rowspan="2" | '''Raggio'''
+|-
+| class="black-text" style="padding: 0.1em 0.3em;" | MT028
+| class="black-text" style="padding: 0.1em 0.3em;" | Fogliamagica
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-erba roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Erba|<span style=";">Erba</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #333948, #4F5870);; padding: 0.5ex;">[[Categoria danno#Speciale|<span style=";">Speciale</span>]]</div>
+| style="padding: 0.1em 0.3em;" | 60
+| style="padding: 0.1em 0.3em;" | 6
+| style="padding: 0.1em 0.3em;" | 14
+|-
+| class="black-text" style="padding: 0.1em 0.3em;" | MT089
+| class="black-text" style="padding: 0.1em 0.3em;" | '''Magibrillio'''
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-folletto roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Folletto|<span style=";">Folletto</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #333948, #4F5870);; padding: 0.5ex;">[[Categoria danno#Speciale|<span style=";">Speciale</span>]]</div>
+| style="padding: 0.1em 0.3em;" | 80
+| style="padding: 0.1em 0.3em;" | 8
+| style="padding: 0.1em 0.3em;" | 99
+|-
+| class="black-text" style="padding: 0.1em 0.3em;" | MT094
+| class="black-text" style="padding: 0.1em 0.3em;" | Calmamente
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-psico roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Psico|<span style=";">Psico</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #5B585B, #8C888C);; padding: 0.5ex;">[[Categoria danno#Stato|<span style=";">Stato</span>]]</div>
+| style="padding: 0.1em 0.3em;" | &mdash;
+| style="padding: 0.1em 0.3em;" | 18
+| style="padding: 0.1em 0.3em;" | 99
+|-
+| class="black-text" style="padding: 0.1em 0.3em;" | MT102
+| class="black-text" style="padding: 0.1em 0.3em;" | ''Focalcolpo''
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-lotta roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Lotta|<span style=";">Lotta</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #333948, #4F5870);; padding: 0.5ex;">[[Categoria danno#Speciale|<span style=";">Speciale</span>]]</div>
+| style="padding: 0.1em 0.3em;" | 120
+| style="padding: 0.1em 0.3em;" | 12
+| style="padding: 0.1em 0.3em;" | 12
+|-
+| class="black-text" style="padding: 0.1em 0.3em;" | MT017
+| class="black-text" style="padding: 0.1em 0.3em;" | Lanciafiamme*
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-fuoco roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Fuoco|<span style=";">Fuoco</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #333948, #4F5870);; padding: 0.5ex;">[[Categoria danno#Speciale|<span style=";">Speciale</span>]]</div>
+| style="padding: 0.1em 0.3em;" | 90
+| style="padding: 0.1em 0.3em;" | 8
+| style="padding: 0.1em 0.3em;" | 4
+|}
+</div>
+<div class="text-left small-font white-text" style="line-height: 1em; padding: 0 0.5ex 1ex;">
+
+*Alcune MT sono disponibili solo a partire da una determinata versione del gioco. Kirlia può imparare le mosse di quelle MT solo da tale versione.
+*Il '''grassetto''' indica una mossa che ha il [[bonus di tipo]] quando viene usata da un Kirlia.
+*Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un'evoluzione o una [[Differenze di forma|forma alternativa]] di Kirlia
+*Un * indica che la mossa può essere già conosciuta da un Kirlia [[Pokémon Alfa|alfa]] come [[mossa +]].
+</div>
+</div>
+</div>
+
+~~~~~~~~~~~~~~ TM - Alternate form ~~~~~~~~~~~~~~
+
+<div class="text-center">
+<div class="roundy inline-block max-width-xl-100" style="background-size: 100%; background-image: linear-gradient(to right, #E62829, #5060E1); padding: 0.2em;">
+<div class="flex-row-center-around flex-wrap big-font" style="padding: 0.5ex;"><span class="big-font white-text">'''Nona&nbsp;generazione: [[Leggende Pokémon: Z-A|LPZA]]'''</span></div>
+<div style="overflow-x: auto; margin: 0 0.3ex;">
+{| class="white-rows max-width-xl-100 width-xl-100 no-border-spacing" style="margin-top: 0; background: transparent;"
+|- class="text-center white-text"
+! colspan="2" | [[MT]]
+! rowspan="2" | [[Mossa]]
+! rowspan="2" | [[Tipo]]
+! rowspan="2" | [[Categoria danno|Cat.]]
+! rowspan="2" | [[Potenza]]
+! rowspan="2" | '''Tempo di recupero'''
+! rowspan="2" | '''Raggio'''
+|-
+| class="black-text" style="padding: 0.1em 0.3em;" | MT045
+| class="black-text" style="padding: 0.1em 0.3em;" | '''Dragobolide'''
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-drago roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Drago|<span style=";">Drago</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #333948, #4F5870);; padding: 0.5ex;">[[Categoria danno#Speciale|<span style=";">Speciale</span>]]</div>
+| style="padding: 0.1em 0.3em;" | 130
+| style="padding: 0.1em 0.3em;" | 10
+| style="padding: 0.1em 0.3em;" | 99
+|-
+| class="black-text" style="padding: 0.1em 0.3em;" | MT012
+| class="black-text" style="padding: 0.1em 0.3em;" | ''Attacco d'Ala''
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-volante roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Volante|<span style=";">Volante</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style=";">Fisico</span>]]</div>
+| style="padding: 0.1em 0.3em;" | 60
+| style="padding: 0.1em 0.3em;" | 6
+| style="padding: 0.1em 0.3em;" | 99
+|-
+| class="black-text" style="padding: 0.1em 0.3em;" | MT082
+| class="black-text" style="padding: 0.1em 0.3em;" | Alacciaio
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class=" box-acciaio roundy-5 text-center white-text" style="; padding: 0.5ex;">[[Acciaio|<span style=";">Acciaio</span>]]</div>
+| class="height-100" style="padding: 0.8ex 0.3ex;" | <div class="roundy-5 text-center white-text" style="background-size: 100%; background-image: linear-gradient(to right, #82150B, #C92112);; padding: 0.5ex;">[[Categoria danno#Fisico|<span style=";">Fisico</span>]]</div>
+| style="padding: 0.1em 0.3em;" | 70
+| style="padding: 0.1em 0.3em;" | 7
+| style="padding: 0.1em 0.3em;" | 99
+|}
+</div>
+<div class="text-left small-font white-text" style="line-height: 1em; padding: 0 0.5ex 1ex;">
+
+*Alcune MT sono disponibili solo a partire da una determinata versione del gioco. Charizard può imparare le mosse di quelle MT solo da tale versione.
+*Il '''grassetto''' indica una mossa che ha il [[bonus di tipo]] quando viene usata da un Charizard.
+*Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un'evoluzione o una [[Differenze di forma|forma alternativa]] di Charizard
+*Un * indica che la mossa può essere già conosciuta da un Charizard [[Pokémon Alfa|alfa]] come [[mossa +]].
 </div>
 </div>
 </div>
