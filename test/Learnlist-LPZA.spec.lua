@@ -92,3 +92,40 @@ print(l.tm({
         -- stylua: ignore end
     },
 }))
+
+lib.printHeading("Event - No form - change type with evolution")
+print(l.event({
+    args = {
+        "Kirlia",
+        -- stylua: ignore start
+        "//",
+        " Dopo mangiato ",
+        " Virata ",
+        "//",
+        " Quando compri le pentole da Giorgio Mastrota",
+        " Assorbibacio",
+        "//",
+        "Una volta unto il cestello della bicicletta con l'antigelo",
+        "Breccia ",
+        -- stylua: ignore end
+    },
+}))
+
+lib.printHeading("Event - Alternate form")
+print(l.event({
+    args = {
+        -- stylua: ignore start
+        "Charizard",
+        form = "MX",
+        "//",
+        " Al compiersi dell'ultimo giro intorno al divano ",
+        " Dragospiro ",
+        "//",
+        " Non appena hai pestato il mattoncino Lego®",
+        " Ali del Fato",
+        "//",
+        "Prima di rotolare giù da colli scoscesi ",
+        "Frana ",
+        -- stylua: ignore end
+    },
+}))

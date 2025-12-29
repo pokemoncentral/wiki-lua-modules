@@ -29,6 +29,26 @@ local worstMistake = function(type)
     return type == "coleot" and "coleottero" or type
 end
 
+local processInput = function(frame)
+    local p = w.trimAll(frame.args)
+    local pokeName = mw.text.decode(table.remove(p, 1)):lower()
+
+    local dataIndex = formsLib.nameToDataindex(pokeName, p.form or "")
+    local pokeData = multigen.getGen(pokes[dataIndex])
+
+    local pokeTypes =
+        table.map({ pokeData.type1, pokeData.type2 }, worstMistake)
+    local relatedTypes = table.map(
+        table.merge(
+            evolib.formTypesList(dataIndex, 9),
+            evolib.evoTypesList(dataIndex, 9)
+        ),
+        worstMistake
+    )
+
+    return p, pokeData, pokeTypes, relatedTypes
+end
+
 local computeSTAB = function(moveData, pokeTypes, relatedTypes)
     if moveData.category == "stato" then
         return ""
@@ -83,21 +103,7 @@ ${rightColumns}]=],
 end
 
 l.level = function(frame)
-    local p = w.trimAll(frame.args)
-    local pokeName = mw.text.decode(table.remove(p, 1)):lower()
-
-    local dataIndex = formsLib.nameToDataindex(pokeName, p.form or "")
-    local pokeData = multigen.getGen(pokes[dataIndex])
-
-    local pokeTypes =
-        table.map({ pokeData.type1, pokeData.type2 }, worstMistake)
-    local relatedTypes = table.map(
-        table.merge(
-            evolib.formTypesList(dataIndex, 9),
-            evolib.evoTypesList(dataIndex, 9)
-        ),
-        worstMistake
-    )
+    local p, pokeData, pokeTypes, relatedTypes = processInput(frame)
     local entryFunc = function(level, plusLevel, moveName)
         return levelEntry(level, plusLevel, moveName, pokeTypes, relatedTypes)
     end
@@ -163,21 +169,7 @@ ${rightColumns}]=],
 end
 
 l.tm = function(frame)
-    local p = w.trimAll(frame.args)
-    local pokeName = mw.text.decode(table.remove(p, 1)):lower()
-
-    local dataIndex = formsLib.nameToDataindex(pokeName, p.form or "")
-    local pokeData = multigen.getGen(pokes[dataIndex])
-
-    local pokeTypes =
-        table.map({ pokeData.type1, pokeData.type2 }, worstMistake)
-    local relatedTypes = table.map(
-        table.merge(
-            evolib.formTypesList(dataIndex, 9),
-            evolib.evoTypesList(dataIndex, 9)
-        ),
-        worstMistake
-    )
+    local p, pokeData, pokeTypes, relatedTypes = processInput(frame)
     local entryFunc = function(tm, moveName, isAlphaPlus)
         return tmEntry(
             tm,
@@ -226,5 +218,65 @@ ${kindrows}
     )
 end
 l.Tm = l.tm
+
+local eventEntry = function(event, moveName, pokeTypes, relatedTypes)
+    return string.interp(
+        [=[
+|-
+| style="padding: 0.1em 0.3em;" | ${event}
+${rightColumns}]=],
+        {
+            event = event,
+            rightColumns = rightColumns(
+                moves[moveName:lower()],
+                pokeTypes,
+                relatedTypes
+            ),
+        }
+    )
+end
+
+l.event = function(frame)
+    local p, pokeData, pokeTypes, relatedTypes = processInput(frame)
+    local entryFunc = function(event, moveName)
+        return eventEntry(event, moveName, pokeTypes, relatedTypes)
+    end
+
+    -- TODO: add links to "Tempo di recupero" and "Raggio"
+    return string.interp(
+        [=[
+<div class="text-center">
+<div class="roundy inline-block max-width-xl-100" style="${bg} padding: 0.2em;">
+<div class="flex-row-center-around flex-wrap big-font" style="padding: 0.5ex;"><span class="big-font ${textcolor}">'''Nona&nbsp;generazione: [[Leggende Pokémon: Z-A|LPZA]]'''</span></div>
+<div style="overflow-x: auto; margin: 0 0.3ex;">
+{| class="white-rows max-width-xl-100 width-xl-100 no-border-spacing" style="margin-top: 0; background: transparent;"
+|- class="text-center ${textcolor}"
+! Evento
+! [[Mossa]]
+! [[Tipo]]
+! [[Categoria danno|Cat.]]
+! [[Potenza]]
+! '''Tempo di recupero'''
+! '''Raggio'''
+${levelMoves}
+|}
+</div>
+<div class="text-left small-font ${textcolor}" style="line-height: 1em; padding: 0 0.5ex 1ex;">
+${kindrows}
+*Il '''grassetto''' indica una mossa che ha il [[bonus di tipo]] quando viene usata da un ${poke}.
+*Il ''corsivo'' indica una mossa che ha il bonus di tipo solo quando viene usata da un'evoluzione o una [[Differenze di forma|forma alternativa]] di ${poke}
+</div>
+</div>
+</div>]=],
+        {
+            textcolor = cc.forModGradBgLua(pokeData.type1, pokeData.type2),
+            bg = css.horizGradLua(pokeData),
+            levelMoves = render.renderLua(entryFunc, p),
+            kindrows = learnlistHf.rowf("event", 9, pokeData.name),
+            poke = pokeData.name,
+        }
+    )
+end
+l.Event = l.event
 
 return l
