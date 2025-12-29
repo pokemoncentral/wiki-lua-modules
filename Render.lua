@@ -47,6 +47,8 @@ local mw = require("mw")
 -- stylua: ignore
 local w = require('Wikilib')
 
+require("Wikilib-tables") -- use table metatable extensions
+
 -- Deprecated function
 r.entry = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
@@ -82,6 +84,43 @@ has problems if you want to put a link/template within the entry.
 For the syntax check the doc at the top of the file.
 
 --]]
+r.renderLua = function(moduleFunc, args)
+    local separator = table.remove(args, 1)
+    -- Check if separator matches the standard
+    if not separator:match("^/%-*/$") then
+        error("Ill formatted separator")
+    end
+    -- The last separator is optional. If not given, adds it
+    if args[#args] ~= separator then
+        table.insert(args, separator)
+    end
+
+    local mockArgs = {}
+    local res = {}
+    for i = 1, #args do
+        local param = args[i]
+        if not param then
+            print(i, "'" .. param .. "'")
+            return
+        end
+        if param == separator then
+            table.insert(res, moduleFunc(unpack(mockArgs)))
+            -- Prepare for the next call
+            mockArgs = {}
+        else
+            local beg = param:find("<%-")
+            if beg then
+                local key = string.trim(param:sub(1, beg - 1))
+                mockArgs[key] = string.trim(param:sub(beg + 2))
+            else
+                table.insert(mockArgs, args[i])
+            end
+        end
+    end
+
+    return table.concat(res, "\n")
+end
+
 r.render = function(frame)
     local p = w.trimAll(mw.clone(frame.args), false)
     local modulename = p[1]
@@ -92,42 +131,11 @@ r.render = function(frame)
         -- This becomes require("Modulo:" .. modulename) before upload to PCW
         module = require("" .. modulename)
     end
-    local modulefunc = module[p[2]]
-    local separator = p[3]
-    -- Check if separator matches the standard
-    if not separator:match("^/%-*/$") then
-        error("Ill formatted separator")
+    local moduleFunc = module[p[2]]
+    local luaModuleFunc = function(...)
+        return moduleFunc({ args = { ... } })
     end
-
-    -- The last separator is optional. If not given, adds it
-    if p[#p] ~= separator then
-        table.insert(p, separator)
-    end
-
-    local mockArgs = {}
-    local res = {}
-    for i = 4, #p do
-        local param = p[i]
-        if not param then
-            print(i, "'" .. param .. "'")
-            return
-        end
-        if param == separator then
-            table.insert(res, modulefunc({ args = mockArgs }))
-            -- Prepare for the next call
-            mockArgs = {}
-        else
-            local beg = param:find("<%-")
-            if beg then
-                local key = string.trim(param:sub(1, beg - 1))
-                mockArgs[key] = string.trim(param:sub(beg + 2))
-            else
-                table.insert(mockArgs, p[i])
-            end
-        end
-    end
-
-    return table.concat(res, "\n")
+    return r.renderLua(luaModuleFunc, table.slice(p, 3))
 end
 
 return r

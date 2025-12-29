@@ -70,3 +70,4 @@ luac.out
 # Snapshot tests
 test/current-output
 test/worktree-*
+!test/snapshots/*
