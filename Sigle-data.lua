@@ -740,6 +740,34 @@ x.LPZA = {
         },
     },
 }
+x.Ve = {
+    {
+        link = "Pokémon Vento e Onda",
+        text = "Vento",
+        display = {
+            { "Ve", "volante" }, -- "vento" },
+        },
+    },
+}
+x.On = {
+    {
+        link = "Pokémon Vento e Onda",
+        text = "Onda",
+        display = {
+            { "On", "acqua" }, -- "onda" },
+        },
+    },
+}
+x.VO = {
+    {
+        link = "Pokémon Vento e Onda",
+        text = "Onda",
+        display = {
+            { "V", "volante" }, -- "vento" },
+            { "O", "acqua" }, -- "onda" },
+        },
+    },
+}
 
 -- serie Stadium
 x.SJ = {
