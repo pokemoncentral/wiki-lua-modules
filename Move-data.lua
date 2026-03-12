@@ -869,6 +869,7 @@ t.elettrotuffo = {name = "Elettrotuffo", type = "elettro", category = "fisico", 
 t.psicorumore = {name = "Psicorumore", type = "psico", category = "speciale", power = "75", accuracy = "100", pp = "10", gen = 9}
 t["colpo di mano"] = {name = "Colpo di Mano", type = "lotta", category = "fisico", power = "65", accuracy = "100", pp = "15", gen = 9}
 t.intossicatena = {name = "Intossicatena", type = "veleno", category = "speciale", power = "100", accuracy = "100", pp = "5", gen = 9}
+t["tabula laser"] = { name = "Tabula Laser", type = "drago", category = "speciale", power = "200", accuracy = "100", pp = 10, gen = 9 }
 -- stylua: ignore end
 
 return t
