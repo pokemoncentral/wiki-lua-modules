@@ -2270,6 +2270,8 @@ d.banetteM = {hp = 64, atk = 165, def = 75, spatk = 93, spdef = 83, spe = 75}
 d["0354M"] = d.banetteM
 d.absolM = {hp = 65, atk = 150, def = 60, spatk = 115, spdef = 60, spe = 115}
 d["0359M"] = d.absolM
+d.absolMZ = {hp = 65, atk = 154, def = 60, spatk = 75, spdef = 60, spe = 151}
+d["0359MZ"] = d.absolMZ
 d.glalieM = {hp = 80, atk = 120, def = 80, spatk = 120, spdef = 80, spe = 100}
 d["0362M"] = d.glalieM
 d.salamenceM = {hp = 95, atk = 145, def = 130, spatk = 120, spdef = 90, spe = 120}
@@ -2286,8 +2288,12 @@ d.lopunnyM = {hp = 65, atk = 136, def = 94, spatk = 54, spdef = 96, spe = 135}
 d["0428M"] = d.lopunnyM
 d.garchompM = {hp = 108, atk = 170, def = 115, spatk = 120, spdef = 95, spe = 92}
 d["0445M"] = d.garchompM
+d.garchompMZ = {hp = 108, atk = 130, def = 85, spatk = 141, spdef = 85, spe = 151}
+d["0445MZ"] = d.garchompMZ
 d.lucarioM = {hp = 70, atk = 145, def = 88, spatk = 140, spdef = 70, spe = 112}
 d["0448M"] = d.lucarioM
+d.lucarioMZ = {hp = 70, atk = 100, def = 70, spatk = 164, spdef = 70, spe = 151}
+d["0448MZ"] = d.lucarioMZ
 d.abomasnowM = {hp = 90, atk = 132, def = 105, spatk = 132, spdef = 105, spe = 30}
 d["0460M"] = d.abomasnowM
 d.galladeM = {hp = 68, atk = 165, def = 95, spatk = 65, spdef = 115, spe = 110}
