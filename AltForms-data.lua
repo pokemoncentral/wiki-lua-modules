@@ -166,6 +166,10 @@ t.formgroups.hisui = {'growlithe', 'voltorb', 'typhlosion', 'qwilfish',
 -- Tabella contenente i Pokémon che hanno una forma di Paldea
 t.formgroups.paldea = { "wooper", "tauros" }
 
+-- Tabella contentente i Pokémon che hanno una megaevoluzione Z
+
+t.formgroups.megaz = { "absol", "garchomp", "lucario" }
+
 --[[
 
 Alternative forms names. Keys are the abbr.
@@ -292,6 +296,12 @@ for _, v in pairs(t.formgroups.hisui) do
     end
     t[v].names.H = "Forma di Hisui"
 end
+for _, v in pairs(t.formgroups.megaz) do
+    if not t[v] then
+        t[v] = { names = { base = "" } }
+    end
+    t[v].names.MZ = table.concat({ "Mega", txt.fu(v), " Z" })
+end
 
 -- Anchor per i link alle forme alternative,
 -- se diversi dal nome del Pokémon
@@ -405,6 +415,10 @@ for _, v in pairs(t.formgroups.hisui) do
     t[v].ext = t[v].ext or {}
     t[v].ext.hisui = "H"
 end
+for _, v in pairs(t.formgroups.megaz) do
+    t[v].ext = t[v].ext or {}
+    t[v].ext.megaz = "MZ"
+end
 
 --[[
 
@@ -425,9 +439,12 @@ t.tauros.gamesOrder = { "base", "C", "I", "A" }
 t.eevee.gamesOrder = { "base", "Cm", "Gi" }
 t.wooper.gamesOrder = { "base", "P" }
 t.castform.gamesOrder = { "base", "S", "P", "N" }
+t.absol.gamesOrder = { "base", "M", "MZ" }
 t.deoxys.gamesOrder = { "base", "A", "D", "V" }
 t.wormadam.gamesOrder = { "base", "Sa", "Sc" }
 t.cherrim.gamesOrder = { "base", "S" }
+t.garchomp.gamesOrder = { "base", "M", "MZ" }
+t.lucario.gamesOrder = { "base", "M", "MZ" }
 t.rotom.gamesOrder = { "base", "C", "L", "G", "V", "T" }
 t.dialga.gamesOrder = { "base", "O" }
 t.palkia.gamesOrder = { "base", "O" }
@@ -656,7 +673,7 @@ t.banette.since = { M = "xy", base = "rz" }
 t.sharpedo.since = { M = "roza", base = "rz" }
 t.camerupt.since = { M = "roza", base = "rz" }
 t.altaria.since = { M = "roza", base = "rz" }
-t.absol.since = { M = "xy", base = "rz" }
+t.absol.since = { M = "xy", MZ = "lpza", base = "rz" }
 t.glalie.since = { M = "roza", base = "rz" }
 t.salamence.since = { M = "roza", base = "rz" }
 t.metagross.since = { M = "roza", base = "rz" }
@@ -664,8 +681,8 @@ t.latias.since = { M = "roza", base = "rz" }
 t.latios.since = { M = "roza", base = "rz" }
 t.rayquaza.since = { M = "roza", base = "rz" }
 t.lopunny.since = { M = "roza", base = "dp" }
-t.garchomp.since = { M = "xy", base = "dp" }
-t.lucario.since = { M = "xy", base = "dp" }
+t.garchomp.since = { M = "xy", MZ = "lpza", base = "dp" }
+t.lucario.since = { M = "xy", MZ = "lpza", base = "dp" }
 t.abomasnow.since = { M = "xy", base = "dp" }
 t.gallade.since = { M = "roza", base = "dp" }
 t.audino.since = { M = "roza", base = "nb" }

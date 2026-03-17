@@ -2344,10 +2344,16 @@ t.aggronM = {name = 'Aggron', ndex = 306, type1 = 'acciaio', type2 = 'acciaio'}
 t["0306M"] = t.aggronM
 t.altariaM = {name = 'Altaria', ndex = 334, type1 = 'drago', type2 = 'folletto'}
 t["0334M"] = t.altariaM
+t.absolMZ = {name = 'Absol', ndex = 359, type1 = 'buio', type2 = 'spettro'}
+t["0359MZ"] = t.absolMZ
 t.groudonA = {name = 'Groudon', ndex = 383, type1 = 'terra', type2 = 'fuoco'}
 t["0383A"] = t.groudonA
 t.lopunnyM = {name = 'Lopunny', ndex = 428, type1 = 'normale', type2 = 'lotta'}
 t["0428M"] = t.lopunnyM
+t.garchompMZ = {name = 'Garchomp', ndex = 445, type1 = 'drago', type2 = 'drago'}
+t["0445MZ"] = t.garchompMZ
+t.lucarioMZ = {name = 'Lucario', ndex = 448, type1 = 'lotta', type2 = 'acciaio'}
+t["0448MZ"] = t.lucarioMZ
 t.audinoM = {name = 'Audino', ndex = 531, type1 = 'normale', type2 = 'folletto'}
 t["0531M"] = t.audinoM
 t.barbaracleM = {name = 'Barbaracle', ndex = 689, type1 = 'roccia', type2 = 'lotta'}

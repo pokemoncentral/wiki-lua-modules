@@ -2440,6 +2440,8 @@ t.banetteM = { ability1 = "Burla" }
 t["0354M"] = t.banetteM
 t.absolM = { ability1 = "Magispecchio" }
 t["0359M"] = t.absolM
+t.absolMZ = { ability1 = "Sconosciuta" }
+t["0359MZ"] = t.absolMZ
 t.glalieM = { ability1 = "Pellegelo" }
 t["0362M"] = t.glalieM
 t.salamenceM = { ability1 = "Pellecielo" }
@@ -2460,8 +2462,12 @@ t.lopunnyM = { ability1 = "Nervisaldi" }
 t["0428M"] = t.lopunnyM
 t.garchompM = { ability1 = "Silicoforza" }
 t["0445M"] = t.garchompM
+t.garchompMZ = { ability1 = "Sconosciuta" }
+t["0445MZ"] = t.garchompMZ
 t.lucarioM = { ability1 = "Adattabilità" }
 t["0448M"] = t.lucarioM
+t.lucarioMZ = { ability1 = "Sconosciuta" }
+t["0448MZ"] = t.lucarioMZ
 t.abomasnowM = { ability1 = "Scendineve" }
 t["0460M"] = t.abomasnowM
 t.galladeM = { ability1 = "Forza Interiore" }
