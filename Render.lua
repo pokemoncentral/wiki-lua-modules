@@ -42,16 +42,17 @@ becomes
 
 local r = {}
 
-local mw = require("mw")
+-- stylua: ignore start
+local mw = require('mw')
 
--- stylua: ignore
+local tab = require('Wikilib-tables')
 local w = require('Wikilib')
-
-require("Wikilib-tables") -- use table metatable extensions
+-- stylua: ignore end
 
 -- Deprecated function
 r.entry = function(frame)
     local p = w.trimAll(mw.clone(frame.args))
+    -- This becomes require("Modulo:" .. modulename) before upload to PCW
     local modu = require("" .. p[1]:match("^(.+)%."))
     local func = p[1]:match("%.([%a%d]+)$")
     table.remove(p, 1)
@@ -104,7 +105,7 @@ r.renderLua = function(moduleFunc, args)
             return
         end
         if param == separator then
-            table.insert(res, moduleFunc(unpack(mockArgs)))
+            table.insert(res, moduleFunc(mockArgs))
             -- Prepare for the next call
             mockArgs = {}
         else
@@ -132,10 +133,10 @@ r.render = function(frame)
         module = require("" .. modulename)
     end
     local moduleFunc = module[p[2]]
-    local luaModuleFunc = function(...)
-        return moduleFunc({ args = { ... } })
+    local luaModuleFunc = function(mockArgs)
+        return moduleFunc({ args = mockArgs })
     end
-    return r.renderLua(luaModuleFunc, table.slice(p, 3))
+    return r.renderLua(luaModuleFunc, tab.slice(p, 3))
 end
 
 return r

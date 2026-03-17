@@ -4,24 +4,25 @@ Learnlists for Pokémon Legends: Z-A
 
 ]]
 
-local mw = require("mw")
-
 local l = {}
 
-require("Wikilib-strings") -- use string metatable extensions
-require("Wikilib-tables") -- use table metatable extensions
+-- stylua: ignore start
+local mw = require('mw')
 
-local box = require("Box")
-local cc = require("ChooseColor")
-local css = require("Css")
-local evolib = require("Wikilib-evos")
-local formsLib = require("Wikilib-forms")
+local txt = require('Wikilib-strings')
+local tab = require('Wikilib-tables')
+local evolib = require('Wikilib-evos')
+local formsLib = require('Wikilib-forms')
+local multigen = require('Wikilib-multigen')
+local w = require('Wikilib')
+local box = require('Box')
+local cc = require('ChooseColor')
+local css = require('Css')
+local learnlistHf = require('Learnlist-hf')
+local render = require('Render')
 local moves = require("Move-LPZA-data")
-local multigen = require("Wikilib-multigen")
 local pokes = require("Poké-data")
-local render = require("Render")
-local w = require("Wikilib")
-local learnlistHf = require("Learnlist-hf")
+-- stylua: ignore end
 
 local ALPHA_MOVE_ICON = "[[File:Icona_Alfa_LPA.png|Pokémon alfa|25px]]"
 
@@ -36,10 +37,9 @@ local processInput = function(frame)
     local dataIndex = formsLib.nameToDataindex(pokeName, p.form or "")
     local pokeData = multigen.getGen(pokes[dataIndex])
 
-    local pokeTypes =
-        table.map({ pokeData.type1, pokeData.type2 }, worstMistake)
-    local relatedTypes = table.map(
-        table.merge(
+    local pokeTypes = tab.map({ pokeData.type1, pokeData.type2 }, worstMistake)
+    local relatedTypes = tab.map(
+        tab.merge(
             evolib.formTypesList(dataIndex, 9),
             evolib.evoTypesList(dataIndex, 9)
         ),
@@ -52,9 +52,9 @@ end
 local computeSTAB = function(moveData, pokeTypes, relatedTypes)
     if moveData.category == "stato" then
         return ""
-    elseif table.search(pokeTypes, moveData.type) then
+    elseif tab.search(pokeTypes, moveData.type) then
         return "'''"
-    elseif table.search(relatedTypes, moveData.type) then
+    elseif tab.search(relatedTypes, moveData.type) then
         return "''"
     else
         return ""
@@ -104,7 +104,8 @@ end
 
 l.level = function(frame)
     local p, pokeData, pokeTypes, relatedTypes = processInput(frame)
-    local entryFunc = function(level, plusLevel, moveName)
+    local entryFunc = function(args)
+        local level, plusLevel, moveName = table.unpack(args)
         return levelEntry(level, plusLevel, moveName, pokeTypes, relatedTypes)
     end
 
@@ -157,7 +158,7 @@ local tmEntry = function(tm, moveName, isAlphaPlus, pokeTypes, relatedTypes)
 ${rightColumns}]=],
         {
             tm = tm,
-            type = string.first_uppercase(moveData.type),
+            type = txt.first_uppercase(moveData.type),
             rightColumns = rightColumns(
                 moveData,
                 pokeTypes,
@@ -170,7 +171,8 @@ end
 
 l.tm = function(frame)
     local p, pokeData, pokeTypes, relatedTypes = processInput(frame)
-    local entryFunc = function(tm, moveName, isAlphaPlus)
+    local entryFunc = function(args)
+        local tm, moveName, isAlphaPlus = table.unpack(args)
         return tmEntry(
             tm,
             moveName,
@@ -238,7 +240,8 @@ end
 
 l.event = function(frame)
     local p, pokeData, pokeTypes, relatedTypes = processInput(frame)
-    local entryFunc = function(event, moveName)
+    local entryFunc = function(args)
+        local event, moveName = table.unpack(args)
         return eventEntry(event, moveName, pokeTypes, relatedTypes)
     end
 
