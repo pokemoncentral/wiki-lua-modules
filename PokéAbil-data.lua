@@ -2396,10 +2396,16 @@ t.gyaradosM = { ability1 = "Rompiforma" }
 t["0130M"] = t.gyaradosM
 t.aerodactylM = { ability1 = "Unghiedure" }
 t["0142M"] = t.aerodactylM
+t.dragoniteM = { ability1 = "Multisquame" }
+t["0149M"] = t.dragoniteM
 t.mewtwoMX = { ability1 = "Cuordeciso" }
 t["0150MX"] = t.mewtwoMX
 t.mewtwoMY = { ability1 = "Insonnia" }
 t["0150MY"] = t.mewtwoMY
+t.meganiumM = { ability1 = "Megasolar" }
+t["0154M"] = t.meganiumM
+t.feraligatrM = { ability1 = "Pelledrago" }
+t["0160M"] = t.feraligatrM
 t.ampharosM = { ability1 = "Rompiforma" }
 t["0181M"] = t.ampharosM
 t.steelixM = { ability1 = "Silicoforza" }
@@ -2472,13 +2478,17 @@ t.abomasnowM = { ability1 = "Scendineve" }
 t["0460M"] = t.abomasnowM
 t.galladeM = { ability1 = "Forza Interiore" }
 t["0475M"] = t.galladeM
+t.froslassM = { ability1 = "Scendineve" }
+t["0478M"] = t.froslassM
+t.emboarM = { ability1 = "Rompiforma" }
+t["0500M"] = t.emboarM
 t.audinoM = { ability1 = "Curacuore" }
 t["0531M"] = t.audinoM
-t.chesnaughtM = { ability1 = "Sconosciuta" }
+t.chesnaughtM = { ability1 = "Antiproiettile" }
 t["0652M"] = t.chesnaughtM
-t.delphoxM = { ability1 = "Sconosciuta" }
+t.delphoxM = { ability1 = "Levitazione" }
 t["0655M"] = t.delphoxM
-t.greninjaM = { ability1 = "Sconosciuta" }
+t.greninjaM = { ability1 = "Mutatipo" }
 t["0658M"] = t.greninjaM
 t.malamarM = { ability1 = "Sconosciuta" }
 t["0687M"] = t.malamarM
@@ -2498,18 +2508,8 @@ t.victreebelM = { ability1 = "Sconosciuta" }
 t["0071M"] = t.victreebelM
 t.starmieM = { ability1 = "Sconosciuta" }
 t["0121M"] = t.starmieM
-t.dragoniteM = { ability1 = "Sconosciuta" }
-t["0149M"] = t.dragoniteM
-t.meganiumM = { ability1 = "Sconosciuta" }
-t["0154M"] = t.meganiumM
-t.feraligatrM = { ability1 = "Sconosciuta" }
-t["0160M"] = t.feraligatrM
 t.skarmoryM = { ability1 = "Sconosciuta" }
 t["0227M"] = t.skarmoryM
-t.froslassM = { ability1 = "Sconosciuta" }
-t["0478M"] = t.froslassM
-t.emboarM = { ability1 = "Sconosciuta" }
-t["0500M"] = t.emboarM
 t.excadrillM = { ability1 = "Sconosciuta" }
 t["0530M"] = t.excadrillM
 t.scolipedeM = { ability1 = "Sconosciuta" }
@@ -2520,12 +2520,6 @@ t.eelektrossM = { ability1 = "Sconosciuta" }
 t["0604M"] = t.eelektrossM
 t.chandelureM = { ability1 = "Sconosciuta" }
 t["0609M"] = t.chandelureM
-t.chesnaughtM = { ability1 = "Sconosciuta" }
-t["0652M"] = t.chesnaughtM
-t.delphoxM = { ability1 = "Sconosciuta" }
-t["0655M"] = t.delphoxM
-t.greninjaM = { ability1 = "Sconosciuta" }
-t["0658M"] = t.greninjaM
 t.pyroarM = { ability1 = "Sconosciuta" }
 t["0668M"] = t.pyroarM
 t.floetteE = { ability1 = "Sconosciuta" }
