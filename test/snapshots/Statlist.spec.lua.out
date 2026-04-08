@@ -5308,7 +5308,7 @@
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #D0E6FF;" data-sort-value="76.666666666667" | 76,67
 |- style="height: 100%;"
 | style="padding: 0.3ex 0.8ex;" data-sort-value="358" | 0358
-| style="padding: 0.3ex 0.8ex;" data-sort-value="Chimecho" | [[File:Minim0358.png|Chimecho|40px|link=Chimecho]]
+| style="padding: 0.3ex 0.8ex;" data-sort-value="Chimecho, ${form}" | [[File:Minim0358.png|Chimecho|40px|link=Chimecho]]
 | class="black-text" style="padding: 0.3ex 0.8ex;" | [[Chimecho]]
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #E1FFD3;" data-sort-value="75" | <div>65<sup style="padding-left: 0.3em;">III-VI</sup></div><div>75<sup style="padding-left: 0.3em;">VII+</sup></div>
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #FFFBE6;" data-sort-value="50" | 50
@@ -9076,7 +9076,7 @@
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #D0E6FF;" data-sort-value="50.5" | 50,50
 |- style="height: 100%;"
 | style="padding: 0.3ex 0.8ex;" data-sort-value="623" | 0623
-| style="padding: 0.3ex 0.8ex;" data-sort-value="Golurk" | [[File:Minim0623.png|Golurk|40px|link=Golurk]]
+| style="padding: 0.3ex 0.8ex;" data-sort-value="Golurk, ${form}" | [[File:Minim0623.png|Golurk|40px|link=Golurk]]
 | class="black-text" style="padding: 0.3ex 0.8ex;" | [[Golurk]]
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #E1FFD3;" data-sort-value="89" | 89
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #FFFBE6;" data-sort-value="124" | 124
@@ -10888,7 +10888,7 @@
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #D0E6FF;" data-sort-value="56.333333333333" | 56,33
 |- style="height: 100%;"
 | style="padding: 0.3ex 0.8ex;" data-sort-value="740" | 0740
-| style="padding: 0.3ex 0.8ex;" data-sort-value="Crabominable" | [[File:Minim0740.png|Crabominable|40px|link=Crabominable]]
+| style="padding: 0.3ex 0.8ex;" data-sort-value="Crabominable, ${form}" | [[File:Minim0740.png|Crabominable|40px|link=Crabominable]]
 | class="black-text" style="padding: 0.3ex 0.8ex;" | [[Crabominable]]
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #E1FFD3;" data-sort-value="97" | 97
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #FFFBE6;" data-sort-value="132" | 132
@@ -13672,7 +13672,7 @@
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #D0E6FF;" data-sort-value="50.666666666667" | 50,67
 |- style="height: 100%;"
 | style="padding: 0.3ex 0.8ex;" data-sort-value="952" | 0952
-| style="padding: 0.3ex 0.8ex;" data-sort-value="Scovillain" | [[File:Minim0952.png|Scovillain|40px|link=Scovillain]]
+| style="padding: 0.3ex 0.8ex;" data-sort-value="Scovillain, ${form}" | [[File:Minim0952.png|Scovillain|40px|link=Scovillain]]
 | class="black-text" style="padding: 0.3ex 0.8ex;" | [[Scovillain]]
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #E1FFD3;" data-sort-value="65" | 65
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #FFFBE6;" data-sort-value="108" | 108
@@ -13900,7 +13900,7 @@
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #D0E6FF;" data-sort-value="58.333333333333" | 58,33
 |- style="height: 100%;"
 | style="padding: 0.3ex 0.8ex;" data-sort-value="970" | 0970
-| style="padding: 0.3ex 0.8ex;" data-sort-value="Glimmora" | [[File:Minim0970.png|Glimmora|40px|link=Glimmora]]
+| style="padding: 0.3ex 0.8ex;" data-sort-value="Glimmora, ${form}" | [[File:Minim0970.png|Glimmora|40px|link=Glimmora]]
 | class="black-text" style="padding: 0.3ex 0.8ex;" | [[Glimmora]]
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #E1FFD3;" data-sort-value="83" | 83
 | style="padding: 0.3ex 0.8ex; font-weight: bolder; background: #FFFBE6;" data-sort-value="55" | 55

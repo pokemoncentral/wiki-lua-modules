@@ -118,12 +118,13 @@ t.formgroups.mega = {
     'ampharos', 'steelix', 'scizor', 'heracross', 'skarmory', 'houndoom',
     'tyranitar', 'sceptile', 'blaziken', 'swampert', 'gardevoir', 'sableye',
     'mawile', 'aggron', 'medicham', 'manectric', 'sharpedo', 'camerupt',
-    'altaria', 'banette', 'absol', 'glalie', 'salamence', 'metagross',
-    'latias', 'latios', 'rayquaza', 'lopunny', 'garchomp', 'lucario',
-    'abomasnow', 'gallade', 'froslass', 'emboar', 'excadrill', 'audino',
-    'scolipede', 'scrafty', 'eelektross', 'chandelure', 'chesnaught',
-    'delphox', 'greninja', 'pyroar', 'floette', 'malamar', 'barbaracle',
-    'dragalge', 'hawlucha', 'zygarde', 'diancie', 'drampa', 'falinks'
+    'altaria', 'banette', 'chimecho', 'absol', 'glalie', 'salamence',
+    'metagross', 'latias', 'latios', 'rayquaza', 'lopunny', 'garchomp',
+    'lucario', 'abomasnow', 'gallade', 'froslass', 'emboar', 'excadrill',
+    'audino', 'scolipede', 'scrafty', 'eelektross', 'chandelure', 'golurk',
+    'chesnaught', 'delphox', 'greninja', 'pyroar', 'floette', 'meowstic',
+    'malamar', 'barbaracle', 'dragalge', 'hawlucha', 'zygarde', 'diancie',
+    'crabominable', 'drampa', 'falinks', 'scovillain', 'glimmora'
 }
 
 -- Tabella contentente i Pokémon che hanno più megaevoluzioni
@@ -369,7 +370,7 @@ t.necrozma.ext = { vespro = "V", aurora = "A", ultra = "U", necrozma = "base" }
 t.toxtricity.ext = { basso = "B", gigamax = "Gi", melodia = "base" }
 t.alcremie.ext = { lattevaniglia = "base" }
 t.eiscue.ext = { liquefaccia = "L", gelofaccia = "base" }
-t.indeedee.ext = t.meowstic.ext
+t.indeedee.ext = { femmina = "F" }
 t.morpeko.ext = { panciavuota = "V", panciapiena = "base" }
 t.zacian.ext = { eroe = "base", re = "R" }
 t.zamazenta.ext = t.zacian.ext
@@ -379,7 +380,7 @@ t.calyrex.ext = { spettrale = "S", glaciale = "G" }
 t.ursaluna.ext = {}
 t.basculegion.ext = { femmina = "F" }
 t.enamorus.ext = { totem = "T" }
-t.oinkologne.ext = t.meowstic.ext
+t.oinkologne.ext = t.indeedee.ext
 t.palafin.ext = { possente = "P", ingenua = "base" }
 -- stylua: ignore
 t.squawkabilly.ext = { azzurre = "A", gialle = "G", bianche = "B", verdi = "base" }
@@ -460,7 +461,7 @@ t.kyurem.gamesOrder = { "base", "B", "N" }
 t.meloetta.gamesOrder = { "base", "D" }
 t.greninja.gamesOrder = { "base", "A", "M" }
 t.floette.gamesOrder = { "base", "E", "M" }
-t.meowstic.gamesOrder = { "base", "F" }
+t.meowstic.gamesOrder = { "base", "F", "M" }
 t.aegislash.gamesOrder = { "base", "S" }
 t.pumpkaboo.gamesOrder = { "base", "S", "L", "XL" }
 t.zygarde.gamesOrder = { "D", "base", "P", "M" }
@@ -474,7 +475,7 @@ t.minior.gamesOrder = { "base", "R" }
 t.necrozma.gamesOrder = { "base", "V", "A", "U" }
 t.toxtricity.gamesOrder = { "base", "B", "Gi", "BGi" }
 t.eiscue.gamesOrder = { "base", "L" }
-t.indeedee.gamesOrder = t.meowstic.gamesOrder
+t.indeedee.gamesOrder = { "base", "F" }
 t.morpeko.gamesOrder = { "base", "V" }
 t.zacian.gamesOrder = { "base", "R" }
 t.zamazenta.gamesOrder = t.zacian.gamesOrder
@@ -484,7 +485,7 @@ t.calyrex.gamesOrder = { "base", "G", "S" }
 t.ursaluna.gamesOrder = { "base", "L" }
 t.basculegion.gamesOrder = { "base", "F" }
 t.enamorus.gamesOrder = { "base", "T" }
-t.oinkologne.gamesOrder = t.meowstic.gamesOrder
+t.oinkologne.gamesOrder = t.indeedee.gamesOrder
 t.palafin.gamesOrder = { "base", "P" }
 t.squawkabilly.gamesOrder = { "base", "A", "G", "B" }
 t.gimmighoul.gamesOrder = { "base", "A" }
@@ -608,7 +609,7 @@ t.tornadus.since = { T = "n2b2", base = "nb" }
 t.kyurem.since = { N = "n2b2", B = "n2b2", base = "nb" }
 t.meloetta.since = { D = "nb", base = "nb" }
 t.greninja.since = { A = "sl", M = "lpza", base = "xy" }
-t.meowstic.since = { F = "xy", base = "xy" }
+t.meowstic.since = { F = "xy", base = "xy", M = "lpza" }
 t.aegislash.since = { S = "xy", base = "xy" }
 t.sliggoo.since = { H = "lpa", base = "xy" }
 t.pumpkaboo.since = { S = "xy", L = "xy", XL = "xy", base = "xy" }
@@ -714,13 +715,15 @@ t.grimmsnarl.since = { base = "spsc", Gi = "spsc" }
 t.alcremie.since = { base = "spsc", Gi = "spsc" }
 t.copperajah.since = { base = "spsc", Gi = "spsc" }
 t.duraludon.since = { base = "spsc", Gi = "spsc" }
-t.dragonite.since = { base = "rb", M = "lpza" }
 t.barbaracle.since = { base = "xy", M = "lpza" }
 t.chandelure.since = { base = "nb", M = "lpza" }
 t.chesnaught.since = { base = "xy", M = "lpza" }
+t.chimecho.since = { base = "rz", M = "lpza" }
 t.clefable.since = { base = "rb", M = "lpza" }
+t.crabominable.since = { base = "sl", M = "lpza" }
 t.delphox.since = { base = "xy", M = "lpza" }
 t.dragalge.since = { base = "xy", M = "lpza" }
+t.dragonite.since = { base = "rb", M = "lpza" }
 t.drampa.since = { base = "sl", M = "lpza" }
 t.eelektross.since = { base = "nb", M = "lpza" }
 t.emboar.since = { base = "nb", M = "lpza" }
@@ -729,11 +732,14 @@ t.falinks.since = { base = "spsc", M = "lpza" }
 t.feraligatr.since = { base = "oa", M = "lpza" }
 t.floette.since = { base = "xy", E = "xy", M = "lpza" }
 t.froslass.since = { base = "dp", M = "lpza" }
+t.glimmora.since = { base = "sv", M = "lpza" }
+t.golurk.since = { base = "nb", M = "lpza" }
 t.hawlucha.since = { base = "xy", M = "lpza" }
 t.malamar.since = { base = "xy", M = "lpza" }
 t.meganium.since = { base = "oa", M = "lpza" }
 t.pyroar.since = { base = "xy", M = "lpza" }
 t.scolipede.since = { base = "nb", M = "lpza" }
+t.scovillain.since = { base = "sv", M = "lpza" }
 t.scrafty.since = { base = "nb", M = "lpza" }
 t.skarmory.since = { base = "oa", M = "lpza" }
 t.starmie.since = { base = "rb", M = "lpza" }
@@ -887,6 +893,7 @@ t[323] = t.camerupt
 t[334] = t.altaria
 t[351] = t.castform
 t[354] = t.banette
+t[358] = t.chimecho
 t[359] = t.absol
 t[362] = t.glalie
 t[373] = t.salamence
@@ -928,6 +935,7 @@ t[571] = t.zoroark
 t[604] = t.eelektross
 t[609] = t.chandelure
 t[618] = t.stunfisk
+t[623] = t.golurk
 t[628] = t.braviary
 t[641] = t.tornadus
 t[642] = t.thundurus
@@ -954,6 +962,7 @@ t[718] = t.zygarde
 t[719] = t.diancie
 t[720] = t.hoopa
 t[724] = t.decidueye
+t[740] = t.crabominable
 t[741] = t.oricorio
 t[745] = t.lycanroc
 t[746] = t.wishiwashi
@@ -994,7 +1003,9 @@ t[902] = t.basculegion
 t[905] = t.enamorus
 t[916] = t.oinkologne
 t[931] = t.squawkabilly
+t[952] = t.scovillain
 t[964] = t.palafin
+t[970] = t.glimmora
 t[999] = t.gimmighoul
 t[1017] = t.ogerpon
 t[1024] = t.terapagos

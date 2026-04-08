@@ -2344,6 +2344,8 @@ t.aggronM = {name = 'Aggron', ndex = 306, type1 = 'acciaio', type2 = 'acciaio'}
 t["0306M"] = t.aggronM
 t.altariaM = {name = 'Altaria', ndex = 334, type1 = 'drago', type2 = 'folletto'}
 t["0334M"] = t.altariaM
+t.chimechoM = {name = 'Chimecho', ndex = 358, type1 = 'psico', type2 = 'acciaio'}
+t["0358M"] = t.chimechoM
 t.absolMZ = {name = 'Absol', ndex = 359, type1 = 'buio', type2 = 'spettro'}
 t["0359MZ"] = t.absolMZ
 t.groudonA = {name = 'Groudon', ndex = 383, type1 = 'terra', type2 = 'fuoco'}
@@ -2388,6 +2390,7 @@ t.basculinBi, t["0550Bi"] = t.basculin, t.basculin
 t.scraftyM, t["0560M"] = t.scrafty, t.scrafty
 t.eelektrossM, t["0604M"] = t.eelektross, t.eelektross
 t.chandelureM, t["0609M"] = t.chandelure, t.chandelure
+t.golurkM, t["0623M"] = t.golurk, t.golurk
 t.tornadusT, t["0641T"] = t.tornadus, t.tornadus
 t.thundurusT, t["0642T"] = t.thundurus, t.thundurus
 t.landorusT, t["0645T"] = t.landorus, t.landorus
@@ -2401,6 +2404,7 @@ t.pyroarM, t["0668M"] = t.pyroar, t.pyroar
 t.floetteE, t["0670E"], t.floetteM, t["0670M"] =
     t.floette, t.floette, t.floette, t.floette
 t.meowsticF, t["0678F"] = t.meowstic, t.meowstic
+t.meowsticM, t["0678M"] = t.meowstic, t.meowstic
 t.malamarM, t["0687M"] = t.malamar, t.malamar
 t.aegislashS, t["0681S"] = t.aegislash, t.aegislash
 t.malamarM, t["0687M"] = t.malamar, t.malamar
@@ -2412,6 +2416,7 @@ t.gourgeistS, t["0711S"], t.gourgeistL, t["0711L"], t.gourgeistXL, t["0711XL"] =
     t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist, t.gourgeist
 t.zygardeD, t["0718D"], t.zygardeP, t["0718P"], t.zygardeM, t["0718M"] =
     t.zygarde, t.zygarde, t.zygarde, t.zygarde, t.zygarde, t.zygarde
+t.crabominableM, t["0740M"] = t.crabominable, t.crabominable
 t.lycanrocN, t["0745N"], t.lycanrocC, t["0745C"] =
     t.lycanroc, t.lycanroc, t.lycanroc, t.lycanroc
 t.wishiwashiB, t["0746B"] = t.wishiwashi, t.wishiwashi
@@ -2426,16 +2431,15 @@ t.eternatusD, t["0890D"] = t.eternatus, t.eternatus
 t.ursalunaL, t["0901L"] = t.ursaluna, t.ursaluna
 t.basculegionF, t["0902F"] = t.basculegion, t.basculegion
 t.enamorusT, t["0905T"] = t.enamorus, t.enamorus
-t.oinkologneF = t.oinkologne
-t["0916F"] = t.oinkologneF
-t.palafinP = t.palafin
-t["0964P"] = t.palafinP
+t.oinkologneF, t["0916F"] = t.oinkologne, t.oinkologneF
+t.palafinP, t["0964P"] = t.palafin, t.palafin
 t.squawkabillyA, t.squawkabillyG, t.squawkabillyB =
     t.squawkabilly, t.squawkabilly, t.squawkabilly
 t["0931A"], t["0931G"], t["0931B"] =
     t.squawkabilly, t.squawkabilly, t.squawkabilly
-t.gimmighoulA = t.gimmighoul
-t["0999A"] = t.gimmighoulA
+t.scovillainM, t["0952M"] = t.scovillain, t.scovillain
+t.glimmoraM, t["0970M"] = t.glimmora, t.glimmora
+t.gimmighoulA, t["0999A"] = t.gimmighoul, t.gimmighoul
 t.terapagosT, t["1024T"] = t.terapagos, t.terapagos
 t.terapagosA, t["1024A"] = t.terapagos, t.terapagos
 

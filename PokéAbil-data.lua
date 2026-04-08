@@ -2380,9 +2380,11 @@ t.raichuMX = { ability1 = "Sconosciuta" }
 t["0026MX"] = t.raichuMX
 t.raichuMY = { ability1 = "Sconosciuta" }
 t["0026MY"] = t.raichuMY
+t.clefableM = { ability1 = "Magispecchio" }
+t["0036M"] = t.clefableM
 t.alakazamM = { ability1 = "Traccia" }
 t["0065M"] = t.alakazamM
-t.victreebelM = { ability1 = "Sconosciuta" }
+t.victreebelM = { ability1 = "Espellinterno" }
 t["0071M"] = t.victreebelM
 t.slowbroM = { ability1 = "Guscioscudo" }
 t["0080M"] = t.slowbroM
@@ -2392,6 +2394,8 @@ t.kangaskhanM = { ability1 = "Amorefiliale" }
 t["0115M"] = t.kangaskhanM
 t.pinsirM = { ability1 = "Pellecielo" }
 t["0127M"] = t.pinsirM
+t.starmieM = { ability1 = "Macroforza" }
+t["0121M"] = t.starmieM
 t.gyaradosM = { ability1 = "Rompiforma" }
 t["0130M"] = t.gyaradosM
 t.aerodactylM = { ability1 = "Unghiedure" }
@@ -2416,6 +2420,8 @@ t.heracrossM = { ability1 = "Abillegame" }
 t["0214M"] = t.heracrossM
 t.houndoomM = { ability1 = "Solarpotere" }
 t["0229M"] = t.houndoomM
+t.skarmoryM = { ability1 = "Volontà di Ferro" }
+t["0227M"] = t.skarmoryM
 t.tyranitarM = { ability1 = "Sabbiafiume" }
 t["0248M"] = t.tyranitarM
 t.sceptileM = { ability1 = "Parafulmine" }
@@ -2444,6 +2450,8 @@ t.altariaM = { ability1 = "Pellefolletto" }
 t["0334M"] = t.altariaM
 t.banetteM = { ability1 = "Burla" }
 t["0354M"] = t.banetteM
+t.chimechoM = { ability1 = "Levitazione" }
+t["0358M"] = t.chimechoM
 t.absolM = { ability1 = "Magispecchio" }
 t["0359M"] = t.absolM
 t.absolMZ = { ability1 = "Sconosciuta" }
@@ -2482,62 +2490,60 @@ t.froslassM = { ability1 = "Scendineve" }
 t["0478M"] = t.froslassM
 t.emboarM = { ability1 = "Rompiforma" }
 t["0500M"] = t.emboarM
+t.excadrillM = { ability1 = "Punta Perforante" }
+t["0530M"] = t.excadrillM
 t.audinoM = { ability1 = "Curacuore" }
 t["0531M"] = t.audinoM
+t.chandelureM = { ability1 = "Intrapasso" }
+t["0609M"] = t.chandelureM
+t.golurkM = { ability1 = "Pugni Invisibili" }
+t["0623M"] = t.golurkM
 t.chesnaughtM = { ability1 = "Antiproiettile" }
 t["0652M"] = t.chesnaughtM
 t.delphoxM = { ability1 = "Levitazione" }
 t["0655M"] = t.delphoxM
 t.greninjaM = { ability1 = "Mutatipo" }
 t["0658M"] = t.greninjaM
+t.floetteM = { ability1 = "Aurafolletto" }
+t["0670M"] = t.floetteM
+t.meowsticM = { ability1 = "Traccia" }
+t["0678M"] = t.meowsticM
 t.malamarM = { ability1 = "Sconosciuta" }
 t["0687M"] = t.malamarM
-t.hawluchaM = { ability1 = "Sconosciuta" }
+t.hawluchaM = { ability1 = "Nullodifesa" }
 t["0701M"] = t.hawluchaM
 t.diancieM = { ability1 = "Magispecchio" }
 t["0719M"] = t.diancieM
+t.crabominableM = { ability1 = "Ferropugno" }
+t["0740M"] = t.crabominableM
+t.drampaM = { ability1 = "Furore" }
+t["0780M"] = t.drampaM
+t.scovillainM = { ability1 = "Spargipiccante" }
+t["0952M"] = t.scovillainM
+t.glimmoraM = { ability1 = "Adattabilità" }
+t["0970M"] = t.glimmoraM
 
 -- LPZA placeholders
 t.raichuMX = { ability1 = "Sconosciuta" }
 t["0026MX"] = t.raichuMX
 t.raichuMY = { ability1 = "Sconosciuta" }
 t["0026MY"] = t.raichuMY
-t.clefableM = { ability1 = "Sconosciuta" }
-t["0036M"] = t.clefableM
-t.victreebelM = { ability1 = "Sconosciuta" }
-t["0071M"] = t.victreebelM
-t.starmieM = { ability1 = "Sconosciuta" }
-t["0121M"] = t.starmieM
-t.skarmoryM = { ability1 = "Sconosciuta" }
-t["0227M"] = t.skarmoryM
-t.excadrillM = { ability1 = "Sconosciuta" }
-t["0530M"] = t.excadrillM
 t.scolipedeM = { ability1 = "Sconosciuta" }
 t["0545M"] = t.scolipedeM
 t.scraftyM = { ability1 = "Sconosciuta" }
 t["0560M"] = t.scraftyM
 t.eelektrossM = { ability1 = "Sconosciuta" }
 t["0604M"] = t.eelektrossM
-t.chandelureM = { ability1 = "Sconosciuta" }
-t["0609M"] = t.chandelureM
 t.pyroarM = { ability1 = "Sconosciuta" }
 t["0668M"] = t.pyroarM
 t.floetteE = { ability1 = "Sconosciuta" }
 t["0670E"] = t.floetteE
-t.floetteM = { ability1 = "Sconosciuta" }
-t["0670M"] = t.floetteM
-t.malamarM = { ability1 = "Sconosciuta" }
-t["0687M"] = t.malamarM
 t.barbaracleM = { ability1 = "Sconosciuta" }
 t["0689M"] = t.barbaracleM
 t.dragalgeM = { ability1 = "Sconosciuta" }
 t["0691M"] = t.dragalgeM
-t.hawluchaM = { ability1 = "Sconosciuta" }
-t["0701M"] = t.hawluchaM
 t.zygardeM = { ability1 = "Sconosciuta" }
 t["0718M"] = t.zygardeM
-t.drampaM = { ability1 = "Sconosciuta" }
-t["0780M"] = t.drampaM
 t.falinksM = { ability1 = "Sconosciuta" }
 t["0870M"] = t.falinksM
 
