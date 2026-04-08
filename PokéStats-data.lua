@@ -619,9 +619,9 @@ d.lairon = {hp = 60, atk = 90, def = 140, spatk = 50, spdef = 50, spe = 40}
 d[305] = d.lairon
 d.aggron = {hp = 70, atk = 110, def = 180, spatk = 60, spdef = 60, spe = 50}
 d[306] = d.aggron
-d.meditite = {hp = 30, atk = {[8] = 40, [9] = 56}, def = 55, spatk = 40, spdef = 55, spe = 60}
+d.meditite = {hp = 30, atk = 40, def = 55, spatk = 40, spdef = 55, spe = 60}
 d[307] = d.meditite
-d.medicham = {hp = 60, atk = {[8] = 60, [9] = 84}, def = 75, spatk = 60, spdef = 75, spe = 80}
+d.medicham = {hp = 60, atk = 60, def = 75, spatk = 60, spdef = 75, spe = 80}
 d[308] = d.medicham
 d.electrike = {hp = 40, atk = 45, def = 40, spatk = 65, spdef = 40, spe = 65}
 d[309] = d.electrike
@@ -2210,7 +2210,7 @@ d.gengarM = {hp = 60, atk = 65, def = 80, spatk = 170, spdef = 95, spe = 130}
 d["0094M"] = d.gengarM
 d.kangaskhanM = {hp = 105, atk = 125, def = 100, spatk = 60, spdef = 100, spe = 100}
 d["0115M"] = d.kangaskhanM
-d.starmieM = {hp = 60, atk = 140, def = 105, spatk = 130, spdef = 105, spe = 120}
+d.starmieM = {hp = 60, atk = 100, def = 105, spatk = 130, spdef = 105, spe = 120}
 d["0121M"] = d.starmieM
 d.pinsirM = {hp = 65, atk = 155, def = 120, spatk = 65, spdef = 90, spe = 105}
 d["0127M"] = d.pinsirM
@@ -2252,11 +2252,11 @@ d.gardevoirM = {hp = 68, atk = 85, def = 65, spatk = 165, spdef = 135, spe = 100
 d["0282M"] = d.gardevoirM
 d.sableyeM = {hp = 50, atk = 85, def = 125, spatk = 85, spdef = 115, spe = 20}
 d["0302M"] = d.sableyeM
-d.mawileM = {hp = 50, atk = {[8] = 105, [9] = 147}, def = 125, spatk = 55, spdef = 95, spe = 50}
+d.mawileM = {hp = 50, atk = 105, def = 125, spatk = 55, spdef = 95, spe = 50}
 d["0303M"] = d.mawileM
 d.aggronM = {hp = 70, atk = 140, def = 230, spatk = 60, spdef = 80, spe = 50}
 d["0306M"] = d.aggronM
-d.medichamM = {hp = 60, atk = {[8] = 100, [9] = 140}, def = 85, spatk = 80, spdef = 85, spe = 100}
+d.medichamM = {hp = 60, atk = 100, def = 85, spatk = 80, spdef = 85, spe = 100}
 d["0308M"] = d.medichamM
 d.manectricM = {hp = 70, atk = 75, def = 80, spatk = 135, spdef = 80, spe = 135}
 d["0310M"] = d.manectricM
