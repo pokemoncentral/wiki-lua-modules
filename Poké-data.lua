@@ -2431,7 +2431,7 @@ t.eternatusD, t["0890D"] = t.eternatus, t.eternatus
 t.ursalunaL, t["0901L"] = t.ursaluna, t.ursaluna
 t.basculegionF, t["0902F"] = t.basculegion, t.basculegion
 t.enamorusT, t["0905T"] = t.enamorus, t.enamorus
-t.oinkologneF, t["0916F"] = t.oinkologne, t.oinkologneF
+t.oinkologneF, t["0916F"] = t.oinkologne, t.oinkologne
 t.palafinP, t["0964P"] = t.palafin, t.palafin
 t.squawkabillyA, t.squawkabillyG, t.squawkabillyB =
     t.squawkabilly, t.squawkabilly, t.squawkabilly
