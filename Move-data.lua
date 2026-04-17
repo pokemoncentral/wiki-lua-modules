@@ -385,7 +385,7 @@ t.rivincita = {name = 'Rivincita', type = 'buio', category = 'fisico', power = 5
 t.garanzia = {name = 'Garanzia', type = 'buio', category = 'fisico', power = 60, accuracy = 100, pp = 10, gen = 4}
 t.divieto = {name = 'Divieto', type = 'buio', category = 'stato', power = '&mdash;', accuracy = 100, pp = 15, gen = 4}
 t.lancio = {name = 'Lancio', type = 'buio', category = 'fisico', power = '&mdash;', accuracy = 100, pp = 10, stab = true, gen = 4}
-t.psicotrasfer = {name =  {[4] = "Psicotrasfer", [9] = "Psicotransfer"}, type = 'psico', category = 'stato', power = '&mdash;', accuracy = 100, pp = 10, gen = 4}
+t.psicotrasfer = {name =  {[4] = "Psicotrasfer", [8] = "Psicotransfer"}, type = 'psico', category = 'stato', power = '&mdash;', accuracy = 100, pp = 10, gen = 4}
 t.psicotransfer = t.psicotrasfer
 t.asso = {name = 'Asso', type = 'normale', category = 'speciale', power = '&mdash;', accuracy = '&mdash;', pp = 5, stab = true, gen = 4}
 t.anticura = {name = 'Anticura', type = 'psico', category = 'stato', power = '&mdash;', accuracy = 100, pp = 15, gen = 4}
