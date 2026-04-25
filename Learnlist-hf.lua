@@ -10,10 +10,11 @@ local mw = require('mw')
 
 local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
+local genUtils = require('Wikilib-gens')
 local lib = require('Wikilib-learnlists')
-local w = require('Wikilib')
 local multigen = require('Wikilib-multigen')
 local wform = require('Wikilib-forms')
+local w = require('Wikilib')
 local css = require('Css')
 local cc = require('ChooseColor')
 local gendata = require("Gens-data")
@@ -281,7 +282,7 @@ d.rowf = rowf
 
 -- Crea i vari headers; chiamata da tutti gli header
 
-local header = function(pars, kind)
+local function header(pars, kind)
     local tipo1, tipo2 = pars[2] or "Sconosciuto", pars[3] or "Sconosciuto"
     local genh, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
     local poke = pars[1] or ""
@@ -312,7 +313,7 @@ end
 
 -- Genera i footer, chiamata da tutti i footer
 
-local footer = function(pars, kind)
+local function footer(pars, kind)
     local tipo1, tipo2 = pars[2] or "Sconosciuto", pars[3] or "Sconosciuto"
     local form = string.lower(pars.form or "none")
     local genf, genp = tonumber(pars[4]) or 0, tonumber(pars[5]) or 0
@@ -382,7 +383,12 @@ d.levelhLPA = function(frame)
         [=[
 <div class="text-center max-width-xl-100">
 <div class="roundy text-center inline-block max-width-xl-100" style="${bg} padding: 0.2em;">
-<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font ${textcolor}">'''Ottava&nbsp;generazione: [[Leggende Pokémon: Arceus|LPA]]'''</span></div>
+<div class="flex-row-center-around flex-wrap ${textcolor}" style="padding: 0.5ex;">
+<div class="big-font"><span class="big-font">'''Ottava&nbsp;generazione: [[Leggende Pokémon: Arceus|LPA]]'''</span></div>
+<div class="text-center" style="font-weight: bold; padding: 0.5ex;">
+<div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
+<div>${links}</div>
+</div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
 {| class="white-rows max-width-xl-100 width-xl-100 no-border-spacing" style="margin-top: 0; background: transparent;"
@@ -399,6 +405,12 @@ d.levelhLPA = function(frame)
 ! Master ]=],
         {
             textcolor = cc.forModGradBgLua(pokedata.type1, pokedata.type2),
+            links = d.oldgenslinks(
+                8,
+                genUtils.getGen.ndex(pokedata.ndex),
+                "level",
+                pokedata.name
+            ),
             bg = css.horizGradLua(pokedata),
         }
     )
@@ -464,7 +476,12 @@ d.tutorhLPA = function(frame)
         [=[
 <div class="text-center max-width-xl-100">
 <div class="roundy text-center inline-block max-width-xl-100" style="${bg} padding: 0.2em;">
-<div class="flex-row-center-around flex-wrap" style="padding: 0.5ex;"><div class="big-font"><span class="big-font ${textcolor}">'''Ottava&nbsp;generazione: [[Leggende Pokémon: Arceus|LPA]]'''</span></div>
+<div class="flex-row-center-around flex-wrap ${textcolor}" style="padding: 0.5ex;">
+<div class="big-font"><span class="big-font">'''Ottava&nbsp;generazione: [[Leggende Pokémon: Arceus|LPA]]'''</span></div>
+<div class="text-center" style="font-weight: bold; padding: 0.5ex;">
+<div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
+<div>${links}</div>
+</div>
 </div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
 {| class="white-rows max-width-xl-100 width-xl-100 no-border-spacing" style="margin-top: 0; background: transparent;"
@@ -478,6 +495,13 @@ d.tutorhLPA = function(frame)
 ! [[PP]]]=],
         {
             textcolor = cc.forModGradBgLua(pokedata.type1, pokedata.type2),
+            links = d.oldgenslinks(
+                8,
+                genUtils.getGen.ndex(pokedata.ndex),
+                "tutor",
+                pokedata.name
+            ),
+
             bg = css.horizGradLua(pokedata),
         }
     )
