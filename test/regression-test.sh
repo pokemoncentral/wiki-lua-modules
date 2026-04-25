@@ -28,6 +28,7 @@ Options:
                     snapshots *currently on the filesystem* are used.
     -p:             Preserve snapshots from the commit provided by -c. If not
                     specified, the snapshots are removed
+    -u:             Update snapshots to the current output of the test.
 "
 
 #######################################
@@ -204,7 +205,7 @@ done < <(basename -a "${TEST_FILES[@]}")
 [ "$EXIT_CODE" -ne 0 ] && {
     echo -ne "${GREEN}[TEST]${RESET} Some tests produced different output than"
     echo -n " the snapshot. If the current output is what's expected, you can "
-    echo 'update the snapshots by mens of'
+    echo 'update the snapshots by means of'
     echo -en "${GREEN}[TEST]${RESET}"
     echo -e "     ${GRAY}bash $0 -u [TEST-FILE...]${RESET}"
 }

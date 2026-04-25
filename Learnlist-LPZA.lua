@@ -13,6 +13,7 @@ local txt = require('Wikilib-strings')
 local tab = require('Wikilib-tables')
 local evolib = require('Wikilib-evos')
 local formsLib = require('Wikilib-forms')
+local genUtils = require('Wikilib-gens')
 local multigen = require('Wikilib-multigen')
 local w = require('Wikilib')
 local box = require('Box')
@@ -109,12 +110,17 @@ l.level = function(frame)
         return levelEntry(level, plusLevel, moveName, pokeTypes, relatedTypes)
     end
 
-    -- TODO: add links to "Tempo di recupero" and "Raggio"
     return string.interp(
         [=[
 <div class="text-center">
 <div class="roundy inline-block max-width-xl-100" style="${bg} padding: 0.2em;">
-<div class="flex-row-center-around flex-wrap big-font" style="padding: 0.5ex;"><span class="big-font ${textcolor}">'''Nona&nbsp;generazione: [[Leggende Pokémon: Z-A|LPZA]]'''</span></div>
+<div class="flex-row-center-around flex-wrap big-font ${textcolor}" style="padding: 0.5ex;">
+<div><span class="big-font">'''Nona&nbsp;generazione: [[Leggende Pokémon: Z-A|LPZA]]'''</span></div>
+<div class="text-center" style="font-weight: bold; padding: 0.5ex;">
+<div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
+<div>${links}</div>
+</div>
+</div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
 {| class="white-rows max-width-xl-100 width-xl-100 no-border-spacing" style="margin-top: 0; background: transparent;"
 |- class="text-center ${textcolor}"
@@ -123,8 +129,8 @@ l.level = function(frame)
 ! rowspan="2" | [[Tipo]]
 ! rowspan="2" | [[Categoria danno|Cat.]]
 ! rowspan="2" | [[Potenza]]
-! rowspan="2" | '''Tempo di recupero'''
-! rowspan="2" | '''Raggio'''
+! rowspan="2" | '''[[Lotta Pokémon (Z-A)#Tempo di recupero e Velocità|Tempo di recupero]]'''
+! rowspan="2" | '''[[Raggio#In Leggende Pokémon: Z-A|Raggio]]'''
 |- class="${textcolor}"
 ! Imp
 ! [[File:Icona Mossa più.png|Mossa +|25px]]
@@ -143,6 +149,12 @@ ${kindrows}
             bg = css.horizGradLua(pokeData),
             levelMoves = render.renderLua(entryFunc, p),
             kindrows = learnlistHf.rowf("level", 9, pokeData.name),
+            links = learnlistHf.oldgenslinks(
+                9,
+                genUtils.getGen.ndex(pokeData.ndex),
+                "level",
+                pokeData.name
+            ),
             poke = pokeData.name,
         }
     )
@@ -182,12 +194,17 @@ l.tm = function(frame)
         )
     end
 
-    -- TODO: add links to "Tempo di recupero" and "Raggio"
     return string.interp(
         [=[
 <div class="text-center">
 <div class="roundy inline-block max-width-xl-100" style="${bg} padding: 0.2em;">
-<div class="flex-row-center-around flex-wrap big-font" style="padding: 0.5ex;"><span class="big-font ${textcolor}">'''Nona&nbsp;generazione: [[Leggende Pokémon: Z-A|LPZA]]'''</span></div>
+<div class="flex-row-center-around flex-wrap big-font ${textcolor}" style="padding: 0.5ex;">
+<div><span class="big-font">'''Nona&nbsp;generazione: [[Leggende Pokémon: Z-A|LPZA]]'''</span></div>
+<div class="text-center" style="font-weight: bold; padding: 0.5ex;">
+<div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
+<div>${links}</div>
+</div>
+</div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
 {| class="white-rows max-width-xl-100 width-xl-100 no-border-spacing" style="margin-top: 0; background: transparent;"
 |- class="text-center ${textcolor}"
@@ -196,8 +213,8 @@ l.tm = function(frame)
 ! [[Tipo]]
 ! [[Categoria danno|Cat.]]
 ! [[Potenza]]
-! '''Tempo di recupero'''
-! '''Raggio'''
+! '''[[Lotta Pokémon (Z-A)#Tempo di recupero e Velocità|Tempo di recupero]]'''
+! '''[[Raggio#In Leggende Pokémon: Z-A|Raggio]]'''
 ${levelMoves}
 |}
 </div>
@@ -214,6 +231,12 @@ ${kindrows}
             bg = css.horizGradLua(pokeData),
             levelMoves = render.renderLua(entryFunc, p),
             kindrows = learnlistHf.rowf("tm", 9, pokeData.name),
+            links = learnlistHf.oldgenslinks(
+                9,
+                genUtils.getGen.ndex(pokeData.ndex),
+                "tm",
+                pokeData.name
+            ),
             alphaIcon = ALPHA_MOVE_ICON,
             poke = pokeData.name,
         }
@@ -245,12 +268,17 @@ l.event = function(frame)
         return eventEntry(event, moveName, pokeTypes, relatedTypes)
     end
 
-    -- TODO: add links to "Tempo di recupero" and "Raggio"
     return string.interp(
         [=[
 <div class="text-center">
 <div class="roundy inline-block max-width-xl-100" style="${bg} padding: 0.2em;">
-<div class="flex-row-center-around flex-wrap big-font" style="padding: 0.5ex;"><span class="big-font ${textcolor}">'''Nona&nbsp;generazione: [[Leggende Pokémon: Z-A|LPZA]]'''</span></div>
+<div class="flex-row-center-around flex-wrap big-font ${textcolor}" style="padding: 0.5ex;">
+<div><span class="big-font">'''Nona&nbsp;generazione: [[Leggende Pokémon: Z-A|LPZA]]'''</span></div>
+<div class="text-center" style="font-weight: bold; padding: 0.5ex;">
+<div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
+<div>${links}</div>
+</div>
+</div>
 <div style="overflow-x: auto; margin: 0 0.3ex;">
 {| class="white-rows max-width-xl-100 width-xl-100 no-border-spacing" style="margin-top: 0; background: transparent;"
 |- class="text-center ${textcolor}"
@@ -259,8 +287,8 @@ l.event = function(frame)
 ! [[Tipo]]
 ! [[Categoria danno|Cat.]]
 ! [[Potenza]]
-! '''Tempo di recupero'''
-! '''Raggio'''
+! '''[[Lotta Pokémon (Z-A)#Tempo di recupero e Velocità|Tempo di recupero]]'''
+! '''[[Raggio#In Leggende Pokémon: Z-A|Raggio]]'''
 ${levelMoves}
 |}
 </div>
@@ -276,6 +304,12 @@ ${kindrows}
             bg = css.horizGradLua(pokeData),
             levelMoves = render.renderLua(entryFunc, p),
             kindrows = learnlistHf.rowf("event", 9, pokeData.name),
+            links = learnlistHf.oldgenslinks(
+                9,
+                genUtils.getGen.ndex(pokeData.ndex),
+                "event",
+                pokeData.name
+            ),
             poke = pokeData.name,
         }
     )

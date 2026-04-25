@@ -221,7 +221,7 @@ Arguments:
 	- poke: name of the Pokémon the learnlist refers to
 
 --]]
-local oldgenslinks = function(genh, genp, method, poke)
+d.oldgenslinks = function(genh, genp, method, poke)
     if genp == gendata.latest or genp == 0 then
         return "Nessuna"
     end
@@ -289,7 +289,8 @@ local header = function(pars, kind)
         [=[
 <div class="text-center max-width-xl-100">
 <div class="roundy text-center inline-block max-width-xl-100" style="${bg} padding: 0.2em;">
-<div class="flex-row-center-around flex-wrap ${textcolor}" style="padding: 0.5ex;"><div><span class="big-font"><span class="big-font">'''${gentitle}&nbsp;generazione'''</span></span></div>
+<div class="flex-row-center-around flex-wrap ${textcolor}" style="padding: 0.5ex;">
+<div><span class="big-font"><span class="big-font">'''${gentitle}&nbsp;generazione'''</span></span></div>
 <div class="text-center" style="font-weight: bold; padding: 0.5ex;">
 <div class="small-font" style="margin-top: 0.5ex;">Altre&nbsp;generazioni:</div>
 <div>${links}</div>
@@ -303,7 +304,7 @@ ${low_row}]=],
             textcolor = cc.forModGradBgLua(tipo1, tipo2),
             bg = css.horizGradLua({ type1 = tipo1, type2 = tipo2 }),
             gentitle = string.fu(gendata[genh].ext),
-            links = oldgenslinks(genh, genp, kind, poke),
+            links = d.oldgenslinks(genh, genp, kind, poke),
             low_row = lowrow(genh, kind, cc.forModGradBgLua(tipo1, tipo2)),
         }
     )
