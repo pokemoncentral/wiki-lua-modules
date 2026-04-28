@@ -1054,6 +1054,14 @@ x.MEX = {
         },
     },
 }
+x.Ch = {
+    {
+        link = "Pokémon Champions",
+        display = {
+            { "Ch", "champions" },
+        },
+    },
+}
 
 -- Non-games abbreviations
 x.CPM = {
