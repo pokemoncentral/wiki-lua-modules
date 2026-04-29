@@ -66,8 +66,10 @@ to others, thus there's aliasing at the end of the module.
 t.pikachu = mergeByName("pikachu")
 t.pyroar = mergeByName("pyroar")
 t.floette = mergeByName("floette")
+t.magearna = mergeByName("magearna")
 t.alcremie = mergeByName("alcremie")
 t.alcremie.names.base = useless.alcremie.names.base
+t.tatsugiri = mergeByName("tatsugiri")
 -- The copy is needed to remove tha metatable that mw.loadData doesn't like
 t.minior = tab.copy(useless.minior)
 t.magearna = mergeByName("magearna")
@@ -83,9 +85,11 @@ t.pikachu.gamesOrder = {
 }
 t.pyroar.gamesOrder = { "base", "F", "M" }
 t.floette.gamesOrder = { "base", "E", "M", "G", "A", "Bl", "Bi" }
+t.magearna.gamesOrder = { "base", "A", "M", "AM" }
 t.alcremie.gamesOrder = tab.copy(useless.alcremie.gamesOrder)
 t.magearna.gamesOrder = { "base", "M", "A" }
 table.insert(t.alcremie.gamesOrder, "Gi")
+t.tatsugiri.gamesOrder = { "base", "A", "T", "M", "AM", "TM" }
 
 -- Aliasing, put here to avoid needless repetitions of previous cycles.
 
@@ -95,5 +99,6 @@ t[670] = t.floette
 t[774] = t.minior
 t[801] = t.magearna
 t[869] = t.alcremie
+t[978] = t.tatsugiri
 
 return t

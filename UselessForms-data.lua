@@ -89,7 +89,7 @@ t.furfrou.names = {C = 'Taglio Cuore', St = 'Taglio Stella',
 	F = 'Taglio Faraone', base = 'Forma Selvatica'}
 t.xerneas.names = {A = 'Modo Attivo', base = 'Modo Relax'}
 t.mimikyu.names = {S = 'Forma Smascherata', base = 'Forma Mascherata'}
-t.magearna.names = {A = 'Colore Antico', base = ''}
+t.magearna.names = {A = "Colore Antico", AM = "MegaMagearna Colore Antico", base = ""}
 t.minior.names = {R = 'Nucleo Rosso', Ar = 'Nucleo Arancione',
 	G = 'Nucleo Giallo', Ve = 'Nucleo Verde', Az = 'Nucleo Azzurro',
 	I = 'Nucleo Indaco', Vi = 'Nucleo Violetto', base = 'Forma Meteora'}
@@ -99,7 +99,9 @@ t.sinistea.names = {base = "Forma Contraffatta", A = "Forma Autentica"}
 t.zarude.names = { P = "Zarude Papà", base = "" }
 t.dudunsparce.names = { base = "Forma Bimetamero", T = "Forma Trimetamero" }
 t.maushold.names = { base = "Quadrifamiglia", T = "Trifamiglia" }
-t.tatsugiri.names = { base = "Forma Arcuata", A = "Forma Adagiata", T = "Forma Tesa" }
+t.tatsugiri.names = { base = "Forma Arcuata", A = "Forma Adagiata",
+	T = "Forma Tesa", AM = "MegaTatsugiri Forma Adagiata",
+	TM = "MegaTatsugiri Forma Tesa" }
 -- stylua: ignore end
 t.poltchageist.names = { base = "Forma Taroccata", P = "Forma Pregiata" }
 t.sinistcha.names = { base = "Forma Dozzinale", E = "Forma Eccezionale" }
@@ -174,7 +176,7 @@ t.alcremie.ext = {lattevaniglia = 'base', latterosa = 'R', lattematcha = 'Ma',
 t.zarude.ext = {['papà'] = 'P'}
 t.dudunsparce.ext = { trimetamero = "T", bimetamero = "base" }
 t.maushold.ext = { quadrifamiglia = "base", trifamiglia = "T" }
-t.tatsugiri.ext = { adagiata = "A", tesa = "T",  arcuata = "base" }
+t.tatsugiri.ext = { adagiata = "A", tesa = "T",  arcuata = "base", mega = "M" }
 -- stylua: ignore end
 t.poltchageist.ext = {}
 t.sinistcha.ext = {}
@@ -207,14 +209,14 @@ t.furfrou.gamesOrder = {'base', 'C', 'St', 'Si', 'Gd', 'D', 'Gu', 'R', 'K', 'F'}
 t.xerneas.gamesOrder = {'base', 'A'}
 t.minior.gamesOrder = {'base', 'R', 'Ar', 'G', 'Ve', 'Az', 'I', 'Vi'}
 t.mimikyu.gamesOrder = {'base', 'S'}
-t.magearna.gamesOrder = {'base', 'A'}
+t.magearna.gamesOrder = {"base", "A", "AM"}
 t.cramorant.gamesOrder = {'base', 'T', 'I'}
 t.sinistea.gamesOrder = {'base', 'A'}
 -- Alcremie's gamesOrder is filled below, with since
 t.zarude.gamesOrder = {'base', 'P'}
 t.dudunsparce.gamesOrder = { "base", "T" }
 t.maushold.gamesOrder = { "base", "T" }
-t.tatsugiri.gamesOrder = { "base", "A", "T" }
+t.tatsugiri.gamesOrder = { "base", "A", "T", "AM", "TM" }
 -- stylua: ignore end
 t.poltchageist.gamesOrder = { "base", "P" }
 t.sinistcha.gamesOrder = { "base", "E" }
@@ -252,12 +254,12 @@ t.xerneas.since = {A = 'xy', base = 'xy'}
 t.minior.since = {base = 'sl', R = 'sl', Ar = 'sl', G = 'sl', Ve = 'sl',
 	Az = 'sl', I = 'sl', Vi = 'sl'}
 t.mimikyu.since = {base = 'sl', S = 'sl'}
-t.magearna.since = {base = 'sl', A = 'sl'}
+t.magearna.since = {base = "sl", A = "sl", AM = "lpza"}
 t.cramorant.since = {T = 'spsc', I = 'spsc', base = 'spsc'}
 t.sinistea.since = {base = 'spsc', A = 'spsc'}
 t.dudunsparce.since = { base = "sv", T = "sv" }
 t.maushold.since = { base = "sv", T = "sv" }
-t.tatsugiri.since = { base = "sv", A = "sv", T = "sv" }
+t.tatsugiri.since = { base = "sv", A = "sv", T = "sv", AM = "lpza", TM = "lpza" }
 -- stylua: ignore end
 t.poltchageist.since = { base = "sv", P = "sv" }
 t.sinistcha.since = { base = "sv", E = "sv" }

@@ -99,6 +99,7 @@ t.enamorus = {}
 t.oinkologne = {}
 t.palafin = {}
 t.squawkabilly = {}
+t.tatsugiri = {}
 t.gimmighoul = {}
 t.ogerpon = {}
 t.terapagos = {}
@@ -248,6 +249,7 @@ t.enamorus.names = {T = 'Forma Totem', base = 'Forma Incarnazione'}
 t.oinkologne.names = {F = 'Femmina', base = 'Maschio'}
 t.palafin.names = {P = 'Forma Possente', base = 'Forma Ingenua'}
 t.squawkabilly.names = {A = 'Piume Azzurre', G = 'Piume Gialle', B = 'Piume Bianche', base = 'Piume Verdi'}
+t.tatsugiri.names = {M = "MegaTatsugiri Forma Arcuata", base = "Forma Arcuata"}
 t.gimmighoul.names = {A = 'Forma Ambulante', base = 'Forma Scrigno'}
 t.ogerpon.names = { base = "Maschera Turchese", Fn = "Maschera Fondamenta",
     P = "Maschera Pozzo", Fc = "Maschera Focolare", TT = "Maschera Turchese (Teracristal)",
@@ -683,11 +685,14 @@ t.metagross.since = { M = "roza", base = "rz" }
 t.latias.since = { M = "roza", base = "rz" }
 t.latios.since = { M = "roza", base = "rz" }
 t.rayquaza.since = { M = "roza", base = "rz" }
+t.staraptor.since = { M = "lpza", base = "dp" }
 t.lopunny.since = { M = "roza", base = "dp" }
 t.garchomp.since = { M = "xy", MZ = "lpza", base = "dp" }
 t.lucario.since = { M = "xy", MZ = "lpza", base = "dp" }
 t.abomasnow.since = { M = "xy", base = "dp" }
 t.gallade.since = { M = "roza", base = "dp" }
+t.heatran.since = { M = "lpza", base = "dp" }
+t.darkrai.since = { M = "lpza", base = "dp" }
 t.audino.since = { M = "roza", base = "nb" }
 t.diancie.since = { M = "roza", base = "xy" }
 t.charizard.since = { MX = "xy", MY = "xy", Gi = "spsc", base = "rb" }
@@ -928,7 +933,7 @@ t[483] = t.dialga
 t[484] = t.palkia
 t[485] = t.heatran
 t[487] = t.giratina
-t[491] = t.magearna
+t[491] = t.darkrai
 t[492] = t.shaymin
 t[493] = t.arceus
 t[500] = t.emboar

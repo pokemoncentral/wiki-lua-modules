@@ -137,25 +137,25 @@
 ! colspan="2" style="padding: 0.3ex 0.8ex;" | Statistiche base
 |-
 | class="roundytl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #E1FFD3;" | [[Statistiche#PS|<span style="color: #58E810;">PS</span>]]
-| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 25.185185185185%); color: #2E7A08; background-size: 100%; background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''68'''</div>
+| class="roundytr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #E1FFD3;" | <div class="roundyright text-left" style="width: calc(1em + 25.200779727096%); color: #2E7A08; background-size: 100%; background-image: linear-gradient(to right, #E1FFD3, #58E810);;">'''68,04'''</div>
 |-
 | style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFFBE6;" | [[Statistiche#Attacco|<span style="color: #EACA2F;">Attacco</span>]]
-| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 28.586956521739%); color: #B88C00; background-size: 100%; background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''77,18'''</div>
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFFBE6;" | <div class="roundyright text-left" style="width: calc(1em + 29.212475633528%); color: #B88C00; background-size: 100%; background-image: linear-gradient(to right, #FFFBE6, #EACA2F);;">'''78,87'''</div>
 |-
 | style="width: 5.5em; padding: 0.3ex 0.8ex; background: #FFC499;" | [[Statistiche#Difesa|<span style="color: #E5721D;">Difesa</span>]]
-| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 25.986312399356%); color: #8E3600; background-size: 100%; background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''70,16'''</div>
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #FFC499;" | <div class="roundyright text-left" style="width: calc(1em + 26.042884990253%); color: #8E3600; background-size: 100%; background-image: linear-gradient(to right, #FFC499, #E5721D);;">'''70,32'''</div>
 |-
 | style="width: 5.5em; padding: 0.3ex 0.8ex; background: #B2E3EF;" | [[Statistiche#Attacco_Speciale|<span style="color: #26BAE0;">Att. Sp.</span>]]
-| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 32.415458937198%); color: #15687D; background-size: 100%; background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''87,52'''</div>
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #B2E3EF;" | <div class="roundyright text-left" style="width: calc(1em + 32.939571150097%); color: #15687D; background-size: 100%; background-image: linear-gradient(to right, #B2E3EF, #26BAE0);;">'''88,94'''</div>
 |-
 | style="width: 5.5em; padding: 0.3ex 0.8ex; background: #9EB5FF;" | [[Statistiche#Difesa_Speciale|<span style="color: #4C6CD4;">Dif. Sp.</span>]]
-| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 26.280193236715%); color: #0A163D; background-size: 100%; background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''70,96'''</div>
+| style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #9EB5FF;" | <div class="roundyright text-left" style="width: calc(1em + 26.444444444444%); color: #0A163D; background-size: 100%; background-image: linear-gradient(to right, #9EB5FF, #4C6CD4);;">'''71,40'''</div>
 |-
 | class="roundybl" style="width: 5.5em; padding: 0.3ex 0.8ex; background: #EF8DEC;" | [[Statistiche#Velocità|<span style="color: #D425CE;">Velocità</span>]]
-| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 30.676328502415%); color: #380036; background-size: 100%; background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''82,83'''</div>
+| class="roundybr" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex; min-width: 9em; background: #EF8DEC;" | <div class="roundyright text-left" style="width: calc(1em + 31.239766081871%); color: #380036; background-size: 100%; background-image: linear-gradient(to right, #EF8DEC, #D425CE);;">'''84,35'''</div>
 |-
 | style="padding: 0.3ex 0.8ex;" | Totale
-| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | 456,65
+| class="text-left" style="padding: 0.3ex 0.8ex 0.3ex 1.8ex;" | 461,92
 |}
 
 ~~~~~~~~~~~~~~ TypeAvg - [ Fuoco, 4 ] ~~~~~~~~~~~~~~
