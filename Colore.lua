@@ -704,6 +704,8 @@ c.Strumentilotta, c["strumenti lotta"], c["Strumenti lotta"] =
     c.strumentilotta, c.strumentilotta, c.strumentilotta
 c.strumentivari, c["strumenti vari"], c["Strumenti vari"], c["strumenti Vari"], c["Strumenti Vari"] =
     c.strumenti, c.strumenti, c.strumenti, c.strumenti, c.strumenti
+c.strumentichiave, c["strumenti chiave"], c["Strumenti chiave"], c["strumenti Chiave"], c["Strumenti Chiave"] =
+    c.strumentibase, c.strumentibase, c.strumentibase, c.strumentibase, c.strumentibase
 c.messaggi = _colore("1890B0", "18A8D0", "208090")
 c.Messaggi = c.messaggi
 c.cristalliz = _colore("AB6900", "FFB744", "4D1F00")
