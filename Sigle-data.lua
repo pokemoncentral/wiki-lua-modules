@@ -740,12 +740,20 @@ x.LPZA = {
         },
     },
 }
+x.MDIM = {
+    {
+        link = "Leggende Pokémon: Z-A - DLC Megadimensione",
+        display = {
+            { "MDIM", "megadimensione" },
+        },
+    },
+}
 x.Ve = {
     {
         link = "Pokémon Vento e Onda",
         text = "Vento",
         display = {
-            { "Ve", "volante" }, -- "vento" },
+            { "Ve", "vento" },
         },
     },
 }
@@ -754,7 +762,7 @@ x.On = {
         link = "Pokémon Vento e Onda",
         text = "Onda",
         display = {
-            { "On", "acqua" }, -- "onda" },
+            { "On", "onda" },
         },
     },
 }
