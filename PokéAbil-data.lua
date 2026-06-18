@@ -2376,9 +2376,9 @@ t.beedrillM = { ability1 = "Adattabilità" }
 t["0015M"] = t.beedrillM
 t.pidgeotM = { ability1 = "Nullodifesa" }
 t["0018M"] = t.pidgeotM
-t.raichuMX = { ability1 = "Sconosciuta" }
+t.raichuMX = { ability1 = "Elettrogenesi" }
 t["0026MX"] = t.raichuMX
-t.raichuMY = { ability1 = "Sconosciuta" }
+t.raichuMY = { ability1 = "Nullodifesa" }
 t["0026MY"] = t.raichuMY
 t.clefableM = { ability1 = "Magispecchio" }
 t["0036M"] = t.clefableM
@@ -2472,7 +2472,7 @@ t.groudonA = { ability1 = "Terra Estrema" }
 t["0383A"] = t.groudonA
 t.rayquazaM = { ability1 = "Flusso Delta" }
 t["0384M"] = t.rayquazaM
-t.staraptorM = { ability1 = "Sconosciuta" }
+t.staraptorM = { ability1 = "Inversione" }
 t["0398M"] = t.staraptorM
 t.lopunnyM = { ability1 = "Nervisaldi" }
 t["0428M"] = t.lopunnyM
@@ -2500,6 +2500,10 @@ t.excadrillM = { ability1 = "Punta Perforante" }
 t["0530M"] = t.excadrillM
 t.audinoM = { ability1 = "Curacuore" }
 t["0531M"] = t.audinoM
+t.scolipedeM = { ability1 = "Guscioscudo" }
+t["0545M"] = t.scolipedeM
+t.scraftyM = { ability1 = "Prepotenza" }
+t["0560M"] = t.scraftyM
 t.eelektrossM = { ability1 = "Rapidascesa" }
 t["0604M"] = t.eelektrossM
 t.chandelureM = { ability1 = "Intrapasso" }
@@ -2518,8 +2522,12 @@ t.floetteM = { ability1 = "Aurafolletto" }
 t["0670M"] = t.floetteM
 t.meowsticM = { ability1 = "Traccia" }
 t["0678M"] = t.meowsticM
-t.malamarM = { ability1 = "Sconosciuta" }
+t.malamarM = { ability1 = "Inversione" }
 t["0687M"] = t.malamarM
+t.barbaracleM = { ability1 = "Unghiedure" }
+t["0689M"] = t.barbaracleM
+t.dragalgeM = { ability1 = "Rigenergia" }
+t["0691M"] = t.dragalgeM
 t.hawluchaM = { ability1 = "Nullodifesa" }
 t["0701M"] = t.hawluchaM
 t.diancieM = { ability1 = "Magispecchio" }
@@ -2534,6 +2542,8 @@ t.magearnaM = { ability1 = "Sconosciuta" }
 t["0801M"] = t.magearnaM
 t.zeraoraM = { ability1 = "Sconosciuta" }
 t["0807M"] = t.zeraoraM
+t.falinksM = { ability1 = "Agonismo" }
+t["0870M"] = t.falinksM
 t.scovillainM = { ability1 = "Spargipiccante" }
 t["0952M"] = t.scovillainM
 t.glimmoraM = { ability1 = "Adattabilità" }
@@ -2544,23 +2554,9 @@ t.baxcaliburM = { ability1 = "Sconosciuta" }
 t["0998M"] = t.baxcaliburM
 
 -- LPZA placeholders
-t.raichuMX = { ability1 = "Sconosciuta" }
-t["0026MX"] = t.raichuMX
-t.raichuMY = { ability1 = "Sconosciuta" }
-t["0026MY"] = t.raichuMY
-t.scolipedeM = { ability1 = "Sconosciuta" }
-t["0545M"] = t.scolipedeM
-t.scraftyM = { ability1 = "Sconosciuta" }
-t["0560M"] = t.scraftyM
 t.floetteE = { ability1 = "Sconosciuta" }
 t["0670E"] = t.floetteE
-t.barbaracleM = { ability1 = "Sconosciuta" }
-t["0689M"] = t.barbaracleM
-t.dragalgeM = { ability1 = "Sconosciuta" }
-t["0691M"] = t.dragalgeM
 t.zygardeM = { ability1 = "Sconosciuta" }
 t["0718M"] = t.zygardeM
-t.falinksM = { ability1 = "Sconosciuta" }
-t["0870M"] = t.falinksM
 
 return t
