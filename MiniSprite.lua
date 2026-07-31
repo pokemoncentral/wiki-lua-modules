@@ -15,13 +15,11 @@ Examples:
 local o = {}
 
 -- stylua: ignore start
-local mw = require('mw')
-
-local txt = require('Wikilib-strings')
-local genlib = require('Wikilib-gens')
-local wlib = require('Wikilib')
-local gendata = require("Gens-data")
-local pokes = require("Poké-data")
+local txt = require('Modulo:Wikilib/strings')
+local genlib = require('Modulo:Wikilib/gens')
+local wlib = require('Modulo:Wikilib')
+local gendata = mw.loadData('Modulo:Gens/data')
+local pokes = mw.loadData('Modulo:Poké/data')
 -- stylua: ignore end
 
 -- Alias for generations with the same MS
@@ -36,6 +34,7 @@ local staticGamesString = {
     dlps = "[[File:${num}MSDLPS.png|${name}|40px|link=${name}]]",
     lpa = "[[File:Iconlpa${gender}${shiny}${num}.png|${name}|40px|link=${name}]]",
     sv = "[[File:${num}MSSV.png|${name}|40px|link=${name}]]",
+    lpza = "[[File:${num}MSLPZA.png|${name}|40px|link=${name}]]",
 }
 
 -- Return true if the given generation has only static MS
