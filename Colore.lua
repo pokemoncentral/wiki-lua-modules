@@ -291,7 +291,8 @@ c.conquest = _colore("EC9722", "F8DF9D", "945F13")
 c.Conquest = c.conquest
 c.GCCP = _colore("3763AF", "42E1FB", "08235E")
 c.gcc_pocket, c.gccpocket, c.gccp = c.GCCP, c.GCCP, c.GCCP
-c.champions, c.Champions = c.giallo, c.giallo
+c.champions = _colore("EDA711", "F3D219", "AC791B")
+c.Champions = c.champions
 
 -- Regions
 
