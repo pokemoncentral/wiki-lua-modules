@@ -159,7 +159,7 @@ local variants = {
 
 -- Table per i giochi che hanno gli sprite in .gif
 local gifs =
-    { "cr", "sme", "nb", "nb2", "xy", "roza", "sl", "usul", "lgpe", "spsc" }
+    { "cr", "sme", "nb", "nb2", "xy", "roza", "sl", "usul", "lgpe", "spsc", "sv" }
 
 -- Table per le dimensioni degli sprite
 local sizes = {
@@ -227,7 +227,7 @@ casi png.
 --]]
 local getExtension = function(game, variant)
     if
-        game == "sme" and variant:find("[dsh]")
+        game == "sme" and variant:find("dsh")
         or not tab.search(gifs, game)
     then
         return "png"
