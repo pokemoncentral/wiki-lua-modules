@@ -2482,7 +2482,7 @@ t.garchompMZ = { ability1 = "Sconosciuta" }
 t["0445MZ"] = t.garchompMZ
 t.lucarioM = { ability1 = "Adattabilità" }
 t["0448M"] = t.lucarioM
-t.lucarioMZ = { ability1 = "Sconosciuta" }
+t.lucarioMZ = { ability1 = "Ondascudo" }
 t["0448MZ"] = t.lucarioMZ
 t.abomasnowM = { ability1 = "Scendineve" }
 t["0460M"] = t.abomasnowM
@@ -2534,7 +2534,7 @@ t.diancieM = { ability1 = "Magispecchio" }
 t["0719M"] = t.diancieM
 t.crabominableM = { ability1 = "Ferropugno" }
 t["0740M"] = t.crabominableM
-t.golisopodM = { ability1 = "Sconosciuta" }
+t.golisopodM = { ability1 = "Unghiedure" }
 t["0768M"] = t.golisopodM
 t.drampaM = { ability1 = "Furore" }
 t["0780M"] = t.drampaM
@@ -2550,7 +2550,7 @@ t.glimmoraM = { ability1 = "Adattabilità" }
 t["0970M"] = t.glimmoraM
 t.tatsugiriM = { ability1 = "Sconosciuta" }
 t["0978M"] = t.tatsugiriM
-t.baxcaliburM = { ability1 = "Sconosciuta" }
+t.baxcaliburM = { ability1 = "Termoscambio" }
 t["0998M"] = t.baxcaliburM
 
 -- LPZA placeholders

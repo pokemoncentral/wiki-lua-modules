@@ -1,3 +1,5 @@
+local mw = require("mw")
+
 --[[
 
 Module to insert MiniSprites.
@@ -15,11 +17,11 @@ Examples:
 local o = {}
 
 -- stylua: ignore start
-local txt = require('Modulo:Wikilib/strings')
-local genlib = require('Modulo:Wikilib/gens')
-local wlib = require('Modulo:Wikilib')
-local gendata = mw.loadData('Modulo:Gens/data')
-local pokes = mw.loadData('Modulo:Poké/data')
+local txt = require('Wikilib-strings')
+local genlib = require('Wikilib-gens')
+local wlib = require('Wikilib')
+local gendata = require('Gens-data')
+local pokes = require('Poké-data')
 -- stylua: ignore end
 
 -- Alias for generations with the same MS

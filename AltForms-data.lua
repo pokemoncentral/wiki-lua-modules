@@ -119,12 +119,14 @@ t.formgroups.mega = {
     'tyranitar', 'sceptile', 'blaziken', 'swampert', 'gardevoir', 'sableye',
     'mawile', 'aggron', 'medicham', 'manectric', 'sharpedo', 'camerupt',
     'altaria', 'banette', 'chimecho', 'absol', 'glalie', 'salamence',
-    'metagross', 'latias', 'latios', 'rayquaza', 'lopunny', 'garchomp',
-    'lucario', 'abomasnow', 'gallade', 'froslass', 'emboar', 'excadrill',
-    'audino', 'scolipede', 'scrafty', 'eelektross', 'chandelure', 'golurk',
-    'chesnaught', 'delphox', 'greninja', 'pyroar', 'floette', 'meowstic',
-    'malamar', 'barbaracle', 'dragalge', 'hawlucha', 'zygarde', 'diancie',
-    'crabominable', 'drampa', 'falinks', 'scovillain', 'glimmora'
+    'metagross', 'latias', 'latios', 'rayquaza', 'staraptor', 'lopunny',
+    'garchomp', 'lucario', 'abomasnow', 'gallade', 'froslass', 'heatran',
+    'darkrai', 'emboar', 'excadrill', 'audino', 'scolipede', 'scrafty',
+    'eelektross', 'chandelure', 'golurk', 'chesnaught', 'delphox', 'greninja',
+    'pyroar', 'floette', 'meowstic', 'malamar', 'barbaracle', 'dragalge',
+    'hawlucha', 'zygarde', 'diancie', 'crabominable', 'golisopod', 'magearna',
+    'zeraora', 'drampa', 'falinks', 'scovillain', 'glimmora', 'tatsugiri',
+    'baxcalibur',
 }
 
 -- Tabella contentente i Pokémon che hanno più megaevoluzioni
@@ -744,6 +746,14 @@ t.scrafty.since = { base = "nb", M = "lpza" }
 t.skarmory.since = { base = "oa", M = "lpza" }
 t.starmie.since = { base = "rb", M = "lpza" }
 t.victreebel.since = { base = "rb", M = "lpza" }
+t.staraptor.since = { base = "dp", M = "lpza" }
+t.golisopod.since = { base = "sl", M = "lpza" }
+t.heatran.since = { base = "dp", M = "lpza" }
+t.darkrai.since = { base = "dp", M = "lpza" }
+t.magearna.since = { base = "sl", M = "lpza" }
+t.zeraora.since = { base = "sl", M = "lpza" }
+t.tatsugiri.since = { base = "sv", M = "lpza" }
+t.baxcalibur.since = { base = "sv", M = "lpza" }
 
 --[[
 
@@ -904,6 +914,7 @@ t[382] = t.kyogre
 t[383] = t.groudon
 t[384] = t.rayquaza
 t[386] = t.deoxys
+t[398] = t.staraptor
 t[413] = t.wormadam
 t[421] = t.cherrim
 t[428] = t.lopunny
@@ -915,7 +926,9 @@ t[478] = t.froslass
 t[479] = t.rotom
 t[483] = t.dialga
 t[484] = t.palkia
+t[485] = t.heatran
 t[487] = t.giratina
+t[491] = t.magearna
 t[492] = t.shaymin
 t[493] = t.arceus
 t[500] = t.emboar
@@ -966,10 +979,13 @@ t[740] = t.crabominable
 t[741] = t.oricorio
 t[745] = t.lycanroc
 t[746] = t.wishiwashi
+t[768] = t.golisopod
 t[773] = t.silvally
 t[774] = t.minior
 t[780] = t.drampa
 t[800] = t.necrozma
+t[801] = t.magearna
+t[807] = t.zeraora
 t[809] = t.melmetal
 t[812] = t.rillaboom
 t[815] = t.cinderace
@@ -1006,6 +1022,8 @@ t[931] = t.squawkabilly
 t[952] = t.scovillain
 t[964] = t.palafin
 t[970] = t.glimmora
+t[978] = t.tatsugiri
+t[998] = t.baxcalibur
 t[999] = t.gimmighoul
 t[1017] = t.ogerpon
 t[1024] = t.terapagos

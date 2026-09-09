@@ -3,7 +3,7 @@
 local b = require("PokémonInfo-BoxTipi").boxTipi
 
 -- Standard Pokémon
-print(b({ args = { "Staraptor" } }))
+print(b({ args = { "Fearow" } }))
 
 -- Multigen
 print(b({ args = { "Magneton" } }))

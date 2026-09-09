@@ -140,7 +140,7 @@ makeTest(
 -- Only some form
 makeTest(pokeData.getCriesList({ args = { "710" } }), "XL-Maxi")
 -- No alternative forms
-makeTest(pokeData.getCriesList({ args = { "398" } }), "")
+makeTest(pokeData.getCriesList({ args = { "021" } }), "")
 -- All alternative forms equal
 makeTest(pokeData.getCriesList({ args = { "487" } }), "all")
 

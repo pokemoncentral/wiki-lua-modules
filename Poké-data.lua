@@ -2350,6 +2350,8 @@ t.absolMZ = {name = 'Absol', ndex = 359, type1 = 'buio', type2 = 'spettro'}
 t["0359MZ"] = t.absolMZ
 t.groudonA = {name = 'Groudon', ndex = 383, type1 = 'terra', type2 = 'fuoco'}
 t["0383A"] = t.groudonA
+t.staraptorM = {name = 'Staraptor', ndex = 398, type1 = 'lotta', type2 = 'volante'}
+t["0398M"] = t.staraptorM
 t.lopunnyM = {name = 'Lopunny', ndex = 428, type1 = 'normale', type2 = 'lotta'}
 t["0428M"] = t.lopunnyM
 t.garchompMZ = {name = 'Garchomp', ndex = 445, type1 = 'drago', type2 = 'drago'}
@@ -2360,6 +2362,8 @@ t.audinoM = {name = 'Audino', ndex = 531, type1 = 'normale', type2 = 'folletto'}
 t["0531M"] = t.audinoM
 t.barbaracleM = {name = 'Barbaracle', ndex = 689, type1 = 'roccia', type2 = 'lotta'}
 t["0689M"] = t.barbaracleM
+t.golisopodM = {name = 'Golisopod', ndex = 768, type1 = 'coleot', type2 = 'acciaio'}
+t["0768M"] = t.golisopodM
 -- stylua: ignore end
 
 -- Gli alias per le altre forme alternative rilevanti
@@ -2482,7 +2486,13 @@ t.garchompM, t["0445M"] = t.garchomp, t.garchomp
 t.lucarioM, t["0448M"] = t.lucario, t.lucario
 t.abomasnowM, t["0460M"] = t.abomasnow, t.abomasnow
 t.galladeM, t["0475M"] = t.gallade, t.gallade
+t.heatranM, t["0485M"] = t.heatran, t.heatran
+t.darkraiM, t["0491M"] = t.darkrai, t.darkrai
 t.diancieM, t["0719M"] = t.diancie, t.diancie
+t.magearnaM, t["0801M"] = t.magearna, t.magearna
+t.zeraoraM, t["0807M"] = t.zeraora, t.zeraora
+t.tatsugiriM, t["0978M"] = t.tatsugiri, t.tatsugiri
+t.baxcaliburM, t["0998M"] = t.baxcalibur, t.baxcalibur
 t.venusaurGi, t["0003Gi"] = t.venusaur, t.venusaur
 t.charizardGi, t["0006Gi"] = t.charizard, t.charizard
 t.blastoiseGi, t["0009Gi"] = t.blastoise, t.blastoise

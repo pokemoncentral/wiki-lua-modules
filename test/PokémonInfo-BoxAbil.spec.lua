@@ -3,7 +3,7 @@
 local b = require("PokémonInfo-BoxAbil").boxAbil
 
 -- Standard Pokémon
-print(b({ args = { "Staraptor" } }))
+print(b({ args = { "Fearow" } }))
 
 -- Multigen with "nessuna"
 print(b({ args = { "Sableye" } }))
