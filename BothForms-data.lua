@@ -72,7 +72,6 @@ t.alcremie.names.base = useless.alcremie.names.base
 t.tatsugiri = mergeByName("tatsugiri")
 -- The copy is needed to remove tha metatable that mw.loadData doesn't like
 t.minior = tab.copy(useless.minior)
-t.magearna = mergeByName("magearna")
 
 -- gamesOrder can't be merged automatically because there's no way to sort
 -- abbrs
@@ -87,7 +86,6 @@ t.pyroar.gamesOrder = { "base", "F", "M" }
 t.floette.gamesOrder = { "base", "E", "M", "G", "A", "Bl", "Bi" }
 t.magearna.gamesOrder = { "base", "A", "M", "AM" }
 t.alcremie.gamesOrder = tab.copy(useless.alcremie.gamesOrder)
-t.magearna.gamesOrder = { "base", "M", "A" }
 table.insert(t.alcremie.gamesOrder, "Gi")
 t.tatsugiri.gamesOrder = { "base", "A", "T", "M", "AM", "TM" }
 
