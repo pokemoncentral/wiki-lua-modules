@@ -2352,7 +2352,7 @@ d.zygardeM = {hp = 216, atk = 70, def = 91, spatk = 216, spdef = 85, spe = 100}
 d["0718M"] = d.zygardeM
 d.diancieM = {hp = 50, atk = 160, def = 110, spatk = 160, spdef = 110, spe = 110}
 d["0719M"] = d.diancieM
-d.crabominableM = {hp = 95, atk = 157, def = 122, spatk = 62, spdef = 107, spe = 33}
+d.crabominableM = {hp = 97, atk = 157, def = 122, spatk = 62, spdef = 107, spe = 33}
 d["0740M"] = d.crabominableM
 d.golisopodM = {hp = 75, atk = 150, def = 175, spatk = 70, spdef = 120, spe = 40}
 d["0768M"] = d.golisopodM
