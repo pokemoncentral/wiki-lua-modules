@@ -37,6 +37,9 @@ data.codes = {
     ["I Loschi Piani del Team Rocket"] = "B4a",
     ["Busta Deluxe Mega"] = "B4b",
     ["Promo-B"] = "PROMO-B",
+
+    -- Serie C
+    ['Fusione Duale'] = 'C1',
 }
 
 return data
