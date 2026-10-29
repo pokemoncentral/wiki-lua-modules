@@ -40,6 +40,7 @@ data.codes = {
 
     -- Serie C
     ['Fusione Duale'] = 'C1',
+    ["Promo-C"] = "PROMO-C",
 
     -- Speciale
     ["Primi Amici"] = "SP1",
