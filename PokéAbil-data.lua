@@ -2478,7 +2478,7 @@ t.lopunnyM = { ability1 = "Nervisaldi" }
 t["0428M"] = t.lopunnyM
 t.garchompM = { ability1 = "Silicoforza" }
 t["0445M"] = t.garchompM
-t.garchompMZ = { ability1 = "Sconosciuta" }
+t.garchompMZ = { ability1 = "Levitazione" }
 t["0445MZ"] = t.garchompMZ
 t.lucarioM = { ability1 = "Adattabilità" }
 t["0448M"] = t.lucarioM
