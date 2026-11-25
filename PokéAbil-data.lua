@@ -2454,7 +2454,7 @@ t.chimechoM = { ability1 = "Levitazione" }
 t["0358M"] = t.chimechoM
 t.absolM = { ability1 = "Magispecchio" }
 t["0359M"] = t.absolM
-t.absolMZ = { ability1 = "Sconosciuta" }
+t.absolMZ = { ability1 = "Affilama" }
 t["0359MZ"] = t.absolMZ
 t.glalieM = { ability1 = "Pellegelo" }
 t["0362M"] = t.glalieM
@@ -2490,7 +2490,7 @@ t.galladeM = { ability1 = "Forza Interiore" }
 t["0475M"] = t.galladeM
 t.froslassM = { ability1 = "Scendineve" }
 t["0478M"] = t.froslassM
-t.heatranM = { ability1 = "Sconosciuta" }
+t.heatranM = { ability1 = "Idrorinforzo" }
 t["0485M"] = t.heatranM
 t.darkraiM = { ability1 = "Sconosciuta" }
 t["0491M"] = t.darkraiM
